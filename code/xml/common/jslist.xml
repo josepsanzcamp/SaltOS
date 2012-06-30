@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<menu include="xml/common/jsmenu.xml" replace="true"/>
+	<!-- FOR GENERAL PURPOSES -->
+	<function>setParam(name,value) { $("form[id=list] *[name="+name+"]").val(value); }</function>
+	<function>setCheck(name,value) { $("form[id=list] *[name="+name+"]").prop("checked",value); }</function>
+	<function>getParam(name) { return $("form[id=list] *[name="+name+"]").val(); }</function>
+	<function>submit1(callback) { submitcontent($("form[id=list]"),callback); }</function>
+	<!-- FOR GENERAL ACTIONS -->
+	<function>sort(field) { setParam("action","list"); setParam("offset",0); setParam("order",field); submit1(); }</function>
+	<function>create() { setParam("action","form"); setParam("id","0"); submit1(); }</function>
+	<function>view(id) { setParam("action","form"); setParam("id",-id); submit1(); }</function>
+	<function>edit(id) { setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>copy(id) { setParam("action","form"); setParam("id","0_copy_"+id); submit1(); }</function>
+	<function eval="true">"delete1(id) { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','delete'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+	<function>buscar() { setParam("action","list"); setParam("offset","0"); submit1(); }</function>
+	<function>pdf() { var id=getIds(); if(!id) return; openurl("xml.php?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
+	<function>mail() { var id=getIds(); if(!id) return; addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
+	<function>excel() { openurl("xml.php?page="+getParam("page")+"&amp;action=excel"); }</function>
+	<function>limpiar() { setParam("action","limpiar"); submit1(); }</function>
+	<function>pdf2(id) { openurl("xml.php?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
+	<function>mail2(id) { addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
+	<function>vcard(id) { openurl("xml.php?page="+getParam("page")+"&amp;action=vcard&amp;id="+id); }</function>
+	<function>mailto(mail) { setParam("page","correo"); setParam("action","form"); setParam("id","0_mailto_"+mail); submit1(); }</function>
+	<function>download(data) { openurl("xml.php?action=download&amp;"+data); }</function>
+	<function eval="true">"getIds() { var ids=new Array(); $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
+	<!-- FOR FORM ACCESS -->
+	<function>clientes(id) { setParam("page","clientes"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>proyectos(id) { setParam("page","proyectos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>proveedores(id) { setParam("page","proveedores"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>agenda(id) { setParam("page","agenda"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>actas(id) { setParam("page","actas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>contactos(id) { setParam("page","contactos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>documentos(id) { setParam("page","documentos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>incidencias(id) { setParam("page","incidencias"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>partes(id) { setParam("page","partes"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>seguimientos(id) { setParam("page","seguimientos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>facturas(id) { setParam("page","facturas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>gastos(id) { setParam("page","gastos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>aplicaciones(id) { setParam("page","aplicaciones"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>epigrafes(id) { setParam("page","epigrafes"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>estados(id) { setParam("page","estados"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>formaspago(id) { setParam("page","formaspago"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>grupos(id) { setParam("page","grupos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>permisos(id) { setParam("page","permisos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>prioridades(id) { setParam("page","prioridades"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>usuarios(id) { setParam("page","usuarios"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>periodicas(id) { setParam("page","periodicas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>empleados(id) { setParam("page","empleados"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>cuentas(id) { setParam("page","cuentas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>posiblescli(id) { setParam("page","posiblescli"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>productos(id) { setParam("page","productos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>presupuestos(id) { setParam("page","presupuestos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>campanyas(id) { setParam("page","campanyas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>tiposevento(id) { setParam("page","tiposevento"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>textos(id) { setParam("page","textos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>correo(id) { setParam("page","correo"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>feeds(id) { setParam("page","feeds"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>importaciones(id) { setParam("page","importaciones"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<!-- FOR PAGINATION MODULE -->
+	<function>first() { page1($("#selectpage").prop("selectedIndex",0).val()); }</function>
+	<function>previous() { page1($("#selectpage").prop("selectedIndex",$("#selectpage").prop("selectedIndex")-1).val()); }</function>
+	<function>next() { page1($("#selectpage").prop("selectedIndex",$("#selectpage").prop("selectedIndex")+1).val()); }</function>
+	<function>last() { page1($("#selectpage").prop("selectedIndex",$("#selectpage").prop("options").length-1).val()); }</function>
+	<function>page1(num) { setParam("action","list"); setParam("offset",(intval(num)-1)*intval(getParam("limit"))); submit1(); }</function>
+	<function>limit1(num) { setParam("action","list"); setParam("limit",intval(num)); submit1(); }</function>
+	<!-- FOR QRCODE MODULE -->
+	<function eval="true">"lang_qrcode() { return '".LANG_ESCAPE("qrcode")."'; }"</function>
+	<function eval="true">"lang_telefono() { return '".LANG_ESCAPE("telefono")."'; }"</function>
+	<function>qrcode(id) { qrcode2(getParam("page"),id); }</function>
+	<!-- FOR VIEWPDF MODULE -->
+	<function>view2(id) { viewpdf("page="+getParam("page")+"&amp;id="+abs(id)); }</function>
+	<function>view4() { var id=getIds(); if(!id) return; viewpdf("page="+getParam("page")+"&amp;id="+id); }</function>
+	<function eval="true">"lang_view2() { return '".LANG_ESCAPE("view2")."'; }"</function>
+	<function eval="true">"lang_view2error() { return '".LANG_ESCAPE("view2error")."'; }"</function>
+	<function eval="true">"lang_view2hash() { return '".LANG_ESCAPE("view2hash")."'; }"</function>
+	<function eval="true">"lang_view2opening() { return '".LANG_ESCAPE("view2opening")."'; }"</function>
+	<!-- FOR FILTER MODULE -->
+	<function eval="true">"lang_createfilterok() { return '".LANG_ESCAPE("createfilterok")."'; }"</function>
+	<function eval="true">"lang_createfilterko() { return '".LANG_ESCAPE("createfilterko")."'; }"</function>
+	<function eval="true">"lang_loadfilterko() { return '".LANG_ESCAPE("loadfilterko")."'; }"</function>
+	<function eval="true">"lang_loadfilterok() { return '".LANG_ESCAPE("loadfilterok")."'; }"</function>
+	<function eval="true">"lang_updatefilterko() { return '".LANG_ESCAPE("updatefilterko")."'; }"</function>
+	<function eval="true">"lang_updatefilterok() { return '".LANG_ESCAPE("updatefilterok")."'; }"</function>
+	<function eval="true">"lang_deletefilterko() { return '".LANG_ESCAPE("deletefilterko")."'; }"</function>
+	<function eval="true">"lang_deletefilterok() { return '".LANG_ESCAPE("deletefilterok")."'; }"</function>
+	<function eval="true">"lang_renamefilterok() { return '".LANG_ESCAPE("renamefilterok")."'; }"</function>
+	<function eval="true">"lang_renamefilterko1() { return '".LANG_ESCAPE("renamefilterko1")."'; }"</function>
+	<function eval="true">"lang_renamefilterko2() { return '".LANG_ESCAPE("renamefilterko2")."'; }"</function>
+	<!-- USING CACHE -->
+	<cache>
+		<include>js/qrcode.js</include>
+		<include>js/viewpdf.js</include>
+		<include>js/filters.js</include>
+	</cache>
+</root>

@@ -1,0 +1,2 @@
+Changed made by sanz:
+- function sort_files($a, $b) needs to be static (detected a bug when is called from usort)

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<list>
+		<title lang="true">list</title>
+		<actions include="xml/common/actions.xml" replace="true"/>
+		<pager include="xml/common/pager.xml"/>
+		<width>100%</width>
+		<fields>
+			<field>
+				<name>id2</name>
+				<label lang="true">id</label>
+				<width></width>
+				<sort>true</sort>
+				<order>id</order>
+			</field>
+			<field>
+				<name>usuario</name>
+				<label lang="true">username</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>datetime</name>
+				<label lang="true">datetime</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>cliente</name>
+				<label lang="true">cliente</label>
+				<width></width>
+				<sort>true</sort>
+				<size>20</size>
+				<order>cliente2</order>
+			</field>
+			<field>
+				<name>proyecto</name>
+				<label lang="true">proyecto</label>
+				<width></width>
+				<sort>true</sort>
+				<size>20</size>
+				<order>proyecto2</order>
+			</field>
+			<field>
+				<name>nombre</name>
+				<label lang="true">documento</label>
+				<width></width>
+				<sort>true</sort>
+				<order>nombre2</order>
+			</field>
+			<field>
+				<name>comentarios</name>
+				<label lang="true">numc</label>
+				<tip lang="true">numctip</tip>
+				<width></width>
+				<sort>false</sort>
+			</field>
+			<field>
+				<name>ficheros</name>
+				<label lang="true">numf</label>
+				<tip lang="true">numftip</tip>
+				<width></width>
+				<sort>false</sort>
+			</field>
+		</fields>
+		<javascript>
+			<javascript include="xml/common/jslist.xml" replace="true"/>
+			<cache>
+				<include>js/updateproyectos.js</include>
+			</cache>
+		</javascript>
+		<quick>
+			<row>
+				<field>
+					<type>separator</type>
+					<width>100%</width>
+				</field>
+				<field>
+					<type>label</type>
+					<label lang="true">usedfilter</label>
+					<show eval="true">check_filter(array("comentarios"=>"","id_cliente"=>"","id_proyecto"=>"","id_usuario"=>"","fecha1"=>"","fecha2"=>""))?"true":"false"</show>
+					<class>nowrap</class>
+					<class2>info</class2>
+				</field>
+				<field>
+					<name>buscar</name>
+					<label lang="true">buscar</label>
+					<type>text</type>
+					<width>240px</width>
+					<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+					<onchange>copy_value("comentarios","buscar");</onchange>
+					<onkeypress>if(is_enterkey(event)) { copy_value("comentarios","buscar");buscar(); }</onkeypress>
+					<focus>true</focus>
+					<speech>true</speech>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">buscar</value>
+					<tip lang="true">buscartip</tip>
+					<onclick>buscar()</onclick>
+					<icon>find</icon>
+					<class>nowrap</class>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">limpiar</value>
+					<tip lang="true">limpiartip</tip>
+					<onclick>limpiar()</onclick>
+					<icon>refresh</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+			</row>
+		</quick>
+		<form>
+			<name>list</name>
+			<action>xml.php</action>
+			<method>get</method>
+			<fields>
+				<title lang="true">filter</title>
+				<buttons>true</buttons>
+				<row>
+					<field include="xml/common/hiddenslist.xml" replace="true" />
+					<field>
+						<name>id_usuario</name>
+						<label lang="true">username</label>
+						<type>select</type>
+						<width>240px</width>
+						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query(),"id_aplicacion,id_registro"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
+						<colspan>3</colspan>
+					</field>
+					<field>
+						<type>separator</type>
+						<width>10px</width>
+					</field>
+					<field>
+						<name>id_cliente</name>
+						<label lang="true">cliente</label>
+						<type>select</type>
+						<width>240px</width>
+						<query eval="true">make_select_query("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_documentos")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+						<onchange>update_proyectos()</onchange>
+					</field>
+				</row>
+				<row>
+					<field>
+						<name>fecha1</name>
+						<label lang="true">fechaini</label>
+						<type>date</type>
+						<width>90px</width>
+						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")</value>
+						<icon>calendar</icon>
+						<onchange>check_date("fecha1","le","fecha2")</onchange>
+					</field>
+					<field>
+						<name>fecha2</name>
+						<label lang="true">fechafin</label>
+						<type>date</type>
+						<width>90px</width>
+						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")</value>
+						<class2>right</class2>
+						<icon>calendar</icon>
+						<onchange>check_date("fecha2","ge","fecha1")</onchange>
+					</field>
+					<field>
+						<type>separator</type>
+					</field>
+					<field>
+						<name>id_proyecto</name>
+						<label lang="true">proyecto</label>
+						<type>select</type>
+						<width>240px</width>
+						<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
+					</field>
+				</row>
+				<row>
+					<field>
+						<name>comentarios</name>
+						<label lang="true">comentarios</label>
+						<type>text</type>
+						<width>240px</width>
+						<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+						<colspan>3</colspan>
+						<onchange>copy_value("buscar","comentarios");</onchange>
+						<speech>true</speech>
+					</field>
+				</row>
+			</fields>
+			<fields include="xml/common/filters.xml" replace="true" />
+			<fields include="xml/common/helplist.xml" replace="true" />
+			<buttons include="xml/common/buttonslist.xml" />
+		</form>
+		<query global="page,id_cliente,id_usuario,fecha1,fecha2,comentarios,id_proyecto" eval="true">"SELECT * FROM (
+	SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
+		".make_extra_query("d.")." usuario,
+		e.`datetime` `datetime`,
+		CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
+			/*MYSQL CONCAT('link:clientes(',-a.id_cliente,'):',b_nombre) *//*SQLITE 'link:clientes(' || -a.id_cliente || '):' || b_nombre */ END cliente,
+		CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
+			/*MYSQL CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre) *//*SQLITE 'link:proyectos(' || -id_proyecto || '):' || p_nombre */ END proyecto,
+		/*MYSQL CONCAT('link:documentos(',-a.id,'):',a.nombre) *//*SQLITE 'link:documentos(' || -a.id || '):' || a.nombre */ nombre,
+		CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
+		CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
+		a.nombre nombre2,
+		(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
+		(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
+		a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || a.nombre */ action_title,
+		CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+		CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+		CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+		a.id_cliente id_cliente,e.id_usuario id_usuario,d.id_grupo id_grupo,id_proyecto,a.descripcion descripcion
+	FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre FROM tbl_documentos a2
+		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
+		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto) a
+		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1'
+		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
+	WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".make_like_query("nombre2,descripcion,cliente2,proyecto2,usuario,datetime",$comentarios)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE(`datetime`)>=DATE('$fecha2'))":"(1=1)")." AND ".check_sql($page,"list")</query>
+		<order global="order" eval="true">$order</order>
+		<limit global="limit" eval="true">$limit</limit>
+		<offset global="offset" eval="true">$offset</offset>
+	</list>
+	<form>
+		<views>
+			<view>
+				<title lang="true">formview</title>
+				<query>
+					<query include="xml/common/qpermview.xml" replace="true" />
+					<query include="xml/common/qdefaultview.xml" replace="true" />
+					<comments_old include="xml/common/qcommentsold.xml" />
+					<files_old include="xml/common/qfilesold.xml" />
+					<control include="xml/common/qcontrol.xml"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</view>
+			<insert>
+				<title lang="true">forminsert</title>
+				<query>
+					<query include="xml/common/qpermcreate.xml" replace="true" />
+					<default>SELECT '0' id,'0' id_cliente,'0' id_proyecto</default>
+					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</insert>
+			<update>
+				<title lang="true">formupdate</title>
+				<query>
+					<query include="xml/common/qpermupdate.xml" replace="true" />
+					<query include="xml/common/qdefaultview.xml" replace="true" />
+					<comments_old include="xml/common/qcommentsold.xml" />
+					<files_old include="xml/common/qfilesold.xml" />
+					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
+					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
+					<control include="xml/common/qcontrol.xml"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</update>
+		</views>
+		<name>form</name>
+		<action>xml.php</action>
+		<method>post</method>
+		<hiddens include="xml/common/hiddensform.xml" />
+		<fields>
+			<default>
+				<fieldset>
+					<title lang="true">defaultdata</title>
+					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
+					<buttons>true</buttons>
+					<row>
+						<field>
+							<name>id</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>id_cliente</name>
+							<label lang="true">cliente</label>
+							<type>select</type>
+							<width>240px</width>
+							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<onchange>update_proyectos()</onchange>
+							<link>clientes(-abs(ID))</link>
+							<icon>view</icon>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>id_proyecto</name>
+							<label lang="true">proyecto</label>
+							<type>select</type>
+							<width>240px</width>
+							<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<colspan>3</colspan>
+							<link>proyectos(-abs(ID))</link>
+							<icon>view</icon>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>nombre</name>
+							<label lang="true">nombre</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>descripcion</name>
+							<label lang="true">descripcion</label>
+							<type>textarea</type>
+							<width>600px</width>
+							<height>120px</height>
+							<colspan>6</colspan>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+						</field>
+					</row>
+				</fieldset>
+			</default>
+			<comments_old include="xml/common/commentsold.xml"/>
+			<files_old include="xml/common/filesold.xml" />
+			<comments_new include="xml/common/commentnew.xml"/>
+			<files_new include="xml/common/filesnew.xml"/>
+			<control include="xml/common/control.xml" />
+			<folders include="xml/common/folders.xml" />
+			<help include="xml/common/helpform.xml" />
+		</fields>
+		<quick include="xml/common/quickform.xml" />
+		<buttons include="xml/common/buttonsform.xml" />
+		<javascript>
+			<javascript include="xml/common/jsform.xml" replace="true"/>
+			<cache>
+				<include>js/updateproyectos.js</include>
+			</cache>
+		</javascript>
+	</form>
+	<insert>
+		<query include="xml/common/qpermcreate.xml" replace="true"/>
+		<query include="xml/common/autonombre.xml" replace="true"/>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+ 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
+		<query include="xml/common/qfilesinsert.xml" replace="true"/>
+		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
+	</insert>
+	<update>
+		<query include="xml/common/qpermupdate.xml" replace="true"/>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+        <query include="xml/common/qcontrolupdate.xml" replace="true"/>
+		<query include="xml/common/qfilesdelete.xml" replace="true" />
+		<query include="xml/common/qfilesupdate.xml" replace="true"/>
+		<query include="xml/common/qcommentsdelete.xml" replace="true" />
+		<query include="xml/common/qcommentsinsert.xml" replace="true" />
+		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
+	</update>
+	<delete>
+		<query include="xml/common/qpermdelete.xml" replace="true"/>
+		<query include="xml/common/qdelete.xml" replace="true" />
+		<query include="xml/common/qdeletecomments.xml" replace="true" />
+		<query include="xml/common/qdeletefiles.xml" replace="true" />
+		<query include="xml/common/qcontroldelete.xml" replace="true"/>
+		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
+	</delete>
+</root>

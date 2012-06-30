@@ -1,0 +1,6 @@
+
+ICONS FROM THE GNOME PROJECT CONVERTED FROM SVG TO PNG (16x16):
+- /usr/share/icons/HighContrast-SVG/scalable
+
+THIS IS THE COMMAND LINE USED TO CONVERT THE ICONS:
+- find . -name *.svg |cut -d. -f-2|gawk '{print "convert -resize 16x16 -background none -filter lanczos -gamma 1.3 +normalize -quality 100 -depth 8 -define png:color-type=6 "$1".svg "$1".png"}'|sh

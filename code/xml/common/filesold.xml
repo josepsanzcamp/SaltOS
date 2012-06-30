@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<fieldset ifnoteval="is_mobile()">
+		<width>700px</width>
+		<title lang="true">attachments</title>
+		<head>
+			<field>
+				<type>checkbox</type>
+				<class3>master</class3>
+				<class2>thead shortcut_ctrl_a</class2>
+				<width>1px</width>
+				<value>1</value>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">username</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">grupo</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">datetime</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">fichero</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">size</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>separator</type>
+				<class>thead</class>
+				<colspan>100</colspan>
+			</field>
+		</head>
+		<row>
+			<field>
+				<name>id</name>
+				<type>hidden</type>
+			</field>
+			<field>
+				<name>id_registro</name>
+				<type>hidden</type>
+			</field>
+			<field>
+				<name>zip</name>
+				<type>checkbox</type>
+				<class3>slave</class3>
+				<class2>tbody</class2>
+				<width>1px</width>
+				<value>1</value>
+				<onchange>$(this).attr('cancel',true);</onchange>
+			</field>
+			<field>
+				<name>usuario</name>
+				<type>label</type>
+				<class>tbody</class>
+			</field>
+			<field>
+				<name>grupo</name>
+				<type>label</type>
+				<class>tbody</class>
+			</field>
+			<field>
+				<name>datetime</name>
+				<type>label</type>
+				<class>tbody</class>
+			</field>
+			<field>
+				<name>fichero</name>
+				<type>label</type>
+				<class>tbody</class>
+			</field>
+			<field>
+				<name>fichero_size</name>
+				<type>label</type>
+				<class>tbody</class>
+			</field>
+			<field>
+				<name>download</name>
+				<label lang="true">download</label>
+				<type>link</type>
+				<width>1px</width>
+				<icon>download</icon>
+				<class>tbody</class>
+			</field>
+			<field>
+				<name>viewpdf</name>
+				<type>link</type>
+				<label lang="true">view2</label>
+				<width>1px</width>
+				<icon>view2</icon>
+				<class>tbody</class>
+			</field>
+			<field>
+				<type>checkbox</type>
+				<label lang="true">delete</label>
+				<name>fichero_del</name>
+				<value>1</value>
+				<show global="id" eval="true">$id>=0?"true":"false"</show>
+				<width>1px</width>
+				<width2>1px</width2>
+				<icon>delete</icon>
+				<class>tbody</class>
+				<class2>tbody</class2>
+			</field>
+		</row>
+		<tail>
+			<field>
+				<type>separator</type>
+			</field>
+		</tail>
+		<tail>
+			<field>
+				<type>button</type>
+				<value lang="true">zipformat</value>
+				<tip lang="true">actioncompress</tip>
+				<class>nowrap</class>
+				<onclick>compress('zip')</onclick>
+				<icon>download</icon>
+				<width>1px</width>
+			</field>
+			<field>
+				<type>button</type>
+				<value lang="true">tarformat</value>
+				<tip lang="true">actioncompress</tip>
+				<class>nowrap</class>
+				<onclick>compress('tar')</onclick>
+				<icon>download</icon>
+				<width>1px</width>
+			</field>
+			<field>
+				<type>button</type>
+				<value lang="true">gzipformat</value>
+				<tip lang="true">actioncompress</tip>
+				<class>nowrap</class>
+				<onclick>compress('gzip')</onclick>
+				<icon>download</icon>
+				<width>1px</width>
+			</field>
+			<field>
+				<type>button</type>
+				<value lang="true">bzipformat</value>
+				<tip lang="true">actioncompress</tip>
+				<class>left</class>
+				<onclick>compress('bzip')</onclick>
+				<icon>download</icon>
+			</field>
+		</tail>
+	</fieldset>
+	<fieldset ifeval="is_mobile()">
+		<title lang="true">attachments</title>
+		<row>
+			<field>
+				<name>id</name>
+				<type>hidden</type>
+			</field>
+			<field>
+				<name>id_registro</name>
+				<type>hidden</type>
+			</field>
+			<field>
+				<name>usuario</name>
+				<type>text</type>
+				<class>tbody</class>
+				<label lang="true">username</label>
+				<readonly>true</readonly>
+			</field>
+			<field>
+				<name>grupo</name>
+				<type>text</type>
+				<class>tbody</class>
+				<label lang="true">grupo</label>
+				<readonly>true</readonly>
+			</field>
+			<field>
+				<name>datetime</name>
+				<type>text</type>
+				<class>tbody</class>
+				<label lang="true">datetime</label>
+				<readonly>true</readonly>
+			</field>
+			<field>
+				<name>fichero</name>
+				<type>text</type>
+				<class>tbody</class>
+				<label lang="true">fichero</label>
+				<readonly>true</readonly>
+			</field>
+			<field>
+				<name>fichero_size</name>
+				<type>text</type>
+				<class>tbody</class>
+				<label lang="true">size</label>
+				<readonly>true</readonly>
+			</field>
+			<field>
+				<name>download</name>
+				<label lang="true">download</label>
+				<type>link</type>
+				<width>1px</width>
+				<icon>download</icon>
+				<class>tbody</class>
+			</field>
+		</row>
+	</fieldset>
+</root>

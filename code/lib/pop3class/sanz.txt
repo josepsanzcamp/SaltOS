@@ -1,0 +1,3 @@
+Code downloaded from:
+- http://www.phpclasses.org/package/2-PHP-Access-to-e-mail-mailboxes-using-the-POP3-protocol.html
+- http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html

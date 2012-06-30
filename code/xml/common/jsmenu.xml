@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<!-- FOR GENERAL PURPOSES -->
+	<function>openurl(url) { uninstall_onbeforeunload(); window.location.href=url; setTimeout(function() { install_onbeforeunload(); },100); }</function>
+	<function>openwin(url) { window.open(url); }</function>
+	<function eval="true">"logout() { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msglogout")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); make_notice(); opencontent('xml.php?action=logout'); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+	<function eval="true">"alerta(msg,callback) { if(typeof(callback)=='undefined') callback=function() {}; dialog('".LANG_ESCAPE("alert")."',msg,{'".LANG_ESCAPE("buttoncontinue")."':function() { dialog('close'); callback(); } }); }"</function>
+	<!-- FOR CONTROL MANAGER -->
+	<function global="page" eval="true">"current_page() { return '$page'; }"</function>
+	<function eval="true">"lang_unknownerror() { return '".LANG_ESCAPE("unknownerror")."'; }"</function>
+	<function eval="true">"lang_loading() { return '".LANG_ESCAPE("loading")."'; }"</function>
+	<function eval="true">"lang_sending() { return '".LANG_ESCAPE("sending")."'; }"</function>
+	<function eval="true">"lang_alert() { return '".LANG_ESCAPE("alert")."'; }"</function>
+	<function eval="true">"lang_error() { return '".LANG_ESCAPE("error")."'; }"</function>
+	<function eval="true">"lang_showmenu() { return '".LANG_ESCAPE("showmenu")."'; }"</function>
+	<function eval="true">"lang_showtools() { return '".LANG_ESCAPE("showtools")."'; }"</function>
+	<function eval="true">"lang_requiredfield() { return '".LANG_ESCAPE("requiredfield")."'; }"</function>
+	<function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
+	<!-- FOR UNLOAD EVENT -->
+	<function>install_onbeforeunload() { window.onbeforeunload=function() { check_outbox(); hide_popupnotice(); }; }</function>
+	<function>uninstall_onbeforeunload() { window.onbeforeunload=null; }</function>
+	<inline>install_onbeforeunload();</inline>
+	<!-- FOR STYLE MANAGER -->
+	<function global="stylepre" eval="true">"default_stylepre() { return '$stylepre'; }"</function>
+	<function global="stylepost" eval="true">"default_stylepost() { return '$stylepost'; }"</function>
+	<function global="iconsetpre" eval="true">"default_iconsetpre() { return '$iconsetpre'; }"</function>
+	<function global="iconsetpost" eval="true">"default_iconsetpost() { return '$iconsetpost'; }"</function>
+	<!-- FOR TIMEPICKER -->
+	<function eval='true'>"lang_buttonaccept() { return '".LANG_ESCAPE("buttonaccept")."'; }"</function>
+	<function eval='true'>"lang_horas() { return '".LANG_ESCAPE("horas")."'; }"</function>
+	<function eval='true'>"lang_minutos() { return '".LANG_ESCAPE("minutos")."'; }"</function>
+	<!-- FOR AGENDA MODULE -->
+	<function eval="true">"config_agenda_interval() { return intval('".CONFIG('agenda_interval')."')*1000; }"</function>
+	<!-- FOR EMAIL MODULE -->
+	<function eval="true">"config_inbox_interval() { return intval('".CONFIG('inbox_interval')."')*1000; }"</function>
+	<function eval="true">"config_outbox_interval() { return intval('".CONFIG('outbox_interval')."')*1000; }"</function>
+	<function>gotoemail() { opencontent("xml.php?page=correo"); }</function>
+	<!-- FOR FEEDS MODULE -->
+	<function eval="true">"config_feeds_interval() { return intval('".CONFIG('feeds_interval')."')*1000; }"</function>
+	<function>gotofeeds() { opencontent("xml.php?page=feeds"); }</function>
+	<!-- FOR BACKGROUND PROCESS -->
+	<function eval="true">"lang_inbackground() { return '".LANG_ESCAPE("inbackground")."'; }"</function>
+	<!-- FOR SESSIONS MODULE -->
+	<function eval="true">"config_session_interval() { return intval('".CONFIG('session_interval')."')*1000; }"</function>
+	<function>updatesession() { check_session("update"); }</function>
+	<!-- FOR CKEDITOR LANG -->
+	<function global="lang" eval="true">"lang_default() { return '".substr($lang,0,2)."'; }"</function>
+	<!-- FOR VOICE MODULE -->
+	<function eval="true">"lang_voicetxt() { return '".LANG_ESCAPE("voicetxt")."'; }"</function>
+	<function eval="true">"lang_welcometosaltos() { return '".LANG_ESCAPE("welcometosaltos")."'; }"</function>
+	<!-- FOR DESKTOP MODULE -->
+	<function eval="true">"lang_desktoptxt() { return '".LANG_ESCAPE("desktoptxt")."'; }"</function>
+	<!-- FOR FOLDERS MODULE -->
+	<function eval="true">"lang_addtofolderok() { return '".LANG_ESCAPE("addtofolderok")."'; }"</function>
+	<function eval="true">"lang_delfromfolderok() { return '".LANG_ESCAPE("delfromfolderok")."'; }"</function>
+	<!-- FOR SELECT ALL CHECKBOX FEATURE -->
+	<function eval="true">"lang_selectallcheckbox() { return '".LANG_ESCAPE("selectallcheckbox")."'; }"</function>
+	<function eval="true">"lang_selectonecheckbox() { return '".LANG_ESCAPE("selectonecheckbox")."'; }"</function>
+	<!-- USING CACHE -->
+	<cache>
+		<!-- FOR DATEPICKER -->
+		<include global="lang" eval="true">"lib/jquery/jquery.ui.datepicker-".substr($lang,0,2).".js"</include>
+		<!-- FOR CHECKERS -->
+		<include>js/checkagenda.js</include>
+		<include>js/checkemail.js</include>
+		<include>js/checkfeeds.js</include>
+		<include>js/checksession.js</include>
+		<include>js/favicon.js</include>
+		<include>js/voice.js</include>
+		<include>js/translate.js</include>
+		<include>js/calculator.js</include>
+		<include>js/folders.js</include>
+	</cache>
+</root>

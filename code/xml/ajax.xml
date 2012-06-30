@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<!-- FOR DIRECTIONS MODULE -->
+	<paises eval="true">"SELECT id,nombre label FROM tbl_paises WHERE ".make_like_query("nombre",getParam("term"))." ORDER BY nombre LIMIT 25"</paises>
+	<provincias eval="true">"SELECT id,nombre label FROM tbl_provincias WHERE id_pais='".intval(getParam("id"))."' AND ".make_like_query("nombre",getParam("term"))." ORDER BY nombre LIMIT 25"</provincias>
+	<poblaciones eval="true">"SELECT id,nombre label FROM tbl_poblaciones WHERE id_provincia='".intval(getParam("id"))."' AND ".make_like_query("nombre",getParam("term"))." ORDER BY nombre LIMIT 25"</poblaciones>
+	<codpostal eval="true">"SELECT id,nombre label FROM tbl_codpostal WHERE id_poblacion='".intval(getParam("id"))."' AND ".make_like_query("nombre",getParam("term"))." ORDER BY nombre LIMIT 25"</codpostal>
+	<!-- FOR GENERAL APPS -->
+	<cliente eval="true">"SELECT id,nombre,cif,direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal FROM (SELECT a2.id,a2.nombre,a2.cif,e.id_usuario,d.id_grupo,x.direccion,x.id_pais,x.id_provincia,x.id_poblacion,x.id_codpostal,x.nombre_pais,x.nombre_provincia,x.nombre_poblacion,x.nombre_codpostal FROM tbl_clientes a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a2.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id LEFT JOIN tbl_direcciones x ON x.id=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id("clientes")."' AND id_registro=a2.id ORDER BY seleccion DESC, id ASC LIMIT 1)) a WHERE a.id='".intval(getParam("id_cliente"))."' AND ".check_sql("clientes","list")</cliente>
+	<proveedores eval="true">"SELECT id,nombre FROM (SELECT a2.id,a2.nombre,a2.cif,a2.comentarios,e.id_usuario,d.id_grupo FROM tbl_proveedores a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proveedores")."' AND e.id_registro=a2.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ".make_like_query("nombre,cif,comentarios",getParam("filtro"))." AND ".check_sql("proveedores","list")." ORDER BY nombre"</proveedores>
+	<proyectos eval="true">"SELECT id,nombre FROM (SELECT a2.id,a2.nombre,a2.id_cliente,e.id_usuario,d.id_grupo FROM tbl_proyectos a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a2.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE id_cliente='".intval(getParam("id_cliente"))."' AND '".intval(getParam("id_posiblecli"))."'='0' AND ".check_sql("proyectos","list")." ORDER BY nombre"</proyectos>
+	<tareas eval="true">"SELECT id,tarea FROM (SELECT a2.id,a2.tarea,a2.id_proyecto,e.id_usuario,d.id_grupo,x.id_cliente FROM tbl_proyectos_t a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a2.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id LEFT JOIN tbl_proyectos x ON x.id=a2.id_proyecto) a WHERE id_proyecto='".intval(getParam("id_proyecto"))."' AND ".check_sql("proyectos","list")." ORDER BY tarea"</tareas>
+	<producto eval="true">"SELECT precio FROM (SELECT a2.id,a2.precio,e.id_usuario,d.id_grupo FROM tbl_productos a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("productos")."' AND e.id_registro=a2.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE id='".intval(getParam("id_producto"))."' AND ".check_sql("productos","list")</producto>
+	<presupuestos eval="true">"SELECT id,/*MYSQL CONCAT(nombre,' (',LPAD(id,5,0),')') *//*SQLITE nombre || ' (' || SUBSTR('00000' || id,-5,5) || ')' */ nombre FROM (SELECT a2.id,a2.nombre,a2.id_cliente,a2.id_posiblecli,a2.id_proyecto,e.id_usuario,d.id_grupo FROM tbl_presupuestos a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a2.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ((id_cliente='".intval(getParam("id_cliente"))."' AND id_cliente!=0) OR (id_posiblecli='".intval(getParam("id_posiblecli"))."' AND id_posiblecli!=0) OR (id_cliente='".intval(getParam("id_cliente"))."' AND id_cliente=0 AND id_posiblecli='".intval(getParam("id_posiblecli"))."' AND id_posiblecli=0)) AND ".check_sql("presupuestos","list")." ORDER BY nombre"</presupuestos>
+	<registros eval="true">execute_query("SELECT id_aplicacion FROM tbl_aplicaciones_x WHERE id_aplicacion=".intval(getParam("id_aplicacion")))?"SELECT id,".check_sql(id2page(intval(getParam("id_aplicacion")))).",nombre FROM (SELECT a2.id,".check_sql(id2page(intval(getParam("id_aplicacion")))).",nombre,id_usuario,id_grupo FROM tbl_".id2page(intval(getParam("id_aplicacion")))." a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".intval(getParam("id_aplicacion"))."' AND e.id_registro=a2.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE (".check_sql(id2page(intval(getParam("id_aplicacion"))),"list").") ORDER BY nombre":""</registros>
+	<!-- FOR EMAIL APPS -->
+	<cuentas eval="true">"SELECT id,/*MYSQL CONCAT(email_name,' &amp;lt;',email_from,'&amp;gt;') *//*SQLITE email_name || ' &amp;lt;' || email_from || '&amp;gt;' */ nombre FROM tbl_usuarios_c WHERE id_usuario='".intval(getParam("id_usuario"))."' AND (email_privated='0' OR (email_privated='1' AND id_usuario='".current_user()."')) UNION SELECT '0' id,'".CONFIG("email_name")." &amp;lt;".CONFIG("email_from")."&amp;gt;"."' nombre ORDER BY nombre"</cuentas>
+	<state eval="true">in_array(getParam("type"),array("wait","spam"))?"UPDATE tbl_correo SET state_new='0',state_".getParam("type")."='".(intval(getParam("value"))>-1?intval(getParam("value")):abs(1-execute_query("SELECT state_".getParam("type")." FROM tbl_correo WHERE id='".abs(getParam("id"))."'")))."' WHERE id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("correo")."' AND id_registro='".abs(getParam("id"))."' AND primero='1' AND id_usuario='".current_user()."')":""</state>
+	<agenda eval="true">"UPDATE tbl_agenda SET notify_".getParam("type")."='1' WHERE id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("agenda")."' AND id_registro='".abs(getParam("id"))."' AND primero='1' AND id_usuario='".current_user()."')"</agenda>
+	<emails eval="true">"SELECT COUNT(*) contador,CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END label FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."') AND state_spam='0') AND id_tipo IN (1,2,3,4) AND (".make_like_query("nombre,valor",getParam("term")).") GROUP BY label ORDER BY contador DESC LIMIT 25"</emails>
+	<!-- FOR COOKIES MODULE -->
+	<cookies eval="true">"SELECT clave,valor FROM tbl_cookies WHERE id_usuario='".current_user()."'"</cookies>
+	<!-- FOR FEEDS APPS -->
+	<feeds eval="true">"SELECT id,/*MYSQL CONCAT(title,' (',url,')') *//*SQLITE title || ' (' || url || ')' */ nombre FROM tbl_usuarios_f WHERE id_usuario='".intval(getParam("id_usuario"))."' ORDER BY nombre"</feeds>
+	<state2 eval="true">in_array(getParam("type"),array("wait"))?"UPDATE tbl_feeds SET state_new='0',state_".getParam("type")."='".(intval(getParam("value"))>-1?intval(getParam("value")):abs(1-execute_query("SELECT state_".getParam("type")." FROM tbl_feeds WHERE id='".abs(getParam("id"))."'")))."' WHERE id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='".abs(getParam("id"))."' AND primero='1' AND id_usuario='".current_user()."')":""</state2>
+	<!-- FOR FILTER MODULE -->
+	<loadfilter eval="true">"SELECT querystring FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' AND id='".intval(getParam("id"))."'"</loadfilter>
+	<updatefilter eval="true">"UPDATE tbl_filters SET querystring='".getParam("querystring")."' WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' AND id='".intval(getParam("id"))."'"</updatefilter>
+	<deletefilter eval="true">"DELETE FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' AND id='".intval(getParam("id"))."'"</deletefilter>
+	<createfilter eval="true">execute_query("SELECT id FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' AND nombre='".getParam("nombre")."'")?"":"INSERT INTO tbl_filters(id,id_usuario,id_aplicacion,nombre,querystring) VALUES(NULL,'".current_user()."','".page2id(getParam("page"))."','".getParam("nombre")."','".getParam("querystring")."')"</createfilter>
+	<renamefilter eval="true">"UPDATE tbl_filters SET nombre='".getParam("nombre")."' WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' AND id='".intval(getParam("id"))."'"</renamefilter>
+	<!-- FOR FOLDERS MODULE -->
+	<addregfolder eval="true">execute_query("SELECT COUNT(*)=1 FROM tbl_folders WHERE id='".intval(getParam("id_folder"))."' AND id_usuario='".current_user()."'")*execute_query("SELECT COUNT(*)=0 FROM tbl_folders_a WHERE id_folder='".intval(getParam("id_folder"))."' AND id_aplicacion='".page2id(getParam("page"))."' AND id_registro='".abs(getParam("id_registro"))."'")?"INSERT INTO tbl_folders_a(id,id_folder,id_aplicacion,id_registro) VALUES(NULL,'".intval(getParam("id_folder"))."','".page2id(getParam("page"))."','".abs(getParam("id_registro"))."')":""</addregfolder>
+	<delregfolder eval="true">"DELETE FROM tbl_folders_a WHERE id_folder='".intval(getParam("id_folder"))."' AND id_aplicacion='".page2id(getParam("page"))."' AND id_registro='".abs(getParam("id_registro"))."' AND id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')"</delregfolder>
+	<delappfolder eval="true">"DELETE FROM tbl_folders_a WHERE id_folder='".intval(getParam("id_folder"))."' AND id_aplicacion='".page2id(getParam("page"))."' AND id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')"</delappfolder>
+	<!-- FOR TEXTOS MODULE -->
+	<textos eval="true">"SELECT descripcion texto FROM tbl_textos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("textos")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".intval(getParam("id"))."' AND (publico='1' OR ".check_sql("textos","list").")"</textos>
+</root>

@@ -1,0 +1,1756 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<list>
+		<title lang="true">list</title>
+		<actions include="xml/common/actions.xml" replace="true"/>
+		<pager include="xml/common/pager.xml"/>
+		<width>100%</width>
+		<fields>
+			<field>
+				<name>id2</name>
+				<label lang="true">id</label>
+				<width></width>
+				<sort>true</sort>
+				<order>id</order>
+			</field>
+			<field>
+				<name>cliente</name>
+				<label lang="true">cliente</label>
+				<width></width>
+				<sort>true</sort>
+				<size>20</size>
+				<order>cliente2</order>
+			</field>
+			<field>
+				<name>nombre</name>
+				<label lang="true">proyecto</label>
+				<width></width>
+				<sort>true</sort>
+				<order>nombre2</order>
+			</field>
+			<field>
+				<name>total1</name>
+				<label lang="true">tareas</label>
+				<sort>true</sort>
+				<math>
+					<func>sum()</func>
+					<label lang="true">suma</label>
+				</math>
+			</field>
+			<field>
+				<name>total2</name>
+				<label lang="true">prod</label>
+				<sort>true</sort>
+				<math>
+					<func>sum()</func>
+					<label lang="true">suma</label>
+				</math>
+			</field>
+			<field>
+				<name>total3</name>
+				<label lang="true">total</label>
+				<sort>true</sort>
+				<math>
+					<func>sum()</func>
+					<label lang="true">suma</label>
+				</math>
+			</field>
+			<field>
+				<name>total4</name>
+				<label lang="true">real</label>
+				<sort>true</sort>
+				<math>
+					<func>sum()</func>
+					<label lang="true">suma</label>
+				</math>
+			</field>
+			<field>
+				<name>estado</name>
+				<label lang="true">estado</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>comentarios</name>
+				<label lang="true">numc</label>
+				<tip lang="true">numctip</tip>
+				<width></width>
+				<sort>false</sort>
+			</field>
+			<field>
+				<name>ficheros</name>
+				<label lang="true">numf</label>
+				<tip lang="true">numftip</tip>
+				<width></width>
+				<sort>false</sort>
+			</field>
+			<field>
+				<name>tareas</name>
+				<label lang="true">numt</label>
+				<tip lang="true">numttip</tip>
+				<width></width>
+				<sort>false</sort>
+			</field>
+			<field>
+				<name>productos</name>
+				<label lang="true">nump</label>
+				<tip lang="true">numptip</tip>
+				<width></width>
+				<sort>false</sort>
+			</field>
+			<field>
+				<name>seguimientos</name>
+				<label lang="true">nums</label>
+				<tip lang="true">numstip</tip>
+				<width></width>
+				<sort>false</sort>
+			</field>
+		</fields>
+		<javascript>
+			<javascript include="xml/common/jslist.xml" replace="true" />
+			<function eval="true">"lang_contactos() { return '".LANG_ESCAPE("contactos")."'; }"</function>
+			<function eval="true">"lang_seguimientos() { return '".LANG_ESCAPE("seguimientos")."'; }"</function>
+			<function eval="true">"lang_incidencias() { return '".LANG_ESCAPE("incidencias")."'; }"</function>
+			<function eval="true">"lang_partes() { return '".LANG_ESCAPE("partes")."'; }"</function>
+			<function eval="true">"lang_facturas() { return '".LANG_ESCAPE("facturas")."'; }"</function>
+			<function eval="true">"lang_gastos() { return '".LANG_ESCAPE("gastos")."'; }"</function>
+			<function eval="true">"lang_agenda() { return '".LANG_ESCAPE("agenda")."'; }"</function>
+			<function eval="true">"lang_presupuestos() { return '".LANG_ESCAPE("presupuestos")."'; }"</function>
+			<function eval="true">"lang_actas() { return '".LANG_ESCAPE("actas")."'; }"</function>
+			<function eval="true">"lang_selectall() { return '".LANG_ESCAPE("selectall")."'; }"</function>
+			<function eval="true">"lang_selectnone() { return '".LANG_ESCAPE("selectnone")."'; }"</function>
+			<function eval="true">"lang_pdf2filter_title() { return '".LANG_ESCAPE("pdf2filter_title")."'; }"</function>
+			<function eval="true">"lang_pdf2filter_message() { return '".LANG_ESCAPE("pdf2filter_message")."'; }"</function>
+			<function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
+			<function eval="true">"lang_view2filter_title() { return '".LANG_ESCAPE("view2filter_title")."'; }"</function>
+			<function eval="true">"lang_view2filter_message() { return '".LANG_ESCAPE("view2filter_message")."'; }"</function>
+			<function>pdf2filter(id) { pdf2filter_proyectos(id); }</function>
+			<function>view2filter(id) { view2filter_proyectos(id); }</function>
+		</javascript>
+		<quick>
+			<row>
+				<field>
+					<type>separator</type>
+					<width>100%</width>
+				</field>
+				<field>
+					<type>label</type>
+					<label lang="true">usedfilter</label>
+					<show eval="true">check_filter(array("fecha1"=>"","fecha2"=>"","id_cliente"=>"","id_estado"=>"","comentarios"=>"","id_campanya"=>""))?"true":"false"</show>
+					<class>nowrap</class>
+					<class2>info</class2>
+				</field>
+				<field>
+					<name>buscar</name>
+					<label lang="true">buscar</label>
+					<type>text</type>
+					<width>240px</width>
+					<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+					<onchange>copy_value("comentarios","buscar");</onchange>
+					<onkeypress>if(is_enterkey(event)) { copy_value("comentarios","buscar");buscar(); }</onkeypress>
+					<focus>true</focus>
+					<speech>true</speech>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">buscar</value>
+					<tip lang="true">buscartip</tip>
+					<onclick>buscar()</onclick>
+					<icon>find</icon>
+					<class>nowrap</class>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">limpiar</value>
+					<tip lang="true">limpiartip</tip>
+					<onclick>limpiar()</onclick>
+					<icon>refresh</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+			</row>
+		</quick>
+		<form>
+			<name>list</name>
+			<action>xml.php</action>
+			<method>get</method>
+			<fields>
+				<title lang="true">filter</title>
+				<buttons>true</buttons>
+				<row>
+					<field include="xml/common/hiddenslist.xml" replace="true" />
+					<field>
+						<name>id_cliente</name>
+						<label lang="true">cliente</label>
+						<type>select</type>
+						<width>240px</width>
+						<query eval="true">make_select_query("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_proyectos")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
+					</field>
+					<field>
+						<type>separator</type>
+						<width>10px</width>
+					</field>
+					<field>
+						<name>fecha1</name>
+						<label lang="true">fechaini</label>
+						<type>date</type>
+						<width>90px</width>
+						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")</value>
+						<icon>calendar</icon>
+						<onchange>check_date("fecha1","le","fecha2")</onchange>
+					</field>
+					<field>
+						<name>fecha2</name>
+						<label lang="true">fechafin</label>
+						<type>date</type>
+						<width>90px</width>
+						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")</value>
+						<class2>right</class2>
+						<icon>calendar</icon>
+						<onchange>check_date("fecha2","ge","fecha1")</onchange>
+					</field>
+				</row>
+				<row>
+					<field>
+						<name>id_campanya</name>
+						<label lang="true">campanya</label>
+						<type>select</type>
+						<width>240px</width>
+						<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
+					</field>
+					<field>
+						<type>separator</type>
+					</field>
+					<field>
+						<name>id_estado</name>
+						<label lang="true">estado</label>
+						<type>select</type>
+						<width>240px</width>
+					    <query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' `value`,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' `value`,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
+						<colspan>3</colspan>
+					</field>
+				</row>
+				<row>
+					<field>
+						<name>comentarios</name>
+						<label lang="true">comentarios</label>
+						<type>text</type>
+						<width>240px</width>
+						<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+						<onchange>copy_value("buscar","comentarios");</onchange>
+						<speech>true</speech>
+					</field>
+					<field>
+						<name>contactos</name>
+						<type>hidden</type>
+						<value>0</value>
+					</field>
+					<field>
+						<name>seguimientos</name>
+						<type>hidden</type>
+						<value>0</value>
+					</field>
+					<field>
+						<name>incidencias</name>
+						<type>hidden</type>
+						<value>0</value>
+					</field>
+					<field>
+						<name>partes</name>
+						<type>hidden</type>
+						<value>0</value>
+					</field>
+					<field>
+						<name>facturas</name>
+						<type>hidden</type>
+						<value>0</value>
+					</field>
+					<field>
+						<name>gastos</name>
+						<type>hidden</type>
+						<value>0</value>
+					</field>
+					<field>
+						<name>agenda</name>
+						<type>hidden</type>
+						<value>0</value>
+					</field>
+					<field>
+						<name>presupuestos</name>
+						<type>hidden</type>
+						<value>0</value>
+					</field>
+					<field>
+						<name>actas</name>
+						<type>hidden</type>
+						<value>0</value>
+					</field>
+				</row>
+			</fields>
+			<fields include="xml/common/filters.xml" replace="true" />
+			<fields>
+				<title lang="true">graficas</title>
+				<row>
+					<field>
+						<type>plot</type>
+						<width eval="true">CONFIG("plot_list_width")."px"</width>
+						<height eval="true">CONFIG("plot_list_height")."px"</height>
+						<vars>1</vars>
+						<graph>bars</graph>
+						<title lang="true">plotseguimientoestados</title>
+						<query eval="true">"SELECT CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE CASE WHEN LENGTH(b.nombre)>10 THEN /*MYSQL CONCAT(SUBSTR(b.nombre,1,10),'...') *//*SQLITE SUBSTR(b.nombre,1,10) || '...' */ ELSE b.nombre END END y0,COUNT(*) y1 FROM tbl_proyectos a LEFT JOIN tbl_estados b ON b.id=a.id_estado GROUP BY y0 ORDER BY b.pos ASC,y0 ASC"</query>
+					</field>
+					<field>
+						<type>plot</type>
+						<width eval="true">CONFIG("plot_list_width")."px"</width>
+						<height eval="true">CONFIG("plot_list_height")."px"</height>
+						<vars>1</vars>
+						<graph>pie</graph>
+						<title lang="true">plotseguimientoestados</title>
+						<query eval="true">"SELECT CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE CASE WHEN LENGTH(b.nombre)>10 THEN /*MYSQL CONCAT(SUBSTR(b.nombre,1,10),'...') *//*SQLITE SUBSTR(b.nombre,1,10) || '...' */ ELSE b.nombre END END y0,COUNT(*) y1 FROM tbl_proyectos a LEFT JOIN tbl_estados b ON b.id=a.id_estado GROUP BY y0 ORDER BY b.pos ASC,y0 ASC"</query>
+					</field>
+				</row>
+			</fields>
+			<fields include="xml/common/helplist.xml" replace="true" />
+			<buttons include="xml/common/buttonslist.xml" />
+		</form>
+		<query global="page,id_cliente,id_estado,fecha1,fecha2,comentarios,id_campanya" eval="true">"
+SELECT *,
+	CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+	CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+	CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
+	CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2filter,
+	CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2filter,
+	CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+FROM (
+	SELECT
+		/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
+		".make_extra_query("d.")." usuario,
+		e.`datetime` `datetime`,
+		CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE /*MYSQL CONCAT('link:clientes(',-a.id_cliente,'):',b.nombre) *//*SQLITE 'link:clientes(' || -a.id_cliente || '):' || b.nombre */ END cliente,
+		CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b.nombre END cliente2,
+		/*MYSQL CONCAT('link:proyectos(',-a.id,'):',a.nombre) *//*SQLITE 'link:proyectos(' || -a.id || '):' || a.nombre */ nombre,
+		a.nombre nombre2,
+		IFNULL((SELECT ROUND(SUM(precio*horas*(100.0-descuento)/100.0),2) FROM tbl_proyectos_t WHERE id_proyecto=a.id),0.0) total1,
+		IFNULL((SELECT ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) FROM tbl_proyectos_p WHERE id_proyecto=a.id),0.0) total2,
+		IFNULL((SELECT ROUND(SUM(precio*horas*(100.0-descuento)/100.0),2) FROM tbl_proyectos_t WHERE id_proyecto=a.id),0.0)+IFNULL((SELECT ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) FROM tbl_proyectos_p WHERE id_proyecto=a.id),0.0) total3,
+		IFNULL((SELECT ROUND(SUM(a1.precio*a2.horas*(100.0-a1.descuento)/100.0),2) FROM tbl_proyectos_t a1,tbl_seguimientos a2 WHERE a1.id_proyecto=a.id AND a2.id_proyecto=a.id AND a1.id=a2.id_tarea),0.0)+IFNULL((SELECT ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) FROM tbl_proyectos_p WHERE id_proyecto=a.id),0.0) total4,
+		CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
+		(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
+		(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
+		(SELECT COUNT(*) FROM tbl_proyectos_t WHERE id_proyecto=a.id) tareas,
+		(SELECT COUNT(*) FROM tbl_proyectos_p WHERE id_proyecto=a.id) productos,
+		(SELECT COUNT(*) FROM tbl_seguimientos WHERE id_proyecto=a.id) seguimientos,
+		a.descripcion descripcion,a.id_campanya id_campanya,
+		a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || a.nombre */ action_title,
+		id_usuario,id_estado,a.id_cliente id_cliente,d.id_grupo id_grupo,c.activo activo
+	FROM tbl_proyectos a
+	LEFT JOIN tbl_clientes b ON b.id=a.id_cliente
+	LEFT JOIN tbl_estados c ON id_estado=c.id
+	LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1'
+	LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+) z
+WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".make_like_query("nombre2,descripcion,cliente2,estado",$comentarios)." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(`datetime`))":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".check_sql($page,"list")</query>
+		<order global="order" eval="true">$order</order>
+		<limit global="limit" eval="true">$limit</limit>
+		<offset global="offset" eval="true">$offset</offset>
+	</list>
+	<form>
+		<views>
+			<view>
+				<title lang="true">formview</title>
+				<query>
+					<query include="xml/common/qpermview.xml" replace="true" />
+					<default include="xml/common/qdefaultview.xml" replace="true" />
+					<resumen>
+						<resumen>SELECT '1' id</resumen>
+					</resumen>
+					<tareas_head>
+						<tareas_head>SELECT '1' id</tareas_head>
+					</tareas_head>
+					<tareas_old>
+						<tareas_old global="id" eval="true">"SELECT a.*,ROUND(a.horas*a.precio*(100.0-descuento)/100.0,2) total2,SUM(b.horas) horas2,ROUND(SUM(b.horas)*a.precio*(100.0-descuento)/100.0,2) total3 FROM tbl_proyectos_t a LEFT JOIN tbl_seguimientos b ON a.id=b.id_tarea WHERE a.id_proyecto=".abs($id)." GROUP BY a.id ORDER BY a.id ASC"</tareas_old>
+					</tareas_old>
+					<productos_head>
+						<productos_head>SELECT '1' id</productos_head>
+					</productos_head>
+					<productos_old>
+						<productos_old global="id" eval="true">"SELECT *,ROUND(precio*unidades*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto=".abs($id)." ORDER BY id ASC"</productos_old>
+					</productos_old>
+					<graficas>SELECT '1' id</graficas>
+					<comments_old include="xml/common/qcommentsold.xml" />
+					<files_old include="xml/common/qfilesold.xml" />
+					<seguimientos>
+						<seguimientos global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query("b.")." usuario,a.fecha fecha,/*MYSQL CONCAT('link:seguimientos(',-a.id,'):',tarea) *//*SQLITE 'link:seguimientos(' || -a.id || '):' || tarea */ tarea,a.horas horas,precio,descuento,/*MYSQL CONCAT('seguimientos(',-a.id,')') *//*SQLITE 'seguimientos(' || -a.id || ')' */ link_view FROM (SELECT a2.id,a2.id_cliente,a2.fecha,a2.comentarios,a2.id_proyecto,a2.id_tarea,t.tarea,t.horas,t.precio,t.descuento FROM tbl_seguimientos a2 LEFT JOIN tbl_proyectos_t t ON a2.id_tarea=t.id) a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("seguimientos")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE id_proyecto=".abs($id)." AND (".check_sql("seguimientos","view").") ORDER BY e.`datetime` DESC"</seguimientos>
+					</seguimientos>
+					<incidenciasopen>
+						<incidenciasopen global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:incidencias(',-a.id,'):',a.nombre) *//*SQLITE 'link:incidencias(' || -a.id || '):' || a.nombre */ incidencia,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,/*MYSQL CONCAT('incidencias(',-a.id,')') *//*SQLITE 'incidencias(' || -a.id || ')' */ link_view FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("incidencias")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_proyecto=".abs($id)." AND c.activo='1' AND (".check_sql("incidencias","view").") ORDER BY e.`datetime` DESC"</incidenciasopen>
+					</incidenciasopen>
+					<incidenciasclose>
+						<incidenciasclose global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:incidencias(',-a.id,'):',a.nombre) *//*SQLITE 'link:incidencias(' || -a.id || '):' || a.nombre */ incidencia,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,/*MYSQL CONCAT('incidencias(',-a.id,')') *//*SQLITE 'incidencias(' || -a.id || ')' */ link_view FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("incidencias")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_proyecto=".abs($id)." AND c.activo='0' AND (".check_sql("incidencias","view").") ORDER BY e.`datetime` DESC"</incidenciasclose>
+					</incidenciasclose>
+					<partesopen>
+						<partesopen global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query("b.")." usuario,fecha,/*MYSQL CONCAT('link:partes(',-a.id,'):',tarea) *//*SQLITE 'link:partes(' || -a.id || '):' || tarea */ tarea,comentarios,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,/*MYSQL CONCAT('partes(',-a.id,')') *//*SQLITE 'partes(' || -a.id || ')' */ link_view,/*MYSQL CONCAT('pdfparte(',a.id,')') *//*SQLITE 'pdfparte(' || a.id || ')' */ link_pdf,/*MYSQL CONCAT('viewparte(',a.id,')') *//*SQLITE 'viewparte(' || a.id || ')' */ link_view2,/*MYSQL CONCAT('mailparte(',a.id,')') *//*SQLITE 'mailparte(' || a.id || ')' */ link_mail FROM tbl_partes a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE a.id_proyecto=".abs($id)." AND liquidado='0' AND (".check_sql("partes","view").") ORDER BY e.`datetime` DESC"</partesopen>
+					</partesopen>
+					<partesclose>
+						<partesclose global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query("b.")." usuario,fecha,/*MYSQL CONCAT('link:partes(',-a.id,'):',tarea) *//*SQLITE 'link:partes(' || -a.id || '):' || tarea */ tarea,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,/*MYSQL CONCAT('partes(',-a.id,')') *//*SQLITE 'partes(' || -a.id || ')' */ link_view,/*MYSQL CONCAT('pdfparte(',a.id,')') *//*SQLITE 'pdfparte(' || a.id || ')' */ link_pdf,/*MYSQL CONCAT('viewparte(',a.id,')') *//*SQLITE 'viewparte(' || a.id || ')' */ link_view2,/*MYSQL CONCAT('mailparte(',a.id,')') *//*SQLITE 'mailparte(' || a.id || ')' */ link_mail FROM tbl_partes a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE a.id_proyecto=".abs($id)." AND liquidado='1' AND (".check_sql("partes","view").") ORDER BY e.`datetime` DESC"</partesclose>
+					</partesclose>
+					<contactos>
+						<contactos global="id" eval="true">"
+SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,
+	/*MYSQL CONCAT('link:contactos(',-a.id,'):',a.nombre) *//*SQLITE 'link:contactos(' || -a.id || '):' || a.nombre */ nombre,
+	/*MYSQL CONCAT('tel:',y1.valor)*//*SQLITE 'tel:' || y1.valor*/ tel_fijo,
+	/*MYSQL CONCAT('tel:',y2.valor)*//*SQLITE 'tel:' || y2.valor*/ tel_movil,
+	/*MYSQL CONCAT('mailto:',y5.valor)*//*SQLITE 'mailto:' || y5.valor*/ email,
+	/*MYSQL CONCAT('contactos(',-a.id,')') *//*SQLITE 'contactos(' || -a.id || ')' */ link_view,
+	/*MYSQL CONCAT('vcardcontactos(',-a.id,')') *//*SQLITE 'vcardcontactos(' || -a.id || ')' */ link_vcard,
+	/*MYSQL CONCAT('qrcodecontactos(',-a.id,')') *//*SQLITE 'qrcodecontactos(' || -a.id || ')' */ link_qrcode
+FROM tbl_contactos a
+	LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("contactos")."' AND e.id_registro=a.id AND e.primero='1'
+	LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+	LEFT JOIN tbl_direcciones x ON x.id=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id("contactos")."' AND id_registro=a.id ORDER BY seleccion DESC, id ASC LIMIT 1)
+	LEFT JOIN tbl_comunicaciones y1 ON y1.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='phone') ORDER BY seleccion DESC, id ASC LIMIT 1)
+	LEFT JOIN tbl_comunicaciones y2 ON y2.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='movil') ORDER BY seleccion DESC, id ASC LIMIT 1)
+	LEFT JOIN tbl_comunicaciones y5 ON y5.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='email') ORDER BY seleccion DESC, id ASC LIMIT 1)
+WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos")."') AND (".check_sql("contactos","view").") ORDER BY a.nombre ASC"</contactos>
+					</contactos>
+					<documentos>
+						<documentos global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:documentos(',-a.id,'):',a.nombre) *//*SQLITE 'link:documentos(' || -a.id || '):' || a.nombre */ nombre,(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id("documentos")."' AND id_registro=a.id) ficheros,/*MYSQL CONCAT('documentos(',-a.id,')') *//*SQLITE 'documentos(' || -a.id || ')' */ link_view FROM tbl_documentos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("documentos")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE a.id_proyecto=".abs($id)." AND (".check_sql("documentos","view").") ORDER BY e.`datetime` DESC"</documentos>
+					</documentos>
+					<albaranes>
+						<albaranes global="id" eval="true">"SELECT id_usuario2 id_usuario,id_grupo2 id_grupo,id,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,/*MYSQL CONCAT('link:facturas(',-id,'):',num2) *//*SQLITE 'link:facturas(' || -id || '):' || num2 */ num,fecha,base,ROUND(base+iva2-irpf2,2) total,(CASE cerrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cerrado,(CASE cobrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cobrado,/*MYSQL CONCAT('facturas(',-id,')') *//*SQLITE 'facturas(' || -id || ')' */ link_view,/*MYSQL CONCAT('pdffactura(',id,')') *//*SQLITE 'pdffactura(' || id || ')' */ link_pdf,/*MYSQL CONCAT('viewfactura(',id,')') *//*SQLITE 'viewfactura(' || id || ')' */ link_view2,/*MYSQL CONCAT('mailfactura(',id,')') *//*SQLITE 'mailfactura(' || id || ')' */ link_mail FROM (SELECT id_usuario id_usuario2,id_grupo id_grupo2,c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT id_usuario,id_grupo,/*MYSQL CONCAT('".LANG_ESCAPE("albaran")." ',LPAD(a.id,5,0)) *//*SQLITE '".LANG_ESCAPE("albaran")." ' || SUBSTR('00000' || a.id,-5,5) */ num2,a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("facturas")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b2 ON e.id_usuario=b2.id GROUP BY a.id) c) d WHERE id_proyecto='".abs($id)."' AND cerrado=0 AND (".check_sql("facturas","view").") ORDER BY id DESC"</albaranes>
+					</albaranes>
+					<facturasopen>
+						<facturasopen global="id" eval="true">"SELECT id_usuario2 id_usuario,id_grupo2 id_grupo,id,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,/*MYSQL CONCAT('link:facturas(',-id,'):',num2) *//*SQLITE 'link:facturas(' || -id || '):' || num2 */ num,fecha,base,ROUND(base+iva2-irpf2,2) total,(CASE cerrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cerrado,(CASE cobrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cobrado,/*MYSQL CONCAT('facturas(',-id,')') *//*SQLITE 'facturas(' || -id || ')' */ link_view,/*MYSQL CONCAT('pdffactura(',id,')') *//*SQLITE 'pdffactura(' || id || ')' */ link_pdf,/*MYSQL CONCAT('viewfactura(',id,')') *//*SQLITE 'viewfactura(' || id || ')' */ link_view2,/*MYSQL CONCAT('mailfactura(',id,')') *//*SQLITE 'mailfactura(' || id || ')' */ link_mail FROM (SELECT id_usuario id_usuario2,id_grupo id_grupo2,c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT id_usuario,id_grupo,/*MYSQL CONCAT('".LANG_ESCAPE("factura")." ',num) *//*SQLITE '".LANG_ESCAPE("factura")." ' || num */ num2,a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("facturas")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b2 ON e.id_usuario=b2.id GROUP BY a.id) c) d WHERE id_proyecto='".abs($id)."' AND cerrado=1 AND cobrado=0 AND (".check_sql("facturas","view").") ORDER BY fecha DESC"</facturasopen>
+					</facturasopen>
+					<facturasclose>
+						<facturasclose global="id" eval="true">"SELECT id_usuario2 id_usuario,id_grupo2 id_grupo,id,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,/*MYSQL CONCAT('link:facturas(',-id,'):',num2) *//*SQLITE 'link:facturas(' || -id || '):' || num2 */ num,fecha,base,ROUND(base+iva2-irpf2,2) total,(CASE cerrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cerrado,(CASE cobrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cobrado,/*MYSQL CONCAT('facturas(',-id,')') *//*SQLITE 'facturas(' || -id || ')' */ link_view,/*MYSQL CONCAT('pdffactura(',id,')') *//*SQLITE 'pdffactura(' || id || ')' */ link_pdf,/*MYSQL CONCAT('viewfactura(',id,')') *//*SQLITE 'viewfactura(' || id || ')' */ link_view2,/*MYSQL CONCAT('mailfactura(',id,')') *//*SQLITE 'mailfactura(' || id || ')' */ link_mail FROM (SELECT id_usuario id_usuario2,id_grupo id_grupo2,c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT id_usuario,id_grupo,/*MYSQL CONCAT('".LANG_ESCAPE("factura")." ',num) *//*SQLITE '".LANG_ESCAPE("factura")." ' || num */ num2,a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("facturas")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b2 ON e.id_usuario=b2.id GROUP BY a.id) c) d WHERE id_proyecto=".abs($id)." AND cerrado=1 AND cobrado=1 AND (".check_sql("facturas","view").") ORDER BY fecha DESC"</facturasclose>
+					</facturasclose>
+					<gastos>
+						<gastos global="id" eval="true">"SELECT id_usuario,id_grupo,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,/*MYSQL CONCAT('link:gastos(',-id,'):',LPAD(id,5,0))*//*SQLITE 'link:gastos(' || -id || '):' || SUBSTR('00000' || id,-5,5)*/ id,empresa,fecha,num,base,total,/*MYSQL CONCAT('gastos(',-id,')') *//*SQLITE 'gastos(' || -id || ')' */ link_view FROM (SELECT id_usuario,id_grupo,a.*,b.nombre empresa FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("gastos")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b2 ON e.id_usuario=b2.id) c WHERE id_proyecto=".abs($id)." AND (".check_sql("gastos","view").") ORDER BY fecha DESC"</gastos>
+					</gastos>
+					<agenda>
+						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,/*MYSQL LPAD(id,5,0)*//*SQLITE SUBSTR('00000' || id,-5,5)*/ id,dstart,dstop,/*MYSQL CONCAT('link:agenda(',-id,'):',nombre) *//*SQLITE 'link:agenda(' || -id || '):' || nombre */ nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,/*MYSQL CONCAT('agenda(',-id,')') *//*SQLITE 'agenda(' || -id || ')' */ link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_proyecto=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
+					</agenda>
+					<presupuestos>
+						<presupuestos global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:presupuestos(',-a.id,'):',a.nombre) *//*SQLITE 'link:presupuestos(' || -a.id || '):' || a.nombre */ presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,/*MYSQL CONCAT('presupuestos(',-a.id,')') *//*SQLITE 'presupuestos(' || -a.id || ')' */ link_view,/*MYSQL CONCAT('pdfpresupuesto(',a.id,')') *//*SQLITE 'pdfpresupuesto(' || a.id || ')' */ link_pdf,/*MYSQL CONCAT('viewpresupuesto(',a.id,')') *//*SQLITE 'viewpresupuesto(' || a.id || ')' */ link_view2,/*MYSQL CONCAT('mailpresupuesto(',a.id,')') *//*SQLITE 'mailpresupuesto(' || a.id || ')' */ link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_proyecto=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.`datetime` DESC"</presupuestos>
+					</presupuestos>
+					<actas>
+						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,/*MYSQL LPAD(id,5,0)*//*SQLITE SUBSTR('00000' || id,-5,5)*/ id,dstart,dstop,/*MYSQL CONCAT('link:actas(',-id,'):',nombre) *//*SQLITE 'link:actas(' || -id || '):' || nombre */ nombre,/*MYSQL CONCAT('actas(',-id,')') *//*SQLITE 'actas(' || -id || ')' */ link_view,/*MYSQL CONCAT('pdfacta(',id,')') *//*SQLITE 'pdfacta(' || id || ')' */ link_pdf,/*MYSQL CONCAT('viewacta(',id,')') *//*SQLITE 'viewacta(' || id || ')' */ link_view2,/*MYSQL CONCAT('mailacta(',id,')') *//*SQLITE 'mailacta(' || id || ')' */ link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_proyecto=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
+					</actas>
+					<control include="xml/common/qcontrol.xml"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</view>
+			<insert>
+				<title lang="true">forminsert</title>
+				<query>
+					<query include="xml/common/qpermcreate.xml" replace="true" />
+					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id_estado FROM tbl_proyectos WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'0' id_cliente,'0' id_estado,'0' id_campanya"</default>
+					<resumen>
+						<resumen>SELECT '1' id</resumen>
+					</resumen>
+					<tareas_head>
+						<tareas_head>SELECT '1' id</tareas_head>
+					</tareas_head>
+					<tareas_new>
+						<tareas_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+						SELECT id,tarea,horas,descuento,precio,ROUND(horas*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_t WHERE id_proyecto='".substr(getParam("id"),7)."' UNION
+						SELECT 'a' id,'' tarea,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'b' id,'' tarea,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'c' id,'' tarea,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'd' id,'' tarea,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'e' id,'' tarea,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2":"
+						SELECT 'a' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'b' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'c' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'd' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'e' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'f' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'g' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'h' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'i' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'j' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2"</tareas_new>
+					</tareas_new>
+					<productos_head>
+						<productos_head>SELECT '1' id</productos_head>
+					</productos_head>
+					<productos_new>
+						<productos_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+						SELECT id,descuento,id_producto,unidades,precio,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto='".substr(getParam("id"),7)."' UNION
+						SELECT 'a' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'b' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'c' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'd' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'e' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2":"
+						SELECT 'a' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'b' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'c' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'd' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'e' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'f' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'g' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'h' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'i' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'j' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2
+						"</productos_new>
+					</productos_new>
+					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</insert>
+			<update>
+				<title lang="true">formupdate</title>
+				<query>
+					<query include="xml/common/qpermupdate.xml" replace="true" />
+					<default include="xml/common/qdefaultview.xml" replace="true" />
+					<resumen>
+						<resumen>SELECT '1' id</resumen>
+					</resumen>
+					<tareas_head>
+						<tareas_head>SELECT '1' id</tareas_head>
+					</tareas_head>
+					<tareas_old>
+						<tareas_old global="id" eval="true">"SELECT a.*,ROUND(a.horas*a.precio*(100.0-descuento)/100.0,2) total2,SUM(b.horas) horas2,ROUND(SUM(b.horas)*a.precio*(100.0-descuento)/100.0,2) total3 FROM tbl_proyectos_t a LEFT JOIN tbl_seguimientos b ON a.id=b.id_tarea WHERE a.id_proyecto=".abs($id)." GROUP BY a.id ORDER BY a.id ASC"</tareas_old>
+					</tareas_old>
+					<tareas_new>
+						<tareas_new global="id" eval="true">"
+						SELECT 'a' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'b' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'c' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'd' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'e' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'f' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'g' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'h' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'i' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
+						SELECT 'j' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2"</tareas_new>
+					</tareas_new>
+					<productos_head>
+						<productos_head>SELECT '1' id</productos_head>
+					</productos_head>
+					<productos_old>
+						<productos_old global="id" eval="true">"SELECT *,ROUND(precio*unidades*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto=".abs($id)." ORDER BY id ASC"</productos_old>
+					</productos_old>
+					<productos_new>
+						<productos_new global="id" eval="true">"
+						SELECT 'a' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'b' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'c' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'd' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'e' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'f' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'g' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'h' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'i' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'j' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2"</productos_new>
+					</productos_new>
+					<comments_old include="xml/common/qcommentsold.xml" />
+					<files_old include="xml/common/qfilesold.xml" />
+					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
+					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
+					<control include="xml/common/qcontrol.xml"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</update>
+		</views>
+		<name>form</name>
+		<action>xml.php</action>
+		<method>post</method>
+		<hiddens>
+			<hiddens include="xml/common/hiddensform.xml" replace="true" />
+			<field>
+				<name>id_cliente</name>
+				<type>hidden</type>
+				<value></value>
+			</field>
+			<field>
+				<name>id_proyecto</name>
+				<type>hidden</type>
+				<value></value>
+			</field>
+			<field>
+				<name>extra</name>
+				<type>hidden</type>
+				<value></value>
+			</field>
+		</hiddens>
+		<fields>
+			<default>
+				<fieldset>
+					<title lang="true">defaultdata</title>
+					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
+					<row>
+						<field>
+							<name>id</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>id_cliente</name>
+							<label lang="true">cliente</label>
+							<type>select</type>
+							<width>240px</width>
+							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<link>clientes(-abs(ID))</link>
+							<icon>view</icon>
+						</field>
+						<field>
+							<name>id_campanya</name>
+							<label lang="true">campanya</label>
+							<type>select</type>
+							<width>240px</width>
+							<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<link>campanyas(-abs(ID))</link>
+							<icon>view</icon>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>nombre</name>
+							<label lang="true">nombre</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>id_estado</name>
+							<label lang="true">estado</label>
+							<type>select</type>
+							<width>240px</width>
+							<query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>descripcion</name>
+							<label lang="true">descripcion</label>
+							<type>textarea</type>
+							<width>600px</width>
+							<height>120px</height>
+							<colspan>6</colspan>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+						</field>
+					</row>
+				</fieldset>
+			</default>
+			<resumen>
+				<fieldset>
+					<width>700px</width>
+					<buttons>true</buttons>
+					<head>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">horastotal</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">unidadestotal</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">preciototal</label>
+							<class>center bold thead</class>
+						</field>
+					</head>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">tareasproyecto</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<name>horastotal</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name></name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciototal</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+					</head>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">productosproyecto</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<name></name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>unidadestotal</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciototal4</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+					</head>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">preciototal</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<name>horastotal</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>unidadestotal</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciototal5</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+					</head>
+				</fieldset>
+			</resumen>
+			<tareas_head>
+				<fieldset>
+					<title lang="true">tareasproyecto</title>
+					<width>700px</width>
+					<head>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">horastotal</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">preciomedio</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">preciototal</label>
+							<class>center bold thead</class>
+						</field>
+					</head>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">presupuesto</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<name>horastotal</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciomedio</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciototal</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+					</head>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">real</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<name>horastotal2</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciomedio2</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciototal2</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+					</head>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">diferencia</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<name>horastotal3</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciomedio3</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciototal3</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+					</head>
+				</fieldset>
+			</tareas_head>
+			<tareas_old>
+				<fieldset>
+					<width>700px</width>
+					<head>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+							<colspan global="id" eval="true">$id>=0?1:2</colspan>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">presupuesto</label>
+							<colspan>4</colspan>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">real</label>
+							<colspan>2</colspan>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+							<colspan>100</colspan>
+							<show global="id" eval="true">$id>=0?"true":"false"</show>
+						</field>
+					</head>
+					<head>
+						<field>
+							<type>checkbox</type>
+							<class3>master</class3>
+							<class2>thead</class2>
+							<width>1px</width>
+							<value>1</value>
+							<show global="id" eval="true">$id>=0?"false":"true"</show>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">desctareas</label>
+							<class>center bold thead</class>
+							<width>250px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">horas</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">precio</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">dto</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">total</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">horas</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">total</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+							<colspan>100</colspan>
+							<show global="id" eval="true">$id>=0?"true":"false"</show>
+						</field>
+					</head>
+					<row>
+						<field>
+							<name>id</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>id_proyecto</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<type>checkbox</type>
+							<name>liquidar</name>
+							<value>1</value>
+							<class3>slave</class3>
+							<class2>tbody</class2>
+							<width>1px</width>
+							<show global="id" eval="true">$id>=0?"false":"true"</show>
+						</field>
+						<field>
+							<name>tarea</name>
+							<type>text</type>
+							<width>250px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<class>tbody</class>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>horas</name>
+							<type>float</type>
+							<width>60px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>precio</name>
+							<type>float</type>
+							<width>60px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>descuento</name>
+							<type>float</type>
+							<width>60px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>total2</name>
+							<type>text</type>
+							<width>60px</width>
+							<readonly>true</readonly>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>horas2</name>
+							<type>text</type>
+							<width>60px</width>
+							<readonly>true</readonly>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>total3</name>
+							<type>text</type>
+							<width>60px</width>
+							<readonly>true</readonly>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>delete</name>
+							<type>checkbox</type>
+							<label lang="true">delete</label>
+							<value>1</value>
+							<show global="id" eval="true">$id>=0?"true":"false"</show>
+							<width>1px</width>
+							<width2>1px</width2>
+							<onchange>update_totales_proyecto()</onchange>
+							<icon>delete</icon>
+							<class>tbody</class>
+							<class2>tbody</class2>
+						</field>
+					</row>
+				</fieldset>
+			</tareas_old>
+			<tareas_new>
+				<fieldset>
+					<width>700px</width>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">desctareas</label>
+							<class>center bold thead</class>
+							<width>400px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">horas</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">precio</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">dto</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">total</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+					</head>
+					<row>
+						<class>none</class>
+						<field>
+							<name>id</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>id_proyecto</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>tarea</name>
+							<type>text</type>
+							<width>400px</width>
+							<class>tbody</class>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>horas</name>
+							<type>float</type>
+							<width>60px</width>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>precio</name>
+							<type>float</type>
+							<width>60px</width>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>descuento</name>
+							<type>float</type>
+							<width>60px</width>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>total2</name>
+							<type>text</type>
+							<width>60px</width>
+							<readonly>true</readonly>
+							<class>tbody</class>
+						</field>
+					</row>
+					<tail>
+						<field>
+							<type>separator</type>
+						</field>
+					</tail>
+					<tail>
+						<field>
+							<type>button</type>
+							<value lang="true">addtarea</value>
+							<class>left</class>
+							<class2>init_additem</class2>
+							<onclick>additem(this)</onclick>
+							<icon>create</icon>
+						</field>
+					</tail>
+				</fieldset>
+			</tareas_new>
+			<productos_head>
+				<fieldset>
+					<title lang="true">productosproyecto</title>
+					<width>700px</width>
+					<head>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">unidadestotal</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">preciototal</label>
+							<class>center bold thead</class>
+						</field>
+					</head>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">presupuesto</label>
+							<class>center bold thead</class>
+						</field>
+						<field>
+							<name>unidadestotal</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+						<field>
+							<name>preciototal4</name>
+							<type>text</type>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<width>120px</width>
+						</field>
+					</head>
+				</fieldset>
+			</productos_head>
+			<productos_old>
+				<fieldset>
+					<width>700px</width>
+					<head>
+						<field>
+							<type>checkbox</type>
+							<class3>master</class3>
+							<class2>thead</class2>
+							<width>1px</width>
+							<value>1</value>
+							<show global="id" eval="true">$id>=0?"false":"true"</show>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">descproductos</label>
+							<class>center bold thead</class>
+							<width>400px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">unid</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">prun</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">dto</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">total</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+							<colspan>100</colspan>
+							<show global="id" eval="true">$id>=0?"true":"false"</show>
+						</field>
+					</head>
+					<row>
+						<field>
+							<name>id</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>id_proyecto</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<type>checkbox</type>
+							<name>liquidar</name>
+							<value>1</value>
+							<class3>slave</class3>
+							<class2>tbody</class2>
+							<width>1px</width>
+							<show global="id" eval="true">$id>=0?"false":"true"</show>
+						</field>
+						<field>
+							<name>id_producto</name>
+							<type>select</type>
+							<query eval="true">make_select_query("productos","tbl_productos","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproducto")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<width>400px</width>
+							<class>tbody</class>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>unidades</name>
+							<type>float</type>
+							<width>60px</width>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>precio</name>
+							<type>float</type>
+							<width>60px</width>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>descuento</name>
+							<type>float</type>
+							<width>60px</width>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>total2</name>
+							<type>text</type>
+							<width>60px</width>
+							<readonly>true</readonly>
+							<class>tbody</class>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>delete</name>
+							<type>checkbox</type>
+							<label lang="true">delete</label>
+							<value>1</value>
+							<show global="id" eval="true">$id>=0?"true":"false"</show>
+							<width>1px</width>
+							<width2>1px</width2>
+							<onchange>update_totales_proyecto()</onchange>
+							<icon>delete</icon>
+							<class>tbody</class>
+							<class2>tbody</class2>
+						</field>
+					</row>
+				</fieldset>
+			</productos_old>
+			<productos_new>
+				<fieldset>
+					<width>700px</width>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">descproductos</label>
+							<class>center bold thead</class>
+							<width>400px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">unid</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">prun</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">dto</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">total</label>
+							<class>center bold thead</class>
+							<width>60px</width>
+						</field>
+					</head>
+					<row>
+						<class>none</class>
+						<field>
+							<name>id</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>id_proyecto</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>id_producto</name>
+							<type>select</type>
+							<query eval="true">make_select_query("productos","tbl_productos","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproducto")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<width>400px</width>
+							<class>tbody</class>
+							<onchange>update_producto(this)</onchange>
+						</field>
+						<field>
+							<name>unidades</name>
+							<type>float</type>
+							<width>60px</width>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>precio</name>
+							<type>float</type>
+							<width>60px</width>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>descuento</name>
+							<type>float</type>
+							<width>60px</width>
+							<onchange>update_totales_proyecto()</onchange>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>total2</name>
+							<type>text</type>
+							<width>60px</width>
+							<readonly>true</readonly>
+							<class>tbody</class>
+						</field>
+					</row>
+					<tail>
+						<field>
+							<type>separator</type>
+						</field>
+					</tail>
+					<tail>
+						<field>
+							<type>button</type>
+							<value lang="true">addproduct</value>
+							<class>left</class>
+							<class2>init_additem</class2>
+							<onclick>additem(this)</onclick>
+							<icon>create</icon>
+						</field>
+					</tail>
+				</fieldset>
+			</productos_new>
+			<graficas>
+				<fieldset>
+					<title lang="true">graficas</title>
+					<row>
+						<field>
+							<type>plot</type>
+							<width eval="true">CONFIG("plot_form_width")."px"</width>
+							<height eval="true">CONFIG("plot_form_height")."px"</height>
+							<vars>2</vars>
+							<graph>bars</graph>
+							<title lang="true">plotseguimientotareas</title>
+							<legend lang="true">legendseguimientotareas</legend>
+							<query global="id" eval="true">"SELECT CASE WHEN LENGTH(a.tarea)>10 THEN /*MYSQL CONCAT(SUBSTR(a.tarea,1,10),'...') *//*SQLITE SUBSTR(a.tarea,1,10) || '...' */ ELSE a.tarea END y0,a.horas y1,(SELECT CASE WHEN SUM(horas) IS NULL THEN 0 ELSE SUM(horas) END sumahoras FROM tbl_seguimientos WHERE id_tarea=a.id) y2 FROM tbl_proyectos_t a WHERE a.id_proyecto='".abs($id)."' ORDER BY a.id"</query>
+						</field>
+						<field>
+							<type>plot</type>
+							<width eval="true">CONFIG("plot_form_width")."px"</width>
+							<height eval="true">CONFIG("plot_form_height")."px"</height>
+							<vars>1</vars>
+							<graph>pie</graph>
+							<title lang="true">plotseguimientotareas</title>
+							<query global="id" eval="true">"SELECT y0,y1+y2 y1 FROM (SELECT CASE WHEN LENGTH(a.tarea)>10 THEN /*MYSQL CONCAT(SUBSTR(a.tarea,1,10),'...') *//*SQLITE SUBSTR(a.tarea,1,10) || '...' */ ELSE a.tarea END y0,a.horas y1,(SELECT CASE WHEN SUM(horas) IS NULL THEN 0 ELSE SUM(horas) END sumahoras FROM tbl_seguimientos WHERE id_tarea=a.id) y2 FROM tbl_proyectos_t a WHERE a.id_proyecto='".abs($id)."' ORDER BY a.id) b"</query>
+						</field>
+					</row>
+				</fieldset>
+			</graficas>
+			<comments_old include="xml/common/commentsold.xml"/>
+			<files_old include="xml/common/filesold.xml" />
+			<comments_new include="xml/common/commentnew.xml"/>
+			<files_new include="xml/common/filesnew.xml"/>
+			<seguimientos>
+				<fieldset>
+					<show eval="true">check_user("seguimientos","menu")?"true":"false"</show>
+					<width>700px</width>
+					<title lang="true">relatedseguimientos</title>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">id</label>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">username</label>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">date</label>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">tarea</label>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">horas</label>
+							<class>thead</class>
+							<math>
+								<func>sum()</func>
+								<label lang="true">suma</label>
+							</math>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+							<colspan>100</colspan>
+							<math>
+								<ignore>true</ignore>
+							</math>
+						</field>
+					</head>
+					<row>
+						<field>
+							<type>hidden</type>
+							<name>id</name>
+						</field>
+						<field>
+							<type>label</type>
+							<name>id</name>
+							<class>tbody</class>
+						</field>
+						<field>
+							<type>label</type>
+							<name>usuario</name>
+							<class>tbody</class>
+						</field>
+						<field>
+							<type>label</type>
+							<name>fecha</name>
+							<class>tbody</class>
+						</field>
+						<field>
+							<type>label</type>
+							<name>tarea</name>
+							<class>tbody</class>
+						</field>
+						<field>
+							<type>label</type>
+							<name>horas</name>
+							<class>tbody</class>
+						</field>
+						<field>
+							<name>link_view</name>
+							<type>link</type>
+							<label lang="true">view</label>
+							<width>1px</width>
+							<icon>view</icon>
+							<class>tbody</class>
+						</field>
+					</row>
+				</fieldset>
+			</seguimientos>
+			<incidenciasopen include="xml/common/incidenciasopen.xml" replace="true" />
+			<incidenciasclose include="xml/common/incidenciasclose.xml" replace="true" />
+			<partesopen include="xml/common/partesopen.xml" replace="true" />
+			<partesclose include="xml/common/partesclose.xml" replace="true" />
+			<contactos include="xml/common/relatedcontacts.xml" replace="true" />
+			<albaranes include="xml/common/relatedalbaranes.xml" replace="true" />
+			<facturasopen include="xml/common/facturasopen.xml" replace="true" />
+			<facturasclose include="xml/common/facturasclose.xml" replace="true" />
+			<gastos include="xml/common/relatedgastos.xml" replace="true" />
+			<documentos include="xml/common/relateddocumentos.xml" replace="true" />
+			<agenda include="xml/common/relatedagenda.xml" replace="true" />
+			<presupuestos include="xml/common/relatedpresupuestos.xml" replace="true" />
+			<actas include="xml/common/relatedactas.xml" replace="true" />
+			<control include="xml/common/control.xml" />
+			<folders include="xml/common/folders.xml" />
+			<help include="xml/common/helpform.xml" />
+		</fields>
+		<quick include="xml/common/quickform.xml" />
+		<buttons include="xml/common/buttonsform.xml" />
+		<node path="buttons/row/field" before="true">
+			<field>
+				<type>button</type>
+				<value eval="true">LANG("addseguimientos")</value>
+				<tip eval="true">LANG("add","seguimientos")</tip>
+				<onclick>setParam("page","seguimientos");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
+				<show global="id" eval="true">$id>=0?"false":"true"</show>
+				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
+				<class>nowrap contextmenu</class>
+				<icon>create</icon>
+			</field>
+			<field>
+				<type>button</type>
+				<value eval="true">LANG("addactas")</value>
+				<tip eval="true">LANG("add","actas")</tip>
+				<onclick>setParam("page","actas");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
+				<show global="id" eval="true">$id>=0?"false":"true"</show>
+				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
+				<class>nowrap contextmenu</class>
+				<icon>create</icon>
+			</field>
+			<field>
+				<type>button</type>
+				<value eval="true">LANG("addcontactos")</value>
+				<tip eval="true">LANG("add","contactos")</tip>
+				<onclick>setParam("page","contactos");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
+				<show global="id" eval="true">$id>=0?"false":"true"</show>
+				<disabled eval="true">check_user("contactos","create")?"false":"true"</disabled>
+				<class>nowrap contextmenu</class>
+				<icon>create</icon>
+			</field>
+			<field>
+				<type>button</type>
+				<value eval="true">LANG("addagenda")</value>
+				<tip eval="true">LANG("add","agenda")</tip>
+				<onclick>setParam("page","agenda");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
+				<show global="id" eval="true">$id>=0?"false":"true"</show>
+				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
+				<class>nowrap contextmenu</class>
+				<icon>create</icon>
+			</field>
+			<field>
+				<type>button</type>
+				<value eval="true">LANG("actionfacturar")</value>
+				<tip eval="true">LANG("actionfacturar")</tip>
+				<onclick>facturar()</onclick>
+				<show global="id" eval="true">$id>=0?"false":"true"</show>
+				<disabled eval="true">check_user("facturas","create")?"false":"true"</disabled>
+				<class>nowrap contextmenu</class>
+				<icon>create</icon>
+			</field>
+			<field>
+				<type>button</type>
+				<value eval="true">LANG("add","clientes")</value>
+				<tip eval="true">LANG("add","clientes")</tip>
+				<onclick>setParam("page","clientes");setParam("action","form");submit1()</onclick>
+				<show global="id" eval="true">$id==0?"true":"false"</show>
+				<disabled eval="true">check_user("clientes","create")?"false":"true"</disabled>
+				<class>nowrap contextmenu</class>
+				<icon>create</icon>
+			</field>
+		</node>
+		<javascript>
+			<javascript include="xml/common/jsform.xml" replace="true"/>
+			<cache>
+				<include>js/updateproductos.js</include>
+			</cache>
+			<function eval="true">"liquidar1() { dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgliquidar")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','liquidar'); setParam('extra','partes'); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+			<function eval="true">"facturar() { dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgfacturar")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','liquidar'); setParam('extra','facturas'); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+		</javascript>
+	</form>
+	<insert>
+		<query include="xml/common/qpermcreate.xml" replace="true"/>
+		<query include="xml/common/autonombre.xml" replace="true"/>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+        <query include="xml/common/qcontrolinsert.xml" replace="true"/>
+		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_proyectos_t(id,id_proyecto,tarea,horas,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_proyectos),'".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query match="productos_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_proyectos_p(id,id_proyecto,id_producto,unidades,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_proyectos),'".getParam("id_producto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query include="xml/common/qfilesinsert.xml" replace="true"/>
+		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
+	</insert>
+	<update>
+		<query include="xml/common/qpermupdate.xml" replace="true"/>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+        <query include="xml/common/qcontrolupdate.xml" replace="true"/>
+		<query match="tareas_old" prefix="true" eval="true">"UPDATE tbl_proyectos_t SET `tarea`='".getParam("tarea")."',`horas`='".getParam("horas")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
+		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_t WHERE `id`='".getParam("id")."'":""</query>
+		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_proyectos_t(id,id_proyecto,tarea,horas,precio,descuento) VALUES(NULL,'".intval(getParam("id_proyecto"))."','".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query match="productos_old" prefix="true" eval="true">"UPDATE tbl_proyectos_p SET `id_producto`='".getParam("id_producto")."',`unidades`='".getParam("unidades")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
+		<query match="productos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_p WHERE `id`='".getParam("id")."'":""</query>
+		<query match="productos_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_proyectos_p(id,id_proyecto,id_producto,unidades,precio,descuento) VALUES(NULL,'".intval(getParam("id_proyecto"))."','".getParam("id_producto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query include="xml/common/qfilesdelete.xml" replace="true" />
+		<query include="xml/common/qfilesupdate.xml" replace="true"/>
+		<query include="xml/common/qcommentsdelete.xml" replace="true" />
+		<query include="xml/common/qcommentsinsert.xml" replace="true" />
+		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
+	</update>
+	<delete>
+		<query include="xml/common/qpermdelete.xml" replace="true"/>
+		<query include="xml/common/qdelete.xml" replace="true" />
+		<query global="page,id" eval="true">"DELETE FROM tbl_proyectos_t WHERE `id_proyecto`='$id'"</query>
+		<query global="page,id" eval="true">"DELETE FROM tbl_proyectos_p WHERE `id_proyecto`='$id'"</query>
+		<query include="xml/common/qdeletecomments.xml" replace="true" />
+		<query include="xml/common/qdeletefiles.xml" replace="true" />
+		<query include="xml/common/qcontroldelete.xml" replace="true"/>
+		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
+	</delete>
+	<pdf>
+		<constructor>"P","mm","A4"</constructor>
+		<margins>50,30,30,30</margins>
+		<query>"SELECT *,'".LANG("defaultdata")."' title,'".page2id("proyectos")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_proyectos WHERE id IN (".check_ids(getParam("id")).")"</query>
+		<!-- TEMPLATE -->
+		<header>
+			<!-- LOGO -->
+			<margins>0,0,0,0</margins>
+			<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
+			<!-- PONER MARCA DE AGUA -->
+			<font>"Helvetica","B",CONFIG("water_proyectos_size"),"#eeeeee"</font>
+			<text>CONFIG("water_proyectos_posx"),CONFIG("water_proyectos_posy"),CONFIG("water_proyectos_text"),CONFIG("water_proyectos_angle")</text>
+			<margins>50,30,30,30</margins>
+			<setxy>30,50</setxy>
+		</header>
+		<footer>
+			<margins>0,0,0,0</margins>
+			<!-- poner pie de pagina -->
+			<font>"Helvetica","",6,CONFIG("color_text2")</font>
+			<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
+			<margins>50,30,30,30</margins>
+		</footer>
+		<!-- BEGIN -->
+		<color>CONFIG("color_line"),"#000000"</color>
+		<!-- DATOS PROYECTO -->
+		<relatedproyectos include="xml/common/relatedproyectospdf.xml" replace="true" />
+		<foreach>
+			<!-- CONTACTOS PROYECTO -->
+			<query>"SELECT *,'".LANG("contactdata")."' title,'".page2id("contactos")."' id_aplicacion FROM tbl_contactos WHERE id_aplicacion='".page2id("proyectos")."' AND id_registro='".$row["id"]."' AND '".getParam("contactos")."'='1' ORDER BY nombre ASC"</query>
+			<relatedcontacts include="xml/common/relatedcontactspdf.xml" replace="true" />
+			<!-- SEGUIMIENTOS PROYECTO -->
+			<query>"SELECT *,'".LANG("seguimientos")."' title,'".page2id("seguimientos")."' id_aplicacion,(SELECT tarea FROM tbl_proyectos_t WHERE id_tarea=id) tarea FROM tbl_seguimientos WHERE id_proyecto='".$row["id"]."' AND '".getParam("seguimientos")."'='1' ORDER BY fecha ASC"</query>
+			<relatedseguimientos include="xml/common/relatedseguimientospdf.xml" replace="true" />
+			<!-- INCIDENCIAS ABIERTAS PROYECTO -->
+			<query>"SELECT a.*,
+			(SELECT GROUP_CONCAT(".make_extra_query("uu.")." /*MYSQL SEPARATOR '; ' *//*SQLITE ,'; '*/) FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_incidencias_u iu WHERE iu.id_incidencia=a.id)) asignadoa,
+			'".LANG("incidentopen")."' title,'".page2id("incidencias")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,(SELECT nombre FROM tbl_prioridades WHERE id=a.id_prioridad) prioridad FROM tbl_incidencias a WHERE a.id_proyecto='".$row["id"]."' AND a.id_estado IN (SELECT id FROM tbl_estados WHERE activo='1') AND '".getParam("incidencias")."'='1' ORDER BY a.id ASC"</query>
+			<relatedincidencias include="xml/common/relatedincidenciaspdf.xml" replace="true" />
+			<!-- INCIDENCIAS CERRADAS PROYECTO -->
+			<query>"SELECT a.*,
+			(SELECT GROUP_CONCAT(".make_extra_query("uu.")." /*MYSQL SEPARATOR '; ' *//*SQLITE ,'; '*/) FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_incidencias_u iu WHERE iu.id_incidencia=a.id)) asignadoa,
+			'".LANG("incidentclose")."' title,'".page2id("incidencias")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,(SELECT nombre FROM tbl_prioridades WHERE id=a.id_prioridad) prioridad FROM tbl_incidencias a WHERE a.id_proyecto='".$row["id"]."' AND a.id_estado IN (SELECT id FROM tbl_estados WHERE activo='0') AND '".getParam("incidencias")."'='1' ORDER BY a.id ASC"</query>
+			<relatedincidencias include="xml/common/relatedincidenciaspdf.xml" replace="true" />
+			<!-- PARTES ABIERTOS PROYECTO -->
+			<query>"SELECT *,'".LANG("partesopen")."' title,'".page2id("partes")."' id_aplicacion,(CASE liquidado WHEN 1 THEN '".LANG("yes")."' ELSE '".LANG("no")."' END) liquidado2 FROM tbl_partes WHERE id_proyecto='".$row["id"]."' AND liquidado='0' AND '".getParam("partes")."'='1' ORDER BY fecha ASC"</query>
+			<relatedpartes include="xml/common/relatedpartespdf.xml" replace="true" />
+			<!-- PARTES CERRADOS PROYECTO -->
+			<query>"SELECT *,'".LANG("partesclose")."' title,'".page2id("partes")."' id_aplicacion,(CASE liquidado WHEN 1 THEN '".LANG("yes")."' ELSE '".LANG("no")."' END) liquidado2 FROM tbl_partes WHERE id_proyecto='".$row["id"]."' AND liquidado='1' AND '".getParam("partes")."'='1' ORDER BY fecha ASC"</query>
+			<relatedpartes include="xml/common/relatedpartespdf.xml" replace="true" />
+			<!-- ALBARANES -->
+			<query>"SELECT *,'".LANG("albaranes")."' title,(SELECT /*SQLITE '(' || codigo || ') ' || nombre *//*MYSQL CONCAT('(',codigo,') ',nombre) */ nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta FROM tbl_facturas WHERE id_proyecto='".$row["id"]."' AND cerrado='0' AND '".getParam("facturas")."'='1' ORDER BY fecha ASC"</query>
+			<relatedfacturas include="xml/common/relatedfacturaspdf.xml" replace="true" />
+			<!-- FACTURAS NO COBRADAS -->
+			<query>"SELECT *,'".LANG("facturaopen","proyectos")."' title,(SELECT /*SQLITE '(' || codigo || ') ' || nombre *//*MYSQL CONCAT('(',codigo,') ',nombre) */ nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta FROM tbl_facturas WHERE id_proyecto='".$row["id"]."' AND cerrado='1' AND cobrado='0' AND '".getParam("facturas")."'='1' ORDER BY fecha ASC"</query>
+			<relatedfacturas include="xml/common/relatedfacturaspdf.xml" replace="true" />
+			<!-- FACTURAS SI COBRADAS -->
+			<query>"SELECT *,'".LANG("facturaclose","proyectos")."' title,(SELECT /*SQLITE '(' || codigo || ') ' || nombre *//*MYSQL CONCAT('(',codigo,') ',nombre) */ nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta FROM tbl_facturas WHERE id_proyecto='".$row["id"]."' AND cerrado='1' AND cobrado='1' AND '".getParam("facturas")."'='1' ORDER BY fecha ASC"</query>
+			<relatedfacturas include="xml/common/relatedfacturaspdf.xml" replace="true" />
+			<!-- GASTOS DEL PROYECTO -->
+			<query>"SELECT *,'".LANG("gastosdata","proyectos")."' title,(SELECT /*SQLITE '(' || codigo || ') ' || nombre *//*MYSQL CONCAT('(',codigo,') ',nombre) */ nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta,(SELECT nombre FROM tbl_proveedores WHERE id=id_proveedor) proveedor,(SELECT nombre FROM tbl_formaspago WHERE id=id_formapago) formapago,".make_extra_query("d.")." pagador,CASE liquidado WHEN '1' THEN '".LANG("yes")."' ELSE '".LANG("no")."' END liquidado2 FROM tbl_gastos a LEFT JOIN tbl_usuarios d ON a.id_pagador=d.id WHERE id_proyecto='".$row["id"]."' AND '".getParam("gastos")."'='1' ORDER BY d.id ASC"</query>
+			<relatedgastos include="xml/common/relatedgastospdf.xml" replace="true" />
+			<!-- EVENTOS DEL PROYECTO -->
+			<query>"SELECT a.*,'".LANG("agendadata","proyectos")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=a.id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
+			(SELECT GROUP_CONCAT(".make_extra_query("uu.")." /*MYSQL SEPARATOR '; ' *//*SQLITE ,'; '*/) FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_agenda_u iu WHERE iu.id_agenda=a.id)) asignadoa
+			FROM tbl_agenda a WHERE a.id_proyecto='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
+			<relatedagenda include="xml/common/relatedagendapdf.xml" replace="true" />
+			<!-- PRESUPUESTOS DEL PROYECTO -->
+			<query>"SELECT *,'".LANG("presupuestosdata","proyectos")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_proyecto='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id ASC"</query>
+			<relatedpresupuestos include="xml/common/relatedpresupuestospdf.xml" replace="true" />
+			<!-- ACTAS DEL PROYECTO -->
+			<query>"SELECT *,'".LANG("actasdata","proyectos")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_proyecto='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
+			<relatedactas include="xml/common/relatedactaspdf.xml" replace="true" />
+		</foreach>
+		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
+		SELECT
+			/*MYSQL CONCAT('".LANG("proyecto")."',' ',LPAD(id,5,0),' ',nombre) */
+			/*SQLITE '".LANG("proyecto")."' || ' ' || SUBSTR('00000' || id,-5,5) || ' ' || nombre */ subject
+		FROM tbl_proyectos WHERE id IN (".check_ids(getParam("id")).")"):LANG("proyectos"))).getDefault("exts/pdfext",".pdf")</output>
+	</pdf>
+</root>

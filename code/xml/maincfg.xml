@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>
+		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
+		<id global="id" eval="true">$id=current_user()</id>
+	</default>
+	<form>
+		<views>
+			<update>
+				<title lang="true">formupdate</title>
+				<query>
+					<general eval="true">make_select_config("application_title,
+						plot_list_size,plot_list_width,plot_list_height,plot_form_size,plot_form_width,plot_form_height,
+						agenda_interval,inbox_interval,outbox_interval,feeds_interval,feeds_timeout,session_interval,session_warning")</general>
+					<water eval="true">make_select_config("water_actas_text,water_actas_posx,water_actas_posy,water_actas_size,water_actas_angle,
+						water_partes_text,water_partes_posx,water_partes_posy,water_partes_size,water_partes_angle,
+						water_facturas_text,water_facturas_posx,water_facturas_posy,water_facturas_size,water_facturas_angle,
+						water_albaranes_text,water_albaranes_posx,water_albaranes_posy,water_albaranes_size,water_albaranes_angle,
+						water_presupuestos_text,water_presupuestos_posx,water_presupuestos_posy,water_presupuestos_size,water_presupuestos_angle,
+						water_clientes_text,water_clientes_posx,water_clientes_posy,water_clientes_size,water_clientes_angle,
+						water_proyectos_text,water_proyectos_posx,water_proyectos_posy,water_proyectos_size,water_proyectos_angle,
+						water_posiblescli_text,water_posiblescli_posx,water_posiblescli_posy,water_posiblescli_size,water_posiblescli_angle,
+						water_correo_text,water_correo_posx,water_correo_posy,water_correo_size,water_correo_angle,
+						water_feeds_text,water_feeds_posx,water_feeds_posy,water_feeds_size,water_feeds_angle")</water>
+					<logo eval="true">make_select_config("logo_left,logo_top,logo_width,logo_height,logo_file,color_line,color_text1,color_text2")</logo>
+					<correo eval="true">make_select_config("email_host,email_port,email_extra,email_user,email_pass,email_name,email_from,email_async,email_support")</correo>
+					<accounting eval="true">make_select_config("accounting_currency,accounting_iva_name,accounting_iva_value,accounting_irpf_name,accounting_irpf_value")</accounting>
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</update>
+		</views>
+		<name>form</name>
+		<action>xml.php</action>
+		<method>post</method>
+		<hiddens>
+			<field>
+				<name>page</name>
+				<type>hidden</type>
+				<value global="page" eval="true">$page</value>
+			</field>
+			<field>
+				<name>action</name>
+				<type>hidden</type>
+				<value global="action" eval="true">"update"</value>
+			</field>
+		</hiddens>
+		<fields>
+			<general>
+				<fieldset>
+					<title lang="true">general</title>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">title_general</label>
+							<class>center bold</class>
+							<colspan>8</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>application_title</name>
+							<label lang="true">applicationtitle</label>
+							<type>text</type>
+							<width>240px</width>
+							<colspan>7</colspan>
+							<speech>true</speech>
+						</field>
+					</row>
+				</fieldset>
+				<fieldset>
+					<buttons>true</buttons>
+					<row>
+						<field>
+							<name>plot_list_size</name>
+							<label lang="true">plotlistsize</label>
+							<width>150px</width>
+							<colspan>3</colspan>
+							<type>select</type>
+							<rows>
+								<row>
+									<label eval="true">LANG("small")." (350x200)"</label>
+									<value>1</value>
+								</row>
+								<row>
+									<label eval="true">LANG("medium")." (475x300)"</label>
+									<value>2</value>
+								</row>
+								<row>
+									<label eval="true">LANG("big")." (600x400)"</label>
+									<value>3</value>
+								</row>
+							</rows>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>plot_form_size</name>
+							<label lang="true">plotformsize</label>
+							<width>150px</width>
+							<colspan>3</colspan>
+							<type>select</type>
+							<rows>
+								<row>
+									<label eval="true">LANG("small")." (350x200)"</label>
+									<value>1</value>
+								</row>
+								<row>
+									<label eval="true">LANG("medium")." (475x300)"</label>
+									<value>2</value>
+								</row>
+								<row>
+									<label eval="true">LANG("big")." (600x400)"</label>
+									<value>3</value>
+								</row>
+							</rows>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>agenda_interval</name>
+							<label lang="true">agendainterval</label>
+							<type>integer</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">segundos</label>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>inbox_interval</name>
+							<label lang="true">inboxinterval</label>
+							<type>integer</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">segundos</label>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>outbox_interval</name>
+							<label lang="true">outboxinterval</label>
+							<type>integer</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">segundos</label>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>feeds_interval</name>
+							<label lang="true">feedsinterval</label>
+							<type>integer</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">segundos</label>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>feeds_timeout</name>
+							<label lang="true">feedstimeout</label>
+							<type>integer</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">dias</label>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>session_interval</name>
+							<label lang="true">sessioninterval</label>
+							<type>integer</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">segundos</label>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>session_warning</name>
+							<label lang="true">sessionwarning</label>
+							<type>integer</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">segundos</label>
+						</field>
+					</row>
+				</fieldset>
+			</general>
+			<logo>
+				<fieldset include="xml/common/logo.xml" replace="true" />
+				<node path="fieldset/title" before="true">
+					<buttons>true</buttons>
+				</node>
+			</logo>
+			<water>
+				<fieldset>
+					<buttons>true</buttons>
+					<title lang="true">water</title>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">title_water</label>
+							<class>center bold</class>
+							<colspan>10</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_actas_text</name>
+							<label lang="true">wateractas</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_actas_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_actas_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_actas_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_actas_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_partes_text</name>
+							<label lang="true">waterpartes</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_partes_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_partes_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_partes_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_partes_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_facturas_text</name>
+							<label lang="true">waterfacturas</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_facturas_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_facturas_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_facturas_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_facturas_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_albaranes_text</name>
+							<label lang="true">wateralbaranes</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_albaranes_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_albaranes_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_albaranes_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_albaranes_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_presupuestos_text</name>
+							<label lang="true">waterpresupuestos</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_presupuestos_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_presupuestos_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_presupuestos_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_presupuestos_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_clientes_text</name>
+							<label lang="true">waterclientes</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_clientes_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_clientes_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_clientes_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_clientes_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_proyectos_text</name>
+							<label lang="true">waterproyectos</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_proyectos_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_proyectos_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_proyectos_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_proyectos_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_posiblescli_text</name>
+							<label lang="true">waterposiblescli</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_posiblescli_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_posiblescli_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_posiblescli_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_posiblescli_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_correo_text</name>
+							<label lang="true">watercorreo</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_correo_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_correo_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_correo_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_correo_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>water_feeds_text</name>
+							<label lang="true">waterfeeds</label>
+							<type>text</type>
+							<width>120px</width>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>water_feeds_posx</name>
+							<label lang="true">posx</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_feeds_posy</name>
+							<label lang="true">posy</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_feeds_size</name>
+							<label lang="true">size</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>water_feeds_angle</name>
+							<label lang="true">angle</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+				</fieldset>
+			</water>
+			<correo>
+				<fieldset>
+					<buttons>true</buttons>
+					<width>450px</width>
+					<title lang="true">correo</title>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">title_correo</label>
+							<class>center bold siwrap</class>
+							<colspan>3</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email_name</name>
+							<label lang="true">nombre</label>
+							<type>text</type>
+							<width>240px</width>
+							<colspan>2</colspan>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email_from</name>
+							<label lang="true">email</label>
+							<type>text</type>
+							<width>240px</width>
+							<colspan>2</colspan>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email_host</name>
+							<label lang="true">emailhost</label>
+							<type>text</type>
+							<width>240px</width>
+							<colspan>2</colspan>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email_port</name>
+							<label lang="true">port</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label>(25, 465)</label>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email_extra</name>
+							<label lang="true">extra</label>
+							<type>select</type>
+							<width>60px</width>
+							<rows>
+								<row>
+									<label></label>
+									<value></value>
+								</row>
+								<row>
+									<label>SSL</label>
+									<value>ssl</value>
+								</row>
+								<row>
+									<label>TLS</label>
+									<value>tls</value>
+								</row>
+							</rows>
+						</field>
+						<field>
+							<type>label</type>
+							<label>(SSL/TLS)</label>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email_user</name>
+							<label lang="true">username</label>
+							<type>text</type>
+							<width>240px</width>
+							<colspan>2</colspan>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email_pass</name>
+							<label lang="true">password</label>
+							<type>password</type>
+							<width>120px</width>
+							<colspan>2</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email_async</name>
+							<label lang="true">emailasync</label>
+							<type>checkbox</type>
+							<value>1</value>
+							<colspan>2</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email_support</name>
+							<label lang="true">emailsupport</label>
+							<type>text</type>
+							<width>240px</width>
+							<colspan>2</colspan>
+						</field>
+					</row>
+				</fieldset>
+			</correo>
+			<accounting>
+				<fieldset>
+					<buttons>true</buttons>
+					<width>450px</width>
+					<title lang="true">accounting</title>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">title_accounting</label>
+							<class>center bold siwrap</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>accounting_currency</name>
+							<label lang="true">accounting_currency</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>accounting_iva_name</name>
+							<label lang="true">accounting_iva_name</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>accounting_iva_value</name>
+							<label lang="true">accounting_value</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>accounting_irpf_name</name>
+							<label lang="true">accounting_irpf_name</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<name>accounting_irpf_value</name>
+							<label lang="true">accounting_value</label>
+							<type>text</type>
+							<width>60px</width>
+						</field>
+					</row>
+				</fieldset>
+			</accounting>
+			<help include="xml/common/helpform.xml" />
+		</fields>
+		<buttons>
+			<row>
+				<field>
+					<type>separator</type>
+					<width>100%</width>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">buttonupdate</value>
+					<onclick>submit1()</onclick>
+					<icon>accept</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+			</row>
+		</buttons>
+		<javascript include="xml/common/jsform.xml"/>
+	</form>
+	<update>
+		<!-- general section -->
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("application_title")?make_update_config("application_title"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_list_size")?make_update_config("plot_list_size"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="1"?setParam("plot_list_width","350"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="2"?setParam("plot_list_width","475"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="3"?setParam("plot_list_width","600"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_list_width")?make_update_config("plot_list_width"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="1"?setParam("plot_list_height","200"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="2"?setParam("plot_list_height","300"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="3"?setParam("plot_list_height","400"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_list_height")?make_update_config("plot_list_height"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_form_size")?make_update_config("plot_form_size"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="1"?setParam("plot_form_width","350"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="2"?setParam("plot_form_width","475"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="3"?setParam("plot_form_width","600"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_form_width")?make_update_config("plot_form_width"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="1"?setParam("plot_form_height","200"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="2"?setParam("plot_form_height","300"):""</query>
+		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="3"?setParam("plot_form_height","400"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_form_height")?make_update_config("plot_form_height"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("agenda_interval")?make_update_config("agenda_interval"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("inbox_interval")?make_update_config("inbox_interval"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("outbox_interval")?make_update_config("outbox_interval"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("feeds_interval")?make_update_config("feeds_interval"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("feeds_timeout")?make_update_config("feeds_timeout"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("session_interval")?make_update_config("session_interval"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("session_warning")?make_update_config("session_warning"):""</query>
+		<!-- water section -->
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_text")?make_update_config("water_actas_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_posx")?make_update_config("water_actas_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_posy")?make_update_config("water_actas_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_size")?make_update_config("water_actas_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_angle")?make_update_config("water_actas_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_text")?make_update_config("water_partes_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_posx")?make_update_config("water_partes_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_posy")?make_update_config("water_partes_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_size")?make_update_config("water_partes_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_angle")?make_update_config("water_partes_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_text")?make_update_config("water_facturas_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_posx")?make_update_config("water_facturas_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_posy")?make_update_config("water_facturas_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_size")?make_update_config("water_facturas_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_angle")?make_update_config("water_facturas_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_text")?make_update_config("water_albaranes_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_posx")?make_update_config("water_albaranes_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_posy")?make_update_config("water_albaranes_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_size")?make_update_config("water_albaranes_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_angle")?make_update_config("water_albaranes_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_text")?make_update_config("water_presupuestos_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_posx")?make_update_config("water_presupuestos_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_posy")?make_update_config("water_presupuestos_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_size")?make_update_config("water_presupuestos_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_angle")?make_update_config("water_presupuestos_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_text")?make_update_config("water_clientes_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_posx")?make_update_config("water_clientes_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_posy")?make_update_config("water_clientes_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_size")?make_update_config("water_clientes_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_angle")?make_update_config("water_clientes_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_text")?make_update_config("water_proyectos_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_posx")?make_update_config("water_proyectos_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_posy")?make_update_config("water_proyectos_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_size")?make_update_config("water_proyectos_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_angle")?make_update_config("water_proyectos_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_text")?make_update_config("water_posiblescli_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_posx")?make_update_config("water_posiblescli_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_posy")?make_update_config("water_posiblescli_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_size")?make_update_config("water_posiblescli_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_angle")?make_update_config("water_posiblescli_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_text")?make_update_config("water_correo_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_posx")?make_update_config("water_correo_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_posy")?make_update_config("water_correo_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_size")?make_update_config("water_correo_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_angle")?make_update_config("water_correo_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_text")?make_update_config("water_feeds_text"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_posx")?make_update_config("water_feeds_posx"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_posy")?make_update_config("water_feeds_posy"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_size")?make_update_config("water_feeds_size"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_angle")?make_update_config("water_feeds_angle"):""</query>
+		<!-- logo section -->
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_left")?make_update_config("logo_left"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_top")?make_update_config("logo_top"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_width")?make_update_config("logo_width"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_height")?make_update_config("logo_height"):""</query>
+		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?"SELECT valor action_delete FROM tbl_configuracion WHERE clave='logo_file' AND SUBSTR(valor,1,7)!='../img/'":""</query>
+		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?"UPDATE tbl_configuracion SET valor='".getParam("logo_file_new_file")."' WHERE clave='logo_file'":""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_line")?make_update_config("color_line"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_text1")?make_update_config("color_text1"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_text2")?make_update_config("color_text2"):""</query>
+		<!-- correo section -->
+		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_host")?make_update_config("email_host"):""</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">make_update_config("email_port")</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">make_update_config("email_extra")</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_user")?make_update_config("email_user"):""</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_pass")?make_update_config("email_pass"):""</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_name")?make_update_config("email_name"):""</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_from")?make_update_config("email_from"):""</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">setParam("email_async",intval(getParam("email_async")))</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">make_update_config("email_async")</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_support")?make_update_config("email_support"):""</query>
+		<!-- accounting section -->
+		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_currency")?make_update_config("accounting_currency"):""</query>
+		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_iva_name")?make_update_config("accounting_iva_name"):""</query>
+		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_iva_value")?make_update_config("accounting_iva_value"):""</query>
+		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_irpf_name")?make_update_config("accounting_irpf_name"):""</query>
+		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_irpf_value")?make_update_config("accounting_irpf_value"):""</query>
+		<!-- return section -->
+		<query match="general" prefix="true" eval="true">"SELECT '-1' action_go FROM tbl_usuarios WHERE id='".current_user()."'"</query>
+	</update>
+</root>

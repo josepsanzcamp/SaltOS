@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<list>
+		<title lang="true">list</title>
+		<actions include="xml/common/actions.xml" replace="true"/>
+		<pager include="xml/common/pager.xml"/>
+		<width>100%</width>
+		<fields>
+			<field>
+				<name>id2</name>
+				<label lang="true">id</label>
+				<width></width>
+				<sort>true</sort>
+				<order>id</order>
+			</field>
+			<field>
+				<name>nombre</name>
+				<label lang="true">nombre</label>
+				<width></width>
+				<sort>true</sort>
+				<order>nombre2</order>
+			</field>
+			<field>
+				<name>cargo</name>
+				<label lang="true">cargo</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>tel_fijo</name>
+				<label lang="true">tel_fijo</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>tel_movil</name>
+				<label lang="true">tel_movil</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>email</name>
+				<label lang="true">email</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+		</fields>
+		<javascript include="xml/common/jslist.xml"/>
+		<quick>
+			<row>
+				<field>
+					<type>separator</type>
+					<width>100%</width>
+				</field>
+				<field>
+					<type>label</type>
+					<label lang="true">usedfilter</label>
+					<show eval="true">check_filter(array("filtro"=>""))?"true":"false"</show>
+					<class>nowrap</class>
+					<class2>info</class2>
+				</field>
+				<field>
+					<name>buscar</name>
+					<label lang="true">buscar</label>
+					<type>text</type>
+					<width>240px</width>
+					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<onchange>copy_value("filtro","buscar");</onchange>
+					<onkeypress>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkeypress>
+					<focus>true</focus>
+					<speech>true</speech>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">buscar</value>
+					<tip lang="true">buscartip</tip>
+					<onclick>buscar()</onclick>
+					<icon>find</icon>
+					<class>nowrap</class>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">limpiar</value>
+					<tip lang="true">limpiartip</tip>
+					<onclick>limpiar()</onclick>
+					<icon>refresh</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+			</row>
+		</quick>
+		<form>
+			<name>list</name>
+			<action>xml.php</action>
+			<method>get</method>
+			<fields>
+				<title lang="true">filter</title>
+				<buttons>true</buttons>
+				<row>
+					<field include="xml/common/hiddenslist.xml" replace="true" />
+					<field>
+						<name>filtro</name>
+						<label lang="true">filtro</label>
+						<type>text</type>
+						<width>240px</width>
+						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<colspan>2</colspan>
+						<onchange>copy_value("buscar","filtro");</onchange>
+						<speech>true</speech>
+					</field>
+				</row>
+			</fields>
+			<fields include="xml/common/filters.xml" replace="true" />
+			<fields include="xml/common/helplist.xml" replace="true" />
+			<buttons include="xml/common/buttonslist.xml" />
+		</form>
+		<query global="page,filtro" eval="true">"
+		SELECT id2,id,
+			/*MYSQL CONCAT('link:empleados(',-id,'):',nombre) *//*SQLITE 'link:empleados(' || -id || '):' || nombre */ nombre,
+			nombre nombre2,
+			cargo,
+			/*MYSQL CONCAT('tel:',tel_fijo)*//*SQLITE 'tel:' || tel_fijo*/ tel_fijo,
+			/*MYSQL CONCAT('tel:',tel_movil)*//*SQLITE 'tel:' || tel_movil*/ tel_movil,
+			/*MYSQL CONCAT('mailto:',email)*//*SQLITE 'mailto:' || email*/ email,
+			id action_id,/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || id,-5,5) || ' - ' || nombre */ action_title,
+			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+			CASE ".check_sql($page,"view")." OR ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
+			CASE ".check_sql($page,"view")." OR ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
+			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+		FROM (
+			SELECT a.*,e.id_usuario id_usuario,d.id_grupo id_grupo,
+				/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
+				y1.valor tel_fijo,y2.valor tel_movil,y5.valor email,x.nombre_provincia provincia,x.nombre_poblacion poblacion,x.nombre_codpostal codpostal,x.direccion direccion
+			FROM tbl_empleados a
+			LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1'
+			LEFT JOIN tbl_direcciones x ON x.id=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id ORDER BY seleccion DESC, id ASC LIMIT 1)
+			LEFT JOIN tbl_comunicaciones y1 ON y1.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='phone') ORDER BY seleccion DESC, id ASC LIMIT 1)
+			LEFT JOIN tbl_comunicaciones y2 ON y2.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='movil') ORDER BY seleccion DESC, id ASC LIMIT 1)
+			LEFT JOIN tbl_comunicaciones y5 ON y5.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='email') ORDER BY seleccion DESC, id ASC LIMIT 1)
+			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+		) b
+		WHERE ".make_like_query("id2,nombre,cargo,comentarios,direccion,codpostal,poblacion,provincia,tel_fijo,tel_movil,email",$filtro)." AND ".check_sql($page,"list")</query>
+		<order global="order" eval="true">$order</order>
+		<limit global="limit" eval="true">$limit</limit>
+		<offset global="offset" eval="true">$offset</offset>
+	</list>
+	<form>
+		<views>
+			<view>
+				<title lang="true">formview</title>
+				<query>
+					<query include="xml/common/qpermview.xml" replace="true" />
+					<query include="xml/common/qdefaultview.xml" replace="true" />
+					<direccion_principal include="xml/common/qdireccionpriview.xml" replace="true"/>
+					<comunicacion_principal include="xml/common/qcomunicacionpriview.xml" replace="true"/>
+					<direccion_secundaria include="xml/common/qdireccionsecview.xml" replace="true"/>
+					<comunicacion_secundaria include="xml/common/qcomunicacionsecview.xml" replace="true"/>
+					<contactos>
+						<contactos global="id,page" eval="true">"
+SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,
+	/*MYSQL CONCAT('link:contactos(',-a.id,'):',a.nombre) *//*SQLITE 'link:contactos(' || -a.id || '):' || a.nombre */ nombre,
+	/*MYSQL CONCAT('tel:',y1.valor)*//*SQLITE 'tel:' || y1.valor*/ tel_fijo,
+	/*MYSQL CONCAT('tel:',y2.valor)*//*SQLITE 'tel:' || y2.valor*/ tel_movil,
+	/*MYSQL CONCAT('mailto:',y5.valor)*//*SQLITE 'mailto:' || y5.valor*/ email,
+	/*MYSQL CONCAT('contactos(',-a.id,')') *//*SQLITE 'contactos(' || -a.id || ')' */ link_view,
+	/*MYSQL CONCAT('vcardcontactos(',-a.id,')') *//*SQLITE 'vcardcontactos(' || -a.id || ')' */ link_vcard,
+	/*MYSQL CONCAT('qrcodecontactos(',-a.id,')') *//*SQLITE 'qrcodecontactos(' || -a.id || ')' */ link_qrcode
+FROM tbl_contactos a
+	LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("contactos")."' AND e.id_registro=a.id AND e.primero='1'
+	LEFT JOIN tbl_direcciones x ON x.id=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id("contactos")."' AND id_registro=a.id ORDER BY seleccion DESC, id ASC LIMIT 1)
+	LEFT JOIN tbl_comunicaciones y1 ON y1.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='phone') ORDER BY seleccion DESC, id ASC LIMIT 1)
+	LEFT JOIN tbl_comunicaciones y2 ON y2.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='movil') ORDER BY seleccion DESC, id ASC LIMIT 1)
+	LEFT JOIN tbl_comunicaciones y5 ON y5.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='email') ORDER BY seleccion DESC, id ASC LIMIT 1)
+	LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados")."') AND (".check_sql("contactos","view").") ORDER BY a.nombre ASC"</contactos>
+					</contactos>
+					<control include="xml/common/qcontrol.xml"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</view>
+			<insert>
+				<title lang="true">forminsert</title>
+				<query>
+					<query include="xml/common/qpermcreate.xml" replace="true" />
+					<default>SELECT '0' id</default>
+					<direccion_new include="xml/common/qdireccionnew.xml" replace="true"/>
+					<comunicacion_new include="xml/common/qcomunicacionnew.xml" replace="true"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</insert>
+			<update>
+				<title lang="true">formupdate</title>
+				<query>
+					<query include="xml/common/qpermupdate.xml" replace="true" />
+					<query include="xml/common/qdefaultview.xml" replace="true" />
+					<direccion_principal include="xml/common/qdireccionpriview.xml" replace="true"/>
+					<comunicacion_principal include="xml/common/qcomunicacionpriview.xml" replace="true"/>
+					<direccion_secundaria include="xml/common/qdireccionsecview.xml" replace="true"/>
+					<comunicacion_secundaria include="xml/common/qcomunicacionsecview.xml" replace="true"/>
+					<direccion_new include="xml/common/qdireccionnew.xml" replace="true"/>
+					<comunicacion_new include="xml/common/qcomunicacionnew.xml" replace="true"/>
+					<control include="xml/common/qcontrol.xml"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</update>
+		</views>
+		<name>form</name>
+		<action>xml.php</action>
+		<method>post</method>
+		<hiddens>
+			<hiddens include="xml/common/hiddensform.xml" replace="true" />
+			<field>
+				<name>id_empleado</name>
+				<type>hidden</type>
+				<value></value>
+			</field>
+		</hiddens>
+		<fields>
+			<default>
+				<fieldset>
+					<title lang="true">defaultdata</title>
+					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
+					<buttons>true</buttons>
+					<row>
+						<field>
+							<name>id</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>nombre1</name>
+							<label lang="true">nombre</label>
+							<type>text</type>
+							<width>240px</width>
+							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>nombre2</name>
+							<label lang="true">apellidos</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+							<speech>true</speech>
+						</field>
+						<field>
+							<type>separator</type>
+						</field>
+						<field>
+							<name>cargo</name>
+							<label lang="true">cargo</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>nombre</name>
+							<label lang="true">mostrarcomo</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>comentarios</name>
+							<label lang="true">comentarios</label>
+							<type>textarea</type>
+							<width>600px</width>
+							<height>120px</height>
+							<colspan>4</colspan>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+					</row>
+				</fieldset>
+			</default>
+			<direccion_principal include="xml/common/direccionesold.xml" />
+			<node path="direccion_principal/fieldset/row" before="true">
+				<title lang="true">direccionesold</title>
+			</node>
+			<comunicaciones_principal include="xml/common/comunicacionesold.xml" />
+			<direccion_secundaria include="xml/common/direccionesold.xml" />
+			<comunicaciones_secundaria include="xml/common/comunicacionesold.xml" />
+			<direccion_new include="xml/common/direccionesnew.xml" />
+			<node path="direccion_new/fieldset/row" before="true">
+				<title lang="true">direccionesnew</title>
+			</node>
+			<comunicaciones_new include="xml/common/comunicacionesnew.xml" />
+			<contactos include="xml/common/relatedcontacts.xml" replace="true" />
+			<control include="xml/common/control.xml" />
+			<folders include="xml/common/folders.xml" />
+			<help include="xml/common/helpform.xml" />
+		</fields>
+		<quick include="xml/common/quickform.xml" />
+		<buttons include="xml/common/buttonsform.xml" />
+		<node path="buttons/row/field" before="true">
+			<field>
+				<type>button</type>
+				<value eval="true">LANG("add","contactos")</value>
+				<tip eval="true">LANG("add","contactos")</tip>
+				<onclick>setParam("page","contactos");setParam("action","form");setParam("id_empleado",abs(getParam("id")));setParam("id","0");submit1()</onclick>
+				<show global="id" eval="true">$id>=0?"false":"true"</show>
+				<disabled eval="true">check_user("contactos","create")?"false":"true"</disabled>
+				<class>nowrap contextmenu</class>
+				<icon>create</icon>
+			</field>
+		</node>
+		<javascript>
+			<javascript include="xml/common/jsform.xml" replace="true"/>
+			<cache>
+				<include>js/updateproyectos.js</include>
+				<include>js/updatedireccion.js</include>
+			</cache>
+		</javascript>
+	</form>
+	<insert>
+		<query include="xml/common/qpermcreate.xml" replace="true"/>
+		<query include="xml/common/autonombre.xml" replace="true"/>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
+		<query include="xml/common/qdireccionnewinsert.xml" replace="true"/>
+		<query include="xml/common/qcomunicacionnewinsert.xml" replace="true"/>
+		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
+	</insert>
+	<update>
+		<query include="xml/common/qpermupdate.xml" replace="true"/>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+        <query include="xml/common/qcontrolupdate.xml" replace="true"/>
+        <query include="xml/common/qdireccionpriupdate.xml" replace="true"/>
+        <query include="xml/common/qdireccionsecupdate.xml" replace="true"/>
+        <query include="xml/common/qcomunicacionpriupdate.xml" replace="true"/>
+        <query include="xml/common/qcomunicacionsecupdate.xml" replace="true"/>
+        <query include="xml/common/qdireccionnewupdate.xml" replace="true"/>
+        <query include="xml/common/qcomunicacionnewupdate.xml" replace="true"/>
+		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
+	</update>
+	<delete>
+		<query include="xml/common/qpermdelete.xml" replace="true"/>
+		<query include="xml/common/qdelete.xml" replace="true" />
+		<query include="xml/common/qdirecciondelete.xml" replace="true"/>
+		<query include="xml/common/qcomunicaciondelete.xml" replace="true"/>
+		<query include="xml/common/qcontroldelete.xml" replace="true"/>
+		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
+	</delete>
+</root>

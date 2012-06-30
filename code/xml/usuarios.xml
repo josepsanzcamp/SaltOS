@@ -1,0 +1,899 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<list>
+		<title lang="true">list</title>
+		<actions include="xml/common/actions.xml" replace="true"/>
+		<pager include="xml/common/pager.xml"/>
+		<width>100%</width>
+		<fields>
+			<field>
+				<name>id2</name>
+				<label lang="true">id</label>
+				<width></width>
+				<sort>true</sort>
+				<order>id</order>
+			</field>
+			<field>
+				<name>login</name>
+				<label lang="true">username</label>
+				<width></width>
+				<sort>true</sort>
+				<order>login2</order>
+			</field>
+			<field>
+				<name>grupo</name>
+				<label lang="true">grupo</label>
+				<width></width>
+				<sort>true</sort>
+				<order>grupo2</order>
+			</field>
+			<field>
+				<name>nombre</name>
+				<label lang="true">nombre</label>
+				<width></width>
+				<sort>true</sort>
+				<order>nombre2</order>
+			</field>
+			<field>
+				<name>email</name>
+				<label lang="true">email</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>activo</name>
+				<label lang="true">activo</label>
+				<width></width>
+				<sort>false</sort>
+			</field>
+			<field>
+				<name>hora_ini</name>
+				<label lang="true">entrada</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>hora_fin</name>
+				<label lang="true">salida</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>dias_sem</name>
+				<label lang="true">dias</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+		</fields>
+		<javascript include="xml/common/jslist.xml"/>
+		<quick>
+			<row>
+				<field>
+					<type>separator</type>
+					<width>100%</width>
+				</field>
+				<field>
+					<type>label</type>
+					<label lang="true">usedfilter</label>
+					<show eval="true">check_filter(array("filtro"=>""))?"true":"false"</show>
+					<class>nowrap</class>
+					<class2>info</class2>
+				</field>
+				<field>
+					<name>buscar</name>
+					<label lang="true">buscar</label>
+					<type>text</type>
+					<width>240px</width>
+					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<onchange>copy_value("filtro","buscar");</onchange>
+					<onkeypress>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkeypress>
+					<focus>true</focus>
+					<speech>true</speech>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">buscar</value>
+					<tip lang="true">buscartip</tip>
+					<onclick>buscar()</onclick>
+					<icon>find</icon>
+					<class>nowrap</class>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">limpiar</value>
+					<tip lang="true">limpiartip</tip>
+					<onclick>limpiar()</onclick>
+					<icon>refresh</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+			</row>
+		</quick>
+		<form>
+			<name>list</name>
+			<action>xml.php</action>
+			<method>get</method>
+			<fields>
+				<title lang="true">filter</title>
+				<buttons>true</buttons>
+				<row>
+					<field include="xml/common/hiddenslist.xml" replace="true" />
+					<field>
+						<name>filtro</name>
+						<label lang="true">filtro</label>
+						<type>text</type>
+						<width>240px</width>
+						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<colspan>2</colspan>
+						<onchange>copy_value("buscar","filtro");</onchange>
+						<speech>true</speech>
+					</field>
+				</row>
+			</fields>
+			<fields include="xml/common/filters.xml" replace="true" />
+			<fields include="xml/common/helplist.xml" replace="true" />
+			<buttons include="xml/common/buttonslist.xml" />
+		</form>
+		<query global="page,filtro" eval="true">"SELECT * FROM (SELECT
+		/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
+		/*MYSQL CONCAT('link:usuarios(',-a.id,'):',a.login) *//*SQLITE 'link:usuarios(' || -a.id || '):' || a.login */ login,a.login login2,
+		/*MYSQL CONCAT('link:grupos(',-a.id_grupo,'):',b.nombre) *//*SQLITE 'link:grupos(' || -a.id_grupo || '):' || b.nombre */ grupo,b.nombre grupo2,
+		/*MYSQL CONCAT('link:',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'(',-a.id_registro,'):',a_nombre) *//*SQLITE 'link:' || (SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion) || '(' || -a.id_registro || '):' || a_nombre */ nombre,a_nombre nombre2,
+		/*MYSQL CONCAT('mailto:',email)*//*SQLITE 'mailto:' || email*/ email,
+		CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
+		hora_ini,hora_fin,
+/*MYSQL CONCAT(
+CASE SUBSTR(dias_sem,1,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("lunes"),0,3,"UTF-8")." ' ELSE '' END,
+CASE SUBSTR(dias_sem,2,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("martes"),0,3,"UTF-8")." ' ELSE '' END,
+CASE SUBSTR(dias_sem,3,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("miercoles"),0,3,"UTF-8")." ' ELSE '' END,
+CASE SUBSTR(dias_sem,4,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("jueves"),0,3,"UTF-8")." ' ELSE '' END,
+CASE SUBSTR(dias_sem,5,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("viernes"),0,3,"UTF-8")." ' ELSE '' END,
+CASE SUBSTR(dias_sem,6,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("sabado"),0,3,"UTF-8")." ' ELSE '' END,
+CASE SUBSTR(dias_sem,7,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("domingo"),0,3,"UTF-8")." ' ELSE '' END)
+*//*SQLITE
+CASE SUBSTR(dias_sem,1,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("lunes"),0,3,"UTF-8")." ' ELSE '' END ||
+CASE SUBSTR(dias_sem,2,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("martes"),0,3,"UTF-8")." ' ELSE '' END ||
+CASE SUBSTR(dias_sem,3,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("miercoles"),0,3,"UTF-8")." ' ELSE '' END ||
+CASE SUBSTR(dias_sem,4,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("jueves"),0,3,"UTF-8")." ' ELSE '' END ||
+CASE SUBSTR(dias_sem,5,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("viernes"),0,3,"UTF-8")." ' ELSE '' END ||
+CASE SUBSTR(dias_sem,6,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("sabado"),0,3,"UTF-8")." ' ELSE '' END ||
+CASE SUBSTR(dias_sem,7,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("domingo"),0,3,"UTF-8")." ' ELSE '' END
+*/ dias_sem,
+a.id action_id,
+/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a_nombre) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || a_nombre */ action_title,
+CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+e.id_usuario id_usuario,id_grupo id_grupo FROM (
+SELECT d.*,
+	".make_extra_query("d.")." a_nombre,
+	y5.valor email
+FROM tbl_usuarios d
+		LEFT JOIN tbl_direcciones x ON x.id=(
+			SELECT id
+			FROM tbl_direcciones
+			WHERE id_aplicacion=d.id_aplicacion AND id_registro=d.id_registro
+			ORDER BY seleccion DESC, id ASC LIMIT 1)
+		LEFT JOIN tbl_comunicaciones y5 ON y5.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='email') ORDER BY seleccion DESC, id ASC LIMIT 1)
+) a LEFT JOIN tbl_grupos b ON a.id_grupo=b.id LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1') z
+WHERE ".make_like_query("id2,nombre,email,login",$filtro)." AND ".check_sql($page,"list")</query>
+		<order global="order" eval="true">$order</order>
+		<limit global="limit" eval="true">$limit</limit>
+		<offset global="offset" eval="true">$offset</offset>
+	</list>
+	<form>
+		<views>
+			<view>
+				<title lang="true">formview</title>
+				<query>
+					<query include="xml/common/qpermview.xml" replace="true" />
+					<default global="id" eval="true">"SELECT *,
+SUBSTR(dias_sem,1,1) lunes,
+SUBSTR(dias_sem,2,1) martes,
+SUBSTR(dias_sem,3,1) miercoles,
+SUBSTR(dias_sem,4,1) jueves,
+SUBSTR(dias_sem,5,1) viernes,
+SUBSTR(dias_sem,6,1) sabado,
+SUBSTR(dias_sem,7,1) domingo
+FROM tbl_usuarios WHERE id=".abs($id)</default>
+					<permisos>
+						<permisos global="id" eval="true">"
+						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,
+							a.id id_aplicacion,
+							a.nombre aplicacion,
+							-2 id_permiso,
+							'link:permiso_details(this):".LANG_ESCAPE("showdetalles")."' permiso,
+							'0' allow,
+							'0' deny,
+							-2 pos
+						FROM tbl_aplicaciones_p ap
+						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+						UNION
+						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-1') *//*SQLITE a.id || '_' || '-1' */ id,
+							a.id id_aplicacion,
+							a.nombre aplicacion,
+							-1 id_permiso,
+							'link:permiso_details(this):".LANG_ESCAPE("hidedetalles")."' permiso,
+							'0' allow,
+							'0' deny,
+							-1 pos
+						FROM tbl_aplicaciones_p ap
+						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+						UNION
+						SELECT /*MYSQL CONCAT(a.id,'_',b.id) *//*SQLITE a.id || '_' || b.id */ id,
+							a.id id_aplicacion,a.nombre aplicacion,
+							b.id id_permiso,b.nombre permiso,
+							up.allow allow,
+							up.deny deny,
+							pos
+						FROM tbl_aplicaciones_p ap
+						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+						LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
+						LEFT JOIN tbl_usuarios_p up ON ap.id_aplicacion=up.id_aplicacion AND ap.id_permiso=up.id_permiso AND up.id_usuario=".abs($id)."
+						ORDER BY aplicacion,pos"</permisos>
+					</permisos>
+					<grupos>
+						<grupos global="id" eval="true">"
+						SELECT a.id id,a.id id_grupo,a.nombre nombre,CASE WHEN b.id IS NULL THEN 0 ELSE 1 END activado
+						FROM tbl_grupos a
+						LEFT JOIN tbl_usuarios_g b ON b.id_usuario='".abs($id)."' AND a.id=b.id_grupo
+						ORDER BY nombre"</grupos>
+					</grupos>
+					<appsregs>
+						<appsregs global="id" eval="true">make_select_extra($id)</appsregs>
+					</appsregs>
+					<gcalendar eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
+					<feeds_old>
+						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',link,'\"):',title) *//*SQLITE 'link:openwin(\"' || link || '\"):' || title */ title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title2 ASC"</feeds_old>
+					</feeds_old>
+					<correo_old global="id" eval="true">"SELECT *,/*MYSQL CONCAT('xml.php?action=signature&amp;id=',id) *//*SQLITE 'xml.php?action=signature&amp;id=' || id */ email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
+					<control include="xml/common/qcontrol.xml"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</view>
+			<insert>
+				<title lang="true">forminsert</title>
+				<query>
+					<query include="xml/common/qpermcreate.xml" replace="true" />
+					<default>SELECT '0' id,'0' id_grupo,'09:00:00' hora_ini,'21:00:00' hora_fin,'1' lunes,'1' martes,'1' miercoles,'1' jueves,'1' viernes,'0' sabado,'0' domingo,'1' activo,'0' id_aplicacion,'0' id_registro</default>
+					<permisos>
+						<permisos eval="true">"
+						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,
+							a.id id_aplicacion,
+							a.nombre aplicacion,
+							-2 id_permiso,
+							'link:permiso_details(this):".LANG_ESCAPE("showdetalles")."' permiso,
+							'0' allow,
+							'0' deny,
+							-2 pos
+						FROM tbl_aplicaciones_p ap
+						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+						UNION
+						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-1') *//*SQLITE a.id || '_' || '-1' */ id,
+							a.id id_aplicacion,
+							a.nombre aplicacion,
+							-1 id_permiso,
+							'link:permiso_details(this):".LANG_ESCAPE("hidedetalles")."' permiso,
+							'0' allow,
+							'0' deny,
+							-1 pos
+						FROM tbl_aplicaciones_p ap
+						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+						UNION
+						SELECT /*MYSQL CONCAT(a.id,'_',b.id) *//*SQLITE a.id || '_' || b.id */ id,
+							a.id id_aplicacion,
+							a.nombre aplicacion,
+							b.id id_permiso,
+							b.nombre permiso,
+							'0' allow,
+							'0' deny,
+							pos
+						FROM tbl_aplicaciones_p ap
+						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+						LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
+						ORDER BY aplicacion,pos"</permisos>
+					</permisos>
+					<grupos>
+						<grupos eval="true">"
+						SELECT a.id id,a.id id_grupo,a.nombre nombre,'0' activado
+						FROM tbl_grupos a
+						ORDER BY nombre"</grupos>
+					</grupos>
+					<appsregs>
+						<appsregs global="id" eval="true">make_select_extra($id)</appsregs>
+					</appsregs>
+					<gcalendar>SELECT '0' id</gcalendar>
+					<feeds_new>SELECT '0' id</feeds_new>
+					<correo_new>SELECT '0' id,'0' pop3_days,'xml.php?action=signature&amp;id=0' email_signature</correo_new>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</insert>
+			<update>
+				<title lang="true">formupdate</title>
+				<query>
+					<query include="xml/common/qpermupdate.xml" replace="true" />
+					<default global="id" eval="true">"SELECT *,
+SUBSTR(dias_sem,1,1) lunes,
+SUBSTR(dias_sem,2,1) martes,
+SUBSTR(dias_sem,3,1) miercoles,
+SUBSTR(dias_sem,4,1) jueves,
+SUBSTR(dias_sem,5,1) viernes,
+SUBSTR(dias_sem,6,1) sabado,
+SUBSTR(dias_sem,7,1) domingo
+FROM tbl_usuarios WHERE id=".abs($id)</default>
+					<permisos>
+						<permisos global="id" eval="true">"
+						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,
+							a.id id_aplicacion,
+							a.nombre aplicacion,
+							-2 id_permiso,
+							'link:permiso_details(this):".LANG_ESCAPE("showdetalles")."' permiso,
+							'0' allow,
+							'0' deny,
+							-2 pos
+						FROM tbl_aplicaciones_p ap
+						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+						UNION
+						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-1') *//*SQLITE a.id || '_' || '-1' */ id,
+							a.id id_aplicacion,
+							a.nombre aplicacion,
+							-1 id_permiso,
+							'link:permiso_details(this):".LANG_ESCAPE("hidedetalles")."' permiso,
+							'0' allow,
+							'0' deny,
+							-1 pos
+						FROM tbl_aplicaciones_p ap
+						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+						UNION
+						SELECT /*MYSQL CONCAT(a.id,'_',b.id) *//*SQLITE a.id || '_' || b.id */ id,
+							a.id id_aplicacion,
+							a.nombre aplicacion,
+							b.id id_permiso,
+							b.nombre permiso,
+							up.allow allow,
+							up.deny deny,
+							pos
+						FROM tbl_aplicaciones_p ap
+						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
+						LEFT JOIN tbl_permisos b ON b.id=ap.id_permiso
+						LEFT JOIN tbl_usuarios_p up ON ap.id_aplicacion=up.id_aplicacion AND ap.id_permiso=up.id_permiso AND up.id_usuario=".abs($id)."
+						ORDER BY aplicacion,pos"</permisos>
+					</permisos>
+					<grupos>
+						<grupos global="id" eval="true">"
+						SELECT a.id id,a.id id_grupo,a.nombre nombre,CASE WHEN b.id IS NULL THEN 0 ELSE 1 END activado
+						FROM tbl_grupos a
+						LEFT JOIN tbl_usuarios_g b ON b.id_usuario='".abs($id)."' AND a.id=b.id_grupo
+						ORDER BY nombre"</grupos>
+					</grupos>
+					<appsregs>
+						<appsregs global="id" eval="true">make_select_extra($id)</appsregs>
+					</appsregs>
+					<gcalendar eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
+					<feeds_old>
+						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',link,'\"):',title) *//*SQLITE 'link:openwin(\"' || link || '\"):' || title */ title,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title ASC"</feeds_old>
+					</feeds_old>
+					<feeds_new global="id" eval="true">"SELECT '0' id,'".abs($id)."' id_usuario"</feeds_new>
+					<correo_old global="id" eval="true">"SELECT *,/*MYSQL CONCAT('xml.php?action=signature&amp;id=',id) *//*SQLITE 'xml.php?action=signature&amp;id=' || id */ email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
+					<correo_new global="id" eval="true">"SELECT '0' id,'".abs($id)."' id_usuario,'0' pop3_days,'xml.php?action=signature&amp;id=0' email_signature"</correo_new>
+					<control include="xml/common/qcontrol.xml"/>
+					<folders include="xml/common/qfolders.xml" />
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</update>
+		</views>
+		<name>form</name>
+		<action>xml.php</action>
+		<method>post</method>
+		<hiddens include="xml/common/hiddensform.xml" />
+		<fields>
+			<default>
+				<fieldset>
+					<width>600px</width>
+					<title lang="true">personaldata</title>
+					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
+					<row>
+						<field>
+							<name>id</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>password</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>login</name>
+							<label lang="true">username</label>
+							<type>text</type>
+							<width>60px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+							<colspan>2</colspan>
+						</field>
+						<field>
+							<name>id_grupo</name>
+							<label lang="true">grupo</label>
+							<type>select</type>
+							<width>240px</width>
+							<query eval="true">make_select_query("grupos","tbl_grupos","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("singrupo")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>password_new</name>
+							<label lang="true">password</label>
+							<type>password</type>
+							<width>60px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<onchange>update_score();check_passwords()</onchange>
+						</field>
+						<field>
+							<name>score</name>
+							<type>image</type>
+							<width>80px</width>
+							<height>16px</height>
+							<image></image>
+							<phpthumb>false</phpthumb>
+							<class>ui-corner-all score</class>
+						</field>
+						<field>
+							<name>id_aplicacion</name>
+							<label lang="true">aplicacion</label>
+							<type>select</type>
+							<width>240px</width>
+							<query eval="true">make_select_query("","tbl_aplicaciones","nombre","SELECT id_aplicacion FROM tbl_aplicaciones_x")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+							<onchange>update_registros()</onchange>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>password_new2</name>
+							<label lang="true">password2</label>
+							<type>password</type>
+							<width>60px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<onchange>check_passwords()</onchange>
+							<colspan>2</colspan>
+						</field>
+						<field>
+							<name>id_registro</name>
+							<label lang="true">registro</label>
+							<type>select</type>
+							<width>240px</width>
+							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinregistro")."' label"</query>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>activo</name>
+							<label lang="true">activo_desc</label>
+							<type>checkbox</type>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>hora_ini</name>
+							<label lang="true">entrada</label>
+							<type>time</type>
+							<width>60px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<colspan>2</colspan>
+							<required>true</required>
+							<icon>clock</icon>
+							<onchange>check_time("hora_ini","le","hora_fin")</onchange>
+						</field>
+						<field>
+							<name>hora_fin</name>
+							<label lang="true">salida</label>
+							<type>time</type>
+							<width>60px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+							<icon>clock</icon>
+							<onchange>check_time("hora_fin","ge","hora_ini")</onchange>
+						</field>
+					</row>
+				</fieldset>
+				<fieldset>
+					<width>600px</width>
+					<buttons>true</buttons>
+					<row>
+						<field>
+							<name>lunes</name>
+							<type>checkbox</type>
+							<label lang="true">lunes</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>martes</name>
+							<type>checkbox</type>
+							<label lang="true">martes</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>miercoles</name>
+							<type>checkbox</type>
+							<label lang="true">miercoles</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>jueves</name>
+							<type>checkbox</type>
+							<label lang="true">jueves</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>viernes</name>
+							<type>checkbox</type>
+							<label lang="true">viernes</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>sabado</name>
+							<type>checkbox</type>
+							<label lang="true">sabado</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>domingo</name>
+							<type>checkbox</type>
+							<label lang="true">domingo</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+					</row>
+				</fieldset>
+			</default>
+			<permisos>
+				<fieldset>
+					<width>700px</width>
+					<title lang="true">permdata</title>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">aplicacion</label>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">permiso</label>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+							<colspan>100</colspan>
+						</field>
+					</head>
+					<row>
+						<class>none</class>
+						<field>
+							<type>hidden</type>
+							<name>id_aplicacion</name>
+						</field>
+						<field>
+							<type>hidden</type>
+							<name>id_permiso</name>
+						</field>
+						<field>
+							<type>label</type>
+							<name>aplicacion</name>
+							<class>tbody</class>
+							<width>180px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<name>permiso</name>
+							<class>tbody</class>
+						</field>
+						<field>
+							<type>checkbox</type>
+							<name>allow</name>
+							<label lang="true">allow</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<width>1px</width>
+							<width2>1px</width2>
+							<class>tbody</class>
+							<class2>tbody</class2>
+							<onchange>check_allow_deny(this)</onchange>
+						</field>
+						<field>
+							<type>checkbox</type>
+							<name>deny</name>
+							<label lang="true">deny</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<width>1px</width>
+							<width2>1px</width2>
+							<class>tbody</class>
+							<class2>tbody</class2>
+							<onchange>check_allow_deny(this)</onchange>
+						</field>
+					</row>
+				</fieldset>
+			</permisos>
+			<grupos>
+				<fieldset>
+					<width>700px</width>
+					<title lang="true">groupsdata</title>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">grupos</label>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+							<colspan>100</colspan>
+						</field>
+					</head>
+					<row>
+						<field>
+							<type>hidden</type>
+							<name>id_grupo</name>
+						</field>
+						<field>
+							<type>label</type>
+							<name>nombre</name>
+							<class>tbody</class>
+						</field>
+						<field>
+							<type>checkbox</type>
+							<name>activado</name>
+							<label lang="true">activar</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<width>1px</width>
+							<width2>1px</width2>
+							<class>tbody</class>
+							<class2>tbody</class2>
+						</field>
+					</row>
+				</fieldset>
+			</grupos>
+			<appsregs>
+				<fieldset>
+					<width>700px</width>
+					<title lang="true">appsregsdata</title>
+					<head>
+						<field>
+							<type>label</type>
+							<label lang="true">aplicacion</label>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">registro</label>
+							<class>thead</class>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>thead</class>
+							<colspan>100</colspan>
+						</field>
+					</head>
+					<row>
+						<class>none</class>
+						<field>
+							<type>hidden</type>
+							<name>id_aplicacion</name>
+						</field>
+						<field>
+							<type>hidden</type>
+							<name>id_registro</name>
+						</field>
+						<field>
+							<type>label</type>
+							<name>aplicacion</name>
+							<class>tbody</class>
+							<width>180px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<name>registro</name>
+							<class>tbody</class>
+						</field>
+						<field>
+							<type>checkbox</type>
+							<name>activado</name>
+							<label lang="true">activar</label>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<width>1px</width>
+							<width2>1px</width2>
+							<class>tbody</class>
+							<class2>tbody</class2>
+							<onchange>check_activado(this)</onchange>
+						</field>
+					</row>
+				</fieldset>
+			</appsregs>
+			<gcalendar>
+				<include include="xml/common/gcalendar.xml" replace="true" />
+				<node path="fieldset/buttons" replace="true">
+					<buttons>false</buttons>
+				</node>
+			</gcalendar>
+			<feeds include="xml/common/feedstest.xml" replace="true" />
+			<node path="feeds_old/fieldset/buttons" replace="true">
+				<buttons>false</buttons>
+			</node>
+			<node path="feeds_new/fieldset/buttons" replace="true">
+				<buttons>false</buttons>
+			</node>
+			<correo_old>
+				<fieldset>
+					<title lang="true">correo</title>
+					<row include="xml/common/correo.xml" replace="true"/>
+					<row>
+						<field>
+							<name>delete</name>
+							<label lang="true">emaildelete</label>
+							<type>checkbox</type>
+							<value>1</value>
+							<show global="id" eval="true">$id>0?"true":"false"</show>
+							<colspan>10</colspan>
+						</field>
+					</row>
+				</fieldset>
+			</correo_old>
+			<correo_new>
+				<fieldset>
+					<title lang="true">correonew</title>
+					<row include="xml/common/correo.xml" replace="true"/>
+				</fieldset>
+			</correo_new>
+			<control include="xml/common/control.xml" />
+			<folders include="xml/common/folders.xml" />
+			<help include="xml/common/helpform.xml" />
+		</fields>
+		<quick include="xml/common/quickform.xml" />
+		<buttons include="xml/common/buttonsform.xml" />
+		<javascript>
+			<javascript include="xml/common/jsform.xml" replace="true"/>
+			<cache>
+				<include>js/grupos.js</include>
+				<include>js/feedstest.js</include>
+				<include>js/updateregistros.js</include>
+			</cache>
+		</javascript>
+	</form>
+	<insert>
+		<query include="xml/common/qpermcreate.xml" replace="true"/>
+		<query match="default" prefix="true" eval="true">getParam("password_new")?"SELECT '".LANG_ESCAPE("errorpassword")."' action_error,'0' action_commit FROM (SELECT 1) t WHERE '".getParam("password_new")."'!='".getParam("password_new2")."'":""</query>
+		<query match="default" prefix="true" eval="true">setParam("password",hash_password(getParam("password_new")))</query>
+		<query match="default" prefix="true" eval="true">setParam("dias_sem",intval(getParam("lunes")).intval(getParam("martes")).intval(getParam("miercoles")).intval(getParam("jueves")).intval(getParam("viernes")).intval(getParam("sabado")).intval(getParam("domingo")))</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+		<query match="permisos" prefix="true" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?"INSERT INTO tbl_usuarios_p(id_usuario,id_aplicacion,id_permiso,allow,deny) VALUES((SELECT MAX(id) FROM tbl_usuarios),'".intval(getParam("id_aplicacion"))."','".intval(getParam("id_permiso"))."','".intval(getParam("allow"))."','".intval(getParam("deny"))."')":""</query>
+		<query match="grupos" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_usuarios_g(id_usuario,id_grupo) VALUES((SELECT MAX(id) FROM tbl_usuarios),'".intval(getParam("id_grupo"))."')":""</query>
+		<query match="appsregs" prefix="true" eval="true">(getParam("activado") &amp;&amp; getParam("id_registro")>0)?"INSERT INTO tbl_usuarios_r(id_usuario,id_aplicacion,id_registro) VALUES((SELECT MAX(id) FROM tbl_usuarios),'".intval(getParam("id_aplicacion"))."','".intval(getParam("id_registro"))."')":""</query>
+		<query match="gcalendar" prefix="true" eval="true">getParam("login")||getParam("password")?"INSERT INTO tbl_gcalendar(id,id_usuario,login,password) VALUES(NULL,(SELECT MAX(id) FROM tbl_usuarios),'".getParam("login")."','".getParam("password")."')":""</query>
+		<query match="feeds_new" prefix="true" eval="true">getParam("url") &amp;&amp; getParam("title")?"INSERT INTO tbl_usuarios_f(id,id_usuario,url,title,description,image,link) VALUES(NULL,(SELECT MAX(id) FROM tbl_usuarios),'".getParam("url")."','".getParam("title")."','".getParam("description")."','".getParam("image")."','".getParam("link")."')":""</query>
+		<query match="correo_new" prefix="true" eval="true">getParam("email_name")||getParam("email_from")||getParam("email_signature_new")||getParam("pop3_host")||getParam("pop3_port")||getParam("pop3_extra")||getParam("pop3_user")||getParam("pop3_pass")||getParam("pop3_delete")||intval(getParam("pop3_days"))||getParam("smtp_host")||getParam("smtp_port")||getParam("smtp_extra")||getParam("smtp_user")||getParam("smtp_pass")||intval(getParam("email_disabled"))||intval(getParam("email_privated"))||intval(getParam("email_default"))||intval(getParam("email_addmetocc"))||intval(getParam("email_crt"))?"INSERT INTO tbl_usuarios_c(`id`,`id_usuario`,`email_name`,`email_from`,`email_signature`,`email_signature_file`,`email_signature_type`,`email_signature_size`,`pop3_host`,`pop3_port`,`pop3_extra`,`pop3_user`,`pop3_pass`,`pop3_delete`,`pop3_days`,`smtp_host`,`smtp_port`,`smtp_extra`,`smtp_user`,`smtp_pass`,`email_disabled`,`email_privated`,`email_default`,`email_addmetocc`,`email_crt`) VALUES(NULL,(SELECT MAX(id) FROM tbl_usuarios),'".getParam("email_name")."','".getParam("email_from")."','".getParam("email_signature_new")."','".getParam("email_signature_new_file")."','".getParam("email_signature_new_type")."','".getParam("email_signature_new_size")."','".getParam("pop3_host")."','".getParam("pop3_port")."','".getParam("pop3_extra")."','".getParam("pop3_user")."','".getParam("pop3_pass")."','".getParam("pop3_delete")."','".intval(getParam("pop3_days"))."','".getParam("smtp_host")."','".getParam("smtp_port")."','".getParam("smtp_extra")."','".getParam("smtp_user")."','".getParam("smtp_pass")."','".intval(getParam("email_disabled"))."','".intval(getParam("email_privated"))."','".intval(getParam("email_default"))."','".intval(getParam("email_addmetocc"))."','".intval(getParam("email_crt"))."')":""</query>
+		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
+		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
+	</insert>
+	<update>
+		<query include="xml/common/qpermupdate.xml" replace="true"/>
+		<query match="default" prefix="true" eval="true">getParam("password_new")?"SELECT '".LANG_ESCAPE("errorpassword")."' action_error,'0' action_commit FROM (SELECT 1) t WHERE '".getParam("password_new")."'!='".getParam("password_new2")."'":""</query>
+		<query match="default" prefix="true" eval="true">setParam("dias_sem",intval(getParam("lunes")).intval(getParam("martes")).intval(getParam("miercoles")).intval(getParam("jueves")).intval(getParam("viernes")).intval(getParam("sabado")).intval(getParam("domingo")))</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+		<query match="default" prefix="true" eval="true">getParam("password_new")?"UPDATE tbl_usuarios SET `password`='".hash_password(getParam("password_new"))."' WHERE `id`='".intval(getParam("id"))."'":""</query>
+		<query match="default" prefix="true" global="id" eval="true">"DELETE FROM tbl_usuarios_p WHERE id_usuario='".abs($id)."'"</query>
+		<query match="permisos" prefix="true" global="id" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?"INSERT INTO tbl_usuarios_p(id_usuario,id_aplicacion,id_permiso,allow,deny) VALUES('".abs($id)."','".intval(getParam("id_aplicacion"))."','".intval(getParam("id_permiso"))."','".intval(getParam("allow"))."','".intval(getParam("deny"))."')":""</query>
+		<query match="default" prefix="true"  global="id" eval="true">"DELETE FROM tbl_usuarios_g WHERE id_usuario='".abs($id)."'"</query>
+		<query match="grupos" prefix="true" global="id" eval="true">getParam("activado")?"INSERT INTO tbl_usuarios_g(id_usuario,id_grupo) VALUES('".abs($id)."','".intval(getParam("id_grupo"))."')":""</query>
+		<query match="default" prefix="true" global="id" eval="true">"DELETE FROM tbl_usuarios_r WHERE id_usuario='".abs($id)."'"</query>
+		<query match="appsregs" prefix="true" global="id" eval="true">(getParam("activado") &amp;&amp; getParam("id_registro")>0)?"INSERT INTO tbl_usuarios_r(id_usuario,id_aplicacion,id_registro) VALUES('".abs($id)."','".intval(getParam("id_aplicacion"))."','".intval(getParam("id_registro"))."')":""</query>
+        <query match="gcalendar" prefix="true" eval="true">execute_query("SELECT COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".intval(getParam("id_usuario"))."'")?"UPDATE tbl_gcalendar SET `login`='".getParam("login")."',`password`='".getParam("password")."' WHERE id_usuario='".intval(getParam("id_usuario"))."'":(getParam("login")||getParam("password")?"INSERT INTO tbl_gcalendar(id,id_usuario,login,password) VALUES(NULL,'".intval(getParam("id_usuario"))."','".getParam("login")."','".getParam("password")."')":"")</query>
+		<query match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_registros WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."') AND id_aplicacion='".page2id("feeds")."'":""</query>
+		<query match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."'":""</query>
+		<query match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_feeds_d WHERE id_feed='".intval(getParam("id"))."'":""</query>
+		<query match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."'":"UPDATE tbl_usuarios_f SET disabled='".intval(getParam("disabled"))."' WHERE id='".intval(getParam("id"))."'"</query>
+		<query match="feeds_new" prefix="true" eval="true">getParam("url") &amp;&amp; getParam("title") &amp;&amp; !intval(execute_query("SELECT COUNT(*) contador FROM tbl_usuarios_f WHERE url='".getParam("url")."' AND id_usuario='".intval(getParam("id_usuario"))."'"))?"INSERT INTO tbl_usuarios_f(id,id_usuario,url,title,description,image,link) VALUES(NULL,'".intval(getParam("id_usuario"))."','".getParam("url")."','".getParam("title")."','".getParam("description")."','".getParam("image")."','".getParam("link")."')":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("email_signature_new")?"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE `id`='".getParam("id")."' AND email_signature_file!=''":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("email_signature_new")?"UPDATE tbl_usuarios_c SET email_signature='".getParam("email_signature_new")."',email_signature_file='".getParam("email_signature_new_file")."',email_signature_type='".getParam("email_signature_new_type")."',email_signature_size='".getParam("email_signature_new_size")."' WHERE `id`='".getParam("id")."'":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_registros WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."') AND id_aplicacion='".page2id("correo")."'":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."')":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/inboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml")."' *//*MYSQL CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND is_outbox='0'":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/inboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND is_outbox='0'":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND is_outbox='1'":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND is_outbox='1'":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/objectext",".obj")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND is_outbox='1'":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."'":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_correo_d WHERE id_cuenta='".intval(getParam("id"))."'":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE `id`='".getParam("id")."' AND email_signature_file!=''":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_usuarios_c WHERE `id`='".getParam("id")."'":"UPDATE tbl_usuarios_c SET email_name='".getParam("email_name")."',email_from='".getParam("email_from")."',pop3_host='".getParam("pop3_host")."',pop3_port='".getParam("pop3_port")."',pop3_extra='".getParam("pop3_extra")."',pop3_user='".getParam("pop3_user")."',pop3_pass='".getParam("pop3_pass")."',pop3_delete='".getParam("pop3_delete")."',pop3_days='".intval(getParam("pop3_days"))."',smtp_host='".getParam("smtp_host")."',smtp_port='".getParam("smtp_port")."',smtp_extra='".getParam("smtp_extra")."',smtp_user='".getParam("smtp_user")."',smtp_pass='".getParam("smtp_pass")."',email_disabled='".intval(getParam("email_disabled"))."',email_privated='".intval(getParam("email_privated"))."',email_default='".intval(getParam("email_default"))."',email_addmetocc='".intval(getParam("email_addmetocc"))."',email_crt='".intval(getParam("email_crt"))."' WHERE id='".getParam("id")."'"</query>
+		<query global="correo_new" match="correo_new" prefix="true" eval="true">dummy($correo_new=getParam("email_name")||getParam("email_from")||getParam("email_signature_new")||getParam("pop3_host")||getParam("pop3_port")||getParam("pop3_extra")||getParam("pop3_user")||getParam("pop3_pass")||getParam("pop3_delete")||intval(getParam("pop3_days"))||getParam("smtp_host")||getParam("smtp_port")||getParam("smtp_extra")||getParam("smtp_user")||getParam("smtp_pass")||intval(getParam("email_disabled"))||intval(getParam("email_privated"))||intval(getParam("email_default"))||intval(getParam("email_addmetocc"))||intval(getParam("email_crt")))</query>
+		<query global="correo_new" match="correo_new" prefix="true" eval="true">$correo_new?"SELECT 'php/action/correo.php' action_include":""</query>
+		<query global="correo_new" match="correo_new" prefix="true" eval="true">$correo_new?"INSERT INTO tbl_usuarios_c(`id`,`id_usuario`,`email_name`,`email_from`,`email_signature`,`email_signature_file`,`email_signature_type`,`email_signature_size`,`pop3_host`,`pop3_port`,`pop3_extra`,`pop3_user`,`pop3_pass`,`pop3_delete`,`pop3_days`,`smtp_host`,`smtp_port`,`smtp_extra`,`smtp_user`,`smtp_pass`,`email_disabled`,`email_privated`,`email_default`,`email_addmetocc`,`email_crt`) VALUES(NULL,'".intval(getParam("id_usuario"))."','".getParam("email_name")."','".getParam("email_from")."','".getParam("email_signature_new")."','".getParam("email_signature_new_file")."','".getParam("email_signature_new_type")."','".getParam("email_signature_new_size")."','".getParam("pop3_host")."','".getParam("pop3_port")."','".getParam("pop3_extra")."','".getParam("pop3_user")."','".getParam("pop3_pass")."','".getParam("pop3_delete")."','".intval(getParam("pop3_days"))."','".getParam("smtp_host")."','".getParam("smtp_port")."','".getParam("smtp_extra")."','".getParam("smtp_user")."','".getParam("smtp_pass")."','".intval(getParam("email_disabled"))."','".intval(getParam("email_privated"))."','".intval(getParam("email_default"))."','".intval(getParam("email_addmetocc"))."','".intval(getParam("email_crt"))."')":""</query>
+        <query include="xml/common/qcontrolupdate.xml" replace="true"/>
+		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
+	</update>
+	<delete>
+		<query include="xml/common/qpermdelete.xml" replace="true"/>
+		<query include="xml/common/qdelete.xml" replace="true" />
+		<query global="id" eval="true">"DELETE FROM tbl_usuarios_p WHERE id_usuario='".intval($id)."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_usuarios_g WHERE id_usuario='".intval($id)."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_registros WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id'))"</query>
+		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/inboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml")."' *//*MYSQL CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='0'"</query>
+		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/inboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='0'"</query>
+		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
+		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
+		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/objectext",".obj")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_correo_d WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')"</query>
+		<query global="id" eval="true">"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE `id_usuario`='$id' AND email_signature_file!=''"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_usuarios_c WHERE id_usuario='$id'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_registros WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_feeds_d WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_usuarios_f WHERE id_usuario='$id'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_gcalendar WHERE id_usuario='$id'"</query>
+		<query include="xml/common/qcontroldelete.xml" replace="true"/>
+		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
+		<query global="id" eval="true">"DELETE FROM tbl_cookies WHERE `id_usuario`='".intval($id)."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_filters WHERE `id_usuario`='".intval($id)."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_folders WHERE `id_usuario`='".intval($id)."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_history WHERE `id_usuario`='".intval($id)."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_lastfolder WHERE `id_usuario`='".intval($id)."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_lastpage WHERE `id_usuario`='".intval($id)."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_quick WHERE `id_usuario`='".intval($id)."'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_security WHERE `id_usuario`='".intval($id)."'"</query>
+	</delete>
+</root>

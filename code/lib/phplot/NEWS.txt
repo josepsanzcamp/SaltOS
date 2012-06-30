@@ -1,0 +1,239 @@
+This is the NEWS file for PHPlot, with release documentation.
+The project web site is http://sourceforge.net/projects/phplot/
+The project home page is http://phplot.sourceforge.net/
+Refer the the ChangeLog file for detailed source changes.
+See NEWS_part1.txt for older release documentation.
+-----------------------------------------------------------------------------
+
+2012-04-06 Release 5.8.0
+
+=== Overview:
+
+This is the current stable release of PHPlot. This release adds several new
+features, including the ability to generate "streaming plots" - a video
+stream showing updated plot data.
+
+The PHPlot Reference Manual has been updated to match this release.
+
+
+=== Cautions, Important Notes, and Compatibility Issues:
+
+There are no known compatibility issues in upgrading from PHPlot-5.7.0 to
+this release. For issues with previous releases, see below in this file.
+
+
+=== Bugs Fixed in 5.8.0:
+
+Fix bug #3506408 "Data Label Lines vs new plot types":
+Data label lines do work with bubble plots. This is now documented. Data
+label lines did not work well with OHLC plot types. This was never documented
+to work, and is now disabled.
+
+
+=== New features in 5.8.0:
+
+Feature request #3488042 "Display only some data value labels":
+Custom label formatting functions now have access to the data point row and
+column for data value labels, and to the row for axis data labels. You can
+now filter or modify labels based on their position in the data array.
+Documentation was updated.
+
+Feature request #3501500 "Looping plot section (updating plot data)":
+PHPlot can now produce "streaming plots", with updating data presented as a
+Motion-JPEG stream. Documentation has been added to the reference manual.
+
+Feature request #3515519 "Support object serialize/unserialize":
+You can now serialize and unserialize a PHPlot object, subject to some
+minor restrictions. Details are in the PHPlot Reference Manual.
+
+-----------------------------------------------------------------------------
+
+2012-02-25 Release 5.7.0
+
+=== Overview:
+
+This is the current stable release of PHPlot. This release includes several
+bug fixes, new color controls for labels, a new feature for application-level
+error handling, and an experimental feature for creating plot image maps.
+
+The PHPlot reference manual has been updated to match this release.
+
+
+=== Cautions, Important Notes, and Compatibility Issues:
+
+This release includes a change in how the color is set for data value
+labels. (These are the labels inside the plot area that identify the tops
+of bars, for example.) This can change the color of some labels. See the
+bug report "Wrong color for data value labels" below.
+
+This release reverts a change from PHPlot-5.4.0 to stackedbars plots. It
+affects plots with stacked bar segments of size 0 that are at the top or
+end of a stack. Starting in PHPlot-5.4.0, a zero-size segment at the top or
+end would result in a color 'cap' on the bar stack, using the data color of
+the zero-size segment. In PHPlot-5.7.0 this has been fixed. This will
+change the appearance of some stackedbars plots.  See the bug report "Top
+dropshadow [sic] of stacked bars..."
+
+
+=== Bugs Fixed in 5.7.0:
+
+
+#3396931 "Top dropshadow of stacked bars is always the same color":
+  PHPlot will no longer draw a color 'cap' at the top or end of a bar stack
+  if the last segment has a 0 value. (The term 'dropshadow' isn't correct.)
+  Drawing the color for zero-size segments started in PHPlot-5.4.0 as part of
+  the fix for bug #3296884, but the behavior was unexpected, so it was reverted.
+  In general, PHPlot will now ignore segments with size 0, and if a stack
+  contains all 0 values it will not be drawn. (The exception is if the axis is
+  moved.)
+
+#3488064 "Pie label failures in locales with comma decimal":
+  Two work-arounds are implemented for what is essentially a PHP problem with
+  locales that use something other than a period (typically comma) for the
+  decimal separator.  When formatting labels as type 'data', PHPlot loads the
+  locale settings to get the separator characters, but now it resets ('unloads')
+  the settings afterwards. This helps avoid an error seen in PHPlot-5.6.0 with
+  pie chart labels, where an incidental conversion of the label to a string
+  resulted in use of the comma separator, followed by PHP failing to convert
+  the number back to floating point because of the comma.  The second
+  work-around is to avoid the conversion to string, in the case where the pie
+  label has a single value. Together, these work-arounds should prevent the
+  problem, but this is an imperfect fix.
+
+#3486834 "Wrong color for data value labels":
+  PHPlot was using the 'title' color (SetTitleColor()) for data value labels,
+  which was wrong, as the title color is for the 3 plot title strings. PHPlot
+  will now use the general text color (SetTextColor()) for data value labels,
+  same as tick labels and axis data labels. This will change the appearance
+  of some plots. In order to help with the compatibility issue, 4 new
+  functions are introduced to control the colors of individual label types:
+  SetTickLabelColor(), SetPieLabelColor(), SetDataLabelColor(), and
+  SetDataValueLabelColor(). The defaults have been set up to be compatible
+  (except for data value labels). Details are in the PHPlot Reference Manual.
+
+=== New features in 5.7.0:
+
+#3442041 "Provide data for generating image maps":
+  An experimental feature has been added to allow a callback function to
+  process the coordinates of individual plotted data points. This is most
+  useful for generating an HTML image map for the plot. Refer to the text
+  file Imagemaps.txt included in the PHPlot release for details. Caution:
+  This is an experimental feature. It is subject to change, and not yet
+  documented in the reference manual.
+
+#3481195 "Custom message image":
+  A new function DrawMessage() has been implement for special cases where you
+  need to display an image containing a message, rather than a plot. This
+  extends the PHPlot error reporting mechanism, and is intended for
+  application-level errors. More information and an example can be found
+  in the PHPlot Reference Manual.
+
+
+-----------------------------------------------------------------------------
+
+2012-01-02 Release 5.6.0
+
+=== Overview:
+
+This is the current stable release of PHPlot. This release includes
+significant changes to pie charts. There are new ways to label pie charts,
+and PHPlot does a better job calculating the size and positioning the labels.
+
+The PHPlot reference manual has been updated to match this release.
+
+
+=== Cautions, Important Notes, and Compatibility Issues:
+
+Pie charts will change appearance when you upgrade to PHPlot-5.6.0 from any
+previous release. This is due to changes resulting from bug #3403297,
+described below. You may notice these changes:
+
+1. The pie chart itself will usually be drawn larger, taking up more of
+   the image. This may result in interference with a plot legend.
+
+2. Pie chart labels will be closer to the edge of the pie, if you are letting
+   the label positions default. If you are using SetLabelScalePosition() to
+   set the label positions, the results may vary even more.
+
+3. Text alignment on pie chart labels will change.
+
+4. World Coordinates are now undefined with pie charts.
+
+If you are producing pie charts with PHPlot, you should review the output
+of your scripts before using PHPlot-5.6.0 in production. If the output is
+not acceptable, one or more of these steps might help:
+
+1. If pie charts are too large, and/or interfere with a legend, try moving the
+   legend. Alternatively, use SetPlotAreaPixels() or SetMarginsPixels() to
+   limit the plot area.  Note, however, that starting in this release PHPlot
+   sizes the pie so the labels fit inside the plot area too. You can control
+   this with SetPieAutoSize().
+
+2.  If you want labels positioned just outside the pie chart, do not call
+    SetLabelScalePosition(), or set the value to the default 0.5. If you want
+    labels just inside the pie, use 0.49. If you want labels to be about
+    half-way inside the pie, use 0.25. (In previous releases, PHPlot multiple
+    the label scale position by 1.2 before using it to position the labels,
+    but this was not documented.)
+
+3.  Your pie chart script will report errors if you use GetDeviceXY(),
+    SetLegendWorld(), or SetLegendPosition(...,..., 'world'). This is because
+    these functions require world coordinates, and world coordinates are not
+    defined for pie charts. (Previous releases did define a world coordinate
+    space for pie charts, but the values were meaningless.)
+
+
+
+=== Bugs Fixed in 5.6.0:
+
+#3403297 Pie chart sizing and label issues:
+In addition to the fixes listed here, new features were added as a result
+of this bug fix (see New features below).
+
++ Use both width and height of the pie when calculating its maximum size.
+  (The bug was that the pie diameter would be sized to fit in the smaller
+  of the image width and height. But a shaded pie is oval, so when the width
+  if the pie was sized to the height of the image, the pie was too small.)
+
++ Fixed the text alignment of pie labels so they extend more naturally
+  away from the pie chart (if outside the pie). (Don't just use center/center
+  alignment for all labels.)
+
++ Do not multiply the label scale position by 1.2 in the hope that this will
+  prevent labels from overlapping the pie. Use the label scale position
+  as intended, and take other measures to prevent label overlap (such as
+  fixing the text alignment).
+
++ Label positions along the bottom of the pie are now adjusted to account for
+  the pie shading depth.
+
++ Plot area borders now work with pie charts. Use SetPlotBorderType() to
+  enable them. The default is not to draw borders.
+
+=== New features in 5.6.0:
+
+A number of new features were added as a result of bug #3403297, described
+above. The new features are:
++ Use the new function SetPieLabelType() to select the type of pie labels
+  to be displayed. Labels can show segment percentages, segment values,
+  string labels, or any other value using a custom function.
+
++ SetPieLabelType() also allows control over formatting of pie labels,
+  similar to the way X and Y tick and data labels can be formatted.
+
++ Plot labels can be suppressed with SetLabelScalePosition(0).
+
++ The aspect ratio of shaded pies can be controlled with a tuning variable
+  $pie_diam_factor. The default remains 0.5, making the pie height equal to
+  half its width.
+
+
+
+#413925 Table of values:
+This very old feature request was implemented by adding a new script to the
+"contrib" directory.  The data_table.php script contains a function to draw
+a simple table of values on a PHPlot image. Examples are provided.
+
+
+-----------------------------------------------------------------------------
+For older releases, see NEWS_part1.txt

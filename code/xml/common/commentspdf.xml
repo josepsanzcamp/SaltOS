@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<query>"SELECT a.*,".make_extra_query("d.")." usuario FROM tbl_comentarios a LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id WHERE a.id_aplicacion='".$row["id_aplicacion"]."' AND a.id_registro='".$row["id"]."' ORDER BY a.`datetime` ASC"</query>
+	<foreach>
+		<eval>$row["__ROW_NUMBER__"]==1</eval>
+			<getxy>"x","y"</getxy>
+			<setxy>$row["x"],$row["y"]+2</setxy>
+			<getxy>"x","y"</getxy>
+			<checky>6</checky>
+			<getxy>"x","y"</getxy>
+			<rect>30,$row["y"],150,6,"D",0.15,1</rect>
+			<getxy>"x","y"</getxy>
+			<setxy>$row["x"],$row["y"]+1</setxy>
+			<getxy>"x","y"</getxy>
+			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<textarea>30,$row["y"],150,4,"C",LANG("comentarios")</textarea>
+			<getxy>"x","y"</getxy>
+			<setxy>$row["x"],$row["y"]+1</setxy>
+			<getxy>"x","y"</getxy>
+		<eval>$row["__ROW_NUMBER__"]>1</eval>
+			<getxy>"x","y"</getxy>
+			<setxy>$row["x"],$row["y"]+2</setxy>
+			<getxy>"x","y"</getxy>
+			<line>30,$row["y"],180,$row["y"]</line>
+		<eval>true</eval>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("username")</textarea>
+		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],75,4,"L",trim($row["usuario"])</textarea>
+		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<textarea>105,$row["y"],25,4,"R",LANG("datetime")</textarea>
+		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<textarea>130,$row["y"],75,4,"L",$row["datetime"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("comentarios")</textarea>
+		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],125,4,"L",trim($row["comentarios"])</textarea>
+	</foreach>
+</root>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root><![CDATA[<div class='title dontend'>Agenda</div> <p> La agenda de SaltOS le permitirá gestionar fácilmente sus reuniones y eventos. Puede relacionar las entradas en la agenda con un cliente, proyecto, presupuesto, etc. además de asignarlas a varios usuarios. </p> <p> SaltOS le recordará automáticamente los próximos eventos y, si esto no es suficiente, podrá sincronizar la agenda de SaltOS con <i>Google Calendar</i>. </p> <div class='title dontend'>Las dos vistas de la agenda</div> <p> La agenda de SaltOS puede consultarse de dos maneras: en forma de listado o en forma de Calendario. </p> <p> La primera se asemeja a cualquier listado de SaltOS, mostrando el o los usuarios asignados, inicio y fin del evento, cliente o proyecto relacionado, el nombre del evento así como su tipo y estado. </p> <p> En esta vista puede crear un nuevo evento haciendo clic en el botón correspondiente en la esquina inferior izquierda, navegar por el listado con los controles en la esquina inferior derecha así como buscar un evento mediante el buscador simple. </p> <p> La vista <i>Calendario</i> le mostrará el mes actual en forma de parrilla, con un día por columna. Puede crear un nuevo evento haciendo clic en <i>Nuevo evento</i> en las casilla de la fecha correspondiente. Para visualizar otro mes del calendario, selecciónelo en el desplegable <i>Mostrando información a fecha</i>. Si quieres navegar al mes anterior o posterior, haga clic en las flechas situadas en la esquina superior derecha. Si desea volver al mes actual, haga clic en el icono situada entre ambas flechas. </p> <p> Para expandir o contraer el detalle de todos los eventos mostrados, haga clic en el botón correspondiente en la esquina superior derecha. También puede reiniciar las notificaciones haciendo clic en el botón <i>Notificaciones</i>. </p> <p> Para sincronizar la agenda con <i>Google Calendar</i>, haga clic en el botón correspondiente en la parte superior. Tenga en cuenta que debe haber configurado previamente su cuenta de Google en la aplicación <i>Mi Perfil</i>. El proceso de sincronización puede tardar unos instantes, dependiendo de la velocidad de conexión, el estado del servicio de Google y la cantidad de eventos a sincronizar. </p>]]></root>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root><![CDATA[<div class='title dontend'>Creación</div> <p> A la hora de crear un nuevo contenedor o carpeta, indique el nombre y la descripción del mismo. Recuerde introducir nombres significativos ya que éstos le facilitarán las búsquedas posteriores. Puede relacionar opcionalmente el contenedor o carpeta con un cliente y/o proyecto. </p> <p> Para añadir nuevos ficheros, haga clic en la pestaña <i>Nuevos ficheros adjuntos</i> e indique el fichero haciendo clic en el botón <i>Seleccionar archivo</i> (el texto del botón puede variar en función del navegador o sistema operativo). Si desea añadir más ficheros, haga clic en <i>Añadir fichero</i> y repita el proceso anterior. </p> <p> Tenga en cuenta que la cantidad y tamaño de los ficheros puede quedar limitado por las características del servidor en el cual se hospeda SaltOS. Si experimentase problemas a la hora de subir ficheros, intente subirlos de uno en uno y verifique que el tamaño de los mismo no exceda las capacidades del servidor. </p>]]></root>

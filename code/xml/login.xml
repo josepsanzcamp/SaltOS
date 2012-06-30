@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>
+		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
+		<id global="id" eval="true">$id=current_user()</id>
+	</default>
+	<form>
+		<title lang="true">logintitle</title>
+		<name>form</name>
+		<action>xml.php</action>
+		<method>post</method>
+		<fields>
+			<title lang="true">logintitle</title>
+			<row>
+				<field>
+					<name>action</name>
+					<type>hidden</type>
+					<value>login</value>
+				</field>
+				<field>
+					<name>querystring</name>
+					<type>hidden</type>
+					<value eval="true">getServer("QUERY_STRING")</value>
+				</field>
+				<field>
+					<name>user</name>
+					<label lang="true">username</label>
+					<type>text</type>
+					<width>90px</width>
+					<focus>true</focus>
+					<onkeypress>if(is_enterkey(event)) if(check_required()) submit1()</onkeypress>
+					<required>true</required>
+				</field>
+			</row>
+			<row>
+				<field>
+					<name>pass</name>
+					<label lang="true">password</label>
+					<type>password</type>
+					<width>90px</width>
+					<onkeypress>if(is_enterkey(event)) if(check_required()) submit1()</onkeypress>
+					<required>true</required>
+				</field>
+			</row>
+			<row>
+				<show eval="true">check_security()?"false":"true"</show>
+				<field>
+					<label lang="true">captcha1</label>
+					<type>image</type>
+					<width>90px</width>
+					<height>30px</height>
+					<image eval="true">"xml.php?action=captcha&amp;_=".time()</image>
+					<phpthumb>false</phpthumb>
+					<class>ui-state-default ui-corner-all image captcha</class>
+				</field>
+				<field>
+					<type>link</type>
+					<label lang="true">captcha3</label>
+					<onclick>$(".captcha").attr("src","xml.php?action=captcha&amp;_="+time());</onclick>
+					<class>label</class>
+				</field>
+			</row>
+			<row>
+				<show eval="true">check_security()?"false":"true"</show>
+				<field>
+					<name>captcha</name>
+					<label lang="true">captcha2</label>
+					<type>text</type>
+					<width>90px</width>
+					<onkeypress>if(is_enterkey(event)) if(check_required()) submit1()</onkeypress>
+					<required>true</required>
+				</field>
+			</row>
+			<row ifnoteval="getDefault('forcelang')">
+				<field>
+					<field include="xml/common/langs.xml" replace="true" />
+				</field>
+				<actions path="field" append="true">
+					<colspan>2</colspan>
+				</actions>
+			</row>
+			<row ifnoteval="getDefault('forcestyle')">
+				<field>
+					<field include="xml/common/styles.xml" replace="true" />
+				</field>
+				<actions path="field" append="true">
+					<colspan>2</colspan>
+				</actions>
+			</row>
+			<row ifnoteval="getDefault('forceiconset') || is_mobile()">
+				<field>
+					<field include="xml/common/iconset.xml" replace="true" />
+				</field>
+				<actions path="field" append="true">
+					<colspan>2</colspan>
+				</actions>
+			</row>
+			<row ifnoteval="getDefault('forcestyle')">
+				<field>
+					<type>separator</type>
+				</field>
+			</row>
+			<row ifnoteval="getDefault('forcestyle') || is_mobile()">
+				<field>
+					<name>preview</name>
+					<label lang="true">preview</label>
+					<type>image</type>
+					<width>90px</width>
+					<height>80px</height>
+					<image global="style,stylepre" eval="true">$stylepre.$style."/preview.png"</image>
+				</field>
+			</row>
+		</fields>
+		<fields ifeval="eval_bool(getDefault('security/allowremember'))">
+			<row>
+				<field>
+					<label lang="true">remember</label>
+					<type>checkbox</type>
+					<name>remember</name>
+					<value>1</value>
+					<checked eval="true">useCookie("remember")?"true":"false"</checked>
+				</field>
+			</row>
+		</fields>
+		<fields>
+			<row>
+				<field>
+					<type>button</type>
+					<value lang="true">enter</value>
+					<onclick>if(check_required()) submit1()</onclick>
+					<icon>accept</icon>
+				</field>
+			</row>
+		</fields>
+		<fields ifnoteval="is_mobile()">
+			<row>
+				<field>
+					<label lang="true">mobileaccess</label>
+					<type>link</type>
+					<onclick eval="true">"qrcode2('".get_base()."');"</onclick>
+				</field>
+			</row>
+		</fields>
+		<javascript>
+			<!-- FOR GENERAL PURPOSES -->
+			<function>submit1() { submitcontent($("form[id=form]")); }</function>
+			<function eval="true">"alerta(msg,callback) { if(typeof(callback)=='undefined') callback=function() {}; dialog('".LANG_ESCAPE("alert")."',msg,{'".LANG_ESCAPE("buttoncontinue")."':function() { dialog('close'); callback(); } }); }"</function>
+			<function>setParam(name,value) { $("form[id=form] *[name="+name+"]").val(value); }</function>
+			<!-- FOR CONTROL MANAGER -->
+			<function global="page" eval="true">"current_page() { return '$page'; }"</function>
+			<function eval="true">"lang_unknownerror() { return '".LANG_ESCAPE("unknownerror")."' }"</function>
+			<function eval="true">"lang_loading() { return '".LANG_ESCAPE("loading")."' }"</function>
+			<function eval="true">"lang_sending() { return '".LANG_ESCAPE("sending")."' }"</function>
+			<function eval="true">"lang_alert() { return '".LANG_ESCAPE("alert")."' }"</function>
+			<function eval="true">"lang_error() { return '".LANG_ESCAPE("error")."' }"</function>
+			<function eval="true">"lang_showmenu() { return '".LANG_ESCAPE("showmenu")."'; }"</function>
+			<function eval="true">"lang_showtools() { return '".LANG_ESCAPE("showtools")."'; }"</function>
+			<function eval="true">"lang_requiredfield() { return '".LANG_ESCAPE("requiredfield")."'; }"</function>
+			<function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
+			<!-- FOR UNLOAD EVENT -->
+			<function>install_onbeforeunload() { window.onbeforeunload=function() { hide_popupnotice(); }; }</function>
+			<function>uninstall_onbeforeunload() { window.onbeforeunload=null; }</function>
+			<inline>install_onbeforeunload();</inline>
+			<!-- FOR STYLE MANAGER -->
+			<function global="stylepre" eval="true">"default_stylepre() { return '$stylepre' }"</function>
+			<function global="stylepost" eval="true">"default_stylepost() { return '$stylepost' }"</function>
+			<function global="iconsetpre" eval="true">"default_iconsetpre() { return '$iconsetpre'; }"</function>
+			<function global="iconsetpost" eval="true">"default_iconsetpost() { return '$iconsetpost'; }"</function>
+			<!-- FOR QRCODE -->
+			<function ifnoteval="is_mobile()" eval="true">"lang_qrcode() { return '".LANG_ESCAPE("qrcode")."'; }"</function>
+			<function ifnoteval="is_mobile()" eval="true">"lang_view2() { return '".LANG_ESCAPE("view2")."'; }"</function>
+			<function ifnoteval="is_mobile()" eval="true">"lang_view2error() { return '".LANG_ESCAPE("view2error")."'; }"</function>
+			<function ifnoteval="is_mobile()" eval="true">"lang_view2opening() { return '".LANG_ESCAPE("view2opening")."'; }"</function>
+			<cache ifnoteval="is_mobile()">
+				<include>js/qrcode.js</include>
+			</cache>
+		</javascript>
+	</form>
+</root>

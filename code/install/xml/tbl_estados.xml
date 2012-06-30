@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<row>
+		<id>1</id>
+		<nombre>Sin empezar</nombre>
+		<descripcion/>
+		<pos>1</pos>
+		<id_aplicacion>4</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>2</id>
+		<nombre>Empezado</nombre>
+		<descripcion/>
+		<pos>4</pos>
+		<id_aplicacion>4</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>3</id>
+		<nombre>Acabado</nombre>
+		<descripcion/>
+		<pos>6</pos>
+		<id_aplicacion>4</id_aplicacion>
+		<activo>0</activo>
+	</row>
+	<row>
+		<id>4</id>
+		<nombre>Cancelado</nombre>
+		<descripcion/>
+		<pos>7</pos>
+		<id_aplicacion>4</id_aplicacion>
+		<activo>0</activo>
+	</row>
+	<row>
+		<id>5</id>
+		<nombre>Presupuestado</nombre>
+		<descripcion/>
+		<pos>2</pos>
+		<id_aplicacion>4</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>6</id>
+		<nombre>Aceptado</nombre>
+		<descripcion/>
+		<pos>3</pos>
+		<id_aplicacion>4</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>7</id>
+		<nombre>Acabando</nombre>
+		<descripcion/>
+		<pos>5</pos>
+		<id_aplicacion>4</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>8</id>
+		<nombre>Nueva</nombre>
+		<descripcion/>
+		<pos>1</pos>
+		<id_aplicacion>3</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>9</id>
+		<nombre>Asignada</nombre>
+		<descripcion/>
+		<pos>2</pos>
+		<id_aplicacion>3</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>10</id>
+		<nombre>Empezada</nombre>
+		<descripcion/>
+		<pos>3</pos>
+		<id_aplicacion>3</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>11</id>
+		<nombre>Resuelta</nombre>
+		<descripcion/>
+		<pos>4</pos>
+		<id_aplicacion>3</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>12</id>
+		<nombre>Revisada</nombre>
+		<descripcion/>
+		<pos>5</pos>
+		<id_aplicacion>3</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>13</id>
+		<nombre>Cerrada</nombre>
+		<descripcion/>
+		<pos>6</pos>
+		<id_aplicacion>3</id_aplicacion>
+		<activo>0</activo>
+	</row>
+	<row>
+		<id>14</id>
+		<nombre>Rechazada</nombre>
+		<descripcion/>
+		<pos>7</pos>
+		<id_aplicacion>3</id_aplicacion>
+		<activo>0</activo>
+	</row>
+	<row>
+		<id>15</id>
+		<nombre>Duplicada</nombre>
+		<descripcion/>
+		<pos>8</pos>
+		<id_aplicacion>3</id_aplicacion>
+		<activo>0</activo>
+	</row>
+	<row>
+		<id>16</id>
+		<nombre>Reabierta</nombre>
+		<descripcion/>
+		<pos>9</pos>
+		<id_aplicacion>3</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>17</id>
+		<nombre>Programada</nombre>
+		<descripcion/>
+		<pos>1</pos>
+		<id_aplicacion>17</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>18</id>
+		<nombre>Por confirmar</nombre>
+		<descripcion/>
+		<pos>2</pos>
+		<id_aplicacion>17</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>19</id>
+		<nombre>Acabada</nombre>
+		<descripcion/>
+		<pos>3</pos>
+		<id_aplicacion>17</id_aplicacion>
+		<activo>0</activo>
+	</row>
+	<row>
+		<id>20</id>
+		<nombre>Cancelada</nombre>
+		<descripcion/>
+		<pos>4</pos>
+		<id_aplicacion>17</id_aplicacion>
+		<activo>0</activo>
+	</row>
+	<row>
+		<id>21</id>
+		<nombre>Sin enviar</nombre>
+		<descripcion/>
+		<pos>1</pos>
+		<id_aplicacion>34</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>22</id>
+		<nombre>Enviado</nombre>
+		<descripcion/>
+		<pos>2</pos>
+		<id_aplicacion>34</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>23</id>
+		<nombre>Aceptado</nombre>
+		<descripcion/>
+		<pos>3</pos>
+		<id_aplicacion>34</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>24</id>
+		<nombre>Cancelado</nombre>
+		<descripcion/>
+		<pos>4</pos>
+		<id_aplicacion>34</id_aplicacion>
+		<activo>0</activo>
+	</row>
+	<row>
+		<id>25</id>
+		<nombre>Parado</nombre>
+		<descripcion/>
+		<pos>5</pos>
+		<id_aplicacion>34</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>26</id>
+		<nombre>Planificada</nombre>
+		<descripcion/>
+		<pos>1</pos>
+		<id_aplicacion>35</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>27</id>
+		<nombre>Empezada</nombre>
+		<descripcion/>
+		<pos>2</pos>
+		<id_aplicacion>35</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>28</id>
+		<nombre>Acabada</nombre>
+		<descripcion/>
+		<pos>3</pos>
+		<id_aplicacion>35</id_aplicacion>
+		<activo>1</activo>
+	</row>
+	<row>
+		<id>29</id>
+		<nombre>Cancelada</nombre>
+		<descripcion/>
+		<pos>4</pos>
+		<id_aplicacion>35</id_aplicacion>
+		<activo>1</activo>
+	</row>
+</root>

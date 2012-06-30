@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<posiblescli>
+		<fieldset>
+			<show eval="true">check_user("posiblescli","menu")?"true":"false"</show>
+			<width>700px</width>
+			<title lang="true">posiblesclidata</title>
+			<head>
+				<field>
+					<type>label</type>
+					<label lang="true">nombre</label>
+					<class>thead</class>
+				</field>
+				<field>
+					<type>label</type>
+					<label lang="true">tel_fijo</label>
+					<class>thead</class>
+				</field>
+				<field>
+					<type>label</type>
+					<label lang="true">tel_movil</label>
+					<class>thead</class>
+				</field>
+				<field>
+					<type>label</type>
+					<label lang="true">email</label>
+					<class>thead</class>
+				</field>
+				<field>
+					<type>separator</type>
+					<class>thead</class>
+					<colspan>100</colspan>
+				</field>
+			</head>
+			<row>
+				<field>
+					<type>label</type>
+					<name>nombre</name>
+					<class>tbody</class>
+				</field>
+				<field>
+					<type>label</type>
+					<name>tel_fijo</name>
+					<class>tbody</class>
+				</field>
+				<field>
+					<type>label</type>
+					<name>tel_movil</name>
+					<class>tbody</class>
+				</field>
+				<field>
+					<type>label</type>
+					<name>email</name>
+					<class>tbody</class>
+				</field>
+				<field>
+					<name>link_view</name>
+					<type>link</type>
+					<label lang="true">view</label>
+					<width>1px</width>
+					<icon>view</icon>
+					<class>tbody</class>
+				</field>
+				<field>
+					<name>link_vcard</name>
+					<type>link</type>
+					<label lang="true">vcard</label>
+					<width>1px</width>
+					<icon>vcard</icon>
+					<class>tbody</class>
+				</field>
+				<field>
+					<name>link_qrcode</name>
+					<type>link</type>
+					<label lang="true">qrcode</label>
+					<width>1px</width>
+					<icon>qrcode</icon>
+					<class>tbody</class>
+				</field>
+			</row>
+		</fieldset>
+	</posiblescli>
+</root>

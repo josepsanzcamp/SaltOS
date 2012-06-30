@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+<title>PHP 4/5 class library for Google Data APIs</title>
+</head>
+<body>
+
+<h1>PHP 4/5 class library for Google Data APIs</h1>
+
+<p>I made this library before the release of <a href="http://framework.zend.com/download/gdata">Zend Google Data Client Library</a>. Zend's library is dedicated to PHP 5. If you use PHP 5, you <em>should</em> use Zend's instead.</p>
+
+<p>In fact, this library was made to be used in my application of <a href="http://www.rcdtokyo.com/etc/gdataapis/gcal/gcal.php?l=en">Google Calendar for Japanese web-capable cellphones</a>. The application is a more practical example of the usage of this library.</p>
+
+<hr>
+
+<p><a href="http://www.rcdtokyo.com/etc/gdataapis/gdataapis.zip">Download ZIP archive</a></p>
+
+<dl>
+<dt>Contents of the archive</dt>
+<dd>
+<ul>
+<li>Google
+<ul>
+<li>Account.php - Class to handle account authentication APIs.</li>
+
+<li>GData.php - Common class for GData APIs.</li>
+<li>Calendar.php - Google Calendar Data API specific class.</li>
+<li>Blogger.php - Blogger Data API specific class.</li>
+</ul>
+</li>
+<li>test.php - Sample application #1</li>
+
+<li>gbase_demo_alt.php - Sample application #2</li>
+<li>XMLParseIntoStruct.php - A SAX parser to parse XML data into an array (bonus).</li>
+</ul>
+</dd>
+</dl>
+
+<h2>Overview</h2>
+
+<p>The Google_GData class provides basic functions to communicate with the API of Google Data (GData for short) compliant services such as <a href="http://code.google.com/apis/gdata/calendar.html">Google Calendar</a>, <a href="http://code.google.com/apis/gdata/blogger.html">Blogger</a> or <a href="http://code.google.com/apis/base/">Google Base</a>. The class is based upon the Google_Account class which works with Google's account authentication APIs - <a href="http://code.google.com/apis/accounts/AuthForInstalledApps.html">ClientLogin</a> and <a href="http://code.google.com/apis/accounts/AuthForWebApps.html">AuthSub</a>.<br>
+The class requires <a href="http://pear.php.net/package/HTTP_Request">PEAR HTTP_Request</a> class as well as its dependencies. It also requires <a href="http://www.php.net/openssl">OpenSSL</a> to have HTTPS communication with account authentication APIs.</p>
+
+<p>The Google_Calendar and the Google_Blogger are an extended class of the Google_GData, specific to each service for more convenient use.</p>
+
+<h2>Sample Applications</h2>
+
+<p>There are two sample applications in the archive.</p>
+
+<ul>
+<li>The test.php is a simple program to see the key difference between ClientLogin and AuthSub.</li>
+<li>The gbase_demo_alt.php would be a more practical demonstration. This is a modified version of <a href="http://code.google.com/apis/base/samples/php/php-sample.html">Google's own PHP demo for Google Base Data API</a>. To run this program, you must <a href="http://code.google.com/apis/base/signup.html">sign up for an API key</a> and set the key as the value of the constant <em>GOOGLE_BASE_DEVELOPER_KEY</em> defined in the gbase_demo_alt.php file.</li>
+</ul>
+
+<h2>Basic Usage</h2>
+
+<p>The following might be the simplest example to get a Google Calendar feed with ClientLogin authentication.</p>
+
+<blockquote>
+<pre>
+$username = 'example@gmail.com';
+$password = 'password';
+
+$service = new Google_Calendar;
+if (!$service-&gt;requestClientLogin($username, $password)) {
+  exit($service-&gt;getResponseBody());
+}
+if (!$service-&gt;requestFeed()) {
+  exit($service-&gt;getResponseBody());
+}
+header('Content-Type:application/xml;charset=UTF-8');
+echo $service-&gt;getResponseBody();
+</pre>
+</blockquote>
+
+<h3>Create an Instance of the Class</h3>
+
+<p>Here is a code to create an instance of Google_GData class to work with Google Calendar Data API for example. The first parameter of the constructor is the service name used for the ClientLogin authentication and the second is the scope URL for the AuthSub. The <code>setFeedUrl</code> method sets the default URL for requesting a feed and inserting an entry.</p>
+
+<blockquote>
+<pre>
+$service = new <strong>Google_GData</strong>('cl', 'http://www.google.com/calendar/feeds/');
+$service-&gt;<strong>setFeedUrl</strong>('http://www.google.com/calendar/feeds/default/private/full');
+</pre>
+</blockquote>
+
+<p>The above code can be simplified as following when use the extended Google_Calendar class instead.</p>
+
+<blockquote>
+<pre>
+$service = new <strong>Google_Calendar</strong>;
+</pre>
+</blockquote>
+
+<h3>Account Authentication</h3>
+
+<p>Most requests to the GData APIs require authentication. To be authenticated, the client application is sending a temporary character string called &lsquo;<strong>token</strong>&rsquo; instead of actual username and password. The token is issued via an account authentication API. There are two different APIs - <a href="http://code.google.com/apis/accounts/AuthForInstalledApps.html">ClientLogin</a> and <a href="http://code.google.com/apis/accounts/AuthForWebApps.html">AuthSub</a>. You may run test.php to see the key difference of these two APIs.</p>
+
+<h4>ClientLogin</h4>
+
+<p>Here is an example to acquire a ClientLogin token.</p>
+
+<blockquote>
+<pre>
+$service = new Google_Calendar;
+if (!$service-&gt;<strong>requestClientLogin</strong>('example@gmail.com', 'password')) {
+  exit($service-&gt;getResponseBody());
+}
+echo &quot;ClientLogin token is $service-&gt;token&quot;;
+</pre>
+</blockquote>
+
+<p>The <code>requestClientLogin</code> method returns TRUE if succeeded and returns FALSE if failed. The <code>token</code> property and the <code>authType</code> property are set if succeeded. You may refer <code>keyValuePairs</code> hashed property to look into the response body in either case. Also you may use <code>getResponseCode</code>, <code>getResponseHeader</code> and <code>getResponseBody</code> to have the complete response of the last request.</p>
+
+<p>The ClientLogin can be full-automated and potentially has a risk of bots attack. If the Google suspects that the request is an illegal intrusion, it may respond a <a href="http://en.wikipedia.org/wiki/CAPTCHA">Captcha</a> challenge which requires a human interaction.<br>
+Here is an example to handle this response. This will show the user the Captcha image and an input field for the answer to the Captcha. When the user submits the answer, the application will call <code>requestClientLogin</code> again with the Captcha token (in the following example, the value of the &lsquo;captcha_token&rsquo; field) and the answer as the third and forth parameter of the method.</p>
+
+<blockquote>
+<pre>
+if (!$service-&gt;requestClientLogin('example@gmail.com', 'password')) {
+  if (isset($service-&gt;keyValuePairs['error'])
+    and $service-&gt;keyValuePairs['error'] == '<strong>CaptchaRequired</strong>'
+    and isset($service-&gt;keyValuePairs['captchaurl'])
+    and isset($service-&gt;keyValuePairs['captchatoken'])) {
+    $captcha_url = $service-&gt;keyValuePairs['captchaurl'];
+    if (0 !== strpos('http', $captcha_url)) {
+      $captcha_url = &quot;https://www.google.com/accounts/$captcha_url&quot;;
+    }
+    $captcha_token = $service-&gt;keyValuePairs['captchatoken'];
+    echo &lt;&lt;&lt;HTML
+......
+&lt;p&gt;Type the characters you see in the picture below.&lt;/p&gt;
+
+&lt;img src=&quot;$captcha_url&quot; width=&quot;200&quot; height=&quot;70&quot; alt=&quot;Visual verification&quot; /&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;captcha_token&quot; value=&quot;$captcha_token&quot; /&gt;
+&lt;input type=&quot;text&quot; name=&quot;captcha_answer&quot; value=&quot;&quot; /&gt;
+......
+HTML;
+  }
+}
+</pre>
+</blockquote>
+
+<h4>AuthSub</h4>
+
+<p>To work with the AuthSub, you need first to invite a user to the Access Request page of the Google Accounts website.</p>
+
+<blockquote>
+<pre>
+&lt;p&gt;Please click the link below to proceed to the Google Accounts website,
+and grant www.abcd.com to access your Google Calendar.&lt;br /&gt;
+www.abcd.com will not have access to your password or any personal information.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="&lt;?php
+  $service = new Google_Calendar;
+  echo $service-&gt;<strong>getAuthSubRequestUrl</strong>('http://www.abcd.com/gcal/auth.php')
+?&gt;"&gt;Access Request at Google Accounts website&lt;/a&gt;&lt;/p&gt;
+</pre>
+</blockquote>
+
+<p>When the user clicks the &lsquo;Grant Access&rsquo; button on the page, it will redirect to the URL specified as the first parameter of the <code>getAuthSubRequestUrl</code> method above, with an additional <em>token</em> parameter in the query string. The value of this parameter is a one-time/single-use token.<br>
+The web application that handles this response may have following code to exchange the single-use token with a multi-use session token.</p>
+
+<blockquote>
+<pre>
+$service = new Google_Calendar;
+if (!$service-&gt;<strong>requestAuthSubSessionToken</strong>($_GET['token'])) {
+  exit($service-&gt;getResponseBody());
+}
+echo &quot;AuthSub session token is $service-&gt;token&quot;;
+</pre>
+</blockquote>
+
+<p>The AuthSub does not allow more than ten valid tokens per user, per web application to be outstanding at any one time. So you may need to revoke the existing token before requesting another.<br>
+The <code>requestAuthSubRevokeToken</code> method is to revoke a valid AuthSub token. To get to know if the token is valid, use <code>requestAuthSubTokenInfo</code> method.</p>
+
+<blockquote>
+<pre>
+if ($service-&gt;<strong>requestAuthSubTokenInfo</strong>($token)) {
+  $service-&gt;<strong>requestAuthSubRevokeToken</strong>($token);
+  echo("Token $token has been revoked and is no longer valid.");
+}
+</pre>
+</blockquote>
+
+<h4>Assign Stored Token</h4>
+
+<p>You may store the acquired multi-use token somewhere (e.g. in PHP session or in web browser's cookie) for reuse in later sessions. The <code>setToken</code> method assigns the token value to the class instance. In the following example, the token is expected to be stored in the PHP session. The second parameter of the method is the name of the authentication API and the value shall be either &lsquo;clientlogin&rsquo; or &lsquo;authsub&rsquo;.</p>
+
+<blockquote>
+<pre>
+session_start();
+$service = new Google_Calendar;
+if (isset($_SESSION['token'])) {
+  $service-&gt;<strong>setToken</strong>($_SESSION['token'], 'authsub');
+}
+</pre>
+</blockquote>
+
+<p>Please note that token is unique to each service API. If your application will communicate with multiple service APIs, you may need to acquire tokens of each service API.</p>
+
+<h3>Request a Feed</h3>
+
+<p>The following code will display the Atom 1.0 format Google Calendar GData feed with default criteria.<br>
+In this example, the token is expected to be acquired already via AuthSub and stored in the PHP session.</p>
+
+<blockquote>
+<pre>
+session_start();
+$service = new Google_Calendar;
+$service-&gt;setToken($_SESSION['token'], 'authsub');
+
+if (!$service-&gt;<strong>requestFeed</strong>()) {
+  exit($service-&gt;getResponseBody());
+}
+header('Content-Type:application/xml;charset=UTF-8');
+echo $service-&gt;getResponseBody();
+</pre>
+</blockquote>
+
+<h4>Set Search Criteria</h4>
+
+<p>To have a set of entries that match specified criteria, set an array that contains query parameters as the first parameter of the <code>requestFeed</code> method. The following example will show the first ten entries that contain the exact phrase &lsquo;Elizabeth Bennet&rsquo; and the word &lsquo;Darcy&rsquo; but do not contain the word &lsquo;Austen&rsquo;, in the order of the event start datetime.</p>
+
+<blockquote>
+<pre>
+$queries = array(
+  'q' =&gt; '&quot;Elizabeth Bennet&quot; Darcy -Austen',
+  'max-results' =&gt; 10,
+  'orderby' =&gt; 'starttime',
+  'start-min' =&gt; date('Y-m-d\TH:i:s+09:00', time())
+);
+$service-&gt;requestFeed($queries);
+</pre>
+</blockquote>
+
+<p>See <a href="http://code.google.com/apis/gdata/protocol.html#Queries">&lsquo;Queries&rsquo; section of the Google Data APIs Protocol document</a> for GData common query parameters. And see the document of each service API for the service specific parameters.</p>
+
+<p>Some parameters such as category or entry ID shall be embedded in the feed URL. In this case, you need to set the feed URL as the second parameter of the <code>requestFeed</code> method, or use <code>setFeedUrl</code> method before calling the <code>requestFeed</code>.</p>
+
+<blockquote>
+<pre>
+$queries = array();
+$feed_url = 'http://www.google.com/calendar/feeds/default/private/full/abcd';
+$service-&gt;requestFeed($queries, $feed_url);
+</pre>
+</blockquote>
+
+<p>This technique is also applied if you need to request a feed of non-default calendar or to change the visibility or the projection value of the calendar feed URL.</p>
+
+<h4>Set Additional Headers</h4>
+
+<p>Some service APIs require additional HTTP headers to be requested. For example, Google Base Data API requires <em>X-Google-Key</em> header with the value of &lsquo;key=<i>API_key</i>&rsquo; (<i>API_key</i> is the API key issued when you <a href="http://code.google.com/apis/base/signup.html">sign up for an API key</a>).<br>
+In this case, use <code>setAdditionalHeader</code> method to set the necessary headers before calling the methods that will access to the API.</p>
+
+<blockquote>
+<pre>
+$service = new Google_GData(NULL, 'http://www.google.com/base/feeds/items');
+$service-&gt;<strong>setFeedUrl</strong>('http://www.google.com/base/feeds/items');
+$service-&gt;<strong>setAdditionalHeader</strong>('X-Google-Key', 'key=<i>API_key</i>');
+</pre>
+</blockquote>
+
+<p>The gbase_demo_alt.php is the sample application to access the Google Base Data API.</p>
+
+<h4>Parse Feed</h4>
+
+<p>The class itself does not offer a way to either parse or create the feed. You may use various XML parsers such as <a href="http://www.php.net/xml">expat</a>, <a href="http://www.php.net/simplexml">SimpleXML</a> or <a href="http://www.php.net/dom">DOM</a>/<a href="http://www.php.net/domxml">DOM XML</a>. You may even use regular expressions to get necessary part of the feed.</p>
+
+<h3>Insert, Update or Delete an Entry</h3>
+
+<p>To insert an entry, use the <code>insert</code> method. This method requires Atom 1.0 format GData feed data as the first parameter. No method to create the feed is provided in the class. Do it in your own way.<br>
+In this example, the token is expected to be acquired already via AuthSub and stored in the PHP session.</p>
+
+<blockquote>
+<pre>
+session_start();
+$service = new Google_Calendar;
+$service-&gt;setToken($_SESSION['token'], 'authsub');
+
+$entry = &lt;&lt;&lt;GDATA
+&lt;entry
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:gd="http://schemas.google.com/g/2005"&gt;
+  &lt;category
+    scheme="http://schemas.google.com/g/2005#kind"
+    term="http://schemas.google.com/g/2005#event"&gt;
+  &lt;/category&gt;
+  &lt;title type="text"&gt;Tennis with Beth&lt;/title&gt;
+  &lt;content type="text"&gt;Meet for a quick lesson.&lt;/content&gt;
+  &lt;gd:where valueString="Rolling Lawn Courts"&gt;
+  &lt;/gd:where&gt;
+  &lt;gd:when
+    startTime="2006-10-07T15:00:00+09:00"
+    endTime="2006-10-07T17:00:00+09:00"&gt;
+  &lt;/gd:when&gt;
+&lt;/entry&gt;
+GDATA;
+
+if (!$service-&gt;<strong>insert</strong>($entry)) {
+  exit($service-&gt;getResponseBody());
+}
+echo 'Event inserted.';
+</pre>
+</blockquote>
+
+<p>The <code>update</code> method is to update an existing entry with two parameters - GData feed data and the edit URL. The edit URL is the <em>HREF</em> value of the <em>LINK REL=&quot;EDIT&quot;</em> element of the target entry.<br>
+The following example changes the start and end time of the existing entry of Google Calendar.</p>
+
+<blockquote>
+<pre>
+$entry = &lt;&lt;&lt;GDATA
+&lt;entry
+    xmlns="http://www.w3.org/2005/Atom"
+    xmlns:gd="http://schemas.google.com/g/2005"&gt;
+  &lt;category
+    scheme="http://schemas.google.com/g/2005#kind"
+    term="http://schemas.google.com/g/2005#event"&gt;
+  &lt;/category&gt;
+  &lt;gd:when
+    startTime="2006-10-07T14:00:00+09:00"
+    endTime="2006-10-07T18:00:00+09:00"&gt;
+  &lt;/gd:when&gt;
+&lt;/entry&gt;
+GDATA;
+
+$edit_url = 'http://www.google.com/calendar/feeds/default/private/full/abcd/1234';
+
+if (!$service-&gt;<strong>update</strong>($entry, $edit_url)) {
+  exit($service-&gt;getResponseBody());
+}
+echo 'Event updated.';
+</pre>
+</blockquote>
+
+<p>The edit URL is also required to delete an entry as the parameter of the <code>delete</code> method.</p>
+
+<blockquote>
+<pre>
+$edit_url = 'http://www.google.com/calendar/feeds/default/private/full/abcd/1234';
+
+if (!$service-&gt;<strong>delete</strong>($edit_url)) {
+  exit($service-&gt;getResponseBody());
+}
+echo 'Event deleted.';
+</pre>
+</blockquote>
+
+<p>Note: If a firewall or something disallows HTTP DELETE method fo you, you should modify GData.php to perform delete. See the comment in the file.</p>
+
+<p>The GData APIs offer batch processing to execute multiple operations in one request. See <a href="http://code.google.com/apis/gdata/batch.html">Batch Processing with Google Data APIs</a> for details. The gbase_demo_alt.php has an example of the batch.</p>
+
+<h3>Request a Calendar List Feed</h3>
+
+<p>To get a list of calendars of the user, use <code>requestFeedList</code> of Google_Calendar extended class.</p>
+
+<blockquote>
+<pre>
+session_start();
+$service = new Google_Calendar;
+$service-&gt;setToken($_SESSION['token'], 'authsub');
+
+if (!$service-&gt;<strong>requestFeedList</strong>()) {
+  exit($service-&gt;getResponseBody());
+}
+header('Content-Type:application/xml;charset=UTF-8');
+echo $service-&gt;getResponseBody();
+</pre>
+</blockquote>
+
+<p>This is very similar to requesting a calendar feed, but the responded GData feed contains a set of the calendar list associated with the user.</p>
+
+<hr>
+
+<address>Author: <a href="http://www.rcdtokyo.com/ucb/">http://www.rcdtokyo.com/ucb/</a></address>
+<p><a href="http://www.rcdtokyo.com/ucb/contents/i000815.php">&#26085;&#26412;&#35486; document</a> is also available online.</p>
+
+</body>
+</html>

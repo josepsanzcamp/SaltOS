@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root><![CDATA[<div class='title dontend'>Lector Feeds RSS y Atom</div> <p> El lector de feeds le ofrece la posibilidad de seguir cómodamente sus canales RSS y Atom desde SaltOS. </p> <p> Para configurar un nuevo canal RSS, consulte el capítulo 2. </p> <div class='title dontend'>Listado</div> <p> El listado de entradas le muestra los últimos <i>posts</i> descargados. </p> <p> El funcionamiento de esta aplicación es muy parecida al del lector de correo electrónico. </p> <p> El color de letra de cada entrada indica el estado y las opciones de búsqueda, filtrado y exportación funcionan de la misma manera. Puede marcar un post como pendiente, o volver a marcarlo como no leído si ya lo ha consultado. </p>]]></root>

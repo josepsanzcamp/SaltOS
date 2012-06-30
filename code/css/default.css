@@ -1,0 +1,322 @@
+/*
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* GENERAL SETTINGS */
+body {
+	font-size:10px;
+	border:0px;
+	padding:0px;
+	margin:0px;
+}
+img {
+	border:0px;
+	vertical-align:middle;
+}
+form {
+	display:inline;
+}
+.preloading {
+	opacity:0;
+	filter:Alpha(Opacity=0);
+}
+/* FOR STYLING JQUERY */
+.ui-layout-north {
+	padding:0px 0px 0px 0px;
+}
+.ui-layout-north .texto {
+	padding:5px;
+	font-size:1.3em;
+}
+.ui-layout-north .quick {
+	float:right;
+	margin-top:2px;
+	margin-right:4px;
+}
+.ui-layout-west {
+	padding:1px 0px 2px 2px;
+	width:198px;
+}
+.ui-layout-center {
+	padding:2px 2px 2px 2px;
+}
+.accordion-link {
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+.accordion-link li {
+	padding-bottom:5px;
+	position:relative;
+	left:-16px;
+}
+.accordion-link li a {
+	text-decoration:none;
+	padding:3px 5px;
+}
+.accordion-link li a.submenu {
+	position:relative;
+	left:16px!important;
+}
+.ui-tabs {
+	border:none!important;
+	padding:0!important;
+}
+.ui-tabs-nav {
+	line-height:1em!important;
+}
+a.ui-state-default {
+	padding:3px 5px;
+	text-decoration:none;
+	margin:1px;
+}
+span.ui-state-default {
+	padding:3px 5px;
+	margin:1px;
+}
+input.ui-state-default {
+	padding:3px 5px;
+	margin:1px;
+}
+input.ui-state-error {
+	padding:3px 5px;
+	margin:1px;
+}
+input.ui-state-disabled {
+	opacity:0.85!important;
+	filter:Alpha(Opacity=85)!important;
+}
+textarea.ui-state-default {
+	padding:3px 5px;
+	margin:1px;
+}
+textarea.ui-state-error {
+	padding:3px 5px;
+	margin:1px;
+}
+textarea.ui-state-disabled {
+	opacity:0.85!important;
+	filter:Alpha(Opacity=85)!important;
+}
+select.ui-state-default {
+	padding:2px 5px;
+	margin:1px;
+}
+select.ui-state-error {
+	padding:2px 5px;
+	margin:1px;
+}
+select.ui-state-disabled {
+	opacity:0.85!important;
+	filter:Alpha(Opacity=85)!important;
+}
+iframe.ui-state-default {
+	padding:3px 5px;
+	margin:1px;
+	background:#ffffff!important;
+}
+/* FOR TABLES */
+.tabla tr td.thead {
+	white-space:nowrap;
+	padding:0px 2px;
+	height:22px;
+	vertical-align:middle;
+}
+.tabla tr td.tbody {
+	font-weight:normal;
+	padding:0px 2px;
+	height:22px;
+	vertical-align:middle;
+}
+.tabla tr td.tbody a {
+	text-decoration:underline;
+}
+.tabla tr td.nodata {
+	font-weight:bold;
+	text-align:center;
+	height:44px;
+	vertical-align:middle;
+}
+/* FOR ALIGNMENTS AND STYLES */
+.left{
+	text-align:left;
+}
+.center{
+	text-align:center;
+}
+.right{
+	text-align:right;
+}
+.top {
+	vertical-align:top;
+}
+.middle {
+	vertical-align:middle;
+}
+.bottom {
+	vertical-align:bottom;
+}
+.bold {
+	font-weight:bold;
+}
+.italic {
+	font-style:italic;
+}
+.normal {
+	font-weight:normal;
+	font-style:normal;
+}
+.label {
+	padding:0px 5px;
+}
+.block {
+	display:block;
+}
+.none {
+	display:none;
+}
+.inline {
+	display:inline;
+}
+/* FOR WIDTHS */
+.width1 {
+	width:1%;
+}
+.width25 {
+	width:25%;
+}
+.width33 {
+	width:33%;
+}
+.width50 {
+	width:50%;
+}
+.width90 {
+	width:90%;
+}
+.width100 {
+	width:100%;
+}
+/* EXTRAS */
+.separator {
+	height:10px;
+}
+.info {
+	padding:3px 5px;
+	font-weight:bold;
+}
+.nowrap {
+	white-space:nowrap;
+}
+.siwrap {
+	white-space:normal;
+}
+.notabs {
+	display:none;
+}
+.title {
+	padding:3px 5px;
+}
+/* FOR GENERAL TABLES */
+table {
+	margin-left:auto;
+	margin-right:auto;
+	border-spacing:0px;
+}
+/* FOR IMAGE OBJECT */
+img.image {
+	padding:5px;
+}
+/* FOR DIALOG */
+#dialog {
+	text-align:center;
+	margin-top:2px;
+}
+/* FOR NOTICE */
+div.jGrowl div a {
+	text-decoration:none;
+}
+/* FOR VIEWPDF */
+#dialog canvas {
+	box-shadow: 0px 4px 10px #000;
+	-moz-box-shadow: 0px 4px 10px #000;
+	-webkit-box-shadow: 0px 4px 10px #000;
+	margin:10px 0;
+}
+/* COPIED FROM PDF.JS/VIEWER.CSS */
+#dialog div.textLayer {
+  position: relative;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  color: #000;
+  font-family: sans-serif;
+}
+
+#dialog div.textLayer > div {
+  color: transparent;
+  position: absolute;
+  line-height:1.3;
+}
+
+/* FOR QRCODE */
+#dialog h1.tel {
+	margin-bottom:0;
+}
+/* FOR NUMBERS */
+a.number {
+	position:relative;
+}
+span.number {
+	position:absolute;
+	top:-2px;
+	left:9px;
+}
+.number-icon {
+	display:inline-block;
+	vertical-align:-30%;
+	text-indent:-99999px;
+	overflow:hidden;
+	background-repeat:no-repeat;
+	width:16px;
+	height:16px;
+}
+/* FOR ICONSET */
+.saltos-icon {
+	display:inline-block;
+	vertical-align:-30%;
+	text-indent:-99999px;
+	overflow:hidden;
+	background-repeat:no-repeat;
+	width:16px;
+	height:16px;
+}
+/* FOR COLUMNIZER */
+.columnizer .column > * {
+	margin-right:15px;
+}
+/* FOR PLOTS */
+img[isplot=true] {
+	margin:2px;
+}

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<name>style</name>
+	<label lang="true">style</label>
+	<type>select</type>
+	<width>120px</width>
+	<rows ifnoteval="is_mobile()">
+		<row>
+			<label>Base</label>
+			<value>base</value>
+		</row>
+		<row>
+			<label>Black Tie</label>
+			<value>black-tie</value>
+		</row>
+		<row>
+			<label>Blitzer</label>
+			<value>blitzer</value>
+		</row>
+		<row>
+			<label>Cupertino</label>
+			<value>cupertino</value>
+		</row>
+		<row>
+			<label>Dark Hive</label>
+			<value>dark-hive</value>
+		</row>
+		<row>
+			<label>Dot Luv</label>
+			<value>dot-luv</value>
+		</row>
+		<row>
+			<label>Eggplant</label>
+			<value>eggplant</value>
+		</row>
+		<row>
+			<label>Excite Bike</label>
+			<value>excite-bike</value>
+		</row>
+		<row>
+			<label>Flick</label>
+			<value>flick</value>
+		</row>
+		<row>
+			<label>Hot Sneaks</label>
+			<value>hot-sneaks</value>
+		</row>
+		<row>
+			<label>Humanity</label>
+			<value>humanity</value>
+		</row>
+		<row>
+			<label>Le Frog</label>
+			<value>le-frog</value>
+		</row>
+		<row>
+			<label>Mint Choc</label>
+			<value>mint-choc</value>
+		</row>
+		<row>
+			<label>Overcast</label>
+			<value>overcast</value>
+		</row>
+		<row>
+			<label>Pepper Grinder</label>
+			<value>pepper-grinder</value>
+		</row>
+		<row>
+			<label>Redmond</label>
+			<value>redmond</value>
+		</row>
+		<row>
+			<label>Smoothness</label>
+			<value>smoothness</value>
+		</row>
+		<row>
+			<label>South Street</label>
+			<value>south-street</value>
+		</row>
+		<row>
+			<label>Start</label>
+			<value>start</value>
+		</row>
+		<row>
+			<label>Sunny</label>
+			<value>sunny</value>
+		</row>
+		<row>
+			<label>Swanky Purse</label>
+			<value>swanky-purse</value>
+		</row>
+		<row>
+			<label>Trontastic</label>
+			<value>trontastic</value>
+		</row>
+		<row>
+			<label>UI Darkness</label>
+			<value>ui-darkness</value>
+		</row>
+		<row>
+			<label>UI Lightness</label>
+			<value>ui-lightness</value>
+		</row>
+		<row>
+			<label>Vader</label>
+			<value>vader</value>
+		</row>
+	</rows>
+	<rows ifeval="is_mobile()">
+		<row>
+			<label>Black</label>
+			<value>a</value>
+		</row>
+		<row>
+			<label>Blue &amp; gray</label>
+			<value>b</value>
+		</row>
+	</rows>
+	<value global="style" eval="true">$style</value>
+	<onchange>submit1()</onchange>
+</root>

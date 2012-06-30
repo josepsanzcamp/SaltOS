@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<actions>
+		<!-- ACTIONS FOR EACH REGISTER -->
+		<view>
+			<label lang="true">view</label>
+			<onclick>view(ID)</onclick>
+			<icon>view</icon>
+		</view>
+		<edit>
+			<label lang="true">edit</label>
+			<onclick>edit(ID)</onclick>
+			<icon>edit</icon>
+		</edit>
+		<copy>
+			<label lang="true">copy</label>
+			<onclick>copy(ID)</onclick>
+			<icon>copy</icon>
+		</copy>
+		<mail>
+			<label lang="true">mail</label>
+			<onclick>mail2(ID)</onclick>
+			<icon>mail</icon>
+		</mail>
+		<delete>
+			<label lang="true">delete</label>
+			<onclick>delete1(ID)</onclick>
+			<icon>delete</icon>
+		</delete>
+		<pdf2>
+			<label lang="true">pdf</label>
+			<onclick>pdf2(ID)</onclick>
+			<icon>pdf</icon>
+		</pdf2>
+		<view2 ifnoteval="is_mobile()">
+			<label lang="true">view2</label>
+			<onclick>view2(ID)</onclick>
+			<icon>view2</icon>
+		</view2>
+		<vcard>
+			<label lang="true">vcard</label>
+			<onclick>vcard(ID)</onclick>
+			<icon>vcard</icon>
+		</vcard>
+		<qrcode ifnoteval="is_mobile()">
+			<label lang="true">qrcode</label>
+			<onclick>qrcode(ID)</onclick>
+			<icon>qrcode</icon>
+		</qrcode>
+		<pdf2filter ifnoteval="is_mobile()">
+			<label lang="true">pdf</label>
+			<onclick>pdf2filter(ID)</onclick>
+			<icon>pdf</icon>
+		</pdf2filter>
+		<view2filter ifnoteval="is_mobile()">
+			<label lang="true">view2</label>
+			<onclick>view2filter(ID)</onclick>
+			<icon>view2</icon>
+		</view2filter>
+	</actions>
+	<!-- SORT HEADER FOR LIST -->
+	<sort>
+		<onclick>sort('FIELD')</onclick>
+		<labelasc lang="true">sortasc</labelasc>
+		<iconascin>sortascin</iconascin>
+		<iconascout>sortascout</iconascout>
+		<labeldesc lang="true">sortdesc</labeldesc>
+		<icondescin>sortdescin</icondescin>
+		<icondescout>sortdescout</icondescout>
+	</sort>
+	<!-- NODATA TEXT FOR LIST -->
+	<nodata>
+		<label lang="true">nodata</label>
+	</nodata>
+</root>

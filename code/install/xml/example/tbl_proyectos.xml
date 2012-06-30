@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<row>
+		<id>1</id>
+		<id_campanya>0</id_campanya>
+		<id_cliente>1</id_cliente>
+		<nombre>Project 1</nombre>
+		<id_estado>1</id_estado>
+		<descripcion>The project 1 description</descripcion>
+	</row>
+	<row>
+		<id>2</id>
+		<id_campanya>0</id_campanya>
+		<id_cliente>1</id_cliente>
+		<nombre>Project 2</nombre>
+		<id_estado>1</id_estado>
+		<descripcion>The project 2 description</descripcion>
+	</row>
+	<row>
+		<id>3</id>
+		<id_campanya>0</id_campanya>
+		<id_cliente>1</id_cliente>
+		<nombre>Project 3</nombre>
+		<id_estado>1</id_estado>
+		<descripcion>The project 3 description</descripcion>
+	</row>
+	<row>
+		<id>4</id>
+		<id_campanya>0</id_campanya>
+		<id_cliente>2</id_cliente>
+		<nombre>Project 4</nombre>
+		<id_estado>1</id_estado>
+		<descripcion>The project 4 description</descripcion>
+	</row>
+	<row>
+		<id>5</id>
+		<id_campanya>0</id_campanya>
+		<id_cliente>2</id_cliente>
+		<nombre>Project 5</nombre>
+		<id_estado>1</id_estado>
+		<descripcion>The project 5 description</descripcion>
+	</row>
+</root>

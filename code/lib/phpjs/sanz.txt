@@ -1,0 +1,6 @@
+Some SaltOS changes:
+
+IN
+- php.default.min.js
+REMOVE
+- dec=this.utf8_decode(dec);

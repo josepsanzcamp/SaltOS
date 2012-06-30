@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<fieldset ifnoteval="is_mobile()">
+		<title lang="true">newattachments</title>
+		<class>tabla</class>
+		<width>700px</width>
+		<head>
+			<field>
+				<name>newattachments</name>
+				<type>label</type>
+				<label lang="true">newattachments</label>
+				<class>thead center</class>
+				<colspan>2</colspan>
+			</field>
+		</head>
+		<row>
+			<class>none</class>
+			<field>
+				<name>id</name>
+				<type>hidden</type>
+			</field>
+			<field>
+				<name>fichero</name>
+				<label lang="true">fichero</label>
+				<type>file</type>
+				<width>600px</width>
+				<width2>100px</width2>
+				<size>60</size>
+				<class>tbody</class>
+				<class2>thead</class2>
+			</field>
+		</row>
+		<tail>
+			<field>
+				<type>separator</type>
+			</field>
+		</tail>
+		<tail>
+			<field>
+				<type>button</type>
+				<value lang="true">addfile</value>
+				<class>left</class>
+				<class2>init_additem</class2>
+				<onclick>additem(this)</onclick>
+				<icon>create</icon>
+			</field>
+		</tail>
+	</fieldset>
+</root>

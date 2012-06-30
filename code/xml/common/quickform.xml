@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<row global="id" ifeval="$id&lt;0">
+		<field>
+			<type>separator</type>
+			<width>100%</width>
+		</field>
+		<field ifeval="is_mobile()">
+			<name>quick_select</name>
+			<type>select</type>
+			<onchange>page1(this.value)</onchange>
+			<listsim require="php/listsim.php" global="label,page,id" eval="true">$label=list_simulator($page,abs($id))</listsim>
+			<rows>
+				<row>
+					<label global="label" eval="true">isset($label[0])?$label[0]:""</label>
+					<value></value>
+				</row>
+			</rows>
+			<width>240px</width>
+		</field>
+		<field>
+			<name>quick_first</name>
+			<type>button</type>
+			<tip lang="true">first</tip>
+			<label lang="true">first</label>
+			<value ifeval="is_mobile()">&lt;&lt;</value>
+			<onclick>if(!is_disabled(this)) first()</onclick>
+			<icon>first</icon>
+			<class>nowrap contextmenu</class>
+			<class2>ui-state-disabled shortcut_ctrl_home</class2>
+		</field>
+		<field>
+			<name>quick_previous</name>
+			<type>button</type>
+			<tip lang="true">previous</tip>
+			<label lang="true">previous</label>
+			<value ifeval="is_mobile()">&lt;</value>
+			<onclick>if(!is_disabled(this)) previous()</onclick>
+			<icon>previous</icon>
+			<class>nowrap contextmenu</class>
+			<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
+		</field>
+		<field ifnoteval="is_mobile()">
+			<name>quick_select</name>
+			<type>select</type>
+			<onchange>page1(this.value)</onchange>
+			<listsim require="php/listsim.php" global="label,page,id" eval="true">$label=list_simulator($page,abs($id))</listsim>
+			<rows>
+				<row>
+					<label global="label" eval="true">isset($label[0])?$label[0]:""</label>
+					<value></value>
+				</row>
+			</rows>
+			<width>240px</width>
+		</field>
+		<field>
+			<name>quick_next</name>
+			<type>button</type>
+			<tip lang="true">next</tip>
+			<label lang="true">next</label>
+			<value ifeval="is_mobile()">&gt;</value>
+			<onclick>if(!is_disabled(this)) next()</onclick>
+			<icon>next</icon>
+			<class>nowrap contextmenu</class>
+			<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
+		</field>
+		<field>
+			<name>quick_last</name>
+			<type>button</type>
+			<tip lang="true">last</tip>
+			<label lang="true">last</label>
+			<value ifeval="is_mobile()">&gt;&gt;</value>
+			<onclick>if(!is_disabled(this)) last()</onclick>
+			<icon>last</icon>
+			<class>nowrap contextmenu</class>
+			<class2>ui-state-disabled shortcut_ctrl_end</class2>
+		</field>
+	</row>
+</root>

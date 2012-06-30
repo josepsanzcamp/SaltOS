@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>
+		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
+		<id global="id" eval="true">$id=current_user()</id>
+	</default>
+	<form>
+		<views>
+			<update>
+				<title lang="true">formupdate</title>
+				<query>
+					<default eval="true">"SELECT '0' id,".make_extra_query()." nombre FROM tbl_usuarios WHERE id='".current_user()."'"</default>
+				</query>
+			</update>
+		</views>
+		<name>form</name>
+		<action>xml.php</action>
+		<method>post</method>
+		<hiddens include="xml/common/hiddensform.xml" />
+		<fields>
+			<default>
+				<fieldset>
+					<title lang="true">contact</title>
+					<buttons>true</buttons>
+					<row>
+						<field>
+							<name>nombre</name>
+							<label lang="true">nombre</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly>true</readonly>
+							<required>true</required>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>subject</name>
+							<label lang="true">subject</label>
+							<type>text</type>
+							<width>240px</width>
+							<required>true</required>
+							<focus>true</focus>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>comentarios</name>
+							<label lang="true">comentarios</label>
+							<type>textarea</type>
+							<width>600px</width>
+							<height>240px</height>
+							<required>true</required>
+							<ckeditor>true</ckeditor>
+						</field>
+					</row>
+				</fieldset>
+			</default>
+		</fields>
+		<buttons>
+			<row>
+				<field>
+					<type>separator</type>
+					<width>100%</width>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">send</value>
+					<onclick>setParam("action","support"); if(check_required()) submit1()</onclick>
+					<icon>mail</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">buttonreturn</value>
+					<onclick>goback()</onclick>
+					<icon>return</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+			</row>
+		</buttons>
+		<javascript include="xml/common/jsform.xml"/>
+	</form>
+</root>

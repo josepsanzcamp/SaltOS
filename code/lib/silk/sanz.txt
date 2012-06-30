@@ -1,0 +1,10 @@
+
+I MODIFY SOME ICONS:
+- database.png => converted from grayscale to RGB
+- email_reply.png => created from email.png and bullet_go.png
+- email_reply.png => created from email.png and bullet_go.png
+- bullet_back => created from bullet_go.png
+- bullet_up => created from bullet_go.png
+- bullet_down => created from bullet_go.png
+- tag_blue.png => modified to do the blue more blue
+- tag_red.png => modified to do the red more red

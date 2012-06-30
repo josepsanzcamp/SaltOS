@@ -1,0 +1,2 @@
+Code minified using the Javascript Google Closure Compiler:
+- http://code.google.com/closure/compiler

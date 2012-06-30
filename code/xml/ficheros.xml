@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<list>
+		<title lang="true">list</title>
+		<actions include="xml/common/actions.xml" replace="true" />
+		<actions path="actions" append="true">
+			<download>
+				<label lang="true">download</label>
+				<onclick>download2('ID')</onclick>
+				<icon>download</icon>
+			</download>
+			<viewpdf>
+				<label lang="true">view2</label>
+				<onclick>viewpdf2('ID')</onclick>
+				<icon>view2</icon>
+			</viewpdf>
+		</actions>
+		<pager include="xml/common/pager.xml"/>
+		<node path="pager/row/field" replace="true">
+			<field>
+				<type>separator</type>
+				<width>15%</width>
+			</field>
+		</node>
+		<width>100%</width>
+		<fields>
+			<field>
+				<name>id2</name>
+				<label lang="true">id</label>
+				<width></width>
+				<sort>true</sort>
+				<order>id</order>
+			</field>
+			<field>
+				<name>aplicacion</name>
+				<label lang="true">aplicacion</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>nombre</name>
+				<label lang="true">nombre</label>
+				<width></width>
+				<sort>true</sort>
+				<size>40</size>
+			</field>
+			<field>
+				<name>usuario</name>
+				<label lang="true">username</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>datetime</name>
+				<label lang="true">datetime</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>fichero</name>
+				<label lang="true">fichero</label>
+				<width></width>
+				<sort>true</sort>
+				<size>40</size>
+			</field>
+			<field>
+				<name>fichero_size2</name>
+				<label lang="true">size</label>
+				<width></width>
+				<sort>true</sort>
+			</field>
+		</fields>
+		<javascript>
+			<javascript include="xml/common/jslist.xml" replace="true"/>
+			<function>download2(cid) { cid=explode("_",cid); download("cid="+cid[0]+"&amp;page="+cid[1]+"&amp;id="+cid[2]); }</function>
+			<function>viewpdf2(cid) { cid=explode("_",cid); viewpdf("cid="+cid[0]+"&amp;page="+cid[1]+"&amp;id="+cid[2]); }</function>
+		</javascript>
+		<quick>
+			<row>
+				<field>
+					<type>separator</type>
+					<width>100%</width>
+				</field>
+				<field>
+					<type>label</type>
+					<label lang="true">usedfilter</label>
+					<show eval="true">check_filter(array("filtro"=>"","id_aplicacion"=>"","id_usuario"=>""))?"true":"false"</show>
+					<class>nowrap</class>
+					<class2>info</class2>
+				</field>
+				<field>
+					<name>buscar</name>
+					<label lang="true">buscar</label>
+					<type>text</type>
+					<width>240px</width>
+					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<onchange>copy_value("filtro","buscar");</onchange>
+					<onkeypress>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkeypress>
+					<focus>true</focus>
+					<speech>true</speech>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">buscar</value>
+					<tip lang="true">buscartip</tip>
+					<onclick>buscar()</onclick>
+					<icon>find</icon>
+					<class>nowrap</class>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">limpiar</value>
+					<tip lang="true">limpiartip</tip>
+					<onclick>limpiar()</onclick>
+					<icon>refresh</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+			</row>
+		</quick>
+		<form>
+			<name>list</name>
+			<action>xml.php</action>
+			<method>get</method>
+			<fields>
+				<title lang="true">filter</title>
+				<buttons>true</buttons>
+				<row>
+					<field include="xml/common/hiddenslist.xml" replace="true" />
+					<field>
+						<name>id_usuario</name>
+						<label lang="true">username</label>
+						<type>select</type>
+						<width>240px</width>
+						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query(),"id_aplicacion,id_registro"),"SELECT id FROM tbl_usuarios WHERE activo=1 AND id IN (SELECT DISTINCT id_usuario FROM tbl_ficheros)")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
+						<colspan>3</colspan>
+					</field>
+					<field>
+						<type>separator</type>
+						<width>10px</width>
+					</field>
+					<field>
+						<name>id_aplicacion</name>
+						<label lang="true">aplicacion</label>
+						<type>select</type>
+						<width>240px</width>
+						<query eval="true">make_select_query("","tbl_aplicaciones","nombre","SELECT DISTINCT id_aplicacion FROM tbl_ficheros")." UNION SELECT '' `value`,'".LANG_ESCAPE("todaslasaplicaciones")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<value global="id_aplicacion" eval="true">$id_aplicacion=getParam("id_aplicacion")</value>
+					</field>
+				</row>
+				<row>
+					<field>
+						<name>filtro</name>
+						<label lang="true">filtro</label>
+						<type>text</type>
+						<width>240px</width>
+						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<onchange>copy_value("buscar","filtro");</onchange>
+						<colspan>3</colspan>
+						<speech>true</speech>
+					</field>
+				</row>
+			</fields>
+			<fields include="xml/common/filters.xml" replace="true" />
+			<fields include="xml/common/helplist.xml" replace="true" />
+			<buttons include="xml/common/buttonslist.xml" />
+		</form>
+		<query global="page,id_usuario,id_aplicacion,filtro" eval="true">"SELECT * FROM (
+			SELECT a.*,/*MYSQL LPAD(a.id_registro,5,0) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) */ id2,
+			d.id_grupo id_grupo,
+			/*MYSQL CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) *//*SQLITE a.id || '_' || (SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion) || '_' || a.id_registro */ action_id,
+			(SELECT /*MYSQL CONCAT('link:opencontent(\"xml.php?page=',codigo,'\"):',nombre) *//*SQLITE 'link:opencontent(\"xml.php?page=' || codigo || '\"):' || nombre */ FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
+			".make_extra_query("d.")." usuario,
+			CASE e.id_aplicacion
+				WHEN '".page2id("correo")."' THEN (SELECT email_privated FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE e.id_registro=id))
+				ELSE 0
+			END email_privated,
+			CASE a.id_aplicacion
+				WHEN '".page2id("actas")."' THEN (SELECT /*MYSQL CONCAT('link:actas(',-id,'):',nombre) *//*SQLITE 'link:actas(' || -id || '):' || nombre */ FROM tbl_actas WHERE id=a.id_registro)
+				WHEN '".page2id("agenda")."' THEN (SELECT /*MYSQL CONCAT('link:agenda(',-id,'):',nombre) *//*SQLITE 'link:agenda(' || -id || '):' || nombre */ FROM tbl_agenda WHERE id=a.id_registro)
+				WHEN '".page2id("campanyas")."' THEN (SELECT /*MYSQL CONCAT('link:campanyas(',-id,'):',nombre) *//*SQLITE 'link:campanyas(' || -id || '):' || nombre */ FROM tbl_campanyas WHERE id=a.id_registro)
+				WHEN '".page2id("clientes")."' THEN (SELECT /*MYSQL CONCAT('link:clientes(',-id,'):',nombre) *//*SQLITE 'link:clientes(' || -id || '):' || nombre */ FROM tbl_clientes WHERE id=a.id_registro)
+				WHEN '".page2id("contactos")."' THEN (SELECT /*MYSQL CONCAT('link:contactos(',-id,'):',nombre) *//*SQLITE 'link:contactos(' || -id || '):' || nombre */ FROM tbl_contactos WHERE id=a.id_registro)
+				WHEN '".page2id("correo")."' THEN (SELECT /*MYSQL CONCAT('link:correo(',-id,'):',(SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE CONCAT(nombre,' &lt;',valor,'&gt;') END SEPARATOR '; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id_registro AND a1.id_tipo=1),' - ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END,
+				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END,
+				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END,
+				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END,
+				CASE state_new WHEN 1 THEN ' (".LANG_ESCAPE("statenew","correo").")' ELSE '' END,
+				CASE state_reply WHEN 1 THEN ' (".LANG_ESCAPE("statereply","correo").")' ELSE '' END,
+				CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward","correo").")' ELSE '' END,
+				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","correo").")' ELSE '' END,
+				CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam","correo").")' ELSE '' END,
+				CASE is_outbox WHEN 0 THEN CASE state_new+state_reply+state_forward+state_wait+state_spam WHEN 0 THEN ' (".LANG_ESCAPE("stateread","correo").")' ELSE '' END ELSE '' END) *//*SQLITE 'link:correo(' || -id || '):' || (SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE nombre || ' &lt;' || valor || '&gt;' END,'; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id_registro AND a1.id_tipo=1) || ' - ' || CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END ||
+				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END ||
+				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END ||
+				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END ||
+				CASE state_new WHEN 1 THEN ' (".LANG_ESCAPE("statenew","correo").")' ELSE '' END ||
+				CASE state_reply WHEN 1 THEN ' (".LANG_ESCAPE("statereply","correo").")' ELSE '' END ||
+				CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward","correo").")' ELSE '' END ||
+				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","correo").")' ELSE '' END ||
+				CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam","correo").")' ELSE '' END ||
+				CASE is_outbox WHEN 0 THEN CASE state_new+state_reply+state_forward+state_wait+state_spam WHEN 0 THEN ' (".LANG_ESCAPE("stateread","correo").")' ELSE '' END ELSE '' END */ FROM tbl_correo WHERE id=a.id_registro)
+				WHEN '".page2id("cuentas")."' THEN (SELECT /*MYSQL CONCAT('link:cuentas(',-id,'):',nombre) *//*SQLITE 'link:cuentas(' || -id || '):' || nombre */ FROM tbl_cuentas WHERE id=a.id_registro)
+				WHEN '".page2id("documentos")."' THEN (SELECT /*MYSQL CONCAT('link:documentos(',-id,'):',nombre) *//*SQLITE 'link:documentos(' || -id || '):' || nombre */ FROM tbl_documentos WHERE id=a.id_registro)
+				WHEN '".page2id("empleados")."' THEN (SELECT /*MYSQL CONCAT('link:empleados(',-id,'):',nombre) *//*SQLITE 'link:empleados(' || -id || '):' || nombre */ FROM tbl_empleados WHERE id=a.id_registro)
+				WHEN '".page2id("epigrafes")."' THEN (SELECT /*MYSQL CONCAT('link:epigrafes(',-id,'):',nombre) *//*SQLITE 'link:epigrafes(' || -id || '):' || nombre */ FROM tbl_epigrafes WHERE id=a.id_registro)
+				WHEN '".page2id("estados")."' THEN (SELECT /*MYSQL CONCAT('link:estados(',-id,'):',nombre) *//*SQLITE 'link:estados(' || -id || '):' || nombre */ FROM tbl_estados WHERE id=a.id_registro)
+				WHEN '".page2id("facturas")."' THEN (SELECT CASE num WHEN '' THEN /*MYSQL CONCAT('link:facturas(',-id,'):','".LANG_ESCAPE("albaran")."',' ',LPAD(id,5,0),' ',nombre) *//*SQLITE 'link:facturas(' || -id || '):' || '".LANG_ESCAPE("albaran")."' || ' ' || SUBSTR('00000' || id,-5,5) || ' ' || nombre */ ELSE /*MYSQL CONCAT('link:facturas(',-id,'):','".LANG_ESCAPE("factura")."',' ',num,' ',nombre,CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '&lt;strike&gt;".LANG_ESCAPE("cobrado","facturas")."&lt;/strike&gt;' END) *//*SQLITE 'link:facturas(' || -id || '):' || '".LANG_ESCAPE("factura")."' || ' ' || num || ' ' || nombre || CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '&lt;strike&gt;".LANG_ESCAPE("cobrado","facturas")."&lt;/strike&gt;' END */ END FROM tbl_facturas WHERE id=a.id_registro)
+				WHEN '".page2id("feeds")."' THEN (SELECT /*MYSQL CONCAT('link:feeds(',-id,'):',(SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed),' - ',title,
+				CASE WHEN state_new=1 AND state_modified=0 THEN ' (".LANG_ESCAPE("statenew","feeds").")' ELSE '' END,
+				CASE state_modified WHEN 1 THEN ' (".LANG_ESCAPE("statemodified","feeds").")' ELSE '' END,
+				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","feeds").")' ELSE '' END,
+				CASE state_new+state_modified+state_wait WHEN 0 THEN ' (".LANG_ESCAPE("stateread","feeds").")' ELSE '' END) *//*SQLITE 'link:feeds(' || -id || '):' || (SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed) || ' - ' || title ||
+				CASE WHEN state_new=1 AND state_modified=0 THEN ' (".LANG_ESCAPE("statenew","feeds").")' ELSE '' END ||
+				CASE state_modified WHEN 1 THEN ' (".LANG_ESCAPE("statemodified","feeds").")' ELSE '' END ||
+				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","feeds").")' ELSE '' END ||
+				CASE state_new+state_modified+state_wait WHEN 0 THEN ' (".LANG_ESCAPE("stateread","feeds").")' ELSE '' END */ FROM tbl_feeds WHERE id=a.id_registro)
+				WHEN '".page2id("formaspago")."' THEN (SELECT /*MYSQL CONCAT('link:formaspago(',-id,'):',nombre) *//*SQLITE 'link:formaspago(' || -id || '):' || nombre */ FROM tbl_formaspago WHERE id=a.id_registro)
+				WHEN '".page2id("gastos")."' THEN (SELECT /*MYSQL CONCAT('link:gastos(',-id,'):',descripcion) *//*SQLITE 'link:gastos(' || -id || '):' || descripcion */ FROM tbl_gastos WHERE id=a.id_registro)
+				WHEN '".page2id("grupos")."' THEN (SELECT /*MYSQL CONCAT('link:grupos(',-id,'):',nombre) *//*SQLITE 'link:grupos(' || -id || '):' || nombre */ FROM tbl_grupos WHERE id=a.id_registro)
+				WHEN '".page2id("importaciones")."' THEN (SELECT /*MYSQL CONCAT('link:importaciones(',-id,'):',nombre) *//*SQLITE 'link:importaciones(' || -id || '):' || nombre */ FROM tbl_importaciones WHERE id=a.id_registro)
+				WHEN '".page2id("incidencias")."' THEN (SELECT /*MYSQL CONCAT('link:incidencias(',-id,'):',nombre) *//*SQLITE 'link:incidencias(' || -id || '):' || nombre */ FROM tbl_incidencias WHERE id=a.id_registro)
+				WHEN '".page2id("partes")."' THEN (SELECT /*MYSQL CONCAT('link:partes(',-id,'):',tarea) *//*SQLITE 'link:partes(' || -id || '):' || tarea */ FROM tbl_partes WHERE id=a.id_registro)
+				WHEN '".page2id("periodicas")."' THEN (SELECT (SELECT /*MYSQL CONCAT('link:periodicas(',-id,'):',nombre) *//*SQLITE 'link:periodicas(' || -id || '):' || nombre */ FROM tbl_clientes WHERE id=id_cliente) FROM tbl_periodicas WHERE id=a.id_registro)
+				WHEN '".page2id("posiblescli")."' THEN (SELECT /*MYSQL CONCAT('link:posiblescli(',-id,'):',nombre) *//*SQLITE 'link:posiblescli(' || -id || '):' || nombre */ FROM tbl_posiblescli WHERE id=a.id_registro)
+				WHEN '".page2id("presupuestos")."' THEN (SELECT /*MYSQL CONCAT('link:presupuestos(',-id,'):',nombre) *//*SQLITE 'link:presupuestos(' || -id || '):' || nombre */ FROM tbl_presupuestos WHERE id=a.id_registro)
+				WHEN '".page2id("prioridades")."' THEN (SELECT /*MYSQL CONCAT('link:prioridades(',-id,'):',nombre) *//*SQLITE 'link:prioridades(' || -id || '):' || nombre */ FROM tbl_prioridades WHERE id=a.id_registro)
+				WHEN '".page2id("productos")."' THEN (SELECT /*MYSQL CONCAT('link:productos(',-id,'):',nombre) *//*SQLITE 'link:productos(' || -id || '):' || nombre */ FROM tbl_productos WHERE id=a.id_registro)
+				WHEN '".page2id("proveedores")."' THEN (SELECT /*MYSQL CONCAT('link:proveedores(',-id,'):',nombre) *//*SQLITE 'link:proveedores(' || -id || '):' || nombre */ FROM tbl_proveedores WHERE id=a.id_registro)
+				WHEN '".page2id("proyectos")."' THEN (SELECT /*MYSQL CONCAT('link:proyectos(',-id,'):',nombre) *//*SQLITE 'link:proyectos(' || -id || '):' || nombre */ FROM tbl_proyectos WHERE id=a.id_registro)
+				WHEN '".page2id("seguimientos")."' THEN (SELECT /*MYSQL CONCAT('link:seguimientos(',-id,'):',comentarios) *//*SQLITE 'link:seguimientos(' || -id || '):' || comentarios */ FROM tbl_seguimientos WHERE id=a.id_registro)
+				WHEN '".page2id("textos")."' THEN (SELECT /*MYSQL CONCAT('link:textos(',-id,'):',nombre) *//*SQLITE 'link:textos(' || -id || '):' || nombre */ FROM tbl_textos WHERE id=a.id_registro)
+				WHEN '".page2id("tiposevento")."' THEN (SELECT /*MYSQL CONCAT('link:tiposevento(',-id,'):',nombre) *//*SQLITE 'link:tiposevento(' || -id || '):' || nombre */ FROM tbl_tiposevento WHERE id=a.id_registro)
+				WHEN '".page2id("usuarios")."' THEN (SELECT /*MYSQL CONCAT('link:usuarios(',-id,'):',login) *//*SQLITE 'link:usuarios(' || -id || '):' || login */ FROM tbl_usuarios WHERE id=a.id_registro)
+			END nombre,
+			CASE a.id_aplicacion
+				WHEN '".page2id("actas")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_actas WHERE id=a.id_registro)
+				WHEN '".page2id("agenda")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_agenda WHERE id=a.id_registro)
+				WHEN '".page2id("campanyas")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_campanyas WHERE id=a.id_registro)
+				WHEN '".page2id("clientes")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_clientes WHERE id=a.id_registro)
+				WHEN '".page2id("contactos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_contactos WHERE id=a.id_registro)
+				WHEN '".page2id("correo")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',(SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE CONCAT(nombre,' &lt;',valor,'&gt;') END SEPARATOR '; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id_registro AND a1.id_tipo=1),' - ',(CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END),
+				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END,
+				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END,
+				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END,
+				CASE state_new WHEN 1 THEN ' (".LANG_ESCAPE("statenew","correo").")' ELSE '' END,
+				CASE state_reply WHEN 1 THEN ' (".LANG_ESCAPE("statereply","correo").")' ELSE '' END,
+				CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward","correo").")' ELSE '' END,
+				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","correo").")' ELSE '' END,
+				CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam","correo").")' ELSE '' END,
+				CASE is_outbox WHEN 0 THEN CASE state_new+state_reply+state_forward+state_wait+state_spam WHEN 0 THEN ' (".LANG_ESCAPE("stateread","correo").")' ELSE '' END ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || (SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE nombre || ' &lt;' || valor || '&gt;' END,'; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id_registro AND a1.id_tipo=1) || ' - ' || (CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END ||
+				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END ||
+				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END ||
+				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END ||
+				CASE state_new WHEN 1 THEN ' (".LANG_ESCAPE("statenew","correo").")' ELSE '' END ||
+				CASE state_reply WHEN 1 THEN ' (".LANG_ESCAPE("statereply","correo").")' ELSE '' END ||
+				CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward","correo").")' ELSE '' END ||
+				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","correo").")' ELSE '' END ||
+				CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam","correo").")' ELSE '' END ||
+				CASE is_outbox WHEN 0 THEN CASE state_new+state_reply+state_forward+state_wait+state_spam WHEN 0 THEN ' (".LANG_ESCAPE("stateread","correo").")' ELSE '' END ELSE '' END) */ FROM tbl_correo WHERE id=a.id_registro)
+				WHEN '".page2id("cuentas")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_cuentas WHERE id=a.id_registro)
+				WHEN '".page2id("documentos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_documentos WHERE id=a.id_registro)
+				WHEN '".page2id("empleados")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_empleados WHERE id=a.id_registro)
+				WHEN '".page2id("epigrafes")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_epigrafes WHERE id=a.id_registro)
+				WHEN '".page2id("estados")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_estados WHERE id=a.id_registro)
+				WHEN '".page2id("facturas")."' THEN (SELECT CASE num WHEN '' THEN /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ','".LANG_ESCAPE("albaran")."',' ',LPAD(id,5,0),' ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || '".LANG_ESCAPE("albaran")."' || ' ' || SUBSTR('00000' || id,-5,5) || ' ' || nombre */ ELSE /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ','".LANG_ESCAPE("factura")."',' ',num,' ',nombre,CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '&lt;strike&gt;".LANG_ESCAPE("cobrado","facturas")."&lt;/strike&gt;' END) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || '".LANG_ESCAPE("factura")."' || ' ' || num || ' ' || nombre || CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '&lt;strike&gt;".LANG_ESCAPE("cobrado","facturas")."&lt;/strike&gt;' END */ END FROM tbl_facturas WHERE id=a.id_registro)
+				WHEN '".page2id("feeds")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',(SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed),' - ',title,
+				CASE WHEN state_new=1 AND state_modified=0 THEN ' (".LANG_ESCAPE("statenew","feeds").")' ELSE '' END,
+				CASE state_modified WHEN 1 THEN ' (".LANG_ESCAPE("statemodified","feeds").")' ELSE '' END,
+				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","feeds").")' ELSE '' END,
+				CASE state_new+state_modified+state_wait WHEN 0 THEN ' (".LANG_ESCAPE("stateread","feeds").")' ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || (SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed) || ' - ' || title ||
+				CASE WHEN state_new=1 AND state_modified=0 THEN ' (".LANG_ESCAPE("statenew","feeds").")' ELSE '' END ||
+				CASE state_modified WHEN 1 THEN ' (".LANG_ESCAPE("statemodified","feeds").")' ELSE '' END ||
+				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","feeds").")' ELSE '' END ||
+				CASE state_new+state_modified+state_wait WHEN 0 THEN ' (".LANG_ESCAPE("stateread","feeds").")' ELSE '' END */ FROM tbl_feeds WHERE id=a.id_registro)
+				WHEN '".page2id("formaspago")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_formaspago WHERE id=a.id_registro)
+				WHEN '".page2id("gastos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',descripcion) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || descripcion */ FROM tbl_gastos WHERE id=a.id_registro)
+				WHEN '".page2id("grupos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_grupos WHERE id=a.id_registro)
+				WHEN '".page2id("importaciones")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_importaciones WHERE id=a.id_registro)
+				WHEN '".page2id("incidencias")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_incidencias WHERE id=a.id_registro)
+				WHEN '".page2id("partes")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',tarea) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || tarea */ FROM tbl_partes WHERE id=a.id_registro)
+				WHEN '".page2id("periodicas")."' THEN (SELECT (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_clientes WHERE id=id_cliente) FROM tbl_periodicas WHERE id=a.id_registro)
+				WHEN '".page2id("posiblescli")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_posiblescli WHERE id=a.id_registro)
+				WHEN '".page2id("presupuestos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_presupuestos WHERE id=a.id_registro)
+				WHEN '".page2id("prioridades")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_prioridades WHERE id=a.id_registro)
+				WHEN '".page2id("productos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_productos WHERE id=a.id_registro)
+				WHEN '".page2id("proveedores")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_proveedores WHERE id=a.id_registro)
+				WHEN '".page2id("proyectos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_proyectos WHERE id=a.id_registro)
+				WHEN '".page2id("seguimientos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',comentarios) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || comentarios */ FROM tbl_seguimientos WHERE id=a.id_registro)
+				WHEN '".page2id("textos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_textos WHERE id=a.id_registro)
+				WHEN '".page2id("tiposevento")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_tiposevento WHERE id=a.id_registro)
+				WHEN '".page2id("usuarios")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',login) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || login */ FROM tbl_usuarios WHERE id=a.id_registro)
+			END action_title,
+			CASE WHEN fichero_size&gt;1073741824 THEN /*SQLITE ROUND(fichero_size/1073741824.0,2) || ' Gbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes') */
+				WHEN fichero_size&gt;1048576 THEN /*SQLITE ROUND(fichero_size/1048576.0,2) || ' Mbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes') */
+				WHEN fichero_size&gt;1024 THEN /*SQLITE ROUND(fichero_size/1024.0,2) || ' Kbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes') */
+				ELSE /*SQLITE fichero_size || ' bytes' *//*MYSQL CONCAT(fichero_size,' bytes') */
+			END fichero_size2,
+			'true' action_download,
+			'true' action_viewpdf
+			FROM tbl_ficheros a
+			LEFT JOIN tbl_registros e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro AND e.primero='1'
+			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
+			WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion')
+			AND ".make_like_query("fichero,fichero_file,fichero_type,fichero_size,usuario,aplicacion,id2,nombre,datetime",$filtro)."
+			AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
+			AND (IFNULL(email_privated,0)=0 OR (email_privated=1 AND id_usuario='".current_user()."'))
+			AND ".check_sql($page,"list")</query>
+		<order global="order" eval="true">$order</order>
+		<limit global="limit" eval="true">$limit</limit>
+		<offset global="offset" eval="true">$offset</offset>
+	</list>
+</root>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>common</default>
+	<common>
+		<title>SaltOS programme d'installation</title>
+		<yes>Oui</yes>
+		<no>Non</no>
+		<language revised="false">Sélection de la langue, la conception et icônes</language>
+		<welcome_message>Bienvenue sur le programme d'installation de SaltOS</welcome_message>
+		<lang_message>Sélectionner la langue: </lang_message>
+		<style_message revised="false">Sélectionnez la conception: </style_message>
+		<iconset_message revised="false">Sélectionnez les icônes: </iconset_message>
+		<begin_message>Appuyer "Prochain" afin de débuter l'installation de SaltOS seulement 5 étapes</begin_message>
+		<back>Retour</back>
+		<next>Prochain</next>
+		<test>Tester</test>
+		<install>Installé SaltOS</install>
+		<saltos>Lancer SaltOS</saltos>
+		<is_writable>Vérifier permission d'écriture</is_writable>
+		<is_executable>vérifier les programmes externes</is_executable>
+		<directory>Répertoire</directory>
+		<file>Fichier</file>
+		<executable>Exécutable</executable>
+		<database_link>Connections a la base de donnée</database_link>
+		<select_dbtype>Sélectionner le DBMS</select_dbtype>
+		<select_prefered> (recommander)</select_prefered>
+		<selected_dbtype>Sélectionner DBMS</selected_dbtype>
+		<dbfile>fichiers base de données</dbfile>
+		<dbtest1>Tester la connexion</dbtest1>
+		<dbtest2 revised="false">Appui à la fonction de GROUP_CONCAT</dbtest2>
+		<dbhost>Host</dbhost>
+		<dbport revised="false">Port</dbport>
+		<dbuser>Usager</dbuser>
+		<dbpass>Mot passe</dbpass>
+		<dbname>Nom base de donnée</dbname>
+		<admin_account>accéder au compte administrateur de la base</admin_account>
+		<user>Usager</user>
+		<pass>Mot de passe</pass>
+		<email>Courriel</email>
+		<optional>Optionnel</optional>
+		<forcessl>Forcer SSL (https)</forcessl>
+		<timezone>Zone géographique</timezone>
+		<exampledata>Importation de données en exemple</exampledata>
+		<undefined>Indéfini</undefined>
+		<install_input>Summaire et confirmation de l'installation</install_input>
+		<install_output>Résultat de l'installation</install_output>
+		<config>Sauvegarder les paramètres pour accéder à la base de données</config>
+		<dbschema>Créer des tables dans la base de données</dbschema>
+		<dbstatic>Importer des données internes</dbstatic>
+		<streetdata>Importer des données</streetdata>
+		<defaultdata revised="false">Importer des données génériques</defaultdata>
+		<permissiondata>Créer administrer les permissions pour les groupes administer</permissiondata>
+		<delete>Supprimer le dossier d'installation</delete>
+		<rename>Renommer le dossier d'installation files</rename>
+		<finish>Installation Complété</finish>
+		<gotohome>Rafraîchir la page</gotohome>
+		<notifybug>Rapporter un bug</notifybug>
+		<step>Étape</step>
+		<lang>Langue</lang>
+		<style revised="false">Conception</style>
+		<iconset revised="false">Icônes</iconset>
+		<env_vars>Environnements variables</env_vars>
+		<env_path>PATH</env_path>
+		<env_lang>LANG</env_lang>
+	</common>
+</root>

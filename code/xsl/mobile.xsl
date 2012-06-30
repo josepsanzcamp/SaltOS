@@ -1,0 +1,1195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:output method="html" version="1.0" encoding="UTF-8" indent="no"
+	doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
+	doctype-system ="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
+
+<xsl:template name="head">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<xsl:for-each select="/root">
+		<link href="{info/favicon}" rel="icon"></link>
+		<link href="{info/favicon}" rel="shortcut icon"></link>
+		<link href="{info/favicon}" rel="apple-touch-icon"/>
+		<link href="{info/favicon}" rel="apple-touch-icon-precomposed"/>
+		<title><xsl:call-template name="title_2"/></title>
+		<xsl:call-template name="styles"/>
+		<xsl:call-template name="javascript"/>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="title">
+	<xsl:for-each select="/root">
+		<div class="ui-bar ui-bar-{/root/info/style}">
+			<h3><xsl:call-template name="title_2"/></h3>
+		</div>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="title_2">
+	<xsl:value-of select="info/title"/><xsl:text> - </xsl:text><xsl:value-of select="info/name"/><xsl:text> </xsl:text>v<xsl:value-of select="info/version"/><xsl:text> </xsl:text>r<xsl:value-of select="info/revision"/>
+</xsl:template>
+
+<xsl:template name="javascript">
+	<xsl:for-each select="javascript/*">
+		<xsl:choose>
+			<xsl:when test="name()='function'">
+				<script type="text/javascript">function <xsl:value-of select="."/></script>
+			</xsl:when>
+			<xsl:when test="name()='include'">
+				<script type="text/javascript" src="{.}?r={/root/info/revision}"></script>
+			</xsl:when>
+			<xsl:when test="name()='inline'">
+				<script type="text/javascript"><xsl:value-of select="."/></script>
+			</xsl:when>
+			<xsl:when test="name()='cache'">
+				<xsl:choose>
+					<xsl:when test="/root/info/usejscache='true'">
+						<xsl:if test="count(include)>0">
+							<script type="text/javascript" src="">
+								<xsl:attribute name="src">xml.php?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/>,</xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
+							</script>
+						</xsl:if>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:for-each select="include">
+							<script type="text/javascript" src="{.}?r={/root/info/revision}"></script>
+						</xsl:for-each>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="styles">
+	<xsl:for-each select="styles/*">
+		<xsl:choose>
+			<xsl:when test="name()='include'">
+				<link href="{.}?r={/root/info/revision}" rel="stylesheet" type="text/css"></link>
+			</xsl:when>
+			<xsl:when test="name()='inline'">
+				<style type="text/css"><xsl:value-of select="."/></style>
+			</xsl:when>
+			<xsl:when test="name()='cache'">
+				<xsl:choose>
+					<xsl:when test="/root/info/usecsscache='true'">
+						<xsl:if test="count(include)>0">
+							<link href="" rel="stylesheet" type="text/css">
+								<xsl:attribute name="href">xml.php?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/>,</xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
+							</link>
+						</xsl:if>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:for-each select="include">
+							<link href="{.}?r={/root/info/revision}" rel="stylesheet" type="text/css"></link>
+						</xsl:for-each>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="menu">
+	<xsl:for-each select="/root/menu">
+		<div class="ui-content ui-body-{/root/info/style}">
+			<div class="ui-select">
+			<div class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-block ui-btn-icon-right ui-btn-up-{/root/info/style}">
+			<span class="ui-btn-inner ui-btn-corner-all">
+			<span class="ui-btn-text">&#160;</span>
+			<span class="ui-icon ui-icon-arrow-d ui-icon-shadow">&#160;</span>
+			</span>
+				<select class="menu" ismenu="true" autocomplete="off">
+					<xsl:for-each select="group">
+						<xsl:choose>
+							<xsl:when test="show='false'"/>
+							<xsl:otherwise>
+								<optgroup label="{label}">
+									<xsl:for-each select="option[onclick!='false']">
+										<option value="{onclick}" title="{tip}">
+											<xsl:if test="selected='true'">
+												<xsl:attribute name="selected">true</xsl:attribute>
+											</xsl:if>
+											<xsl:value-of select="label"/>
+										</option>
+									</xsl:for-each>
+								</optgroup>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:for-each>
+				</select>
+			</div>
+			</div>
+		</div>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="alert">
+	<xsl:for-each select="/root/alerts/alert">
+		<script type="text/javascript">$(document).ready(function() { if(typeof(parent.notice)=="function") parent.notice(lang_alert(),"<xsl:value-of select="."/>");else if(typeof(notice)=="function") notice(lang_alert(),"<xsl:value-of select="."/>",false,""); });</script>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="error">
+	<xsl:for-each select="/root/errors/error">
+		<script type="text/javascript">$(document).ready(function() { if(typeof(parent.notice)=="function") parent.notice(lang_error(),"<xsl:value-of select="."/>");else if(typeof(notice)=="function") notice(lang_error(),"<xsl:value-of select="."/>",false,""); });</script>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="print_string_length">
+	<xsl:param name="text"/>
+	<xsl:param name="size"/>
+	<xsl:choose>
+		<xsl:when test="$size!=''">
+			<xsl:choose>
+				<xsl:when test="string-length($text)>=$size">
+					<span title="{$text}"><xsl:value-of select="substring($text,1,$size)"/><xsl:text>...</xsl:text></span>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="$text"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="$text"/>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="replace_string">
+	<xsl:param name="find"/>
+	<xsl:param name="replace"/>
+	<xsl:param name="string"/>
+	<xsl:choose>
+		<xsl:when test="contains($string, $find)">
+			<xsl:value-of select="substring-before($string, $find)"/>
+			<xsl:value-of select="$replace"/>
+			<xsl:call-template name="replace_string">
+				<xsl:with-param name="find" select="$find"/>
+				<xsl:with-param name="replace" select="$replace"/>
+				<xsl:with-param name="string" select="substring-after($string, $find)"/>
+			</xsl:call-template>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="$string"/>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="list_quick">
+	<xsl:for-each select="quick">
+		<div class="ui-content ui-body-{/root/info/style}">
+			<xsl:call-template name="form_by_rows">
+				<xsl:with-param name="form" select="null"/>
+				<xsl:with-param name="node" select="null"/>
+				<xsl:with-param name="prefix" select="null"/>
+				<xsl:with-param name="iter" select="row"/>
+			</xsl:call-template>
+		</div>
+		<div class="ui-bar ui-bar-{/root/info/style}"></div>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="list_pager">
+	<xsl:for-each select="pager">
+		<div class="ui-bar ui-bar-{/root/info/style}"></div>
+		<div class="ui-content ui-body-{/root/info/style}">
+			<xsl:call-template name="form_by_rows">
+				<xsl:with-param name="form" select="null"/>
+				<xsl:with-param name="node" select="null"/>
+				<xsl:with-param name="prefix" select="null"/>
+				<xsl:with-param name="iter" select="row"/>
+			</xsl:call-template>
+		</div>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="list">
+	<xsl:for-each select="/root/list">
+		<xsl:call-template name="styles"/>
+		<xsl:call-template name="javascript"/>
+		<div class="ui-bar ui-bar-{/root/info/style}">
+			<h3><xsl:value-of select="title"/></h3>
+		</div>
+		<xsl:call-template name="list_quick"/>
+		<div class="ui-content ui-body-{/root/info/style}">
+			<xsl:choose>
+				<xsl:when test="count(rows/row)=0">
+					<ul class="ui-listview">
+						<li class="ui-li ui-li-static ui-body-{/root/info/style}">
+							<xsl:value-of select="nodata/label"/>
+						</li>
+					</ul>
+				</xsl:when>
+				<xsl:otherwise>
+					<ul class="ui-listview">
+						<li class="ui-li ui-li-static ui-body-{/root/info/style}">
+							<div>
+								<div class="ui-checkbox">
+								<input type="checkbox" class="master" name="master" id="master" value="1" autocomplete="off"/>
+								<label for="master" class="ui-btn ui-btn-corner-all ui-mini ui-btn-icon-left ui-checkbox-off ui-btn-up-{/root/info/style}">
+								<span class="ui-btn-inner ui-btn-corner-all">
+								<span class="ui-btn-text">&#160;</span>
+								<span class="ui-icon ui-icon-checkbox-off ui-icon-shadow">&#160;</span>
+								</span>
+								</label>
+								</div>
+							</div>
+						</li>
+						<xsl:for-each select="rows/row">
+							<li class="ui-li ui-li-static ui-body-{/root/info/style}">
+								<div>
+									<div class="ui-checkbox">
+									<input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1" autocomplete="off"/>
+									<label for="slave_{id}" class="ui-btn ui-btn-corner-all ui-mini ui-btn-icon-left ui-checkbox-off ui-btn-up-{/root/info/style}">
+									<span class="ui-btn-inner ui-btn-corner-all">
+									<span class="ui-btn-text">&#160;</span>
+									<span class="ui-icon ui-icon-checkbox-off ui-icon-shadow">&#160;</span>
+									</span>
+									</label>
+									</div>
+								</div>
+								<xsl:variable name="id" select="action_id"/>
+								<xsl:variable name="style" select="action_style"/>
+								<xsl:variable name="row" select="*"/>
+								<xsl:for-each select="../../fields/field">
+									<xsl:variable name="name" select="name"/>
+									<xsl:variable name="size" select="size"/>
+									<xsl:variable name="class" select="class"/>
+									<xsl:variable name="label" select="label"/>
+									<xsl:for-each select="$row[name()=$name]">
+										<div>
+											<xsl:choose>
+												<xsl:when test="node()=''">
+													<xsl:value-of select="$label"/>:
+													<xsl:text>-</xsl:text>
+												</xsl:when>
+												<xsl:when test="substring(node(),1,4)='tel:'">
+													<xsl:value-of select="$label"/>:
+													<a class="tellink ui-link" href="javascript:void(0)" onclick="" title="{substring(node(),5)}">
+														<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
+															<xsl:with-param name="find">'</xsl:with-param>
+															<xsl:with-param name="replace"> </xsl:with-param>
+															<xsl:with-param name="string" select="node()"/>
+														</xsl:call-template>')</xsl:attribute>
+														<xsl:call-template name="print_string_length">
+															<xsl:with-param name="text" select="substring(node(),5)"/>
+															<xsl:with-param name="size" select="$size"/>
+														</xsl:call-template>
+													</a>
+												</xsl:when>
+												<xsl:when test="substring(node(),1,4)='fax:'">
+													<xsl:value-of select="$label"/>:
+													<a class="faxlink ui-link" href="javascript:void(0)" onclick="" title="{substring(node(),5)}">
+														<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
+															<xsl:with-param name="find">'</xsl:with-param>
+															<xsl:with-param name="replace"> </xsl:with-param>
+															<xsl:with-param name="string" select="node()"/>
+														</xsl:call-template>')</xsl:attribute>
+														<xsl:call-template name="print_string_length">
+															<xsl:with-param name="text" select="substring(node(),5)"/>
+															<xsl:with-param name="size" select="$size"/>
+														</xsl:call-template>
+													</a>
+												</xsl:when>
+												<xsl:when test="substring(node(),1,7)='mailto:'">
+													<xsl:value-of select="$label"/>:
+													<a class="maillink ui-link" href="javascript:void(0)" onclick="" title="{substring(node(),8)}">
+														<xsl:attribute name="onclick">mailto('<xsl:call-template name="replace_string">
+															<xsl:with-param name="find">'</xsl:with-param>
+															<xsl:with-param name="replace"> </xsl:with-param>
+															<xsl:with-param name="string" select="substring(node(),8)"/>
+														</xsl:call-template>')</xsl:attribute>
+														<xsl:call-template name="print_string_length">
+															<xsl:with-param name="text" select="substring(node(),8)"/>
+															<xsl:with-param name="size" select="$size"/>
+														</xsl:call-template>
+													</a>
+												</xsl:when>
+												<xsl:when test="substring(node(),1,5)='href:'">
+													<xsl:value-of select="$label"/>:
+													<a class="weblink ui-link" href="javascript:void(0)" onclick="" title="{substring(node(),6)}">
+														<xsl:attribute name="onclick">openwin('<xsl:call-template name="replace_string">
+															<xsl:with-param name="find">'</xsl:with-param>
+															<xsl:with-param name="replace"> </xsl:with-param>
+															<xsl:with-param name="string" select="substring(node(),6)"/>
+														</xsl:call-template>')</xsl:attribute>
+														<xsl:call-template name="print_string_length">
+															<xsl:with-param name="text" select="substring(node(),6)"/>
+															<xsl:with-param name="size" select="$size"/>
+														</xsl:call-template>
+													</a>
+												</xsl:when>
+												<xsl:when test="substring(node(),1,5)='link:'">
+													<xsl:value-of select="$label"/>:
+													<xsl:variable name="data1"><xsl:call-template name="replace_string">
+														<xsl:with-param name="find">://</xsl:with-param>
+														<xsl:with-param name="replace">%3A%2F%2F</xsl:with-param>
+														<xsl:with-param name="string" select="substring(node(),6)"/>
+													</xsl:call-template></xsl:variable>
+													<xsl:variable name="data2"><xsl:call-template name="replace_string">
+														<xsl:with-param name="find">%3A%2F%2F</xsl:with-param>
+														<xsl:with-param name="replace">://</xsl:with-param>
+														<xsl:with-param name="string" select="substring-before($data1,':')"/>
+													</xsl:call-template></xsl:variable>
+													<xsl:variable name="data3"><xsl:call-template name="replace_string">
+														<xsl:with-param name="find">%3A%2F%2F</xsl:with-param>
+														<xsl:with-param name="replace">://</xsl:with-param>
+														<xsl:with-param name="string" select="substring-after($data1,':')"/>
+													</xsl:call-template></xsl:variable>
+													<a class="applink ui-link" href="javascript:void(0)" onclick="{$data2}" title="{$data3}">
+														<xsl:call-template name="print_string_length">
+															<xsl:with-param name="text" select="$data3"/>
+															<xsl:with-param name="size" select="$size"/>
+														</xsl:call-template>
+													</a>
+												</xsl:when>
+												<xsl:otherwise>
+													<xsl:value-of select="$label"/>:
+													<xsl:call-template name="print_string_length">
+														<xsl:with-param name="text" select="node()"/>
+														<xsl:with-param name="size" select="$size"/>
+													</xsl:call-template>
+												</xsl:otherwise>
+											</xsl:choose>
+										</div>
+									</xsl:for-each>
+								</xsl:for-each>
+								<div>
+									<xsl:for-each select="*[substring(name(),1,7)='action_']">
+										<xsl:variable name="name" select="substring(name(),8)"/>
+										<xsl:variable name="value" select="."/>
+										<xsl:for-each select="../../../actions/*[name()=$name][$value='true']">
+											<a href="javascript:void(0)" class="ui-btn ui-btn-up-{/root/info/style} ui-btn-inline ui-shadow ui-btn-corner-all ui-mini">
+												<xsl:attribute name="onclick">
+													<xsl:call-template name="replace_string">
+														<xsl:with-param name="find">ID</xsl:with-param>
+														<xsl:with-param name="replace" select="$id"/>
+														<xsl:with-param name="string" select="onclick"/>
+													</xsl:call-template>
+												</xsl:attribute>
+												<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"><xsl:value-of select="label"/></span></span>
+											</a>
+										</xsl:for-each>
+									</xsl:for-each>
+								</div>
+							</li>
+						</xsl:for-each>
+					</ul>
+				</xsl:otherwise>
+			</xsl:choose>
+		</div>
+		<xsl:call-template name="list_pager"/>
+		<xsl:for-each select="form">
+			<xsl:call-template name="form_maker"/>
+		</xsl:for-each>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="form_field">
+	<xsl:param name="form"/>
+	<xsl:param name="node"/>
+	<xsl:param name="prefix"/>
+	<xsl:variable name="name" select="name"/>
+	<xsl:choose>
+		<xsl:when test="show!='true'"/>
+		<xsl:when test="type='hidden'">
+			<input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" autocomplete="off">
+				<xsl:for-each select="$node/*[name()=$name]">
+					<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+				</xsl:for-each>
+			</input>
+		</xsl:when>
+		<xsl:when test="type='text'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}" spellcheck="false" autocomplete="off">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+					</xsl:for-each>
+					<xsl:choose>
+						<xsl:when test="readonly='true'">
+							<xsl:attribute name="readonly">true</xsl:attribute>
+							<xsl:attribute name="class">ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:if test="speech='true'">
+								<xsl:attribute name="x-webkit-speech">true</xsl:attribute>
+								<xsl:attribute name="onwebkitspeechchange">this.value=ucfirst(this.value)</xsl:attribute>
+							</xsl:if>
+						</xsl:otherwise>
+					</xsl:choose>
+				</input>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='integer'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}" spellcheck="false" autocomplete="off">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+					</xsl:for-each>
+					<xsl:choose>
+						<xsl:when test="readonly='true'">
+							<xsl:attribute name="readonly">true</xsl:attribute>
+							<xsl:attribute name="class">ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="isinteger">true</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
+				</input>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='float'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}" spellcheck="false" autocomplete="off">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+					</xsl:for-each>
+					<xsl:choose>
+						<xsl:when test="readonly='true'">
+							<xsl:attribute name="readonly">true</xsl:attribute>
+							<xsl:attribute name="class">ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="isfloat">true</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
+				</input>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='color'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}" spellcheck="false" autocomplete="off">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+					</xsl:for-each>
+					<xsl:choose>
+						<xsl:when test="readonly='true'">
+							<xsl:attribute name="readonly">true</xsl:attribute>
+							<xsl:attribute name="class">ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="iscolor">true</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
+				</input>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='date'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}" spellcheck="false" autocomplete="off">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+					</xsl:for-each>
+					<xsl:choose>
+						<xsl:when test="readonly='true'">
+							<xsl:attribute name="readonly">true</xsl:attribute>
+							<xsl:attribute name="class">ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="isdate">true</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
+				</input>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='time'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}" spellcheck="false" autocomplete="off">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+					</xsl:for-each>
+					<xsl:choose>
+						<xsl:when test="readonly='true'">
+							<xsl:attribute name="readonly">true</xsl:attribute>
+							<xsl:attribute name="class">ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="istime">true</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
+				</input>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='datetime'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}" spellcheck="false" autocomplete="off">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+					</xsl:for-each>
+					<xsl:choose>
+						<xsl:when test="readonly='true'">
+							<xsl:attribute name="readonly">true</xsl:attribute>
+							<xsl:attribute name="class">ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="isdatetime">true</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
+				</input>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='textarea'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<textarea name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}" spellcheck="false" autocomplete="off">
+					<xsl:if test="readonly='true'">
+						<xsl:attribute name="readonly">true</xsl:attribute>
+						<xsl:attribute name="class">ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+					</xsl:if>
+					<xsl:value-of select="value"/>
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:value-of select="."/>
+					</xsl:for-each>
+				</textarea>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='iframe'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<div class="preiframe ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}">
+					<xsl:if test="readonly='true'">
+						<xsl:attribute name="class">preiframe ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+					</xsl:if>
+					<iframe src="" name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" frameborder="0" class="{class3}" isloaded="false" onload="$(this).attr('isloaded','true');">
+						<xsl:if test="readonly='true'">
+							<xsl:attribute name="readonly">true</xsl:attribute>
+						</xsl:if>
+						<xsl:attribute name="src"><xsl:value-of select="value"/></xsl:attribute>
+						<xsl:for-each select="$node/*[name()=$name]">
+							<xsl:attribute name="src"><xsl:value-of select="."/></xsl:attribute>
+						</xsl:for-each>
+					</iframe>
+				</div>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='select'">
+			<div class="select">
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<div class="ui-select">
+				<div class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-block ui-btn-icon-right ui-btn-up-{/root/info/style}">
+				<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text">&#160;</span>
+				<span class="ui-icon ui-icon-arrow-d ui-icon-shadow">&#160;</span>
+				</span>
+					<select name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="{class3}" original="{value}" autocomplete="off">
+						<xsl:if test="readonly='true'">
+							<xsl:attribute name="disabled">true</xsl:attribute>
+							<xsl:attribute name="class">ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-block ui-btn-icon-right ui-btn-up-<xsl:value-of select="/root/info/style"/> ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+						</xsl:if>
+						<xsl:for-each select="$node/*[name()=$name]">
+							<xsl:attribute name="original"><xsl:value-of select="."/></xsl:attribute>
+						</xsl:for-each>
+						<xsl:for-each select="rows/row">
+							<option value="{value}">
+								<xsl:if test="value=../../value">
+									<xsl:attribute name="selected">true</xsl:attribute>
+								</xsl:if>
+								<xsl:variable name="value" select="value"/>
+								<xsl:for-each select="$node/*[name()=$name][.=$value]">
+									<xsl:attribute name="selected">true</xsl:attribute>
+								</xsl:for-each>
+								<xsl:value-of select="label"/>
+							</option>
+						</xsl:for-each>
+					</select>
+				</div>
+				</div>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='checkbox'">
+			<xsl:variable name="value" select="value"/>
+			<div>
+				<div class="ui-checkbox">
+				<xsl:if test="readonly='true'">
+					<xsl:attribute name="class">ui-checkbox ui-disabled</xsl:attribute>
+				</xsl:if>
+				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" labeled="{label}" autocomplete="off">
+					<xsl:if test="checked='true'">
+						<xsl:attribute name="checked">checked</xsl:attribute>
+					</xsl:if>
+					<xsl:for-each select="$node/*[name()=$name][.=$value]">
+						<xsl:attribute name="checked">checked</xsl:attribute>
+					</xsl:for-each>
+					<xsl:if test="readonly='true'">
+						<xsl:attribute name="disabled">true</xsl:attribute>
+					</xsl:if>
+				</input>
+				<label for="{$prefix}{name}" class="ui-btn ui-btn-corner-all ui-mini ui-btn-icon-left ui-checkbox-off ui-btn-up-{/root/info/style}">
+				<xsl:if test="checked='true'">
+					<xsl:attribute name="class">ui-btn ui-btn-corner-all ui-mini ui-btn-icon-left ui-checkbox-on ui-btn-up-<xsl:value-of select="/root/info/style"/></xsl:attribute>
+				</xsl:if>
+				<xsl:for-each select="$node/*[name()=$name][.=$value]">
+					<xsl:attribute name="class">ui-btn ui-btn-corner-all ui-mini ui-btn-icon-left ui-checkbox-on ui-btn-up-<xsl:value-of select="/root/info/style"/></xsl:attribute>
+				</xsl:for-each>
+				<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text"><xsl:value-of select="label"/></span>
+				<span class="ui-icon ui-icon-checkbox-off ui-icon-shadow">
+					<xsl:if test="checked='true'">
+						<xsl:attribute name="class">ui-icon ui-icon-checkbox-on ui-icon-shadow</xsl:attribute>
+					</xsl:if>
+					<xsl:for-each select="$node/*[name()=$name][.=$value]">
+						<xsl:attribute name="class">ui-icon ui-icon-checkbox-on ui-icon-shadow</xsl:attribute>
+					</xsl:for-each>
+					&#160;
+				</span>
+				</span>
+				</label>
+				</div>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='button'">
+			<a href="javascript:void(0)" onclick="{onclick}" focused="{focus}" labeled="{label}" class="ui-btn ui-btn-up-{/root/info/style} ui-btn-inline ui-shadow ui-btn-corner-all ui-mini {class2}">
+				<xsl:if test="disabled='true'">
+					<xsl:attribute name="onclick"></xsl:attribute>
+					<xsl:attribute name="class">ui-btn ui-btn-up-<xsl:value-of select="/root/info/style"/> ui-btn-inline ui-shadow ui-btn-corner-all ui-mini ui-disabled <xsl:value-of select="class2"/></xsl:attribute>
+				</xsl:if>
+				<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"><xsl:value-of select="value"/></span></span>
+			</a>
+		</xsl:when>
+		<xsl:when test="type='password'">
+			<div>
+				<xsl:if test="label!=''">
+					<label class="ui-input-text" for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="ui-input-text ui-body-{/root/info/style} ui-corner-all ui-shadow-inset ui-mini {class3}" spellcheck="false" autocomplete="off">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+					</xsl:for-each>
+					<xsl:if test="readonly='true'">
+						<xsl:attribute name="readonly">true</xsl:attribute>
+						<xsl:attribute name="class">ui-input-text ui-body-<xsl:value-of select="/root/info/style"/> ui-corner-all ui-shadow-inset ui-mini ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
+					</xsl:if>
+				</input>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='file'">
+			<!-- NOTHING TO DO -->
+		</xsl:when>
+		<xsl:when test="type='link'">
+			<xsl:variable name="tip">
+				<xsl:choose>
+					<xsl:when test="tip!=''">
+						<xsl:value-of select="tip"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="label"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<a href="javascript:void(0)" onclick="{onclick}" focused="{focus}" labeled="{label}" title="{$tip}" id="{$prefix}{name}" class="ui-btn ui-btn-up-{/root/info/style} ui-btn-inline ui-shadow ui-btn-corner-all ui-mini">
+				<xsl:for-each select="$node/*[name()=$name]">
+					<xsl:attribute name="onclick">javascript:<xsl:value-of select="."/></xsl:attribute>
+				</xsl:for-each>
+				<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"><xsl:value-of select="label"/></span></span>
+			</a>
+		</xsl:when>
+		<xsl:when test="type='separator'">
+			<!-- NOTHING TO DO -->
+		</xsl:when>
+		<xsl:when test="type='label'">
+			<div>
+				<label id="{$prefix}{name}">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:choose>
+							<xsl:when test="substring(.,1,4)='tel:'">
+								<a class="tellink ui-link" href="javascript:void(0)" onclick="">
+									<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
+										<xsl:with-param name="find">'</xsl:with-param>
+										<xsl:with-param name="replace"> </xsl:with-param>
+										<xsl:with-param name="string" select="."/>
+									</xsl:call-template>')</xsl:attribute>
+									<xsl:value-of select="substring(.,5)"/>
+								</a>
+							</xsl:when>
+							<xsl:when test="substring(.,1,4)='fax:'">
+								<a class="faxlink ui-link" href="javascript:void(0)" onclick="">
+									<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
+										<xsl:with-param name="find">'</xsl:with-param>
+										<xsl:with-param name="replace"> </xsl:with-param>
+										<xsl:with-param name="string" select="."/>
+									</xsl:call-template>')</xsl:attribute>
+									<xsl:value-of select="substring(.,5)"/>
+								</a>
+							</xsl:when>
+							<xsl:when test="substring(.,1,7)='mailto:'">
+								<a class="maillink ui-link" href="javascript:void(0)" onclick="">
+									<xsl:attribute name="onclick">mailto('<xsl:call-template name="replace_string">
+										<xsl:with-param name="find">'</xsl:with-param>
+										<xsl:with-param name="replace"> </xsl:with-param>
+										<xsl:with-param name="string" select="substring(.,8)"/>
+									</xsl:call-template>')</xsl:attribute>
+									<xsl:value-of select="substring(.,8)"/>
+								</a>
+							</xsl:when>
+							<xsl:when test="substring(.,1,5)='href:'">
+								<a class="weblink ui-link" href="javascript:void(0)" onclick="">
+									<xsl:attribute name="onclick">openwin('<xsl:call-template name="replace_string">
+										<xsl:with-param name="find">'</xsl:with-param>
+										<xsl:with-param name="replace"> </xsl:with-param>
+										<xsl:with-param name="string" select="substring(.,6)"/>
+									</xsl:call-template>')</xsl:attribute>
+									<xsl:value-of select="substring(.,6)"/>
+								</a>
+							</xsl:when>
+							<xsl:when test="substring(.,1,5)='link:'">
+								<xsl:variable name="data1"><xsl:call-template name="replace_string">
+									<xsl:with-param name="find">://</xsl:with-param>
+									<xsl:with-param name="replace">%3A%2F%2F</xsl:with-param>
+									<xsl:with-param name="string" select="substring(.,6)"/>
+								</xsl:call-template></xsl:variable>
+								<xsl:variable name="data2"><xsl:call-template name="replace_string">
+									<xsl:with-param name="find">%3A%2F%2F</xsl:with-param>
+									<xsl:with-param name="replace">://</xsl:with-param>
+									<xsl:with-param name="string" select="substring-before($data1,':')"/>
+								</xsl:call-template></xsl:variable>
+								<xsl:variable name="data3"><xsl:call-template name="replace_string">
+									<xsl:with-param name="find">%3A%2F%2F</xsl:with-param>
+									<xsl:with-param name="replace">://</xsl:with-param>
+									<xsl:with-param name="string" select="substring-after($data1,':')"/>
+								</xsl:call-template></xsl:variable>
+								<a class="applink ui-link" href="javascript:void(0)" onclick="{$data2}"><xsl:value-of select="$data3"/></a>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="."/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:for-each>
+					<span class="{class2}"><xsl:value-of select="label"/></span>
+				</label>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='image'">
+			<div>
+				<xsl:if test="label!=''">
+					<label for="{$prefix}{name}"><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<div>
+					<img class="{class}" src="" id="{$prefix}{name}">
+						<xsl:choose>
+							<xsl:when test="class!=''"/>
+							<xsl:otherwise>
+								<xsl:attribute name="class">image</xsl:attribute>
+							</xsl:otherwise>
+						</xsl:choose>
+						<xsl:variable name="width" select="width"/>
+						<xsl:variable name="height" select="height"/>
+						<xsl:choose>
+							<xsl:when test="phpthumb='false'">
+								<xsl:attribute name="src"><xsl:value-of select="image"/></xsl:attribute>
+								<xsl:for-each select="$node/*[name()=$name]">
+									<xsl:attribute name="src"><xsl:value-of select="."/></xsl:attribute>
+								</xsl:for-each>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:attribute name="src">xml.php?action=phpthumb&amp;src=<xsl:value-of select="image"/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
+								<xsl:for-each select="$node/*[name()=$name]">
+									<xsl:attribute name="src">xml.php?action=phpthumb&amp;src=<xsl:value-of select="."/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
+								</xsl:for-each>
+							</xsl:otherwise>
+						</xsl:choose>
+					</img>
+				</div>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='plot'">
+			<div>
+				<xsl:if test="label!=''">
+					<label for="{$prefix}{name}"><xsl:value-of select="label"/></label>
+				</xsl:if>
+				<div>
+					<map name="{generate-id(.)}" id="{generate-id(.)}"></map>
+					<img style="width:{width};height:{height}" class="{class}" src="" isplot="true" id="{$prefix}{name}" usemap="#{generate-id(.)}">
+						<xsl:attribute name="legend"><xsl:value-of select="legend"/></xsl:attribute>
+						<xsl:attribute name="vars"><xsl:value-of select="vars"/></xsl:attribute>
+						<xsl:attribute name="colors"><xsl:value-of select="colors"/></xsl:attribute>
+						<xsl:attribute name="graph"><xsl:value-of select="graph"/></xsl:attribute>
+						<xsl:attribute name="ticks"><xsl:for-each select="rows/row"><xsl:value-of select="y0"/>|</xsl:for-each></xsl:attribute>
+						<xsl:if test="count(rows/row/x0)>0"><xsl:attribute name="posx"><xsl:for-each select="rows/row"><xsl:value-of select="x0"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:attribute name="data1"><xsl:for-each select="rows/row"><xsl:value-of select="y1"/>|</xsl:for-each></xsl:attribute>
+						<xsl:if test="count(rows/row/y2)>0"><xsl:attribute name="data2"><xsl:for-each select="rows/row"><xsl:value-of select="y2"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y3)>0"><xsl:attribute name="data3"><xsl:for-each select="rows/row"><xsl:value-of select="y3"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y4)>0"><xsl:attribute name="data4"><xsl:for-each select="rows/row"><xsl:value-of select="y4"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y5)>0"><xsl:attribute name="data5"><xsl:for-each select="rows/row"><xsl:value-of select="y5"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y6)>0"><xsl:attribute name="data6"><xsl:for-each select="rows/row"><xsl:value-of select="y6"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y7)>0"><xsl:attribute name="data7"><xsl:for-each select="rows/row"><xsl:value-of select="y7"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y8)>0"><xsl:attribute name="data8"><xsl:for-each select="rows/row"><xsl:value-of select="y8"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y9)>0"><xsl:attribute name="data9"><xsl:for-each select="rows/row"><xsl:value-of select="y9"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y10)>0"><xsl:attribute name="data10"><xsl:for-each select="rows/row"><xsl:value-of select="y10"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y11)>0"><xsl:attribute name="data11"><xsl:for-each select="rows/row"><xsl:value-of select="y11"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y12)>0"><xsl:attribute name="data12"><xsl:for-each select="rows/row"><xsl:value-of select="y12"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y13)>0"><xsl:attribute name="data13"><xsl:for-each select="rows/row"><xsl:value-of select="y13"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y14)>0"><xsl:attribute name="data14"><xsl:for-each select="rows/row"><xsl:value-of select="y14"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y15)>0"><xsl:attribute name="data15"><xsl:for-each select="rows/row"><xsl:value-of select="y15"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:if test="count(rows/row/y16)>0"><xsl:attribute name="data16"><xsl:for-each select="rows/row"><xsl:value-of select="y16"/>|</xsl:for-each></xsl:attribute></xsl:if>
+						<xsl:choose>
+							<xsl:when test="class!=''"/>
+							<xsl:otherwise>
+								<xsl:attribute name="class">image phplot</xsl:attribute>
+							</xsl:otherwise>
+						</xsl:choose>
+					</img>
+				</div>
+			</div>
+		</xsl:when>
+		<xsl:when test="type='columnizer'">
+			<div class="columnizer {class2}"><xsl:value-of disable-output-escaping="yes" select="label"/></div>
+		</xsl:when>
+		<xsl:when test="type='menu'">
+			<div>
+				<div class="ui-select">
+				<div class="ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-block ui-btn-icon-right ui-btn-up-{/root/info/style}">
+				<span class="ui-btn-inner ui-btn-corner-all">
+				<span class="ui-btn-text">&#160;</span>
+				<span class="ui-icon ui-icon-arrow-d ui-icon-shadow">&#160;</span>
+				</span>
+					<select name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="{class2}" ismenu="true" autocomplete="off">
+						<xsl:if test="readonly='true'">
+							<xsl:attribute name="disabled">true</xsl:attribute>
+							<xsl:attribute name="class">ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-block ui-btn-icon-right ui-btn-up-<xsl:value-of select="/root/info/style"/> ui-disabled <xsl:value-of select="class2"/></xsl:attribute>
+						</xsl:if>
+						<xsl:for-each select="*">
+							<xsl:choose>
+								<xsl:when test="name()='option'">
+									<xsl:if test="onclick!='false'">
+										<option value="{onclick}" class="{class}">
+											<xsl:if test="disabled='true'">
+												<xsl:attribute name="value"></xsl:attribute>
+												<xsl:attribute name="class">ui-disabled <xsl:value-of select="class2"/></xsl:attribute>
+											</xsl:if>
+											<xsl:value-of select="label"/>
+										</option>
+									</xsl:if>
+								</xsl:when>
+								<xsl:when test="name()='group'">
+									<xsl:choose>
+										<xsl:when test="show='false'"/>
+										<xsl:otherwise>
+											<optgroup label="{label}" class="{class}">
+												<xsl:for-each select="option[onclick!='false']">
+													<xsl:choose>
+														<xsl:when test="show='false'"/>
+														<xsl:otherwise>
+															<option value="{onclick}" class="{class}">
+																<xsl:if test="disabled='true'">
+																	<xsl:attribute name="value"></xsl:attribute>
+																	<xsl:attribute name="class">ui-disabled <xsl:value-of select="class2"/></xsl:attribute>
+																</xsl:if>
+																<xsl:value-of select="label"/>
+															</option>
+														</xsl:otherwise>
+													</xsl:choose>
+												</xsl:for-each>
+											</optgroup>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:when>
+							</xsl:choose>
+						</xsl:for-each>
+					</select>
+				</div>
+				</div>
+			</div>
+		</xsl:when>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="form_by_rows">
+	<xsl:param name="form"/>
+	<xsl:param name="node"/>
+	<xsl:param name="prefix"/>
+	<xsl:param name="iter"/>
+	<xsl:for-each select="$iter">
+		<xsl:choose>
+			<xsl:when test="show='false'"/>
+			<xsl:otherwise>
+				<xsl:for-each select="field">
+					<xsl:call-template name="form_field">
+						<xsl:with-param name="form" select="$form"/>
+						<xsl:with-param name="node" select="$node"/>
+						<xsl:with-param name="prefix" select="$prefix"/>
+					</xsl:call-template>
+				</xsl:for-each>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="form_maker">
+	<form name="{name}" id="{name}" action="{action}" method="{method}" onsubmit="return false">
+		<xsl:call-template name="form_maker_1"/>
+		<xsl:call-template name="form_maker_2"/>
+	</form>
+</xsl:template>
+
+<xsl:template name="form_maker_1">
+	<xsl:for-each select="hiddens/field[type='hidden']">
+		<input type="hidden" name="{name}" value="{value}" autocomplete="off"/>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="form_maker_2">
+	<xsl:variable name="form" select="name"/>
+	<xsl:variable name="fields" select="fields"/>
+	<xsl:variable name="rows" select="rows"/>
+	<xsl:choose>
+		<xsl:when test="count($fields/row)!=0">
+			<xsl:for-each select="$fields">
+				<xsl:choose>
+					<xsl:when test="show!='true'"/>
+					<xsl:otherwise>
+						<xsl:if test="title!=''">
+							<div class="ui-bar ui-bar-{/root/info/style}">
+								<h3><xsl:value-of select="title"/></h3>
+							</div>
+						</xsl:if>
+						<div class="ui-content ui-body-{/root/info/style}">
+							<xsl:if test="quick='true'">
+								<xsl:call-template name="form_quick">
+									<xsl:with-param name="quick" select="../quick"/>
+									<xsl:with-param name="prefix" select="null"/>
+								</xsl:call-template>
+							</xsl:if>
+							<xsl:call-template name="form_by_rows">
+								<xsl:with-param name="form" select="$form"/>
+								<xsl:with-param name="node" select="null"/>
+								<xsl:with-param name="prefix" select="null"/>
+								<xsl:with-param name="iter" select="row"/>
+							</xsl:call-template>
+							<xsl:if test="buttons='true'">
+								<xsl:call-template name="form_buttons">
+									<xsl:with-param name="buttons" select="../buttons"/>
+									<xsl:with-param name="prefix" select="null"/>
+								</xsl:call-template>
+							</xsl:if>
+						</div>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:for-each>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:for-each select="$fields/*">
+				<xsl:variable name="name1" select="name()"/>
+				<xsl:variable name="node1" select="."/>
+				<xsl:for-each select="$rows/*[name()=$name1]">
+					<xsl:variable name="name2" select="name()"/>
+					<xsl:variable name="node2" select="."/>
+					<xsl:choose>
+						<xsl:when test="count($node2/*)=0"/>
+						<xsl:when test="count($node2/*[name()=$name2])=0">
+							<xsl:for-each select="$node2/row">
+								<xsl:variable name="node3" select="."/>
+								<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
+								<input type="hidden" name="prefix_{$prefix}" value="{$prefix}" autocomplete="off"/>
+								<xsl:for-each select="$node1/fieldset">
+									<xsl:choose>
+										<xsl:when test="show!='true'"/>
+										<xsl:otherwise>
+											<xsl:if test="title!=''">
+												<div class="ui-bar ui-bar-{/root/info/style}">
+													<h3><xsl:value-of select="title"/></h3>
+												</div>
+											</xsl:if>
+											<div class="ui-content ui-body-{/root/info/style}">
+												<xsl:if test="quick='true'">
+													<xsl:call-template name="form_quick">
+														<xsl:with-param name="quick" select="../../../quick"/>
+														<xsl:with-param name="prefix" select="$prefix"/>
+													</xsl:call-template>
+												</xsl:if>
+												<xsl:call-template name="form_by_rows">
+													<xsl:with-param name="form" select="$form"/>
+													<xsl:with-param name="node" select="$node3"/>
+													<xsl:with-param name="prefix" select="$prefix"/>
+													<xsl:with-param name="iter" select="row"/>
+												</xsl:call-template>
+												<xsl:if test="buttons='true'">
+													<xsl:call-template name="form_buttons">
+														<xsl:with-param name="buttons" select="../../../buttons"/>
+														<xsl:with-param name="prefix" select="$prefix"/>
+													</xsl:call-template>
+												</xsl:if>
+											</div>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:for-each>
+							</xsl:for-each>
+						</xsl:when>
+						<xsl:when test="count($node2/*[name()=$name2])=1">
+							<xsl:for-each select="$node1/fieldset">
+								<xsl:choose>
+									<xsl:when test="show!='true'"/>
+									<xsl:otherwise>
+										<xsl:if test="title!=''">
+											<div class="ui-bar ui-bar-{/root/info/style}">
+												<h3><xsl:value-of select="title"/></h3>
+											</div>
+										</xsl:if>
+										<div class="ui-content ui-body-{/root/info/style}">
+											<xsl:if test="quick='true'">
+												<xsl:call-template name="form_quick">
+													<xsl:with-param name="quick" select="../../../quick"/>
+													<xsl:with-param name="prefix" select="null"/>
+												</xsl:call-template>
+											</xsl:if>
+											<xsl:call-template name="form_by_rows">
+												<xsl:with-param name="form" select="$form"/>
+												<xsl:with-param name="node" select="null"/>
+												<xsl:with-param name="prefix" select="null"/>
+												<xsl:with-param name="iter" select="head"/>
+											</xsl:call-template>
+											<xsl:variable name="node3" select="."/>
+											<xsl:for-each select="$node2/*/row">
+												<xsl:variable name="node4" select="."/>
+												<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
+												<input type="hidden" name="prefix_{$prefix}" value="{$prefix}" autocomplete="off"/>
+												<xsl:for-each select="$node3">
+													<xsl:call-template name="form_by_rows">
+														<xsl:with-param name="form" select="$form"/>
+														<xsl:with-param name="node" select="$node4"/>
+														<xsl:with-param name="prefix" select="$prefix"/>
+														<xsl:with-param name="iter" select="row"/>
+													</xsl:call-template>
+												</xsl:for-each>
+											</xsl:for-each>
+											<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_0_</xsl:variable>
+											<xsl:call-template name="form_by_rows">
+												<xsl:with-param name="form" select="$form"/>
+												<xsl:with-param name="node" select="null"/>
+												<xsl:with-param name="prefix" select="$prefix"/>
+												<xsl:with-param name="iter" select="tail"/>
+											</xsl:call-template>
+											<xsl:if test="buttons='true'">
+												<xsl:call-template name="form_buttons">
+													<xsl:with-param name="buttons" select="../../../buttons"/>
+													<xsl:with-param name="prefix" select="$prefix"/>
+												</xsl:call-template>
+											</xsl:if>
+										</div>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:for-each>
+						</xsl:when>
+					</xsl:choose>
+				</xsl:for-each>
+			</xsl:for-each>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="form">
+	<xsl:for-each select="/root/form">
+		<xsl:call-template name="styles"/>
+		<xsl:call-template name="javascript"/>
+		<xsl:call-template name="form_maker"/>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="form_buttons">
+	<xsl:param name="buttons"/>
+	<xsl:param name="prefix"/>
+	<xsl:for-each select="$buttons">
+		<xsl:call-template name="form_by_rows">
+			<xsl:with-param name="form" select="null"/>
+			<xsl:with-param name="node" select="null"/>
+			<xsl:with-param name="prefix" select="$prefix"/>
+			<xsl:with-param name="iter" select="row"/>
+		</xsl:call-template>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="form_quick">
+	<xsl:param name="quick"/>
+	<xsl:param name="prefix"/>
+	<xsl:for-each select="$quick">
+		<xsl:call-template name="form_by_rows">
+			<xsl:with-param name="form" select="null"/>
+			<xsl:with-param name="node" select="null"/>
+			<xsl:with-param name="prefix" select="prefix"/>
+			<xsl:with-param name="iter" select="row"/>
+		</xsl:call-template>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template match='/'>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<xsl:call-template name="head"/>
+		</head>
+		<body class="ui-mobile-viewport ui-overlay-{/root/info/style}">
+			<div class="ui-page ui-body-{/root/info/style} ui-page-active" id="page">
+				<div class="ui-layout-north">
+					<xsl:call-template name="title"/>
+				</div>
+				<div class="ui-layout-west">
+					<xsl:call-template name="menu"/>
+				</div>
+				<div class="ui-layout-center">
+					<xsl:call-template name="list"/>
+					<xsl:call-template name="form"/>
+					<xsl:call-template name="alert"/>
+					<xsl:call-template name="error"/>
+				</div>
+				<div class="ui-footer ui-bar-{/root/info/style} ui-footer-fixed slideup" id="jGrowl">
+				</div>
+			</div>
+		</body>
+	</html>
+</xsl:template>
+
+</xsl:stylesheet>

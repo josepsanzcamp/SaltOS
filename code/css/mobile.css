@@ -1,0 +1,100 @@
+/*
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/* TO DISABLE THE DIALOG CLOSE BUTTON */
+.ui-dialog .ui-header .ui-btn-icon-notext {
+	display:none;
+}
+
+/* TO DO COMPATIBLE WITH DESKTOP */
+.ui-state-disabled {
+	opacity:0.3!important;
+}
+
+.ui-state-highlight {
+	border: 1px solid #fad42e;
+	background: #fbec88;
+	color: #363636;
+}
+
+.ui-state-error {
+	border: 1px solid #cd0a0a;
+	background: #fef1ec;
+	color: #cd0a0a;
+}
+
+/* AUTO-GROWING IFRAMES */
+.preiframe {
+	background:#ffffff!important;
+	padding:0.4em;
+}
+
+iframe {
+	width:100%;
+}
+
+/* DIALOG FIXES */
+#dialog {
+	z-index:99999;
+}
+
+/* FOR ALIGNMENTS AND STYLES */
+.select {
+	margin-top:6px;
+	margin-bottom:6px;
+}
+
+.none {
+	display:none;
+}
+
+.info {
+	margin-top:6px;
+	margin-bottom:6px;
+}
+
+/* SOME JQUERY MOBILE TRICKS */
+.ui-btn {
+	margin-left:0!important;
+}
+
+.ui-input-text {
+	margin-left:0!important;
+}
+
+/* FOR DEFAULT LINKS */
+.ui-link {
+	color:inherit!important;
+}
+
+/* FOR NOTIFICATIONS */
+.ui-footer {
+	border:none!important;
+	background:none!important;
+}
+
+.ui-footer div {
+	margin:15px;
+}

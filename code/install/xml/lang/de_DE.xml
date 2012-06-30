@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>common</default>
+	<common>
+		<title>Installationsprogramm für SaltOS</title>
+		<yes>Ja</yes>
+		<no>Nein</no>
+		<language revised="false">Sprache Auswahl, Gestaltung und Symbole</language>
+		<welcome_message>Willkommen beim Installationsprogramm für SaltOS</welcome_message>
+		<lang_message revised="false">Wählen Sie die Sprache: </lang_message>
+		<style_message revised="false">Wählen Sie das Design: </style_message>
+		<iconset_message revised="false">Wählen Sie die Symbole: </iconset_message>
+		<begin_message>Klicken Sie auf "Weiter" um SaltOS in 5 einfachen Schritten zu installieren</begin_message>
+		<back>Zurück</back>
+		<next>Weiter</next>
+		<test>Prúfen</test>
+		<install>SaltOS installieren</install>
+		<saltos>SaltOS staren</saltos>
+		<is_writable>Schreiberlaubnis prüfen</is_writable>
+		<is_executable>Externe Programme prüfen</is_executable>
+		<directory>Verzeichnis</directory>
+		<file>Datei</file>
+		<executable>Ausführbare Datei</executable>
+		<database_link>Datenbankverbindung</database_link>
+		<select_dbtype>Wählen Sie ein Datenbankmanagementsystem</select_dbtype>
+		<select_prefered> (empfohlen)</select_prefered>
+		<selected_dbtype>Ausgewähltes Datenbankmanagementsystem</selected_dbtype>
+		<dbfile>Datenbankdatei</dbfile>
+		<dbtest1>Datenbanktestverbindung funktionierte</dbtest1>
+		<dbtest2 revised="false">Unterstützung für die Funktion GROUP_CONCAT</dbtest2>
+		<dbhost>Host</dbhost>
+		<dbport revised="false">Port</dbport>
+		<dbuser>Benutzer</dbuser>
+		<dbpass>Passwort</dbpass>
+		<dbname>Datenbankname</dbname>
+		<admin_account>Daten für das Administrator-Konto</admin_account>
+		<user>Benutzer</user>
+		<pass>Passwort</pass>
+		<email>E-Mail-Adresse</email>
+		<optional>Optional</optional>
+		<forcessl>Obligatorische Verbindung via SSL (https)</forcessl>
+		<timezone revised="false">Zeitzone</timezone>
+		<exampledata>Beispieldaten importieren</exampledata>
+		<undefined>Undefiniert</undefined>
+		<install_input>Zusammenfassung und Bestätigung der Installation</install_input>
+		<install_output>Installationsergebnis</install_output>
+		<config>Datenbankkonfiguration speichern</config>
+		<dbschema>Erstellen von Tabellen in der Datenbank</dbschema>
+		<dbstatic>Externe Daten importieren</dbstatic>
+		<streetdata>Addressen importieren</streetdata>
+		<defaultdata revised="false">Importieren Sie generische Daten</defaultdata>
+		<permissiondata>Erstellen der Berechtigungen für die Administrator-Gruppe</permissiondata>
+		<delete>Installationsdateien löschen</delete>
+		<rename>Installationsdateien umbenennen</rename>
+		<finish>Ende der Installation</finish>
+		<gotohome>Aktualisieren</gotohome>
+		<notifybug>Fehler benachrichtigen</notifybug>
+		<step>Schritt</step>
+		<lang revised="false">Sprache</lang>
+		<style revised="false">Design</style>
+		<iconset revised="false">Icons</iconset>
+		<env_vars revised="false">Environment-Variablen</env_vars>
+		<env_path>PATH</env_path>
+		<env_lang>LANG</env_lang>
+	</common>
+</root>

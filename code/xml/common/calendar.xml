@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<fields>
+		<title lang="true">calendar</title>
+		<width>100%</width>
+		<row>
+			<field>
+				<type>separator</type>
+				<width>100%</width>
+			</field>
+			<field>
+				<name>mesano</name>
+				<type>select</type>
+				<label lang="true">calendarinfo</label>
+				<onchange>setIntCookie("saltos_calendar_offset",this.value);update_calendar()</onchange>
+				<rows>
+					<row>
+						<label lang="true">loadingsmall</label>
+						<value></value>
+					</row>
+				</rows>
+				<width>120px</width>
+			</field>
+			<field>
+				<type>separator</type>
+				<width>1px</width>
+				<class>label</class>
+			</field>
+			<field>
+				<type>button</type>
+				<value lang="true">gcalendar</value>
+				<onclick>google_calendar()</onclick>
+				<icon>agenda</icon>
+				<tip lang="true">gcalendartip</tip>
+				<class>nowrap contextmenu</class>
+				<width>1px</width>
+			</field>
+			<field>
+				<type>button</type>
+				<value lang="true">notifyclear</value>
+				<onclick>notify_clear()</onclick>
+				<icon>refresh</icon>
+				<tip lang="true">notifytip</tip>
+				<class>nowrap contextmenu</class>
+				<width>1px</width>
+			</field>
+			<field>
+				<type>separator</type>
+				<width>1px</width>
+				<class>label</class>
+			</field>
+			<field>
+				<type>button</type>
+				<value lang="true">expand</value>
+				<onclick>openclose_all_calendar("[+]")</onclick>
+				<icon>expand</icon>
+				<tip lang="true">expandtip</tip>
+				<class>nowrap contextmenu</class>
+				<width>1px</width>
+			</field>
+			<field>
+				<type>button</type>
+				<value lang="true">collapse</value>
+				<onclick>openclose_all_calendar("[-]")</onclick>
+				<icon>collapse</icon>
+				<tip lang="true">collapsetip</tip>
+				<class>nowrap contextmenu</class>
+				<width>1px</width>
+			</field>
+			<field>
+				<type>separator</type>
+				<width>1px</width>
+				<class>label</class>
+			</field>
+			<field>
+				<type>button</type>
+				<tip lang="true">prevmonth</tip>
+				<class>nowrap contextmenu</class>
+				<onclick>setIntCookie("saltos_calendar_offset",getIntCookie("saltos_calendar_offset")-1);update_calendar()</onclick>
+				<icon>previous</icon>
+			</field>
+			<field>
+				<type>button</type>
+				<tip lang="true">currentmonth</tip>
+				<class>nowrap contextmenu</class>
+				<onclick>setIntCookie("saltos_calendar_offset",0);update_calendar()</onclick>
+				<icon>home</icon>
+			</field>
+			<field>
+				<type>button</type>
+				<tip lang="true">nextmonth</tip>
+				<class>nowrap contextmenu</class>
+				<onclick>setIntCookie("saltos_calendar_offset",getIntCookie("saltos_calendar_offset")+1);update_calendar()</onclick>
+				<icon>next</icon>
+			</field>
+		</row>
+	</fields>
+	<fields>
+		<class>tabla</class>
+		<width>100%</width>
+		<row>
+			<field>
+				<type>label</type>
+				<label lang="true">lunes</label>
+				<class>thead</class>
+				<width>16%</width>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">martes</label>
+				<class>thead</class>
+				<width>16%</width>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">miercoles</label>
+				<class>thead</class>
+				<width>16%</width>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">jueves</label>
+				<class>thead</class>
+				<width>16%</width>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">viernes</label>
+				<class>thead</class>
+				<width>16%</width>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">sabadoydomingo</label>
+				<class>thead</class>
+				<width>16%</width>
+			</field>
+		</row>
+		<row>
+			<field>
+				<type>label</type>
+				<name>cell_a1</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_b1</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_c1</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_d1</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_e1</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_f1</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+		</row>
+		<row>
+			<field>
+				<type>label</type>
+				<name>cell_a2</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_b2</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_c2</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_d2</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_e2</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_f2</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+		</row>
+		<row>
+			<field>
+				<type>label</type>
+				<name>cell_a3</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_b3</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_c3</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_d3</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_e3</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_f3</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+		</row>
+		<row>
+			<field>
+				<type>label</type>
+				<name>cell_a4</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_b4</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_c4</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_d4</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_e4</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_f4</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+		</row>
+		<row>
+			<field>
+				<type>label</type>
+				<name>cell_a5</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_b5</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_c5</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_d5</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_e5</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_f5</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+		</row>
+		<row>
+			<field>
+				<type>label</type>
+				<name>cell_a6</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_b6</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_c6</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_d6</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_e6</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+			<field>
+				<type>label</type>
+				<name>cell_f6</name>
+				<label></label>
+				<class>tbody top cell</class>
+				<height>70px</height>
+			</field>
+		</row>
+	</fields>
+</root>

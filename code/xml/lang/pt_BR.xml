@@ -1,0 +1,1446 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>common</default>
+	<common>
+		<nopage>Selecione uma aplicação para começar a trabalhar</nopage>
+		<nocheckuser>Utilizador ou senha incorreta</nocheckuser>
+		<nochecktime>Utilizador fora do horário padrão</nochecktime>
+		<nocheckday>Utilizador fora de dia de trabalho</nocheckday>
+		<view>Ver</view>
+		<edit>Editar</edit>
+		<copy>Copiar</copy>
+		<delete>Apagar</delete>
+		<first>Primeira página</first>
+		<previous>Página anterior</previous>
+		<next>Página seguinte</next>
+		<last>última página</last>
+		<id>Cód.</id>
+		<codigo>Código</codigo>
+		<cif>C.I.F.</cif>
+		<nombre>Nome</nombre>
+		<apellidos>Apelidos</apellidos>
+		<tel_fijo>Fixo</tel_fijo>
+		<tel_movil>Móvel</tel_movil>
+		<telefono>Telefone</telefono>
+		<fax>Fax</fax>
+		<email>Email</email>
+		<web>Web</web>
+		<filter>Opções de filtro</filter>
+		<loadsavefilter revised="false">Carregar e salvar filtros predefinidos</loadsavefilter>
+		<filtro>Procurar tudo</filtro>
+		<buscar>Procurar</buscar>
+		<buscartip>Realiza a pesquisa com os filtros selecionados</buscartip>
+		<limpiar>Limpar</limpiar>
+		<limpiartip>Limpar o filtro e mostrar todos os dados</limpiartip>
+		<username>Utilizador</username>
+		<datetime>Data e hora</datetime>
+		<direccion>Morada</direccion>
+		<codpostal>Código Postal</codpostal>
+		<poblacion>Localidade</poblacion>
+		<provincia>Estado</provincia>
+		<pais>País</pais>
+		<comentarios>comentários</comentarios>
+		<descripcion>Descrição</descripcion>
+		<buttoncreate>Criar</buttoncreate>
+		<buttoncreatereturnhere>Criar e voltar aqui</buttoncreatereturnhere>
+		<buttonupdate>Atualizar</buttonupdate>
+		<buttonupdatereturnhere>Atualizar e voltar aqui</buttonupdatereturnhere>
+		<buttoncancel>Cancelar</buttoncancel>
+		<buttonreturn>Voltar</buttonreturn>
+		<date>Fecha</date>
+		<incidencia>Incidência</incidencia>
+		<estado>Estado</estado>
+		<parte>Parte</parte>
+		<tarea>Tarefa</tarea>
+		<tareas>Tarefas</tareas>
+		<liquidado>Liquidado</liquidado>
+		<base>Base</base>
+		<total>Total</total>
+		<cerrado>Fechado</cerrado>
+		<cobrado>Cobrado</cobrado>
+		<empresa>Empresa</empresa>
+		<msgdelete>Deseja eliminar este registo?</msgdelete>
+		<permdenied>Não tem permissões para realizar esta ação</permdenied>
+		<sinnombre>Sem Nome</sinnombre>
+		<deldenied>Não pode ser apagado porque está sendo usado em outra aplicação</deldenied>
+		<yes>Sim</yes>
+		<no>Não</no>
+		<cliente>Cliente</cliente>
+		<posiblecli>Possível cliente</posiblecli>
+		<password>Senha</password>
+		<numfac>N.Fac.</numfac>
+		<numc>NC</numc>
+		<numctip>Número de comentários</numctip>
+		<numf>NF</numf>
+		<numftip>Número de arquivos</numftip>
+		<numt>NT</numt>
+		<numttip>Número de tarefas</numttip>
+		<numv>NV</numv>
+		<numvtip>Número de vencimentos</numvtip>
+		<nums>NS</nums>
+		<numstip>Número de seguimentos</numstip>
+		<nump>NP</nump>
+		<numptip>Número de produtos</numptip>
+		<fechaini>Entre com a data</fechaini>
+		<fechafin>Y</fechafin>
+		<commentdel>Apagar este comentário</commentdel>
+		<attachments>Arquivos anexos</attachments>
+		<shortattachments>anexos</shortattachments>
+		<userdatetime>Utilizador, data e hora</userdatetime>
+		<fileandsize>Arquivo e tamanho</fileandsize>
+		<download>Descarregar</download>
+		<activar>Ativar</activar>
+		<newcomment>Novo comentário</newcomment>
+		<newattachments>Novos anexos</newattachments>
+		<proyecto>Projeto</proyecto>
+		<documento>Documento</documento>
+		<hora>Hora</hora>
+		<horas>Horas</horas>
+		<minutos>Minutos</minutos>
+		<precio>Preço</precio>
+		<liq>Liq.</liq>
+		<aplicacion>Aplicação</aplicacion>
+		<rol>Rol</rol>
+		<permiso>Permissão</permiso>
+		<pos>Pos.</pos>
+		<posicion>Posição.</posicion>
+		<trimestre>Trimestre</trimestre>
+		<otroscampos>Outros campos</otroscampos>
+		<excel>Excel</excel>
+		<exceltip>Gerar um arquivo Excel com os dados atuais</exceltip>
+		<pdf>PDF</pdf>
+		<pdftip>Gerar um arquivo PDF com os dados atuais</pdftip>
+		<epigrafe>Assuntos</epigrafe>
+		<campoauto>(*) Campo automático</campoauto>
+		<cerr>Cerr.</cerr>
+		<cobr>Cobr.</cobr>
+		<concepto>Conceito</concepto>
+		<unid>Unid.</unid>
+		<unidades>Unidades</unidades>
+		<unidadestotal>Unidades totais</unidadestotal>
+		<prun>Pr./Un.</prun>
+		<dto>Dto.</dto>
+		<importe>Valor</importe>
+		<percent>Percentagem</percent>
+		<todos>[Todos]</todos>
+		<todoslosclientes>[Todos os clientes]</todoslosclientes>
+		<todoslosposiblescli>[Todos os possíveis clientes]</todoslosposiblescli>
+		<todoslosusuarios>[Todos os Utilizadores]</todoslosusuarios>
+		<todoslosproveedores>[Todos os fornecedores]</todoslosproveedores>
+		<mostrartodos>[Mostrar todos]</mostrartodos>
+		<sinusuario>[Sem Utilizador]</sinusuario>
+		<paginaspc>Página </paginaspc>
+		<regsfrom>registos do </regsfrom>
+		<spcdespc> de </spcdespc>
+		<spcalspc> a </spcalspc>
+		<regspage>Registros por página:</regspage>
+		<registerdata>Dados do registo</registerdata>
+		<userinsert>Criado por</userinsert>
+		<userupdate>Modificado por</userupdate>
+		<allstates>[Todos os estados]</allstates>
+		<allenabled>Todos os ativos</allenabled>
+		<alldisabled>Todos os Não Ativos</alldisabled>
+		<lastinsert>Foi criado um registo com o código: </lastinsert>
+		<lastupdate>Foi modificado o registo com o código: </lastupdate>
+		<lastdelete>Foi apagado o registo com o código: </lastdelete>
+		<proveedor>Fornecedor</proveedor>
+		<acta>Ação</acta>
+		<presupuesto>Orçamento</presupuesto>
+		<newfichero>Novo arquivo</newfichero>
+		<fichero>Arquivo</fichero>
+		<size>Tamanho</size>
+		<mime>Tipo de Arquivo</mime>
+		<grupo>Grupo</grupo>
+		<ficheroactual>Arquivo atual</ficheroactual>
+		<language>Idioma</language>
+		<style>Estilo</style>
+		<iconset>Ícones</iconset>
+		<nodata>Nenhum resultado</nodata>
+		<prioridad>Prioridade</prioridad>
+		<sinproyecto>[Sem projeto associado]</sinproyecto>
+		<sintarea>[Sem tarefa associada]</sintarea>
+		<todoslosproyectos>[Todos os projetos]</todoslosproyectos>
+		<todaslastareas>[Todas as tarefas]</todaslastareas>
+		<todaslascuentas>[Todas]</todaslascuentas>
+		<graficas>Gráficos e estatísticas</graficas>
+		<mail>Enviar PDF</mail>
+		<mailtip>Enviar o PDF para a sua conta de email</mailtip>
+		<view2>Visualizar PDF</view2>
+		<view2tip>Veja o documento com o visulizador interno</view2tip>
+		<view2error>Ocorreu um erro ao abrir o PDF. Sem visualizador interno</view2error>
+		<view2hash>Se o problema persistir, entre em contato com o suporte técnico indicando o seguinte código: </view2hash>
+		<view2opening>Abrindo o visualizador, aguarde um momento...</view2opening>
+		<msgnotuseremail>Não tem nenhuma conta de email configurada</msgnotuseremail>
+		<msgnotsmtpemail>O servidor SMTP não está configurado</msgnotsmtpemail>
+		<sincliente>[Sem cliente associado]</sincliente>
+		<sinposiblecli>[Sem possível cliente associado]</sinposiblecli>
+		<sinepigrafe>[Sem assunto associado]</sinepigrafe>
+		<sinprioridad>[Sem prioridade]</sinprioridad>
+		<sinestado>[Sem estado]</sinestado>
+		<dstart>Início</dstart>
+		<dstop>Fim</dstop>
+		<evento>Evento</evento>
+		<sincuenta>[Sem conta]</sincuenta>
+		<cuenta>Conta</cuenta>
+		<sindia>[Sem dia]</sindia>
+		<sinmes>[Sem mês]</sinmes>
+		<mes>Mês</mes>
+		<factura>Fatura</factura>
+		<albaran>Recibo</albaran>
+		<msglogout>Deseja sair da aplicação?</msglogout>
+		<mostrarcomo>Mostrar como</mostrarcomo>
+		<direccionesold>Direções</direccionesold>
+		<direccionesnew>Novas direções</direccionesnew>
+		<tipocom>Tipo com.</tipocom>
+		<valorcom>Comunicação</valorcom>
+		<seleccion>Preferida</seleccion>
+		<seleccion2>Pref.</seleccion2>
+		<nif>N.I.F.</nif>
+		<vcard>VCard</vcard>
+		<cargo>Cargo</cargo>
+		<empleado>Empregado</empleado>
+		<sinproveedor>[Sem fornecedor associado]</sinproveedor>
+		<sinempleado>[Sem empregado associado]</sinempleado>
+		<port>Porto</port>
+		<extra>Segurança</extra>
+		<requiredfield>Campo requerido</requiredfield>
+		<sinpais>[Sem País seleccionado]</sinpais>
+		<sinprovincia>[Sem Estado selecionado]</sinprovincia>
+		<sinpoblacion>[Sem cidade selecionada]</sinpoblacion>
+		<sincodpostal>[Sem Código Postal]</sincodpostal>
+		<usedfilter>(Filtro ativado)</usedfilter>
+		<suma>Soma</suma>
+		<average>Média</average>
+		<posx>Posição X</posx>
+		<posy>Posição Y</posy>
+		<angle>ângulo</angle>
+		<withoutinfo>Sem informação para representar</withoutinfo>
+		<sinproducto>[Sem produto associado]</sinproducto>
+		<preview>Pré-visualização</preview>
+		<sortasc>Ordenação ascendentemente (A-Z)</sortasc>
+		<sortdesc>Ordenação descendentemente (Z-A)</sortdesc>
+		<confirm>Confirmação</confirm>
+		<alert>Atenção</alert>
+		<error>Erro</error>
+		<buttonaccept>Aceitar</buttonaccept>
+		<buttoncontinue>Continuar</buttoncontinue>
+		<enero>Janeiro</enero>
+		<febrero>Fevereiro</febrero>
+		<marzo>Março</marzo>
+		<abril>Abril</abril>
+		<mayo>Maio</mayo>
+		<junio>Junho</junio>
+		<julio>Julho</julio>
+		<agosto>Agosto</agosto>
+		<setiembre>Setembro</setiembre>
+		<octubre>Outubro</octubre>
+		<noviembre>Novembro</noviembre>
+		<diciembre>Dezembro</diciembre>
+		<lunes>Segunda</lunes>
+		<martes>Terça</martes>
+		<miercoles>Quarta</miercoles>
+		<jueves>Quinta</jueves>
+		<viernes>Sexta</viernes>
+		<sabado>Sábado</sabado>
+		<domingo>Domingo</domingo>
+		<sabadoydomingo>Sábado e Domingo</sabadoydomingo>
+		<sinpresupuesto>[Sem Orçamento associado]</sinpresupuesto>
+		<todoslospresupuestos>[Todos os Orçamentos]</todoslospresupuestos>
+		<unknownerror>Ocorreu um erro de conexão (verifique o acesso a rede. Se o problema persistir contate o administrador do sistema)</unknownerror>
+		<qrcode>QR Code</qrcode>
+		<lugar>Lugar</lugar>
+		<loading>Carregando os dados, aguarde um momento...</loading>
+		<sending>Enviando dados, aguarde um momento...</sending>
+		<prod>Prod.</prod>
+		<addfile>Adicionar arquivo</addfile>
+		<addcomunicacion>Adicionar comunicação</addcomunicacion>
+		<addproduct revised="false">Adicionar produto</addproduct>
+		<addconcept revised="false">Adicionar conceito</addconcept>
+		<addvencimiento revised="false">Adicionar maturidade</addvencimiento>
+		<addtarea revised="false">Adicionar tarefa</addtarea>
+		<send>Enviar</send>
+		<notas>Notas</notas>
+		<sincampanya>[Sem campanha associada]</sincampanya>
+		<campanya>Campanha</campanya>
+		<todaslascampanyas>[Todas as campanha]</todaslascampanyas>
+		<numpc>NPC</numpc>
+		<numpctip>Número de possíveis clientes</numpctip>
+		<numcl>NCL</numcl>
+		<numcltip>Número de clientes</numcltip>
+		<numag>NAG</numag>
+		<numagtip>Número de eventos da agenda</numagtip>
+		<numpr>NPR</numpr>
+		<numprtip>Número de Orçamentos</numprtip>
+		<numpy>NPY</numpy>
+		<numpytip>Número de projetos</numpytip>
+		<tipoevento>Tipo de evento</tipoevento>
+		<sintipoevento>[Sem tipo de evento]</sintipoevento>
+		<fileuploaderror>Ocorreu um erro ao enviar o arquivo: </fileuploaderror>
+		<resumeneconomico>Resumo econômico</resumeneconomico>
+		<postlimiterror>Houve um erro ao enviar dados para o servidor</postlimiterror>
+		<pdf2filter_title>Filtro de exportação PDF</pdf2filter_title>
+		<pdf2filter_message>Selecione os Dados que deseja no PDF:</pdf2filter_message>
+		<view2filter_title>Filtro de visualização de PDF</view2filter_title>
+		<view2filter_message>Selecione os dados que deseja ver no PDF:</view2filter_message>
+		<msgerrorsemaphore>Ocorreu um erro de concorrência, ação cancelada</msgerrorsemaphore>
+		<msgnotcheckbox>Deve selecionar algum registo da lista para usar esta opção</msgnotcheckbox>
+		<gotohome>Recarregar</gotohome>
+		<notifybug>Reportar falha</notifybug>
+		<actioncompress>Descarregar Arquivos selecionados</actioncompress>
+		<zipformat revised="false">Formato ZIP</zipformat>
+		<tarformat>TAR</tarformat>
+		<gzipformat>GZIP</gzipformat>
+		<bzipformat>BZIP2</bzipformat>
+		<temporalfiles revised="false">Arquivos temporais</temporalfiles>
+		<sessionexpire>A sessão vai expirar em </sessionexpire>
+		<sessionupdate>carregue aqui para evitar o fechamento</sessionupdate>
+		<sessionupdated>sessão atualizada corretamente</sessionupdated>
+		<link>Ligação</link>
+		<importacion>Importação</importacion>
+		<todaslasimportaciones>[Todas as importações]</todaslasimportaciones>
+		<sinimportacion>[Sem importação associada]</sinimportacion>
+		<textos_select>Selecione um texto e pressione adicionar</textos_select>
+		<textos_add>Adicionar</textos_add>
+		<selectall>Selecionar tudo</selectall>
+		<selectnone>Apagar seleção</selectnone>
+		<addtofolder revised="false">Mostrar nesta pasta</addtofolder>
+		<addtofolderok revised="false">Este conteúdo foi adicionado a esta pasta</addtofolderok>
+		<delfromfolderok revised="false">Este conteúdo foi escondida a partir desta pasta</delfromfolderok>
+		<savedfilters>Filtros guardados</savedfilters>
+		<optionfilter>Selecione um filtro guardado</optionfilter>
+		<newfilter>Nome do novo filtro</newfilter>
+		<loadfilter>Carregar</loadfilter>
+		<loadfiltertip>Clique aqui para carregar o filtro selecionado</loadfiltertip>
+		<updatefilter>Atualizar</updatefilter>
+		<updatefiltertip>Clique aqui para atualizar o filtro selecionado</updatefiltertip>
+		<deletefilter>Apagar</deletefilter>
+		<deletefiltertip>Clique aqui para apagar o filtro selecionado</deletefiltertip>
+		<createfilter>Criar</createfilter>
+		<createfiltertip>Clique aqui para criar um novo filtro</createfiltertip>
+		<createfilterok>O novo filtro foi criado com sucesso</createfilterok>
+		<createfilterko>Insira o nome do filtro a definir</createfilterko>
+		<loadfilterok>O filtro foi carregado corretamente</loadfilterok>
+		<loadfilterko>Deve selecionar um filtro para ser carregado</loadfilterko>
+		<updatefilterok>O filtro foi atualizado corretamente</updatefilterok>
+		<updatefilterko>Selecione um filtro para modificá-lo</updatefilterko>
+		<deletefilterok>O filtro foi apagado</deletefilterok>
+		<deletefilterko>Selecione um filtro para apagá-lo</deletefilterko>
+		<renamefilter revised="false">Renomear</renamefilter>
+		<renamefiltertip revised="false">Clique aqui para renomear um filtro existente</renamefiltertip>
+		<renamefilterok revised="false">Renomeado filtro existente corretamente</renamefilterok>
+		<renamefilterko1 revised="false">Você deve selecionar um filtro para renomear</renamefilterko1>
+		<renamefilterko2 revised="false">Necessidade de definir o novo nome do filtro para renomear</renamefilterko2>
+		<showmenu>Mostrar menu</showmenu>
+		<hidemenu>Ocultar menu</hidemenu>
+		<showtools revised="false">Ferramentas mostram</showtools>
+		<hidetools revised="false">Ferramentas de esconder</hidetools>
+		<inbackground>Esta ação é executada em segundo plano, aguarde um momento</inbackground>
+		<sentfromsaltos>Mensagem enviado do meu SaltOS</sentfromsaltos>
+		<foldersdata revised="false">Pastas</foldersdata>
+		<loweradd revised="false">adicionar</loweradd>
+		<playvoice revised="false">Jogar</playvoice>
+		<playvoicetip revised="false">Iniciar a reprodução</playvoicetip>
+		<stopvoice revised="false">Parar</stopvoice>
+		<stopvoicetip revised="false">Parar a reprodução</stopvoicetip>
+		<nextvoice revised="false">Próximo</nextvoice>
+		<nextvoicetip revised="false">Ir para a criação próxima</nextvoicetip>
+		<cancelvoice revised="false">Cancelar</cancelvoice>
+		<cancelvoicetip revised="false">Cancela todas as reproduções</cancelvoicetip>
+		<notify revised="false">Notificações</notify>
+		<voicetip revised="false">Ativar voz e leitor de notificações (emails feeds, e de calendário)</voicetip>
+		<voicetxt revised="false">Notificações com voz activado</voicetxt>
+		<welcometosaltos revised="false">Bem-vindo à Saltos</welcometosaltos>
+		<help revised="false">Ajuda</help>
+		<desktoptip revised="false">Habilitar notificações de área de trabalho integrado com</desktoptip>
+		<desktoptxt revised="false">Notificações integrada com o desktop habilitado</desktoptxt>
+		<selectallcheckbox revised="false">Selecionar todos os registros</selectallcheckbox>
+		<selectonecheckbox revised="false">Selecione este registro</selectonecheckbox>
+	</common>
+	<login>
+		<logintitle>Acesso a aplicação</logintitle>
+		<remember>Lembrar a senha neste computador</remember>
+		<enter>Entrar</enter>
+		<captcha1 revised="false">Pergunta de segurança</captcha1>
+		<captcha2 revised="false">Resultado da adição / subtração</captcha2>
+		<captcha3 revised="false">Atualizar imagem</captcha3>
+		<mobileaccess revised="false">Acesso a partir de dispositivo móvel</mobileaccess>
+	</login>
+	<menu>
+		<home>Início</home>
+		<clientes>Clientes</clientes>
+		<contactos>Contatos</contactos>
+		<incidencias>Incidências</incidencias>
+		<proyectos>Projetos</proyectos>
+		<partes>Tarefas de trabalho</partes>
+		<documentos>Documentos</documentos>
+		<facturas>Faturas</facturas>
+		<proveedores>Fornecedores</proveedores>
+		<gastos>Despesas</gastos>
+		<epigrafes>Orçamentos</epigrafes>
+		<estados>Estados</estados>
+		<formaspago>Formas de pagamento</formaspago>
+		<roles>Funções</roles>
+		<usuarios>Usuários</usuarios>
+		<grupos>Grupos</grupos>
+		<prioridades>Prioridades</prioridades>
+		<agenda>Agenda e eventos</agenda>
+		<actas>Atas de reuniões</actas>
+		<profile>Meu perfil</profile>
+		<maincfg>Configuração</maincfg>
+		<about>Sobre SaltOS</about>
+		<support>Suporte técnico</support>
+		<logout>Encerrar sessão</logout>
+		<seguimientos>Tarefas</seguimientos>
+		<datacfg>Base de dados</datacfg>
+		<correo>Mensagem eletrônica</correo>
+		<cuentas>Contas</cuentas>
+		<periodicas>Faturas periódicas</periodicas>
+		<empleados>Empregados</empleados>
+		<productos>Produtos</productos>
+		<presupuestos>Orçamentos</presupuestos>
+		<posiblescli>Possíveis clientes</posiblescli>
+		<campanyas>Campanhas comerciais</campanyas>
+		<tiposevento>Tipos de eventos</tiposevento>
+		<textos>Textos predefinidos</textos>
+		<ficheros>Arquivos anexos</ficheros>
+		<feeds>Leitor de feeds RSS</feeds>
+		<importaciones>Importações</importaciones>
+		<gestioncomercial>Comercial</gestioncomercial>
+		<gestionproyectos>Projetos</gestionproyectos>
+		<gestioncontabilidad>Contabilidade</gestioncontabilidad>
+		<gestiongeneral>Geral</gestiongeneral>
+		<gestionadministracion>Administração</gestionadministracion>
+		<gestiontipos>Tipos</gestiontipos>
+		<gestionsistema>Sistema</gestionsistema>
+		<folders>Pastas</folders>
+		<buscador>Pesquisador</buscador>
+		<desc_clientes>Gerenciar os clientes da empresa</desc_clientes>
+		<desc_contactos>Para acessar os contatos de um cliente</desc_contactos>
+		<desc_incidencias>Gerenciar as ações de clientes</desc_incidencias>
+		<desc_proyectos>Gerenciar os seus projetos com esta aplicação</desc_proyectos>
+		<desc_partes>Introduza todos os trabalhos que realiza usando tarefas por hora</desc_partes>
+		<desc_facturas>Gerir todas as faturas (emitidas, cobradas, etc...)</desc_facturas>
+		<desc_proveedores>Gerir os fornecedores da sua empresa</desc_proveedores>
+		<desc_gastos>Controle os despesas e verifique se estão liquidadas</desc_gastos>
+		<desc_documentos>Tenha agrupada toda a documentação da sua empresa</desc_documentos>
+		<desc_agenda>Anote na agenda todas as visitas e reuniões</desc_agenda>
+		<desc_actas>Guarde uma ata das reuniões para um maior controle</desc_actas>
+		<desc_usuarios>Introduza, elimine ou modifique utilizadores</desc_usuarios>
+		<desc_grupos>Crie grupos de trabalho para os utilizadores</desc_grupos>
+		<desc_epigrafes>Defina os Orçamentos para as faturas e despesas</desc_epigrafes>
+		<desc_formaspago>Defina formas de pagamento para gerenciar as despesas</desc_formaspago>
+		<desc_estados>Defina os estados possíveis de ação, projeto, etc...</desc_estados>
+		<desc_prioridades>Defina as prioridades para as entradas na agenda</desc_prioridades>
+		<desc_profile>Modifique as suas preferências de utilizador</desc_profile>
+		<desc_maincfg>Modifique as preferências globlais da aplicação</desc_maincfg>
+		<desc_seguimientos>Controle as tarefas de um projeto com os seguimentos</desc_seguimientos>
+		<desc_datacfg>Realize cópias de seguranaa e restaure-as facilmente</desc_datacfg>
+		<desc_correo>Leia e envie mensagens para os seus clientes e fornecedores</desc_correo>
+		<desc_cuentas>Defina as contas para a contabilidade</desc_cuentas>
+		<desc_periodicas>Programe as faturas periódicas com datas de vencimento</desc_periodicas>
+		<desc_empleados>Introduza, elimine ou modifique empregados</desc_empleados>
+		<desc_posiblescli>Controle os possíveis clientes que pode ter</desc_posiblescli>
+		<desc_presupuestos>Estabeleça pressupostos de forma rápida e fácil</desc_presupuestos>
+		<desc_productos>Defina aqui os seus produtos para poder vendê-los</desc_productos>
+		<desc_about>Créditos desta aplicação</desc_about>
+		<desc_logout>Clique aqui para terminar a sua sessão de trabalho</desc_logout>
+		<desc_home>Página principal da aplicação</desc_home>
+		<desc_support>Contate o suporte técnico</desc_support>
+		<desc_campanyas>Crie campanhas comerciais com seguimentos</desc_campanyas>
+		<desc_tiposevento>Defina os tipos de eventos que necessita</desc_tiposevento>
+		<desc_textos>Crie textos predefinidos para usá-los em outras aplicações</desc_textos>
+		<desc_ficheros>Acesse todos os Arquivos da aplicação</desc_ficheros>
+		<desc_feeds>Siga os seus feeds RSS e Atom a partir daqui</desc_feeds>
+		<desc_importaciones>Importe dados das principais aplicações aqui</desc_importaciones>
+		<desc_buscador revised="false">Para pesquisar todo o conteúdo do banco de dados</desc_buscador>
+		<quick_home>Início</quick_home>
+		<quick_correo>Mensagem</quick_correo>
+		<quick_agenda>Agenda</quick_agenda>
+		<quick_profile>Meu perfil</quick_profile>
+		<quick_support>Suporte</quick_support>
+		<quick_about>Sobre</quick_about>
+		<quick_logout>Fechar</quick_logout>
+		<quick_clientes>Clientes</quick_clientes>
+		<quick_contactos>Contatos</quick_contactos>
+		<quick_incidencias>Incidências</quick_incidencias>
+		<quick_proyectos>Projetos</quick_proyectos>
+		<quick_partes>Tarefas</quick_partes>
+		<quick_documentos>Documentos</quick_documentos>
+		<quick_facturas>Faturas</quick_facturas>
+		<quick_proveedores>Fornecedores</quick_proveedores>
+		<quick_gastos>Despesas</quick_gastos>
+		<quick_epigrafes>Orçamentos</quick_epigrafes>
+		<quick_estados>Estados</quick_estados>
+		<quick_formaspago>F.pagamento</quick_formaspago>
+		<quick_roles>Funções</quick_roles>
+		<quick_usuarios>Utilizadores</quick_usuarios>
+		<quick_grupos>Grupos</quick_grupos>
+		<quick_prioridades>Prioridades</quick_prioridades>
+		<quick_actas>Atas</quick_actas>
+		<quick_maincfg>Configuração</quick_maincfg>
+		<quick_seguimientos>Seguimentos</quick_seguimientos>
+		<quick_datacfg>Base de dados</quick_datacfg>
+		<quick_cuentas>Contas</quick_cuentas>
+		<quick_periodicas>periódicas</quick_periodicas>
+		<quick_empleados>Empregados</quick_empleados>
+		<quick_productos>Produtos</quick_productos>
+		<quick_presupuestos>Pressupostos</quick_presupuestos>
+		<quick_posiblescli>P.clientes</quick_posiblescli>
+		<quick_campanyas>Campanhas</quick_campanyas>
+		<quick_tiposevento>T.eventos</quick_tiposevento>
+		<quick_textos>Textos</quick_textos>
+		<quick_ficheros>Arquivos</quick_ficheros>
+		<quick_feeds>Feeds RSS</quick_feeds>
+		<quick_importaciones>Importações</quick_importaciones>
+		<quick_buscador>Pesquisador</quick_buscador>
+		<translate revised="false">Tradutor</translate>
+		<corrector revised="false">Corretor ortográfico</corrector>
+		<calculator revised="false">Calculadora</calculator>
+	</menu>
+	<clientes>
+		<list>Lista de clientes</list>
+		<create>Novo cliente</create>
+		<formview>Detalhe de cliente</formview>
+		<forminsert>Inserir novo cliente</forminsert>
+		<formupdate>Modificar cliente</formupdate>
+		<defaultdata>Dados de cliente</defaultdata>
+		<contactdata>Contatos de cliente</contactdata>
+		<projectopen>Projetos ativos</projectopen>
+		<projectclose>Projetos Encerrados</projectclose>
+		<incidentopen>Incidências ativas</incidentopen>
+		<incidentclose>Incidências Encerradas</incidentclose>
+		<partesopen>Tarefas por finalizar</partesopen>
+		<partesclose>Tarefas finalizadas</partesclose>
+		<albaranes>Recibos</albaranes>
+		<facturaopen>Faturas não cobradas</facturaopen>
+		<facturaclose>Faturas cobradas</facturaclose>
+		<gastosdata>despesas associados ao cliente</gastosdata>
+		<documentdata>Documentos do cliente</documentdata>
+		<agendadata>Eventos de cliente</agendadata>
+		<actasdata>Atas do cliente</actasdata>
+		<actionliquidar>Finalizar tarefas selecionadas</actionliquidar>
+		<msgliquidar>Deseja finalizar as tarefas selecionadas?</msgliquidar>
+		<plotseguimiento12meses>Faturamento do cliente no último ano</plotseguimiento12meses>
+		<cuentacorriente>Conta corrente</cuentacorriente>
+		<diapago>Dia de pagamento</diapago>
+		<cuentacontable>Conta de contabilidade</cuentacontable>
+		<nombrecomercial>Nome comer.</nombrecomercial>
+		<nombrefiscal>Nome fiscal</nombrefiscal>
+		<tipocliente>Tipo de cliente</tipocliente>
+		<clientefiscal>Fiscal</clientefiscal>
+		<clientejuridico>Jurídico</clientejuridico>
+		<add>Adicionar cliente</add>
+		<presupuestosdata>Orçamentos do cliente</presupuestosdata>
+	</clientes>
+	<contactos>
+		<list>Lista de contatos</list>
+		<create>Novo contato</create>
+		<formview>Detalhe do contato</formview>
+		<forminsert>Inserir um novo contato</forminsert>
+		<formupdate>Modificar contato</formupdate>
+		<defaultdata>Dados do contato</defaultdata>
+		<add>Adicionar contato</add>
+	</contactos>
+	<incidencias>
+		<list>Lista de incidências</list>
+		<create>Nova incidência</create>
+		<formview>Detalhe da incidência</formview>
+		<forminsert>Inserir nova incidência</forminsert>
+		<formupdate>Modificar a incidência</formupdate>
+		<defaultdata>Dados da incidência</defaultdata>
+		<usersdata>Utilizadores envolvidos</usersdata>
+		<asignadoa>Assinado a</asignadoa>
+		<msgsendemail>Foi enviado um email a todos os envolvidos na incidência</msgsendemail>
+	</incidencias>
+	<proyectos>
+		<list>Lista de projetos</list>
+		<create>Novo projeto</create>
+		<formview>Detalhe do projeto</formview>
+		<forminsert>Adicionar um novo projeto</forminsert>
+		<formupdate>Modificar projeto</formupdate>
+		<defaultdata>Dados do projeto</defaultdata>
+		<tareasproyecto>Tarefas do projeto</tareasproyecto>
+		<desctareas>Descrição das tarefas</desctareas>
+		<horastotal>Horas totais</horastotal>
+		<preciomedio>Preço médio</preciomedio>
+		<preciototal>Preço total</preciototal>
+		<plotseguimientotareas revised="false">Desvio do projeto</plotseguimientotareas>
+		<legendseguimientotareas>Horas Orçadas|Horas empreguadas</legendseguimientotareas>
+		<real>Real</real>
+		<diferencia>Diferença</diferencia>
+		<partesopen>Tarefas para finalizar</partesopen>
+		<partesclose>Tarefas finalizadas</partesclose>
+		<relatedseguimientos>Seguimentos relacionados</relatedseguimientos>
+		<relatedincidencias>Incidências relacionadas</relatedincidencias>
+		<actionliquidar>Finalizar tarefas selecionadas</actionliquidar>
+		<msgliquidar>Deseja finalizar as tarefas selecionadas?</msgliquidar>
+		<agendadata>Eventos relacionados</agendadata>
+		<actasdata>Atas relacionadas</actasdata>
+		<contactdata>Contatos do cliente</contactdata>
+		<incidentopen>Incidências ativas</incidentopen>
+		<incidentclose>Incidências Fechadas</incidentclose>
+		<albaranes>Recibos</albaranes>
+		<facturaopen>Faturas não cobradas</facturaopen>
+		<facturaclose>Faturas cobradas</facturaclose>
+		<gastosdata>despesas associadas ao cliente</gastosdata>
+		<documentdata>Documentos do cliente</documentdata>
+		<plotseguimientoestados>Agrupamento de projetos por estado</plotseguimientoestados>
+		<productosproyecto>Produtos do projeto</productosproyecto>
+		<descproductos>Descrição dos produtos</descproductos>
+		<actionfacturar>Faturar</actionfacturar>
+		<msgfacturar>Deseja faturar o projeto?</msgfacturar>
+		<errorfacturar>Já existe uma fatura deste projeto</errorfacturar>
+		<okfacturar>O projeto foi corretamente faturado</okfacturar>
+		<addseguimientos>Seguimento</addseguimientos>
+		<addactas>Ata</addactas>
+		<addcontactos>Contato</addcontactos>
+		<addagenda>Evento</addagenda>
+		<resumentareasproductos>Resumo das tarefas e produtos</resumentareasproductos>
+		<presupuestosdata>Orçamentos do projeto</presupuestosdata>
+	</proyectos>
+	<documentos>
+		<list>Lista de documentos</list>
+		<create>Novo documento</create>
+		<formview>Detalhe do documento</formview>
+		<forminsert>Inserir um novo documento</forminsert>
+		<formupdate>Modificar o documento</formupdate>
+		<defaultdata>Dados do documento</defaultdata>
+	</documentos>
+	<partes>
+		<list>Lista de tarefas</list>
+		<create>Nova parte</create>
+		<formview>Detalhe da parte</formview>
+		<forminsert>Inserir nova parte</forminsert>
+		<formupdate>Modificar a parte</formupdate>
+		<defaultdata>Dados da parte</defaultdata>
+		<horasfact>Horas a faturar</horasfact>
+		<preciohora>Preço/hora</preciohora>
+		<liquidar>Liquidar</liquidar>
+		<dateliq>data liq.</dateliq>
+		<msgliquidar>Deseja liquidar as tarefas selecionadas?</msgliquidar>
+		<msgerror>Deve selecionar as tarefas que deseje liquidar na lista</msgerror>
+		<fechainiliq>dados liquidados</fechainiliq>
+		<plotseguimientotop10>Os 10 clientes com mais tarefas do último ano</plotseguimientotop10>
+		<plotseguimiento12meses>Faturação de tarefas do último ano</plotseguimiento12meses>
+	</partes>
+	<usuarios>
+		<list>Lista de Utilizadores</list>
+		<create>Novo Utilizador</create>
+		<formview>Detalhe do Utilizador</formview>
+		<forminsert>Inserir novo Utilizador</forminsert>
+		<formupdate>Modificar o Utilizador</formupdate>
+		<personaldata>Dados do Utilizador</personaldata>
+		<entrada>Entrada</entrada>
+		<salida>Saída</salida>
+		<dias>Dias</dias>
+		<password2>Repita a senha</password2>
+		<errorpassword>As senhas inseridas não coincidem</errorpassword>
+		<contacto>Contato</contacto>
+		<sincontacto>[Sem contato associado]</sincontacto>
+		<activo>Ativo</activo>
+		<activo_desc>Ativo (para indicar o Utilizador ativo ou que exista por herança)</activo_desc>
+		<permdata>Permissões por aplicação</permdata>
+		<allow revised="false">Permitir</allow>
+		<deny revised="false">Recusar</deny>
+		<groupsdata revised="false">Grupos de o utilizador</groupsdata>
+		<pop3host>Servidor POP3</pop3host>
+		<pop3delete>Apagar mensagens no servidor</pop3delete>
+		<pop3days>dias</pop3days>
+		<smtphost>Servidor SMTP</smtphost>
+		<emailprivated>Esta conta a particular (Acesso restrito)</emailprivated>
+		<emaildefault>Conta por defeito (a que mais uso)</emaildefault>
+		<emaildisabled>Desativar esta conta de email</emaildisabled>
+		<emaildelete>Apagar esta conta de email (Os dados serão excluídos)</emaildelete>
+		<emailsignatureold>Assinatura atual</emailsignatureold>
+		<emailsignaturenew>Nova assinatura</emailsignaturenew>
+		<correonew>Nova mensagem</correonew>
+		<addmetocc>Receber uma cópia de todos os emails que enviar</addmetocc>
+		<defaultcrt>Ativar por padrão confirmação de leitura dos emails</defaultcrt>
+		<gcalendar>Calendário do Google</gcalendar>
+		<prefgcalendar>Sincronização da agenda com o serviço de Calendário do Google</prefgcalendar>
+		<prefgcalendar2>Com esta opção, você pode usar a agenda do SaltOS e do Google Calendar, mantendo os dados atualizados de forma automática, sem ter que se preocupar em replicar os dados de uma agenda para outra.</prefgcalendar2>
+		<logingcalendar>Conta de mensagem de gmail</logingcalendar>
+		<feedstitle>Configure os feeds que Deseja ler desde o SaltOS (RSS 1.0, RSS 2.0 e Atom 1.0)</feedstitle>
+		<url>URL</url>
+		<title>Título</title>
+		<description>Descrição</description>
+		<image>Imagem</image>
+		<test>Testar</test>
+		<add>Adicionar</add>
+		<feedslist>Lista de feeds RSS configurados</feedslist>
+		<feeds_old>Feeds configurados</feeds_old>
+		<feeds_new>Novo feed</feeds_new>
+		<lowerdisabled>desativado</lowerdisabled>
+		<singrupo revised="false">[Sem grupo]</singrupo>
+		<sinaplicacion revised="false">[Sem aplicação]</sinaplicacion>
+		<registro revised="false">Registro</registro>
+		<sinregistro revised="false">[Sem registo]</sinregistro>
+		<showdetalles revised="false">[Mostrar detalhes]</showdetalles>
+		<hidedetalles revised="false">[Ocultar detalhes]</hidedetalles>
+		<appsregsdata revised="false">Permissões recorde</appsregsdata>
+	</usuarios>
+	<epigrafes>
+		<list>Lista de Assuntos</list>
+		<create>Nova entrada</create>
+		<formview>Detalhe do assunto</formview>
+		<forminsert>Inserir novo assunto</forminsert>
+		<formupdate>Modificar o assunto</formupdate>
+		<defaultdata>Dados do assunto</defaultdata>
+	</epigrafes>
+	<estados>
+		<list>Lista de estados</list>
+		<create>Novo estado</create>
+		<formview>Detalhe do estado</formview>
+		<forminsert>Inserir novo estado</forminsert>
+		<formupdate>Modificar o estado</formupdate>
+		<defaultdata>Dados do estado</defaultdata>
+		<activo>Ativo</activo>
+	</estados>
+	<grupos>
+		<list>Lista de grupos</list>
+		<create>Novo grupo</create>
+		<formview>Detalhe do grupo</formview>
+		<forminsert>Inserir de un novo grupo</forminsert>
+		<formupdate>Modificar grupo</formupdate>
+		<defaultdata>Dados do grupo</defaultdata>
+		<permdata>Permissões por aplicação</permdata>
+		<allow revised="false">Permitir</allow>
+		<deny revised="false">Recusar</deny>
+		<showdetalles revised="false">[Mostrar detalhes]</showdetalles>
+		<hidedetalles revised="false">[Ocultar detalhes]</hidedetalles>
+	</grupos>
+	<formaspago>
+		<list>Lista de formas de pagamento</list>
+		<create>Nova Forma de pagamento</create>
+		<formview>Detalhe da Forma de pagamento</formview>
+		<forminsert>Inserir Nova Forma de pagamento</forminsert>
+		<formupdate>Modificar a Forma de pagamento</formupdate>
+		<defaultdata>Dados da Forma de pagamento</defaultdata>
+	</formaspago>
+	<gastos>
+		<list>Lista de despesas</list>
+		<create>Novo despesa</create>
+		<formview>Detalhe da despesa</formview>
+		<forminsert>Inserir nova despesa</forminsert>
+		<formupdate>Modificar despesa</formupdate>
+		<defaultdata>Dados da despesa</defaultdata>
+		<pagadopor>Pagador</pagadopor>
+		<formapago>Forma de pagamento</formapago>
+		<todaslasformasdepago>[Todas as formas de pagamento]</todaslasformasdepago>
+		<liquidar>Liquidar</liquidar>
+		<dateliq>data liq.</dateliq>
+		<msgliquidar>Deseja liquidar as despesas selecionadas?</msgliquidar>
+		<msgerror>Deve selecionar as despesas que deseje liquidar na lista</msgerror>
+		<trimestrereg>Trim. entrada</trimestrereg>
+		<fechainireg>data entrada</fechainireg>
+		<trimestreliq>Trim. liquidado</trimestreliq>
+		<fechainiliq>data liquidada</fechainiliq>
+		<totalliquidar>as despesas liquidadas somam um total de: </totalliquidar>
+		<plotseguimientotop10>Os 10 fornecedores com maior faturamento no último ano</plotseguimientotop10>
+		<plotseguimiento12meses>despesas do último ano</plotseguimiento12meses>
+		<sinformapago>[Sem Forma de pagamento]</sinformapago>
+		<sinpagador>[Sem pagador]</sinpagador>
+		<vencimientos_old>Vencimentos</vencimientos_old>
+		<vencimientos_new>Novos vencimentos</vencimientos_new>
+		<fechavencimiento>data de vencimento</fechavencimiento>
+		<pagado>Pagamento</pagado>
+		<fechapagado>data de pagamento</fechapagado>
+	</gastos>
+	<facturas>
+		<list>Lista de faturas</list>
+		<create>Nova fatura</create>
+		<formview>Detalhe da fatura</formview>
+		<forminsert>Inserir nova fatura</forminsert>
+		<formupdate>Modificar a fatura</formupdate>
+		<defaultdata>Dados da fatura</defaultdata>
+		<errorfac101>Só pode abrir a última fatura</errorfac101>
+		<errorfac103>Não se pode apagar uma fatura fechada</errorfac103>
+		<numfacxxx>Nº fatura</numfacxxx>
+		<numalbxxx>Nº recibo</numalbxxx>
+		<fechaemision>Data de emissão</fechaemision>
+		<titular>Titular</titular>
+		<baseimponible>Base indisponível</baseimponible>
+		<totalapagar>Total a pagar</totalapagar>
+		<plotseguimientotop10>Os 10 clientes com maior faturamento no último ano</plotseguimientotop10>
+		<plotseguimiento12meses>Faturamento do último ano</plotseguimiento12meses>
+		<concepts_old>Conceitos</concepts_old>
+		<concepts_new>Novos conceitos</concepts_new>
+		<products_old>Produtos</products_old>
+		<products_new>Novos produtos</products_new>
+		<vencimientos_old>Vencimentos</vencimientos_old>
+		<vencimientos_new>Novos vencimentos</vencimientos_new>
+		<fechavencimiento>data de vencimento</fechavencimiento>
+		<fechacobrado>Data de cobrança</fechacobrado>
+		<clientdata>Dados do cliente</clientdata>
+		<vencimientosfactura>Vencimentos desta fatura</vencimientosfactura>
+		<vencimientosalbaran>Vencimentos deste Recibo</vencimientosalbaran>
+		<vencimientoscobrado>O campo cobrado foi modificado usando os Dados dos vencimentos</vencimientoscobrado>
+	</facturas>
+	<prioridades>
+		<list>Lista de prioridades</list>
+		<create>Nova prioridade</create>
+		<formview>Detalhe da prioridade</formview>
+		<forminsert>Inserir nova prioridade</forminsert>
+		<formupdate>Modificar prioridade</formupdate>
+		<defaultdata>Dados da prioridade</defaultdata>
+	</prioridades>
+	<agenda>
+		<list>Lista de eventos</list>
+		<create>Novo evento</create>
+		<formview>Detalhe do evento</formview>
+		<forminsert>Inserir novo evento</forminsert>
+		<formupdate>Modificar evento</formupdate>
+		<defaultdata>Dados do evento</defaultdata>
+		<otrasfechas>Outras datas</otrasfechas>
+		<todoseventos>[Todos os eventos]</todoseventos>
+		<todoayer>Eventos de ontem</todoayer>
+		<todohoy>Eventos de hoje</todohoy>
+		<todomanana>Eventos de amanhã</todomanana>
+		<todosemana>Eventos da semana</todosemana>
+		<todomes>Eventos do mês</todomes>
+		<todoano>Eventos do ano</todoano>
+		<usersdata>Utilizadores assinados</usersdata>
+		<asignadoa>Assinado a</asignadoa>
+		<notifydelay>Notificar</notifydelay>
+		<notifysign>hora/s</notifysign>
+		<notifydstart>Recebida notificação de início</notifydstart>
+		<notifydstop>Recebida notificacao de término</notifydstop>
+		<notifyantes>Antes</notifyantes>
+		<notifydespues>Depois</notifydespues>
+		<notifyprev>Notificação prévia ao evento</notifyprev>
+		<notifypost>Notificação de evento finalizado</notifypost>
+		<notifyclear>Notificações</notifyclear>
+		<notifytip>Limpar as notificações</notifytip>
+		<notifyclearok>Eventos reiniciados:</notifyclearok>
+		<notifyclearko>Não foram encontrados eventos pendentes para reiniciar</notifyclearko>
+		<calendar>Calendário de eventos</calendar>
+		<prevmonth>Mês anterior</prevmonth>
+		<currentmonth>Mês atual</currentmonth>
+		<nextmonth>Próximo mês</nextmonth>
+		<today>Hoje</today>
+		<yesterday>Ontem</yesterday>
+		<tomorrow>Amanhã</tomorrow>
+		<continue>Cont...</continue>
+		<by>por</by>
+		<calendarinfo>Mostrando informação a data:</calendarinfo>
+		<add>Inserir evento</add>
+		<gcalendar>Calendário do Google</gcalendar>
+		<gcalendartip>Sincronizar eventos entre o SaltOS e o Calendário do Google</gcalendartip>
+		<notgcalendarpassword>Não configurou a sua conta do Calendário do Google nas preferências</notgcalendarpassword>
+		<invalidgcalendarpassword>Os dados de acceso a sua conta do Calendário do Google estão incorretos</invalidgcalendarpassword>
+		<insertgcalendar>Eventos de SaltOS criados no Calendário do Google:</insertgcalendar>
+		<updategcalendar>Eventos de SaltOS atualizados no Calendário do Google:</updategcalendar>
+		<insertsaltos>Eventos de Calendário do Google criados no SaltOS:</insertsaltos>
+		<updatesaltos>Eventos de Calendario do Google atualizados no SaltOS:</updatesaltos>
+		<notinsertupdate>Não existem eventos a atualizar</notinsertupdate>
+		<gcalendarerror>Não é possível contatar o servidor do Calendário do Google</gcalendarerror>
+		<expand>Expandir</expand>
+		<expandtip>Expandir para mostrar o detalhe de todos os eventos do calendário</expandtip>
+		<collapse>Contrair</collapse>
+		<collapsetip>Contrair para ocultar o detalhe de todos os eventos do calendário</collapsetip>
+		<loadingsmall>Carregando...</loadingsmall>
+	</agenda>
+	<proveedores>
+		<list>Lista de fornecedores</list>
+		<create>Novo fornecedor</create>
+		<formview>Detalhe do fornecedor</formview>
+		<forminsert>Inserir novo fornecedor</forminsert>
+		<formupdate>Modificar fornecedor</formupdate>
+		<defaultdata>Dados do fornecedor</defaultdata>
+		<plotseguimiento12meses>despesas do último ano do fornecedor</plotseguimiento12meses>
+		<cuentacorriente>Conta corrente</cuentacorriente>
+		<cuentacontable>Conta de contabilidade</cuentacontable>
+		<diapago>Dia de pagamento</diapago>
+		<gastosdata>despesas associadas ao fornecedor</gastosdata>
+		<contactdata>Contatos do fornecedor</contactdata>
+		<nombrecomercial>Nome comercial</nombrecomercial>
+		<nombrefiscal>Nome fiscal</nombrefiscal>
+		<add>Inserir fornecedor</add>
+	</proveedores>
+	<actas>
+		<list>Lista de atas</list>
+		<create>Nova ata</create>
+		<formview>Detalhe da ata</formview>
+		<forminsert>Inserir Nova ata</forminsert>
+		<formupdate>Modificar a ata</formupdate>
+		<defaultdata>Dados da ata</defaultdata>
+		<dstart>Início</dstart>
+		<dstop>Fim</dstop>
+		<asistentes>Assistentes</asistentes>
+		<temas>Tópicos</temas>
+		<aceptados>Aceites</aceptados>
+		<cancelados>Cancelados</cancelados>
+		<pendientes>Pendentes</pendientes>
+		<add>Inserir ata</add>
+	</actas>
+	<profile>
+		<formupdate>Meu perfil</formupdate>
+		<oldpassword>Senha antiga</oldpassword>
+		<newpassword>Senha nova</newpassword>
+		<newpassword2>Repita senha</newpassword2>
+		<erroroldpassword>Senha antiga inválida</erroroldpassword>
+		<errornewpassword>As senhas digitadas são diferentes</errornewpassword>
+		<errornewpassword2 revised="false">A nova chave deve ser mais complexa</errornewpassword2>
+		<prefgeneral>Preferências gerais</prefgeneral>
+		<cambioclave>Troca sua senha pessoal</cambioclave>
+		<general>Geral</general>
+		<title_correo_old>Configura a conta de correio (POP3) para seu usuário</title_correo_old>
+		<pop3host>Servidor POP3</pop3host>
+		<pop3delete>Apagar mensagens antigas do servidor</pop3delete>
+		<pop3days>dias</pop3days>
+		<smtphost>Servidor SMTP</smtphost>
+		<emailprivated>Esta conta é particular(só eu tenho acesso)</emailprivated>
+		<emaildefault>Conta padrão (a mais usada)</emaildefault>
+		<emaildisabled>Desativar esta conta de correio</emaildisabled>
+		<emaildelete>Apagar esta conta de correio (não há como recuperar esses dados após esta ação)</emaildelete>
+		<emailsignatureold>Email Atual</emailsignatureold>
+		<emailsignaturenew>Novo Email</emailsignaturenew>
+		<correonew>Novo correio</correonew>
+		<title_correo_new>Configure uma nova conta de correio (POP3) para seu usuário</title_correo_new>
+		<gcalendar>Calendário Google</gcalendar>
+		<prefgcalendar>Sincronização da agenda com o serviço do Google Calendar</prefgcalendar>
+		<prefgcalendar2>Com esta opção, você pode usar a agenda do SaltOS e do Google Calendar, mantendo os dados atualizados de forma automática, sem ter que se preocupar em replicar os dados de uma agenda para outra.</prefgcalendar2>
+		<logingcalendar>Conta de correio do Gmail</logingcalendar>
+		<addmetocc>Me inclua como CC em todos os emails à enviar</addmetocc>
+		<defaultcrt>Ativar por padrão a confirmação de recebimento</defaultcrt>
+		<feedstitle>Configure os feeds que deseja ler desde SaltOS (RSS 1.0, RSS 2.0 y Atom 1.0)</feedstitle>
+		<url>URL</url>
+		<title>Título</title>
+		<description>Descrição</description>
+		<image>Imagem</image>
+		<test>Testar</test>
+		<add>Adcionar</add>
+		<feedslist>Lista de feeds RSS configurados</feedslist>
+		<feeds_old>Feeds configurados</feeds_old>
+		<feeds_new>Novo feed</feeds_new>
+		<lowerdisabled>desativado</lowerdisabled>
+		<quick>Menu rápido</quick>
+		<prefquick>Configure aquí o menu rápido situado na parte superior</prefquick>
+		<sinaplicacion>[Sem aplicação]</sinaplicacion>
+		<quick_button_f1>Primeiro botão (F1)</quick_button_f1>
+		<quick_button_f2>Segundo botão (F2)</quick_button_f2>
+		<quick_button_f3>Terceiro botão (F3)</quick_button_f3>
+		<quick_button_f4>Quarto botão (F4)</quick_button_f4>
+		<quick_button_f5>Quinto botão (F5)</quick_button_f5>
+		<quick_button_f6>Sexto botão (F6)</quick_button_f6>
+		<quick_button_f7>Sétimo botão (F7)</quick_button_f7>
+		<quick_button_f8>Oitavo botão (F8)</quick_button_f8>
+		<quick_button_f9>Nono botão (F9)</quick_button_f9>
+		<quick_button_f10>Décimo botão (F10)</quick_button_f10>
+		<quick_button_f11 revised="false">Décimo primeiro botão (F11)</quick_button_f11>
+		<quick_button_f12 revised="false">Botão de Reis (F12)</quick_button_f12>
+		<folderstab>Pastas de usuário</folderstab>
+		<folderspref>Caixas de configurar um utilizador aqui e deixe o que você quer</folderspref>
+		<newfolder>Nova pasta de usuário</newfolder>
+	</profile>
+	<maincfg>
+		<formupdate>Configuração</formupdate>
+		<general>Geral</general>
+		<title_general>Configure alguns parâmetros gerais da aplicação</title_general>
+		<applicationtitle>Título da aplicação</applicationtitle>
+		<plotlistsize>Tamanho de exibição dos gráficos</plotlistsize>
+		<plotformsize>Tamanho dos formulários dos gráficos</plotformsize>
+		<small>Pequeno</small>
+		<medium>Médio</medium>
+		<big>Grande</big>
+		<agendainterval>Buscar notificações em agenda cada</agendainterval>
+		<inboxinterval>Buscar novas mensagens</inboxinterval>
+		<outboxinterval>Checar a caixa de saída</outboxinterval>
+		<feedsinterval>Buscar novos envios a cada</feedsinterval>
+		<feedstimeout>Esqueça o passado apagado feeds</feedstimeout>
+		<sessioninterval>Checar aviso de encerramento de sessão a cada</sessioninterval>
+		<sessionwarning>Avisar sobre o encerramento da sessão antes de</sessionwarning>
+		<emailsupport>Email para o suporte técnico</emailsupport>
+		<segundos>segundos</segundos>
+		<dias>dias</dias>
+		<title_logo>Defina o logotipo, posicição, tamanho e cores que serão usadas nos pdf's</title_logo>
+		<logo>Logotipo</logo>
+		<logoleft>Posição do logo X</logoleft>
+		<logotop>Y</logotop>
+		<logowidth>Largura</logowidth>
+		<logoheight>Altura</logoheight>
+		<logofile>Arquivo do logo atual</logofile>
+		<logofilenew>Novo arquivo (somente JPEG)</logofilenew>
+		<colorline>Cor das linhas</colorline>
+		<colortext1>Títulos</colortext1>
+		<colortext2>Textos</colortext2>
+		<title_correo>Configure a conta de correio padrão que será usada na aplicação para enviar emails quando um usuário não tiver configurado sua conta pessoal no SaltOS</title_correo>
+		<emailhost>Servidor SMTP</emailhost>
+		<water>Marcas d'água</water>
+		<title_water>Defina a marcas d'água que serão usadas nos pdf's</title_water>
+		<wateractas>Atas: Texto</wateractas>
+		<waterpartes>Partes: Texto</waterpartes>
+		<waterfacturas>Faturas: Texto</waterfacturas>
+		<wateralbaranes>Recibo: Texto</wateralbaranes>
+		<waterpresupuestos>Plano: Texto</waterpresupuestos>
+		<waterclientes>Clientes: Texto</waterclientes>
+		<waterproyectos>Projetos: Texto</waterproyectos>
+		<waterposiblescli>Possíveis clientes: Texto</waterposiblescli>
+		<watercorreo>Correio: Texto</watercorreo>
+		<emailasync>Usar o envio assíncrono (mais rápido)</emailasync>
+		<accounting>Contabilidade</accounting>
+		<title_accounting>Defina aqui os dados globais da contabilidade</title_accounting>
+		<accounting_currency>Moeda</accounting_currency>
+		<accounting_iva_name>Descrição de Impostos (+)</accounting_iva_name>
+		<accounting_irpf_name>Descrição de Impostos (-)</accounting_irpf_name>
+		<accounting_value>Defeito Valor (uso interno)</accounting_value>
+	</maincfg>
+	<about>
+		<formupdate>Sobre o SaltOS</formupdate>
+		<copyright>Este software é distribuído sob os termos da licença GPL-3.0:</copyright>
+		<components>Este software os demais componentes:</components>
+		<server_base>Servidor:</server_base>
+		<php_plugins>PHP plugins:</php_plugins>
+		<javascript_base>Javascript:</javascript_base>
+		<jquery_plugins>JQuery plugins:</jquery_plugins>
+		<ckeditor_plugins>CKEditor plugins:</ckeditor_plugins>
+		<javascript_plugins>Javascript plugins:</javascript_plugins>
+		<other_plugins revised="false">Outros plugins:</other_plugins>
+		<server_plugins>Plugins:</server_plugins>
+		<vxinfo>Nota: (*) Alguns projetos Não especificam a versão correta da licença que empregam</vxinfo>
+		<ooformats>Formatos suportados</ooformats>
+		<license>Licença </license>
+		<game>Jogo</game>
+		<ootitle>Esta é a lista de formatos suportados pelo OpenOffice e que se podem consultar usando o visualizador de PDF.</ootitle>
+		<licensetitle>Em seguida, mostra-se o texto da licença </licensetitle>
+		<gametitle>Se chegou a este ponto, merece descansar um pouco. Pode jogar!!!</gametitle>
+		<translators>traduções</translators>
+		<developers>Desenvolvedores</developers>
+		<unavailable>Contato informação não disponível. Fale um desenvolvedor para eventuais consultas perguntas ou sugestões.</unavailable>
+	</about>
+	<support>
+		<formupdate>Suporte técnico</formupdate>
+		<contact>Suporte técnico</contact>
+		<subject>Assunto</subject>
+		<msgsendemail>O seu email foi enviado ao suporte técnico</msgsendemail>
+		<msgnotemailsupport>Não foi espeficicado nenhum mensagem para o suporte técnico</msgnotemailsupport>
+		<msgnotsubject>Não foi encontrado nenhum assunto</msgnotsubject>
+		<msgnotcomments>Não foi inserido nenhum comentário</msgnotcomments>
+	</support>
+	<home>
+		<formupdate>Inicio</formupdate>
+		<hide>Ocultar</hide>
+		<nodata revised="false">Você pode adicionar conteúdo aqui verificar esta pasta na guia pastas que você pode encontrar nos detalhes de todas as aplicações</nodata>
+	</home>
+	<seguimientos>
+		<list>Lista de seguimentos</list>
+		<create>Novo seguimento</create>
+		<formview>Detalhe do seguimento</formview>
+		<forminsert>Inserir novo seguimento</forminsert>
+		<formupdate>Modificar seguimento</formupdate>
+		<defaultdata>Dados do seguimento</defaultdata>
+		<add>Inserir seguimento</add>
+	</seguimientos>
+	<datacfg>
+		<formupdate>Ações sobre a base de Dados</formupdate>
+		<export>Exportar</export>
+		<title_export>Exportar toda a base de Dados em formato SQL</title_export>
+		<desc_export>Permite guardar uma cópia de segurança de toda a base de dados</desc_export>
+		<desc2_export>Realize esta operação de forma periódica e guarde este arquivo em um lugar seguro(memória flash, um CD ou qualquer outro dispositivo externo)</desc2_export>
+		<import>Importar</import>
+		<title_import>Importar toda a base de Dados em formato SQL</title_import>
+		<desc_import>Permite importar todos os Dados desde uma cópia de segurança</desc_import>
+		<desc2_import>Selecione o arquivo a importar clicando no botão [Examinar] e depois no botao [Importar] para realizar a carga dos novos dados inclusive a cópia de segurança</desc2_import>
+		<desc3_import>Importante: A importação apagará os dados atuais da aplicação</desc3_import>
+		<filenotfound>Não foi possível ler o conteúdo do arquivo de importação</filenotfound>
+		<filefoundok>A restauração dos dados foi efetuada com sucesso</filefoundok>
+	</datacfg>
+	<correo>
+		<list>Lista de mensagens</list>
+		<create>Criar novo email</create>
+		<formview>Detalhe de email</formview>
+		<forminsert>Enviar novo email</forminsert>
+		<formupdate>Reenviar email</formupdate>
+		<defaultdata>Dados do email</defaultdata>
+		<from>De</from>
+		<to>Para</to>
+		<cc>CC</cc>
+		<bcc>BCC</bcc>
+		<subject>Assunto</subject>
+		<attachments>anexos</attachments>
+		<message>Mensagem</message>
+		<recibir>Receber</recibir>
+		<recibirtip>Clique aqui para receber novos mensagens</recibirtip>
+		<enviar>Enviar</enviar>
+		<enviartip>Clique aqui para enviar os emails da caixa de saída</enviartip>
+		<msgnotpop3email>Não existe nenhuma conta de mensagens ativa ou configurada</msgnotpop3email>
+		<msgnotpop3host>Não foi configurado o servidor POP3</msgnotpop3host>
+		<msgerrorpop3email>Ocorreu o seguinte erro: </msgerrorpop3email>
+		<msgnewokpop3email1> nova  mensagem recebida na caixa de entrada</msgnewokpop3email1>
+		<msgnewokpop3email2> novas  mensagens recebidas na caixa de entrada</msgnewokpop3email2>
+		<msggotoemail>ir para mensagem</msggotoemail>
+		<msgnewkopop3email>Não há novas mensagens</msgnewkopop3email>
+		<msgconnrefusedpop3email>Ligação ao servidor incompleta</msgconnrefusedpop3email>
+		<msgconnerrorpop3email>Não foi possível conectar-se ao servidor</msgconnerrorpop3email>
+		<msgopenerrorpop3email>Não foi encontrado o arquivo da mensagem</msgopenerrorpop3email>
+		<msgpropietario>Só proprietários das mensagens podem utilizar estes serviços</msgpropietario>
+		<msgnotfound>Não foram encontrados mensagens com os critérios selecionados, modifique o filtro</msgnotfound>
+		<msgnumsileidos>Marcados como lidos: </msgnumsileidos>
+		<msgnumsiwait>Marcados como pendentes: </msgnumsiwait>
+		<msgnumsispam>Marcado como lixo - SPAM: </msgnumsispam>
+		<msgnumnoleidos>Marcados como não lidos: </msgnumnoleidos>
+		<msgnumnowait>Marcados como não pendentes: </msgnumnowait>
+		<msgnumnospam>Marcados como não Lixo - SPAM: </msgnumnospam>
+		<msgnumdelete>Apagados: </msgnumdelete>
+		<statenew>Novo</statenew>
+		<stateread>Lido</stateread>
+		<statereply>Respondido</statereply>
+		<stateforward>Reenviado</stateforward>
+		<statewait>Pendente</statewait>
+		<statespam>SPAM</statespam>
+		<statesent>Enviado</statesent>
+		<statenotsent>Não enviado</statenotsent>
+		<stateerror>Erro</stateerror>
+		<stateall>Tudo</stateall>
+		<todaslascuentas>[Todas as contas]</todaslascuentas>
+		<buttonsend>Enviar</buttonsend>
+		<buttonsendreturnhere>Enviar e voltar aqui</buttonsendreturnhere>
+		<onlynew>Só novos</onlynew>
+		<onlywait>Só pendentes</onlywait>
+		<hidespam>Ocultar lixo - SPAM</hidespam>
+		<withfiles>Com anexos</withfiles>
+		<onlyspam>Só lixo - SPAM</onlyspam>
+		<withoutfiles>Sem anexos</withoutfiles>
+		<actionwait>Pendente</actionwait>
+		<actionspam>Lixo - SPAM</actionspam>
+		<actionreply>Responder</actionreply>
+		<actionreplyall>Resp. a todos</actionreplyall>
+		<actionforward>Reenviar</actionforward>
+		<messageid revised="false">ID da mensagem</messageid>
+		<fulldata>Zoom do mensagem</fulldata>
+		<sourcedata>Fontes do mensagem</sourcedata>
+		<leidos>Lidos</leidos>
+		<wait>Pendente</wait>
+		<spam>Lixo - SPAM</spam>
+		<borrar>Apagar</borrar>
+		<borrartip>Apagar todas as mensagens selecionadas</borrartip>
+		<msgleidos>Deseja marcar como lidos / não lidos todas as mensagens selecionadas?</msgleidos>
+		<msgwait>Deseja marcar como pendentes / não pendentes todas as mensagens selecionadas?</msgwait>
+		<msgspam>Deseja marcar como SPAM / não SPAM todas as mensagens selecionadas?</msgspam>
+		<msgdelete2>Deseja eliminar todas as mensagens selecionadas?</msgdelete2>
+		<msgnotsendfound>Não há mensagens pendentes à enviar</msgnotsendfound>
+		<msgerrorsendmail>Ocorreu o seguinte erro: </msgerrorsendmail>
+		<msgtotalsendmail1> mensagem enviada à caixa de saída</msgtotalsendmail1>
+		<msgtotalsendmail2> mensagens enviadas à caixa de saída</msgtotalsendmail2>
+		<stateinbox>Entrada</stateinbox>
+		<stateoutbox>Saída</stateoutbox>
+		<onlyinbox>Só entradas</onlyinbox>
+		<onlyoutbox>Só saídas</onlyoutbox>
+		<options>Opções</options>
+		<optionstip>Mostrar mais opções da Lista</optionstip>
+		<sinsubject>(sem assunto)</sinsubject>
+		<msgfromkosendmail>Não foi encontrada a configuração para o De: requerido</msgfromkosendmail>
+		<msgsendoksendmail>A mensagem foi enviada com sucesso</msgsendoksendmail>
+		<replysubject>Re: </replysubject>
+		<replyallsubject>Re: </replyallsubject>
+		<forwardsubject>Fwd: </forwardsubject>
+		<embeddedmessage>A #datetime#, #fromname# escreveu:</embeddedmessage>
+		<actionreplytip>Para responder ao remetente desta mensagem</actionreplytip>
+		<actionreplyalltip>Para responder a todos os utilizadores desta mensagem</actionreplyalltip>
+		<actionforwardtip>Para reenviar esta mensagem a outros Utilizadores</actionforwardtip>
+		<noleidos>Não lidos</noleidos>
+		<nowait>Não pendentes</nowait>
+		<nospam>Não há Lixo - SPAM</nospam>
+		<today>Hoje</today>
+		<yesterday>Ontem</yesterday>
+		<week>Semana</week>
+		<month>Mês</month>
+		<confirmreadingto>Solicitar confirmação de recebimento da mensagem</confirmreadingto>
+		<marcarcorreos>Marcar como</marcarcorreos>
+		<message0> mensagens</message0>
+		<message1> mensagem</message1>
+		<message2> mensagens</message2>
+		<campos>Campos</campos>
+		<allcampos>[Todos os campos]</allcampos>
+		<onlyemail>Só endereço</onlyemail>
+		<onlysubject>Só assunto</onlysubject>
+		<onlybody>Só mensagem</onlybody>
+		<restocampos>O resto dos campos</restocampos>
+		<filtrarcorreos>Filtrar por</filtrarcorreos>
+		<priority revised="false">Prioridade</priority>
+		<priorityhigh revised="false">Alto</priorityhigh>
+		<prioritynormal revised="false">Normal</prioritynormal>
+		<prioritylow revised="false">Baixo</prioritylow>
+		<sensitivity revised="false">Sensibilidade</sensitivity>
+		<sensitivitynormal revised="false">Normal</sensitivitynormal>
+		<sensitivitypersonal revised="false">Pessoal</sensitivitypersonal>
+		<sensitivityprivate revised="false">Privado</sensitivityprivate>
+		<sensitivityconfidential revised="false">Confidencial</sensitivityconfidential>
+	</correo>
+	<cuentas>
+		<list>Lista de contas</list>
+		<create>Nova conta</create>
+		<formview>Detalhe da conta</formview>
+		<forminsert>Inserir nova conta</forminsert>
+		<formupdate>Modificar conta</formupdate>
+		<defaultdata>Dados da conta</defaultdata>
+		<logo>Logotipo</logo>
+		<title_logo>Defina o logotipo, posição, tamanho e cores a utilizar nas faturas</title_logo>
+		<logoleft>Posição do logo X</logoleft>
+		<logotop>Y</logotop>
+		<logowidth>Largura</logowidth>
+		<logoheight>Altura</logoheight>
+		<logofile>Arquivo do logo atual</logofile>
+		<logofilenew>Novo arquivo (Somente JPEG)</logofilenew>
+		<colorline>Cor das linhas</colorline>
+		<colortext1>Títulos</colortext1>
+		<colortext2>Textos</colortext2>
+		<title_facturas>Defina certos parâmetros a utilizar na emissão de faturas</title_facturas>
+		<facturabool>Usar </facturabool>
+		<facturavalue>Valor por defeito (Uso interno)</facturavalue>
+		<facturapie1>Linha de rodapé 1</facturapie1>
+		<facturapie2>Linha de rodapé 2</facturapie2>
+	</cuentas>
+	<periodicas>
+		<list>Lista de faturas periódicas</list>
+		<create>Nova fatura periódica</create>
+		<formview>Detalhe da fatura periódica</formview>
+		<forminsert>Inserir Nova fatura periódica</forminsert>
+		<formupdate>Modificar fatura periódica</formupdate>
+		<defaultdata>Dados da fatura periódica</defaultdata>
+		<concepts_old>Conceitos</concepts_old>
+		<concepts_new>Novos conceitos</concepts_new>
+		<products_old>Produtos</products_old>
+		<products_new>Novos produtos</products_new>
+		<vencimientos_old>Vencimentos</vencimientos_old>
+		<vencimientos_new>Novos vencimentos</vencimientos_new>
+		<fechavencimiento>data de vencimento</fechavencimiento>
+		<diaemision>Dia de emissao</diaemision>
+		<diaini>Entre dia</diaini>
+		<dia>Dia</dia>
+		<meses>Meses</meses>
+		<liquidar>Gerar</liquidar>
+		<totalliquidar>Número de faturas geradas no total: </totalliquidar>
+		<msgerror>Deve selecionar as faturas que deseje gerar na lista</msgerror>
+		<msgliquidar>Deseja gerar as faturas selecionadas?</msgliquidar>
+	</periodicas>
+	<empleados>
+		<list>Lista de empregado</list>
+		<create>Novo empregado</create>
+		<formview>Detalhe do empregado</formview>
+		<forminsert>Inserir novo empregado</forminsert>
+		<formupdate>Modificar empregado</formupdate>
+		<defaultdata>Dados do empregado</defaultdata>
+		<contactdata>Contatos do empregado</contactdata>
+	</empleados>
+	<denied>
+		<title>Acceso negado</title>
+		<short>Não tem permissão esta ação</short>
+		<large>O sistema bloqueou a execução da aplicação. Você não tem privilégios para executar esta aplicação. Se tratar-se de um erro, por favor contate o administrador do sistema</large>
+	</denied>
+	<posiblescli>
+		<list>Lista de possíveis clientes</list>
+		<create>Novo possível cliente</create>
+		<formview>Detalhe do possível cliente</formview>
+		<forminsert>Inserir novo possível cliente</forminsert>
+		<formupdate>Modificar possível cliente</formupdate>
+		<defaultdata>Dados do possível cliente</defaultdata>
+		<crearcliente>Criar cliente</crearcliente>
+		<clientcreatedok>Foi criado o cliente com sucesso</clientcreatedok>
+		<msgcrear>Deseja converter o possível cliente em cliente?</msgcrear>
+		<agendadata>Eventos do possível cliente</agendadata>
+		<actasdata>Ações do possível cliente</actasdata>
+		<presupuestosdata>Orçamentos do possível cliente</presupuestosdata>
+		<facturacion>Fatura</facturacion>
+		<iaedesc>Descrição ISS/ICMS</iaedesc>
+		<iaecod>Cod. ISS/ICMS</iaecod>
+		<activo>Ativo</activo>
+		<activo_desc>Ativo (para poder fazer Orçamentos, ações e eventos)</activo_desc>
+		<contacto>Contato</contacto>
+		<changedenied>Não é possível desativar um possível cliente que tenha ações, agenda ou Orçamentos</changedenied>
+	</posiblescli>
+	<productos>
+		<list>Lista de produtos</list>
+		<create>Novo produto</create>
+		<formview>Detalhe do produto</formview>
+		<forminsert>Inserir um novo produto</forminsert>
+		<formupdate>Modificar produto</formupdate>
+		<defaultdata>Dados do produto</defaultdata>
+	</productos>
+	<presupuestos>
+		<list>Lista de Orçamentos</list>
+		<create>Novo orçamento</create>
+		<formview>Detalhe do orçamento</formview>
+		<forminsert>Inserir novo orçamento</forminsert>
+		<formupdate>Modificar orçamento</formupdate>
+		<defaultdata>Dados do orçamento</defaultdata>
+		<tareaspresupuesto>Tarefas do orçamento</tareaspresupuesto>
+		<desctareas>Descrição das tarefas</desctareas>
+		<horastotal>Horas totais</horastotal>
+		<preciomedio>Preço médio</preciomedio>
+		<preciototal>Preço total</preciototal>
+		<productospresupuesto>Produtos no orçamento</productospresupuesto>
+		<descproductos>Descrição dos produtos</descproductos>
+		<objetivos>Objetivos do orçamento</objetivos>
+		<funcional>Proposta funcional</funcional>
+		<tecnica>Proposta técnica</tecnica>
+		<extras>Informação adicional</extras>
+		<condiciones>Condições do orçamento</condiciones>
+		<valoracion>Valorização econômica</valoracion>
+		<crearproyecto>Criar projeto</crearproyecto>
+		<projectexists>Este orçamento já está relacionado com um projeto</projectexists>
+		<clientnotexists>Deve relacionar a um cliente (se está relacionado com um possível cliente, converta-o primeiramente em cliente)</clientnotexists>
+		<projectcreatedok>O novo projeto foi criado corretamente</projectcreatedok>
+		<msgcrear>Deseja criar um projeto a partir deste orçamento?</msgcrear>
+		<agendadata>Eventos do orçamento</agendadata>
+		<actasdata>Ações do orçamento</actasdata>
+		<plotseguimientoestados>Agrupamento de Orçamentos por estado</plotseguimientoestados>
+		<resumentareasproductos>Resumo de tarefas e produtos</resumentareasproductos>
+		<objetivospdf>Objetivos</objetivospdf>
+		<funcionalpdf>Funcional</funcionalpdf>
+		<tecnicapdf>técnica</tecnicapdf>
+		<extraspdf>Informação</extraspdf>
+		<condicionespdf>Condições</condicionespdf>
+	</presupuestos>
+	<campanyas>
+		<list>Lista de campanhas</list>
+		<create>Nova campanha</create>
+		<formview>Detalhe da campanha</formview>
+		<forminsert>Inserir Nova campanha</forminsert>
+		<formupdate>Modificar a campanha</formupdate>
+		<defaultdata>Dados da campanha</defaultdata>
+		<agendadata>Eventos da campanha</agendadata>
+		<presupuestosdata>Orçamentos da campanha</presupuestosdata>
+		<projectopen>Projetos ativos</projectopen>
+		<projectclose>Projetos fechados</projectclose>
+		<clientesdata>Clientes captados</clientesdata>
+		<posiblesclidata>Possíveis clientes</posiblesclidata>
+	</campanyas>
+	<tiposevento>
+		<list>Lista de tipos de eventos</list>
+		<create>Novo tipo de evento</create>
+		<formview>Detalhe do tipo de evento</formview>
+		<forminsert>Inserir novo tipo de evento</forminsert>
+		<formupdate>Modificar tipo de evento</formupdate>
+		<defaultdata>Dados do tipo de evento</defaultdata>
+	</tiposevento>
+	<textos>
+		<list>Lista de textos predefinidos</list>
+		<publico>Público</publico>
+		<publico_desc>Todos podem usar este texto predefinido</publico_desc>
+		<create>Novo texto predefinido</create>
+		<formview>Detalhe do texto predefinido</formview>
+		<forminsert>Inserir novo texto predefinido</forminsert>
+		<formupdate>Modificar texto predefinido</formupdate>
+		<defaultdata>Dados do texto predefinido</defaultdata>
+		<sinaplicacion revised="false">[Sem aplicação]</sinaplicacion>
+	</textos>
+	<ficheros>
+		<list>Lista de Arquivos anexos</list>
+		<todaslasaplicaciones>[Todas as aplicações]</todaslasaplicaciones>
+	</ficheros>
+	<feeds>
+		<list>Lista de feeds RSS</list>
+		<msgnewfeedsok1> novo post baixado</msgnewfeedsok1>
+		<msgnewfeedsok2> novos posts baixados</msgnewfeedsok2>
+		<msgnewfeedsko>Não foram encontrados novos posts</msgnewfeedsko>
+		<msgmodifiedfeedsok1> post atualizado</msgmodifiedfeedsok1>
+		<msgmodifiedfeedsok2> posts atualizados</msgmodifiedfeedsok2>
+		<msgnotfeeds>Não há nenhum feed RSS configurado ou ativo</msgnotfeeds>
+		<feed>Feed RSS</feed>
+		<title>Título</title>
+		<pubdate>data pub.</pubdate>
+		<recibir>Receber</recibir>
+		<recibirtip>Clique aqui para receber novos posts</recibirtip>
+		<todoslosfeeds>[Todos os feeds RSS]</todoslosfeeds>
+		<defaultdata>Detalhe do post</defaultdata>
+		<fulldata>Zoom do post</fulldata>
+		<actionwait>Pendente</actionwait>
+		<statenew>Novo</statenew>
+		<statemodified>Modificado</statemodified>
+		<statewait>Pendente</statewait>
+		<stateread>Lido</stateread>
+		<actionforward>Reenviar</actionforward>
+		<actionforwardtip>Para reenviar este post por mensagem electrónico</actionforwardtip>
+		<formview>Detalhe do post</formview>
+		<msggotofeeds>ir aos feeds RSS</msggotofeeds>
+		<onlynew>Sónovos</onlynew>
+		<onlywait>Só pendentes</onlywait>
+		<options>Opções</options>
+		<optionstip>Mostrar mais opções da Lista</optionstip>
+		<stateall>Tudo</stateall>
+		<today>Hoje</today>
+		<yesterday>Ontem</yesterday>
+		<week>Semana</week>
+		<month>Mas</month>
+		<marcarfeeds>Marcar como</marcarfeeds>
+		<leidos>Lidos</leidos>
+		<wait>Pendente</wait>
+		<borrar>Apagar</borrar>
+		<borrartip>Apagar todos os posts selecionados</borrartip>
+		<noleidos>Não lidos</noleidos>
+		<nowait>Não pendentes</nowait>
+		<msgleidos>Deseja marcar como lidos / não lidos todos os posts selecionados?</msgleidos>
+		<msgwait>Deseja marcar como pendentes / não pendentes todos os posts selecionados?</msgwait>
+		<msgdelete2>Deseja eliminar todos os posts selecionados?</msgdelete2>
+		<msgpropietario>Só o propietário dos posts pode usar estes serviços</msgpropietario>
+		<msgnotfound>Não foram encontrados posts selecionados, modifique o filtro</msgnotfound>
+		<msgnumsileidos>Marcados como lidos: </msgnumsileidos>
+		<msgnumsiwait>Marcados como pendentes: </msgnumsiwait>
+		<msgnumnoleidos>Marcados como não lidos: </msgnumnoleidos>
+		<msgnumnowait>Marcados como não pendentes: </msgnumnowait>
+		<msgnumdelete>Apagados: </msgnumdelete>
+		<message0> mensagens</message0>
+		<message1> mensagem</message1>
+		<message2> mensagens</message2>
+		<msgerrorfeed>Ocorreu um erro com o seguinte feed: </msgerrorfeed>
+		<sintitle>(sem título)</sintitle>
+		<post>Post RSS</post>
+		<filtrarfeeds>Filtrar por</filtrarfeeds>
+	</feeds>
+	<importaciones>
+		<list>Lista de importações</list>
+		<create>Nova importação</create>
+		<formview>Detalhe da importação</formview>
+		<forminsert>Inserir Nova importação</forminsert>
+		<formupdate>Modificar a importação</formupdate>
+		<defaultdata>Dados da importação</defaultdata>
+		<sinaplicacion revised="false">[Sem aplicação]</sinaplicacion>
+	</importaciones>
+	<folders>
+		<notfound revised="false">Pasta não encontrada</notfound>
+		<todaslasaplicaciones revised="false">[Todas as candidaturas]</todaslasaplicaciones>
+		<deleteoffolder revised="false">Remover desta pasta</deleteoffolder>
+		<defaultfolder revised="false">Pasta pessoal</defaultfolder>
+	</folders>
+	<translate>
+		<translate revised="false">Tradutor</translate>
+		<corrector revised="false">Corretor ortográfico</corrector>
+		<es revised="false">Espanhol</es>
+		<ca revised="false">Catalão</ca>
+		<en revised="false">Inglês</en>
+		<pt revised="false">Português</pt>
+		<eu revised="false">Euskera</eu>
+		<gl revised="false">Gallego</gl>
+		<fr revised="false">Francês</fr>
+	</translate>
+	<buscador>
+		<list revised="false">Pesquisa</list>
+		<todaslasaplicaciones>[Todas as aplicações]</todaslasaplicaciones>
+		<nosearch revised="false">Você deve fornecer algumas palavras de busca na caixa de texto</nosearch>
+	</buscador>
+</root>

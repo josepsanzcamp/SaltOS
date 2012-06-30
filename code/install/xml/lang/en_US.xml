@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>common</default>
+	<common>
+		<title>SaltOS setup program</title>
+		<yes>Yes</yes>
+		<no>No</no>
+		<language>Language, style and icons selection</language>
+		<welcome_message>Welcome to the SaltOS setup program</welcome_message>
+		<lang_message>Select the language: </lang_message>
+		<style_message>Select the style: </style_message>
+		<iconset_message>Select the icons: </iconset_message>
+		<begin_message>Press "Next" to begin the SaltOS setup with only 5 easy steps</begin_message>
+		<back>Back</back>
+		<next>Next</next>
+		<test>Check</test>
+		<install>Install SaltOS</install>
+		<saltos>Launch SaltOS</saltos>
+		<is_writable>Checking write permission</is_writable>
+		<is_executable>Checking external programs</is_executable>
+		<directory>Directory</directory>
+		<file>File</file>
+		<executable>Executable</executable>
+		<database_link>Connecting to the database</database_link>
+		<select_dbtype>Select the DBMS</select_dbtype>
+		<select_prefered> (recomended)</select_prefered>
+		<selected_dbtype>Selected DBMS</selected_dbtype>
+		<dbfile>Database file</dbfile>
+		<dbtest1>Ran the test connection</dbtest1>
+		<dbtest2>Support for the function GROUP_CONCAT</dbtest2>
+		<dbhost>Host</dbhost>
+		<dbport>Port</dbport>
+		<dbuser>User</dbuser>
+		<dbpass>Password</dbpass>
+		<dbname>Database Name</dbname>
+		<admin_account>Data access the administrator account</admin_account>
+		<user>User</user>
+		<pass>Password</pass>
+		<email>Email</email>
+		<optional>Optional</optional>
+		<forcessl>Force SSL (https)</forcessl>
+		<timezone>Time zone</timezone>
+		<exampledata>Import sample data</exampledata>
+		<undefined>Undefined</undefined>
+		<install_input>Summary and confirmation of installation</install_input>
+		<install_output>Result of the installation</install_output>
+		<config>Save settings to access the database</config>
+		<dbschema>Create tables in the database</dbschema>
+		<dbstatic>Import internal data</dbstatic>
+		<streetdata>Import street data</streetdata>
+		<defaultdata>Import generic data</defaultdata>
+		<permissiondata>Create administer permissions for the group</permissiondata>
+		<delete>Remove the installation files</delete>
+		<rename>Rename the installation files</rename>
+		<finish>Installation Complete</finish>
+		<gotohome>Reload page</gotohome>
+		<notifybug>Report bug</notifybug>
+		<step>Step</step>
+		<lang>Language</lang>
+		<style>Style</style>
+		<iconset>Icons</iconset>
+		<env_vars>Environment variables</env_vars>
+		<env_path>PATH</env_path>
+		<env_lang>LANG</env_lang>
+	</common>
+</root>

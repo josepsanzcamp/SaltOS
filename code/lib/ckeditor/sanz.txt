@@ -1,0 +1,13 @@
+Some SaltOS changes:
+
+IN
+- skins/kama/editor.css
+ADD
+- /*ADDED BY SANZ FOR SALTOS INTEGRATION */span.cke_skin_kama{border:0px;padding:1px;}/*ADDED BY SANZ FOR SALTOS INTEGRATION */
+
+IN
+- ckeditor.js
+FROM
+- m.ui.addButton('Source',{label:m.lang.source,command:'source'})
+TO
+- m.ui.addButton('Source',{title:m.lang.source,command:'source'})

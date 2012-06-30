@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>
+		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
+		<id global="id" eval="true">$id=current_user()</id>
+	</default>
+	<form>
+		<views>
+			<update>
+				<title lang="true">formupdate</title>
+				<query>
+					<default>SELECT '0' id</default>
+					<help include="xml/common/qhelp.xml" replace="true" />
+				</query>
+			</update>
+		</views>
+		<name>form</name>
+		<action>xml.php</action>
+		<method>post</method>
+		<hiddens include="xml/common/hiddensform.xml" />
+		<fields>
+			<default>
+				<temp global="rows" eval="true">dummy($rows=execute_query("SELECT * FROM tbl_folders WHERE id_usuario='".current_user()."' ORDER BY name ASC"))</temp>
+				<temp global="rows" eval="true">dummy($rows=is_array($rows)?$rows:array())</temp>
+				<temp global="rows" eval="true">dummy($rows=isset($rows["id"])?array($rows):$rows)</temp>
+				<fieldset global="rows,row" foreach="rows" as="row">
+					<title global="row" eval="true">$row["name"]</title>
+					<width>100%</width>
+					<row>
+						<field>
+							<type>separator</type>
+							<class global="row" eval="true">"boxs siwrap id_".$row["id"]</class>
+						</field>
+					</row>
+				</fieldset>
+			</default>
+			<help include="xml/common/helpform.xml" />
+		</fields>
+		<javascript>
+			<javascript include="xml/common/jsform.xml" replace="true"/>
+			<cache>
+				<include>js/home.js</include>
+			</cache>
+		</javascript>
+	</form>
+</root>

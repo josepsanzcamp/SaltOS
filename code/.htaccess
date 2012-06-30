@@ -1,0 +1,3 @@
+Options +FollowSymLinks
+AddDefaultCharset UTF-8
+RedirectMatch 404 /\\.svn(/|$)

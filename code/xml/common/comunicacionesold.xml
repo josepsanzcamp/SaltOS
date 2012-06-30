@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<fieldset>
+		<width>700px</width>
+		<head>
+			<field>
+				<type>label</type>
+				<label lang="true">seleccion2</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">direccion</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">tipocom</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">nombre</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>label</type>
+				<label lang="true">valorcom</label>
+				<class>thead</class>
+			</field>
+			<field>
+				<type>separator</type>
+				<class>thead</class>
+				<colspan>100</colspan>
+				<show global="id" eval="true">$id>0?"true":"false"</show>
+			</field>
+		</head>
+		<row>
+			<field>
+				<type>hidden</type>
+				<name>id</name>
+			</field>
+			<field>
+				<type>hidden</type>
+				<name>id_aplicacion</name>
+			</field>
+			<field>
+				<type>hidden</type>
+				<name>id_registro</name>
+			</field>
+			<field>
+				<type>checkbox</type>
+				<name>seleccion</name>
+				<class2>tbody</class2>
+				<value>1</value>
+				<width>1px</width>
+				<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+			</field>
+			<field>
+				<type>select</type>
+				<name>id_direccion</name>
+				<query global="page,id" eval="true">"SELECT '0' `value`,'' label UNION SELECT id `value`,nombre label FROM tbl_direcciones WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' ORDER BY label"</query>
+				<class>tbody</class>
+				<width>120px</width>
+				<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+			</field>
+			<field>
+				<type>select</type>
+				<name>id_tipocom</name>
+				<query>SELECT id `value`,nombre label FROM tbl_tiposcom ORDER BY nombre</query>
+				<class>tbody</class>
+				<width>90px</width>
+				<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+			</field>
+			<field>
+				<type global="id" eval="true">$id>=0?"text":"label"</type>
+				<name>nombre</name>
+				<class>tbody</class>
+				<width>120px</width>
+				<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+				<speech>true</speech>
+			</field>
+			<field>
+				<type global="id" eval="true">$id>=0?"text":"label"</type>
+				<name>valor</name>
+				<class>tbody</class>
+				<width>240px</width>
+				<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+				<speech>true</speech>
+			</field>
+			<field>
+				<type>checkbox</type>
+				<label lang="true">delete</label>
+				<name>comunicacion_del</name>
+				<value>1</value>
+				<show global="id" eval="true">$id>0?"true":"false"</show>
+				<width>1px</width>
+				<width2>1px</width2>
+				<icon>delete</icon>
+				<class>tbody</class>
+				<class2>tbody</class2>
+			</field>
+		</row>
+	</fieldset>
+</root>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<fieldset>
+		<title lang="true">logo</title>
+		<row>
+			<field>
+				<type>label</type>
+				<label lang="true">title_logo</label>
+				<class>center bold</class>
+				<colspan>8</colspan>
+			</field>
+		</row>
+		<row>
+			<field>
+				<type>separator</type>
+			</field>
+		</row>
+		<row>
+			<field>
+				<name>logo_left</name>
+				<label lang="true">logoleft</label>
+				<type>text</type>
+				<width>60px</width>
+			</field>
+			<field>
+				<name>logo_top</name>
+				<label lang="true">logotop</label>
+				<type>text</type>
+				<width>60px</width>
+			</field>
+			<field>
+				<name>logo_width</name>
+				<label lang="true">logowidth</label>
+				<type>text</type>
+				<width>60px</width>
+			</field>
+			<field>
+				<name>logo_height</name>
+				<label lang="true">logoheight</label>
+				<type>text</type>
+				<width>60px</width>
+			</field>
+		</row>
+		<row>
+			<field>
+				<name>logo_file</name>
+				<type>image</type>
+				<label lang="true">logofile</label>
+				<colspan>7</colspan>
+				<width>500px</width>
+			</field>
+		</row>
+		<row>
+			<field>
+				<name>logo_file_new</name>
+				<label lang="true">logofilenew</label>
+				<type>file</type>
+				<width>500px</width>
+				<size>50</size>
+				<colspan>7</colspan>
+				<show global="id" eval="true">$id>=0?"true":"false"</show>
+			</field>
+		</row>
+		<row>
+			<field>
+				<type>separator</type>
+			</field>
+		</row>
+		<row>
+			<field>
+				<name>color_line</name>
+				<label lang="true">colorline</label>
+				<type>color</type>
+				<width>60px</width>
+				<colspan>2</colspan>
+				<icon>color</icon>
+			</field>
+			<field>
+				<name>color_text1</name>
+				<label lang="true">colortext1</label>
+				<type>color</type>
+				<width>60px</width>
+				<colspan>2</colspan>
+				<icon>color</icon>
+			</field>
+			<field>
+				<name>color_text2</name>
+				<label lang="true">colortext2</label>
+				<type>color</type>
+				<width>60px</width>
+				<icon>color</icon>
+			</field>
+		</row>
+	</fieldset>
+</root>

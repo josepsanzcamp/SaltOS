@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<foreach>
+		<newpage></newpage>
+		<getxy>"x","y"</getxy>
+		<checky>6</checky>
+		<getxy>"x","y"</getxy>
+		<rect>30,$row["y"],150,6,"D",0.15,1</rect>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+1</setxy>
+		<getxy>"x","y"</getxy>
+		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],150,4,"C",$row["title"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+3</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("campanya")</textarea>
+		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],75,4,"L",$row["nombre"]</textarea>
+		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<textarea>105,$row["y"],25,4,"R",LANG("estado")</textarea>
+		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<textarea>130,$row["y"],75,4,"L",$row["estado"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("dstart")</textarea>
+		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],75,4,"L",$row["dstart"]</textarea>
+		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<textarea>105,$row["y"],25,4,"R",LANG("dstop")</textarea>
+		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<textarea>130,$row["y"],75,4,"L",$row["dstop"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("descripcion")</textarea>
+		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],125,4,"L",trim($row["descripcion"])</textarea>
+	</foreach>
+</root>

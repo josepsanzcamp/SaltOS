@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root><![CDATA[<div class='title dontend'>Correo electrónico</div> <p> Con el cliente de correo electrónico de SaltOS podrá trabajar como en cualquier otro cliente, ya sea de tipo <i>webmail</i> o una aplicación de escritorio. </p> <p> Saltos realiza el envío y la recepción de los correos periódicamente en segundo plano. </p> <div class='title dontend'>Listado de correos</div> <p> En el listado de sus correos electrónicos encontrará tanto los enviados por usted como los recibidos. </p> <p> Encima del listado encontrará un espacio con opciones para buscar, exportar, filtrar, marcar y borrar los correos. Estas opciones están agrupadas en tres grupos. Para ir de un grupo a otro haga clic en <i>Opciones</i> o seleccione directamente el número del grupo. </p> <p> En el primer grupo encontrará una caja de texto para realizar una búsqueda por la cadena de texto introducida. Desde este grupo también forzar el envío y la recepción de correo. También puede ordenar el correo en el siguiente orden haciendo clic en el botón <i>Ordenar</i>: nuevo, pendiente y resto. </p> <p> En el segundo grupo podrá filtrar el correo en función de su estado (nuevo, pendiente o spam), su fecha (hoy, ayer, semana actual, mes actual) y si es un correo enviado o recibido. </p> <p> El tercer y último grupo le permite marcar el correo como leído o no leído, pendiente o no pendiente o como SPAM. También podrá borrar desde aquí los correos seleccionados. </p> <p> Para aplicar cualquier cualquier acción sobre uno o varios correos, seleccione el o los correos y haga clic en el botón correspondiente. </p> <div class='title dontend'>Significado de los colores</div> <ul> <li><b>Verde:</b> correo <b>nuevo</b> </li> <li><b>Azul</b> oscuro: correo marcado como <b>pendiente</b> </li> <li><b>Rojo:</b> correo basura <b><i>(SPAM)</i></b> </li> </ul> <div class='title dontend'>Opciones del listado</div> <p> Las opciones del listado en este mismo orden son: </p> <ul> <li>Consultar el correo </li> <li>Exportar en formato PDF </li> <li>Consultar en el visor PDF interno </li> <li>Responder </li> <li>Responder a todos </li> <li>Reenviar el correo </li> <li>Marcarlo como pendiente </li> <li>Marcarlo como SPAM </li> <li>Agregarlo a la página de inicio </li> <li>Borrarlo </li> </ul> <p> Para enviar un correo nuevo al remitente del correo puede hacer clic en la dirección de correo electrónico del mismo. Si desea enviar un nuevo correo desde la cuenta del destinatario (probablemente la suya), haga clic encima de la misma. También consultar el correo haciendo clic en el asunto. </p>]]></root>

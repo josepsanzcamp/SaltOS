@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<info>
+		<name>SaltOS</name>
+		<version>3.1</version>
+		<revision eval="true">intval(svnversion("../code"))</revision>
+		<title config="true">application_title</title>
+		<favicon>img/favicon.png</favicon>
+		<copyright>© 2011 by Josep Sanz Campderrós</copyright>
+	</info>
+	<db>
+		<type>pdo_sqlite</type>
+		<host>localhost</host><!-- for MySQL -->
+		<port>3306</port><!-- for MySQL -->
+		<user>saltos</user><!-- for MySQL -->
+		<pass>saltos</pass><!-- for MySQL -->
+		<name>saltos</name><!-- for MySQL -->
+		<file eval="true">getcwd()."/files/saltos.db"</file><!-- for SQLite -->
+		<datatypes>
+			<int>integer,int</int>
+			<string>text,varchar</string>
+			<float>decimal,float</float>
+			<date>date</date>
+			<time>time</time>
+			<datetime>datetime</datetime>
+		</datatypes>
+		<usecache>true</usecache>
+		<nocaches>
+			<nocache>INSERT</nocache>
+			<nocache>UPDATE</nocache>
+			<nocache>DELETE</nocache>
+			<nocache>CREATE</nocache>
+		</nocaches>
+		<noexports>
+			<noexport>tbl_paises</noexport>
+			<noexport>tbl_provincias</noexport>
+			<noexport>tbl_poblaciones</noexport>
+			<noexport>tbl_codpostal</noexport>
+			<noexport>tbl_calles</noexport>
+			<noexport>tbl_permisos</noexport>
+			<noexport>tbl_aplicaciones</noexport>
+			<noexport>tbl_aplicaciones_p</noexport>
+		</noexports>
+		<dbschema>true</dbschema>
+		<dbstatic>true</dbstatic>
+		<semaphoretimeout>10000000</semaphoretimeout><!-- for SQLite --><!-- in microseconds -->
+	</db>
+	<sess>
+		<save_path>saltos</save_path>
+		<session_name></session_name>
+		<timeout>3600</timeout>
+		<probability>1</probability>
+		<divisor>100</divisor>
+	</sess>
+	<server>
+		<forcessl eval="true">is_mobile()?"false":"true"</forcessl>
+		<porthttp>80</porthttp>
+		<porthttps>443</porthttps>
+	</server>
+	<default>
+		<page>home</page>
+		<action>list</action>
+		<id>0</id>
+		<format>HTML</format><!-- output format can be XML or HTML -->
+		<obhandler eval="true">!ini_get("output_handler")?"ob_gzhandler":""</obhandler>
+		<lang>es_ES</lang>
+		<style eval="true">is_mobile()?"b":"redmond"</style>
+		<stylepre eval="true">is_mobile()?"lib/jquery/jquery.mobile.theme.":"lib/jquery/jquery.theme."</stylepre>
+		<stylepost eval="true">is_mobile()?".css":"/jquery-ui-1.8.21.css"</stylepost>
+		<iconset>silk</iconset>
+		<iconsetpre>xml.php?action=iconset&amp;iconset=</iconsetpre>
+		<iconsetpost>&amp;format=css</iconsetpost>
+		<forcelang></forcelang>
+		<forcestyle></forcestyle>
+		<forceiconset eval="true">is_mobile()?"mobile":""</forceiconset>
+		<forcecss eval="true">is_mobile()?"mobile":""</forcecss>
+		<forcejs eval="true">is_mobile()?"mobile":""</forcejs>
+		<forcexsl eval="true">is_mobile()?"mobile":""</forcexsl>
+		<regspagemin>50</regspagemin>
+		<regspageincr>50</regspageincr>
+		<regspagemax>200</regspagemax>
+		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
+		<regspagemobile>25</regspagemobile>
+	</default>
+	<dirs>
+		<filesdir eval="true">getcwd()."/files"</filesdir>
+		<cachedir eval="true">getcwd()."/cache"</cachedir>
+		<inboxdir eval="true">getcwd()."/inbox"</inboxdir>
+		<outboxdir eval="true">getcwd()."/outbox"</outboxdir>
+	</dirs>
+	<exts>
+		<defaultext>.dat</defaultext>
+		<inputext>.in</inputext>
+		<outputext>.out</outputext>
+		<logext>.log</logext>
+		<emailext>.eml</emailext>
+		<gzipext>.gz</gzipext>
+		<objectext>.obj</objectext>
+		<semext>.sem</semext>
+		<zipext>.zip</zipext>
+		<pdfext>.pdf</pdfext>
+		<textext>.txt</textext>
+		<tarext>.tar</tarext>
+		<bzipext>.bz2</bzipext>
+		<excelext>.xls</excelext>
+		<wavext>.wav</wavext>
+		<mp3ext>.mp3</mp3ext>
+		<htmlext>.htm</htmlext>
+		<sqlext>.sql</sqlext>
+		<csvext>.csv</csvext>
+		<xmlext>.xml</xmlext>
+		<arrayext>.arr</arrayext>
+		<pngext>.png</pngext>
+	</exts>
+	<cache>
+		<cachegcenabled>true</cachegcenabled>
+		<cachegctimeout>604800</cachegctimeout><!-- 86400 (1 day) * 7 = 604800 -->
+		<cachegcprobability>1</cachegcprobability>
+		<cachegcdivisor>100</cachegcdivisor>
+		<usexml2arraycache>true</usexml2arraycache>
+		<usearray2xmlcache>true</usearray2xmlcache>
+		<usexml2htmlcache>true</usexml2htmlcache>
+		<usecsscache>true</usecsscache>
+		<usejscache>true</usejscache>
+		<usecssminify>true</usecssminify>
+		<usejsminify>true</usejsminify>
+		<usexmlminify>true</usexmlminify>
+		<usehtmlminify>true</usehtmlminify>
+		<useimginline>true</useimginline>
+	</cache>
+	<commands>
+		<xsltproc>xsltproc</xsltproc>
+		<__xsltproc__>-o __OUTPUT__ __XSLFILE__ __INPUT__</__xsltproc__>
+		<unoconv>unoconv</unoconv>
+		<__unoconv__>--server localhost --port 2002 -f pdf --stdout __INPUT__ &gt; __OUTPUT__</__unoconv__>
+		<__unoconv_about__>--show 2&gt;&amp;1</__unoconv_about__>
+		<elinks>elinks</elinks>
+		<__elinks__>-dump -no-home -eval 'set document.browse.margin_width=0' __INPUT__</__elinks__>
+		<text2wave>text2wave</text2wave>
+		<__text2wave__>
+			<es>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</es>
+			<en>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</en>
+			<default>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</default>
+		</__text2wave__>
+		<ffmpeg>ffmpeg</ffmpeg>
+		<__ffmpeg__>-i __INPUT__ -ar 44100 -ab 64k __OUTPUT__</__ffmpeg__>
+		<apertium>apertium</apertium>
+		<__apertium__>-f txtu __LANGS__ &lt; __INPUT__</__apertium__>
+		<__apertium_langs__>-l</__apertium_langs__>
+		<aspell>aspell</aspell>
+		<__aspell__>-a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
+		<__aspell_langs__>dump dicts</__aspell_langs__>
+		<which>which</which>
+		<__which__>__INPUT__</__which__>
+		<sqlite3>sqlite3</sqlite3>
+		<__sqlite3__>__DBFILE__ '.read __INPUT__' 2&gt;&amp;1</__sqlite3__>
+	</commands>
+	<debug>
+		<actiondebug>false</actiondebug>
+		<langdebug>false</langdebug>
+		<sqldebug>false</sqldebug>
+		<alertdebug>false</alertdebug>
+		<errordebug>false</errordebug>
+		<cancelgetmail>false</cancelgetmail>
+		<cancelsendmail>false</cancelsendmail>
+		<cancelfeeds>false</cancelfeeds>
+		<getmaildebug>false</getmaildebug>
+		<getmailmsgid></getmailmsgid>
+		<logfile>saltos.log</logfile>
+		<errorfile>error.log</errorfile>
+		<maxlines>1000</maxlines>
+	</debug>
+	<parser>
+		<preevals>
+			<preeval>make_insert_query</preeval>
+			<preeval>make_update_query</preeval>
+			<preeval>make_update_config</preeval>
+			<preeval>make_dependencies_query</preeval>
+		</preevals>
+	</parser>
+	<styles>
+		<cache ifnoteval="is_mobile()">
+			<include>lib/jquery/jquery.tooltip.css</include>
+			<include>lib/jquery/jquery.colorpicker.css</include>
+			<include>lib/jquery/jquery.ptTimeSelect.css</include>
+			<include>lib/jquery/jquery.jgrowl.css</include>
+		</cache>
+		<cache ifeval="is_mobile()">
+			<include>lib/jquery/jquery.mobile-1.1.0.css</include>
+		</cache>
+	</styles>
+	<javascript>
+		<cache ifnoteval="is_mobile()">
+			<include>lib/phpjs/php.default.min.js</include>
+			<include>lib/jquery/jquery-1.7.2.min.js</include>
+			<include>lib/jquery/jquery.kookie.js</include>
+			<include>lib/jquery/jquery.form.js</include>
+			<include>lib/jquery/jquery-ui-1.8.21.min.js</include>
+			<include>lib/jquery/jquery.autogrow-textarea.js</include>
+			<include>lib/jquery/jquery.blockUI.js</include>
+			<include>lib/jquery/jquery.jgrowl.js</include>
+		</cache>
+		<cache ifnoteval="is_mobile()">
+			<include>lib/jquery/jquery.colorpicker.js</include>
+			<include>lib/jquery/jquery.ptTimeSelect.js</include>
+			<include>lib/jquery/jquery.contextmenu.r2.js</include>
+			<include>lib/jquery/jquery.masonry.js</include>
+			<include>lib/jquery/jquery.favicon.js</include>
+			<include>lib/jquery/jquery.jplayer.js</include>
+			<include>lib/jquery/jquery.columnizer.js</include>
+			<include>lib/jquery/jquery.tooltip.js</include>
+		</cache>
+		<include ifnoteval="is_mobile()">lib/ckeditor/ckeditor.js</include>
+		<cache ifnoteval="is_mobile()">
+			<include>lib/ckeditor/adapters/jquery.js</include>
+			<include>lib/pdfjs/pdf.min.js</include>
+		</cache>
+		<cache ifeval="is_mobile()">
+			<include>lib/phpjs/php.default.min.js</include>
+			<include>lib/jquery/jquery-1.7.1.min.js</include><!-- 1.7.2 DON'T WORKS WITH JQUERY MOBILE -->
+			<include>lib/jquery/jquery.kookie.js</include>
+			<include>lib/jquery/jquery.form.js</include>
+			<include>lib/jquery/jquery.mobile-1.1.0.min.js</include>
+			<include>lib/jquery/jquery.autogrow-textarea.js</include>
+		</cache>
+	</javascript>
+	<configs>
+		<application_title>Suite de Gestión Empresarial</application_title>
+		<plot_list_size>1</plot_list_size>
+		<plot_list_width>350</plot_list_width>
+		<plot_list_height>200</plot_list_height>
+		<plot_form_size>1</plot_form_size>
+		<plot_form_width>350</plot_form_width>
+		<plot_form_height>200</plot_form_height>
+		<agenda_interval>30</agenda_interval>
+		<inbox_interval>300</inbox_interval>
+		<outbox_interval>30</outbox_interval>
+		<feeds_interval>300</feeds_interval>
+		<feeds_timeout>7</feeds_timeout>
+		<session_interval>30</session_interval>
+		<session_warning>300</session_warning>
+		<water_actas_text>Confidencial</water_actas_text>
+		<water_actas_posx>40</water_actas_posx>
+		<water_actas_posy>220</water_actas_posy>
+		<water_actas_size>100</water_actas_size>
+		<water_actas_angle>60</water_actas_angle>
+		<water_partes_text>Confidencial</water_partes_text>
+		<water_partes_posx>40</water_partes_posx>
+		<water_partes_posy>220</water_partes_posy>
+		<water_partes_size>100</water_partes_size>
+		<water_partes_angle>60</water_partes_angle>
+		<water_facturas_text>Factura</water_facturas_text>
+		<water_facturas_posx>40</water_facturas_posx>
+		<water_facturas_posy>210</water_facturas_posy>
+		<water_facturas_size>130</water_facturas_size>
+		<water_facturas_angle>60</water_facturas_angle>
+		<water_albaranes_text>Albarán</water_albaranes_text>
+		<water_albaranes_posx>40</water_albaranes_posx>
+		<water_albaranes_posy>210</water_albaranes_posy>
+		<water_albaranes_size>130</water_albaranes_size>
+		<water_albaranes_angle>60</water_albaranes_angle>
+		<water_presupuestos_text>Presupuesto</water_presupuestos_text>
+		<water_presupuestos_posx>40</water_presupuestos_posx>
+		<water_presupuestos_posy>220</water_presupuestos_posy>
+		<water_presupuestos_size>100</water_presupuestos_size>
+		<water_presupuestos_angle>60</water_presupuestos_angle>
+		<water_clientes_text>Información</water_clientes_text>
+		<water_clientes_posx>40</water_clientes_posx>
+		<water_clientes_posy>220</water_clientes_posy>
+		<water_clientes_size>100</water_clientes_size>
+		<water_clientes_angle>60</water_clientes_angle>
+		<water_proyectos_text>Información</water_proyectos_text>
+		<water_proyectos_posx>40</water_proyectos_posx>
+		<water_proyectos_posy>220</water_proyectos_posy>
+		<water_proyectos_size>100</water_proyectos_size>
+		<water_proyectos_angle>60</water_proyectos_angle>
+		<water_posiblescli_text>Información</water_posiblescli_text>
+		<water_posiblescli_posx>40</water_posiblescli_posx>
+		<water_posiblescli_posy>220</water_posiblescli_posy>
+		<water_posiblescli_size>100</water_posiblescli_size>
+		<water_posiblescli_angle>60</water_posiblescli_angle>
+		<water_correo_text>Confidencial</water_correo_text>
+		<water_correo_posx>40</water_correo_posx>
+		<water_correo_posy>220</water_correo_posy>
+		<water_correo_size>100</water_correo_size>
+		<water_correo_angle>60</water_correo_angle>
+		<water_feeds_text>Información</water_feeds_text>
+		<water_feeds_posx>40</water_feeds_posx>
+		<water_feeds_posy>220</water_feeds_posy>
+		<water_feeds_size>100</water_feeds_size>
+		<water_feeds_angle>60</water_feeds_angle>
+		<logo_left>118</logo_left>
+		<logo_top>15</logo_top>
+		<logo_width>72</logo_width>
+		<logo_height>15</logo_height>
+		<logo_file>../img/deflogo.png</logo_file>
+		<color_line>#666666</color_line>
+		<color_text1>#ce141d</color_text1>
+		<color_text2>#666666</color_text2>
+		<email_host></email_host>
+		<email_port></email_port>
+		<email_extra></email_extra>
+		<email_user></email_user>
+		<email_pass></email_pass>
+		<email_name></email_name>
+		<email_from></email_from>
+		<email_async>1</email_async>
+		<email_support></email_support>
+		<quick_button_f1>home</quick_button_f1>
+		<quick_button_f2>correo</quick_button_f2>
+		<quick_button_f3>agenda</quick_button_f3>
+		<quick_button_f4>feeds</quick_button_f4>
+		<quick_button_f5>buscador</quick_button_f5>
+		<quick_button_f6></quick_button_f6>
+		<quick_button_f7></quick_button_f7>
+		<quick_button_f8></quick_button_f8>
+		<quick_button_f9>profile</quick_button_f9>
+		<quick_button_f10>support</quick_button_f10>
+		<quick_button_f11>about</quick_button_f11>
+		<quick_button_f12>logout</quick_button_f12>
+		<accounting_currency>€</accounting_currency>
+		<accounting_iva_name>I.V.A.</accounting_iva_name>
+		<accounting_iva_value>18.00</accounting_iva_value>
+		<accounting_irpf_name>I.R.P.F.</accounting_irpf_name>
+		<accounting_irpf_value>15.00</accounting_irpf_value>
+	</configs>
+	<ini_set>
+		<session.bug_compat_42>On</session.bug_compat_42>
+		<register_globals>Off</register_globals>
+		<memory_limit>128M</memory_limit><!-- to allow emails with 30Mb of attachments -->
+		<max_execution_time>600</max_execution_time>
+		<date.timezone>Europe/Madrid</date.timezone>
+		<default_charset>UTF-8</default_charset>
+	</ini_set>
+	<putenv>
+		<PATH>/bin:/usr/bin:/usr/local/bin</PATH>
+		<LANG>es_ES.UTF-8</LANG>
+	</putenv>
+	<captcha>
+		<id>captcha</id>
+		<width>90</width>
+		<height>45</height>
+		<letter>8</letter>
+		<number>16</number>
+		<angle>10</angle>
+		<color>5C8ED1</color>
+		<bgcolor>C8C8C8</bgcolor>
+		<fgcolor>B4B4B4</fgcolor>
+		<type>math</type><!-- captcha type can be number or math -->
+		<length>5</length>
+		<period>4</period>
+		<amplitude>8</amplitude>
+		<blur>true</blur>
+	</captcha>
+	<security>
+		<filterenabled>true</filterenabled><!-- enable security module -->
+		<maxretryes>3</maxretryes><!-- number of failed retryes until displays captcha -->
+		<allowremember>true</allowremember><!-- enable or disable the remember feature -->
+		<cookietimeout>2592000</cookietimeout><!-- 86400 (1 day) * 30 = 2592000 (1 month aprox.) -->
+		<minscore>50</minscore><!-- min password strength score -->
+	</security>
+</root>

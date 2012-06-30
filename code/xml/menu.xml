@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2011 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<counts>
+		<count global="page,action,id,count_correo" eval="true">$count_correo=execute_query("SELECT COUNT(*) contador FROM tbl_correo WHERE state_new='1' AND id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."') AND NOT ('".$page."'='correo' AND '".$action."'='form' AND '".abs($id)."'=id)")</count>
+		<count global="page,action,id,count_agenda" eval="true">$count_agenda=execute_query("SELECT COUNT(*) contador FROM (SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.primero='1' LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND /*SQLITE STRFTIME('%s','".current_datetime()."')+0.0 > STRFTIME('%s',dstart)+notify_delay*3600.0*notify_sign *//*MYSQL UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstart)+notify_delay*3600*notify_sign */ UNION SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.primero='1' LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND /*SQLITE STRFTIME('%s','".current_datetime()."')+0.0 > STRFTIME('%s',dstop)+0.0 *//*MYSQL UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop) */) a")</count>
+		<count global="page,action,id,count_feeds" eval="true">$count_feeds=execute_query("SELECT COUNT(*) contador FROM tbl_feeds WHERE state_new='1' AND id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='".current_user()."') AND NOT ('".$page."'='feeds' AND '".$action."'='form' AND '".abs($id)."'=id)")</count>
+	</counts>
+	<header ifeval="check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)" ifnoteval="is_mobile()">
+		<option>
+			<label lang="true">playvoice</label>
+			<onclick>play_voice()</onclick>
+			<icon>playvoice</icon>
+			<tip lang="true">playvoicetip</tip>
+			<class>playvoice none</class>
+		</option>
+		<option>
+			<label lang="true">stopvoice</label>
+			<onclick>stop_voice()</onclick>
+			<icon>stopvoice</icon>
+			<tip lang="true">stopvoicetip</tip>
+			<class>stopvoice none</class>
+		</option>
+		<option>
+			<label lang="true">nextvoice</label>
+			<onclick>next_voice()</onclick>
+			<icon>nextvoice</icon>
+			<tip lang="true">nextvoicetip</tip>
+			<class>nextvoice none</class>
+		</option>
+		<option>
+			<label lang="true">cancelvoice</label>
+			<onclick>cancel_voice()</onclick>
+			<icon>cancelvoice</icon>
+			<tip lang="true">cancelvoicetip</tip>
+			<class>cancelvoice none</class>
+		</option>
+	</header>
+	<header ifnoteval="is_mobile()">
+		<option global="var_i" for="var_i" from="1" to="12">
+			<temp global="var_i,temp" eval="true">$temp=(($temp=execute_query("SELECT codigo FROM tbl_quick WHERE id_usuario='".current_user()."' AND button='f$var_i'"))!==null)?$temp:CONFIG("quick_button_f$var_i")</temp>
+			<label global="temp,count_correo,count_agenda,count_feeds" eval="true">$temp?LANG("quick_$temp").($temp=="correo"?" ($count_correo)":"").($temp=="agenda"?" ($count_agenda)":"").($temp=="feeds"?" ($count_feeds)":""):""</label>
+			<onclick global="temp" eval="true">$temp!="" &amp;&amp; check_user($temp,"menu")?"opencontent('xml.php?page=$temp')":"false"</onclick>
+			<icon global="temp" eval="true">$temp</icon>
+			<tip global="temp,var_i" eval="true">$temp?LANG("desc_$temp")." [F$var_i]":""</tip>
+			<class global="temp,count_correo,count_agenda,count_feeds,var_i" eval="true">"nowrap".($temp=="correo"?" correo number":"").($temp=="agenda"?" agenda number":"").($temp=="feeds"?" feeds number":"").(" shortcut_f$var_i")</class>
+		</option>
+	</header>
+	<group>
+		<label lang="true">gestiongeneral</label>
+		<name>gestiongeneral</name>
+		<class>menu</class>
+		<temp ifnoteval="is_mobile()" global="temp" eval="true">$temp="home"</temp>
+		<option ifnoteval="is_mobile()" include="xml/common/menuoptionslist.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="correo"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="agenda"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="feeds"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="documentos"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="ficheros"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="buscador"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="textos"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="profile"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="support"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="about"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="logout"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+	</group>
+	<group>
+		<temp eval="true">execute_query("SELECT COUNT(*) FROM tbl_folders WHERE id_usuario='".current_user()."'")==0?db_query("INSERT INTO tbl_folders(id,id_usuario,name) VALUES(NULL,'".current_user()."','".LANG_ESCAPE("defaultfolder","folders")."')"):""</temp>
+		<label global="temp" eval="true">LANG($temp="folders")</label>
+		<name>folders</name>
+		<class>menu</class>
+		<temp global="rows" eval="true">dummy($rows=execute_query("SELECT * FROM tbl_folders WHERE id_usuario='".current_user()."' ORDER BY name ASC"))</temp>
+		<temp global="rows" eval="true">dummy($rows=is_array($rows)?$rows:array())</temp>
+		<temp global="rows" eval="true">dummy($rows=isset($rows["id"])?array($rows):$rows)</temp>
+		<temp global="id_folder" eval="true">$id_folder=getParam("id_folder")</temp>
+		<option global="rows,row" foreach="rows" as="row">
+			<label global="row" eval="true">$row["name"]</label>
+			<onclick global="temp,row" eval="true">$temp!="" &amp;&amp; check_user($temp,"menu")?"opencontent('xml.php?page=$temp&amp;id_folder=".$row["id"]."')":"false"</onclick>
+			<icon global="temp" eval="true">$temp</icon>
+			<tip global="row" eval="true">$row["name"]</tip>
+			<class global="row" eval="true">"nowrap droppable id_".$row["id"]." fn_dropregfolder"</class>
+			<selected global="page,id_folder,row" eval="true">($page==$temp &amp;&amp; $id_folder==$row["id"])?"true":"false"</selected>
+		</option>
+	</group>
+	<group>
+		<show eval="true">(check_user("campanyas","menu") || check_user("campanyas","posiblescli") || check_user("campanyas","presupuestos") || check_user("campanyas","actas") || check_user("campanyas","clientes") || check_user("campanyas","contactos"))?"true":"false"</show>
+		<label lang="true">gestioncomercial</label>
+		<name>gestioncomercial</name>
+		<class>menu</class>
+		<temp global="temp" eval="true">$temp="campanyas"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="posiblescli"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="presupuestos"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="actas"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="clientes"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="contactos"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+	</group>
+	<group>
+		<show eval="true">(check_user("proyectos","menu") || check_user("seguimientos","menu") || check_user("partes","menu") || check_user("actas","menu") || check_user("incidencias","menu"))?"true":"false"</show>
+		<label lang="true">gestionproyectos</label>
+		<name>gestionproyectos</name>
+		<class>menu</class>
+		<temp global="temp" eval="true">$temp="proyectos"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="seguimientos"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="partes"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="actas"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="incidencias"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+	</group>
+	<group>
+		<show eval="true">(check_user("facturas","menu") || check_user("periodicas","menu") || check_user("proveedores","menu") || check_user("gastos","menu"))?"true":"false"</show>
+		<label lang="true">gestioncontabilidad</label>
+		<name>gestioncontabilidad</name>
+		<class>menu</class>
+		<temp global="temp" eval="true">$temp="facturas"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="periodicas"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="proveedores"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="gastos"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+	</group>
+	<group>
+		<show eval="true">(check_user("productos","menu") || check_user("empleados","menu") || check_user("usuarios","menu") || check_user("grupos","menu"))?"true":"false"</show>
+		<label lang="true">gestionadministracion</label>
+		<name>gestionadministracion</name>
+		<class>menu</class>
+		<temp global="temp" eval="true">$temp="productos"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="empleados"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="usuarios"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="grupos"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+	</group>
+	<group>
+		<show eval="true">(check_user("cuentas","menu") || check_user("epigrafes","menu") || check_user("estados","menu") || check_user("formaspago","menu") || check_user("prioridades","menu") || check_user("tiposevento","menu"))?"true":"false"</show>
+		<label lang="true">gestiontipos</label>
+		<name>gestiontipos</name>
+		<class>menu</class>
+		<temp global="temp" eval="true">$temp="cuentas"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="epigrafes"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="estados"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="formaspago"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="prioridades"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="tiposevento"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+	</group>
+	<group>
+		<show eval="true">(check_user("importaciones","menu") || check_user("maincfg","menu") || check_user("datacfg","menu"))?"true":"false"</show>
+		<label lang="true">gestionsistema</label>
+		<name>gestionsistema</name>
+		<class>menu</class>
+		<temp global="temp" eval="true">$temp="importaciones"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="maincfg"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="datacfg"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+	</group>
+	<group ifeval="check_commands(getDefault('commands/aspell'),60) || check_commands(getDefault('commands/apertium'),60)" ifnoteval="is_mobile()">
+		<label eval="true">LANG(check_commands(getDefault('commands/apertium'),60)?"translate":"corrector")</label>
+		<name>translate</name>
+		<class>tools translate</class>
+	</group>
+	<group ifnoteval="is_mobile()">
+		<label lang="true">calculator</label>
+		<name>calculator</name>
+		<class>tools calculator</class>
+	</group>
+</root>
