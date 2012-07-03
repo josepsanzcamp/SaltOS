@@ -666,15 +666,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1'
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
 		WHERE ".make_like_query($campos_array[$campos],$filtro)."
-		AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta')
+		AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
+		AND ".($id_cuenta?"(id_cuenta='$id_cuenta')":"(1=1)")."
 		AND ".$only_array[$only]."
-		AND ((state_spam='0' and '$hidespam'='1') OR ''='$hidespam')
-		AND ((files&gt;0 and '$withfiles'='1') OR ''='$withfiles')
-		AND ((files=0 and '$withoutfiles'='1') OR ''='$withoutfiles')
-		AND ((is_outbox=0 and '$onlyinbox'='1') OR ''='$onlyinbox')
-		AND ((is_outbox=1 and '$onlyoutbox'='1') OR ''='$onlyoutbox')
+		AND ".($hidespam?"state_spam='0'":"(1=1)")."
+		AND ".($withfiles?"files&gt;0":"(1=1)")."
+		AND ".($withoutfiles?"files=0":"(1=1)")."
+		AND ".($onlyinbox?"is_outbox=0":"(1=1)")."
+		AND ".($onlyoutbox?"is_outbox=1":"(1=1)")."
 		AND (IFNULL(email_privated,0)=0 OR (email_privated=1 AND id_usuario='".current_user()."'))
-		AND ".($fecha1?"(DATE(`datetime`)&gt;=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(`datetime`))":"(1=1)")."
+		AND ".($fecha1?"(DATE(`datetime`)&gt;=DATE('$fecha1'))":"(1=1)")."
+		AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(`datetime`))":"(1=1)")."
 		AND ".$fecha3_array[$fecha3]."
 		AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>

@@ -51,6 +51,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			return result;
 		};
 		$.fn.remove2=function() {
+			$("*",this).removeData();
+			$("*",this).removeProp();
+			$("*",this).removeAttr();
+			$("*",this).empty();
+			$("*",this).remove();
 			$(this).removeData();
 			$(this).removeProp();
 			$(this).removeAttr();
@@ -1341,7 +1346,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).change(function() {
 			eval($(this).val());
-			//~ $(this).prop("selectedIndex",0);
+			$(this).prop("selectedIndex",0);
 		});
 		//~ console.timeEnd("make_extras");
 	}

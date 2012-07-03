@@ -50,7 +50,7 @@ form {
 }
 .ui-layout-north .quick {
 	float:right;
-	margin-top:2px;
+	margin-top:4px;
 	margin-right:4px;
 }
 .ui-layout-west {
@@ -66,7 +66,7 @@ form {
 	padding:0px;
 }
 .accordion-link li {
-	padding-bottom:5px;
+	padding-bottom:7px;
 	position:relative;
 	left:-16px;
 }
@@ -84,6 +84,9 @@ form {
 }
 .ui-tabs-nav {
 	line-height:1em!important;
+}
+.ui-tabs-nav li {
+	margin-right:2px!important;
 }
 a.ui-state-default {
 	padding:3px 5px;
@@ -139,14 +142,14 @@ iframe.ui-state-default {
 .tabla tr td.thead {
 	white-space:nowrap;
 	padding:0px 2px;
-	height:22px;
 	vertical-align:middle;
+	height:22px;
 }
 .tabla tr td.tbody {
 	font-weight:normal;
 	padding:0px 2px;
-	height:22px;
 	vertical-align:middle;
+	height:22px;
 }
 .tabla tr td.tbody a {
 	text-decoration:underline;
@@ -154,8 +157,8 @@ iframe.ui-state-default {
 .tabla tr td.nodata {
 	font-weight:bold;
 	text-align:center;
-	height:44px;
 	vertical-align:middle;
+	height:44px;
 }
 /* FOR ALIGNMENTS AND STYLES */
 .left{
@@ -294,23 +297,30 @@ span.number {
 	left:9px;
 }
 .number-icon {
-	display:inline-block;
-	vertical-align:-30%;
+	/* COPIED FROM JQUERY-UI */
+	display:block;
 	text-indent:-99999px;
 	overflow:hidden;
 	background-repeat:no-repeat;
 	width:16px;
 	height:16px;
+	/* MODIFIED BY SANZ */
+	display:inline-block;
 }
 /* FOR ICONSET */
 .saltos-icon {
-	display:inline-block;
-	vertical-align:-30%;
+	/* COPIED FROM JQUERY-UI */
+	display:block;
 	text-indent:-99999px;
 	overflow:hidden;
 	background-repeat:no-repeat;
 	width:16px;
 	height:16px;
+	/* MODIFIED BY SANZ */
+	display:inline-block;
+	position:relative;
+	top:4px;
+	margin-top:-8px;
 }
 /* FOR COLUMNIZER */
 .columnizer .column > * {

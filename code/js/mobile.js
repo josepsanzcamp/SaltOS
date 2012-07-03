@@ -932,7 +932,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).change(function() {
 			eval($(this).val());
-			//~ $(this).prop("selectedIndex",0);
+			$(this).prop("selectedIndex",0);
 		});
 		// PROGRAM CHECKBOX ICON CHANGES
 		$("input[type=checkbox]").change(function() {
