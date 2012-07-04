@@ -1711,7 +1711,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			itemStyle:{
 				"color":color1,
 				"background":background1,
-				"border":"none"
+				"border":"none",
+				"padding":"7px"
 			},
 			itemHoverStyle:{
 				"color":color2,
@@ -1740,8 +1741,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					var disabled=$(this).hasClass("ui-state-disabled");
 					if(!disabled) disabled=$("a",this).hasClass("ui-state-disabled");
 					if(!disabled) disabled=$("span",this).hasClass("ui-state-disabled");
-					var extra=disabled?"class='ui-state-disabled'":"";
-					var html="<li "+extra+"><span class='"+clase+"'></span>&nbsp;"+texto+"</li>";
+					var extra=disabled?"ui-state-disabled":"";
+					var html="<li class='"+extra+"'><span class='"+clase+"'></span>&nbsp;"+texto+"</li>";
 					var hash=md5(html);
 					if(!in_array(hash,hashes)) {
 						hashes.push(hash);
