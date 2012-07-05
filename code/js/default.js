@@ -30,12 +30,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	/* JQUERY FUNCTIONS */
 	(function($){
 		$.fn.html2=function(html) {
+			//~ console.time("__html2");
 			$(this).children().remove2();
 			$(this).html(html);
+			//~ console.timeEnd("__html2");
 		};
 		$.fn.html3=function(obj) {
+			//~ console.time("__html3");
 			$(this).children().remove2();
 			$(this).append($(obj).children());
+			//~ console.timeEnd("__html3");
 		};
 		$.expr.filters.visible2=function(obj) {
 			return $(obj).css("display")!=="none";
@@ -51,16 +55,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			return result;
 		};
 		$.fn.remove2=function() {
-			$("*",this).removeData();
-			$("*",this).removeProp();
-			$("*",this).removeAttr();
-			$("*",this).empty();
-			$("*",this).remove();
-			$(this).removeData();
-			$(this).removeProp();
-			$(this).removeAttr();
-			$(this).empty();
-			$(this).remove();
+			//~ console.time("__remove2");
+			$("*",this).unbind().removeData().removeProp().removeAttr().remove();
+			$(this).unbind().removeData().removeProp().removeAttr().remove();
+			//~ console.timeEnd("__remove2");
 		}
 	})(jQuery);
 
@@ -581,7 +579,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		return $(".blockUI").length>0;
 	}
 
-	/* HELPERS FOR HISTORY MANAGEMENT */
+	/* FOR HISTORY MANAGEMENT */
 	var history_data=new Object();
 
 	function hash_encode(url) {
@@ -609,38 +607,48 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		return url;
 	}
 
-	/* TRICK TO EMULATE PUSHSTATE, REPLACESTATE AND ONHASHCHANGE */
+	// TRICK FOR OLD BROWSERS
 	var ignore_onhashchange=0;
 
 	function history_pushState(url) {
-		if(window.location.href!=url) {
-			ignore_onhashchange=1;
-			window.location.href=url;
+		// TRICK FOR OLD BROWSERS
+		if(typeof(history.pushState)!='function') {
+			if(window.location.href!=url) {
+				ignore_onhashchange=1;
+				window.location.href=url;
+			}
+			return;
 		}
+		// NORMAL CODE
+		history.pushState(null,null,url);
 	}
 
 	function history_replaceState(url) {
-		if(window.location.href!=url) {
-			ignore_onhashchange=1;
-			window.location.replace(url);
+		// TRICK FOR OLD BROWSERS
+		if(typeof(history.replaceState)!='function') {
+			if(window.location.href!=url) {
+				ignore_onhashchange=1;
+				window.location.replace(url);
+			}
+			return;
 		}
+		// NORMAL CODE
+		history.replaceState(null,null,url);
 	}
 
 	function init_history() {
-		var old_hash=current_hash();
-		setInterval(function() {
-			var new_hash=current_hash();
-			if(new_hash!=old_hash) {
-				old_hash=new_hash;
-				if(ignore_onhashchange) {
-					ignore_onhashchange=0;
-				} else {
-					url=hash_decode(new_hash);
-					addcontent("cancel");
-					opencontent(url);
-				}
+		window.onhashchange=function() {
+			// TRICK FOR OLD BROWSERS
+			if(ignore_onhashchange) {
+				ignore_onhashchange=0;
+				return;
 			}
-		},100);
+			// NORMAL CODE
+			var url=current_hash();
+			url=hash_decode(url);
+			addcontent("cancel");
+			opencontent(url);
+		};
 		var url=current_href();
 		var pos=strrpos(url,"/");
 		if(pos!==false) url=substr(url,pos+1);
@@ -663,10 +671,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			return;
 		}
 		if(url=="reload") {
-			var hash=current_hash();
-			url=hash_decode(hash);
-			addcontent("cancel");
-			opencontent(url);
+			$(window).trigger("hashchange");
 			return;
 		}
 		// IF ACTION CANCEL
@@ -685,7 +690,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	function submitcontent(form,callback) {
-		//~ console.time("begin transaction");
 		//~ console.time("submitcontent");
 		if(typeof(callback)=="undefined") var callback=function() {};
 		loadingcontent(lang_sending());
@@ -1568,9 +1572,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				// FIXS FOR POSIBLE NEXT RECALLS
 				var slave="input.slave[type=checkbox]";
 				$("td",this).removeClass("ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br ui-widget-header ui-widget-content ui-state-default ui-state-highlight");
-				$("tr",this).unbind("mouseover").unbind("mouseout").unbind("click");
-				$(slave,this).unbind("click");
-				$("a",this).unbind("click");
+				$("tr",this).unbind();
+				$(slave,this).unbind();
+				$("a",this).unbind();
 				// STYLING THE THEAD AND NODATA
 				$(".thead",this).addClass("ui-widget-header");
 				$(".nodata",this).addClass("ui-widget-content");
@@ -1937,6 +1941,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				can_scroll=0;
 				if(!for_scroll()) {
 					$(window).unbind("scroll",fn_scroll);
+					$(window).unbind("resize",fn_resize);;
 				}
 				can_scroll=1;
 			};
@@ -1948,6 +1953,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				can_resize=0;
 				if(!for_unmake()) {
 					$(window).unbind("resize",fn_resize);;
+					$(window).unbind("scroll",fn_scroll);
 				} else {
 					setTimeout(function() {
 						for_make();

@@ -370,6 +370,7 @@ function semaphore_acquire($file,$timeout=100000) {
 	if($timeout<0) {
 		return false;
 	}
+	chmod_protected($file,0666);
 	while($timeout>=0) {
 		capture_next_error();
 		$result=flock($_SEMAPHORE[$hash],LOCK_EX|LOCK_NB);
