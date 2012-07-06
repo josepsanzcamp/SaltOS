@@ -26,50 +26,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // OBTAIN THE MSG
 if(getParam("msg")) {
 	$msg=getParam("msg");
-} elseif(getParam("page") && getParam("id")) {
-	ob_start();
-	define("__CANCEL_DIE__",1);
-	define("__CANCEL_HEADER__",1);
-	define("__CANCEL_FULL__",1);
-	include("php/action/vcard.php");
-	$msg=ob_get_clean();
 } else {
 	action_denied();
 }
 // DEFAULT PARAMETERS
-$s=intval(getParam("s",6));
+$w=intval(getParam("w",2));
+$h=intval(getParam("h",30));
 $m=intval(getParam("m",10));
-// BEGIN THE QRCODE WRAPPER
+$s=intval(getParam("s",8));
+// BEGIN THE BARCODE WRAPPER
 $cache=get_cache_file($msg,getDefault("exts/pngext",".png"));
 //~ if(file_exists($cache)) unlink($cache);
 if(!file_exists($cache)) {
-	require_once("lib/tcpdf/qrcode.php");
-	$level="L";
-	if(strlen($msg)<50) $level="M";
-	if(strlen($msg)<30) $level="Q";
-	if(strlen($msg)<10) $level="H";
-	$barcode=new QRcode($msg,$level);
+	require_once("lib/tcpdf/barcodes.php");
+	$barcode=new TCPDFBarcode($msg,"C128B");
 	$array=$barcode->getBarcodeArray();
-	$width=($array["num_cols"]*$s);
-	$height=($array["num_rows"]*$s);
-	$im=imagecreatetruecolor($width+2*$m,$height+2*$m);
+	$width=($array["maxw"]*$w);
+	$height=$h;
+	$im=imagecreatetruecolor($width+2*$m,$height+2*$m+$s);
 	$bgcol=imagecolorallocate($im,255,255,255);
-	imagefilledrectangle($im,0,0,$width+2*$m,$height+2*$m,$bgcol);
+	imagefilledrectangle($im,0,0,$width+2*$m,$height+2*$m+$s,$bgcol);
 	$fgcol=imagecolorallocate($im,0,0,0);
+	$x=0;
 	foreach($array["bcode"] as $key=>$val) {
-		foreach($val as $key2=>$val2) {
-			if($val2) {
-				imagefilledrectangle($im,$key2*$s+$m,$key*$s+$m,($key2+1)*$s+$m-1,($key+1)*$s+$m-1,$fgcol);
-			}
+		$bw=round(($val["w"]*$w),3);
+		$bh=round(($val["h"]*$h/$array["maxh"]),3);
+		if($val["t"]) {
+			$y=round(($val["p"]*$h/$array["maxh"]),3);
+			imagefilledrectangle($im,$x+$m,$y+$m,($x+$bw-1)+$m,($y+$bh-1)+$m,$fgcol);
 		}
+		$x+=$bw;
 	}
-	// ADD SALTOS LOGO
-	$xx=imagesx($im)/2-$m*$s/2+$s/2;
-	$yy=imagesy($im)/2-$m*$s/2-$s/2;
-	$cc=array(0,imagecolorallocate($im,0xb8,0x14,0x15),imagecolorallocate($im,0x00,0x00,0x00));
-	$matrix=array(array(0,0,0,0,2,2,2,0,0,0),array(0,0,0,0,2,1,2,2,2,2),array(0,2,2,2,2,2,2,2,1,2),array(0,2,1,1,1,1,1,1,2,2),array(0,2,2,1,1,1,1,2,2,0),
-		array(0,0,2,2,1,1,1,1,2,2),array(0,0,2,2,1,2,2,2,1,2),array(0,2,2,1,2,2,0,2,2,2),array(0,2,1,2,2,0,0,0,0,0),array(0,2,2,2,0,0,0,0,0,0));
-	foreach($matrix as $y=>$xz) foreach($xz as $x=>$z) if($z) imagefilledrectangle($im,$xx+$x*$s,$yy+$y*$s,$xx+($x+1)*$s-1,$yy+($y+1)*$s-1,$cc[$z]);
+	// ADD MSG TO THE IMAGE FOOTER
+	$font="lib/fonts/DejaVuSans.ttf";
+	$bbox=imagettfbbox($s,0,$font,$msg);
+	$px=($width+2*$m)/2-($bbox[4]-$bbox[0])/2;
+	$py=$m+$h+$s+$w;
+	imagettftext($im,$s,0,$px,$py,$fgcol,$font,$msg);
 	// CONTINUE
 	imagepng($im,$cache);
 	imagedestroy($im);

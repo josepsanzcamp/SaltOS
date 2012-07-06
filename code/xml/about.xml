@@ -285,10 +285,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://code.google.com/p/cssmin/")</onclick>
 						</field>
 						<field>
-							<label>QR-Code generator 0.99 (LGPL-3.0)</label>
+							<label>Password Strength 1.0.0 (GPL-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentr</class>
-							<onclick>openwin("http://prgm.spipu.net/php_qrcode")</onclick>
+							<onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
 						</field>
 					</row>
 					<row>
@@ -357,10 +357,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.openwall.com/phpass/")</onclick>
 						</field>
 						<field>
-							<label>Password Strength 1.0.0 (GPL-3.0)</label>
-							<type>link</type>
-							<class>left item sectioncontentb</class>
-							<onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
+							<type>separator</type>
+							<class>left sectioncontentb</class>
 						</field>
 						<field>
 							<type>separator</type>

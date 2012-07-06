@@ -1,0 +1,6 @@
+As PHPExcel includes a copy of the TCPDF library and SaltOS too,
+I decided to remove the redundant code with:
+- cd lib/phpexcel/PHPExcel/Shared
+- rm -rf PDF
+- ln -s ../../../tcpdf PDF
+With this change, I'm reducing the total size of the libraries!!!
