@@ -23,15 +23,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-/*
-Idea original para programar este captcha obtenida de este post:
-- http://sentidoweb.com/2007/01/03/laboratorio-ejemplo-de-captcha.php
-Tambien aparece en otros posts buscando en google:
-- http://www.google.es/search?q=captcha+alto_linea
-*/
-
 if(getParam("action")=="captcha") {
+	/*
+	Idea original para programar este captcha obtenida de este post:
+	- http://sentidoweb.com/2007/01/03/laboratorio-ejemplo-de-captcha.php
+	Tambien aparece en otros posts buscando en google:
+	- http://www.google.es/search?q=captcha+alto_linea
+	*/
 	// FUNCTIONS
 	function __captcha_color2dec($color,$component) {
 		$offset=array("R"=>0,"G"=>2,"B"=>4);

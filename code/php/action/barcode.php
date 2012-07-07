@@ -23,57 +23,60 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// OBTAIN THE MSG
-if(getParam("msg")) {
-	$msg=getParam("msg");
-} else {
-	action_denied();
-}
-// DEFAULT PARAMETERS
-$w=intval(getParam("w",2));
-$h=intval(getParam("h",30));
-$m=intval(getParam("m",10));
-$s=intval(getParam("s",8));
-// BEGIN THE BARCODE WRAPPER
-$cache=get_cache_file($msg,getDefault("exts/pngext",".png"));
-//~ if(file_exists($cache)) unlink($cache);
-if(!file_exists($cache)) {
-	require_once("lib/tcpdf/barcodes.php");
-	$barcode=new TCPDFBarcode($msg,"C128B");
-	$array=$barcode->getBarcodeArray();
-	$width=($array["maxw"]*$w);
-	$height=$h;
-	$im=imagecreatetruecolor($width+2*$m,$height+2*$m+$s);
-	$bgcol=imagecolorallocate($im,255,255,255);
-	imagefilledrectangle($im,0,0,$width+2*$m,$height+2*$m+$s,$bgcol);
-	$fgcol=imagecolorallocate($im,0,0,0);
-	$x=0;
-	foreach($array["bcode"] as $key=>$val) {
-		$bw=round(($val["w"]*$w),3);
-		$bh=round(($val["h"]*$h/$array["maxh"]),3);
-		if($val["t"]) {
-			$y=round(($val["p"]*$h/$array["maxh"]),3);
-			imagefilledrectangle($im,$x+$m,$y+$m,($x+$bw-1)+$m,($y+$bh-1)+$m,$fgcol);
-		}
-		$x+=$bw;
+if(!check_user()) action_denied();
+if(getParam("action")=="barcode") {
+	// OBTAIN THE MSG
+	if(getParam("msg")) {
+		$msg=getParam("msg");
+	} else {
+		action_denied();
 	}
-	// ADD MSG TO THE IMAGE FOOTER
-	$font="lib/fonts/DejaVuSans.ttf";
-	$bbox=imagettfbbox($s,0,$font,$msg);
-	$px=($width+2*$m)/2-($bbox[4]-$bbox[0])/2;
-	$py=$m+$h+$s+$w;
-	imagettftext($im,$s,0,$px,$py,$fgcol,$font,$msg);
-	// CONTINUE
-	imagepng($im,$cache);
-	imagedestroy($im);
-	chmod_protected($cache,0666);
+	// DEFAULT PARAMETERS
+	$w=intval(getParam("w",2));
+	$h=intval(getParam("h",30));
+	$m=intval(getParam("m",10));
+	$s=intval(getParam("s",8));
+	// BEGIN THE BARCODE WRAPPER
+	$cache=get_cache_file($msg,getDefault("exts/pngext",".png"));
+	//~ if(file_exists($cache)) unlink($cache);
+	if(!file_exists($cache)) {
+		require_once("lib/tcpdf/barcodes.php");
+		$barcode=new TCPDFBarcode($msg,"C128B");
+		$array=$barcode->getBarcodeArray();
+		$width=($array["maxw"]*$w);
+		$height=$h;
+		$im=imagecreatetruecolor($width+2*$m,$height+2*$m+$s);
+		$bgcol=imagecolorallocate($im,255,255,255);
+		imagefilledrectangle($im,0,0,$width+2*$m,$height+2*$m+$s,$bgcol);
+		$fgcol=imagecolorallocate($im,0,0,0);
+		$x=0;
+		foreach($array["bcode"] as $key=>$val) {
+			$bw=round(($val["w"]*$w),3);
+			$bh=round(($val["h"]*$h/$array["maxh"]),3);
+			if($val["t"]) {
+				$y=round(($val["p"]*$h/$array["maxh"]),3);
+				imagefilledrectangle($im,$x+$m,$y+$m,($x+$bw-1)+$m,($y+$bh-1)+$m,$fgcol);
+			}
+			$x+=$bw;
+		}
+		// ADD MSG TO THE IMAGE FOOTER
+		$font="lib/fonts/DejaVuSans.ttf";
+		$bbox=imagettfbbox($s,0,$font,$msg);
+		$px=($width+2*$m)/2-($bbox[4]-$bbox[0])/2;
+		$py=$m+$h+$s+$w;
+		imagettftext($im,$s,0,$px,$py,$fgcol,$font,$msg);
+		// CONTINUE
+		imagepng($im,$cache);
+		imagedestroy($im);
+		chmod_protected($cache,0666);
+	}
+	ob_start(getDefault("obhandler"));
+	header_powered();
+	header_expires(false);
+	$type=content_type_from_extension($cache);
+	header("Content-Type: $type");
+	readfile($cache);
+	ob_end_flush();
+	die();
 }
-ob_start(getDefault("obhandler"));
-header_powered();
-header_expires(false);
-$type=content_type_from_extension($cache);
-header("Content-Type: $type");
-readfile($cache);
-ob_end_flush();
-die();
 ?>
