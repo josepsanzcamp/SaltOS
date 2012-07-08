@@ -1,3 +1,4 @@
+/*jshint eqnull:true */
 /*!
  * jQuery Cookie Plugin
  * https://github.com/carhartl/jquery-cookie
@@ -7,14 +8,14 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.opensource.org/licenses/GPL-2.0
  */
-(function($) {
+(function($, document) {
     $.cookie = function(key, value, options) {
 
         // key and at least value given, set cookie...
-        if (arguments.length > 1 && (!/Object/.test(Object.prototype.toString.call(value)) || value === null || value === undefined)) {
+        if (arguments.length > 1 && (!/Object/.test(Object.prototype.toString.call(value)) || value == null)) {
             options = $.extend({}, $.cookie.defaults, options);
 
-            if (value === null || value === undefined) {
+            if (value == null) {
                 options.expires = -1;
             }
 
@@ -41,7 +42,7 @@
         var cookies = document.cookie.split('; ');
         for (var i = 0, parts; (parts = cookies[i] && cookies[i].split('=')); i++) {
             if (decode(parts.shift()) === key) {
-              return decode(parts.join('='));
+                return decode(parts.join('='));
             }
         }
         return null;
@@ -49,4 +50,4 @@
 
     $.cookie.defaults = {};
 
-})(jQuery);
+})(jQuery, document);
