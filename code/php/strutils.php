@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2011 by Josep Sanz Campderrós
+Copyright (C) 2012 by Josep Sanz Campderrós
 More information in http://www.saltos.net or info@saltos.net
 
 This program is free software: you can redistribute it and/or modify
@@ -372,7 +372,7 @@ function normalize_value($value) {
 }
 
 function get_name_version_revision($copyright=false) {
-	return getDefault("info/name")." v".getDefault("info/version")." r".getDefault("info/revision").($copyright?" ".getDefault("info/copyright"):"");
+	return getDefault("info/name")." v".getDefault("info/version")." r".getDefault("info/revision").($copyright?", ".getDefault("info/copyright"):"");
 }
 
 function getServer($index,$default="") {

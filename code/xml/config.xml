@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2011 by Josep Sanz Campderrós
+Copyright (C) 2012 by Josep Sanz Campderrós
 More information in http://www.saltos.net or info@saltos.net
 
 This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<revision eval="true">intval(svnversion("../code"))</revision>
 		<title config="true">application_title</title>
 		<favicon>img/favicon.png</favicon>
-		<copyright>© 2011 by Josep Sanz Campderrós</copyright>
+		<copyright>Copyright (C) 2012 by Josep Sanz Campderrós</copyright>
 	</info>
 	<db>
 		<type>pdo_sqlite</type>
