@@ -533,7 +533,8 @@ switch($action) {
 		foreach($array_order as $key=>$val) $array_order[$key]=implode(" ",$val);
 		$order=implode(",",$array_order);
 		// DETECT DB ENGINE
-		if(get_db_type(getDefault("db/type"))=="SQLITE") {
+		$dbtype=get_db_type(getDefault("db/type"));
+		if($dbtype=="SQLITE") {
 			// LIST OF TEMPORARY FIELDS TO RETRIEVE
 			$fields=explode(",",$order);
 			foreach($fields as $key=>$val) {
@@ -544,21 +545,22 @@ switch($action) {
 			$fields=implode(",",$fields);
 			// CREATE THE TEMPORARY TABLES (HELPERS)
 			$tbl_hash1="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0) output";
+			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0)";
 			db_query($query);
 			$tbl_hash2="tbl_".get_unique_id_md5();
 			$query="CREATE TEMPORARY TABLE $tbl_hash2 AS SELECT id FROM $tbl_hash1 ORDER BY $order LIMIT $offset,$limit";
 			db_query($query);
 			// EXECUTE THE QUERY TO OBTAIN THE REAL ROWS AND FIELDS
-			$query="SELECT * FROM ($query0) output WHERE id IN (SELECT id FROM $tbl_hash2) ORDER BY $order";
-		}
-		if(get_db_type(getDefault("db/type"))=="MYSQL") {
+			$query="SELECT * FROM ($query0) WHERE id IN (SELECT id FROM $tbl_hash2) ORDER BY $order";
+		} elseif($dbtype=="MYSQL") {
 			// CREATE THE TEMPORARY TABLES (HELPERS)
 			$tbl_hash1="tbl_".get_unique_id_md5();
 			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS $query0";
 			db_query($query);
 			// EXECUTE THE QUERY TO OBTAIN THE REAL ROWS AND FIELDS
 			$query="SELECT * FROM $tbl_hash1 ORDER BY $order LIMIT $offset,$limit";
+		} else {
+			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
 		}
 		$result=db_query($query);
 		$count=1;
