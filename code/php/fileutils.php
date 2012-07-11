@@ -494,4 +494,68 @@ function check_commands($commands,$expires=0) {
 	foreach($commands as $command) $result&=ob_passthru(getDefault("commands/which")." ".str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__")),$expires)?1:0;
 	return $result;
 }
+
+function url_get_contents($url,$type="GET") {
+	// PREPARE ARRAY
+	$scheme=parse_url($url,PHP_URL_SCHEME);
+	if(!$scheme) $url="http://".$url;
+	$array=parse_url($url);
+	$scheme=$array["scheme"];
+	$ports=array("http"=>80,"https"=>443);
+	if(!isset($ports[$scheme])) show_php_error(array("phperror"=>"Unknown schema '$schema'"));
+	$port=isset($array["port"])?$array["port"]:$ports[$scheme];
+	$host=$array["host"];
+	$host1=($scheme=="https"?"ssl://":"").$host;
+	$host2=$host.(in_array($port,$ports)?"":":$port");
+	$path=isset($array["path"])?$array["path"]:"";
+	$query=isset($array["query"])?$array["query"]:"";
+	$type=strtoupper($type);
+	if(!in_array($type,array("GET","POST"))) show_php_error(array("phperror"=>"Unknown type '$type'"));
+	// OPEN THE SOCKET
+	$fp=fsockopen($host1,$port);
+	if(!$fp) show_php_error(array("phperror"=>"Could not open the socket"));
+	// SEND REQUEST
+	if($type=="GET" && $query!="") fputs($fp,"$type $path?$query HTTP/1.1\r\n");
+	if($type=="GET" && $query=="") fputs($fp,"$type $path HTTP/1.1\r\n");
+	if($type=="POST") fputs($fp,"$type $path HTTP/1.1\r\n");
+	fputs($fp,"Host: $host2\r\n");
+	if($type=="POST") fputs($fp,"Content-type: application/x-www-form-urlencoded\r\n");
+	if($type=="POST") fputs($fp,"Content-length: ".strlen($query)."\r\n");
+	fputs($fp,"User-Agent: ".get_name_version_revision()."\r\n");
+	fputs($fp,"Connection: close\r\n\r\n");
+	fputs($fp,$query);
+	// READ RESPONSE
+	$result="";
+	while(!feof($fp)) $result.=fgets($fp,8192);
+	// CLOSE SOCKET
+	fclose($fp);
+	// PREPARE RESPONSE
+	$result=explode("\r\n\r\n",$result,2);
+	$headers=isset($result[0])?$result[0]:"";
+	$body=isset($result[1])?$result[1]:"";
+	// CHECK FOR CHUNKED CONTENT
+	$headers=explode("\n",$headers);
+	foreach($headers as $header) {
+		if(stripos($header,"location")!==false) {
+			$pos=strpos($header,":");
+			if($pos!==false) $body=url_get_contents(trim(substr($header,$pos+1)));
+		}
+		if(stripos($header,"chunked")!==false) {
+			$from=0;
+			$newbody="";
+			for(;;) {
+				$pos=strpos($body,"\r\n",$from);
+				if($pos===false) breaK;
+				$chunked=hexdec(substr($body,$from,$pos-$from));
+				$from=$pos+2;
+				$newbody.=substr($body,$from,$chunked);
+				$from+=$chunked+2;
+				if($from>strlen($body)) break;
+			}
+			$body=$newbody;
+		}
+	}
+	// RETURN RESPONSE
+	return $body;
+}
 ?>

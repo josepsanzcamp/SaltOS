@@ -340,7 +340,7 @@ if(getParam("action")=="feeds") {
 		$temp=parse_url($url2);
 		if(!isset($temp["scheme"])) $url2="http://".$url2;
 		capture_next_error();
-		$xml=file_get_contents($url2);
+		$xml=url_get_contents($url2);
 		$error=get_clear_error();
 		if(!$error) {
 			$xml=__feeds_removescripts($xml);
@@ -397,7 +397,7 @@ if(getParam("action")=="feeds") {
 							}
 						}
 						capture_next_error();
-						$xml=file_get_contents($url3);
+						$xml=url_get_contents($url3);
 						$error=get_clear_error();
 						if(!$error) {
 							$xml=__feeds_removescripts($xml);
@@ -423,7 +423,7 @@ if(getParam("action")=="feeds") {
 				$array=__feeds_fetchmain($array);
 				//~ echo "<pre>".sprintr($array)."</pre>"; die();
 				capture_next_error();
-				file_get_contents($array["image"]);
+				url_get_contents($array["image"]);
 				$error2=get_clear_error();
 				if($error2) $array["image"]="img/deffeed.png";
 			}
@@ -547,7 +547,7 @@ if(getParam("action")=="feeds") {
 		$url=$row["url"];
 		$title=$row["title"];
 		capture_next_error();
-		$xml=file_get_contents($url);
+		$xml=url_get_contents($url);
 		$error=get_clear_error();
 		if(!$error) {
 			$xml=__feeds_removescripts($xml);
