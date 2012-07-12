@@ -406,7 +406,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>JQuery Mobile 1.1.0 (MIT &amp; GPL-2.0)</label>
+							<label>JQuery Mobile 1.1.1 (MIT &amp; GPL-2.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentbl</class>
 							<onclick>openwin("http://jquerymobile.com/")</onclick>

@@ -779,18 +779,14 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 
 	function updatecontent(html) {
 		$(document).scrollTop(1);
-		// UPDATE THE TITLE IF NEEDED
+		// UPDATE THE TITLE
 		var divtitle=$("div[type=title]",html);
-		if(document.title!=$(divtitle).text()) {
-			document.title=$(divtitle).text();
-		}
-		// UPDATE THE NORTH PANEL IF NEEDED
+		document.title=$(divtitle).text();
+		// UPDATE THE NORTH PANEL
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
-		if($(header).text()!=$(header2).text()) {
-			$(header).html3(header2);
-			make_extras(header);
-		}
+		$(header).html3(header2);
+		make_extras(header);
 		// CHECK FOR LOGIN AND LOGOUT
 		var menu=$(".ui-layout-west");
 		var menu2=$(".ui-layout-west",html);
@@ -798,11 +794,9 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		saltos_logout=($(menu).text()!="" && $(menu2).text()=="")?1:0;
 		// IF LOGIN
 		if(saltos_login) sync_cookies("start");
-		// UPDATE THE MENU IF NEEDED
-		if($(".menu",menu).text()!=$(".menu",menu2).text()) {
-			$(menu).html3(menu2);
-			make_extras(menu);
-		}
+		// UPDATE THE MENU
+		$(menu).html3(menu2);
+		make_extras(menu);
 		// IF LOGOUT
 		if(saltos_logout) sync_cookies("stop");
 		// UPDATE THE CENTER PANE

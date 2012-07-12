@@ -1907,7 +1907,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				var scroll=$(window).scrollTop();
 				var pos0=$(oldobj).parent().position();
 				var height=$(window).height();
-				var max=height-pos0.top+scroll-$(oldobj).height()-5; // THE 5 FIX AN UNKNOWN UI CONSTRAIN!!!
+				var max=height-pos0.top+scroll-$(oldobj).height()-4; // THE 4 FIX AN UNKNOWN UI CONSTRAIN!!!
 				if(pos.top<scroll) {
 					pos.top=scroll;
 					var background=background_on;

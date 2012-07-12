@@ -946,6 +946,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</div>
 			</div>
 		</xsl:when>
+		<xsl:when test="type='grid'">
+			<xsl:for-each select="rows">
+				<xsl:call-template name="form_by_rows">
+					<xsl:with-param name="form" select="null"/>
+					<xsl:with-param name="node" select="null"/>
+					<xsl:with-param name="prefix" select="null"/>
+					<xsl:with-param name="iter" select="row"/>
+				</xsl:call-template>
+			</xsl:for-each>
+		</xsl:when>
 	</xsl:choose>
 </xsl:template>
 

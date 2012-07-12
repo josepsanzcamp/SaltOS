@@ -1237,7 +1237,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</xsl:call-template>
 					</table>
 				</xsl:for-each>
-
 			</td>
 		</xsl:when>
 	</xsl:choose>
