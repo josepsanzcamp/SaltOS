@@ -51,12 +51,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			return result;
 		};
 		$.fn.remove2=function() {
-			$(this).jqmRemoveData();
-			$(this).removeData();
-			$(this).removeProp();
-			$(this).removeAttr();
-			$(this).empty();
-			$(this).remove();
+			$("*",this).unbind().jqmRemoveData().removeData().removeProp().removeAttr().remove();
+			$(this).unbind().jqmRemoveData().removeData().removeProp().removeAttr().remove();
 		}
 	})(jQuery);
 
@@ -778,7 +774,9 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	var saltos_logout=0;
 
 	function updatecontent(html) {
-		$(document).scrollTop(1);
+		var page=$("#page");
+		$(page).hide();
+		$(page).page("destroy");
 		// UPDATE THE TITLE
 		var divtitle=$("div[type=title]",html);
 		document.title=$(divtitle).text();
@@ -804,8 +802,10 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		var screen2=$(".ui-layout-center",html);
 		$(screen).html3(screen2);
 		make_extras(screen);
+		$(page).page();
+		$(page).show();
 		unloadingcontent();
-		make_focus();
+		$(document).scrollTop(1);
 	}
 
 	function make_extras(obj) {
@@ -821,12 +821,12 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// ADD THE SELECT ALL FEATURE TO LIST
 		var master="input.master[type=checkbox]";
 		var slave="input.slave[type=checkbox]";
-		$(master,obj).next().find("span span:first").html2(function() { return lang_selectallcheckbox(); });
-		$(slave,obj).next().find("span span:first").html2(function() { return lang_selectonecheckbox(); });
+		$(master,obj).next().html2(function() { return lang_selectallcheckbox(); });
+		$(slave,obj).next().html2(function() { return lang_selectonecheckbox(); });
 		$(master,obj).click(function() {
 			var value=$(this).prop("checked");
 			var ul=$(this).parent().parent().parent().parent();
-			$(slave,ul).prop("checked",value).trigger("change");
+			$(slave,ul).prop("checked",value).checkboxradio("refresh");
 		});
 		// REQUEST THE PLOTS
 		var attrs=new Array("title","legend","vars","colors","graph","ticks","posx",
@@ -890,6 +890,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		$(".title",obj).addClass("ui-bar ui-bar-b ui-corner-all");
 		// AUTO-GROWING TEXTAREA
 		$("textarea[ckeditor!=true]",obj).autogrow();
+		// STYLING IFRAME BORDER
+		$(".preiframe",obj).textinput();
 		// AUTO-GROWING IFRAMES
 		$("iframe",obj).each(function() {
 			if(security_iframe(this)) {
@@ -915,26 +917,10 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				}
 			}
 		});
-		// SET INITIAL LABEL
-		$("select").each(function() {
-			$(this).parent().find(".ui-btn-text").html($(this).find("option:selected").text());
-		});
-		// PROGRAM LABEL CHANGES
-		$("select").change(function() {
-			$(this).parent().find(".ui-btn-text").html($(this).find("option:selected").text());
-		});
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).change(function() {
 			eval($(this).val());
 			$(this).prop("selectedIndex",0);
-		});
-		// PROGRAM CHECKBOX ICON CHANGES
-		$("input[type=checkbox]").change(function() {
-			var checked=$(this).prop("checked");
-			if(checked) $(this).parent().find(".ui-icon-checkbox-off").removeClass("ui-icon-checkbox-off").addClass("ui-icon-checkbox-on");
-			if(!checked) $(this).parent().find(".ui-icon-checkbox-on").removeClass("ui-icon-checkbox-on").addClass("ui-icon-checkbox-off");
-			if(checked) $(this).parent().find(".ui-checkbox-off").removeClass("ui-checkbox-off").addClass("ui-checkbox-on");
-			if(!checked) $(this).parent().find(".ui-checkbox-on").removeClass("ui-checkbox-on").addClass("ui-checkbox-off");
 		});
 	}
 
@@ -977,14 +963,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	var focused=null;
 
 	function make_focus(obj) {
-		// FROM MAKE_TABS
-		$("[focused=true]:first",page).each(function() {
-			focused=this;
-		});
-		// FOCUS THE OBJECT WITH FOCUSED ATTRIBUTE
-		if(focused) $(focused).focus();
-		focused=null;
-
+		// UNUSED
 	}
 
 	function make_tables(obj) {
@@ -1044,7 +1023,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	$.mobile.ajaxEnabled=false;
 	$.mobile.linkBindingEnabled=false;
 	$.mobile.hashListeningEnabled=false;
-	$.mobile.page.prototype.options.keepNative="*";
+	//~ $.mobile.page.prototype.options.keepNative="*";
 
 	// TO DO COMPATIBLE WITH DESKTOP PLUGINS
 	(function($){
@@ -1099,7 +1078,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		var screen=$(".ui-layout-center");
 		make_extras(screen);
 		$.mobile.initializePage();
-		make_focus();
 	});
 
 }
