@@ -99,7 +99,10 @@ function sendmail($from,$to,$subject,$body,$arg1="",$arg2="",$arg3="",$arg4="") 
 		list($to,$toname)=__sendmail_parser($to);
 		if(!$mail->AddAddress($to,$toname)) return $mail->ErrorInfo;
 	}
-	if(!$mail->PreSend()) return $mail->ErrorInfo;
+	capture_next_error();
+	$current=$mail->PreSend();
+	get_clear_error();
+	if(!$current) return $mail->ErrorInfo;
 	$messageid=__sendmail_messageid($mail->From);
 	__sendmail_emlsaver($mail->GetSentMIMEMessage(),$messageid);
 	$last_id=__getmail_insert($mail->GetSentMIMEMessage(),$messageid,0,0,0,0,0,1,0,"");

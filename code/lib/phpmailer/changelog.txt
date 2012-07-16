@@ -3,8 +3,32 @@ ChangeLog
 NOTE: THIS VERSION OF PHPMAILER IS DESIGNED FOR PHP5/PHP6.
       IT WILL NOT WORK WITH PHP4.
 
+Version 5.2.2-beta1 (July 13, 2012)
+* Expose PreSend() and PostSend() as public methods to allow
+  for more control if serializing message sending.
+* GetSentMIMEMessage() only constructs the message copy when
+  needed. Save memory.
+* Only pass params to mail() if the underlying MTA is
+  "sendmail" (as defined as "having the string sendmail
+  in its pathname") [#69]
+* Attachments now work with Amazon SES and others [Bugz#70]
+* Debug output now sent to stdout (via echo) or error_log [Bugz#5]
+* New var: Debugoutput (for above) [Bugz#5]
+* SMTP reads now Timeout aware (new var: Timeout=15) [Bugz#71]
+* SMTP reads now can have a Timelimit associated with them
+  (new var: Timelimit=30)[Bugz#71]
+* Fix quoting issue associated with charsets
+* default setting for LE is now RFC compliant: "\r\n"
+* Return-Path can now be user defined (new var: ReturnPath)
+  (the default is "" which implies no change from previous
+  behavior, which was to use either From or Sender) [Bugz#46]
+* X-Mailer header can now be disabled (by setting to a
+  whitespace string, eg "  ") [Bugz#66]
+* Bugz closed: #68, #60, #42, #43, #59, #55, #66, #48, #49,
+               #52, #31, #41, #5. #70, #69
+
 Version 5.2.1 (January 16, 2012)
-* Closed several bugs
+* Closed several bugs#5
 * Performance improvements
 * MsgHTML() now returns the message as required.
 * New method: GetSentMIMEMessage() (returns full copy of sent message)

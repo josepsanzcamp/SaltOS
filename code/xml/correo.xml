@@ -623,9 +623,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward").")' ELSE '' END,
 			CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait").")' ELSE '' END,
 			CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam").")' ELSE '' END,
-			CASE priority WHEN -1 THEN '".LANG_ESCAPE("prioritylow")." ' WHEN 1 THEN '".LANG_ESCAPE("priorityhigh")." ' ELSE '' END,
-			CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential")." ' ELSE '' END,
-			CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || (SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE nombre || ' &lt;' || valor || '&gt;' END,'; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id AND a1.id_tipo=1) || ' - ' || CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END ||
+			CASE priority WHEN -1 THEN ' (".LANG_ESCAPE("prioritylow").")' WHEN 1 THEN ' (".LANG_ESCAPE("priorityhigh").")' ELSE '' END,
+			CASE sensitivity WHEN 1 THEN ' (".LANG_ESCAPE("sensitivitypersonal").")' WHEN 2 THEN ' (".LANG_ESCAPE("sensitivityprivate").")' WHEN 3 THEN ' (".LANG_ESCAPE("sensitivityconfidential").")' ELSE '' END,
+			CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN ' (".LANG_ESCAPE("stateread").")' ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || (SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE nombre || ' &lt;' || valor || '&gt;' END,'; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id AND a1.id_tipo=1) || ' - ' || CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END ||
 			CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent").")' ELSE '' END ||
 			CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror").")' END ||
 			CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent").")' ELSE '' END ||
@@ -634,9 +634,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward").")' ELSE '' END ||
 			CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait").")' ELSE '' END ||
 			CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam").")' ELSE '' END ||
-			CASE priority WHEN -1 THEN '".LANG_ESCAPE("prioritylow")." ' WHEN 1 THEN '".LANG_ESCAPE("priorityhigh")." ' ELSE '' END ||
-			CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential")." ' ELSE '' END ||
-			CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END */ action_title,
+			CASE priority WHEN -1 THEN ' (".LANG_ESCAPE("prioritylow").")' WHEN 1 THEN ' (".LANG_ESCAPE("priorityhigh").")' ELSE '' END ||
+			CASE sensitivity WHEN 1 THEN ' (".LANG_ESCAPE("sensitivitypersonal").")' WHEN 2 THEN ' (".LANG_ESCAPE("sensitivityprivate").")' WHEN 3 THEN ' (".LANG_ESCAPE("sensitivityconfidential").")' ELSE '' END ||
+			CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN ' (".LANG_ESCAPE("stateread").")' ELSE '' END */ action_title,
 			/*MYSQL CONCAT(
 			CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent")." ' ELSE '' END,
 			CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror")." ' END,
