@@ -398,7 +398,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 3.6.3 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 3.6.4 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>left item sectioncontentr</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>
@@ -847,7 +847,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>game</name>
 							<type>iframe</type>
-							<value>xml.php?action=game</value>
+							<value></value>
 							<width>800px</width>
 							<height>240px</height>
 						</field>
@@ -855,12 +855,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 			</default>
 		</fields>
-		<javascript>
-			<cache ifnoteval="is_mobile()">
-				<include>lib/timbre/timbre.min.js</include>
-				<include>lib/timbre/004.js</include>
-			</cache>
-			<javascript include="xml/common/jsform.xml" replace="true"/>
-		</javascript>
+		<javascript include="xml/common/jsform.xml"/>
 	</form>
 </root>

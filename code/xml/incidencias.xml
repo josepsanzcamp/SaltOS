@@ -531,7 +531,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="page,id" eval="true">"DELETE FROM tbl_incidencias_u WHERE id_incidencia='$id'"</query>
+		<query global="id" eval="true">"DELETE FROM tbl_incidencias_u WHERE id_incidencia='$id'"</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>

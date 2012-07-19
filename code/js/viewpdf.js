@@ -86,9 +86,9 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						});
 						// PROGRAM CLOSE EVENT
 						$(dialog2).dialog("option","close",function(event,ui) {
-							$("canvas",dialog2).each(function() { $(this).remove(); });
 							$(dialog2).dialog("option","resizeStop",function() {});
 							$(dialog2).dialog("option","close",function() {});
+							$("*",dialog2).each(function() { $(this).remove2(); });
 						});
 						// UPDATE SIZE AND POSITION
 						var width=getIntCookie("saltos_viewpdf_width");

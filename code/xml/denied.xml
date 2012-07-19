@@ -79,14 +79,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 			</row>
 		</buttons>
-		<javascript>
-			<!-- FOR GENERAL PURPOSES -->
-			<function>goback() { history.back(); }</function>
-			<!-- FOR CONTROL MANAGER -->
-			<function global="page" eval="true">"current_page() { return '$page'; }"</function>
-			<function eval="true">"lang_loading() { return '".LANG_ESCAPE("loading")."' }"</function>
-			<function eval="true">"lang_error() { return '".LANG_ESCAPE("error")."' }"</function>
-			<function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
-		</javascript>
+		<javascript include="xml/common/jsform.xml"/>
 	</form>
 </root>

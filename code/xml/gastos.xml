@@ -474,7 +474,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">forminsert</title>
 				<query>
 					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT id_proyecto,'0' id,id_cliente,id_epigrafe,'".current_date()."' fecha,base,iva,irpf,total,id_pagador,id_formapago,liquidado,id_proveedor,descripcion,'".current_date()."' fecha2,id_cuenta FROM tbl_gastos WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'0' id_cliente,'0' id_proyecto,'0' id_epigrafe,'".current_date()."' fecha,'0.00' base,'".CONFIG("accounting_iva_value")."' iva,'".CONFIG("accounting_irpf_value")."' irpf, '0.00' total,'".current_user()."' id_pagador,'0' id_formapago,'0' liquidado,'0' id_proveedor,'".current_date()."' fecha2,'0' id_cuenta"</default>
+					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT id_proyecto,'0' id,id_cliente,id_epigrafe,'".current_date()."' fecha,base,iva,irpf,total,id_pagador,id_formapago,'0' liquidado,id_proveedor,descripcion,'".current_date()."' fecha2,id_cuenta FROM tbl_gastos WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'0' id_cliente,'0' id_proyecto,'0' id_epigrafe,'".current_date()."' fecha,'0.00' base,'".CONFIG("accounting_iva_value")."' iva,'".CONFIG("accounting_irpf_value")."' irpf, '0.00' total,'".current_user()."' id_pagador,'0' id_formapago,'0' liquidado,'0' id_proveedor,'".current_date()."' fecha2,'0' id_cuenta"</default>
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<vencimientos_new>
 						<vencimientos_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"

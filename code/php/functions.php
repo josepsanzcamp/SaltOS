@@ -142,25 +142,25 @@ function check_sql($aplicacion="",$permiso="") {
 		}
 		// CHECK FOR APLICATION/REGISTER FILTERS
 		$query="SELECT * FROM (
-			SELECT a.id_aplicacion id_aplicacion,a.id_registro id_registro,b.filter filter
+			SELECT a.id_aplicacion id_aplicacion,a.id_registro id_registro,b.filter1 filter
 			FROM tbl_usuarios a
-			LEFT JOIN tbl_aplicaciones_x b ON a.id_aplicacion=b.id_aplicacion
+			LEFT JOIN tbl_aplicaciones b ON a.id_aplicacion=b.id
 			WHERE a.id='${_USER["id"]}'
 			UNION
-			SELECT a.id_aplicacion id_aplicacion,a.id_registro id_registro,b.filter filter
+			SELECT a.id_aplicacion id_aplicacion,a.id_registro id_registro,b.filter1 filter
 			FROM tbl_usuarios_r a
-			LEFT JOIN tbl_aplicaciones_x b ON a.id_aplicacion=b.id_aplicacion
+			LEFT JOIN tbl_aplicaciones b ON a.id_aplicacion=b.id
 			WHERE a.id_usuario='${_USER["id"]}'
 		) a
 		WHERE id_aplicacion IN (
-			SELECT id_aplicacion
-			FROM tbl_aplicaciones_x
-			WHERE (SELECT /*MYSQL CONCAT(',',filter,',') *//*SQLITE (',' || filter || ',') */
+			SELECT id
+			FROM tbl_aplicaciones
+			WHERE (SELECT /*MYSQL CONCAT(',',filter2,',') *//*SQLITE (',' || filter2 || ',') */
 				FROM tbl_aplicaciones
-				WHERE codigo='$aplicacion' AND filter!=''
+				WHERE codigo='$aplicacion' AND filter2!=''
 			) LIKE (
-				/*MYSQL CONCAT('%,',filter,',%') *//*SQLITE '%,' || filter || ',%' */
-			) AND filter!=''
+				/*MYSQL CONCAT('%,',filter1,',%') *//*SQLITE '%,' || filter1 || ',%' */
+			) AND filter1!=''
 		)";
 		$result=db_query($query);
 		$id_aplicacion=page2id($aplicacion);
@@ -351,11 +351,6 @@ function id2page($id) {
 	}
 	if(!isset($diccionario[$id])) return "";
 	return $diccionario[$id];
-}
-
-function current_app() {
-	global $page;
-	return page2id($page);
 }
 
 function get_filtered_field($field) {

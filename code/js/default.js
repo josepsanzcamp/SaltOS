@@ -293,9 +293,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			code+="Q3JlZGl0cyIsIjxoMyBzdHlsZT0nbWFyZ2luOjBweCc+RGV2ZWxvcGVkIGJ5PC9oMz48";
 			code+="aDIgc3R5bGU9J21hcmdpbjowcHgnPkpvc2VwIFNhbnogQ2FtcGRlcnImb2FjdXRlO3M8";
 			code+="L2gyPjxpbWcgc3JjPSd4bWwucGhwP2FjdGlvbj1xcmNvZGUmbXNnPWh0dHAlM0ElMkYl";
-			code+="MkZ3d3cuc2FsdG9zLm5ldCcgc3R5bGU9J3dpZHRoOjI3MHB4O2hlaWdodDoyNzBweCcv";
-			code+="PjxoMyBzdHlsZT0nbWFyZ2luOjBweCc+RGVkaWNhdGVkIHRvIEl0emlhciBhbmQgQWlu";
-			code+="aG9hPC9oMz4iKTsgfSwxMDApOyB9KTsgfSkoKTs=";
+			code+="MkZ3d3cuam9zZXBzYW56Lm5ldCcgc3R5bGU9J3dpZHRoOjI3MHB4O2hlaWdodDoyNzBw";
+			code+="eCcvPjxoMyBzdHlsZT0nbWFyZ2luOjBweCc+RGVkaWNhdGVkIHRvIEl0emlhciBhbmQg";
+			code+="QWluaG9hPC9oMz4iKTsgfSwxMDApOyB9KTsgfSkoKTs=";
 			eval(base64_decode(code));
 			// NORMAL CODE
 			$("body").append("<div id='dialog'></div>");
@@ -1508,11 +1508,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			// GET THE TITLE VALUE
 			var title=trim($(this).attr("title"));
 			var update=false;
-			// FIX FOR CKEDITOR
-			if(strpos(title," ALT 0 ")!==false) {
-				title="";
-				update=true;
-			}
 			// CHECK IF TITLE IS THE SAME THAT THE OBJECT TEXT
 			if(title==$(this).text()) {
 				title="";

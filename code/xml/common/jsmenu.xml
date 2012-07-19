@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"lang_requiredfield() { return '".LANG_ESCAPE("requiredfield")."'; }"</function>
 	<function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
 	<!-- FOR UNLOAD EVENT -->
-	<function>install_onbeforeunload() { window.onbeforeunload=function() { check_outbox(); hide_popupnotice(); }; }</function>
+	<function eval="true">"install_onbeforeunload() { window.onbeforeunload=function() { hide_popupnotice(); ".(check_user()?"check_outbox();":"")." }; }"</function>
 	<function>uninstall_onbeforeunload() { window.onbeforeunload=null; }</function>
 	<inline>install_onbeforeunload();</inline>
 	<!-- FOR STYLE MANAGER -->

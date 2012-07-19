@@ -11,3 +11,17 @@ FROM
 - m.ui.addButton('Source',{label:m.lang.source,command:'source'})
 TO
 - m.ui.addButton('Source',{title:m.lang.source,command:'source'})
+
+IN
+- ckeditor.js
+FROM
+- m.lang.editorTitle.replace('%1',m.name)
+TO
+- ''
+
+IN
+- ckeditor.js
+FROM
+- E.lang.editorTitle.replace('%1',E.name)
+TO
+- ''

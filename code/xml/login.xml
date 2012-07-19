@@ -165,39 +165,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 			</row>
 		</fields>
-		<javascript>
-			<!-- FOR GENERAL PURPOSES -->
-			<function>submit1() { submitcontent($("form[id=form]")); }</function>
-			<function eval="true">"alerta(msg,callback) { if(typeof(callback)=='undefined') callback=function() {}; dialog('".LANG_ESCAPE("alert")."',msg,{'".LANG_ESCAPE("buttoncontinue")."':function() { dialog('close'); callback(); } }); }"</function>
-			<function>setParam(name,value) { $("form[id=form] *[name="+name+"]").val(value); }</function>
-			<!-- FOR CONTROL MANAGER -->
-			<function global="page" eval="true">"current_page() { return '$page'; }"</function>
-			<function eval="true">"lang_unknownerror() { return '".LANG_ESCAPE("unknownerror")."' }"</function>
-			<function eval="true">"lang_loading() { return '".LANG_ESCAPE("loading")."' }"</function>
-			<function eval="true">"lang_sending() { return '".LANG_ESCAPE("sending")."' }"</function>
-			<function eval="true">"lang_alert() { return '".LANG_ESCAPE("alert")."' }"</function>
-			<function eval="true">"lang_error() { return '".LANG_ESCAPE("error")."' }"</function>
-			<function eval="true">"lang_showmenu() { return '".LANG_ESCAPE("showmenu")."'; }"</function>
-			<function eval="true">"lang_showtools() { return '".LANG_ESCAPE("showtools")."'; }"</function>
-			<function eval="true">"lang_requiredfield() { return '".LANG_ESCAPE("requiredfield")."'; }"</function>
-			<function eval="true">"lang_buttoncontinue() { return '".LANG_ESCAPE("buttoncontinue")."'; }"</function>
-			<!-- FOR UNLOAD EVENT -->
-			<function>install_onbeforeunload() { window.onbeforeunload=function() { hide_popupnotice(); }; }</function>
-			<function>uninstall_onbeforeunload() { window.onbeforeunload=null; }</function>
-			<inline>install_onbeforeunload();</inline>
-			<!-- FOR STYLE MANAGER -->
-			<function global="stylepre" eval="true">"default_stylepre() { return '$stylepre' }"</function>
-			<function global="stylepost" eval="true">"default_stylepost() { return '$stylepost' }"</function>
-			<function global="iconsetpre" eval="true">"default_iconsetpre() { return '$iconsetpre'; }"</function>
-			<function global="iconsetpost" eval="true">"default_iconsetpost() { return '$iconsetpost'; }"</function>
-			<!-- FOR QRCODE -->
-			<function ifnoteval="is_mobile()" eval="true">"lang_qrcode() { return '".LANG_ESCAPE("qrcode")."'; }"</function>
-			<function ifnoteval="is_mobile()" eval="true">"lang_view2() { return '".LANG_ESCAPE("view2")."'; }"</function>
-			<function ifnoteval="is_mobile()" eval="true">"lang_view2error() { return '".LANG_ESCAPE("view2error")."'; }"</function>
-			<function ifnoteval="is_mobile()" eval="true">"lang_view2opening() { return '".LANG_ESCAPE("view2opening")."'; }"</function>
-			<cache ifnoteval="is_mobile()">
-				<include>js/qrcode.js</include>
-			</cache>
-		</javascript>
+		<javascript include="xml/common/jsform.xml"/>
 	</form>
 </root>

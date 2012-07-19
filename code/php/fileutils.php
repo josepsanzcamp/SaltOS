@@ -469,23 +469,29 @@ function ob_passthru($cmd,$expires=0) {
 
 function chmod_protected($file,$mode) {
 	capture_next_error();
+	ob_start();
 	chmod($file,$mode);
-	$error=get_clear_error();
-	return $error;
+	$error1=ob_get_clean();
+	$error2=get_clear_error();
+	return $error1.$error2;
 }
 
 function unlink_protected($file) {
 	capture_next_error();
+	ob_start();
 	unlink($file);
-	$error=get_clear_error();
-	return $error;
+	$error1=ob_get_clean();
+	$error2=get_clear_error();
+	return $error1.$error2;
 }
 
 function filemtime_protected($file) {
 	capture_next_error();
+	ob_start();
 	$mtime=filemtime($file);
-	$error=get_clear_error();
-	return array($mtime,$error);
+	$error1=ob_get_clean();
+	$error2=get_clear_error();
+	return array($mtime,$error1.$error2);
 }
 
 function check_commands($commands,$expires=0) {

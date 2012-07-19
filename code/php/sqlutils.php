@@ -144,8 +144,8 @@ function make_dependencies_query($table,$label) {
 		foreach($dbschema["tables"] as $tablespec) {
 			foreach($tablespec["fields"] as $field) {
 				if(!isset($field["fkey"])) $field["fkey"]="false";
-				if(!isset($field["depend"])) $field["depend"]="true";
-				if($field["fkey"]==$table && eval_bool($field["depend"])) {
+				if(!isset($field["fcheck"])) $field["fcheck"]="true";
+				if($field["fkey"]==$table && eval_bool($field["fcheck"])) {
 					$deps[]=array("table"=>$tablespec["name"],"field"=>$field["name"]);
 				}
 			}
@@ -370,11 +370,11 @@ function make_extra_query($prefix="") {
 	static $stack=array();
 	$hash=md5($prefix);
 	if(!isset($stack[$hash])) {
-		$query="SELECT * FROM tbl_aplicaciones_x";
+		$query="SELECT * FROM tbl_aplicaciones WHERE `table`!='' AND `field`!=''";
 		$result=db_query($query);
 		$cases=array("CASE ${prefix}id_aplicacion");
 		while($row=db_fetch_row($result)) {
-			$cases[]="WHEN '${row["id_aplicacion"]}' THEN (SELECT ${row["field"]} FROM ${row["table"]} WHERE id=${prefix}id_registro)";
+			$cases[]="WHEN '${row["id"]}' THEN (SELECT ${row["field"]} FROM ${row["table"]} WHERE id=${prefix}id_registro)";
 		}
 		db_free($result);
 		$cases[]="END";
@@ -384,13 +384,13 @@ function make_extra_query($prefix="") {
 }
 
 function make_select_extra($id=0) {
-	$query="SELECT a.*,b.nombre FROM tbl_aplicaciones_x a LEFT JOIN tbl_aplicaciones b ON b.id=a.id_aplicacion";
+	$query="SELECT * FROM tbl_aplicaciones WHERE `table`!='' AND `field`!=''";
 	$result=db_query($query);
 	$subquery=array();
 	while($row=db_fetch_row($result)) {
-		$subquery[]="SELECT /*MYSQL CONCAT('${row["id_aplicacion"]}','_','-2') *//*SQLITE '${row["id_aplicacion"]}' || '_' || '-2' */ id,'${row["id_aplicacion"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
-		$subquery[]="SELECT /*MYSQL CONCAT('${row["id_aplicacion"]}','_','-1') *//*SQLITE '${row["id_aplicacion"]}' || '_' || '-1' */ id,'${row["id_aplicacion"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
-		$subquery[]="SELECT /*MYSQL CONCAT('${row["id_aplicacion"]}','_',a.id) *//*SQLITE '${row["id_aplicacion"]}' || '_' || a.id */ id,'${row["id_aplicacion"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["table"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id_aplicacion"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
+		$subquery[]="SELECT /*MYSQL CONCAT('${row["id"]}','_','-2') *//*SQLITE '${row["id"]}' || '_' || '-2' */ id,'${row["id"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
+		$subquery[]="SELECT /*MYSQL CONCAT('${row["id"]}','_','-1') *//*SQLITE '${row["id"]}' || '_' || '-1' */ id,'${row["id"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
+		$subquery[]="SELECT /*MYSQL CONCAT('${row["id"]}','_',a.id) *//*SQLITE '${row["id"]}' || '_' || a.id */ id,'${row["id"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["table"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
 	}
 	db_free($result);
 	$query=implode(" UNION ",$subquery);

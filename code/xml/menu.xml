@@ -142,7 +142,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</option>
 	</group>
 	<group>
-		<show eval="true">(check_user("campanyas","menu") || check_user("campanyas","posiblescli") || check_user("campanyas","presupuestos") || check_user("campanyas","actas") || check_user("campanyas","clientes") || check_user("campanyas","contactos"))?"true":"false"</show>
+		<show eval="true">(check_user("campanyas","menu") || check_user("posiblescli","menu") || check_user("presupuestos","menu") || check_user("actas","menu") || check_user("clientes","menu") || check_user("contactos","menu"))?"true":"false"</show>
 		<label lang="true">gestioncomercial</label>
 		<name>gestioncomercial</name>
 		<class>menu</class>

@@ -201,7 +201,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_agenda</name>
 					<type>INTEGER</type>
 					<fkey>tbl_agenda</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_usuario</name>
@@ -227,7 +227,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>TEXT</type>
 				</field>
 				<field>
-					<name>filter</name>
+					<name>table</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>field</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>filter1</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>filter2</name>
 					<type>TEXT</type>
 				</field>
 			</fields>
@@ -257,33 +269,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>deny</name>
 					<type>INTEGER</type>
-				</field>
-			</fields>
-		</table>
-		<table>
-			<name>tbl_aplicaciones_x</name>
-			<fields>
-				<field>
-					<name>id</name>
-					<type>INTEGER</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>id_aplicacion</name>
-					<type>INTEGER</type>
-					<fkey>tbl_aplicaciones</fkey>
-				</field>
-				<field>
-					<name>table</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>field</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>filter</name>
-					<type>TEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -573,7 +558,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>clave</name>
@@ -680,7 +665,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_correo</name>
 					<type>INTEGER</type>
 					<fkey>tbl_correo</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_tipo</name>
@@ -1117,7 +1102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_factura</name>
 					<type>INTEGER</type>
 					<fkey>tbl_facturas</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_producto</name>
@@ -1154,7 +1139,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_factura</name>
 					<type>INTEGER</type>
 					<fkey>tbl_facturas</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>fecha</name>
@@ -1304,7 +1289,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
@@ -1333,7 +1318,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>name</name>
@@ -1476,7 +1461,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_gasto</name>
 					<type>INTEGER</type>
 					<fkey>tbl_gastos</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>fecha</name>
@@ -1512,7 +1497,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuario</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>login</name>
@@ -1554,7 +1539,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_grupo</name>
 					<type>INTEGER</type>
 					<fkey>tbl_grupos</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
@@ -1588,7 +1573,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
@@ -1674,7 +1659,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_incidencia</name>
 					<type>INTEGER</type>
 					<fkey>tbl_incidencias</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_usuario</name>
@@ -1695,13 +1680,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_folder</name>
 					<type>INTEGER</type>
 					<fkey>tbl_folders</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 			</fields>
 		</table>
@@ -1717,7 +1702,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>page</name>
@@ -1844,7 +1829,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_periodica</name>
 					<type>INTEGER</type>
 					<fkey>tbl_periodicas</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_producto</name>
@@ -1881,7 +1866,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_periodica</name>
 					<type>INTEGER</type>
 					<fkey>tbl_periodicas</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>fecha</name>
@@ -2138,7 +2123,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_presupuesto</name>
 					<type>INTEGER</type>
 					<fkey>tbl_presupuestos</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_producto</name>
@@ -2171,7 +2156,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_presupuesto</name>
 					<type>INTEGER</type>
 					<fkey>tbl_presupuestos</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>tarea</name>
@@ -2337,7 +2322,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_proyecto</name>
 					<type>INTEGER</type>
 					<fkey>tbl_proyectos</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_producto</name>
@@ -2370,7 +2355,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_proyecto</name>
 					<type>INTEGER</type>
 					<fkey>tbl_proyectos</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>tarea</name>
@@ -2402,7 +2387,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>button</name>
@@ -2435,7 +2420,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>datetime</name>
@@ -2464,7 +2449,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>remote_addr</name>
@@ -2670,7 +2655,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>email_name</name>
@@ -2778,7 +2763,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>url</name>
@@ -2818,7 +2803,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_grupo</name>
@@ -2839,7 +2824,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
@@ -2873,7 +2858,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_usuario</name>
 					<type>INTEGER</type>
 					<fkey>tbl_usuarios</fkey>
-					<depend>false</depend>
+					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>

@@ -39,16 +39,12 @@ $(document).ready(function() {
 	// FOR FOCUS THE GAME & MUSIC
 	setTimeout(function() {
 		$("#tabs").bind("tabsshow",function(event,ui) {
-			var pattern="iframe[name$=default_0_game]";
-			if($(pattern).is(":visible")) {
-				$(pattern).focus();
-				ex0.play();
-				var interval=setInterval(function() {
-					if(!$(pattern).is(":visible")) {
-						clearInterval(interval);
-						ex0.pause();
-					}
-				},100);
+			var obj=$("iframe[name$=default_0_game]");
+			if($(obj).is(":visible")) {
+				$(obj).attr("src","xml.php?action=game");
+				$(obj).focus();
+			} else {
+				$(obj).attr("src","");
 			}
 		});
 	},100);
