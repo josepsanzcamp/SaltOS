@@ -522,7 +522,7 @@ if(getParam("action")=="getmail") {
 		javascript_template("notify_voice('".$newemail.LANG("msgnewokpop3email".min($newemail,2),"correo")."')","saltos_voice()");
 	}
 	if(count($voice_ids)) {
-		$query="SELECT /*MYSQL CONCAT((SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE nombre END SEPARATOR '. ') FROM tbl_correo_a a1 WHERE a1.id_correo=tbl_correo.id AND a1.id_tipo=1),'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)) *//*SQLITE (SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE nombre END,'. ') FROM tbl_correo_a a1 WHERE a1.id_correo=tbl_correo.id AND a1.id_tipo=1) || '. ' || (CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END) */ reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
+		$query="SELECT /*MYSQL CONCAT(`from`,'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)) *//*SQLITE `from` || '. ' || (CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END) */ reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
 		$result=execute_query($query);
 		if(!$result) $result=array();
 		if(!is_array($result)) $result=array($result);

@@ -855,6 +855,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 			</default>
 		</fields>
-		<javascript include="xml/common/jsform.xml"/>
+		<javascript>
+			<javascript include="xml/common/jsform.xml" replace="true"/>
+			<function eval="true">"current_revision() { return '".getDefault("info/revision")."'; }"</function>
+		</javascript>
 	</form>
 </root>

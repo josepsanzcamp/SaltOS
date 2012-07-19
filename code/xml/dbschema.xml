@@ -651,6 +651,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>sensitivity</name>
 					<type>INTEGER</type>
 				</field>
+				<field>
+					<name>from</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>to</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>cc</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>bcc</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>files</name>
+					<type>INTEGER</type>
+				</field>
 			</fields>
 		</table>
 		<table>

@@ -41,7 +41,7 @@ $(document).ready(function() {
 		$("#tabs").bind("tabsshow",function(event,ui) {
 			var obj=$("iframe[name$=default_0_game]");
 			if($(obj).is(":visible")) {
-				$(obj).attr("src","xml.php?action=game");
+				$(obj).attr("src","xml.php?action=game&r="+current_revision());
 				$(obj).focus();
 			} else {
 				$(obj).attr("src","");

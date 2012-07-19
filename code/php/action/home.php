@@ -53,7 +53,7 @@ if(getParam("action")=="home") {
 				WHEN '".page2id("campanyas")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_campanyas WHERE id=a.id_registro)
 				WHEN '".page2id("clientes")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_clientes WHERE id=a.id_registro)
 				WHEN '".page2id("contactos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_contactos WHERE id=a.id_registro)
-				WHEN '".page2id("correo")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',(SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE CONCAT(nombre,' <',valor,'>') END SEPARATOR '; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id_registro AND a1.id_tipo=1),' - ',(CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END),
+				WHEN '".page2id("correo")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',`from`,' - ',(CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END),
 				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END,
 				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END,
 				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END,
@@ -62,7 +62,7 @@ if(getParam("action")=="home") {
 				CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward","correo").")' ELSE '' END,
 				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","correo").")' ELSE '' END,
 				CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam","correo").")' ELSE '' END,
-				CASE is_outbox WHEN 0 THEN CASE state_new+state_reply+state_forward+state_wait+state_spam WHEN 0 THEN ' (".LANG_ESCAPE("stateread","correo").")' ELSE '' END ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || (SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE nombre || ' <' || valor || '>' END,'; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id_registro AND a1.id_tipo=1) || ' - ' || (CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END ||
+				CASE is_outbox WHEN 0 THEN CASE state_new+state_reply+state_forward+state_wait+state_spam WHEN 0 THEN ' (".LANG_ESCAPE("stateread","correo").")' ELSE '' END ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || `from` || ' - ' || (CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END ||
 				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END ||
 				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END ||
 				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END ||

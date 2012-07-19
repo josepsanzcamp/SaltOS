@@ -65,14 +65,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<order>id</order>
 			</field>
 			<field>
-				<name>from2</name>
+				<name>from</name>
 				<label lang="true">from</label>
 				<width></width>
 				<sort>true</sort>
 				<size>25</size>
 			</field>
 			<field>
-				<name>to2</name>
+				<name>to</name>
 				<label lang="true">to</label>
 				<width></width>
 				<sort>true</sort>
@@ -559,7 +559,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
-		<temp global="campos_array" eval="true">$campos_array=array(""=>"id2,from2,to2,cc,bcc,datetime,subject,body,estado,msgid","email"=>"from2,to2,cc,bcc","subject"=>"subject","body"=>"body","resto"=>"id2,datetime,estado,msgid")</temp>
+		<temp global="campos_array" eval="true">$campos_array=array(""=>"id2,from,to,cc,bcc,datetime,subject,body,estado,msgid","email"=>"from,to,cc,bcc","subject"=>"subject","body"=>"body","resto"=>"id2,datetime,estado,msgid")</temp>
 		<temp global="campos,campos_array" eval="true">$campos=isset($campos_array[$campos])?$campos:""</temp>
 		<temp global="fecha3_array" eval="true">$fecha3_array=array(""=>"1=1","today"=>"DATE(`datetime`)=DATE('".current_date()."')","yesterday"=>"DATE(`datetime`)=DATE('".current_date(-86400)."')","week"=>"DATE(`datetime`)>=DATE('".current_date(-86400*7)."')","month"=>"DATE(`datetime`)>=DATE('".current_date(-86400*30)."')")</temp>
 		<temp global="fecha3,fecha3_array" eval="true">$fecha3=isset($fecha3_array[$fecha3])?$fecha3:""</temp>
@@ -567,7 +567,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<temp global="only_array" eval="true">$only_array=array("000"=>"1=1","100"=>"state_new='1'","010"=>"state_wait='1'","110"=>"(state_new='1' OR state_wait='1')","001"=>"state_spam='1'","101"=>"(state_new='1' OR state_spam='1')","011"=>"(state_wait='1' OR state_spam='1')","111"=>"(state_new='1' OR state_wait='1' OR state_spam='1')")</temp>
 		<temp global="only,only_array" eval="true">$only=isset($only_array[$only])?$only:"000"</temp>
 		<query global="page,filtro,id_usuario,id_cuenta,hidespam,withfiles,withoutfiles,onlyinbox,onlyoutbox,fecha1,fecha2,campos,fecha3,campos_array,fecha3_array,only,only_array" eval="true">"SELECT
-			id,id2,from2,to2,subject,`datetime`,files,estado,action_id,action_title,action_style,
+			id,id2,`from`,`to`,subject,`datetime`,files,estado,action_id,action_title,action_style,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
@@ -579,42 +579,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 		SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
-			/*MYSQL CONCAT( */ 'mailto:' /*MYSQL , *//*SQLITE || */ (SELECT GROUP_CONCAT(
-				CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-			/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a a1 WHERE a1.id_correo=a.id AND a1.id_tipo=1) /*MYSQL ) */ from2,
-			CASE WHEN
-				(SELECT COUNT(*) FROM tbl_correo_a a2 WHERE a2.id_correo=a.id AND a2.id_tipo=2)&gt;0
-			THEN
-				/*MYSQL CONCAT( */ 'mailto:' /*MYSQL , *//*SQLITE || */ (SELECT GROUP_CONCAT(
-					CASE
-					WHEN nombre='' AND valor!=''
-					THEN valor
-					WHEN nombre!='' AND valor=''
-					THEN /*SQLITE nombre || ' &lt;' || ec.email_from || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',(SELECT email_from FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo ab WHERE ab.id=a2.id_correo)),'&gt;') */
-					ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */
-					END
-				/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a a2 WHERE a2.id_correo=a.id AND a2.id_tipo=2) /*MYSQL ) */
+			/*MYSQL CONCAT( */ 'mailto:' /*MYSQL , *//*SQLITE || */ `from` /*MYSQL ) */ `from`,
+			CASE WHEN `to`!='' THEN /*MYSQL CONCAT( */ 'mailto:' /*MYSQL , *//*SQLITE || */ `to` /*MYSQL ) */
 			ELSE
 				CASE WHEN ec.email_name=''
 				THEN /*SQLITE 'mailto:' || ec.email_from *//*MYSQL CONCAT('mailto:',ec.email_from) */
 				ELSE /*SQLITE 'mailto:' || ec.email_name || ' &lt;' || ec.email_from || '&gt;' *//*MYSQL CONCAT('mailto:',ec.email_name,' &lt;',ec.email_from,'&gt;') */
 				END
-			END to2,
-			(SELECT GROUP_CONCAT(
-				CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-			/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a a3 WHERE a3.id_correo=a.id AND a3.id_tipo=3) cc,
-			(SELECT GROUP_CONCAT(
-				CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-			/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a a4 WHERE a4.id_correo=a.id AND a4.id_tipo=4) bcc,
+			END `to`,
+			`cc`,`bcc`,
 			a.`datetime` `datetime`,body,
-			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id("correo")."' AND id_registro=a.id) files,
+			`files`,
 			e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_cuenta id_cuenta,
 			state_new,state_wait,state_spam,is_outbox,
 			ec.email_privated email_privated,
 			/*MYSQL CONCAT('link:correo(',-a.id,'):',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END) *//*SQLITE 'link:correo(' || -a.id || '):' || CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END */ subject,
 			/*MYSQL CONCAT(id_cuenta,'/',uidl) *//*SQLITE id_cuenta || '/' || uidl */ msgid,
 			a.id action_id,
-			/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',(SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE CONCAT(nombre,' &lt;',valor,'&gt;') END SEPARATOR '; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id AND a1.id_tipo=1),' - ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END,
+			/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',`from`,' - ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END,
 			CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent").")' ELSE '' END,
 			CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror").")' END,
 			CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent").")' ELSE '' END,
@@ -625,7 +607,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam").")' ELSE '' END,
 			CASE priority WHEN -1 THEN ' (".LANG_ESCAPE("prioritylow").")' WHEN 1 THEN ' (".LANG_ESCAPE("priorityhigh").")' ELSE '' END,
 			CASE sensitivity WHEN 1 THEN ' (".LANG_ESCAPE("sensitivitypersonal").")' WHEN 2 THEN ' (".LANG_ESCAPE("sensitivityprivate").")' WHEN 3 THEN ' (".LANG_ESCAPE("sensitivityconfidential").")' ELSE '' END,
-			CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN ' (".LANG_ESCAPE("stateread").")' ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || (SELECT GROUP_CONCAT(CASE nombre WHEN '' THEN valor ELSE nombre || ' &lt;' || valor || '&gt;' END,'; ') FROM tbl_correo_a a1 WHERE a1.id_correo=a.id AND a1.id_tipo=1) || ' - ' || CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END ||
+			CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN ' (".LANG_ESCAPE("stateread").")' ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || `from` || ' - ' || CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END ||
 			CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent").")' ELSE '' END ||
 			CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror").")' END ||
 			CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent").")' ELSE '' END ||
@@ -691,35 +673,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
 					<default global="id" eval="true">"SELECT *,
-					(SELECT GROUP_CONCAT(
-						CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-					/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=1) `from`,
-					CASE WHEN
-						(SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=2)&gt;0
-					THEN
-						(SELECT GROUP_CONCAT(
-							CASE
-							WHEN nombre='' AND valor!=''
-							THEN valor
-							WHEN nombre!='' AND valor=''
-							THEN /*SQLITE nombre || ' &lt;' || (SELECT email_from FROM tbl_usuarios_c WHERE id=id_cuenta) || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',(SELECT email_from FROM tbl_usuarios_c WHERE id=id_cuenta),'&gt;') */
-							ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-						/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=2)
+					`from`,
+					CASE WHEN `to`!='' THEN `to`
 					ELSE
-						CASE WHEN (SELECT email_name FROM tbl_usuarios_c WHERE id=id_cuenta)=''
-						THEN (SELECT email_from FROM tbl_usuarios_c WHERE id=id_cuenta)
-						ELSE (SELECT /*SQLITE email_name || ' &lt;' || email_from || '&gt;' *//*MYSQL CONCAT(email_name,' &lt;',email_from,'&gt;') */ FROM tbl_usuarios_c WHERE id=id_cuenta)
+						CASE WHEN ec.email_name=''
+						THEN ec.email_from
+						ELSE /*SQLITE ec.email_name || ' &lt;' || ec.email_from || '&gt;' *//*MYSQL CONCAT(ec.email_name,' &lt;',ec.email_from,'&gt;') */
 						END
 					END `to`,
-					(SELECT GROUP_CONCAT(
-						CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-					/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=3) `cc`,
-					(SELECT GROUP_CONCAT(
-						CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-					/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=4) `bcc`,
+					`cc`,`bcc`,
 					CASE WHEN subject='' THEN '".LANG("sinsubject")."' ELSE subject END subject,
 					/*MYSQL CONCAT(id_cuenta,'/',uidl) *//*SQLITE id_cuenta || '/' || uidl */ msgid
-					FROM tbl_correo a WHERE a.id='".abs($id)."'"</default>
+					FROM tbl_correo a
+					LEFT JOIN tbl_usuarios_c ec ON a.id_cuenta=ec.id
+					WHERE a.id='".abs($id)."'"</default>
 					<files_old>
 						<files_old>SELECT 'php/action/getmail.php' action_include</files_old>
 					</files_old>
@@ -989,7 +956,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<temp global="id_extra" eval="true">$id_extra=explode("_",getParam("id"),3);</temp>
 						<temp global="id_extra" eval="true">$id_extra[1]=isset($id_extra[1])?$id_extra[1]:""</temp>
 						<temp global="id_extra" eval="true">$id_extra[2]=isset($id_extra[2])?$id_extra[2]:""</temp>
-						<show global="id,id_extra" eval="true">execute_query("SELECT COUNT(*) files FROM tbl_ficheros WHERE id_aplicacion='".page2id("correo")."' AND id_registro='".abs($id)."'")+execute_query("SELECT COUNT(*) files FROM tbl_ficheros WHERE id_aplicacion='".page2id("correo")."' AND id_registro='".$id_extra[2]."' AND '".$id_extra[1]."'='forward'")+execute_query("SELECT 1 FROM (SELECT 1) z WHERE '".$id_extra[1]."'='session'")?"true":"false"</show>
+						<show global="id,id_extra" eval="true">execute_query("SELECT `files` FROM tbl_correo WHERE id='".abs($id)."'")+execute_query("SELECT `files` FROM tbl_correo WHERE id='".$id_extra[2]."' AND '".$id_extra[1]."'='forward'")+execute_query("SELECT 1 FROM (SELECT 1) z WHERE '".$id_extra[1]."'='session'")?"true":"false"</show>
 						<field>
 							<label lang="true">attachments</label>
 							<type>label</type>
@@ -1195,32 +1162,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
 		<query>"SELECT *,
-					(SELECT GROUP_CONCAT(
-						CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-					/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=1) `from`,
-					CASE WHEN
-						(SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=2)&gt;0
-					THEN
-						(SELECT GROUP_CONCAT(
-							CASE
-							WHEN nombre='' AND valor!=''
-							THEN valor
-							WHEN nombre!='' AND valor=''
-							THEN /*SQLITE nombre || ' &lt;' || (SELECT email_from FROM tbl_usuarios_c WHERE id=id_cuenta) || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',(SELECT email_from FROM tbl_usuarios_c WHERE id=id_cuenta),'&gt;') */
-							ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-						/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=2)
+					`from`,
+					CASE WHEN `to`!='' THEN `to`
 					ELSE
-						CASE WHEN (SELECT email_name FROM tbl_usuarios_c WHERE id=id_cuenta)=''
-						THEN (SELECT email_from FROM tbl_usuarios_c WHERE id=id_cuenta)
-						ELSE (SELECT /*SQLITE email_name || ' &lt;' || email_from || '&gt;' *//*MYSQL CONCAT(email_name,' &lt;',email_from,'&gt;') */ FROM tbl_usuarios_c WHERE id=id_cuenta)
+						CASE WHEN ec.email_name=''
+						THEN ec.email_from
+						ELSE /*SQLITE ec.email_name || ' &lt;' || ec.email_from || '&gt;' *//*MYSQL CONCAT(ec.email_name,' &lt;',ec.email_from,'&gt;') */
 						END
 					END `to`,
-					(SELECT GROUP_CONCAT(
-						CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-					/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=3) `cc`,
-					(SELECT GROUP_CONCAT(
-						CASE nombre WHEN '' THEN valor ELSE /*SQLITE nombre || ' &lt;' || valor || '&gt;' *//*MYSQL CONCAT(nombre,' &lt;',valor,'&gt;') */ END
-					/*MYSQL SEPARATOR '; ' *//*SQLITE ,'; ' */) FROM tbl_correo_a WHERE id_correo=a.id AND id_tipo=4) `bcc`,
+					`cc`,`bcc`,
 					CASE WHEN subject='' THEN '".LANG("sinsubject")."' ELSE subject END subject,
 					(SELECT GROUP_CONCAT(/*MYSQL CONCAT(fichero,' (',fichero_size,')') SEPARATOR ', ' *//*SQLITE fichero || ' (' || fichero_size || ')',', ' */) FROM
 						(SELECT fichero,id_registro,
@@ -1232,7 +1182,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							END fichero_size
 						 FROM tbl_ficheros WHERE id_aplicacion='".page2id("correo")."') z WHERE id_registro=a.id
 					) files
-					FROM tbl_correo a WHERE a.id IN (".check_ids(getParam("id")).")"</query>
+					FROM tbl_correo a
+					LEFT JOIN tbl_usuarios_c ec ON a.id_cuenta=ec.id
+					WHERE a.id IN (".check_ids(getParam("id")).")"</query>
 		<foreach>
 			<!-- TEMPLATE -->
 			<header>

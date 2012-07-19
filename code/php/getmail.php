@@ -248,17 +248,22 @@ function __getmail_gethumansize($size) {
 // RETURN ALL INFORMATION OF THE DECODED MESSAGE
 function __getmail_getinfo($array) {
 	if(eval_bool(getDefault("debug/getmaildebug"))) echo "<pre>".sprintr(__getmail_removebody($array))."</pre>";
-	$result=array("emails"=>array(),"datetime"=>"","subject"=>"","spam"=>"","files"=>array(),"crt"=>0,"priority"=>0,"sensitivity"=>0);
+	$result=array("emails"=>array(),"datetime"=>"","subject"=>"","spam"=>"","files"=>array(),"crt"=>0,
+		"priority"=>0,"sensitivity"=>0,"from"=>"","to"=>"","cc"=>"","bcc"=>"");
 	// CREATE THE FROM, TO, CC AND BCC STRING
 	$lista=array(1=>"from",2=>"to",3=>"cc",4=>"bcc",5=>"return-path",6=>"reply-to",7=>"disposition-notification-to");
 	foreach($lista as $key=>$val) {
 		$addresses=__getmail_getnode("ExtractedAddresses/${val}:",$array);
 		if($addresses) {
+			$temp=array();
 			foreach($addresses as $a) {
 				$name=__getmail_getutf8(__getmail_getnode("name",$a));
 				$addr=__getmail_getutf8(__getmail_getnode("address",$a));
 				$result["emails"][]=array("id_tipo"=>$key,"tipo"=>$val,"nombre"=>$name,"valor"=>$addr);
+				$temp[]=($name!="")?$name."<".$addr.">":$addr;
 			}
+			$temp=implode("; ",$temp);
+			if(array_key_exists($val,$result)) $result[$val]=$temp;
 		}
 	}
 	// CREATE THE DATETIME STRING
@@ -478,9 +483,11 @@ function __getmail_insert($message,$messageid,$state_new,$state_reply,$state_for
 	// NEXT_ID
 	$next_id=__getmail_nextid();
 	// INSERT THE NEW EMAIL
-	$info["subject"]=addslashes($info["subject"]);
+	$lista=array("from","to","cc","bcc","subject");
+	foreach($lista as $key=>$val) $info[$val]=addslashes($info[$val]);
 	$body=addslashes($body);
-	$query="INSERT INTO tbl_correo(`id`,`id_cuenta`,`uidl`,`size`,`datetime`,`subject`,`body`,`state_new`,`state_reply`,`state_forward`,`state_wait`,`state_spam`,`id_correo`,`is_outbox`,`state_sent`,`state_error`,`state_crt`,`priority`,`sensitivity`) VALUES('${next_id}','${id_cuenta}','${uidl}','${size}','${info["datetime"]}','${info["subject"]}','${body}','${state_new}','${state_reply}','${state_forward}','${state_wait}','${info["spam"]}','${id_correo}','${is_outbox}','${state_sent}','${state_error}','${info["crt"]}','${info["priority"]}','${info["sensitivity"]}')";
+	$files=count($info["files"]);
+	$query="INSERT INTO tbl_correo(`id`,`id_cuenta`,`uidl`,`size`,`datetime`,`subject`,`body`,`state_new`,`state_reply`,`state_forward`,`state_wait`,`state_spam`,`id_correo`,`is_outbox`,`state_sent`,`state_error`,`state_crt`,`priority`,`sensitivity`,`from`,`to`,`cc`,`bcc`,`files`) VALUES('${next_id}','${id_cuenta}','${uidl}','${size}','${info["datetime"]}','${info["subject"]}','${body}','${state_new}','${state_reply}','${state_forward}','${state_wait}','${info["spam"]}','${id_correo}','${is_outbox}','${state_sent}','${state_error}','${info["crt"]}','${info["priority"]}','${info["sensitivity"]}','${info["from"]}','${info["to"]}','${info["cc"]}','${info["bcc"]}','${files}')";
 	db_query($query);
 	// INSERT ALL ADDRESS
 	foreach($info["emails"] as $email) {
