@@ -371,6 +371,7 @@ function semaphore_acquire($file,$timeout=100000) {
 		return false;
 	}
 	chmod_protected($file,0666);
+	touch_protected($file);
 	while($timeout>=0) {
 		capture_next_error();
 		$result=flock($_SEMAPHORE[$hash],LOCK_EX|LOCK_NB);
@@ -492,6 +493,15 @@ function filemtime_protected($file) {
 	$error1=ob_get_clean();
 	$error2=get_clear_error();
 	return array($mtime,$error1.$error2);
+}
+
+function touch_protected($file) {
+	capture_next_error();
+	ob_start();
+	touch($file);
+	$error1=ob_get_clean();
+	$error2=get_clear_error();
+	return $error1.$error2;
 }
 
 function check_commands($commands,$expires=0) {

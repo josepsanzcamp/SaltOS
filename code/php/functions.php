@@ -481,16 +481,11 @@ function cache_gc() {
 	$semaphore=get_cache_file("cache_gc",getDefault("exts/semext",".sem"));
 	if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) return;
 	$files=glob(get_directory("dirs/cachedir")."*");
-	$sem_ext=pathinfo(getDefault("exts/semext",".sem"),PATHINFO_EXTENSION);
 	if(is_array($files) && count($files)>0) {
-		foreach($files as $key=>$file) {
-			$file_ext=pathinfo($file,PATHINFO_EXTENSION);
-			if($file_ext==$sem_ext) unset($files[$key]);
-		}
-		$unix=time()-intval(getDefault("cache/cachegctimeout"));
+		$delta=time()-intval(getDefault("cache/cachegctimeout"));
 		foreach($files as $file) {
 			list($mtime,$error)=filemtime_protected($file);
-			if(!$error && $unix>$mtime) unlink_protected($file);
+			if(!$error && $delta>$mtime) unlink_protected($file);
 		}
 	}
 	semaphore_release($semaphore);

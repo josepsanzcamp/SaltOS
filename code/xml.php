@@ -44,10 +44,10 @@ if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));
 if(getDefault("putenv")) eval_putenv(getDefault("putenv"));
 // EXECUTE SOME ITEMS
 force_ssl();
+cache_gc();
 db_connect();
 db_schema();
 db_static();
-cache_gc();
 sess_init();
 check_remember();
 pre_datauser();
