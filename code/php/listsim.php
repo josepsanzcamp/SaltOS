@@ -145,28 +145,15 @@ function list_simulator($newpage,$ids="string") {
 		static $tbl_hash1=null;
 		// CHECK IF tbl_hash1 EXISTS
 		if(is_null($tbl_hash1)) {
-			// LIST OF TEMPORARY FIELDS TO RETRIEVE
-			$fields=explode(",",$order);
-			foreach($fields as $key=>$val) {
-				$val=explode(" ",$val);
-				$fields[$key]=$val[0];
-			}
-			if(!in_array("action_id",$fields)) array_push($fields,"action_id");
-			if(!in_array("action_title",$fields)) array_push($fields,"action_title");
-			$fields=implode(",",$fields);
 			// CREATE THE TEMPORARY TABLES (HELPERS)
 			$tbl_hash1="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0) `output`";
+			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS $query0";
 			db_query($query);
 		}
 		// CONTINUE
 		if($ids=="string" || $ids=="array") {
-			// CREATE THE TEMPORARY TABLES (HELPERS)
-			$tbl_hash2="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash2 AS SELECT action_id FROM $tbl_hash1 ORDER BY $order";
-			db_query($query);
 			// OPTIMIZED QUERY
-			$query="SELECT GROUP_CONCAT(action_id /*MYSQL SEPARATOR ',' *//*SQLITE ,',' */) FROM $tbl_hash2";
+			$query="SELECT GROUP_CONCAT(action_id /*MYSQL SEPARATOR ',' *//*SQLITE ,',' */) FROM $tbl_hash1 ORDER BY $order";
 			$result=execute_query($query);
 			// CONTINUE WITH NORMAL OPERATION
 			if(!$result) $result="0";
@@ -174,12 +161,8 @@ function list_simulator($newpage,$ids="string") {
 		} else {
 			if(is_array($ids)) $ids=implode(",",$ids);
 			if($ids=="") $ids="0";
-			// CREATE THE TEMPORARY TABLES (HELPERS)
-			$tbl_hash2="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash2 AS SELECT action_title FROM $tbl_hash1 WHERE action_id IN ($ids) ORDER BY $order";
-			db_query($query);
 			// OPTIMIZED QUERY
-			$query="SELECT action_title FROM $tbl_hash2";
+			$query="SELECT action_title FROM $tbl_hash1 WHERE action_id IN ($ids) ORDER BY $order";
 			$result=execute_query($query);
 			// CONTINUE WITH NORMAL OPERATION
 			if(!$result) $result=array();

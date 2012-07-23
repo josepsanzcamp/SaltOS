@@ -279,7 +279,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 				<title lang="true">forminsert</title>
 				<query>
 					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default>SELECT '0' id,'0' id_grupo,'09:00:00' hora_ini,'21:00:00' hora_fin,'1' lunes,'1' martes,'1' miercoles,'1' jueves,'1' viernes,'0' sabado,'0' domingo,'1' activo,'0' id_aplicacion,'0' id_registro</default>
+					<default>SELECT '0' id,'0' id_grupo,'00:00:00' hora_ini,'24:00:00' hora_fin,'1' lunes,'1' martes,'1' miercoles,'1' jueves,'1' viernes,'1' sabado,'1' domingo,'1' activo,'0' id_aplicacion,'0' id_registro</default>
 					<permisos>
 						<permisos eval="true">"
 						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,

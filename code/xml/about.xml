@@ -241,7 +241,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 5.9.172 (LGPL-3.0)</label>
+							<label>TCPDF 5.9.173 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -471,7 +471,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
 						</field>
 						<field>
-							<label>Form 3.09 (MIT &amp; GPL*)</label>
+							<label>Form 3.10 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>

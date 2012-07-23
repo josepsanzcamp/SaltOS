@@ -32,7 +32,7 @@ if(getParam("action")=="barcode") {
 		action_denied();
 	}
 	// DEFAULT PARAMETERS
-	$w=intval(getParam("w",2));
+	$w=intval(getParam("w",1));
 	$h=intval(getParam("h",30));
 	$m=intval(getParam("m",10));
 	$s=intval(getParam("s",8));
@@ -41,7 +41,7 @@ if(getParam("action")=="barcode") {
 	//~ if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		require_once("lib/tcpdf/barcodes.php");
-		$barcode=new TCPDFBarcode($msg,"C128B");
+		$barcode=new TCPDFBarcode($msg,"C39");
 		$array=$barcode->getBarcodeArray();
 		$width=($array["maxw"]*$w);
 		$height=$h;
