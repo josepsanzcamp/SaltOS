@@ -802,8 +802,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<temp global="extension" eval="true">$extension=".txt"</temp>
 				<temp global="directory,extension,files" eval="true">dummy($files=glob($directory."*".$extension))</temp>
 				<temp global="files" eval="true">dummy($files=(is_array($files) &amp;&amp; count($files)>0)?$files:array())</temp>
-				<temp global="directory,extension,rows" eval="true">dummy($rows=str_replace(array($directory,$extension),"",$files))</temp>
-				<fieldset ifnoteval="is_mobile()" global="rows,row" foreach="rows" as="row">
+				<temp global="directory,extension,files" eval="true">dummy($files=str_replace(array($directory,$extension),"",$files))</temp>
+				<fieldset ifnoteval="is_mobile()" global="files,row" foreach="files" as="row">
 					<title global="row" eval="true">LANG("license").$row</title>
 					<row>
 						<field>

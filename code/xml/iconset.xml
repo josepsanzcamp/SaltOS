@@ -54,6 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<edit>lib/highcontrast/apps/text-editor.png</edit>
 		<empleados>lib/highcontrast/mimetypes/vcard.png</empleados>
 		<epigrafes>lib/highcontrast/apps/terminal.png</epigrafes>
+		<errorlog>lib/highcontrast/status/error.png</errorlog>
 		<estados>lib/highcontrast/apps/terminal.png</estados>
 		<excel>lib/highcontrast/mimetypes/x-office-spreadsheet.png</excel>
 		<expand>lib/highcontrast/actions/view-fullscreen.png</expand>
@@ -140,6 +141,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<edit>lib/crystal/apps/kate.png</edit>
 		<empleados>lib/crystal/apps/kaddressbook.png</empleados>
 		<epigrafes>lib/crystal/apps/fifteenpieces.png</epigrafes>
+		<errorlog>lib/crystal/apps/error.png</errorlog>
 		<estados>lib/crystal/apps/fifteenpieces.png</estados>
 		<excel>lib/crystal/apps/openofficeorg-20-calc.png</excel>
 		<expand>lib/crystal/actions/window_fullscreen.png</expand>
@@ -226,6 +228,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<edit>lib/silk/icons/pencil.png</edit>
 		<empleados>lib/silk/icons/book_addresses.png</empleados>
 		<epigrafes>lib/silk/icons/application.png</epigrafes>
+		<errorlog>lib/silk/icons/application_error.png</errorlog>
 		<estados>lib/silk/icons/application.png</estados>
 		<excel>lib/silk/icons/page_white_excel.png</excel>
 		<expand>lib/silk/icons/arrow_out.png</expand>

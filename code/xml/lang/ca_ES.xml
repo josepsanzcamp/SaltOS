@@ -438,6 +438,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gestionsistema>Sistema</gestionsistema>
 		<folders>Carpetes</folders>
 		<buscador>Cercador</buscador>
+		<errorlog>Logs d'error</errorlog>
 		<desc_clientes>Gestioni els clients de la seva empresa</desc_clientes>
 		<desc_contactos>Per accedir als contactes d'un client</desc_contactos>
 		<desc_incidencias>Gestioni des d'aquí les incidències dels seus clients</desc_incidencias>
@@ -477,6 +478,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_feeds>Seguiu els seus feeds RSS i Atom des d'aquesta aplicació</desc_feeds>
 		<desc_importaciones>Import dades a les principals aplicacions des d'aquí</desc_importaciones>
 		<desc_buscador>Per cercar a tota la base de dades</desc_buscador>
+		<desc_errorlog>Per veure el registre d'errors de SaltOS</desc_errorlog>
 		<quick_home>Inici</quick_home>
 		<quick_correo>Correu</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
@@ -517,6 +519,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_feeds>Feeds RSS</quick_feeds>
 		<quick_importaciones>Importacions</quick_importaciones>
 		<quick_buscador>Cercador</quick_buscador>
+		<quick_errorlog>Errors</quick_errorlog>
 		<translate>Traductor</translate>
 		<corrector>Corrector</corrector>
 		<calculator>Calculadora</calculator>
@@ -1443,4 +1446,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
 		<nosearch>Ha de proporcionar unes paraules de cerca al quadre de text</nosearch>
 	</buscador>
+	<errorlog>
+		<formupdate>Logs d'error</formupdate>
+		<defaultdata>Contingut del fitxer </defaultdata>
+	</errorlog>
 </root>

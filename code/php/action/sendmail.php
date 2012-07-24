@@ -232,7 +232,7 @@ if(getParam("action")=="sendmail") {
 			$mail=unserialize(file_get_contents($file));
 			capture_next_error();
 			$current=$mail->PostSend();
-			get_clear_error();
+			$error=get_clear_error();
 			if($current!==true) {
 				$email_from=$mail->From;
 				$email_host=$mail->Host;
@@ -272,14 +272,20 @@ if(getParam("action")=="sendmail") {
 						$mail->SMTPAuth=($current_user!="" || $current_pass!="");
 						capture_next_error();
 						$current=$mail->PostSend();
-						get_clear_error();
+						$error=get_clear_error();
 					}
 				}
 			}
 			if($current!==true) {
-				$orig=array("\n","\r","'","\"");
-				$dest=array(" ","","","");
-				$error=str_replace($orig,$dest,$mail->ErrorInfo);
+				if(stripos($error,"connection refused")!==false) {
+					$error=LANG("msgconnrefusedpop3email","correo");
+				} elseif(stripos($error2,"unable to connect to")!==false) {
+					$error=LANG("msgconnerrorpop3email","correo");
+				} else {
+					$orig=array("\n","\r","'","\"");
+					$dest=array(" ","","","");
+					$error=str_replace($orig,$dest,$mail->ErrorInfo);
+				}
 				__getmail_update("state_sent",0,$last_id);
 				__getmail_update("state_error",$error,$last_id);
 				if(!getParam("ajax")) {

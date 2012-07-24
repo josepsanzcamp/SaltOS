@@ -336,6 +336,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option include="xml/common/menuoptionslist.xml" replace="true"/>
 		<temp global="temp" eval="true">$temp="datacfg"</temp>
 		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="errorlog"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
 	</group>
 	<group ifeval="check_commands(getDefault('commands/aspell'),60) || check_commands(getDefault('commands/apertium'),60)" ifnoteval="is_mobile()">
 		<label eval="true">LANG(check_commands(getDefault('commands/apertium'),60)?"translate":"corrector")</label>

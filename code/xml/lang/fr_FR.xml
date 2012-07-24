@@ -438,6 +438,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gestionsistema>Système</gestionsistema>
 		<folders>Dossiers</folders>
 		<buscador>Recherche</buscador>
+		<errorlog revised="false">Error logs</errorlog>
 		<desc_clientes>Gérer les clients de votre entreprise</desc_clientes>
 		<desc_contactos>Pour accéder à un contact avec la clientèle</desc_contactos>
 		<desc_incidencias>Gérer d'ici l'impact de ses clients</desc_incidencias>
@@ -477,6 +478,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_feeds>Suivez vos flux RSS et Atom de cette application</desc_feeds>
 		<desc_importaciones> Importer des données pour les applications majeurs d'ici</desc_importaciones>
 		<desc_buscador revised="false">Pour chercher dans tous les contenus de la base de données</desc_buscador>
+		<desc_errorlog revised="false">To see the error logs of SaltOS</desc_errorlog>
 		<quick_home>Retour acceuil rapide</quick_home>
 		<quick_correo>Courriel</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
@@ -517,6 +519,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_feeds>Flux RSS</quick_feeds>
 		<quick_importaciones>Importations</quick_importaciones>
 		<quick_buscador>Recherche</quick_buscador>
+		<quick_errorlog revised="false">Errors</quick_errorlog>
 		<translate>Traducteur</translate>
 		<corrector>Orthographe</corrector>
 		<calculator>Calculateur</calculator>
@@ -1443,4 +1446,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasaplicaciones>[Toutes les demandes]</todaslasaplicaciones>
 		<nosearch revised="false">Vous devez fournir un mot de recherche dans la zone de texte</nosearch>
 	</buscador>
+	<errorlog>
+		<formupdate revised="false">Error logs</formupdate>
+		<defaultdata revised="false">file contents </defaultdata>
+	</errorlog>
 </root>
