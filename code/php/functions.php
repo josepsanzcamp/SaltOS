@@ -325,32 +325,42 @@ function current_group() {
 	return $_USER["id_grupo"];
 }
 
-function page2id($page) {
+function __aplicaciones($tipo,$dato) {
 	static $diccionario=array();
 	if(!count($diccionario)) {
-		$query="SELECT id,codigo FROM tbl_aplicaciones";
+		$query="SELECT `id`,`codigo`,`table` FROM tbl_aplicaciones";
 		$result=db_query($query);
+		$diccionario["page2id"]=array();
+		$diccionario["id2page"]=array();
+		$diccionario["page2table"]=array();
+		$diccionario["id2table"]=array();
 		while($row=db_fetch_row($result)) {
-			$diccionario[$row["codigo"]]=$row["id"];
+			$diccionario["page2id"][$row["codigo"]]=$row["id"];
+			$diccionario["id2page"][$row["id"]]=$row["codigo"];
+			$diccionario["page2table"][$row["codigo"]]=$row["table"];
+			$diccionario["id2table"][$row["id"]]=$row["table"];
 		}
 		db_free($result);
 	}
-	if(!isset($diccionario[$page])) return 0;
-	return $diccionario[$page];
+	if(!isset($diccionario[$tipo])) return "";
+	if(!isset($diccionario[$tipo][$dato])) return "";
+	return $diccionario[$tipo][$dato];
+}
+
+function page2id($page) {
+	return __aplicaciones(__FUNCTION__,$page);
 }
 
 function id2page($id) {
-	static $diccionario=array();
-	if(!count($diccionario)) {
-		$query="SELECT id,codigo FROM tbl_aplicaciones";
-		$result=db_query($query);
-		while($row=db_fetch_row($result)) {
-			$diccionario[$row["id"]]=$row["codigo"];
-		}
-		db_free($result);
-	}
-	if(!isset($diccionario[$id])) return "";
-	return $diccionario[$id];
+	return __aplicaciones(__FUNCTION__,$id);
+}
+
+function page2table($page) {
+	return __aplicaciones(__FUNCTION__,$page);
+}
+
+function id2table($id) {
+	return __aplicaciones(__FUNCTION__,$id);
 }
 
 function get_filtered_field($field) {
@@ -924,7 +934,7 @@ function action_denied() {
 	die();
 }
 
-function dummy() {
+function dummy($param) {
 	// NOTHING TO DO
 }
 

@@ -90,7 +90,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<lang>es_ES</lang>
 		<style eval="true">is_mobile()?"b":"redmond"</style>
 		<stylepre eval="true">is_mobile()?"lib/jquery/jquery.mobile.theme.":"lib/jquery/jquery.theme."</stylepre>
-		<stylepost eval="true">is_mobile()?".css":"/jquery-ui-1.8.21.css"</stylepost>
+		<stylepost eval="true">is_mobile()?".css":"/jquery-ui-1.8.22.css"</stylepost>
 		<iconset>silk</iconset>
 		<iconsetpre>xml.php?action=iconset&amp;iconset=</iconsetpre>
 		<iconsetpost>&amp;format=css</iconsetpost>
@@ -219,7 +219,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery-1.7.2.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
-			<include>lib/jquery/jquery-ui-1.8.21.min.js</include>
+			<include>lib/jquery/jquery-ui-1.8.22.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.js</include>
 			<include>lib/jquery/jquery.blockUI.js</include>
 			<include>lib/jquery/jquery.jgrowl.js</include>

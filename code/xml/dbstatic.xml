@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>3</id>
 			<codigo>incidencias</codigo>
 			<nombre>Incidencias</nombre>
-			<table></table>
+			<table>tbl_incidencias</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
@@ -65,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>5</id>
 			<codigo>partes</codigo>
 			<nombre>Partes</nombre>
-			<table></table>
+			<table>tbl_partes</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
@@ -74,7 +74,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>6</id>
 			<codigo>documentos</codigo>
 			<nombre>Documentos</nombre>
-			<table></table>
+			<table>tbl_documentos</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
@@ -83,7 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>7</id>
 			<codigo>facturas</codigo>
 			<nombre>Facturas</nombre>
-			<table></table>
+			<table>tbl_facturas</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
@@ -92,7 +92,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>8</id>
 			<codigo>gastos</codigo>
 			<nombre>Gastos</nombre>
-			<table></table>
+			<table>tbl_gastos</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
@@ -101,7 +101,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>9</id>
 			<codigo>epigrafes</codigo>
 			<nombre>Epigrafes</nombre>
-			<table></table>
+			<table>tbl_epigrafes</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -119,7 +119,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>11</id>
 			<codigo>usuarios</codigo>
 			<nombre>Usuarios</nombre>
-			<table></table>
+			<table>tbl_usuarios</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -128,7 +128,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>12</id>
 			<codigo>estados</codigo>
 			<nombre>Estados</nombre>
-			<table></table>
+			<table>tbl_estados</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -146,7 +146,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>14</id>
 			<codigo>grupos</codigo>
 			<nombre>Grupos</nombre>
-			<table></table>
+			<table>tbl_grupos</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -155,7 +155,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>15</id>
 			<codigo>formaspago</codigo>
 			<nombre>Formas de pago</nombre>
-			<table></table>
+			<table>tbl_formaspago</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -164,7 +164,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>16</id>
 			<codigo>prioridades</codigo>
 			<nombre>Prioridades</nombre>
-			<table></table>
+			<table>tbl_prioridades</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -173,7 +173,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>17</id>
 			<codigo>agenda</codigo>
 			<nombre>Agenda</nombre>
-			<table></table>
+			<table>tbl_agenda</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
@@ -218,7 +218,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>22</id>
 			<codigo>actas</codigo>
 			<nombre>Actas</nombre>
-			<table></table>
+			<table>tbl_actas</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
@@ -245,7 +245,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>25</id>
 			<codigo>seguimientos</codigo>
 			<nombre>Seguimientos</nombre>
-			<table></table>
+			<table>tbl_seguimientos</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
@@ -263,7 +263,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>27</id>
 			<codigo>correo</codigo>
 			<nombre>Correo</nombre>
-			<table></table>
+			<table>tbl_correo</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -272,7 +272,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>28</id>
 			<codigo>cuentas</codigo>
 			<nombre>Cuentas</nombre>
-			<table></table>
+			<table>tbl_cuentas</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -281,7 +281,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>29</id>
 			<codigo>periodicas</codigo>
 			<nombre>Periodicas</nombre>
-			<table></table>
+			<table>tbl_periodicas</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -308,7 +308,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>32</id>
 			<codigo>posiblescli</codigo>
 			<nombre>Posibles clientes</nombre>
-			<table></table>
+			<table>tbl_posiblescli</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -317,7 +317,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>33</id>
 			<codigo>productos</codigo>
 			<nombre>Productos</nombre>
-			<table></table>
+			<table>tbl_productos</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -326,7 +326,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>34</id>
 			<codigo>presupuestos</codigo>
 			<nombre>Presupuestos</nombre>
-			<table></table>
+			<table>tbl_presupuestos</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
@@ -335,7 +335,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>35</id>
 			<codigo>campanyas</codigo>
 			<nombre>Campañas comerciales</nombre>
-			<table></table>
+			<table>tbl_campanyas</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -344,7 +344,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>36</id>
 			<codigo>tiposevento</codigo>
 			<nombre>Tipos de evento</nombre>
-			<table></table>
+			<table>tbl_tiposevento</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -353,7 +353,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>37</id>
 			<codigo>textos</codigo>
 			<nombre>Textos predefinidos</nombre>
-			<table></table>
+			<table>tbl_textos</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -371,7 +371,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>39</id>
 			<codigo>feeds</codigo>
 			<nombre>Feeds</nombre>
-			<table></table>
+			<table>tbl_feeds</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
@@ -380,7 +380,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>40</id>
 			<codigo>importaciones</codigo>
 			<nombre>Importaciones</nombre>
-			<table></table>
+			<table>tbl_importaciones</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>

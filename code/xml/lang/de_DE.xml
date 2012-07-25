@@ -438,7 +438,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gestionsistema>System</gestionsistema>
 		<folders>Ordner</folders>
 		<buscador>Suche</buscador>
-		<errorlog revised="false">Error logs</errorlog>
+		<errorlog revised="false">Fehlerprotokolle</errorlog>
 		<desc_clientes>Verwalten Sie hier ihre Kunden</desc_clientes>
 		<desc_contactos>Verwalten Sie hier Ihre Kontakte</desc_contactos>
 		<desc_incidencias>Verwalten Sie von hier aus die Inzidenzen ihrer Kunden</desc_incidencias>
@@ -478,7 +478,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_feeds>Folgen Sie Ihren RSS und Atom-Feeds aus dieser Anwendung</desc_feeds>
 		<desc_importaciones>Importieren von Daten für die wichtigsten Anwendungen</desc_importaciones>
 		<desc_buscador revised="false">Um in den gesamten Inhalt der Datenbank zu suchen</desc_buscador>
-		<desc_errorlog revised="false">To see the error logs of SaltOS</desc_errorlog>
+		<desc_errorlog revised="false">Um die Fehlerprotokolle von SaltOS sehen</desc_errorlog>
 		<quick_home>Startseite</quick_home>
 		<quick_correo>Mail</quick_correo>
 		<quick_agenda>Terminkalender</quick_agenda>
@@ -519,7 +519,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_feeds>RSS-Feeds</quick_feeds>
 		<quick_importaciones>Importe</quick_importaciones>
 		<quick_buscador>Suche</quick_buscador>
-		<quick_errorlog revised="false">Errors</quick_errorlog>
+		<quick_errorlog revised="false">Fehler</quick_errorlog>
 		<translate revised="false">Übersetzer</translate>
 		<corrector revised="false">Rechtschreibprüfung</corrector>
 		<calculator revised="false">Rechner</calculator>
@@ -1447,7 +1447,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<nosearch revised="false">Sie müssen eine Suchbegriffe in das Textfeld geben</nosearch>
 	</buscador>
 	<errorlog>
-		<formupdate revised="false">Error logs</formupdate>
-		<defaultdata revised="false">file contents </defaultdata>
+		<formupdate revised="false">Fehlerprotokolle</formupdate>
+		<defaultdata revised="false">Inhalt der Datei </defaultdata>
 	</errorlog>
 </root>

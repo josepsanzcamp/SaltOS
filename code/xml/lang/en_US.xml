@@ -1448,6 +1448,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</buscador>
 	<errorlog>
 		<formupdate>Error logs</formupdate>
-		<defaultdata>file contents </defaultdata>
+		<defaultdata>File contents </defaultdata>
 	</errorlog>
 </root>

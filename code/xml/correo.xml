@@ -673,7 +673,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
 					<default global="id" eval="true">"SELECT *,
-					`from`,
 					CASE WHEN `to`!='' THEN `to`
 					ELSE
 						CASE WHEN ec.email_name=''
@@ -681,9 +680,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						ELSE /*SQLITE ec.email_name || ' &lt;' || ec.email_from || '&gt;' *//*MYSQL CONCAT(ec.email_name,' &lt;',ec.email_from,'&gt;') */
 						END
 					END `to`,
-					`cc`,`bcc`,
 					CASE WHEN subject='' THEN '".LANG("sinsubject")."' ELSE subject END subject,
-					/*MYSQL CONCAT(id_cuenta,'/',uidl) *//*SQLITE id_cuenta || '/' || uidl */ msgid
+					/*MYSQL CONCAT(id_cuenta,'/',uidl) *//*SQLITE id_cuenta || '/' || uidl */ msgid,
+					(SELECT GROUP_CONCAT(/*MYSQL CONCAT(fichero,' (',fichero_size,')') SEPARATOR ' | ' *//*SQLITE fichero || ' (' || fichero_size || ')',' | ' */) FROM
+						(SELECT fichero,id_registro,
+							CASE
+								WHEN fichero_size&gt;1073741824 THEN /*SQLITE ROUND(fichero_size/1073741824.0,2) || ' Gbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes') */
+								WHEN fichero_size&gt;1048576 THEN /*SQLITE ROUND(fichero_size/1048576.0,2) || ' Mbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes') */
+								WHEN fichero_size&gt;1024 THEN /*SQLITE ROUND(fichero_size/1024.0,2) || ' Kbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes') */
+								ELSE /*SQLITE fichero_size || ' bytes' *//*MYSQL CONCAT(fichero_size,' bytes') */
+							END fichero_size
+						 FROM tbl_ficheros WHERE id_aplicacion='".page2id("correo")."') z WHERE id_registro=a.id
+					) files
 					FROM tbl_correo a
 					LEFT JOIN tbl_usuarios_c ec ON a.id_cuenta=ec.id
 					WHERE a.id='".abs($id)."'"</default>
@@ -1162,7 +1170,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
 		<query>"SELECT *,
-					`from`,
 					CASE WHEN `to`!='' THEN `to`
 					ELSE
 						CASE WHEN ec.email_name=''
@@ -1170,7 +1177,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						ELSE /*SQLITE ec.email_name || ' &lt;' || ec.email_from || '&gt;' *//*MYSQL CONCAT(ec.email_name,' &lt;',ec.email_from,'&gt;') */
 						END
 					END `to`,
-					`cc`,`bcc`,
 					CASE WHEN subject='' THEN '".LANG("sinsubject")."' ELSE subject END subject,
 					(SELECT GROUP_CONCAT(/*MYSQL CONCAT(fichero,' (',fichero_size,')') SEPARATOR ', ' *//*SQLITE fichero || ' (' || fichero_size || ')',', ' */) FROM
 						(SELECT fichero,id_registro,

@@ -304,7 +304,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto
 			<view>
 				<title lang="true">formview</title>
 				<query>
-					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_${page} a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')"</query>
+					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')"</query>
 					<query include="xml/common/qdefaultview.xml" replace="true" />
 					<usuarios>
 						<usuarios global="id" eval="true">"SELECT a.id id,a.id id_usuario,'".abs($id)."' id_incidencia,".make_extra_query("a.")." nombre,(CASE WHEN b.id IS NULL THEN 0 ELSE 1 END) activado FROM tbl_usuarios a LEFT JOIN tbl_incidencias_u b ON b.id_incidencia='".abs($id)."' AND a.id=b.id_usuario WHERE a.activo='1' ORDER BY nombre"</usuarios>
@@ -332,7 +332,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto
 			<update>
 				<title lang="true">formupdate</title>
 				<query>
-					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_${page} a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')"</query>
+					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')"</query>
 					<query include="xml/common/qdefaultview.xml" replace="true" />
 					<usuarios>
 						<usuarios global="id" eval="true">"SELECT a.id id,a.id id_usuario,'".abs($id)."' id_incidencia,".make_extra_query("a.")." nombre,(CASE WHEN b.id IS NULL THEN 0 ELSE 1 END) activado FROM tbl_usuarios a LEFT JOIN tbl_incidencias_u b ON b.id_incidencia='".abs($id)."' AND a.id=b.id_usuario WHERE a.activo='1' ORDER BY nombre"</usuarios>
@@ -490,13 +490,13 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field[name=buttonupdate]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_${page} a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
+			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
 		</node>
 		<node path="buttons/row/field[name=buttonupdatereturnhere]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_${page} a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
+			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
 		</node>
 		<node path="buttons/row/field[name=edit]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_${page} a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
+			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
 		</node>
 		<javascript>
 			<javascript include="xml/common/jsform.xml" replace="true"/>
@@ -516,7 +516,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
-		<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_${page} a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')"</query>
+		<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')"</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
 		<query global="page" match="default" prefix="true" eval="true">"DELETE FROM tbl_incidencias_u WHERE id_incidencia='".getParam("id")."'"</query>
 		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_incidencias_u(id_incidencia,id_usuario) VALUES('".intval(getParam("id_incidencia"))."','".intval(getParam("id_usuario"))."')":""</query>

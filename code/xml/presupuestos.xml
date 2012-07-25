@@ -358,7 +358,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<resumen>
 						<resumen>SELECT '1' id</resumen>
 					</resumen>
-					<detalle global="page,id" eval="true">"SELECT * FROM tbl_${page} WHERE id=".abs($id)</detalle>
+					<detalle global="page,id" eval="true">"SELECT * FROM tbl_presupuestos WHERE id=".abs($id)</detalle>
 					<tareas_head>
 						<tareas_head>SELECT '1' id</tareas_head>
 					</tareas_head>
@@ -371,7 +371,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<productos_old>
 						<productos_old global="id" eval="true">"SELECT *,ROUND(precio*unidades*(100.0-descuento)/100.0,2) total2 FROM tbl_presupuestos_p WHERE id_presupuesto=".abs($id)." ORDER BY id ASC"</productos_old>
 					</productos_old>
-					<condiciones global="page,id" eval="true">"SELECT * FROM tbl_${page} WHERE id=".abs($id)</condiciones>
+					<condiciones global="page,id" eval="true">"SELECT * FROM tbl_presupuestos WHERE id=".abs($id)</condiciones>
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
 					<agenda>
@@ -453,7 +453,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<resumen>
 						<resumen>SELECT '1' id</resumen>
 					</resumen>
-					<detalle global="page,id" eval="true">"SELECT * FROM tbl_${page} WHERE id=".abs($id)</detalle>
+					<detalle global="page,id" eval="true">"SELECT * FROM tbl_presupuestos WHERE id=".abs($id)</detalle>
 					<tareas_head>
 						<tareas_head>SELECT '1' id</tareas_head>
 					</tareas_head>
@@ -492,7 +492,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						SELECT 'i' id,'$id' id_presupuesto,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
 						SELECT 'j' id,'$id' id_presupuesto,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2"</productos_new>
 					</productos_new>
-					<condiciones global="page,id" eval="true">"SELECT * FROM tbl_${page} WHERE id=".abs($id)</condiciones>
+					<condiciones global="page,id" eval="true">"SELECT * FROM tbl_presupuestos WHERE id=".abs($id)</condiciones>
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
 					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>

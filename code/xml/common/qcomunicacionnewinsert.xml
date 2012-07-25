@@ -24,5 +24,5 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page" match="comunicaciones_new" prefix="true" eval="true">getParam("valor")?"INSERT INTO tbl_comunicaciones(`id`,`id_aplicacion`,`id_registro`,`id_direccion`,`id_tipocom`,`nombre`,`valor`,`seleccion`) VALUES(NULL,'".page2id($page)."',(SELECT MAX(id) FROM tbl_${page}),(SELECT MAX(id) FROM tbl_direcciones),'".intval(getParam("id_tipocom"))."','".getParam("nombre")."','".getParam("valor")."','".intval(getParam("seleccion"))."')":""</query>
+	<query global="page" match="comunicaciones_new" prefix="true" eval="true">getParam("valor")?"INSERT INTO tbl_comunicaciones(`id`,`id_aplicacion`,`id_registro`,`id_direccion`,`id_tipocom`,`nombre`,`valor`,`seleccion`) VALUES(NULL,'".page2id($page)."',(SELECT MAX(id) FROM ".page2table($page)."),(SELECT MAX(id) FROM tbl_direcciones),'".intval(getParam("id_tipocom"))."','".getParam("nombre")."','".getParam("valor")."','".intval(getParam("seleccion"))."')":""</query>
 </root>
