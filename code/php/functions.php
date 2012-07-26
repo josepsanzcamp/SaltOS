@@ -864,17 +864,37 @@ function show_php_error($array=null) {
 	addlog($msg_text,getDefault("debug/errorfile","error.log"));
 	// PREPARE THE FINAL REPORT (ONLY IN NOT SHELL MODE)
 	if(!getServer("SHELL")) {
-		$bug=base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)));
-		$msg.="<p>";
-		$msg.="<form action='xml.php' method='post' style='display:inline'>";
-		$msg.="<input type='hidden' name='page' value='home'/>";
-		$msg.="<input type='submit' value='".(LANG_LOADED()?LANG("gotohome"):"Go to home")."'/>";
-		$msg.="</form>";
-		$msg.="<form action='http://bugs.saltos.net/' method='post' style='display:inline'>";
-		$msg.="<input type='hidden' name='bug' value='$bug'/>";
-		$msg.="<input type='submit' value='".(LANG_LOADED()?LANG("notifybug"):"Notify bug")."'/>";
-		$msg.="</form>";
-		$msg.="</p>";
+		// ORIGINAL IDEA FROM plugins.jquery.com
+		$html="<html>";
+		$html.="<head>";
+		$html.="<title>".get_name_version_revision()."</title>";
+		$html.="<style>";
+		$html.="body { background:#444; color:#FFF; font-family:Helvetica,Arial,sans-serif; }";
+		$html.="h3 { background:url(img/favicon.png) top left no-repeat; padding-left: 50px; min-height:32px; font-size:1.5em; margin:0; }";
+		$html.="a { color: cyan; }";
+		$html.="pre { white-space:pre-wrap; }";
+		$html.="p { margin:0; }";
+		$html.="form { display:inline; }";
+		$html.="input { background:#FFF; padding:5px; border-radius:5px; border:none; margin-right:5px; }";
+		$html.="div { background:#000; padding:20px; border-radius:20px; box-shadow:0 0 20px #222; width:800px; margin:100px auto; }";
+		$html.="</style>";
+		$html.="</head>";
+		$html.="<body>";
+		$html.="<div>";
+		$html.=$msg;
+		$html.="<p>";
+		$html.="<form action='xml.php' method='post' style='display:inline'>";
+		$html.="<input type='hidden' name='page' value='home'/>";
+		$html.="<input type='submit' value='".(LANG_LOADED()?LANG("gotohome"):"Go to home")."'/>";
+		$html.="</form>";
+		$html.="<form action='http://bugs.saltos.net/' method='post' style='display:inline'>";
+		$html.="<input type='hidden' name='bug' value='".base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)))."'/>";
+		$html.="<input type='submit' value='".(LANG_LOADED()?LANG("notifybug"):"Notify bug")."'/>";
+		$html.="</form>";
+		$html.="</p>";
+		$html.="</div>";
+		$html.="</body>";
+		$msg=$html;
 		if(!headers_sent()) {
 			header_powered();
 			header_expires(false);
