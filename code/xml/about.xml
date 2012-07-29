@@ -517,7 +517,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Columnizer 1.5.0 (CC-BY-3.0)</label>
+							<label>Columnizer 1.6.0 (CC-BY-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentbl</class>
 							<onclick>openwin("http://welcome.totheinter.net/columnizer-jquery-plugin/")</onclick>

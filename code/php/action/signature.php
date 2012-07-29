@@ -155,7 +155,7 @@ if(getParam("action")=="signature") {
 	$file=__signature_getfile(getParam("id"));
 	if(!$file) die();
 	if(!$file["file"]) die();
-	ob_start(getDefault("obhandler"));
+	ob_start_protected(getDefault("obhandler"));
 	header_powered();
 	header_expires(false);
 	$type=$file["type"];

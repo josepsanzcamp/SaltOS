@@ -808,6 +808,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					//~ console.timeEnd("loadcontent");
 					unloadingcontent();
 					unmake_ckeditors();
+					if($(".phperror",html).length!=0) {
+						$("div[type=title]",html).remove2();
+						$("div[type=body]",html).addClass("ui-corner-all");
+					}
 					$(screen).html2(html);
 				}
 			}

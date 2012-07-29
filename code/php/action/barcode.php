@@ -70,7 +70,7 @@ if(getParam("action")=="barcode") {
 		imagedestroy($im);
 		chmod_protected($cache,0666);
 	}
-	ob_start(getDefault("obhandler"));
+	ob_start_protected(getDefault("obhandler"));
 	header_powered();
 	header_expires(false);
 	$type=content_type_from_extension($cache);

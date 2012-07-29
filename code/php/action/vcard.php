@@ -160,7 +160,7 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 	}
 	$buffer.="END:VCARD\r\n";
 	if(!defined("__CANCEL_HEADER__")) {
-		ob_start(getDefault("obhandler"));
+		ob_start_protected(getDefault("obhandler"));
 		header_powered();
 		header_expires(false);
 		header("Content-Type: text/x-vcard");

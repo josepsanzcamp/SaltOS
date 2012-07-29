@@ -387,7 +387,7 @@ function str_word_count_utf8($subject) {
 }
 
 function output_buffer($buffer,$content_type) {
-	ob_start(getDefault("obhandler"));
+	ob_start_protected(getDefault("obhandler"));
 	header_powered();
 	header_expires(false);
 	header("Content-type: $content_type");
@@ -399,7 +399,7 @@ function output_buffer($buffer,$content_type) {
 function output_file($file) {
 	$hash=md5(file_get_contents($file));
 	header_etag($hash);
-	ob_start(getDefault("obhandler"));
+	ob_start_protected(getDefault("obhandler"));
 	header_powered();
 	header_expires();
 	$type=content_type_from_extension($file);
@@ -454,11 +454,27 @@ function inline_images($buffer) {
 }
 
 function svnversion($dir) {
-	$rev="";
-	$file="$dir/.svn/entries";
-	if(file_exists($file)) {
-		$data=file($file);
-		$rev=$data[3];
+	$rev=0;
+	$dir=realpath($dir);
+	for(;;) {
+		// FOR SUBVERSION >= 12
+		$file="$dir/.svn/wc.db";
+		if(file_exists($file)) {
+			$data=file_get_contents($file);
+			$matches=array();
+			preg_match('@/!svn/ver/([0-9]*)[/|\)]@',$data,$matches);
+			if(isset($matches[1])) $rev=$matches[1];
+			break;
+		}
+		// FOR SUBVERSION <= 11
+		$file="$dir/.svn/entries";
+		if(file_exists($file)) {
+			$data=file($file);
+			if(isset($data[3])) $rev=intval($data[3]);
+			break;
+		}
+		if($dir=="/") break;
+		$dir=realpath($dir."/..");
 	}
 	return $rev;
 }
@@ -497,5 +513,17 @@ function password_strength($pass) {
 	$score=round($ps->get_score(),0);
 	unset($ps);
 	return $score;
+}
+
+function ob_start_protected($param="") {
+	capture_next_error();
+	if($param=="") ob_start();
+	if($param!="") ob_start($param);
+	$error=get_clear_error();
+	if($error) ob_start();
+}
+
+function isphp54() {
+	return version_compare(PHP_VERSION,"5.4","ge");
 }
 ?>

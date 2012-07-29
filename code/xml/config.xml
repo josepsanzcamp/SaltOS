@@ -86,7 +86,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<action>list</action>
 		<id>0</id>
 		<format>HTML</format><!-- output format can be XML or HTML -->
-		<obhandler eval="true">!ini_get("output_handler")?"ob_gzhandler":""</obhandler>
+		<obhandler>ob_gzhandler</obhandler>
 		<lang>es_ES</lang>
 		<style eval="true">is_mobile()?"b":"redmond"</style>
 		<stylepre eval="true">is_mobile()?"lib/jquery/jquery.mobile.theme.":"lib/jquery/jquery.theme."</stylepre>
@@ -349,8 +349,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_irpf_value>15.00</accounting_irpf_value>
 	</configs>
 	<ini_set>
-		<session.bug_compat_42>On</session.bug_compat_42>
-		<register_globals>Off</register_globals>
+		<session.bug_compat_42 ifnoteval="isphp54()">On</session.bug_compat_42>
+		<register_globals ifnoteval="isphp54()">Off</register_globals>
 		<memory_limit>128M</memory_limit><!-- to allow emails with 30Mb of attachments -->
 		<max_execution_time>600</max_execution_time>
 		<date.timezone>Europe/Madrid</date.timezone>

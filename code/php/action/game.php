@@ -42,7 +42,7 @@ if(getParam("action")=="game") {
 	$buffer=ob_get_clean();
 	$hash=md5($buffer);
 	header_etag($hash);
-	ob_start(getDefault("obhandler"));
+	ob_start_protected(getDefault("obhandler"));
 	header_powered();
 	header_expires();
 	header("Content-Type: text/html");

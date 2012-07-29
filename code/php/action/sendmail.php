@@ -430,8 +430,11 @@ if(getParam("page")=="correo") {
 			$decoded=__getmail_getmime($id_extra[2]);
 			if($id_extra[1]=="forward") {
 				$result2=__getmail_getinfo(__getmail_getnode("0",$decoded));
+				$lista=array("from","to","cc","bcc");
+				foreach($lista as $temp) unset($result2[$temp]);
 				foreach($result2["emails"] as $email) {
 					if($email["nombre"]!="") $email["valor"]="${email["nombre"]} <${email["valor"]}>";
+					if(!isset($result2[$email["tipo"]])) $result2[$email["tipo"]]=array();
 					$result2[$email["tipo"]][]=$email["valor"];
 				}
 				if(isset($result2["from"])) $result2["from"]=implode("; ",$result2["from"]);

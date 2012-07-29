@@ -49,7 +49,7 @@ if(getParam("action")=="getmail") {
 			$name=$temp["name"];
 			$type=$temp["mime"];
 			$file=$temp["file"];
-			ob_start(getDefault("obhandler"));
+			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires(false);
 			header("Content-Type: ${type}");
@@ -75,7 +75,7 @@ if(getParam("action")=="getmail") {
 		$buffer.=__PAGE_HTML_CLOSE__;
 		$hash=md5($buffer);
 		header_etag($hash);
-		ob_start(getDefault("obhandler"));
+		ob_start_protected(getDefault("obhandler"));
 		header_powered();
 		header_expires();
 		header("Content-Type: text/html");
@@ -139,7 +139,7 @@ if(getParam("action")=="getmail") {
 			$buffer.=__PAGE_HTML_CLOSE__;
 			$hash=md5($buffer);
 			header_etag($hash);
-			ob_start(getDefault("obhandler"));
+			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires();
 			header("Content-Type: text/html");
@@ -161,7 +161,7 @@ if(getParam("action")=="getmail") {
 			}
 			$hash=md5($buffer);
 			header_etag($hash);
-			ob_start(getDefault("obhandler"));
+			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires();
 			header("Content-Type: text/html");
@@ -170,9 +170,12 @@ if(getParam("action")=="getmail") {
 			die();
 		} elseif($cid=="full") {
 			$result=__getmail_getinfo(__getmail_getnode("0",$decoded));
+			$lista=array("from","to","cc","bcc");
+			foreach($lista as $temp) unset($result[$temp]);
 			$buffer="";
 			foreach($result["emails"] as $email) {
 				if($email["nombre"]!="") $email["valor"]="${email["nombre"]} <${email["valor"]}>";
+				if(!isset($result[$email["tipo"]])) $result[$email["tipo"]]=array();
 				$result[$email["tipo"]][]=$email["valor"];
 			}
 			if(isset($result["from"])) $result["from"]=implode("; ",$result["from"]);
@@ -289,7 +292,7 @@ if(getParam("action")=="getmail") {
 			$buffer.=__PAGE_HTML_CLOSE__;
 			$hash=md5($buffer);
 			header_etag($hash);
-			ob_start(getDefault("obhandler"));
+			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires();
 			header("Content-Type: text/html");
@@ -303,7 +306,7 @@ if(getParam("action")=="getmail") {
 			$name=$result["cname"]?$result["cname"]:$result["cid"];
 			$hash=md5($result["body"]);
 			header_etag($hash);
-			ob_start(getDefault("obhandler"));
+			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires();
 			header("Content-Type: ${result["type"]}");

@@ -454,7 +454,7 @@ if(getParam("action")=="feeds") {
 			$buffer.=$row["description"];
 			$buffer.=__TEXT_HTML_CLOSE__;
 			$buffer.=__PAGE_HTML_CLOSE__;
-			ob_start(getDefault("obhandler"));
+			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");
@@ -498,7 +498,7 @@ if(getParam("action")=="feeds") {
 			$buffer.=$row["description"];
 			$buffer.=__TEXT_HTML_CLOSE__;
 			$buffer.=__PAGE_HTML_CLOSE__;
-			ob_start(getDefault("obhandler"));
+			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");

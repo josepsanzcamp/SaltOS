@@ -1,4 +1,4 @@
-// version 1.5.0
+// version 1.6.0
 // http://welcome.totheinter.net/columnizer-jquery-plugin/
 // created by: Adam Wulf @adamwulf, adam.wulf@gmail.com
 
@@ -33,7 +33,9 @@
 		// (int) the minimum number of characters to jump when splitting
 		// text nodes. smaller numbers will result in higher accuracy
 		// column widths, but will take slightly longer
-		accuracy : false
+		accuracy : false,
+		// don't automatically layout columns, only use manual columnbreak
+		manualbreaks : false
 	};
 	var options = $.extend(defaults, options);
 	
@@ -50,6 +52,7 @@
 		var $cache = $('<div></div>'); // this is where we'll put the real content
 		var lastWidth = 0;
 		var columnizing = false;
+		var manualbreaks = options.manualbreaks;
 		
 		var adjustment = 0;
 		
@@ -117,12 +120,23 @@
 			//
 			// add as many nodes to the column as we can,
 			// but stop once our height is too tall
-			while($parentColumn.height() < targetHeight &&
+			while((manualbreaks || $parentColumn.height() < targetHeight) &&
 				  $pullOutHere[0].childNodes.length){
+				var node = $pullOutHere[0].childNodes[0]
 				//
 				// Because we're not cloning, jquery will actually move the element"
 				// http://welcome.totheinter.net/2009/03/19/the-undocumented-life-of-jquerys-append/
-				$putInHere.append($pullOutHere[0].childNodes[0]);
+				if($(node).find(".columnbreak").length){
+					//
+					// our column is on a column break, so just end here
+					return;
+				}
+				if($(node).hasClass("columnbreak")){
+					//
+					// our column is on a column break, so just end here
+					return;
+				}
+				$putInHere.append(node);
 			}
 			if($putInHere[0].childNodes.length == 0) return;
 			
@@ -144,7 +158,8 @@
 				var columnText;
 				var latestTextNode = null;
 				while($parentColumn.height() < targetHeight && oText.length){
-					if (oText.indexOf(' ', counter2) != '-1') {
+					var indexOfSpace = oText.indexOf(' ', counter2);
+					if (indexOfSpace != -1) {
 						columnText = oText.substring(0, oText.indexOf(' ', counter2));
 					} else {
 						columnText = oText;
@@ -152,8 +167,8 @@
 					latestTextNode = document.createTextNode(columnText);
 					$putInHere.append(latestTextNode);
 					
-					if(oText.length > counter2){
-						oText = oText.substring(oText.indexOf(' ', counter2));
+					if(oText.length > counter2 && indexOfSpace != -1){
+						oText = oText.substring(indexOfSpace);
 					}else{
 						oText = "";
 					}
@@ -184,16 +199,39 @@
 		 * two copies of the element with it's contents divided between each
 		 */
 		function split($putInHere, $pullOutHere, $parentColumn, targetHeight){
-			if($pullOutHere.children().length){
-				var $cloneMe = $pullOutHere.children(":first");
+			if($putInHere.contents(":last").find(".columnbreak").length){
+				//
+				// our column is on a column break, so just end here
+				return;
+			}
+			if($putInHere.contents(":last").hasClass("columnbreak")){
+				//
+				// our column is on a column break, so just end here
+				return;
+			}
+			if($pullOutHere.contents().length){
+				var $cloneMe = $pullOutHere.contents(":first");
+				//
+				// make sure we're splitting an element
+				if($cloneMe.get(0).nodeType != 1) return;
+				
 				//
 				// clone the node with all data and events
 				var $clone = $cloneMe.clone(true);
 				//
 				// need to support both .prop and .attr if .prop doesn't exist.
 				// this is for backwards compatibility with older versions of jquery.
-				if(($clone.prop && $clone.prop("nodeType") == 1 && !$clone.hasClass("dontend")) ||
-				   ($clone.attr("nodeType") == 1 && !$clone.hasClass("dontend"))){ 
+				if($cloneMe.hasClass("columnbreak")){
+					//
+					// ok, we have a columnbreak, so add it into
+					// the column and exit
+					$putInHere.append($clone);
+					$cloneMe.remove();
+				}else if (manualbreaks){
+					// keep adding until we hit a manual break
+					$putInHere.append($clone);
+					$cloneMe.remove();
+				}else if($clone.get(0).nodeType == 1 && !$clone.hasClass("dontend")){ 
 					$putInHere.append($clone);
 					if($clone.is("img") && $parentColumn.height() < targetHeight + 20){
 						//
@@ -297,13 +335,17 @@
 			if(dom.childNodes.length == 0) return false;
 			return checkDontEndColumn(dom.childNodes[dom.childNodes.length-1]);
 		}
-		
 		function columnizeIt() {
+			//reset adjustment var
+			adjustment = 0;
 			if(lastWidth == $inBox.width()) return;
 			lastWidth = $inBox.width();
 			
 			var numCols = Math.round($inBox.width() / options.width);
 			if(options.columns) numCols = options.columns;
+			if(manualbreaks){
+				numCols = $cache.find(".columnbreak").length + 1;
+			}
 //			if ($inBox.data("columnized") && numCols == $inBox.children().length) {
 //				return;
 //			}
@@ -378,6 +420,27 @@
 						$destroyable.prepend($lastKid);
 					}
 					i++;
+					
+					//
+					// https://github.com/adamwulf/Columnizer-jQuery-Plugin/issues/47
+					//
+					// check for infinite loop.
+					//
+					// this could happen when a dontsplit or dontend item is taller than the column
+					// we're trying to build, and its never actually added to a column.
+					//
+					// this results in empty columns being added with the dontsplit item
+					// perpetually waiting to get put into a column. lets force the issue here
+					if($col.contents().length == 0 && $destroyable.contents().length){
+						//
+						// ok, we're building zero content columns. this'll happen forever
+						// since nothing can ever get taken out of destroyable.
+						//
+						// to fix, lets put 1 item from destroyable into the empty column
+						// before we iterate
+						$col.append($destroyable.contents(":first"));
+					}
+					
 				}
 				if(options.overflow && !scrollHorizontally){
 					var IE6 = false /*@cc_on || @_jscript_version < 5.7 @*/;
@@ -411,19 +474,30 @@
 					var min = 10000000;
 					var max = 0;
 					var lastIsMax = false;
+					var numberOfColumnsThatDontEndInAColumnBreak = 0;
 					$inBox.children().each(function($inBox){ return function($item){
-						var h = $inBox.children().eq($item).height();
-						lastIsMax = false;
-						totalH += h;
-						if(h > max) {
-							max = h;
-							lastIsMax = true;
+						var $col = $inBox.children().eq($item);
+						var endsInBreak = $col.children(":last").find(".columnbreak").length;
+						if(!endsInBreak){
+							var h = $col.height();
+							lastIsMax = false;
+							totalH += h;
+							if(h > max) {
+								max = h;
+								lastIsMax = true;
+							}
+							if(h < min) min = h;
+							numberOfColumnsThatDontEndInAColumnBreak++;
 						}
-						if(h < min) min = h;
 					}}($inBox));
 
-					var avgH = totalH / numCols;
-					if(options.lastNeverTallest && lastIsMax){
+					var avgH = totalH / numberOfColumnsThatDontEndInAColumnBreak;
+					if(totalH == 0){
+						//
+						// all columns end in a column break,
+						// so we're done here
+						loopCount = maxLoops;
+					}else if(options.lastNeverTallest && lastIsMax){
 						// the last column is the tallest
 						// so allow columns to be taller
 						// and retry
