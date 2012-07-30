@@ -461,9 +461,8 @@ function svnversion($dir) {
 		$file="$dir/.svn/wc.db";
 		if(file_exists($file)) {
 			$data=file_get_contents($file);
-			$matches=array();
-			preg_match('@/!svn/ver/([0-9]*)[/|\)]@',$data,$matches);
-			if(isset($matches[1])) $rev=$matches[1];
+			$pos=strpos($data,"normalfile");
+			if($pos!==false) $rev=ord($data[$pos-1])+ord($data[$pos-2])*256;
 			break;
 		}
 		// FOR SUBVERSION <= 11
