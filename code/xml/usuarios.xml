@@ -96,10 +96,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('filtro'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("filtro"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
@@ -780,12 +779,11 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<title lang="true">correo</title>
 					<row include="xml/common/correo.xml" replace="true"/>
 					<row>
-						<field>
+						<field global="id" ifeval="$id>0">
 							<name>delete</name>
 							<label lang="true">emaildelete</label>
 							<type>checkbox</type>
 							<value>1</value>
-							<show global="id" eval="true">$id>0?"true":"false"</show>
 							<colspan>10</colspan>
 						</field>
 					</row>

@@ -344,12 +344,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row include="xml/common/correo.xml" replace="true"/>
 					<row>
-						<field>
+						<field global="id" ifeval="$id>0">
 							<name>delete</name>
 							<label lang="true">emaildelete</label>
 							<type>checkbox</type>
 							<value>1</value>
-							<show global="id" eval="true">$id>0?"true":"false"</show>
 							<colspan>10</colspan>
 						</field>
 					</row>

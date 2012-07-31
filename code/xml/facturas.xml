@@ -113,10 +113,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('id_cliente'=>'','trimestre'=>'','id_proyecto'=>'','cerrado'=>'','fecha1'=>'','fecha2'=>'', 'cobrado'=>'','filtro'=>'','id_cuenta'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("id_cliente"=>"","trimestre"=>"","id_proyecto"=>"","cerrado"=>"","fecha1"=>"","fecha2"=>"", "cobrado"=>"","filtro"=>"","id_cuenta"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
@@ -963,11 +962,10 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">total</label>
 							<class>center bold thead</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<type>separator</type>
 							<colspan>100</colspan>
 							<class>thead</class>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</head>
 					<row>
@@ -1018,12 +1016,11 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<readonly>true</readonly>
 							<class>tbody</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_factura()</onchange>
@@ -1158,11 +1155,10 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">total</label>
 							<class>center bold thead</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<type>separator</type>
 							<colspan>100</colspan>
 							<class>thead</class>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</head>
 					<row>
@@ -1214,12 +1210,11 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<readonly>true</readonly>
 							<class>tbody</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_factura()</onchange>
@@ -1356,11 +1351,10 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">fechacobrado</label>
 							<class>center bold thead</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<type>separator</type>
 							<colspan>100</colspan>
 							<class>thead</class>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</head>
 					<row>
@@ -1415,12 +1409,11 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<class>tbody</class>
 							<icon>calendar</icon>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_vencimientos(this)</onchange>

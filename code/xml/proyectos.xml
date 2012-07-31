@@ -157,10 +157,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('fecha1'=>'','fecha2'=>'','id_cliente'=>'','id_estado'=>'','comentarios'=>'','id_campanya'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("fecha1"=>"","fecha2"=>"","id_cliente"=>"","id_estado"=>"","comentarios"=>"","id_campanya"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
@@ -918,21 +917,19 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<colspan>2</colspan>
 							<class>center bold thead</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</head>
 					<head>
-						<field>
+						<field global="id" ifnoteval="$id>=0">
 							<type>checkbox</type>
 							<class3>master</class3>
 							<class2>thead</class2>
 							<width>1px</width>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"false":"true"</show>
 						</field>
 						<field>
 							<type>label</type>
@@ -976,11 +973,10 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<class>center bold thead</class>
 							<width>60px</width>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</head>
 					<row>
@@ -992,14 +988,13 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<name>id_proyecto</name>
 							<type>hidden</type>
 						</field>
-						<field>
+						<field global="id" ifnoteval="$id>=0">
 							<type>checkbox</type>
 							<name>liquidar</name>
 							<value>1</value>
 							<class3>slave</class3>
 							<class2>tbody</class2>
 							<width>1px</width>
-							<show global="id" eval="true">$id>=0?"false":"true"</show>
 						</field>
 						<field>
 							<name>tarea</name>
@@ -1054,12 +1049,11 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<readonly>true</readonly>
 							<class>tbody</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_proyecto()</onchange>
@@ -1215,13 +1209,12 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<fieldset>
 					<width>700px</width>
 					<head>
-						<field>
+						<field global="id" ifnoteval="$id>=0">
 							<type>checkbox</type>
 							<class3>master</class3>
 							<class2>thead</class2>
 							<width>1px</width>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"false":"true"</show>
 						</field>
 						<field>
 							<type>label</type>
@@ -1253,11 +1246,10 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<class>center bold thead</class>
 							<width>60px</width>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</head>
 					<row>
@@ -1269,14 +1261,13 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<name>id_proyecto</name>
 							<type>hidden</type>
 						</field>
-						<field>
+						<field global="id" ifnoteval="$id>=0">
 							<type>checkbox</type>
 							<name>liquidar</name>
 							<value>1</value>
 							<class3>slave</class3>
 							<class2>tbody</class2>
 							<width>1px</width>
-							<show global="id" eval="true">$id>=0?"false":"true"</show>
 						</field>
 						<field>
 							<name>id_producto</name>
@@ -1318,12 +1309,11 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<class>tbody</class>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_proyecto()</onchange>
@@ -1464,8 +1454,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 			<comments_new include="xml/common/commentnew.xml"/>
 			<files_new include="xml/common/filesnew.xml"/>
 			<seguimientos>
-				<fieldset>
-					<show eval="true">check_user("seguimientos","menu")?"true":"false"</show>
+				<fieldset ifeval="check_user('seguimientos','menu')">
 					<width>700px</width>
 					<title lang="true">relatedseguimientos</title>
 					<head>
@@ -1568,62 +1557,56 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field" before="true">
-			<field>
+			<field global="id" ifnoteval="$id>=0">
 				<type>button</type>
 				<value eval="true">LANG("addseguimientos")</value>
 				<tip eval="true">LANG("add","seguimientos")</tip>
 				<onclick>setParam("page","seguimientos");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
-				<show global="id" eval="true">$id>=0?"false":"true"</show>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field>
+			<field global="id" ifnoteval="$id>=0">
 				<type>button</type>
 				<value eval="true">LANG("addactas")</value>
 				<tip eval="true">LANG("add","actas")</tip>
 				<onclick>setParam("page","actas");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
-				<show global="id" eval="true">$id>=0?"false":"true"</show>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field>
+			<field global="id" ifnoteval="$id>=0">
 				<type>button</type>
 				<value eval="true">LANG("addcontactos")</value>
 				<tip eval="true">LANG("add","contactos")</tip>
 				<onclick>setParam("page","contactos");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
-				<show global="id" eval="true">$id>=0?"false":"true"</show>
 				<disabled eval="true">check_user("contactos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field>
+			<field global="id" ifnoteval="$id>=0">
 				<type>button</type>
 				<value eval="true">LANG("addagenda")</value>
 				<tip eval="true">LANG("add","agenda")</tip>
 				<onclick>setParam("page","agenda");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
-				<show global="id" eval="true">$id>=0?"false":"true"</show>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field>
+			<field global="id" ifnoteval="$id>=0">
 				<type>button</type>
 				<value eval="true">LANG("actionfacturar")</value>
 				<tip eval="true">LANG("actionfacturar")</tip>
 				<onclick>facturar()</onclick>
-				<show global="id" eval="true">$id>=0?"false":"true"</show>
 				<disabled eval="true">check_user("facturas","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field>
+			<field global="id" ifeval="$id==0">
 				<type>button</type>
 				<value eval="true">LANG("add","clientes")</value>
 				<tip eval="true">LANG("add","clientes")</tip>
 				<onclick>setParam("page","clientes");setParam("action","form");submit1()</onclick>
-				<show global="id" eval="true">$id==0?"true":"false"</show>
 				<disabled eval="true">check_user("clientes","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>

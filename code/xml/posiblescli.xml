@@ -110,10 +110,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('filtro'=>'','activo'=>'','id_campanya'=>'','id_importacion'=>'','id_estado'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("filtro"=>"","activo"=>"","id_campanya"=>"","id_importacion"=>"","id_estado"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
@@ -617,32 +616,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field" before="true">
-			<field>
+			<field global="id" ifnoteval="$id>=0">
 				<type>button</type>
 				<value eval="true">LANG("add","agenda")</value>
 				<tip eval="true">LANG("add","agenda")</tip>
 				<onclick>setParam("page","agenda"); setParam("action","form"); setParam("id_campanya",getParam("default_"+abs(getParam("id"))+"_id_campanya")); setParam("id_posiblecli",abs(getParam("id"))); setParam("id","0"); submit1();</onclick>
-				<show global="id" eval="true">$id>=0?"false":"true"</show>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field>
+			<field global="id" ifnoteval="$id>=0">
 				<type>button</type>
 				<value eval="true">LANG("add","actas")</value>
 				<tip eval="true">LANG("add","actas")</tip>
 				<onclick>setParam("page","actas"); setParam("action","form"); setParam("id_campanya",getParam("default_"+abs(getParam("id"))+"_id_campanya")); setParam("id_posiblecli",abs(getParam("id"))); setParam("id","0"); submit1();</onclick>
-				<show global="id" eval="true">$id>=0?"false":"true"</show>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field>
+			<field global="id" ifnoteval="$id>=0">
 				<type>button</type>
 				<value eval="true">LANG("crearcliente")</value>
 				<tip eval="true">LANG("crearcliente")</tip>
 				<onclick>migrar()</onclick>
-				<show global="id" eval="true">$id>=0?"false":"true"</show>
 				<disabled eval="true">check_user("clientes","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>

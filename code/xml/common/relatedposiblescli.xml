@@ -25,8 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<posiblescli>
-		<fieldset>
-			<show eval="true">check_user("posiblescli","menu")?"true":"false"</show>
+		<fieldset ifeval="check_user('posiblescli','menu')">
 			<width>700px</width>
 			<title lang="true">posiblesclidata</title>
 			<head>

@@ -118,10 +118,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('filtro'=>'','id_usuario'=>'','id_feed'=>'','fecha1'=>'','fecha2'=>'','fecha3'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("filtro"=>"","id_usuario"=>"","id_feed"=>"","fecha1"=>"","fecha2"=>"","fecha3"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
@@ -158,12 +157,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>options</name>
 					<tip lang="true">optionstip</tip>
 					<label lang="true">options</label>
-					<option>
-						<label lang="true">options</label>
-						<onclick></onclick>
-					</option>
 					<group>
-						<label lang="true">pdf</label>
+						<label lang="true">options</label>
 						<option>
 							<label lang="true">pdf</label>
 							<onclick>pdf()</onclick>

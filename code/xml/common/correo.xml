@@ -88,12 +88,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</field>
 	</row>
 	<row>
-		<field>
+		<field global="id" ifeval="$id>=0">
 			<type>file</type>
 			<name>email_signature_new</name>
 			<label lang="true">emailsignaturenew</label>
 			<colspan>10</colspan>
-			<show global="id" eval="true">$id>=0?"true":"false"</show>
 			<width>600px</width>
 			<size>60</size>
 		</field>

@@ -46,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<div class="ui-widget toolbar">
 			<div class="ui-widget-header ui-corner-bottom">
 				<div class="quick">
-					<xsl:for-each select="menu/header/option[onclick!='false']">
+					<xsl:for-each select="menu/header/option">
 						<a href="javascript:void(0)" class="ui-state-default ui-corner-bottom {class}" onclick="{onclick}" title="{tip}">
 							<xsl:if test="icon!=''">
 								<span class="saltos-icon saltos-icon-{icon}"/>
@@ -131,27 +131,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="menu">
 	<xsl:for-each select="/root/menu/group">
-		<xsl:choose>
-			<xsl:when test="show='false'"/>
-			<xsl:otherwise>
-				<div class="{class}" id="{name}">
-					<h3><a href="javascript:void(0)" title="{tip}"><xsl:value-of select="label"/></a></h3>
-					<div>
-						<ul class="accordion-link">
-							<xsl:for-each select="option[onclick!='false']">
-								<li><a href="javascript:void(0)" class="{class}" onclick="{onclick}" title="{tip}" id="{name}">
-									<xsl:if test="icon!=''">
-										<span class="saltos-icon saltos-icon-{icon}"/>
-										<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
-									</xsl:if>
-									<xsl:value-of select="label"/>
-								</a></li>
-							</xsl:for-each>
-						</ul>
-					</div>
-				</div>
-			</xsl:otherwise>
-		</xsl:choose>
+		<div class="{class}" id="{name}">
+			<h3><a href="javascript:void(0)" title="{tip}"><xsl:value-of select="label"/></a></h3>
+			<div>
+				<ul class="accordion-link">
+					<xsl:for-each select="option">
+						<li><a href="javascript:void(0)" class="{class}" onclick="{onclick}" title="{tip}" id="{name}">
+							<xsl:if test="icon!=''">
+								<span class="saltos-icon saltos-icon-{icon}"/>
+								<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
+							</xsl:if>
+							<xsl:value-of select="label"/>
+						</a></li>
+					</xsl:for-each>
+				</ul>
+			</div>
+		</div>
 	</xsl:for-each>
 </xsl:template>
 
@@ -485,17 +480,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:variable name="rows" select="rows"/>
 	<xsl:choose>
 		<xsl:when test="count($fields/row)!=0">
-			<xsl:for-each select="$fields">
-				<xsl:choose>
-					<xsl:when test="show!='true'"/>
-					<xsl:otherwise>
-						<xsl:choose>
-							<xsl:when test="title!=''">
-								<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
-							</xsl:when>
-						</xsl:choose>
-					</xsl:otherwise>
-				</xsl:choose>
+			<xsl:for-each select="$fields[title!='']">
+				<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
 			</xsl:for-each>
 		</xsl:when>
 		<xsl:otherwise>
@@ -509,32 +495,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:when test="count($node2/*)=0"/>
 						<xsl:when test="count($node2/*[name()=$name2])=0">
 							<xsl:for-each select="$node2/row">
-								<xsl:for-each select="$node1/fieldset">
-									<xsl:choose>
-										<xsl:when test="show!='true'"/>
-										<xsl:otherwise>
-											<xsl:choose>
-												<xsl:when test="title!=''">
-													<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
-												</xsl:when>
-											</xsl:choose>
-										</xsl:otherwise>
-									</xsl:choose>
+								<xsl:for-each select="$node1/fieldset[title!='']">
+									<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
 								</xsl:for-each>
 							</xsl:for-each>
 						</xsl:when>
 						<xsl:when test="count($node2/*[name()=$name2])=1">
-							<xsl:for-each select="$node1/fieldset">
-								<xsl:choose>
-									<xsl:when test="show!='true'"/>
-									<xsl:otherwise>
-										<xsl:choose>
-											<xsl:when test="title!=''">
-												<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
-											</xsl:when>
-										</xsl:choose>
-									</xsl:otherwise>
-								</xsl:choose>
+							<xsl:for-each select="$node1/fieldset[title!='']">
+								<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
 							</xsl:for-each>
 						</xsl:when>
 					</xsl:choose>
@@ -582,7 +550,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:param name="prefix"/>
 	<xsl:variable name="name" select="name"/>
 	<xsl:choose>
-		<xsl:when test="show='false'"/>
 		<xsl:when test="type='hidden'">
 			<input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" class="{class}" autocomplete="off">
 				<xsl:for-each select="$node/*[name()=$name]">
@@ -1187,38 +1154,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:for-each select="*">
 						<xsl:choose>
 							<xsl:when test="name()='option'">
-								<xsl:if test="onclick!='false'">
+								<option value="{onclick}" class="{class}">
+									<xsl:if test="disabled='true'">
+										<xsl:attribute name="value"></xsl:attribute>
+										<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
+									</xsl:if>
+									<xsl:value-of select="label"/>
+								</option>
+							</xsl:when>
+							<xsl:when test="name()='group'">
+								<option value="" class="{class}">
+									<xsl:value-of select="label"/>
+								</option>
+								<xsl:for-each select="option">
 									<option value="{onclick}" class="{class}">
 										<xsl:if test="disabled='true'">
 											<xsl:attribute name="value"></xsl:attribute>
 											<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
 										</xsl:if>
-										<xsl:value-of select="label"/>
+										<xsl:text>- </xsl:text><xsl:value-of select="label"/>
 									</option>
-								</xsl:if>
-							</xsl:when>
-							<xsl:when test="name()='group'">
-								<xsl:choose>
-									<xsl:when test="show='false'"/>
-									<xsl:otherwise>
-										<optgroup label="{label}" class="{class}">
-											<xsl:for-each select="option[onclick!='false']">
-												<xsl:choose>
-													<xsl:when test="show='false'"/>
-													<xsl:otherwise>
-														<option value="{onclick}" class="{class}">
-															<xsl:if test="disabled='true'">
-																<xsl:attribute name="value"></xsl:attribute>
-																<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
-															</xsl:if>
-															<xsl:value-of select="label"/>
-														</option>
-													</xsl:otherwise>
-												</xsl:choose>
-											</xsl:for-each>
-										</optgroup>
-									</xsl:otherwise>
-								</xsl:choose>
+								</xsl:for-each>
 							</xsl:when>
 						</xsl:choose>
 					</xsl:for-each>
@@ -1248,20 +1204,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:param name="prefix"/>
 	<xsl:param name="iter"/>
 	<xsl:for-each select="$iter">
-		<xsl:choose>
-			<xsl:when test="show='false'"/>
-			<xsl:otherwise>
-				<tr id="{id}" class="{class}" style="height:{height}">
-					<xsl:for-each select="field">
-						<xsl:call-template name="form_field">
-							<xsl:with-param name="form" select="$form"/>
-							<xsl:with-param name="node" select="$node"/>
-							<xsl:with-param name="prefix" select="$prefix"/>
-						</xsl:call-template>
-					</xsl:for-each>
-				</tr>
-			</xsl:otherwise>
-		</xsl:choose>
+		<tr id="{id}" class="{class}" style="height:{height}">
+			<xsl:for-each select="field">
+				<xsl:call-template name="form_field">
+					<xsl:with-param name="form" select="$form"/>
+					<xsl:with-param name="node" select="$node"/>
+					<xsl:with-param name="prefix" select="$prefix"/>
+				</xsl:call-template>
+			</xsl:for-each>
+		</tr>
 	</xsl:for-each>
 </xsl:template>
 
@@ -1329,42 +1280,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:choose>
 		<xsl:when test="count($fields/row)!=0">
 			<xsl:for-each select="$fields">
-				<xsl:choose>
-					<xsl:when test="show!='true'"/>
-					<xsl:otherwise>
-						<div id="tab{generate-id(.)}">
-							<xsl:choose>
-								<xsl:when test="title!=''">
-									<xsl:attribute name="class">sitabs</xsl:attribute>
-								</xsl:when>
-								<xsl:otherwise>
-									<xsl:attribute name="class">notabs</xsl:attribute>
-									<xsl:call-template name="brtag"/>
-								</xsl:otherwise>
-							</xsl:choose>
-							<table class="{class}" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
-								<xsl:if test="quick='true'">
-									<xsl:call-template name="form_quick">
-										<xsl:with-param name="quick" select="../quick"/>
-										<xsl:with-param name="prefix" select="null"/>
-									</xsl:call-template>
-								</xsl:if>
-								<xsl:call-template name="form_by_rows">
-									<xsl:with-param name="form" select="$form"/>
-									<xsl:with-param name="node" select="null"/>
-									<xsl:with-param name="prefix" select="null"/>
-									<xsl:with-param name="iter" select="row"/>
-								</xsl:call-template>
-								<xsl:if test="buttons='true'">
-									<xsl:call-template name="form_buttons">
-										<xsl:with-param name="buttons" select="../buttons"/>
-										<xsl:with-param name="prefix" select="null"/>
-									</xsl:call-template>
-								</xsl:if>
-							</table>
-						</div>
-					</xsl:otherwise>
-				</xsl:choose>
+				<div id="tab{generate-id(.)}">
+					<xsl:choose>
+						<xsl:when test="title!=''">
+							<xsl:attribute name="class">sitabs</xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="class">notabs</xsl:attribute>
+							<xsl:call-template name="brtag"/>
+						</xsl:otherwise>
+					</xsl:choose>
+					<table class="{class}" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
+						<xsl:if test="quick='true'">
+							<xsl:call-template name="form_quick">
+								<xsl:with-param name="quick" select="../quick"/>
+								<xsl:with-param name="prefix" select="null"/>
+							</xsl:call-template>
+						</xsl:if>
+						<xsl:call-template name="form_by_rows">
+							<xsl:with-param name="form" select="$form"/>
+							<xsl:with-param name="node" select="null"/>
+							<xsl:with-param name="prefix" select="null"/>
+							<xsl:with-param name="iter" select="row"/>
+						</xsl:call-template>
+						<xsl:if test="buttons='true'">
+							<xsl:call-template name="form_buttons">
+								<xsl:with-param name="buttons" select="../buttons"/>
+								<xsl:with-param name="prefix" select="null"/>
+							</xsl:call-template>
+						</xsl:if>
+					</table>
+				</div>
 			</xsl:for-each>
 		</xsl:when>
 		<xsl:otherwise>
@@ -1382,110 +1328,100 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
 								<input type="hidden" name="prefix_{$prefix}" value="{$prefix}" autocomplete="off"/>
 								<xsl:for-each select="$node1/fieldset">
-									<xsl:choose>
-										<xsl:when test="show!='true'"/>
-										<xsl:otherwise>
-											<div id="tab{generate-id(.)}">
-												<xsl:choose>
-													<xsl:when test="title!=''">
-														<xsl:attribute name="class">sitabs</xsl:attribute>
-													</xsl:when>
-													<xsl:otherwise>
-														<xsl:attribute name="class">notabs</xsl:attribute>
-														<xsl:call-template name="brtag"/>
-													</xsl:otherwise>
-												</xsl:choose>
-												<table class="{class}" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
-													<xsl:if test="quick='true'">
-														<xsl:call-template name="form_quick">
-															<xsl:with-param name="quick" select="../../../quick"/>
-															<xsl:with-param name="prefix" select="$prefix"/>
-														</xsl:call-template>
-													</xsl:if>
-													<xsl:call-template name="form_by_rows">
-														<xsl:with-param name="form" select="$form"/>
-														<xsl:with-param name="node" select="$node3"/>
-														<xsl:with-param name="prefix" select="$prefix"/>
-														<xsl:with-param name="iter" select="row"/>
-													</xsl:call-template>
-													<xsl:if test="buttons='true'">
-														<xsl:call-template name="form_buttons">
-															<xsl:with-param name="buttons" select="../../../buttons"/>
-															<xsl:with-param name="prefix" select="$prefix"/>
-														</xsl:call-template>
-													</xsl:if>
-												</table>
-											</div>
-										</xsl:otherwise>
-									</xsl:choose>
+									<div id="tab{generate-id(.)}">
+										<xsl:choose>
+											<xsl:when test="title!=''">
+												<xsl:attribute name="class">sitabs</xsl:attribute>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:attribute name="class">notabs</xsl:attribute>
+												<xsl:call-template name="brtag"/>
+											</xsl:otherwise>
+										</xsl:choose>
+										<table class="{class}" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
+											<xsl:if test="quick='true'">
+												<xsl:call-template name="form_quick">
+													<xsl:with-param name="quick" select="../../../quick"/>
+													<xsl:with-param name="prefix" select="$prefix"/>
+												</xsl:call-template>
+											</xsl:if>
+											<xsl:call-template name="form_by_rows">
+												<xsl:with-param name="form" select="$form"/>
+												<xsl:with-param name="node" select="$node3"/>
+												<xsl:with-param name="prefix" select="$prefix"/>
+												<xsl:with-param name="iter" select="row"/>
+											</xsl:call-template>
+											<xsl:if test="buttons='true'">
+												<xsl:call-template name="form_buttons">
+													<xsl:with-param name="buttons" select="../../../buttons"/>
+													<xsl:with-param name="prefix" select="$prefix"/>
+												</xsl:call-template>
+											</xsl:if>
+										</table>
+									</div>
 								</xsl:for-each>
 							</xsl:for-each>
 						</xsl:when>
 						<xsl:when test="count($node2/*[name()=$name2])=1">
 							<xsl:for-each select="$node1/fieldset">
-								<xsl:choose>
-									<xsl:when test="show!='true'"/>
-									<xsl:otherwise>
-										<div id="tab{generate-id(.)}">
-											<xsl:choose>
-												<xsl:when test="title!=''">
-													<xsl:attribute name="class">sitabs</xsl:attribute>
-												</xsl:when>
-												<xsl:otherwise>
-													<xsl:attribute name="class">notabs</xsl:attribute>
-													<xsl:call-template name="brtag"/>
-												</xsl:otherwise>
-											</xsl:choose>
-											<table class="tabla" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
-												<xsl:if test="quick='true'">
-													<xsl:call-template name="form_quick">
-														<xsl:with-param name="quick" select="../../../quick"/>
-														<xsl:with-param name="prefix" select="null"/>
-													</xsl:call-template>
-												</xsl:if>
+								<div id="tab{generate-id(.)}">
+									<xsl:choose>
+										<xsl:when test="title!=''">
+											<xsl:attribute name="class">sitabs</xsl:attribute>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:attribute name="class">notabs</xsl:attribute>
+											<xsl:call-template name="brtag"/>
+										</xsl:otherwise>
+									</xsl:choose>
+									<table class="tabla" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
+										<xsl:if test="quick='true'">
+											<xsl:call-template name="form_quick">
+												<xsl:with-param name="quick" select="../../../quick"/>
+												<xsl:with-param name="prefix" select="null"/>
+											</xsl:call-template>
+										</xsl:if>
+										<xsl:call-template name="form_by_rows">
+											<xsl:with-param name="form" select="$form"/>
+											<xsl:with-param name="node" select="null"/>
+											<xsl:with-param name="prefix" select="null"/>
+											<xsl:with-param name="iter" select="head"/>
+										</xsl:call-template>
+										<xsl:variable name="node3" select="."/>
+										<xsl:for-each select="$node2/*/row">
+											<xsl:variable name="node4" select="."/>
+											<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
+											<input type="hidden" name="prefix_{$prefix}" value="{$prefix}" autocomplete="off"/>
+											<xsl:for-each select="$node3">
 												<xsl:call-template name="form_by_rows">
 													<xsl:with-param name="form" select="$form"/>
-													<xsl:with-param name="node" select="null"/>
-													<xsl:with-param name="prefix" select="null"/>
-													<xsl:with-param name="iter" select="head"/>
-												</xsl:call-template>
-												<xsl:variable name="node3" select="."/>
-												<xsl:for-each select="$node2/*/row">
-													<xsl:variable name="node4" select="."/>
-													<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
-													<input type="hidden" name="prefix_{$prefix}" value="{$prefix}" autocomplete="off"/>
-													<xsl:for-each select="$node3">
-														<xsl:call-template name="form_by_rows">
-															<xsl:with-param name="form" select="$form"/>
-															<xsl:with-param name="node" select="$node4"/>
-															<xsl:with-param name="prefix" select="$prefix"/>
-															<xsl:with-param name="iter" select="row"/>
-														</xsl:call-template>
-													</xsl:for-each>
-												</xsl:for-each>
-												<xsl:call-template name="math_row">
-													<xsl:with-param name="iter" select="head"/>
-													<xsl:with-param name="add">false</xsl:with-param>
-												</xsl:call-template>
-											</table>
-											<table style="width:{width}" cellpadding="0" cellspacing="0" border="0">
-												<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_0_</xsl:variable>
-												<xsl:call-template name="form_by_rows">
-													<xsl:with-param name="form" select="$form"/>
-													<xsl:with-param name="node" select="null"/>
+													<xsl:with-param name="node" select="$node4"/>
 													<xsl:with-param name="prefix" select="$prefix"/>
-													<xsl:with-param name="iter" select="tail"/>
+													<xsl:with-param name="iter" select="row"/>
 												</xsl:call-template>
-												<xsl:if test="buttons='true'">
-													<xsl:call-template name="form_buttons">
-														<xsl:with-param name="buttons" select="../../../buttons"/>
-														<xsl:with-param name="prefix" select="$prefix"/>
-													</xsl:call-template>
-												</xsl:if>
-											</table>
-										</div>
-									</xsl:otherwise>
-								</xsl:choose>
+											</xsl:for-each>
+										</xsl:for-each>
+										<xsl:call-template name="math_row">
+											<xsl:with-param name="iter" select="head"/>
+											<xsl:with-param name="add">false</xsl:with-param>
+										</xsl:call-template>
+									</table>
+									<table style="width:{width}" cellpadding="0" cellspacing="0" border="0">
+										<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_0_</xsl:variable>
+										<xsl:call-template name="form_by_rows">
+											<xsl:with-param name="form" select="$form"/>
+											<xsl:with-param name="node" select="null"/>
+											<xsl:with-param name="prefix" select="$prefix"/>
+											<xsl:with-param name="iter" select="tail"/>
+										</xsl:call-template>
+										<xsl:if test="buttons='true'">
+											<xsl:call-template name="form_buttons">
+												<xsl:with-param name="buttons" select="../../../buttons"/>
+												<xsl:with-param name="prefix" select="$prefix"/>
+											</xsl:call-template>
+										</xsl:if>
+									</table>
+								</div>
 							</xsl:for-each>
 						</xsl:when>
 					</xsl:choose>

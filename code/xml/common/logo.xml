@@ -75,14 +75,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</field>
 		</row>
 		<row>
-			<field>
+			<field global="id" ifeval="$id>=0">
 				<name>logo_file_new</name>
 				<label lang="true">logofilenew</label>
 				<type>file</type>
 				<width>500px</width>
 				<size>50</size>
 				<colspan>7</colspan>
-				<show global="id" eval="true">$id>=0?"true":"false"</show>
 			</field>
 		</row>
 		<row>

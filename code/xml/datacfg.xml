@@ -56,10 +56,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</hiddens>
 		<fields>
 			<export>
-				<fieldset>
+				<fieldset global="temp" ifeval="(check_user('datacfg',($temp='export')))">
 					<width>600px</width>
 					<title lang="true">export</title>
-					<show global="temp" eval="true">(check_user("datacfg",($temp="export")))?"true":"false"</show>
 					<row>
 						<field>
 							<type>label</type>
@@ -107,10 +106,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 			</export>
 			<import>
-				<fieldset>
+				<fieldset global="temp" ifeval="(check_user('datacfg',($temp='import')))">
 					<width>600px</width>
 					<title lang="true">import</title>
-					<show global="temp" eval="true">(check_user("datacfg",($temp="import")))?"true":"false"</show>
 					<row>
 						<field>
 							<type>label</type>

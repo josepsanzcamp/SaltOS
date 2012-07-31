@@ -25,8 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<partesopen>
-		<fieldset>
-			<show eval="true">check_user("partes","menu")?"true":"false"</show>
+		<fieldset ifeval="check_user('partes','menu')">
 			<width>700px</width>
 			<title lang="true">partesopen</title>
 			<head>

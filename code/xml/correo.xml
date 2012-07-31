@@ -141,10 +141,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('filtro'=>'','id_usuario'=>'','id_cuenta'=>'','onlynew'=>'','onlywait'=>'','hidespam'=>'','onlyspam'=>'','withfiles'=>'','withoutfiles'=>'','onlyinbox'=>'','onlyoutbox'=>'','fecha1'=>'','fecha2'=>'','campos'=>'','fecha3'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("filtro"=>"","id_usuario"=>"","id_cuenta"=>"","onlynew"=>"","onlywait"=>"","hidespam"=>"","onlyspam"=>"","withfiles"=>"","withoutfiles"=>"","onlyinbox"=>"","onlyoutbox"=>"","fecha1"=>"","fecha2"=>"","campos"=>"","fecha3"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
@@ -191,12 +190,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>options</name>
 					<tip lang="true">optionstip</tip>
 					<label lang="true">options</label>
-					<option>
-						<label lang="true">options</label>
-						<onclick></onclick>
-					</option>
 					<group>
-						<label lang="true">pdf</label>
+						<label lang="true">options</label>
 						<option>
 							<label lang="true">pdf</label>
 							<onclick>pdf()</onclick>
@@ -738,22 +733,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>id_extra</name>
 							<type>hidden</type>
 						</field>
-						<field>
+						<field global="id" ifnoteval="$id>=0">
 							<name>from</name>
 							<label lang="true">from</label>
 							<type>text</type>
 							<width>800px</width>
 							<readonly>true</readonly>
 							<colspan>12</colspan>
-							<show global="id" eval="true">$id>=0?"false":"true"</show>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>from</name>
 							<label lang="true">from</label>
 							<type>select</type>
 							<width>800px</width>
 							<colspan>12</colspan>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<query eval="true">"SELECT /*MYSQL CONCAT(email_name,' &lt;',email_from,'&gt;') *//*SQLITE email_name || ' &lt;' || email_from || '&gt;' */ label,/*MYSQL CONCAT(email_name,' &lt;',email_from,'&gt;') *//*SQLITE email_name || ' &lt;' || email_from || '&gt;' */ `value`,email_default,(SELECT COUNT(*) FROM tbl_correo_a WHERE valor=email_from AND id_tipo IN (1,2,3,4)) contador FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC, contador DESC"</query>
 							<focus>true</focus>
 							<required>true</required>
@@ -771,60 +764,54 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<required global="id" eval="true">$id>=0?"true":"false"</required>
 							<speech>true</speech>
 						</field>
-						<field ifnoteval="is_mobile()">
+						<field ifnoteval="is_mobile()" global="id" ifeval="$id>=0">
 							<type>button</type>
 							<icon>delete</icon>
 							<value></value>
 							<tip lang="true">delete</tip>
 							<onclick>$("input[name$='_to']").val("")</onclick>
 							<class>nowrap</class>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</row>
 					<row>
-						<field>
+						<field global="id" ifeval="execute_query('SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='.abs($id).' AND id_tipo=3') || ($id==0)">
 							<name>cc</name>
 							<label lang="true">cc</label>
 							<type>text</type>
 							<width>800px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>12</colspan>
-							<show global="id" eval="true">execute_query("SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='".abs($id)."' AND id_tipo=3")+($id==0?1:0)?"true":"false"</show>
 							<speech>true</speech>
 						</field>
-						<field ifnoteval="is_mobile()">
+						<field ifnoteval="is_mobile()" global="id" ifeval="$id>=0">
 							<type>button</type>
 							<icon>delete</icon>
 							<value></value>
 							<tip lang="true">delete</tip>
 							<onclick>$("input[name$='_cc']").val("")</onclick>
 							<class>nowrap</class>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</row>
 					<row>
-						<field>
+						<field global="id" ifeval="execute_query('SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='.abs($id).' AND id_tipo=4') || ($id==0)">
 							<name>bcc</name>
 							<label lang="true">bcc</label>
 							<type>text</type>
 							<width>800px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>12</colspan>
-							<show global="id" eval="true">execute_query("SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='".abs($id)."' AND id_tipo=4")+($id==0?1:0)?"true":"false"</show>
 							<speech>true</speech>
 						</field>
-						<field ifnoteval="is_mobile()">
+						<field ifnoteval="is_mobile()" global="id" ifeval="$id>=0">
 							<type>button</type>
 							<icon>delete</icon>
 							<value></value>
 							<tip lang="true">delete</tip>
 							<onclick>$("input[name$='_bcc']").val("")</onclick>
 							<class>nowrap</class>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"false":"true"</show>
+					<row global="id" ifnoteval="$id>=0">
 						<field>
 							<name>datetime</name>
 							<label lang="true">datetime</label>
@@ -842,7 +829,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width2>1px</width2>
 							<readonly>true</readonly>
 						</field>
-						<field>
+						<field global="id" ifnoteval="execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
 							<name>state_new</name>
 							<label lang="true">statenew</label>
 							<type>checkbox</type>
@@ -850,9 +837,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly>true</readonly>
 							<width>1px</width>
 							<width2>1px</width2>
-							<show global="id" eval="true">execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")?"false":"true"</show>
 						</field>
-						<field>
+						<field global="id" ifnoteval="execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
 							<name>state_reply</name>
 							<label lang="true">statereply</label>
 							<type>checkbox</type>
@@ -860,9 +846,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly>true</readonly>
 							<width>1px</width>
 							<width2>1px</width2>
-							<show global="id" eval="true">execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")?"false":"true"</show>
 						</field>
-						<field>
+						<field global="id" ifeval="execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
 							<name>state_sent</name>
 							<label lang="true">statesent</label>
 							<type>checkbox</type>
@@ -870,7 +855,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly>true</readonly>
 							<width>1px</width>
 							<width2>1px</width2>
-							<show global="id" eval="true">execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")?"true":"false"</show>
 						</field>
 						<field>
 							<name>state_forward</name>
@@ -922,7 +906,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>4</colspan>
 							<colspan2>2</colspan2>
 						</field>
-						<field>
+						<field global="id" ifnoteval="(execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id)) || $id&gt;=0)">
 							<name>state_spam</name>
 							<label lang="true">statespam</label>
 							<type>checkbox</type>
@@ -931,11 +915,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND primero='1' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
 							<width2>1px</width2>
-							<show global="id" eval="true">(execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'") || $id&gt;=0)?"false":"true"</show>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."' AND state_error!=''")?"true":"false"</show>
+					<row global="id" ifeval="execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id).' AND LENGTH(state_error)>0')">
 						<field>
 							<name>state_error</name>
 							<type>text</type>
@@ -960,11 +942,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<speech>true</speech>
 						</field>
 					</row>
-					<row>
+					<row global="id,id_extra" ifeval="execute_query('SELECT `files` FROM tbl_correo WHERE id='.abs($id)) || ($id_extra[1]=='forward' &amp;&amp; execute_query('SELECT `files` FROM tbl_correo WHERE id='.$id_extra[2])) || $id_extra[1]=='session'">
 						<temp global="id_extra" eval="true">$id_extra=explode("_",getParam("id"),3);</temp>
 						<temp global="id_extra" eval="true">$id_extra[1]=isset($id_extra[1])?$id_extra[1]:""</temp>
 						<temp global="id_extra" eval="true">$id_extra[2]=isset($id_extra[2])?$id_extra[2]:""</temp>
-						<show global="id,id_extra" eval="true">execute_query("SELECT `files` FROM tbl_correo WHERE id='".abs($id)."'")+execute_query("SELECT `files` FROM tbl_correo WHERE id='".$id_extra[2]."' AND '".$id_extra[1]."'='forward'")+execute_query("SELECT 1 FROM (SELECT 1) z WHERE '".$id_extra[1]."'='session'")?"true":"false"</show>
 						<field>
 							<label lang="true">attachments</label>
 							<type>label</type>
@@ -980,7 +961,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 					<row>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>body</name>
 							<label lang="true">message</label>
 							<type>textarea</type>
@@ -989,9 +970,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 							<required>true</required>
 							<ckeditor>true</ckeditor>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
-						<field>
+						<field global="id" ifnoteval="$id>=0">
 							<name>message</name>
 							<label lang="true">message</label>
 							<type>iframe</type>
@@ -999,11 +979,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>800px</width>
 							<height>240px</height>
 							<colspan>12</colspan>
-							<show global="id" eval="true">$id>=0?"false":"true"</show>
 						</field>
 					</row>
-					<row ifnoteval="is_mobile()">
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row ifnoteval="is_mobile()" global="id" ifeval="$id>=0">
 						<field>
 							<name>textos_body</name>
 							<label lang="true">textos</label>
@@ -1063,72 +1041,65 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field global="id" ifeval="$id==0">
 					<type>button</type>
 					<value lang="true">buttonsend</value>
 					<tip lang="true">buttonsend</tip>
 					<onclick>if(check_required()) sendmail(0)</onclick>
-					<show global="id" eval="true">$id==0?"true":"false"</show>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
 					<class>nowrap contextmenu</class>
 					<icon>accept</icon>
 				</field>
-				<field>
+				<field global="id" ifeval="$id==0">
 					<type>button</type>
 					<value lang="true">buttonsendreturnhere</value>
 					<tip lang="true">buttonsendreturnhere</tip>
 					<onclick>if(check_required()) sendmail(1)</onclick>
-					<show global="id" eval="true">$id==0?"true":"false"</show>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
 					<class>nowrap contextmenu</class>
 					<icon>accept</icon>
 				</field>
-				<field>
+				<field global="id" ifeval="$id>=0">
 					<type>button</type>
 					<value lang="true">buttoncancel</value>
 					<tip lang="true">buttoncancel</tip>
 					<onclick>cancel()</onclick>
-					<show global="id" eval="true">$id>=0?"true":"false"</show>
 					<class>nowrap contextmenu</class>
 					<icon>cancel</icon>
 				</field>
-				<field>
+				<field global="id" ifnoteval="$id>=0">
 					<type>button</type>
 					<value lang="true">actionreply</value>
 					<tip lang="true">actionreplytip</tip>
 					<onclick>reply()</onclick>
-					<show global="id" eval="true">$id>=0?"false":"true"</show>
 					<class>nowrap contextmenu</class>
 					<icon>reply</icon>
 					<disabled global="id" eval="true">execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")==0?"false":"true"</disabled>
 					<class2 global="id" eval="true">(execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")==0 &amp;&amp; execute_query("SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='".abs($id)."' AND id_tipo IN (2,3)")==1)?"shortcut_ctrl_insert":""</class2>
 				</field>
-				<field>
+				<field global="id" ifnoteval="$id>=0">
 					<type>button</type>
 					<value lang="true">actionreplyall</value>
 					<tip lang="true">actionreplyalltip</tip>
 					<onclick>replyall()</onclick>
-					<show global="id" eval="true">$id>=0?"false":"true"</show>
 					<class>nowrap contextmenu</class>
 					<icon>replyall</icon>
 					<disabled global="id" eval="true">(execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")==0 &amp;&amp; execute_query("SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='".abs($id)."' AND id_tipo IN (2,3)")>=2)?"false":"true"</disabled>
 					<class2 global="id" eval="true">(execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")==0 &amp;&amp; execute_query("SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='".abs($id)."' AND id_tipo IN (2,3)")>=2)?"shortcut_ctrl_insert":""</class2>
 				</field>
-				<field>
+				<field global="id" ifnoteval="$id>=0">
 					<type>button</type>
 					<value lang="true">actionforward</value>
 					<tip lang="true">actionforwardtip</tip>
 					<onclick>forward()</onclick>
-					<show global="id" eval="true">$id>=0?"false":"true"</show>
 					<class>nowrap contextmenu</class>
 					<icon>forward</icon>
 				</field>
-				<field>
+				<field global="id" ifnoteval="$id>=0">
 					<type>button</type>
 					<value lang="true">buttonreturn</value>
 					<tip lang="true">buttonreturn</tip>
 					<onclick>goback()</onclick>
-					<show global="id" eval="true">$id>=0?"false":"true"</show>
 					<class>nowrap contextmenu</class>
 					<icon>return</icon>
 				</field>

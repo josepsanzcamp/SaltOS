@@ -112,10 +112,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('otros'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','id_cliente'=>'', 'fecha3'=>'','id_tipoevento'=>'','id_estado'=>'','id_posiblecli'=>'','id_asignado'=>'','id_campanya'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("otros"=>"","id_usuario"=>"","fecha1"=>"","fecha2"=>"","id_proyecto"=>"","id_cliente"=>"", "fecha3"=>"","id_tipoevento"=>"","id_estado"=>"","id_posiblecli"=>"","id_asignado"=>"","id_campanya"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>

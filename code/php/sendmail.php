@@ -77,23 +77,19 @@ function sendmail($from,$to,$subject,$body,$arg1="",$arg2="",$arg3="",$arg4="") 
 		}
 	}
 	if(is_array($to)) {
+		$valids=array("to:","cc:","bcc:","crt:","priority:","sensitivity:","replyto:");
 		foreach($to as $addr) {
-			$type="";
-			if(substr($addr,0,3)=="to:") $type="to:";
-			if(substr($addr,0,3)=="cc:") $type="cc:";
-			if(substr($addr,0,4)=="bcc:") $type="bcc:";
-			if(substr($addr,0,4)=="crt:") $type="crt:";
-			if(substr($addr,0,9)=="priority:") $type="priority:";
-			if(substr($addr,0,12)=="sensitivity:") $type="sensitivity:";
+			$type=$valids[0];
+			foreach($valids as $valid) if(strncasecmp($addr,$valid,strlen($valid))==0) $type=$valid;
 			$addr=substr($addr,strlen($type));
 			list($addr,$addrname)=__sendmail_parser($addr);
-			if($type=="") $type="to:";
-			if($type=="to:") if(!$mail->AddAddress($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
-			if($type=="cc:") if(!$mail->AddCC($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
-			if($type=="bcc:") if(!$mail->AddBCC($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
-			if($type=="crt:") if(!$mail->set("ConfirmReadingTo",$addr)) if($mail->ErrorInfo) return $mail->ErrorInfo;
-			if($type=="priority:") if(!$mail->set("Priority",$addr)) if($mail->ErrorInfo) return $mail->ErrorInfo;
-			if($type=="sensitivity:") if(!$mail->AddCustomHeader("Sensitivity:$addr")) if($mail->ErrorInfo) return $mail->ErrorInfo;
+			if($type==$valids[0]) if(!$mail->AddAddress($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
+			if($type==$valids[1]) if(!$mail->AddCC($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
+			if($type==$valids[2]) if(!$mail->AddBCC($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
+			if($type==$valids[3]) if(!$mail->set("ConfirmReadingTo",$addr)) if($mail->ErrorInfo) return $mail->ErrorInfo;
+			if($type==$valids[4]) if(!$mail->set("Priority",$addr)) if($mail->ErrorInfo) return $mail->ErrorInfo;
+			if($type==$valids[5]) if(!$mail->AddCustomHeader("Sensitivity:$addr")) if($mail->ErrorInfo) return $mail->ErrorInfo;
+			if($type==$valids[6]) if(!$mail->AddReplyTo($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
 		}
 	} else {
 		list($to,$toname)=__sendmail_parser($to);

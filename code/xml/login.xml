@@ -66,8 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<required>true</required>
 				</field>
 			</row>
-			<row>
-				<show eval="true">check_security()?"false":"true"</show>
+			<row ifnoteval="check_security()">
 				<field>
 					<label lang="true">captcha1</label>
 					<type>image</type>
@@ -84,8 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>label</class>
 				</field>
 			</row>
-			<row>
-				<show eval="true">check_security()?"false":"true"</show>
+			<row ifnoteval="check_security()">
 				<field>
 					<name>captcha</name>
 					<label lang="true">captcha2</label>

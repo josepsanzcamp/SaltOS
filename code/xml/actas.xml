@@ -98,10 +98,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('otros'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','id_cliente'=>'','id_posiblecli'=>'','id_campanya'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("otros"=>"","id_usuario"=>"","fecha1"=>"","fecha2"=>"","id_proyecto"=>"","id_cliente"=>"","id_posiblecli"=>"","id_campanya"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
@@ -502,8 +501,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<required>true</required>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_temas</name>
 							<label lang="true">textos</label>
@@ -520,9 +518,8 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						</field>
 					</row>
 				</fieldset>
-				<fieldset>
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(aceptados) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">aceptados</title>
-					<show global="id" eval="true">execute_query("SELECT CASE WHEN aceptados='' THEN '0' ELSE '1' END hasdata FROM tbl_actas WHERE id=".abs($id)) || ($id>=0)?"true":"false"</show>
 					<row>
 						<field>
 							<name>aceptados</name>
@@ -534,8 +531,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_aceptados</name>
 							<label lang="true">textos</label>
@@ -552,9 +548,8 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						</field>
 					</row>
 				</fieldset>
-				<fieldset>
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(cancelados) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">cancelados</title>
-					<show global="id" eval="true">execute_query("SELECT CASE WHEN cancelados='' THEN '0' ELSE '1' END hasdata FROM tbl_actas WHERE id=".abs($id)) || ($id>=0)?"true":"false"</show>
 					<row>
 						<field>
 							<name>cancelados</name>
@@ -566,8 +561,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_cancelados</name>
 							<label lang="true">textos</label>
@@ -584,9 +578,8 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						</field>
 					</row>
 				</fieldset>
-				<fieldset>
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(pendientes) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">pendientes</title>
-					<show global="id" eval="true">execute_query("SELECT CASE WHEN pendientes='' THEN '0' ELSE '1' END hasdata FROM tbl_actas WHERE id=".abs($id)) || ($id>=0)?"true":"false"</show>
 					<row>
 						<field>
 							<name>pendientes</name>
@@ -598,8 +591,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_pendientes</name>
 							<label lang="true">textos</label>
@@ -616,9 +608,8 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						</field>
 					</row>
 				</fieldset>
-				<fieldset>
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(comentarios) hasdata FROM tbl_actas WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">comentarios</title>
-					<show global="id" eval="true">execute_query("SELECT CASE WHEN comentarios='' THEN '0' ELSE '1' END hasdata FROM tbl_actas WHERE id=".abs($id)) || ($id>=0)?"true":"false"</show>
 					<row>
 						<field>
 							<name>comentarios</name>
@@ -630,8 +621,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_comentarios</name>
 							<label lang="true">textos</label>

@@ -35,7 +35,7 @@
 		// column widths, but will take slightly longer
 		accuracy : false,
 		// don't automatically layout columns, only use manual columnbreak
-		manualbreaks : false
+		manualBreaks : false
 	};
 	var options = $.extend(defaults, options);
 	
@@ -52,7 +52,7 @@
 		var $cache = $('<div></div>'); // this is where we'll put the real content
 		var lastWidth = 0;
 		var columnizing = false;
-		var manualbreaks = options.manualbreaks;
+		var manualBreaks = options.manualBreaks;
 		
 		var adjustment = 0;
 		
@@ -120,7 +120,7 @@
 			//
 			// add as many nodes to the column as we can,
 			// but stop once our height is too tall
-			while((manualbreaks || $parentColumn.height() < targetHeight) &&
+			while((manualBreaks || $parentColumn.height() < targetHeight) &&
 				  $pullOutHere[0].childNodes.length){
 				var node = $pullOutHere[0].childNodes[0]
 				//
@@ -185,7 +185,7 @@
 				}
 			}
 			
-			if($pullOutHere.children().length){
+			if($pullOutHere.contents().length){
 				$pullOutHere.prepend($item);
 			}else{
 				$pullOutHere.append($item);
@@ -227,7 +227,7 @@
 					// the column and exit
 					$putInHere.append($clone);
 					$cloneMe.remove();
-				}else if (manualbreaks){
+				}else if (manualBreaks){
 					// keep adding until we hit a manual break
 					$putInHere.append($clone);
 					$cloneMe.remove();
@@ -329,12 +329,28 @@
 			
 		}
 		
+		/**
+		 * returns true if the input dom node
+		 * should not end a column.
+		 * returns false otherwise
+		 */
 		function checkDontEndColumn(dom){
+			if(dom.nodeType == 3){
+				// text node. ensure that the text
+				// is not 100% whitespace
+				if(/^\s+$/.test(dom.nodeValue)){
+					return true;
+				}
+				return false;
+			}
 			if(dom.nodeType != 1) return false;
 			if($(dom).hasClass("dontend")) return true;
 			if(dom.childNodes.length == 0) return false;
 			return checkDontEndColumn(dom.childNodes[dom.childNodes.length-1]);
 		}
+		
+		
+		
 		function columnizeIt() {
 			//reset adjustment var
 			adjustment = 0;
@@ -342,10 +358,14 @@
 			lastWidth = $inBox.width();
 			
 			var numCols = Math.round($inBox.width() / options.width);
+			var optionWidth = options.width;
+			var optionHeight = options.height;
 			if(options.columns) numCols = options.columns;
-			if(manualbreaks){
+			if(manualBreaks){
 				numCols = $cache.find(".columnbreak").length + 1;
+				optionWidth = false;
 			}
+			
 //			if ($inBox.data("columnized") && numCols == $inBox.children().length) {
 //				return;
 //			}
@@ -370,9 +390,9 @@
 			if(options.overflow){
 				maxLoops = 1;
 				targetHeight = options.overflow.height;
-			}else if(options.height && options.width){
+			}else if(optionHeight && optionWidth){
 				maxLoops = 1;
-				targetHeight = options.height;
+				targetHeight = optionHeight;
 				scrollHorizontally = true;
 			}
 			
@@ -439,6 +459,16 @@
 						// to fix, lets put 1 item from destroyable into the empty column
 						// before we iterate
 						$col.append($destroyable.contents(":first"));
+					}else if(i == numCols - (options.overflow ? 0 : 1) && !options.overflow){
+						//
+						// ok, we're about to exit the while loop because we're done with all
+						// columns except the last column.
+						//
+						// if $destroyable still has columnbreak nodes in it, then we need to keep
+						// looping and creating more columns.
+						if($destroyable.find(".columnbreak").length){
+							numCols ++;
+						}
 					}
 					
 				}
@@ -522,7 +552,7 @@
 					// it's scrolling horizontally, fix the width/classes of the columns
 					$inBox.children().each(function(i){
 						$col = $inBox.children().eq(i);
-						$col.width(options.width + "px");
+						$col.width(optionWidth + "px");
 						if(i==0){
 							$col.addClass("first");
 						}else if(i==$inBox.children().length-1){
@@ -532,7 +562,7 @@
 							$col.removeClass("last");
 						}
 					});
-					$inBox.width($inBox.children().length * options.width + "px");
+					$inBox.width($inBox.children().length * optionWidth + "px");
 				}
 				$inBox.append($("<br style='clear:both;'>"));
 			}

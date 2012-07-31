@@ -66,12 +66,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>label</type>
 				<class>tbody</class>
 			</field>
-			<field>
+			<field global="id" ifeval="$id>=0">
 				<type>checkbox</type>
 				<label lang="true">commentdel</label>
 				<name>comentario_del</name>
 				<value>1</value>
-				<show global="id" eval="true">$id>=0?"true":"false"</show>
 				<width>1px</width>
 				<width2>1px</width2>
 				<icon>delete</icon>

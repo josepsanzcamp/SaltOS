@@ -527,10 +527,8 @@ function eval_attr($array) {
 						$old_value=$value;
 						$value=array();
 						for($$for_var=$for_from;$$for_var<=$for_to;$$for_var=$$for_var+$for_step) {
-							$temp_value=array("inline"=>array("value"=>$old_value,"#attr"=>$attr));
-							$temp_value=eval_attr($temp_value);
-							$temp_value=$temp_value["inline"];
-							$value[]=$temp_value;
+							$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
+							if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 						}
 						unset($for_var);
 						unset($for_from);
@@ -544,10 +542,8 @@ function eval_attr($array) {
 						$old_value=$value;
 						$value=array();
 						foreach($foreach_rows as $$foreach_as) {
-							$temp_value=array("inline"=>array("value"=>$old_value,"#attr"=>$attr));
-							$temp_value=eval_attr($temp_value);
-							$temp_value=$temp_value["inline"];
-							$value[]=$temp_value;
+							$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
+							if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 						}
 						unset($foreach_rows);
 						unset($foreach_as);

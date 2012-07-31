@@ -125,10 +125,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('fecha1'=>'','fecha2'=>'','id_cliente'=>'','id_estado'=>'','comentarios'=>'','id_posiblecli'=>'','id_campanya'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("fecha1"=>"","fecha2"=>"","id_cliente"=>"","id_estado"=>"","comentarios"=>"","id_posiblecli"=>"","id_campanya"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
@@ -732,9 +731,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 			</resumen>
 			<detalle>
-				<fieldset>
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(objetivos) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">objetivos</title>
-					<show global="id" eval="true">execute_query("SELECT CASE WHEN objetivos='' THEN '0' ELSE '1' END hasdata FROM tbl_presupuestos WHERE id=".abs($id)) || ($id>=0)?"true":"false"</show>
 					<row>
 						<field>
 							<name>id</name>
@@ -750,8 +748,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_objetivos</name>
 							<label lang="true">textos</label>
@@ -768,9 +765,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset>
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(funcional) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">funcional</title>
-					<show global="id" eval="true">execute_query("SELECT CASE WHEN funcional='' THEN '0' ELSE '1' END hasdata FROM tbl_presupuestos WHERE id=".abs($id)) || ($id>=0)?"true":"false"</show>
 					<row>
 						<field>
 							<name>funcional</name>
@@ -782,8 +778,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_funcional</name>
 							<label lang="true">textos</label>
@@ -800,9 +795,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset>
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(tecnica) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">tecnica</title>
-					<show global="id" eval="true">execute_query("SELECT CASE WHEN tecnica='' THEN '0' ELSE '1' END hasdata FROM tbl_presupuestos WHERE id=".abs($id)) || ($id>=0)?"true":"false"</show>
 					<row>
 						<field>
 							<name>tecnica</name>
@@ -814,8 +808,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_tecnica</name>
 							<label lang="true">textos</label>
@@ -832,9 +825,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset>
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(extras) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">extras</title>
-					<show global="id" eval="true">execute_query("SELECT CASE WHEN extras='' THEN '0' ELSE '1' END hasdata FROM tbl_presupuestos WHERE id=".abs($id)) || ($id>=0)?"true":"false"</show>
 					<row>
 						<field>
 							<name>extras</name>
@@ -846,8 +838,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_extras</name>
 							<label lang="true">textos</label>
@@ -949,11 +940,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">total</label>
 							<class>center bold thead</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</head>
 					<row>
@@ -1004,12 +994,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly>true</readonly>
 							<class>tbody</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<onchange>update_totales_proyecto()</onchange>
 							<width>1px</width>
 							<width2>1px</width2>
@@ -1185,11 +1174,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">total</label>
 							<class>center bold thead</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</head>
 					<row>
@@ -1242,12 +1230,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<onchange>update_totales_proyecto()</onchange>
 							<width>1px</width>
 							<width2>1px</width2>
@@ -1353,9 +1340,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 			</productos_new>
 			<condiciones>
-				<fieldset>
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(condiciones) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">condiciones</title>
-					<show global="id" eval="true">execute_query("SELECT CASE WHEN condiciones='' THEN '0' ELSE '1' END hasdata FROM tbl_presupuestos WHERE id=".abs($id)) || ($id>=0)?"true":"false"</show>
 					<row>
 						<field>
 							<name>id</name>
@@ -1371,8 +1357,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row>
-						<show global="id" eval="true">$id>=0?"true":"false"</show>
+					<row global="id" ifeval="$id>=0">
 						<field ifnoteval="is_mobile()">
 							<name>textos_condiciones</name>
 							<label lang="true">textos</label>
@@ -1403,11 +1388,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field" before="true">
-			<field>
+			<field global="id" ifnoteval="$id>=0">
 				<type>button</type>
 				<value eval="true">LANG("crearproyecto")</value>
 				<onclick>migrar()</onclick>
-				<show global="id" eval="true">$id>=0?"false":"true"</show>
 				<disabled eval="true">check_user("proyectos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>

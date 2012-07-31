@@ -25,8 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<documentos>
-		<fieldset>
-			<show eval="true">check_user("documentos","menu")?"true":"false"</show>
+		<fieldset ifeval="check_user('documentos','menu')">
 			<width>700px</width>
 			<title lang="true">documentdata</title>
 			<head>

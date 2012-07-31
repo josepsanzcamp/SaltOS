@@ -111,10 +111,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field>
+				<field ifeval="check_filter(array('id_pagador'=>'','liquidado'=>'','id_formapago'=>'','fecha1'=>'', 'fecha2'=>'','trimestre'=>'', 'id_cliente'=>'','fecha1reg'=>'','fecha2reg'=>'','trimestrereg'=>'','id_proyecto'=>'','fecha1liq'=>'','fecha2liq'=>'','trimestreliq'=>'', 'id_proveedor'=>'','filtro'=>'','id_cuenta'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
-					<show eval="true">check_filter(array("id_pagador"=>"","liquidado"=>"","id_formapago"=>"","fecha1"=>"", "fecha2"=>"","trimestre"=>"", "id_cliente"=>"","fecha1reg"=>"","fecha2reg"=>"","trimestrereg"=>"","id_proyecto"=>"","fecha1liq"=>"","fecha2liq"=>"","trimestreliq"=>"", "id_proveedor"=>"","filtro"=>"","id_cuenta"=>""))?"true":"false"</show>
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
@@ -575,17 +574,15 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 					</row>
 					<row>
-						<field>
+						<field global="id" ifnoteval="$id>=0">
 							<type>separator</type>
-							<show global="id" eval="true">$id>=0?"false":"true"</show>
 							<colspan>5</colspan>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>buscador</name>
 							<label lang="true">buscador</label>
 							<type>text</type>
 							<width>240px</width>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<colspan>4</colspan>
 							<onchange>search_proveedor()</onchange>
 							<speech>true</speech>
@@ -807,11 +804,10 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">fechapagado</label>
 							<class>center bold thead</class>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<type>separator</type>
 							<colspan>100</colspan>
 							<class>thead</class>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 						</field>
 					</head>
 					<row>
@@ -866,12 +862,11 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<class>tbody</class>
 							<icon>calendar</icon>
 						</field>
-						<field>
+						<field global="id" ifeval="$id>=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
 							<value>1</value>
-							<show global="id" eval="true">$id>=0?"true":"false"</show>
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_vencimientos(this)</onchange>
@@ -976,12 +971,11 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field" before="true">
-			<field>
+			<field global="id" ifeval="$id==0">
 				<type>button</type>
 				<value eval="true">LANG("add","proveedores")</value>
 				<tip eval="true">LANG("add","proveedores")</tip>
 				<onclick>setParam("page","proveedores");setParam("action","form");submit1()</onclick>
-				<show global="id" eval="true">$id==0?"true":"false"</show>
 				<disabled eval="true">check_user("proveedores","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>

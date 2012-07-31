@@ -25,8 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<proyectosclose>
-		<fieldset>
-			<show eval="true">check_user("proyectos","menu")?"true":"false"</show>
+		<fieldset ifeval="check_user('proyectos','menu')">
 			<width>700px</width>
 			<title lang="true">projectclose</title>
 			<head>
