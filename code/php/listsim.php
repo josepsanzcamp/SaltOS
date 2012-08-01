@@ -90,6 +90,7 @@ function list_simulator($newpage,$ids="string") {
 	}
 	// CONVERT THE ARRAY ORDER TO STRING
 	foreach($array_order as $key=>$val) $array_order[$key]=implode(" ",$val);
+	if(!count(array_intersect($array_order,array("id asc","id desc")))) $array_order[]="id desc";
 	$order=implode(",",$array_order);
 	// DETECT DB ENGINE
 	$dbtype=get_db_type(getDefault("db/type"));
@@ -103,22 +104,13 @@ function list_simulator($newpage,$ids="string") {
 			}
 			if(!in_array("action_id",$fields)) array_push($fields,"action_id");
 			$fields=implode(",",$fields);
-			// CREATE THE TEMPORARY TABLES (HELPERS)
-			$tbl_hash1="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0)";
-			db_query($query);
-			$tbl_hash2="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash2 AS SELECT action_id FROM $tbl_hash1 ORDER BY $order";
-			db_query($query);
-			// OPTIMIZED QUERY
-			$query="SELECT GROUP_CONCAT(action_id /*MYSQL SEPARATOR ',' *//*SQLITE ,',' */) FROM $tbl_hash2";
+			// CONTINUE
+			$query="SELECT action_id FROM (SELECT $fields FROM ($query0)) ORDER BY $order";
 			$result=execute_query($query);
-			// CONTINUE WITH NORMAL OPERATION
-			if(!$result) $result="0";
-			if($ids=="array") $result=explode(",",$result);
+			if(!$result) $result=array();
+			if(!is_array($result)) $result=array($result);
+			if($ids=="string") $result=count($result)?implode(",",$result):"0";
 		} else {
-			if(is_array($ids)) $ids=implode(",",$ids);
-			if($ids=="") $ids="0";
 			// LIST OF TEMPORARY FIELDS TO RETRIEVE
 			$fields=explode(",",$order);
 			foreach($fields as $key=>$val) {
@@ -127,17 +119,11 @@ function list_simulator($newpage,$ids="string") {
 			}
 			if(!in_array("action_title",$fields)) array_push($fields,"action_title");
 			$fields=implode(",",$fields);
-			// CREATE THE TEMPORARY TABLES (HELPERS)
-			$tbl_hash1="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0) WHERE action_id IN ($ids)";
-			db_query($query);
-			$tbl_hash2="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash2 AS SELECT action_title FROM $tbl_hash1 ORDER BY $order";
-			db_query($query);
-			// OPTIMIZED QUERY
-			$query="SELECT action_title FROM $tbl_hash2";
+			// CONTINUE
+			if(is_array($ids)) $ids=implode(",",$ids);
+			if($ids=="") $ids="0";
+			$query="SELECT action_title FROM (SELECT $fields FROM ($query0) WHERE action_id IN ($ids)) ORDER BY $order";
 			$result=execute_query($query);
-			// CONTINUE WITH NORMAL OPERATION
 			if(!$result) $result=array();
 			if(!is_array($result)) $result=array($result);
 		}
@@ -145,26 +131,32 @@ function list_simulator($newpage,$ids="string") {
 		static $tbl_hash1=null;
 		// CHECK IF tbl_hash1 EXISTS
 		if(is_null($tbl_hash1)) {
+			// LIST OF TEMPORARY FIELDS TO RETRIEVE
+			$fields=explode(",",$order);
+			foreach($fields as $key=>$val) {
+				$val=explode(" ",$val);
+				$fields[$key]=$val[0];
+			}
+			if(!in_array("action_id",$fields)) array_push($fields,"action_id");
+			if(!in_array("action_title",$fields)) array_push($fields,"action_title");
+			$fields=implode(",",$fields);
 			// CREATE THE TEMPORARY TABLES (HELPERS)
 			$tbl_hash1="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS $query0";
+			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0) $tbl_hash1";
 			db_query($query);
 		}
 		// CONTINUE
 		if($ids=="string" || $ids=="array") {
-			// OPTIMIZED QUERY
-			$query="SELECT GROUP_CONCAT(action_id /*MYSQL SEPARATOR ',' *//*SQLITE ,',' */) FROM $tbl_hash1 ORDER BY $order";
+			$query="SELECT action_id FROM $tbl_hash1 ORDER BY $order";
 			$result=execute_query($query);
-			// CONTINUE WITH NORMAL OPERATION
-			if(!$result) $result="0";
-			if($ids=="array") $result=explode(",",$result);
+			if(!$result) $result=array();
+			if(!is_array($result)) $result=array($result);
+			if($ids=="string") $result=count($result)?implode(",",$result):"0";
 		} else {
 			if(is_array($ids)) $ids=implode(",",$ids);
 			if($ids=="") $ids="0";
-			// OPTIMIZED QUERY
 			$query="SELECT action_title FROM $tbl_hash1 WHERE action_id IN ($ids) ORDER BY $order";
 			$result=execute_query($query);
-			// CONTINUE WITH NORMAL OPERATION
 			if(!$result) $result=array();
 			if(!is_array($result)) $result=array($result);
 		}

@@ -112,7 +112,7 @@ if($page=="correo") {
 	javascript_history(-1);
 	die();
 }
-if(in_array($page,array("profile","empleados"))) {
+if(in_array($page,array("profile","usuarios"))) {
 	global $correo_new;
 	$temp_key="correo_new_0_email_signature_new";
 	if($correo_new && !getParam($temp_key)) {

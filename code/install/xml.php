@@ -50,15 +50,15 @@ define("__RED__","<span style='color:#770000'><b>");
 define("__COLOR__","</b></span>");
 define("__YES__",__GREEN__.LANG("yes").__COLOR__);
 define("__NO__",__RED__.LANG("no").__COLOR__);
-define("__DIV1__","class='ui-widget-header ui-corner-tl ui-corner-tr' style='margin:0px auto 0px auto;padding:3px 5px'");
-define("__DIV2__","class='ui-widget-content ui-corner-bl ui-corner-br' style='margin:0px auto 2px auto;padding:3px 5px'");
-define("__DIV3__","style='margin:10px auto 10px auto;padding:3px 0px;text-align:right'");
+define("__DIV1__","class='ui-widget-header ui-corner-tl ui-corner-tr' style='margin:0px auto;padding:5px'");
+define("__DIV2__","class='ui-widget-content ui-corner-bl ui-corner-br' style='margin:0px auto 2px auto;padding:5px'");
+define("__DIV3__","style='margin:10px auto;padding:0px;text-align:right'");
 define("__BR__","<br/>");
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<link xmlns="" href="img/favicon.ico" rel="shortcut icon">
-		<title><?php echo LANG("title"); ?></title>
+		<title><?php echo LANG("title")." - ".get_name_version_revision(); ?></title>
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="lib/jquery/jquery-1.7.2.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>

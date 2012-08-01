@@ -230,6 +230,7 @@ if(!defined("__DEFAULT_PHP__")) {
 						$temp=__eval_array(__eval_explode(",",$val,6),$row);
 						if(isset($temp[5])) $pdf->StartTransform();
 						if(isset($temp[5])) $pdf->Rotate($temp[5],$temp[0],$temp[1]);
+						if(!file_exists($temp[4])) $temp[4]=get_directory("dirs/filesdir").getDefault("configs/logo_file","img/deflogo.png");
 						$pdf->Image($temp[4],$temp[0],$temp[1],$temp[2],$temp[3]);
 						if(isset($temp[5])) $pdf->StopTransform();
 						break;
@@ -531,6 +532,7 @@ switch($action) {
 		}
 		// CONVERT THE ARRAY ORDER TO STRING
 		foreach($array_order as $key=>$val) $array_order[$key]=implode(" ",$val);
+		if(!count(array_intersect($array_order,array("id asc","id desc")))) $array_order[]="id desc";
 		$order=implode(",",$array_order);
 		// DETECT DB ENGINE
 		$dbtype=get_db_type(getDefault("db/type"));

@@ -66,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<onclick global="temp" eval="true">"opencontent('xml.php?page=$temp')"</onclick>
 			<icon global="temp" eval="true">$temp</icon>
 			<tip global="temp,row" eval="true">$temp?LANG("desc_$temp")." [".strtoupper($row["button"])."]":""</tip>
-			<class global="temp,count_correo,count_agenda,count_feeds,var_i" eval="true">"nowrap".($temp=="correo"?" correo number":"").($temp=="agenda"?" agenda number":"").($temp=="feeds"?" feeds number":"").(" shortcut_f$var_i")</class>
+			<class global="temp,count_correo,count_agenda,count_feeds,row" eval="true">"nowrap".($temp=="correo"?" correo number":"").($temp=="agenda"?" agenda number":"").($temp=="feeds"?" feeds number":"").(" shortcut_".$row["button"])</class>
 		</option>
 	</header>
 	<group>

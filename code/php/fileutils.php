@@ -518,7 +518,10 @@ function url_get_contents($url,$type="GET") {
 	$array=parse_url($url);
 	$scheme=$array["scheme"];
 	$ports=array("http"=>80,"https"=>443);
-	if(!isset($ports[$scheme])) show_php_error(array("phperror"=>"Unknown schema '$schema'"));
+	if(!isset($ports[$scheme])) {
+		show_php_error(array("phperror"=>"Unknown schema '$schema'"));
+		return false;
+	}
 	$port=isset($array["port"])?$array["port"]:$ports[$scheme];
 	$host=$array["host"];
 	$host1=($scheme=="https"?"ssl://":"").$host;
@@ -526,10 +529,16 @@ function url_get_contents($url,$type="GET") {
 	$path=isset($array["path"])?$array["path"]:"";
 	$query=isset($array["query"])?$array["query"]:"";
 	$type=strtoupper($type);
-	if(!in_array($type,array("GET","POST"))) show_php_error(array("phperror"=>"Unknown type '$type'"));
+	if(!in_array($type,array("GET","POST"))) {
+		show_php_error(array("phperror"=>"Unknown type '$type'"));
+		return false;
+	}
 	// OPEN THE SOCKET
 	$fp=fsockopen($host1,$port);
-	if(!$fp) show_php_error(array("phperror"=>"Could not open the socket"));
+	if(!$fp) {
+		show_php_error(array("phperror"=>"Could not open the socket"));
+		return false;
+	}
 	// SEND REQUEST
 	if($type=="GET" && $query!="") fputs($fp,"$type $path?$query HTTP/1.1\r\n");
 	if($type=="GET" && $query=="") fputs($fp,"$type $path HTTP/1.1\r\n");

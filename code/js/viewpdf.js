@@ -144,7 +144,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 	var CustomStyle = (function CustomStyleClosure() {
 
 		// As noted on: http://www.zachstronaut.com/posts/2009/02/17/
-		//							animate-css-transforms-firefox-webkit.html
+		//              animate-css-transforms-firefox-webkit.html
 		// in some versions of IE9 it is critical that ms appear in this list
 		// before Moz
 		var prefixes = ['ms', 'Moz', 'Webkit', 'O'];
@@ -208,6 +208,9 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 			var renderInterval = 0;
 			var resumeInterval = 500; // in ms
 
+			var canvas = document.createElement('canvas');
+			var ctx = canvas.getContext('2d');
+
 			// Render the text layer, one div at a time
 			function renderTextLayer() {
 				if (textDivs.length === 0) {
@@ -221,9 +224,12 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 
 					if (textDiv.dataset.textLength > 1) { // avoid div by zero
 						// Adjust div width to match canvas text
-						// Due to the .offsetWidth calls, this is slow
-						// This needs to come after appending to the DOM
-						var textScale = textDiv.dataset.canvasWidth / textDiv.offsetWidth;
+
+						ctx.font = textDiv.style.fontSize + ' sans-serif';
+						var width = ctx.measureText(textDiv.textContent).width;
+
+						var textScale = textDiv.dataset.canvasWidth / width;
+
 						CustomStyle.setProp('transform' , textDiv,
 							'scale(' + textScale + ', 1)');
 						CustomStyle.setProp('transformOrigin' , textDiv, '0% 0%');
@@ -254,8 +260,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 			window.addEventListener('scroll', textLayerOnScroll, false);
 		}; // endLayout
 
-		this.appendText = function textLayerBuilderAppendText(text,
-																													fontName, fontSize) {
+		this.appendText = function textLayerBuilderAppendText(text, fontName, fontSize) {
 			var textDiv = document.createElement('div');
 
 			// vScale and hScale already contain the scaling to pixel units
