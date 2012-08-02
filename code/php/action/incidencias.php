@@ -58,7 +58,7 @@ if($page=="incidencias") {
 	// DATOS EMAIL
 	$from=CONFIG("email_name")." <".CONFIG("email_from").">";
 	$id_incidencia=intval(($action=="insert")?execute_query("SELECT MAX(id) FROM tbl_incidencias"):getParam("id"));
-	$query="SELECT y5.valor mailto,".make_extra_query("d.")." usuario
+	$query="SELECT y5.valor mailto,".make_extra_query_with_login("d.")." usuario
 			FROM tbl_incidencias_u a
 			LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id
 			LEFT JOIN tbl_direcciones x
@@ -98,7 +98,7 @@ if($page=="incidencias") {
 				CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b.nombre END cliente,
 				CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE c.nombre END proyecto,
 				d.nombre estado,
-				".make_extra_query("f.")." username,
+				".make_extra_query_with_login("f.")." username,
 				e.`datetime` `datetime`,
 				g.nombre prioridad
 			FROM tbl_incidencias a
@@ -121,7 +121,7 @@ if($page=="incidencias") {
 			$body.=__incidencias_packreport($campos,$tipos,$row2);
 			// DATOS COMENTARIOS
 			$query="SELECT comentarios,`datetime`,
-					".make_extra_query("b.")." username
+					".make_extra_query_with_login("b.")." username
 				FROM tbl_comentarios a
 				LEFT JOIN tbl_usuarios b ON a.id_usuario=b.id
 				WHERE a.id_aplicacion='$id_aplicacion' AND a.id_registro='$id_incidencia'";
@@ -135,7 +135,7 @@ if($page=="incidencias") {
 			db_free($result2);
 			// DATOS USUARIOS
 			$query="SELECT
-					GROUP_CONCAT(".make_extra_query("b.")." /*MYSQL SEPARATOR '; ' *//*SQLITE ,'; '*/) usersdata
+					GROUP_CONCAT(".make_extra_query_with_login("b.")." /*MYSQL SEPARATOR '; ' *//*SQLITE ,'; '*/) usersdata
 				FROM tbl_incidencias_u a
 				LEFT JOIN tbl_usuarios b ON a.id_usuario=b.id
 				WHERE id_incidencia='$id_incidencia'";

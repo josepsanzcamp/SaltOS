@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<update>
 				<title lang="true">formupdate</title>
 				<query>
-					<default eval="true">"SELECT '0' id,".make_extra_query()." nombre FROM tbl_usuarios WHERE id='".current_user()."'"</default>
+					<default eval="true">"SELECT '0' id,".make_extra_query_with_login()." nombre FROM tbl_usuarios WHERE id='".current_user()."'"</default>
 				</query>
 			</update>
 		</views>

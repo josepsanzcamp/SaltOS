@@ -279,7 +279,7 @@ if(getParam("action")=="sendmail") {
 			if($current!==true) {
 				if(stripos($error,"connection refused")!==false) {
 					$error=LANG("msgconnrefusedpop3email","correo");
-				} elseif(stripos($error2,"unable to connect to")!==false) {
+				} elseif(stripos($error,"unable to connect to")!==false) {
 					$error=LANG("msgconnerrorpop3email","correo");
 				} else {
 					$orig=array("\n","\r","'","\"");

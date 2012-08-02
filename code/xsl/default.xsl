@@ -1069,14 +1069,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:if>
 			<td class="left {class3}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width};height:{height}">
 				<img class="{class}" src="" title="{tip}" id="{$prefix}{name}">
-<!--
 					<xsl:choose>
 						<xsl:when test="class!=''"/>
 						<xsl:otherwise>
 							<xsl:attribute name="class">ui-state-default ui-corner-all image</xsl:attribute>
 						</xsl:otherwise>
 					</xsl:choose>
--->
 					<xsl:variable name="width" select="width"/>
 					<xsl:variable name="height" select="height"/>
 					<xsl:choose>
@@ -1125,14 +1123,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:if test="count(rows/row/y14)>0"><xsl:attribute name="data14"><xsl:for-each select="rows/row"><xsl:value-of select="y14"/>|</xsl:for-each></xsl:attribute></xsl:if>
 					<xsl:if test="count(rows/row/y15)>0"><xsl:attribute name="data15"><xsl:for-each select="rows/row"><xsl:value-of select="y15"/>|</xsl:for-each></xsl:attribute></xsl:if>
 					<xsl:if test="count(rows/row/y16)>0"><xsl:attribute name="data16"><xsl:for-each select="rows/row"><xsl:value-of select="y16"/>|</xsl:for-each></xsl:attribute></xsl:if>
-<!--
 					<xsl:choose>
 						<xsl:when test="class!=''"/>
 						<xsl:otherwise>
 							<xsl:attribute name="class">ui-state-default ui-corner-all image phplot</xsl:attribute>
 						</xsl:otherwise>
 					</xsl:choose>
--->
 				</img>
 			</td>
 		</xsl:when>

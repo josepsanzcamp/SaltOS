@@ -231,7 +231,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>button</type>
 							<icon>delete</icon>
 							<tip lang="true">delete</tip>
-							<onclick>$("select",this.parentNode.parentNode).val("")</onclick>
+							<onclick>$(this).parent().parent().find("select").val("")</onclick>
 							<class>nowrap</class>
 						</field>
 					</row>

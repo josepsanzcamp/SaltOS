@@ -544,7 +544,7 @@ if(getParam("page")=="correo") {
 	if(isset($id_extra[1]) && isset($id_extra[2]) && $id_extra[1]=="forward") $id_correo=$id_extra[2];
 	if($id_correo) {
 		// BUSCAR USUARIO DEL CORREO
-		$query="SELECT ".make_extra_query()." FROM tbl_usuarios WHERE id=(SELECT id_usuario FROM tbl_registros WHERE id_registro='${id_correo}' AND id_aplicacion='".page2id("correo")."' AND primero='1')";
+		$query="SELECT ".make_extra_query_with_login()." FROM tbl_usuarios WHERE id=(SELECT id_usuario FROM tbl_registros WHERE id_registro='${id_correo}' AND id_aplicacion='".page2id("correo")."' AND primero='1')";
 		$usuario=execute_query($query);
 		// BUSCAR GRUPO DEL CORREO
 		$query="SELECT nombre FROM tbl_grupos WHERE id=(SELECT id_grupo FROM tbl_usuarios WHERE id=(SELECT id_usuario FROM tbl_registros WHERE id_registro='${id_correo}' AND id_aplicacion='".page2id("correo")."' AND primero='1'))";
@@ -578,7 +578,7 @@ if(getParam("page")=="correo") {
 		sess_init();
 		$session=$_SESSION["correo"];
 		sess_close();
-		$query="SELECT ".make_extra_query()." FROM tbl_usuarios WHERE id='".current_user()."'";
+		$query="SELECT ".make_extra_query_with_login()." FROM tbl_usuarios WHERE id='".current_user()."'";
 		$usuario=execute_query($query);
 		$query="SELECT nombre FROM tbl_grupos WHERE id=(SELECT id_grupo FROM tbl_usuarios WHERE id='".current_user()."')";
 		$grupo=execute_query($query);

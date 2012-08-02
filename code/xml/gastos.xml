@@ -180,7 +180,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">pagadopor</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query(),"id_aplicacion,id_registro"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("mostrartodos")."' label,-1 pos UNION SELECT '0' `value`,'".LANG_ESCAPE("sinusuario")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("mostrartodos")."' label,-1 pos UNION SELECT '0' `value`,'".LANG_ESCAPE("sinusuario")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 						<value global="id_pagador" eval="true">$id_pagador=getParam("id_pagador")</value>
 						<colspan>4</colspan>
 					</field>
@@ -431,14 +431,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		FROM (
 			SELECT a.*,
 				/*MYSQL CONCAT('link:gastos(',-a.id,'):',LPAD(a.id,5,0)) *//*SQLITE 'link:gastos(' || -a.id || '):' || SUBSTR('00000' || a.id,-5,5)*/ id2,
-				CASE a.id_pagador WHEN '0' THEN '".LANG_ESCAPE("sinpagador")."' ELSE ".make_extra_query("b.")." END pagador,
+				CASE a.id_pagador WHEN '0' THEN '".LANG_ESCAPE("sinpagador")."' ELSE ".make_extra_query_with_login("b.")." END pagador,
 				CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE
 					/*MYSQL CONCAT('link:proveedores(',-a.id_proveedor,'):',c.nombre) *//*SQLITE 'link:proveedores(' || -a.id_proveedor || '):' || c.nombre */ END empresa,
 				CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE c.nombre END empresa2,
 				c.cif cif,
 				CASE id_formapago WHEN '0' THEN '".LANG_ESCAPE("sinformapago")."' ELSE d.nombre END formapago,
 				f.id_usuario id_usuario,g.id_grupo id_grupo,f.`datetime` `datetime`,
-				".make_extra_query("g.")." usuario,
+				".make_extra_query_with_login("g.")." usuario,
 				CASE a.id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE j.nombre END cuenta
 			FROM tbl_gastos a
 				LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id
@@ -734,7 +734,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">pagadopor</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query(),"id_aplicacion,id_registro"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinusuario")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinusuario")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>4</colspan>
 							<required>true</required>
@@ -1024,6 +1024,6 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>
 	<excel>
-		<query require="php/listsim.php" global="page" eval="true">"SELECT /*MYSQL CONCAT('\'',LPAD(id,5,0))*//*SQLITE '\'' || SUBSTR('00000' || id,-5,5) */ '".LANG_ESCAPE("codigo")."',usuario '".LANG_ESCAPE("username")."',`datetime` '".LANG_ESCAPE("datetime")."',CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT /*MYSQL CONCAT('(',codigo,') ',nombre)*//*SQLITE '(' || codigo || ')' || nombre */ FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',cif '".LANG_ESCAPE("cif")."',/*MYSQL CONCAT('\'',num)*//*SQLITE '\'' || num */ '".LANG_ESCAPE("numfac")."',fecha '".LANG_ESCAPE("date")."',CASE id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE empresa END '".LANG_ESCAPE("empresa")."',descripcion '".LANG_ESCAPE("descripcion")."',base '".LANG_ESCAPE("base")."',iva '".CONFIG("accounting_iva_name")." (%)',ROUND(base*iva/100,2) '".CONFIG("accounting_iva_name")."',irpf '".CONFIG("accounting_irpf_name")." (%)',ROUND(base*irpf/100,2) '".CONFIG("accounting_irpf_name")."',total '".LANG_ESCAPE("total")."' FROM (SELECT CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE b.nombre END empresa2,a.id action_id,a.*,b.nombre empresa,b.cif cif,f.`datetime` `datetime`,".make_extra_query("g.")." usuario FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id AND f.primero='1' LEFT JOIN tbl_usuarios g ON f.id_usuario=g.id) c WHERE id IN (".list_simulator($page).")"</query>
+		<query require="php/listsim.php" global="page" eval="true">"SELECT /*MYSQL CONCAT('\'',LPAD(id,5,0))*//*SQLITE '\'' || SUBSTR('00000' || id,-5,5) */ '".LANG_ESCAPE("codigo")."',usuario '".LANG_ESCAPE("username")."',`datetime` '".LANG_ESCAPE("datetime")."',CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT /*MYSQL CONCAT('(',codigo,') ',nombre)*//*SQLITE '(' || codigo || ')' || nombre */ FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',cif '".LANG_ESCAPE("cif")."',/*MYSQL CONCAT('\'',num)*//*SQLITE '\'' || num */ '".LANG_ESCAPE("numfac")."',fecha '".LANG_ESCAPE("date")."',CASE id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE empresa END '".LANG_ESCAPE("empresa")."',descripcion '".LANG_ESCAPE("descripcion")."',base '".LANG_ESCAPE("base")."',iva '".CONFIG("accounting_iva_name")." (%)',ROUND(base*iva/100,2) '".CONFIG("accounting_iva_name")."',irpf '".CONFIG("accounting_irpf_name")." (%)',ROUND(base*irpf/100,2) '".CONFIG("accounting_irpf_name")."',total '".LANG_ESCAPE("total")."' FROM (SELECT CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE b.nombre END empresa2,a.id action_id,a.*,b.nombre empresa,b.cif cif,f.`datetime` `datetime`,".make_extra_query_with_login("g.")." usuario FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id AND f.primero='1' LEFT JOIN tbl_usuarios g ON f.id_usuario=g.id) c WHERE id IN (".list_simulator($page).")"</query>
 	</excel>
 </root>

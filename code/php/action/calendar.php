@@ -127,7 +127,7 @@ if(getParam("action")=="calendar") {
 				CASE a.id_estado WHEN '0' THEN '".LANG("sinestado")."' ELSE c.nombre END estado,
 				c.activo activo,
 				CASE f.id_usuario WHEN '".current_user()."' THEN 1 ELSE 0 END propietario,
-				".make_extra_query("d.")." usuario
+				".make_extra_query_with_login("d.")." usuario
 			FROM tbl_agenda a
 			LEFT JOIN tbl_estados c ON a.id_estado=c.id
 			LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.primero='1'

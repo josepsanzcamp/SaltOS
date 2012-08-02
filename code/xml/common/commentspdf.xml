@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query>"SELECT a.*,".make_extra_query("d.")." usuario FROM tbl_comentarios a LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id WHERE a.id_aplicacion='".$row["id_aplicacion"]."' AND a.id_registro='".$row["id"]."' ORDER BY a.`datetime` ASC"</query>
+	<query>"SELECT a.*,".make_extra_query_with_login("d.")." usuario FROM tbl_comentarios a LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id WHERE a.id_aplicacion='".$row["id_aplicacion"]."' AND a.id_registro='".$row["id"]."' ORDER BY a.`datetime` ASC"</query>
 	<foreach>
 		<eval>$row["__ROW_NUMBER__"]==1</eval>
 			<getxy>"x","y"</getxy>

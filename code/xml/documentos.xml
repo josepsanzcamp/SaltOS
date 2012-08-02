@@ -148,7 +148,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">username</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query(),"id_aplicacion,id_registro"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
 						<colspan>3</colspan>
 					</field>
@@ -217,7 +217,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<query global="page,id_cliente,id_usuario,fecha1,fecha2,comentarios,id_proyecto" eval="true">"SELECT * FROM (
 	SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
-		".make_extra_query("d.")." usuario,
+		".make_extra_query_with_login("d.")." usuario,
 		e.`datetime` `datetime`,
 		CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
 			/*MYSQL CONCAT('link:clientes(',-a.id_cliente,'):',b_nombre) *//*SQLITE 'link:clientes(' || -a.id_cliente || '):' || b_nombre */ END cliente,

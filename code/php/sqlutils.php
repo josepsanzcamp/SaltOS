@@ -366,6 +366,11 @@ function make_like_query($keys,$values) {
 	return $query;
 }
 
+function make_extra_query_with_login($prefix="") {
+	$query=make_extra_query($prefix);
+	return "/*MYSQL CONCAT($query,' (',${prefix}login,')') *//*SQLITE $query || ' (' || ${prefix}login || ')' */";
+}
+
 function make_extra_query($prefix="") {
 	static $stack=array();
 	$hash=md5($prefix);

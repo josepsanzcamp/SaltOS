@@ -303,7 +303,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<query global="page,id_cliente,id_estado,fecha1,fecha2,comentarios,id_posiblecli,id_campanya" eval="true">"SELECT * FROM (
 			SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
-				".make_extra_query("d.")." usuario,
+				".make_extra_query_with_login("d.")." usuario,
 				e.`datetime` `datetime`,
 				CASE
 					WHEN a.id_cliente!='0' THEN  /*MYSQL CONCAT('link:clientes(',-a.id_cliente,'):',b1.nombre) *//*SQLITE 'link:clientes(' || -a.id_cliente || '):' || b1.nombre */
@@ -1455,7 +1455,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<margins>50,30,30,30</margins>
 		<query>"SELECT * FROM (
 			SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,
-				".make_extra_query("d.")." usuario,
+				".make_extra_query_with_login("d.")." usuario,
 				e.`datetime` `datetime`,
 				CASE
 					WHEN a.id_cliente!='0' THEN b1.nombre

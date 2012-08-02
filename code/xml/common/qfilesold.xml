@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<files_old global="page,id" eval="true">"SELECT a.*,
-".make_extra_query("d.")." usuario,
+".make_extra_query_with_login("d.")." usuario,
 c.nombre grupo,
 a.`datetime`,
 /*MYSQL CONCAT('download2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') *//*SQLITE 'download2(\'$page\',\'".abs($id)."\',\'' || a.id || '\')' */ download,

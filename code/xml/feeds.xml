@@ -267,7 +267,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">username</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query(),"id_aplicacion,id_registro"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
 						<onchange>update_feeds()</onchange>
 						<colspan>3</colspan>
@@ -368,7 +368,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				/*SQLITE 'link:openwin(\'' || link || '\'):' || title */
 			FROM tbl_usuarios_f WHERE id=a.id_feed) feed,
 			id_feed,
-			".make_extra_query("d.")." usuario,
+			".make_extra_query_with_login("d.")." usuario,
 			/*MYSQL CONCAT('link:feeds(',-a.id,'):',CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END) *//*SQLITE 'link:feeds(' || -a.id || '):' || CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END */ title,
 			pubdate,description,link,state_new,state_wait,
 			a.id action_id,

@@ -24,5 +24,5 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<comments_old global="page,id" eval="true">"SELECT a.*,".make_extra_query("d.")." usuario,c.nombre grupo,a.`datetime` FROM tbl_comentarios a LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id LEFT JOIN tbl_grupos c ON d.id_grupo=c.id WHERE a.id_aplicacion='".page2id($page)."' AND a.id_registro='".abs($id)."' ORDER BY a.id ASC"</comments_old>
+	<comments_old global="page,id" eval="true">"SELECT a.*,".make_extra_query_with_login("d.")." usuario,c.nombre grupo,a.`datetime` FROM tbl_comentarios a LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id LEFT JOIN tbl_grupos c ON d.id_grupo=c.id WHERE a.id_aplicacion='".page2id($page)."' AND a.id_registro='".abs($id)."' ORDER BY a.id ASC"</comments_old>
 </root>

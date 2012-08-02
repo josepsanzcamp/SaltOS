@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fields>
 			<default>
 				<temp global="directory" eval="true">$directory="files/"</temp>
-				<temp global="directory,files" eval="true">dummy($files=array_merge(glob($directory."error*.log"),glob($directory."saltos*.log")))</temp>
+				<temp global="directory,files" eval="true">dummy($files=glob($directory."error*.log"))</temp>
 				<temp global="files" eval="true">dummy($files=(is_array($files) &amp;&amp; count($files)>0)?$files:array())</temp>
 				<temp global="directory,files" eval="true">dummy($files=str_replace($directory,"",$files))</temp>
 				<fieldset global="files,row" foreach="files" as="row">

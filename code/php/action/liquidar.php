@@ -111,7 +111,7 @@ if($page=="partes") {
 			$query2="SELECT id,usuario,cliente,tarea,comentarios,fecha,horas,precio,total,
 						(SELECT nombre FROM tbl_proyectos WHERE id=id_proyecto) proyecto
 				FROM (SELECT a.*,
-					".make_extra_query("b.")." usuario,
+					".make_extra_query_with_login("b.")." usuario,
 					c.nombre cliente,e.`datetime`,e.id_usuario id_usuario,b.id_grupo id_grupo
 					FROM tbl_partes a
 					LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id AND e.primero='1'
