@@ -241,7 +241,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 5.9.177 (LGPL-3.0)</label>
+							<label>TCPDF 5.9.178 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>

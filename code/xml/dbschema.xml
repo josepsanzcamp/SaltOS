@@ -2893,7 +2893,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</table>
 	</tables>
 	<indexes>
-		<!-- GENERICOS -->
 		<index>
 			<name>comentarios</name>
 			<table>tbl_comentarios</table>
@@ -2952,8 +2951,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>id_registro</name>
 				</field>
+			</fields>
+		</index>
+		<index>
+			<name>registros_primeros</name>
+			<table>tbl_registros</table>
+			<fields>
 				<field>
-					<name>id_usuario</name>
+					<name>id_aplicacion</name>
+				</field>
+				<field>
+					<name>id_registro</name>
 				</field>
 				<field>
 					<name>primero</name>
@@ -3009,27 +3017,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos</name>
-			<table>tbl_correo</table>
-			<fields>
-				<field>
-					<name>id_cuenta</name>
-				</field>
-				<field>
-					<name>state_new</name>
-				</field>
-				<field>
-					<name>state_spam</name>
-				</field>
-				<field>
-					<name>is_outbox</name>
-				</field>
-				<field>
-					<name>state_sent</name>
-				</field>
-			</fields>
-		</index>
-		<index>
 			<name>correos_a</name>
 			<table>tbl_correo_a</table>
 			<fields>
@@ -3042,7 +3029,52 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>feeds</name>
+			<name>correos_nospam</name>
+			<table>tbl_correo</table>
+			<fields>
+				<field>
+					<name>id_cuenta</name>
+				</field>
+				<field>
+					<name>state_spam</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>correos_count</name>
+			<table>tbl_correo</table>
+			<fields>
+				<field>
+					<name>id_cuenta</name>
+				</field>
+				<field>
+					<name>state_new</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>correos_sendmail</name>
+			<table>tbl_correo</table>
+			<fields>
+				<field>
+					<name>is_outbox</name>
+				</field>
+				<field>
+					<name>state_sent</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>correos_cuenta</name>
+			<table>tbl_correo</table>
+			<fields>
+				<field>
+					<name>id_cuenta</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>feeds_count</name>
 			<table>tbl_feeds</table>
 			<fields>
 				<field>

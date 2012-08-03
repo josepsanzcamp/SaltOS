@@ -37,29 +37,27 @@ if(getParam("action")=="translate") {
 		$options=array();
 		$langs=__translate_get_apertium_langs();
 		if(count($langs)>0) {
-			$options[]="<optgroup label='".LANG("translate","translate")."'>";
+			$options[]="<option value='' reverse=''>".LANG("translate","translate")."</option>";
 			foreach($langs as $key=>$val) {
 				$temp=explode("-",$val);
 				if(!count($filter) || in_array($temp[0],$filter)) {
 					$val2=implode("-",array(LANG($temp[0],"translate"),LANG($temp[1],"translate")));
 					$val3=implode("-",array($temp[1],$temp[0]));
 					$val3=in_array($val3,$langs)?$val3:"";
-					$options[]="<option value='$val' reverse='$val3'>$val2</option>";
+					$options[]="<option value='$val' reverse='$val3'>- $val2</option>";
 				}
 			}
-			$options[]="</optgroup>";
 		}
 		$langs=__translate_get_aspell_langs();
 		if(count($langs)>0) {
-			$options[]="<optgroup label='".LANG("corrector","translate")."'>";
+			$options[]="<option value='' reverse=''>".LANG("corrector","translate")."</option>";
 			foreach($langs as $key=>$val) {
 				if(!count($filter) || in_array($val,$filter)) {
 					$val3=implode("-",array($val,$val));
 					$val2=LANG($val,"translate");
-					$options[]="<option value='$val3' reverse='$val3'>$val2</option>";
+					$options[]="<option value='$val3' reverse='$val3'>- $val2</option>";
 				}
 			}
-			$options[]="</optgroup>";
 		}
 		$options=implode("\n",$options);
 		return $options;

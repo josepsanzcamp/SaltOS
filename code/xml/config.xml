@@ -182,7 +182,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<debug>
 		<actiondebug>false</actiondebug>
 		<langdebug>false</langdebug>
-		<sqldebug>false</sqldebug>
 		<alertdebug>false</alertdebug>
 		<errordebug>false</errordebug>
 		<cancelgetmail>false</cancelgetmail>
