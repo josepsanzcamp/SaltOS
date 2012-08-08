@@ -564,6 +564,7 @@ switch($action) {
 		} else {
 			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
 		}
+		// EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
 		$result=db_query($query);
 		$count=1;
 		while($row=db_fetch_row($result)) {

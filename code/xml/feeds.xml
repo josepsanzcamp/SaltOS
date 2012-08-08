@@ -361,29 +361,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<temp global="only,onlynew,onlywait" eval="true">$only=intval($onlynew).intval($onlywait)</temp>
 		<temp global="only_array" eval="true">$only_array=array("00"=>"1=1","10"=>"state_new='1'","01"=>"state_wait='1'","11"=>"(state_new='1' OR state_wait='1')")</temp>
 		<temp global="only,only_array" eval="true">$only=isset($only_array[$only])?$only:"00"</temp>
-		<query global="page,filtro,id_usuario,id_feed,fecha1,fecha2,fecha3,fecha3_array,only,only_array" eval="true">"SELECT * FROM (
-		SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
-			(SELECT
-				/*MYSQL CONCAT('link:openwin(\'',link,'\'):',title) */
-				/*SQLITE 'link:openwin(\'' || link || '\'):' || title */
-			FROM tbl_usuarios_f WHERE id=a.id_feed) feed,
+		<query global="page,filtro,id_usuario,id_feed,fecha1,fecha2,fecha3,fecha3_array,only,only_array" eval="true">"SELECT
+			id,id2,
+			/*MYSQL CONCAT('link:openwin(\'',link2,'\'):',feed) *//*SQLITE 'link:openwin(\'' || link2 || '\'):' || feed */ feed,
+			id_feed,
+			usuario,
+			/*MYSQL CONCAT('link:feeds(',-id,'):',title) *//*SQLITE 'link:feeds(' || -id || '):' || title */ title,
+			pubdate,
+			link,
+			state_new,
+			state_wait,
+			id action_id,
+			/*MYSQL CONCAT(id2,' - ',feed,' - ',title, '(',estado,')') *//*SQLITE id2 || ' - ' || feed || ' - ' || title || ' (' || estado || ')' */ action_title,
+			/*MYSQL CONCAT('link:openwin(\'',link,'\'):',link) *//*SQLITE 'link:openwin(\'' || link || '\'):' || link */ post,
+			action_style,
+			estado,
+			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
+			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
+			CASE (".check_user("correo","create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_forward,
+			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_wait,
+			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+			id_usuario,
+			id_grupo
+		FROM (
+		SELECT a.id id,/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
+			uf.title feed,
+			uf.link link2,
 			id_feed,
 			".make_extra_query_with_login("d.")." usuario,
-			/*MYSQL CONCAT('link:feeds(',-a.id,'):',CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END) *//*SQLITE 'link:feeds(' || -a.id || '):' || CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END */ title,
-			pubdate,description,link,state_new,state_wait,
-			a.id action_id,
-			/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',(SELECT title FROM tbl_usuarios_f WHERE id=a.id_feed),' - ',CASE WHEN a.title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE a.title END,
-			CASE WHEN state_new=1 AND state_modified=0 THEN ' (".LANG_ESCAPE("statenew").")' ELSE '' END,
-			CASE state_modified WHEN 1 THEN ' (".LANG_ESCAPE("statemodified").")' ELSE '' END,
-			CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait").")' ELSE '' END,
-			CASE state_new+state_modified+state_wait WHEN 0 THEN ' (".LANG_ESCAPE("stateread").")' ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || (SELECT title FROM tbl_usuarios_f WHERE id=a.id_feed) || ' - ' || CASE WHEN a.title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE a.title END ||
-			CASE WHEN state_new=1 AND state_modified=0 THEN ' (".LANG_ESCAPE("statenew").")' ELSE '' END ||
-			CASE state_modified WHEN 1 THEN ' (".LANG_ESCAPE("statemodified").")' ELSE '' END ||
-			CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait").")' ELSE '' END ||
-			CASE state_new+state_modified+state_wait WHEN 0 THEN ' (".LANG_ESCAPE("stateread").")' ELSE '' END */ action_title,
-			/*MYSQL CONCAT('link:openwin(\'',link,'\'):',link) *//*SQLITE 'link:openwin(\'' || link || '\'):' || link */ post,
+			CASE WHEN a.title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE a.title END title,
+			pubdate,a.description,a.link,state_new,state_wait,
 			CASE WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE '' END action_style,
-			/*MYSQL CONCAT(
+			TRIM(/*MYSQL CONCAT(
 			CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END,
 			CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified")." ' ELSE '' END,
 			CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END,
@@ -393,16 +403,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified")." ' ELSE '' END ||
 			CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END ||
 			CASE state_new+state_modified+state_wait WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
-			*/ estado,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
-			CASE (".check_user("correo","create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_forward,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_wait,
-						CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+			*/) estado,
 			e.id_usuario id_usuario,d.id_grupo id_grupo
 		FROM
 			".(getParam("id_feed")?"(SELECT * FROM tbl_feeds WHERE id_feed='".intval(getParam("id_feed"))."')":(getParam("id_usuario")?"(SELECT * FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='".intval(getParam("id_usuario"))."'))":"tbl_feeds"))." a
+		LEFT JOIN tbl_usuarios_f uf ON a.id_feed=uf.id
 		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1'
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
 		WHERE ".make_like_query("title,pubdate,description,link,usuario,feed,id2,estado",$filtro)."
