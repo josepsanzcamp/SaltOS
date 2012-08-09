@@ -53,40 +53,52 @@ if(getParam("action")=="home") {
 				WHEN '".page2id("campanyas")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_campanyas WHERE id=a.id_registro)
 				WHEN '".page2id("clientes")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_clientes WHERE id=a.id_registro)
 				WHEN '".page2id("contactos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_contactos WHERE id=a.id_registro)
-				WHEN '".page2id("correo")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',`from`,' - ',(CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END),
-				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END,
-				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END,
-				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END,
-				CASE state_new WHEN 1 THEN ' (".LANG_ESCAPE("statenew","correo").")' ELSE '' END,
-				CASE state_reply WHEN 1 THEN ' (".LANG_ESCAPE("statereply","correo").")' ELSE '' END,
-				CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward","correo").")' ELSE '' END,
-				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","correo").")' ELSE '' END,
-				CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam","correo").")' ELSE '' END,
-				CASE is_outbox WHEN 0 THEN CASE state_new+state_reply+state_forward+state_wait+state_spam WHEN 0 THEN ' (".LANG_ESCAPE("stateread","correo").")' ELSE '' END ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || `from` || ' - ' || (CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END ||
-				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END ||
-				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END ||
-				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END ||
-				CASE state_new WHEN 1 THEN ' (".LANG_ESCAPE("statenew","correo").")' ELSE '' END ||
-				CASE state_reply WHEN 1 THEN ' (".LANG_ESCAPE("statereply","correo").")' ELSE '' END ||
-				CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward","correo").")' ELSE '' END ||
-				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","correo").")' ELSE '' END ||
-				CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam","correo").")' ELSE '' END ||
-				CASE is_outbox WHEN 0 THEN CASE state_new+state_reply+state_forward+state_wait+state_spam WHEN 0 THEN ' (".LANG_ESCAPE("stateread","correo").")' ELSE '' END ELSE '' END) */ FROM tbl_correo WHERE id=a.id_registro)
+				WHEN '".page2id("correo")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',`from`,' - ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END,' (', *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || `from` || ' - ' || CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END || ' (' || */
+				TRIM(/*MYSQL CONCAT(
+				CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent","correo")." ' ELSE '' END,
+				CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror","correo")." ' END,
+				CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").") ' ELSE '' END,
+				CASE state_new WHEN 1 THEN '".LANG_ESCAPE("statenew","correo")." ' ELSE '' END,
+				CASE state_reply WHEN 1 THEN '".LANG_ESCAPE("statereply","correo")." ' ELSE '' END,
+				CASE state_forward WHEN 1 THEN '".LANG_ESCAPE("stateforward","correo")." ' ELSE '' END,
+				CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","correo")." ' ELSE '' END,
+				CASE state_spam WHEN 1 THEN '".LANG_ESCAPE("statespam","correo")." ' ELSE '' END,
+				CASE priority WHEN -1 THEN '".LANG_ESCAPE("prioritylow","correo")." ' WHEN 1 THEN '".LANG_ESCAPE("priorityhigh","correo")." ' ELSE '' END,
+				CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal","correo")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate","correo")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential","correo")." ' ELSE '' END,
+				CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread","correo")." ' ELSE '' END)
+				*//*SQLITE
+				CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent","correo")." ' ELSE '' END ||
+				CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror","correo")." ' END ||
+				CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN '".LANG_ESCAPE("statenotsent","correo")." ' ELSE '' END ||
+				CASE state_new WHEN 1 THEN '".LANG_ESCAPE("statenew","correo")." ' ELSE '' END ||
+				CASE state_reply WHEN 1 THEN '".LANG_ESCAPE("statereply","correo")." ' ELSE '' END ||
+				CASE state_forward WHEN 1 THEN '".LANG_ESCAPE("stateforward","correo")." ' ELSE '' END ||
+				CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","correo")." ' ELSE '' END ||
+				CASE state_spam WHEN 1 THEN '".LANG_ESCAPE("statespam","correo")." ' ELSE '' END ||
+				CASE priority WHEN -1 THEN '".LANG_ESCAPE("prioritylow","correo")." ' WHEN 1 THEN '".LANG_ESCAPE("priorityhigh","correo")." ' ELSE '' END ||
+				CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal","correo")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate","correo")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential","correo")." ' ELSE '' END ||
+				CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread","correo")." ' ELSE '' END
+				*/)
+				/*MYSQL ,')') *//*SQLITE || ')' */ FROM tbl_correo WHERE id=a.id_registro)
 				WHEN '".page2id("cuentas")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_cuentas WHERE id=a.id_registro)
 				WHEN '".page2id("documentos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_documentos WHERE id=a.id_registro)
 				WHEN '".page2id("empleados")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_empleados WHERE id=a.id_registro)
 				WHEN '".page2id("epigrafes")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_epigrafes WHERE id=a.id_registro)
 				WHEN '".page2id("estados")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_estados WHERE id=a.id_registro)
 				WHEN '".page2id("facturas")."' THEN (SELECT CASE num WHEN '' THEN /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ','".LANG_ESCAPE("albaran")."',' ',LPAD(id,5,0),' ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || '".LANG_ESCAPE("albaran")."' || ' ' || SUBSTR('00000' || id,-5,5) || ' ' || nombre */ ELSE /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ','".LANG_ESCAPE("factura")."',' ',num,' ',nombre,CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '<strike>".LANG_ESCAPE("cobrado","facturas")."</strike>' END) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || '".LANG_ESCAPE("factura")."' || ' ' || num || ' ' || nombre || CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '<strike>".LANG_ESCAPE("cobrado","facturas")."</strike>' END */ END FROM tbl_facturas WHERE id=a.id_registro)
-				WHEN '".page2id("feeds")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',(SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed),' - ',title,
-				CASE WHEN state_new=1 AND state_modified=0 THEN ' (".LANG_ESCAPE("statenew","feeds").")' ELSE '' END,
-				CASE state_modified WHEN 1 THEN ' (".LANG_ESCAPE("statemodified","feeds").")' ELSE '' END,
-				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","feeds").")' ELSE '' END,
-				CASE state_new+state_modified+state_wait WHEN 0 THEN ' (".LANG_ESCAPE("stateread","feeds").")' ELSE '' END) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || (SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed) || ' - ' || title ||
-				CASE WHEN state_new=1 AND state_modified=0 THEN ' (".LANG_ESCAPE("statenew","feeds").")' ELSE '' END ||
-				CASE state_modified WHEN 1 THEN ' (".LANG_ESCAPE("statemodified","feeds").")' ELSE '' END ||
-				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","feeds").")' ELSE '' END ||
-				CASE state_new+state_modified+state_wait WHEN 0 THEN ' (".LANG_ESCAPE("stateread","feeds").")' ELSE '' END */ FROM tbl_feeds WHERE id=a.id_registro)
+				WHEN '".page2id("feeds")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',(SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed),' - ',title,' (', *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || (SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed) || ' - ' || title || ' (' || */
+				TRIM(/*MYSQL CONCAT(
+				CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew","feeds")." ' ELSE '' END,
+				CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified","feeds")." ' ELSE '' END,
+				CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","feeds")." ' ELSE '' END,
+				CASE state_new+state_modified+state_wait WHEN 0 THEN '".LANG_ESCAPE("stateread","feeds")." ' ELSE '' END)
+				*//*SQLITE
+				CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew","feeds")." ' ELSE '' END ||
+				CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified","feeds")." ' ELSE '' END ||
+				CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","feeds")." ' ELSE '' END ||
+				CASE state_new+state_modified+state_wait WHEN 0 THEN '".LANG_ESCAPE("stateread","feeds")." ' ELSE '' END
+				*/)
+				/*MYSQL ,')') *//*SQLITE || ')' */ FROM tbl_feeds WHERE id=a.id_registro)
 				WHEN '".page2id("formaspago")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_formaspago WHERE id=a.id_registro)
 				WHEN '".page2id("gastos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',descripcion) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || descripcion */ FROM tbl_gastos WHERE id=a.id_registro)
 				WHEN '".page2id("grupos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_grupos WHERE id=a.id_registro)
