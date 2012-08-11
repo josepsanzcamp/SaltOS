@@ -859,7 +859,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var cad1=default_stylepre();
 		var cad2=default_stylepost();
 		var style=null;
-		$("link[rel=stylesheet][type=text/css]",html).each(function() {
+		$("link[rel=stylesheet]",html).each(function() {
 			var href=$(this).attr("href");
 			if(strpos(href,cad1)!==false && strpos(href,cad2)!==false) style=this;
 		});
@@ -870,7 +870,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var cad1=default_iconsetpre();
 		var cad2=default_iconsetpost();
 		var iconset=null;
-		$("link[rel=stylesheet][type=text/css]",html).each(function() {
+		$("link[rel=stylesheet]",html).each(function() {
 			var href=$(this).attr("href");
 			if(strpos(href,cad1)!==false && strpos(href,cad2)!==false) iconset=this;
 		});
@@ -1022,7 +1022,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var exists=0;
 		$(".menu,.tools",obj).each(function() {
 			var name=$(this).attr("id");
-			var active=getIntCookie("saltos_ui_menu_"+name)?0:-1;
+			var active=getIntCookie("saltos_ui_menu_"+name)?0:false;
 			$(this).accordion({
 				collapsible:true,
 				animated:"bounceslide",

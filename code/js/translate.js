@@ -131,7 +131,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 					data:data,
 					type:"post",
 					success:function(response) {
-						$("option,optgroup",div).remove();
+						$("option",div).remove();
 						$("select",div).append(response);
 						__translate_enable();
 						__translate_get_cookie();
