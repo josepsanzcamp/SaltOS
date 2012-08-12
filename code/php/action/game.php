@@ -44,7 +44,7 @@ if(getParam("action")=="game") {
 	header_etag($hash);
 	ob_start_protected(getDefault("obhandler"));
 	header_powered();
-	header_expires();
+	header_expires($hash);
 	header("Content-Type: text/html");
 	header("x-frame-options: SAMEORIGIN");
 	echo $buffer;

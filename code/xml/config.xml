@@ -233,9 +233,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.columnizer.js</include>
 			<include>lib/jquery/jquery.tooltip.js</include>
 		</cache>
-		<include ifnoteval="is_mobile()">lib/ckeditor/ckeditor.js</include>
+		<inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<cache ifnoteval="is_mobile()">
-			<include>lib/ckeditor/adapters/jquery.js</include>
+			<include>lib/ckeditor/ckeditor.min.js</include>
+			<include>lib/ckeditor/adapters/jquery.min.js</include>
 			<include>lib/pdfjs/pdf.min.js</include>
 		</cache>
 		<cache ifeval="is_mobile()">

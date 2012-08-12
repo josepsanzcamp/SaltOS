@@ -275,6 +275,7 @@ function header_expires($cache=true) {
 		header("Cache-Control: max-age=".getDefault("cache/cachegctimeout"));
 		$gmdate=gmdate("D, d M Y H:i:s",time()+getDefault("cache/cachegctimeout"));
 		header("Expires: $gmdate GMT");
+		if(is_string($cache)) header("ETag: $cache");
 	} else {
 		if(!ismsie()) header("Pragma: no-cache");
 		header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -286,10 +287,13 @@ function header_expires($cache=true) {
 function header_etag($hash) {
 	$etag=getServer("HTTP_IF_NONE_MATCH");
 	if($etag==$hash) {
+		ob_start_protected(getDefault("obhandler"));
+		header_powered();
+		header_expires();
 		header("HTTP/1.0 304 Not Modified");
+		ob_end_flush();
 		die();
 	}
-	header("ETag: $hash");
 }
 
 function ismsie() {
@@ -401,7 +405,7 @@ function output_file($file) {
 	header_etag($hash);
 	ob_start_protected(getDefault("obhandler"));
 	header_powered();
-	header_expires();
+	header_expires($hash);
 	$type=content_type_from_extension($file);
 	header("Content-Type: $type");
 	readfile($file);

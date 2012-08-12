@@ -78,7 +78,7 @@ if(getParam("action")=="download") {
 		$isgzip=(substr($name,-strlen($gzipext))==$gzipext);
 		ob_start_protected($isgzip?"":getDefault("obhandler"));
 		header_powered();
-		header_expires(false);
+		header_expires($hash);
 		header("Content-Disposition: attachment; filename=\"${name}\"");
 		header("Content-Type: ${type}");
 		readfile($file);

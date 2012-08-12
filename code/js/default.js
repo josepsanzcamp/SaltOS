@@ -300,6 +300,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			// NORMAL CODE
 			$("body").append("<div id='dialog'></div>");
 			$("#dialog").dialog({ "autoOpen":false });
+			if($.attrFn) { $.attrFn.text=true; } // FIX A BUG WITH (JQUERY == 1.8.0) AND (JQUERY-UI <= 1.8.22)
 		}
 	}
 

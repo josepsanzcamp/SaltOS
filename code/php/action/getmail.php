@@ -77,7 +77,7 @@ if(getParam("action")=="getmail") {
 		header_etag($hash);
 		ob_start_protected(getDefault("obhandler"));
 		header_powered();
-		header_expires();
+		header_expires($hash);
 		header("Content-Type: text/html");
 		header("x-frame-options: SAMEORIGIN");
 		echo $buffer;
@@ -141,7 +141,7 @@ if(getParam("action")=="getmail") {
 			header_etag($hash);
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
-			header_expires();
+			header_expires($hash);
 			header("Content-Type: text/html");
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
@@ -163,7 +163,7 @@ if(getParam("action")=="getmail") {
 			header_etag($hash);
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
-			header_expires();
+			header_expires($hash);
 			header("Content-Type: text/html");
 			echo $buffer;
 			ob_end_flush();
@@ -294,7 +294,7 @@ if(getParam("action")=="getmail") {
 			header_etag($hash);
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
-			header_expires();
+			header_expires($hash);
 			header("Content-Type: text/html");
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
@@ -308,7 +308,7 @@ if(getParam("action")=="getmail") {
 			header_etag($hash);
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
-			header_expires();
+			header_expires($hash);
 			header("Content-Type: ${result["type"]}");
 			header("Content-Disposition: attachment; filename=\"${name}\"");
 			echo $result["body"];
