@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // pdo_sqlite implementation
 function db_connect_pdo_sqlite() {
 	global $_CONFIG;
-	if(!class_exists("PDO")) { db_error(array("phperror"=>"Class PDO not found")); return; }
+	if(!class_exists("PDO")) { db_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
 	if(!file_exists(getDefault("db/file"))) { db_error(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
 	if(!is_writable(getDefault("db/file"))) { db_error(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	try {

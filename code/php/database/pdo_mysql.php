@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // pdo_mysql implementation
 function db_connect_pdo_mysql() {
 	global $_CONFIG;
-	if(!class_exists("PDO")) { db_error(array("phperror"=>"Class PDO not found")); return; }
+	if(!class_exists("PDO")) { db_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
 	try {
 		$_CONFIG["db"]["link"]=new PDO("mysql:host=".getDefault("db/host").";port=".getDefault("db/port").";dbname=".getDefault("db/name"),getDefault("db/user"),getDefault("db/pass"),array(PDO::ATTR_PERSISTENT=>true));
 		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);

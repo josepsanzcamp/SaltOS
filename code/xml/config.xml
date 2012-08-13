@@ -153,8 +153,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<useimginline>true</useimginline>
 	</cache>
 	<commands>
-		<xsltproc>xsltproc</xsltproc>
-		<__xsltproc__>-o __OUTPUT__ __XSLFILE__ __INPUT__</__xsltproc__>
 		<unoconv>unoconv</unoconv>
 		<__unoconv__>--server localhost --port 2002 -f pdf --stdout __INPUT__ &gt; __OUTPUT__</__unoconv__>
 		<__unoconv_about__>--show 2&gt;&amp;1</__unoconv_about__>

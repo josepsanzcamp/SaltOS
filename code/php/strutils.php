@@ -320,33 +320,15 @@ function xml2html($buffer,$usecache=true) {
 		if(cache_exists($cache,$xslfile)) return file_get_contents($cache);
 	}
 	// BEGIN THE TRANSFORMATION
-	if(class_exists("DomDocument") && class_exists("XsltProcessor")) {
-		$doc=new DomDocument();
-		$xsl=new XsltProcessor();
-		$xsldata=file_get_contents($xslfile);
-		if($usehtmlminify) $xsldata=str_replace('indent="yes"','indent="no"',$xsldata);
-		if(!$usehtmlminify) $xsldata=str_replace('indent="no"','indent="yes"',$xsldata);
-		$doc->loadXML($xsldata,LIBXML_COMPACT);
-		$xsl->importStylesheet($doc);
-		$doc->loadXML($buffer,LIBXML_COMPACT);
-		$buffer=$xsl->transformToXML($doc);
-	} else {
-		$input=get_temp_file();
-		file_put_contents($input,$buffer);
-		$output=get_temp_file();
-		ob_passthru(getDefault("commands/xsltproc")." ".str_replace(array("__OUTPUT__","__XSLFILE__","__INPUT__"),array($output,$xslfile,$input),getDefault("commands/__xsltproc__")));
-		capture_next_error();
-		unlink($input);
-		get_clear_error();
-		if(file_exists($output)) {
-			$buffer=file_get_contents($output);
-			capture_next_error();
-			unlink($output);
-			get_clear_error();
-		} else {
-			$buffer="";
-		}
-	}
+	$doc=new DomDocument();
+	$xsl=new XsltProcessor();
+	$xsldata=file_get_contents($xslfile);
+	if($usehtmlminify) $xsldata=str_replace('indent="yes"','indent="no"',$xsldata);
+	if(!$usehtmlminify) $xsldata=str_replace('indent="no"','indent="yes"',$xsldata);
+	$doc->loadXML($xsldata,LIBXML_COMPACT);
+	$xsl->importStylesheet($doc);
+	$doc->loadXML($buffer,LIBXML_COMPACT);
+	$buffer=$xsl->transformToXML($doc);
 	if($usecache) {
 		file_put_contents($cache,$buffer);
 		chmod_protected($cache,0666);
@@ -376,7 +358,7 @@ function normalize_value($value) {
 }
 
 function get_name_version_revision($copyright=false) {
-	return getDefault("info/name")." v".getDefault("info/version")." r".getDefault("info/revision").($copyright?", ".getDefault("info/copyright"):"");
+	return getDefault("info/name","SaltOS")." v".getDefault("info/version","3.1")." r".getDefault("info/revision",svnversion("../code")).($copyright?", ".getDefault("info/copyright","Copyright (C) 2012 by Josep Sanz Campderrós"):"");
 }
 
 function getServer($index,$default="") {

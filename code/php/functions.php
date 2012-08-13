@@ -870,7 +870,7 @@ function show_php_error($array=null) {
 		$html.="<title>".get_name_version_revision()."</title>";
 		$html.="<style>";
 		$html.=".phperror { background:#444; color:#FFF; font-family:Helvetica,Arial,sans-serif; padding:20px 0; }";
-		$html.=".phperror h3 { background:url(img/favicon.png) top left no-repeat; padding-left: 50px; min-height:32px; font-size:1.5em; margin:0; }";
+		$html.=".phperror h3 { background:url(".getDefault("info/favicon","img/favicon").") top left no-repeat; padding-left: 50px; min-height:32px; font-size:1.5em; margin:0; }";
 		$html.=".phperror a { color: cyan; }";
 		$html.=".phperror pre { white-space:pre-wrap; }";
 		$html.=".phperror p { margin:0; }";
@@ -943,8 +943,17 @@ function check_postlimit() {
 }
 
 function check_system() {
+	// GENERAL CHECKS
 	if(!ini_get("date.timezone")) ini_set("date.timezone","Europe/Madrid");
 	if(headers_sent()) show_php_error(array("phperror"=>"Has been Detected previous headers sended"));
+	// CLASS CHECKS
+	$array=array("DomDocument"=>"php-xml","XsltProcessor"=>"php-xml","DomElement"=>"php-xml");
+	foreach($array as $key=>$val) if(!class_exists($key)) show_php_error(array("phperror"=>"Class $key not found","details"=>"Try to install $val package"));
+	// FUNCTION CHECKS
+	$array=array("imagecreatetruecolor"=>"php-gd","imagecreatefrompng"=>"php-gd",
+		"mb_check_encoding"=>"php-mbstring","mb_convert_encoding"=>"php-mbstring","mb_strlen"=>"php-mbstring","mb_substr"=>"php-mbstring","mb_strpos"=>"php-mbstring");
+	foreach($array as $key=>$val) if(!function_exists($key)) show_php_error(array("phperror"=>"Function $key not found","details"=>"Try to install $val package"));
+	// INSTALL CHECK
 	if(file_exists("install/xml.php")) { include("install/xml.php"); die(); }
 }
 
