@@ -140,142 +140,144 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 
 	// COPIED FROM PDF.JS/VIEWER.JS
 
-	// optimised CSS custom property getter/setter
-	var CustomStyle = (function CustomStyleClosure() {
+// optimised CSS custom property getter/setter
+var CustomStyle = (function CustomStyleClosure() {
 
-		// As noted on: http://www.zachstronaut.com/posts/2009/02/17/
-		//              animate-css-transforms-firefox-webkit.html
-		// in some versions of IE9 it is critical that ms appear in this list
-		// before Moz
-		var prefixes = ['ms', 'Moz', 'Webkit', 'O'];
-		var _cache = { };
+  // As noted on: http://www.zachstronaut.com/posts/2009/02/17/
+  //              animate-css-transforms-firefox-webkit.html
+  // in some versions of IE9 it is critical that ms appear in this list
+  // before Moz
+  var prefixes = ['ms', 'Moz', 'Webkit', 'O'];
+  var _cache = { };
 
-		function CustomStyle() {
-		}
+  function CustomStyle() {
+  }
 
-		CustomStyle.getProp = function get(propName, element) {
-			// check cache only when no element is given
-			if (arguments.length == 1 && typeof _cache[propName] == 'string') {
-				return _cache[propName];
-			}
+  CustomStyle.getProp = function get(propName, element) {
+    // check cache only when no element is given
+    if (arguments.length == 1 && typeof _cache[propName] == 'string') {
+      return _cache[propName];
+    }
 
-			element = element || document.documentElement;
-			var style = element.style, prefixed, uPropName;
+    element = element || document.documentElement;
+    var style = element.style, prefixed, uPropName;
 
-			// test standard property first
-			if (typeof style[propName] == 'string') {
-				return (_cache[propName] = propName);
-			}
+    // test standard property first
+    if (typeof style[propName] == 'string') {
+      return (_cache[propName] = propName);
+    }
 
-			// capitalize
-			uPropName = propName.charAt(0).toUpperCase() + propName.slice(1);
+    // capitalize
+    uPropName = propName.charAt(0).toUpperCase() + propName.slice(1);
 
-			// test vendor specific properties
-			for (var i = 0, l = prefixes.length; i < l; i++) {
-				prefixed = prefixes[i] + uPropName;
-				if (typeof style[prefixed] == 'string') {
-					return (_cache[propName] = prefixed);
-				}
-			}
+    // test vendor specific properties
+    for (var i = 0, l = prefixes.length; i < l; i++) {
+      prefixed = prefixes[i] + uPropName;
+      if (typeof style[prefixed] == 'string') {
+        return (_cache[propName] = prefixed);
+      }
+    }
 
-			//if all fails then set to undefined
-			return (_cache[propName] = 'undefined');
-		}
+    //if all fails then set to undefined
+    return (_cache[propName] = 'undefined');
+  };
 
-		CustomStyle.setProp = function set(propName, element, str) {
-			var prop = this.getProp(propName);
-			if (prop != 'undefined')
-				element.style[prop] = str;
-		}
+  CustomStyle.setProp = function set(propName, element, str) {
+    var prop = this.getProp(propName);
+    if (prop != 'undefined')
+      element.style[prop] = str;
+  };
 
-		return CustomStyle;
-	})();
+  return CustomStyle;
+})();
 
-	var TextLayerBuilder = function textLayerBuilder(textLayerDiv) {
-		this.textLayerDiv = textLayerDiv;
+var TextLayerBuilder = function textLayerBuilder(textLayerDiv) {
+  this.textLayerDiv = textLayerDiv;
 
-		this.beginLayout = function textLayerBuilderBeginLayout() {
-			this.textDivs = [];
-			this.textLayerQueue = [];
-		};
+  this.beginLayout = function textLayerBuilderBeginLayout() {
+    this.textDivs = [];
+    this.textLayerQueue = [];
+  };
 
-		this.endLayout = function textLayerBuilderEndLayout() {
-			var self = this;
-			var textDivs = this.textDivs;
-			var textLayerDiv = this.textLayerDiv;
-			var renderTimer = null;
-			var renderingDone = false;
-			var renderInterval = 0;
-			var resumeInterval = 500; // in ms
+  this.endLayout = function textLayerBuilderEndLayout() {
+    var self = this;
+    var textDivs = this.textDivs;
+    var textLayerDiv = this.textLayerDiv;
+    var renderTimer = null;
+    var renderingDone = false;
+    var renderInterval = 0;
+    var resumeInterval = 500; // in ms
 
-			var canvas = document.createElement('canvas');
-			var ctx = canvas.getContext('2d');
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
 
-			// Render the text layer, one div at a time
-			function renderTextLayer() {
-				if (textDivs.length === 0) {
-					clearInterval(renderTimer);
-					renderingDone = true;
-					return;
-				}
-				var textDiv = textDivs.shift();
-				if (textDiv.dataset.textLength > 0) {
-					textLayerDiv.appendChild(textDiv);
+    // Render the text layer, one div at a time
+    function renderTextLayer() {
+      if (textDivs.length === 0) {
+        clearInterval(renderTimer);
+        renderingDone = true;
+        self.textLayerDiv = textLayerDiv = canvas = ctx = null;
+        return;
+      }
+      var textDiv = textDivs.shift();
+      if (textDiv.dataset.textLength > 0) {
+        textLayerDiv.appendChild(textDiv);
 
-					if (textDiv.dataset.textLength > 1) { // avoid div by zero
-						// Adjust div width to match canvas text
+        if (textDiv.dataset.textLength > 1) { // avoid div by zero
+          // Adjust div width to match canvas text
 
-						ctx.font = textDiv.style.fontSize + ' sans-serif';
-						var width = ctx.measureText(textDiv.textContent).width;
+          ctx.font = textDiv.style.fontSize + ' sans-serif';
+          var width = ctx.measureText(textDiv.textContent).width;
 
-						var textScale = textDiv.dataset.canvasWidth / width;
+          var textScale = textDiv.dataset.canvasWidth / width;
 
-						CustomStyle.setProp('transform' , textDiv,
-							'scale(' + textScale + ', 1)');
-						CustomStyle.setProp('transformOrigin' , textDiv, '0% 0%');
-					}
-				} // textLength > 0
-			}
-			renderTimer = setInterval(renderTextLayer, renderInterval);
+          CustomStyle.setProp('transform' , textDiv,
+            'scale(' + textScale + ', 1)');
+          CustomStyle.setProp('transformOrigin' , textDiv, '0% 0%');
+        }
+      } // textLength > 0
+    }
+    renderTimer = setInterval(renderTextLayer, renderInterval);
 
-			// Stop rendering when user scrolls. Resume after XXX milliseconds
-			// of no scroll events
-			var scrollTimer = null;
-			function textLayerOnScroll() {
-				if (renderingDone) {
-					window.removeEventListener('scroll', textLayerOnScroll, false);
-					return;
-				}
+    // Stop rendering when user scrolls. Resume after XXX milliseconds
+    // of no scroll events
+    var scrollTimer = null;
+    function textLayerOnScroll() {
+      if (renderingDone) {
+        window.removeEventListener('scroll', textLayerOnScroll, false);
+        return;
+      }
 
-				// Immediately pause rendering
-				clearInterval(renderTimer);
+      // Immediately pause rendering
+      clearInterval(renderTimer);
 
-				clearTimeout(scrollTimer);
-				scrollTimer = setTimeout(function textLayerScrollTimer() {
-					// Resume rendering
-					renderTimer = setInterval(renderTextLayer, renderInterval);
-				}, resumeInterval);
-			}; // textLayerOnScroll
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function textLayerScrollTimer() {
+        // Resume rendering
+        renderTimer = setInterval(renderTextLayer, renderInterval);
+      }, resumeInterval);
+    } // textLayerOnScroll
 
-			window.addEventListener('scroll', textLayerOnScroll, false);
-		}; // endLayout
+    window.addEventListener('scroll', textLayerOnScroll, false);
+  }; // endLayout
 
-		this.appendText = function textLayerBuilderAppendText(text, fontName, fontSize) {
-			var textDiv = document.createElement('div');
+  this.appendText = function textLayerBuilderAppendText(text,
+                                                        fontName, fontSize) {
+    var textDiv = document.createElement('div');
 
-			// vScale and hScale already contain the scaling to pixel units
-			var fontHeight = fontSize * text.geom.vScale;
-			textDiv.dataset.canvasWidth = text.canvasWidth * text.geom.hScale;
-			textDiv.dataset.fontName = fontName;
+    // vScale and hScale already contain the scaling to pixel units
+    var fontHeight = fontSize * text.geom.vScale;
+    textDiv.dataset.canvasWidth = text.canvasWidth * text.geom.hScale;
+    textDiv.dataset.fontName = fontName;
 
-			textDiv.style.fontSize = fontHeight + 'px';
-			textDiv.style.left = (10 + text.geom.x) + 'px';
-			textDiv.style.top = (10 + text.geom.y - fontHeight) + 'px';
-			textDiv.textContent = PDFJS.bidi(text, -1);
-			textDiv.dir = text.direction;
-			textDiv.dataset.textLength = text.length;
-			this.textDivs.push(textDiv);
-		};
-	};
+    textDiv.style.fontSize = fontHeight + 'px';
+    textDiv.style.left = (10 + text.geom.x) + 'px';
+    textDiv.style.top = (10 + text.geom.y - fontHeight) + 'px';
+    textDiv.textContent = PDFJS.bidi(text, -1);
+    textDiv.dir = text.direction;
+    textDiv.dataset.textLength = text.length;
+    this.textDivs.push(textDiv);
+  };
+};
 
 }

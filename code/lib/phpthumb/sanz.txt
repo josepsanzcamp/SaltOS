@@ -1,0 +1,3 @@
+
+I removed for security reasons the:
+- lib/phpthumb/demo

@@ -221,6 +221,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.blockUI.js</include>
 			<include>lib/jquery/jquery.jgrowl.js</include>
 		</cache>
+		<inline>if($.attrFn) { $.attrFn.text=true; }</inline><!-- FIX A BUG WITH (JQUERY == 1.8.0) AND (JQUERY-UI <= 1.8.22) -->
 		<cache ifnoteval="is_mobile()">
 			<include>lib/jquery/jquery.colorpicker.js</include>
 			<include>lib/jquery/jquery.ptTimeSelect.js</include>

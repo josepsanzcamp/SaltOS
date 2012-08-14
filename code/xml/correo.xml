@@ -576,7 +576,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
 			CASE (".check_user($page,"create")." AND ".check_sql($page,"view").") WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_reply,
-			CASE (".check_user($page,"create")." AND ".check_sql($page,"view").") WHEN 1 THEN CASE is_outbox WHEN '0' THEN CASE WHEN (SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo=id AND id_tipo IN (2,3))&gt;1 THEN 'true' ELSE 'false' END ELSE 'false' END ELSE 'false' END action_replyall,
+			CASE (".check_user($page,"create")." AND ".check_sql($page,"view").") WHEN 1 THEN CASE is_outbox WHEN '0' THEN CASE WHEN (SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo=z.id AND id_tipo IN (2,3))&gt;1 THEN 'true' ELSE 'false' END ELSE 'false' END ELSE 'false' END action_replyall,
 			CASE (".check_user($page,"create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_forward,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_wait,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_spam,
