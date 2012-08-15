@@ -387,7 +387,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			uf.link link2,
 			".make_extra_query_with_login("d.")." usuario,
 			CASE WHEN a.title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE a.title END title,
-			pubdate,a.description,a.link,state_new,state_wait,
+			pubdate,a.description,a.link link,state_new,state_wait,
 			CASE WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE '' END action_style,
 			TRIM(/*MYSQL CONCAT(
 			CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END,

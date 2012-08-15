@@ -392,7 +392,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jquery.com/")</onclick>
 						</field>
 						<field>
-							<label>JQuery UI 1.8.22 (MIT &amp; GPL-2.0)</label>
+							<label>JQuery UI 1.8.23 (MIT &amp; GPL-2.0)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
