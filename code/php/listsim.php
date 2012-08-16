@@ -93,7 +93,7 @@ function list_simulator($newpage,$ids="string") {
 	if(!count(array_intersect($array_order,array("id asc","id desc")))) $array_order[]="id desc";
 	$order=implode(",",$array_order);
 	// DETECT DB ENGINE
-	$dbtype=get_db_type(getDefault("db/type"));
+	$dbtype=db_type();
 	if($dbtype=="SQLITE") {
 		if($ids=="string" || $ids=="array") {
 			// LIST OF TEMPORARY FIELDS TO RETRIEVE
@@ -120,8 +120,7 @@ function list_simulator($newpage,$ids="string") {
 			if(!in_array("action_title",$fields)) array_push($fields,"action_title");
 			$fields=implode(",",$fields);
 			// CONTINUE
-			if(is_array($ids)) $ids=implode(",",$ids);
-			if($ids=="") $ids="0";
+			$ids=check_ids($ids);
 			$query="SELECT action_title FROM (SELECT $fields FROM ($query0) WHERE action_id IN ($ids)) ORDER BY $order";
 			$result=execute_query($query);
 			if(!$result) $result=array();
@@ -153,8 +152,7 @@ function list_simulator($newpage,$ids="string") {
 			if(!is_array($result)) $result=array($result);
 			if($ids=="string") $result=count($result)?implode(",",$result):"0";
 		} else {
-			if(is_array($ids)) $ids=implode(",",$ids);
-			if($ids=="") $ids="0";
+			$ids=check_ids($ids);
 			$query="SELECT action_title FROM $tbl_hash1 WHERE action_id IN ($ids) ORDER BY $order";
 			$result=execute_query($query);
 			if(!$result) $result=array();

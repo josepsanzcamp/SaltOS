@@ -200,7 +200,7 @@ function get_fields($table) {
 
 function get_indexes($table) {
 	$indexes=array();
-	if(get_db_type(getDefault("db/type"))=="SQLITE") {
+	if(db_type()=="SQLITE") {
 		$query="/*SQLITE PRAGMA INDEX_LIST($table) */";
 		$result=db_query($query);
 		while($row=db_fetch_row($result)) {
@@ -214,7 +214,7 @@ function get_indexes($table) {
 		}
 		db_free($result);
 	}
-	if(get_db_type(getDefault("db/type"))=="MYSQL") {
+	if(db_type()=="MYSQL") {
 		$query="/*MYSQL SHOW INDEXES FROM $table */";
 		$result=db_query($query);
 		while($row=db_fetch_row($result)) {

@@ -134,7 +134,7 @@ function check_sql($aplicacion="",$permiso="") {
 			// CHECK FOR USER/GROUP/ALL PERMISSIONS
 			$queries=array();
 			$queries["all"]="(1=1)";
-			$queries["group"]="(id_grupo='${_USER["id_grupo"]}' OR id_grupo IN (SELECT id_grupo FROM tbl_usuarios_g WHERE id_usuario='${_USER["id"]}'))";
+			$queries["group"]="(id_grupo='${_USER["id_grupo"]}' OR id_grupo IN (".check_ids(execute_query("SELECT id_grupo FROM tbl_usuarios_g WHERE id_usuario='${_USER["id"]}'"))."))";
 			$queries["user"]="(id_usuario='${_USER["id"]}')";
 			foreach($queries as $key=>$val) {
 				if(check_user($aplicacion,"${key}_${permiso}")) $subquery[]=$val;
@@ -621,9 +621,9 @@ function session_alert($alert) {
 }
 
 function check_ids($value) {
-	$value=explode(",",$value);
+	$value=is_array($value)?$value:explode(",",$value);
 	foreach($value as $key=>$val) $value[$key]=abs($val);
-	$value=implode(",",$value);
+	$value=count($value)?implode(",",$value):"0";
 	return $value;
 }
 

@@ -464,16 +464,6 @@ function svnversion($dir) {
 	return $rev;
 }
 
-function get_db_type($type) {
-	if($type=="pdo_sqlite") return "SQLITE";
-	if($type=="pdo_mysql") return "MYSQL";
-	if($type=="sqlite3") return "SQLITE";
-	if($type=="mysql") return "MYSQL";
-	if($type=="bin_sqlite") return "SQLITE";
-	if($type=="mysqli") return "MYSQL";
-	show_php_error(array("phperror"=>"Unknown type '$type' in get_db_type"));
-}
-
 function check_password($pass,$hash) {
 	require_once("lib/phpass/PasswordHash.php");
 	$t_hasher=new PasswordHash(8,true);

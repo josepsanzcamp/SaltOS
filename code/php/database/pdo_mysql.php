@@ -64,7 +64,7 @@ function __db_query_pdo_mysql_helper($query) {
 }
 
 function db_query_pdo_mysql($query) {
-	$query=parse_query($query,"MYSQL");
+	$query=parse_query($query,db_type());
 	return __db_query_pdo_mysql_helper($query);
 }
 
@@ -76,5 +76,9 @@ function db_disconnect_pdo_mysql() {
 function db_error_pdo_mysql($array) {
 	foreach($array as $key=>$val) $array[$key]=str_replace(array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),"...",$val);
 	show_php_error($array);
+}
+
+function db_type_pdo_mysql() {
+	return "MYSQL";
 }
 ?>

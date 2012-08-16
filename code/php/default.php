@@ -535,7 +535,7 @@ switch($action) {
 		if(!count(array_intersect($array_order,array("id asc","id desc")))) $array_order[]="id desc";
 		$order=implode(",",$array_order);
 		// DETECT DB ENGINE
-		$dbtype=get_db_type(getDefault("db/type"));
+		$dbtype=db_type();
 		if($dbtype=="SQLITE") {
 			// LIST OF TEMPORARY FIELDS TO RETRIEVE
 			$fields=explode(",",$order);

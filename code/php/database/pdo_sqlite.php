@@ -89,7 +89,7 @@ function __db_query_pdo_sqlite_helper($query) {
 }
 
 function db_query_pdo_sqlite($query) {
-	$query=parse_query($query,"SQLITE");
+	$query=parse_query($query,db_type());
 	// TRICK TO DO THE STRIP SLASHES
 	$pos=strpos($query,"\\");
 	while($pos!==false) {
@@ -115,5 +115,9 @@ function db_disconnect_pdo_sqlite() {
 
 function db_error_pdo_sqlite($array) {
 	show_php_error($array);
+}
+
+function db_type_pdo_sqlite() {
+	return "SQLITE";
 }
 ?>

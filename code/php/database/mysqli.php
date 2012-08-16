@@ -53,7 +53,7 @@ function __db_query_mysqli_helper($query) {
 }
 
 function db_query_mysqli($query) {
-	$query=parse_query($query,"MYSQL");
+	$query=parse_query($query,db_type());
 	return __db_query_mysqli_helper($query);
 }
 
@@ -66,5 +66,9 @@ function db_disconnect_mysqli() {
 function db_error_mysqli($array) {
 	foreach($array as $key=>$val) $array[$key]=str_replace(array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),"...",$val);
 	show_php_error($array);
+}
+
+function db_type_mysqli() {
+	return "MYSQL";
 }
 ?>

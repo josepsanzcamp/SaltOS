@@ -90,7 +90,7 @@ function __db_query_sqlite3_helper($query) {
 }
 
 function db_query_sqlite3($query) {
-	$query=parse_query($query,"SQLITE");
+	$query=parse_query($query,db_type());
 	// TRICK TO DO THE STRIP SLASHES
 	$pos=strpos($query,"\\");
 	while($pos!==false) {
@@ -117,5 +117,9 @@ function db_disconnect_sqlite3() {
 
 function db_error_sqlite3($array) {
 	show_php_error($array);
+}
+
+function db_type_sqlite3() {
+	return "SQLITE";
 }
 ?>
