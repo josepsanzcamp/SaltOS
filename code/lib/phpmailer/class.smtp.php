@@ -2,7 +2,7 @@
 /*~ class.smtp.php
 .---------------------------------------------------------------------------.
 |  Software: PHPMailer - PHP email class                                    |
-|   Version: 5.2.2-beta1                                                          |
+|   Version: 5.2.2-beta2                                                          |
 |      Site: https://code.google.com/a/apache-extras.org/p/phpmailer/       |
 | ------------------------------------------------------------------------- |
 |     Admin: Jim Jagielski (project admininistrator)                        |
@@ -90,7 +90,7 @@ class SMTP {
    * Sets the SMTP PHPMailer Version number
    * @var string
    */
-  public $Version         = '5.2.2-beta1';
+  public $Version         = '5.2.2-beta2';
 
   /////////////////////////////////////////////////
   // PROPERTIES, PRIVATE AND PROTECTED
@@ -643,7 +643,7 @@ class SMTP {
       return false;
     }
 
-    $useVerp = ($this->do_verp ? "XVERP" : "");
+    $useVerp = ($this->do_verp ? " XVERP" : "");
     fputs($this->smtp_conn,"MAIL FROM:<" . $from . ">" . $useVerp . $this->CRLF);
 
     $rply = $this->get_lines();
@@ -899,11 +899,15 @@ class SMTP {
   private function get_lines() {
     $data = "";
     $endtime = 0;
+    /* If for some reason the fp is bad, don't inf loop */
+    if (!is_resource($this->smtp_conn)) {
+      return $data;
+    }
     stream_set_timeout($this->smtp_conn, $this->Timeout);
     if ($this->Timelimit > 0) {
       $endtime = time() + $this->Timelimit;
     }
-    while(!feof($this->smtp_conn)) {
+    while(is_resource($this->smtp_conn) && !feof($this->smtp_conn)) {
       $str = @fgets($this->smtp_conn,515);
       if($this->do_debug >= 4) {
         $this->edebug("SMTP -> get_lines(): \$data was \"$data\"" . $this->CRLF . '<br />');

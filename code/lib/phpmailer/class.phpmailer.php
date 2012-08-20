@@ -2,7 +2,7 @@
 /*~ class.phpmailer.php
 .---------------------------------------------------------------------------.
 |  Software: PHPMailer - PHP email class                                    |
-|   Version: 5.2.2-beta1                                                          |
+|   Version: 5.2.2-beta2                                                          |
 |      Site: https://code.google.com/a/apache-extras.org/p/phpmailer/       |
 | ------------------------------------------------------------------------- |
 |     Admin: Jim Jagielski (project admininistrator)                        |
@@ -168,6 +168,13 @@ class PHPMailer {
   public $Sendmail          = '/usr/sbin/sendmail';
 
   /**
+   * Determine if mail() uses a fully sendmail compatible MTA that
+   * supports sendmail's "-oi -f" options
+   * @var boolean
+   */
+  public $UseSendmailOptions	= true;
+  
+  /**
    * Path to PHPMailer plugins.  Useful if the SMTP class
    * is in a different directory than the PHP include path.
    * @var string
@@ -307,13 +314,11 @@ class PHPMailer {
 
  /**
    * Provides the ability to change the generic line ending
-   * NOTE: The default is now the SMTP RFC line-ending sequence,
-   *       however, we still allow for the end-user to reset to "\n"
-   *       if need be. We force CRLF where we KNOW it must be used
-   *       via self::CRLF
+   * NOTE: The default remains '\n'. We force CRLF where we KNOW
+   *        it must be used via self::CRLF
    * @var string
    */
-  public $LE              = "\r\n";
+  public $LE              = "\n";
 
    /**
    * Used with DKIM DNS Resource Record
@@ -366,6 +371,7 @@ class PHPMailer {
    *   string  $bcc           bcc email addresses
    *   string  $subject       the subject
    *   string  $body          the email body
+   *   string  $from          email address of sender
    * @var string
    */
   public $action_function = ''; //'callbackAction';
@@ -374,7 +380,7 @@ class PHPMailer {
    * Sets the PHPMailer Version number
    * @var string
    */
-  public $Version         = '5.2.2-beta1';
+  public $Version         = '5.2.2-beta2';
 
   /**
    * What to use in the X-Mailer header
@@ -430,7 +436,7 @@ class PHPMailer {
    * @return bool
    */
   private function mail_passthru($to, $subject, $body, $header, $params) {
-    if ( ini_get('safe_mode') || !strstr(ini_get("sendmail_path"), 'sendmail') ) {
+    if ( ini_get('safe_mode') || !($this->UseSendmailOptions) ) {
         $rt = @mail($to, $this->EncodeHeader($this->SecureHeader($subject)), $body, $header);
     } else {
         $rt = @mail($to, $this->EncodeHeader($this->SecureHeader($subject)), $body, $header, $params);
@@ -474,6 +480,7 @@ class PHPMailer {
   /**
    * Sets Mailer to send message using SMTP.
    * @return void
+   * @deprecated
    */
   public function IsSMTP() {
     $this->Mailer = 'smtp';
@@ -482,6 +489,7 @@ class PHPMailer {
   /**
    * Sets Mailer to send message using PHP mail() function.
    * @return void
+   * @deprecated
    */
   public function IsMail() {
     $this->Mailer = 'mail';
@@ -490,6 +498,7 @@ class PHPMailer {
   /**
    * Sets Mailer to send message using the $Sendmail program.
    * @return void
+   * @deprecated
    */
   public function IsSendmail() {
     if (!stristr(ini_get('sendmail_path'), 'sendmail')) {
@@ -501,6 +510,7 @@ class PHPMailer {
   /**
    * Sets Mailer to send message using the qmail MTA.
    * @return void
+   * @deprecated
    */
   public function IsQmail() {
     if (stristr(ini_get('sendmail_path'), 'qmail')) {
@@ -1849,7 +1859,7 @@ class PHPMailer {
       $encoding = 'Q';
       $encoded = $this->EncodeQ($str, $position);
       $encoded = $this->WrapText($encoded, $maxlen, true);
-      $encoded = str_replace('='.$this->LE, "\n", trim($encoded));
+      $encoded = str_replace('='.self::CRLF, "\n", trim($encoded));
     }
 
     $encoded = preg_replace('/^(.*)$/m', " =?".$this->CharSet."?$encoding?\\1?=", $encoded);
@@ -2003,29 +2013,36 @@ class PHPMailer {
    * @return string
    */
   public function EncodeQ($str, $position = 'text') {
-    // There should not be any EOL in the string
-    $encoded = preg_replace('/[\r\n]*/', '', $str);
-
+    //There should not be any EOL in the string
+    $encoded = str_replace(array("\r", "\n"), '', $str);
     switch (strtolower($position)) {
       case 'phrase':
-        $encoded = preg_replace("/([^A-Za-z0-9!*+\/ -])/e", "'='.sprintf('%02X', ord('\\1'))", $encoded);
+        $pattern = '^A-Za-z0-9!*+\/ -';
         break;
+
       case 'comment':
-        $encoded = preg_replace("/([\(\)\"])/e", "'='.sprintf('%02X', ord('\\1'))", $encoded);
+        $pattern = '\(\)"';
+        //note that we dont break here!
+        //for this reason we build the $pattern withoud including delimiters and []
+
       case 'text':
       default:
-        // Replace every high ascii, control =, ? and _ characters
-        //TODO using /e (equivalent to eval()) is probably not a good idea
-        $encoded = preg_replace('/([\000-\011\013\014\016-\037\075\077\137\177-\377])/e',
-                                "'='.sprintf('%02X', ord(stripslashes('\\1')))", $encoded);
+        //Replace every high ascii, control =, ? and _ characters
+        //We put \075 (=) as first value to make sure it's the first one in being converted, preventing double encode
+        $pattern = '\075\000-\011\013\014\016-\037\077\137\177-\377' . $pattern;
         break;
     }
+    
+    if (preg_match_all("/[{$pattern}]/", $encoded, $matches)) {
+      foreach (array_unique($matches[0]) as $char) {
+        $encoded = str_replace($char, '=' . sprintf('%02X', ord($char)), $encoded);
+      }
+    }
+    
+    //Replace every spaces to _ (more readable than =20)
+    return str_replace(' ', '_', $encoded);
+}
 
-    // Replace every spaces to _ (more readable than =20)
-    $encoded = str_replace(' ', '_', $encoded);
-
-    return $encoded;
-  }
 
   /**
    * Adds a string or binary attachment (non-filesystem) to the list.
@@ -2286,26 +2303,43 @@ class PHPMailer {
   }
 
   /**
-   * Changes every end of line from CR or LF to $this->LE.
+   * Changes every end of line from CRLF, CR or LF to $this->LE.
    * @access public
+   * @param string $str String to FixEOL
    * @return string
    */
   public function FixEOL($str) {
-    return str_replace(array("\r\n", "\r", "\n"), $this->LE, $str);
+	// condense down to \n
+	$nstr = str_replace(array("\r\n", "\r"), "\n", $str);
+	// Now convert LE as needed
+	if ($this->LE !== "\n") {
+		$nstr = str_replace("\n", $this->LE, $nstr);
+	}
+    return  $nstr;
   }
 
   /**
-   * Adds a custom header.
+   * Adds a custom header. $name value can be overloaded to contain
+   * both header name and value (name:value)
    * @access public
+   * @param string $name custom header name
+   * @param string $value header value
    * @return void
    */
-  public function AddCustomHeader($custom_header) {
-    $this->CustomHeader[] = explode(':', $custom_header, 2);
+  public function AddCustomHeader($name, $value=null) {
+	if ($value === null) {
+		// Value passed in as name:value
+		$this->CustomHeader[] = explode(':', $name, 2);
+	} else {
+		$this->CustomHeader[] = array($name, $value);
+	}
   }
 
   /**
    * Evaluates the message and returns modifications for inline images and backgrounds
    * @access public
+   * @param string $message Text to be HTML modified
+   * @param string $basedir baseline directory for path
    * @return $message
    */
   public function MsgHTML($message, $basedir = '') {
@@ -2344,7 +2378,7 @@ class PHPMailer {
 
   /**
    * Gets the MIME type of the embedded or inline image
-   * @param string File extension
+   * @param string $ext File extension
    * @access public
    * @return string MIME type of ext
    * @static
@@ -2615,9 +2649,9 @@ class PHPMailer {
   /**
    * Perform callback
    */
-  protected function doCallback($isSent, $to, $cc, $bcc, $subject, $body) {
+  protected function doCallback($isSent, $to, $cc, $bcc, $subject, $body, $from=null) {
     if (!empty($this->action_function) && is_callable($this->action_function)) {
-      $params = array($isSent, $to, $cc, $bcc, $subject, $body);
+      $params = array($isSent, $to, $cc, $bcc, $subject, $body, $from);
       call_user_func_array($this->action_function, $params);
     }
   }
