@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 "use strict";
 $(document).ready(function() {
-	$("#feeds_new_0_add").click(function() {
+	$("#feeds_new_0_add").bind("click",function() {
 		if(!is_disabled(this)) update(1);
 	});
 	var checkbox="input[type=checkbox][name$=email_default]";

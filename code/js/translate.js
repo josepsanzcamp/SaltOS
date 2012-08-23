@@ -144,7 +144,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 				});
 			});
 			// PROGRAM TRANSLATE BUTTON
-			$("a:first",div).click(function() {
+			$("a:first",div).bind("click",function() {
 				if($(this).hasClass("ui-state-disabled")) return;
 				var langs=$("select",div).val();
 				var text=$("textarea:first",div).val();
@@ -158,7 +158,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 					success:function(response) {
 						$("textarea:last",div).val(response);
 						__translate_enable();
-						$("textarea:last",div).focus();
+						$("textarea:last",div).trigger("focus");
 					},
 					error:function(XMLHttpRequest,textStatus,errorThrown) {
 						__translate_enable();
@@ -166,7 +166,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 					}
 				});
 			});
-			$("a:last",div).click(function() {
+			$("a:last",div).bind("click",function() {
 				if($(this).hasClass("ui-state-disabled")) return;
 				var langs=__translate_get_reverse();
 				var text=$("textarea:last",div).val();
@@ -180,7 +180,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 					success:function(response) {
 						$("textarea:first",div).val(response);
 						__translate_enable();
-						$("textarea:first",div).focus();
+						$("textarea:first",div).trigger("focus");
 					},
 					error:function(XMLHttpRequest,textStatus,errorThrown) {
 						__translate_enable();

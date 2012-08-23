@@ -56,7 +56,7 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 				}
 			}).trigger("accordionchange");
 			// PROGRAM CALCULATOR BUTTON
-			$("textarea",div).keypress(function(event) {
+			$("textarea",div).bind("keypress",function(event) {
 				if(is_enterkey(event)) {
 					var text=$("textarea",div).val();
 					text=explode("\n",text);
@@ -72,7 +72,7 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 								var text=$("textarea",div).val();
 								$("textarea",div).val(text+"="+response+"\n");
 								__calculator_enable();
-								$("textarea",div).focus();
+								$("textarea",div).trigger("focus");
 							},
 							error:function(XMLHttpRequest,textStatus,errorThrown) {
 								__calculator_enable();

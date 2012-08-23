@@ -108,7 +108,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		if(field) {
 			var requiredfield=lang_requiredfield();
-			alerta(requiredfield+": "+label,function() { field.focus(); });
+			alerta(requiredfield+": "+label,function() { $(field).trigger("focus"); });
 		}
 		return field==null;
 	}
@@ -1043,10 +1043,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(exists) $(obj).show();
 		if(!exists) $(obj).hide();
 		// AND PROGRAM HOVER EFFECT
-		$(".menu div a",obj).mouseover(function() {
+		$(".menu div a",obj).bind("mouseover",function() {
 			var color=get_colors("ui-state-active","color");
 			$(this).css("color",color);
-		}).mouseout(function() {
+		}).bind("mouseout",function() {
 			$(this).css("color","");
 		});
 		// TUNNING THE MENU
@@ -1155,7 +1155,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				constrainInput:false
 			});
 		});
-		$("a[isdate=true]",obj).click(function() {
+		$("a[isdate=true]",obj).bind("click",function() {
 			if(!is_disabled(this)) $(this).prev().datepicker("show");
 		});
 		// CREATE THE TIMEPICKERS
@@ -1167,7 +1167,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				setButtonLabel:lang_buttonaccept()
 			});
 		});
-		$("a[istime=true]",obj).click(function() {
+		$("a[istime=true]",obj).bind("click",function() {
 			if(!is_disabled(this)) jQuery.ptTimeSelect.openCntr($(this).prev());
 		});
 		// PROGRAM THE DATETIME JOIN
@@ -1223,7 +1223,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(this).bind("keyup",function() { floatval2(this); });
 		});
 		// PROGRAM LINKS OF SELECTS
-		$("a[islink=true]",obj).click(function() {
+		$("a[islink=true]",obj).bind("click",function() {
 			var val=$(this).prev().val();
 			var fn=$(this).attr("fnlink");
 			if(val) eval(str_replace("ID",val,fn));
@@ -1233,9 +1233,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var slave="input.slave[type=checkbox]";
 		$(master,obj).attr("title",function() { return lang_selectallcheckbox(); });
 		$(slave,obj).attr("title",function() { return lang_selectonecheckbox(); });
-		$(master,obj).click(function() {
+		$(master,obj).bind("click",function() {
 			$(this).prop("checked",!$(this).prop("checked"));
-		}).parent().click(function() {
+		}).parent().bind("click",function() {
 			var checkbox=$(master,this);
 			var value=$(checkbox).prop("checked");
 			$(checkbox).prop("checked",!value);
@@ -1280,7 +1280,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			});
 		});
 		// PROGRAM CHECK ENTER
-		$("input,select",obj).keypress(function(event) {
+		$("input,select",obj).bind("keypress",function(event) {
 			if(is_enterkey(event)) {
 				if(this.form) {
 					for(var i=0,len=this.form.elements.length;i<len;i++) {
@@ -1290,7 +1290,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						i=(i+1)%this.form.elements.length;
 						if(this.form.elements[i].type!="hidden") break;
 					}
-					this.form.elements[i].focus();
+					$(this.form.elements[i]).trigger("focus");
 					if(this.form.elements[i].type) {
 						if(substr(this.form.elements[i].type,0,6)!="select") {
 							this.form.elements[i].select();
@@ -1300,9 +1300,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			}
 		});
 		// PROGRAM THEAD TOGGLE EFFECT
-		$("span[hover='true']",obj).mouseover(function() {
+		$("span[hover='true']",obj).bind("mouseover",function() {
 			$(this).toggleClass($(this).attr("toggle"));
-		}).mouseout(function() {
+		}).bind("mouseout",function() {
 			$(this).toggleClass($(this).attr("toggle"));
 		});
 		// ADD STYLES TO COLUMNIZER BOXES
@@ -1342,7 +1342,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							$(iframe).each(function() {
 								var iframe2=this.contentWindow.document;
 								$(iframe2).bind("contextmenu",function(e) { return false; });
-								$(iframe2).keydown(function(e) { $(document).trigger(e); });
+								$(iframe2).bind("keydown",function(e) { $(document).trigger(e); });
 							});
 						}
 					},1000);
@@ -1450,13 +1450,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(typeof(obj)=="undefined") var obj=$("body");
 		// ADD HOVER, FOCUS AND BLUR EVENTS
 		var inputs="a.ui-state-default,input.ui-state-default,textarea.ui-state-default,select.ui-state-default";
-		$(inputs,obj).mouseover(function() {
+		$(inputs,obj).bind("mouseover",function() {
 			$(this).addClass("ui-state-hover");
-		}).mouseout(function() {
+		}).bind("mouseout",function() {
 			$(this).removeClass("ui-state-hover");
-		}).focus(function() {
+		}).bind("focus",function() {
 			$(this).addClass("ui-state-focus");
-		}).blur(function() {
+		}).bind("blur",function() {
 			$(this).removeClass("ui-state-focus");
 		});
 		//~ console.timeEnd("make_hovers");
@@ -1557,7 +1557,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	function make_focus() {
 		//~ console.time("make_focus");
 		// FOCUS THE OBJECT WITH FOCUSED ATTRIBUTE
-		if(focused) $(focused).focus();
+		if(focused) $(focused).trigger("focus");
 		focused=null;
 		//~ console.timeEnd("make_focus");
 	}
@@ -1620,23 +1620,23 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					// PROGRAM THE HIGHLIGHT EFFECT FOR EACH ROW
 					if(numbody>0 && numcell==0) {
 						var slave="input.slave[type=checkbox]";
-						$(this).mouseover(function() {
+						$(this).bind("mouseover",function() {
 							var value=$(slave,this).prop("checked");
 							if(!value) $(".tbody",this).addClass("ui-state-highlight");
-						}).mouseout(function() {
+						}).bind("mouseout",function() {
 							var value=$(slave,this).prop("checked");
 							if(!value) $(".tbody",this).removeClass("ui-state-highlight");
-						}).click(function() {
+						}).bind("click",function() {
 							var checkbox=$(slave,this);
 							var value=$(checkbox).prop("checked");
 							$(checkbox).prop("checked",!value);
 							if(!value) $(".tbody",this).addClass("ui-state-highlight");
 							if(value) $(".tbody",this).removeClass("ui-state-highlight");
 						});
-						$(slave,this).click(function() {
+						$(slave,this).bind("click",function() {
 							$(this).prop("checked",!$(this).prop("checked"));
 						});
-						$("a",this).click(function() {
+						$("a",this).bind("click",function() {
 							var checkbox=$(slave,$(this).parent().parent());
 							var value=$(checkbox).prop("checked");
 							if(value) $(checkbox).prop("checked",!value);
@@ -1684,7 +1684,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// IF NOT EXISTS THE CONTEXT MENU, CREATE IT
 		if($("#contextMenu").length==0) {
 			$("body").append("<div id='contextMenu' style='display:none'><ul></ul></div>");
-			$(document).keydown(function(event) {
+			$(document).bind("keydown",function(event) {
 				if(is_escapekey(event)) hide_contextmenu();
 			});
 		}
@@ -1750,7 +1750,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					if(!in_array(hash,hashes)) {
 						hashes.push(hash);
 						$("#contextMenu ul").append(html);
-						$("#contextMenu ul li:last").click(function() {
+						$("#contextMenu ul li:last").bind("click",function() {
 							hide_contextmenu();
 							eval(onclick);
 						});
@@ -1836,7 +1836,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function make_shortcuts() {
 		var codes={"backspace":8, "tab":9, "enter":13, "pauseBreak":19, "capsLock":20, "escape":27, "space":32, "pageUp":33, "pageDown":34, "end":35, "home":36, "leftArrow":37, "upArrow":38, "rightArrow":39, "downArrow":40, "insert":45, "delete":46, "0":48, "1":49, "2":50, "3":51, "4":52, "5":53, "6":54, "7":55, "8":56, "9":57, "a":65, "b":66, "c":67, "d":68, "e":69, "f":70, "g":71, "h":72, "i":73, "j":74, "k":75, "l":76, "m":77, "n":78, "o":79, "p":80, "q":81, "r":82, "s":83, "t":84, "u":85, "v":86, "w":87, "x":88, "y":89, "z":90, "leftWindowKey":91, "rightWindowKey":92, "selectKey":93, "numpad0":96, "numpad1":97, "numpad2":98, "numpad3":99, "numpad4":100, "numpad5":101, "numpad6":102, "numpad7":103, "numpad8":104, "numpad9":105, "multiply":106, "add":107, "subtract":109, "decimalPoint":110, "divide":111, "f1":112, "f2":113, "f3":114, "f4":115, "f5":116, "f6":117, "f7":118, "f8":119, "f9":120, "f10":121, "f11":122, "f12":123, "numLock":144, "scrollLock":145, "semiColon":186, "equalSign":187, "comma":188, "dash":189, "period":190, "forwardSlash":191, "graveAccent":192, "openBracket":219, "backSlash":220, "closeBraket":221, "singleQuote":222};
-		$(document).keydown(function(e) {
+		$(document).bind("keydown",function(e) {
 			if(!isloadingcontent()) {
 				var exists=false;
 				$("[class*=shortcut_]").each(function() {
@@ -1932,48 +1932,59 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				$(oldobj).css("height","");
 				return true;
 			};
+			// UNBIND EVENTS FUNCTION
+			var fn_unbind=function(event) {
+				$(window).unbind("scroll",fn_scroll);
+				$(window).unbind("resize",fn_resize);
+			};
 			// SCROLL EVENT FUNCTION
-			var can_scroll=1;
+			var is_scroll=0;
 			var fn_scroll=function(event) {
 				if(event.isTrigger) return;
-				if(!can_scroll) return;
-				can_scroll=0;
+				if(is_scroll) return;
+				is_scroll=1;
 				if(!for_scroll()) {
-					$(window).unbind("scroll",fn_scroll);
-					$(window).unbind("resize",fn_resize);;
+					fn_unbind();
 				}
-				can_scroll=1;
+				is_scroll=0;
 			};
 			// RESIZE EVENT FUNCTION
-			var can_resize=1;
+			var is_resize=0;
 			var fn_resize=function(event) {
 				if(event.isTrigger) return;
-				if(!can_resize) return;
-				can_resize=0;
+				if(is_resize) return;
+				is_resize=1;
 				if(!for_unmake()) {
-					$(window).unbind("resize",fn_resize);;
-					$(window).unbind("scroll",fn_scroll);
+					fn_unbind();
+					is_resize=0;
 				} else {
 					setTimeout(function() {
-						for_make();
-						for_scroll();
-						can_resize=1;
+						if(!for_make()) {
+							fn_unbind();
+						} else {
+							if(!for_scroll()) {
+								fn_unbind();
+							}
+						}
+						is_resize=0;
 					},100);
 				}
 			};
-			// INITIALIZE
-			for_make();
-			for_scroll();
-			// ATTACH EVENTS
-			$(window).scroll(fn_scroll);
-			$(window).resize(fn_resize);
+			// INITIALIZE AND BIND EVENTS
+			if(for_make()) {
+				if(for_scroll()) {
+					// ATTACH EVENTS
+					$(window).bind("scroll",fn_scroll);
+					$(window).bind("resize",fn_resize);
+				}
+			}
 		});
 	}
 
 	var jqxhr=null;
 
 	function make_abort() {
-		$(document).keydown(function(event) {
+		$(document).bind("keydown",function(event) {
 			if(is_escapekey(event) && jqxhr) {
 				jqxhr.abort();
 				jqxhr=null;

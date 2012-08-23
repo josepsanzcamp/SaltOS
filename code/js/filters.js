@@ -30,7 +30,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 	function load_filter() {
 		var filtro=$("#id_filter");
 		if($(filtro).val()=="") {
-			alerta(lang_loadfilterko(),function() { $(filtro).focus(); });
+			alerta(lang_loadfilterko(),function() { $(filtro).trigger("focus"); });
 		} else {
 			loadingcontent();
 			var id_filter=$(filtro).val();
@@ -80,7 +80,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 	function update_filter() {
 		var filtro=$("#id_filter");
 		if($(filtro).val()=="") {
-			alerta(lang_updatefilterko(),function() { $(filtro).focus(); });
+			alerta(lang_updatefilterko(),function() { $(filtro).trigger("focus"); });
 		} else {
 			loadingcontent(lang_sending());
 			var id_filter=$(filtro).val();
@@ -108,7 +108,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 	function delete_filter() {
 		var filtro=$("#id_filter");
 		if($(filtro).val()=="") {
-			alerta(lang_deletefilterko(),function() { $(filtro).focus(); });
+			alerta(lang_deletefilterko(),function() { $(filtro).trigger("focus"); });
 		} else {
 			loadingcontent(lang_sending());
 			var id_filter=$(filtro).val();
@@ -133,7 +133,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 	function create_filter() {
 		var filtro=$("#newfilter");
 		if($(filtro).val()=="") {
-			alerta(lang_createfilterko(),function() { $(filtro).focus(); });
+			alerta(lang_createfilterko(),function() { $(filtro).trigger("focus"); });
 		} else {
 			loadingcontent(lang_sending());
 			var nombre=urlencode($(filtro).val());
@@ -160,9 +160,9 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 		var filtro1=$("#id_filter");
 		var filtro2=$("#newfilter");
 		if($(filtro1).val()=="") {
-			alerta(lang_renamefilterko1(),function() { $(filtro1).focus(); });
+			alerta(lang_renamefilterko1(),function() { $(filtro1).trigger("focus"); });
 		} else if($(filtro2).val()=="") {
-			alerta(lang_renamefilterko2(),function() { $(filtro2).focus(); });
+			alerta(lang_renamefilterko2(),function() { $(filtro2).trigger("focus"); });
 		} else {
 			loadingcontent(lang_sending());
 			var id_filter=$(filtro1).val();

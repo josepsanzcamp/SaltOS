@@ -42,7 +42,7 @@ $(document).ready(function() {
 			var obj=$("iframe[name$=default_0_game]");
 			if($(obj).is(":visible")) {
 				$(obj).attr("src","xml.php?action=game&r="+current_revision());
-				$(obj).focus();
+				$(obj).trigger("focus");
 			} else {
 				$(obj).attr("src","");
 			}
