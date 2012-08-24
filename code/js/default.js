@@ -698,26 +698,29 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				jqxhr=XMLHttpRequest;
 			},
 			beforeSerialize:function(jqForm,options) {
-				var array=$(jqForm).serializeArray();
-				if(array.length>1000) {
-					// TRICK FOR FIX THE MAX_INPUT_VARS ISSUE
-					setTimeout(function() {
-						var fix_max_input_vars=new Array();
-						$(array).each(function(i,field) {
-							var obj=$("*[name="+field.name+"]",jqForm);
-							var type=$(obj).attr("type");
-							var visible=$(obj).is(":visible");
-							if(in_array(type,new Array("hidden","checkbox")) && !visible) {
-								var temp=field.name+"="+urlencode(field.value);
-								fix_max_input_vars.push(temp);
-								$(obj).remove();
-							}
-						});
-						fix_max_input_vars=base64_encode(implode("&",fix_max_input_vars));
-						$(jqForm).append("<input type='hidden' name='fix_max_input_vars' value='"+fix_max_input_vars+"'/>");
-						submitcontent(form,callback);
-					},100);
-					return false;
+				if(ini_get_max_input_vars()>0) {
+					var array=$(jqForm).serializeArray();
+					if(array.length>ini_get_max_input_vars()) {
+						// TRICK FOR FIX THE MAX_INPUT_VARS ISSUE
+						setTimeout(function() {
+							var fix_max_input_vars=new Array();
+							var types=new Array("hidden","checkbox");
+							$(array).each(function(i,field) {
+								var obj=$("*[name="+field.name+"]",jqForm);
+								var type=$(obj).attr("type");
+								var visible=$(obj).is(":visible");
+								if(in_array(type,types) && !visible) {
+									var temp=field.name+"="+urlencode(field.value);
+									fix_max_input_vars.push(temp);
+									$(obj).remove();
+								}
+							});
+							fix_max_input_vars=base64_encode(implode("&",fix_max_input_vars));
+							$(jqForm).append("<input type='hidden' name='fix_max_input_vars' value='"+fix_max_input_vars+"'/>");
+							submitcontent(form,callback);
+						},100);
+						return false;
+					}
 				}
 			},
 			beforeSubmit:function(formData,jqForm,options) {
@@ -1349,13 +1352,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 			}
 		});
-		// TUNNING THE SELECTS
-		select_tunning(obj);
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).change(function() {
 			eval($(this).val());
 			$(this).prop("selectedIndex",0);
 		});
+		// TUNNING THE SELECTS
+		select_tunning(obj);
 		//~ console.timeEnd("make_extras");
 	}
 

@@ -2,7 +2,7 @@
 /*
  * mime_parser.php
  *
- * @(#) $Id: mime_parser.php,v 1.82 2012/04/11 09:28:19 mlemos Exp $
+ * @(#) $Id: mime_parser.php,v 1.85 2012/08/23 12:19:59 mlemos Exp $
  *
  */
 
@@ -30,7 +30,7 @@ define('MIME_ADDRESS_FIRST',            2);
 
 	<package>net.manuellemos.mimeparser</package>
 
-	<version>@(#) $Id: mime_parser.php,v 1.82 2012/04/11 09:28:19 mlemos Exp $</version>
+	<version>@(#) $Id: mime_parser.php,v 1.85 2012/08/23 12:19:59 mlemos Exp $</version>
 	<copyright>Copyright © (C) Manuel Lemos 2006 - 2008</copyright>
 	<title>MIME parser</title>
 	<author>Manuel Lemos</author>
@@ -1084,7 +1084,8 @@ class mime_parser_class
 								break 2;
 						}
 						$position = $end + 2;
-						$position += strspn($value, " \t", $position);
+						if(($space = strspn($value, " \t", $position)) > 0)
+							$position += $space - 1;
 					}
 					if(strlen($error)==0
 					&& count($decoded_header))
@@ -2444,7 +2445,6 @@ class mime_parser_class
 		}
 		if(!IsSet($results['Type']))
 		{
-			echo $content_type,"\n";
 			if(IsSet($this->custom_mime_types[$content_type]))
 			{
 				$results['Type'] = $this->custom_mime_types[$content_type]['Type'];
