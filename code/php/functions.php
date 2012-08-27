@@ -822,9 +822,11 @@ function do_message_error($array,$format) {
 	if(isset($array["exception"])) $msg[]=array("Exception",$array["exception"]);
 	if(isset($array["details"])) $msg[]=array("Details",$array["details"]);
 	if(isset($array["query"])) $msg[]=array("Query",$array["query"]);
-	$debug=array_merge(debug_backtrace(),isset($array["backtrace"])?$array["backtrace"]:array());
-	array_walk($debug,"__debug_backtrace_helper");
-	$msg[]=array("Backtrace",implode($dict[$format][2],$debug));
+	if(isset($array["backtrace"])) {
+		$backtrace=$array["backtrace"];
+		array_walk($backtrace,"__debug_backtrace_helper");
+		$msg[]=array("Backtrace",implode($dict[$format][2],$backtrace));
+	}
 	array_walk($msg,"__do_message_error_helper",$dict[$format]);
 	$msg=implode($msg);
 	return $msg;
@@ -864,37 +866,7 @@ function show_php_error($array=null) {
 	addlog($msg_text,getDefault("debug/errorfile","error.log"));
 	// PREPARE THE FINAL REPORT (ONLY IN NOT SHELL MODE)
 	if(!getServer("SHELL")) {
-		// ORIGINAL IDEA FROM plugins.jquery.com
-		$html="<html>";
-		$html.="<head>";
-		$html.="<title>".get_name_version_revision()."</title>";
-		$html.="<style>";
-		$html.=".phperror { background:#444; color:#FFF; font-family:Helvetica,Arial,sans-serif; padding:20px 0; }";
-		$html.=".phperror h3 { background:url(".getDefault("info/favicon","img/favicon").") top left no-repeat; padding-left: 50px; min-height:32px; font-size:1.5em; margin:0; }";
-		$html.=".phperror a { color: cyan; }";
-		$html.=".phperror pre { white-space:pre-wrap; }";
-		$html.=".phperror p { margin:0; }";
-		$html.=".phperror form { display:inline; }";
-		$html.=".phperror input { background:#FFF; padding:5px; border-radius:5px; border:none; margin-right:5px; }";
-		$html.=".phperror div { background:#000; padding:20px; border-radius:20px; box-shadow:0 0 20px #222; width:800px; margin:100px auto; }";
-		$html.="</style>";
-		$html.="</head>";
-		$html.="<body class='phperror'>";
-		$html.="<div>";
-		$html.=$msg;
-		$html.="<p>";
-		$html.="<form action='xml.php' method='post' style='display:inline'>";
-		$html.="<input type='hidden' name='page' value='home'/>";
-		$html.="<input type='submit' value='".(LANG_LOADED()?LANG("gotohome"):"Go to home")."'/>";
-		$html.="</form>";
-		$html.="<form action='http://bugs.saltos.net/' method='post' style='display:inline'>";
-		$html.="<input type='hidden' name='bug' value='".base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)))."'/>";
-		$html.="<input type='submit' value='".(LANG_LOADED()?LANG("notifybug"):"Notify bug")."'/>";
-		$html.="</form>";
-		$html.="</p>";
-		$html.="</div>";
-		$html.="</body>";
-		$msg=$html;
+		$msg=pretty_html_error($msg);
 		if(!headers_sent()) {
 			header_powered();
 			header_expires(false);
@@ -904,12 +876,49 @@ function show_php_error($array=null) {
 	die($msg);
 }
 
+function pretty_html_error($msg) {
+	// ORIGINAL IDEA FROM plugins.jquery.com
+	$html="<html>";
+	$html.="<head>";
+	$html.="<title>".get_name_version_revision()."</title>";
+	$html.="<style>";
+	$html.=".phperror { background:#444; color:#FFF; font-family:Helvetica,Arial,sans-serif; padding:20px 0; }";
+	$html.=".phperror h3 { background:url(".getDefault("info/favicon","img/favicon").") top left no-repeat; padding-left: 50px; min-height:32px; font-size:1.5em; margin:0; }";
+	$html.=".phperror a { color: cyan; }";
+	$html.=".phperror pre { white-space:pre-wrap; }";
+	$html.=".phperror p { margin:0; }";
+	$html.=".phperror form { display:inline; }";
+	$html.=".phperror input { background:#FFF; padding:5px; border-radius:5px; border:none; margin-right:5px; }";
+	$html.=".phperror div { background:#000; padding:20px; border-radius:20px; box-shadow:0 0 20px #222; width:800px; margin:100px auto; }";
+	$html.="</style>";
+	$html.="</head>";
+	$html.="<body class='phperror'>";
+	$html.="<div>";
+	$html.=$msg;
+	$html.="<p>";
+	$html.="<form action='xml.php' method='post' style='display:inline'>";
+	$html.="<input type='hidden' name='page' value='home'/>";
+	$html.="<input type='submit' value='".(LANG_LOADED()?LANG("gotohome"):"Go to home")."'/>";
+	$html.="</form>";
+	$html.="<form action='http://bugs.saltos.net/' method='post' style='display:inline'>";
+	$html.="<input type='hidden' name='bug' value='".base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)))."'/>";
+	$html.="<input type='submit' value='".(LANG_LOADED()?LANG("notifybug"):"Notify bug")."'/>";
+	$html.="</form>";
+	$html.="</p>";
+	$html.="</div>";
+	$html.="</body>";
+	return $html;
+}
+
 function __error_handler($num,$msg,$file,$line) {
-	show_php_error(array("phperror"=>"$msg (code $num)","details"=>"Error on file '$file' at line $line"));
+	$backtrace=debug_backtrace();
+	array_shift($backtrace);
+	show_php_error(array("phperror"=>"$msg (code $num)","details"=>"Error on file '$file' at line $line","backtrace"=>$backtrace));
 }
 
 function __exception_handler($e) {
-	show_php_error(array("exception"=>$e->getMessage()." (code ".$e->getCode().")","details"=>"Error on file '".$e->getFile()."' at line ".$e->getLine(),"backtrace"=>$e->getTrace()));
+	$backtrace=$e->getTrace();
+	show_php_error(array("exception"=>$e->getMessage()." (code ".$e->getCode().")","details"=>"Error on file '".$e->getFile()."' at line ".$e->getLine(),"backtrace"=>$backtrace));
 }
 
 function program_error_handler() {
