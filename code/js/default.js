@@ -698,25 +698,35 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				jqxhr=XMLHttpRequest;
 			},
 			beforeSerialize:function(jqForm,options) {
-				if(ini_get_max_input_vars()>0) {
+				// TRICK FOR FIX THE MAX_INPUT_VARS ISSUE
+				var max_input_vars=ini_get_max_input_vars();
+				if(max_input_vars>0) {
 					var array=$(jqForm).serializeArray();
-					if(array.length>ini_get_max_input_vars()) {
-						// TRICK FOR FIX THE MAX_INPUT_VARS ISSUE
+					var total_input_vars=array.length;
+					if(total_input_vars>max_input_vars) {
+						//~ console.debug("max="+max_input_vars);
+						//~ console.debug("total="+total_input_vars);
+						//~ console.time("fix_max_input_vars");
 						setTimeout(function() {
 							var fix_max_input_vars=new Array();
-							var types=new Array("hidden","checkbox");
 							$(array).each(function(i,field) {
-								var obj=$("*[name="+field.name+"]",jqForm);
-								var type=$(obj).attr("type");
-								var visible=$(obj).is(":visible");
-								if(in_array(type,types) && !visible) {
-									var temp=field.name+"="+urlencode(field.value);
-									fix_max_input_vars.push(temp);
-									$(obj).remove();
+								if(total_input_vars>=max_input_vars) {
+									var obj=$("*[name="+field.name+"]",jqForm);
+									var type=$(obj).attr("type");
+									var visible=$(obj).is(":visible");
+									if(in_array(type,new Array("hidden","checkbox")) && !visible) {
+										var temp=field.name+"="+urlencode(field.value);
+										fix_max_input_vars.push(temp);
+										$(obj).remove();
+										total_input_vars--;
+									}
 								}
 							});
+							//~ console.debug("length="+fix_max_input_vars.length);
+							//~ console.debug("total="+total_input_vars);
 							fix_max_input_vars=base64_encode(implode("&",fix_max_input_vars));
 							$(jqForm).append("<input type='hidden' name='fix_max_input_vars' value='"+fix_max_input_vars+"'/>");
+							//~ console.timeEnd("fix_max_input_vars");
 							submitcontent(form,callback);
 						},100);
 						return false;
@@ -1511,7 +1521,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("make_tooltips");
 		if(typeof(obj)=="undefined") var obj=$("body");
 		// CREATE THE TOOLTIPS
-		$("[title!='']",obj).each(function() {
+		$("[title][title!='']",obj).each(function() {
 			// GET THE TITLE VALUE
 			var title=trim($(this).attr("title"));
 			var update=false;

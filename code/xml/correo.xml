@@ -1095,13 +1095,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<include>js/correo.js</include>
 				<include>js/addtextos.js</include>
 			</cache>
-			<inline>$(document).ready(function() { update_files(abs(getParam("id"))); });</inline>
-			<inline>$(document).ready(function() { update_auto(abs(getParam("id"))); });</inline>
 			<function>sendmail(returnhere) { addcontent("cancel"); setParam("returnhere",returnhere); setParam("action","sendmail"); submit1(); }</function>
 			<function>reply() { setParam("id","0_reply_"+abs(getParam("id"))); submit1(); }</function>
 			<function>replyall() { setParam("id","0_replyall_"+abs(getParam("id"))); submit1(); }</function>
 			<function>forward() { setParam("id","0_forward_"+abs(getParam("id"))); submit1(); }</function>
-			<inline>$(document).ready(function() { update_signature(); });</inline>
 			<function eval="true">"lang_msgnumsiwait() { return '".LANG_ESCAPE("msgnumsiwait")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumnowait() { return '".LANG_ESCAPE("msgnumnowait")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumsispam() { return '".LANG_ESCAPE("msgnumsispam")."1".LANG_ESCAPE("message1")."'; }"</function>

@@ -141,43 +141,51 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 		}
 	}
 
+	function make_usuarios() {
+		if(getParam("action")!="form") return;
+		setTimeout(function() {
+			$("input[type=hidden][name$=id_registro][value=-2]").each(function() {
+				var padre=$(this).parent();
+				$(padre).show();
+				// TODO REVISED
+				var id_aplicacion=$("input[type=hidden][name$=id_aplicacion]",padre).val();
+				padre=$(padre).parent().parent();
+				var total=0;
+				var activado=0;
+				var temp=$("input[type=hidden][name$=id_aplicacion][value="+id_aplicacion+"]",padre);
+				$(temp).each(function() {
+					var padre=$(this).parent();
+					var id_registro=$("input[name$=id_registro]",padre).val();
+					if(id_registro>0) {
+						total++;
+						activado+=$("input[type=checkbox][name$=activado]",padre).prop("checked")?1:0;
+					}
+				});
+				$(temp).each(function() {
+					var padre=$(this).parent();
+					var id_registro=$("input[name$=id_registro]",padre).val();
+					if(id_registro<0) {
+						if(activado==0) {
+							$("input[type=checkbox][name$=activado]",padre).prop("checked",false);
+							$("input[type=checkbox][name$=activado]",padre).prop("disabled",false);
+						} else if(activado==total) {
+							$("input[type=checkbox][name$=activado]",padre).prop("checked",true);
+							$("input[type=checkbox][name$=activado]",padre).prop("disabled",false);
+						} else {
+							$("input[type=checkbox][name$=activado]",padre).prop("checked",true);
+							$("input[type=checkbox][name$=activado]",padre).prop("disabled",true);
+						}
+					}
+				});
+				// TODO REVISED
+			});
+			var screen=$(".ui-layout-center");
+			make_tables(screen);
+		},100);
+	}
+
 }
 
+
 "use strict";
-$(document).ready(function() {
-	$("input[type=hidden][name$=id_registro][value=-2]").each(function() {
-		var padre=$(this).parent();
-		$(padre).show();
-		// TODO REVISED
-		var id_aplicacion=$("input[type=hidden][name$=id_aplicacion]",padre).val();
-		padre=$(padre).parent().parent();
-		var total=0;
-		var activado=0;
-		var temp=$("input[type=hidden][name$=id_aplicacion][value="+id_aplicacion+"]",padre);
-		$(temp).each(function() {
-			var padre=$(this).parent();
-			var id_registro=$("input[name$=id_registro]",padre).val();
-			if(id_registro>0) {
-				total++;
-				activado+=$("input[type=checkbox][name$=activado]",padre).prop("checked")?1:0;
-			}
-		});
-		$(temp).each(function() {
-			var padre=$(this).parent();
-			var id_registro=$("input[name$=id_registro]",padre).val();
-			if(id_registro<0) {
-				if(activado==0) {
-					$("input[type=checkbox][name$=activado]",padre).prop("checked",false);
-					$("input[type=checkbox][name$=activado]",padre).prop("disabled",false);
-				} else if(activado==total) {
-					$("input[type=checkbox][name$=activado]",padre).prop("checked",true);
-					$("input[type=checkbox][name$=activado]",padre).prop("disabled",false);
-				} else {
-					$("input[type=checkbox][name$=activado]",padre).prop("checked",true);
-					$("input[type=checkbox][name$=activado]",padre).prop("disabled",true);
-				}
-			}
-		});
-		// TODO REVISED
-	});
-});
+$(document).ready(function() { make_usuarios(); });

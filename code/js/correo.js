@@ -50,7 +50,9 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		});
 	}
 
-	function update_files(id) {
+	function update_files() {
+		if(getParam("action")!="form") return;
+		var id=abs(getParam("id"));
 		var id_extra=explode("_",$("input[name$=id_extra]").val(),3);
 		if(typeof(id_extra[1])!="undefined" && typeof(id_extra[2])!="undefined" && id_extra[1]=="forward") id=id_extra[2];
 		if(typeof(id_extra[1])!="undefined" && typeof(id_extra[2])!="undefined" && id_extra[1]=="session") id=id_extra[1];
@@ -70,7 +72,9 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		});
 	}
 
-	function update_auto(id) {
+	function update_auto() {
+		if(getParam("action")!="form") return;
+		var id=abs(getParam("id"));
 		if(id) return;
 		var pattern="input[name$=_to],input[name$=_cc],input[name$=_bcc]";
 		$(pattern).autocomplete({
@@ -126,8 +130,10 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 	var old_signature="";
 
 	function update_signature(update) {
+		if(getParam("action")!="form") return;
 		if(typeof(update)=="undefined") var update=0;
 		var signature=$("select[name$=from]").val();
+		if(!signature) return;
 		if(update) {
 			var body=$("textarea[name$=body]");
 			var cc=$("input[name$=_cc]");
@@ -158,3 +164,10 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 	}
 
 }
+
+"use strict";
+$(document).ready(function() {
+	update_files();
+	update_auto();
+	update_signature();
+});
