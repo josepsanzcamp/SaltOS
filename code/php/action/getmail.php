@@ -513,7 +513,7 @@ if(getParam("action")=="getmail") {
 			$condition="update_correo_list()";
 			javascript_alert($newemail.LANG("msgnewokpop3email".min($newemail,2),"correo"),$condition);
 			javascript_alert($newemail.LANG("msgnewokpop3email".min($newemail,2),"correo").$gotoemail,"!($condition)");
-			$query="SELECT COUNT(*) count FROM tbl_correo WHERE state_new='1' AND id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."')";
+			$query="SELECT COUNT(*) FROM tbl_correo WHERE state_new='1' AND id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."')";
 			$count=execute_query($query);
 			if($count) javascript_template("menu_correo($count);");
 			if($count) javascript_template("favicon_animate($count);");

@@ -39,7 +39,7 @@ if(getParam("action")=="feeds") {
 				$command=explode("=",getParam("command"));
 				if($command[0]=="leidos") {
 					// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-					$query="SELECT COUNT(*) count FROM tbl_feeds WHERE id IN ($ids) AND state_new!='${command[1]}'";
+					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_new!='${command[1]}'";
 					$numids=execute_query($query);
 					// PONER STATE_NEW=0 EN LOS POSTS SELECCIONADOS
 					$query="UPDATE tbl_feeds SET state_new='${command[1]}' WHERE id IN ($ids) AND state_new!='${command[1]}'";
@@ -48,7 +48,7 @@ if(getParam("action")=="feeds") {
 					session_alert(LANG($command[1]?"msgnumnoleidos":"msgnumsileidos","feeds").$numids.LANG("message".min($numids,2),"feeds"));
 				} elseif($command[0]=="wait") {
 					// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-					$query="SELECT COUNT(*) count FROM tbl_feeds WHERE id IN ($ids) AND state_wait!='${command[1]}'";
+					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_wait!='${command[1]}'";
 					$numids=execute_query($query);
 					// PONER STATE_WAIT=1 EN LOS POSTS SELECCIONADOS
 					$query="UPDATE tbl_feeds SET state_new='0',state_wait='${command[1]}' WHERE id IN ($ids) AND state_wait!='${command[1]}'";
@@ -344,6 +344,7 @@ if(getParam("action")=="feeds") {
 		$error=get_clear_error();
 		if(!$error) {
 			$xml=__feeds_removescripts($xml);
+			$xml=trim($xml);
 			capture_next_error();
 			$array=__feeds_xml2array($xml);
 			$error=get_clear_error();
@@ -401,6 +402,7 @@ if(getParam("action")=="feeds") {
 						$error=get_clear_error();
 						if(!$error) {
 							$xml=__feeds_removescripts($xml);
+							$xml=trim($xml);
 							capture_next_error();
 							$array=__feeds_xml2array($xml);
 							$error=get_clear_error();
@@ -551,6 +553,7 @@ if(getParam("action")=="feeds") {
 		$error=get_clear_error();
 		if(!$error) {
 			$xml=__feeds_removescripts($xml);
+			$xml=trim($xml);
 			capture_next_error();
 			$array=__feeds_xml2array($xml);
 			$error=get_clear_error();
@@ -658,7 +661,7 @@ if(getParam("action")=="feeds") {
 				javascript_alert($modifiedfeeds.LANG("msgmodifiedfeedsok".min($modifiedfeeds,2),"feeds"),$condition);
 				javascript_alert($modifiedfeeds.LANG("msgmodifiedfeedsok".min($modifiedfeeds,2),"feeds").$gotofeeds,"!($condition)");
 			}
-			$query="SELECT COUNT(*) count FROM tbl_feeds WHERE state_new='1' AND id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='".current_user()."')";
+			$query="SELECT COUNT(*) FROM tbl_feeds WHERE state_new='1' AND id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='".current_user()."')";
 			$count=execute_query($query);
 			if($count) javascript_template("menu_feeds($count);");
 			if($count) javascript_template("favicon_animate($count);");

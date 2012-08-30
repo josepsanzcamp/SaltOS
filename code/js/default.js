@@ -947,10 +947,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(header).html3(header2);
 			$(header).addClass("preloading");
 			$(header).show();
+			make_toolbar(header);
 			$(header).removeClass("preloading");
 			setTimeout(function() {
 				//~ console.time("updatecontent north fase 1");
-				make_toolbar(header);
 				make_hovers(header);
 				make_tooltips(header);
 				make_draganddrop(header);
@@ -980,10 +980,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(menu).addClass("preloading");
 			$(menu).show();
 			make_menu(menu);
+			make_toolbar(menu);
 			$(menu).removeClass("preloading");
 			setTimeout(function() {
 				//~ console.time("updatecontent west fase 1");
-				make_toolbar(menu);
 				make_hovers(menu);
 				make_tooltips(menu);
 				make_draganddrop(menu);
@@ -1011,13 +1011,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		make_tables(screen);
 		make_extras(screen);
 		make_ckeditors(screen);
+		make_toolbar(screen);
 		$(screen).removeClass("preloading");
 		setTimeout(function() {
 			//~ console.time("updatecontent center fase 1");
 			var html2=$("html");
 			update_style(html,html2);
 			update_iconset(html,html2);
-			make_toolbar(screen);
 			make_hovers(screen);
 			make_tooltips(screen);
 			make_draganddrop(screen);
@@ -1884,6 +1884,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	function make_toolbar(obj) {
+		//~ console.time("make_toolbar");
 		if(typeof(obj)=="undefined") var obj=$("body");
 		$(".toolbar",obj).each(function() {
 			var oldobj=$(this);
@@ -1992,6 +1993,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 			}
 		});
+		//~ console.timeEnd("make_toolbar");
 	}
 
 	var jqxhr=null;
@@ -2027,27 +2029,27 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_abort();
 			var header=$(".ui-layout-north");
 			make_numbers(header);
+			make_toolbar(header);
 			var menu=$(".ui-layout-west");
 			make_menu(menu);
 			make_numbers(menu);
+			make_toolbar(menu);
 			var screen=$(".ui-layout-center");
 			make_tabs(screen);
 			make_tables(screen);
 			make_extras(screen);
 			make_ckeditors(screen);
+			make_toolbar(screen);
 			$("body > *").removeClass("preloading");
 			setTimeout(function() {
 				//~ console.time("document_ready fase 2");
 				load_numbers();
-				make_toolbar(header);
 				make_hovers(header);
 				make_tooltips(header);
 				make_draganddrop(header);
-				make_toolbar(menu);
 				make_hovers(menu);
 				make_tooltips(menu);
 				make_draganddrop(menu);
-				make_toolbar(screen);
 				make_hovers(screen);
 				make_tooltips(screen);
 				make_draganddrop(screen);

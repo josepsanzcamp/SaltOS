@@ -38,7 +38,7 @@ if($page=="correo") {
 			// CONTINUAR
 			if($command[0]=="leidos") {
 				// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-				$query="SELECT COUNT(*) count FROM tbl_correo WHERE id IN ($ids) AND state_new!='${command[1]}'";
+				$query="SELECT COUNT(*) FROM tbl_correo WHERE id IN ($ids) AND state_new!='${command[1]}'";
 				$numids=execute_query($query);
 				// PONER STATE_NEW=0 EN LOS CORREOS SELECCIONADOS
 				$query="UPDATE tbl_correo SET state_new='${command[1]}' WHERE id IN ($ids) AND state_new!='${command[1]}'";
@@ -47,7 +47,7 @@ if($page=="correo") {
 				session_alert(LANG($command[1]?"msgnumnoleidos":"msgnumsileidos","correo").$numids.LANG("message".min($numids,2),"correo"));
 			} elseif($command[0]=="wait") {
 				// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-				$query="SELECT COUNT(*) count FROM tbl_correo WHERE id IN ($ids) AND state_wait!='${command[1]}'";
+				$query="SELECT COUNT(*) FROM tbl_correo WHERE id IN ($ids) AND state_wait!='${command[1]}'";
 				$numids=execute_query($query);
 				// PONER STATE_WAIT=1 EN LOS CORREOS SELECCIONADOS
 				$query="UPDATE tbl_correo SET state_new='0',state_wait='${command[1]}' WHERE id IN ($ids) AND state_wait!='${command[1]}'";
@@ -56,7 +56,7 @@ if($page=="correo") {
 				session_alert(LANG($command[1]?"msgnumsiwait":"msgnumnowait","correo").$numids.LANG("message".min($numids,2),"correo"));
 			} elseif($command[0]=="spam") {
 				// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-				$query="SELECT COUNT(*) count FROM tbl_correo WHERE id IN ($ids) AND state_spam!='${command[1]}'";
+				$query="SELECT COUNT(*) FROM tbl_correo WHERE id IN ($ids) AND state_spam!='${command[1]}'";
 				$numids=execute_query($query);
 				// PONER STATE_SPAM=1 EN LOS CORREOS SELECCIONADOS
 				$query="UPDATE tbl_correo SET state_new='0',state_spam='${command[1]}' WHERE id IN ($ids) AND state_spam!='${command[1]}'";

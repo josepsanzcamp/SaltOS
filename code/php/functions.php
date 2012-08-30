@@ -748,7 +748,7 @@ function use_table_cookies($name,$value="",$default="") {
 	if($uid) {
 		if($value!="") {
 			if($value=="null") $value="";
-			$query="SELECT COUNT(*) count FROM tbl_cookies WHERE id_usuario='$uid' AND clave='$name'";
+			$query="SELECT COUNT(*) FROM tbl_cookies WHERE id_usuario='$uid' AND clave='$name'";
 			$count=execute_query($query);
 			if($count>1) {
 				$query="DELETE FROM tbl_cookies WHERE id_usuario='$uid' AND clave='$name'";

@@ -534,7 +534,7 @@ switch($action) {
 		foreach($array_order as $key=>$val) $array_order[$key]=implode(" ",$val);
 		if(!count(array_intersect($array_order,array("id asc","id desc")))) $array_order[]="id desc";
 		$order=implode(",",$array_order);
-		// DETECT DB ENGINE
+		// EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
 		$dbtype=db_type();
 		if($dbtype=="SQLITE") {
 			// LIST OF TEMPORARY FIELDS TO RETRIEVE
@@ -555,16 +555,10 @@ switch($action) {
 			// EXECUTE THE QUERY TO OBTAIN THE REAL ROWS AND FIELDS
 			$query="SELECT * FROM ($query0) WHERE id IN (SELECT id FROM $tbl_hash2) ORDER BY $order";
 		} elseif($dbtype=="MYSQL") {
-			// CREATE THE TEMPORARY TABLES (HELPERS)
-			$tbl_hash1="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS $query0";
-			db_query($query);
-			// EXECUTE THE QUERY TO OBTAIN THE REAL ROWS AND FIELDS
-			$query="SELECT * FROM $tbl_hash1 ORDER BY $order LIMIT $offset,$limit";
+			$query="$query0 ORDER BY $order LIMIT $offset,$limit";
 		} else {
 			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
 		}
-		// EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
 		$result=db_query($query);
 		$count=1;
 		while($row=db_fetch_row($result)) {
@@ -573,7 +567,15 @@ switch($action) {
 		}
 		db_free($result);
 		// EXECUTE THE QUERY TO GET THE TOTAL ROWS
-		$query="SELECT COUNT(*) `count` FROM $tbl_hash1";
+		$dbtype=db_type();
+		if($dbtype=="SQLITE") {
+			$query="SELECT COUNT(*) FROM $tbl_hash1";
+		} elseif($dbtype=="MYSQL") {
+			$tbl_hash1="tbl_".get_unique_id_md5();
+			$query="SELECT COUNT(*) FROM ($query0) $tbl_hash1";
+		} else {
+			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
+		}
 		$count=execute_query($query);
 		// CONTINUE WITH NORMAL OPERATION
 		$_RESULT[$action]=__eval_querytag($_RESULT[$action]);
