@@ -60,7 +60,7 @@ define("__BR__","<br/>");
 		<link xmlns="" href="img/favicon.ico" rel="shortcut icon">
 		<title><?php echo LANG("title")." - ".get_name_version_revision(); ?></title>
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="lib/jquery/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-1.8.1.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="lib/jquery/jquery-ui-1.8.23.min.js"></script>
 	</head>

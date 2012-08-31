@@ -1897,7 +1897,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(newobj).css("z-index",1);
 			$(oldobj).parent().append(newobj);
 			// MAKER FUNCTION
-			var for_make=function() {
+			var fn_make=function() {
 				if(!$(".toolbar_"+hash,obj).length) return false;
 				if(!$(oldobj).is(":visible")) return true;
 				$(newobj).width($(oldobj).width());
@@ -1913,32 +1913,29 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var background_off=get_colors("ui-widget-content","background-color");
 			var color_off=get_colors("ui-widget-content","color");
 			// SCROLL FUNCTION
-			var for_scroll=function() {
+			var fn_move=function() {
 				if(!$(".toolbar_"+hash,obj).length) return false;
 				if(!$(oldobj).is(":visible")) return true;
 				var pos=$(oldobj).position();
-				var scroll=$(window).scrollTop();
-				var pos0=$(oldobj).parent().position();
 				var height=$(window).height();
-				var max=height-pos0.top+scroll-$(oldobj).height()-4; // THE 4 FIX AN UNKNOWN UI CONSTRAIN!!!
+				var pos2=$(oldobj).parent().position();
+				var scroll=$(window).scrollTop();
+				var height2=$(oldobj).height();
+				var max=height-pos2.top+scroll-height2-4; // THE 4 FIX AN UNKNOWN UI CONSTRAIN!!!
 				if(pos.top<scroll) {
-					pos.top=scroll;
-					var background=background_on;
-					var color=color_on;
+					$(newobj).css("color",color_on).css("background-color",background_on).addClass("ui-corner-all");
+					$(newobj).css("top",scroll+"px");
 				} else if(pos.top>max) {
-					pos.top=max;
-					var background=background_on;
-					var color=color_on;
+					$(newobj).css("color",color_on).css("background-color",background_on).addClass("ui-corner-all");
+					$(newobj).css("top",max+"px");
 				} else {
-					var background=background_off;
-					var color=color_off;
+					$(newobj).css("color",color_off).css("background-color",background_off).removeClass("ui-corner-all");
+					$(newobj).css("top",pos.top+"px");
 				}
-				$(newobj).css("color",color).css("background-color",background).addClass("ui-corner-all");
-				$(newobj).css("top",pos.top+"px");
 				return true;
 			};
 			// UNMAKER FUNCTION
-			var for_unmake=function() {
+			var fn_unmake=function() {
 				if(!$(".toolbar_"+hash,obj).length) return false;
 				if(!$(oldobj).is(":visible")) return true;
 				$(oldobj).append($(newobj).children());
@@ -1957,7 +1954,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if(event.isTrigger) return;
 				if(is_scroll) return;
 				is_scroll=1;
-				if(!for_scroll()) {
+				if(!fn_move()) {
 					fn_unbind();
 				}
 				is_scroll=0;
@@ -1968,15 +1965,15 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if(event.isTrigger) return;
 				if(is_resize) return;
 				is_resize=1;
-				if(!for_unmake()) {
+				if(!fn_unmake()) {
 					fn_unbind();
 					is_resize=0;
 				} else {
 					setTimeout(function() {
-						if(!for_make()) {
+						if(!fn_make()) {
 							fn_unbind();
 						} else {
-							if(!for_scroll()) {
+							if(!fn_move()) {
 								fn_unbind();
 							}
 						}
@@ -1985,8 +1982,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 			};
 			// INITIALIZE AND BIND EVENTS
-			if(for_make()) {
-				if(for_scroll()) {
+			if(fn_make()) {
+				if(fn_move()) {
 					// ATTACH EVENTS
 					$(window).bind("scroll",fn_scroll);
 					$(window).bind("resize",fn_resize);

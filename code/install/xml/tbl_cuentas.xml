@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color_text1>#ce141d</color_text1>
 		<color_text2>#666666</color_text2>
 		<factura_iva_bool>1</factura_iva_bool>
-		<factura_iva_value>18</factura_iva_value>
+		<factura_iva_value>21</factura_iva_value>
 		<factura_irpf_bool>0</factura_irpf_bool>
 		<factura_irpf_value>15</factura_irpf_value>
 		<factura_pie1/>
