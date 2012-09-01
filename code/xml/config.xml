@@ -159,11 +159,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<elinks>elinks</elinks>
 		<__elinks__>-dump -no-home -eval 'set document.browse.margin_width=0' __INPUT__</__elinks__>
 		<text2wave>text2wave</text2wave>
-		<__text2wave__>
-			<es>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</es>
-			<en>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</en>
-			<default>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</default>
-		</__text2wave__>
+		<__text2wave__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave__>
+		<__text2wave_es__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave_es__>
+		<__text2wave_en__>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</__text2wave_en__>
 		<ffmpeg>ffmpeg</ffmpeg>
 		<__ffmpeg__>-i __INPUT__ -ar 44100 -ab 64k __OUTPUT__</__ffmpeg__>
 		<apertium>apertium</apertium>
@@ -174,8 +172,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__aspell_langs__>dump dicts</__aspell_langs__>
 		<which>which</which>
 		<__which__>__INPUT__</__which__>
-		<sqlite3>sqlite3</sqlite3>
-		<__sqlite3__>__DBFILE__ '.read __INPUT__' 2&gt;&amp;1</__sqlite3__>
+		<sqlite3>sqlite3</sqlite3><!-- ONLY USED BY BIN_SQLITE DRIVER -->
+		<__sqlite3__>__DBFILE__ '.read __INPUT__' 2&gt;&amp;1</__sqlite3__><!-- ONLY USED BY BIN_SQLITE DRIVER -->
 	</commands>
 	<debug>
 		<actiondebug>false</actiondebug>

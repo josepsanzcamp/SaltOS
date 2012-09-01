@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>2</id>
 			<codigo>contactos</codigo>
 			<nombre>Contactos</nombre>
-			<table></table>
+			<table>tbl_contactos</table>
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>

@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="title">
 	<xsl:for-each select="/root">
-		<div class="ui-widget toolbar">
+		<div class="ui-widget">
 			<div class="ui-widget-header ui-corner-bottom">
 				<div class="quick">
 					<xsl:for-each select="menu/header/option">
@@ -390,7 +390,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="list_quick">
 	<xsl:for-each select="quick">
-		<table class="width100 toolbar" cellpadding="0" cellspacing="0" border="0">
+		<table class="width100" cellpadding="0" cellspacing="0" border="0">
 			<xsl:call-template name="form_by_rows">
 				<xsl:with-param name="form" select="null"/>
 				<xsl:with-param name="node" select="null"/>
@@ -398,22 +398,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<xsl:with-param name="iter" select="row"/>
 			</xsl:call-template>
 		</table>
-		<table class="width100" cellpadding="0" cellspacing="0" border="0">
-			<tr>
-				<td class="separator"></td>
-			</tr>
-		</table>
 	</xsl:for-each>
 </xsl:template>
 
 <xsl:template name="list_pager">
 	<xsl:for-each select="pager">
 		<table class="width100" cellpadding="0" cellspacing="0" border="0">
-			<tr>
-				<td class="separator"></td>
-			</tr>
-		</table>
-		<table class="width100 toolbar" cellpadding="0" cellspacing="0" border="0">
 			<xsl:call-template name="form_by_rows">
 				<xsl:with-param name="form" select="null"/>
 				<xsl:with-param name="node" select="null"/>
@@ -514,10 +504,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="brtag">
 	<table class="width100" cellpadding="0" cellspacing="0" border="0">
-		<tr>
-			<td class="separator"></td>
-		</tr>
+		<xsl:call-template name="brtag2"/>
 	</table>
+</xsl:template>
+
+<xsl:template name="brtag2">
+	<tr>
+		<td class="separator"></td>
+	</tr>
 </xsl:template>
 
 <xsl:template name="list">
@@ -535,7 +529,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:call-template name="list_quick"/>
+			<xsl:call-template name="brtag"/>
 			<xsl:call-template name="list_table"/>
+			<xsl:call-template name="brtag"/>
 			<xsl:call-template name="list_pager"/>
 		</div>
 		<xsl:for-each select="form">
@@ -1292,6 +1288,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<xsl:with-param name="quick" select="../quick"/>
 								<xsl:with-param name="prefix" select="null"/>
 							</xsl:call-template>
+							<xsl:call-template name="brtag2"/>
 						</xsl:if>
 						<xsl:call-template name="form_by_rows">
 							<xsl:with-param name="form" select="$form"/>
@@ -1300,6 +1297,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<xsl:with-param name="iter" select="row"/>
 						</xsl:call-template>
 						<xsl:if test="buttons='true'">
+							<xsl:call-template name="brtag2"/>
 							<xsl:call-template name="form_buttons">
 								<xsl:with-param name="buttons" select="../buttons"/>
 								<xsl:with-param name="prefix" select="null"/>
@@ -1340,6 +1338,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 													<xsl:with-param name="quick" select="../../../quick"/>
 													<xsl:with-param name="prefix" select="$prefix"/>
 												</xsl:call-template>
+												<xsl:call-template name="brtag2"/>
 											</xsl:if>
 											<xsl:call-template name="form_by_rows">
 												<xsl:with-param name="form" select="$form"/>
@@ -1348,6 +1347,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 												<xsl:with-param name="iter" select="row"/>
 											</xsl:call-template>
 											<xsl:if test="buttons='true'">
+												<xsl:call-template name="brtag2"/>
 												<xsl:call-template name="form_buttons">
 													<xsl:with-param name="buttons" select="../../../buttons"/>
 													<xsl:with-param name="prefix" select="$prefix"/>
@@ -1376,6 +1376,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 												<xsl:with-param name="quick" select="../../../quick"/>
 												<xsl:with-param name="prefix" select="null"/>
 											</xsl:call-template>
+											<xsl:call-template name="brtag2"/>
 										</xsl:if>
 										<xsl:call-template name="form_by_rows">
 											<xsl:with-param name="form" select="$form"/>
@@ -1401,19 +1402,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 											<xsl:with-param name="iter" select="head"/>
 											<xsl:with-param name="add">false</xsl:with-param>
 										</xsl:call-template>
-									</table>
-									<table style="width:{width}" cellpadding="0" cellspacing="0" border="0">
 										<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_0_</xsl:variable>
-										<xsl:call-template name="form_by_rows">
+										<xsl:call-template name="form_tail">
 											<xsl:with-param name="form" select="$form"/>
 											<xsl:with-param name="node" select="null"/>
 											<xsl:with-param name="prefix" select="$prefix"/>
 											<xsl:with-param name="iter" select="tail"/>
 										</xsl:call-template>
 										<xsl:if test="buttons='true'">
+											<xsl:call-template name="brtag2"/>
 											<xsl:call-template name="form_buttons">
 												<xsl:with-param name="buttons" select="../../../buttons"/>
-												<xsl:with-param name="prefix" select="$prefix"/>
+												<xsl:with-param name="prefix" select="null"/>
 											</xsl:call-template>
 										</xsl:if>
 									</table>
@@ -1451,19 +1451,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</table>
 			</td>
 		</tr>
-		<tr>
-			<td class="separator"></td>
-		</tr>
 	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="form_tail">
+	<xsl:param name="form"/>
+	<xsl:param name="node"/>
+	<xsl:param name="prefix"/>
+	<xsl:param name="iter"/>
+	<tr>
+		<td colspan="100">
+			<table class="width100" cellpadding="0" cellspacing="0" border="0">
+				<xsl:call-template name="form_by_rows">
+					<xsl:with-param name="form" select="$form"/>
+					<xsl:with-param name="node" select="$node"/>
+					<xsl:with-param name="prefix" select="$prefix"/>
+					<xsl:with-param name="iter" select="$iter"/>
+				</xsl:call-template>
+			</table>
+		</td>
+	</tr>
 </xsl:template>
 
 <xsl:template name="form_buttons">
 	<xsl:param name="buttons"/>
 	<xsl:param name="prefix"/>
 	<xsl:for-each select="$buttons">
-		<tr>
-			<td class="separator"></td>
-		</tr>
 		<tr>
 			<td colspan="100">
 				<table class="width100" cellpadding="0" cellspacing="0" border="0">

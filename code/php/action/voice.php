@@ -36,13 +36,13 @@ if(getParam("action")=="voice") {
 	if(!file_exists($cache)) {
 		// DETECT THE LANG AND OVERWRITE THE COMMAND/__TEXT2WAVE__
 		$langs=__translate_detect_aspell_langs(stripslashes($text));
-		$voice="default";
-		if(getDefault("commands/__text2wave__/${langs[0]}")) $voice=$langs[0];
+		$__text2wave__="__text2wave__";
+		if(getDefault("commands/__text2wave_${langs[0]}__")) $__text2wave__="__text2wave_${langs[0]}__";
 		// CONVERT THE TEXT 2 VOICE IN WAV FORMAT
 		$textcache=$dirhash.getDefault("exts/textext",".txt");
 		file_put_contents($textcache,utf8_decode($text));
 		$wavcache=$dirhash.getDefault("exts/wavext",".wav");
-		ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/__text2wave__/${voice}")));
+		ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/${__text2wave__}")));
 		unlink($textcache);
 		if(!file_exists($wavcache)) action_denied();
 		// CONVERT THE WAV TO MP3 FORMAT

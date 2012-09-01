@@ -481,7 +481,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		setCookie(name,intval(value));
 	}
 
-	function setBookCookie(name,value) {
+	function setBoolCookie(name,value) {
 		setIntCookie(name,value?1:0);
 	}
 
@@ -535,10 +535,21 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		return url;
 	}
 
-	/* TRICK TO EMULATE PUSHSTATE, REPLACESTATE AND ONHASHCHANGE */
+	// TRICK FOR OLD BROWSERS
 	var ignore_onhashchange=0;
 
 	function history_pushState(url) {
+		// TRICK FOR OLD BROWSERS
+		if(typeof(history.pushState)!='function') {
+			if(window.location.href!=url) {
+				ignore_onhashchange=1;
+				window.location.href=url;
+			}
+			return;
+		}
+		// NORMAL CODE
+		history.pushState(null,null,url);
+		// CHECK FOR SOME FUCKED BROWSERS
 		if(window.location.href!=url) {
 			ignore_onhashchange=1;
 			window.location.href=url;
@@ -546,6 +557,17 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function history_replaceState(url) {
+		// TRICK FOR OLD BROWSERS
+		if(typeof(history.replaceState)!='function') {
+			if(window.location.href!=url) {
+				ignore_onhashchange=1;
+				window.location.replace(url);
+			}
+			return;
+		}
+		// NORMAL CODE
+		history.replaceState(null,null,url);
+		// CHECK FOR SOME FUCKED BROWSERS
 		if(window.location.href!=url) {
 			ignore_onhashchange=1;
 			window.location.replace(url);
@@ -553,20 +575,18 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function init_history() {
-		var old_hash=current_hash();
-		setInterval(function() {
-			var new_hash=current_hash();
-			if(new_hash!=old_hash) {
-				old_hash=new_hash;
-				if(ignore_onhashchange) {
-					ignore_onhashchange=0;
-				} else {
-					url=hash_decode(new_hash);
-					addcontent("cancel");
-					opencontent(url);
-				}
+		window.onhashchange=function() {
+			// TRICK FOR OLD BROWSERS
+			if(ignore_onhashchange) {
+				ignore_onhashchange=0;
+				return;
 			}
-		},100);
+			// NORMAL CODE
+			var url=current_hash();
+			url=hash_decode(url);
+			addcontent("cancel");
+			opencontent(url);
+		};
 		var url=current_href();
 		var pos=strrpos(url,"/");
 		if(pos!==false) url=substr(url,pos+1);
@@ -589,10 +609,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			return;
 		}
 		if(url=="reload") {
-			var hash=current_hash();
-			url=hash_decode(hash);
-			addcontent("cancel");
-			opencontent(url);
+			$(window).trigger("hashchange");
 			return;
 		}
 		// IF ACTION CANCEL
@@ -611,8 +628,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function submitcontent(form,callback) {
-		//~ console.time("begin transaction");
-		//~ console.time("submitcontent");
 		if(typeof(callback)=="undefined") var callback=function() {};
 		loadingcontent(lang_sending());
 		$(form).ajaxSubmit({
@@ -620,26 +635,33 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				jqxhr=XMLHttpRequest;
 			},
 			beforeSerialize:function(jqForm,options) {
-				var array=$(jqForm).serializeArray();
-				if(array.length>1000) {
-					// TRICK FOR FIX THE MAX_INPUT_VARS ISSUE
-					setTimeout(function() {
-						var fix_max_input_vars=new Array();
-						$(array).each(function(i,field) {
-							var obj=$("*[name="+field.name+"]",jqForm);
-							var type=$(obj).attr("type");
-							var visible=$(obj).is(":visible");
-							if(in_array(type,new Array("hidden","checkbox")) && !visible) {
-								var temp=field.name+"="+urlencode(field.value);
-								fix_max_input_vars.push(temp);
-								$(obj).remove();
-							}
-						});
-						fix_max_input_vars=base64_encode(implode("&",fix_max_input_vars));
-						$(jqForm).append("<input type='hidden' name='fix_max_input_vars' value='"+fix_max_input_vars+"'/>");
-						submitcontent(form,callback);
-					},100);
-					return false;
+				// TRICK FOR FIX THE MAX_INPUT_VARS ISSUE
+				var max_input_vars=ini_get_max_input_vars();
+				if(max_input_vars>0) {
+					var array=$(jqForm).serializeArray();
+					var total_input_vars=array.length;
+					if(total_input_vars>max_input_vars) {
+						setTimeout(function() {
+							var fix_max_input_vars=new Array();
+							$(array).each(function(i,field) {
+								if(total_input_vars>=max_input_vars) {
+									var obj=$("*[name="+field.name+"]",jqForm);
+									var type=$(obj).attr("type");
+									var visible=$(obj).is(":visible");
+									if(in_array(type,new Array("hidden","checkbox")) && !visible) {
+										var temp=field.name+"="+urlencode(field.value);
+										fix_max_input_vars.push(temp);
+										$(obj).remove();
+										total_input_vars--;
+									}
+								}
+							});
+							fix_max_input_vars=base64_encode(implode("&",fix_max_input_vars));
+							$(jqForm).append("<input type='hidden' name='fix_max_input_vars' value='"+fix_max_input_vars+"'/>");
+							submitcontent(form,callback);
+						},100);
+						return false;
+					}
 				}
 			},
 			beforeSubmit:function(formData,jqForm,options) {
@@ -648,12 +670,10 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				addcontent(action+"?"+query);
 			},
 			success:function(data,textStatus,XMLHttpRequest) {
-				//~ console.timeEnd("submitcontent");
 				callback();
 				loadcontent(data);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				//~ console.timeEnd("submitcontent");
 				callback();
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
@@ -661,7 +681,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function opencontent(url,callback) {
-		//~ console.time("opencontent");
 		// LOGOUT EXCEPTION
 		if(strpos(url,"page=logout")!==false) { logout(); return; }
 		// NORMAL USAGE
@@ -675,12 +694,10 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				jqxhr=XMLHttpRequest;
 			},
 			success:function(data,textStatus,XMLHttpRequest) {
-				//~ console.timeEnd("opencontent");
 				callback();
 				loadcontent(data);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				//~ console.timeEnd("opencontent");
 				callback();
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
@@ -694,7 +711,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function loadcontent(xml) {
-		//~ console.time("loadcontent");
 		loadingcontent();
 		if(xml.firstChild) {
 			var xsl=$("root>info>xslt",xml).text();
@@ -705,27 +721,22 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				type:"get",
 				success:function(response) {
 					var html=transformcontent(xml,response);
-					//~ console.timeEnd("loadcontent");
 					updatecontent(html);
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown) {
-					//~ console.timeEnd("loadcontent");
 					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 				}
 			});
 		} else if(xml) {
 			var html=str2html(xml);
 			if($("#page",html).text()!="") {
-				//~ console.timeEnd("loadcontent");
 				updatecontent(html);
 			} else {
 				// IF THE RETURNED HTML CONTAIN A SCRIPT NOT UNBLOCK THE UI
 				var screen=$("#page");
 				if($("script",html).length!=0) {
-					//~ console.timeEnd("loadcontent");
 					$(screen).append(html);
 				} else {
-					//~ console.timeEnd("loadcontent");
 					unloadingcontent();
 					$(screen).html2(html);
 				}

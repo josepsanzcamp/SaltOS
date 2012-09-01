@@ -47,6 +47,7 @@ define("__INSTALL__","<a href='javascript:document.form.submit()' ".__UI__."><im
 define("__SALTOS__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."'/>&nbsp;".LANG("saltos")."</a>");
 define("__GREEN__","<span style='color:#007700'><b>");
 define("__RED__","<span style='color:#770000'><b>");
+define("__BOLD__","<span><b>");
 define("__COLOR__","</b></span>");
 define("__YES__",__GREEN__.LANG("yes").__COLOR__);
 define("__NO__",__RED__.LANG("no").__COLOR__);
@@ -81,8 +82,7 @@ define("__BR__","<br/>");
 						</div>
 						<div <?php echo __DIV2__; ?>>
 							<input type="hidden" name="step" value="1"/>
-							<?php echo __BR__; ?>
-							<?php echo LANG("welcome_message"); ?><?php echo __BR__; ?>
+							<?php echo __BOLD__; ?><?php echo LANG("welcome_message"); ?><?php echo __COLOR__; ?><?php echo __BR__; ?>
 							<?php echo __BR__; ?>
 							<?php echo LANG("lang_message"); ?>
 							<?php $temp=eval_attr(xml2array("xml/common/langs.xml",false)); ?>
@@ -119,8 +119,7 @@ define("__BR__","<br/>");
 							</select>
 							<?php echo __BR__; ?>
 							<?php echo __BR__; ?>
-							<?php echo LANG("begin_message"); ?><?php echo __BR__; ?>
-							<?php echo __BR__; ?>
+							<?php echo __BOLD__; ?><?php echo LANG("begin_message"); ?><?php echo __COLOR__; ?><?php echo __BR__; ?>
 						</div>
 						<div <?php echo __DIV3__; ?>>
 							<?php echo __NEXT__; ?>
@@ -155,7 +154,7 @@ define("__BR__","<br/>");
 							<?php foreach(getDefault("commands") as $index=>$command) { ?>
 								<?php if(substr($index,0,2)!="__" && substr($index,-2,2)!="__" && !in_array($command,$procesed)) { ?>
 									<?php $cancontinue2&=($exists=check_commands($command)); ?>
-									<?php echo LANG("executable"); ?>: <?php echo $exists?ob_passthru(getDefault("commands/which")." ".str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__"))):$command; ?>: <?php echo $exists?__YES__:__NO__; ?><?php echo __BR__; ?>
+									<?php echo LANG("executable"); ?>: <?php echo $exists?trim(ob_passthru(getDefault("commands/which")." ".str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__")))):$command; ?>: <?php echo $exists?__YES__:__NO__; ?><?php echo __BR__; ?>
 									<?php $procesed[]=$command; ?>
 								<?php } ?>
 							<?php } ?>
@@ -331,7 +330,7 @@ define("__BR__","<br/>");
 							<?php foreach(getDefault("commands") as $index=>$command) { ?>
 								<?php if(substr($index,0,2)!="__" && substr($index,-2,2)!="__" && !in_array($command,$procesed)) { ?>
 									<?php $exists=check_commands($command); ?>
-									<?php echo LANG("executable"); ?>: <?php echo $exists?ob_passthru(getDefault("commands/which")." ".str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__"))):$command; ?>: <?php echo $exists?__YES__:__NO__; ?><?php echo __BR__; ?>
+									<?php echo LANG("executable"); ?>: <?php echo $exists?trim(ob_passthru(getDefault("commands/which")." ".str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__")))):$command; ?>: <?php echo $exists?__YES__:__NO__; ?><?php echo __BR__; ?>
 									<?php $procesed[]=$command; ?>
 								<?php } ?>
 							<?php } ?>
@@ -522,9 +521,9 @@ define("__BR__","<br/>");
 								// IMPORT STREET INFORMATION USING AN OPTIMIZATION FROM COMMAND LINE
 								if(getParam("streetdata")) {
 									$oldcache=set_use_cache("false");
+									$dbtemp="sql";
 									if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3","bin_sqlite"))) $dbtemp="sqlite";
-									elseif(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_mysql","mysql","mysqli"))) $dbtemp="mysql";
-									else $dbtemp="sql";
+									if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_mysql","mysql","mysqli"))) $dbtemp="mysql";
 									$files=glob("install/sql/tbl_*.$dbtemp.gz");
 									if(is_array($files) && count($files)>0) {
 										foreach($files as $file) {
@@ -533,9 +532,9 @@ define("__BR__","<br/>");
 											$numrows=execute_query($query);
 											echo current_datetime().": ".LANG("streetdata").": ".basename($file).": ";
 											if(!$numrows) {
-												if($dbtemp=="sqlite") {
+												if($dbtemp=="sqlite" && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/sqlite_install")))) {
 													ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__INPUT__"),array($file),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/sqlite3_install")." ".str_replace(array("__DBFILE__"),array(getDefault("db/file")),getDefault("commands/__sqlite3_install__")));
-												} elseif($dbtemp=="mysql") {
+												} elseif($dbtemp=="mysql" && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/mysql_install")))) {
 													ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__INPUT__"),array($file),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/mysql_install")." ".str_replace(array("__DBHOST__","__DBPORT__","__DBUSER__","__DBPASS__","__DBNAME__"),array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),getDefault("commands/__mysql_install__")));
 												} else {
 													foreach(gzfile($file) as $query) db_query($query);
