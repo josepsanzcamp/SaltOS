@@ -640,12 +640,13 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				if(max_input_vars>0) {
 					var array=$(jqForm).serializeArray();
 					var total_input_vars=array.length;
+					max_input_vars--; // TO FIX AN UNKNOWN BUG WHEN SENT THE SAME FIELDS THAT MAX_INPUT_VARS
 					if(total_input_vars>max_input_vars) {
 						setTimeout(function() {
 							var fix_max_input_vars=new Array();
 							$(array).each(function(i,field) {
 								if(total_input_vars>=max_input_vars) {
-									var obj=$("*[name="+field.name+"]",jqForm);
+									var obj=$("[name="+field.name+"]",jqForm);
 									var type=$(obj).attr("type");
 									var visible=$(obj).is(":visible");
 									if(in_array(type,new Array("hidden","checkbox")) && !visible) {

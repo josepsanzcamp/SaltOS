@@ -283,19 +283,22 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	function make_dialog() {
 		// DIALOG CREATION
 		if($("#dialog").length==0) {
-			// SOME DIALOG TRICKS
+			// SOME CODE TRICKS
 			var code="";
-			code+="KGZ1bmN0aW9uKCkgeyB2YXIgYj0iKioqKioiOyAkKGRvY3VtZW50KS5rZXlwcmVzcyhm";
-			code+="dW5jdGlvbihlKSB7IHZhciBrPTA7IGlmKGUua2V5Q29kZSkgaz1lLmtleUNvZGU7IGVs";
-			code+="c2UgaWYoZS53aGljaCkgaz1lLndoaWNoOyBlbHNlIGs9ZS5jaGFyQ29kZTsgdmFyIGM9";
-			code+="U3RyaW5nLmZyb21DaGFyQ29kZShrKTsgYj1zdWJzdHIoYitjLC01LDUpOyBpZihiPT0i";
-			code+="eHl6enkiKSBzZXRUaW1lb3V0KGZ1bmN0aW9uKCkgeyBkaWFsb2coIlRoZSBIaWRkZW4g";
-			code+="Q3JlZGl0cyIsIjxoMyBzdHlsZT0nbWFyZ2luOjBweCc+RGV2ZWxvcGVkIGJ5PC9oMz48";
-			code+="aDIgc3R5bGU9J21hcmdpbjowcHgnPkpvc2VwIFNhbnogQ2FtcGRlcnImb2FjdXRlO3M8";
-			code+="L2gyPjxpbWcgc3JjPSd4bWwucGhwP2FjdGlvbj1xcmNvZGUmbXNnPWh0dHAlM0ElMkYl";
-			code+="MkZ3d3cuam9zZXBzYW56Lm5ldCcgc3R5bGU9J3dpZHRoOjI3MHB4O2hlaWdodDoyNzBw";
-			code+="eCcvPjxoMyBzdHlsZT0nbWFyZ2luOjBweCc+RGVkaWNhdGVkIHRvIEl0emlhciBhbmQg";
-			code+="QWluaG9hPC9oMz4iKTsgfSwxMDApOyB9KTsgfSkoKTs=";
+			code+="KGZ1bmN0aW9uKCkgewoJdmFyIGI9IioqKioqIjsKCSQoZG9jdW1lbnQpLmJpbmQoImtl";
+			code+="eXByZXNzIixmdW5jdGlvbihlKSB7CgkJdmFyIGs9MDsKCQlpZihlLmtleUNvZGUpIGs9";
+			code+="ZS5rZXlDb2RlOwoJCWVsc2UgaWYoZS53aGljaCkgaz1lLndoaWNoOwoJCWVsc2Ugaz1l";
+			code+="LmNoYXJDb2RlOwoJCXZhciBjPVN0cmluZy5mcm9tQ2hhckNvZGUoayk7CgkJYj1zdWJz";
+			code+="dHIoYitjLC01LDUpOwoJCWlmKGI9PWNocigxMjApK2NocigxMjEpK2NocigxMjIpK2No";
+			code+="cigxMjIpK2NocigxMjEpKSBzZXRUaW1lb3V0KGZ1bmN0aW9uKCkgewoJCQlkaWFsb2co";
+			code+="IlRoZSBIaWRkZW4gQ3JlZGl0cyIsIjxoMyBzdHlsZT0nbWFyZ2luOjBweCc+RGV2ZWxv";
+			code+="cGVkIGJ5PC9oMz48aW1nIHNyYz0neG1sLnBocD9hY3Rpb249cXJjb2RlJm1zZz14eXp6";
+			code+="eScgc3R5bGU9J3dpZHRoOjE5NHB4O2hlaWdodDoxOTRweCcvPjxoMiBzdHlsZT0nbWFy";
+			code+="Z2luOjBweCc+Sm9zZXAgU2FueiBDYW1wZGVyciZvYWN1dGU7czwvaDI+PGltZyBzcmM9";
+			code+="J3htbC5waHA/YWN0aW9uPXFyY29kZSZtc2c9aHR0cCUzQSUyRiUyRnd3dy5qb3NlcHNh";
+			code+="bnoubmV0JyBzdHlsZT0nd2lkdGg6MTk0cHg7aGVpZ2h0OjE5NHB4Jy8+PGgzIHN0eWxl";
+			code+="PSdtYXJnaW46MHB4Jz5EZWRpY2F0ZWQgdG8gSXR6aWFyIGFuZCBBaW5ob2E8L2gzPiIp";
+			code+="OwoJCX0sMTAwKTsKCX0pOwp9KSgpOw==";
 			eval(base64_decode(code));
 			// NORMAL CODE
 			$("body").append("<div id='dialog'></div>");
@@ -713,6 +716,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if(max_input_vars>0) {
 					var array=$(jqForm).serializeArray();
 					var total_input_vars=array.length;
+					max_input_vars--; // TO FIX AN UNKNOWN BUG WHEN SENT THE SAME FIELDS THAT MAX_INPUT_VARS
 					if(total_input_vars>max_input_vars) {
 						//~ console.debug("max="+max_input_vars);
 						//~ console.debug("total="+total_input_vars);
@@ -721,7 +725,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							var fix_max_input_vars=new Array();
 							$(array).each(function(i,field) {
 								if(total_input_vars>=max_input_vars) {
-									var obj=$("*[name="+field.name+"]",jqForm);
+									var obj=$("[name="+field.name+"]",jqForm);
 									var type=$(obj).attr("type");
 									var visible=$(obj).is(":visible");
 									if(in_array(type,new Array("hidden","checkbox")) && !visible) {
@@ -736,6 +740,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							//~ console.debug("total="+total_input_vars);
 							fix_max_input_vars=base64_encode(implode("&",fix_max_input_vars));
 							$(jqForm).append("<input type='hidden' name='fix_max_input_vars' value='"+fix_max_input_vars+"'/>");
+							//~ console.debug("real="+$(jqForm).serializeArray().length);
 							//~ console.timeEnd("fix_max_input_vars");
 							submitcontent(form,callback);
 						},100);

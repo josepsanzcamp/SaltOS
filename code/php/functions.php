@@ -913,12 +913,20 @@ function pretty_html_error($msg) {
 function __error_handler($num,$msg,$file,$line) {
 	$backtrace=debug_backtrace();
 	array_shift($backtrace);
-	show_php_error(array("phperror"=>"$msg (code $num)","details"=>"Error on file '$file' at line $line","backtrace"=>$backtrace));
+	show_php_error(array("phperror"=>"${msg} (code ${num})","details"=>"Error on file '${file}' at line ${line}","backtrace"=>$backtrace));
 }
 
 function __exception_handler($e) {
 	$backtrace=$e->getTrace();
 	show_php_error(array("exception"=>$e->getMessage()." (code ".$e->getCode().")","details"=>"Error on file '".$e->getFile()."' at line ".$e->getLine(),"backtrace"=>$backtrace));
+}
+
+function __shutdown_handler() {
+	$error=error_get_last();
+	if(!is_null($error)) {
+		ob_end_clean(); // TRICK TO CLEAR SCREEN
+		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}"));
+	}
 }
 
 function program_error_handler() {
@@ -927,6 +935,7 @@ function program_error_handler() {
 	error_reporting(E_ALL);
 	set_error_handler("__error_handler");
 	set_exception_handler("__exception_handler");
+	register_shutdown_function('__shutdown_handler');
 }
 
 function number_row_index($row) {
