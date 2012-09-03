@@ -643,7 +643,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 					max_input_vars--; // TO FIX AN UNKNOWN BUG WHEN SENT THE SAME FIELDS THAT MAX_INPUT_VARS
 					if(total_input_vars>max_input_vars) {
 						setTimeout(function() {
-							var fix_max_input_vars=new Array();
+							var fix_input_vars=new Array();
 							$(array).each(function(i,field) {
 								if(total_input_vars>=max_input_vars) {
 									var obj=$("[name="+field.name+"]",jqForm);
@@ -651,14 +651,14 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 									var visible=$(obj).is(":visible");
 									if(in_array(type,new Array("hidden","checkbox")) && !visible) {
 										var temp=field.name+"="+urlencode(field.value);
-										fix_max_input_vars.push(temp);
+										fix_input_vars.push(temp);
 										$(obj).remove();
 										total_input_vars--;
 									}
 								}
 							});
-							fix_max_input_vars=base64_encode(implode("&",fix_max_input_vars));
-							$(jqForm).append("<input type='hidden' name='fix_max_input_vars' value='"+fix_max_input_vars+"'/>");
+							fix_input_vars=base64_encode(implode("&",fix_input_vars));
+							$(jqForm).append("<input type='hidden' name='fix_input_vars' value='"+fix_input_vars+"'/>");
 							submitcontent(form,callback);
 						},100);
 						return false;

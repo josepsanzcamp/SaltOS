@@ -377,12 +377,14 @@ function str_word_count_utf8($subject) {
 	return $matches[0];
 }
 
-function output_buffer($buffer,$content_type) {
+function output_buffer($buffer,$type) {
 	ob_start_protected(getDefault("obhandler"));
 	header_powered();
 	header_expires(false);
-	header("Content-type: $content_type");
+	header("Content-type: $type");
 	echo $buffer;
+	$length=ob_get_length();
+	header("Content-Length: $length");
 	ob_end_flush();
 	die();
 }
@@ -396,6 +398,8 @@ function output_file($file) {
 	$type=content_type_from_extension($file);
 	header("Content-Type: $type");
 	readfile($file);
+	$length=ob_get_length();
+	header("Content-Length: $length");
 	ob_end_flush();
 	die();
 }

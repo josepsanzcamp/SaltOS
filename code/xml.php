@@ -37,7 +37,7 @@ include("php/history.php");
 // SOME IMPORTANT ITEMS
 program_error_handler();
 check_system();
-fix_max_input_vars();
+fix_input_vars();
 // NORMAL OPERATION
 $_CONFIG=eval_attr(xml2array("xml/config.xml"));
 if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));

@@ -871,9 +871,16 @@ function show_php_error($array=null) {
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");
+			echo $msg;
+			$length=strlen($msg);
+			header("Content-Length: $length");
+		} else {
+			echo $msg;
 		}
+	} else {
+		echo $msg;
 	}
-	die($msg);
+	die();
 }
 
 function pretty_html_error($msg) {
@@ -910,10 +917,10 @@ function pretty_html_error($msg) {
 	return $html;
 }
 
-function __error_handler($num,$msg,$file,$line) {
+function __error_handler($type,$message,$file,$line) {
 	$backtrace=debug_backtrace();
 	array_shift($backtrace);
-	show_php_error(array("phperror"=>"${msg} (code ${num})","details"=>"Error on file '${file}' at line ${line}","backtrace"=>$backtrace));
+	show_php_error(array("phperror"=>"${message} (code ${type})","details"=>"Error on file '${file}' at line ${line}","backtrace"=>$backtrace));
 }
 
 function __exception_handler($e) {
@@ -923,8 +930,8 @@ function __exception_handler($e) {
 
 function __shutdown_handler() {
 	$error=error_get_last();
-	if(!is_null($error)) {
-		ob_end_clean(); // TRICK TO CLEAR SCREEN
+	if(is_array($error) && $error["type"]==1) {
+		while(ob_get_level()) ob_end_clean(); // TRICK TO CLEAR SCREEN
 		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}"));
 	}
 }
@@ -932,7 +939,7 @@ function __shutdown_handler() {
 function program_error_handler() {
 	global $_ERROR_HANDLER;
 	$_ERROR_HANDLER=array("level"=>0,"msg"=>array());
-	error_reporting(E_ALL);
+	error_reporting(0);
 	set_error_handler("__error_handler");
 	set_exception_handler("__exception_handler");
 	register_shutdown_function('__shutdown_handler');
@@ -985,14 +992,14 @@ function dummy($param) {
 	// NOTHING TO DO
 }
 
-function fix_max_input_vars() {
-	$items=querystring2array(base64_decode(getParam("fix_max_input_vars")));
-	if(isset($_GET["fix_max_input_vars"])) {
-		unset($_GET["fix_max_input_vars"]);
+function fix_input_vars() {
+	$items=querystring2array(base64_decode(getParam("fix_input_vars")));
+	if(isset($_GET["fix_input_vars"])) {
+		unset($_GET["fix_input_vars"]);
 		$_GET=array_merge($_GET,$items);
 	}
-	if(isset($_POST["fix_max_input_vars"])) {
-		unset($_POST["fix_max_input_vars"]);
+	if(isset($_POST["fix_input_vars"])) {
+		unset($_POST["fix_input_vars"]);
 		$_POST=array_merge($_POST,$items);
 	}
 }

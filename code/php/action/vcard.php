@@ -166,6 +166,8 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 		header("Content-Type: text/x-vcard");
 		header("Content-disposition: attachment; filename=\"$name\"");
 		echo $buffer;
+		$length=ob_get_length();
+		header("Content-Length: $length");
 		ob_end_flush();
 	} else {
 		echo $buffer;

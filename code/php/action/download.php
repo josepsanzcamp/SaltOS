@@ -80,8 +80,10 @@ if(getParam("action")=="download") {
 		header_powered();
 		header_expires($hash);
 		header("Content-Disposition: attachment; filename=\"${name}\"");
-		header("Content-Type: ${type}");
+		header("Content-Type: $type");
 		readfile($file);
+		$length=ob_get_length();
+		header("Content-Length: $length");
 		ob_end_flush();
 	} else {
 		readfile($file);

@@ -79,6 +79,8 @@ if(getParam("action")=="export") {
 	header("Content-Type: application/download",false);
 	header("Content-Disposition: attachment; filename=\"$name\"");
 	readfile($file);
+	$length=ob_get_length();
+	header("Content-Length: $length");
 	unlink($file);
 	ob_end_flush();
 	die();

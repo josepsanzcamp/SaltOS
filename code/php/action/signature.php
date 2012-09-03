@@ -169,6 +169,8 @@ if(getParam("action")=="signature") {
 	echo $file["data"];
 	if($type1=="text") echo ($type2=="plain")?__TEXT_PLAIN_CLOSE__:__TEXT_HTML_CLOSE__;
 	if($type1=="text") echo __PAGE_HTML_CLOSE__;
+	$length=ob_get_length();
+	header("Content-Length: $length");
 	ob_end_flush();
 	die();
 }

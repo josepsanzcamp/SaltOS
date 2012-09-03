@@ -43,6 +43,7 @@ if(getParam("action")=="barcode") {
 		require_once("lib/tcpdf/barcodes.php");
 		$barcode=new TCPDFBarcode($msg,"C39");
 		$array=$barcode->getBarcodeArray();
+		if(!isset($array["maxw"])) action_denied();
 		$width=($array["maxw"]*$w);
 		$height=$h;
 		$im=imagecreatetruecolor($width+2*$m,$height+2*$m+$s);
@@ -76,6 +77,8 @@ if(getParam("action")=="barcode") {
 	$type=content_type_from_extension($cache);
 	header("Content-Type: $type");
 	readfile($cache);
+	$length=ob_get_length();
+	header("Content-Length: $length");
 	ob_end_flush();
 	die();
 }

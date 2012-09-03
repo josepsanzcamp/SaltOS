@@ -55,6 +55,8 @@ if(getParam("action")=="getmail") {
 			header("Content-Type: ${type}");
 			header("Content-Disposition: attachment; filename=\"${name}\"");
 			readfile($file);
+			$length=ob_get_length();
+			header("Content-Length: $length");
 			ob_end_flush();
 			die();
 		}
@@ -81,6 +83,8 @@ if(getParam("action")=="getmail") {
 		header("Content-Type: text/html");
 		header("x-frame-options: SAMEORIGIN");
 		echo $buffer;
+		$length=ob_get_length();
+		header("Content-Length: $length");
 		ob_end_flush();
 		die();
 	}
@@ -145,6 +149,8 @@ if(getParam("action")=="getmail") {
 			header("Content-Type: text/html");
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
+			$length=ob_get_length();
+			header("Content-Length: $length");
 			ob_end_flush();
 			die();
 		} elseif($cid=="files") {
@@ -166,6 +172,8 @@ if(getParam("action")=="getmail") {
 			header_expires($hash);
 			header("Content-Type: text/html");
 			echo $buffer;
+			$length=ob_get_length();
+			header("Content-Length: $length");
 			ob_end_flush();
 			die();
 		} elseif($cid=="full") {
@@ -298,6 +306,8 @@ if(getParam("action")=="getmail") {
 			header("Content-Type: text/html");
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
+			$length=ob_get_length();
+			header("Content-Length: $length");
 			ob_end_flush();
 			die();
 		} else {
@@ -312,6 +322,8 @@ if(getParam("action")=="getmail") {
 			header("Content-Type: ${result["type"]}");
 			header("Content-Disposition: attachment; filename=\"${name}\"");
 			echo $result["body"];
+			$length=ob_get_length();
+			header("Content-Length: $length");
 			ob_end_flush();
 			die();
 		}
