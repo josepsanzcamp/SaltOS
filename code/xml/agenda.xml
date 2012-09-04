@@ -358,7 +358,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LEFT JOIN tbl_proyectos p ON a2.id_proyecto=p.id) a
 			LEFT JOIN tbl_estados c ON a.id_estado=c.id
 			LEFT JOIN tbl_tiposevento e ON e.id=id_tipoevento
-			LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id AND f.primero='1'
+			LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id) z
 			WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_presupuesto?"(id_presupuesto='$id_presupuesto')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".($id_tipoevento?"(id_tipoevento='$id_tipoevento')":"(1=1)")." AND ".make_like_query("nombre2,descripcion,cliente2,proyecto2,usuario,tipoevento,estado,dstart,dstop",$otros)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND
 			(''='$fecha3' OR
@@ -377,7 +377,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<view>
 				<title lang="true">formview</title>
 				<query>
-					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')"</query>
+					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_agenda a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')"</query>
 					<query include="xml/common/qdefaultview.xml" replace="true" />
 					<usuarios>
 						<usuarios global="id" eval="true">"SELECT a.id id,a.id id_usuario,'".abs($id)."' id_agenda,".make_extra_query_with_login("a.")." nombre,(CASE WHEN b.id IS NULL THEN 0 ELSE 1 END) activado FROM tbl_usuarios a LEFT JOIN tbl_agenda_u b ON b.id_agenda='".abs($id)."' AND a.id=b.id_usuario WHERE a.activo='1' ORDER BY nombre"</usuarios>
@@ -694,13 +694,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field[name=buttonupdate]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
+			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
 		</node>
 		<node path="buttons/row/field[name=buttonupdatereturnhere]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
+			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
 		</node>
 		<node path="buttons/row/field[name=edit]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
+			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0) || ''='".current_user()."')")?"true":"false"</disabled>
 		</node>
 		<javascript>
 			<javascript include="xml/common/jsform.xml" replace="true"/>

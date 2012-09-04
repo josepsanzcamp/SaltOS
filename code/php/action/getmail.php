@@ -556,10 +556,10 @@ if(getParam("page")=="correo") {
 	if(isset($id_extra[1]) && isset($id_extra[2]) && $id_extra[1]=="forward") $id_correo=$id_extra[2];
 	if($id_correo) {
 		// BUSCAR USUARIO DEL CORREO
-		$query="SELECT ".make_extra_query_with_login()." FROM tbl_usuarios WHERE id=(SELECT id_usuario FROM tbl_registros WHERE id_registro='${id_correo}' AND id_aplicacion='".page2id("correo")."' AND primero='1')";
+		$query="SELECT ".make_extra_query_with_login()." FROM tbl_usuarios WHERE id=(SELECT id_usuario FROM tbl_registros_i WHERE id_registro='${id_correo}' AND id_aplicacion='".page2id("correo")."')";
 		$usuario=execute_query($query);
 		// BUSCAR GRUPO DEL CORREO
-		$query="SELECT nombre FROM tbl_grupos WHERE id=(SELECT id_grupo FROM tbl_usuarios WHERE id=(SELECT id_usuario FROM tbl_registros WHERE id_registro='${id_correo}' AND id_aplicacion='".page2id("correo")."' AND primero='1'))";
+		$query="SELECT nombre FROM tbl_grupos WHERE id=(SELECT id_grupo FROM tbl_usuarios WHERE id=(SELECT id_usuario FROM tbl_registros_i WHERE id_registro='${id_correo}' AND id_aplicacion='".page2id("correo")."'))";
 		$grupo=execute_query($query);
 		// BUSCAR DATETIME DEL CORREO
 		$query="SELECT `datetime` FROM tbl_correo WHERE id='${id_correo}'";
@@ -606,7 +606,7 @@ if(getParam("page")=="correo") {
 	}
 	if(isset($id_extra[1]) && isset($id_extra[2]) && $id_extra[1]=="feed") {
 		// MARCAR FEED COMO LEIDO SI ES EL PROPIETARIO
-		$query="UPDATE tbl_feeds SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='${id_extra[2]}' AND primero='1' AND id_usuario='".current_user()."')";
+		$query="UPDATE tbl_feeds SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='${id_extra[2]}' AND id_usuario='".current_user()."')";
 		db_query($query);
 	}
 }

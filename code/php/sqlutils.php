@@ -420,7 +420,7 @@ function make_select_query($page,$table,$field,$arg1=null,$arg2=null) {
 	$query="SELECT id `value`,".(is_array($field)?$field[0]:$field)." label,".($haspos?"pos":"'0' pos")." FROM (
 		SELECT a2.id id,".($haspos?"a2.pos pos,":"").check_sql($page).",".$temp.",e.id_usuario id_usuario,d.id_grupo id_grupo
 		FROM $table a2
-		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a2.id AND e.primero='1'
+		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a2.id
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 	) a WHERE ".($filter?"id IN ($filter)":"1=1")." AND ".check_sql($page,"view");
 	return $query;

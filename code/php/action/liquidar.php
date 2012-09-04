@@ -45,8 +45,8 @@ if($page=="clientes") {
 		`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
 		`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
 		VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','0','0','0','')";
-	$query[]="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`)
-		VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."','1')";
+	$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
+		VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 	$prefix=array();
 	foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,13)=="prefix_partes") $prefix[]=$val;
 	$liquidar=0;
@@ -105,8 +105,8 @@ if($page=="partes") {
 				`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
 				`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
 				VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','0','0','0','')";
-			$query[]="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`)
-				VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."','1')";
+			$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
+				VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 			$liquidar=0;
 			$query2="SELECT id,usuario,cliente,tarea,comentarios,fecha,horas,precio,total,
 						(SELECT nombre FROM tbl_proyectos WHERE id=id_proyecto) proyecto
@@ -114,7 +114,7 @@ if($page=="partes") {
 					".make_extra_query_with_login("b.")." usuario,
 					c.nombre cliente,e.`datetime`,e.id_usuario id_usuario,b.id_grupo id_grupo
 					FROM tbl_partes a
-					LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id AND e.primero='1'
+					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id
 					LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_clientes c ON a.id_cliente=c.id) d
 				WHERE ROUND(id) IN ($ids) AND id_cliente='$id_cliente' AND liquidado='0'";
 			$result=db_query($query2);
@@ -191,8 +191,8 @@ if($page=="proyectos" && getParam("extra")=="partes") {
 		`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
 		`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
 		VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','$id_proyecto','0','0','')";
-	$query[]="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`)
-		VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."','1')";
+	$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
+		VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 	$prefix=array();
 	foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,13)=="prefix_partes") $prefix[]=$val;
 	$liquidar=0;
@@ -249,8 +249,8 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 			`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
 			`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
 			VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','$id_proyecto','0','0','')";
-		$query[]="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`)
-			VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."','1')";
+		$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
+			VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 		// GET THE TASKS
 		$prefix=array();
 		foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,17)=="prefix_tareas_old") $prefix[]=$val;
@@ -328,8 +328,8 @@ if($page=="periodicas") {
 				`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
 				VALUES(NULL,'$id_cliente','$id_epigrafe','','','0','0','0','0','','','','','','','".current_date()."','$iva','$irpf',
 					'0','0','$id_cuenta','".current_date()."','0','$id_periodica','$meses','')";
-			$query[]="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`)
-				VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."','1')";
+			$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
+				VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 			$hacer=0;
 			$query2="SELECT * FROM tbl_periodicas_c WHERE id_periodica='$id_periodica' ORDER BY id ASC";
 			$result=db_query($query2);

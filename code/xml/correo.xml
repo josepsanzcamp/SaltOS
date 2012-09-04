@@ -183,7 +183,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<onclick>if(!is_disabled(this)) check_outbox(1)</onclick>
 					<icon>send</icon>
 					<class>nowrap contextmenu</class>
-					<disabled eval="true">execute_query("SELECT COUNT(*) FROM tbl_correo a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id AND e.primero='1' WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'")==0?"true":"false"</disabled>
+					<disabled eval="true">execute_query("SELECT COUNT(*) FROM tbl_correo a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'")==0?"true":"false"</disabled>
 				</field>
 				<field ifnoteval="is_mobile()">
 					<type>menu</type>
@@ -627,7 +627,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE WHEN state_error!='' THEN 'state_error' WHEN state_spam=1 THEN 'state_spam' WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE '' END action_style
 		FROM ".($id_cuenta!=""?"(SELECT * FROM tbl_correo WHERE id_cuenta='".intval($id_cuenta)."')":($id_usuario?"(SELECT * FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".intval($id_usuario)."'))":"tbl_correo"))." a
 		LEFT JOIN tbl_usuarios_c uc ON a.id_cuenta=uc.id
-		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1'
+		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
 		WHERE ".make_like_query($campos_array[$campos],$filtro)."
 		AND ".$only_array[$only]."
@@ -855,7 +855,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>checkbox</type>
 							<value>1</value>
 							<onchange>update_state(abs(getParam('id')),'wait',this.checked?1:0)</onchange>
-							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND primero='1' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
+							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
 							<width2>1px</width2>
 						</field>
@@ -896,7 +896,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>checkbox</type>
 							<value>1</value>
 							<onchange>update_state(abs(getParam('id')),'spam',this.checked?1:0)</onchange>
-							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND primero='1' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
+							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
 							<width2>1px</width2>
 						</field>

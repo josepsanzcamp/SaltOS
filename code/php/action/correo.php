@@ -28,7 +28,7 @@ if($page=="correo") {
 	$ids=check_ids(getParam("id"));
 	if($ids) {
 		$numids=count(explode(",",$ids));
-		$query="SELECT id FROM tbl_correo a WHERE id IN ($ids) AND id IN (SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("correo")."' AND id_registro=a.id AND primero='1' AND id_usuario='".current_user()."')";
+		$query="SELECT id FROM tbl_correo a WHERE id IN ($ids) AND id IN (SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("correo")."' AND id_registro=a.id AND id_usuario='".current_user()."')";
 		$result=execute_query($query);
 		if(!$result) $result=array();
 		if(!is_array($result)) $result=array($result);
@@ -95,7 +95,9 @@ if($page=="correo") {
 				$query="DELETE FROM tbl_ficheros WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
 				db_query($query);
 				// BORRAR REGISTRO DE LOS CORREOS
-				$query="DELETE FROM tbl_registros WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
+				$query="DELETE FROM tbl_registros_i WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
+				db_query($query);
+				$query="DELETE FROM tbl_registros_u WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
 				db_query($query);
 				// BORRAR FOLDERS RELACIONADOS
 				$query="DELETE FROM tbl_folders_a WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";

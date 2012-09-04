@@ -30,7 +30,7 @@ if(getParam("action")=="feeds") {
 		$ids=check_ids(getParam("id"));
 		if($ids) {
 			$numids=count(explode(",",$ids));
-			$query="SELECT id FROM tbl_feeds a WHERE id IN ($ids) AND id IN (SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("feeds")."' AND id_registro=a.id AND primero='1' AND id_usuario='".current_user()."')";
+			$query="SELECT id FROM tbl_feeds a WHERE id IN ($ids) AND id IN (SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro=a.id AND id_usuario='".current_user()."')";
 			$result=execute_query($query);
 			if(!$result) $result=array();
 			if(!is_array($result)) $result=array($result);
@@ -63,7 +63,9 @@ if(getParam("action")=="feeds") {
 					$query="DELETE FROM tbl_feeds WHERE id IN ($ids)";
 					db_query($query);
 					// BORRAR REGISTRO DE LOS POSTS
-					$query="DELETE FROM tbl_registros WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("feeds")."'";
+					$query="DELETE FROM tbl_registros_i WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("feeds")."'";
+					db_query($query);
+					$query="DELETE FROM tbl_registros_u WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("feeds")."'";
 					db_query($query);
 					// BORRAR FOLDERS RELACIONADOS
 					$query="DELETE FROM tbl_folders_a WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
@@ -611,7 +613,7 @@ if(getParam("action")=="feeds") {
 								$next_id=__feeds_nextid();
 								$query="INSERT INTO tbl_feeds(id,id_feed,title,pubdate,description,link,hash,state_new,state_modified,state_wait) VALUES('${next_id}','${id_feed}','${title}','${pubdate}','${description}','${link}','${hash}','1','0','0')";
 								db_query($query);
-								$query="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`) VALUES(NULL,'${id_aplicacion}','${next_id}','${id_usuario}','${datetime}','1')";
+								$query="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'${id_aplicacion}','${next_id}','${id_usuario}','${datetime}')";
 								db_query($query);
 								$newfeeds++;
 								$voice_ids[]=$next_id;
@@ -625,7 +627,7 @@ if(getParam("action")=="feeds") {
 								$description=addslashes($item["description"]);
 								$query="UPDATE tbl_feeds SET title='${title}',pubdate='${pubdate}',description='${description}',hash='${hash}',state_new='1',state_modified='1' WHERE id='${last_id}'";
 								db_query($query);
-								$query="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}','0')";
+								$query="INSERT INTO tbl_registros_u(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}')";
 								db_query($query);
 								$modifiedfeeds++;
 							}

@@ -130,7 +130,7 @@ if(getParam("action")=="calendar") {
 				".make_extra_query_with_login("d.")." usuario
 			FROM tbl_agenda a
 			LEFT JOIN tbl_estados c ON a.id_estado=c.id
-			LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.primero='1'
+			LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id
 			WHERE a.id IN ($ids)
 				AND /*SQLITE STRFTIME('%s',dstart)+0.0>=$dstart *//*MYSQL UNIX_TIMESTAMP(dstart)>=$dstart */

@@ -52,7 +52,7 @@ if(getParam("action")=="gcalendar") {
 	}
 	// GET DATAS FROM GOOGLE CALENDAR AND SALTOS
 	$gevents=__gcalendar_feed($service);
-	$query="SELECT a.* FROM tbl_agenda a LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.primero='1' WHERE f.id_usuario='".current_user()."'";
+	$query="SELECT a.* FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id WHERE f.id_usuario='".current_user()."'";
 	$result=db_query($query);
 	$sevents=array();
 	while($row=db_fetch_row($result)) {
@@ -115,7 +115,7 @@ if(getParam("action")=="gcalendar") {
 					foreach($gevent as $key=>$val) $gevent[$key]=str_replace("'","\\'",$val);
 					$query2="UPDATE tbl_agenda SET nombre='${gevent["title"]}',descripcion='${gevent["content"]}',lugar='${gevent["where"]}',dstart='${gevent["dstart"]}',dstop='${gevent["dstop"]}' WHERE id='${sevent["id"]}'";
 					db_query($query2);
-					$query2="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`) VALUES(NULL,'".page2id("agenda")."','${sevent["id"]}','".current_user()."','".current_datetime()."','0')";
+					$query2="INSERT INTO tbl_registros_u(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'".page2id("agenda")."','${sevent["id"]}','".current_user()."','".current_datetime()."')";
 					db_query($query2);
 					$count_update_saltos++;
 					unset($gevents[$gkey]);
@@ -130,7 +130,7 @@ if(getParam("action")=="gcalendar") {
 			db_query($query2);
 			$query2="INSERT INTO tbl_agenda_u(`id`,`id_agenda`,`id_usuario`) VALUES(NULL,(SELECT MAX(id) FROM tbl_agenda),'".current_user()."')";
 			db_query($query2);
-			$query2="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`) VALUES(NULL,'".page2id("agenda")."',(SELECT MAX(id) FROM tbl_agenda),'".current_user()."','".current_datetime()."','1')";
+			$query2="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'".page2id("agenda")."',(SELECT MAX(id) FROM tbl_agenda),'".current_user()."','".current_datetime()."')";
 			db_query($query2);
 			$count_insert_saltos++;
 			unset($gevents[$gkey]);

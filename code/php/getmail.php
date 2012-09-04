@@ -61,7 +61,7 @@ function __getmail_processfile($disp,$type) {
 
 // CHECK VIEW PERMISION FOR THE CURRENT USER AND THE REQUESTED EMAIL
 function __getmail_checkperm($id) {
-	$query="SELECT a.id FROM (SELECT a2.*,uc.email_privated uc_email_privated FROM tbl_correo a2 LEFT JOIN tbl_usuarios_c uc ON a2.id_cuenta=uc.id) a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND (IFNULL(uc_email_privated,0)=0 OR (uc_email_privated='1' AND e.id_usuario='".current_user()."')) AND ".check_sql("correo","view");
+	$query="SELECT a.id FROM (SELECT a2.*,uc.email_privated uc_email_privated FROM tbl_correo a2 LEFT JOIN tbl_usuarios_c uc ON a2.id_cuenta=uc.id) a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND (IFNULL(uc_email_privated,0)=0 OR (uc_email_privated='1' AND e.id_usuario='".current_user()."')) AND ".check_sql("correo","view");
 	return execute_query($query);
 }
 
@@ -506,7 +506,7 @@ function __getmail_insert($message,$messageid,$state_new,$state_reply,$state_for
 		db_query($query);
 	}
 	// INSERT THE CONTROL REGISTER
-	$query="INSERT INTO tbl_registros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`primero`) VALUES(NULL,'${id_aplicacion}','${next_id}','${id_usuario}','${datetime}','1')";
+	$query="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'${id_aplicacion}','${next_id}','${id_usuario}','${datetime}')";
 	db_query($query);
 	return $next_id;
 }

@@ -107,12 +107,12 @@ if(getParam("action")=="quickform") {
 	// TRICK TO MARK AS READED THE EMAILS AND FEEDS
 	if($page=="correo") {
 		// MARCAR CORREO COMO LEIDO SI ES EL PROPIETARIO
-		$query="UPDATE tbl_correo SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("correo")."' AND id_registro='$id_abs' AND primero='1' AND id_usuario='".current_user()."')";
+		$query="UPDATE tbl_correo SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("correo")."' AND id_registro='$id_abs' AND id_usuario='".current_user()."')";
 		db_query($query);
 	}
 	if($page=="feeds") {
 		// MARCAR FEED COMO LEIDO SI ES EL PROPIETARIO
-		$query="UPDATE tbl_feeds SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='$id_abs' AND primero='1' AND id_usuario='".current_user()."')";
+		$query="UPDATE tbl_feeds SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='$id_abs' AND id_usuario='".current_user()."')";
 		db_query($query);
 	}
 	// CONTINUE

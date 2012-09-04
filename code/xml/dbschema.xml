@@ -2420,7 +2420,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
-			<name>tbl_registros</name>
+			<name>tbl_registros_i</name>
 			<fields>
 				<field>
 					<name>id</name>
@@ -2446,9 +2446,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>datetime</name>
 					<type>DATETIME</type>
 				</field>
+			</fields>
+		</table>
+		<table>
+			<name>tbl_registros_u</name>
+			<fields>
 				<field>
-					<name>primero</name>
+					<name>id</name>
 					<type>INTEGER</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>id_aplicacion</name>
+					<type>INTEGER</type>
+					<fkey>tbl_aplicaciones</fkey>
+				</field>
+				<field>
+					<name>id_registro</name>
+					<type>INTEGER</type>
+				</field>
+				<field>
+					<name>id_usuario</name>
+					<type>INTEGER</type>
+					<fkey>tbl_usuarios</fkey>
+					<fcheck>false</fcheck>
+				</field>
+				<field>
+					<name>datetime</name>
+					<type>DATETIME</type>
 				</field>
 			</fields>
 		</table>
@@ -2942,8 +2967,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>registros</name>
-			<table>tbl_registros</table>
+			<name>registros_i</name>
+			<table>tbl_registros_i</table>
 			<fields>
 				<field>
 					<name>id_aplicacion</name>
@@ -2954,17 +2979,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>registros_primeros</name>
-			<table>tbl_registros</table>
+			<name>registros_u</name>
+			<table>tbl_registros_u</table>
 			<fields>
 				<field>
 					<name>id_aplicacion</name>
 				</field>
 				<field>
 					<name>id_registro</name>
-				</field>
-				<field>
-					<name>primero</name>
 				</field>
 			</fields>
 		</index>

@@ -158,7 +158,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				".make_extra_query_with_login("b.")." usuario,
 				e.`datetime` `datetime`,e.id_usuario id_usuario,b.id_grupo id_grupo
 			FROM tbl_proveedores a
-				LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.primero='1'
+				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_direcciones x ON x.id=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id ORDER BY seleccion DESC, id ASC LIMIT 1)
 				LEFT JOIN tbl_comunicaciones y1 ON y1.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='phone') ORDER BY seleccion DESC, id ASC LIMIT 1)
 				LEFT JOIN tbl_comunicaciones y2 ON y2.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='movil') ORDER BY seleccion DESC, id ASC LIMIT 1)
@@ -193,7 +193,7 @@ SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,
 	/*MYSQL CONCAT('vcardcontactos(',-a.id,')') *//*SQLITE 'vcardcontactos(' || -a.id || ')' */ link_vcard,
 	/*MYSQL CONCAT('qrcodecontactos(',-a.id,')') *//*SQLITE 'qrcodecontactos(' || -a.id || ')' */ link_qrcode
 FROM tbl_contactos a
-	LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("contactos")."' AND e.id_registro=a.id AND e.primero='1'
+	LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("contactos")."' AND e.id_registro=a.id
 	LEFT JOIN tbl_direcciones x ON x.id=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id("contactos")."' AND id_registro=a.id ORDER BY seleccion DESC, id ASC LIMIT 1)
 	LEFT JOIN tbl_comunicaciones y1 ON y1.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='phone') ORDER BY seleccion DESC, id ASC LIMIT 1)
 	LEFT JOIN tbl_comunicaciones y2 ON y2.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='movil') ORDER BY seleccion DESC, id ASC LIMIT 1)
@@ -202,7 +202,7 @@ FROM tbl_contactos a
 WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores")."') AND (".check_sql("contactos","view").") ORDER BY a.nombre ASC"</contactos>
 					</contactos>
 					<gastos>
-						<gastos global="id" eval="true">"SELECT id_usuario,id_grupo,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,/*MYSQL LPAD(id,5,0)*//*SQLITE SUBSTR('00000' || id,-5,5)*/ id,empresa,fecha,num,base,total,/*MYSQL CONCAT('gastos(',-id,')') *//*SQLITE 'gastos(' || -id || ')' */ link_view FROM (SELECT id_usuario,id_grupo,a.*,b.nombre empresa FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("gastos")."' AND e.id_registro=a.id AND e.primero='1' LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) c WHERE id_proveedor=".abs($id)." AND (".check_sql("gastos","view").") ORDER BY fecha DESC"</gastos>
+						<gastos global="id" eval="true">"SELECT id_usuario,id_grupo,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,/*MYSQL LPAD(id,5,0)*//*SQLITE SUBSTR('00000' || id,-5,5)*/ id,empresa,fecha,num,base,total,/*MYSQL CONCAT('gastos(',-id,')') *//*SQLITE 'gastos(' || -id || ')' */ link_view FROM (SELECT id_usuario,id_grupo,a.*,b.nombre empresa FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("gastos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) c WHERE id_proveedor=".abs($id)." AND (".check_sql("gastos","view").") ORDER BY fecha DESC"</gastos>
 					</gastos>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
