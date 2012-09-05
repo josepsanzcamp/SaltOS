@@ -70,7 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<default>
 				<fieldset>
 					<title lang="true">general</title>
-					<row ifnoteval="getDefault('forcelang') &amp;&amp; getDefault('forcestyle') &amp;&amp; getDefault('forceiconset')">
+					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle') || !getDefault('forceiconset')">
 						<field>
 							<type>label</type>
 							<label lang="true">prefgeneral</label>
@@ -78,30 +78,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>center bold</class>
 						</field>
 					</row>
-					<row ifnoteval="getDefault('forcelang') &amp;&amp; getDefault('forcestyle') &amp;&amp; getDefault('forceiconset')">
+					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle') || !getDefault('forceiconset')">
 						<field>
 							<type>separator</type>
 						</field>
 					</row>
-					<row ifnoteval="getDefault('forcelang')">
+					<row ifeval="!getDefault('forcelang')">
 						<field>
 							<field include="xml/common/langs.xml" replace="true" />
 							<colspan>2</colspan>
 						</field>
 					</row>
-					<row ifnoteval="getDefault('forcestyle')">
+					<row ifeval="!getDefault('forcestyle')">
 						<field>
 							<field include="xml/common/styles.xml" replace="true" />
 							<colspan>2</colspan>
 						</field>
 					</row>
-					<row ifnoteval="getDefault('forceiconset') || is_mobile()">
+					<row ifeval="!getDefault('forceiconset') &amp;&amp; !is_mobile()">
 						<field>
 							<field include="xml/common/iconset.xml" replace="true" />
 							<colspan>2</colspan>
 						</field>
 					</row>
-					<row ifnoteval="getDefault('forcestyle') || is_mobile()">
+					<row ifeval="!getDefault('forcestyle') &amp;&amp; !is_mobile()">
 						<field>
 							<name>preview</name>
 							<label lang="true">preview</label>
@@ -112,7 +112,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>2</colspan>
 						</field>
 					</row>
-					<row ifnoteval="getDefault('forcelang') &amp;&amp; getDefault('forcestyle') &amp;&amp; getDefault('forceiconset')">
+					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle') || !getDefault('forceiconset')">
 						<field>
 							<type>separator</type>
 						</field>
@@ -166,7 +166,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset ifnoteval="is_mobile()">
+				<fieldset ifeval="!is_mobile()">
 					<buttons>true</buttons>
 					<row>
 						<field>
@@ -202,7 +202,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset ifnoteval="is_mobile()">
+				<fieldset ifeval="!is_mobile()">
 					<buttons>true</buttons>
 					<title lang="true">quick</title>
 					<row>
@@ -344,7 +344,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row include="xml/common/correo.xml" replace="true"/>
 					<row>
-						<field global="id" ifeval="$id>0">
+						<field global="id" ifeval="$id&gt;0">
 							<name>delete</name>
 							<label lang="true">emaildelete</label>
 							<type>checkbox</type>
@@ -416,9 +416,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="default" prefix="true" eval="true">getParam("password_new")?"UPDATE tbl_security SET `logout`='1' WHERE `id_usuario`='".current_user()."'":""</query>
 		<query match="default" prefix="true" eval="true">dummy(use_table_cookies("lang",getParam("lang")))</query>
 		<query match="default" prefix="true" eval="true">dummy(use_table_cookies("style",getParam("style")))</query>
-		<query ifnoteval="is_mobile()"  match="default" prefix="true" eval="true">dummy(use_table_cookies("iconset",getParam("iconset")))</query>
-		<query ifnoteval="is_mobile()" match="default" prefix="true" eval="true">"DELETE FROM tbl_quick WHERE id_usuario='".current_user()."'"</query>
-		<query ifnoteval="is_mobile()" global="var_i" for="var_i" from="1" to="12" match="default" prefix="true" eval="true">"INSERT INTO tbl_quick(id,id_usuario,button,codigo) VALUES(NULL,'".current_user()."','f$var_i','".getParam("quick_button_f$var_i")."')"</query>
+		<query ifeval="!is_mobile()"  match="default" prefix="true" eval="true">dummy(use_table_cookies("iconset",getParam("iconset")))</query>
+		<query ifeval="!is_mobile()" match="default" prefix="true" eval="true">"DELETE FROM tbl_quick WHERE id_usuario='".current_user()."'"</query>
+		<query ifeval="!is_mobile()" global="var_i" for="var_i" from="1" to="12" match="default" prefix="true" eval="true">"INSERT INTO tbl_quick(id,id_usuario,button,codigo) VALUES(NULL,'".current_user()."','f$var_i','".getParam("quick_button_f$var_i")."')"</query>
 		<query match="folders_old" prefix="true" eval="true">getParam("name_new") &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id!='".intval(getParam("id"))."' AND id_usuario='".current_user()."' AND name='".getParam("name_new")."'")?"UPDATE tbl_folders SET name='".getParam("name_new")."' WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>
 		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders_a WHERE id_folder='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_folders WHERE id='".intval(getParam("id"))."')='".current_user()."'":""</query>
 		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>

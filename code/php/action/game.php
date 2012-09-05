@@ -48,8 +48,6 @@ if(getParam("action")=="game") {
 	header("Content-Type: text/html");
 	header("x-frame-options: SAMEORIGIN");
 	echo $buffer;
-	$length=ob_get_length();
-	header("Content-Length: $length");
 	ob_end_flush();
 	die();
 }

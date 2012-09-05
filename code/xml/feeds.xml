@@ -152,7 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<icon>receive</icon>
 					<class>nowrap contextmenu</class>
 				</field>
-				<field ifnoteval="is_mobile()">
+				<field ifeval="!is_mobile()">
 					<type>menu</type>
 					<name>options</name>
 					<tip lang="true">optionstip</tip>
@@ -536,7 +536,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 			</default>
-			<full ifnoteval="is_mobile()">
+			<full ifeval="!is_mobile()">
 				<fieldset>
 					<title lang="true">fulldata</title>
 					<row>

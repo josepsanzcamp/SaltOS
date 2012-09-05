@@ -198,7 +198,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</preevals>
 	</parser>
 	<styles>
-		<cache ifnoteval="is_mobile()">
+		<cache ifeval="!is_mobile()">
 			<include>lib/jquery/jquery.tooltip.css</include>
 			<include>lib/jquery/jquery.colorpicker.css</include>
 			<include>lib/jquery/jquery.ptTimeSelect.css</include>
@@ -209,7 +209,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</cache>
 	</styles>
 	<javascript>
-		<cache ifnoteval="is_mobile()">
+		<cache ifeval="!is_mobile()">
 			<include>lib/phpjs/php.default.min.js</include>
 			<include>lib/jquery/jquery-1.8.1.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
@@ -219,7 +219,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.blockUI.js</include>
 			<include>lib/jquery/jquery.jgrowl.js</include>
 		</cache>
-		<cache ifnoteval="is_mobile()">
+		<cache ifeval="!is_mobile()">
 			<include>lib/jquery/jquery.colorpicker.js</include>
 			<include>lib/jquery/jquery.ptTimeSelect.js</include>
 			<include>lib/jquery/jquery.contextmenu.r2.js</include>
@@ -230,7 +230,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.tooltip.js</include>
 		</cache>
 		<inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
-		<cache ifnoteval="is_mobile()">
+		<cache ifeval="!is_mobile()">
 			<include>lib/ckeditor/ckeditor.min.js</include>
 			<include>lib/ckeditor/adapters/jquery.min.js</include>
 			<include>lib/pdfjs/pdf.min.js</include>
@@ -345,8 +345,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_irpf_value>15.00</accounting_irpf_value>
 	</configs>
 	<ini_set>
-		<session.bug_compat_42 ifnoteval="isphp54()">On</session.bug_compat_42>
-		<register_globals ifnoteval="isphp54()">Off</register_globals>
+		<session.bug_compat_42 ifeval="!isphp54()">On</session.bug_compat_42>
+		<register_globals ifeval="!isphp54()">Off</register_globals>
 		<memory_limit>128M</memory_limit><!-- to allow emails with 30Mb of attachments -->
 		<max_execution_time>600</max_execution_time>
 		<date.timezone>Europe/Madrid</date.timezone>

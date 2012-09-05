@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fields ifnoteval="is_mobile()">
+	<fields ifeval="!is_mobile()">
 		<width>100%</width>
 		<row>
 			<field>
@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</field>
 		</row>
 	</fields>
-	<fields ifnoteval="is_mobile()">
+	<fields ifeval="!is_mobile()">
 		<row>
 			<field>
 				<name>id_filter</name>

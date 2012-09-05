@@ -203,10 +203,6 @@ if(!defined("__DEFAULT_PHP__")) {
 							header("Content-Disposition: attachment; filename=\"$name\"");
 						}
 						echo $buffer;
-						if(!defined("__CANCEL_HEADER__")) {
-							$length=ob_get_length();
-							header("Content-Length: $length");
-						}
 						if(!defined("__CANCEL_DIE__")) die();
 						break;
 					case "header":
@@ -358,10 +354,6 @@ if(!defined("__DEFAULT_PHP__")) {
 		}
 		$objWriter=PHPExcel_IOFactory::createWriter($objPHPExcel,"Excel5");
 		$objWriter->save("php://output");
-		if(!defined("__CANCEL_HEADER__")) {
-			$length=ob_get_length();
-			header("Content-Length: $length");
-		}
 		if(!defined("__CANCEL_DIE__")) die();
 	}
 

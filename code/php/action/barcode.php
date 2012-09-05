@@ -77,8 +77,6 @@ if(getParam("action")=="barcode") {
 	$type=content_type_from_extension($cache);
 	header("Content-Type: $type");
 	readfile($cache);
-	$length=ob_get_length();
-	header("Content-Length: $length");
 	ob_end_flush();
 	die();
 }

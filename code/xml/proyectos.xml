@@ -916,14 +916,14 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<colspan>2</colspan>
 							<class>center bold thead</class>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
 						</field>
 					</head>
 					<head>
-						<field global="id" ifnoteval="$id>=0">
+						<field global="id" ifeval="$id&lt;0">
 							<type>checkbox</type>
 							<class3>master</class3>
 							<class2>thead</class2>
@@ -972,7 +972,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<class>center bold thead</class>
 							<width>60px</width>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
@@ -987,7 +987,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<name>id_proyecto</name>
 							<type>hidden</type>
 						</field>
-						<field global="id" ifnoteval="$id>=0">
+						<field global="id" ifeval="$id&lt;0">
 							<type>checkbox</type>
 							<name>liquidar</name>
 							<value>1</value>
@@ -1048,7 +1048,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<readonly>true</readonly>
 							<class>tbody</class>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
@@ -1208,7 +1208,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<fieldset>
 					<width>700px</width>
 					<head>
-						<field global="id" ifnoteval="$id>=0">
+						<field global="id" ifeval="$id&lt;0">
 							<type>checkbox</type>
 							<class3>master</class3>
 							<class2>thead</class2>
@@ -1245,7 +1245,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<class>center bold thead</class>
 							<width>60px</width>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
@@ -1260,7 +1260,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<name>id_proyecto</name>
 							<type>hidden</type>
 						</field>
-						<field global="id" ifnoteval="$id>=0">
+						<field global="id" ifeval="$id&lt;0">
 							<type>checkbox</type>
 							<name>liquidar</name>
 							<value>1</value>
@@ -1308,7 +1308,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<class>tbody</class>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
@@ -1556,7 +1556,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field" before="true">
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("addseguimientos")</value>
 				<tip eval="true">LANG("add","seguimientos")</tip>
@@ -1565,7 +1565,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("addactas")</value>
 				<tip eval="true">LANG("add","actas")</tip>
@@ -1574,7 +1574,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("addcontactos")</value>
 				<tip eval="true">LANG("add","contactos")</tip>
@@ -1583,7 +1583,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("addagenda")</value>
 				<tip eval="true">LANG("add","agenda")</tip>
@@ -1592,7 +1592,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("actionfacturar")</value>
 				<tip eval="true">LANG("actionfacturar")</tip>

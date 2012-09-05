@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap contextmenu</class>
 			<icon>accept</icon>
 		</field>
-		<field global="id" ifeval="$id>0">
+		<field global="id" ifeval="$id&gt;0">
 			<type>button</type>
 			<name>buttonupdate</name>
 			<value lang="true">buttonupdate</value>
@@ -57,7 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap contextmenu</class>
 			<icon>accept</icon>
 		</field>
-		<field global="id" ifeval="$id>0">
+		<field global="id" ifeval="$id&gt;0">
 			<type>button</type>
 			<name>buttonupdatereturnhere</name>
 			<value lang="true">buttonupdatereturnhere</value>
@@ -67,7 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap contextmenu</class>
 			<icon>accept</icon>
 		</field>
-		<field global="id" ifeval="$id>=0">
+		<field global="id" ifeval="$id&gt;=0">
 			<type>button</type>
 			<value lang="true">buttoncancel</value>
 			<tip lang="true">buttoncancel</tip>
@@ -75,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap contextmenu</class>
 			<icon>cancel</icon>
 		</field>
-		<field global="id" ifnoteval="$id>=0">
+		<field global="id" ifeval="$id&lt;0">
 			<type>button</type>
 			<name>edit</name>
 			<value lang="true">edit</value>
@@ -85,7 +85,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap contextmenu</class>
 			<icon>edit</icon>
 		</field>
-		<field global="id" ifnoteval="$id>=0">
+		<field global="id" ifeval="$id&lt;0">
 			<type>button</type>
 			<value lang="true">buttonreturn</value>
 			<tip lang="true">buttonreturn</tip>

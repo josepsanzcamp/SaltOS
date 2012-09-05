@@ -92,9 +92,7 @@ function leer_nodos(&$data,$file="") {
 					if(is_array($value)) {
 						foreach($value as $key=>$val) {
 							if(is_array($val) && isset($val["value"]) && isset($val["#attr"])) {
-								$count=count($val["#attr"])+count($attr);
-								$value[$key]["#attr"]=array_merge($val["#attr"],$attr);
-								if(count($value[$key]["#attr"])!=$count) xml_error("Repeated attr when replace a node",$linea,"",$file);
+								foreach($attr as $key2=>$val2) set_array($value[$key]["#attr"],$key2,$val2);
 							} else {
 								$value[$key]=array("value"=>$val,"#attr"=>$attr);
 							}
@@ -327,6 +325,29 @@ function eval_attr($array) {
 							$val2=explode(",",$val2);
 							foreach($val2 as $var) global $$var;
 							break;
+						case "eval":
+							if(eval_bool($val2)) {
+								if(!$value) xml_error("Evaluation error: void expression");
+								if(!isset($prefix)) {
+									$old_value=$value;
+									begin_eval_control();
+									$value=eval("return $value;");
+									end_eval_control($value,$old_value);
+								} else {
+									$old_value=$value;
+									$value=array();
+									foreach($prefix as $p) {
+										$temp_value=$old_value;
+										$temp_value=str_replace("getParam(\"","getParam(\"$p",$temp_value);
+										$temp_value=str_replace("setParam(\"","setParam(\"$p",$temp_value);
+										$temp_value=str_replace("getParamAsArray(\"","getParamAsArray(\"$p",$temp_value);
+										begin_eval_control();
+										$value[]=eval("return $temp_value;");
+										end_eval_control($value,$old_value);
+									}
+								}
+							}
+							break;
 						case "preeval":
 							if(eval_bool($val2)) {
 								$preevals=getDefault("parser/preevals");
@@ -352,29 +373,6 @@ function eval_attr($array) {
 									$temp_value=eval("return $temp_value;");
 									end_eval_control($value,$old_value);
 									$value=substr_replace($value,$temp_value,$pos,$i+1-$pos);
-								}
-							}
-							break;
-						case "eval":
-							if(eval_bool($val2)) {
-								if(!$value) xml_error("Evaluation error: void expression");
-								if(!isset($prefix)) {
-									$old_value=$value;
-									begin_eval_control();
-									$value=eval("return $value;");
-									end_eval_control($value,$old_value);
-								} else {
-									$old_value=$value;
-									$value=array();
-									foreach($prefix as $p) {
-										$temp_value=$old_value;
-										$temp_value=str_replace("getParam(\"","getParam(\"$p",$temp_value);
-										$temp_value=str_replace("setParam(\"","setParam(\"$p",$temp_value);
-										$temp_value=str_replace("getParamAsArray(\"","getParamAsArray(\"$p",$temp_value);
-										begin_eval_control();
-										$value[]=eval("return $temp_value;");
-										end_eval_control($value,$old_value);
-									}
 								}
 							}
 							break;
@@ -417,45 +415,17 @@ function eval_attr($array) {
 								}
 							}
 							break;
-						case "ifconfig":
-							if(CONFIG_LOADED()) {
-								$ifconfig=eval_bool(CONFIG($val2));
-								if(!$ifconfig) $remove=1;
-							} else {
-								$cancel=1;
-							}
-							break;
-						case "ifnotconfig":
-							if(CONFIG_LOADED()) {
-								$ifnotconfig=eval_bool(CONFIG($val2));
-								if($ifnotconfig) $remove=1;
-							} else {
-								$cancel=1;
-							}
-							break;
 						case "ifeval":
 							begin_eval_control();
 							$ifeval=eval("return $val2;");
 							end_eval_control($ifeval,$val2);
 							if(!$ifeval) $remove=1;
 							break;
-						case "ifnoteval":
-							begin_eval_control();
-							$ifnoteval=eval("return $val2;");
-							end_eval_control($ifnoteval,$val2);
-							if($ifnoteval) $remove=1;
-							break;
 						case "ifpreeval":
 							begin_eval_control();
 							$ifpreeval=eval("return $val2;");
 							end_eval_control($ifpreeval,$val2);
 							if(!$ifpreeval) $cancel=1;
-							break;
-						case "ifnotpreeval":
-							begin_eval_control();
-							$ifnotpreeval=eval("return $val2;");
-							end_eval_control($ifnotpreeval,$val2);
-							if($ifnotpreeval) $cancel=1;
 							break;
 						case "require":
 							$val2=explode(",",$val2);

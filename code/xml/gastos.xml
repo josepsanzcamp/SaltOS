@@ -574,11 +574,11 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 					</row>
 					<row>
-						<field global="id" ifnoteval="$id>=0">
+						<field global="id" ifeval="$id&lt;0">
 							<type>separator</type>
 							<colspan>5</colspan>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<name>buscador</name>
 							<label lang="true">buscador</label>
 							<type>text</type>
@@ -692,7 +692,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<name>iva</name>
-							<label config="true">accounting_iva_name</label>
+							<label eval="true">CONFIG("accounting_iva_name")</label>
 							<type>float</type>
 							<width>120px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
@@ -714,7 +714,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<name>irpf</name>
-							<label config="true">accounting_irpf_name</label>
+							<label eval="true">CONFIG("accounting_irpf_name")</label>
 							<type>float</type>
 							<width>120px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
@@ -804,7 +804,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">fechapagado</label>
 							<class>center bold thead</class>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<type>separator</type>
 							<colspan>100</colspan>
 							<class>thead</class>
@@ -862,7 +862,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<class>tbody</class>
 							<icon>calendar</icon>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>

@@ -185,7 +185,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>nowrap contextmenu</class>
 					<disabled eval="true">execute_query("SELECT COUNT(*) FROM tbl_correo a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'")==0?"true":"false"</disabled>
 				</field>
-				<field ifnoteval="is_mobile()">
+				<field ifeval="!is_mobile()">
 					<type>menu</type>
 					<name>options</name>
 					<tip lang="true">optionstip</tip>
@@ -717,7 +717,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>id_extra</name>
 							<type>hidden</type>
 						</field>
-						<field global="id" ifnoteval="$id>=0">
+						<field global="id" ifeval="$id&lt;0">
 							<name>from</name>
 							<label lang="true">from</label>
 							<type>text</type>
@@ -725,7 +725,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly>true</readonly>
 							<colspan>12</colspan>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<name>from</name>
 							<label lang="true">from</label>
 							<type>select</type>
@@ -748,7 +748,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<required global="id" eval="true">$id>=0?"true":"false"</required>
 							<speech>true</speech>
 						</field>
-						<field ifnoteval="is_mobile()" global="id" ifeval="$id>=0">
+						<field global="id" ifeval="!is_mobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>
 							<icon>delete</icon>
 							<value></value>
@@ -767,7 +767,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 							<speech>true</speech>
 						</field>
-						<field ifnoteval="is_mobile()" global="id" ifeval="$id>=0">
+						<field global="id" ifeval="!is_mobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>
 							<icon>delete</icon>
 							<value></value>
@@ -786,7 +786,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 							<speech>true</speech>
 						</field>
-						<field ifnoteval="is_mobile()" global="id" ifeval="$id>=0">
+						<field global="id" ifeval="!is_mobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>
 							<icon>delete</icon>
 							<value></value>
@@ -795,7 +795,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>nowrap</class>
 						</field>
 					</row>
-					<row global="id" ifnoteval="$id>=0">
+					<row global="id" ifeval="$id&lt;0">
 						<field>
 							<name>datetime</name>
 							<label lang="true">datetime</label>
@@ -813,7 +813,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width2>1px</width2>
 							<readonly>true</readonly>
 						</field>
-						<field global="id" ifnoteval="execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
+						<field global="id" ifeval="!execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
 							<name>state_new</name>
 							<label lang="true">statenew</label>
 							<type>checkbox</type>
@@ -822,7 +822,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>1px</width>
 							<width2>1px</width2>
 						</field>
-						<field global="id" ifnoteval="execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
+						<field global="id" ifeval="!execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
 							<name>state_reply</name>
 							<label lang="true">statereply</label>
 							<type>checkbox</type>
@@ -890,7 +890,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>4</colspan>
 							<colspan2>2</colspan2>
 						</field>
-						<field global="id" ifnoteval="(execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id)) || $id&gt;=0)">
+						<field global="id" ifeval="!(execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id)) || $id&gt;=0)">
 							<name>state_spam</name>
 							<label lang="true">statespam</label>
 							<type>checkbox</type>
@@ -945,7 +945,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 					<row>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<name>body</name>
 							<label lang="true">message</label>
 							<type>textarea</type>
@@ -955,7 +955,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<required>true</required>
 							<ckeditor>true</ckeditor>
 						</field>
-						<field global="id" ifnoteval="$id>=0">
+						<field global="id" ifeval="$id&lt;0">
 							<name>message</name>
 							<label lang="true">message</label>
 							<type>iframe</type>
@@ -965,7 +965,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 						</field>
 					</row>
-					<row ifnoteval="is_mobile()" global="id" ifeval="$id>=0">
+					<row global="id" ifeval="!is_mobile() &amp;&amp; $id&gt;=0">
 						<field>
 							<name>textos_body</name>
 							<label lang="true">textos</label>
@@ -986,7 +986,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</default>
 			<files_old include="xml/common/filesold.xml" />
 			<files_new include="xml/common/filesnew.xml"/>
-			<full ifnoteval="is_mobile()">
+			<full ifeval="!is_mobile()">
 				<fieldset>
 					<title lang="true">fulldata</title>
 					<row>
@@ -1000,7 +1000,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 			</full>
-			<source ifnoteval="is_mobile()">
+			<source ifeval="!is_mobile()">
 				<fieldset>
 					<title lang="true">sourcedata</title>
 					<row>
@@ -1051,7 +1051,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>nowrap contextmenu</class>
 					<icon>cancel</icon>
 				</field>
-				<field global="id" ifnoteval="$id>=0">
+				<field global="id" ifeval="$id&lt;0">
 					<type>button</type>
 					<value lang="true">actionreply</value>
 					<tip lang="true">actionreplytip</tip>
@@ -1061,7 +1061,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<disabled global="id" eval="true">execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")==0?"false":"true"</disabled>
 					<class2 global="id" eval="true">(execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")==0 &amp;&amp; execute_query("SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='".abs($id)."' AND id_tipo IN (2,3)")==1)?"shortcut_ctrl_insert":""</class2>
 				</field>
-				<field global="id" ifnoteval="$id>=0">
+				<field global="id" ifeval="$id&lt;0">
 					<type>button</type>
 					<value lang="true">actionreplyall</value>
 					<tip lang="true">actionreplyalltip</tip>
@@ -1071,7 +1071,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<disabled global="id" eval="true">(execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")==0 &amp;&amp; execute_query("SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='".abs($id)."' AND id_tipo IN (2,3)")>=2)?"false":"true"</disabled>
 					<class2 global="id" eval="true">(execute_query("SELECT is_outbox FROM tbl_correo WHERE id='".abs($id)."'")==0 &amp;&amp; execute_query("SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo='".abs($id)."' AND id_tipo IN (2,3)")>=2)?"shortcut_ctrl_insert":""</class2>
 				</field>
-				<field global="id" ifnoteval="$id>=0">
+				<field global="id" ifeval="$id&lt;0">
 					<type>button</type>
 					<value lang="true">actionforward</value>
 					<tip lang="true">actionforwardtip</tip>
@@ -1079,7 +1079,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>nowrap contextmenu</class>
 					<icon>forward</icon>
 				</field>
-				<field global="id" ifnoteval="$id>=0">
+				<field global="id" ifeval="$id&lt;0">
 					<type>button</type>
 					<value lang="true">buttonreturn</value>
 					<tip lang="true">buttonreturn</tip>

@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<label global="currentpage,totalpages,currentregini,currentregend,totalregs" ifpreeval="isset($currentpage) &amp;&amp; isset($totalpages) &amp;&amp; isset($currentregini) &amp;&amp; isset($currentregend) &amp;&amp; isset($totalregs)" eval="true">LANG("paginaspc").$currentpage.LANG("spcdespc").$totalpages." (".LANG("regsfrom")." ".$currentregini.LANG("spcalspc").$currentregend.LANG("spcdespc").$totalregs.")."</label>
 			<class>nowrap</class>
 		</field>
-		<field ifnoteval="is_mobile()">
+		<field ifeval="!is_mobile()">
 			<type>select</type>
 			<name>selectregs</name>
 			<label lang="true">regspage</label>
@@ -95,7 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class2>shortcut_ctrl_leftArrow</class2>
 			<disabled global="previouspage" ifpreeval="isset($previouspage)" eval="true">$previouspage?"false":"true"</disabled>
 		</field>
-		<field ifnoteval="is_mobile()">
+		<field ifeval="!is_mobile()">
 			<type>select</type>
 			<name>selectpage</name>
 			<rows>

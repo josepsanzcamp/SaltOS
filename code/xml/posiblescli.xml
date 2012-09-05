@@ -616,7 +616,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field" before="true">
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("add","agenda")</value>
 				<tip eval="true">LANG("add","agenda")</tip>
@@ -625,7 +625,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("add","actas")</value>
 				<tip eval="true">LANG("add","actas")</tip>
@@ -634,7 +634,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<class>nowrap contextmenu</class>
 				<icon>create</icon>
 			</field>
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("crearcliente")</value>
 				<tip eval="true">LANG("crearcliente")</tip>

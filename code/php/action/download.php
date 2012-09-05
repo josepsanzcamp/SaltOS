@@ -82,8 +82,6 @@ if(getParam("action")=="download") {
 		header("Content-Disposition: attachment; filename=\"${name}\"");
 		header("Content-Type: $type");
 		readfile($file);
-		$length=ob_get_length();
-		header("Content-Length: $length");
 		ob_end_flush();
 	} else {
 		readfile($file);

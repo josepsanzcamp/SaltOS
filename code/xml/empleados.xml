@@ -340,7 +340,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field" before="true">
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("add","contactos")</value>
 				<tip eval="true">LANG("add","contactos")</tip>

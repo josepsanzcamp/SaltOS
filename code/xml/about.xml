@@ -591,7 +591,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
 						</field>
 						<field>
-							<label>Mozilla pdf.js (MIT)</label>
+							<label>Mozilla pdf.js (Apache-2.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentb</class>
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
@@ -772,7 +772,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset ifeval="check_commands(getDefault('commands/unoconv'),60)" ifnoteval="is_mobile()">
+				<fieldset ifeval="!is_mobile() &amp;&amp; check_commands(getDefault('commands/unoconv'),60)">
 					<title lang="true">ooformats</title>
 					<row>
 						<field>
@@ -803,7 +803,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<temp global="directory,extension,files" eval="true">dummy($files=glob($directory."*".$extension))</temp>
 				<temp global="files" eval="true">dummy($files=(is_array($files) &amp;&amp; count($files)>0)?$files:array())</temp>
 				<temp global="directory,extension,files" eval="true">dummy($files=str_replace(array($directory,$extension),"",$files))</temp>
-				<fieldset ifnoteval="is_mobile()" global="files,row" foreach="files" as="row">
+				<fieldset ifeval="!is_mobile()" global="files,row" foreach="files" as="row">
 					<title global="row" eval="true">LANG("license").$row</title>
 					<row>
 						<field>
@@ -829,7 +829,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset ifnoteval="is_mobile()">
+				<fieldset ifeval="!is_mobile()">
 					<title lang="true">game</title>
 					<row>
 						<field>

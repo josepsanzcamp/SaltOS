@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<onclick>pdf4('ID')</onclick>
 				<icon>pdf</icon>
 			</pdf4>
-			<view4 ifnoteval="is_mobile()">
+			<view4 ifeval="!is_mobile()">
 				<label lang="true">view2</label>
 				<onclick>view4('ID')</onclick>
 				<icon>view2</icon>

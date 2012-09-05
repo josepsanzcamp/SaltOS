@@ -56,7 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<onclick>pdf2(ID)</onclick>
 			<icon>pdf</icon>
 		</pdf2>
-		<view2 ifnoteval="is_mobile()">
+		<view2 ifeval="!is_mobile()">
 			<label lang="true">view2</label>
 			<onclick>view2(ID)</onclick>
 			<icon>view2</icon>
@@ -66,17 +66,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<onclick>vcard(ID)</onclick>
 			<icon>vcard</icon>
 		</vcard>
-		<qrcode ifnoteval="is_mobile()">
+		<qrcode ifeval="!is_mobile()">
 			<label lang="true">qrcode</label>
 			<onclick>qrcode(ID)</onclick>
 			<icon>qrcode</icon>
 		</qrcode>
-		<pdf2filter ifnoteval="is_mobile()">
+		<pdf2filter ifeval="!is_mobile()">
 			<label lang="true">pdf</label>
 			<onclick>pdf2filter(ID)</onclick>
 			<icon>pdf</icon>
 		</pdf2filter>
-		<view2filter ifnoteval="is_mobile()">
+		<view2filter ifeval="!is_mobile()">
 			<label lang="true">view2</label>
 			<onclick>view2filter(ID)</onclick>
 			<icon>view2</icon>

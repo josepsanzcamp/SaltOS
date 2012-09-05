@@ -74,7 +74,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset global="files" ifnoteval="count($files)">
+				<fieldset global="files" ifeval="!count($files)">
 					<buttons>true</buttons>
 					<title lang="true">formupdate</title>
 					<row>

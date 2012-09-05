@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<temp global="section" eval="true">$section="list"</temp>
 	<temp global="directory,page,section,extension,files" eval="true">$files=glob($directory."*-${page}-*-${section}".$extension)</temp>
 	<temp global="file,files" eval="true">$file=(is_array($files) &amp;&amp; count($files))?$files[0]:""</temp>
-	<fields global="file" ifeval="file_exists($file)" ifnoteval="is_mobile()">
+	<fields global="file" ifeval="!is_mobile() &amp;&amp; file_exists($file)">
 		<title lang="true">help</title>
 		<width>100%</width>
 		<row>

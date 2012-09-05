@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<label lang="true">style</label>
 	<type>select</type>
 	<width>120px</width>
-	<rows ifnoteval="is_mobile()">
+	<rows ifeval="!is_mobile()">
 		<row>
 			<label>Base</label>
 			<value>base</value>

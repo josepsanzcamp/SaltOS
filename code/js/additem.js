@@ -28,7 +28,9 @@ if(typeof(__additem__)=="undefined" && typeof(parent.__additem__)=="undefined") 
 	var __additem__=1;
 
 	function additem(obj) {
-		var padre=$(obj).parent().parent().parent().parent().parent();
+		var padre=$(obj).parent();
+		maxiter=100;
+		while(maxiter>0 && !$("table.tabla",padre).length) padre=$(padre).parent();
 		var table=$("table.tabla",padre);
 		var limit=$("tr",table).length;
 		var num=$("tr:visible2",table).length;
@@ -44,7 +46,9 @@ if(typeof(__additem__)=="undefined" && typeof(parent.__additem__)=="undefined") 
 "use strict";
 $(document).ready(function() {
 	$(".init_additem").each(function() {
-		var padre=$(this).parent().parent().parent().parent().parent();
+		var padre=$(this).parent();
+		maxiter=100;
+		while(maxiter>0 && !$("table.tabla",padre).length) padre=$(padre).parent();
 		var temp=$("input[type=hidden][name$=id]",padre);
 		var total=0;
 		$(temp).each(function() {

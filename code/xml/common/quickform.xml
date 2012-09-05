@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
 		</field>
-		<field ifnoteval="is_mobile()">
+		<field ifeval="!is_mobile()">
 			<name>quick_select</name>
 			<type>select</type>
 			<onchange>page1(this.value)</onchange>

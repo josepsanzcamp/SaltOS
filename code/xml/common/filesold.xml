@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fieldset ifnoteval="is_mobile()">
+	<fieldset ifeval="!is_mobile()">
 		<width>700px</width>
 		<title lang="true">attachments</title>
 		<head>
@@ -125,7 +125,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<icon>view2</icon>
 				<class>tbody</class>
 			</field>
-			<field global="id" ifeval="$id>=0">
+			<field global="id" ifeval="$id&gt;=0">
 				<type>checkbox</type>
 				<label lang="true">delete</label>
 				<name>fichero_del</name>

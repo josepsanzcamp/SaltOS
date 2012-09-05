@@ -748,8 +748,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifnoteval="is_mobile()">
+					<row global="id" ifeval="$id&gt;=0">
+						<field ifeval="!is_mobile()">
 							<name>textos_objetivos</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -778,8 +778,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifnoteval="is_mobile()">
+					<row global="id" ifeval="$id&gt;=0">
+						<field ifeval="!is_mobile()">
 							<name>textos_funcional</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -808,8 +808,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifnoteval="is_mobile()">
+					<row global="id" ifeval="$id&gt;=0">
+						<field ifeval="!is_mobile()">
 							<name>textos_tecnica</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -838,8 +838,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifnoteval="is_mobile()">
+					<row global="id" ifeval="$id&gt;=0">
+						<field ifeval="!is_mobile()">
 							<name>textos_extras</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -940,7 +940,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">total</label>
 							<class>center bold thead</class>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
@@ -994,7 +994,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly>true</readonly>
 							<class>tbody</class>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
@@ -1174,7 +1174,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">total</label>
 							<class>center bold thead</class>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<type>separator</type>
 							<class>thead</class>
 							<colspan>100</colspan>
@@ -1230,7 +1230,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
-						<field global="id" ifeval="$id>=0">
+						<field global="id" ifeval="$id&gt;=0">
 							<name>delete</name>
 							<type>checkbox</type>
 							<label lang="true">delete</label>
@@ -1340,7 +1340,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 			</productos_new>
 			<condiciones>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(condiciones) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
+				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(condiciones) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id&gt;=0)">
 					<title lang="true">condiciones</title>
 					<row>
 						<field>
@@ -1357,8 +1357,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
-					<row global="id" ifeval="$id>=0">
-						<field ifnoteval="is_mobile()">
+					<row global="id" ifeval="$id&gt;=0">
+						<field ifeval="!is_mobile()">
 							<name>textos_condiciones</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -1388,7 +1388,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field" before="true">
-			<field global="id" ifnoteval="$id>=0">
+			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
 				<value eval="true">LANG("crearproyecto")</value>
 				<onclick>migrar()</onclick>

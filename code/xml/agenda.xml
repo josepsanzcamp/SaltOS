@@ -540,7 +540,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<required>true</required>
 							<colspan>3</colspan>
 							<speech>true</speech>
-							<onkeypress ifnoteval="getParam('id')">var orig=this; var dest=$("textarea[name$=descripcion]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkeypress>
+							<onkeypress ifeval="!getParam('id')">var orig=this; var dest=$("textarea[name$=descripcion]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkeypress>
 						</field>
 						<field>
 							<name>id_tipoevento</name>
@@ -582,7 +582,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>5</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<onkeypress ifnoteval="getParam('id')">$(this).prop("writed",true)</onkeypress>
+							<onkeypress ifeval="!getParam('id')">$(this).prop("writed",true)</onkeypress>
 						</field>
 					</row>
 					<row>

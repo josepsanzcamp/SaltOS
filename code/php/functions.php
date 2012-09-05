@@ -871,15 +871,9 @@ function show_php_error($array=null) {
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");
-			echo $msg;
-			$length=strlen($msg);
-			header("Content-Length: $length");
-		} else {
-			echo $msg;
 		}
-	} else {
-		echo $msg;
 	}
+	echo $msg;
 	die();
 }
 
@@ -942,7 +936,7 @@ function program_error_handler() {
 	error_reporting(0);
 	set_error_handler("__error_handler");
 	set_exception_handler("__exception_handler");
-	register_shutdown_function('__shutdown_handler');
+	register_shutdown_function("__shutdown_handler");
 }
 
 function number_row_index($row) {
