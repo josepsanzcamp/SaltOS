@@ -423,27 +423,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</thead>
 		<xsl:choose>
 			<xsl:when test="count(rows/row)=0">
-				<tbody>
-					<tr>
-						<td colspan="{1+count(fields/field)+100}" class="nodata italic"><xsl:value-of select="nodata/label"/></td>
-					</tr>
-				</tbody>
+				<tr>
+					<td colspan="{1+count(fields/field)+100}" class="nodata italic"><xsl:value-of select="nodata/label"/></td>
+				</tr>
 			</xsl:when>
 			<xsl:otherwise>
-				<tbody>
-					<xsl:for-each select="rows/row">
-						<tr>
-							<xsl:call-template name="list_table_data"/>
-							<xsl:call-template name="list_table_actions"/>
-						</tr>
-					</xsl:for-each>
-				</tbody>
-				<tfoot>
-					<xsl:call-template name="math_row">
-						<xsl:with-param name="iter" select="fields"/>
-						<xsl:with-param name="add">true</xsl:with-param>
-					</xsl:call-template>
-				</tfoot>
+				<xsl:for-each select="rows/row">
+					<tr>
+						<xsl:call-template name="list_table_data"/>
+						<xsl:call-template name="list_table_actions"/>
+					</tr>
+				</xsl:for-each>
+				<xsl:call-template name="math_row">
+					<xsl:with-param name="iter" select="fields"/>
+					<xsl:with-param name="checkbox">true</xsl:with-param>
+				</xsl:call-template>
 			</xsl:otherwise>
 		</xsl:choose>
 	</table>
@@ -1210,41 +1204,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="math_row">
 	<xsl:param name="iter"/>
-	<xsl:param name="add"/>
+	<xsl:param name="checkbox"/>
 	<xsl:for-each select="$iter">
 		<xsl:if test="count(field/math)>0">
 			<tr>
 				<td class="separator"></td>
 			</tr>
 			<tr>
-				<xsl:if test="$add='true'">
+				<xsl:if test="$checkbox='true'">
 					<td class="thead"></td>
 				</xsl:if>
-				<xsl:for-each select="field">
-					<xsl:choose>
-						<xsl:when test="math/ignore='true'"/>
-						<xsl:otherwise>
-							<td class="thead">
-								<xsl:if test="math/label!=''"><xsl:value-of select="math/label"/></xsl:if>
-							</td>
-						</xsl:otherwise>
-					</xsl:choose>
+				<xsl:for-each select="field[count(math/ignore)=0 or math/ignore!='true']">
+					<td class="thead">
+						<xsl:if test="math/label!=''"><xsl:value-of select="math/label"/></xsl:if>
+					</td>
 				</xsl:for-each>
 				<td class="thead" colspan="100"></td>
 			</tr>
-			<tr>
-				<xsl:if test="$add='true'">
+			<tr class="math">
+				<xsl:if test="$checkbox='true'">
 					<td class="tbody"></td>
 				</xsl:if>
-				<xsl:for-each select="field">
-					<xsl:choose>
-						<xsl:when test="math/ignore='true'"/>
-						<xsl:otherwise>
-							<td class="tbody">
-								<xsl:if test="math/func!=''">=<xsl:value-of select="math/func"/></xsl:if>
-							</td>
-						</xsl:otherwise>
-					</xsl:choose>
+				<xsl:for-each select="field[count(math/ignore)=0 or math/ignore!='true']">
+					<td class="tbody">
+						<xsl:if test="math/func!=''">=<xsl:value-of select="math/func"/></xsl:if>
+					</td>
 				</xsl:for-each>
 				<td class="tbody" colspan="100"></td>
 			</tr>
@@ -1400,13 +1384,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										</xsl:for-each>
 										<xsl:call-template name="math_row">
 											<xsl:with-param name="iter" select="head"/>
-											<xsl:with-param name="add">false</xsl:with-param>
+											<xsl:with-param name="checkbox">false</xsl:with-param>
 										</xsl:call-template>
-										<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_0_</xsl:variable>
 										<xsl:call-template name="form_tail">
 											<xsl:with-param name="form" select="$form"/>
 											<xsl:with-param name="node" select="null"/>
-											<xsl:with-param name="prefix" select="$prefix"/>
+											<xsl:with-param name="prefix" select="null"/>
 											<xsl:with-param name="iter" select="tail"/>
 										</xsl:call-template>
 										<xsl:if test="buttons='true'">

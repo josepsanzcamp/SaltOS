@@ -65,14 +65,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<order>id</order>
 			</field>
 			<field>
-				<name>from</name>
+				<name>from2</name>
 				<label lang="true">from</label>
 				<width></width>
 				<sort>true</sort>
 				<size>25</size>
 			</field>
 			<field>
-				<name>to</name>
+				<name>to2</name>
 				<label lang="true">to</label>
 				<width></width>
 				<sort>true</sort>
@@ -554,7 +554,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
-		<temp global="campos_array" eval="true">$campos_array=array(""=>"id2,from,to,cc,bcc,datetime,subject,body,estado,msgid","email"=>"from,to,cc,bcc","subject"=>"subject","body"=>"body","resto"=>"id2,datetime,estado,msgid")</temp>
+		<temp global="campos_array" eval="true">$campos_array=array(""=>"id2,from2,to2,cc,bcc,datetime,subject,body,estado,msgid","email"=>"from2,to2,cc,bcc","subject"=>"subject","body"=>"body","resto"=>"id2,datetime,estado,msgid")</temp>
 		<temp global="campos,campos_array" eval="true">$campos=isset($campos_array[$campos])?$campos:""</temp>
 		<temp global="fecha3_array" eval="true">$fecha3_array=array(""=>"1=1","today"=>"DATE(`datetime`)=DATE('".current_date()."')","yesterday"=>"DATE(`datetime`)=DATE('".current_date(-86400)."')","week"=>"DATE(`datetime`)>=DATE('".current_date(-86400*7)."')","month"=>"DATE(`datetime`)>=DATE('".current_date(-86400*30)."')")</temp>
 		<temp global="fecha3,fecha3_array" eval="true">$fecha3=isset($fecha3_array[$fecha3])?$fecha3:""</temp>
@@ -563,8 +563,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<temp global="only,only_array" eval="true">$only=isset($only_array[$only])?$only:"000"</temp>
 		<query global="page,filtro,id_usuario,id_cuenta,hidespam,withfiles,withoutfiles,onlyinbox,onlyoutbox,fecha1,fecha2,campos,fecha3,campos_array,fecha3_array,only,only_array" eval="true">"SELECT
 			id,id2,
-			/*MYSQL CONCAT('mailto:',`from`) *//*SQLITE ('mailto:' || `from`) */ `from`,
-			`to`,
+			/*MYSQL CONCAT('mailto:',`from`) *//*SQLITE ('mailto:' || `from`) */ from2,
+			`to` to2,
 			/*MYSQL CONCAT('link:correo(',-id,'):',subject) *//*SQLITE 'link:correo(' || -id || '):' || subject */ subject,
 			`datetime`,
 			files,

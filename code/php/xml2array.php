@@ -92,7 +92,8 @@ function leer_nodos(&$data,$file="") {
 					if(is_array($value)) {
 						foreach($value as $key=>$val) {
 							if(is_array($val) && isset($val["value"]) && isset($val["#attr"])) {
-								foreach($attr as $key2=>$val2) set_array($value[$key]["#attr"],$key2,$val2);
+								$value[$key]["#attr"]=$attr;
+								foreach($val["#attr"] as $key2=>$val2) set_array($value[$key]["#attr"],$key2,$val2);
 							} else {
 								$value[$key]=array("value"=>$val,"#attr"=>$attr);
 							}

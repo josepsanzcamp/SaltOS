@@ -1679,7 +1679,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$("td:last",tdsbody).addClass("ui-corner-br");
 				}
 				// MAKE CALCS OF THE TABLE CELLS
-				var last=$("tr:last",this);
+				var last=$("tr.math",this);
 				$("td",last).each(function() {
 					var index=$(this).index();
 					var value=$(this).text();
