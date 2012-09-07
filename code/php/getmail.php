@@ -283,7 +283,9 @@ function __getmail_getinfo($array) {
 		$result["subject"]=$subject;
 	}
 	// CHECK X-SPAM-STATUS HEADER
-	$spam=strtoupper(trim(__getmail_getnode("Headers/x-spam-status:",$array)));
+	$spam=__getmail_getnode("Headers/x-spam-status:",$array);
+	if(is_array($spam)) $spam=$spam[0]; // TO PREVENT ERRORS WHEN THE HEADER IS MALFORMED
+	$spam=strtoupper(trim($spam));
 	$result["spam"]=(substr($spam,0,3)=="YES" || substr($spam,-3,3)=="YES")?"1":"0";
 	// GET THE NUMBER OF ATTACHMENTS
 	$result["files"]=__getmail_getfiles($array);
