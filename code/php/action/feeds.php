@@ -534,6 +534,7 @@ if(getParam("action")=="feeds") {
 			javascript_history(-1);
 		}
 		semaphore_release($semaphore);
+		javascript_headers();
 		die();
 	}
 	// BEGIN THE LOOP
@@ -684,6 +685,7 @@ if(getParam("action")=="feeds") {
 	}
 	// RELEASE SEMAPHORE
 	semaphore_release($semaphore);
+	javascript_headers();
 	die();
 }
 ?>

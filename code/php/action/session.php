@@ -59,6 +59,7 @@ if(getParam("action")=="session") {
 			javascript_alert(LANG("sessionexpire").$remain.$update);
 		}
 	}
+	javascript_headers();
 	die();
 }
 ?>

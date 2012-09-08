@@ -109,7 +109,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<colspan>2</colspan>
 				</actions>
 			</row>
-			<row ifeval="!getDefault('forceiconset') || is_mobile()">
+			<row ifeval="!getDefault('forceiconset') &amp;&amp; !is_mobile()">
 				<field>
 					<field include="xml/common/iconset.xml" replace="true" />
 				</field>
@@ -122,7 +122,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 				</field>
 			</row>
-			<row ifeval="!getDefault('forcestyle') || is_mobile()">
+			<row ifeval="!getDefault('forcestyle') &amp;&amp; !is_mobile()">
 				<field>
 					<name>preview</name>
 					<label lang="true">preview</label>

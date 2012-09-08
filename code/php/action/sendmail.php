@@ -217,6 +217,7 @@ if(getParam("action")=="sendmail") {
 			javascript_history(-1);
 		}
 		semaphore_release($semaphore);
+		javascript_headers();
 		die();
 	}
 	if(isset($result["id_cuenta"])) $result=array($result);
@@ -319,6 +320,7 @@ if(getParam("action")=="sendmail") {
 	}
 	// RELEASE THE SEMAPHORE
 	semaphore_release($semaphore);
+	javascript_headers();
 	die();
 }
 if(getParam("page")=="correo") {

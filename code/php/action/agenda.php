@@ -122,6 +122,7 @@ if(getParam("action")=="agenda") {
 	if(count($reader_texts)) {
 		foreach($reader_texts as $text) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$text)."')","saltos_voice()");
 	}
+	javascript_headers();
 	die();
 }
 ?>

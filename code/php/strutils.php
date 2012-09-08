@@ -271,16 +271,14 @@ function header_powered() {
 
 function header_expires($cache=true) {
 	if($cache) {
-		header("Pragma: public");
+		header("Expires: ".gmdate("D, d M Y H:i:s",time()+getDefault("cache/cachegctimeout"))." GMT");
 		header("Cache-Control: max-age=".getDefault("cache/cachegctimeout"));
-		$gmdate=gmdate("D, d M Y H:i:s",time()+getDefault("cache/cachegctimeout"));
-		header("Expires: $gmdate GMT");
-		if(is_string($cache)) header("ETag: $cache");
+		header("Pragma: public");
+		if(is_string($cache) && strlen($cache)==32) header("ETag: $cache");
 	} else {
-		if(!ismsie()) header("Pragma: no-cache");
-		header("Cache-Control: no-store, no-cache, must-revalidate");
-		header("Cache-Control: post-check=0, pre-check=0", false);
 		header("Expires: -1");
+		header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
+		header("Pragma: no-cache");
 	}
 }
 
@@ -294,11 +292,6 @@ function header_etag($hash) {
 		ob_end_flush();
 		die();
 	}
-}
-
-function ismsie() {
-	if(strpos(getServer("HTTP_USER_AGENT"),"MSIE")!==false) return true;
-	return false;
 }
 
 function xml2html($buffer,$usecache=true) {

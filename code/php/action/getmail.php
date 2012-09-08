@@ -350,6 +350,7 @@ if(getParam("action")=="getmail") {
 			javascript_history(-1);
 		}
 		semaphore_release($semaphore);
+		javascript_headers();
 		die();
 	}
 	if(isset($result["id"])) $result=array($result);
@@ -533,6 +534,7 @@ if(getParam("action")=="getmail") {
 	}
 	// RELEASE SEMAPHORE
 	semaphore_release($semaphore);
+	javascript_headers();
 	die();
 }
 if(getParam("page")=="correo") {
