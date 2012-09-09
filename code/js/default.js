@@ -1916,16 +1916,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	// WHEN DOCUMENT IS READY
 	$(document).ready(function() {
 		//~ console.time("document_ready fase 0");
-		var menu=$(".ui-layout-west");
-		saltos_login=($(menu).text()!="")?1:0;
-		if(saltos_login) sync_cookies("start");
-		make_notice();
 		$("body > *").addClass("preloading");
 		$("body").removeClass("preloading");
 		loadingcontent();
 		setTimeout(function() {
 			//~ console.time("document_ready fase 1");
 			init_history();
+			make_notice();
 			make_dialog();
 			make_contextmenu();
 			make_shortcuts();
@@ -1933,6 +1930,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var header=$(".ui-layout-north");
 			make_numbers(header);
 			var menu=$(".ui-layout-west");
+			saltos_login=($(menu).text()!="")?1:0;
+			if(saltos_login) sync_cookies("start");
 			make_menu(menu);
 			make_numbers(menu);
 			var screen=$(".ui-layout-center");
