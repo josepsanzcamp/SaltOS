@@ -33,82 +33,70 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>dstart</name>
 				<label lang="true">dstart</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>dstop</name>
 				<label lang="true">dstop</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>nombre</name>
 				<label lang="true">nombre</label>
-				<width></width>
 				<sort>true</sort>
 				<order>nombre2</order>
 			</field>
 			<field>
 				<name>estado</name>
 				<label lang="true">estado</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>posiblescli</name>
 				<label lang="true">numpc</label>
 				<tip lang="true">numpctip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>clientes</name>
 				<label lang="true">numcl</label>
 				<tip lang="true">numcltip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>agendas</name>
 				<label lang="true">numag</label>
 				<tip lang="true">numagtip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>presupuestos</name>
 				<label lang="true">numpr</label>
 				<tip lang="true">numprtip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>proyectos</name>
 				<label lang="true">numpy</label>
 				<tip lang="true">numpytip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>comentarios</name>
 				<label lang="true">numc</label>
 				<tip lang="true">numctip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>ficheros</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 		</fields>

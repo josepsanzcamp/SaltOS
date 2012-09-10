@@ -33,39 +33,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>nombre</name>
 				<label lang="true">nombre</label>
-				<width></width>
 				<sort>true</sort>
 				<order>nombre2</order>
 			</field>
 			<field>
 				<name>aplicacion</name>
 				<label lang="true">aplicacion</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>pos</name>
 				<label lang="true">posicion</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>descripcion</name>
 				<label lang="true">descripcion</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>activo</name>
 				<label lang="true">activo</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 		</fields>

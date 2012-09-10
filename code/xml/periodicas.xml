@@ -33,14 +33,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>cliente</name>
 				<label lang="true">cliente</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>cliente2</order>
@@ -48,52 +46,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>dia</name>
 				<label lang="true">dia</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>meses</name>
 				<label lang="true">meses</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>base</name>
-				<label lang="true">base</label>
-				<width></width>
+				<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>total</name>
-				<label lang="true">total</label>
-				<width></width>
+				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>cuenta</name>
 				<label lang="true">cuenta</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>conceptos</name>
 				<label lang="true">numc</label>
 				<tip lang="true">numctip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>productos</name>
 				<label lang="true">nump</label>
 				<tip lang="true">numptip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>vencimientos</name>
 				<label lang="true">numv</label>
 				<tip lang="true">numvtip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 		</fields>
@@ -807,17 +797,17 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field global="id" ifeval="$id>=0">
@@ -906,17 +896,17 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>
@@ -1001,17 +991,17 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field global="id" ifeval="$id>=0">
@@ -1101,17 +1091,17 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>
@@ -1191,12 +1181,12 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">percent</label>
+							<label eval="true">LANG("percent")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">importe</label>
+							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field global="id" ifeval="$id>=0">
@@ -1264,12 +1254,12 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">percent</label>
+							<label eval="true">LANG("percent")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">importe</label>
+							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>

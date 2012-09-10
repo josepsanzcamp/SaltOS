@@ -33,53 +33,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>cif</name>
 				<label lang="true">cif</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>nombre</name>
 				<label lang="true">nombre</label>
-				<width></width>
 				<sort>true</sort>
 				<order>nombre2</order>
 			</field>
 			<field>
 				<name>tel_fijo</name>
 				<label lang="true">tel_fijo</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>tel_movil</name>
 				<label lang="true">tel_movil</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>email</name>
 				<label lang="true">email</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>comentarios</name>
 				<label lang="true">numc</label>
 				<tip lang="true">numctip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>ficheros</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 		</fields>

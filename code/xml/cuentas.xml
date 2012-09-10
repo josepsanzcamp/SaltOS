@@ -33,21 +33,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>nombre</name>
 				<label lang="true">nombre</label>
-				<width></width>
 				<sort>true</sort>
 				<order>nombre2</order>
 			</field>
 			<field>
 				<name>descripcion</name>
 				<label lang="true">descripcion</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 		</fields>

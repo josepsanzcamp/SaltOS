@@ -33,7 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
@@ -53,68 +52,62 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>fecha</name>
 				<label lang="true">date</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>total1</name>
-				<label lang="true">tareas</label>
+				<label eval="true">LANG("tareas")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 				<math>
 					<func>sum()</func>
-					<label lang="true">suma</label>
+					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 				</math>
 			</field>
 			<field>
 				<name>total2</name>
-				<label lang="true">prod</label>
+				<label eval="true">LANG("prod")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 				<math>
 					<func>sum()</func>
-					<label lang="true">suma</label>
+					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 				</math>
 			</field>
 			<field>
 				<name>total3</name>
-				<label lang="true">total</label>
+				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 				<math>
 					<func>sum()</func>
-					<label lang="true">suma</label>
+					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 				</math>
 			</field>
 			<field>
 				<name>estado</name>
 				<label lang="true">estado</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>comentarios</name>
 				<label lang="true">numc</label>
 				<tip lang="true">numctip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>ficheros</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>tareas</name>
 				<label lang="true">numt</label>
 				<tip lang="true">numttip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>productos</name>
 				<label lang="true">nump</label>
 				<tip lang="true">numptip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 		</fields>
@@ -640,7 +633,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">preciototal</label>
+							<label eval="true">LANG("preciototal")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>
@@ -703,7 +696,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<head>
 						<field>
 							<type>label</type>
-							<label lang="true">preciototal</label>
+							<label lang="true">total</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
@@ -872,12 +865,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">preciomedio</label>
+							<label eval="true">LANG("preciomedio")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">preciototal</label>
+							<label eval="true">LANG("preciototal")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>
@@ -927,17 +920,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">precio</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field global="id" ifeval="$id&gt;=0">
@@ -1025,17 +1018,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">precio</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>
@@ -1118,7 +1111,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">preciototal</label>
+							<label eval="true">LANG("preciototal")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>
@@ -1161,17 +1154,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field global="id" ifeval="$id&gt;=0">
@@ -1261,17 +1254,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>

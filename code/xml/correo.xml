@@ -60,35 +60,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>from2</name>
 				<label lang="true">from</label>
-				<width></width>
 				<sort>true</sort>
 				<size>25</size>
 			</field>
 			<field>
 				<name>to2</name>
 				<label lang="true">to</label>
-				<width></width>
 				<sort>true</sort>
 				<size>25</size>
 			</field>
 			<field>
 				<name>subject</name>
 				<label lang="true">subject</label>
-				<width></width>
 				<sort>true</sort>
 				<size>50</size>
 			</field>
 			<field>
 				<name>datetime</name>
 				<label lang="true">datetime</label>
-				<width></width>
 				<sort>true</sort>
 				<class>nowrap</class>
 			</field>
@@ -96,7 +91,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<name>files</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>

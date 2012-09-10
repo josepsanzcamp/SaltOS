@@ -973,7 +973,7 @@ function check_system() {
 		"mb_check_encoding"=>"php-mbstring","mb_convert_encoding"=>"php-mbstring","mb_strlen"=>"php-mbstring","mb_substr"=>"php-mbstring","mb_strpos"=>"php-mbstring");
 	foreach($array as $key=>$val) if(!function_exists($key)) show_php_error(array("phperror"=>"Function $key not found","details"=>"Try to install $val package"));
 	// INSTALL CHECK
-	if(file_exists("install/xml.php")) { include("install/xml.php"); die(); }
+	if(file_exists("install/install.php")) { include("install/install.php"); die(); }
 }
 
 function action_denied() {

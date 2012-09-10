@@ -87,47 +87,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>aplicacion</name>
 				<label lang="true">aplicacion</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>nombre</name>
 				<label lang="true">nombre</label>
-				<width></width>
 				<sort>true</sort>
 				<size>80</size>
 			</field>
 			<field>
 				<name>usuario</name>
 				<label lang="true">username</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>datetime</name>
 				<label lang="true">datetime</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>comments</name>
 				<label lang="true">numc</label>
 				<tip lang="true">numctip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>files</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 		</fields>

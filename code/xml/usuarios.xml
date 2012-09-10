@@ -33,59 +33,50 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>login</name>
 				<label lang="true">username</label>
-				<width></width>
 				<sort>true</sort>
 				<order>login2</order>
 			</field>
 			<field>
 				<name>grupo</name>
 				<label lang="true">grupo</label>
-				<width></width>
 				<sort>true</sort>
 				<order>grupo2</order>
 			</field>
 			<field>
 				<name>nombre</name>
 				<label lang="true">nombre</label>
-				<width></width>
 				<sort>true</sort>
 				<order>nombre2</order>
 			</field>
 			<field>
 				<name>email</name>
 				<label lang="true">email</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>activo</name>
 				<label lang="true">activo</label>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>hora_ini</name>
 				<label lang="true">entrada</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>hora_fin</name>
 				<label lang="true">salida</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>dias_sem</name>
 				<label lang="true">dias</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 		</fields>

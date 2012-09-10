@@ -42,17 +42,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			//~ console.timeEnd("__html3");
 		};
 		$.expr.filters.visible2=function(obj) {
-			return $(obj).css("display")!=="none";
-		};
-		$.fn.outerHTML=function() {
-			var result=$(this).attr("outerHTML");
-			if(typeof(result)=="undefined") {
-				var div=$("<div/>");
-				$(div).append($(this).clone());
-				result=$(div).html();
-				$(div).remove2();
-			}
-			return result;
+			return $(obj).css("display")!="none";
 		};
 		$.fn.remove2=function() {
 			//~ console.time("__remove2");
@@ -351,9 +341,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if($(this).text()!="") $(this).remove2();
 			});
 		}
-		// DEFINE SOME DEFAULTS THAT CAN NOT BE DEFINED IN RUNTIME
-		$.jGrowl.defaults.closer=false;
-		$.jGrowl.defaults.position="bottom-right";
 	}
 
 	function hide_popupnotice() {
@@ -810,7 +797,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				url:url,
 				type:"get",
 				success:function(response) {
-					var html=transformcontent(xml,response);
+					var html=str2html(fix4html(html2str(transformcontent(xml,response))));
 					//~ console.timeEnd("loadcontent");
 					unmake_ckeditors();
 					updatecontent(html);
@@ -821,7 +808,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 			});
 		} else if(xml) {
-			var html=str2html(xml);
+			var html=str2html(fix4html(xml));
 			if($(".ui-layout-center",html).text()!="") {
 				//~ console.timeEnd("loadcontent");
 				unmake_ckeditors();
@@ -834,8 +821,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(screen).append(html);
 				} else {
 					//~ console.timeEnd("loadcontent");
-					unloadingcontent();
 					unmake_ckeditors();
+					unloadingcontent();
 					if($(".phperror",html).length!=0) {
 						$("div[type=title]",html).remove2();
 						$("div[type=body]",html).addClass("ui-corner-all");
@@ -846,24 +833,34 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		}
 	}
 
+	function html2str(html) {
+		var div=document.createElement("div");
+		$(div).html(html);
+		return $(div).html();
+	}
+
 	function str2html(str) {
+		var div=document.createElement("div");
+		div.innerHTML=str;
+		return div;
+	}
+
+	function fix4html(str) {
 		// GET THE CONTENTS OF HTML TAG IF EXISTS
 		var pos1=strpos(str,"<html");
 		var pos2=strpos(str,">",pos1);
 		var pos3=strpos(str,"</html>",pos2);
 		if(pos1!==false && pos2!==false && pos3!==false) str=substr(str,pos2+1,pos3-pos2-1);
-		// REPLACE HEAD AND BODY BY DIV ELEMENTS
+		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
+		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
 		str=str_replace("<title","<div type='title'",str);
 		str=str_replace("</title>","</div>",str);
 		str=str_replace("<head","<div type='head'",str);
 		str=str_replace("</head>","</div>",str);
 		str=str_replace("<body","<div type='body'",str);
 		str=str_replace("</body>","</div>",str);
-		// CREATE A DIV AND INSERT THE STR INTO THE DIV
-		var html=document.createElement("div");
-		html.innerHTML=str;
-		if(html.innerHTML=="") html=str;
-		return html;
+		// RETURN THE STRING
+		return str;
 	}
 
 	function transformcontent(xml,xsl) {
@@ -878,7 +875,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		} else {
 			var html="";
 		}
-		html=str2html($(html).outerHTML());
 		return html;
 	}
 
@@ -1912,6 +1908,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
 	jQuery.ajaxSetup({ cache:true });
+
+	// DEFINE SOME DEFAULTS THAT CAN NOT BE DEFINED IN RUNTIME
+	$.jGrowl.defaults.closer=false;
+	$.jGrowl.defaults.position="bottom-right";
 
 	// WHEN DOCUMENT IS READY
 	$(document).ready(function() {

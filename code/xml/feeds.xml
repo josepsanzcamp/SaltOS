@@ -51,14 +51,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>feed</name>
 				<label lang="true">feed</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<class>nowrap</class>
@@ -66,7 +64,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>post</name>
 				<label lang="true">post</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<class>nowrap</class>
@@ -74,13 +71,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>title</name>
 				<label lang="true">title</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>pubdate</name>
 				<label lang="true">pubdate</label>
-				<width></width>
 				<sort>true</sort>
 				<class>nowrap</class>
 			</field>

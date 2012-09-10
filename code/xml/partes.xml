@@ -33,14 +33,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>cliente</name>
 				<label lang="true">cliente</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>cliente2</order>
@@ -48,7 +46,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>proyecto</name>
 				<label lang="true">proyecto</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>proyecto2</order>
@@ -56,20 +53,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>tarea</name>
 				<label lang="true">tarea</label>
-				<width></width>
 				<sort>true</sort>
 				<order>tarea2</order>
 			</field>
 			<field>
 				<name>fecha</name>
 				<label lang="true">date</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>horas</name>
 				<label lang="true">horas</label>
-				<width></width>
 				<sort>true</sort>
 				<math>
 					<func>sum()</func>
@@ -78,49 +72,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</field>
 			<field>
 				<name>precio</name>
-				<label lang="true">precio</label>
-				<width></width>
+				<label eval="true">LANG("precio")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 				<math>
 					<func>avg()</func>
-					<label lang="true">average</label>
+					<label eval="true">LANG("average")." (".CONFIG("accounting_currency").")"</label>
 				</math>
 			</field>
 			<field>
 				<name>total</name>
-				<label lang="true">total</label>
-				<width></width>
+				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 				<math>
 					<func>sum()</func>
-					<label lang="true">suma</label>
+					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 				</math>
 			</field>
 			<field>
 				<name>liquidado</name>
 				<label lang="true">liq</label>
-				<width></width>
 				<sort>false</sort>
 				<class>estado</class>
 			</field>
 			<field>
 				<name>fecha2</name>
 				<label lang="true">dateliq</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>comentarios</name>
 				<label lang="true">numc</label>
 				<tip lang="true">numctip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>ficheros</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 		</fields>
@@ -549,7 +537,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<name>precio</name>
-							<label lang="true">preciohora</label>
+							<label eval="true">LANG("preciohora")." (".CONFIG("accounting_currency").")"</label>
 							<type>float</type>
 							<width>60px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
@@ -558,7 +546,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<name>total</name>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<type>float</type>
 							<width>60px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>

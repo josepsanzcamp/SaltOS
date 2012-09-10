@@ -33,26 +33,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>usuario</name>
 				<label lang="true">username</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>datetime</name>
 				<label lang="true">datetime</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>cliente</name>
 				<label lang="true">cliente</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>cliente2</order>
@@ -60,7 +56,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>proyecto</name>
 				<label lang="true">proyecto</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>proyecto2</order>
@@ -68,40 +63,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>nombre</name>
 				<label lang="true">incidencia</label>
-				<width></width>
 				<sort>true</sort>
 				<order>nombre2</order>
 			</field>
 			<field>
 				<name>estado</name>
 				<label lang="true">estado</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>prioridad</name>
 				<label lang="true">prioridad</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>asignadoa</name>
 				<label lang="true">asignadoa</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>comentarios</name>
 				<label lang="true">numc</label>
 				<tip lang="true">numctip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>ficheros</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 		</fields>

@@ -38,17 +38,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			$(this).append($(obj).children());
 		};
 		$.expr.filters.visible2=function(obj) {
-			return $(obj).css("display")!=="none";
-		};
-		$.fn.outerHTML=function() {
-			var result=$(this).attr("outerHTML");
-			if(typeof(result)=="undefined") {
-				var div=$("<div/>");
-				$(div).append($(this).clone());
-				result=$(div).html();
-				$(div).remove2();
-			}
-			return result;
+			return $(obj).css("display")!="none";
 		};
 		$.fn.remove2=function() {
 			$("*",this).unbind().jqmRemoveData().removeData().removeProp().removeAttr().remove();
@@ -721,7 +711,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				url:url,
 				type:"get",
 				success:function(response) {
-					var html=transformcontent(xml,response);
+					var html=str2html(fix4html(html2str(transformcontent(xml,response))));
 					updatecontent(html);
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown) {
@@ -729,7 +719,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				}
 			});
 		} else if(xml) {
-			var html=str2html(xml);
+			var html=str2html(fix4html(xml));
 			if($("#page",html).text()!="") {
 				updatecontent(html);
 			} else {
@@ -745,24 +735,34 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		}
 	}
 
+	function html2str(html) {
+		var div=document.createElement("div");
+		$(div).html(html);
+		return $(div).html();
+	}
+
 	function str2html(str) {
+		var div=document.createElement("div");
+		div.innerHTML=str;
+		return div;
+	}
+
+	function fix4html(str) {
 		// GET THE CONTENTS OF HTML TAG IF EXISTS
 		var pos1=strpos(str,"<html");
 		var pos2=strpos(str,">",pos1);
 		var pos3=strpos(str,"</html>",pos2);
 		if(pos1!==false && pos2!==false && pos3!==false) str=substr(str,pos2+1,pos3-pos2-1);
-		// REPLACE HEAD AND BODY BY DIV ELEMENTS
+		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
+		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
 		str=str_replace("<title","<div type='title'",str);
 		str=str_replace("</title>","</div>",str);
 		str=str_replace("<head","<div type='head'",str);
 		str=str_replace("</head>","</div>",str);
 		str=str_replace("<body","<div type='body'",str);
 		str=str_replace("</body>","</div>",str);
-		// CREATE A DIV AND INSERT THE STR INTO THE DIV
-		var html=document.createElement("div");
-		html.innerHTML=str;
-		if(html.innerHTML=="") html=str;
-		return html;
+		// RETURN THE STRING
+		return str;
 	}
 
 	function transformcontent(xml,xsl) {
@@ -777,7 +777,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		} else {
 			var html="";
 		}
-		html=str2html($(html).outerHTML());
 		return html;
 	}
 

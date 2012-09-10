@@ -51,20 +51,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<type>label</type>
-					<label lang="true">base</label>
+					<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
 					<class>thead</class>
 					<math>
 						<func>sum()</func>
-						<label lang="true">suma</label>
+						<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 					</math>
 				</field>
 				<field>
 					<type>label</type>
-					<label lang="true">total</label>
+					<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 					<class>thead</class>
 					<math>
 						<func>sum()</func>
-						<label lang="true">suma</label>
+						<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 					</math>
 				</field>
 				<field>

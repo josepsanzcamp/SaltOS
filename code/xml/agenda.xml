@@ -33,32 +33,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>usuario</name>
 				<label lang="true">username</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>dstart</name>
 				<label lang="true">dstart</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>dstop</name>
 				<label lang="true">dstop</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>cliente</name>
 				<label lang="true">cliente</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>cliente2</order>
@@ -66,7 +61,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>proyecto</name>
 				<label lang="true">proyecto</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>proyecto2</order>
@@ -74,20 +68,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>nombre</name>
 				<label lang="true">evento</label>
-				<width></width>
 				<sort>true</sort>
 				<order>nombre2</order>
 			</field>
 			<field>
 				<name>tipoevento</name>
 				<label lang="true">tipoevento</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>estado</name>
 				<label lang="true">estado</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 		</fields>

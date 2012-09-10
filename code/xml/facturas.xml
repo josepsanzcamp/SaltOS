@@ -33,7 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>num</name>
 				<label lang="true">numfac</label>
-				<width></width>
 				<sort>true</sort>
 				<orderasc>num3</orderasc>
 				<orderdesc>num4</orderdesc>
@@ -41,13 +40,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>fecha</name>
 				<label lang="true">date</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>nombre</name>
 				<label lang="true">cliente</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>nombre2</order>
@@ -55,49 +52,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>proyecto</name>
 				<label lang="true">proyecto</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>proyecto2</order>
 			</field>
 			<field>
 				<name>base</name>
-				<label lang="true">base</label>
-				<width></width>
+				<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 				<math>
 					<func>sum()</func>
-					<label lang="true">suma</label>
+					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 				</math>
 			</field>
 			<field>
 				<name>total</name>
-				<label lang="true">total</label>
-				<width></width>
+				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 				<math>
 					<func>sum()</func>
-					<label lang="true">suma</label>
+					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 				</math>
 			</field>
 			<field>
 				<name>cerrado</name>
 				<label lang="true">cerr</label>
-				<width></width>
 				<sort>false</sort>
 				<class>cerrado</class>
 			</field>
 			<field>
 				<name>cobrado</name>
 				<label lang="true">cobr</label>
-				<width></width>
 				<sort>false</sort>
 				<class>cobrado</class>
 			</field>
 			<field>
 				<name>cuenta</name>
 				<label lang="true">cuenta</label>
-				<width></width>
 				<sort>false</sort>
 			</field>
 		</fields>
@@ -949,17 +940,17 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field global="id" ifeval="$id>=0">
@@ -1048,17 +1039,17 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>
@@ -1142,17 +1133,17 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field global="id" ifeval="$id>=0">
@@ -1242,17 +1233,17 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">prun</label>
+							<label eval="true">LANG("prun")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">dto</label>
+							<label eval="true">LANG("dto")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 					</head>
@@ -1332,12 +1323,12 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">percent</label>
+							<label eval="true">LANG("percent")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">importe</label>
+							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
@@ -1436,12 +1427,12 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">percent</label>
+							<label eval="true">LANG("percent")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">importe</label>
+							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>

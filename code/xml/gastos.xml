@@ -33,14 +33,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>id2</name>
 				<label lang="true">id</label>
-				<width></width>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
 			<field>
 				<name>empresa</name>
 				<label lang="true">empresa</label>
-				<width></width>
 				<sort>true</sort>
 				<size>20</size>
 				<order>empresa2</order>
@@ -48,53 +46,46 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>fecha</name>
 				<label lang="true">date</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>base</name>
-				<label lang="true">base</label>
-				<width></width>
+				<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 				<math>
 					<func>sum()</func>
-					<label lang="true">suma</label>
+					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 				</math>
 			</field>
 			<field>
 				<name>total</name>
-				<label lang="true">total</label>
-				<width></width>
+				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 				<sort>true</sort>
 				<math>
 					<func>sum()</func>
-					<label lang="true">suma</label>
+					<label eval="true">LANG("suma")." (".CONFIG("accounting_currency").")"</label>
 				</math>
 			</field>
 			<field>
 				<name>liquidado</name>
 				<label lang="true">liq</label>
-				<width></width>
 				<sort>false</sort>
 				<class>estado</class>
 			</field>
 			<field>
 				<name>fecha2</name>
 				<label lang="true">dateliq</label>
-				<width></width>
 				<sort>true</sort>
 			</field>
 			<field>
 				<name>vencimientos</name>
 				<label lang="true">numv</label>
 				<tip lang="true">numvtip</tip>
-				<width></width>
 				<sort>false</sort>
 			</field>
 			<field>
 				<name>cuenta</name>
 				<label lang="true">cuenta</label>
-				<width></width>
 				<sort>false</sort>
 			</field>
 		</fields>
@@ -674,7 +665,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 					<row>
 						<field>
 							<name>base</name>
-							<label lang="true">base</label>
+							<label eval="true">LANG("base")." (".CONFIG("accounting_currency").")"</label>
 							<type>float</type>
 							<width>120px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
@@ -692,7 +683,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<name>iva</name>
-							<label eval="true">CONFIG("accounting_iva_name")</label>
+							<label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
 							<type>float</type>
 							<width>120px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
@@ -704,7 +695,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 					<row>
 						<field>
 							<name>total</name>
-							<label lang="true">total</label>
+							<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
 							<type>float</type>
 							<width>120px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
@@ -714,7 +705,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<name>irpf</name>
-							<label eval="true">CONFIG("accounting_irpf_name")</label>
+							<label eval="true">CONFIG("accounting_irpf_name")." (%)"</label>
 							<type>float</type>
 							<width>120px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
