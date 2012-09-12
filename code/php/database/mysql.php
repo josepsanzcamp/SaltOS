@@ -23,12 +23,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// mysql implementation
 function db_connect_mysql() {
 	global $_CONFIG;
-	if(!function_exists("mysql_pconnect")) { db_error(array("phperror"=>"mysql_pconnect not found")); return; }
-	$_CONFIG["db"]["link"]=mysql_pconnect(getDefault("db/host").":".getDefault("db/port"),getDefault("db/user"),getDefault("db/pass")) or db_error(array("dberror"=>"mysql_pconnect()"));
-	mysql_select_db(getDefault("db/name"),getDefault("db/link")) or db_error(array("dberror"=>"mysql_select_db()"));
+	if(!function_exists("mysql_pconnect")) { db_error_mysql(array("phperror"=>"mysql_pconnect not found")); return; }
+	$_CONFIG["db"]["link"]=mysql_pconnect(getDefault("db/host").":".getDefault("db/port"),getDefault("db/user"),getDefault("db/pass")) or db_error_mysql(array("dberror"=>"mysql_pconnect()"));
+	mysql_select_db(getDefault("db/name"),getDefault("db/link")) or db_error_mysql(array("dberror"=>"mysql_select_db()"));
 	if(getDefault("db/link")) {
 		db_query_mysql("SET NAMES 'UTF8'");
 		db_query_mysql("SET FOREIGN_KEY_CHECKS=0");
@@ -40,7 +39,7 @@ function __db_query_mysql_helper($query) {
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
 	if($query) {
 		// DO QUERY
-		$data=mysql_query($query,getDefault("db/link")) or db_error(array("dberror"=>mysql_error(getDefault("db/link")),"query"=>$query));
+		$data=mysql_query($query,getDefault("db/link")) or db_error_mysql(array("dberror"=>mysql_error(getDefault("db/link")),"query"=>$query));
 		// DUMP RESULT TO MATRIX
 		if(!is_bool($data) && mysql_num_fields($data)) {
 			$result["rows"]=array();
@@ -54,7 +53,7 @@ function __db_query_mysql_helper($query) {
 }
 
 function db_query_mysql($query) {
-	$query=parse_query($query,db_type());
+	$query=parse_query($query,"MYSQL");
 	return __db_query_mysql_helper($query);
 }
 
@@ -70,6 +69,9 @@ function db_error_mysql($array) {
 }
 
 function db_type_mysql() {
-	return "MYSQL";
+	$result=db_query("SHOW VARIABLES WHERE Value LIKE '%MariaDB%';");
+	$numrows=db_num_rows($result);
+	db_free($result);
+	return $numrows?"MARIADB":"MYSQL";
 }
 ?>

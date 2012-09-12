@@ -23,11 +23,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// mysqli implementation
 function db_connect_mysqli() {
 	global $_CONFIG;
-	if(!function_exists("mysqli_connect")) { db_error(array("phperror"=>"mysqli_connect not found")); return; }
-	$_CONFIG["db"]["link"]=mysqli_connect(getDefault("db/host"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name"),getDefault("db/port")) or db_error(array("dberror"=>"mysqli_connect()"));
+	if(!function_exists("mysqli_connect")) { db_error_mysqli(array("phperror"=>"mysqli_connect not found")); return; }
+	$_CONFIG["db"]["link"]=mysqli_connect(getDefault("db/host"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name"),getDefault("db/port")) or db_error_mysqli(array("dberror"=>"mysqli_connect()"));
 	if(getDefault("db/link")) {
 		db_query_mysqli("SET NAMES 'UTF8'");
 		db_query_mysqli("SET FOREIGN_KEY_CHECKS=0");
@@ -39,7 +38,7 @@ function __db_query_mysqli_helper($query) {
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
 	if($query) {
 		// DO QUERY
-		$data=mysqli_query(getDefault("db/link"),$query) or db_error(array("dberror"=>mysqli_error(getDefault("db/link")),"query"=>$query));
+		$data=mysqli_query(getDefault("db/link"),$query) or db_error_mysqli(array("dberror"=>mysqli_error(getDefault("db/link")),"query"=>$query));
 		// DUMP RESULT TO MATRIX
 		if(!is_bool($data) && mysqli_num_fields($data)) {
 			$result["rows"]=array();
@@ -53,7 +52,7 @@ function __db_query_mysqli_helper($query) {
 }
 
 function db_query_mysqli($query) {
-	$query=parse_query($query,db_type());
+	$query=parse_query($query,"MYSQL");
 	return __db_query_mysqli_helper($query);
 }
 
@@ -69,6 +68,9 @@ function db_error_mysqli($array) {
 }
 
 function db_type_mysqli() {
-	return "MYSQL";
+	$result=db_query("SHOW VARIABLES WHERE Value LIKE '%MariaDB%';");
+	$numrows=db_num_rows($result);
+	db_free($result);
+	return $numrows?"MARIADB":"MYSQL";
 }
 ?>

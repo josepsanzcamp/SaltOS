@@ -23,12 +23,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// bin_sqlite implementations
 function db_connect_bin_sqlite() {
 	global $_CONFIG;
-	if(!check_commands(getDefault("commands/sqlite3"),60)) { db_error(array("dberror"=>"Command '".getDefault("commands/sqlite3")."' not found")); return; }
-	if(!file_exists(getDefault("db/file"))) { db_error(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
-	if(!is_writable(getDefault("db/file"))) { db_error(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
+	if(!check_commands(getDefault("commands/sqlite3"),60)) { db_error_bin_sqlite(array("dberror"=>"Command '".getDefault("commands/sqlite3")."' not found")); return; }
+	if(!file_exists(getDefault("db/file"))) { db_error_bin_sqlite(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
+	if(!is_writable(getDefault("db/file"))) { db_error_bin_sqlite(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	register_shutdown_function("__bin_sqlite_shutdown_handler");
 }
 
@@ -94,7 +93,7 @@ function __db_query_bin_sqlite_helper($query) {
 		unlink($stdin);
 		if($error) {
 			if(file_exists($stdout)) unlink($stdout);
-			db_error(array("query"=>$query,"dberror"=>$error));
+			db_error_bin_sqlite(array("query"=>$query,"dberror"=>$error));
 		}
 		// PREPARE PARAMETERS TO PARSE CSV
 		$length=0; // DEFAULT VALUE
@@ -127,7 +126,7 @@ function __db_query_bin_sqlite_helper($query) {
 }
 
 function db_query_bin_sqlite($query) {
-	$query=parse_query($query,db_type());
+	$query=parse_query($query,"SQLITE");
 	// TRICK TO DO THE STRIP SLASHES
 	$pos=strpos($query,"\\");
 	while($pos!==false) {
@@ -141,7 +140,7 @@ function db_query_bin_sqlite($query) {
 		$result=__db_query_bin_sqlite_helper($query);
 		semaphore_release($semaphore);
 	} else {
-		db_error(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
+		db_error_bin_sqlite(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
 	}
 	return $result;
 }

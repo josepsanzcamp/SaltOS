@@ -94,7 +94,7 @@ function list_simulator($newpage,$ids="string") {
 	$order=implode(",",$array_order);
 	// DETECT DB ENGINE
 	$dbtype=db_type();
-	if($dbtype=="SQLITE") {
+	if(in_array($dbtype,array("SQLITE","MARIADB"))) {
 		if($ids=="string" || $ids=="array") {
 			// LIST OF TEMPORARY FIELDS TO RETRIEVE
 			$fields=explode(",",$order);
@@ -105,7 +105,7 @@ function list_simulator($newpage,$ids="string") {
 			if(!in_array("action_id",$fields)) array_push($fields,"action_id");
 			$fields=implode(",",$fields);
 			// CONTINUE
-			$query="SELECT action_id FROM (SELECT $fields FROM ($query0)) ORDER BY $order";
+			$query="SELECT action_id FROM (SELECT $fields FROM ($query0) __a__) __b__ ORDER BY $order";
 			$result=execute_query($query);
 			if(!$result) $result=array();
 			if(!is_array($result)) $result=array($result);
@@ -121,12 +121,12 @@ function list_simulator($newpage,$ids="string") {
 			$fields=implode(",",$fields);
 			// CONTINUE
 			$ids=check_ids($ids);
-			$query="SELECT action_title FROM (SELECT $fields FROM ($query0) WHERE action_id IN ($ids)) ORDER BY $order";
+			$query="SELECT action_title FROM (SELECT $fields FROM ($query0) __a__ WHERE action_id IN ($ids)) __b__ ORDER BY $order";
 			$result=execute_query($query);
 			if(!$result) $result=array();
 			if(!is_array($result)) $result=array($result);
 		}
-	} elseif($dbtype=="MYSQL") {
+	} elseif(in_array($dbtype,array("MYSQL"))) {
 		static $tbl_hash1=null;
 		// CHECK IF tbl_hash1 EXISTS
 		if(is_null($tbl_hash1)) {

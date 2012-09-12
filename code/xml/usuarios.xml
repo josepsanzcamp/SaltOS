@@ -253,7 +253,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						ORDER BY nombre"</grupos>
 					</grupos>
 					<appsregs>
-						<appsregs global="id" eval="true">make_select_extra($id)</appsregs>
+						<appsregs global="id" eval="true">make_select_appsregs($id)</appsregs>
 					</appsregs>
 					<gcalendar eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>
@@ -314,7 +314,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						ORDER BY nombre"</grupos>
 					</grupos>
 					<appsregs>
-						<appsregs global="id" eval="true">make_select_extra($id)</appsregs>
+						<appsregs global="id" eval="true">make_select_appsregs($id)</appsregs>
 					</appsregs>
 					<gcalendar>SELECT '0' id</gcalendar>
 					<feeds_new>SELECT '0' id</feeds_new>
@@ -382,7 +382,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						ORDER BY nombre"</grupos>
 					</grupos>
 					<appsregs>
-						<appsregs global="id" eval="true">make_select_extra($id)</appsregs>
+						<appsregs global="id" eval="true">make_select_appsregs($id)</appsregs>
 					</appsregs>
 					<gcalendar eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>

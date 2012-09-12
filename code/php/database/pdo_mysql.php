@@ -23,15 +23,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// pdo_mysql implementation
 function db_connect_pdo_mysql() {
 	global $_CONFIG;
-	if(!class_exists("PDO")) { db_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
+	if(!class_exists("PDO")) { db_error_pdo_mysql(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
 	try {
 		$_CONFIG["db"]["link"]=new PDO("mysql:host=".getDefault("db/host").";port=".getDefault("db/port").";dbname=".getDefault("db/name"),getDefault("db/user"),getDefault("db/pass"),array(PDO::ATTR_PERSISTENT=>true));
 		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 	} catch(PDOException $e) {
-		db_error(array("exception"=>$e->getMessage()));
+		db_error_pdo_mysql(array("exception"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
 		db_query_pdo_mysql("SET NAMES 'UTF8'");
@@ -48,10 +47,10 @@ function __db_query_pdo_mysql_helper($query) {
 			$data=getDefault("db/link")->query($query);
 			if($data===false) {
 				$error=getDefault("db/link")->errorInfo();
-				if(isset($error[2])) db_error(array("dberror"=>$error[2],"query"=>$query));
+				if(isset($error[2])) db_error_pdo_mysql(array("dberror"=>$error[2],"query"=>$query));
 			}
 		} catch(PDOException $e) {
-			db_error(array("exception"=>$e->getMessage(),"query"=>$query));
+			db_error_pdo_mysql(array("exception"=>$e->getMessage(),"query"=>$query));
 		}
 		// DUMP RESULT TO MATRIX
 		if($data && $data->columnCount()>0) {
@@ -64,7 +63,7 @@ function __db_query_pdo_mysql_helper($query) {
 }
 
 function db_query_pdo_mysql($query) {
-	$query=parse_query($query,db_type());
+	$query=parse_query($query,"MYSQL");
 	return __db_query_pdo_mysql_helper($query);
 }
 
@@ -79,6 +78,9 @@ function db_error_pdo_mysql($array) {
 }
 
 function db_type_pdo_mysql() {
-	return "MYSQL";
+	$result=db_query("SHOW VARIABLES WHERE Value LIKE '%MariaDB%';");
+	$numrows=db_num_rows($result);
+	db_free($result);
+	return $numrows?"MARIADB":"MYSQL";
 }
 ?>

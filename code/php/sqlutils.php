@@ -103,12 +103,12 @@ function make_insert_query($table) {
 		$list1[]="`${field["name"]}`";
 		$type=$field["type"];
 		if($field["name"]=="id") $list2[]="NULL";
-		elseif(get_field_type($type)=="int") $list2[]="'\".intval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="float") $list2[]="'\".floatval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="date") $list2[]="'\".dateval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="time") $list2[]="'\".timeval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="datetime") $list2[]="'\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="string") $list2[]="'\".getParam(\"".$field["name"]."\").\"'";
+		elseif($type=="int") $list2[]="'\".intval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="float") $list2[]="'\".floatval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="date") $list2[]="'\".dateval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="time") $list2[]="'\".timeval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="datetime") $list2[]="'\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="string") $list2[]="'\".getParam(\"".$field["name"]."\").\"'";
 		else show_php_error(array("phperror"=>"Unknown type '${type}' in make_insert_query"));
 	}
 	$list1=implode(",",$list1);
@@ -123,12 +123,12 @@ function make_update_query($table) {
 	foreach($fields as $field) {
 		$type=$field["type"];
 		if($field["name"]=="id") continue;
-		elseif(get_field_type($type)=="int") $list[]="`${field["name"]}`='\".intval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="float") $list[]="`${field["name"]}`='\".floatval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="date") $list[]="`${field["name"]}`='\".dateval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="time") $list[]="`${field["name"]}`='\".timeval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="datetime") $list[]="`${field["name"]}`='\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
-		elseif(get_field_type($type)=="string") $list[]="`${field["name"]}`='\".getParam(\"".$field["name"]."\").\"'";
+		elseif($type=="int") $list[]="`${field["name"]}`='\".intval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="float") $list[]="`${field["name"]}`='\".floatval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="date") $list[]="`${field["name"]}`='\".dateval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="time") $list[]="`${field["name"]}`='\".timeval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="datetime") $list[]="`${field["name"]}`='\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type=="string") $list[]="`${field["name"]}`='\".getParam(\"".$field["name"]."\").\"'";
 		else show_php_error(array("phperror"=>"Unknown type '${type}' in make_update_query"));
 	}
 	$list=implode(",",$list);
@@ -191,8 +191,8 @@ function get_fields($table) {
     $result=db_query($query);
 	$fields=array();
     while($row=db_fetch_row($result)) {
-		if(isset($row["Field"])) $fields[]=array("name"=>$row["Field"],"type"=>$row["Type"]);
-		if(isset($row["name"])) $fields[]=array("name"=>$row["name"],"type"=>$row["type"]);
+		if(isset($row["Field"])) $fields[]=array("name"=>$row["Field"],"type"=>get_field_type($row["Type"]));
+		if(isset($row["name"])) $fields[]=array("name"=>$row["name"],"type"=>get_field_type($row["type"]));
     }
 	db_free($result);
 	return $fields;
@@ -200,7 +200,8 @@ function get_fields($table) {
 
 function get_indexes($table) {
 	$indexes=array();
-	if(db_type()=="SQLITE") {
+	$dbtype=db_type();
+	if(in_array($dbtype,array("SQLITE"))) {
 		$query="/*SQLITE PRAGMA INDEX_LIST($table) */";
 		$result=db_query($query);
 		while($row=db_fetch_row($result)) {
@@ -213,8 +214,7 @@ function get_indexes($table) {
 			$indexes[$index]=$fields;
 		}
 		db_free($result);
-	}
-	if(db_type()=="MYSQL") {
+	} elseif(in_array($dbtype,array("MYSQL","MARIADB"))) {
 		$query="/*MYSQL SHOW INDEXES FROM $table */";
 		$result=db_query($query);
 		while($row=db_fetch_row($result)) {
@@ -244,18 +244,28 @@ function get_tables() {
 	return $tables;
 }
 
+function get_field_type($type) {
+	$type=strtok(strtolower($type),"(");
+	$datatypes=getDefault("db/datatypes");
+	foreach($datatypes as $key=>$val) {
+		if(in_array($type,explode(",",$val))) return $key;
+	}
+	show_php_error(array("phperror"=>"Unknown type '$type' in get_field_type"));
+}
+
 function sql_create_table($tablespec) {
 	$table=$tablespec["name"];
 	$fields=array();
 	foreach($tablespec["fields"] as $field) {
 		$name=$field["name"];
 		$type=$field["type"];
-		if(get_field_type($type)=="int") $def=intval(0);
-		elseif(get_field_type($type)=="float") $def=floatval(0);
-		elseif(get_field_type($type)=="date") $def=dateval(0);
-		elseif(get_field_type($type)=="time") $def=timeval(0);
-		elseif(get_field_type($type)=="datetime") $def=datetimeval(0);
-		elseif(get_field_type($type)=="string") $def="";
+		$type2=get_field_type($type);
+		if($type2=="int") $def=intval(0);
+		elseif($type2=="float") $def=floatval(0);
+		elseif($type2=="date") $def=dateval(0);
+		elseif($type2=="time") $def=timeval(0);
+		elseif($type2=="datetime") $def=datetimeval(0);
+		elseif($type2=="string") $def="";
 		else show_php_error(array("phperror"=>"Unknown type '${type}' in sql_create_table"));
 		$extra="NOT NULL DEFAULT '$def'";
 		if(isset($field["pkey"])) {
@@ -295,12 +305,12 @@ function sql_insert_from_select($dest,$orig) {
 	$defs=array();
 	foreach($fdest as $f) {
 		$type=$f["type"];
-		if(get_field_type($type)=="int") $defs[]=intval(0);
-		elseif(get_field_type($type)=="float") $defs[]=floatval(0);
-		elseif(get_field_type($type)=="date") $defs[]=dateval(0);
-		elseif(get_field_type($type)=="time") $defs[]=timeval(0);
-		elseif(get_field_type($type)=="datetime") $defs[]=datetimeval(0);
-		elseif(get_field_type($type)=="string") $defs[]="";
+		if($type=="int") $defs[]=intval(0);
+		elseif($type=="float") $defs[]=floatval(0);
+		elseif($type=="date") $defs[]=dateval(0);
+		elseif($type=="time") $defs[]=timeval(0);
+		elseif($type=="datetime") $defs[]=datetimeval(0);
+		elseif($type=="string") $defs[]="";
 		else show_php_error(array("phperror"=>"Unknown type '${type}' in sql_insert_from_select"));
 	}
 	$keys=array();
@@ -388,7 +398,7 @@ function make_extra_query($prefix="") {
 	return $stack[$hash];
 }
 
-function make_select_extra($id=0) {
+function make_select_appsregs($id=0) {
 	$query="SELECT * FROM tbl_aplicaciones WHERE `table`!='' AND `field`!=''";
 	$result=db_query($query);
 	$subquery=array();

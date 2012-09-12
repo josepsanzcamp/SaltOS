@@ -23,17 +23,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// pdo_sqlite implementation
 function db_connect_pdo_sqlite() {
 	global $_CONFIG;
-	if(!class_exists("PDO")) { db_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
-	if(!file_exists(getDefault("db/file"))) { db_error(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
-	if(!is_writable(getDefault("db/file"))) { db_error(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
+	if(!class_exists("PDO")) { db_error_pdo_sqlite(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
+	if(!file_exists(getDefault("db/file"))) { db_error_pdo_sqlite(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
+	if(!is_writable(getDefault("db/file"))) { db_error_pdo_sqlite(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	try {
 		$_CONFIG["db"]["link"]=new PDO("sqlite:".getDefault("db/file"));
 		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 	} catch(PDOException $e) {
-		db_error(array("exception"=>$e->getMessage()));
+		db_error_pdo_sqlite(array("exception"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
 		db_query_pdo_sqlite("PRAGMA cache_size=2000");
@@ -73,10 +72,10 @@ function __db_query_pdo_sqlite_helper($query) {
 			$data=getDefault("db/link")->query($query);
 			if($data===false) {
 				$error=getDefault("db/link")->errorInfo();
-				if(isset($error[2])) db_error(array("dberror"=>$error[2],"query"=>$query));
+				if(isset($error[2])) db_error_pdo_sqlite(array("dberror"=>$error[2],"query"=>$query));
 			}
 		} catch(PDOException $e) {
-			db_error(array("exception"=>$e->getMessage(),"query"=>$query));
+			db_error_pdo_sqlite(array("exception"=>$e->getMessage(),"query"=>$query));
 		}
 		// DUMP RESULT TO MATRIX
 		if($data && $data->columnCount()>0) {
@@ -89,7 +88,7 @@ function __db_query_pdo_sqlite_helper($query) {
 }
 
 function db_query_pdo_sqlite($query) {
-	$query=parse_query($query,db_type());
+	$query=parse_query($query,"SQLITE");
 	// TRICK TO DO THE STRIP SLASHES
 	$pos=strpos($query,"\\");
 	while($pos!==false) {
@@ -103,7 +102,7 @@ function db_query_pdo_sqlite($query) {
 		$result=__db_query_pdo_sqlite_helper($query);
 		semaphore_release($semaphore);
 	} else {
-		db_error(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
+		db_error_pdo_sqlite(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
 	}
 	return $result;
 }

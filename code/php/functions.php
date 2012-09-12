@@ -383,15 +383,6 @@ function get_filtered_field($field) {
 	return $field;
 }
 
-function get_field_type($type) {
-	$type=strtok(strtolower($type),"(");
-	$datatypes=getDefault("db/datatypes");
-	foreach($datatypes as $key=>$val) {
-		if(in_array($type,explode(",",$val))) return $key;
-	}
-	show_php_error(array("phperror"=>"Unknown type '$type' in get_field_type"));
-}
-
 function debug_dump($die=true) {
 	global $config;
 	echo "<pre>"; echo "GET ".sprintr($_GET)."</pre>";
@@ -510,7 +501,7 @@ function db_schema() {
 	get_clear_error();
 	$hash2=md5(serialize($dbschema));
 	if($hash1!=$hash2) {
-		$semaphore=get_cache_file("db_schema_and_db_static",getDefault("exts/semext",".sem"));
+		$semaphore=get_cache_file(array("db_schema","db_static"),getDefault("exts/semext",".sem"));
 		if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) return;
 		$oldcache=set_use_cache("false");
 		if(isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
@@ -526,39 +517,69 @@ function db_schema() {
 			}
 			foreach($dbschema["tables"] as $tablespec) {
 				$table=$tablespec["name"];
-				if(!in_array($table,$tables1)) {
-					$backup="__${table}__";
-					if(in_array($backup,$tables1)) {
+				$backup="__${table}__";
+				if(in_array($table,$tables1)) {
+					$fields1=get_fields($table);
+					$fields2=array();
+					foreach($tablespec["fields"] as $fieldspec) $fields2[]=array("name"=>$fieldspec["name"],"type"=>get_field_type($fieldspec["type"]));
+					$hash3=md5(serialize($fields1));
+					$hash4=md5(serialize($fields2));
+					if($hash3!=$hash4) {
+						db_query(sql_alter_table($table,$backup));
+						db_query(sql_create_table($tablespec));
+						db_query(sql_insert_from_select($table,$backup));
+						db_query(sql_drop_table($backup));
+					}
+				} elseif(in_array($backup,$tables1)) {
+					$fields1=get_fields($backup);
+					$fields2=array();
+					foreach($tablespec["fields"] as $fieldspec) $fields2[]=array("name"=>$fieldspec["name"],"type"=>get_field_type($fieldspec["type"]));
+					$hash3=md5(serialize($fields1));
+					$hash4=md5(serialize($fields2));
+					if($hash3!=$hash4) {
 						db_query(sql_create_table($tablespec));
 						db_query(sql_insert_from_select($table,$backup));
 						db_query(sql_drop_table($backup));
 					} else {
-						db_query(sql_create_table($tablespec));
+						db_query(sql_alter_table($backup,$table));
 					}
 				} else {
-					$backup="__${table}__";
-					db_query(sql_alter_table($table,$backup));
 					db_query(sql_create_table($tablespec));
-					db_query(sql_insert_from_select($table,$backup));
-					db_query(sql_drop_table($backup));
+				}
+				if(isset($dbschema["indexes"]) && is_array($dbschema["indexes"])) {
+					$indexes1=get_indexes($table);
+					$indexes2=array();
+					foreach($dbschema["indexes"] as $indexspec) {
+						if($indexspec["table"]==$table) {
+							$indexes2[$indexspec["name"]]=array();
+							foreach($indexspec["fields"] as $fieldspec) $indexes2[$indexspec["name"]][]=$fieldspec["name"];
+						}
+					}
+					foreach($indexes1 as $index=>$fields) {
+						if(!array_key_exists($index,$indexes2)) {
+							db_query(sql_drop_index($index,$table));
+						}
+					}
+					foreach($dbschema["indexes"] as $indexspec) {
+						if($indexspec["table"]==$table) {
+							$index=$indexspec["name"];
+							if(array_key_exists($index,$indexes1)) {
+								$fields1=$indexes1[$index];
+								$fields2=$indexes2[$index];
+								$hash3=md5(serialize($fields1));
+								$hash4=md5(serialize($fields2));
+								if($hash3!=$hash4) {
+									db_query(sql_drop_index($index,$table));
+									db_query(sql_create_index($indexspec));
+								}
+							} else {
+								db_query(sql_create_index($indexspec));
+							}
+						}
+					}
 				}
 			}
 		}
-		if(isset($dbschema["indexes"]) && is_array($dbschema["indexes"])) {
-			$tables=get_tables();
-			foreach($tables as $table) {
-				$indexes=get_indexes($table);
-				foreach($indexes as $index=>$temp) {
-					db_query(sql_drop_index($index,$table));
-				}
-			}
-			foreach($dbschema["indexes"] as $indexspec) {
-				db_query(sql_create_index($indexspec));
-			}
-		}
-		capture_next_error();
-		db_query("/*SQLITE VACUUM */");
-		get_clear_error();
 		setConfig($file,$hash2);
 		set_use_cache($oldcache);
 		semaphore_release($semaphore);
@@ -572,7 +593,7 @@ function db_static() {
 	$hash1=getConfig($file);
 	$hash2=md5(serialize($dbstatic));
 	if($hash1!=$hash2) {
-		$semaphore=get_cache_file("db_schema_and_db_static",getDefault("exts/semext",".sem"));
+		$semaphore=get_cache_file(array("db_schema","db_static"),getDefault("exts/semext",".sem"));
 		if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) return;
 		$oldcache=set_use_cache("false");
 		if(is_array($dbstatic)) {
@@ -593,9 +614,6 @@ function db_static() {
 				}
 			}
 		}
-		capture_next_error();
-		db_query("/*SQLITE VACUUM */");
-		get_clear_error();
 		setConfig($file,$hash2);
 		set_use_cache($oldcache);
 		semaphore_release($semaphore);

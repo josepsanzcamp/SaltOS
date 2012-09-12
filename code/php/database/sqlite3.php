@@ -23,17 +23,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// sqlite3 implementation
 function db_connect_sqlite3() {
 	global $_CONFIG;
-	if(!class_exists("SQLite3")) { db_error(array("phperror"=>"Class SQLite3 not found")); return; }
-	if(!file_exists(getDefault("db/file"))) { db_error(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
-	if(!is_writable(getDefault("db/file"))) { db_error(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
+	if(!class_exists("SQLite3")) { db_error_sqlite3(array("phperror"=>"Class SQLite3 not found")); return; }
+	if(!file_exists(getDefault("db/file"))) { db_error_sqlite3(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
+	if(!is_writable(getDefault("db/file"))) { db_error_sqlite3(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	try {
 		$_CONFIG["db"]["link"]=new SQLite3(getDefault("db/file"));
 		getDefault("db/link")->busyTimeout(60000);
 	} catch(SQLite3Exception $e) {
-		db_error(array("exception"=>$e->getMessage()));
+		db_error_sqlite3(array("exception"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
 		db_query_sqlite3("PRAGMA cache_size=2000");
@@ -73,10 +72,10 @@ function __db_query_sqlite3_helper($query) {
 			$data=getDefault("db/link")->query($query);
 			if($data===false) {
 				$error=getDefault("db/link")->errorInfo();
-				if(isset($error[2])) db_error(array("dberror"=>$error[2],"query"=>$query));
+				if(isset($error[2])) db_error_sqlite3(array("dberror"=>$error[2],"query"=>$query));
 			}
 		} catch(SQLite3Exception $e) {
-			db_error(array("exception"=>$e->getMessage(),"query"=>$query));
+			db_error_sqlite3(array("exception"=>$e->getMessage(),"query"=>$query));
 		}
 		// DUMP RESULT TO MATRIX
 		if($data && $data->numColumns()) {
@@ -90,7 +89,7 @@ function __db_query_sqlite3_helper($query) {
 }
 
 function db_query_sqlite3($query) {
-	$query=parse_query($query,db_type());
+	$query=parse_query($query,"SQLITE");
 	// TRICK TO DO THE STRIP SLASHES
 	$pos=strpos($query,"\\");
 	while($pos!==false) {
@@ -104,7 +103,7 @@ function db_query_sqlite3($query) {
 		$result=__db_query_sqlite3_helper($query);
 		semaphore_release($semaphore);
 	} else {
-		db_error(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
+		db_error_sqlite3(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
 	}
 	return $result;
 }

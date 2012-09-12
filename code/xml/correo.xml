@@ -557,14 +557,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<temp global="only,only_array" eval="true">$only=isset($only_array[$only])?$only:"000"</temp>
 		<query global="page,filtro,id_usuario,id_cuenta,hidespam,withfiles,withoutfiles,onlyinbox,onlyoutbox,fecha1,fecha2,campos,fecha3,campos_array,fecha3_array,only,only_array" eval="true">"SELECT
 			id,id2,
-			/*MYSQL CONCAT('mailto:',`from`) *//*SQLITE ('mailto:' || `from`) */ from2,
-			`to` to2,
+			/*MYSQL CONCAT('mailto:',from2) *//*SQLITE ('mailto:' || from2) */ from2,
+			to2,
 			/*MYSQL CONCAT('link:correo(',-id,'):',subject) *//*SQLITE 'link:correo(' || -id || '):' || subject */ subject,
 			`datetime`,
 			files,
 			estado,
 			id action_id,
-			/*MYSQL CONCAT(id2,' - ',`from`,' - ',subject,' (',estado,')') *//*SQLITE id2 || ' - ' || `from` || ' - ' || subject || ' (' || estado || ')' */ action_title,
+			/*MYSQL CONCAT(id2,' - ',from2,' - ',subject,' (',estado,')') *//*SQLITE id2 || ' - ' || from2 || ' - ' || subject || ' (' || estado || ')' */ action_title,
 			action_style,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
@@ -577,14 +577,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 		SELECT a.id id,/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
-			`from`,
-			CASE WHEN `to`!='' THEN /*MYSQL CONCAT( */ 'mailto:' /*MYSQL , *//*SQLITE || */ `to` /*MYSQL ) */
+			`from` from2,
+			CASE WHEN `to`!='' THEN /*SQLITE 'mailto:' || `to` *//*MYSQL CONCAT('mailto:',`to`) */
 			ELSE
 				CASE WHEN uc.email_name=''
 				THEN /*SQLITE 'mailto:' || uc.email_from *//*MYSQL CONCAT('mailto:',uc.email_from) */
 				ELSE /*SQLITE 'mailto:' || uc.email_name || ' &lt;' || uc.email_from || '&gt;' *//*MYSQL CONCAT('mailto:',uc.email_name,' &lt;',uc.email_from,'&gt;') */
 				END
-			END `to`,
+			END to2,
 			`cc`,`bcc`,
 			a.`datetime` `datetime`,body,
 			`files`,
