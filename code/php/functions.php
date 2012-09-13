@@ -891,6 +891,7 @@ function show_php_error($array=null) {
 			header("Content-Type: text/html");
 		}
 	}
+	while(ob_get_level()) ob_end_clean(); // TRICK TO CLEAR SCREEN
 	echo $msg;
 	die();
 }
@@ -943,7 +944,6 @@ function __exception_handler($e) {
 function __shutdown_handler() {
 	$error=error_get_last();
 	if(is_array($error) && $error["type"]==1) {
-		while(ob_get_level()) ob_end_clean(); // TRICK TO CLEAR SCREEN
 		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}"));
 	}
 }

@@ -75,8 +75,10 @@ if(getParam("action")=="download") {
 		$hash=md5(file_get_contents($file));
 		header_etag($hash);
 		$gzipext=getDefault("exts/gzipext",".gz");
+		$tgzext=getDefault("exts/tgzext",".tgz");
 		$isgzip=(substr($name,-strlen($gzipext))==$gzipext);
-		ob_start_protected($isgzip?"":getDefault("obhandler"));
+		$istgz=(substr($name,-strlen($tgzext))==$tgzext);
+		ob_start_protected(($isgzip || $istgz)?"":getDefault("obhandler"));
 		header_powered();
 		header_expires($hash);
 		header("Content-Disposition: attachment; filename=\"${name}\"");

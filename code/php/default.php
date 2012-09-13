@@ -543,17 +543,13 @@ switch($action) {
 				$val=explode(" ",$val);
 				$fields[$key]=$val[0];
 			}
-			if(!in_array("id",$fields)) array_push($fields,"id");
 			$fields=implode(",",$fields);
 			// CREATE THE TEMPORARY TABLES (HELPERS)
 			$tbl_hash1="tbl_".get_unique_id_md5();
 			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0)";
 			db_query($query);
-			$tbl_hash2="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash2 AS SELECT id FROM $tbl_hash1 ORDER BY $order LIMIT $offset,$limit";
-			db_query($query);
-			// EXECUTE THE QUERY TO OBTAIN THE REAL ROWS AND FIELDS
-			$query="SELECT * FROM ($query0) WHERE id IN (SELECT id FROM $tbl_hash2) ORDER BY $order";
+			// EXECUTE THE QUERY TO GET THE ROWS AND FIELDS
+			$query="SELECT * FROM ($query0) WHERE id IN (SELECT id FROM $tbl_hash1 ORDER BY $order LIMIT $offset,$limit) ORDER BY $order";
 		} elseif(in_array($dbtype,array("MYSQL","MARIADB"))) {
 			$query="$query0 ORDER BY $order LIMIT $offset,$limit";
 		} else {
@@ -567,12 +563,10 @@ switch($action) {
 		}
 		db_free($result);
 		// EXECUTE THE QUERY TO GET THE TOTAL ROWS
-		$dbtype=db_type();
 		if(in_array($dbtype,array("SQLITE"))) {
 			$query="SELECT COUNT(*) FROM $tbl_hash1";
 		} elseif(in_array($dbtype,array("MYSQL","MARIADB"))) {
-			$tbl_hash1="tbl_".get_unique_id_md5();
-			$query="SELECT COUNT(*) FROM ($query0) $tbl_hash1";
+			$query="SELECT COUNT(*) FROM ($query0) __a__";
 		} else {
 			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
 		}

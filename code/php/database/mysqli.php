@@ -68,7 +68,8 @@ function db_error_mysqli($array) {
 }
 
 function db_type_mysqli() {
-	$result=db_query("SHOW VARIABLES WHERE Value LIKE '%MariaDB%';");
+	$query="SHOW VARIABLES WHERE Value LIKE '%MariaDB%'";
+	$result=db_query($query);
 	$numrows=db_num_rows($result);
 	db_free($result);
 	return $numrows?"MARIADB":"MYSQL";

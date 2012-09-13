@@ -241,7 +241,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 5.9.184 (LGPL-3.0)</label>
+							<label>TCPDF 5.9.186 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -386,13 +386,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpjs.org/")</onclick>
 						</field>
 						<field>
-							<label>JQuery 1.8.1 (MIT &amp; GPL-2.0)</label>
+							<label>JQuery 1.8.1 (MIT)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
 							<onclick>openwin("http://www.jquery.com/")</onclick>
 						</field>
 						<field>
-							<label>JQuery UI 1.8.23 (MIT &amp; GPL-2.0)</label>
+							<label>JQuery UI 1.8.23 (MIT)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
@@ -406,7 +406,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>JQuery Mobile 1.1.1 (MIT &amp; GPL-2.0)</label>
+							<label>JQuery Mobile 1.1.1 (MIT)</label>
 							<type>link</type>
 							<class>left item sectioncontentbl</class>
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
@@ -439,7 +439,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>blockUI 2.44 (MIT &amp; GPL*)</label>
+							<label>blockUI 2.45 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://malsup.com/jquery/block/")</onclick>
@@ -509,7 +509,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.1.4 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.2.0 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentr</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>

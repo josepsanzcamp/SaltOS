@@ -135,6 +135,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xmlext>.xml</xmlext>
 		<arrayext>.arr</arrayext>
 		<pngext>.png</pngext>
+		<tgzext>.tgz</tgzext>
 	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>

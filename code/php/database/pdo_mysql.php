@@ -78,7 +78,8 @@ function db_error_pdo_mysql($array) {
 }
 
 function db_type_pdo_mysql() {
-	$result=db_query("SHOW VARIABLES WHERE Value LIKE '%MariaDB%';");
+	$query="SHOW VARIABLES WHERE Value LIKE '%MariaDB%'";
+	$result=db_query($query);
 	$numrows=db_num_rows($result);
 	db_free($result);
 	return $numrows?"MARIADB":"MYSQL";

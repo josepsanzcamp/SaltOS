@@ -92,41 +92,9 @@ function list_simulator($newpage,$ids="string") {
 	foreach($array_order as $key=>$val) $array_order[$key]=implode(" ",$val);
 	if(!count(array_intersect($array_order,array("id asc","id desc")))) $array_order[]="id desc";
 	$order=implode(",",$array_order);
-	// DETECT DB ENGINE
+	// TRICK FOR MYSQL (FUCKED SGDB)
 	$dbtype=db_type();
-	if(in_array($dbtype,array("SQLITE","MARIADB"))) {
-		if($ids=="string" || $ids=="array") {
-			// LIST OF TEMPORARY FIELDS TO RETRIEVE
-			$fields=explode(",",$order);
-			foreach($fields as $key=>$val) {
-				$val=explode(" ",$val);
-				$fields[$key]=$val[0];
-			}
-			if(!in_array("action_id",$fields)) array_push($fields,"action_id");
-			$fields=implode(",",$fields);
-			// CONTINUE
-			$query="SELECT action_id FROM (SELECT $fields FROM ($query0) __a__) __b__ ORDER BY $order";
-			$result=execute_query($query);
-			if(!$result) $result=array();
-			if(!is_array($result)) $result=array($result);
-			if($ids=="string") $result=count($result)?implode(",",$result):"0";
-		} else {
-			// LIST OF TEMPORARY FIELDS TO RETRIEVE
-			$fields=explode(",",$order);
-			foreach($fields as $key=>$val) {
-				$val=explode(" ",$val);
-				$fields[$key]=$val[0];
-			}
-			if(!in_array("action_title",$fields)) array_push($fields,"action_title");
-			$fields=implode(",",$fields);
-			// CONTINUE
-			$ids=check_ids($ids);
-			$query="SELECT action_title FROM (SELECT $fields FROM ($query0) __a__ WHERE action_id IN ($ids)) __b__ ORDER BY $order";
-			$result=execute_query($query);
-			if(!$result) $result=array();
-			if(!is_array($result)) $result=array($result);
-		}
-	} elseif(in_array($dbtype,array("MYSQL"))) {
+	if(in_array($dbtype,array("MYSQL"))) {
 		static $tbl_hash1=null;
 		// CHECK IF tbl_hash1 EXISTS
 		if(is_null($tbl_hash1)) {
@@ -144,22 +112,32 @@ function list_simulator($newpage,$ids="string") {
 			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0) $tbl_hash1";
 			db_query($query);
 		}
-		// CONTINUE
-		if($ids=="string" || $ids=="array") {
+	}
+	// CONTINUE
+	if($ids=="string" || $ids=="array") {
+		if(in_array($dbtype,array("SQLITE","MARIADB"))) {
+			$query="SELECT action_id FROM ($query0) __a__ ORDER BY $order";
+		} elseif(in_array($dbtype,array("MYSQL"))) {
 			$query="SELECT action_id FROM $tbl_hash1 ORDER BY $order";
-			$result=execute_query($query);
-			if(!$result) $result=array();
-			if(!is_array($result)) $result=array($result);
-			if($ids=="string") $result=count($result)?implode(",",$result):"0";
 		} else {
-			$ids=check_ids($ids);
-			$query="SELECT action_title FROM $tbl_hash1 WHERE action_id IN ($ids) ORDER BY $order";
-			$result=execute_query($query);
-			if(!$result) $result=array();
-			if(!is_array($result)) $result=array($result);
+			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
 		}
+		$result=execute_query($query);
+		if(!$result) $result=array();
+		if(!is_array($result)) $result=array($result);
+		if($ids=="string") $result=count($result)?implode(",",$result):"0";
 	} else {
-		show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
+		$ids=check_ids($ids);
+		if(in_array($dbtype,array("SQLITE","MARIADB"))) {
+			$query="SELECT action_title FROM ($query0) __a__ WHERE action_id IN ($ids) ORDER BY $order";
+		} elseif(in_array($dbtype,array("MYSQL"))) {
+			$query="SELECT action_title FROM $tbl_hash1 WHERE action_id IN ($ids) ORDER BY $order";
+		} else {
+			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
+		}
+		$result=execute_query($query);
+		if(!$result) $result=array();
+		if(!is_array($result)) $result=array($result);
 	}
 	// RESTORE DB CACHE
 	set_use_cache($oldcache);
