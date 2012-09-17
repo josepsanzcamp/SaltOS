@@ -308,7 +308,7 @@ function get_cache_file($data,$ext="") {
 	if(is_array($data)) $data=serialize($data);
 	if($ext=="") $ext=pathinfo($data,PATHINFO_EXTENSION);
 	if($ext=="") $ext=getDefault("exts/defaultext",".dat");
-	if(substr($ext,0,1)!=".") $ext=".$ext";
+	if(substr($ext,0,1)!=".") $ext=".".$ext;
 	$dir=get_directory("dirs/cachedir");
 	$file=$dir.md5($data).$ext;
 	return $file;

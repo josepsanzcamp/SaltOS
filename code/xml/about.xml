@@ -202,28 +202,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Apache 2.2.17 (Apache-2.0)</label>
+							<label>Apache 2.2 (Apache-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://httpd.apache.org")</onclick>
 						</field>
 						<field>
-							<label>PHP 5.3.6 (PHP-3.01)</label>
+							<label>PHP 5.3/5.4 (PHP-3.01)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>left item sectioncontent</class>
 							<onclick>openwin("http://www.php.net")</onclick>
 						</field>
 						<field>
-							<label>MySQL 5.1.56 (GPL-2.0)</label>
+							<label>MySQL 5.1 (GPL-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>left item sectioncontent</class>
 							<onclick>openwin("http://www.mysql.com")</onclick>
 						</field>
 						<field>
-							<label>SQLite 3.7.7.1 (Public domain)</label>
+							<label>SQLite 3 (Public domain)</label>
 							<type>link</type>
-							<class>left item sectioncontentbr</class>
+							<class>left item sectioncontentr</class>
 							<onclick>openwin("http://www.sqlite.org")</onclick>
+						</field>
+					</row>
+					<row>
+						<field>
+							<label>MariaDB 5.1 (GPL-2.0)</label>
+							<type>link</type>
+							<class>left item sectioncontentbl</class>
+							<onclick>openwin("http://mariadb.org")</onclick>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>left sectioncontentb</class>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>left sectioncontentb</class>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>left sectioncontentbr</class>
 						</field>
 					</row>
 					<row>
