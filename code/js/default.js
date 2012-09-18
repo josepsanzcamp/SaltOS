@@ -1494,14 +1494,15 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			// CREATE THE CKEDITORS
 			CKEDITOR.config.toolbarCanCollapse=false;
 			CKEDITOR.config.removePlugins="elementspath,entities,scayt,resize";
-			CKEDITOR.config.extraPlugins="syntaxhighlight,aspell,autogrow";
+			CKEDITOR.config.extraPlugins="syntaxhighlight,autogrow";
 			CKEDITOR.config.enterMode=CKEDITOR.ENTER_BR;
 			CKEDITOR.config.shiftEnterMode=CKEDITOR.ENTER_BR;
 			CKEDITOR.config.forcePasteAsPlainText=true;
-			CKEDITOR.config.toolbar=[["Bold","Italic","Underline","Strike"],["Code","SpellCheck"],["NumberedList","BulletedList"],["Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source"]];
+			CKEDITOR.config.toolbar=[["Bold","Italic","Underline","Strike"],["Code"],["NumberedList","BulletedList"],["Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source"]];
 			CKEDITOR.config.language=lang_default();
 			CKEDITOR.config.uiColor=background;
 			CKEDITOR.config.autoGrow_onStartup=true;
+			CKEDITOR.config.disableNativeSpellChecker=false;
 			$(ckeditors).each(function() {
 				var padre=$(this).parent();
 				var width=$(this).outerWidth()+"px";

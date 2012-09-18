@@ -163,7 +163,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="list_table_head">
-	<td class="width1 thead shortcut_ctrl_a" oldwidth=""><input type="checkbox" class="master" name="master" id="master" value="1" autocomplete="off"/></td>
+	<td class="width1 thead shortcut_ctrl_a" oldwidth=""><input type="checkbox" class="master" name="master" id="master" value="1"/></td>
 	<xsl:for-each select="fields/field">
 		<td class="thead" style="width:{width}" oldwidth="{width}">
 			<xsl:choose>
@@ -218,7 +218,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="list_table_data">
-	<td class="width1 tbody"><input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1" autocomplete="off"/></td>
+	<td class="width1 tbody"><input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1"/></td>
 	<xsl:variable name="style" select="action_style"/>
 	<xsl:variable name="row" select="*"/>
 	<xsl:variable name="id" select="action_id"/>
@@ -541,7 +541,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:variable name="name" select="name"/>
 	<xsl:choose>
 		<xsl:when test="type='hidden'">
-			<input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" class="{class}" autocomplete="off">
+			<input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" class="{class}">
 				<xsl:for-each select="$node/*[name()=$name]">
 					<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 				</xsl:for-each>
@@ -552,7 +552,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" spellcheck="false" autocomplete="off">
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
@@ -576,7 +576,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" spellcheck="false" autocomplete="off">
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
@@ -597,7 +597,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" spellcheck="false" autocomplete="off">
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
@@ -618,7 +618,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" spellcheck="false" autocomplete="off">
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
@@ -657,7 +657,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" spellcheck="false" autocomplete="off">
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
@@ -693,7 +693,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" spellcheck="false" autocomplete="off">
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
@@ -729,7 +729,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" autocomplete="off">
+				<input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}">
 					<xsl:if test="readonly!='true'">
 						<xsl:attribute name="isdatetime">true</xsl:attribute>
 					</xsl:if>
@@ -738,7 +738,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</xsl:for-each>
 				</input>
 				<xsl:variable name="width" select="concat(string(number(substring-before(width,'px'))*0.5),'px')"/>
-				<input type="text" name="{$prefix}{name}_date" id="{$prefix}{name}_date" value="{substring-before(value,' ')}" style="width:{$width}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" spellcheck="false" autocomplete="off">
+				<input type="text" name="{$prefix}{name}_date" id="{$prefix}{name}_date" value="{substring-before(value,' ')}" style="width:{$width}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="substring-before(.,' ')"/></xsl:attribute>
 					</xsl:for-each>
@@ -767,7 +767,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</a>
 					</xsl:otherwise>
 				</xsl:choose>
-				<input type="text" name="{$prefix}{name}_time" id="{$prefix}{name}_time" value="{substring-after(value,' ')}" style="width:{$width}" onkeypress="{onkeypress}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" spellcheck="false" autocomplete="off">
+				<input type="text" name="{$prefix}{name}_time" id="{$prefix}{name}_time" value="{substring-after(value,' ')}" style="width:{$width}" onkeypress="{onkeypress}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="substring-after(.,' ')"/></xsl:attribute>
 					</xsl:for-each>
@@ -803,7 +803,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<textarea name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width};height:{height}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" ckeditor="{ckeditor}" spellcheck="false" autocomplete="off">
+				<textarea name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width};height:{height}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" ckeditor="{ckeditor}">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="readonly">true</xsl:attribute>
 						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class3"/></xsl:attribute>
@@ -840,7 +840,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:variable name="width" select="concat(string(number(substring-before(width,'px'))+12),'px')"/>
 			<!-- END OF TRICK -->
 			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{$width}">
-				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{$width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" original="{value}" autocomplete="off">
+				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{$width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" original="{value}">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
 						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class3"/></xsl:attribute>
@@ -872,7 +872,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</xsl:when>
 		<xsl:when test="type='checkbox'">
 			<td class="right {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width}">
-				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" labeled="{label}" title="{tip}" class="{class3}" autocomplete="off">
+				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" labeled="{label}" title="{tip}" class="{class3}">
 					<xsl:if test="checked='true'">
 						<xsl:attribute name="checked">checked</xsl:attribute>
 					</xsl:if>
@@ -927,7 +927,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" spellcheck="false" autocomplete="off">
+				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
@@ -943,7 +943,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}" nowrap="nowrap">
-				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" size="{size}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" autocomplete="off"/>
+				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" size="{size}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}"/>
 			</td>
 		</xsl:when>
 		<xsl:when test="type='link'">
@@ -1132,7 +1132,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:variable name="width" select="concat(string(number(substring-before(width,'px'))+12),'px')"/>
 			<!-- END OF TRICK -->
 			<td colspan="{colspan}" rowspan="{rowspan}" class="{class}" style="width:{$width}">
-				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{$width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class2}" ismenu="true" autocomplete="off">
+				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{$width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class2}" ismenu="true">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
 						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class2"/></xsl:attribute>
@@ -1245,7 +1245,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="form_maker_1">
 	<xsl:for-each select="hiddens/field[type='hidden']">
-		<input type="hidden" name="{name}" value="{value}" autocomplete="off"/>
+		<input type="hidden" name="{name}" value="{value}"/>
 	</xsl:for-each>
 </xsl:template>
 
@@ -1304,7 +1304,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<xsl:for-each select="$node2/row">
 								<xsl:variable name="node3" select="."/>
 								<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
-								<input type="hidden" name="prefix_{$prefix}" value="{$prefix}" autocomplete="off"/>
+								<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
 								<xsl:for-each select="$node1/fieldset">
 									<div id="tab{generate-id(.)}">
 										<xsl:choose>
@@ -1372,7 +1372,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<xsl:for-each select="$node2/*/row">
 											<xsl:variable name="node4" select="."/>
 											<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
-											<input type="hidden" name="prefix_{$prefix}" value="{$prefix}" autocomplete="off"/>
+											<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
 											<xsl:for-each select="$node3">
 												<xsl:call-template name="form_by_rows">
 													<xsl:with-param name="form" select="$form"/>

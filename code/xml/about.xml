@@ -543,8 +543,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://welcome.totheinter.net/columnizer-jquery-plugin/")</onclick>
 						</field>
 						<field>
-							<type>separator</type>
-							<class>left sectioncontentb</class>
+							<label>Grab Bag - Assorted Detritus (MIT)</label>
+							<type>link</type>
+							<class>left item sectioncontent</class>
+							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
@@ -576,10 +578,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://code.google.com/p/ckeditor-syntaxhighlight/")</onclick>
 						</field>
 						<field>
-							<label>FCK to CK Aspell v2 port (*)</label>
-							<type>link</type>
-							<class>left item sectioncontentb</class>
-							<onclick>openwin("http://cksource.com/forums/viewtopic.php?t=15893")</onclick>
+							<type>separator</type>
+							<class>left sectioncontentb</class>
 						</field>
 						<field>
 							<type>separator</type>
@@ -617,8 +617,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
 						</field>
 						<field>
-							<type>separator</type>
-							<class>left sectioncontentb</class>
+							<label>timbre.js (MIT)</label>
+							<type>link</type>
+							<class>left item sectioncontentb</class>
+							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
