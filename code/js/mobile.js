@@ -33,17 +33,18 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			$(this).children().remove2();
 			$(this).html(html);
 		};
-		$.fn.html3=function(obj) {
-			$(this).children().remove2();
-			$(this).append($(obj).children());
-		};
 		$.expr.filters.visible2=function(obj) {
 			return $(obj).css("display")!="none";
 		};
+		$.fn.bind2=$.fn.bind;
+		$.fn.bind=function(a,b,c) {
+			$(this).attr("hasbind","true");
+			return $(this).bind2(a,b,c);
+		};
 		$.fn.remove2=function() {
-			$("*",this).unbind().jqmRemoveData().removeData().removeProp().removeAttr().remove();
-			$(this).unbind().jqmRemoveData().removeData().removeProp().removeAttr().remove();
-		}
+			$("[hasbind=true]",this).unbind().remove();
+			$(this).unbind().remove();
+		};
 	})(jQuery);
 
 	/* GENERIC FUNCTIONS */
@@ -794,7 +795,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// UPDATE THE NORTH PANEL
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
-		$(header).html3(header2);
+		$(header).html2($(header2).children());
 		make_extras(header);
 		// CHECK FOR LOGIN AND LOGOUT
 		var menu=$(".ui-layout-west");
@@ -804,14 +805,14 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// IF LOGIN
 		if(saltos_login) sync_cookies("start");
 		// UPDATE THE MENU
-		$(menu).html3(menu2);
+		$(menu).html2($(menu2).children());
 		make_extras(menu);
 		// IF LOGOUT
 		if(saltos_logout) sync_cookies("stop");
 		// UPDATE THE CENTER PANE
 		var screen=$(".ui-layout-center");
 		var screen2=$(".ui-layout-center",html);
-		$(screen).html3(screen2);
+		$(screen).html2($(screen2).children());
 		make_extras(screen);
 		$(page).page();
 		$(page).show();

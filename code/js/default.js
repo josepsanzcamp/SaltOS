@@ -35,21 +35,20 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(this).html(html);
 			//~ console.timeEnd("__html2");
 		};
-		$.fn.html3=function(obj) {
-			//~ console.time("__html3");
-			$(this).children().remove2();
-			$(this).append($(obj).children());
-			//~ console.timeEnd("__html3");
-		};
 		$.expr.filters.visible2=function(obj) {
 			return $(obj).css("display")!="none";
 		};
+		$.fn.bind2=$.fn.bind;
+		$.fn.bind=function(a,b,c) {
+			$(this).attr("hasbind","true");
+			return $(this).bind2(a,b,c);
+		};
 		$.fn.remove2=function() {
 			//~ console.time("__remove2");
-			$("*",this).unbind().removeData().removeProp().removeAttr().remove();
-			$(this).unbind().removeData().removeProp().removeAttr().remove();
+			$("[hasbind=true]",this).unbind().remove();
+			$(this).unbind().remove();
 			//~ console.timeEnd("__remove2");
-		}
+		};
 	})(jQuery);
 
 	/* GENERIC FUNCTIONS */
@@ -955,7 +954,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		unmake_numbers(header);
 		if($(header).text()!=$(header2).text()) {
 			$(header).hide();
-			$(header).html3(header2);
+			$(header).html2($(header2).children());
 			$(header).addClass("preloading");
 			$(header).show();
 			$(header).removeClass("preloading");
@@ -986,7 +985,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		unmake_numbers(menu);
 		if($(".menu",menu).text()!=$(".menu",menu2).text()) {
 			$(menu).hide();
-			$(menu).html3(menu2);
+			$(menu).html2($(menu2).children());
 			$(menu).addClass("preloading");
 			$(menu).show();
 			make_menu(menu);
@@ -1013,7 +1012,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var screen=$(".ui-layout-center");
 		var screen2=$(".ui-layout-center",html);
 		$(screen).hide();
-		$(screen).html3(screen2);
+		$(screen).html2($(screen2).children());
 		$(screen).addClass("preloading");
 		$(screen).show();
 		make_tabs(screen);
@@ -1498,7 +1497,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			CKEDITOR.config.enterMode=CKEDITOR.ENTER_BR;
 			CKEDITOR.config.shiftEnterMode=CKEDITOR.ENTER_BR;
 			CKEDITOR.config.forcePasteAsPlainText=true;
-			CKEDITOR.config.toolbar=[["Bold","Italic","Underline","Strike"],["Code"],["NumberedList","BulletedList"],["Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source"]];
+			CKEDITOR.config.toolbar=[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","-","Source","-","Code"]];
 			CKEDITOR.config.language=lang_default();
 			CKEDITOR.config.uiColor=background;
 			CKEDITOR.config.autoGrow_onStartup=true;
@@ -1591,11 +1590,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabla",obj).each(function() {
 			if($(".thead",this).length>0) {
 				// FIXS FOR POSIBLE NEXT RECALLS
-				var slave="input.slave[type=checkbox]";
 				$("td",this).removeClass("ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br ui-widget-header ui-widget-content ui-state-default ui-state-highlight");
-				$("tr",this).unbind();
-				$(slave,this).unbind();
-				$("a",this).unbind();
+				$("[hasbind=true]",this).unbind();
 				// STYLING THE THEAD AND NODATA
 				$(".thead",this).addClass("ui-widget-header");
 				$(".nodata",this).addClass("ui-widget-content");
