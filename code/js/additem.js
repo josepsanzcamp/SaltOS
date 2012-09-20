@@ -32,10 +32,14 @@ if(typeof(__additem__)=="undefined" && typeof(parent.__additem__)=="undefined") 
 		maxiter=100;
 		while(maxiter>0 && !$("table.tabla",padre).length) padre=$(padre).parent();
 		var table=$("table.tabla",padre);
-		var limit=$("tr",table).length;
-		var num=$("tr:visible2",table).length;
-		if(num+1<=limit) {
-			$("tr:eq("+num+")",table).show();
+		var limit=$("tr",table).has("input[type=file]").length;
+		var num=$("tr:visible",table).has("input[type=file]").length;
+		if(num<limit) {
+			var count=0;
+			$("tr",table).has("input[type=file]").each(function() {
+				if(num==count) $(this).removeClass("none");
+				count++;
+			});
 			make_tables(padre);
 			if(num+1==limit) $(obj).addClass("ui-state-disabled");
 		}
@@ -53,7 +57,7 @@ $(document).ready(function() {
 		var total=0;
 		$(temp).each(function() {
 			if(is_numeric(this.value)) {
-				$(this).parent().show();
+				$(this).parent().removeClass("none");
 				total++;
 			}
 		});

@@ -92,15 +92,15 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 			var id_registro2=$("input[type=hidden][name$=id_registro]",padre).val();
 			if(id_registro==-2) {
 				if(id_registro2==-2) {
-					$(padre).hide();
+					$(padre).addClass("none");
 				} else {
-					$(padre).show();
+					$(padre).removeClass("none");
 				}
 			} else if(id_registro==-1) {
 				if(id_registro2==-2) {
-					$(padre).show();
+					$(padre).removeClass("none");
 				} else {
-					$(padre).hide();
+					$(padre).addClass("none");
 				}
 			}
 		});
@@ -146,7 +146,7 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 		setTimeout(function() {
 			$("input[type=hidden][name$=id_registro][value=-2]").each(function() {
 				var padre=$(this).parent();
-				$(padre).show();
+				$(padre).removeClass("none");
 				// TODO REVISED
 				var id_aplicacion=$("input[type=hidden][name$=id_aplicacion]",padre).val();
 				padre=$(padre).parent().parent();

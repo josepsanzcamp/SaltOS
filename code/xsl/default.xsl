@@ -497,7 +497,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="brtag">
-	<table class="width100" cellpadding="0" cellspacing="0" border="0">
+	<table cellpadding="0" cellspacing="0" border="0">
 		<xsl:call-template name="brtag2"/>
 	</table>
 </xsl:template>
@@ -1168,13 +1168,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</td>
 		</xsl:when>
 		<xsl:when test="type='grid'">
+			<xsl:if test="label!=''">
+				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
+			</xsl:if>
 			<td class="{class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width};height:{height}">
 				<xsl:for-each select="rows">
-					<table class="{class2}" style="width:{width2}" cellpadding="0" cellspacing="0" border="0">
+					<table cellpadding="0" cellspacing="0" border="0">
 						<xsl:call-template name="form_by_rows">
-							<xsl:with-param name="form" select="null"/>
-							<xsl:with-param name="node" select="null"/>
-							<xsl:with-param name="prefix" select="null"/>
+							<xsl:with-param name="form" select="$form"/>
+							<xsl:with-param name="node" select="$node"/>
+							<xsl:with-param name="prefix" select="$prefix"/>
 							<xsl:with-param name="iter" select="row"/>
 						</xsl:call-template>
 					</table>

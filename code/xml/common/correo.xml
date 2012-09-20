@@ -101,33 +101,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<field>
 			<type>separator</type>
 		</field>
-		<field>
-			<type>separator</type>
-			<width>1px</width>
-		</field>
-		<field>
-			<type>separator</type>
-		</field>
-		<field>
-			<type>separator</type>
-		</field>
-		<field>
-			<type>separator</type>
-			<width>1px</width>
-		</field>
-		<field>
-			<type>separator</type>
-		</field>
-		<field>
-			<type>separator</type>
-			<width>1px</width>
-		</field>
-		<field>
-			<type>separator</type>
-		</field>
-		<field>
-			<type>separator</type>
-		</field>
 	</row>
 	<row>
 		<field>
@@ -161,7 +134,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<field>
 			<type>label</type>
 			<label>(110, 995)</label>
-			<colspan>2</colspan>
+		</field>
+		<field>
+			<type>separator</type>
+			<width>1px</width>
 		</field>
 		<field>
 			<name>smtp_port</name>
@@ -198,7 +174,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<field>
 			<type>label</type>
 			<label>(TLS)</label>
-			<colspan>2</colspan>
+		</field>
+		<field>
+			<type>separator</type>
 		</field>
 		<field>
 			<name>smtp_extra</name>

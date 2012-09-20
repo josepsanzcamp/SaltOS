@@ -105,15 +105,15 @@ if(typeof(__grupos__)=="undefined" && typeof(parent.__grupos__)=="undefined") {
 			var id_permiso2=$("input[type=hidden][name$=id_permiso]",padre).val();
 			if(id_permiso==-2) {
 				if(id_permiso2==-2) {
-					$(padre).hide();
+					$(padre).addClass("none");
 				} else {
-					$(padre).show();
+					$(padre).removeClass("none");
 				}
 			} else if(id_permiso==-1) {
 				if(id_permiso2==-2) {
-					$(padre).show();
+					$(padre).removeClass("none");
 				} else {
-					$(padre).hide();
+					$(padre).addClass("none");
 				}
 			}
 		});
@@ -126,7 +126,7 @@ if(typeof(__grupos__)=="undefined" && typeof(parent.__grupos__)=="undefined") {
 		setTimeout(function() {
 			$("input[type=hidden][name$=id_permiso][value=-2]").each(function() {
 				var padre=$(this).parent();
-				$(padre).show();
+				$(padre).removeClass("none");
 				// TODO REVISED
 				var id_aplicacion=$("input[type=hidden][name$=id_aplicacion]",padre).val();
 				padre=$(padre).parent().parent();

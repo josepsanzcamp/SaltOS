@@ -35,9 +35,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(this).html(html);
 			//~ console.timeEnd("__html2");
 		};
-		$.expr.filters.visible2=function(obj) {
-			return $(obj).css("display")!="none";
-		};
 		$.fn.bind2=$.fn.bind;
 		$.fn.bind=function(a,b,c) {
 			$(this).attr("hasbind","true");
@@ -1596,11 +1593,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				$(".thead",this).addClass("ui-widget-header");
 				$(".nodata",this).addClass("ui-widget-content");
 				// SOME VARIABLES
-				var trs=$("tr:visible2",this);
+				var trs=$("tr",this);
 				var tdshead=null;
 				var tdsbody=null;
 				var trimpar=1;
 				$(trs).each(function() {
+					if($(this).hasClass("none")) return;
 					// MORE VARIABLES
 					var numhead=$(".thead",this).length;
 					var numbody=$(".tbody",this).length;

@@ -33,9 +33,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			$(this).children().remove2();
 			$(this).html(html);
 		};
-		$.expr.filters.visible2=function(obj) {
-			return $(obj).css("display")!="none";
-		};
 		$.fn.bind2=$.fn.bind;
 		$.fn.bind=function(a,b,c) {
 			$(this).attr("hasbind","true");
