@@ -806,7 +806,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query match="default" prefix="true" eval="true">getParam("password_new")?"SELECT '".LANG_ESCAPE("errorpassword")."' action_error,'0' action_commit FROM (SELECT 1) t WHERE '".getParam("password_new")."'!='".getParam("password_new2")."'":""</query>
 		<query match="default" prefix="true" eval="true">setParam("password",hash_password(getParam("password_new")))</query>
 		<query match="default" prefix="true" eval="true">setParam("dias_sem",intval(getParam("lunes")).intval(getParam("martes")).intval(getParam("miercoles")).intval(getParam("jueves")).intval(getParam("viernes")).intval(getParam("sabado")).intval(getParam("domingo")))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
 		<query match="permisos" prefix="true" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?"INSERT INTO tbl_usuarios_p(id_usuario,id_aplicacion,id_permiso,allow,deny) VALUES((SELECT MAX(id) FROM tbl_usuarios),'".intval(getParam("id_aplicacion"))."','".intval(getParam("id_permiso"))."','".intval(getParam("allow"))."','".intval(getParam("deny"))."')":""</query>
 		<query match="grupos" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_usuarios_g(id_usuario,id_grupo) VALUES((SELECT MAX(id) FROM tbl_usuarios),'".intval(getParam("id_grupo"))."')":""</query>
 		<query match="appsregs" prefix="true" eval="true">(getParam("activado") &amp;&amp; getParam("id_registro")>0)?"INSERT INTO tbl_usuarios_r(id_usuario,id_aplicacion,id_registro) VALUES((SELECT MAX(id) FROM tbl_usuarios),'".intval(getParam("id_aplicacion"))."','".intval(getParam("id_registro"))."')":""</query>
@@ -820,7 +820,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
 		<query match="default" prefix="true" eval="true">getParam("password_new")?"SELECT '".LANG_ESCAPE("errorpassword")."' action_error,'0' action_commit FROM (SELECT 1) t WHERE '".getParam("password_new")."'!='".getParam("password_new2")."'":""</query>
 		<query match="default" prefix="true" eval="true">setParam("dias_sem",intval(getParam("lunes")).intval(getParam("martes")).intval(getParam("miercoles")).intval(getParam("jueves")).intval(getParam("viernes")).intval(getParam("sabado")).intval(getParam("domingo")))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
 		<query match="default" prefix="true" global="id" eval="true">getParam("password_new")?"UPDATE tbl_usuarios SET `password`='".hash_password(getParam("password_new"))."' WHERE `id`='".abs($id)."'":""</query>
 		<query match="default" prefix="true" global="id" eval="true">"DELETE FROM tbl_usuarios_p WHERE id_usuario='".abs($id)."'"</query>
 		<query match="permisos" prefix="true" global="id" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?"INSERT INTO tbl_usuarios_p(id_usuario,id_aplicacion,id_permiso,allow,deny) VALUES('".abs($id)."','".intval(getParam("id_aplicacion"))."','".intval(getParam("id_permiso"))."','".intval(getParam("allow"))."','".intval(getParam("deny"))."')":""</query>

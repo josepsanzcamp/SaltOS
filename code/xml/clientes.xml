@@ -694,7 +694,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 		<query match="default" prefix="true" eval="true">setParam("nombre1",stripslashes(getParam("nombre1_tipo_".getParam("id_tipo"))))</query>
 		<query match="default" prefix="true" eval="true">setParam("nombre2",stripslashes(getParam("nombre2_tipo_".getParam("id_tipo"))))</query>
 		<query match="default" prefix="true" eval="true">setParam("cif",getParam("cif_tipo_".getParam("id_tipo")))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query include="xml/common/qdireccionnewinsert.xml" replace="true"/>
 		<query include="xml/common/qcomunicacionnewinsert.xml" replace="true"/>
@@ -706,7 +706,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 		<query match="default" prefix="true" eval="true">setParam("nombre1",stripslashes(getParam("nombre1_tipo_".getParam("id_tipo"))))</query>
 		<query match="default" prefix="true" eval="true">setParam("nombre2",stripslashes(getParam("nombre2_tipo_".getParam("id_tipo"))))</query>
 		<query match="default" prefix="true" eval="true">setParam("cif",getParam("cif_tipo_".getParam("id_tipo")))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
         <query include="xml/common/qdireccionpriupdate.xml" replace="true"/>
         <query include="xml/common/qdireccionsecupdate.xml" replace="true"/>

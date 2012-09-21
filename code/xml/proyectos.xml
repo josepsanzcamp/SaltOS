@@ -1614,7 +1614,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_proyectos_t(id,id_proyecto,tarea,horas,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_proyectos),'".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
 		<query match="productos_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_proyectos_p(id,id_proyecto,id_producto,unidades,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_proyectos),'".getParam("id_producto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
@@ -1623,7 +1623,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query match="tareas_old" prefix="true" eval="true">"UPDATE tbl_proyectos_t SET `tarea`='".getParam("tarea")."',`horas`='".getParam("horas")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
 		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_t WHERE `id`='".getParam("id")."'":""</query>

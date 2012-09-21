@@ -1608,16 +1608,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					if(tdshead==null && numhead>0) {
 						tdshead=this;
 						tdsbody=this;
-						//~ $("td:not(:last)",this).css("border-right","0px"); BUG IN JQUERY 1.8.1
-						$("td",this).css("border-right","0px");
-						$("td:last",this).css("border-right","");
+						$("td:not(:last)",this).css("border-right","0px");
 						$("td:first",tdsbody).removeClass("ui-corner-bl");
 						$("td:last",tdsbody).removeClass("ui-corner-br");
 					} else if(tdshead!=null && numhead+numbody+numdata>0) {
 						tdsbody=this;
-						//~ $("td:not(:last)",this).css("border-right","0px"); BUG IN JQUERY 1.8.1
-						$("td",this).css("border-right","0px");
-						$("td:last",this).css("border-right","");
+						$("td:not(:last)",this).css("border-right","0px");
 						$("td",this).css("border-top","0px");
 						$("td:first",tdsbody).removeClass("ui-corner-bl");
 						$("td:last",tdsbody).removeClass("ui-corner-br");

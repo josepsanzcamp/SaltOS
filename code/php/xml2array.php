@@ -157,7 +157,10 @@ function __set_array_recursive($array,$keys,$value,$type) {
 		}
 	} elseif($count==1) {
 		$temp=array();
-		foreach($array as $key2=>$val2) {
+		$hasattr=(count($array)==2 && isset($array["value"]) && isset($array["#attr"]));
+		$array_value=$hasattr?$array["value"]:$array;
+		$array_attr=$hasattr?$array["#attr"]:array();
+		foreach($array_value as $key2=>$val2) {
 			if(in_array($key2,$key)) {
 				switch($type) {
 					case "before":
@@ -173,7 +176,16 @@ function __set_array_recursive($array,$keys,$value,$type) {
 						break;
 					case "append":
 					case "add":
-						foreach($value as $key3=>$val3) set_array($val2,limpiar_key($key3),$val3);
+						$hasattr=(count($val2)==2 && isset($val2["value"]) && isset($val2["#attr"]));
+						foreach($value as $key3=>$val3) {
+							if($hasattr) {
+								if(!is_array($val2["value"])) xml_error("Can not '$type' the node '$key3' to the node '$key2'");
+								set_array($val2["value"],limpiar_key($key3),$val3);
+							} else {
+								if(!is_array($val2)) xml_error("Can not '$type' the node '$key3' to the node '$key2'");
+								set_array($val2,limpiar_key($key3),$val3);
+							}
+						}
 						set_array($temp,limpiar_key($key2),$val2);
 						break;
 					case "remove":
@@ -188,7 +200,7 @@ function __set_array_recursive($array,$keys,$value,$type) {
 				set_array($temp,limpiar_key($key2),$val2);
 			}
 		}
-		$array=$temp;
+		$array=count($array_attr)?array("value"=>$temp,"#attr"=>$array_attr):$temp;
 	} else {
 		xml_error("Error in __set_array_recursive using count 0");
 	}

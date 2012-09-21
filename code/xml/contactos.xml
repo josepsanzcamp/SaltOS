@@ -463,7 +463,7 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 		<query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_aplicacion",page2id("proveedores")):""</query>
 		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_registro",getParam("id_empleado")):""</query>
 		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_aplicacion",page2id("empleados")):""</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query include="xml/common/qdireccionnewinsert.xml" replace="true"/>
 		<query include="xml/common/qcomunicacionnewinsert.xml" replace="true"/>
@@ -479,7 +479,7 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 		<query match="default" prefix="true" eval="true">getParam("id_proveedor")?setParam("id_aplicacion",page2id("proveedores")):""</query>
 		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_registro",getParam("id_empleado")):""</query>
 		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_aplicacion",page2id("empleados")):""</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
         <query include="xml/common/qdireccionpriupdate.xml" replace="true"/>
         <query include="xml/common/qdireccionsecupdate.xml" replace="true"/>

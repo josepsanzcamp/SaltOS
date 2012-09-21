@@ -1405,7 +1405,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query match="detalle" prefix="true" eval="true">"/*MYSQL SET @__ID__ = (SELECT MAX(id) FROM tbl_presupuestos) */"</query>
 		<query match="detalle" prefix="true" eval="true">"UPDATE tbl_presupuestos SET objetivos='".getParam("objetivos")."',funcional='".getParam("funcional")."',tecnica='".getParam("tecnica")."',extras='".getParam("extras")."' WHERE id=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_presupuestos) */"</query>
@@ -1417,7 +1417,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query match="detalle" prefix="true" eval="true">"UPDATE tbl_presupuestos SET objetivos='".getParam("objetivos")."',funcional='".getParam("funcional")."',tecnica='".getParam("tecnica")."',extras='".getParam("extras")."' WHERE id='".getParam("id")."'"</query>
 		<query match="condiciones" prefix="true" eval="true">"UPDATE tbl_presupuestos SET condiciones='".getParam("condiciones")."' WHERE id='".getParam("id")."'"</query>

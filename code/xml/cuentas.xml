@@ -320,7 +320,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
 		<query match="default" prefix="true">/*MYSQL SET @ID_REGISTRO=LAST_INSERT_ID() */</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
         <query match="default" prefix="true" eval="true">getParam("logo_file_new")?"UPDATE tbl_cuentas SET logo_file='".getParam("logo_file_new_file")."' WHERE `id`=/*MYSQL @ID_REGISTRO *//*SQLITE (SELECT MAX(id) FROM tbl_cuentas)*/":""</query>
@@ -328,7 +328,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
         <query match="default" prefix="true" eval="true">getParam("logo_file_new")?"SELECT logo_file action_delete FROM tbl_cuentas WHERE `id`='".getParam("id")."' AND SUBSTR(logo_file,1,7)!='../img/'":""</query>
 		<query match="default" prefix="true" eval="true">getParam("logo_file_new")?"UPDATE tbl_cuentas SET logo_file='".getParam("logo_file_new_file")."' WHERE `id`='".getParam("id")."'":""</query>

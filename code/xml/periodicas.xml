@@ -1333,7 +1333,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query match="default" prefix="true" eval="true">setParam("meses",intval(getParam("enero")).intval(getParam("febrero")).intval(getParam("marzo")).intval(getParam("abril")).intval(getParam("mayo")).intval(getParam("junio")).intval(getParam("julio")).intval(getParam("agosto")).intval(getParam("setiembre")).intval(getParam("octubre")).intval(getParam("noviembre")).intval(getParam("diciembre")))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query match="resumen" prefix="true" eval="true">"/*MYSQL SET @__ID__ = (SELECT MAX(id) FROM tbl_periodicas) */"</query>
 		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_periodicas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_periodicas) */"</query>
@@ -1345,7 +1345,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
 		<query match="default" prefix="true" eval="true">setParam("meses",intval(getParam("enero")).intval(getParam("febrero")).intval(getParam("marzo")).intval(getParam("abril")).intval(getParam("mayo")).intval(getParam("junio")).intval(getParam("julio")).intval(getParam("agosto")).intval(getParam("setiembre")).intval(getParam("octubre")).intval(getParam("noviembre")).intval(getParam("diciembre")))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_".$page)</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_periodicas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`='".getParam("id")."'"</query>
 		<query match="concepts_old" prefix="true" eval="true">"UPDATE tbl_periodicas_c SET `concepto`='".getParam("concepto")."',`unidades`='".floatval(getParam("unidades"))."',`descuento`='".getParam("descuento")."',`precio`='".floatval(getParam("precio"))."' WHERE `id`='".intval(getParam("id"))."'"</query>

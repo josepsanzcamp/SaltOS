@@ -32,11 +32,11 @@ if(typeof(__additem__)=="undefined" && typeof(parent.__additem__)=="undefined") 
 		maxiter=100;
 		while(maxiter>0 && !$("table.tabla",padre).length) padre=$(padre).parent();
 		var table=$("table.tabla",padre);
-		var limit=$("tr",table).has("input[type=file]").length;
-		var num=$("tr:visible",table).has("input[type=file]").length;
+		var limit=$("tr",table).has("input[type=hidden]").length;
+		var num=$("tr:visible",table).has("input[type=hidden]").length;
 		if(num<limit) {
 			var count=0;
-			$("tr",table).has("input[type=file]").each(function() {
+			$("tr",table).has("input[type=hidden]").each(function() {
 				if(num==count) $(this).removeClass("none");
 				count++;
 			});

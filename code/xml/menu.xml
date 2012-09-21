@@ -317,7 +317,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
 		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
 	</group>
-	<group ifeval="(check_user('importaciones','menu') || check_user('maincfg','menu') || check_user('datacfg','menu'))">
+	<group ifeval="(check_user('importaciones','menu') || check_user('maincfg','menu') || check_user('datacfg','menu') || check_user('errorlog','menu'))">
 		<label lang="true">gestionsistema</label>
 		<name>gestionsistema</name>
 		<class>menu</class>
