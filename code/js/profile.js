@@ -113,6 +113,8 @@ $(document).ready(function() {
 		$(checkbox).prop("checked",false);
 		$(this).prop("checked",value);
 	});
-	checkbox_desktop();
-	checkbox_voice();
+	setTimeout(function() {
+		checkbox_desktop();
+		checkbox_voice();
+	},100);
 });

@@ -79,8 +79,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 	function toolbar_voice() {
 		// NORMAL TOOLBAR
 		if(!exists_voice() || !saltos_voice() || !voice_executing) {
-			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").addClass("ui-state-disabled");
-			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").hide();
+			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").addClass("none");
 		} else {
 			if(voice_executing) {
 				if(voice_playing) {
@@ -98,7 +97,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 			} else {
 				$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").addClass("ui-state-disabled");
 			}
-			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").show();
+			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").removeClass("none");
 		}
 	}
 
@@ -148,5 +147,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 "use strict";
 $(document).ready(function() {
 	toolbar_voice();
-	if(saltos_login) notify_voice(lang_welcometosaltos());
+	setTimeout(function() {
+		if(saltos_login) notify_voice(lang_welcometosaltos());
+	},100);
 });
