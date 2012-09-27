@@ -334,14 +334,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<temp global="temp" eval="true">$temp="errorlog"</temp>
 		<option include="xml/common/menuoptionslist.xml" replace="true"/>
 	</group>
-	<group ifeval="!is_mobile() &amp;&amp; (check_commands(getDefault('commands/aspell'),60) || check_commands(getDefault('commands/apertium'),60))">
-		<label eval="true">LANG(check_commands(getDefault('commands/apertium'),60)?"translate":"corrector")</label>
-		<name>translate</name>
-		<class>tools translate</class>
-	</group>
 	<group ifeval="!is_mobile()">
 		<label lang="true">calculator</label>
 		<name>calculator</name>
 		<class>tools calculator</class>
+	</group>
+	<group ifeval="!is_mobile() &amp;&amp; (check_commands(getDefault('commands/aspell'),60) || check_commands(getDefault('commands/apertium'),60))">
+		<label eval="true">LANG(check_commands(getDefault('commands/apertium'),60)?"translate":"corrector")</label>
+		<name>translate</name>
+		<class>tools translate</class>
 	</group>
 </root>
