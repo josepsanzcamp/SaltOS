@@ -195,6 +195,7 @@ define("__BR__","<br/>");
 								<?php echo LANG("dbfile"); ?>: <?php echo $dbfile; ?>: <?php echo $iswritable?__YES__:__NO__; ?><?php echo __BR__; ?>
 								<?php $_CONFIG["db"]["type"]=getParam("dbtype"); ?>
 								<?php capture_next_error(); db_connect(); $error=get_clear_error(); ?>
+								<?php if(stripos($error,"try to install")!==false) show_php_error(); ?>
 								<?php $cancontinue&=($error==""); ?>
 								<?php echo LANG("dbtest1"); ?>: <?php echo $error==""?__YES__:__NO__; ?><?php echo __BR__; ?>
 								<?php if(!$error) { ?>
@@ -227,6 +228,7 @@ define("__BR__","<br/>");
 									<?php $_CONFIG["db"]["pass"]=getParam("dbpass"); ?>
 									<?php $_CONFIG["db"]["name"]=getParam("dbname"); ?>
 									<?php capture_next_error(); db_connect(); $error=get_clear_error(); ?>
+									<?php if(stripos($error,"try to install")!==false) show_php_error(); ?>
 									<?php $cancontinue&=($error==""); ?>
 									<?php echo LANG("dbtest1"); ?>: <?php echo $error==""?__YES__:__NO__; ?><?php echo __BR__; ?>
 									<?php if(!$error) { ?>
@@ -381,7 +383,8 @@ define("__BR__","<br/>");
 									$dbfile=getDefault("db/file");
 									if(!file_exists($dbfile)) touch($dbfile);
 								}
-								db_connect();
+								capture_next_error(); db_connect(); $error=get_clear_error();
+								if(stripos($error,"try to install")!==false) show_php_error();
 								// SAVE THE config.xml WITH THE NEW CONFIGURATION
 								echo current_datetime().": ".LANG("config").": ";
 								$config=array();

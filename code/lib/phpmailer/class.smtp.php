@@ -2,7 +2,7 @@
 /*~ class.smtp.php
 .---------------------------------------------------------------------------.
 |  Software: PHPMailer - PHP email class                                    |
-|   Version: 5.2.2-beta2                                                          |
+|   Version: 5.2.2                                                          |
 |      Site: https://code.google.com/a/apache-extras.org/p/phpmailer/       |
 | ------------------------------------------------------------------------- |
 |     Admin: Jim Jagielski (project admininistrator)                        |
@@ -50,7 +50,7 @@ class SMTP {
   public $SMTP_PORT = 25;
 
   /**
-   *  SMTP reply line ending
+   *  SMTP reply line ending (don't change)
    *  @var string
    */
   public $CRLF = "\r\n";
@@ -90,7 +90,7 @@ class SMTP {
    * Sets the SMTP PHPMailer Version number
    * @var string
    */
-  public $Version         = '5.2.2-beta2';
+  public $Version         = '5.2.2-rc1';
 
   /////////////////////////////////////////////////
   // PROPERTIES, PRIVATE AND PROTECTED
@@ -252,6 +252,40 @@ class SMTP {
     }
 
     switch ($authtype) {
+      case 'PLAIN':
+        // Start authentication
+        fputs($this->smtp_conn,"AUTH PLAIN" . $this->CRLF);
+    
+        $rply = $this->get_lines();
+        $code = substr($rply,0,3);
+    
+        if($code != 334) {
+          $this->error =
+            array("error" => "AUTH not accepted from server",
+                  "smtp_code" => $code,
+                  "smtp_msg" => substr($rply,4));
+          if($this->do_debug >= 1) {
+            $this->edebug("SMTP -> ERROR: " . $this->error["error"] . ": " . $rply . $this->CRLF . '<br />');
+          }
+          return false;
+        }
+        // Send encoded username and password
+        fputs($this->smtp_conn, base64_encode("\0".$username."\0".$password) . $this->CRLF);
+
+        $rply = $this->get_lines();
+        $code = substr($rply,0,3);
+    
+        if($code != 235) {
+          $this->error =
+            array("error" => "Authentication not accepted from server",
+                  "smtp_code" => $code,
+                  "smtp_msg" => substr($rply,4));
+          if($this->do_debug >= 1) {
+            $this->edebug("SMTP -> ERROR: " . $this->error["error"] . ": " . $rply . $this->CRLF . '<br />');
+          }
+          return false;
+        }
+        break;
       case 'LOGIN':
         // Start authentication
         fputs($this->smtp_conn,"AUTH LOGIN" . $this->CRLF);

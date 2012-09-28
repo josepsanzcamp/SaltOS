@@ -2,7 +2,7 @@
 /*~ class.phpmailer.php
 .---------------------------------------------------------------------------.
 |  Software: PHPMailer - PHP email class                                    |
-|   Version: 5.2.2-beta2                                                          |
+|   Version: 5.2.2                                                          |
 |      Site: https://code.google.com/a/apache-extras.org/p/phpmailer/       |
 | ------------------------------------------------------------------------- |
 |     Admin: Jim Jagielski (project admininistrator)                        |
@@ -207,7 +207,9 @@ class PHPMailer {
   /////////////////////////////////////////////////
 
   /**
-   * Sets the SMTP hosts.  All hosts must be separated by a
+   * Sets the SMTP hosts.
+   *
+   * All hosts must be separated by a
    * semicolon.  You can also specify a different port
    * for each host by using this format: [hostname:port]
    * (e.g. "smtp1.example.com:25;smtp2.example.com").
@@ -229,8 +231,7 @@ class PHPMailer {
   public $Helo          = '';
 
   /**
-   * Sets connection prefix.
-   * Options are "", "ssl" or "tls"
+   * Sets connection prefix. Options are "", "ssl" or "tls"
    * @var string
    */
   public $SMTPSecure    = '';
@@ -254,7 +255,7 @@ class PHPMailer {
   public $Password      = '';
 
   /**
-   *  Sets SMTP auth type.
+   *  Sets SMTP auth type. Options are LOGIN | PLAIN | NTLM  (default LOGIN)
    *  @var string
    */
   public $AuthType      = '';
@@ -321,34 +322,38 @@ class PHPMailer {
   public $LE              = "\n";
 
    /**
-   * Used with DKIM DNS Resource Record
+   * Used with DKIM Signing
+   * required parameter if DKIM is enabled
+   *
+   * domain selector example domainkey
    * @var string
    */
-  public $DKIM_selector   = 'phpmailer';
+  public $DKIM_selector   = '';
 
   /**
-   * Used with DKIM DNS Resource Record
-   * optional, in format of email address 'you@yourdomain.com'
+   * Used with DKIM Signing
+   * required if DKIM is enabled, in format of email address 'you@yourdomain.com' typically used as the source of the email
    * @var string
    */
   public $DKIM_identity   = '';
 
   /**
-   * Used with DKIM DNS Resource Record
+   * Used with DKIM Signing
+   * optional parameter if your private key requires a passphras
    * @var string
    */
   public $DKIM_passphrase   = '';
 
   /**
-   * Used with DKIM DNS Resource Record
-   * optional, in format of email address 'you@yourdomain.com'
+   * Used with DKIM Singing
+   * required if DKIM is enabled, in format of email address 'domain.com'
    * @var string
    */
   public $DKIM_domain     = '';
 
   /**
-   * Used with DKIM DNS Resource Record
-   * optional, in format of email address 'you@yourdomain.com'
+   * Used with DKIM Signing
+   * required if DKIM is enabled, path to private key file
    * @var string
    */
   public $DKIM_private    = '';
@@ -380,7 +385,7 @@ class PHPMailer {
    * Sets the PHPMailer Version number
    * @var string
    */
-  public $Version         = '5.2.2-beta2';
+  public $Version         = '5.2.2-rc1';
 
   /**
    * What to use in the X-Mailer header
@@ -587,7 +592,7 @@ class PHPMailer {
     }
     $address = trim($address);
     $name = trim(preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trim
-    if (!self::ValidateAddress($address)) {
+    if (!$this->ValidateAddress($address)) {
       $this->SetError($this->Lang('invalid_address').': '. $address);
       if ($this->exceptions) {
         throw new phpmailerException($this->Lang('invalid_address').': '.$address);
@@ -622,7 +627,7 @@ class PHPMailer {
   public function SetFrom($address, $name = '', $auto = 1) {
     $address = trim($address);
     $name = trim(preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trim
-    if (!self::ValidateAddress($address)) {
+    if (!$this->ValidateAddress($address)) {
       $this->SetError($this->Lang('invalid_address').': '. $address);
       if ($this->exceptions) {
         throw new phpmailerException($this->Lang('invalid_address').': '.$address);
@@ -647,25 +652,19 @@ class PHPMailer {
 
   /**
    * Check that a string looks roughly like an email address should
-   * Static so it can be used without instantiation
-   * Tries to use PHP built-in validator in the filter extension (from PHP 5.2), falls back to a reasonably competent regex validator
-   * Conforms approximately to RFC2822
-   * @link http://www.hexillion.com/samples/#Regex Original pattern found here
+   * Static so it can be used without instantiation, public so people can overload
+   * Conforms to RFC5322: Uses *correct* regex on which FILTER_VALIDATE_EMAIL is
+   * based; So why not use FILTER_VALIDATE_EMAIL? Because it was broken to
+   * not allow a@b type valid addresses :(
+   * @link http://squiloople.com/2009/12/20/email-address-validation/
+   * @copyright regex Copyright Michael Rushton 2009-10 | http://squiloople.com/ | Feel free to use and redistribute this code. But please keep this copyright notice.
    * @param string $address The email address to check
    * @return boolean
    * @static
    * @access public
    */
   public static function ValidateAddress($address) {
-    if (function_exists('filter_var')) { //Introduced in PHP 5.2
-      if(filter_var($address, FILTER_VALIDATE_EMAIL) === FALSE) {
-        return false;
-      } else {
-        return true;
-      }
-    } else {
-      return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);
-    }
+	return preg_match('/^(?!(?>(?1)"?(?>\\\[ -~]|[^"])"?(?1)){255,})(?!(?>(?1)"?(?>\\\[ -~]|[^"])"?(?1)){65,}@)((?>(?>(?>((?>(?>(?>\x0D\x0A)?[	 ])+|(?>[	 ]*\x0D\x0A)?[	 ]+)?)(\((?>(?2)(?>[\x01-\x08\x0B\x0C\x0E-\'*-\[\]-\x7F]|\\\[\x00-\x7F]|(?3)))*(?2)\)))+(?2))|(?2))?)([!#-\'*+\/-9=?^-~-]+|"(?>(?2)(?>[\x01-\x08\x0B\x0C\x0E-!#-\[\]-\x7F]|\\\[\x00-\x7F]))*(?2)")(?>(?1)\.(?1)(?4))*(?1)@(?!(?1)[a-z0-9-]{64,})(?1)(?>([a-z0-9](?>[a-z0-9-]*[a-z0-9])?)(?>(?1)\.(?!(?1)[a-z0-9-]{64,})(?1)(?5)){0,126}|\[(?:(?>IPv6:(?>([a-f0-9]{1,4})(?>:(?6)){7}|(?!(?:.*[a-f0-9][:\]]){7,})((?6)(?>:(?6)){0,5})?::(?7)?))|(?>(?>IPv6:(?>(?6)(?>:(?6)){5}:|(?!(?:.*[a-f0-9]:){5,})(?8)?::(?>((?6)(?>:(?6)){0,3}):)?))?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\.(?9)){3}))\])(?1)$/isD', $address);
   }
 
   /////////////////////////////////////////////////
@@ -733,7 +732,7 @@ class PHPMailer {
       }
 
       // digitally sign with DKIM if enabled
-      if ($this->DKIM_domain && $this->DKIM_private) {
+      if (!empty($this->DKIM_domain) && !empty($this->DKIM_private) && !empty($this->DKIM_selector) && !empty($this->DKIM_domain) && file_exists($this->DKIM_private)) {
         $header_dkim = $this->DKIM_Add($this->MIMEHeader, $this->EncodeHeader($this->SecureHeader($this->Subject)), $this->MIMEBody);
         $this->MIMEHeader = str_replace("\r\n", "\n", $header_dkim) . $this->MIMEHeader;
       }
@@ -958,7 +957,7 @@ class PHPMailer {
    * @return bool
    */
   public function SmtpConnect() {
-    if(is_null($this->smtp)) {
+    if ($this->smtp === null) {
       $this->smtp = new SMTP();
     }
 
@@ -1029,7 +1028,7 @@ class PHPMailer {
    * @return void
    */
   public function SmtpClose() {
-    if(!is_null($this->smtp)) {
+    if ($this->smtp !== null) {
       if($this->smtp->Connected()) {
         $this->smtp->Quit();
         $this->smtp->Close();
@@ -1047,23 +1046,24 @@ class PHPMailer {
   function SetLanguage($langcode = 'en', $lang_path = 'language/') {
     //Define full set of translatable strings
     $PHPMAILER_LANG = array(
-      'provide_address' => 'You must provide at least one recipient email address.',
+      'authenticate'         => 'SMTP Error: Could not authenticate.',
+      'connect_host'         => 'SMTP Error: Could not connect to SMTP host.',
+      'data_not_accepted'    => 'SMTP Error: Data not accepted.',
+      'empty_message'        => 'Message body empty',
+      'encoding'             => 'Unknown encoding: ',
+      'execute'              => 'Could not execute: ',
+      'file_access'          => 'Could not access file: ',
+      'file_open'            => 'File Error: Could not open file: ',
+      'from_failed'          => 'The following From address failed: ',
+      'instantiate'          => 'Could not instantiate mail function.',
+      'invalid_address'      => 'Invalid address',
       'mailer_not_supported' => ' mailer is not supported.',
-      'execute' => 'Could not execute: ',
-      'instantiate' => 'Could not instantiate mail function.',
-      'authenticate' => 'SMTP Error: Could not authenticate.',
-      'from_failed' => 'The following From address failed: ',
-      'recipients_failed' => 'SMTP Error: The following recipients failed: ',
-      'data_not_accepted' => 'SMTP Error: Data not accepted.',
-      'connect_host' => 'SMTP Error: Could not connect to SMTP host.',
-      'file_access' => 'Could not access file: ',
-      'file_open' => 'File Error: Could not open file: ',
-      'encoding' => 'Unknown encoding: ',
-      'signing' => 'Signing Error: ',
-      'smtp_error' => 'SMTP server error: ',
-      'empty_message' => 'Message body empty',
-      'invalid_address' => 'Invalid address',
-      'variable_set' => 'Cannot set or reset variable: '
+      'provide_address'      => 'You must provide at least one recipient email address.',
+      'recipients_failed'    => 'SMTP Error: The following recipients failed: ',
+      'signing'              => 'Signing Error: ',
+      'smtp_connect_failed'  => 'SMTP Connect() failed.',
+      'smtp_error'           => 'SMTP server error: ',
+      'variable_set'         => 'Cannot set or reset variable: '
     );
     //Overwrite language-specific strings. This way we'll never have missing translations - no more "language string failed to load"!
     $l = true;
@@ -1391,7 +1391,7 @@ class PHPMailer {
     }
 
     if($this->Mailer != 'mail') {
-      $result .= $this->LE.$this->LE;
+      $result .= $this->LE;
     }
 
     return $result;
@@ -1403,7 +1403,7 @@ class PHPMailer {
    * @return string
    */
   public function GetSentMIMEMessage() {
-    return sprintf("%s%s\r\n\r\n%s",$this->MIMEHeader,$this->mailHeader,$this->MIMEBody);
+    return $this->MIMEHeader . $this->mailHeader . self::CRLF . $this->MIMEBody;
   }
 
 
@@ -1849,7 +1849,7 @@ class PHPMailer {
       if (function_exists('mb_strlen') && $this->HasMultiBytes($str)) {
         // Use a custom function which correctly encodes and wraps long
         // multibyte strings without breaking lines within a character
-        $encoded = $this->Base64EncodeWrapMB($str);
+        $encoded = $this->Base64EncodeWrapMB($str, "\n");
       } else {
         $encoded = base64_encode($str);
         $maxlen -= $maxlen % 4;
@@ -1888,12 +1888,16 @@ class PHPMailer {
    * Adapted from a function by paravoid at http://uk.php.net/manual/en/function.mb-encode-mimeheader.php
    * @access public
    * @param string $str multi-byte text to wrap encode
+   * @param string $lf string to use as linefeed/end-of-line
    * @return string
    */
-  public function Base64EncodeWrapMB($str) {
+  public function Base64EncodeWrapMB($str, $lf=null) {
     $start = "=?".$this->CharSet."?B?";
     $end = "?=";
     $encoded = "";
+    if ($lf === null) {
+      $lf = $this->LE;
+    }
 
     $mb_length = mb_strlen($str, $this->CharSet);
     // Each line must have length <= 75, including $start and $end
@@ -1914,11 +1918,11 @@ class PHPMailer {
       }
       while (strlen($chunk) > $length);
 
-      $encoded .= $chunk . $this->LE;
+      $encoded .= $chunk . $lf;
     }
 
     // Chomp the last linefeed
-    $encoded = substr($encoded, 0, -strlen($this->LE));
+    $encoded = substr($encoded, 0, -strlen($lf));
     return $encoded;
   }
 
@@ -2014,6 +2018,7 @@ class PHPMailer {
    */
   public function EncodeQ($str, $position = 'text') {
     //There should not be any EOL in the string
+	$pattern="";
     $encoded = str_replace(array("\r", "\n"), '', $str);
     switch (strtolower($position)) {
       case 'phrase':
@@ -2234,7 +2239,7 @@ class PHPMailer {
    */
   protected function SetError($msg) {
     $this->error_count++;
-    if ($this->Mailer == 'smtp' and !is_null($this->smtp)) {
+    if (($this->Mailer == 'smtp') and ($this->smtp !== null)) {
       $lasterror = $this->smtp->getError();
       if (!empty($lasterror) and array_key_exists('smtp_msg', $lasterror)) {
         $msg .= '<p>' . $this->Lang('smtp_error') . $lasterror['smtp_msg'] . "</p>\n";

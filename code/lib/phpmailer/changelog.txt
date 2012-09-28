@@ -3,7 +3,17 @@ ChangeLog
 NOTE: THIS VERSION OF PHPMAILER IS DESIGNED FOR PHP5/PHP6.
       IT WILL NOT WORK WITH PHP4.
   
-Version 5.2.2-beta2 (????)
+Version 5.2.2-rc1 (September 28, 2012)
+  * Header encoding works with long lines (Bugz: 93)
+  * Turkish language update (Bugz: 94)
+  * undefined $pattern in EncodeQ bug squashed (Bugz: 98)
+  * use of mail() in safe_mode now works (Bugz: 96)
+  * ValidateAddress() now 'public static' so people can override the
+    default and use their own validation scheme.
+  * ValidateAddress() no longer uses broken FILTER_VALIDATE_EMAIL
+  * Added in AUTH PLAIN SMTP authentication
+
+Version 5.2.2-beta2 (August 17, 2012)
   * Fixed Postfix VERP support (Bugz: 92)
   * Allow action_function callbacks to pass/use
     the From address (passed as final param)
@@ -453,4 +463,3 @@ Version 0.92 (Tue, May 15 2001)
   
 Version 0.90 (Tue, April 17 2001)
   * Intial public release
-  
