@@ -80,6 +80,14 @@ function __db_query_pdo_sqlite_helper($query) {
 		// DUMP RESULT TO MATRIX
 		if($data && $data->columnCount()>0) {
 			$result["rows"]=$data->fetchAll(PDO::FETCH_ASSOC);
+			foreach($result["rows"] as $key=>$val) {
+				foreach($val as $key2=>$val2) {
+					if($key2[0]=="`" && substr($key2,-1,1)=="`") {
+						unset($result["rows"][$key][$key2]);
+						$result["rows"][$key][substr($key2,1,-1)]=$val2;
+					}
+				}
+			}
 			$result["total"]=count($result["rows"]);
 			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
 		}

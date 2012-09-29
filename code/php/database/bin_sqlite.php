@@ -108,18 +108,27 @@ function __db_query_bin_sqlite_helper($query) {
 			$error=get_clear_error();
 			if($error) $row=fgetcsv($fp,$length,$delimiter,$enclosure);
 			if(!feof($fp)) {
-				$result["header"]=$row;
+				$header=$row;
 				if(!$error) $row=fgetcsv($fp,$length,$delimiter,$enclosure,$escape);
 				if($error) $row=fgetcsv($fp,$length,$delimiter,$enclosure);
 				while(!feof($fp)) {
-					$result["rows"][]=array_combine($result["header"],$row);
-					$result["total"]++;
+					$result["rows"][]=array_combine($header,$row);
 					if(!$error) $row=fgetcsv($fp,$length,$delimiter,$enclosure,$escape);
 					if($error) $row=fgetcsv($fp,$length,$delimiter,$enclosure);
 				}
 			}
 			fclose($fp);
 			unlink($stdout);
+			foreach($result["rows"] as $key=>$val) {
+				foreach($val as $key2=>$val2) {
+					if($key2[0]=="`" && substr($key2,-1,1)=="`") {
+						unset($result["rows"][$key][$key2]);
+						$result["rows"][$key][substr($key2,1,-1)]=$val2;
+					}
+				}
+			}
+			$result["total"]=count($result["rows"]);
+			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
 		}
 	}
 	return $result;

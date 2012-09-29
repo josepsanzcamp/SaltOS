@@ -214,24 +214,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.php.net")</onclick>
 						</field>
 						<field>
-							<label>MySQL 5.1 (GPL-2.0)</label>
+							<label>MariaDB 5.1 (GPL-2.0)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
-							<onclick>openwin("http://www.mysql.com")</onclick>
+							<onclick>openwin("http://mariadb.org")</onclick>
 						</field>
 						<field>
-							<label>SQLite 3 (Public domain)</label>
+							<label>MySQL 5.1 (GPL-2.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentr</class>
-							<onclick>openwin("http://www.sqlite.org")</onclick>
+							<onclick>openwin("http://www.mysql.com")</onclick>
 						</field>
 					</row>
 					<row>
 						<field>
-							<label>MariaDB 5.1 (GPL-2.0)</label>
+							<label>SQLite 3 (Public domain)</label>
 							<type>link</type>
 							<class>left item sectioncontentbl</class>
-							<onclick>openwin("http://mariadb.org")</onclick>
+							<onclick>openwin("http://www.sqlite.org")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
@@ -412,7 +412,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jquery.com/")</onclick>
 						</field>
 						<field>
-							<label>JQuery UI 1.8.23 (MIT)</label>
+							<label>JQuery UI 1.8.24 (MIT)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
@@ -491,7 +491,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
 						</field>
 						<field>
-							<label>Form 3.17 (MIT &amp; GPL*)</label>
+							<label>Form 3.18 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>

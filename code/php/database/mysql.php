@@ -42,8 +42,7 @@ function __db_query_mysql_helper($query) {
 		$data=mysql_query($query,getDefault("db/link")) or db_error_mysql(array("dberror"=>mysql_error(getDefault("db/link")),"query"=>$query));
 		// DUMP RESULT TO MATRIX
 		if(!is_bool($data) && mysql_num_fields($data)) {
-			$result["rows"]=array();
-			while($temp=mysql_fetch_assoc($data)) $result["rows"][]=$temp;
+			while($row=mysql_fetch_assoc($data)) $result["rows"][]=$row;
 			$result["total"]=count($result["rows"]);
 			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
 			mysql_free_result($data);

@@ -535,26 +535,7 @@ switch($action) {
 		if(!count(array_intersect($array_order,array("id asc","id desc")))) $array_order[]="id desc";
 		$order=implode(",",$array_order);
 		// EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
-		$dbtype=db_type();
-		if(in_array($dbtype,array("SQLITE"))) {
-			// LIST OF TEMPORARY FIELDS TO RETRIEVE
-			$fields=explode(",",$order);
-			foreach($fields as $key=>$val) {
-				$val=explode(" ",$val);
-				$fields[$key]=$val[0];
-			}
-			$fields=implode(",",$fields);
-			// CREATE THE TEMPORARY TABLES (HELPERS)
-			$tbl_hash1="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0)";
-			db_query($query);
-			// EXECUTE THE QUERY TO GET THE ROWS AND FIELDS
-			$query="SELECT * FROM ($query0) WHERE id IN (SELECT id FROM $tbl_hash1 ORDER BY $order LIMIT $offset,$limit) ORDER BY $order";
-		} elseif(in_array($dbtype,array("MYSQL","MARIADB"))) {
-			$query="$query0 ORDER BY $order LIMIT $offset,$limit";
-		} else {
-			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
-		}
+		$query="$query0 ORDER BY $order LIMIT $offset,$limit";
 		$result=db_query($query);
 		$count=1;
 		while($row=db_fetch_row($result)) {
@@ -563,13 +544,7 @@ switch($action) {
 		}
 		db_free($result);
 		// EXECUTE THE QUERY TO GET THE TOTAL ROWS
-		if(in_array($dbtype,array("SQLITE"))) {
-			$query="SELECT COUNT(*) FROM $tbl_hash1";
-		} elseif(in_array($dbtype,array("MYSQL","MARIADB"))) {
-			$query="SELECT COUNT(*) FROM ($query0) __a__";
-		} else {
-			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
-		}
+		$query="SELECT COUNT(*) FROM ($query0) __a__";
 		$count=execute_query($query);
 		// CONTINUE WITH NORMAL OPERATION
 		$_RESULT[$action]=__eval_querytag($_RESULT[$action]);

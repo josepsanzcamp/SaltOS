@@ -63,7 +63,7 @@ define("__BR__","<br/>");
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="lib/jquery/jquery-1.8.2.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="lib/jquery/jquery-ui-1.8.23.min.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-ui-1.8.24.min.js"></script>
 	</head>
 	<body>
 		<div class="ui-layout-north" style="margin-left:auto;margin-right:auto;width:800px">
@@ -178,16 +178,16 @@ define("__BR__","<br/>");
 								<input type="hidden" name="step" value="2"/>
 								<?php echo LANG("select_dbtype"); ?>
 								<select name="dbtype" <?php echo __UI__; ?>>
-									<option value="pdo_sqlite">SQLite (PDO)<?php echo LANG("select_prefered"); ?></option>
-									<option value="pdo_mysql">MySQL (PDO)</option>
+									<option value="pdo_sqlite">SQLite3 (PDO)<?php echo LANG("select_prefered"); ?></option>
+									<option value="pdo_mysql">MariaDB &amp; MySQL (PDO)</option>
 									<option value="sqlite3">SQLite3 (extension)</option>
-									<option value="mysql">MySQL (extension)</option>
-									<option value="bin_sqlite">SQLite (binary wrapper, experimental)</option>
-									<option value="mysqli">MySQL (improved extension)</option>
+									<option value="mysql">MariaDB &amp; MySQL (extension)</option>
+									<option value="bin_sqlite">SQLite3 (experimental binary wrapper)</option>
+									<option value="mysqli">MariaDB &amp; MySQL (improved extension)</option>
 								</select>
 							<?php } elseif(in_array(getParam("dbtype"),array("pdo_sqlite","sqlite3","bin_sqlite"))) { ?>
 								<input type="hidden" name="step" value="3"/>
-								<?php $dbtypes=array("pdo_sqlite"=>"SQLite (PDO)","sqlite3"=>"SQLite3 (extension)","bin_sqlite"=>"SQLite (binary wrapper, experimental)"); ?>
+								<?php $dbtypes=array("pdo_sqlite"=>"SQLite3 (PDO)","sqlite3"=>"SQLite3 (extension)","bin_sqlite"=>"SQLite3 (experimental binary wrapper)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype")].__COLOR__; ?><?php echo __BR__; ?>
 								<?php $dbfile=getDefault("db/file"); ?>
 								<?php if(!file_exists($dbfile)) touch($dbfile); ?>
@@ -205,7 +205,7 @@ define("__BR__","<br/>");
 								<?php echo LANG("dbtest2"); ?>: <?php echo $error==""?__YES__:__NO__; ?>
 								<?php } ?>
 							<?php } elseif(in_array(getParam("dbtype"),array("pdo_mysql","mysql","mysqli"))) { ?>
-								<?php $dbtypes=array("pdo_mysql"=>"MySQL (PDO)","mysql"=>"MySQL (extension)","mysqli"=>"MySQL (improved extension)"); ?>
+								<?php $dbtypes=array("pdo_mysql"=>"MariaDB &amp; MySQL (PDO)","mysql"=>"MariaDB &amp; MySQL (extension)","mysqli"=>"MariaDB &amp; MySQL (improved extension)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype")].__COLOR__; ?><?php echo __BR__; ?>
 								<?php if(!getParam("dbhost") || !getParam("dbport") || !getParam("dbname")) { ?>
 									<input type="hidden" name="step" value="2"/>
@@ -338,12 +338,12 @@ define("__BR__","<br/>");
 							<?php } ?>
 							<b><?php echo LANG("database_link"); ?>:</b><?php echo __BR__; ?>
 							<?php if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3","bin_sqlite"))) { ?>
-								<?php $dbtypes=array("pdo_sqlite"=>"SQLite (PDO)","sqlite3"=>"SQLite3 (extension)","bin_sqlite"=>"SQLite (binary wrapper, experimental)"); ?>
+								<?php $dbtypes=array("pdo_sqlite"=>"SQLite3 (PDO)","sqlite3"=>"SQLite3 (extension)","bin_sqlite"=>"SQLite3 (experimental binary wrapper)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype",getDefault("db/type"))].__COLOR__; ?><?php echo __BR__; ?>
 								<?php $dbfile=getDefault("db/file"); ?>
 								<?php echo LANG("dbfile"); ?>: <?php echo __GREEN__.$dbfile.__COLOR__; ?><?php echo __BR__; ?>
 							<?php } elseif(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_mysql","mysql","mysqli"))) { ?>
-								<?php $dbtypes=array("pdo_mysql"=>"MySQL (PDO)","mysql"=>"MySQL (extension)","mysqli"=>"MySQL (improved extension)"); ?>
+								<?php $dbtypes=array("pdo_mysql"=>"MariaDB &amp; MySQL (PDO)","mysql"=>"MariaDB &amp; MySQL (extension)","mysqli"=>"MariaDB &amp; MySQL (improved extension)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype",getDefault("db/type"))].__COLOR__; ?><?php echo __BR__; ?>
 								<?php echo LANG("dbhost"); ?>: <?php echo __GREEN__.getParam("dbhost",getDefault("db/host")).__COLOR__; ?><?php echo __BR__; ?>
 								<?php echo LANG("dbport"); ?>: <?php echo __GREEN__.getParam("dbport",getDefault("db/port")).__COLOR__; ?><?php echo __BR__; ?>
