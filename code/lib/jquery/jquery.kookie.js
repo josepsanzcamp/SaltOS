@@ -1,6 +1,5 @@
-/*jshint eqnull:true */
 /*!
- * jQuery Cookie Plugin v1.2
+ * jQuery Cookie Plugin v1.3
  * https://github.com/carhartl/jquery-cookie
  *
  * Copyright 2011, Klaus Hartl

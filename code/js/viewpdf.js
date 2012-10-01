@@ -129,6 +129,9 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 										textLayer:textLayer
 									};
 									page.render(renderContext).then(fn);
+									page.getTextContent().then(function(textContent) {
+										textLayer.setTextContent(textContent);
+									});
 								});
 							}
 						};

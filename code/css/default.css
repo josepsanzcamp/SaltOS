@@ -283,6 +283,7 @@ div.jGrowl div a {
 	color: transparent;
 	position: absolute;
 	line-height:1.3;
+	white-space:pre;
 	/* ADDED BY SANZ TO FIX SOME MARGINS ISSUES */
 	margin-top:10px;
 	margin-left:10px;
