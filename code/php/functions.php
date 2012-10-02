@@ -984,11 +984,18 @@ function check_system() {
 	if(!ini_get("date.timezone")) ini_set("date.timezone","Europe/Madrid");
 	if(headers_sent()) show_php_error(array("phperror"=>"Has been Detected previous headers sended"));
 	// CLASS CHECKS
-	$array=array("DomDocument"=>"php-xml","XsltProcessor"=>"php-xml","DomElement"=>"php-xml");
+	$array=array("DomDocument"=>"php-xml",
+		"XsltProcessor"=>"php-xml",
+		"DomElement"=>"php-xml");
 	foreach($array as $key=>$val) if(!class_exists($key)) show_php_error(array("phperror"=>"Class $key not found","details"=>"Try to install $val package"));
 	// FUNCTION CHECKS
-	$array=array("imagecreatetruecolor"=>"php-gd","imagecreatefrompng"=>"php-gd",
-		"mb_check_encoding"=>"php-mbstring","mb_convert_encoding"=>"php-mbstring","mb_strlen"=>"php-mbstring","mb_substr"=>"php-mbstring","mb_strpos"=>"php-mbstring");
+	$array=array("imagecreatetruecolor"=>"php-gd",
+		"imagecreatefrompng"=>"php-gd",
+		"mb_check_encoding"=>"php-mbstring",
+		"mb_convert_encoding"=>"php-mbstring",
+		"mb_strlen"=>"php-mbstring",
+		"mb_substr"=>"php-mbstring",
+		"mb_strpos"=>"php-mbstring");
 	foreach($array as $key=>$val) if(!function_exists($key)) show_php_error(array("phperror"=>"Function $key not found","details"=>"Try to install $val package"));
 	// INSTALL CHECK
 	if(file_exists("install/install.php")) { include("install/install.php"); die(); }

@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function db_connect_sqlite3() {
 	global $_CONFIG;
-	if(!class_exists("SQLite3")) { db_error_sqlite3(array("phperror"=>"Class SQLite3 not found")); return; }
+	if(!class_exists("SQLite3")) { db_error_sqlite3(array("phperror"=>"Class SQLite3 not found","details"=>"Try to install php-pdo package")); return; }
 	if(!file_exists(getDefault("db/file"))) { db_error_sqlite3(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
 	if(!is_writable(getDefault("db/file"))) { db_error_sqlite3(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	try {

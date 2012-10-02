@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function db_connect_mysql() {
 	global $_CONFIG;
-	if(!function_exists("mysql_pconnect")) { db_error_mysql(array("phperror"=>"mysql_pconnect not found")); return; }
+	if(!function_exists("mysql_pconnect")) { db_error_mysql(array("phperror"=>"mysql_pconnect not found","details"=>"Try to install php-mysqlnd package")); return; }
 	$_CONFIG["db"]["link"]=mysql_pconnect(getDefault("db/host").":".getDefault("db/port"),getDefault("db/user"),getDefault("db/pass")) or db_error_mysql(array("dberror"=>"mysql_pconnect()"));
 	mysql_select_db(getDefault("db/name"),getDefault("db/link")) or db_error_mysql(array("dberror"=>"mysql_select_db()"));
 	if(getDefault("db/link")) {

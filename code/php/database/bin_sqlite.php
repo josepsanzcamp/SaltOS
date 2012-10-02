@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function db_connect_bin_sqlite() {
 	global $_CONFIG;
-	if(!check_commands(getDefault("commands/sqlite3"),60)) { db_error_bin_sqlite(array("dberror"=>"Command '".getDefault("commands/sqlite3")."' not found")); return; }
+	if(!check_commands(getDefault("commands/sqlite3"),60)) { db_error_bin_sqlite(array("phperror"=>"Command '".getDefault("commands/sqlite3")."' not found","details"=>"Try to install sqlite package")); return; }
 	if(!file_exists(getDefault("db/file"))) { db_error_bin_sqlite(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
 	if(!is_writable(getDefault("db/file"))) { db_error_bin_sqlite(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	register_shutdown_function("__bin_sqlite_shutdown_handler");

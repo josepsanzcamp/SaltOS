@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</info>
 	<db>
 		<type>pdo_sqlite</type>
-		<host>localhost</host><!-- for MySQL -->
+		<host>127.0.0.1</host><!-- for MySQL -->
 		<port>3306</port><!-- for MySQL -->
 		<user>saltos</user><!-- for MySQL -->
 		<pass>saltos</pass><!-- for MySQL -->
@@ -155,7 +155,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</cache>
 	<commands>
 		<unoconv>unoconv</unoconv>
-		<__unoconv__>--server localhost --port 2002 -f pdf --stdout __INPUT__ &gt; __OUTPUT__</__unoconv__>
+		<__unoconv__>--server 127.0.0.1 --port 2002 -f pdf --stdout __INPUT__ &gt; __OUTPUT__</__unoconv__>
 		<__unoconv_about__>--show 2&gt;&amp;1</__unoconv_about__>
 		<elinks>elinks</elinks>
 		<__elinks__>-dump -no-home -eval 'set document.browse.margin_width=0' __INPUT__</__elinks__>
