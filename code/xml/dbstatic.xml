@@ -2634,28 +2634,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<nombre>Listar sólo registros del usuario</nombre>
 		</row>
 		<row>
-			<id>8</id>
-			<codigo>user_view</codigo>
-			<pos>12</pos>
-			<nombre>Ver detalle sólo de los registros del usuario</nombre>
-		</row>
-		<row>
-			<id>4</id>
-			<codigo>user_edit</codigo>
-			<pos>13</pos>
-			<nombre>Modificar sólo los registros del usuario</nombre>
-		</row>
-		<row>
-			<id>5</id>
-			<codigo>user_delete</codigo>
-			<pos>14</pos>
-			<nombre>Eliminar sólo los registros del usuario</nombre>
-		</row>
-		<row>
 			<id>11</id>
 			<codigo>group_list</codigo>
-			<pos>21</pos>
+			<pos>12</pos>
 			<nombre>Listar registros del usuario y grupo</nombre>
+		</row>
+		<row>
+			<id>2</id>
+			<codigo>all_list</codigo>
+			<pos>13</pos>
+			<nombre>Listar todos los registros</nombre>
+		</row>
+		<row>
+			<id>8</id>
+			<codigo>user_view</codigo>
+			<pos>21</pos>
+			<nombre>Ver detalle sólo de los registros del usuario</nombre>
 		</row>
 		<row>
 			<id>12</id>
@@ -2664,28 +2658,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<nombre>Ver detalle de los registros del usuario y grupo</nombre>
 		</row>
 		<row>
-			<id>13</id>
-			<codigo>group_edit</codigo>
-			<pos>23</pos>
-			<nombre>Modificar los registros del usuario y grupo</nombre>
-		</row>
-		<row>
-			<id>14</id>
-			<codigo>group_delete</codigo>
-			<pos>24</pos>
-			<nombre>Eliminar los registros del usuario y grupo</nombre>
-		</row>
-		<row>
-			<id>2</id>
-			<codigo>all_list</codigo>
-			<pos>31</pos>
-			<nombre>Listar todos los registros</nombre>
-		</row>
-		<row>
 			<id>9</id>
 			<codigo>all_view</codigo>
-			<pos>32</pos>
+			<pos>23</pos>
 			<nombre>Ver detalle de todos los registros</nombre>
+		</row>
+		<row>
+			<id>4</id>
+			<codigo>user_edit</codigo>
+			<pos>31</pos>
+			<nombre>Modificar sólo los registros del usuario</nombre>
+		</row>
+		<row>
+			<id>13</id>
+			<codigo>group_edit</codigo>
+			<pos>32</pos>
+			<nombre>Modificar los registros del usuario y grupo</nombre>
 		</row>
 		<row>
 			<id>6</id>
@@ -2694,39 +2682,51 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<nombre>Modificar todos los registros</nombre>
 		</row>
 		<row>
+			<id>5</id>
+			<codigo>user_delete</codigo>
+			<pos>41</pos>
+			<nombre>Eliminar sólo los registros del usuario</nombre>
+		</row>
+		<row>
+			<id>14</id>
+			<codigo>group_delete</codigo>
+			<pos>42</pos>
+			<nombre>Eliminar los registros del usuario y grupo</nombre>
+		</row>
+		<row>
 			<id>7</id>
 			<codigo>all_delete</codigo>
-			<pos>34</pos>
+			<pos>43</pos>
 			<nombre>Eliminar todos los registros</nombre>
 		</row>
 		<row>
 			<id>15</id>
 			<codigo>export</codigo>
-			<pos>41</pos>
+			<pos>51</pos>
 			<nombre>Exportar</nombre>
 		</row>
 		<row>
 			<id>16</id>
 			<codigo>import</codigo>
-			<pos>42</pos>
+			<pos>52</pos>
 			<nombre>Importar</nombre>
 		</row>
 		<row>
 			<id>17</id>
 			<codigo>gcalendar</codigo>
-			<pos>43</pos>
+			<pos>53</pos>
 			<nombre>Google Calendar</nombre>
 		</row>
 		<row>
 			<id>18</id>
 			<codigo>feeds</codigo>
-			<pos>44</pos>
+			<pos>54</pos>
 			<nombre>Feeds</nombre>
 		</row>
 		<row>
 			<id>19</id>
 			<codigo>correo</codigo>
-			<pos>45</pos>
+			<pos>55</pos>
 			<nombre>Correo electrónico</nombre>
 		</row>
 	</tbl_permisos>

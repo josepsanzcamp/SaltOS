@@ -432,7 +432,7 @@ function make_select_query($page,$table,$field,$arg1=null,$arg2=null) {
 		FROM $table a2
 		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a2.id
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-	) a WHERE ".($filter?"id IN ($filter)":"1=1")." AND ".check_sql($page,"view");
+	) a WHERE ".($filter?"id IN ($filter)":"1=1")." AND ".check_sql($page,"list");
 	return $query;
 }
 ?>

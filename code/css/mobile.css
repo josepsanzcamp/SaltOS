@@ -67,7 +67,7 @@ iframe {
 }
 
 .none {
-	display:none;
+	display:none!important;
 }
 
 .info {
@@ -77,10 +77,6 @@ iframe {
 
 /* SOME JQUERY MOBILE TRICKS */
 .ui-btn {
-	margin-left:0!important;
-}
-
-.ui-input-text {
 	margin-left:0!important;
 }
 

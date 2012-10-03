@@ -1022,4 +1022,15 @@ function fix_input_vars() {
 		$_POST=array_merge($_POST,$items);
 	}
 }
+
+function free_memory() {
+	static $memory_limit=0;
+	if(!$memory_limit) {
+		$memory_limit=ini_get("memory_limit");
+		if(strtoupper(substr($memory_limit,-1,1))=="K") $memory_limit=intval(substr($memory_limit,0,-1))*1024;
+		if(strtoupper(substr($memory_limit,-1,1))=="M") $memory_limit=intval(substr($memory_limit,0,-1))*1024*1024;
+	}
+	$memory_usage=memory_get_usage(true);
+	return $memory_limit-$memory_usage;
+}
 ?>

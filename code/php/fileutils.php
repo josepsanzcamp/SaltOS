@@ -322,7 +322,7 @@ function addlog($msg,$file="") {
 	if(!$file) $file=getDefault("debug/logfile","saltos.log");
 	$dir=get_directory("dirs/filesdir",getcwd()."/files");
 	$maxlines=intval(getDefault("debug/maxlines",1000));
-	if($maxlines>0 && file_exists($dir.$file)) {
+	if($maxlines>0 && file_exists($dir.$file) && free_memory()>filesize($dir.$file)) {
 		capture_next_error();
 		$numlines=count(file($dir.$file));
 		$error=get_clear_error();
@@ -340,7 +340,7 @@ function addlog($msg,$file="") {
 	$msg=array_map("__addlog_helper",$msg);
 	$msg=implode("\n",$msg)."\n";
 	file_put_contents($dir.$file,$msg,FILE_APPEND);
-	chmod_protected($dir.$file,0666);
+	if(free_memory()>0) chmod_protected($dir.$file,0666);
 }
 
 function semaphore_acquire($file,$timeout=100000) {
