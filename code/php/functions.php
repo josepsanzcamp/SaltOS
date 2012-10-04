@@ -1012,18 +1012,23 @@ function dummy($param) {
 }
 
 function fix_input_vars() {
-	$items=querystring2array(base64_decode(getParam("fix_input_vars")));
-	if(isset($_GET["fix_input_vars"])) {
-		unset($_GET["fix_input_vars"]);
-		$_GET=array_merge($_GET,$items);
-	}
-	if(isset($_POST["fix_input_vars"])) {
-		unset($_POST["fix_input_vars"]);
-		$_POST=array_merge($_POST,$items);
+	if(intval(ini_get("max_input_vars"))>0) {
+		$fix_input_vars=getParam("fix_input_vars");
+		if($fix_input_vars!="") {
+			$array=querystring2array(base64_decode($fix_input_vars));
+			if(isset($_GET["fix_input_vars"])) {
+				unset($_GET["fix_input_vars"]);
+				$_GET=array_merge($_GET,$array);
+			}
+			if(isset($_POST["fix_input_vars"])) {
+				unset($_POST["fix_input_vars"]);
+				$_POST=array_merge($_POST,$array);
+			}
+		}
 	}
 }
 
-function free_memory() {
+function memory_get_free() {
 	static $memory_limit=0;
 	if(!$memory_limit) {
 		$memory_limit=ini_get("memory_limit");

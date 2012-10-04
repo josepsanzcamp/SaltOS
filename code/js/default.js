@@ -699,7 +699,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if(max_input_vars>0) {
 					var array=$(jqForm).serializeArray();
 					var total_input_vars=array.length;
-					max_input_vars--; // TO FIX AN UNKNOWN BUG WHEN SENT THE SAME FIELDS THAT MAX_INPUT_VARS
+					max_input_vars=max_input_vars*0.9; // TO FIX AN UNKNOWN BUG WHEN SENT THE SAME FIELDS THAT MAX_INPUT_VARS
 					if(total_input_vars>max_input_vars) {
 						//~ console.debug("max="+max_input_vars);
 						//~ console.debug("total="+total_input_vars);
@@ -753,12 +753,17 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("opencontent");
 		// LOGOUT EXCEPTION
 		if(strpos(url,"page=logout")!==false) { logout(); return; }
+		// TO FIX ERROR 414: REQUEST URI TOO LONG
+		var temp=explode("?",url,2);
+		if(typeof(temp[1])=="undefined") temp[1]="";
+		var type=(strlen(url)>1024)?"post":"get";
 		// NORMAL USAGE
 		if(typeof(callback)=="undefined") var callback=function() {};
 		loadingcontent();
 		$.ajax({
-			url:url,
-			type:"get",
+			url:temp[0],
+			data:temp[1],
+			type:type,
 			beforeSend:function(XMLHttpRequest) {
 				addcontent(url);
 				jqxhr=XMLHttpRequest;

@@ -27,7 +27,7 @@ function db_connect_pdo_mysql() {
 	global $_CONFIG;
 	if(!class_exists("PDO")) { db_error_pdo_mysql(array("phperror"=>"Class PDO not found","details"=>"Try to install php-mysqlnd package")); return; }
 	try {
-		$_CONFIG["db"]["link"]=new PDO("mysql:host=".getDefault("db/host").";port=".getDefault("db/port").";dbname=".getDefault("db/name"),getDefault("db/user"),getDefault("db/pass"),array(PDO::ATTR_PERSISTENT=>true));
+		$_CONFIG["db"]["link"]=new PDO("mysql:host=".getDefault("db/host").";port=".getDefault("db/port").";dbname=".getDefault("db/name"),getDefault("db/user"),getDefault("db/pass"));
 		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 	} catch(PDOException $e) {
 		db_error_pdo_mysql(array("exception"=>$e->getMessage()));
