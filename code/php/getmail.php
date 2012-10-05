@@ -541,21 +541,24 @@ function __getmail_nextid() {
 function __getmail_href_replace($temp) {
 	// REPLACE THE INTERNALS LINKS TO OPENCONTENT CALLS
 	$orig="href='".get_base();
-	$dest="onclick='parent.opencontent(this.href);return false' ".str_replace("href=","__href__=",$orig);
-	$orig=array($orig,str_replace("'",'"',$orig));
-	$dest=array($dest,str_replace("'",'"',$dest));
+	$dest=str_replace("href=","__href__=",$orig);
+	$onclick="onclick='parent.opencontent(this.href);return false' ";
+	$orig=array($orig,str_replace("'",'"',$orig),str_replace("'",'',$orig));
+	$dest=array($onclick.$dest,$onclick.str_replace("'",'"',$dest),$onclick.str_replace("'",'',$dest));
 	$temp=str_replace($orig,$dest,$temp);
 	// REPLACE THE MAILTO LINKS TO MAILTO CALLS
 	$orig="href='mailto:";
-	$dest="onclick='parent.mailto(parent.substr(this.href,7));return false' ".str_replace("href=","__href__=",$orig);
-	$orig=array($orig,str_replace("'",'"',$orig));
-	$dest=array($dest,str_replace("'",'"',$dest));
+	$dest=str_replace("href=","__href__=",$orig);
+	$onclick="onclick='parent.mailto(parent.substr(this.href,7));return false' ";
+	$orig=array($orig,str_replace("'",'"',$orig),str_replace("'",'',$orig));
+	$dest=array($onclick.$dest,$onclick.str_replace("'",'"',$dest),$onclick.str_replace("'",'',$dest));
 	$temp=str_replace($orig,$dest,$temp);
 	// REPLACE THE REST OF LINKS TO OPENWIN CALLS
 	$orig="href='";
-	$dest="onclick='parent.openwin(this.href);return false' ".str_replace("href=","__href__=",$orig);
-	$orig=array($orig,str_replace("'",'"',$orig));
-	$dest=array($dest,str_replace("'",'"',$dest));
+	$dest=str_replace("href=","__href__=",$orig);
+	$onclick="onclick='parent.openwin(this.href);return false' ";
+	$orig=array($orig,str_replace("'",'"',$orig),str_replace("'",'',$orig));
+	$dest=array($onclick.$dest,$onclick.str_replace("'",'"',$dest),$onclick.str_replace("'",'',$dest));
 	$temp=str_replace($orig,$dest,$temp);
 	// RESTORE THE __HREF__= TO HREF=
 	$temp=str_replace("__href__=","href=",$temp);
