@@ -75,6 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logout>lib/highcontrast/actions/system-log-out.png</logout>
 		<mail>lib/highcontrast/actions/mail-forward.png</mail>
 		<maincfg>lib/highcontrast/actions/document-properties.png</maincfg>
+		<menu>lib/highcontrast/apps/terminal.png</menu>
 		<next>lib/highcontrast/actions/stock_right.png</next>
 		<partes>lib/highcontrast/apps/ksysguard.png</partes>
 		<pdf>lib/highcontrast/mimetypes/gnome-mime-application-pdf.png</pdf>
@@ -162,6 +163,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logout>lib/crystal/actions/logout.png</logout>
 		<mail>lib/crystal/actions/mail_forward.png</mail>
 		<maincfg>lib/crystal/actions/utilities.png</maincfg>
+		<menu>lib/crystal/actions/view_tree.png</menu>
 		<next>lib/crystal/actions/1rightarrow.png</next>
 		<partes>lib/crystal/actions/project_open.png</partes>
 		<pdf>lib/crystal/apps/acroread.png</pdf>
@@ -249,6 +251,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logout>lib/silk/icons/door_out.png</logout>
 		<mail>lib/silk/icons/email_go.png</mail>
 		<maincfg>lib/silk/icons/wrench.png</maincfg>
+		<menu>lib/silk/icons/application_side_tree.png</menu>
 		<next>lib/silk/icons/resultset_next.png</next>
 		<partes>lib/silk/icons/overlays.png</partes>
 		<pdf>lib/silk/icons/page_white_acrobat.png</pdf>

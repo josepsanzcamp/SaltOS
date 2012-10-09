@@ -412,7 +412,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jquery.com/")</onclick>
 						</field>
 						<field>
-							<label>JQuery UI 1.8.24 (MIT)</label>
+							<label>JQuery UI 1.9.0 (MIT)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
@@ -503,58 +503,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://stanlemon.net/projects/jgrowl.html")</onclick>
 						</field>
 						<field>
-							<label>ContextMenu r2 (MIT &amp; GPL*)</label>
+							<label>Columnizer 1.6.0 (CC-BY-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentr</class>
-							<onclick>openwin("http://www.trendskitchens.co.nz/jquery/contextmenu/")</onclick>
+							<onclick>openwin("http://welcome.totheinter.net/columnizer-jquery-plugin/")</onclick>
 						</field>
 					</row>
 					<row>
 						<field>
-							<label>Tooltip 1.3 (MIT &amp; GPL*)</label>
-							<type>link</type>
-							<class>left item sectioncontentl</class>
-							<onclick>openwin("http://bassistance.de/jquery-plugins/jquery-plugin-tooltip/")</onclick>
-						</field>
-						<field>
 							<label>Masonry 2.1.05 (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>left item sectioncontentbl</class>
 							<onclick>openwin("http://desandro.com/resources/jquery-masonry/")</onclick>
 						</field>
 						<field>
 							<label>Favicon 0.2.1 (MIT &amp; GPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>left item sectioncontentb</class>
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.2.2 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.2.4 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>left item sectioncontentb</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Columnizer 1.6.0 (CC-BY-3.0)</label>
-							<type>link</type>
-							<class>left item sectioncontentbl</class>
-							<onclick>openwin("http://welcome.totheinter.net/columnizer-jquery-plugin/")</onclick>
 						</field>
 						<field>
 							<label>Grab Bag - Assorted Detritus (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>left item sectioncontentbr</class>
 							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentbr</class>
 						</field>
 					</row>
 					<row>

@@ -70,8 +70,6 @@ if(typeof(__calendar__)=="undefined" && typeof(parent.__calendar__)=="undefined"
 						});
 						// FINISH THE LOAD
 						unloadingcontent();
-						var screen=$(".ui-layout-center");
-						make_tooltips(screen);
 					},
 					error:function(XMLHttpRequest,textStatus,errorThrown) {
 						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

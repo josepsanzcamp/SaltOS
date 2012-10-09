@@ -523,6 +523,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<translate>Traductor</translate>
 		<corrector>Corrector</corrector>
 		<calculator>Calculadora</calculator>
+		<menu>Menú</menu>
+		<menutip>Per veure i amagar el menú d'aplicacions</menutip>
 	</menu>
 	<clientes>
 		<list>Llistat de clients</list>
@@ -660,6 +662,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<entrada>Entrada</entrada>
 		<salida>Sortida</salida>
 		<dias>Dies</dias>
+		<logged>Connectat</logged>
 		<password2>Repetiu clau</password2>
 		<errorpassword>Les claus entrades no coincideixen</errorpassword>
 		<contacto>Contacte</contacto>

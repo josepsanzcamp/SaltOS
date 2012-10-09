@@ -864,7 +864,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 						var area="<area shape='"+shape+"' coords='"+coords+"' title='"+value+"'>";
 						$(map).append(area);
 					});
-					make_tooltips(map);
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown) {
 					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
@@ -965,7 +964,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// UNUSED
 	}
 
-	function make_tooltips(obj) {
+	function make_tooltips() {
 		// UNUSED
 	}
 

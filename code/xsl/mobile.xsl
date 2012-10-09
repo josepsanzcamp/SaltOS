@@ -257,7 +257,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										</xsl:when>
 										<xsl:when test="substring(node(),1,4)='tel:'">
 											<xsl:value-of select="$label"/>:
-											<a class="tellink" href="javascript:void(0)" onclick="" title="{substring(node(),5)}">
+											<a class="tellink" href="javascript:void(0)" onclick="">
 												<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
 													<xsl:with-param name="find">'</xsl:with-param>
 													<xsl:with-param name="replace"> </xsl:with-param>
@@ -271,7 +271,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										</xsl:when>
 										<xsl:when test="substring(node(),1,4)='fax:'">
 											<xsl:value-of select="$label"/>:
-											<a class="faxlink" href="javascript:void(0)" onclick="" title="{substring(node(),5)}">
+											<a class="faxlink" href="javascript:void(0)" onclick="">
 												<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
 													<xsl:with-param name="find">'</xsl:with-param>
 													<xsl:with-param name="replace"> </xsl:with-param>
@@ -285,7 +285,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										</xsl:when>
 										<xsl:when test="substring(node(),1,7)='mailto:'">
 											<xsl:value-of select="$label"/>:
-											<a class="maillink" href="javascript:void(0)" onclick="" title="{substring(node(),8)}">
+											<a class="maillink" href="javascript:void(0)" onclick="">
 												<xsl:attribute name="onclick">mailto('<xsl:call-template name="replace_string">
 													<xsl:with-param name="find">'</xsl:with-param>
 													<xsl:with-param name="replace"> </xsl:with-param>
@@ -299,7 +299,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										</xsl:when>
 										<xsl:when test="substring(node(),1,5)='href:'">
 											<xsl:value-of select="$label"/>:
-											<a class="weblink" href="javascript:void(0)" onclick="" title="{substring(node(),6)}">
+											<a class="weblink" href="javascript:void(0)" onclick="">
 												<xsl:attribute name="onclick">openwin('<xsl:call-template name="replace_string">
 													<xsl:with-param name="find">'</xsl:with-param>
 													<xsl:with-param name="replace"> </xsl:with-param>
@@ -328,7 +328,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 												<xsl:with-param name="replace">://</xsl:with-param>
 												<xsl:with-param name="string" select="substring-after($data1,':')"/>
 											</xsl:call-template></xsl:variable>
-											<a class="applink" href="javascript:void(0)" onclick="{$data2}" title="{$data3}">
+											<a class="applink" href="javascript:void(0)" onclick="{$data2}">
 												<xsl:call-template name="print_string_length">
 													<xsl:with-param name="text" select="$data3"/>
 													<xsl:with-param name="size" select="$size"/>

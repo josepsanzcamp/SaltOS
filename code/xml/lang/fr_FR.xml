@@ -523,6 +523,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<translate>Traducteur</translate>
 		<corrector>Orthographe</corrector>
 		<calculator>Calculateur</calculator>
+		<menu revised="false">Menu</menu>
+		<menutip revised="false">Pour afficher et masquer le menu de l'application</menutip>
 	</menu>
 	<clientes>
 		<list>Liste des clients</list>
@@ -660,6 +662,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<entrada>Entrée</entrada>
 		<salida>sortie</salida>
 		<dias>Jours</dias>
+		<logged revised="false">Lié</logged>
 		<password2>Répétez clés</password2>
 		<errorpassword>Les entrées principales ne correspondent pas</errorpassword>
 		<contacto> Contact </contacto>

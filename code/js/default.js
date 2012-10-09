@@ -519,6 +519,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		}
 		// HIDE SOME ISSUES
 		hide_contextmenu();
+		hide_tooltips();
 		// GET COLORS AND FONT FAMILY
 		var color=get_colors("ui-state-highlight","color");
 		var background=get_colors("ui-state-highlight","background-color");
@@ -963,7 +964,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			setTimeout(function() {
 				//~ console.time("updatecontent north fase 1");
 				make_hovers(header);
-				make_tooltips(header);
 				make_draganddrop(header);
 				//~ console.timeEnd("updatecontent north fase 1");
 			},100);
@@ -995,7 +995,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			setTimeout(function() {
 				//~ console.time("updatecontent west fase 1");
 				make_hovers(menu);
-				make_tooltips(menu);
 				make_draganddrop(menu);
 				//~ console.timeEnd("updatecontent west fase 1");
 			},100);
@@ -1028,7 +1027,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			update_style(html,html2);
 			update_iconset(html,html2);
 			make_hovers(screen);
-			make_tooltips(screen);
 			make_draganddrop(screen);
 			make_focus();
 			//~ console.timeEnd("updatecontent center fase 1");
@@ -1047,9 +1045,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var active=getIntCookie("saltos_ui_menu_"+name)?0:false;
 			$(this).accordion({
 				collapsible:true,
-				animated:"bounceslide",
+				heightStyle:"content",
 				active:active,
-				header:"h3",
 				change:function(event,ui) {
 					var name=$(this).attr("id");
 					var active=ui.newHeader.length;
@@ -1057,13 +1054,21 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				},
 				icons:{
 					header:"ui-icon-circle-arrow-e",
-					headerSelected:"ui-icon-circle-arrow-s"
+					activeHeader:"ui-icon-circle-arrow-s"
 				}
 			});
 			exists=1;
 		});
-		if(exists) $(obj).show();
-		if(!exists) $(obj).hide();
+		if(exists) {
+			var closed=getIntCookie("saltos_ui_menu_closed");
+			if(closed) {
+				$(obj).hide();
+			} else {
+				$(obj).show();
+			}
+		} else {
+			$(obj).hide();
+		}
 		// AND PROGRAM HOVER EFFECT
 		$(".menu div a",obj).bind("mouseover",function() {
 			var color=get_colors("ui-state-active","color");
@@ -1077,9 +1082,20 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function update_menu() {
 		var hasbold=$("a.ui-state-default:first").css("font-weight");
-		$(".menu div a").each(function() {
+		$(".ui-layout-west .menu div a").each(function() {
 			$(this).css("font-weight",hasbold);
 		});
+	}
+
+	function toggle_menu() {
+		var obj=$(".ui-layout-west");
+		if($(obj).is(":visible")) {
+			$(obj).hide();
+			setIntCookie("saltos_ui_menu_closed",1);
+		} else {
+			$(obj).show();
+			setIntCookie("saltos_ui_menu_closed",0);
+		}
 	}
 
 	function make_tabs(obj) {
@@ -1294,7 +1310,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						var area="<area shape='"+shape+"' coords='"+coords+"' title='"+value+"'>";
 						$(map).append(area);
 					});
-					make_tooltips(map);
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown) {
 					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
@@ -1507,9 +1522,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(ckeditors).each(function() {
 				var padre=$(this).parent();
 				var width=$(this).outerWidth()+"px";
-				$(this).ckeditor(function() {
-					make_tooltips(padre);
-				},{
+				$(this).ckeditor({
 					width:width
 				});
 			});
@@ -1527,52 +1540,59 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.timeEnd("unmake_ckeditors");
 	}
 
-	function make_tooltips(obj) {
+	function make_tooltips() {
 		//~ console.time("make_tooltips");
-		if(typeof(obj)=="undefined") var obj=$("body");
-		// CREATE THE TOOLTIPS
-		$("[title][title!='']",obj).each(function() {
-			// GET THE TITLE VALUE
-			var title=trim($(this).attr("title"));
-			var update=false;
-			// CHECK IF TITLE IS THE SAME THAT THE OBJECT TEXT
-			if(title==$(this).text()) {
-				title="";
-				update=true;
-			}
-			// FIX SOME ISSUES
-			if(strpos(title,"<")!==false || strpos(title,">")!==false) {
-				title=str_replace(new Array("<",">"),new Array("&lt;","&gt;"),title);
-				update=true;
-			}
-			// REPAIR LONG TITLES WITH FORCED BREAK LINES
-			if(strlen(title)>100) {
-				words=explode(" ",title);
-				title="";
-				count=0;
-				$(words).each(function() {
-					if(count>100) {
-						title+="<br/>";
-						count=0;
+		$(document).tooltip({
+			items:"[title][title!=''],[title2][title2!='']",
+			show:{ effect:"none" },
+			hide:{ effect:"none" },
+			tooltipClass:"ui-state-highlight",
+			track:true,
+			content:function() {
+				// GET THE TITLE VALUE
+				var title=trim($(this).attr("title"));
+				if(title) {
+					// CHECK IF TITLE IS THE SAME THAT THE OBJECT TEXT
+					if(title==$(this).text()) {
+						title="";
 					}
-					title+=this+" ";
-					count+=strlen(this)+1;
-				});
-				update=true;
+					// FIX SOME ISSUES
+					if(strpos(title,"<")!==false || strpos(title,">")!==false) {
+						title=str_replace(new Array("<",">"),new Array("&lt;","&gt;"),title);
+					}
+					// REPAIR LONG TITLES WITH FORCED BREAK LINES
+					if(strlen(title)>100) {
+						words=explode(" ",title);
+						title="";
+						count=0;
+						$(words).each(function() {
+							if(count>100) {
+								title+="<br/>";
+								count=0;
+							}
+							title+=this+" ";
+							count+=strlen(this)+1;
+						});
+					}
+					// MOVE DATA FROM TITLE TO TITLE2
+					$(this).attr("title","");
+					$(this).attr("title2",title);
+				} else {
+					title=$(this).attr("title2");
+				}
+				// CHECK IF OBJECT IS DISABLED
+				if($(this).hasClass("ui-state-disabled")) {
+					title="";
+				}
+				// CREATE THE TOOLTIP
+				return title;
 			}
-			// CHECK THE UPDATE
-			if(update) $(this).attr("title",title);
-			// CHECK IF TITLE HAVE DATA
-			if(!title) return;
-			// CREATE THE TOOLTIP
-			$(this).tooltip({
-				showURL:false,
-				delay:0,
-				track:false,
-				extraClass:"ui-state-highlight ui-corner-all nowrap"
-			});
 		});
 		//~ console.timeEnd("make_tooltips");
+	}
+
+	function hide_tooltips() {
+		$(".ui-tooltip").hide();
 	}
 
 	var focused=null;
@@ -1704,91 +1724,62 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("make_contextmenu");
 		// IF NOT EXISTS THE CONTEXT MENU, CREATE IT
 		if($("#contextMenu").length==0) {
-			$("body").append("<div id='contextMenu' style='display:none'><ul></ul></div>");
+			$("body").append("<ul id='contextMenu'></ul>");
 			$(document).bind("keydown",function(event) {
 				if(is_escapekey(event)) hide_contextmenu();
+			}).bind("click",function(event) {
+				if(event.button!=2) hide_contextmenu();
 			});
 		}
-		// GET COLORS AND FONT FAMILY
-		var color1=get_colors("ui-widget-content","color");
-		var background1=get_colors("ui-widget-content","background-color");
-		var color2=get_colors("ui-state-highlight","color");
-		var background2=get_colors("ui-state-highlight","background-color");
-		var fontfamily=get_colors("ui-widget","font-family");
 		// PROGRAM THE GENERAL CONTEXT MENU
-		$(document).contextMenu("contextMenu",{
-			menuStyle:{
-				"border-radius":"5px",
-				"-moz-border-radius":"5px",
-				"-webkit-border-radius":"5px",
-				"box-shadow":"5px 5px 10px rgba(0,0,0,0.4)",
-				"-moz-box-shadow":"5px 5px 10px rgba(0,0,0,0.4)",
-				"-webkit-box-shadow":"5px 5px 10px rgba(0,0,0,0.4)",
-				"font-family":fontfamily,
-				"padding":"5px 0px",
-				"color":color1,
-				"background":background1,
-				"border-width":"1px",
-				"border-color":color1,
-				"width":"150px"
-			},
-			itemStyle:{
-				"color":color1,
-				"background":background1,
-				"border":"none",
-				"padding":"7px"
-			},
-			itemHoverStyle:{
-				"color":color2,
-				"background":background2,
-				"border":"none"
-			},
-			shadow:false,
-			onContextMenu:function(event) {
-				$("#contextMenu ul").html2("");
-				var parent=$(event.target).parent();
-				var trs=$("tr",parent);
-				var tds=$("td.actions",parent);
-				if($(trs).length || !$(tds).length) tds=$(".contextmenu");
-				var hashes=new Array();
-				$(tds).each(function() {
-					var onclick=$(this).attr("onclick");
-					if(!onclick) onclick=$("a",this).attr("onclick");
-					var clase=$("span",this).attr("class");
-					var texto=$(this).text();
-					if(!texto) texto=$(this).attr("labeled");
-					if(!texto) texto=$(this).attr("title");
-					if(!texto) texto=$("a",this).attr("labeled");
-					if(!texto) texto=$("a",this).attr("title");
-					if(!texto) texto=$("span",this).attr("labeled");
-					if(!texto) texto=$("span",this).attr("title");
-					var disabled=$(this).hasClass("ui-state-disabled");
-					if(!disabled) disabled=$("a",this).hasClass("ui-state-disabled");
-					if(!disabled) disabled=$("span",this).hasClass("ui-state-disabled");
-					var extra=disabled?"ui-state-disabled":"";
-					var html="<li class='"+extra+"'><span class='"+clase+"'></span>&nbsp;"+texto+"</li>";
-					var hash=md5(html);
-					if(!in_array(hash,hashes)) {
-						hashes.push(hash);
-						$("#contextMenu ul").append(html);
-						$("#contextMenu ul li:last").bind("click",function() {
-							hide_contextmenu();
-							eval(onclick);
-						});
-					}
-				});
-				return $("#contextMenu ul li").length>0;
-			},
-			onShowMenu:function(event,menu) {
-				return menu;
+		$(document).bind("contextmenu",function(event) {
+			var obj=$("#contextMenu");
+			$("li",obj).remove2();
+			var parent=$(event.target).parent();
+			var trs=$("tr",parent);
+			var tds=$("td.actions",parent);
+			if($(trs).length || !$(tds).length) tds=$(".contextmenu");
+			var hashes=new Array();
+			$(tds).each(function() {
+				var onclick=$(this).attr("onclick");
+				if(!onclick) onclick=$("a",this).attr("onclick");
+				var extra1=$("span",this).attr("class");
+				extra1=str_replace("ui-state-disabled","",extra1);
+				var texto=$(this).text();
+				if(!texto) texto=$(this).attr("labeled");
+				if(!texto) texto=$(this).attr("title");
+				if(!texto) texto=$("a",this).attr("labeled");
+				if(!texto) texto=$("a",this).attr("title");
+				if(!texto) texto=$("span",this).attr("labeled");
+				if(!texto) texto=$("span",this).attr("title");
+				var disabled=$(this).hasClass("ui-state-disabled");
+				if(!disabled) disabled=$("a",this).hasClass("ui-state-disabled");
+				if(!disabled) disabled=$("span",this).hasClass("ui-state-disabled");
+				var extra2=disabled?"ui-state-disabled":"";
+				var html="<li class='"+extra2+"'><a href='javascript:void(0)'><span class='"+extra1+"'></span>&nbsp;"+texto+"</a></li>";
+				var hash=md5(html);
+				if(!in_array(hash,hashes)) {
+					$(obj).append(html);
+					$("li:last a",obj).bind("click",function() { eval(onclick); });
+					hashes.push(hash);
+				}
+			});
+			$(obj).css("position","absolute");
+			$(obj).css("left",event.pageX);
+			$(obj).css("top",event.pageY);
+			$(obj).show();
+			if(!$(obj).hasClass("ui-menu")) {
+				$(obj).menu();
+			} else {
+				$(obj).menu("refresh");
 			}
+			return false;
 		});
 		//~ console.timeEnd("make_contextmenu");
 	}
 
 	function hide_contextmenu() {
-		$("#jqContextMenu").hide();
-		$("#jqContextMenuShadow").hide();
+		$("#contextMenu").hide();
 	}
 
 	var cache_colors=new Object();
@@ -1923,6 +1914,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_contextmenu();
 			make_shortcuts();
 			make_abort();
+			make_tooltips();
 			var header=$(".ui-layout-north");
 			make_numbers(header);
 			var menu=$(".ui-layout-west");
@@ -1940,13 +1932,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				//~ console.time("document_ready fase 2");
 				load_numbers();
 				make_hovers(header);
-				make_tooltips(header);
 				make_draganddrop(header);
 				make_hovers(menu);
-				make_tooltips(menu);
 				make_draganddrop(menu);
 				make_hovers(screen);
-				make_tooltips(screen);
 				make_draganddrop(screen);
 				make_focus();
 				//~ console.timeEnd("document_ready fase 2");

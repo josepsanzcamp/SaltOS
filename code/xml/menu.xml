@@ -30,33 +30,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<count global="page,action,id,count_feeds" eval="true">$count_feeds=execute_query("SELECT COUNT(*) FROM tbl_feeds WHERE state_new='1' AND id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='".current_user()."') AND NOT ('".$page."'='feeds' AND '".$action."'='form' AND '".abs($id)."'=id)")</count>
 	</counts>
 	<header ifeval="!is_mobile()">
-		<option ifeval="check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)" >
+		<option>
+			<label lang="true">menu</label>
+			<onclick>toggle_menu()</onclick>
+			<icon>menu</icon>
+			<tip lang="true">menutip</tip>
+			<class>nowrap shortcut_ctrl_m</class>
+			<left>true</left>
+		</option>
+		<option ifeval="check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)">
 			<label lang="true">playvoice</label>
 			<onclick>play_voice()</onclick>
 			<icon>playvoice</icon>
 			<tip lang="true">playvoicetip</tip>
 			<class>playvoice none</class>
+			<right>true</right>
 		</option>
-		<option ifeval="check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)" >
+		<option ifeval="check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)">
 			<label lang="true">stopvoice</label>
 			<onclick>stop_voice()</onclick>
 			<icon>stopvoice</icon>
 			<tip lang="true">stopvoicetip</tip>
 			<class>stopvoice none</class>
+			<right>true</right>
 		</option>
-		<option ifeval="check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)" >
+		<option ifeval="check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)">
 			<label lang="true">nextvoice</label>
 			<onclick>next_voice()</onclick>
 			<icon>nextvoice</icon>
 			<tip lang="true">nextvoicetip</tip>
 			<class>nextvoice none</class>
+			<right>true</right>
 		</option>
-		<option ifeval="check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)" >
+		<option ifeval="check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)">
 			<label lang="true">cancelvoice</label>
 			<onclick>cancel_voice()</onclick>
 			<icon>cancelvoice</icon>
 			<tip lang="true">cancelvoicetip</tip>
 			<class>cancelvoice none</class>
+			<right>true</right>
 		</option>
 		<temp global="rows" eval="true">dummy($rows=execute_query("SELECT * FROM tbl_quick WHERE id_usuario='".current_user()."' ORDER BY id ASC"))</temp>
 		<temp global="rows" ifeval="!is_array($rows)" eval="true">dummy($rows=array(array("codigo"=>CONFIG("quick_button_f1"),"button"=>"f1"),array("codigo"=>CONFIG("quick_button_f2"),"button"=>"f2"),array("codigo"=>CONFIG("quick_button_f3"),"button"=>"f3"),array("codigo"=>CONFIG("quick_button_f4"),"button"=>"f4"),array("codigo"=>CONFIG("quick_button_f5"),"button"=>"f5"),array("codigo"=>CONFIG("quick_button_f6"),"button"=>"f6"),array("codigo"=>CONFIG("quick_button_f7"),"button"=>"f7"),array("codigo"=>CONFIG("quick_button_f8"),"button"=>"f8"),array("codigo"=>CONFIG("quick_button_f9"),"button"=>"f9"),array("codigo"=>CONFIG("quick_button_f10"),"button"=>"f10"),array("codigo"=>CONFIG("quick_button_f11"),"button"=>"f11"),array("codigo"=>CONFIG("quick_button_f12"),"button"=>"f12")))</temp>
@@ -67,6 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<icon global="temp" eval="true">$temp</icon>
 			<tip global="temp,row" eval="true">$temp?LANG("desc_$temp")." [".strtoupper($row["button"])."]":""</tip>
 			<class global="temp,count_correo,count_agenda,count_feeds,row" eval="true">"nowrap".($temp=="correo"?" correo number":"").($temp=="agenda"?" agenda number":"").($temp=="feeds"?" feeds number":"").(" shortcut_".$row["button"])</class>
+			<right>true</right>
 		</option>
 	</header>
 	<group>
@@ -124,7 +137,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option include="xml/common/menuoptionslist.xml" replace="true"/>
 	</group>
 	<temp global="temp" eval="true">$temp="folders"</temp>
-	<group global="temp" ifeval="$temp!='' &amp;&amp; check_user($temp,'menu')" >
+	<group global="temp" ifeval="$temp!='' &amp;&amp; check_user($temp,'menu')">
 		<temp eval="true">execute_query("SELECT COUNT(*) FROM tbl_folders WHERE id_usuario='".current_user()."'")==0?db_query("INSERT INTO tbl_folders(id,id_usuario,name) VALUES(NULL,'".current_user()."','".LANG_ESCAPE("defaultfolder","folders")."')"):""</temp>
 		<label global="temp" eval="true">LANG($temp)</label>
 		<name>folders</name>

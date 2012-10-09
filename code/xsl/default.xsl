@@ -45,8 +45,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:for-each select="/root">
 		<div class="ui-widget">
 			<div class="ui-widget-header ui-corner-bottom">
-				<div class="quick">
-					<xsl:for-each select="menu/header/option">
+				<div class="quickleft">
+					<xsl:for-each select="menu/header/option[left='true']">
+						<a href="javascript:void(0)" class="ui-state-default ui-corner-bottom {class}" onclick="{onclick}" title="{tip}">
+							<xsl:if test="icon!=''">
+								<span class="saltos-icon saltos-icon-{icon}"/>
+								<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
+							</xsl:if>
+							<xsl:value-of select="label"/>
+						</a>
+					</xsl:for-each>
+				</div>
+				<div class="quickright">
+					<xsl:for-each select="menu/header/option[right='true']">
 						<a href="javascript:void(0)" class="ui-state-default ui-corner-bottom {class}" onclick="{onclick}" title="{tip}">
 							<xsl:if test="icon!=''">
 								<span class="saltos-icon saltos-icon-{icon}"/>
@@ -233,7 +244,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:text>-</xsl:text>
 					</xsl:when>
 					<xsl:when test="substring(.,1,4)='tel:'">
-						<a class="tellink draggable id_{$id}" href="javascript:void(0)" onclick="" title="{substring(.,5)}">
+						<a class="tellink draggable id_{$id}" href="javascript:void(0)" onclick="">
 							<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
 								<xsl:with-param name="find">'</xsl:with-param>
 								<xsl:with-param name="replace"> </xsl:with-param>
@@ -246,7 +257,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</a>
 					</xsl:when>
 					<xsl:when test="substring(.,1,4)='fax:'">
-						<a class="faxlink draggable id_{$id}" href="javascript:void(0)" onclick="" title="{substring(.,5)}">
+						<a class="faxlink draggable id_{$id}" href="javascript:void(0)" onclick="">
 							<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
 								<xsl:with-param name="find">'</xsl:with-param>
 								<xsl:with-param name="replace"> </xsl:with-param>
@@ -259,7 +270,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</a>
 					</xsl:when>
 					<xsl:when test="substring(.,1,7)='mailto:'">
-						<a class="maillink draggable id_{$id}" href="javascript:void(0)" onclick="" title="{substring(.,8)}">
+						<a class="maillink draggable id_{$id}" href="javascript:void(0)" onclick="">
 							<xsl:attribute name="onclick">mailto('<xsl:call-template name="replace_string">
 								<xsl:with-param name="find">'</xsl:with-param>
 								<xsl:with-param name="replace"> </xsl:with-param>
@@ -272,7 +283,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</a>
 					</xsl:when>
 					<xsl:when test="substring(.,1,5)='href:'">
-						<a class="weblink draggable id_{$id}" href="javascrpit:;" onclick="" title="{substring(.,6)}">
+						<a class="weblink draggable id_{$id}" href="javascrpit:;" onclick="">
 							<xsl:attribute name="onclick">openwin('<xsl:call-template name="replace_string">
 								<xsl:with-param name="find">'</xsl:with-param>
 								<xsl:with-param name="replace"> </xsl:with-param>
@@ -300,7 +311,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<xsl:with-param name="replace">://</xsl:with-param>
 							<xsl:with-param name="string" select="substring-after($data1,':')"/>
 						</xsl:call-template></xsl:variable>
-						<a class="applink draggable id_{$id}" href="javascript:void(0)" onclick="{$data2}" title="{$data3}">
+						<a class="applink draggable id_{$id}" href="javascript:void(0)" onclick="{$data2}">
 							<xsl:call-template name="print_string_length">
 								<xsl:with-param name="text" select="$data3"/>
 								<xsl:with-param name="size" select="$size"/>

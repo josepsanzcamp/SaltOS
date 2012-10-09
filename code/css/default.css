@@ -44,14 +44,20 @@ form {
 .ui-layout-north {
 	padding:0px 0px 0px 0px;
 }
-.ui-layout-north .texto {
-	padding:5px;
-	font-size:1.3em;
+.ui-layout-north .quickleft {
+	float:left;
+	margin-top:-1px;
+	margin-left:4px;
 }
-.ui-layout-north .quick {
+.ui-layout-north .quickright {
 	float:right;
 	margin-top:-1px;
 	margin-right:4px;
+}
+.ui-layout-north .texto {
+	text-align:center;
+	padding:5px;
+	font-size:1.3em;
 }
 .ui-layout-west {
 	padding:1px 0px 2px 2px;
@@ -59,6 +65,9 @@ form {
 }
 .ui-layout-center {
 	padding:2px 2px 2px 2px;
+}
+.ui-accordion-header {
+	margin-top:1px!important;
 }
 .accordion-link {
 	list-style:none;
@@ -261,6 +270,9 @@ div.jGrowl div a {
 	text-decoration:none;
 }
 /* FOR VIEWPDF */
+#dialog {
+	overflow-x:hidden;
+}
 #dialog canvas {
 	box-shadow: 0px 4px 10px #000;
 	-moz-box-shadow: 0px 4px 10px #000;
@@ -334,4 +346,9 @@ span.number {
 /* FOR PLOTS */
 img[isplot=true] {
 	margin:2px;
+}
+/* FOR TOOLTIPS */
+.ui-tooltip {
+	padding:3px 5px!important;
+	border-width:1px!important;
 }

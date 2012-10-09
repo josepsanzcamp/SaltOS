@@ -37,7 +37,7 @@ span.green {
 span.blue {
 	color: #0000aa;
 }
-div.ui-state-highlight {
+td.tbody div.ui-state-highlight {
 	margin:2px 0px;
 	padding:0px 2px;
 }
