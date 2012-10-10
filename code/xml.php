@@ -50,6 +50,7 @@ db_schema();
 db_static();
 sess_init();
 check_remember();
+check_basicauth();
 pre_datauser();
 sess_close();
 check_security("main");

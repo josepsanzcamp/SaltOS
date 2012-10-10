@@ -8,7 +8,7 @@
  *  - http://www.gnu.org/copyleft/gpl.html
  *
  * Author: Mark J Panaghiston
- * Version: 2.2.4
+ * Version: 2.2.5
  * Date: 9th October 2012
  */
 
@@ -16,7 +16,15 @@
 /*jshint asi:false, bitwise:false, boss:false, browser:true, curly:true, debug:false, eqeqeq:true, eqnull:false, evil:false, forin:false, immed:false, jquery:true, laxbreak:false, newcap:true, noarg:true, noempty:true, nonew:true, onevar:false, passfail:false, plusplus:false, regexp:false, undef:true, sub:false, strict:false, white:false smarttabs:true */
 /*global jQuery:false, ActiveXObject:false, alert:false */
 
-(function($, undefined) {
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(['jquery'], factory);
+	} else {
+		// Browser globals
+		factory(root.jQuery);
+	}
+}(this, function ($, undefined) {
 
 	// Adapted from jquery.ui.widget.js (1.8.7): $.widget.bridge
 	$.fn.jPlayer = function( options ) {
@@ -2378,4 +2386,4 @@
 		CSS_SELECTOR_STRING: "Check your css selector is a string.",
 		OPTION_KEY: "Check your option name."
 	};
-})(jQuery);
+}));

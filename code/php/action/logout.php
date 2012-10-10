@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(getParam("action")=="logout") {
-	check_security($action);
+	check_security("logout");
 	sess_init();
 	useSession("user","null");
 	useSession("pass","null");

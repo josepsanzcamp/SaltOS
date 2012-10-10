@@ -400,7 +400,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>PHPJS 3.26 (MIT &amp; GPL-2.0)</label>
+							<label>PHPJS &gt;=3.26 (MIT &amp; GPL-2.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://www.phpjs.org/")</onclick>
@@ -418,7 +418,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 3.6.4 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 3.6.5 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>left item sectioncontentr</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>
@@ -523,7 +523,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.2.4 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.2.5 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentb</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>

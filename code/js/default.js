@@ -517,9 +517,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(".blockMsg > h1").text(message);
 			return false;
 		}
-		// HIDE SOME ISSUES
-		hide_contextmenu();
-		hide_tooltips();
 		// GET COLORS AND FONT FAMILY
 		var color=get_colors("ui-state-highlight","color");
 		var background=get_colors("ui-state-highlight","background-color");
@@ -1541,6 +1538,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	function make_tooltips() {
+		$(document).bind("keydown",function(event) {
+			hide_tooltips();
+		}).bind("click",function(event) {
+			hide_tooltips();
+		});
 		//~ console.time("make_tooltips");
 		$(document).tooltip({
 			items:"[title][title!=''],[title2][title2!='']",

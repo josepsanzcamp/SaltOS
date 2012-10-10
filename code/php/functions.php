@@ -28,7 +28,7 @@ function pre_datauser() {
 	$user=useSession("user");
 	$pass=useSession("pass");
 	if($user!="" && $pass!="") {
-		$_USER=array("id"=>0);
+		reset_datauser();
 		$query="SELECT * FROM tbl_usuarios WHERE activo='1' AND login='${user}' AND password='${pass}'";
 		$result=db_query($query);
 		if(db_num_rows($result)==1) {
@@ -39,6 +39,11 @@ function pre_datauser() {
 		}
 		db_free($result);
 	}
+}
+
+function reset_datauser() {
+	global $_USER;
+	$_USER=array("id"=>0);
 }
 
 function post_datauser() {
@@ -98,12 +103,12 @@ function check_time() {
 	$hora=current_time();
 	if($hora<$_USER["hora_ini"] || $hora>$_USER["hora_fin"]) {
 		set_array($_ERROR,"error",LANG("nochecktime"));
-		unset($_USER);
+		reset_datauser();
 	} else {
 		$dia=(date("w",time())+6)%7;
 		if($_USER["dias_sem"][$dia]=="0") {
 			set_array($_ERROR,"error",LANG("nocheckday"));
-			unset($_USER);
+			reset_datauser();
 		}
 	}
 }
@@ -653,13 +658,54 @@ function load_iconset($iconset) {
 
 function check_remember() {
 	if(!eval_bool(getDefault("security/allowremember"))) return;
-	if(!useCookie("remember")) return;
 	if(useSession("user")) return;
 	if(useSession("pass")) return;
+	if(!useCookie("remember")) return;
+	if(!useCookie("user")) return;
+	if(!useCookie("pass")) return;
+	if(!check_security()) {
+		sess_close();
+		setParam("action","logout");
+		include("php/action/logout.php");
+	}
 	useSession("user",useCookie("user"));
 	useSession("pass",useCookie("pass"));
 	pre_datauser();
-	check_security("remember");
+	check_security("login");
+	return;
+}
+
+function remake_password($user,$pass) {
+	$query="SELECT * FROM tbl_usuarios WHERE activo='1' AND login='${user}'";
+	$result=db_query($query);
+	if(db_num_rows($result)==1) {
+		$row=db_fetch_row($result);
+		if($user==$row["login"] && (check_password($pass,$row["password"]) || in_array($row["password"],array(md5($pass),sha1($pass))))) {
+			// REGENERATE HASH FOR VALID USERS || CONVERT FROM MD5/SHA1 TO CRYPT FORMAT
+			$pass=hash_password($pass);
+			$query="UPDATE tbl_usuarios SET password='${pass}' WHERE activo='1' AND login='${user}'";
+			db_query($query);
+		}
+	}
+	db_free($result);
+	return $pass;
+}
+
+function check_basicauth() {
+	if(!eval_bool(getDefault("security/allowbasicauth"))) return;
+	if(useSession("user")) return;
+	if(useSession("pass")) return;
+	if(!getServer("PHP_AUTH_USER")) return;
+	if(!getServer("PHP_AUTH_PW")) return;
+	if(!check_security()) {
+		sess_close();
+		setParam("action","logout");
+		include("php/action/logout.php");
+	}
+	useSession("user",getServer("PHP_AUTH_USER"));
+	useSession("pass",remake_password(getServer("PHP_AUTH_USER"),getServer("PHP_AUTH_PW")));
+	pre_datauser();
+	check_security("login");
 	return;
 }
 
@@ -705,19 +751,13 @@ function check_security($action="") {
 			db_query($query);
 		}
 	} elseif($action=="logout") {
-		// RESETEAR ID_USUARIO Y RETRYES EN EL REGISTRO ACTUAL
-		$query="UPDATE tbl_security SET id_usuario='0',retryes='0',logout='0' WHERE id='${id_security}'";
-		db_query($query);
-	} elseif($action=="remember") {
 		if($id_usuario) {
-			// MARCAR REGISTROS DEL ID_USUARIO PARA LOGOUT
-			$query="UPDATE tbl_security SET logout='1' WHERE id_usuario='${id_usuario}'";
+			// RESETEAR ID_USUARIO Y RETRYES EN EL REGISTRO ACTUAL
+			$query="UPDATE tbl_security SET id_usuario='0',retryes='0',logout='0' WHERE id='${id_security}'";
 			db_query($query);
-			// LIMPIAR REGISTROS DEL MISMO REMOTE_ADDR
-			$query="UPDATE tbl_security SET retryes='0' WHERE remote_addr='${remote_addr}'";
-			db_query($query);
-			// PONER ID_USUARIO Y RETRYES EN EL REGISTRO ACTUAL
-			$query="UPDATE tbl_security SET id_usuario='${id_usuario}',retryes='0',logout='0' WHERE id='${id_security}'";
+		} else {
+			// RESETEAR LOGOUT EN EL REGISTRO ACTUAL
+			$query="UPDATE tbl_security SET logout='0' WHERE id='${id_security}'";
 			db_query($query);
 		}
 	} elseif($action=="main") {
@@ -725,9 +765,9 @@ function check_security($action="") {
 		$query="SELECT logout FROM tbl_security WHERE id='${id_security}'";
 		$logout=execute_query($query);
 		if($logout) {
-			$action="logout";
-			setParam("action",$action);
-			include("php/action/${action}.php");
+			// HACER LOGOUT
+			setParam("action","logout");
+			include("php/action/logout.php");
 		}
 	} else {
 		// RETORNAR SI SUM(RETRYES)<3 PARA TODOS LOS REMOTE_ADDR

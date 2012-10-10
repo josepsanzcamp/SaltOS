@@ -377,5 +377,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<allowremember>true</allowremember><!-- enable or disable the remember feature -->
 		<cookietimeout>2592000</cookietimeout><!-- 86400 (1 day) * 30 = 2592000 (1 month aprox.) -->
 		<minscore>50</minscore><!-- min password strength score -->
+		<allowbasicauth>true</allowbasicauth><!-- enable or disable the basic auth feature -->
 	</security>
 </root>

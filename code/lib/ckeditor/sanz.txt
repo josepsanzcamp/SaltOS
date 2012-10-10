@@ -25,3 +25,10 @@ FROM
 - E.lang.editorTitle.replace('%1',E.name)
 TO
 - ''
+
+IN
+- plugins/syntaxhighlight/dialogs/syntaxhighlight.js
+FROM
+- "default":"java"
+TO
+- "default":"php"
