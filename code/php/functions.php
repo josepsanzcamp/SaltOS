@@ -645,7 +645,17 @@ function session_alert($alert) {
 
 function check_ids($value) {
 	$value=is_array($value)?$value:explode(",",$value);
-	foreach($value as $key=>$val) $value[$key]=abs($val);
+	foreach($value as $key=>$val) {
+		if(strpos($val,"_")!==false) {
+			if($val[0]=="'" && substr($val,-1,1)=="'") $val=substr($val,1,-1);
+			$val=explode("_",$val);
+			$val[0]=abs($val[0]);
+			if(isset($val[2])) $val[2]=abs($val[2]);
+			$value[$key]="'".implode("_",$val)."'";
+		} else {
+			$value[$key]=abs($val);
+		}
+	}
 	$value=count($value)?implode(",",$value):"0";
 	return $value;
 }

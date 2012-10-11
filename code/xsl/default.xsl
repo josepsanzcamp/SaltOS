@@ -455,22 +455,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="tabs">
-	<ul>
-		<xsl:for-each select="/root/list">
-			<xsl:if test="title!=''">
-				<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
-			</xsl:if>
-			<xsl:for-each select="form">
-				<xsl:call-template name="tabs_2"/>
-			</xsl:for-each>
-		</xsl:for-each>
-		<xsl:for-each select="/root/form">
-			<xsl:call-template name="tabs_2"/>
-		</xsl:for-each>
-	</ul>
-</xsl:template>
-
-<xsl:template name="tabs_2">
 	<xsl:variable name="fields" select="fields"/>
 	<xsl:variable name="rows" select="rows"/>
 	<xsl:choose>
@@ -520,29 +504,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="list">
-	<xsl:for-each select="/root/list">
-		<xsl:call-template name="styles"/>
-		<xsl:call-template name="javascript"/>
-		<div id="tab{generate-id(.)}">
-			<xsl:choose>
-				<xsl:when test="title!=''">
-					<xsl:attribute name="class">sitabs</xsl:attribute>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:attribute name="class">notabs</xsl:attribute>
+	<xsl:if test="count(/root/list)!=0">
+		<div class="tabs">
+			<ul>
+				<xsl:for-each select="/root/list">
+					<xsl:if test="title!=''">
+						<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
+					</xsl:if>
+					<xsl:for-each select="form">
+						<xsl:call-template name="tabs"/>
+					</xsl:for-each>
+				</xsl:for-each>
+			</ul>
+			<xsl:for-each select="/root/list">
+				<xsl:call-template name="styles"/>
+				<xsl:call-template name="javascript"/>
+				<div id="tab{generate-id(.)}">
+					<xsl:choose>
+						<xsl:when test="title!=''">
+							<xsl:attribute name="class">sitabs</xsl:attribute>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="class">notabs</xsl:attribute>
+							<xsl:call-template name="brtag"/>
+						</xsl:otherwise>
+					</xsl:choose>
+					<xsl:call-template name="list_quick"/>
 					<xsl:call-template name="brtag"/>
-				</xsl:otherwise>
-			</xsl:choose>
-			<xsl:call-template name="list_quick"/>
-			<xsl:call-template name="brtag"/>
-			<xsl:call-template name="list_table"/>
-			<xsl:call-template name="brtag"/>
-			<xsl:call-template name="list_pager"/>
+					<xsl:call-template name="list_table"/>
+					<xsl:call-template name="brtag"/>
+					<xsl:call-template name="list_pager"/>
+				</div>
+				<xsl:for-each select="form">
+					<xsl:call-template name="form_maker"/>
+				</xsl:for-each>
+			</xsl:for-each>
 		</div>
-		<xsl:for-each select="form">
-			<xsl:call-template name="form_maker"/>
-		</xsl:for-each>
-	</xsl:for-each>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template name="form_field">
@@ -1425,11 +1423,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="form">
-	<xsl:for-each select="/root/form">
-		<xsl:call-template name="styles"/>
-		<xsl:call-template name="javascript"/>
-		<xsl:call-template name="form_maker"/>
-	</xsl:for-each>
+	<xsl:if test="count(/root/form)!=0">
+		<div class="tabs">
+			<ul>
+				<xsl:for-each select="/root/form">
+					<xsl:call-template name="tabs"/>
+				</xsl:for-each>
+			</ul>
+			<xsl:for-each select="/root/form">
+				<xsl:call-template name="styles"/>
+				<xsl:call-template name="javascript"/>
+				<xsl:call-template name="form_maker"/>
+			</xsl:for-each>
+		</div>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template name="form_quick">
@@ -1507,13 +1514,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</td>
 					<td valign="top" class="width100">
 						<div class="ui-layout-center">
+							<xsl:call-template name="list"/>
+							<xsl:call-template name="form"/>
 							<xsl:call-template name="alert"/>
 							<xsl:call-template name="error"/>
-							<div id="tabs">
-								<xsl:call-template name="tabs"/>
-								<xsl:call-template name="list"/>
-								<xsl:call-template name="form"/>
-							</div>
 						</div>
 					</td>
 				</tr>

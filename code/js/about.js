@@ -38,7 +38,7 @@ $(document).ready(function() {
 	$(".vxinfo").each(function() { var temp=$(this).html(); temp=explode(":",temp); temp[0]="<b>"+temp[0]+"</b>"; temp=implode(":",temp); $(this).html2(temp); });
 	// FOR FOCUS THE GAME & MUSIC
 	setTimeout(function() {
-		$("#tabs").bind("tabsshow",function(event,ui) {
+		$(".tabs").bind("tabsshow",function(event,ui) {
 			var obj=$("iframe[name$=default_0_game]");
 			if($(obj).is(":visible")) {
 				$(obj).attr("src","xml.php?action=game&r="+current_revision());

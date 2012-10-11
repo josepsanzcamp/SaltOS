@@ -82,8 +82,8 @@ if(typeof(__home__)=="undefined" && typeof(parent.__home__)=="undefined") {
 		} else {
 			setTimeout(function() {
 				var selected=getIntCookie("saltos_home_tab");
-				$("#tabs").tabs("option","selected",selected);
-				$("#tabs").bind("tabsshow",function(event, ui) {
+				$(".tabs").tabs("option","selected",selected);
+				$(".tabs").bind("tabsshow",function(event, ui) {
 					__update_home_helper();
 					if(!$(".boxs:visible").length) return;
 					var active=$(this).tabs("option","selected");

@@ -31,8 +31,8 @@ if(typeof(__agenda__)=="undefined" && typeof(parent.__agenda__)=="undefined") {
 		if(getParam("action")!="list") return;
 		setTimeout(function() {
 			var selected=getIntCookie("saltos_agenda_tab");
-			$("#tabs").tabs("option","selected",selected);
-			$("#tabs").bind("tabsshow",function(event, ui) {
+			$(".tabs").tabs("option","selected",selected);
+			$(".tabs").bind("tabsshow",function(event, ui) {
 				var active=$(this).tabs("option","selected");
 				if(active==0) setIntCookie("saltos_agenda_tab",active);
 				if(active==2) setIntCookie("saltos_agenda_tab",active);

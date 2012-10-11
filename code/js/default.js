@@ -1113,7 +1113,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// FIX A BUG ON THE XSLT THAT REPEAT THE TABID
 		var lista=new Array();
 		var count=0;
-		$("#tabs > ul > li > a",obj).each(function() {
+		$(".tabs > ul > li > a",obj).each(function() {
 			var href=$(this).attr("href");
 			if(!in_array(href,lista)) {
 				lista.push(href);
@@ -1138,7 +1138,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// THIS CODE ADD THE ACCESSKEY FEATURE FOR EACH TAB
 		var accesskeys="1234567890";
 		var accesskey=0;
-		$("#tabs > ul > li > a",obj).each(function() {
+		$(".tabs > ul > li > a",obj).each(function() {
 			if(accesskey<accesskeys.length) {
 				$(this).attr("title","[CTRL] + ["+substr(accesskeys,accesskey,1)+"]");
 				$(this).addClass("shortcut_ctrl_"+substr(accesskeys,accesskey,1));
@@ -1166,7 +1166,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// TRUE, CREATE THE TABS
 		var tabs_show=false;
-		$("#tabs",obj).tabs({
+		$(".tabs",obj).tabs({
 			fx:null,
 			selected:selected
 		});
@@ -1340,7 +1340,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(this).toggleClass($(this).attr("toggle"));
 		});
 		// ADD STYLES TO COLUMNIZER BOXES
-		$("#tabs",obj).bind("tabsshow",function(event, ui) {
+		$(".tabs",obj).bind("tabsshow",function(event, ui) {
 			if($(".columnizer",this).is(":visible")) {
 				if($(".columnizer .column",this).length==0) {
 					// CONTINUE NORMAL CODE

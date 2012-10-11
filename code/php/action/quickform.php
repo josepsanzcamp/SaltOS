@@ -43,6 +43,7 @@ if(getParam("action")=="quickform") {
 	$id_abs=abs($id);
 	$index=-1;
 	foreach($ids as $key=>$val) {
+		if(strpos($val,"_")!==false) break;
 		$action_id=intval($val);
 		if($action_id==$id_abs) {
 			$index=$key;
@@ -83,8 +84,7 @@ if(getParam("action")=="quickform") {
 	if($minindex>0) $ids2[]=$ids[0];
 	for($i=$minindex;$i<=$maxindex;$i++) $ids2[]=$ids[$i];
 	if($maxindex<$count-1) $ids2[]=$ids[$count-1];
-	$ids3=is_numeric($ids2[0])?$ids2:explode("|","'".implode("'|'",$ids2)."'");
-	$titles=list_simulator($pagesim,$ids3);
+	$titles=list_simulator($pagesim,$ids2);
 	// PREPARE THE RESULT
 	$count2=1;
 	$_RESULT=array("rows"=>array());
