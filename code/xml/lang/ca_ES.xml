@@ -232,7 +232,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sinprovincia>[Sense província seleccionat]</sinprovincia>
 		<sinpoblacion>[Sense població seleccionat]</sinpoblacion>
 		<sincodpostal>[Sense selecció]</sincodpostal>
-		<usedfilter>(Filtre activat)</usedfilter>
+		<usedfilter>Filtre activat</usedfilter>
 		<suma>Suma</suma>
 		<average>Mitjana</average>
 		<posx>Posició X</posx>

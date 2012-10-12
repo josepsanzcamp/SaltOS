@@ -232,7 +232,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sinprovincia>[Sem Distrito seleccionado]</sinprovincia>
 		<sinpoblacion>[Sem localidade seleccionada]</sinpoblacion>
 		<sincodpostal>[Sem Cadigo Postal]</sincodpostal>
-		<usedfilter>(Filtro activado)</usedfilter>
+		<usedfilter>Filtro activado</usedfilter>
 		<suma>Soma</suma>
 		<average>Madia</average>
 		<posx>Posicição X</posx>

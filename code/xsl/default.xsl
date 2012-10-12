@@ -45,28 +45,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:for-each select="/root">
 		<div class="ui-widget">
 			<div class="ui-widget-header ui-corner-bottom">
-				<div class="quickleft">
-					<xsl:for-each select="menu/header/option[left='true']">
-						<a href="javascript:void(0)" class="ui-state-default ui-corner-bottom {class}" onclick="{onclick}" title="{tip}">
-							<xsl:if test="icon!=''">
-								<span class="saltos-icon saltos-icon-{icon}"/>
-								<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
-							</xsl:if>
-							<xsl:value-of select="label"/>
-						</a>
-					</xsl:for-each>
-				</div>
-				<div class="quickright">
-					<xsl:for-each select="menu/header/option[right='true']">
-						<a href="javascript:void(0)" class="ui-state-default ui-corner-bottom {class}" onclick="{onclick}" title="{tip}">
-							<xsl:if test="icon!=''">
-								<span class="saltos-icon saltos-icon-{icon}"/>
-								<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
-							</xsl:if>
-							<xsl:value-of select="label"/>
-						</a>
-					</xsl:for-each>
-				</div>
+				<xsl:for-each select="menu/header">
+					<div class="{class}">
+						<xsl:for-each select="option">
+							<a href="javascript:void(0)" class="ui-state-default ui-corner-bottom {class}" onclick="{onclick}" title="{tip}">
+								<xsl:if test="icon!=''">
+									<span class="saltos-icon saltos-icon-{icon}"/>
+									<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
+								</xsl:if>
+								<xsl:value-of select="label"/>
+							</a>
+						</xsl:for-each>
+					</div>
+				</xsl:for-each>
 				<div class="texto">
 					<xsl:call-template name="title_2"/>
 				</div>
@@ -739,9 +730,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:if>
 			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
 				<input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}">
-					<xsl:if test="readonly!='true'">
-						<xsl:attribute name="isdatetime">true</xsl:attribute>
-					</xsl:if>
+					<xsl:choose>
+						<xsl:when test="readonly='true'"/>
+						<xsl:otherwise>
+							<xsl:attribute name="isdatetime">true</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
@@ -1501,11 +1495,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<head>
 			<xsl:call-template name="head"/>
 		</head>
-		<body class="preloading">
-			<div class="ui-layout-north">
-				<xsl:call-template name="title"/>
-			</div>
-			<table class="width100" cellpadding="0" cellspacing="0" border="0">
+		<body>
+			<table class="width100 none" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td valign="top" colspan="2">
+						<div class="ui-layout-north">
+							<xsl:call-template name="title"/>
+						</div>
+					</td>
+				</tr>
 				<tr>
 					<td valign="top">
 						<div class="ui-layout-west">

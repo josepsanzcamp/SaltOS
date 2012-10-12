@@ -232,7 +232,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sinprovincia>[Aucune province sélectionnée]</sinprovincia>
 		<sinpoblacion>[Non population sélectionnée]</sinpoblacion>
 		<sincodpostal>[Aucune sélection]</sincodpostal>
-		<usedfilter>(Filtre sur)</usedfilter>
+		<usedfilter>Filtre sur</usedfilter>
 		<suma>Somme</suma>
 		<average>Moyenne</average>
 		<posx>Position X</posx>
