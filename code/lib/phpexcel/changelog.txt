@@ -19,22 +19,109 @@
 *
 * @copyright  Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)
 * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
-* @version    1.7.7, 2012-05-19
+* @version    1.7.8, 2012-10-12
 **************************************************************************************
 
 
 --------------------------------------------------------------------------------
-BREAKING CHANGE! In previous versions of PHPExcel up to and including 1.7.7,
-the 3rd-party tcPDF library was bundled with PHPExcel for rendering PDF files
-through the PDF Writer.
+BREAKING CHANGE! As part of the planned changes for handling array formulae in
+workbooks, there are some changes that will affect the PHPExcel_Cell object 
+methods.
 
-From PHPExcel 1.7.8 onwards, this will no longer be the case. The PDF Writer is
-being rewritten to allow a choice of 3rd party PDF libraries (tcPDF, mPDF, and
-domPDF initially), none of which will be bundled with PHPExcel, but which can
-be downloaded seperately from the appropriate sites. Selection of the library to
-be used, and the directory path to that library will be defined through PHPExcel
-configuration settings, allowing more flexibility.
+The following methods are now deprecated, and will be removed in version 1.7.9:
+    getCalculatedValue()      The getValue() method will return calculated
+                                  values for cells containing formulae instead.
+    setCalculatedValue()      The cell value will always contain the result of a
+                                  any formula calculation.
+    setFormulaAttributes()    Will now be determined by the arguments to the
+                                  setFormula() method.
+    getFormulaAttributes()    This will be replaced by the getArrayFormulaRange()
+                                  method.
+
+The following methods will be added in version 1.7.9
+    getFormula()              Use to retrieve a cell formula, will return the cell
+                                  value if the cell doesn't contain a formula, or
+                                  is not part of an array formula range.
+    setFormula()              Use to set a cell formula. It will still be possible
+                                  to set formulae using the setValue() and 
+                                  setValueExplicit() methods.
+    calculate()               Use to execute a formula calculation to update the
+                                  cell value.
+    isFormula()               Use to determine if a cell contains a formula, or is
+                                  part of an array formula range or not.
+    isArrayFormula()          Use to determine if a cell contains an array formula, 
+                                 or is part of an array formula range or not.
+    getArrayFormulaRange()    Use to retrieve an array formula range.
+
+The following methods will be changed in version 1.7.9
+    setValue()                The logic behind this will be modified to store
+                                  formula values in the new cell property structure,
+                                  but it will still perform the same function.
+    setValueExplicit()        The logic behind this will be modified to store
+                                  formula values in the new cell property structure,
+                                  but it will still perform the same function.
+    getValue()                Will no longer return a formula if the cell contains 
+                                  a formula, but will return the calculated value
+                                  instead. For cells that don't contain a formula,
+                                  it will still return the stored value.
+    getDataType()             Will return the datatype of the calculated value for
+                                  cells that contain formulae.
+    setDataType()             Error handling will be added to prevent setting a
+                                  cell datatype to an inappropriate value.
 --------------------------------------------------------------------------------
+
+
+Fixed in develop branch:
+- Special:  (kkamkou)    Phar builder script to add phar file as a distribution option
+- Feature:  (MBaker)     Refactor PDF Writer to allow use with a choice of PDF Rendering library
+                         rather than restricting to tcPDF
+                         Current options are tcPDF, mPDF, DomPDF
+                         tcPDF Library has now been removed from the deployment bundle
+- Feature:  (MBaker)     Initial version of HTML Reader
+- Feature:  (Progi1984) & (blazzy) Work items 9605 - Implement support for AutoFilter in PHPExcel_Writer_Excel5
+- Feature:  (MBaker)     Modified ERF and ERFC Engineering functions to accept Excel 2010's modified acceptance of negative arguments
+- Feature:  (k1LoW)      Support SheetView `view` attribute (Excel2007)
+- Feature:  (MBaker)     Excel compatibility option added for writing CSV files
+                         While Excel 2010 can read CSV files with a simple UTF-8 BOM, Excel2007 and earlier require UTF-16LE encoded tab-separated files.
+                         The new setExcelCompatibility(TRUE) option for the CSV Writer will generate files with this formatting for easy import into Excel2007 and below.
+- Feature:  (MBaker)     Language implementations for Turkish (tr)
+- Feature:  (MBaker)     Added fraction tests to advanced value binder
+- Feature:  (MBaker)     Allow call to font setUnderline() for underline format to specify a simple boolean for UNDERLINE_NONE or UNDERLINE_SINGLE
+- General:  (alexgann)   Add Currency detection to the Advanced Value Binder
+- General:  (MBaker)     Work item 18404 - setCellValueExplicitByColumnAndRow() do not return PHPExcel_Worksheet
+- General:  (MBaker)     Work item 18324 - Reader factory doesn't read anymore XLTX and XLT files
+- General:  (MBaker)     Magic __toString() method added to Cell object to return raw data value as a string
+- General:  (alexgann)   Add cell indent to html rendering
+- General:  (Raghav1981) ZeroHeight for rows in sheet format
+- Bugfix:   (cyberconte) Patch 12318 - OOCalc cells containing <text:span> inside the <text:p> tag
+- Bugfix:   (schir1964)  Fix to listWorksheetInfo() method for OOCalc Reader
+- Bugfix:   (MBaker)     Support for "e" (epoch) date format mask
+                         Rendered as a 4-digit CE year in non-Excel outputs
+- Bugfix:   (MBaker)     Work items 15799 and 18278 - Background color cell is always black when editing cell
+- Bugfix:   (MBaker)     Work items 15905 and 18183 - Allow "no impact" to formats on Conditional Formatting
+- Bugfix:   (wackonline) OOCalc Reader fix for NULL cells
+- Bugfix:   (seltzlab)   Fix to excel2007 Chart Writer when a $plotSeriesValues is empty
+- Bugfix:   (MBaker)     Various fixes to Chart handling
+- Bugfix:   (MBaker)     Work item 18370 - Error loading xlsx file with column breaks
+- Bugfix:   (MBaker)     OOCalc Reader now handles percentage and currency data types
+- Bugfix:   (MBaker)     Work Item 18415 - mb_stripos empty delimiter
+- Bugfix:   (takaakik)   Work Item 15455 - getNestingLevel() Error on Excel5 Read
+- Bugfix:   (MBaker)     Fix to Excel5 Reader when cell annotations are defined before their referenced text objects
+- Bugfix:   (MBaker)     OOCalc Reader modified to process number-rows-repeated
+- Bugfix:   (MBaker)     Work item 18377 - Chart Title compatibility on Excel 2007
+- Bugfix:   (MBaker)     Work item 18146 - Chart Refresh returning cell reference rather than values
+- Bugfix:   (MBaker)     Work item 18145 - Autoshape being identified in twoCellAnchor when includeCharts is TRUE triggering load error
+- Bugfix:   (MBaker)     Work item 18325 - v-type texts for series labels now recognised and parsed correctly
+- Bugfix:   (wolf5x)     Work item 18492 - load file failed if the file has no extensionType
+- Bugfix:   (dverspui)   Pattern fill colours in Excel2007 Style Writer
+- Bugfix:   (MBaker)     Excel2007 Writer order of font style elements to conform with Excel2003 using compatibility pack
+- Bugfix:   (MBaker)     Work item 18425 - Problems with $_activeSheetIndex when decreased below 0.
+- Bugfix:   (MBaker)     Work item 18597 - PHPExcel_CachedObjectStorage_SQLite3::cacheMethodIsAvailable() uses class_exists - autoloader throws error
+- Bugfix:   (MBaker)     Work item 18598 - Cannot access private property PHPExcel_CachedObjectStorageFactory::$_cacheStorageMethod
+- Bugfix:   (MBaker)     Work item 18397 - Data titles for charts
+                         PHPExcel_Chart_Layout now has methods for getting/setting switches for displaying/hiding chart data labels
+- Bugfix:   (MBaker)     Discard single cell merge ranges when reading (stupid that Excel allows them in the first place)
+- Bugfix:   (MBaker)     Discard hidden autoFilter named ranges
 
 
 2012-05-19 (v1.7.7):
