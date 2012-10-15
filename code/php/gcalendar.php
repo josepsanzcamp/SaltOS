@@ -50,8 +50,8 @@ function __gcalendar_insert($service,$title,$content,$where,$dstart,$dstop) {
 	// PREPARE XML DATA
 	$data="<entry xmlns=\"http://www.w3.org/2005/Atom\" xmlns:gd=\"http://schemas.google.com/g/2005\">\n";
 	$data.="<category scheme=\"http://schemas.google.com/g/2005#kind\" term=\"http://schemas.google.com/g/2005#event\"></category>\n";
-	$data.="<title type=\"text\">$title</title>\n";
-	$data.="<content type=\"text\">$content</content>\n";
+	$data.="<title type=\"text\"><![CDATA[$title]]></title>\n";
+	$data.="<content type=\"text\"><![CDATA[$content]]></content>\n";
 	$data.="<gd:where valueString=\"$where\"></gd:where>\n";
 	$data.="<gd:when startTime=\"$dstart\" endTime=\"$dstop\"></gd:when>\n";
 	$data.="</entry>\n";

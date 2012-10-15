@@ -350,3 +350,7 @@ img[isplot=true] {
 	padding:3px 5px!important;
 	border-width:1px!important;
 }
+/* FOR FIX A JQUERY-UI BUG */
+.ui-helper-hidden-accessible {
+	display:none!important;
+}

@@ -32,10 +32,9 @@ if(typeof(__agenda__)=="undefined" && typeof(parent.__agenda__)=="undefined") {
 		setTimeout(function() {
 			var selected=getIntCookie("saltos_agenda_tab");
 			$(".tabs").tabs("option","selected",selected);
-			$(".tabs").bind("tabsshow",function(event, ui) {
-				var active=$(this).tabs("option","selected");
-				if(active==0) setIntCookie("saltos_agenda_tab",active);
-				if(active==2) setIntCookie("saltos_agenda_tab",active);
+			$(".tabs").bind("tabsshow",function(event,ui) {
+				if(!in_array(ui.index,new Array(0,2))) return;
+				setIntCookie("saltos_agenda_tab",ui.index);
 			});
 		},100);
 	}

@@ -1331,7 +1331,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(this).toggleClass($(this).attr("toggle"));
 		});
 		// ADD STYLES TO COLUMNIZER BOXES
-		$(".tabs",obj).bind("tabsshow",function(event, ui) {
+		$(".tabs",obj).bind("tabsshow",function(event,ui) {
 			if($(".columnizer",this).is(":visible")) {
 				if($(".columnizer .column",this).length==0) {
 					$(".columnizer",this).columnize();
