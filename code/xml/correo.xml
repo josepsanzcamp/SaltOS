@@ -623,10 +623,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
 		WHERE ".make_like_query($campos_array[$campos],$filtro)."
-<!--
-		AND ".($id_usuario?"id_usuario2='$id_usuario'":"(1=1)")."
--->
-		AND ".($id_usuario?(db_type()=="MARIADB"?"(id_cuenta IN (".check_ids(execute_query("SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id_usuario'"))."))":"id_usuario2='$id_usuario'"):"(1=1)")."
+		AND ".($id_usuario?"/*MYSQL id_cuenta IN (".check_ids(execute_query("SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id_usuario'")).") *//*SQLITE id_usuario2='$id_usuario' */":"(1=1)")."
 		AND ".($id_cuenta!=""?"id_cuenta='$id_cuenta'":"(1=1)")."
 		AND ".$only_array[$only]."
 		AND ".($hidespam?"state_spam='0'":"(1=1)")."

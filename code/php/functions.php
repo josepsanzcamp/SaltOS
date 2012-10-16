@@ -1035,7 +1035,7 @@ function check_system() {
 	if(headers_sent()) show_php_error(array("phperror"=>"Has been Detected previous headers sended"));
 	// CLASS CHECKS
 	$array=array("DomDocument"=>"php-xml",
-		"XsltProcessor"=>"php-xml",
+		"XsltProcessor"=>"php-xsl",
 		"DomElement"=>"php-xml");
 	foreach($array as $key=>$val) if(!class_exists($key)) show_php_error(array("phperror"=>"Class $key not found","details"=>"Try to install $val package"));
 	// FUNCTION CHECKS
