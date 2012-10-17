@@ -1102,7 +1102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</form>
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query global="id" eval="true">"INSERT INTO tbl_correo_d SELECT id,id_cuenta,uidl,`datetime` FROM tbl_correo WHERE id='$id' AND is_outbox='0'"</query>
+		<query global="id" eval="true">"INSERT INTO tbl_correo_d SELECT NULL id,id_cuenta,uidl,`datetime` FROM tbl_correo WHERE id='$id' AND is_outbox='0'"</query>
 		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/inboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='0'"</query>
 		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>
 		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/objectext",".obj")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') */ action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>

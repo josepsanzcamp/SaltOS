@@ -1584,7 +1584,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	function hide_tooltips() {
-		$(".ui-tooltip").hide();
+		$(".ui-tooltip").remove();
 	}
 
 	var focused=null;

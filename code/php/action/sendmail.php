@@ -163,9 +163,12 @@ if(getParam("action")=="sendmail") {
 		// DO THE SEND ACTION
 		$send=sendmail($from,$recipients,$subject,$body,$files,$host,$user,$pass);
 		if($send=="") {
+			$query="SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND is_outbox='1'";
+			$oldcache=set_use_cache("false");
+			$last_id=execute_query($query);
+			set_use_cache($oldcache);
 			// SOME UPDATES
 			if(isset($id_extra[1]) && in_array($id_extra[1],array("reply","replyall","forward"))) {
-				$last_id=__getmail_lastid();
 				__getmail_update("id_correo",$id_extra[2],$last_id);
 				if($id_extra[1]=="reply") $campo="state_reply";
 				if($id_extra[1]=="replyall") $campo="state_reply";
@@ -177,10 +180,9 @@ if(getParam("action")=="sendmail") {
 			$result=execute_query($query);
 			if($result) {
 				if(!is_array($result)) $result=array($result);
-				$last_id=__getmail_lastid();
 				foreach($result as $id_folder) {
 					if(getParam("folders_${id_folder}_activado")) {
-						$query="INSERT INTO tbl_folders_a(`id`,`id_folder`,`id_aplicacion`,`id_registro`) VALUES(NULL,'$id_folder','".page2id("correo")."','$last_id')";
+						$query="INSERT INTO tbl_folders_a(`id`,`id_folder`,`id_aplicacion`,`id_registro`) VALUES(NULL,'${id_folder}','".page2id("correo")."','${last_id}')";
 						db_query($query);
 					}
 				}

@@ -57,7 +57,7 @@ if(getParam("action")=="feeds") {
 					session_alert(LANG($command[1]?"msgnumsiwait":"msgnumnowait","feeds").$numids.LANG("message".min($numids,2),"feeds"));
 				} elseif($command[0]=="delete") {
 					// CREAR DATOS EN TABLA DE POSTS BORRADOS
-					$query="INSERT INTO tbl_feeds_d SELECT id,id_feed,link,'".current_datetime()."' FROM tbl_feeds WHERE id IN ($ids)";
+					$query="INSERT INTO tbl_feeds_d SELECT NULL id,id_feed,link,'".current_datetime()."' FROM tbl_feeds WHERE id IN ($ids)";
 					db_query($query);
 					// BORRAR POSTS
 					$query="DELETE FROM tbl_feeds WHERE id IN ($ids)";
@@ -135,15 +135,6 @@ if(getParam("action")=="feeds") {
 	function __feeds_html2text($html) {
 		require_once("php/getmail.php");
 		return __getmail_html2text($html);
-	}
-	function __feeds_nextid() {
-		$oldcache=set_use_cache("false");
-		$query="SELECT MAX(id)+1 id FROM tbl_feeds UNION SELECT MAX(id)+1 id FROM tbl_feeds_d";
-		$next_id=execute_query($query);
-		if(!$next_id) $next_id=1;
-		if(!is_array($next_id)) $next_id=array($next_id,$next_id);
-		set_use_cache($oldcache);
-		return max($next_id[0],$next_id[1]);
 	}
 	function __feeds_xml2array($xml) {
 		$data=xml2struct($xml);
@@ -607,13 +598,16 @@ if(getParam("action")=="feeds") {
 								$title=addslashes($item["title"]);
 								$pubdate=$item["pubdate"];
 								$description=addslashes($item["description"]);
-								$next_id=__feeds_nextid();
-								$query="INSERT INTO tbl_feeds(id,id_feed,title,pubdate,description,link,hash,state_new,state_modified,state_wait) VALUES('${next_id}','${id_feed}','${title}','${pubdate}','${description}','${link}','${hash}','1','0','0')";
+								$query="INSERT INTO tbl_feeds(id,id_feed,title,pubdate,description,link,hash,state_new,state_modified,state_wait) VALUES(NULL,'${id_feed}','${title}','${pubdate}','${description}','${link}','${hash}','1','0','0')";
 								db_query($query);
-								$query="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'${id_aplicacion}','${next_id}','${id_usuario}','${datetime}')";
+								$query="SELECT MAX(id) FROM tbl_feeds WHERE id_feed='${id_feed}'";
+								$oldcache=set_use_cache("false");
+								$last_id=execute_query($query);
+								set_use_cache($oldcache);
+								$query="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}')";
 								db_query($query);
 								$newfeeds++;
-								$voice_ids[]=$next_id;
+								$voice_ids[]=$last_id;
 							} elseif(in_array($link,$result2) && !in_array($hash,$result3)) {
 								// SI ESTA EL LINK DESCARGADO PERO NO SE ENCUENTRA EL HASH, ES QUE SE HA MODIFICADO
 								$link=addslashes($link);

@@ -73,11 +73,9 @@ if(getParam("action")=="getmail") {
 		$buffer.=$source;
 		$buffer.=__TEXT_PLAIN_CLOSE__;
 		$buffer.=__PAGE_HTML_CLOSE__;
-		$hash=md5($buffer);
-		header_etag($hash);
 		ob_start_protected(getDefault("obhandler"));
 		header_powered();
-		header_expires($hash);
+		header_expires(false);
 		header("Content-Type: text/html");
 		header("x-frame-options: SAMEORIGIN");
 		echo $buffer;
@@ -137,11 +135,9 @@ if(getParam("action")=="getmail") {
 				}
 			}
 			$buffer.=__PAGE_HTML_CLOSE__;
-			$hash=md5($buffer);
-			header_etag($hash);
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
-			header_expires($hash);
+			header_expires(false);
 			header("Content-Type: text/html");
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
@@ -159,11 +155,9 @@ if(getParam("action")=="getmail") {
 				$buffer.="<a href='javascript:void(0)' onclick='download2(\"correo\",\"${id}\",\"${chash}\")'><b>${cname}</b></a> (${hsize})";
 				$first=0;
 			}
-			$hash=md5($buffer);
-			header_etag($hash);
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
-			header_expires($hash);
+			header_expires(false);
 			header("Content-Type: text/html");
 			echo $buffer;
 			ob_end_flush();
@@ -290,11 +284,9 @@ if(getParam("action")=="getmail") {
 				}
 			}
 			$buffer.=__PAGE_HTML_CLOSE__;
-			$hash=md5($buffer);
-			header_etag($hash);
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
-			header_expires($hash);
+			header_expires(false);
 			header("Content-Type: text/html");
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
@@ -304,11 +296,9 @@ if(getParam("action")=="getmail") {
 			$result=__getmail_getcid(__getmail_getnode("0",$decoded),$cid);
 			if(!$result) die();
 			$name=$result["cname"]?$result["cname"]:$result["cid"];
-			$hash=md5($result["body"]);
-			header_etag($hash);
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
-			header_expires($hash);
+			header_expires(false);
 			header("Content-Type: ${result["type"]}");
 			header("Content-Disposition: attachment; filename=\"${name}\"");
 			echo $result["body"];
@@ -456,9 +446,9 @@ if(getParam("action")=="getmail") {
 					}
 					if($error=="") {
 						$messageid=$id_cuenta."/".$uidls[$index];
-						$next_id=__getmail_insert($message,$messageid,1,0,0,0,0,0,0,"");
+						$last_id=__getmail_insert($message,$messageid,1,0,0,0,0,0,0,"");
 						$newemail++;
-						$voice_ids[]=$next_id;
+						$voice_ids[]=$last_id;
 					}
 				}
 			}
