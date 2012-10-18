@@ -56,14 +56,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<nocache>CREATE</nocache>
 		</nocaches>
 		<noexports>
-			<noexport>tbl_paises</noexport>
-			<noexport>tbl_provincias</noexport>
-			<noexport>tbl_poblaciones</noexport>
-			<noexport>tbl_codpostal</noexport>
-			<noexport>tbl_calles</noexport>
-			<noexport>tbl_permisos</noexport>
 			<noexport>tbl_aplicaciones</noexport>
+			<noexport>tbl_aplicaciones_i</noexport>
 			<noexport>tbl_aplicaciones_p</noexport>
+			<noexport>tbl_calles</noexport>
+			<noexport>tbl_codpostal</noexport>
+			<noexport>tbl_estados_a</noexport>
+			<noexport>tbl_paises</noexport>
+			<noexport>tbl_permisos</noexport>
+			<noexport>tbl_poblaciones</noexport>
+			<noexport>tbl_provincias</noexport>
+			<noexport>tbl_tiposcom</noexport>
 		</noexports>
 		<dbschema>true</dbschema>
 		<dbstatic>true</dbstatic>
@@ -125,7 +128,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pdfext>.pdf</pdfext>
 		<textext>.txt</textext>
 		<tarext>.tar</tarext>
-		<bzipext>.bz2</bzipext>
 		<excelext>.xls</excelext>
 		<wavext>.wav</wavext>
 		<mp3ext>.mp3</mp3ext>
@@ -135,7 +137,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xmlext>.xml</xmlext>
 		<arrayext>.arr</arrayext>
 		<pngext>.png</pngext>
-		<tgzext>.tgz</tgzext>
+		<targzipext>.tgz</targzipext>
+		<tarbzipext>.tbz</tarbzipext>
 	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>

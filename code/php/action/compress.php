@@ -68,10 +68,10 @@ if(getParam("action")=="compress") {
 			$archive=new tar_file($info[0].getDefault("exts/tarext",".tar"));
 			break;
 		case "gzip":
-			$archive=new gzip_file($info[0].getDefault("exts/tarext",".tar").getDefault("exts/gzipext",".gz"));
+			$archive=new gzip_file($info[0].getDefault("exts/targzipext",".tgz");
 			break;
 		case "bzip":
-			$archive=new bzip_file($info[0].getDefault("exts/tarext",".tar").getDefault("exts/bzipext"),".bz2");
+			$archive=new bzip_file($info[0].getDefault("exts/tarbzipext",".tbz");
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown format"));

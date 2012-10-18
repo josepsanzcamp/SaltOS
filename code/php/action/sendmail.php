@@ -141,7 +141,13 @@ if(getParam("action")=="sendmail") {
 		// ADD UPLOADED ATTACHMENTS
 		$files=array();
 		foreach($_FILES as $file) {
-			if($file["name"]!="") $files[]=array("file"=>$file["tmp_name"],"name"=>$file["name"],"mime"=>$file["type"]);
+			if($file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
+				$files[]=array("file"=>$file["tmp_name"],"name"=>$file["name"],"mime"=>$file["type"]);
+			} elseif($file["name"]!="") {
+				javascript_error(LANG("fileuploaderror").$file["name"]);
+				javascript_unloading();
+				die();
+			}
 		}
 		// ADD INLINES IMAGES
 		foreach($inlines as $inline) {

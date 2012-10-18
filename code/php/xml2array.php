@@ -238,7 +238,7 @@ function eval_files() {
 		$temp_size=$val["size"];
 		$temp_type=$val["type"];
 		$temp_temp=$val["tmp_name"];
-		if(file_exists($temp_temp)) {
+		if($temp_temp!="" && file_exists($temp_temp)) {
 			$temp_file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($temp_name);
 			$ext=pathinfo($temp_file,PATHINFO_EXTENSION);
 			if($ext=="php") $temp_file=substr($temp_file,0,-strlen($ext)-1).getDefault("exts/defaultext",".dat");

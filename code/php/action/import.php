@@ -26,15 +26,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user($page,"import")) action_denied();
 if(getParam("action")=="import") {
 	// GET THE FILE
-	$ok=isset($_FILES["import_0_file"]);
-	$ok=$ok && $_FILES["import_0_file"]["name"]!="";
-	$ok=$ok && file_exists($_FILES["import_0_file"]["tmp_name"]);
+	$ok=0;
+	foreach($_FILES as $file) {
+		if($file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
+			$file=$file["tmp_name"];
+			$ok=1;
+		} elseif($file["name"]!="") {
+			session_error(LANG("fileuploaderror").$file["name"]);
+			javascript_history(-1);
+			die();
+		}
+	}
 	if(!$ok) {
 		session_error(LANG("filenotfound","datacfg"));
 		javascript_history(-1);
 		die();
 	}
-	$file=$_FILES["import_0_file"]["tmp_name"];
 	// FUNCTIONS
 	function __import_find_query($data,$pos) {
 		$len=strlen($data);

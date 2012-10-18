@@ -74,12 +74,7 @@ if(getParam("action")=="download") {
 	if(!defined("__CANCEL_HEADER__")) {
 		$hash=md5(file_get_contents($file));
 		header_etag($hash);
-		$gzipext=getDefault("exts/gzipext",".gz");
-		$tgzext=getDefault("exts/tgzext",".tgz");
-		$ext=pathinfo($name,PATHINFO_EXTENSION);
-		$obhandler=getDefault("obhandler");
-		if(in_array($ext,array($gzipext,$tgzext))) $obhandler="";
-		ob_start_protected($obhandler);
+		ob_start_protected("");
 		header_powered();
 		header_expires($hash);
 		header("Content-Disposition: attachment; filename=\"${name}\"");

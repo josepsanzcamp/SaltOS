@@ -1528,13 +1528,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	function make_tooltips() {
+		//~ console.time("make_tooltips");
 		$(document).bind("keydown",function(event) {
 			hide_tooltips();
 		}).bind("click",function(event) {
 			hide_tooltips();
-		});
-		//~ console.time("make_tooltips");
-		$(document).tooltip({
+		}).tooltip({
 			items:"[title][title!=''],[title2][title2!='']",
 			show:{ effect:"none" },
 			hide:{ effect:"none" },
@@ -1750,17 +1749,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function make_contextmenu() {
 		//~ console.time("make_contextmenu");
-		// IF NOT EXISTS THE CONTEXT MENU, CREATE IT
-		if($("#contextMenu").length==0) {
-			$("body").append("<ul id='contextMenu'></ul>");
-			$(document).bind("keydown",function(event) {
-				if(is_escapekey(event)) hide_contextmenu();
-			}).bind("click",function(event) {
-				if(event.button!=2) hide_contextmenu();
-			});
-		}
-		// PROGRAM THE GENERAL CONTEXT MENU
-		$(document).bind("contextmenu",function(event) {
+		$("body").append("<ul id='contextMenu'></ul>");
+		$(document).bind("keydown",function(event) {
+			if(is_escapekey(event)) hide_contextmenu();
+		}).bind("click",function(event) {
+			if(event.button!=2) hide_contextmenu();
+		}).bind("contextmenu",function(event) {
 			var obj=$("#contextMenu");
 			$("li",obj).remove2();
 			var parent=$(event.target).parent();
