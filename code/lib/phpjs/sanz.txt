@@ -1,6 +1,37 @@
-Some SaltOS changes:
+Note about the php.saltos.min.js file
+- This file only contains the php.js functions used by SaltOS
+  - abs
+  - base64_decode
+  - base64_encode
+  - chr
+  - count
+  - explode
+  - floatval
+  - implode
+  - in_array
+  - intval
+  - is_numeric
+  - levenshtein
+  - md5
+  - mktime
+  - nl2br
+  - parse_url
+  - rawurlencode
+  - round
+  - serialize
+  - sprintf
+  - str_replace
+  - strip_tags
+  - strlen
+  - strncasecmp
+  - strpos
+  - strrpos
+  - strtok
+  - strtoupper
+  - substr
+  - time
+  - trim
+  - urldecode
+  - urlencode
+  - utf8_encode
 
-IN
-- php.default.min.js
-REMOVE
-- dec=this.utf8_decode(dec);

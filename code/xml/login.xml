@@ -79,7 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<type>link</type>
 					<label lang="true">captcha3</label>
-					<onclick>$(".captcha").attr("src","xml.php?action=captcha&amp;_="+time());</onclick>
+					<onclick>update_captcha()</onclick>
 					<class>label</class>
 				</field>
 			</row>

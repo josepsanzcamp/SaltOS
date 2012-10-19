@@ -68,73 +68,18 @@ function list_simulator($newpage,$ids="string") {
 	$config=$config[$action];
 	$config=eval_attr($config);
 	$query0=$config["query"];
-	$order=$config["order"];
-	// PREPARE THE ORDER HELPER
-	$fields=array();
-	foreach($config["fields"] as $val) {
-		if(isset($val["name"])) $fields[]=$val["name"];
-		if(isset($val["order"])) $fields[]=$val["order"];
-		if(isset($val["orderasc"])) $fields[]=$val["orderasc"];
-		if(isset($val["orderdesc"])) $fields[]=$val["orderdesc"];
-	}
-	// PREPARE THE ORDER ARRAY
-	$array_order=explode(",",$order);
-	foreach($array_order as $key=>$val) {
-		$val=encode_words($val);
-		$val=explode(" ",$val,2);
-		if(!in_array($val[0],$fields)) $val[0]="id";
-		if(!isset($val[1])) $val[1]="desc";
-		$val[1]=strtolower($val[1]);
-		if(!in_array($val[1],array("asc","desc"))) $val[1]="desc";
-		$array_order[$key]=$val;
-	}
-	// CONVERT THE ARRAY ORDER TO STRING
-	foreach($array_order as $key=>$val) $array_order[$key]=implode(" ",$val);
-	if(!count(array_intersect($array_order,array("id asc","id desc")))) $array_order[]="id desc";
-	$order=implode(",",$array_order);
-	// TRICK FOR MYSQL (FUCKED SGDB)
-	$dbtype=db_type();
-	if(in_array($dbtype,array("MYSQL"))) {
-		static $tbl_hash1=null;
-		// CHECK IF tbl_hash1 EXISTS
-		if(is_null($tbl_hash1)) {
-			// LIST OF TEMPORARY FIELDS TO RETRIEVE
-			$fields=explode(",",$order);
-			foreach($fields as $key=>$val) {
-				$val=explode(" ",$val);
-				$fields[$key]=$val[0];
-			}
-			if(!in_array("action_id",$fields)) array_push($fields,"action_id");
-			if(!in_array("action_title",$fields)) array_push($fields,"action_title");
-			$fields=implode(",",$fields);
-			// CREATE THE TEMPORARY TABLES (HELPERS)
-			$tbl_hash1="tbl_".get_unique_id_md5();
-			$query="CREATE TEMPORARY TABLE $tbl_hash1 AS SELECT $fields FROM ($query0) $tbl_hash1";
-			db_query($query);
-		}
-	}
+	// CHECK ORDER
+	list($order,$array)=list_check_order($config["order"],$config["fields"]);
 	// CONTINUE
 	if($ids=="string" || $ids=="array") {
-		if(in_array($dbtype,array("SQLITE","MARIADB"))) {
-			$query="SELECT action_id FROM ($query0) __a__ ORDER BY $order";
-		} elseif(in_array($dbtype,array("MYSQL"))) {
-			$query="SELECT action_id FROM $tbl_hash1 ORDER BY $order";
-		} else {
-			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
-		}
+		$query="SELECT action_id FROM ($query0) __a__ ORDER BY $order";
 		$result=execute_query($query);
 		if(!$result) $result=array();
 		if(!is_array($result)) $result=array($result);
 		if($ids=="string") $result=count($result)?implode(",",$result):"0";
 	} else {
 		$ids=check_ids($ids);
-		if(in_array($dbtype,array("SQLITE","MARIADB"))) {
-			$query="SELECT action_title FROM ($query0) __a__ WHERE action_id IN ($ids) ORDER BY $order";
-		} elseif(in_array($dbtype,array("MYSQL"))) {
-			$query="SELECT action_title FROM $tbl_hash1 WHERE action_id IN ($ids) ORDER BY $order";
-		} else {
-			show_php_error(array("phperror"=>"Unknown dbtype '$dbtype'"));
-		}
+		$query="SELECT action_title FROM ($query0) __a__ WHERE action_id IN ($ids) ORDER BY $order";
 		$result=execute_query($query);
 		if(!$result) $result=array();
 		if(!is_array($result)) $result=array($result);
@@ -154,5 +99,34 @@ function list_simulator($newpage,$ids="string") {
 	setParam("action",$action);
 	// RETURN THE EXPECTED RESULT
 	return $result;
+}
+
+function list_check_order($order,$fields2) {
+	// PREPARE THE ORDER HELPER
+	$fields=array();
+	foreach($fields2 as $val) {
+		if(isset($val["name"])) $fields[]=$val["name"];
+		if(isset($val["order"])) $fields[]=$val["order"];
+		if(isset($val["orderasc"])) $fields[]=$val["orderasc"];
+		if(isset($val["orderdesc"])) $fields[]=$val["orderdesc"];
+	}
+	// PREPARE THE ORDER ARRAY
+	$array=explode(",",$order);
+	foreach($array as $key=>$val) {
+		$val=encode_words($val);
+		$val=explode(" ",$val,2);
+		if(!in_array($val[0],$fields)) $val[0]="id";
+		if(!isset($val[1])) $val[1]="desc";
+		$val[1]=strtolower($val[1]);
+		if(!in_array($val[1],array("asc","desc"))) $val[1]="desc";
+		$array[$key]=$val;
+	}
+	// CONVERT THE ARRAY ORDER TO STRING
+	$order=$array;
+	foreach($order as $key=>$val) $order[$key]=implode(" ",$val);
+	if(!count(array_intersect($order,array("id asc","id desc")))) $order[]="id desc";
+	$order=implode(",",$order);
+	// RETURN AS STRING AND AS TREE
+	return array($order,$array);
 }
 ?>

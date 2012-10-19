@@ -213,7 +213,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</styles>
 	<javascript>
 		<cache ifeval="!is_mobile()">
-			<include>lib/phpjs/php.default.min.js</include>
+			<include>lib/phpjs/php.saltos.min.js</include>
 			<include>lib/jquery/jquery-1.8.2.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
@@ -238,7 +238,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/pdfjs/viewer.min.js</include>
 		</cache>
 		<cache ifeval="is_mobile()">
-			<include>lib/phpjs/php.default.min.js</include>
+			<include>lib/phpjs/php.saltos.min.js</include>
 			<include>lib/jquery/jquery-1.8.2.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>

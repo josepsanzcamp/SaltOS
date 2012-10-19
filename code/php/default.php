@@ -488,6 +488,7 @@ switch($action) {
 		javascript_history($go);
 		die();
 	case "list":
+		include("php/listsim.php");
 		$config=getDefault("$page/$action");
 		if(eval_bool(getDefault("debug/actiondebug"))) debug_dump(false);
 		$config=eval_attr($config);
@@ -500,40 +501,18 @@ switch($action) {
 			unset($_RESULT[$action][$node]);
 		}
 		$query0=$config["query"];
-		$order=$config["order"];
 		$limit=$config["limit"];
 		$offset=$config["offset"];
-		// PREPARE THE ORDER HELPER
-		$fields=array();
-		foreach($config["fields"] as $val) {
-			if(isset($val["name"])) $fields[]=$val["name"];
-			if(isset($val["order"])) $fields[]=$val["order"];
-			if(isset($val["orderasc"])) $fields[]=$val["orderasc"];
-			if(isset($val["orderdesc"])) $fields[]=$val["orderdesc"];
-		}
-		// PREPARE THE ORDER ARRAY
-		$array_order=explode(",",$order);
-		foreach($array_order as $key=>$val) {
-			$val=encode_words($val);
-			$val=explode(" ",$val,2);
-			if(!in_array($val[0],$fields)) $val[0]="id";
-			if(!isset($val[1])) $val[1]="desc";
-			$val[1]=strtolower($val[1]);
-			if(!in_array($val[1],array("asc","desc"))) $val[1]="desc";
-			$array_order[$key]=$val;
-		}
+		// CHECK ORDER
+		list($order,$array)=list_check_order($config["order"],$config["fields"]);
 		// MARK THE SELECTED ORDER FIELD
 		foreach($_RESULT[$action]["fields"] as $key=>$val) {
 			$selected=0;
-			if(isset($val["name"]) && $val["name"]==$array_order[0][0]) $selected=1;
-			if(isset($val["order"]) && $val["order"]==$array_order[0][0]) $selected=1;
-			if(isset($val["order".$array_order[0][1]]) && $val["order".$array_order[0][1]]==$array_order[0][0]) $selected=1;
-			if($selected) $_RESULT[$action]["fields"][$key]["selected"]=$array_order[0][1];
+			if(isset($val["name"]) && $val["name"]==$array[0][0]) $selected=1;
+			if(isset($val["order"]) && $val["order"]==$array[0][0]) $selected=1;
+			if(isset($val["order".$array[0][1]]) && $val["order".$array[0][1]]==$array[0][0]) $selected=1;
+			if($selected) $_RESULT[$action]["fields"][$key]["selected"]=$array[0][1];
 		}
-		// CONVERT THE ARRAY ORDER TO STRING
-		foreach($array_order as $key=>$val) $array_order[$key]=implode(" ",$val);
-		if(!count(array_intersect($array_order,array("id asc","id desc")))) $array_order[]="id desc";
-		$order=implode(",",$array_order);
 		// EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
 		$query="$query0 ORDER BY $order LIMIT $offset,$limit";
 		$result=db_query($query);

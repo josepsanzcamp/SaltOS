@@ -285,6 +285,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			code+="bnoubmV0JyBzdHlsZT0nd2lkdGg6MTk0cHg7aGVpZ2h0OjE5NHB4Jy8+PGgzIHN0eWxl";
 			code+="PSdtYXJnaW46MHB4Jz5EZWRpY2F0ZWQgdG8gSXR6aWFyIGFuZCBBaW5ob2E8L2gzPiIp";
 			code+="OwoJCX0sMTAwKTsKCX0pOwp9KSgpOw==";
+			// chr() => TO BE ADDED TO PDFJS
 			eval(base64_decode(code));
 			// NORMAL CODE
 			$("body").append("<div id='dialog'></div>");

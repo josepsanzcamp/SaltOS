@@ -400,7 +400,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>PHPJS &gt;=3.26 (MIT &amp; GPL-2.0)</label>
+							<label>PHPJS latest (MIT &amp; GPL-2.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://www.phpjs.org/")</onclick>
