@@ -41,20 +41,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</field>
 		<field>
 			<type>label</type>
-			<label global="currentpage,totalpages,currentregini,currentregend,totalregs" ifpreeval="isset($currentpage) &amp;&amp; isset($totalpages) &amp;&amp; isset($currentregini) &amp;&amp; isset($currentregend) &amp;&amp; isset($totalregs)" eval="true">LANG("paginaspc").$currentpage.LANG("spcdespc").$totalpages." (".LANG("regsfrom")." ".$currentregini.LANG("spcalspc").$currentregend.LANG("spcdespc").$totalregs.")."</label>
-			<class>nowrap</class>
+			<class>nowrap infopager</class>
 		</field>
 		<field ifeval="!is_mobile()">
 			<type>select</type>
-			<name>selectregs</name>
+			<name>selectlimit</name>
 			<label lang="true">regspage</label>
 			<rows>
-				<row global="regspagemin,regspagemax,regspageincr,var_i" ifpreeval="isset($regspagemin) &amp;&amp; isset($regspagemax) &amp;&amp; isset($regspageincr)" for="var_i" from="$regspagemin" step="$regspageincr" to="$regspagemax">
+				<row global="var_i" for="var_i" from="intval(getDefault('regspagemin'))" step="intval(getDefault('regspageincr'))" to="intval(getDefault('regspagemax'))">
 					<label global="var_i" eval="true">$var_i</label>
 					<value global="var_i" eval="true">$var_i</value>
 				</row>
 			</rows>
-			<value global="currentlimit" ifpreeval="isset($currentlimit)" eval="true">$currentlimit</value>
+			<value global="limit" eval="true">$limit</value>
 			<onchange>limit1(this.value)</onchange>
 		</field>
 		<field>
@@ -65,69 +64,67 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<type>select</type>
 			<name>selectpage</name>
 			<rows>
-				<row global="selectpage,row" ifpreeval="isset($selectpage)" foreach="selectpage" as="row">
-					<label global="row" eval="true">LANG("paginaspc").$row</label>
-					<value global="row" eval="true">$row</value>
+				<row>
+					<label global="offset,limit" eval="true">$limit!=0?intval($offset/$limit)+1:1</label>
+					<value></value>
 				</row>
 			</rows>
-			<value global="currentpage" ifpreeval="isset($currentpage)" eval="true">$currentpage</value>
 			<onchange>page1(this.value)</onchange>
 		</field>
 		<field>
+			<name>firstpager</name>
 			<type>button</type>
 			<tip lang="true">first</tip>
 			<label lang="true">first</label>
 			<value ifeval="is_mobile()">&lt;&lt;</value>
-			<onclick>first()</onclick>
+			<onclick>if(!is_disabled(this)) first()</onclick>
 			<icon>first</icon>
 			<class>nowrap contextmenu</class>
-			<class2>shortcut_ctrl_home</class2>
-			<disabled global="firstpage" ifpreeval="isset($firstpage)" eval="true">$firstpage?"false":"true"</disabled>
+			<class2>ui-state-disabled shortcut_ctrl_home</class2>
 		</field>
 		<field>
+			<name>previouspager</name>
 			<type>button</type>
 			<tip lang="true">previous</tip>
 			<label lang="true">previous</label>
 			<value ifeval="is_mobile()">&lt;</value>
-			<onclick>previous()</onclick>
+			<onclick>if(!is_disabled(this)) previous()</onclick>
 			<icon>previous</icon>
 			<class>nowrap contextmenu</class>
-			<class2>shortcut_ctrl_leftArrow</class2>
-			<disabled global="previouspage" ifpreeval="isset($previouspage)" eval="true">$previouspage?"false":"true"</disabled>
+			<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
 		</field>
 		<field ifeval="!is_mobile()">
 			<type>select</type>
 			<name>selectpage</name>
 			<rows>
-				<row global="selectpage,row" ifpreeval="isset($selectpage)" foreach="selectpage" as="row">
-					<label global="row" eval="true">$row</label>
-					<value global="row" eval="true">$row</value>
+				<row>
+					<label global="offset,limit" eval="true">$limit!=0?intval($offset/$limit)+1:1</label>
+					<value></value>
 				</row>
 			</rows>
-			<value global="currentpage" ifpreeval="isset($currentpage)" eval="true">$currentpage</value>
 			<onchange>page1(this.value)</onchange>
 		</field>
 		<field>
+			<name>nextpager</name>
 			<type>button</type>
 			<tip lang="true">next</tip>
 			<label lang="true">next</label>
 			<value ifeval="is_mobile()">&gt;</value>
-			<onclick>next()</onclick>
+			<onclick>if(!is_disabled(this)) next()</onclick>
 			<icon>next</icon>
 			<class>nowrap contextmenu</class>
-			<class2>shortcut_ctrl_rightArrow</class2>
-			<disabled global="nextpage" ifpreeval="isset($nextpage)" eval="true">$nextpage?"false":"true"</disabled>
+			<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
 		</field>
 		<field>
+			<name>lastpager</name>
 			<type>button</type>
 			<tip lang="true">last</tip>
 			<label lang="true">last</label>
 			<value ifeval="is_mobile()">&gt;&gt;</value>
-			<onclick>last()</onclick>
+			<onclick>if(!is_disabled(this)) last()</onclick>
 			<icon>last</icon>
 			<class>nowrap contextmenu</class>
-			<class2>shortcut_ctrl_end</class2>
-			<disabled global="lastpage" ifpreeval="isset($lastpage)" eval="true">$lastpage?"false":"true"</disabled>
+			<class2>ui-state-disabled shortcut_ctrl_end</class2>
 		</field>
 	</row>
 </root>

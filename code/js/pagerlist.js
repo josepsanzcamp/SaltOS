@@ -23,13 +23,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(typeof(__quickform__)=="undefined" && typeof(parent.__quickform__)=="undefined") {
+if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefined") {
 	"use strict";
-	var __quickform__=1;
+	var __pagerlist__=1;
 
-	function update_quickform() {
-		if(!$("#selectquick").length) return;
-		var data="action=quickform&page="+getParam("page")+"&id="+getParam("id")+"&id_folder="+getParam("id_folder")+"&is_fichero="+getParam("is_fichero")+"&is_buscador="+getParam("is_buscador");
+	function update_pagerlist() {
+		if(!$("#selectpage").length) return;
+		var data="action=pagerlist&page="+getParam("page");
 		$.ajax({
 			url:"xml.php",
 			data:data,
@@ -38,16 +38,17 @@ if(typeof(__quickform__)=="undefined" && typeof(parent.__quickform__)=="undefine
 				var value2=$("root>value",response).text();
 				var options="";
 				$("root>rows>row",response).each(function() {
-					var label=str_replace(new Array("<",">"),new Array("&lt;","&gt;"),$("label",this).text());
+					var label=$("label",this).text();
 					var value=$("value",this).text();
 					var selected=(value==value2)?"selected='selected'":"";
 					options+="<option value='"+value+"' "+selected+">"+label+"</option>";
 				});
-				$("#selectquick").html2(options);
-				if($("root>first",response).text()) $("#firstquick").removeClass("ui-state-disabled");
-				if($("root>previous",response).text()) $("#previousquick").removeClass("ui-state-disabled");
-				if($("root>next",response).text()) $("#nextquick").removeClass("ui-state-disabled");
-				if($("root>last",response).text()) $("#lastquick").removeClass("ui-state-disabled");
+				$("#selectpage").html2(options);
+				if($("root>first",response).text()) $("#firstpager").removeClass("ui-state-disabled");
+				if($("root>previous",response).text()) $("#previouspager").removeClass("ui-state-disabled");
+				if($("root>next",response).text()) $("#nextpager").removeClass("ui-state-disabled");
+				if($("root>last",response).text()) $("#lastpager").removeClass("ui-state-disabled");
+				$(".infopager").html2($("root>info",response).text());
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
@@ -58,4 +59,4 @@ if(typeof(__quickform__)=="undefined" && typeof(parent.__quickform__)=="undefine
 }
 
 "use strict";
-$(document).ready(function() { update_quickform(); });
+$(document).ready(function() { update_pagerlist(); });

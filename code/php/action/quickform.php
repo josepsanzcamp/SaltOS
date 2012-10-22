@@ -86,12 +86,10 @@ if(getParam("action")=="quickform") {
 	if($maxindex<$count-1) $ids2[]=$ids[$count-1];
 	$titles=list_simulator($pagesim,$ids2);
 	// PREPARE THE RESULT
-	$count2=1;
 	$_RESULT=array("rows"=>array());
 	foreach($ids2 as $key=>$value) {
 		$label=isset($titles[$key])?$titles[$key]:$value;
 		$row=array("label"=>$label,"value"=>$value);
-		$row["__ROW_NUMBER__"]=$count2++;
 		set_array($_RESULT["rows"],"row",$row);
 	}
 	// PREPARE THE VALUE

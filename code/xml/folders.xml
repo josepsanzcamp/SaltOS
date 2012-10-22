@@ -75,13 +75,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<icon>delete</icon>
 			</delete2>
 		</actions>
-		<pager include="xml/common/pager.xml"/>
-		<node path="pager/row/field" replace="true">
-			<field>
-				<type>separator</type>
-				<width>15%</width>
-			</field>
-		</node>
 		<width>100%</width>
 		<fields>
 			<field>
@@ -225,6 +218,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
+		<pager include="xml/common/pagerlist.xml"/>
+		<node path="pager/row/field" replace="true">
+			<field>
+				<type>separator</type>
+				<width>15%</width>
+			</field>
+		</node>
 		<query global="page,id_usuario,id_aplicacion,filtro,id_folder" eval="true">"SELECT * FROM (
 			SELECT a.id id,
 			/*MYSQL LPAD(a.id_registro,5,0) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) */ id2,

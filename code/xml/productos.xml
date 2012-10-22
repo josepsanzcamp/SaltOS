@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<list>
 		<title lang="true">list</title>
 		<actions include="xml/common/actions.xml" replace="true"/>
-		<pager include="xml/common/pager.xml"/>
 		<width>100%</width>
 		<fields>
 			<field>
@@ -127,6 +126,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
+		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"
 		SELECT
 			/*MYSQL LPAD(id,5,0)*//*SQLITE SUBSTR('00000' || id,-5,5)*/ id2,id,

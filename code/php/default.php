@@ -522,44 +522,8 @@ switch($action) {
 			set_array($_RESULT[$action]["rows"],"row",$row);
 		}
 		db_free($result);
-		// EXECUTE THE QUERY TO GET THE TOTAL ROWS
-		$query="SELECT COUNT(*) FROM ($query0) __a__";
-		$count=execute_query($query);
 		// CONTINUE WITH NORMAL OPERATION
 		$_RESULT[$action]=__eval_querytag($_RESULT[$action]);
-		$currentpage=intval($offset/$limit)+1;
-		$totalpages=intval(($count-1)/$limit)+1;
-		$currentregini=min($offset+1,$count);
-		$currentregend=min($offset+$limit,$count);
-		$totalregs=$count;
-		// PREPARE PAGINATION VARS
-		$firstpage=($currentpage>1);
-		$previouspage=($currentpage>1);
-		$nextpage=($currentpage<$totalpages);
-		$lastpage=($currentpage<$totalpages);
-		// PREPARE THE LIST OF PAGES
-		$minpage=$currentpage-intval($limit/2);
-		$maxpage=$currentpage+intval($limit/2);
-		if($minpage<1) {
-			$minpage=1;
-			$maxpage=1+$limit;
-		} elseif($maxpage>$totalpages) {
-			$minpage=$totalpages-$limit;
-			$maxpage=$totalpages;
-		}
-		$minpage=max($minpage,1);
-		$maxpage=min($maxpage,$totalpages);
-		$selectpage=array();
-		if($minpage>1) $selectpage[]=1;
-		for($i=$minpage;$i<=$maxpage;$i++) $selectpage[]=$i;
-		if($maxpage<$totalpages) $selectpage[]=$totalpages;
-		// OTHER USEFULL VARIABLES
-		$regspagemin=intval(getDefault("regspagemin"));
-		$regspagemax=intval(getDefault("regspagemax"));
-		$regspageincr=intval(getDefault("regspageincr"));
-		$currentlimit=$limit;
-		// EVALUATE THE PENDING CODE
-		$_RESULT[$action]=eval_attr($_RESULT[$action]);
 		break;
 	case "form":
 		$config=getDefault("$page/$action");

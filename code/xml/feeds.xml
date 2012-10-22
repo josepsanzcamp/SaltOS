@@ -39,13 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<icon>wait</icon>
 			</wait>
 		</actions>
-		<pager include="xml/common/pager.xml"/>
-		<node path="pager/row/field" replace="true">
-			<field>
-				<type>separator</type>
-				<width>15%</width>
-			</field>
-		</node>
 		<width>100%</width>
 		<fields>
 			<field>
@@ -351,6 +344,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
+		<pager include="xml/common/pagerlist.xml"/>
+		<node path="pager/row/field" replace="true">
+			<field>
+				<type>separator</type>
+				<width>15%</width>
+			</field>
+		</node>
 		<temp global="fecha3_array" eval="true">$fecha3_array=array(""=>"1=1","today"=>"DATE(`datetime`)=DATE('".current_date()."')","yesterday"=>"DATE(`datetime`)=DATE('".current_date(-86400)."')","week"=>"DATE(`datetime`)>=DATE('".current_date(-86400*7)."')","month"=>"DATE(`datetime`)>=DATE('".current_date(-86400*30)."')")</temp>
 		<temp global="fecha3,fecha3_array" eval="true">$fecha3=isset($fecha3_array[$fecha3])?$fecha3:""</temp>
 		<temp global="only,onlynew,onlywait" eval="true">$only=intval($onlynew).intval($onlywait)</temp>

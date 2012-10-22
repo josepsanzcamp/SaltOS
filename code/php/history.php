@@ -31,36 +31,44 @@ function history($page) {
 	$numget=count(array_merge($_POST,$_GET));
 	$limpiar=getParam("limpiar");
 	if($numget>2 || $limpiar) {
-		$query="SELECT * FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
-		$result=db_query($query);
-		$numrows=db_num_rows($result);
-		db_free($result);
-		$querystring=base64_encode(getServer("QUERY_STRING"));
-		if($numrows>1) {
-			$query="DELETE FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
-			db_query($query);
-			$numrows=0;
-		}
-		if(!$numrows) {
-			$query="INSERT INTO tbl_history(`id`,`id_usuario`,`id_aplicacion`,`querystring`) VALUES(NULL,'$id_usuario','$id_aplicacion','$querystring')";
-			db_query($query);
-		} else {
-			$query="UPDATE tbl_history SET `querystring`='$querystring' WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
-			db_query($query);
-		}
+		save_history($id_usuario,$id_aplicacion);
 	} else {
-		$query="SELECT querystring FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
-		$result=db_query($query);
-		$numrows=db_num_rows($result);
-		$row=db_fetch_row($result);
-		db_free($result);
-		if($numrows) {
-			$items=querystring2array(base64_decode($row["querystring"]));
-			if(isset($items["id_folder"])) unset($items["id_folder"]);
-			if(isset($items["is_fichero"])) unset($items["is_fichero"]);
-			if(isset($items["is_buscador"])) unset($items["is_buscador"]);
-			$_POST=array_merge($_POST,$items);
-		}
+		load_history($id_usuario,$id_aplicacion);
+	}
+}
+
+function save_history($id_usuario,$id_aplicacion) {
+	$query="SELECT * FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
+	$result=db_query($query);
+	$numrows=db_num_rows($result);
+	db_free($result);
+	$querystring=base64_encode(getServer("QUERY_STRING"));
+	if($numrows>1) {
+		$query="DELETE FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
+		db_query($query);
+		$numrows=0;
+	}
+	if(!$numrows) {
+		$query="INSERT INTO tbl_history(`id`,`id_usuario`,`id_aplicacion`,`querystring`) VALUES(NULL,'$id_usuario','$id_aplicacion','$querystring')";
+		db_query($query);
+	} else {
+		$query="UPDATE tbl_history SET `querystring`='$querystring' WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
+		db_query($query);
+	}
+}
+
+function load_history($id_usuario,$id_aplicacion) {
+	$query="SELECT querystring FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
+	$result=db_query($query);
+	$numrows=db_num_rows($result);
+	$row=db_fetch_row($result);
+	db_free($result);
+	if($numrows) {
+		$items=querystring2array(base64_decode($row["querystring"]));
+		if(isset($items["id_folder"])) unset($items["id_folder"]);
+		if(isset($items["is_fichero"])) unset($items["is_fichero"]);
+		if(isset($items["is_buscador"])) unset($items["is_buscador"]);
+		$_POST=array_merge($_POST,$items);
 	}
 }
 

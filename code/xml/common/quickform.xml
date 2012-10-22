@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<width>100%</width>
 		</field>
 		<field ifeval="is_mobile()">
-			<name>quick_select</name>
+			<name>selectquick</name>
 			<type>select</type>
 			<onchange>page1(this.value)</onchange>
 			<listsim require="php/listsim.php" global="label,page,id" eval="true">$label=list_simulator($page,abs($id))</listsim>
@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<width>240px</width>
 		</field>
 		<field>
-			<name>quick_first</name>
+			<name>firstquick</name>
 			<type>button</type>
 			<tip lang="true">first</tip>
 			<label lang="true">first</label>
@@ -54,7 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class2>ui-state-disabled shortcut_ctrl_home</class2>
 		</field>
 		<field>
-			<name>quick_previous</name>
+			<name>previousquick</name>
 			<type>button</type>
 			<tip lang="true">previous</tip>
 			<label lang="true">previous</label>
@@ -65,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
 		</field>
 		<field ifeval="!is_mobile()">
-			<name>quick_select</name>
+			<name>selectquick</name>
 			<type>select</type>
 			<onchange>page1(this.value)</onchange>
 			<listsim require="php/listsim.php" global="label,page,id" eval="true">$label=list_simulator($page,abs($id))</listsim>
@@ -78,7 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<width>240px</width>
 		</field>
 		<field>
-			<name>quick_next</name>
+			<name>nextquick</name>
 			<type>button</type>
 			<tip lang="true">next</tip>
 			<label lang="true">next</label>
@@ -89,7 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
 		</field>
 		<field>
-			<name>quick_last</name>
+			<name>lastquick</name>
 			<type>button</type>
 			<tip lang="true">last</tip>
 			<label lang="true">last</label>

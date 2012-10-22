@@ -27,50 +27,25 @@ function list_simulator($newpage,$ids="string") {
 	global $page;
 	global $action;
 	global $_LANG;
-	// STORE OLD INFORMATION
-	$oldpage=isset($page)?$page:null;
-	$oldaction=isset($action)?$action:null;
-	$oldlang=$_LANG["default"];
 	// LOAD THE APPLICATION FILE
 	if(!file_exists("xml/$newpage.xml")) return null;
 	$config=xml2array("xml/$newpage.xml");
 	if(!isset($config["list"])) return null;
-	// BACKUP THE GET AND POST DATA TO RESTORE WHEN FINISH
-	$_OLDGET=$_GET;
-	$_GET=array();
-	$_OLDPOST=$_POST;
-	$_POST=array();
-	// UPDATE THE PAGE
-	$page=$newpage;
-	setParam("page",$page);
-	// UPDATE THE ACTION
-	$action="list";
-	setParam("action",$action);
+	// SAVE THE CURRENT CONTEXT
+	saltos_context($newpage,"list");
 	// DISABLE DB CACHE
 	$oldcache=set_use_cache("false");
 	// RESTORE THE HISTORY DATA IF EXISTS
 	$id_usuario=current_user();
 	$id_aplicacion=page2id($page);
-	$query="SELECT querystring FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
-	$result=db_query($query);
-	$numrows=db_num_rows($result);
-	$row=db_fetch_row($result);
-	db_free($result);
-	if($numrows) {
-		$items=querystring2array(base64_decode($row["querystring"]));
-		if(isset($items["id_folder"])) unset($items["id_folder"]);
-		if(isset($items["is_fichero"])) unset($items["is_fichero"]);
-		if(isset($items["is_buscador"])) unset($items["is_buscador"]);
-		$_POST=array_merge($_POST,$items);
-	}
+	load_history($id_usuario,$id_aplicacion);
 	// MAKE THE LIST QUERY
-	$_LANG["default"]="$page,menu,common";
 	$config=$config[$action];
 	$config=eval_attr($config);
 	$query0=$config["query"];
 	// CHECK ORDER
 	list($order,$array)=list_check_order($config["order"],$config["fields"]);
-	// CONTINUE
+	// EXECUTE THE QUERY TO GET THE REQUESTED DATA
 	if($ids=="string" || $ids=="array") {
 		$query="SELECT action_id FROM ($query0) __a__ ORDER BY $order";
 		$result=execute_query($query);
@@ -86,19 +61,50 @@ function list_simulator($newpage,$ids="string") {
 	}
 	// RESTORE DB CACHE
 	set_use_cache($oldcache);
-	// RESTORE THE ORIGINAL GET AND POST
-	$_GET=$_OLDGET;
-	unset($_OLDGET);
-	$_POST=$_OLDPOST;
-	unset($_OLDPOST);
-	// REVERT TO THE OLD VARIABLES
-	$page=$oldpage;
-	$action=$oldaction;
-	$_LANG["default"]=$oldlang;
-	setParam("page",$page);
-	setParam("action",$action);
+	// RESTORE THE SAVED CONTEXT
+	saltos_context();
 	// RETURN THE EXPECTED RESULT
 	return $result;
+}
+
+function saltos_context($newpage="",$newaction="") {
+	global $page;
+	global $action;
+	global $_LANG;
+	static $oldget=array();
+	static $oldpost=array();
+	static $oldpage="";
+	static $oldaction="";
+	static $oldlang="";
+	if($newpage && $newaction && !$oldpage && !$oldaction) {
+		// SAVE CONTEXT
+		$oldget=$_GET;
+		$_GET=array();
+		$oldpost=$_POST;
+		$_POST=array();
+		$oldpage=isset($page)?$page:null;
+		$page=$newpage;
+		setParam("page",$page);
+		$oldaction=isset($action)?$action:null;
+		$action=$newaction;
+		setParam("action",$action);
+		$oldlang=$_LANG["default"];
+		$_LANG["default"]="$page,menu,common";
+	} elseif(!$newpage && !$newaction && $oldpage && $oldaction) {
+		// RESTORE CONTEXT
+		$_GET=$oldget;
+		$oldget=array();
+		$_POST=$oldpost;
+		$oldpost=array();
+		$page=$oldpage;
+		$oldpage="";
+		$action=$oldaction;
+		$oldaction="";
+		$_LANG["default"]=$oldlang;
+		$oldlang="";
+	} else {
+		show_php_error(array("phperror"=>"saltos_context internal error"));
+	}
 }
 
 function list_check_order($order,$fields2) {

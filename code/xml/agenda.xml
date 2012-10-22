@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<list>
 		<title lang="true">list</title>
 		<actions include="xml/common/actions.xml" replace="true"/>
-		<pager include="xml/common/pager.xml"/>
 		<width>100%</width>
 		<fields>
 			<field>
@@ -309,6 +308,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
+		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,id_proyecto,id_presupuesto,id_estado,id_usuario,fecha1,fecha2,otros,id_tipoevento,fecha3,fecha3key,fecha3val,id_posiblecli,id_asignado,id_campanya" eval="true">"SELECT * FROM (
 			SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
 				".make_extra_query_with_login("d.")." usuario,

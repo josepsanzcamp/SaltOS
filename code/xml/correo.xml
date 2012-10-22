@@ -54,7 +54,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<icon>spam</icon>
 			</spam>
  		</actions>
-		<pager include="xml/common/pager.xml"/>
 		<width>100%</width>
 		<fields>
 			<field>
@@ -548,6 +547,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
+		<pager include="xml/common/pagerlist.xml"/>
 		<temp global="campos_array" eval="true">$campos_array=array(""=>"id2,from,to,cc,bcc,datetime,subject,body,estado,msgid","email"=>"from,to,cc,bcc","subject"=>"subject","body"=>"body","resto"=>"id2,datetime,estado,msgid")</temp>
 		<temp global="campos,campos_array" eval="true">$campos=isset($campos_array[$campos])?$campos:""</temp>
 		<temp global="fecha3_array" eval="true">$fecha3_array=array(""=>"1=1","today"=>"DATE(`datetime`)=DATE('".current_date()."')","yesterday"=>"DATE(`datetime`)=DATE('".current_date(-86400)."')","week"=>"DATE(`datetime`)>=DATE('".current_date(-86400*7)."')","month"=>"DATE(`datetime`)>=DATE('".current_date(-86400*30)."')")</temp>

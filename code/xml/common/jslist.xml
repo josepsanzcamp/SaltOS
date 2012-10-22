@@ -81,7 +81,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>correo(id) { setParam("page","correo"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>feeds(id) { setParam("page","feeds"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>importaciones(id) { setParam("page","importaciones"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<!-- FOR PAGINATION MODULE -->
+	<!-- FOR PAGERLIST MODULE -->
 	<function>first() { page1($("#selectpage").prop("selectedIndex",0).val()); }</function>
 	<function>previous() { page1($("#selectpage").prop("selectedIndex",$("#selectpage").prop("selectedIndex")-1).val()); }</function>
 	<function>next() { page1($("#selectpage").prop("selectedIndex",$("#selectpage").prop("selectedIndex")+1).val()); }</function>
@@ -116,5 +116,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<include>js/qrcode.js</include>
 		<include>js/viewpdf.js</include>
 		<include>js/filters.js</include>
+		<include>js/pagerlist.js</include>
 	</cache>
 </root>

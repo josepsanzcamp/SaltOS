@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<list>
 		<title lang="true">list</title>
 		<actions include="xml/common/actions.xml" replace="true"/>
-		<pager include="xml/common/pager.xml"/>
 		<width>100%</width>
 		<fields>
 			<field>
@@ -402,6 +401,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
+		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,fecha1,fecha2,fecha1reg,fecha2reg,fecha1liq,fecha2liq,trimestre,trimestrereg,trimestreliq,filtro,id_pagador,id_formapago,liquidado,id_proveedor,id_cuenta,id_proyecto" eval="true">"
 		SELECT id2,id,
 			usuario,`datetime`,empresa,cif,fecha,base,iva,irpf,total,pagador,formapago,

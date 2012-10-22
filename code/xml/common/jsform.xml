@@ -63,11 +63,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>presupuestos(id) { setParam("page","presupuestos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>campanyas(id) { setParam("page","campanyas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>importaciones(id) { setParam("page","importaciones"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<!-- FOR PAGINATION MODULE -->
-	<function>first() { page1($("#quick_select").prop("selectedIndex",0).val()); }</function>
-	<function>previous() { page1($("#quick_select").prop("selectedIndex",$("#quick_select").prop("selectedIndex")-1).val()); }</function>
-	<function>next() { page1($("#quick_select").prop("selectedIndex",$("#quick_select").prop("selectedIndex")+1).val()); }</function>
-	<function>last() { page1($("#quick_select").prop("selectedIndex",$("#quick_select").prop("options").length-1).val()); }</function>
+	<!-- FOR QUICKFORM MODULE -->
+	<function>first() { page1($("#selectquick").prop("selectedIndex",0).val()); }</function>
+	<function>previous() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("selectedIndex")-1).val()); }</function>
+	<function>next() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("selectedIndex")+1).val()); }</function>
+	<function>last() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("options").length-1).val()); }</function>
 	<function>page1(id) { var temp=explode("_",id); if(temp.length==3) { setParam("page",temp[1]); id=temp[2]; } addcontent("update"); setParam("action","form"); setParam("id",-id); submit1(); }</function>
 	<!-- FOR PDF MODULE -->
 	<function>pdf2(page,id) { openurl("xml.php?page="+page+"&amp;action=pdf&amp;id="+id); }</function>
