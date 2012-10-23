@@ -78,8 +78,8 @@ if(typeof(__checkfeeds__)=="undefined" && typeof(parent.__checkfeeds__)=="undefi
 		return islist && nocheck && istop && intab && noover;
 	}
 
-	function menu_feeds(num) {
-		var obj=$(".feeds");
+	function number_feeds(num) {
+		var obj=$(".number_feeds");
 		$(obj).each(function() {
 			var padre=$(this).parent();
 			unmake_numbers(padre);
@@ -92,7 +92,7 @@ if(typeof(__checkfeeds__)=="undefined" && typeof(parent.__checkfeeds__)=="undefi
 	}
 
 	$(document).ready(function() {
-			if(config_feeds_interval()>0) {
+		if(config_feeds_interval()>0) {
 			var feeds_counter=config_feeds_interval();
 			setInterval(function() {
 				feeds_counter=feeds_executing?0:feeds_counter+1000;

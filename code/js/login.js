@@ -24,7 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__login__)=="undefined" && typeof(parent.__login__)=="undefined") {
+	"use strict";
+	var __login__=1;
+
 	function update_captcha() {
 		$(".captcha").attr("src","xml.php?action=captcha&amp;_="+time());
 	}
+
 }

@@ -28,10 +28,11 @@ if(getParam("action")=="import") {
 	// GET THE FILE
 	$ok=0;
 	foreach($_FILES as $file) {
-		if($file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
+		if(isset($file["tmp_name"]) && $file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
 			$file=$file["tmp_name"];
 			$ok=1;
-		} elseif($file["name"]!="") {
+			break;
+		} elseif(isset($file["name"]) && $file["name"]!="") {
 			session_error(LANG("fileuploaderror").$file["name"]);
 			javascript_history(-1);
 			die();

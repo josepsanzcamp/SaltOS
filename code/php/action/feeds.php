@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="feeds") {
-	// FOR COMMANDS
-	if(getParam("command")) {
+	// FOR ACTION2
+	if(getParam("action2")) {
 		$ids=check_ids(getParam("id"));
 		if($ids) {
 			$numids=count(explode(",",$ids));
@@ -36,26 +36,26 @@ if(getParam("action")=="feeds") {
 			if(!is_array($result)) $result=array($result);
 			$numresult=count($result);
 			if($numresult==$numids) {
-				$command=explode("=",getParam("command"));
-				if($command[0]=="leidos") {
+				$action2=explode("=",getParam("action2"));
+				if($action2[0]=="leidos") {
 					// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_new!='${command[1]}'";
+					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_new!='${action2[1]}'";
 					$numids=execute_query($query);
 					// PONER STATE_NEW=0 EN LOS POSTS SELECCIONADOS
-					$query="UPDATE tbl_feeds SET state_new='${command[1]}' WHERE id IN ($ids) AND state_new!='${command[1]}'";
+					$query="UPDATE tbl_feeds SET state_new='${action2[1]}' WHERE id IN ($ids) AND state_new!='${action2[1]}'";
 					db_query($query);
 					// MOSTRAR RESULTADO
-					session_alert(LANG($command[1]?"msgnumnoleidos":"msgnumsileidos","feeds").$numids.LANG("message".min($numids,2),"feeds"));
-				} elseif($command[0]=="wait") {
+					session_alert(LANG($action2[1]?"msgnumnoleidos":"msgnumsileidos","feeds").$numids.LANG("message".min($numids,2),"feeds"));
+				} elseif($action2[0]=="wait") {
 					// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_wait!='${command[1]}'";
+					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_wait!='${action2[1]}'";
 					$numids=execute_query($query);
 					// PONER STATE_WAIT=1 EN LOS POSTS SELECCIONADOS
-					$query="UPDATE tbl_feeds SET state_new='0',state_wait='${command[1]}' WHERE id IN ($ids) AND state_wait!='${command[1]}'";
+					$query="UPDATE tbl_feeds SET state_new='0',state_wait='${action2[1]}' WHERE id IN ($ids) AND state_wait!='${action2[1]}'";
 					db_query($query);
 					// MOSTRAR RESULTADO
-					session_alert(LANG($command[1]?"msgnumsiwait":"msgnumnowait","feeds").$numids.LANG("message".min($numids,2),"feeds"));
-				} elseif($command[0]=="delete") {
+					session_alert(LANG($action2[1]?"msgnumsiwait":"msgnumnowait","feeds").$numids.LANG("message".min($numids,2),"feeds"));
+				} elseif($action2[0]=="delete") {
 					// CREAR DATOS EN TABLA DE POSTS BORRADOS
 					$query="INSERT INTO tbl_feeds_d SELECT NULL id,id_feed,link,'".current_datetime()."' FROM tbl_feeds WHERE id IN ($ids)";
 					db_query($query);
@@ -660,7 +660,7 @@ if(getParam("action")=="feeds") {
 			}
 			$query="SELECT COUNT(*) FROM tbl_feeds WHERE state_new='1' AND id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='".current_user()."')";
 			$count=execute_query($query);
-			if($count) javascript_template("menu_feeds($count);");
+			if($count) javascript_template("number_feeds($count);");
 			if($count) javascript_template("favicon_animate($count);");
 			javascript_history(0,$condition);
 		}

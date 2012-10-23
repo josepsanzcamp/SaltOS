@@ -1057,10 +1057,6 @@ function action_denied() {
 	die();
 }
 
-function dummy($param) {
-	// NOTHING TO DO
-}
-
 function fix_input_vars() {
 	if(intval(ini_get("max_input_vars"))>0) {
 		$fix_input_vars=getParam("fix_input_vars");

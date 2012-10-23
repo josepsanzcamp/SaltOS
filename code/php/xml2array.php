@@ -233,22 +233,22 @@ function limpiar_key($key) {
 
 function eval_files() {
 	foreach($_FILES as $key=>$val) {
-		$temp_name=$val["name"];
-		$temp_file="";
-		$temp_size=$val["size"];
-		$temp_type=$val["type"];
-		$temp_temp=$val["tmp_name"];
-		if($temp_temp!="" && file_exists($temp_temp)) {
-			$temp_file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($temp_name);
-			$ext=pathinfo($temp_file,PATHINFO_EXTENSION);
-			if($ext=="php") $temp_file=substr($temp_file,0,-strlen($ext)-1).getDefault("exts/defaultext",".dat");
-			setParam($key,$temp_name);
-			setParam($key."_file",$temp_file);
-			setParam($key."_size",$temp_size);
-			setParam($key."_type",$temp_type);
-			setParam($key."_temp",$temp_temp);
-		} elseif($temp_name!="") {
-			session_error(LANG("fileuploaderror").$temp_name);
+		if(isset($val["tmp_name"]) && $val["tmp_name"]!="" && file_exists($val["tmp_name"])) {
+			if(!isset($val["name"])) $val["name"]=basename($val["tmp_name"]);
+			$val["file"]=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($val["name"]);
+			if(!isset($val["size"])) $val["size"]=filesize($val["tmp_name"]);
+			if(!isset($val["type"])) $val["type"]=finfo_file(finfo_open(FILEINFO_MIME_TYPE),$val["tmp_name"]);
+			// SECURITY ISSUE
+			$ext=pathinfo($val["file"],PATHINFO_EXTENSION);
+			if($ext=="php") $val["file"]=substr($val["file"],0,-strlen($ext)-1).getDefault("exts/defaultext",".dat");
+			// CONTINUE
+			setParam($key,$val["name"]);
+			setParam($key."_file",$val["file"]);
+			setParam($key."_size",$val["size"]);
+			setParam($key."_type",$val["type"]);
+			setParam($key."_temp",$val["tmp_name"]);
+		} elseif(isset($val["name"]) && $val["name"]!="") {
+			session_error(LANG("fileuploaderror").$val["name"]);
 		}
 	}
 }
@@ -266,7 +266,7 @@ function xml2array($file,$usecache=true) {
 		$depend=array();
 		if(cache_exists($cache,$file)) {
 			$array=unserialize(file_get_contents($cache));
-			if(isset($array["depend"])) {
+			if(isset($array["depend"]) && isset($array["root"])) {
 				if(cache_exists($cache,$array["depend"])) {
 					return $array["root"];
 				}
@@ -281,7 +281,7 @@ function xml2array($file,$usecache=true) {
 	$array=leer_nodos($data,$file);
 	if($usecache) {
 		$array["source"]=$file;
-		$array["depend"]=$depend;
+		$array["depend"]=array_unique($depend);
 		if(file_exists($cache)) unlink_protected($cache);
 		file_put_contents($cache,serialize($array));
 		chmod_protected($cache,0666);

@@ -141,9 +141,11 @@ if(getParam("action")=="sendmail") {
 		// ADD UPLOADED ATTACHMENTS
 		$files=array();
 		foreach($_FILES as $file) {
-			if($file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
+			if(isset($file["tmp_name"]) && $file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
+				if(!isset($file["name"])) $file["name"]=basename($file["tmp_name"]);
+				if(!isset($file["type"])) $file["type"]=finfo_file(finfo_open(FILEINFO_MIME_TYPE),$file["tmp_name"]);
 				$files[]=array("file"=>$file["tmp_name"],"name"=>$file["name"],"mime"=>$file["type"]);
-			} elseif($file["name"]!="") {
+			} elseif(isset($file["name"]) && $file["name"]!="") {
 				javascript_error(LANG("fileuploaderror").$file["name"]);
 				javascript_unloading();
 				die();

@@ -29,7 +29,7 @@ if(typeof(__checksession__)=="undefined" && typeof(parent.__checksession__)=="un
 
 	var session_executing=0;
 
-	function check_session(command) {
+	function check_session(action2) {
 		if(session_executing) return;
 		session_executing=1;
 		// SOME CHECKS
@@ -38,7 +38,7 @@ if(typeof(__checksession__)=="undefined" && typeof(parent.__checksession__)=="un
 			return;
 		}
 		// NORMAL USAGE
-		var data="action=session"+((typeof(command)=="undefined")?"":"&command="+command);
+		var data="action=session"+((typeof(action2)=="undefined")?"":"&action2="+action2);
 		$.ajax({
 			url:"xml.php",
 			data:data,

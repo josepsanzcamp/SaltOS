@@ -112,7 +112,7 @@ if(getParam("action")=="agenda") {
 	if(count($notify_texts)+count($reader_texts)) {
 		$query="SELECT COUNT(*) FROM (SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND /*SQLITE STRFTIME('%s','".current_datetime()."')+0.0 > STRFTIME('%s',dstart)+notify_delay*3600.0*notify_sign *//*MYSQL UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstart)+notify_delay*3600*notify_sign */ UNION SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND /*SQLITE STRFTIME('%s','".current_datetime()."')+0.0 > STRFTIME('%s',dstop)+0.0 *//*MYSQL UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop) */) a";
 		$count=execute_query($query);
-		if($count) javascript_template("menu_agenda($count);");
+		if($count) javascript_template("number_agenda($count);");
 		if($count) javascript_template("favicon_animate($count);");
 	}
 	// VOICE FEATURES

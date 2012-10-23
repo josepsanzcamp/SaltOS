@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<temp global="rows,temp" eval="true">dummy($rows=execute_query("SELECT * FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id($temp)."' ORDER BY nombre ASC"))</temp>
-	<temp global="rows" eval="true">dummy($rows=is_array($rows)?$rows:array())</temp>
-	<temp global="rows" eval="true">dummy($rows=isset($rows["id"])?array($rows):$rows)</temp>
+	<temp global="rows,temp" eval="true">$rows=execute_query("SELECT * FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id($temp)."' ORDER BY nombre ASC")</temp>
+	<temp global="rows" eval="true">$rows=is_array($rows)?$rows:array()</temp>
+	<temp global="rows" eval="true">$rows=isset($rows["id"])?array($rows):$rows</temp>
 </root>

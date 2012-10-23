@@ -95,9 +95,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<function>yesterday() { clear3(); setParam('fecha3','yesterday'); submit1(); }</function>
 			<function>week() { clear3(); setParam('fecha3','week'); submit1(); }</function>
 			<function>month() { clear3(); setParam('fecha3','month'); submit1(); }</function>
-			<function eval="true">"leidos(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgleidos")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('command','leidos='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-			<function eval="true">"wait(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgwait")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('command','wait='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-			<function eval="true">"delete2() { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete2")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('command','delete'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+			<function eval="true">"leidos(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgleidos")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('action2','leidos='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+			<function eval="true">"wait(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgwait")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('action2','wait='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+			<function eval="true">"delete2() { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete2")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('action2','delete'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 			<function>forward(id) { setParam("page","correo"); setParam("action","form"); setParam("id","0_feed_"+id); submit1(); }</function>
 		</javascript>
 		<quick>
@@ -329,7 +329,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<checked global="onlywait" eval="true">(($onlywait=getParam("onlywait"))=="1")?"true":"false"</checked>
 					</field>
 					<field>
-						<name>command</name>
+						<name>action2</name>
 						<type>hidden</type>
 						<value></value>
 					</field>

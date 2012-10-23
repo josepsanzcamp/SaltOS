@@ -25,5 +25,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<query global="page,id" match="direccion_new" prefix="true" eval="true">getParam("nombre")?"INSERT INTO tbl_direcciones(`id`,`id_aplicacion`,`id_registro`,`nombre`,`direccion`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`seleccion`,`id_pais`,`id_provincia`,`id_poblacion`,`id_codpostal`,`nombre_pais`) VALUES(NULL,'".page2id($page)."','".abs($id)."','".getParam("nombre")."','".getParam("direccion")."','".getParam("nombre_codpostal")."','".getParam("nombre_poblacion")."','".getParam("nombre_provincia")."','".intval(getParam("seleccion"))."','".getParam("id_pais")."','".getParam("id_provincia")."','".getParam("id_poblacion")."','".getParam("id_codpostal")."','".getParam("nombre_pais")."')":""</query>
-	<query global="page,id,newdir" match="direccion_new" prefix="true" eval="true">dummy($newdir=getParam("nombre")?"1":"0")</query>
+	<query global="page,id,newdir" match="direccion_new" prefix="true" eval="true">($newdir=getParam("nombre")?"1":"0")?"":""</query>
 </root>

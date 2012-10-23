@@ -61,8 +61,8 @@ if(typeof(__checkagenda__)=="undefined" && typeof(parent.__checkagenda__)=="unde
 		});
 	}
 
-	function menu_agenda(num) {
-		var obj=$(".agenda");
+	function number_agenda(num) {
+		var obj=$(".number_agenda");
 		$(obj).each(function() {
 			var padre=$(this).parent();
 			unmake_numbers(padre);

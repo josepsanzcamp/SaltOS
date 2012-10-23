@@ -779,9 +779,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	/* FOR RENDER THE SCREEN */
-	var saltos_login=1;
-	var saltos_logout=0;
-
 	function updatecontent(html) {
 		var page=$("#page");
 		$(page).hide();
@@ -797,8 +794,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// CHECK FOR LOGIN AND LOGOUT
 		var menu=$(".ui-layout-west");
 		var menu2=$(".ui-layout-west",html);
-		saltos_login=($(menu).text()=="" && $(menu2).text()!="")?1:0;
-		saltos_logout=($(menu).text()!="" && $(menu2).text()=="")?1:0;
+		var saltos_login=(!saltos_islogin(menu) && saltos_islogin(menu2))?1:0;
+		var saltos_logout=(saltos_islogin(menu) && !saltos_islogin(menu2))?1:0;
 		// IF LOGIN
 		if(saltos_login) sync_cookies("start");
 		// UPDATE THE MENU
@@ -1009,19 +1006,18 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		return color;
 	}
 
-	function make_numbers(obj) {
-		// UNUSED
-	}
-
-	function unmake_numbers(obj) {
-		// UNUSED
-	}
-
 	var jqxhr=null;
 
 	function make_abort() {
 		// UNUSED
 	}
+
+	function saltos_islogin(obj) {
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-west");
+		var islogin=($(obj).text()!="")?1:0;
+		return islogin;
+	}
+	
 
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
 	jQuery.ajaxSetup({ cache:true });
@@ -1076,8 +1072,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	// WHEN DOCUMENT IS READY
 	$(document).ready(function() {
 		var menu=$(".ui-layout-west");
-		saltos_login=($(menu).text()!="")?1:0;
-		if(saltos_login) sync_cookies("start");
+		if(saltos_islogin(menu)) sync_cookies("start");
 		init_history();
 		var header=$(".ui-layout-north");
 		make_extras(header);

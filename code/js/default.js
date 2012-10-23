@@ -445,6 +445,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							"sync":0
 						};
 					});
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 				}
 			});
 			cookies_counter=0;
@@ -696,32 +699,40 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				// TRICK FOR FIX THE MAX_INPUT_VARS ISSUE
 				var max_input_vars=ini_get_max_input_vars();
 				if(max_input_vars>0) {
-					var array=$(jqForm).serializeArray();
-					var total_input_vars=array.length;
-					max_input_vars=max_input_vars*0.9; // TO FIX AN UNKNOWN BUG WHEN SENT THE SAME FIELDS THAT MAX_INPUT_VARS
+					var total_input_vars=$("input,select,textarea",jqForm).length;
 					if(total_input_vars>max_input_vars) {
 						//~ console.debug("max="+max_input_vars);
 						//~ console.debug("total="+total_input_vars);
 						//~ console.time("fix_input_vars");
 						setTimeout(function() {
 							var fix_input_vars=new Array();
-							$(array).each(function(i,field) {
+							$("input[type=checkbox]:not(:checked):not(:visible)",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
-									var obj=$("[name="+field.name+"]",jqForm);
-									var type=$(obj).attr("type");
-									var visible=$(obj).is(":visible");
-									if(in_array(type,new Array("hidden","checkbox")) && !visible) {
-										var temp=field.name+"="+urlencode(field.value);
-										fix_input_vars.push(temp);
-										$(obj).remove();
-										total_input_vars--;
-									}
+									$(this).remove();
+									total_input_vars--;
+								}
+							});
+							$("input[type=checkbox]:checked:not(:visible)",jqForm).each(function() {
+								if(total_input_vars>=max_input_vars) {
+									var temp=$(this).attr("name")+"="+urlencode($(this).val());
+									fix_input_vars.push(temp);
+									$(this).remove();
+									total_input_vars--;
+								}
+							});
+							$("input[type=hidden]",jqForm).each(function() {
+								if(total_input_vars>=max_input_vars) {
+									var temp=$(this).attr("name")+"="+urlencode($(this).val());
+									fix_input_vars.push(temp);
+									$(this).remove();
+									total_input_vars--;
 								}
 							});
 							//~ console.debug("length="+fix_input_vars.length);
 							//~ console.debug("total="+total_input_vars);
 							fix_input_vars=base64_encode(implode("&",fix_input_vars));
 							$(jqForm).append("<input type='hidden' name='fix_input_vars' value='"+fix_input_vars+"'/>");
+							//~ console.debug("real="+$("input,select,textarea",jqForm).length);
 							//~ console.debug("real="+$(jqForm).serializeArray().length);
 							//~ console.timeEnd("fix_input_vars");
 							submitcontent(form,callback);
@@ -918,7 +929,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if(diffcolor || diffbackground) {
 					clearInterval(interval);
 					update_menu();
-					load_numbers();
 				}
 			},100);
 		}
@@ -935,24 +945,18 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.timeEnd("update_iconset");
 	}
 
-	var saltos_login=1;
-	var saltos_logout=0;
-
 	function updatecontent(html) {
 		//~ console.time("updatecontent");
 		$(document).scrollTop(0);
 		// UPDATE THE TITLE IF NEEDED
-		//~ console.time("updatecontent title");
 		var divtitle=$("div[type=title]",html);
 		if(document.title!=$(divtitle).text()) {
 			document.title=$(divtitle).text();
 		}
-		//~ console.timeEnd("updatecontent title");
 		// UPDATE THE NORTH PANEL IF NEEDED
 		//~ console.time("updatecontent north fase 0");
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
-		unmake_numbers(header);
 		if($(header).text()!=$(header2).text()) {
 			$(header).hide();
 			$(header).html2($(header2).children());
@@ -964,23 +968,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				//~ console.timeEnd("updatecontent north fase 1");
 			},100);
 		}
-		make_numbers(header);
 		//~ console.timeEnd("updatecontent north fase 0");
 		// CHECK FOR LOGIN AND LOGOUT
 		var menu=$(".ui-layout-west");
 		var menu2=$(".ui-layout-west",html);
-		saltos_login=($(menu).text()=="" && $(menu2).text()!="")?1:0;
-		saltos_logout=($(menu).text()!="" && $(menu2).text()=="")?1:0;
+		var saltos_login=(!saltos_islogin(menu) && saltos_islogin(menu2))?1:0;
+		var saltos_logout=(saltos_islogin(menu) && !saltos_islogin(menu2))?1:0;
 		// IF LOGIN
-		//~ console.time("updatecontent login");
-		if(saltos_login) {
-			make_notice();
-			sync_cookies("start");
-		}
-		//~ console.timeEnd("updatecontent login");
+		if(saltos_login) sync_cookies("start");
 		// UPDATE THE MENU IF NEEDED
 		//~ console.time("updatecontent west fase 0");
-		unmake_numbers(menu);
 		if($(".menu",menu).text()!=$(".menu",menu2).text()) {
 			$(menu).hide();
 			$(menu).html2($(menu2).children());
@@ -993,15 +990,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				//~ console.timeEnd("updatecontent west fase 1");
 			},100);
 		}
-		make_numbers(menu);
 		//~ console.timeEnd("updatecontent west fase 0");
 		// IF LOGOUT
-		//~ console.time("updatecontent logout");
-		if(saltos_logout) {
-			make_notice();
-			sync_cookies("stop");
-		}
-		//~ console.timeEnd("updatecontent logout");
+		if(saltos_logout) sync_cookies("stop");
 		// UPDATE THE CENTER PANE
 		//~ console.time("updatecontent center fase 0");
 		var screen=$(".ui-layout-center");
@@ -1015,6 +1006,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(screen).show();
 		setTimeout(function() {
 			//~ console.time("updatecontent center fase 1");
+			if(saltos_login || saltos_logout) make_notice();
 			var html2=$("html");
 			update_style(html,html2);
 			update_iconset(html,html2);
@@ -1836,39 +1828,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		return color;
 	}
 
-	function load_numbers() {
-		// GET COLORS OF ERROR CLASS
-		var color=rgb2hex(get_colors("ui-state-error","color"));
-		var background=rgb2hex(get_colors("ui-state-error","background-color"));
-		$("head").append("<link href='xml.php?action=number&format=css&bgcolor="+color+"&fgcolor="+background+"' rel='stylesheet' type='text/css'></link>");
-	}
-
-	function make_numbers(obj) {
-		if(typeof(obj)=="undefined") var obj=$("body");
-		// CONVERT THE NUMBERS INTO GRAPHS
-		$("a.number",obj).each(function() {
-			var html=$(this).html();
-			if(substr(html,-1,1)==")") {
-				var txt=strtok(html,"(");
-				var num1=intval(strtok(")"));
-				var num2=(num1>99)?99:num1;
-				var span="<span class='number number-icon number-icon-"+num2+"' original='"+num1+"'></span>";
-				$(this).html2(txt);
-				$(this).append(span);
-			}
-		});
-	}
-
-	function unmake_numbers(obj) {
-		if(typeof(obj)=="undefined") var obj=$("body");
-		// CONVERT THE IMAGES INTO NUMBERS
-		$("span.number",obj).each(function() {
-			var num=$(this).attr("original");
-			$(this).parent().append("("+num+")");
-			$(this).remove2();
-		});
-	}
-
 	function make_shortcuts() {
 		var codes={"backspace":8, "tab":9, "enter":13, "pauseBreak":19, "capsLock":20, "escape":27, "space":32, "pageUp":33, "pageDown":34, "end":35, "home":36, "leftArrow":37, "upArrow":38, "rightArrow":39, "downArrow":40, "insert":45, "delete":46, "0":48, "1":49, "2":50, "3":51, "4":52, "5":53, "6":54, "7":55, "8":56, "9":57, "a":65, "b":66, "c":67, "d":68, "e":69, "f":70, "g":71, "h":72, "i":73, "j":74, "k":75, "l":76, "m":77, "n":78, "o":79, "p":80, "q":81, "r":82, "s":83, "t":84, "u":85, "v":86, "w":87, "x":88, "y":89, "z":90, "leftWindowKey":91, "rightWindowKey":92, "selectKey":93, "numpad0":96, "numpad1":97, "numpad2":98, "numpad3":99, "numpad4":100, "numpad5":101, "numpad6":102, "numpad7":103, "numpad8":104, "numpad9":105, "multiply":106, "add":107, "subtract":109, "decimalPoint":110, "divide":111, "f1":112, "f2":113, "f3":114, "f4":115, "f5":116, "f6":117, "f7":118, "f8":119, "f9":120, "f10":121, "f11":122, "f12":123, "numLock":144, "scrollLock":145, "semiColon":186, "equalSign":187, "comma":188, "dash":189, "period":190, "forwardSlash":191, "graveAccent":192, "openBracket":219, "backSlash":220, "closeBraket":221, "singleQuote":222};
 		$(document).bind("keydown",function(e) {
@@ -1916,6 +1875,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 	}
 
+	function saltos_islogin(obj) {
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-west");
+		var islogin=($(obj).text()!="")?1:0;
+		return islogin;
+	}
+
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
 	jQuery.ajaxSetup({ cache:true });
 
@@ -1937,12 +1902,21 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_abort();
 			make_tooltips();
 			var header=$(".ui-layout-north");
-			make_numbers(header);
+			setTimeout(function() {
+				//~ console.time("document_ready fase 2 north");
+				make_hovers(header);
+				make_draganddrop(header);
+				//~ console.timeEnd("document_ready fase 2 north");
+			});
 			var menu=$(".ui-layout-west");
-			saltos_login=($(menu).text()!="")?1:0;
-			if(saltos_login) sync_cookies("start");
+			if(saltos_islogin(menu)) sync_cookies("start");
 			make_menu(menu);
-			make_numbers(menu);
+			setTimeout(function() {
+				//~ console.time("document_ready fase 2 west");
+				make_hovers(menu);
+				make_draganddrop(menu);
+				//~ console.timeEnd("document_ready fase 2 west");
+			},100);
 			var screen=$(".ui-layout-center");
 			make_tabs(screen);
 			make_tables(screen);
@@ -1950,16 +1924,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_ckeditors(screen);
 			$("body > *").removeClass("none");
 			setTimeout(function() {
-				//~ console.time("document_ready fase 2");
-				load_numbers();
-				make_hovers(header);
-				make_draganddrop(header);
-				make_hovers(menu);
-				make_draganddrop(menu);
+				//~ console.time("document_ready fase 2 center");
 				make_hovers(screen);
 				make_draganddrop(screen);
 				make_focus();
-				//~ console.timeEnd("document_ready fase 2");
+				//~ console.timeEnd("document_ready fase 2 center");
 			},100);
 			unloadingcontent();
 			//~ console.timeEnd("document_ready fase 1");

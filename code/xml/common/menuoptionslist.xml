@@ -25,11 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<option global="temp" ifeval="check_user($temp,'menu')">
-		<label global="temp,count_correo,count_agenda,count_feeds" eval="true">LANG($temp).($temp=="correo"?" ($count_correo)":"").($temp=="agenda"?" ($count_agenda)":"").($temp=="feeds"?" ($count_feeds)":"")</label>
+		<label global="temp" eval="true">LANG($temp)</label>
 		<onclick global="temp" eval="true">"opencontent('xml.php?page=$temp')"</onclick>
 		<icon global="temp" eval="true">$temp</icon>
 		<tip global="temp" eval="true">LANG("desc_$temp")</tip>
-		<class global="temp,count_correo,count_agenda,count_feeds" eval="true">"nowrap".($temp=="correo"?" correo number":"").($temp=="agenda"?" agenda number":"").($temp=="feeds"?" feeds number":"")</class>
+		<class global="temp" eval="true">"nowrap".($temp=="correo"?" number_correo number":"").($temp=="agenda"?" number_agenda number":"").($temp=="feeds"?" number_feeds number":"")</class>
 		<selected global="page,temp" eval="true">$page==$temp?"true":"false"</selected>
 	</option>
 </root>

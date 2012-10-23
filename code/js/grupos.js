@@ -124,56 +124,56 @@ if(typeof(__grupos__)=="undefined" && typeof(parent.__grupos__)=="undefined") {
 	function make_grupos() {
 		if(getParam("action")!="form") return;
 		setTimeout(function() {
-			$("input[type=hidden][name$=id_permiso][value=-2]").each(function() {
+			$("input[type=hidden][name$=id_permiso][value=-2]").each(function(index) {
 				var padre=$(this).parent();
 				$(padre).removeClass("none");
-				// TODO REVISED
-				var id_aplicacion=$("input[type=hidden][name$=id_aplicacion]",padre).val();
-				padre=$(padre).parent().parent();
-				var total=0;
-				var allow=0;
-				var deny=0;
-				var temp=$("input[type=hidden][name$=id_aplicacion][value="+id_aplicacion+"]",padre);
-				$(temp).each(function() {
-					var padre=$(this).parent();
-					var id_permiso=$("input[name$=id_permiso]",padre).val();
-					if(id_permiso>0) {
-						total++;
-						allow+=$("input[type=checkbox][name$=allow]",padre).prop("checked")?1:0;
-						deny+=$("input[type=checkbox][name$=deny]",padre).prop("checked")?1:0;
-					}
-				});
-				$(temp).each(function() {
-					var padre=$(this).parent();
-					var id_permiso=$("input[name$=id_permiso]",padre).val();
-					if(id_permiso<0) {
-						if(allow==0) {
-							$("input[type=checkbox][name$=allow]",padre).prop("checked",false);
-							$("input[type=checkbox][name$=allow]",padre).prop("disabled",false);
-						} else if(allow==total) {
-							$("input[type=checkbox][name$=allow]",padre).prop("checked",true);
-							$("input[type=checkbox][name$=allow]",padre).prop("disabled",false);
-						} else {
-							$("input[type=checkbox][name$=allow]",padre).prop("checked",true);
-							$("input[type=checkbox][name$=allow]",padre).prop("disabled",true);
+				setTimeout(function() {
+					var id_aplicacion=$("input[type=hidden][name$=id_aplicacion]",padre).val();
+					padre=$(padre).parent().parent();
+					var total=0;
+					var allow=0;
+					var deny=0;
+					var temp=$("input[type=hidden][name$=id_aplicacion][value="+id_aplicacion+"]",padre);
+					$(temp).each(function() {
+						var padre=$(this).parent();
+						var id_permiso=$("input[name$=id_permiso]",padre).val();
+						if(id_permiso>0) {
+							total++;
+							allow+=$("input[type=checkbox][name$=allow]",padre).prop("checked")?1:0;
+							deny+=$("input[type=checkbox][name$=deny]",padre).prop("checked")?1:0;
 						}
-						if(deny==0) {
-							$("input[type=checkbox][name$=deny]",padre).prop("checked",false);
-							$("input[type=checkbox][name$=deny]",padre).prop("disabled",false);
-						} else if(deny==total) {
-							$("input[type=checkbox][name$=deny]",padre).prop("checked",true);
-							$("input[type=checkbox][name$=deny]",padre).prop("disabled",false);
-						} else {
-							$("input[type=checkbox][name$=deny]",padre).prop("checked",true);
-							$("input[type=checkbox][name$=deny]",padre).prop("disabled",true);
+					});
+					$(temp).each(function() {
+						var padre=$(this).parent();
+						var id_permiso=$("input[name$=id_permiso]",padre).val();
+						if(id_permiso<0) {
+							if(allow==0) {
+								$("input[type=checkbox][name$=allow]",padre).prop("checked",false);
+								$("input[type=checkbox][name$=allow]",padre).prop("disabled",false);
+							} else if(allow==total) {
+								$("input[type=checkbox][name$=allow]",padre).prop("checked",true);
+								$("input[type=checkbox][name$=allow]",padre).prop("disabled",false);
+							} else {
+								$("input[type=checkbox][name$=allow]",padre).prop("checked",true);
+								$("input[type=checkbox][name$=allow]",padre).prop("disabled",true);
+							}
+							if(deny==0) {
+								$("input[type=checkbox][name$=deny]",padre).prop("checked",false);
+								$("input[type=checkbox][name$=deny]",padre).prop("disabled",false);
+							} else if(deny==total) {
+								$("input[type=checkbox][name$=deny]",padre).prop("checked",true);
+								$("input[type=checkbox][name$=deny]",padre).prop("disabled",false);
+							} else {
+								$("input[type=checkbox][name$=deny]",padre).prop("checked",true);
+								$("input[type=checkbox][name$=deny]",padre).prop("disabled",true);
+							}
+							var hasallow=$("input[type=checkbox][name$=allow]",padre).prop("disabled");
+							var hasdeny=$("input[type=checkbox][name$=deny]",padre).prop("disabled");
+							if(hasallow) $("input[type=checkbox][name$=deny]",padre).prop("disabled",true);
+							if(hasdeny) $("input[type=checkbox][name$=allow]",padre).prop("disabled",true);
 						}
-						var hasallow=$("input[type=checkbox][name$=allow]",padre).prop("disabled");
-						var hasdeny=$("input[type=checkbox][name$=deny]",padre).prop("disabled");
-						if(hasallow) $("input[type=checkbox][name$=deny]",padre).prop("disabled",true);
-						if(hasdeny) $("input[type=checkbox][name$=allow]",padre).prop("disabled",true);
-					}
-				});
-				// TODO REVISED
+					});
+				},(index+1)*100);
 			});
 			var screen=$(".ui-layout-center");
 			make_tables(screen);

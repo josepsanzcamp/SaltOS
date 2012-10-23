@@ -114,8 +114,8 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 		return islist && nocheck && istop && intab && noover;
 	}
 
-	function menu_correo(num) {
-		var obj=$(".correo");
+	function number_correo(num) {
+		var obj=$(".number_correo");
 		$(obj).each(function() {
 			var padre=$(this).parent();
 			unmake_numbers(padre);

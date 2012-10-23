@@ -106,5 +106,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<include>js/viewpdf.js</include>
 		<include>js/additem.js</include>
 		<include>js/quickform.js</include>
+		<include>js/numbers.js</include>
 	</cache>
 </root>

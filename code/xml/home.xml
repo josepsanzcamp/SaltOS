@@ -44,9 +44,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>
 			<default>
-				<temp global="rows" eval="true">dummy($rows=execute_query("SELECT * FROM tbl_folders WHERE id_usuario='".current_user()."' ORDER BY name ASC"))</temp>
-				<temp global="rows" eval="true">dummy($rows=is_array($rows)?$rows:array())</temp>
-				<temp global="rows" eval="true">dummy($rows=isset($rows["id"])?array($rows):$rows)</temp>
+				<temp global="rows" eval="true">$rows=execute_query("SELECT * FROM tbl_folders WHERE id_usuario='".current_user()."' ORDER BY name ASC")</temp>
+				<temp global="rows" eval="true">$rows=is_array($rows)?$rows:array()</temp>
+				<temp global="rows" eval="true">$rows=isset($rows["id"])?array($rows):$rows</temp>
 				<fieldset global="rows,row" foreach="rows" as="row">
 					<title global="row" eval="true">$row["name"]</title>
 					<width>100%</width>

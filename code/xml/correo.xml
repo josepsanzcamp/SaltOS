@@ -120,10 +120,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<function>yesterday() { clear3(); setParam('fecha3','yesterday'); submit1(); }</function>
 			<function>week() { clear3(); setParam('fecha3','week'); submit1(); }</function>
 			<function>month() { clear3(); setParam('fecha3','month'); submit1(); }</function>
-			<function eval="true">"leidos(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgleidos")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','correo'); setParam('command','leidos='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-			<function eval="true">"wait(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgwait")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','correo'); setParam('command','wait='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-			<function eval="true">"spam(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgspam")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','correo'); setParam('command','spam='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
-			<function eval="true">"delete2() { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete2")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','correo'); setParam('command','delete'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+			<function eval="true">"leidos(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgleidos")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','correo'); setParam('action2','leidos='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+			<function eval="true">"wait(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgwait")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','correo'); setParam('action2','wait='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+			<function eval="true">"spam(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgspam")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','correo'); setParam('action2','spam='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+			<function eval="true">"delete2() { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete2")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','correo'); setParam('action2','delete'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 			<function>reply(id) { setParam("action","form"); setParam("id","0_reply_"+id); submit1(); }</function>
 			<function>replyall(id) { setParam("action","form"); setParam("id","0_replyall_"+id); submit1(); }</function>
 			<function>forward(id) { setParam("action","form"); setParam("id","0_forward_"+id); submit1(); }</function>
@@ -532,7 +532,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<onchange>$("#onlyinbox").prop("checked",false)</onchange>
 					</field>
 					<field>
-						<name>command</name>
+						<name>action2</name>
 						<type>hidden</type>
 						<value></value>
 					</field>

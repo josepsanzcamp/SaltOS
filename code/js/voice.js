@@ -39,31 +39,37 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 	}
 
 	function stop_voice() {
+		if(!exists_voice()) return;
 		$("#voice").jPlayer("stop");
 	}
 
 	function play_voice() {
+		if(!exists_voice()) return;
 		if(voice_executing) $("#voice").jPlayer("play");
 	}
 
 	function next_voice() {
+		if(!exists_voice()) return;
 		stop_voice();
 		voice_executing=0;
 		toolbar_voice();
 	}
 
 	function cancel_voice() {
+		if(!exists_voice()) return;
 		while(voice_texts.length>0) voice_texts.shift();
 		next_voice();
 	}
 
 	function enable_voice() {
+		if(!exists_voice()) return;
 		setIntCookie("saltos_voice",1);
 		toolbar_voice();
 		notify_voice(lang_voicetxt());
 	}
 
 	function disable_voice() {
+		if(!exists_voice()) return;
 		setIntCookie("saltos_voice",0);
 		cancel_voice();
 	}
@@ -77,8 +83,9 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 	}
 
 	function toolbar_voice() {
+		if(!exists_voice()) return;
 		// NORMAL TOOLBAR
-		if(!exists_voice() || !saltos_voice() || !voice_executing) {
+		if(!saltos_voice() || !voice_executing) {
 			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").addClass("none");
 		} else {
 			if(voice_executing) {
@@ -102,6 +109,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 	}
 
 	$(document).ready(function() {
+		if(!exists_voice()) return;
 		$("body").append("<div id='voice'></div>");
 		$("#voice").jPlayer({
 			swfPath:"lib/jquery/jquery.jplayer.swf",
@@ -140,14 +148,10 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 				//~ console.debug("Error event: type = " + event.jPlayer.error.type);
 			}
 		});
+		setTimeout(function() {
+			toolbar_voice();
+			notify_voice(lang_welcometosaltos());
+		},100);
 	});
 
 }
-
-"use strict";
-$(document).ready(function() {
-	toolbar_voice();
-	setTimeout(function() {
-		if(saltos_login) notify_voice(lang_welcometosaltos());
-	},100);
-});

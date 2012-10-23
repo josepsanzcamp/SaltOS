@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="session") {
-	$command=getParam("command");
-	if($command=="update") {
+	$action2=getParam("action2");
+	if($action2=="update") {
 		$id_session=current_session();
 		$sess_time=time();
 		$query="UPDATE tbl_sessions SET sess_time='${sess_time}' WHERE id='${id_session}'";
