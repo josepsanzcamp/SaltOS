@@ -29,14 +29,17 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 
 	function load_numbers() {
 		if(!exists_numbers()) return;
-		$("head").append("<link href='xml.php?action=number&format=css' rel='stylesheet' type='text/css'></link>");
+		// GET COLORS OF ERROR CLASS
+		var color=rgb2hex(get_colors("ui-state-error","color"));
+		var background=rgb2hex(get_colors("ui-state-error","background-color"));
+		$("head").append("<link href='xml.php?action=number&format=css&bgcolor="+color+"&fgcolor="+background+"' rel='stylesheet' type='text/css'></link>");
 	}
 
 	function update_numbers() {
 		if(!exists_numbers()) return;
 		if(!saltos_islogin()) return;
 		// LOAD AJAX COUNTS
-		var data="action=ajax&query=counts&page="+getParam("page")+"&action2="+getParam("action")+"&id="+getParam("id");
+		var data="action=ajax&query=numbers&page="+getParam("page")+"&action2="+getParam("action")+"&id="+getParam("id");
 		$.ajax({
 			url:"xml.php",
 			data:data,

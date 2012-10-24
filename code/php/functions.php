@@ -302,10 +302,6 @@ function CONFIG($key) {
 	return $row[$key];
 }
 
-function getConfig($key) {
-	return CONFIG($key);
-}
-
 function setConfig($key,$val) {
 	$query="SELECT valor FROM tbl_configuracion WHERE clave='$key'";
 	$config=execute_query($query);
@@ -500,9 +496,10 @@ function cache_gc() {
 function db_schema() {
 	if(!eval_bool(getDefault("db/dbschema"))) return;
 	$file="xml/dbschema.xml";
+	if(is_array(cache_exists_for_xml($file))) return;
 	$dbschema=eval_attr(xml2array($file));
 	capture_next_error();
-	$hash1=getConfig($file);
+	$hash1=CONFIG($file);
 	get_clear_error();
 	$hash2=md5(serialize($dbschema));
 	if($hash1!=$hash2) {
@@ -594,8 +591,9 @@ function db_schema() {
 function db_static() {
 	if(!eval_bool(getDefault("db/dbstatic"))) return;
 	$file="xml/dbstatic.xml";
+	if(is_array(cache_exists_for_xml($file))) return;
 	$dbstatic=eval_attr(xml2array($file));
-	$hash1=getConfig($file);
+	$hash1=CONFIG($file);
 	$hash2=md5(serialize($dbstatic));
 	if($hash1!=$hash2) {
 		$semaphore=get_cache_file(array("db_schema","db_static"),getDefault("exts/semext",".sem"));
@@ -1033,20 +1031,17 @@ function check_system() {
 	// GENERAL CHECKS
 	if(!ini_get("date.timezone")) ini_set("date.timezone","Europe/Madrid");
 	if(headers_sent()) show_php_error(array("phperror"=>"Has been Detected previous headers sended"));
-	// CLASS CHECKS
-	$array=array("DomDocument"=>"php-xml",
-		"XsltProcessor"=>"php-xsl",
-		"DomElement"=>"php-xml");
-	foreach($array as $key=>$val) if(!class_exists($key)) show_php_error(array("phperror"=>"Class $key not found","details"=>"Try to install $val package"));
-	// FUNCTION CHECKS
-	$array=array("imagecreatetruecolor"=>"php-gd",
-		"imagecreatefrompng"=>"php-gd",
-		"mb_check_encoding"=>"php-mbstring",
-		"mb_convert_encoding"=>"php-mbstring",
-		"mb_strlen"=>"php-mbstring",
-		"mb_substr"=>"php-mbstring",
-		"mb_strpos"=>"php-mbstring");
-	foreach($array as $key=>$val) if(!function_exists($key)) show_php_error(array("phperror"=>"Function $key not found","details"=>"Try to install $val package"));
+	// PACKAGE CHECKS
+	$array=array(
+		array("class_exists","DomElement","Class","php-xml"),
+		array("function_exists","imagecreatetruecolor","Function","php-gd"),
+		array("function_exists","imagecreatefrompng","Function","php-gd"),
+		array("function_exists","mb_check_encoding","Function","php-mbstring"),
+		array("function_exists","mb_convert_encoding","Function","php-mbstring"),
+		array("function_exists","mb_strlen","Function","php-mbstring"),
+		array("function_exists","mb_substr","Function","php-mbstring"),
+		array("function_exists","mb_strpos","Function","php-mbstring"));
+	foreach($array as $a) if(!$a[0]($a[1])) show_php_error(array("phperror"=>"$a[2] $a[1] not found","details"=>"Try to install $a[3] package"));
 	// INSTALL CHECK
 	if(file_exists("install/install.php")) { include("install/install.php"); die(); }
 }

@@ -80,7 +80,7 @@ function make_select_config($keys) {
 		$subquery[]="($query) $key";
 		$config=execute_query($query);
 		if($config===null) {
-			$val=getConfig($key);
+			$val=CONFIG($key);
 			$query="INSERT INTO tbl_configuracion(`id`,`clave`,`valor`) VALUES(NULL,'$key','$val')";
 			db_query($query);
 		}
@@ -184,6 +184,34 @@ function execute_query($query) {
 	}
 	db_free($result);
 	return $value;
+}
+
+function execute_query_array($query) {
+	$result=db_query($query);
+	$rows=array();
+	while($row=db_fetch_row($result)) $rows[]=$row;
+	db_free($result);
+	return $rows;
+}
+
+function execute_query_extra($query,$extra) {
+	static $stack=array();
+	$hash=md5($query);
+	if(!isset($stack[$hash])) {
+		$oldcache=set_use_cache("false");
+		$result=db_query($query);
+		set_use_cache($oldcache);
+		$stack[$hash]=array();
+		while($row=db_fetch_row($result)) $stack[$hash][]=$row;
+		db_free($result);
+	}
+	$rows=array();
+	foreach($stack[$hash] as $row) {
+		$ok=1;
+		foreach($extra as $key=>$val) if($row[$key]!=$val) $ok=0;
+		if($ok) $rows[]=$row;
+	}
+	return $rows;
 }
 
 function get_fields($table) {

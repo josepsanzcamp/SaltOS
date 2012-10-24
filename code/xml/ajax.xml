@@ -60,11 +60,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- FOR TEXTOS MODULE -->
 	<textos eval="true">"SELECT descripcion texto FROM tbl_textos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("textos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".intval(getParam("id"))."' AND (publico='1' OR ".check_sql("textos","list").")"</textos>
 	<!-- FOR NUMBERS MODULE -->
-	<counts eval="true">"
+	<numbers eval="true">"
 	SELECT 'number_correo' query,COUNT(*) total FROM tbl_correo WHERE state_new='1' AND id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."') AND NOT ('".getParam("page")."'='correo' AND '".getParam("action2")."'='form' AND '".abs(getParam("id"))."'=id)
 	UNION
 	SELECT 'number_agenda' query,COUNT(*) total FROM (SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND /*SQLITE STRFTIME('%s','".current_datetime()."')+0.0 > STRFTIME('%s',dstart)+notify_delay*3600.0*notify_sign *//*MYSQL UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstart)+notify_delay*3600*notify_sign */ UNION SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND /*SQLITE STRFTIME('%s','".current_datetime()."')+0.0 > STRFTIME('%s',dstop)+0.0 *//*MYSQL UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop) */) a
 	UNION
 	SELECT 'number_feeds' query,COUNT(*) total FROM tbl_feeds WHERE state_new='1' AND id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='".current_user()."') AND NOT ('".getParam("page")."'='feeds' AND '".getParam("action2")."'='form' AND '".abs(getParam("id"))."'=id)
-	"</counts>
+	"</numbers>
 </root>

@@ -44,6 +44,7 @@ function sendmail($from,$to,$subject,$body,$arg1="",$arg2="",$arg3="",$arg4="") 
 	}
 	$mail=new PHPMailer();
 	if(!$mail->set("XMailer",get_name_version_revision())) return $mail->ErrorInfo;
+	if(!$mail->AddCustomHeader("X-Originating-IP",getServer("REMOTE_ADDR"))) if($mail->ErrorInfo) return $mail->ErrorInfo;
 	if(!$mail->SetLanguage("es","lib/phpmailer/language/")) return $mail->ErrorInfo;
 	if(!$mail->set("CharSet","UTF-8")) return $mail->ErrorInfo;
 	list($from,$fromname)=__sendmail_parser($from);
@@ -88,7 +89,7 @@ function sendmail($from,$to,$subject,$body,$arg1="",$arg2="",$arg3="",$arg4="") 
 			if($type==$valids[2]) if(!$mail->AddBCC($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
 			if($type==$valids[3]) if(!$mail->set("ConfirmReadingTo",$addr)) if($mail->ErrorInfo) return $mail->ErrorInfo;
 			if($type==$valids[4]) if(!$mail->set("Priority",$addr)) if($mail->ErrorInfo) return $mail->ErrorInfo;
-			if($type==$valids[5]) if(!$mail->AddCustomHeader("Sensitivity:$addr")) if($mail->ErrorInfo) return $mail->ErrorInfo;
+			if($type==$valids[5]) if(!$mail->AddCustomHeader("Sensitivity",$addr)) if($mail->ErrorInfo) return $mail->ErrorInfo;
 			if($type==$valids[6]) if(!$mail->AddReplyTo($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
 		}
 	} else {

@@ -25,9 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function __escribir_nodos_check_node_name($name) {
 	try {
-		new DOMElement($name);
+		new DomElement($name);
 		return 1;
-	} catch(DOMException $e) {
+	} catch(DomException $e) {
 		return 0;
 	}
 }

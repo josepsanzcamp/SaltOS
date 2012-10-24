@@ -461,7 +461,7 @@ define("__BR__","<br/>");
 								// CREATE THE DATABASE SCHEMA
 								echo current_datetime().": ".LANG("dbschema").": ";
 								capture_next_error();
-								$exists=getConfig("xml/dbschema.xml");
+								$exists=CONFIG("xml/dbschema.xml");
 								get_clear_error();
 								if(!$exists) {
 									db_schema();
@@ -472,7 +472,7 @@ define("__BR__","<br/>");
 								// INSERT THE STATIC REGISTERS
 								echo current_datetime().": ".LANG("dbstatic").": ";
 								capture_next_error();
-								$exists=getConfig("xml/dbstatic.xml");
+								$exists=CONFIG("xml/dbstatic.xml");
 								get_clear_error();
 								if(!$exists) {
 									db_static();

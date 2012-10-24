@@ -295,6 +295,9 @@ function header_etag($hash) {
 }
 
 function xml2html($buffer,$usecache=true) {
+	// SOME CHECKS
+	if(!class_exists("DomDocument")) show_php_error(array("phperror"=>"Class DomDocument not found","details"=>"Try to install php-xml package"));
+	if(!class_exists("XsltProcessor")) show_php_error(array("phperror"=>"Class XsltProcessor not found","details"=>"Try to install php-xsl package"));
 	// GET THE STYLESHEET
 	$pos1=strpos($buffer,"<?xml-stylesheet");
 	$pos2=strpos($buffer,"href=",$pos1);

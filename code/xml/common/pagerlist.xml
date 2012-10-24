@@ -41,6 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</field>
 		<field>
 			<type>label</type>
+			<label global="limit,offset" eval="true">LANG("paginaspc").(intval($offset/$limit)+1).LANG("spcdespc").(intval($offset/$limit)+1)." (".LANG("regsfrom")." ".($offset+1).LANG("spcalspc").($offset+$limit).LANG("spcdespc").($offset+$limit).")."</label>
 			<class>nowrap infopager</class>
 		</field>
 		<field ifeval="!is_mobile()">
@@ -65,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<name>selectpage</name>
 			<rows>
 				<row>
-					<label global="offset,limit" eval="true">$limit!=0?intval($offset/$limit)+1:1</label>
+					<label global="offset,limit" eval="true">intval($offset/$limit)+1</label>
 					<value></value>
 				</row>
 			</rows>
@@ -98,7 +99,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<name>selectpage</name>
 			<rows>
 				<row>
-					<label global="offset,limit" eval="true">$limit!=0?intval($offset/$limit)+1:1</label>
+					<label global="offset,limit" eval="true">intval($offset/$limit)+1</label>
 					<value></value>
 				</row>
 			</rows>
