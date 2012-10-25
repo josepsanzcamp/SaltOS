@@ -45,7 +45,7 @@ if(typeof(__updatecuentas__)=="undefined" && typeof(parent.__updatecuentas__)=="
 					var selected=(id==original)?"selected='selected'":"";
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
-				$(cuenta).html2(options);
+				$(cuenta).html(options);
 			}
 		});
 	}

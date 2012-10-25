@@ -79,7 +79,7 @@ function make_select_config($keys) {
 		$query="SELECT valor '$key' FROM tbl_configuracion WHERE clave='$key'";
 		$subquery[]="($query) $key";
 		$config=execute_query($query);
-		if($config===null) {
+		if(is_null($config)) {
 			$val=CONFIG($key);
 			$query="INSERT INTO tbl_configuracion(`id`,`clave`,`valor`) VALUES(NULL,'$key','$val')";
 			db_query($query);
@@ -188,29 +188,27 @@ function execute_query($query) {
 
 function execute_query_array($query) {
 	$result=db_query($query);
+	$numfields=db_num_fields($result);
 	$rows=array();
-	while($row=db_fetch_row($result)) $rows[]=$row;
+	if($numfields==1) {
+		$field=db_field_name($result,0);
+		while($row=db_fetch_row($result)) $rows[]=$row[$field];
+	} else {
+		while($row=db_fetch_row($result)) $rows[]=$row;
+	}
 	db_free($result);
 	return $rows;
 }
 
 function execute_query_extra($query,$extra) {
-	static $stack=array();
-	$hash=md5($query);
-	if(!isset($stack[$hash])) {
-		$oldcache=set_use_cache("false");
-		$result=db_query($query);
-		set_use_cache($oldcache);
-		$stack[$hash]=array();
-		while($row=db_fetch_row($result)) $stack[$hash][]=$row;
-		db_free($result);
-	}
+	$result=db_query($query);
 	$rows=array();
-	foreach($stack[$hash] as $row) {
+	while($row=db_fetch_row($result)) {
 		$ok=1;
 		foreach($extra as $key=>$val) if($row[$key]!=$val) $ok=0;
 		if($ok) $rows[]=$row;
 	}
+	db_free($result);
 	return $rows;
 }
 

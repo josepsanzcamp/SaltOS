@@ -36,18 +36,15 @@ function db_query($query) {
 	static $stack=array();
 	$query=trim($query);
 	// CHECK CACHE
-	$cache=md5($query);
+	$hash=md5($query);
 	$usecache=eval_bool(get_use_cache($query));
-	if($usecache && isset($stack[$cache])) {
-		$result=$stack[$cache];
-		return $result;
-	}
+	if($usecache && isset($stack[$hash])) return $stack[$hash];
 	// DO QUERY
 	$func=__FUNCTION__."_".getDefault("db/type");
 	$result=$func($query);
 	$result["rows"]=array_reverse($result["rows"]);
 	// AND RETURN
-	if($usecache) $stack[$cache]=$result;
+	if($usecache) $stack[$hash]=$result;
 	return $result;
 }
 

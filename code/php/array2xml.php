@@ -33,7 +33,7 @@ function __escribir_nodos_check_node_name($name) {
 }
 
 function escribir_nodos(&$array,$level=null) {
-	static $bad_chars=0;
+	static $bad_chars=null;
 	if(!$bad_chars) {
 		$bad_chars=array(0,1,2,3,4,5,6,7,8,11,12,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
 		foreach($bad_chars as $key=>$val) $bad_chars[$key]=chr($val);

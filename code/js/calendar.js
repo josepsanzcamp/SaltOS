@@ -28,55 +28,48 @@ if(typeof(__calendar__)=="undefined" && typeof(parent.__calendar__)=="undefined"
 	var __calendar__=1;
 
 	function update_calendar() {
-		var interval=setInterval(function() {
-			if(loadingcontent()) {
-				clearInterval(interval);
-				var data="action=calendar&offset="+getIntCookie("saltos_calendar_offset");
-				$.ajax({
-					url:"xml.php",
-					data:data,
-					type:"get",
-					success:function(response) {
-						// PUT SELECT OPTIONS
-						var options="";
-						$("root>options>option",response).each(function() {
-							var label=$("label",this).text();
-							var value=$("value",this).text();
-							var selected=($("selected",this).text()=="1")?"selected='selected'":"";
-							options+="<option value='"+value+"' "+selected+">"+label+"</option>";
-						});
-						$("#mesano").html2(options);
-						// PUT CELLS DATA
-						$("[id^=cell_]").each(function() {
-							$(this).html2("");
-						});
-						var extra=new Array();
-						for(var i=1;i<=6;i++) extra[i]="";
-						$("root>rows>row",response).each(function() {
-							var cell=$("cell",this).text();
-							var data=$("data",this).text();
-							var clase=$("class",this).text();
-							var estilo=$("style",this).text();
-							var div="<div class='"+clase+"' style='"+estilo+"'>"+data+"</div>";
-							if(substr(cell,0,1)=="g") {
-								extra[substr(cell,1,1)]+=div;
-							} else {
-								$("#cell_"+cell).append(div);
-							}
-						});
-						for(var i=1;i<=6;i++) $("#cell_f"+i).append(extra[i]);
-						$("[id^=cell_] span.opened").each(function() {
-							openclose_calendar(this,"[+]");
-						});
-						// FINISH THE LOAD
-						unloadingcontent();
-					},
-					error:function(XMLHttpRequest,textStatus,errorThrown) {
-						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+		var data="action=calendar&offset="+getIntCookie("saltos_calendar_offset");
+		$.ajax({
+			url:"xml.php",
+			data:data,
+			type:"get",
+			success:function(response) {
+				// PUT SELECT OPTIONS
+				var options="";
+				$("root>options>option",response).each(function() {
+					var label=$("label",this).text();
+					var value=$("value",this).text();
+					var selected=($("selected",this).text()=="1")?"selected='selected'":"";
+					options+="<option value='"+value+"' "+selected+">"+label+"</option>";
+				});
+				$("#mesano").html(options);
+				// PUT CELLS DATA
+				$("[id^=cell_]").each(function() {
+					$(this).html("");
+				});
+				var extra=new Array();
+				for(var i=1;i<=6;i++) extra[i]="";
+				$("root>rows>row",response).each(function() {
+					var cell=$("cell",this).text();
+					var data=$("data",this).text();
+					var clase=$("class",this).text();
+					var estilo=$("style",this).text();
+					var div="<div class='"+clase+"' style='"+estilo+"'>"+data+"</div>";
+					if(substr(cell,0,1)=="g") {
+						extra[substr(cell,1,1)]+=div;
+					} else {
+						$("#cell_"+cell).append(div);
 					}
 				});
+				for(var i=1;i<=6;i++) $("#cell_f"+i).append(extra[i]);
+				$("[id^=cell_] span.opened").each(function() {
+					openclose_calendar(this,"[+]");
+				});
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
-		},100);
+		});
 	}
 
 	function openclose_calendar(obj,force) {
@@ -86,11 +79,11 @@ if(typeof(__calendar__)=="undefined" && typeof(parent.__calendar__)=="undefined"
 			var action=$(this).text();
 			var this2=$(this).parent().parent();
 			if(action=="[+]" && (force=="" || force=="[+]")) {
-				$(this).html2("["+ndash+"]");
+				$(this).html("["+ndash+"]");
 				$(this2).attr("oldheight",$(this2).height());
 				$(this2).height("auto");
 			} else if(action=="["+ndash+"]" && (force=="" || force=="[-]")) {
-				$(this).html2("[+]");
+				$(this).html("[+]");
 				$(this2).height($(this2).attr("oldheight")+"px");
 			}
 		});

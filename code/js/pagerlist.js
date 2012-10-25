@@ -43,12 +43,12 @@ if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefine
 					var selected=(value==value2)?"selected='selected'":"";
 					options+="<option value='"+value+"' "+selected+">"+label+"</option>";
 				});
-				$("#selectpage").html2(options);
+				$("#selectpage").html(options);
 				if($("root>first",response).text()) $("#firstpager").removeClass("ui-state-disabled");
 				if($("root>previous",response).text()) $("#previouspager").removeClass("ui-state-disabled");
 				if($("root>next",response).text()) $("#nextpager").removeClass("ui-state-disabled");
 				if($("root>last",response).text()) $("#lastpager").removeClass("ui-state-disabled");
-				$(".infopager").html2($("root>info",response).text());
+				$(".infopager").html($("root>info",response).text());
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

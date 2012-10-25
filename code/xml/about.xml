@@ -261,7 +261,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 5.9.194 (LGPL-3.0)</label>
+							<label>TCPDF 5.9.195 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -351,7 +351,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpclasses.org/package/945-PHP-Create-tar-gzip-bzip2-zip-extract-tar-gzip-bzip2-.html")</onclick>
 						</field>
 						<field>
-							<label>WordPress 3.4 (GPL-2.0)</label>
+							<label>WordPress 3.4.2 (GPL-2.0)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
 							<onclick>openwin("http://wordpress.org/download/")</onclick>
@@ -412,7 +412,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jquery.com/")</onclick>
 						</field>
 						<field>
-							<label>JQuery UI 1.9.0 (MIT)</label>
+							<label>JQuery UI 1.9.1 (MIT)</label>
 							<type>link</type>
 							<class>left item sectioncontent</class>
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
@@ -523,7 +523,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.2.6 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.2.7 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentb</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>

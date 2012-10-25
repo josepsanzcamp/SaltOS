@@ -45,7 +45,7 @@ if(typeof(__updateregistros__)=="undefined" && typeof(parent.__updateregistros__
 					var selected=(id==original)?"selected='selected'":"";
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
-				$(registro).html2(options);
+				$(registro).html(options);
 			}
 		});
 	}

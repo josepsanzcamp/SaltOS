@@ -68,7 +68,7 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 				var num1=intval(strtok(")"));
 				var num2=(num1>99)?99:num1;
 				var span="<span class='number number-icon number-icon-"+num2+"' original='"+num1+"'></span>";
-				$(this).html2(txt);
+				$(this).html(txt);
 				$(this).append(span);
 			}
 		});
@@ -81,7 +81,7 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 		$("span.number",obj).each(function() {
 			var num=$(this).attr("original");
 			$(this).parent().append("("+num+")");
-			$(this).remove2();
+			$(this).remove();
 		});
 	}
 

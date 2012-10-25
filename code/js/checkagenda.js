@@ -69,7 +69,7 @@ if(typeof(__checkagenda__)=="undefined" && typeof(parent.__checkagenda__)=="unde
 			var html=$(this).html();
 			html=strtok(html,"(");
 			html=html+="("+num+")";
-			$(this).html2(html);
+			$(this).html(html);
 			make_numbers(padre);
 		});
 	}

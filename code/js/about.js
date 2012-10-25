@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 "use strict";
 $(document).ready(function() {
 	// FOR ABOUT TAB
-	$(".item").each(function() { var old=$(this).html(); $(this).html2("&nbsp;&diams;&nbsp;"+old); });
+	$(".item").each(function() { var old=$(this).html(); $(this).html("&nbsp;&diams;&nbsp;"+old); });
 	$(".item a").css("font-weight","normal");
 	$(".sectiontitle").addClass("ui-widget-header ui-corner-top");
 	$(".sectioncontent").addClass("ui-state-default").css("border","none");
@@ -35,7 +35,7 @@ $(document).ready(function() {
 	$(".sectioncontentb").addClass("ui-state-default").css("border-top","none").css("border-right","none").css("border-left","none");
 	$(".sectioncontentbl").addClass("ui-state-default ui-corner-bl").css("border-top","none").css("border-right","none");
 	$(".sectioncontentbr").addClass("ui-state-default ui-corner-br").css("border-top","none").css("border-left","none");
-	$(".vxinfo").each(function() { var temp=$(this).html(); temp=explode(":",temp); temp[0]="<b>"+temp[0]+"</b>"; temp=implode(":",temp); $(this).html2(temp); });
+	$(".vxinfo").each(function() { var temp=$(this).html(); temp=explode(":",temp); temp[0]="<b>"+temp[0]+"</b>"; temp=implode(":",temp); $(this).html(temp); });
 	// FOR FOCUS THE GAME & MUSIC
 	setTimeout(function() {
 		$(".tabs").bind("tabsshow",function(event,ui) {

@@ -185,14 +185,11 @@ if(getParam("action")=="sendmail") {
 			}
 			// ADD TO THE SELECTED FOLDERS
 			$query="SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."'";
-			$result=execute_query($query);
-			if($result) {
-				if(!is_array($result)) $result=array($result);
-				foreach($result as $id_folder) {
-					if(getParam("folders_${id_folder}_activado")) {
-						$query="INSERT INTO tbl_folders_a(`id`,`id_folder`,`id_aplicacion`,`id_registro`) VALUES(NULL,'${id_folder}','".page2id("correo")."','${last_id}')";
-						db_query($query);
-					}
+			$result=execute_query_array($query);
+			foreach($result as $id_folder) {
+				if(getParam("folders_${id_folder}_activado")) {
+					$query="INSERT INTO tbl_folders_a(`id`,`id_folder`,`id_aplicacion`,`id_registro`) VALUES(NULL,'${id_folder}','".page2id("correo")."','${last_id}')";
+					db_query($query);
 				}
 			}
 			// FINISH THE ACTION
@@ -220,8 +217,8 @@ if(getParam("action")=="sendmail") {
 	}
 	// BEGIN THE SPOOL OPERATION
 	$query="SELECT a.id,a.id_cuenta,a.uidl FROM tbl_correo a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'";
-	$result=execute_query($query);
-	if(!$result) {
+	$result=execute_query_array($query);
+	if(!count($result)) {
 		if(!getParam("ajax")) {
 			session_alert(LANG("msgnotsendfound","correo"));
 			javascript_history(-1);
@@ -230,7 +227,6 @@ if(getParam("action")=="sendmail") {
 		javascript_headers();
 		die();
 	}
-	if(isset($result["id_cuenta"])) $result=array($result);
 	require_once("lib/phpmailer/class.phpmailer.php");
 	require_once("php/getmail.php");
 	$sended=0;
@@ -366,9 +362,7 @@ if(getParam("page")=="correo") {
 	}
 	if(isset($id_extra[1]) && in_array($id_extra[1],array("reply","replyall"))) {
 		$query="SELECT * FROM tbl_correo_a WHERE id_correo='${id_extra[2]}'";
-		$result2=execute_query($query);
-		if(!$result2) $result2=array();
-		if(isset($result2["id"])) $result2=array($result2);
+		$result2=execute_query_array($query);
 		foreach($result2 as $addr) {
 			if($addr["id_tipo"]==6) $finded_replyto=$addr;
 			if($addr["id_tipo"]==1) $finded_from=$addr;
@@ -398,9 +392,7 @@ if(getParam("page")=="correo") {
 				}
 			}
 			$query="SELECT * FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND id='$id_cuenta'";
-			$result2=execute_query($query);
-			if(!$result2) $result2=array();
-			if(isset($result2["id"])) $result2=array($result2);
+			$result2=execute_query_array($query);
 			foreach($result2 as $addr) {
 				foreach($finded_tocc as $key2=>$addr2) {
 					if($addr2["valor"]==$addr["email_from"]) unset($finded_tocc[$key2]);
@@ -414,9 +406,7 @@ if(getParam("page")=="correo") {
 	}
 	if(isset($id_extra[1]) && $id_extra[1]=="forward") {
 		$query="SELECT * FROM tbl_correo_a WHERE id_correo='${id_extra[2]}'";
-		$result2=execute_query($query);
-		if(!$result2) $result2=array();
-		if(isset($result2["id"])) $result2=array($result2);
+		$result2=execute_query_array($query);
 		foreach($result2 as $addr) {
 			if($addr["id_tipo"]==1) $finded_from=$addr;
 		}
@@ -426,7 +416,7 @@ if(getParam("page")=="correo") {
 		require_once("php/defines.php");
 		$query="SELECT * FROM tbl_correo WHERE id='${id_extra[2]}'";
 		$row2=execute_query($query);
-		if(isset($row2["subject"])) {
+		if($row2 && isset($row2["subject"])) {
 			$subject_extra=$row2["subject"];
 			$prefix=LANG($id_extra[1]."subject");
 			if(strncasecmp($subject_extra,$prefix,strlen($prefix))!=0) $subject_extra=$prefix.$subject_extra;

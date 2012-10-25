@@ -53,7 +53,7 @@ if(typeof(__updatetareas__)=="undefined" && typeof(parent.__updatetareas__)=="un
 					var selected=(id==original)?"selected='selected'":"";
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
-				$(tarea).html2(options);
+				$(tarea).html(options);
 			}
 		});
 	}

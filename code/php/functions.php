@@ -305,7 +305,7 @@ function CONFIG($key) {
 function setConfig($key,$val) {
 	$query="SELECT valor FROM tbl_configuracion WHERE clave='$key'";
 	$config=execute_query($query);
-	if($config===null) {
+	if(is_null($config)) {
 		$query="INSERT INTO tbl_configuracion(`id`,`clave`,`valor`) VALUES(NULL,'$key','$val')";
 		db_query($query);
 	} else {
@@ -497,16 +497,16 @@ function db_schema() {
 	if(!eval_bool(getDefault("db/dbschema"))) return;
 	$file="xml/dbschema.xml";
 	if(is_array(cache_exists_for_xml($file))) return;
-	$dbschema=eval_attr(xml2array($file));
 	capture_next_error();
 	$hash1=CONFIG($file);
 	get_clear_error();
-	$hash2=md5(serialize($dbschema));
+	$hash2=md5(serialize(xml2array($file)));
 	if($hash1!=$hash2) {
 		$semaphore=get_cache_file(array("db_schema","db_static"),getDefault("exts/semext",".sem"));
 		if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) return;
 		$oldcache=set_use_cache("false");
-		if(isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
+		$dbschema=eval_attr(xml2array($file));
+		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
 			$tables1=get_tables();
 			$tables2=array();
 			foreach($dbschema["tables"] as $tablespec) $tables2[]=$tablespec["name"];
@@ -592,13 +592,13 @@ function db_static() {
 	if(!eval_bool(getDefault("db/dbstatic"))) return;
 	$file="xml/dbstatic.xml";
 	if(is_array(cache_exists_for_xml($file))) return;
-	$dbstatic=eval_attr(xml2array($file));
 	$hash1=CONFIG($file);
-	$hash2=md5(serialize($dbstatic));
+	$hash2=md5(serialize(xml2array($file)));
 	if($hash1!=$hash2) {
 		$semaphore=get_cache_file(array("db_schema","db_static"),getDefault("exts/semext",".sem"));
 		if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) return;
 		$oldcache=set_use_cache("false");
+		$dbstatic=eval_attr(xml2array($file));
 		if(is_array($dbstatic)) {
 			foreach($dbstatic as $table=>$rows) {
 				$query="DELETE FROM `$table`";
@@ -688,11 +688,15 @@ function remake_password($user,$pass) {
 	$result=db_query($query);
 	if(db_num_rows($result)==1) {
 		$row=db_fetch_row($result);
-		if($user==$row["login"] && (check_password($pass,$row["password"]) || in_array($row["password"],array(md5($pass),sha1($pass))))) {
-			// REGENERATE HASH FOR VALID USERS || CONVERT FROM MD5/SHA1 TO CRYPT FORMAT
-			$pass=hash_password($pass);
-			$query="UPDATE tbl_usuarios SET password='${pass}' WHERE activo='1' AND login='${user}'";
-			db_query($query);
+		if($user==$row["login"]) {
+			if(check_password($pass,$row["password"])) {
+				$pass=$row["password"];
+			} elseif(in_array($row["password"],array(md5($pass),sha1($pass)))) {
+				// CONVERT FROM MD5/SHA1 TO CRYPT FORMAT
+				$pass=hash_password($pass);
+				$query="UPDATE tbl_usuarios SET password='${pass}' WHERE activo='1' AND login='${user}'";
+				db_query($query);
+			}
 		}
 	}
 	db_free($result);
@@ -735,9 +739,9 @@ function check_security($action="") {
 	}
 	// BORRAR REGISTROS CADUCADOS
 	$query="SELECT a.id FROM tbl_security a LEFT JOIN tbl_sessions b ON a.id_session=b.id WHERE b.id IS NULL";
-	$result=execute_query($query);
-	if($result) {
-		if(is_array($result)) $result=implode(",",$result);
+	$result=execute_query_array($query);
+	if(count($result)) {
+		$result=implode(",",$result);
 		$query="DELETE FROM tbl_security WHERE id IN ($result)";
 		db_query($query);
 	}

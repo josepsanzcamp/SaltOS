@@ -224,7 +224,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label global="var_i" eval="true">LANG("quick_button_f$var_i")</label>
 							<type>select</type>
 							<query eval="true">"SELECT codigo `value`,nombre label,0 pos FROM tbl_aplicaciones UNION SELECT '' `value`,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
-							<value global="var_i,temp" eval="true">(($temp=execute_query("SELECT codigo FROM tbl_quick WHERE id_usuario='".current_user()."' AND button='f$var_i'"))!==null)?$temp:CONFIG("quick_button_f$var_i")</value>
+							<value global="var_i,temp" eval="true">!is_null($temp=execute_query("SELECT codigo FROM tbl_quick WHERE id_usuario='".current_user()."' AND button='f$var_i'"))?$temp:CONFIG("quick_button_f$var_i")</value>
 							<width>240px</width>
 						</field>
 						<field>

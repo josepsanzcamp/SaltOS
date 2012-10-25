@@ -45,7 +45,7 @@ if(typeof(__updatefeeds__)=="undefined" && typeof(parent.__updatefeeds__)=="unde
 					var selected=(id==original)?"selected='selected'":"";
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
-				$(feed).html2(options);
+				$(feed).html(options);
 			}
 		});
 	}

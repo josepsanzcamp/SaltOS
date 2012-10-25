@@ -122,7 +122,7 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 			var html=$(this).html();
 			html=strtok(html,"(");
 			html=html+="("+num+")";
-			$(this).html2(html);
+			$(this).html(html);
 			make_numbers(padre);
 		});
 	}

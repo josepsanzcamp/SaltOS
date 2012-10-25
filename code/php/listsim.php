@@ -48,16 +48,12 @@ function list_simulator($newpage,$ids="string") {
 	// EXECUTE THE QUERY TO GET THE REQUESTED DATA
 	if($ids=="string" || $ids=="array") {
 		$query="SELECT action_id FROM ($query0) __a__ ORDER BY $order";
-		$result=execute_query($query);
-		if(!$result) $result=array();
-		if(!is_array($result)) $result=array($result);
+		$result=execute_query_array($query);
 		if($ids=="string") $result=count($result)?implode(",",$result):"0";
 	} else {
 		$ids=check_ids($ids);
 		$query="SELECT action_title FROM ($query0) __a__ WHERE action_id IN ($ids) ORDER BY $order";
-		$result=execute_query($query);
-		if(!$result) $result=array();
-		if(!is_array($result)) $result=array($result);
+		$result=execute_query_array($query);
 	}
 	// RESTORE DB CACHE
 	set_use_cache($oldcache);

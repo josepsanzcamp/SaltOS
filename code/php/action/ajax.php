@@ -33,10 +33,10 @@ if(getParam("action")=="ajax") {
 	if(eval_bool(getDefault("debug/actiondebug"))) debug_dump();
 	$query=$config[$query];
 	$result=db_query($query);
-	$count=1;
+	$count=0;
 	$_RESULT=array("rows"=>array());
 	while($row=db_fetch_row($result)) {
-		$row["__ROW_NUMBER__"]=$count++;
+		$row["__ROW_NUMBER__"]=++$count;
 		set_array($_RESULT["rows"],"row",$row);
 	}
 	db_free($result);

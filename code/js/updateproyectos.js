@@ -50,7 +50,7 @@ if(typeof(__updateproyectos__)=="undefined" && typeof(parent.__updateproyectos__
 					var selected=(id==original)?"selected='selected'":"";
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
-				$(proyecto).html2(options);
+				$(proyecto).html(options);
 				proyectos_init=1;
 			}
 		});

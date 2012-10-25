@@ -64,7 +64,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 			data:data,
 			type:"get",
 			success:function (response) {
-				$("td[id$=files],label[id$=files]").html2(response);
+				$("td[id$=files],label[id$=files]").html(response);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

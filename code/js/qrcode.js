@@ -49,7 +49,7 @@ if(typeof(__qrcode__)=="undefined" && typeof(parent.__qrcode__)=="undefined") {
 			}
 		}
 		var dialog2=$("#dialog");
-		$(dialog2).html2(html);
+		$(dialog2).html(html);
 		var timeout=300;
 		var interval=setInterval(function() {
 			$("img",dialog2).each(function() {

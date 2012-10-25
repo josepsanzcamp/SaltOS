@@ -31,9 +31,7 @@ if(getParam("action")=="feeds") {
 		if($ids) {
 			$numids=count(explode(",",$ids));
 			$query="SELECT id FROM tbl_feeds a WHERE id IN ($ids) AND id IN (SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro=a.id AND id_usuario='".current_user()."')";
-			$result=execute_query($query);
-			if(!$result) $result=array();
-			if(!is_array($result)) $result=array($result);
+			$result=execute_query_array($query);
 			$numresult=count($result);
 			if($numresult==$numids) {
 				$action2=explode("=",getParam("action2"));
@@ -518,8 +516,8 @@ if(getParam("action")=="feeds") {
 	}
 	// DATOS FEEDS
 	$query="SELECT * FROM tbl_usuarios_f WHERE id_usuario='".current_user()."' AND disabled='0'";
-	$result=execute_query($query);
-	if(!$result) {
+	$result=execute_query_array($query);
+	if(!count($result)) {
 		if(!getParam("ajax")) {
 			session_error(LANG("msgnotfeeds","feeds"));
 			javascript_history(-1);
@@ -529,7 +527,6 @@ if(getParam("action")=="feeds") {
 		die();
 	}
 	// BEGIN THE LOOP
-	if(isset($result["id"])) $result=array($result);
 	$id_usuario=current_user();
 	$id_aplicacion=page2id("feeds");
 	$datetime=current_datetime();
@@ -575,19 +572,13 @@ if(getParam("action")=="feeds") {
 						$hashs="'".implode("','",$hashs)."'";
 						// BUSCAR LINKS QUE YA EXISTEN
 						$query="SELECT link FROM tbl_feeds WHERE id_feed='${id_feed}' AND link IN (${links})";
-						$result2=execute_query($query);
-						if(!$result2) $result2=array();
-						if(!is_array($result2)) $result2=array($result2);
+						$result2=execute_query_array($query);
 						// BUSCAR HASHS QUE YA EXISTEN
 						$query="SELECT hash FROM tbl_feeds WHERE id_feed='${id_feed}' AND hash IN (${hashs})";
-						$result3=execute_query($query);
-						if(!$result3) $result3=array();
-						if(!is_array($result3)) $result3=array($result3);
+						$result3=execute_query_array($query);
 						// BUSCAR LINKS MARCADOS COMO BORRADOS
 						$query="SELECT link FROM tbl_feeds_d WHERE id_feed='${id_feed}' AND link IN (${links})";
-						$result4=execute_query($query);
-						if(!$result4) $result4=array();
-						if(!is_array($result4)) $result4=array($result4);
+						$result4=execute_query_array($query);
 						// ITERAR PARA CADA ITEM DEL RSS
 						foreach($array as $item) {
 							$link=$item["link"];
@@ -672,9 +663,7 @@ if(getParam("action")=="feeds") {
 	}
 	if(count($voice_ids)) {
 		$query="SELECT /*MYSQL CONCAT( */ (SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed) /*MYSQL , *//*SQLITE || */ '. ' /*MYSQL , *//*SQLITE || */ title /*MYSQL ) */ reader FROM tbl_feeds WHERE id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
-		$result=execute_query($query);
-		if(!$result) $result=array();
-		if(!is_array($result)) $result=array($result);
+		$result=execute_query_array($query);
 		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","saltos_voice()");
 	}
 	// RELEASE SEMAPHORE

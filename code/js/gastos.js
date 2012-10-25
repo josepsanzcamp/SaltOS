@@ -70,7 +70,7 @@ if(typeof(__gastos__)=="undefined" && typeof(parent.__gastos__)=="undefined") {
 					var selected=(id==original || contador==1)?"selected='selected'":"";
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
-				$(proveedor).html2(options);
+				$(proveedor).html(options);
 			}
 		});
 	}

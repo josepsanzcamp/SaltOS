@@ -27,23 +27,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	"use strict";
 	var __mobile__=1;
 
-	/* JQUERY FUNCTIONS */
-	(function($){
-		$.fn.html2=function(html) {
-			$(this).children().remove2();
-			$(this).html(html);
-		};
-		$.fn.bind2=$.fn.bind;
-		$.fn.bind=function(a,b,c) {
-			$(this).attr("hasbind","true");
-			return $(this).bind2(a,b,c);
-		};
-		$.fn.remove2=function() {
-			$("[hasbind=true]",this).unbind().remove();
-			$(this).unbind().remove();
-		};
-	})(jQuery);
-
 	/* GENERIC FUNCTIONS */
 	function floatval2(obj) {
 		_format_number(obj,0);
@@ -288,9 +271,9 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			$("#dialog").append("<div data-role='header' data-theme='e'><h1></h1></div>");
 			$("#dialog").append("<div data-role='content' data-theme='e'><h4></h4><p></p></div>");
 		}
-		$("#dialog h1").html2(title);
-		$("#dialog h4").html2(message);
-		$("#dialog p").html2("");
+		$("#dialog h1").html(title);
+		$("#dialog h4").html(message);
+		$("#dialog p").html("");
 		jQuery.each(buttons,function(btn,fn) {
 			$("#dialog p").append("<a href='javascript:void(0)' data-role='button' data-mini='true' data-inline='true'>"+btn+"</a>");
 			$("#dialog p a:last").bind("click",function() { dialog("close",fn); });
@@ -321,7 +304,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// REMOVE ALL NOTIFICATIONS EXCEPT THE VOID ELEMENT, IT'S IMPORTANT!!!
 		if($("#jGrowl").length>0) {
 			$(".jGrowl-notification").each(function() {
-				if($(this).text()!="") $(this).remove2();
+				if($(this).text()!="") $(this).remove();
 			});
 		}
 	}
@@ -350,13 +333,13 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		var timeout=null;
 		if(!sticky) {
 			timeout=setTimeout(function() {
-				$(div).remove2();
+				$(div).remove();
 				action();
 			},10000);
 		}
 		$(div).bind("click",function() {
 			if(timeout) clearTimeout(timeout);
-			$(div).remove2();
+			$(div).remove();
 			action();
 		});
 	}
@@ -727,7 +710,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 					$(screen).append(html);
 				} else {
 					unloadingcontent();
-					$(screen).html2(html);
+					$(screen).html(html);
 				}
 			}
 		}
@@ -751,7 +734,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		var pos2=strpos(str,">",pos1);
 		var pos3=strpos(str,"</html>",pos2);
 		if(pos1!==false && pos2!==false && pos3!==false) str=substr(str,pos2+1,pos3-pos2-1);
-		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
 		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
 		str=str_replace("<title","<div type='title'",str);
 		str=str_replace("</title>","</div>",str);
@@ -789,8 +771,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// UPDATE THE NORTH PANEL
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
-		$(header).html2($(header2).children());
-		make_extras(header);
+		$(header).replaceWith(header2);
+		make_extras(header2);
 		// CHECK FOR LOGIN AND LOGOUT
 		var menu=$(".ui-layout-west");
 		var menu2=$(".ui-layout-west",html);
@@ -799,15 +781,15 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// IF LOGIN
 		if(saltos_login) sync_cookies("start");
 		// UPDATE THE MENU
-		$(menu).html2($(menu2).children());
-		make_extras(menu);
+		$(menu).replaceWith(menu2);
+		make_extras(menu2);
 		// IF LOGOUT
 		if(saltos_logout) sync_cookies("stop");
 		// UPDATE THE CENTER PANE
 		var screen=$(".ui-layout-center");
 		var screen2=$(".ui-layout-center",html);
-		$(screen).html2($(screen2).children());
-		make_extras(screen);
+		$(screen).replaceWith(screen2);
+		make_extras(screen2);
 		$(page).page();
 		$(page).show();
 		unloadingcontent();
@@ -827,8 +809,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// ADD THE SELECT ALL FEATURE TO LIST
 		var master="input.master[type=checkbox]";
 		var slave="input.slave[type=checkbox]";
-		$(master,obj).next().html2(function() { return lang_selectallcheckbox(); });
-		$(slave,obj).next().html2(function() { return lang_selectonecheckbox(); });
+		$(master,obj).next().html(function() { return lang_selectallcheckbox(); });
+		$(slave,obj).next().html(function() { return lang_selectonecheckbox(); });
 		$(master,obj).bind("click",function() {
 			var value=$(this).prop("checked");
 			var ul=$(this).parent().parent().parent().parent();
@@ -1017,7 +999,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		var islogin=($(obj).text()!="")?1:0;
 		return islogin;
 	}
-	
 
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
 	jQuery.ajaxSetup({ cache:true });

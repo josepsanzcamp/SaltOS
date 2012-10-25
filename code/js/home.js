@@ -39,39 +39,34 @@ if(typeof(__home__)=="undefined" && typeof(parent.__home__)=="undefined") {
 			}
 			$(this).removeClass("id_"+id_folder);
 			var boxs=this;
-			var interval=setInterval(function() {
-				if(loadingcontent()) {
-					clearInterval(interval);
-					var data="action=home&id_folder="+id_folder;
-					$.ajax({
-						url:"xml.php",
-						data:data,
-						type:"get",
-						success:function(response) {
-							$(boxs).html2("");
-							$("root > *",response).each(function() {
-								$(boxs).append("<div></div>");
-								var divs=$("div:last",boxs);
-								$("row",this).each(function() {
-									var data=$("data",this).text();
-									var clase=$("class",this).text();
-									var estilo=$("style",this).text();
-									var div="<div class='"+clase+"' style='"+estilo+"'>"+data+"</div>";
-									$(divs).append(div);
-								});
-								$(divs).masonry({
-									itemSelector:".box",
-									isResizable:true
-								});
-							});
-							unloadingcontent();
-						},
-						error:function(XMLHttpRequest,textStatus,errorThrown) {
-							errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-						}
+			var data="action=home&id_folder="+id_folder;
+			$.ajax({
+				url:"xml.php",
+				data:data,
+				type:"get",
+				success:function(response) {
+					$(boxs).html("");
+					$("root > *",response).each(function() {
+						$(boxs).append("<div></div>");
+						var divs=$("div:last",boxs);
+						$("row",this).each(function() {
+							var data=$("data",this).text();
+							var clase=$("class",this).text();
+							var estilo=$("style",this).text();
+							var div="<div class='"+clase+"' style='"+estilo+"'>"+data+"</div>";
+							$(divs).append(div);
+						});
+						$(divs).masonry({
+							itemSelector:".box",
+							isResizable:true
+						});
 					});
+					unloadingcontent();
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 				}
-			},100);
+			});
 		});
 	};
 

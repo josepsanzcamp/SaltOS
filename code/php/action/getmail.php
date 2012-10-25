@@ -333,8 +333,8 @@ if(getParam("action")=="getmail") {
 	}
 	// DATOS POP3
 	$query="SELECT * FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0'";
-	$result=execute_query($query);
-	if(!$result) {
+	$result=execute_query_array($query);
+	if(!count($result)) {
 		if(!getParam("ajax")) {
 			session_error(LANG("msgnotpop3email","correo"));
 			javascript_history(-1);
@@ -343,7 +343,6 @@ if(getParam("action")=="getmail") {
 		javascript_headers();
 		die();
 	}
-	if(isset($result["id"])) $result=array($result);
 	// BEGIN THE LOOP
 	$newemail=0;
 	$haserror=0;
@@ -365,13 +364,9 @@ if(getParam("action")=="getmail") {
 			}
 			// DB code
 			$query="SELECT uidl FROM tbl_correo WHERE id_cuenta='${id_cuenta}'";
-			$olduidls=execute_query($query);
-			if(!$olduidls) $olduidls=array();
-			if(!is_array($olduidls)) $olduidls=array($olduidls);
+			$olduidls=execute_query_array($query);
 			$query="SELECT uidl FROM tbl_correo_d WHERE id_cuenta='${id_cuenta}'";
-			$olduidls_d=execute_query($query);
-			if(!$olduidls_d) $olduidls_d=array();
-			if(!is_array($olduidls_d)) $olduidls_d=array($olduidls_d);
+			$olduidls_d=execute_query_array($query);
 			$olduidls=array_merge($olduidls,$olduidls_d);
 			// POP3 code
 			$pop3=new pop3_class;
@@ -457,9 +452,7 @@ if(getParam("action")=="getmail") {
 			// REMOVE ALL EXPIRED MESSAGES (IF CHECKED THE DELETE OPTION)
 			$delete="'".implode("','",$uidls)."'";
 			$query="SELECT uidl,`datetime` FROM (SELECT uidl,`datetime` FROM tbl_correo WHERE uidl IN ($delete) UNION SELECT uidl,`datetime` FROM tbl_correo_d WHERE uidl IN ($delete)) a";
-			$result2=execute_query($query);
-			if(!$result2) $result2=array();
-			if(isset($result2["uidl"])) $result2=array($result2);
+			$result2=execute_query_array($query);
 			$time1=strtotime(current_datetime());
 			foreach($result2 as $row2) {
 				$time2=strtotime($row2["datetime"]);
@@ -517,9 +510,7 @@ if(getParam("action")=="getmail") {
 	}
 	if(count($voice_ids)) {
 		$query="SELECT /*MYSQL CONCAT(`from`,'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)) *//*SQLITE `from` || '. ' || (CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END) */ reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
-		$result=execute_query($query);
-		if(!$result) $result=array();
-		if(!is_array($result)) $result=array($result);
+		$result=execute_query_array($query);
 		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","saltos_voice()");
 	}
 	// RELEASE SEMAPHORE

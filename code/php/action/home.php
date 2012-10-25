@@ -179,7 +179,7 @@ if(getParam("action")=="home") {
 		FROM tbl_folders_a a
 		LEFT JOIN tbl_registros_i e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
-		WHERE (IFNULL(email_privated,0)=0 OR (email_privated=1 AND id_usuario='".current_user()."')) AND (id_folder='".intval(getParam("id_folder"))."')
+		WHERE (TRIM(IFNULL(email_privated,0))='0' OR (TRIM(IFNULL(email_privated,0))='1' AND id_usuario='".current_user()."')) AND (id_folder='".intval(getParam("id_folder"))."')
 			AND (id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')) AND ".check_sql($page,"list")."
 		ORDER BY aplicacion";
 	$result=db_query($query);

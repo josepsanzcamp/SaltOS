@@ -414,7 +414,7 @@ function eval_attr($array) {
 							if(eval_bool($val2)) {
 								if(CONFIG_LOADED()) {
 									$newvalue=CONFIG($value);
-									if($newvalue===null) xml_error("Configuration '$value' not found");
+									if(is_null($newvalue)) xml_error("Configuration '$value' not found");
 									$value=$newvalue;
 								} else {
 									$stack["cancel"]=1;
@@ -556,15 +556,15 @@ function eval_attr($array) {
 function eval_bool($arg) {
 	if($arg===true) return 1;
 	if($arg===false) return 0;
-	$bool=strtoupper($arg);
-	if($bool=="TRUE") return 1;
-	if($bool=="FALSE") return 0;
-	if($bool=="ON") return 1;
-	if($bool=="OFF") return 0;
-	if($bool=="YES") return 1;
-	if($bool=="NO") return 0;
-	if($bool=="1") return 1;
-	if($bool=="0") return 0;
+	if($arg=="1") return 1;
+	if($arg=="0") return 0;
+	$bool=strtolower($arg);
+	if($bool=="true") return 1;
+	if($bool=="false") return 0;
+	if($bool=="on") return 1;
+	if($bool=="off") return 0;
+	if($bool=="yes") return 1;
+	if($bool=="no") return 0;
 	xml_error("Unknown boolean value '$arg'");
 }
 

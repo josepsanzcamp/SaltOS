@@ -272,19 +272,16 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 				SELECT '0' id_producto,tarea concepto,horas unidades,descuento,precio
 					FROM tbl_proyectos_t
 					WHERE id_proyecto='$id_proyecto' and id IN ($ids_tareas)";
-		$result=execute_query($query2);
-		if($result!=null) {
-			if(isset($result["id_producto"])) $result=array($result);
-			foreach($result as $row) {
-				$id_producto=$row["id_producto"];
-				$concepto=$row["concepto"];
-				$unidades=$row["unidades"];
-				$descuento=$row["descuento"];
-				$precio=$row["precio"];
-				$query[]="INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio)
-					VALUES(NULL,(SELECT MAX(id) FROM tbl_facturas),'$id_producto','$concepto','$unidades','$descuento','$precio')";
-				$liquidar=1;
-			}
+		$result=execute_query_array($query2);
+		foreach($result as $row) {
+			$id_producto=$row["id_producto"];
+			$concepto=$row["concepto"];
+			$unidades=$row["unidades"];
+			$descuento=$row["descuento"];
+			$precio=$row["precio"];
+			$query[]="INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio)
+				VALUES(NULL,(SELECT MAX(id) FROM tbl_facturas),'$id_producto','$concepto','$unidades','$descuento','$precio')";
+			$liquidar=1;
 		}
 		if($liquidar) foreach($query as $q) db_query($q);
 		session_alert(LANG("okfacturar","proyectos"));

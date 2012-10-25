@@ -334,7 +334,7 @@ function xml2html($buffer,$usecache=true) {
 
 function is_mobile() {
 	static $ismobile=null;
-	if($ismobile===null) {
+	if(is_null($ismobile)) {
 		include("lib/mobiledetect/Mobile_Detect.php");
 		if(!isset($_SERVER["HTTP_ACCEPT"])) $_SERVER["HTTP_ACCEPT"]="";
 		if(!isset($_SERVER["HTTP_USER_AGENT"])) $_SERVER["HTTP_USER_AGENT"]="";

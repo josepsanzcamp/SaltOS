@@ -32,9 +32,9 @@ if(!defined("__DEFAULT_PHP__")) {
 				$array[$key]=__eval_querytag($val);
 			} elseif($key=="query") {
 				$result=db_query($val);
-				$count=1;
+				$count=0;
 				while($row=db_fetch_row($result)) {
-					$row["__ROW_NUMBER__"]=$count++;
+					$row["__ROW_NUMBER__"]=++$count;
 					set_array($array["rows"],"row",$row);
 				}
 				db_free($result);
@@ -185,9 +185,9 @@ if(!defined("__DEFAULT_PHP__")) {
 						if(!$booleval) break;
 						if(!isset($query)) show_php_error(array("phperror"=>"Foreach without query!!!"));
 						$result=db_query($query);
-						$count=1;
+						$count=0;
 						while($row2=db_fetch_row($result)) {
-							$row2["__ROW_NUMBER__"]=$count++;
+							$row2["__ROW_NUMBER__"]=++$count;
 							__eval_pdftag($val,$row2);
 						}
 						db_free($result);
@@ -369,9 +369,9 @@ if(!defined("__DEFAULT_PHP__")) {
 				$val=trim($val);
 				if($commit) {
 					$result=db_query($val);
-					$count=1;
+					$count=0;
 					while($row=db_fetch_row($result)) {
-						$row["__ROW_NUMBER__"]=$count++;
+						$row["__ROW_NUMBER__"]=++$count;
 						$is_action=0;
 						if(isset($row["action_error"])) {
 							$error=$row["action_error"];
@@ -445,9 +445,9 @@ switch($action) {
 				$is_select=strtoupper(substr($query,0,6))=="SELECT";
 				if($is_select) {
 					$result=db_query($query);
-					$count=1;
+					$count=0;
 					while($row=db_fetch_row($result)) {
-						$row["__ROW_NUMBER__"]=$count++;
+						$row["__ROW_NUMBER__"]=++$count;
 						if(isset($row["action_delete"])) {
 							$delete=$row["action_delete"];
 							if(substr($delete,0,1)!="/") $delete=get_directory("dirs/filesdir").$delete;
@@ -516,9 +516,9 @@ switch($action) {
 		// EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
 		$query="$query0 ORDER BY $order LIMIT $offset,$limit";
 		$result=db_query($query);
-		$count=1;
+		$count=0;
 		while($row=db_fetch_row($result)) {
-			$row["__ROW_NUMBER__"]=$count++;
+			$row["__ROW_NUMBER__"]=++$count;
 			set_array($_RESULT[$action]["rows"],"row",$row);
 		}
 		db_free($result);

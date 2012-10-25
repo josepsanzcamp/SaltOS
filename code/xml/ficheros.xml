@@ -332,7 +332,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion')
 			AND ".make_like_query("fichero,fichero_file,fichero_type,fichero_size,usuario,aplicacion,id2,nombre,datetime",$filtro)."
 			AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
-			AND (IFNULL(email_privated,0)=0 OR (email_privated=1 AND id_usuario='".current_user()."'))
+			AND (TRIM(IFNULL(email_privated,0))='0' OR (TRIM(IFNULL(email_privated,0))='1' AND id_usuario='".current_user()."'))
 			AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>

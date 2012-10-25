@@ -27,27 +27,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	"use strict";
 	var __default__=1;
 
-	/* JQUERY FUNCTIONS */
-	(function($){
-		$.fn.html2=function(html) {
-			//~ console.time("__html2");
-			$(this).children().remove2();
-			$(this).html(html);
-			//~ console.timeEnd("__html2");
-		};
-		$.fn.bind2=$.fn.bind;
-		$.fn.bind=function(a,b,c) {
-			$(this).attr("hasbind","true");
-			return $(this).bind2(a,b,c);
-		};
-		$.fn.remove2=function() {
-			//~ console.time("__remove2");
-			$("[hasbind=true]",this).unbind().remove();
-			$(this).unbind().remove();
-			//~ console.timeEnd("__remove2");
-		};
-	})(jQuery);
-
 	/* GENERIC FUNCTIONS */
 	function floatval2(obj) {
 		_format_number(obj,0);
@@ -322,7 +301,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// IF MESSAGE EXISTS, OPEN IT
 		if(message=="") return false;
 		var br="<br/>";
-		$(dialog2).html2(br+message+br);
+		$(dialog2).html(br+message+br);
 		$(dialog2).dialog("open");
 		return true;
 	}
@@ -335,7 +314,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// REMOVE ALL NOTIFICATIONS EXCEPT THE VOID ELEMENT, IT'S IMPORTANT!!!
 		if($("#jGrowl").length>0) {
 			$(".jGrowl-notification").each(function() {
-				if($(this).text()!="") $(this).remove2();
+				if($(this).text()!="") $(this).remove();
 			});
 		}
 	}
@@ -810,7 +789,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				success:function(response) {
 					var html=str2html(fix4html(html2str(transformcontent(xml,response))));
 					//~ console.timeEnd("loadcontent");
-					unmake_ckeditors();
 					updatecontent(html);
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown) {
@@ -822,7 +800,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var html=str2html(fix4html(xml));
 			if($(".ui-layout-center",html).text()!="") {
 				//~ console.timeEnd("loadcontent");
-				unmake_ckeditors();
 				updatecontent(html);
 			} else {
 				// IF THE RETURNED HTML CONTAIN A SCRIPT NOT UNBLOCK THE UI
@@ -832,13 +809,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(screen).append(html);
 				} else {
 					//~ console.timeEnd("loadcontent");
-					unmake_ckeditors();
 					unloadingcontent();
 					if($(".phperror",html).length!=0) {
-						$("div[type=title]",html).remove2();
+						$("div[type=title]",html).remove();
 						$("div[type=body]",html).addClass("ui-corner-all");
 					}
-					$(screen).html2(html);
+					$(screen).append(html);
 				}
 			}
 		}
@@ -862,7 +838,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var pos2=strpos(str,">",pos1);
 		var pos3=strpos(str,"</html>",pos2);
 		if(pos1!==false && pos2!==false && pos3!==false) str=substr(str,pos2+1,pos3-pos2-1);
-		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
 		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
 		str=str_replace("<title","<div type='title'",str);
 		str=str_replace("</title>","</div>",str);
@@ -947,6 +922,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function updatecontent(html) {
 		//~ console.time("updatecontent");
+		unloadingcontent();
 		$(document).scrollTop(0);
 		// UPDATE THE TITLE IF NEEDED
 		var divtitle=$("div[type=title]",html);
@@ -958,13 +934,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
 		if($(header).text()!=$(header2).text()) {
-			$(header).hide();
-			$(header).html2($(header2).children());
-			$(header).show();
+			$(header).replaceWith(header2);
 			setTimeout(function() {
 				//~ console.time("updatecontent north fase 1");
-				make_hovers(header);
-				make_draganddrop(header);
+				make_hovers(header2);
+				make_draganddrop(header2);
 				//~ console.timeEnd("updatecontent north fase 1");
 			},100);
 		}
@@ -979,14 +953,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// UPDATE THE MENU IF NEEDED
 		//~ console.time("updatecontent west fase 0");
 		if($(".menu",menu).text()!=$(".menu",menu2).text()) {
-			$(menu).hide();
-			$(menu).html2($(menu2).children());
-			make_menu(menu);
-			$(menu).show();
+			make_menu(menu2);
+			$(menu).replaceWith(menu2);
 			setTimeout(function() {
 				//~ console.time("updatecontent west fase 1");
-				make_hovers(menu);
-				make_draganddrop(menu);
+				make_hovers(menu2);
+				make_draganddrop(menu2);
 				//~ console.timeEnd("updatecontent west fase 1");
 			},100);
 		}
@@ -997,25 +969,23 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("updatecontent center fase 0");
 		var screen=$(".ui-layout-center");
 		var screen2=$(".ui-layout-center",html);
-		$(screen).hide();
-		$(screen).html2($(screen2).children());
-		make_tabs(screen);
-		make_tables(screen);
-		make_extras(screen);
-		make_ckeditors(screen);
-		$(screen).show();
+		make_tabs(screen2);
+		make_tables(screen2);
+		make_extras(screen2);
+		unmake_ckeditors(screen);
+		$(screen).replaceWith(screen2);
+		make_ckeditors(screen2);
 		setTimeout(function() {
 			//~ console.time("updatecontent center fase 1");
 			if(saltos_login || saltos_logout) make_notice();
 			var html2=$("html");
 			update_style(html,html2);
 			update_iconset(html,html2);
-			make_hovers(screen);
-			make_draganddrop(screen);
+			make_hovers(screen2);
+			make_draganddrop(screen2);
 			make_focus();
 			//~ console.timeEnd("updatecontent center fase 1");
 		},100);
-		unloadingcontent();
 		//~ console.timeEnd("updatecontent center fase 0");
 		//~ console.timeEnd("updatecontent");
 	}
@@ -1510,10 +1480,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.timeEnd("make_ckeditors");
 	}
 
-	function unmake_ckeditors() {
+	function unmake_ckeditors(obj) {
 		//~ console.time("unmake_ckeditors");
+		if(typeof(obj)=="undefined") var obj=$("body");
 		// REMOVE THE CKEDITORS (IMPORTANT ISSUE!!!)
-		$("textarea[ckeditor=true]").each(function() {
+		$("textarea[ckeditor=true]",obj).each(function() {
 			var name=$(this).attr("name");
 			if(CKEDITOR.instances[name]) CKEDITOR.instances[name].destroy();
 		});
@@ -1522,16 +1493,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function make_tooltips() {
 		//~ console.time("make_tooltips");
-		$(document).bind("keydown",function(event) {
-			hide_tooltips();
-		}).bind("click",function(event) {
-			hide_tooltips();
-		}).tooltip({
+		$(document).tooltip({
 			items:"[title][title!=''],[title2][title2!='']",
 			show:{ effect:"none" },
 			hide:{ effect:"none" },
 			tooltipClass:"ui-state-highlight",
-			track:true,
 			content:function() {
 				// GET THE TITLE VALUE
 				var title=trim($(this).attr("title"));
@@ -1573,10 +1539,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			}
 		});
 		//~ console.timeEnd("make_tooltips");
-	}
-
-	function hide_tooltips() {
-		$(".ui-tooltip").remove();
 	}
 
 	var focused=null;
@@ -1726,12 +1688,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							}
 						});
 						if(value=="=sum()") {
-							$(this).html2(round(sum,2));
+							$(this).html(round(sum,2));
 						} else if(value=="=count()") {
-							$(this).html2(count);
+							$(this).html(count);
 						} else if(value=="=avg()") {
 							var average=(count>0)?sum/count:0;
-							$(this).html2(round(average,2));
+							$(this).html(round(average,2));
 						}
 					}
 				});
@@ -1749,7 +1711,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(event.button!=2) hide_contextmenu();
 		}).bind("contextmenu",function(event) {
 			var obj=$("#contextMenu");
-			$("li",obj).remove2();
+			$("li",obj).remove();
 			var parent=$(event.target).parent();
 			var trs=$("tr",parent);
 			var tds=$("td.actions",parent);
@@ -1907,7 +1869,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				make_hovers(header);
 				make_draganddrop(header);
 				//~ console.timeEnd("document_ready fase 2 north");
-			});
+			},100);
 			var menu=$(".ui-layout-west");
 			if(saltos_islogin(menu)) sync_cookies("start");
 			make_menu(menu);

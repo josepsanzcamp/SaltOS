@@ -43,7 +43,7 @@ if(typeof(__quickform__)=="undefined" && typeof(parent.__quickform__)=="undefine
 					var selected=(value==value2)?"selected='selected'":"";
 					options+="<option value='"+value+"' "+selected+">"+label+"</option>";
 				});
-				$("#selectquick").html2(options);
+				$("#selectquick").html(options);
 				if($("root>first",response).text()) $("#firstquick").removeClass("ui-state-disabled");
 				if($("root>previous",response).text()) $("#previousquick").removeClass("ui-state-disabled");
 				if($("root>next",response).text()) $("#nextquick").removeClass("ui-state-disabled");
