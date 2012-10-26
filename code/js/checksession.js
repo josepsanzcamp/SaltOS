@@ -57,12 +57,12 @@ if(typeof(__checksession__)=="undefined" && typeof(parent.__checksession__)=="un
 		if(config_session_interval()>0) {
 			var session_counter=config_session_interval();
 			setInterval(function() {
-				session_counter=session_executing?0:session_counter+1000;
+				session_counter=session_executing?0:session_counter+100;
 				if(session_counter>=config_session_interval()) {
 					check_session();
 					session_counter=0;
 				}
-			},1000);
+			},100);
 		}
 	});
 

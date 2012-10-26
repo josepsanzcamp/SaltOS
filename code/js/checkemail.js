@@ -131,7 +131,7 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 		if(config_inbox_interval()>0) {
 			var inbox_counter=config_inbox_interval();
 			setInterval(function() {
-				inbox_counter=inbox_executing?0:inbox_counter+1000;
+				inbox_counter=inbox_executing?0:inbox_counter+100;
 				if(inbox_counter>=config_inbox_interval()) {
 					if(is_correo_list()) {
 						var disabled=$("#recibir").hasClass("ui-state-disabled");
@@ -145,16 +145,16 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 								if(disabled) $("#recibir").addClass("ui-state-disabled");
 								if(!disabled) $("#recibir").removeClass("ui-state-disabled");
 							}
-						},1000);
+						},100);
 					}
 					inbox_counter=0;
 				}
-			},1000);
+			},100);
 		}
 		if(config_outbox_interval()>0) {
 			var outbox_counter=config_outbox_interval();
 			setInterval(function() {
-				outbox_counter=outbox_executing?0:outbox_counter+1000;
+				outbox_counter=outbox_executing?0:outbox_counter+100;
 				if(outbox_counter>=config_outbox_interval()) {
 					if(is_correo_list()) {
 						var disabled=$("#enviar").hasClass("ui-state-disabled");
@@ -168,11 +168,11 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 								if(disabled) $("#enviar").addClass("ui-state-disabled");
 								if(!disabled) $("#enviar").removeClass("ui-state-disabled");
 							}
-						},1000);
+						},100);
 					}
 					outbox_counter=0;
 				}
-			},1000);
+			},100);
 		}
 	});
 

@@ -95,7 +95,7 @@ if(typeof(__checkfeeds__)=="undefined" && typeof(parent.__checkfeeds__)=="undefi
 		if(config_feeds_interval()>0) {
 			var feeds_counter=config_feeds_interval();
 			setInterval(function() {
-				feeds_counter=feeds_executing?0:feeds_counter+1000;
+				feeds_counter=feeds_executing?0:feeds_counter+100;
 				if(feeds_counter>=config_feeds_interval()) {
 					if(is_feeds_list()) {
 						var disabled=$("#recibir").hasClass("ui-state-disabled");
@@ -109,11 +109,11 @@ if(typeof(__checkfeeds__)=="undefined" && typeof(parent.__checkfeeds__)=="undefi
 								if(disabled) $("#recibir").addClass("ui-state-disabled");
 								if(!disabled) $("#recibir").removeClass("ui-state-disabled");
 							}
-						},1000);
+						},100);
 					}
 					feeds_counter=0;
 				}
-			},1000);
+			},100);
 		}
 	});
 

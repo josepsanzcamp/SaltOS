@@ -146,8 +146,7 @@ function __set_array_recursive($array,$keys,$value,$type) {
 	// CONTINUE
 	$count=count($keys);
 	if($count>1) {
-		$temp=array();
-		for($i=1;$i<$count;$i++) $temp[]=$keys[$i];
+		$temp=array_slice($keys,1);
 		foreach($key as $key2) {
 			if(!isset($array[$key2])) xml_error("Undefined node: $key2");
 			$array[$key2]=__set_array_recursive($array[$key2],$temp,$value,$type);
@@ -498,7 +497,7 @@ function eval_attr($array) {
 						if(!$stack["for_step"]) xml_error("Error sequence FOR - FROM(${param["for_from"]}) - STEP(${param["for_step"]}) - TO(${param["for_to"]})");
 						if(sign($stack["for_to"]-$stack["for_from"])!=sign($stack["for_step"])) xml_error("Error sequence FOR - FROM(${param["for_from"]}) - STEP(${param["for_step"]}) - TO(${param["for_to"]})");
 						// CONTINUE
-						for($i=0;$i<$count;$i++) array_shift($attr);
+						$attr=array_slice($attr,$count);
 						if(isset($stack["global"])) $attr=array_merge(array("global"=>$stack["global"]),$attr);
 						$old_value=$value;
 						$value=array();
@@ -513,7 +512,7 @@ function eval_attr($array) {
 						$val["value"]="__TRICK__";
 						break;
 					} elseif(isset($stack["foreach_rows"]) && isset($stack["foreach_as"])) {
-						for($i=0;$i<$count;$i++) array_shift($attr);
+						$attr=array_slice($attr,$count);
 						if(isset($stack["global"])) $attr=array_merge(array("global"=>$stack["global"]),$attr);
 						$old_value=$value;
 						$value=array();

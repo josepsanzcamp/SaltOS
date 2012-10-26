@@ -609,23 +609,30 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				// TRICK FOR FIX THE MAX_INPUT_VARS ISSUE
 				var max_input_vars=ini_get_max_input_vars();
 				if(max_input_vars>0) {
-					var array=$(jqForm).serializeArray();
-					var total_input_vars=array.length;
-					max_input_vars--; // TO FIX AN UNKNOWN BUG WHEN SENT THE SAME FIELDS THAT MAX_INPUT_VARS
+					var total_input_vars=$("input,select,textarea",jqForm).length;
 					if(total_input_vars>max_input_vars) {
 						setTimeout(function() {
 							var fix_input_vars=new Array();
-							$(array).each(function(i,field) {
+							$("input[type=checkbox]:not(:checked):not(:visible)",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
-									var obj=$("[name="+field.name+"]",jqForm);
-									var type=$(obj).attr("type");
-									var visible=$(obj).is(":visible");
-									if(in_array(type,new Array("hidden","checkbox")) && !visible) {
-										var temp=field.name+"="+urlencode(field.value);
-										fix_input_vars.push(temp);
-										$(obj).remove();
-										total_input_vars--;
-									}
+									$(this).remove();
+									total_input_vars--;
+								}
+							});
+							$("input[type=checkbox]:checked:not(:visible)",jqForm).each(function() {
+								if(total_input_vars>=max_input_vars) {
+									var temp=$(this).attr("name")+"="+urlencode($(this).val());
+									fix_input_vars.push(temp);
+									$(this).remove();
+									total_input_vars--;
+								}
+							});
+							$("input[type=hidden]",jqForm).each(function() {
+								if(total_input_vars>=max_input_vars) {
+									var temp=$(this).attr("name")+"="+urlencode($(this).val());
+									fix_input_vars.push(temp);
+									$(this).remove();
+									total_input_vars--;
 								}
 							});
 							fix_input_vars=base64_encode(implode("&",fix_input_vars));
@@ -883,25 +890,24 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		$("iframe",obj).each(function() {
 			if(security_iframe(this)) {
 				var iframe="#"+$(this).attr("id");
-				if($(iframe).length==1) {
-					var interval=setInterval(function() {
-						if($(iframe).length==0) {
-							clearInterval(interval);
-						} else if($(iframe).attr("isloaded")=="false") {
-							// NOTHING TO DO
-						} else if($(iframe).is(":visible")) {
-							clearInterval(interval);
-							var minheight=$(iframe).height();
-							var newheight=$(iframe).contents().height();
-							if(newheight>minheight) $(iframe).height(newheight);
-							$(iframe).each(function() {
-								var iframe2=this.contentWindow.document;
-								$(iframe2).bind("contextmenu",function(e) { return false; });
-								$(iframe2).bind("keydown",function(e) { $(document).trigger(e); });
-							});
-						}
-					},1000);
-				}
+				var interval=setInterval(function() {
+					var iframe2=$(iframe,obj);
+					if(!$(iframe2).length) {
+						clearInterval(interval);
+					} else if($(iframe2).attr("isloaded")=="false") {
+						// NOTHING TO DO
+					} else if($(iframe2).is(":visible")) {
+						clearInterval(interval);
+						var minheight=$(iframe2).height();
+						var newheight=$(iframe2).contents().height();
+						if(newheight>minheight) $(iframe2).height(newheight);
+						$(iframe2).each(function() {
+							var iframe3=this.contentWindow.document;
+							$(iframe3).bind("contextmenu",function(e) { return false; });
+							$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
+						});
+					}
+				},100);
 			}
 		});
 		// PROGRAM MENU SELECTS

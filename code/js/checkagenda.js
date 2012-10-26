@@ -78,12 +78,12 @@ if(typeof(__checkagenda__)=="undefined" && typeof(parent.__checkagenda__)=="unde
 		if(config_agenda_interval()>0) {
 			var agenda_counter=config_agenda_interval();
 			setInterval(function() {
-				agenda_counter=agenda_executing?0:agenda_counter+1000;
+				agenda_counter=agenda_executing?0:agenda_counter+100;
 				if(agenda_counter>=config_agenda_interval()) {
 					check_agenda();
 					agenda_counter=0;
 				}
-			},1000);
+			},100);
 		}
 	});
 

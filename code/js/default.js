@@ -969,10 +969,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("updatecontent center fase 0");
 		var screen=$(".ui-layout-center");
 		var screen2=$(".ui-layout-center",html);
+		unmake_ckeditors(screen);
 		make_tabs(screen2);
 		make_tables(screen2);
 		make_extras(screen2);
-		unmake_ckeditors(screen);
 		$(screen).replaceWith(screen2);
 		make_ckeditors(screen2);
 		setTimeout(function() {
@@ -1162,9 +1162,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// PROGRAM THE DATETIME JOIN
 		$("input[isdatetime=true]",obj).each(function() {
 			var name=$(this).attr("name");
-			var full=$("input[name="+name+"]");
-			var date=$("input[name="+name+"_date]");
-			var time=$("input[name="+name+"_time]");
+			var full=$("input[name="+name+"]",obj);
+			var date=$("input[name="+name+"_date]",obj);
+			var time=$("input[name="+name+"_time]",obj);
 			$(date).change(function() {
 				$(full).val($(date).val()+" "+$(time).val());
 				$(full).trigger("change");
@@ -1202,7 +1202,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 			});
 		});
-		$(".colorpicker").css("z-index",9999);
+		$(".colorpicker",obj).css("z-index",9999);
 		// PROGRAM INTERGER TYPE CAST
 		$("input[isinteger=true]",obj).each(function() {
 			$(this).bind("keyup",function() { intval2(this); });
@@ -1259,7 +1259,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						var coords=$("coords",this).text();
 						var value=$("value",this).text();
 						var area="<area shape='"+shape+"' coords='"+coords+"' title='"+value+"'>";
-						$(map).append(area);
+						$(map,obj).append(area);
 					});
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown) {
@@ -1312,28 +1312,27 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// AUTO-GROWING TEXTAREA
 		$("textarea[ckeditor!=true]",obj).autogrow();
 		// AUTO-GROWING IFRAMES
-		$("iframe").each(function() {
+		$("iframe",obj).each(function() {
 			if(security_iframe(this)) {
 				var iframe="#"+$(this).attr("id");
-				if($(iframe).length==1) {
-					var interval=setInterval(function() {
-						if($(iframe).length==0) {
-							clearInterval(interval);
-						} else if($(iframe).attr("isloaded")=="false") {
-							// NOTHING TO DO
-						} else if($(iframe).is(":visible")) {
-							clearInterval(interval);
-							var minheight=$(iframe).height();
-							var newheight=$(iframe).contents().height();
-							if(newheight>minheight) $(iframe).height(newheight);
-							$(iframe).each(function() {
-								var iframe2=this.contentWindow.document;
-								$(iframe2).bind("contextmenu",function(e) { return false; });
-								$(iframe2).bind("keydown",function(e) { $(document).trigger(e); });
-							});
-						}
-					},1000);
-				}
+				var interval=setInterval(function() {
+					var iframe2=$(iframe,obj);
+					if(!$(iframe2).length) {
+						clearInterval(interval);
+					} else if($(iframe2).attr("isloaded")=="false") {
+						// NOTHING TO DO
+					} else if($(iframe2).is(":visible")) {
+						clearInterval(interval);
+						var minheight=$(iframe2).height();
+						var newheight=$(iframe2).contents().height();
+						if(newheight>minheight) $(iframe2).height(newheight);
+						$(iframe2).each(function() {
+							var iframe3=this.contentWindow.document;
+							$(iframe3).bind("contextmenu",function(e) { return false; });
+							$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
+						});
+					}
+				},100);
 			}
 		});
 		// PROGRAM MENU SELECTS

@@ -644,11 +644,11 @@ function session_alert($alert) {
 function check_ids($value) {
 	$value=is_array($value)?$value:explode(",",$value);
 	foreach($value as $key=>$val) {
-		if(strpos($val,"_")!==false) {
+		if(substr_count($val,"_")==2) {
 			if($val[0]=="'" && substr($val,-1,1)=="'") $val=substr($val,1,-1);
 			$val=explode("_",$val);
-			$val[0]=abs($val[0]);
-			if(isset($val[2])) $val[2]=abs($val[2]);
+			$val[1]=id2page(page2id($val[1]));
+			$val[2]=abs($val[2]);
 			$value[$key]="'".implode("_",$val)."'";
 		} else {
 			$value[$key]=abs($val);
@@ -1082,5 +1082,22 @@ function memory_get_free() {
 	}
 	$memory_usage=memory_get_usage(true);
 	return $memory_limit-$memory_usage;
+}
+
+function debug($name,$end=0) {
+	static $stack=array();
+	if(!isset($stack[$name])) $stack[$name]=array();
+	$home=microtime(true);
+	if(!$end) {
+		$stack[$name][]=$home;
+		file_put_contents("files/debug.txt",sprintf("%f: timer %s start\n",$home,$name),FILE_APPEND);
+	} else {
+		$diff=$home-array_pop($stack[$name]);
+		file_put_contents("files/debug.txt",sprintf("%f: timer %s stop: %f\n",$home,$name,$diff),FILE_APPEND);
+	}
+}
+
+function debugEnd($name) {
+	debug($name,1);
 }
 ?>

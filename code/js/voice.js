@@ -142,7 +142,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 						voice_executing=1;
 						toolbar_voice();
 					}
-				},1000);
+				},100);
 			},
 			error:function(event) {
 				//~ console.debug("Error event: type = " + event.jPlayer.error.type);
