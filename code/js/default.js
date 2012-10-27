@@ -1497,6 +1497,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			show:{ effect:"none" },
 			hide:{ effect:"none" },
 			tooltipClass:"ui-state-highlight",
+			track:true,
 			content:function() {
 				// GET THE TITLE VALUE
 				var title=trim($(this).attr("title"));
