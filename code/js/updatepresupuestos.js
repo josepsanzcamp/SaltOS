@@ -47,6 +47,9 @@ if(typeof(__updatepresupuestos__)=="undefined" && typeof(parent.__updatepresupue
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
 				$(presupuesto).html(options);
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}

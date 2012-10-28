@@ -40,11 +40,12 @@ $_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml",false));
 $_ICONSET=eval_attr(xml2array("xml/iconset.xml",false));
 // SOME DEFINES
 define("__UI__","class='ui-state-default ui-corner-all'");
-define("__BACK__","<a href='javascript:history.back()' ".__UI__."><img src='".$_ICONSET[$iconset]['return']."'/>&nbsp;".LANG("back")."</a>");
-define("__NEXT__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."'/>&nbsp;".LANG("next")."</a>");
-define("__TEST__","<a href='javascript:window.location.reload()' ".__UI__."><img src='".$_ICONSET[$iconset]['refresh']."'/>&nbsp;".LANG("test")."</a>");
-define("__INSTALL__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."'/>&nbsp;".LANG("install")."</a>");
-define("__SALTOS__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."'/>&nbsp;".LANG("saltos")."</a>");
+define("__IMG__","style='vertical-align:middle'");
+define("__BACK__","<a href='javascript:history.back()' ".__UI__."><img src='".$_ICONSET[$iconset]['return']."' ".__IMG__."/>&nbsp;".LANG("back")."</a>");
+define("__NEXT__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."' ".__IMG__."/>&nbsp;".LANG("next")."</a>");
+define("__TEST__","<a href='javascript:window.location.reload()' ".__UI__."><img src='".$_ICONSET[$iconset]['refresh']."' ".__IMG__."/>&nbsp;".LANG("test")."</a>");
+define("__INSTALL__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."' ".__IMG__."/>&nbsp;".LANG("install")."</a>");
+define("__SALTOS__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."' ".__IMG__."/>&nbsp;".LANG("saltos")."</a>");
 define("__GREEN__","<span style='color:#007700'><b>");
 define("__RED__","<span style='color:#770000'><b>");
 define("__BOLD__","<span><b>");

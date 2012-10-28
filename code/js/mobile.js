@@ -394,6 +394,9 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 							"sync":0
 						};
 					});
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 				}
 			});
 			cookies_counter=0;
@@ -583,6 +586,11 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			$(window).trigger("hashchange");
 			return;
 		}
+		if(url=="error") {
+			ignore_onhashchange=1;
+			history.go(-1);
+			return;
+		}
 		// IF ACTION CANCEL
 		if(action_addcontent=="cancel") {
 			action_addcontent="";
@@ -653,6 +661,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				loadcontent(data);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				addcontent("error");
 				callback();
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
@@ -677,6 +686,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				loadcontent(data);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				addcontent("error");
 				callback();
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}

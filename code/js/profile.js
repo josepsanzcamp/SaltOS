@@ -82,6 +82,9 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
 					} else {
 						$(pass).addClass("ui-state-error");
 					}
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 				}
 			});
 		} else {

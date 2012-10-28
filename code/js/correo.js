@@ -94,6 +94,9 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 						var emails=explode(";",$(input).val());
 						var term2=trim(emails.pop());
 						if(term==term2) response(data);
+					},
+					error:function(XMLHttpRequest,textStatus,errorThrown) {
+						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 					}
 				});
 			},

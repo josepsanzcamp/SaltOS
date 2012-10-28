@@ -651,6 +651,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(window).trigger("hashchange");
 			return;
 		}
+		if(url=="error") {
+			ignore_onhashchange=1;
+			history.go(-1);
+			return;
+		}
 		// IF ACTION CANCEL
 		if(action_addcontent=="cancel") {
 			action_addcontent="";
@@ -732,6 +737,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				//~ console.timeEnd("submitcontent");
+				addcontent("error");
 				callback();
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
@@ -764,6 +770,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				//~ console.timeEnd("opencontent");
+				addcontent("error");
 				callback();
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}

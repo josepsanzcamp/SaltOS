@@ -71,6 +71,9 @@ if(typeof(__gastos__)=="undefined" && typeof(parent.__gastos__)=="undefined") {
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
 				$(proveedor).html(options);
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}

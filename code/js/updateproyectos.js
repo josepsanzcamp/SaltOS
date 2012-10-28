@@ -52,6 +52,9 @@ if(typeof(__updateproyectos__)=="undefined" && typeof(parent.__updateproyectos__
 				});
 				$(proyecto).html(options);
 				proyectos_init=1;
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}

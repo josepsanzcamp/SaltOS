@@ -123,6 +123,9 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 					} else {
 						$(pass).addClass("ui-state-error");
 					}
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 				}
 			});
 		} else {

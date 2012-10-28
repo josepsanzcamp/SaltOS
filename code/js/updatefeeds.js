@@ -46,6 +46,9 @@ if(typeof(__updatefeeds__)=="undefined" && typeof(parent.__updatefeeds__)=="unde
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
 				$(feed).html(options);
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}

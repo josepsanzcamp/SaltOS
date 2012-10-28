@@ -54,6 +54,9 @@ if(typeof(__updatetareas__)=="undefined" && typeof(parent.__updatetareas__)=="un
 					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
 				});
 				$(tarea).html(options);
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}

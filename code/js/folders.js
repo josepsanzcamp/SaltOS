@@ -35,6 +35,9 @@ if(typeof(__folders__)=="undefined" && typeof(parent.__folders__)=="undefined") 
 			type:"get",
 			success:function(response) {
 				notice(lang_alert(),lang_addtofolderok());
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}
@@ -47,6 +50,9 @@ if(typeof(__folders__)=="undefined" && typeof(parent.__folders__)=="undefined") 
 			type:"get",
 			success:function(response) {
 				notice(lang_alert(),lang_delfromfolderok());
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}
@@ -59,6 +65,9 @@ if(typeof(__folders__)=="undefined" && typeof(parent.__folders__)=="undefined") 
 			type:"get",
 			success:function(response) {
 				notice(lang_alert(),lang_delfromfolderok());
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}

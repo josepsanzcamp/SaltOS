@@ -61,6 +61,9 @@ if(typeof(__updatedireccion__)=="undefined" && typeof(parent.__updatedireccion__
 								// TO CANCEL OLD REQUESTS
 								var term2=$(input).val();
 								if(term==term2) response(data);
+							},
+							error:function(XMLHttpRequest,textStatus,errorThrown) {
+								errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 							}
 						});
 					},

@@ -41,6 +41,9 @@ if(typeof(__updateproductos__)=="undefined" && typeof(parent.__updateproductos__
 					precio.value=$("precio",this).text();
 				});
 				update_totales();
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}

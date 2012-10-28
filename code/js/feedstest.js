@@ -53,7 +53,7 @@ if(typeof(__feedstest__)=="undefined" && typeof(parent.__feedstest__)=="undefine
 				unloadingcontent();
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				unloadingcontent();
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}

@@ -154,6 +154,9 @@ if(typeof(__facturas__)=="undefined" && typeof(parent.__facturas__)=="undefined"
 					$("input[name$=nombre_poblacion]").val($("nombre_poblacion",this).text());
 					$("input[name$=nombre_codpostal]").val($("nombre_codpostal",this).text());
 				});
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	}
