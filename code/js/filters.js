@@ -52,7 +52,6 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 						var count=0;
 						var interval=setInterval(function() {
 							var temp=explode("=",querystring[count],2);
-							temp[0]=rawurldecode(temp[0]); // NAME
 							temp[1]=rawurldecode(temp[1]); // VALUE
 							var type=$("form[id=list] *[name="+temp[0]+"]").prop("type"); // TYPE
 							if(type=="checkbox") setCheck(temp[0],temp[1]?true:false); // CHECKBOX FIELD

@@ -1060,16 +1060,16 @@ function action_denied() {
 
 function fix_input_vars() {
 	if(intval(ini_get("max_input_vars"))>0) {
-		$fix_input_vars=getParam("fix_input_vars");
-		if($fix_input_vars!="") {
-			$array=querystring2array(base64_decode($fix_input_vars));
+		$temp=getParam("fix_input_vars");
+		if($temp!="") {
+			$temp=querystring2array(base64_decode($temp));
 			if(isset($_GET["fix_input_vars"])) {
 				unset($_GET["fix_input_vars"]);
-				$_GET=array_merge($_GET,$array);
+				$_GET=array_merge($_GET,$temp);
 			}
 			if(isset($_POST["fix_input_vars"])) {
 				unset($_POST["fix_input_vars"]);
-				$_POST=array_merge($_POST,$array);
+				$_POST=array_merge($_POST,$temp);
 			}
 		}
 	}

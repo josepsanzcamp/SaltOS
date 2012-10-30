@@ -16,6 +16,7 @@ Note about the php.saltos.min.js file
   - mktime
   - nl2br
   - parse_url
+  - rawurldecode
   - rawurlencode
   - round
   - serialize
@@ -31,7 +32,5 @@ Note about the php.saltos.min.js file
   - substr
   - time
   - trim
-  - urldecode
-  - urlencode
   - utf8_encode
 
