@@ -51,9 +51,9 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 						querystring=explode("&",querystring);
 						var count=0;
 						var interval=setInterval(function() {
-							var temp=explode("=",querystring[count]);
-							temp[0]=urldecode(temp[0]); // NAME
-							temp[1]=urldecode(temp[1]); // VALUE
+							var temp=explode("=",querystring[count],2);
+							temp[0]=rawurldecode(temp[0]); // NAME
+							temp[1]=rawurldecode(temp[1]); // VALUE
 							var type=$("form[id=list] *[name="+temp[0]+"]").prop("type"); // TYPE
 							if(type=="checkbox") setCheck(temp[0],temp[1]?true:false); // CHECKBOX FIELD
 							if(type!="checkbox") setParam(temp[0],temp[1]); // OTHER FIELD
@@ -84,7 +84,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 		} else {
 			loadingcontent(lang_sending());
 			var id_filter=$(filtro).val();
-			var querystring=base64_encode(querystring_filter());
+			var querystring=rawurlencode(base64_encode(querystring_filter()));
 			var data="action=ajax&query=updatefilter&page="+getParam("page")+"&id="+id_filter+"&querystring="+querystring;
 			$.ajax({
 				url:"xml.php",
@@ -136,8 +136,8 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 			alerta(lang_createfilterko(),function() { $(filtro).trigger("focus"); });
 		} else {
 			loadingcontent(lang_sending());
-			var nombre=urlencode($(filtro).val());
-			var querystring=base64_encode(querystring_filter());
+			var nombre=rawurlencode($(filtro).val());
+			var querystring=rawurlencode(base64_encode(querystring_filter()));
 			var data="action=ajax&query=createfilter&page="+getParam("page")+"&nombre="+nombre+"&querystring="+querystring;
 			$.ajax({
 				url:"xml.php",
@@ -166,7 +166,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 		} else {
 			loadingcontent(lang_sending());
 			var id_filter=$(filtro1).val();
-			var nombre=urlencode($(filtro2).val());
+			var nombre=rawurlencode($(filtro2).val());
 			var data="action=ajax&query=renamefilter&page="+getParam("page")+"&id="+id_filter+"&nombre="+nombre;
 			$.ajax({
 				url:"xml.php",
@@ -190,7 +190,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 		var querystring=new Array();
 		var array=$("form[id=list] *:not([class~=nofilter])").serializeArray();
 		$(array).each(function(i,field) {
-			var temp=field.name+"="+urlencode(field.value);
+			var temp=field.name+"="+rawurlencode(field.value);
 			querystring.push(temp);
 		});
 		querystring=implode("&",querystring);

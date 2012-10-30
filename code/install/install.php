@@ -617,6 +617,9 @@ define("__BR__","<br/>");
 						<input type="hidden" name="action" value="login"/>
 						<input type="hidden" name="user" value="<?php echo getParam("user","admin"); ?>"/>
 						<input type="hidden" name="pass" value="<?php echo getParam("pass","admin"); ?>"/>
+						<input type="hidden" name="lang" value="<?php echo getParam("lang",getDefault("lang")); ?>"/>
+						<input type="hidden" name="style" value="<?php echo getParam("style",getDefault("style")); ?>"/>
+						<input type="hidden" name="iconset" value="<?php echo getParam("iconset",getDefault("iconset")); ?>"/>
 					<?php } ?>
 				</form>
 			</div>

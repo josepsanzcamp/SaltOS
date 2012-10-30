@@ -150,9 +150,6 @@ function encode_words($cad,$pad=" ") {
 }
 
 function querystring2array($querystring) {
-	$expr1=array("&gt;","&lt","+");
-	$expr2=array(">","<"," ");
-	$querystring=str_replace($expr1,$expr2,$querystring);
 	$items=explode("&",$querystring);
 	$result=array();
 	foreach($items as $key=>$val) {

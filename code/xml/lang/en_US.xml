@@ -433,7 +433,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gestionproyectos>Projects</gestionproyectos>
 		<gestioncontabilidad>Accounting</gestioncontabilidad>
 		<gestiongeneral>General</gestiongeneral>
-		<gestionadministracion>Body</gestionadministracion>
+		<gestionadministracion>Administration</gestionadministracion>
 		<gestiontipos>Types</gestiontipos>
 		<gestionsistema>System</gestionsistema>
 		<folders>Folders</folders>
@@ -1088,40 +1088,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<bcc>BCC</bcc>
 		<subject>Subject</subject>
 		<attachments>Attachments</attachments>
-		<message>message</message>
+		<message>Message</message>
 		<recibir>Receive</recibir>
 		<recibirtip>Click here to receive new emails</recibirtip>
 		<enviar>Send</enviar>
 		<enviartip>Click here to send emails from the outbox</enviartip>
 		<msgnotpop3email>There is no email account set up or activated</msgnotpop3email>
-		<msgnotpop3host>not configured the POP3 server</msgnotpop3host>
+		<msgnotpop3host>Not configured the POP3 server</msgnotpop3host>
 		<msgerrorpop3email>There has been the following error: </msgerrorpop3email>
 		<msgnewokpop3email1> new mail received in the Inbox</msgnewokpop3email1>
 		<msgnewokpop3email2> new mail received in Inbox</msgnewokpop3email2>
-		<msggotoemail>go to email</msggotoemail>
+		<msggotoemail>Go to email</msggotoemail>
 		<msgnewkopop3email>No new email</msgnewkopop3email>
 		<msgconnrefusedpop3email>Connection refused by server</msgconnrefusedpop3email>
 		<msgconnerrorpop3email>Can not connect to server</msgconnerrorpop3email>
-		<msgopenerrorpop3email>not found the file containing the message</msgopenerrorpop3email>
-		<msgpropietario>Only the owner of e can use these benefits</msgpropietario>
+		<msgopenerrorpop3email>File containing the message not found</msgopenerrorpop3email>
+		<msgpropietario>Only the owner of email can use these benefits</msgpropietario>
 		<msgnotfound>No emails found selected, change the filter</msgnotfound>
-		<msgnumsileidos>have been marked as read: </msgnumsileidos>
-		<msgnumsiwait>have been marked as pending: </msgnumsiwait>
+		<msgnumsileidos>Have been marked as read: </msgnumsileidos>
+		<msgnumsiwait>Have been marked as pending: </msgnumsiwait>
 		<msgnumsispam>There were marked as SPAM: </msgnumsispam>
-		<msgnumnoleidos>have been marked as unread </msgnumnoleidos>
+		<msgnumnoleidos>Have been marked as unread </msgnumnoleidos>
 		<msgnumnowait>You have been marked as pending: </msgnumnowait>
 		<msgnumnospam>You have been marked as SPAM: </msgnumnospam>
-		<msgnumdelete>have been deleted: </msgnumdelete>
+		<msgnumdelete>Have been deleted: </msgnumdelete>
 		<statenew>New</statenew>
 		<stateread>Read</stateread>
 		<statereply>Answered</statereply>
 		<stateforward>Forward</stateforward>
 		<statewait>Pending</statewait>
 		<statespam>SPAM</statespam>
-		<statesent>Posted</statesent>
-		<statenotsent>Sin.enviar</statenotsent>
+		<statesent>Sended</statesent>
+		<statenotsent>Not sended</statenotsent>
 		<stateerror>Error</stateerror>
-		<stateall>A</stateall>
+		<stateall>All</stateall>
 		<todaslascuentas>[All Accounts]</todaslascuentas>
 		<buttonsend>Submit</buttonsend>
 		<buttonsendreturnhere>Send and return here</buttonsendreturnhere>
@@ -1134,17 +1134,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<actionwait>Pending</actionwait>
 		<actionspam>SPAM</actionspam>
 		<actionreply>Reply</actionreply>
-		<actionreplyall>Ans all</actionreplyall>
+		<actionreplyall>Reply all</actionreplyall>
 		<actionforward>Forward</actionforward>
 		<messageid>Message ID</messageid>
-		<fulldata>e-Zoom</fulldata>
-		<sourcedata>Source of e</sourcedata>
+		<fulldata>Email zoom</fulldata>
+		<sourcedata>Email source</sourcedata>
 		<leidos>Read</leidos>
 		<wait>Pending</wait>
 		<spam>SPAM</spam>
 		<borrar>Clear</borrar>
 		<borrartip>Delete all Selected e</borrartip>
-		<msgleidos>want to mark as read / unread all mails selected?</msgleidos>
+		<msgleidos>Do you want to mark as read / unread all selected emails?</msgleidos>
 		<msgwait>Want to be marked as pending / no pending all selected emails?</msgwait>
 		<msgspam>Want to be marked as SPAM / SPAM not all selected emails?</msgspam>
 		<msgdelete2>Want to delete all selected emails?</msgdelete2>
@@ -1159,7 +1159,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<options>Options</options>
 		<optionstip>Show more options from the list</optionstip>
 		<sinsubject>(no subject)</sinsubject>
-		<msgfromkosendmail>not found the setting for the From: required</msgfromkosendmail>
+		<msgfromkosendmail>Setting for the From field not found</msgfromkosendmail>
 		<msgsendoksendmail>It has been successfully sent e-mail</msgsendoksendmail>
 		<replysubject>Re: </replysubject>
 		<replyallsubject>Re: </replyallsubject>
@@ -1168,7 +1168,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<actionreplytip>To reply to the sender of this message</actionreplytip>
 		<actionreplyalltip>To respond to all users of this message</actionreplyalltip>
 		<actionforwardtip>To forward this email to others</actionforwardtip>
-		<noleidos>not read</noleidos>
+		<noleidos>Not read</noleidos>
 		<nowait>No pending</nowait>
 		<nospam>No SPAM</nospam>
 		<today>Today</today>
@@ -1177,9 +1177,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<month>Month</month>
 		<confirmreadingto>Request acknowledgment</confirmreadingto>
 		<marcarcorreos>Mark as</marcarcorreos>
-		<message0> message</message0>
+		<message0> messages</message0>
 		<message1> message</message1>
-		<message2> Mail</message2>
+		<message2> messages</message2>
 		<campos>Fields</campos>
 		<allcampos>[all fields]</allcampos>
 		<onlyemail>Only in the directions</onlyemail>

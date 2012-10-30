@@ -698,7 +698,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							});
 							$("input[type=checkbox]:checked:not(:visible)",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
-									var temp=$(this).attr("name")+"="+urlencode($(this).val());
+									var temp=$(this).attr("name")+"="+rawurlencode($(this).val());
 									fix_input_vars.push(temp);
 									$(this).remove();
 									total_input_vars--;
@@ -706,7 +706,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							});
 							$("input[type=hidden]",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
-									var temp=$(this).attr("name")+"="+urlencode($(this).val());
+									var temp=$(this).attr("name")+"="+rawurlencode($(this).val());
 									fix_input_vars.push(temp);
 									$(this).remove();
 									total_input_vars--;
