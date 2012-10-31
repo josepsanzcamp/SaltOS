@@ -58,4 +58,4 @@ if(typeof(__updatefeeds__)=="undefined" && typeof(parent.__updatefeeds__)=="unde
 "use strict";
 var feeds_defaults="";
 
-$(document).ready(function() { update_feeds(); });
+$(function() { update_feeds(); });

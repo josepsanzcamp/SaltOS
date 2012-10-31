@@ -154,13 +154,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="alert">
 	<xsl:for-each select="/root/alerts/alert">
-		<script type="text/javascript">$(document).ready(function() { if(typeof(parent.notice)=="function") parent.notice(lang_alert(),"<xsl:value-of select="."/>",false,"ui-state-highlight");else if(typeof(notice)=="function") notice(lang_alert(),"<xsl:value-of select="."/>",false,"ui-state-highlight"); });</script>
+		<script type="text/javascript">$(function() { if(typeof(parent.notice)=="function") parent.notice(lang_alert(),"<xsl:value-of select="."/>",false,"ui-state-highlight");else if(typeof(notice)=="function") notice(lang_alert(),"<xsl:value-of select="."/>",false,"ui-state-highlight"); });</script>
 	</xsl:for-each>
 </xsl:template>
 
 <xsl:template name="error">
 	<xsl:for-each select="/root/errors/error">
-		<script type="text/javascript">$(document).ready(function() { if(typeof(parent.notice)=="function") parent.notice(lang_error(),"<xsl:value-of select="."/>",false,"ui-state-error");else if(typeof(notice)=="function") notice(lang_error(),"<xsl:value-of select="."/>",false,"ui-state-error"); });</script>
+		<script type="text/javascript">$(function() { if(typeof(parent.notice)=="function") parent.notice(lang_error(),"<xsl:value-of select="."/>",false,"ui-state-error");else if(typeof(notice)=="function") notice(lang_error(),"<xsl:value-of select="."/>",false,"ui-state-error"); });</script>
 	</xsl:for-each>
 </xsl:template>
 

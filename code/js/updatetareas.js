@@ -66,4 +66,4 @@ if(typeof(__updatetareas__)=="undefined" && typeof(parent.__updatetareas__)=="un
 "use strict";
 var tareas_defaults="";
 
-$(document).ready(function() { update_tareas(); });
+$(function() { update_tareas(); });

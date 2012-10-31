@@ -59,4 +59,4 @@ if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefine
 }
 
 "use strict";
-$(document).ready(function() { update_pagerlist(); });
+$(function() { update_pagerlist(); });

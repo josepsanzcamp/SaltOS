@@ -235,4 +235,4 @@ if(typeof(__proyectos__)=="undefined" && typeof(parent.__proyectos__)=="undefine
 }
 
 "use strict";
-$(document).ready(function() { update_totales_proyecto(); });
+$(function() { update_totales_proyecto(); });

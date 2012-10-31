@@ -41,4 +41,4 @@ if(typeof(__agenda__)=="undefined" && typeof(parent.__agenda__)=="undefined") {
 }
 
 "use strict";
-$(document).ready(function() { update_tabs(); });
+$(function() { update_tabs(); });

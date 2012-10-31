@@ -65,4 +65,4 @@ if(typeof(__updateproyectos__)=="undefined" && typeof(parent.__updateproyectos__
 var proyectos_defaults="";
 var proyectos_init=0;
 
-$(document).ready(function() { update_proyectos(); });
+$(function() { update_proyectos(); });

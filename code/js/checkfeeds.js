@@ -91,7 +91,7 @@ if(typeof(__checkfeeds__)=="undefined" && typeof(parent.__checkfeeds__)=="undefi
 		});
 	}
 
-	$(document).ready(function() {
+	$(function() {
 		if(config_feeds_interval()>0) {
 			var feeds_counter=config_feeds_interval();
 			setInterval(function() {

@@ -86,7 +86,7 @@ if(typeof(__updatedireccion__)=="undefined" && typeof(parent.__updatedireccion__
 }
 
 "use strict";
-$(document).ready(function() {
+$(function() {
 	update_direcciones();
 	var checkbox="input[type=checkbox][name^=direccion][name$=seleccion]";
 	$(checkbox).change(function() {

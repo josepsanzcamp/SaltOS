@@ -127,7 +127,7 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 		});
 	}
 
-	$(document).ready(function() {
+	$(function() {
 		if(config_inbox_interval()>0) {
 			var inbox_counter=config_inbox_interval();
 			setInterval(function() {

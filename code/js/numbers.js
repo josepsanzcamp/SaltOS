@@ -29,10 +29,20 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 
 	function load_numbers() {
 		if(!exists_numbers()) return;
+		// DETECT CURRENT NUMBER COLOR SCHEMA
+		var prefix="xml.php?action=number&format=css"
+		var last=null;
+		$("link[rel=stylesheet]").each(function() {
+			var href=$(this).attr("href");
+			if(strpos(href,prefix)!==false) last=this;
+		});
 		// GET COLORS OF ERROR CLASS
 		var color=rgb2hex(get_colors("ui-state-error","color"));
 		var background=rgb2hex(get_colors("ui-state-error","background-color"));
-		$("head").append("<link href='xml.php?action=number&format=css&bgcolor="+color+"&fgcolor="+background+"' rel='stylesheet' type='text/css'></link>");
+		var href=prefix+"&bgcolor="+color+"&fgcolor="+background;
+		if(!last || $(last).attr("href")!=href) {
+			$("head").append("<link href='"+href+"' rel='stylesheet' type='text/css'></link>");
+		}
 	}
 
 	function update_numbers() {
@@ -89,10 +99,10 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 		return $(".number").length;
 	}
 
-	$(document).ready(function() {
-		load_numbers();
-	});
 }
 
 "use strict";
-$(document).ready(function() { update_numbers(); });
+$(function() {
+	load_numbers();
+	update_numbers();
+});

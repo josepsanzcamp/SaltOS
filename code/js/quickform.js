@@ -58,4 +58,4 @@ if(typeof(__quickform__)=="undefined" && typeof(parent.__quickform__)=="undefine
 }
 
 "use strict";
-$(document).ready(function() { update_quickform(); });
+$(function() { update_quickform(); });

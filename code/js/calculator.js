@@ -91,4 +91,4 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 }
 
 "use strict";
-$(document).ready(function() { init_calculator(); });
+$(function() { init_calculator(); });

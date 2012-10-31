@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 "use strict";
-$(document).ready(function() {
+$(function() {
 	$("#feeds_new_0_add").bind("click",function() {
 		if(!is_disabled(this)) update(1);
 	});

@@ -56,18 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<name>form</name>
 		<action>xml.php</action>
 		<method>post</method>
-		<hiddens>
-			<field>
-				<name>page</name>
-				<type>hidden</type>
-				<value global="page" eval="true">$page</value>
-			</field>
-			<field>
-				<name>action</name>
-				<type>hidden</type>
-				<value global="action" eval="true">"update"</value>
-			</field>
-		</hiddens>
+		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>
 			<general>
 				<fieldset>

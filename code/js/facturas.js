@@ -164,4 +164,4 @@ if(typeof(__facturas__)=="undefined" && typeof(parent.__facturas__)=="undefined"
 }
 
 "use strict";
-$(document).ready(function() { update_iva_irpf(false); });
+$(function() { update_iva_irpf(false); });

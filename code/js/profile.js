@@ -106,7 +106,7 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
 }
 
 "use strict";
-$(document).ready(function() {
+$(function() {
 	$("#feeds_new_0_add,#folders_new_0_add").bind("click",function() {
 		if(!is_disabled(this)) submit1();
 	});

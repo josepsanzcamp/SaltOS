@@ -53,7 +53,7 @@ if(typeof(__checksession__)=="undefined" && typeof(parent.__checksession__)=="un
 		});
 	}
 
-	$(document).ready(function() {
+	$(function() {
 		if(config_session_interval()>0) {
 			var session_counter=config_session_interval();
 			setInterval(function() {

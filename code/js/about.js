@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 "use strict";
-$(document).ready(function() {
+$(function() {
 	// FOR ABOUT TAB
 	$(".item").each(function() { var old=$(this).html(); $(this).html("&nbsp;&diams;&nbsp;"+old); });
 	$(".item a").css("font-weight","normal");

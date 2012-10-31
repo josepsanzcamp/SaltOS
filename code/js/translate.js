@@ -198,4 +198,4 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 }
 
 "use strict";
-$(document).ready(function() { init_translate(); });
+$(function() { init_translate(); });

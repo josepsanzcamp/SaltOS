@@ -108,7 +108,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 		}
 	}
 
-	$(document).ready(function() {
+	$(function() {
 		if(!exists_voice()) return;
 		$("body").append("<div id='voice'></div>");
 		$("#voice").jPlayer({

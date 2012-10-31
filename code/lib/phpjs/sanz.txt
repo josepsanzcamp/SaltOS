@@ -32,5 +32,6 @@ Note about the php.saltos.min.js file
   - substr
   - time
   - trim
+  - utf8_decode
   - utf8_encode
 

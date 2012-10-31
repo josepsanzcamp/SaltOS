@@ -28,7 +28,7 @@ function begin_eval_control() {
 	ob_start();
 }
 
-function end_eval_control($value,$source="") {
+function end_eval_control($source) {
 	$error1=ob_get_clean();
 	$error2=get_clear_error();
 	$error=$error1?$error1:$error2;
@@ -337,7 +337,7 @@ function eval_attr($array) {
 									$old_value=$value;
 									begin_eval_control();
 									$value=eval("return $value;");
-									end_eval_control($value,$old_value);
+									end_eval_control($old_value);
 								} else {
 									$old_value=$value;
 									$value=array();
@@ -348,7 +348,7 @@ function eval_attr($array) {
 										$temp_value=str_replace("getParamAsArray(\"","getParamAsArray(\"$p",$temp_value);
 										begin_eval_control();
 										$value[]=eval("return $temp_value;");
-										end_eval_control($value,$old_value);
+										end_eval_control($old_value);
 									}
 								}
 							}
@@ -376,7 +376,7 @@ function eval_attr($array) {
 									$old_value=$temp_value;
 									begin_eval_control();
 									$temp_value=eval("return $temp_value;");
-									end_eval_control($value,$old_value);
+									end_eval_control($old_value);
 									$value=substr_replace($value,$temp_value,$pos,$i+1-$pos);
 								}
 							}
@@ -421,16 +421,18 @@ function eval_attr($array) {
 							}
 							break;
 						case "ifeval":
+							$old_value=$val2;
 							begin_eval_control();
-							$ifeval=eval("return $val2;");
-							end_eval_control($ifeval,$val2);
-							if(!$ifeval) $stack["remove"]=1;
+							$val2=eval("return $val2;");
+							end_eval_control($old_value);
+							if(!$val2) $stack["remove"]=1;
 							break;
 						case "ifpreeval":
+							$old_value=$val2;
 							begin_eval_control();
-							$ifpreeval=eval("return $val2;");
-							end_eval_control($ifpreeval,$val2);
-							if(!$ifpreeval) $stack["cancel"]=1;
+							$val2=eval("return $val2;");
+							end_eval_control($old_value);
+							if(!$val2) $stack["cancel"]=1;
 							break;
 						case "require":
 							$val2=explode(",",$val2);
@@ -448,7 +450,7 @@ function eval_attr($array) {
 								$old_value=$val2;
 								begin_eval_control();
 								$val2=eval("return $val2;");
-								end_eval_control($val2,$old_value);
+								end_eval_control($old_value);
 							}
 							if(!is_numeric($val2)) xml_error("The 'from' attr requires an integer");
 							$stack["for_from"]=$val2;
@@ -458,7 +460,7 @@ function eval_attr($array) {
 								$old_value=$val2;
 								begin_eval_control();
 								$val2=eval("return $val2;");
-								end_eval_control($val2,$old_value);
+								end_eval_control($old_value);
 							}
 							if(!is_numeric($val2)) xml_error("The 'step' attr requires an integer");
 							$stack["for_step"]=$val2;
@@ -468,7 +470,7 @@ function eval_attr($array) {
 								$old_value=$val2;
 								begin_eval_control();
 								$val2=eval("return $val2;");
-								end_eval_control($val2,$old_value);
+								end_eval_control($old_value);
 							}
 							if(!is_numeric($val2)) xml_error("The 'to' attr requires an integer");
 							$stack["for_to"]=$val2;

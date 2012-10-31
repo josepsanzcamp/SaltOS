@@ -183,4 +183,4 @@ if(typeof(__grupos__)=="undefined" && typeof(parent.__grupos__)=="undefined") {
 }
 
 "use strict";
-$(document).ready(function() { make_grupos(); });
+$(function() { make_grupos(); });

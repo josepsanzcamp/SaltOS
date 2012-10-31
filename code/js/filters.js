@@ -47,7 +47,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 					// PROCESS RESPONSE
 					$("root>rows>row",response).each(function() {
 						var querystring=$("querystring",this).text();
-						querystring=base64_decode(querystring);
+						querystring=utf8_decode(base64_decode(querystring));
 						querystring=explode("&",querystring);
 						var count=0;
 						var interval=setInterval(function() {
@@ -83,7 +83,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 		} else {
 			loadingcontent(lang_sending());
 			var id_filter=$(filtro).val();
-			var querystring=rawurlencode(base64_encode(querystring_filter()));
+			var querystring=rawurlencode(base64_encode(utf8_encode(querystring_filter())));
 			var data="action=ajax&query=updatefilter&page="+getParam("page")+"&id="+id_filter+"&querystring="+querystring;
 			$.ajax({
 				url:"xml.php",
@@ -136,7 +136,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 		} else {
 			loadingcontent(lang_sending());
 			var nombre=rawurlencode($(filtro).val());
-			var querystring=rawurlencode(base64_encode(querystring_filter()));
+			var querystring=rawurlencode(base64_encode(utf8_encode(querystring_filter())));
 			var data="action=ajax&query=createfilter&page="+getParam("page")+"&nombre="+nombre+"&querystring="+querystring;
 			$.ajax({
 				url:"xml.php",

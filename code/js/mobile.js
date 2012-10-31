@@ -643,7 +643,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 									total_input_vars--;
 								}
 							});
-							fix_input_vars=base64_encode(implode("&",fix_input_vars));
+							fix_input_vars=base64_encode(utf8_encode(implode("&",fix_input_vars)));
 							$(jqForm).append("<input type='hidden' name='fix_input_vars' value='"+fix_input_vars+"'/>");
 							submitcontent(form,callback);
 						},100);
@@ -976,6 +976,10 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	var cache_colors=new Object();
 
 	function get_colors(clase,param) {
+		if(typeof(clase)=="undefined" && typeof(param)=="undefined") {
+			for(var hash in cache_colors) delete cache_colors[hash];
+			return;
+		}
 		hash=md5(serialize(new Array(clase,param)));
 		if(typeof(cache_colors[hash])=="undefined") {
 			// GET THE COLORS USING THIS TRICK
@@ -987,10 +991,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			$("#ui-color-trick").removeClass(clase);
 		}
 		return cache_colors[hash];
-	}
-
-	function reset_colors() {
-		for(var hash in cache_colors) delete cache_colors[hash];
 	}
 
 	function rgb2hex(color) {
@@ -1067,7 +1067,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	})(jQuery);
 
 	// WHEN DOCUMENT IS READY
-	$(document).ready(function() {
+	$(function() {
 		var menu=$(".ui-layout-west");
 		if(saltos_islogin(menu)) sync_cookies("start");
 		init_history();

@@ -97,4 +97,4 @@ if(typeof(__calendar__)=="undefined" && typeof(parent.__calendar__)=="undefined"
 }
 
 "use strict";
-$(document).ready(function() { update_calendar(); });
+$(function() { update_calendar(); });

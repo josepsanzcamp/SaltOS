@@ -59,4 +59,4 @@ if(typeof(__updatepresupuestos__)=="undefined" && typeof(parent.__updatepresupue
 "use strict";
 var presupuestos_defaults="";
 
-$(document).ready(function() { update_presupuestos(); });
+$(function() { update_presupuestos(); });

@@ -190,4 +190,4 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 }
 
 "use strict";
-$(document).ready(function() { make_usuarios(); });
+$(function() { make_usuarios(); });

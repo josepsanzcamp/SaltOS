@@ -44,11 +44,11 @@ if(!defined("__DEFAULT_PHP__")) {
 		return $array;
 	}
 
-	function __eval_value($value,$row) {
+	function __eval_value($input,$row) {
 		begin_eval_control();
-		$value=eval("return $value;");
-		end_eval_control($value);
-		return $value;
+		$output=eval("return $input;");
+		end_eval_control($input);
+		return $output;
 	}
 
 	function __eval_array($array,$row) {

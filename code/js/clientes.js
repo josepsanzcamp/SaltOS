@@ -133,4 +133,4 @@ if(typeof(__clientes__)=="undefined" && typeof(parent.__clientes__)=="undefined"
 }
 
 "use strict";
-$(document).ready(function() { update_tipo(); });
+$(function() { update_tipo(); });

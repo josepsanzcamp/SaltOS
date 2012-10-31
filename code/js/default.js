@@ -265,7 +265,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			code+="PSdtYXJnaW46MHB4Jz5EZWRpY2F0ZWQgdG8gSXR6aWFyIGFuZCBBaW5ob2E8L2gzPiIp";
 			code+="OwoJCX0sMTAwKTsKCX0pOwp9KSgpOw==";
 			// chr() => TO BE ADDED TO PDFJS
-			eval(base64_decode(code));
+			eval(utf8_decode(base64_decode(code)));
 			// NORMAL CODE
 			$("body").append("<div id='dialog'></div>");
 			$("#dialog").dialog({ "autoOpen":false });
@@ -714,7 +714,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							});
 							//~ console.debug("length="+fix_input_vars.length);
 							//~ console.debug("total="+total_input_vars);
-							fix_input_vars=base64_encode(implode("&",fix_input_vars));
+							fix_input_vars=base64_encode(utf8_encode(implode("&",fix_input_vars)));
 							$(jqForm).append("<input type='hidden' name='fix_input_vars' value='"+fix_input_vars+"'/>");
 							//~ console.debug("real="+$("input,select,textarea",jqForm).length);
 							//~ console.debug("real="+$(jqForm).serializeArray().length);
@@ -903,14 +903,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var background1=get_colors("ui-widget-header","background-color");
 			$("head").append("<link href='"+$(style2).attr("href")+"' rel='stylesheet' type='text/css'></link>");
 			var interval=setInterval(function() {
-				reset_colors();
+				get_colors();
 				var color2=get_colors("ui-widget-header","color");
 				var background2=get_colors("ui-widget-header","background-color");
 				var diffcolor=color1!=color2;
 				var diffbackground=background1!=background2;
 				if(diffcolor || diffbackground) {
 					clearInterval(interval);
-					update_menu();
+					update_menu(html2);
 				}
 			},100);
 		}
@@ -1038,12 +1038,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(this).css("color","");
 		});
 		// TUNNING THE MENU
-		update_menu();
+		update_menu(obj);
 	}
 
-	function update_menu() {
-		var hasbold=$("a.ui-state-default:first").css("font-weight");
-		$(".ui-layout-west .menu div a").each(function() {
+	function update_menu(obj) {
+		if(typeof(obj)=="undefined") var obj=$("body");
+		var hasbold=$("a:first",obj).css("font-weight");
+		$(".menu div a",obj).each(function() {
 			$(this).css("font-weight",hasbold);
 		});
 	}
@@ -1769,6 +1770,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	var cache_colors=new Object();
 
 	function get_colors(clase,param) {
+		if(typeof(clase)=="undefined" && typeof(param)=="undefined") {
+			for(var hash in cache_colors) delete cache_colors[hash];
+			return;
+		}
 		hash=md5(serialize(new Array(clase,param)));
 		if(typeof(cache_colors[hash])=="undefined") {
 			// GET THE COLORS USING THIS TRICK
@@ -1780,10 +1785,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$("#ui-color-trick").removeClass(clase);
 		}
 		return cache_colors[hash];
-	}
-
-	function reset_colors() {
-		for(var hash in cache_colors) delete cache_colors[hash];
 	}
 
 	function rgb2hex(color) {
@@ -1858,7 +1859,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	$.jGrowl.defaults.position="bottom-right";
 
 	// WHEN DOCUMENT IS READY
-	$(document).ready(function() {
+	$(function() {
 		//~ console.time("document_ready fase 0");
 		loadingcontent();
 		setTimeout(function() {

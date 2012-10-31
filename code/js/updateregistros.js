@@ -58,4 +58,4 @@ if(typeof(__updateregistros__)=="undefined" && typeof(parent.__updateregistros__
 "use strict";
 var registros_defaults="";
 
-$(document).ready(function() { update_registros(); });
+$(function() { update_registros(); });

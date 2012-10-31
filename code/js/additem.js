@@ -71,4 +71,4 @@ if(typeof(__additem__)=="undefined" && typeof(parent.__additem__)=="undefined") 
 }
 
 "use strict";
-$(document).ready(function() { init_additem(); });
+$(function() { init_additem(); });

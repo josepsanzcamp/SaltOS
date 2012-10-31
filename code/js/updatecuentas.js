@@ -58,4 +58,4 @@ if(typeof(__updatecuentas__)=="undefined" && typeof(parent.__updatecuentas__)=="
 "use strict";
 var cuentas_defaults="";
 
-$(document).ready(function() { update_cuentas(); });
+$(function() { update_cuentas(); });

@@ -74,7 +74,7 @@ if(typeof(__checkagenda__)=="undefined" && typeof(parent.__checkagenda__)=="unde
 		});
 	}
 
-	$(document).ready(function() {
+	$(function() {
 		if(config_agenda_interval()>0) {
 			var agenda_counter=config_agenda_interval();
 			setInterval(function() {

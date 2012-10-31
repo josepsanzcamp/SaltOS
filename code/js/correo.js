@@ -169,7 +169,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 }
 
 "use strict";
-$(document).ready(function() {
+$(function() {
 	update_files();
 	update_auto();
 	update_signature();

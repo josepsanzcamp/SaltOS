@@ -91,4 +91,4 @@ if(typeof(__home__)=="undefined" && typeof(parent.__home__)=="undefined") {
 }
 
 "use strict";
-$(document).ready(function() { update_home(); });
+$(function() { update_home(); });
