@@ -459,7 +459,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>blockUI 2.50 (MIT &amp; GPL*)</label>
+							<label>blockUI 2.52 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://malsup.com/jquery/block/")</onclick>
@@ -523,7 +523,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.2.9 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.2.13 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>left item sectioncontentb</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>

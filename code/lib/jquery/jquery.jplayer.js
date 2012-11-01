@@ -8,8 +8,8 @@
  *  - http://www.gnu.org/copyleft/gpl.html
  *
  * Author: Mark J Panaghiston
- * Version: 2.2.9
- * Date: 31st October 2012
+ * Version: 2.2.13
+ * Date: 1st November 2012
  */
 
 /* Code verified using http://www.jshint.com/ */
@@ -279,7 +279,7 @@
 	$.jPlayer.prototype = {
 		count: 0, // Static Variable: Change it via prototype.
 		version: { // Static Object
-			script: "2.2.9",
+			script: "2.2.13",
 			needFlash: "2.2.0",
 			flash: "unknown"
 		},
@@ -345,6 +345,7 @@
 				android_phone: /android.*?mobile/,
 				blackberry: /blackberry/,
 				windows_ce: /windows ce/,
+				iemobile: /iemobile/,
 				webos: /webos/
 			},
 			noVolume: {
@@ -355,6 +356,7 @@
 				android_phone: /android.*?mobile/,
 				blackberry: /blackberry/,
 				windows_ce: /windows ce/,
+				iemobile: /iemobile/,
 				webos: /webos/,
 				playbook: /playbook/
 			},
@@ -659,7 +661,7 @@
 				this.html.video.available = !!this.htmlElement.video.canPlayType && this._testCanPlayType(this.htmlElement.video); // Test is for IE9 on Win Server 2008.
 			}
 
-			this.flash.available = this._checkForFlash("10.1");
+			this.flash.available = this._checkForFlash(10.1);
 
 			this.html.canPlay = {};
 			this.flash.canPlay = {};
@@ -1956,7 +1958,23 @@
 		restoreScreen: function() {
 			this._setOption("fullScreen", false);
 		},
-		_html_initMedia: function() {
+		_html_initMedia: function(media) {
+			// Remove any existing track elements
+			var $media = $(this.htmlElement.media).empty();
+
+			// Create any track elements given with the media, as an Array of track Objects.
+			$.each(media.track || [], function(i,v) {
+				var track = document.createElement('track');
+				track.setAttribute("kind", v.kind ? v.kind : "");
+				track.setAttribute("src", v.src ? v.src : "");
+				track.setAttribute("srclang", v.srclang ? v.srclang : "");
+				track.setAttribute("label", v.label ? v.label : "");
+				if(v.def) {
+					track.setAttribute("default", v.def);
+				}
+				$media.append(track);
+			});
+
 			this.htmlElement.media.src = this.status.src;
 
 			if(this.options.preload !== 'none') {
@@ -1964,7 +1982,7 @@
 			}
 			this._trigger($.jPlayer.event.timeupdate); // The flash generates this event for its solution.
 		},
-		_html_setAudio: function(media) {
+		_html_setFormat: function(media) {
 			var self = this;
 			// Always finds a format due to checks in setMedia()
 			$.each(this.formats, function(priority, format) {
@@ -1975,25 +1993,19 @@
 					return false;
 				}
 			});
+		},
+		_html_setAudio: function(media) {
+			this._html_setFormat(media);
 			this.htmlElement.media = this.htmlElement.audio;
-			this._html_initMedia();
+			this._html_initMedia(media);
 		},
 		_html_setVideo: function(media) {
-			var self = this;
-			// Always finds a format due to checks in setMedia()
-			$.each(this.formats, function(priority, format) {
-				if(self.html.support[format] && media[format]) {
-					self.status.src = media[format];
-					self.status.format[format] = true;
-					self.status.formatType = format;
-					return false;
-				}
-			});
+			this._html_setFormat(media);
 			if(this.status.nativeVideoControls) {
 				this.htmlElement.video.poster = this._validString(media.poster) ? media.poster : "";
 			}
 			this.htmlElement.media = this.htmlElement.video;
-			this._html_initMedia();
+			this._html_initMedia(media);
 		},
 		_html_resetMedia: function() {
 			if(this.htmlElement.media) {
@@ -2260,73 +2272,39 @@
 		_getMovie: function() {
 			return document[this.internal.flash.id];
 		},
-		_getFlashPluginVersionArray: function() {
+		_getFlashPluginVersion: function() {
 
-			// Code influenced by SWFObject 2.2: http://code.google.com/p/swfobject/
+			// _getFlashPluginVersion() code influenced by:
+			// - FlashReplace 1.01: http://code.google.com/p/flashreplace/
+			// - SWFObject 2.2: http://code.google.com/p/swfobject/
 
-			var UNDEF = "undefined",
-				OBJECT = "object",
-				SHOCKWAVE_FLASH = "Shockwave Flash",
-				SHOCKWAVE_FLASH_AX = "ShockwaveFlash.ShockwaveFlash",
-				FLASH_MIME_TYPE = "application/x-shockwave-flash",
-				
-				nav = navigator,
-
-				playerVersion = [0,0,0],
-				d = null;
-
-			if (typeof nav.plugins != UNDEF && typeof nav.plugins[SHOCKWAVE_FLASH] == OBJECT) {
-				d = nav.plugins[SHOCKWAVE_FLASH].description;
-				if (d && !(typeof nav.mimeTypes != UNDEF && nav.mimeTypes[FLASH_MIME_TYPE] && !nav.mimeTypes[FLASH_MIME_TYPE].enabledPlugin)) { // navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin indicates whether plug-ins are enabled or disabled in Safari 3+
-					d = d.replace(/^.*\s+(\S+\s+\S+$)/, "$1");
-					playerVersion[0] = parseInt(d.replace(/^(.*)\..*$/, "$1"), 10);
-					playerVersion[1] = parseInt(d.replace(/^.*\.(.*)\s.*$/, "$1"), 10);
-					playerVersion[2] = /[a-zA-Z]/.test(d) ? parseInt(d.replace(/^.*[a-zA-Z]+(.*)$/, "$1"), 10) : 0;
-				}
-			} else if (typeof window.ActiveXObject != UNDEF) {
+			var version = 0,
+				flash;
+			if(window.ActiveXObject) {
 				try {
-					var a = new ActiveXObject(SHOCKWAVE_FLASH_AX);
-					if (a) { // a will return null when ActiveX is disabled
-						d = a.GetVariable("$version");
-						if (d) {
-							d = d.split(" ")[1].split(",");
-							playerVersion = [parseInt(d[0], 10), parseInt(d[1], 10), parseInt(d[2], 10)];
+					flash = new ActiveXObject("ShockwaveFlash.ShockwaveFlash");
+					if (flash) { // flash will return null when ActiveX is disabled
+						var v = flash.GetVariable("$version");
+						if(v) {
+							v = v.split(" ")[1].split(",");
+							version = parseInt(v[0], 10) + "." + parseInt(v[1], 10);
 						}
 					}
 				} catch(e) {}
 			}
-			return playerVersion;
-		},
-		_getFlashPluginVersion: function() {
-
-			// A utility function to convert the plugin version to a string.
-
-			var playerVersion = this._getFlashPluginVersionArray(),
-				version = "";
-			$.each(playerVersion, function(i,v) {
-				version += v;
-				if(i+1 < playerVersion.length) {
-					version += ".";
+			else if(navigator.plugins && navigator.mimeTypes.length > 0) {
+				flash = navigator.plugins["Shockwave Flash"];
+				if(flash) {
+					version = navigator.plugins["Shockwave Flash"].description.replace(/.*\s(\d+\.\d+).*/, "$1");
 				}
-			});
-			return version;
+			}
+			return version * 1; // Converts to a number
 		},
 		_checkForFlash: function (version) {
-
-			var requiredVersion = ("" + version).split("."), // Converts param to String and splits.
-				playerVersion = this._getFlashPluginVersionArray(),
+			var flashOk = false;
+			if(this._getFlashPluginVersion() >= version) {
 				flashOk = true;
-
-			// Loop through each of the required version numbers and compare with plugin.
-			$.each(requiredVersion, function(i,v) {
-				if(playerVersion[i] > v) {
-					return false; // exit $.each loop: Version is good
-				} else if(playerVersion[i] < v) {
-					flashOk = false;
-					return false; // exit $.each loop: Version is bad
-				}
-				// Else we check the next version point. A.B.C
-			});
+			}
 			return flashOk;
 		},
 		_validString: function(url) {
