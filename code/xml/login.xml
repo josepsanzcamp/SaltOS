@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>querystring</name>
 					<type>hidden</type>
-					<value eval="true">getServer("QUERY_STRING")</value>
+					<value eval="true">str_replace("+","%20",getServer("QUERY_STRING"))</value>
 				</field>
 				<field>
 					<name>user</name>

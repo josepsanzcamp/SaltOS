@@ -58,11 +58,6 @@ function db_error($array) {
 	return $func($array);
 }
 
-function db_type() {
-	$func=__FUNCTION__."_".getDefault("db/type");
-	return $func();
-}
-
 // shared functions
 function db_fetch_row(&$result) {
 	return array_pop($result["rows"]);

@@ -154,7 +154,8 @@ function querystring2array($querystring) {
 	$result=array();
 	foreach($items as $key=>$val) {
 		$par=explode("=",$val,2);
-		$par[1]=isset($par[1])?rawurldecode($par[1]):"";
+		if(!isset($par[1])) $par[1]="";
+		$par[1]=rawurldecode($par[1]);
 		$result[$par[0]]=$par[1];
 	}
 	return $result;

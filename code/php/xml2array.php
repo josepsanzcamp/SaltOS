@@ -153,7 +153,7 @@ function __set_array_recursive($array,$keys,$value,$type) {
 		}
 	} elseif($count==1) {
 		$temp=array();
-		$hasattr=(count($array)==2 && isset($array["value"]) && isset($array["#attr"]));
+		$hasattr=(isset($array["value"]) && isset($array["#attr"]));
 		$array_value=$hasattr?$array["value"]:$array;
 		$array_attr=$hasattr?$array["#attr"]:array();
 		foreach($array_value as $key2=>$val2) {
@@ -172,7 +172,7 @@ function __set_array_recursive($array,$keys,$value,$type) {
 						break;
 					case "append":
 					case "add":
-						$hasattr=(count($val2)==2 && isset($val2["value"]) && isset($val2["#attr"]));
+						$hasattr=(isset($val2["value"]) && isset($val2["#attr"]));
 						foreach($value as $key3=>$val3) {
 							if($hasattr) {
 								if(!is_array($val2["value"])) xml_error("Can not '$type' the node '$key3' to the node '$key2'");
@@ -204,21 +204,22 @@ function __set_array_recursive($array,$keys,$value,$type) {
 }
 
 function set_array(&$array,$name,$value) {
-	$count="";
-	$prefix="";
-	if(isset($array[$name])) {
+	if(!isset($array[$name])) {
+		$array[$name]=$value;
+	} else {
+		$name.="#";
 		$count=1;
-		$prefix="#";
-		while(isset($array[$name.$prefix.$count])) $count++;
+		while(isset($array[$name.$count])) $count++;
+		$array[$name.$count]=$value;
 	}
-	$array[$name.$prefix.$count]=$value;
+
 }
 
 function unset_array(&$array,$name) {
+	if(isset($array[$name])) unset($array[$name]);
+	$name.="#";
 	$len=strlen($name);
-	foreach($array as $key=>$val) {
-		if(substr($key,0,$len)==$name) unset($array[$key]);
-	}
+	foreach($array as $key=>$val) if(strncmp($name,$key,$len)==0) unset($array[$key]);
 }
 
 function limpiar_key($key) {
@@ -309,263 +310,270 @@ function xml2struct($xml,$file="") {
 }
 
 function eval_attr($array) {
-	if(!is_array($array)) {
-		return eval_attr(array("inline"=>$array));
-	} elseif(count($array)==2 && isset($array["value"]) && isset($array["#attr"])) {
-		return eval_attr(array("inline"=>$array));
-	}
-	foreach($array as $key=>$val) {
-		unset($array[$key]);
-		if(is_array($val)) {
-			if(isset($val["#attr"])) {
-				$stack=array();
-				$value=$val["value"];
-				$attr=$val["#attr"];
-				$count=0;
-				foreach($attr as $key2=>$val2) {
-					$key2=limpiar_key($key2);
-					switch($key2) {
-						case "global":
-							$stack["global"]=$val2;
-							$val2=explode(",",$val2);
-							foreach($val2 as $var) global $$var;
-							break;
-						case "eval":
-							if(eval_bool($val2)) {
-								if(!$value) xml_error("Evaluation error: void expression");
-								if(!isset($stack["prefix"])) {
-									$old_value=$value;
+	if(is_array($array)) {
+		if(isset($array["value"]) && isset($array["#attr"])) {
+			return eval_attr(array("inline"=>$array));
+		} else {
+			$result=array();
+			foreach($array as $key=>$val) {
+				if(is_array($val)) {
+					if(isset($val["value"]) && isset($val["#attr"])) {
+						$stack=array();
+						$value=$val["value"];
+						$attr=$val["#attr"];
+						$count=0;
+						foreach($attr as $key2=>$val2) {
+							$key2=limpiar_key($key2);
+							switch($key2) {
+								case "global":
+									$stack["global"]=$val2;
+									$val2=explode(",",$val2);
+									foreach($val2 as $var) global $$var;
+									break;
+								case "eval":
+									if(eval_bool($val2)) {
+										if(!$value) xml_error("Evaluation error: void expression");
+										if(!isset($stack["prefix"])) {
+											$old_value=$value;
+											begin_eval_control();
+											$value=eval("return $value;");
+											end_eval_control($old_value);
+										} else {
+											$old_value=$value;
+											$value=array();
+											foreach($stack["prefix"] as $p) {
+												$temp_value=$old_value;
+												$temp_value=str_replace("getParam(\"","getParam(\"$p",$temp_value);
+												$temp_value=str_replace("setParam(\"","setParam(\"$p",$temp_value);
+												$temp_value=str_replace("getParamAsArray(\"","getParamAsArray(\"$p",$temp_value);
+												begin_eval_control();
+												$value[]=eval("return $temp_value;");
+												end_eval_control($old_value);
+											}
+										}
+									}
+									break;
+								case "preeval":
+									if(eval_bool($val2)) {
+										$preevals=getDefault("parser/preevals");
+										while(1) {
+											foreach($preevals as $preeval) {
+												$pos=strpos($value,$preeval);
+												if($pos!==false) break;
+											}
+											if($pos===false) break;
+											$len=strlen($value);
+											$parent=0;
+											$exist=0;
+											for($i=$pos;$i<$len;$i++) {
+												$letter=$value[$i];
+												if($letter=="(") $parent++;
+												if($parent>0) $exist=1;
+												if($letter==")") $parent--;
+												if($exist && !$parent) break;
+											}
+											$temp_value=substr($value,$pos,$i-$pos+1);
+											$old_value=$temp_value;
+											begin_eval_control();
+											$temp_value=eval("return $temp_value;");
+											end_eval_control($old_value);
+											$value=substr_replace($value,$temp_value,$pos,$i+1-$pos);
+										}
+									}
+									break;
+								case "match":
+									$stack["match"]=$val2;
+									break;
+								case "nomatch":
+									$stack["nomatch"]=$val2;
+									break;
+								case "prefix":
+									if(eval_bool($val2)) {
+										$stack["prefix"]=array();
+										foreach(array_merge($_POST,$_GET) as $key3=>$val3) {
+											if(substr($key3,0,7)=="prefix_") {
+												$ok=1;
+												if(isset($stack["match"]) && strpos($val3,$stack["match"])===false) $ok=0;
+												if(isset($stack["nomatch"]) && strpos($val3,$stack["nomatch"])!==false) $ok=0;
+												if($ok) $stack["prefix"][]=$val3;
+											}
+										}
+									}
+									break;
+								case "lang":
+									if(eval_bool($val2)) {
+										if(LANG_LOADED()) {
+											$value=LANG($value);
+										} else {
+											$stack["cancel"]=1;
+										}
+									}
+									break;
+								case "config":
+									if(eval_bool($val2)) {
+										if(CONFIG_LOADED()) {
+											$newvalue=CONFIG($value);
+											if(is_null($newvalue)) xml_error("Configuration '$value' not found");
+											$value=$newvalue;
+										} else {
+											$stack["cancel"]=1;
+										}
+									}
+									break;
+								case "ifeval":
+									$old_value=$val2;
 									begin_eval_control();
-									$value=eval("return $value;");
+									$val2=eval("return $val2;");
 									end_eval_control($old_value);
-								} else {
-									$old_value=$value;
-									$value=array();
-									foreach($stack["prefix"] as $p) {
-										$temp_value=$old_value;
-										$temp_value=str_replace("getParam(\"","getParam(\"$p",$temp_value);
-										$temp_value=str_replace("setParam(\"","setParam(\"$p",$temp_value);
-										$temp_value=str_replace("getParamAsArray(\"","getParamAsArray(\"$p",$temp_value);
+									if(!$val2) $stack["remove"]=1;
+									break;
+								case "ifpreeval":
+									$old_value=$val2;
+									begin_eval_control();
+									$val2=eval("return $val2;");
+									end_eval_control($old_value);
+									if(!$val2) $stack["cancel"]=1;
+									break;
+								case "require":
+									$val2=explode(",",$val2);
+									foreach($val2 as $file) {
+										if(!file_exists($file)) xml_error("Require '$file' not found");
+										require_once($file);
+									}
+									break;
+								case "for":
+									if(!$val2 || is_numeric($val2)) xml_error("The 'for' attr requires a variable name");
+									$stack["for_var"]=$val2;
+									break;
+								case "from":
+									if(!is_numeric($val2)) {
+										$old_value=$val2;
 										begin_eval_control();
-										$value[]=eval("return $temp_value;");
+										$val2=eval("return $val2;");
 										end_eval_control($old_value);
 									}
-								}
-							}
-							break;
-						case "preeval":
-							if(eval_bool($val2)) {
-								$preevals=getDefault("parser/preevals");
-								while(1) {
-									foreach($preevals as $preeval) {
-										$pos=strpos($value,$preeval);
-										if($pos!==false) break;
+									if(!is_numeric($val2)) xml_error("The 'from' attr requires an integer");
+									$stack["for_from"]=$val2;
+									break;
+								case "step":
+									if(!is_numeric($val2)) {
+										$old_value=$val2;
+										begin_eval_control();
+										$val2=eval("return $val2;");
+										end_eval_control($old_value);
 									}
-									if($pos===false) break;
-									$len=strlen($value);
-									$parent=0;
-									$exist=0;
-									for($i=$pos;$i<$len;$i++) {
-										$letter=$value[$i];
-										if($letter=="(") $parent++;
-										if($parent>0) $exist=1;
-										if($letter==")") $parent--;
-										if($exist && !$parent) break;
+									if(!is_numeric($val2)) xml_error("The 'step' attr requires an integer");
+									$stack["for_step"]=$val2;
+									break;
+								case "to":
+									if(!is_numeric($val2)) {
+										$old_value=$val2;
+										begin_eval_control();
+										$val2=eval("return $val2;");
+										end_eval_control($old_value);
 									}
-									$temp_value=substr($value,$pos,$i-$pos+1);
-									$old_value=$temp_value;
-									begin_eval_control();
-									$temp_value=eval("return $temp_value;");
-									end_eval_control($old_value);
-									$value=substr_replace($value,$temp_value,$pos,$i+1-$pos);
+									if(!is_numeric($val2)) xml_error("The 'to' attr requires an integer");
+									$stack["for_to"]=$val2;
+									break;
+								case "foreach":
+									if(!is_array($$val2)) xml_error("The 'foreach' attr requires a rows array");
+									$stack["foreach_rows"]=$$val2;
+									break;
+								case "as":
+									if(!$val2) xml_error("The 'as' attr requires a row array");
+									$stack["foreach_as"]=$val2;
+									break;
+								case "translated":
+									if(!eval_bool($val2)) $value=$value." (not translated)";
+									break;
+								case "revised":
+									if(!eval_bool($val2)) $value=$value." (not revised)";
+									break;
+								default:
+									xml_error("Unknown attr '$key2' with value '$val2'");
+							}
+							$count++;
+							if(isset($stack["cancel"]) || isset($stack["remove"])) {
+								break;
+							} elseif(isset($stack["for_var"]) && isset($stack["for_from"]) && isset($stack["for_to"])) {
+								// CHECK SOME DOMAIN ERRORS
+								if(!isset($stack["for_step"])) $stack["for_step"]=1;
+								if(!$stack["for_step"]) xml_error("Error sequence FOR - FROM(${param["for_from"]}) - STEP(${param["for_step"]}) - TO(${param["for_to"]})");
+								if(sign($stack["for_to"]-$stack["for_from"])!=sign($stack["for_step"])) xml_error("Error sequence FOR - FROM(${param["for_from"]}) - STEP(${param["for_step"]}) - TO(${param["for_to"]})");
+								// CONTINUE
+								$attr=array_slice($attr,$count);
+								if(isset($stack["global"])) $attr=array_merge(array("global"=>$stack["global"]),$attr);
+								$old_value=$value;
+								$value=array();
+								for($$stack["for_var"]=$stack["for_from"];$$stack["for_var"]<=$stack["for_to"];$$stack["for_var"]+=$stack["for_step"]) {
+									$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
+									if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 								}
-							}
-							break;
-						case "match":
-							$stack["match"]=$val2;
-							break;
-						case "nomatch":
-							$stack["nomatch"]=$val2;
-							break;
-						case "prefix":
-							if(eval_bool($val2)) {
-								$stack["prefix"]=array();
-								foreach(array_merge($_POST,$_GET) as $key3=>$val3) {
-									if(substr($key3,0,7)=="prefix_") {
-										$ok=1;
-										if(isset($stack["match"]) && strpos($val3,$stack["match"])===false) $ok=0;
-										if(isset($stack["nomatch"]) && strpos($val3,$stack["nomatch"])!==false) $ok=0;
-										if($ok) $stack["prefix"][]=$val3;
-									}
+								unset($stack["for_var"]);
+								unset($stack["for_from"]);
+								unset($stack["for_step"]);
+								unset($stack["for_to"]);
+								$val["value"]="__TRICK__";
+								break;
+							} elseif(isset($stack["foreach_rows"]) && isset($stack["foreach_as"])) {
+								$attr=array_slice($attr,$count);
+								if(isset($stack["global"])) $attr=array_merge(array("global"=>$stack["global"]),$attr);
+								$old_value=$value;
+								$value=array();
+								foreach($stack["foreach_rows"] as $$stack["foreach_as"]) {
+									$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
+									if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 								}
+								unset($stack["foreach_rows"]);
+								unset($stack["foreach_as"]);
+								$val["value"]="__TRICK__";
+								break;
 							}
-							break;
-						case "lang":
-							if(eval_bool($val2)) {
-								if(LANG_LOADED()) {
-									$value=LANG($value);
-								} else {
-									$stack["cancel"]=1;
-								}
-							}
-							break;
-						case "config":
-							if(eval_bool($val2)) {
-								if(CONFIG_LOADED()) {
-									$newvalue=CONFIG($value);
-									if(is_null($newvalue)) xml_error("Configuration '$value' not found");
-									$value=$newvalue;
-								} else {
-									$stack["cancel"]=1;
-								}
-							}
-							break;
-						case "ifeval":
-							$old_value=$val2;
-							begin_eval_control();
-							$val2=eval("return $val2;");
-							end_eval_control($old_value);
-							if(!$val2) $stack["remove"]=1;
-							break;
-						case "ifpreeval":
-							$old_value=$val2;
-							begin_eval_control();
-							$val2=eval("return $val2;");
-							end_eval_control($old_value);
-							if(!$val2) $stack["cancel"]=1;
-							break;
-						case "require":
-							$val2=explode(",",$val2);
-							foreach($val2 as $file) {
-								if(!file_exists($file)) xml_error("Require '$file' not found");
-								require_once($file);
-							}
-							break;
-						case "for":
-							if(!$val2 || is_numeric($val2)) xml_error("The 'for' attr requires a variable name");
-							$stack["for_var"]=$val2;
-							break;
-						case "from":
-							if(!is_numeric($val2)) {
-								$old_value=$val2;
-								begin_eval_control();
-								$val2=eval("return $val2;");
-								end_eval_control($old_value);
-							}
-							if(!is_numeric($val2)) xml_error("The 'from' attr requires an integer");
-							$stack["for_from"]=$val2;
-							break;
-						case "step":
-							if(!is_numeric($val2)) {
-								$old_value=$val2;
-								begin_eval_control();
-								$val2=eval("return $val2;");
-								end_eval_control($old_value);
-							}
-							if(!is_numeric($val2)) xml_error("The 'step' attr requires an integer");
-							$stack["for_step"]=$val2;
-							break;
-						case "to":
-							if(!is_numeric($val2)) {
-								$old_value=$val2;
-								begin_eval_control();
-								$val2=eval("return $val2;");
-								end_eval_control($old_value);
-							}
-							if(!is_numeric($val2)) xml_error("The 'to' attr requires an integer");
-							$stack["for_to"]=$val2;
-							break;
-						case "foreach":
-							if(!is_array($$val2)) xml_error("The 'foreach' attr requires a rows array");
-							$stack["foreach_rows"]=$$val2;
-							break;
-						case "as":
-							if(!$val2) xml_error("The 'as' attr requires a row array");
-							$stack["foreach_as"]=$val2;
-							break;
-						case "translated":
-							if(!eval_bool($val2)) $value=$value." (not translated)";
-							break;
-						case "revised":
-							if(!eval_bool($val2)) $value=$value." (not revised)";
-							break;
-						default:
-							xml_error("Unknown attr '$key2' with value '$val2'");
-					}
-					$count++;
-					if(isset($stack["for_var"]) && isset($stack["for_from"]) && isset($stack["for_to"])) {
-						// CHECK SOME DOMAIN ERRORS
-						if(!isset($stack["for_step"])) $stack["for_step"]=1;
-						if(!$stack["for_step"]) xml_error("Error sequence FOR - FROM(${param["for_from"]}) - STEP(${param["for_step"]}) - TO(${param["for_to"]})");
-						if(sign($stack["for_to"]-$stack["for_from"])!=sign($stack["for_step"])) xml_error("Error sequence FOR - FROM(${param["for_from"]}) - STEP(${param["for_step"]}) - TO(${param["for_to"]})");
-						// CONTINUE
-						$attr=array_slice($attr,$count);
-						if(isset($stack["global"])) $attr=array_merge(array("global"=>$stack["global"]),$attr);
-						$old_value=$value;
-						$value=array();
-						for($$stack["for_var"]=$stack["for_from"];$$stack["for_var"]<=$stack["for_to"];$$stack["for_var"]+=$stack["for_step"]) {
-							$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
-							if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 						}
-						unset($stack["for_var"]);
-						unset($stack["for_from"]);
-						unset($stack["for_step"]);
-						unset($stack["for_to"]);
-						$val["value"]="__TRICK__";
-						break;
-					} elseif(isset($stack["foreach_rows"]) && isset($stack["foreach_as"])) {
-						$attr=array_slice($attr,$count);
-						if(isset($stack["global"])) $attr=array_merge(array("global"=>$stack["global"]),$attr);
-						$old_value=$value;
-						$value=array();
-						foreach($stack["foreach_rows"] as $$stack["foreach_as"]) {
-							$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
-							if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
+						if(isset($stack["for_var"]) || isset($stack["for_from"]) || isset($stack["for_step"]) || isset($stack["for_to"])) {
+							xml_error("Incomplete sequence FOR - FROM - STEP - TO");
+						} elseif(isset($stack["foreach_rows"]) || isset($stack["foreach_as"])) {
+							xml_error("Incomplete sequence FOREACH - AS");
 						}
-						unset($stack["foreach_rows"]);
-						unset($stack["foreach_as"]);
-						$val["value"]="__TRICK__";
-						break;
+						if(isset($stack["cancel"])) {
+							$result[$key]=$val;
+						} elseif(isset($stack["remove"])) {
+							// NOTHING TO DO
+						} elseif(!is_array($value)) {
+							$result[$key]=$value;
+						} elseif(!is_array($val["value"])) {
+							foreach($value as $v) set_array($result,$key,$v);
+						} else {
+							$result[$key]=eval_attr($value);
+						}
+					} else {
+						$result[$key]=eval_attr($val);
 					}
-					if(isset($stack["cancel"]) || isset($stack["remove"])) break;
-				}
-				if(isset($stack["for_var"]) || isset($stack["for_from"]) || isset($stack["for_step"]) || isset($stack["for_to"])) {
-					xml_error("Incomplete sequence FOR - FROM - STEP - TO");
-				} elseif(isset($stack["foreach_rows"]) || isset($stack["foreach_as"])) {
-					xml_error("Incomplete sequence FOREACH - AS");
-				} elseif(isset($stack["cancel"])) {
-					$array[$key]=$val;
-				} elseif(isset($stack["remove"])) {
-					// NOTHING TO DO
-				} elseif(!is_array($value)) {
-					$array[$key]=$value;
-				} elseif(!is_array($val["value"])) {
-					foreach($value as $v) set_array($array,$key,$v);
 				} else {
-					$array[$key]=eval_attr($value);
+					$result[$key]=$val;
 				}
-			} else {
-				$array[$key]=eval_attr($val);
 			}
-		} else {
-			$array[$key]=$val;
+			return $result;
 		}
+	} else {
+		return eval_attr(array("inline"=>$array));
 	}
-	return $array;
 }
 
 function eval_bool($arg) {
-	if($arg===true) return 1;
-	if($arg===false) return 0;
-	if($arg=="1") return 1;
-	if($arg=="0") return 0;
+	static $bools=array(
+		"1"=>1, // FOR 1 OR TRUE
+		"0"=>0, // FOR 0
+		""=>0, // FOR FALSE
+		"true"=>1,
+		"false"=>0,
+		"on"=>1,
+		"off"=>0,
+		"yes"=>1,
+		"no"=>0
+	);
 	$bool=strtolower($arg);
-	if($bool=="true") return 1;
-	if($bool=="false") return 0;
-	if($bool=="on") return 1;
-	if($bool=="off") return 0;
-	if($bool=="yes") return 1;
-	if($bool=="no") return 0;
+	if(isset($bools[$bool])) return $bools[$bool];
 	xml_error("Unknown boolean value '$arg'");
 }
 

@@ -65,12 +65,4 @@ function db_error_mysqli($array) {
 	foreach($array as $key=>$val) $array[$key]=str_replace(array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),"...",$val);
 	show_php_error($array);
 }
-
-function db_type_mysqli() {
-	$query="SHOW VARIABLES WHERE Value LIKE '%MariaDB%'";
-	$result=db_query($query);
-	$numrows=db_num_rows($result);
-	db_free($result);
-	return $numrows?"MARIADB":"MYSQL";
-}
 ?>

@@ -123,8 +123,4 @@ function db_disconnect_pdo_sqlite() {
 function db_error_pdo_sqlite($array) {
 	show_php_error($array);
 }
-
-function db_type_pdo_sqlite() {
-	return "SQLITE";
-}
 ?>

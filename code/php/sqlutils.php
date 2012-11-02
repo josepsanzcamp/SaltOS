@@ -226,33 +226,31 @@ function get_fields($table) {
 
 function get_indexes($table) {
 	$indexes=array();
-	$dbtype=db_type();
-	if(in_array($dbtype,array("SQLITE"))) {
-		$query="/*SQLITE PRAGMA INDEX_LIST($table) */";
-		$result=db_query($query);
-		while($row=db_fetch_row($result)) {
-			$index=$row["name"];
-			$query2="/*SQLITE PRAGMA INDEX_INFO($index) */";
-			$result2=db_query($query2);
-			$fields=array();
-			while($row2=db_fetch_row($result2)) $fields[]=$row2["name"];
-			db_free($result2);
-			$indexes[$index]=$fields;
-		}
-		db_free($result);
-	} elseif(in_array($dbtype,array("MYSQL","MARIADB"))) {
-		$query="/*MYSQL SHOW INDEXES FROM $table */";
-		$result=db_query($query);
-		while($row=db_fetch_row($result)) {
-			$index=$row["Key_name"];
-			$column=$row["Column_name"];
-			$where=1;
-			if($index=="PRIMARY") $where=0;
-			if($index==$column) $where=0;
-			if($where) {
-				if(!isset($indexes[$index])) $indexes[$index]=array($column);
-				else $indexes[$index][]=$column;
-			}
+	// FOR SQLITE
+	$query="/*SQLITE PRAGMA INDEX_LIST($table) */";
+	$result=db_query($query);
+	while($row=db_fetch_row($result)) {
+		$index=$row["name"];
+		$query2="/*SQLITE PRAGMA INDEX_INFO($index) */";
+		$result2=db_query($query2);
+		$fields=array();
+		while($row2=db_fetch_row($result2)) $fields[]=$row2["name"];
+		db_free($result2);
+		$indexes[$index]=$fields;
+	}
+	db_free($result);
+	// FOR MYSQL
+	$query="/*MYSQL SHOW INDEXES FROM $table */";
+	$result=db_query($query);
+	while($row=db_fetch_row($result)) {
+		$index=$row["Key_name"];
+		$column=$row["Column_name"];
+		$where=1;
+		if($index=="PRIMARY") $where=0;
+		if($index==$column) $where=0;
+		if($where) {
+			if(!isset($indexes[$index])) $indexes[$index]=array($column);
+			else $indexes[$index][]=$column;
 		}
 	}
 	return $indexes;
@@ -379,26 +377,59 @@ function sql_drop_index($index,$table) {
 	return $query;
 }
 
-function make_like_query($keys,$values) {
-	if($values=="") {
-		$query="(1=1)";
-	} else {
-		$keys=explode(",",$keys);
-		foreach($keys as $key=>$val) $keys[$key]=trim($val);
-		$values=explode(" ",$values);
-		$query=array();
-		foreach($values as $value) {
-			if($value!="") {
-				$query2=array();
-				foreach($keys as $key) {
-					$key=str_replace(".","`.`",$key);
-					$query2[]="`$key` LIKE '%$value%'";
-				}
-				$query[]="(".implode(" OR ",$query2).")";
-			}
+function __make_like_query_explode($separator,$str) {
+	$result=array();
+	$len=strlen($str);
+	$ini=0;
+	$open=array("'"=>0,'"'=>0);
+	for($i=0;$i<$len;$i++) {
+		$letter=$str[$i];
+		if(array_key_exists($letter,$open)) {
+			$open[$letter]=($open[$letter]==1)?0:1;
 		}
-		$query="(".implode(" AND ",$query).")";
+		if($letter==$separator && array_sum($open)==0) {
+			$result[]=substr($str,$ini,$i-$ini);
+			$ini=$i+1;
+		}
 	}
+	if($i!=$ini) {
+		$result[]=substr($str,$ini,$i-$ini);
+	}
+	return $result;
+}
+
+function make_like_query($keys,$values) {
+	$keys=explode(",",$keys);
+	foreach($keys as $key=>$val) {
+		$val=trim($val);
+		if($val=="") unset($keys[$key]);
+		if($val!="") $keys[$key]=$val;
+	}
+	$values=__make_like_query_explode(" ",$values);
+	foreach($values as $key=>$val) {
+		$val=trim($val);
+		if($val=="") unset($values[$key]);
+		if($val!="") $values[$key]=$val;
+	}
+	$query=array();
+	foreach($values as $value) {
+		$value=str_replace(array("\'",'\"'),"",$value);
+		$pos=strpos($value,":");
+		if($pos!==false && in_array($key=substr($value,0,$pos),$keys)) {
+			$value=substr($value,$pos+1);
+			if($value!="") $query[]="(`$key` LIKE '%$value%')";
+		} else {
+			$query2=array();
+			foreach($keys as $key) {
+				$key=str_replace(".","`.`",$key);
+				$query2[]="`$key` LIKE '%$value%'";
+			}
+			if(!count($query2)) $query2[]="1=1";
+			$query[]="(".implode(" OR ",$query2).")";
+		}
+	}
+	if(!count($query)) $query[]="1=1";
+	$query="(".implode(" AND ",$query).")";
 	return $query;
 }
 

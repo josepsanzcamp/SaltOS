@@ -250,7 +250,7 @@ function force_ssl() {
 	$servername=getServer("SERVER_NAME");
 	$added="";
 	$scriptname=getServer("SCRIPT_NAME");
-	$querystring=getServer("QUERY_STRING");
+	$querystring=str_replace("+","%20",getServer("QUERY_STRING"));
 	// SOME CHECKS
 	if($querystring) $querystring="?".$querystring;
 	if($porthttps!=443) $added=":${porthttps}";

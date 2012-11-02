@@ -42,7 +42,7 @@ function save_history($id_usuario,$id_aplicacion) {
 	$result=db_query($query);
 	$numrows=db_num_rows($result);
 	db_free($result);
-	$querystring=base64_encode(getServer("QUERY_STRING"));
+	$querystring=base64_encode(str_replace("+","%20",getServer("QUERY_STRING")));
 	if($numrows>1) {
 		$query="DELETE FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
 		db_query($query);

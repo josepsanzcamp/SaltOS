@@ -124,8 +124,4 @@ function db_disconnect_sqlite3() {
 function db_error_sqlite3($array) {
 	show_php_error($array);
 }
-
-function db_type_sqlite3() {
-	return "SQLITE";
-}
 ?>

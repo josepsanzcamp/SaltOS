@@ -357,14 +357,11 @@ if(!defined("__DEFAULT_PHP__")) {
 		if(!defined("__CANCEL_DIE__")) die();
 	}
 
-	function __process_data_rec($query) {
-		global $go;
-		global $commit;
-
+	function __process_data_rec($query,&$go,&$commit) {
 		$rows=array();
 		foreach($query as $key=>$val) {
 			if(is_array($val)) {
-				set_array($rows,$key,__process_data_rec($val));
+				set_array($rows,$key,__process_data_rec($val,$go,$commit));
 			} else {
 				$val=trim($val);
 				if($commit) {
@@ -550,7 +547,7 @@ switch($action) {
 			$go=0;
 			$commit=1;
 			if($fixquery) $query=array("default"=>$query);
-			$rows=__process_data_rec($query);
+			$rows=__process_data_rec($query,$go,$commit);
 			if($fixquery) $rows=$rows["default"];
 			set_array($_RESULT[$action],"rows",$rows);
 			if($go) {
