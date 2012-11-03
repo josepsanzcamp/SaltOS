@@ -63,7 +63,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</field>
 		<field ifeval="is_mobile()">
 			<type>select</type>
-			<name>selectpage</name>
+			<name>selectpager</name>
 			<rows>
 				<row>
 					<label global="offset,limit" eval="true">intval($offset/$limit)+1</label>
@@ -96,7 +96,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</field>
 		<field ifeval="!is_mobile()">
 			<type>select</type>
-			<name>selectpage</name>
+			<name>selectpager</name>
 			<rows>
 				<row>
 					<label global="offset,limit" eval="true">intval($offset/$limit)+1</label>

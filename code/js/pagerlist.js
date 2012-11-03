@@ -28,7 +28,7 @@ if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefine
 	var __pagerlist__=1;
 
 	function update_pagerlist() {
-		if(!$("#selectpage").length) return;
+		if(!$("#selectpager").length) return;
 		var data="action=pagerlist&page="+getParam("page");
 		$.ajax({
 			url:"xml.php",
@@ -43,7 +43,7 @@ if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefine
 					var selected=(value==value2)?"selected='selected'":"";
 					options+="<option value='"+value+"' "+selected+">"+label+"</option>";
 				});
-				$("#selectpage").html(options);
+				$("#selectpager").html(options);
 				if($("root>first",response).text()) $("#firstpager").removeClass("ui-state-disabled");
 				if($("root>previous",response).text()) $("#previouspager").removeClass("ui-state-disabled");
 				if($("root>next",response).text()) $("#nextpager").removeClass("ui-state-disabled");

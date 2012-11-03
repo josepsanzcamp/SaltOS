@@ -459,7 +459,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>blockUI 2.52 (MIT &amp; GPL*)</label>
+							<label>blockUI 2.53 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>left item sectioncontentl</class>
 							<onclick>openwin("http://malsup.com/jquery/block/")</onclick>
