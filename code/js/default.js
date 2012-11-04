@@ -1317,32 +1317,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".info",obj).addClass("ui-state-highlight ui-corner-all");
 		// TRICK FOR STYLING THE TITLES
 		$(".title",obj).addClass("ui-widget-header ui-corner-all");
-		// AUTO-GROWING TEXTAREA
-		$("textarea[ckeditor!=true]",obj).autogrow();
-		// AUTO-GROWING IFRAMES
-		$("iframe",obj).each(function() {
-			if(security_iframe(this)) {
-				var iframe="#"+$(this).attr("id");
-				var interval=setInterval(function() {
-					var iframe2=$(iframe,obj);
-					if(!$(iframe2).length) {
-						clearInterval(interval);
-					} else if($(iframe2).attr("isloaded")=="false") {
-						// NOTHING TO DO
-					} else if($(iframe2).is(":visible")) {
-						clearInterval(interval);
-						var minheight=$(iframe2).height();
-						var newheight=$(iframe2).contents().height();
-						if(newheight>minheight) $(iframe2).height(newheight);
-						$(iframe2).each(function() {
-							var iframe3=this.contentWindow.document;
-							$(iframe3).bind("contextmenu",function(e) { return false; });
-							$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
-						});
-					}
-				},100);
-			}
-		});
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).change(function() {
 			eval($(this).val());
@@ -1459,6 +1433,32 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	function make_ckeditors(obj) {
 		//~ console.time("make_ckeditors");
 		if(typeof(obj)=="undefined") var obj=$("body");
+		// AUTO-GROWING TEXTAREA
+		$("textarea[ckeditor!=true]",obj).autogrow();
+		// AUTO-GROWING IFRAMES
+		$("iframe",obj).each(function() {
+			if(security_iframe(this)) {
+				var iframe="#"+$(this).attr("id");
+				var interval=setInterval(function() {
+					var iframe2=$(iframe,obj);
+					if(!$(iframe2).length) {
+						clearInterval(interval);
+					} else if($(iframe2).attr("isloaded")=="false") {
+						// NOTHING TO DO
+					} else if($(iframe2).is(":visible")) {
+						clearInterval(interval);
+						var minheight=$(iframe2).height();
+						var newheight=$(iframe2).contents().height();
+						if(newheight>minheight) $(iframe2).height(newheight);
+						$(iframe2).each(function() {
+							var iframe3=this.contentWindow.document;
+							$(iframe3).bind("contextmenu",function(e) { return false; });
+							$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
+						});
+					}
+				},100);
+			}
+		});
 		// BEGIN NORMAL CODE
 		var ckeditors=$("textarea[ckeditor=true]",obj);
 		if($(ckeditors).length) {

@@ -791,7 +791,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<type>button</type>
 					<value lang="true">buttonupdate</value>
-					<onclick>submit1()</onclick>
+					<onclick>update(1)</onclick>
 					<icon>accept</icon>
 					<class>nowrap contextmenu</class>
 				</field>

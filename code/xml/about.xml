@@ -46,6 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset>
 					<title lang="true">about</title>
 					<width>800px</width>
+					<class>tabla</class>
 					<row>
 						<field>
 							<type>image</type>
@@ -85,7 +86,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">developers</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -93,22 +94,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Josep Sanz (Main developer)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>mailto("josep.sanz@saltos.net")</onclick>
 						</field>
 						<field>
 							<label>Jordi Company (Business developer)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>tbody</class>
 							<onclick>mailto("jcompany@saltos.net")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentbr</class>
+							<class>tbody</class>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -120,7 +118,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">translators</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -128,25 +126,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Español (España) (Josep Sanz)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>mailto("josep.sanz@saltos.net")</onclick>
 						</field>
 						<field>
 							<label>Català (Espanya) (Josep Sanz)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>mailto("josep.sanz@saltos.net")</onclick>
 						</field>
 						<field>
 							<label>English (USA) (Josep Sanz)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>mailto("josep.sanz@saltos.net")</onclick>
 						</field>
 						<field>
 							<label>Deutsch (Deutschland) (Alex Muller)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>mailto("alex.muller@ws3.es")</onclick>
 						</field>
 					</row>
@@ -154,24 +152,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Português (Portugal) (Nuno Lopes)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>mailto("nunolopes@nearu.info")</onclick>
 						</field>
 						<field>
 							<label>Português (Brasil) (Benedito Fulvio)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>tbody</class>
 							<onclick>mailto("f.manfredini@hotmail.com")</onclick>
 						</field>
 						<field>
 							<label>French (France) (Francis Dionne)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>tbody</class>
 							<onclick>mailto("agencewebtictacto@gmail.com")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
-							<class>left sectioncontentbr</class>
+							<class>tbody</class>
 						</field>
 					</row>
 					<row>
@@ -196,7 +194,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">server_base</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -204,25 +202,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Apache 2.2 (Apache-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://httpd.apache.org")</onclick>
 						</field>
 						<field>
 							<label>PHP 5.3/5.4 (PHP-3.01)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.php.net")</onclick>
 						</field>
 						<field>
 							<label>MariaDB 5.1 (GPL-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://mariadb.org")</onclick>
 						</field>
 						<field>
 							<label>MySQL 5.1 (GPL-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.mysql.com")</onclick>
 						</field>
 					</row>
@@ -230,20 +228,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>SQLite 3 (Public domain)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.sqlite.org")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentbr</class>
+							<class>tbody</class>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>
@@ -255,7 +246,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">php_plugins</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -263,25 +254,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>TCPDF 5.9.196 (LGPL-3.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
 						</field>
 						<field>
 							<label>PHPThumb 1.7.11 (GPL-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://phpthumb.sourceforge.net/")</onclick>
 						</field>
 						<field>
 							<label>PHPExcel 1.7.8 (LGPL-2.1)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.codeplex.com/PHPExcel")</onclick>
 						</field>
 						<field>
 							<label>PHPMailer 5.2.2-rc1 (LGPL-2.1)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/a/apache-extras.org/p/phpmailer/")</onclick>
 						</field>
 					</row>
@@ -289,25 +280,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>PHPLOT 5.8.0 (LGPL-2.1)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://sourceforge.net/projects/phplot/")</onclick>
 						</field>
 						<field>
 							<label>JSmin-php 1.1.2 (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://github.com/rgrove/jsmin-php/")</onclick>
 						</field>
 						<field>
 							<label>CssMin 3.0.1 (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/cssmin/")</onclick>
 						</field>
 						<field>
 							<label>Password Strength 1.0.0 (GPL-3.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
 						</field>
 					</row>
@@ -315,25 +306,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Google Data APIs (LGPL-2.1)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.rcdtokyo.com/etc/gdataapis/")</onclick>
 						</field>
 						<field>
 							<label>PHP Mobile Detect (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
 						</field>
 						<field>
 							<label>MimeParser 1.82 (BSD)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
 						</field>
 						<field>
 							<label>RFC822 Addresses 1.15 (BSD)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
 						</field>
 					</row>
@@ -341,25 +332,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Pop3Class 1.23 (BSD)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/2-PHP-Access-to-e-mail-mailboxes-using-the-POP3-protocol.html")</onclick>
 						</field>
 						<field>
 							<label>ZIP/TAR Archives 2.1 (BSD &amp; GPL)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/945-PHP-Create-tar-gzip-bzip2-zip-extract-tar-gzip-bzip2-.html")</onclick>
 						</field>
 						<field>
 							<label>WordPress 3.4.2 (GPL-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://wordpress.org/download/")</onclick>
 						</field>
 						<field>
 							<label>EvalMath (BSD)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/2695-PHP-Safely-evaluate-mathematical-expressions.html")</onclick>
 						</field>
 					</row>
@@ -367,22 +358,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Html2Text (GPL-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.chuggnutt.com/html2text")</onclick>
 						</field>
 						<field>
 							<label>PHPass 0.3 (Public domain)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.openwall.com/phpass/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentbr</class>
+							<class>tbody</class>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -394,7 +382,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">javascript_base</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -402,25 +390,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>PHPJS latest (MIT &amp; GPL-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.phpjs.org/")</onclick>
 						</field>
 						<field>
 							<label>JQuery 1.8.2 (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.jquery.com/")</onclick>
 						</field>
 						<field>
 							<label>JQuery UI 1.9.1 (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
 						</field>
 						<field>
 							<label>CKEditor 3.6.5 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>
 						</field>
 					</row>
@@ -428,20 +416,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>JQuery Mobile 1.2.0 (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentbr</class>
+							<class>tbody</class>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>
@@ -453,7 +434,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">jquery_plugins</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -461,25 +442,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>blockUI 2.53 (MIT &amp; GPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/block/")</onclick>
 						</field>
 						<field>
 							<label>Color picker (MIT &amp; GPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.eyecon.ro/colorpicker/")</onclick>
 						</field>
 						<field>
 							<label>Auto-Growing Textarea (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://onehackoranother.com/projects/jquery/jquery-grab-bag/autogrow-textarea.html")</onclick>
 						</field>
 						<field>
 							<label>ptTimeSelect (Modified by Sanz) (MIT &amp; GPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://pttimeselect.sourceforge.net/")</onclick>
 						</field>
 					</row>
@@ -487,25 +468,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Cookie v1.3 (MIT &amp; GPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
 						</field>
 						<field>
 							<label>Form 3.18 (MIT &amp; GPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
 						</field>
 						<field>
 							<label>jGrowl 1.2.6 (MIT &amp; GPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://stanlemon.net/projects/jgrowl.html")</onclick>
 						</field>
 						<field>
 							<label>Columnizer 1.6.0 (CC-BY-3.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://welcome.totheinter.net/columnizer-jquery-plugin/")</onclick>
 						</field>
 					</row>
@@ -513,25 +494,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Masonry 2.1.05 (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://desandro.com/resources/jquery-masonry/")</onclick>
 						</field>
 						<field>
 							<label>Favicon 0.2.1 (MIT &amp; GPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>tbody</class>
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
 							<label>jPlayer 2.2.13 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
 						</field>
 						<field>
 							<label>Grab Bag - Assorted Detritus (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontentbr</class>
+							<class>tbody</class>
 							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag")</onclick>
 						</field>
 					</row>
@@ -544,7 +525,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">ckeditor_plugins</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -552,20 +533,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Syntaxhighlight 1.0 (LGPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/ckeditor-syntaxhighlight/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentbr</class>
+							<class>tbody</class>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>
@@ -577,7 +551,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">javascript_plugins</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -585,24 +559,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Bouncing Beholder (ZLib/LibPNG)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
 						</field>
 						<field>
 							<label>Mozilla pdf.js (Apache-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>tbody</class>
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
 						</field>
 						<field>
 							<label>timbre.js (MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>tbody</class>
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
-							<class>left sectioncontentbr</class>
+							<class>tbody</class>
 						</field>
 					</row>
 					<row>
@@ -614,7 +588,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">other_plugins</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -622,25 +596,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Crystal Project (LGPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.everaldo.com/crystal/")</onclick>
 						</field>
 						<field>
 							<label>GNome High Contrast (LGPL-2.1)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://commons.wikimedia.org/wiki/Template:GNOME-high-contrast-icon-theme")</onclick>
 						</field>
 						<field>
 							<label>Gorri Sans (GPL*)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.dafont.com/gorrisans.font")</onclick>
 						</field>
 						<field>
 							<label>Códigos Postales (Free Soft.)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://codigos-postales.albin.es/")</onclick>
 						</field>
 					</row>
@@ -648,20 +622,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>FamFamFam Silk Icons (CC-BY-2.5)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.famfamfam.com/lab/icons/silk/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentbr</class>
+							<class>tbody</class>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>
@@ -673,7 +640,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">server_plugins</label>
 							<type>label</type>
-							<class>left bold sectiontitle</class>
+							<class>thead</class>
 							<colspan>4</colspan>
 						</field>
 					</row>
@@ -681,25 +648,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>OpenOffice 3.0 (LGPL-3.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.openoffice.org/")</onclick>
 						</field>
 						<field>
 							<label>Unoconv (GPL-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://dag.wieers.com/home-made/unoconv/")</onclick>
 						</field>
 						<field>
 							<label>ELinks 0.12pre5 (GPL-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://elinks.or.cz/")</onclick>
 						</field>
 						<field>
 							<label>ImageMagick 6.4 (ImageMagick)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.imagemagick.org/")</onclick>
 						</field>
 					</row>
@@ -707,25 +674,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Festival 1.96 (MIT, GPL* &amp; TCL)</label>
 							<type>link</type>
-							<class>left item sectioncontentl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.cstr.ed.ac.uk/projects/festival/")</onclick>
 						</field>
 						<field>
 							<label>Hispavoces (MIT, GPL* &amp; TCL)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://forja.guadalinex.org/projects/hispavoces/")</onclick>
 						</field>
 						<field>
 							<label>FFMPEG (GPL-2)</label>
 							<type>link</type>
-							<class>left item sectioncontent</class>
+							<class>tbody</class>
 							<onclick>openwin("http://ffmpeg.org/")</onclick>
 						</field>
 						<field>
 							<label>Apertium 3.2 (GPL2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentr</class>
+							<class>tbody</class>
 							<onclick>openwin("http://www.apertium.org/")</onclick>
 						</field>
 					</row>
@@ -733,22 +700,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label>Aspell 0.60.6 (GPL-2.0, LGPL-2.0 &amp; MIT)</label>
 							<type>link</type>
-							<class>left item sectioncontentbl</class>
+							<class>tbody</class>
 							<onclick>openwin("http://aspell.net/")</onclick>
 						</field>
 						<field>
 							<label>Closure Compiler (Apache-2.0)</label>
 							<type>link</type>
-							<class>left item sectioncontentb</class>
+							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/closure/compiler")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
-							<class>left sectioncontentb</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>left sectioncontentbr</class>
+							<class>tbody</class>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -760,7 +724,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<label lang="true">vxinfo</label>
 							<type>label</type>
-							<class>left vxinfo</class>
+							<class>left bold</class>
 							<colspan>3</colspan>
 						</field>
 						<field>
