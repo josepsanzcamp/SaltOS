@@ -997,7 +997,8 @@ function __exception_handler($e) {
 
 function __shutdown_handler() {
 	$error=error_get_last();
-	if(is_array($error) && $error["type"]==1) {
+	$types=array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
+	if(is_array($error) && isset($error["type"]) && in_array($error["type"],$types)) {
 		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}"));
 	}
 }
