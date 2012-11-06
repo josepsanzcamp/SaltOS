@@ -415,9 +415,15 @@ function make_like_query($keys,$values) {
 	foreach($values as $value) {
 		$value=str_replace(array("\'",'\"'),"",$value);
 		$pos=strpos($value,":");
-		if($pos!==false && in_array($key=substr($value,0,$pos),$keys)) {
-			$value=substr($value,$pos+1);
-			if($value!="") $query[]="(`$key` LIKE '%$value%')";
+		if($pos!==false) {
+			$key2=substr($value,0,$pos);
+			$value2=substr($value,$pos+1);
+		} else {
+			$key2="";
+			$value2="";
+		}
+		if(in_array($key2,$keys) && $value2!="") {
+			$query[]="(`$key2` LIKE '%$value2%')";
 		} else {
 			$query2=array();
 			foreach($keys as $key) {
