@@ -1317,6 +1317,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".info",obj).addClass("ui-state-highlight ui-corner-all");
 		// TRICK FOR STYLING THE TITLES
 		$(".title",obj).addClass("ui-widget-header ui-corner-all");
+		// TRICK FOR DISABLE BUTTONS
+		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).change(function() {
 			eval($(this).val());

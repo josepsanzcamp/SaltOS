@@ -202,6 +202,13 @@ class PHPMailer {
    */
   public $MessageID         = '';
 
+  /**
+   * Sets the message Date to be used in the Date header.
+   * If empty, the current date will be added.
+   * @var string
+   */
+  public $MessageDate       = '';
+
   /////////////////////////////////////////////////
   // PROPERTIES FOR SMTP
   /////////////////////////////////////////////////
@@ -385,7 +392,7 @@ class PHPMailer {
    * Sets the PHPMailer Version number
    * @var string
    */
-  public $Version         = '5.2.2-rc1';
+  public $Version         = '5.2.2-rc2';
 
   /**
    * What to use in the X-Mailer header
@@ -794,7 +801,7 @@ class PHPMailer {
    */
   protected function SendmailSend($header, $body) {
     if ($this->Sender != '') {
-      $sendmail = sprintf("%s -oi -f %s -t", escapeshellcmd($this->Sendmail), escapeshellarg($this->Sender));
+      $sendmail = sprintf("%s -oi -f%s -t", escapeshellcmd($this->Sendmail), escapeshellarg($this->Sender));
     } else {
       $sendmail = sprintf("%s -oi -t", escapeshellcmd($this->Sendmail));
     }
@@ -848,7 +855,7 @@ class PHPMailer {
     if (empty($this->Sender)) {
       $params = "-oi ";
     } else {
-      $params = sprintf("-oi -f %s", $this->Sender);
+      $params = sprintf("-oi -f%s", $this->Sender);
     }
     if ($this->Sender != '' and !ini_get('safe_mode')) {
       $old_from = ini_get('sendmail_from');
@@ -1008,10 +1015,10 @@ class PHPMailer {
           }
         }
         $index++;
-        if (!$connection) {
-          $rtn = false;
-          throw new phpmailerException($this->Lang('connect_host'));
-        }
+      }
+      if (!$connection) {
+        $rtn = false;
+        throw new phpmailerException($this->Lang('connect_host'));
       }
     } catch (phpmailerException $e) {
       $this->smtp->Reset();
@@ -1280,7 +1287,12 @@ class PHPMailer {
     $this->boundary[2] = 'b2_' . $uniq_id;
     $this->boundary[3] = 'b3_' . $uniq_id;
 
-    $result .= $this->HeaderLine('Date', self::RFCDate());
+    if ($this->MessageDate == '') {
+      $result .= $this->HeaderLine('Date', self::RFCDate());
+    } else {
+      $result .= $this->HeaderLine('Date', $this->MessageDate);
+    }
+
     if ($this->ReturnPath) {
       $result .= $this->HeaderLine('Return-Path', trim($this->ReturnPath));
     } elseif ($this->Sender == '') {
@@ -1429,7 +1441,7 @@ class PHPMailer {
         $body .= $this->AttachAll("inline", $this->boundary[1]);
         break;
       case 'attach':
-        $body .= $this->GetBoundary($this->boundary[1], '', 'text/plain', '');
+        $body .= $this->GetBoundary($this->boundary[1], '', '', '');
         $body .= $this->EncodeString($this->Body, $this->Encoding);
         $body .= $this->LE.$this->LE;
         $body .= $this->AttachAll("attachment", $this->boundary[1]);
@@ -2623,6 +2635,8 @@ class PHPMailer {
     $DKIMtime             = time() ; // Signature Timestamp = seconds since 00:00:00 - Jan 1, 1970 (UTC time zone)
     $subject_header       = "Subject: $subject";
     $headers              = explode($this->LE, $headers_line);
+	$from_header          = "";
+	$to_header            = "";
     foreach($headers as $header) {
       if (strpos($header, 'From:') === 0) {
         $from_header = $header;
@@ -2648,7 +2662,7 @@ class PHPMailer {
                 "\tb=";
     $toSign   = $this->DKIM_HeaderC($from_header . "\r\n" . $to_header . "\r\n" . $subject_header . "\r\n" . $dkimhdrs);
     $signed   = $this->DKIM_Sign($toSign);
-    return "X-PHPMAILER-DKIM: phpmailer.worxware.com\r\n".$dkimhdrs.$signed."\r\n";
+    return "X-PHPMAILER-DKIM: code.google.com/a/apache-extras.org/p/phpmailer/\r\n".$dkimhdrs.$signed."\r\n";
   }
 
   /**

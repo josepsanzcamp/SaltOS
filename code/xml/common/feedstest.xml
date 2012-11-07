@@ -128,7 +128,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">add</value>
 					<icon>create</icon>
 					<class>nowrap</class>
-					<disabled>true</disabled>
+					<class2>disabled</class2>
+					<onclick>if(!is_disabled(this)) update(1)</onclick>
 				</field>
 			</row>
 			<row>

@@ -252,7 +252,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 5.9.196 (LGPL-3.0)</label>
+							<label>TCPDF 5.9.197 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -270,7 +270,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.codeplex.com/PHPExcel")</onclick>
 						</field>
 						<field>
-							<label>PHPMailer 5.2.2-rc1 (LGPL-2.1)</label>
+							<label>PHPMailer 5.2.2-rc2 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/a/apache-extras.org/p/phpmailer/")</onclick>
@@ -310,7 +310,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.rcdtokyo.com/etc/gdataapis/")</onclick>
 						</field>
 						<field>
-							<label>PHP Mobile Detect (MIT)</label>
+							<label>PHP Mobile Detect 2.4 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>

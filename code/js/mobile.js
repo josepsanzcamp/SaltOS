@@ -788,8 +788,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// UPDATE THE NORTH PANEL
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
-		$(header).replaceWith(header2);
 		make_extras(header2);
+		$(header).replaceWith(header2);
 		// CHECK FOR LOGIN AND LOGOUT
 		var menu=$(".ui-layout-west");
 		var menu2=$(".ui-layout-west",html);
@@ -798,15 +798,16 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// IF LOGIN
 		if(saltos_login) sync_cookies("start");
 		// UPDATE THE MENU
-		$(menu).replaceWith(menu2);
 		make_extras(menu2);
+		$(menu).replaceWith(menu2);
 		// IF LOGOUT
 		if(saltos_logout) sync_cookies("stop");
 		// UPDATE THE CENTER PANE
 		var screen=$(".ui-layout-center");
 		var screen2=$(".ui-layout-center",html);
-		$(screen).replaceWith(screen2);
 		make_extras(screen2);
+		$(screen).replaceWith(screen2);
+		make_ckeditors(screen2);
 		$(page).page();
 		$(page).show();
 		unloadingcontent();
@@ -892,39 +893,15 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		$(".info",obj).addClass("ui-bar ui-bar-e ui-corner-all");
 		// TRICK FOR STYLING THE TITLES
 		$(".title",obj).addClass("ui-bar ui-bar-b ui-corner-all");
-		// AUTO-GROWING TEXTAREA
-		$("textarea[ckeditor!=true]",obj).autogrow();
-		// STYLING IFRAME BORDER
-		$(".preiframe",obj).textinput();
-		// AUTO-GROWING IFRAMES
-		$("iframe",obj).each(function() {
-			if(security_iframe(this)) {
-				var iframe="#"+$(this).attr("id");
-				var interval=setInterval(function() {
-					var iframe2=$(iframe,obj);
-					if(!$(iframe2).length) {
-						clearInterval(interval);
-					} else if($(iframe2).attr("isloaded")=="false") {
-						// NOTHING TO DO
-					} else if($(iframe2).is(":visible")) {
-						clearInterval(interval);
-						var minheight=$(iframe2).height();
-						var newheight=$(iframe2).contents().height();
-						if(newheight>minheight) $(iframe2).height(newheight);
-						$(iframe2).each(function() {
-							var iframe3=this.contentWindow.document;
-							$(iframe3).bind("contextmenu",function(e) { return false; });
-							$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
-						});
-					}
-				},100);
-			}
-		});
+		// TRICK FOR DISABLE BUTTONS
+		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).change(function() {
 			eval($(this).val());
 			$(this).prop("selectedIndex",0);
 		});
+		// STYLING IFRAME BORDER
+		$(".preiframe",obj).textinput();
 	}
 
 	function select_tunning(obj) {
@@ -959,8 +936,35 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// UNUSED
 	}
 
-	function make_tooltips() {
-		// UNUSED
+	function make_ckeditors(obj) {
+		// AUTO-GROWING TEXTAREA
+		$("textarea[ckeditor!=true]",obj).autogrow();
+		// AUTO-GROWING IFRAMES
+		$("iframe",obj).each(function() {
+			if(security_iframe(this)) {
+				var iframe="#"+$(this).attr("id");
+				var interval=setInterval(function() {
+					var iframe2=$(iframe,obj);
+					if(!$(iframe2).length) {
+						clearInterval(interval);
+					} else if($(iframe2).attr("isloaded")=="false") {
+						// NOTHING TO DO
+					} else if($(iframe2).is(":visible")) {
+						clearInterval(interval);
+						var minheight=$(iframe2).height();
+						var newheight=$(iframe2).contents().height();
+						if(newheight>minheight) $(iframe2).height(newheight);
+						$(iframe2).each(function() {
+							var iframe3=this.contentWindow.document;
+							$(iframe3).bind("contextmenu",function(e) { return false; });
+							$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
+						});
+					}
+				},100);
+			}
+		});
+		// BEGIN NORMAL CODE
+		$("textarea[ckeditor=true]",obj).autogrow();
 	}
 
 	var focused=null;
@@ -1077,6 +1081,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		make_extras(menu);
 		var screen=$(".ui-layout-center");
 		make_extras(screen);
+		make_ckeditors(screen);
 		$.mobile.initializePage();
 	});
 
