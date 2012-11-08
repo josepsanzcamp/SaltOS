@@ -230,7 +230,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.jplayer.js</include>
 			<include>lib/jquery/jquery.columnizer.js</include>
 		</cache>
-		<inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
+		<inline ifeval="!is_mobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<cache ifeval="!is_mobile()">
 			<include>lib/ckeditor/ckeditor.min.js</include>
 			<include>lib/ckeditor/adapters/jquery.min.js</include>

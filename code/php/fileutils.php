@@ -519,36 +519,35 @@ function url_get_contents($url,$type="GET") {
 	$scheme=$array["scheme"];
 	$ports=array("http"=>80,"https"=>443);
 	if(!isset($ports[$scheme])) {
-		show_php_error(array("phperror"=>"Unknown schema '$schema'"));
+		show_php_error(array("phperror"=>"Unknown scheme '$scheme'"));
 		return false;
 	}
 	$port=isset($array["port"])?$array["port"]:$ports[$scheme];
-	$host=$array["host"];
-	$host1=($scheme=="https"?"ssl://":"").$host;
-	$host2=$host.(in_array($port,$ports)?"":":$port");
-	$path=isset($array["path"])?$array["path"]:"";
-	$query=isset($array["query"])?$array["query"]:"";
+	$host_socket=($scheme=="https"?"ssl://":"").$array["host"];
+	$host_port=$array["host"].(in_array($port,$ports)?"":":$port");
+	$path=isset($array["path"])?$array["path"]:"/";
+	$query_get=isset($array["query"])?"?".$array["query"]:"";
+	$query_post=isset($array["query"])?$array["query"]:"";
 	$type=strtoupper($type);
 	if(!in_array($type,array("GET","POST"))) {
 		show_php_error(array("phperror"=>"Unknown type '$type'"));
 		return false;
 	}
 	// OPEN THE SOCKET
-	$fp=fsockopen($host1,$port);
+	$fp=fsockopen($host_socket,$port);
 	if(!$fp) {
 		show_php_error(array("phperror"=>"Could not open the socket"));
 		return false;
 	}
 	// SEND REQUEST
-	if($type=="GET" && $query!="") fputs($fp,"$type $path?$query HTTP/1.1\r\n");
-	if($type=="GET" && $query=="") fputs($fp,"$type $path HTTP/1.1\r\n");
-	if($type=="POST") fputs($fp,"$type $path HTTP/1.1\r\n");
-	fputs($fp,"Host: $host2\r\n");
+	fputs($fp,"${type} ${path}${query_get} HTTP/1.1\r\n");
+	fputs($fp,"Host: ${host_port}\r\n");
 	if($type=="POST") fputs($fp,"Content-type: application/x-www-form-urlencoded\r\n");
-	if($type=="POST") fputs($fp,"Content-length: ".strlen($query)."\r\n");
+	if($type=="POST") fputs($fp,"Content-length: ".strlen($query_post)."\r\n");
 	fputs($fp,"User-Agent: ".get_name_version_revision()."\r\n");
+	fputs($fp,"Referer: ".get_base()."\r\n");
 	fputs($fp,"Connection: close\r\n\r\n");
-	fputs($fp,$query);
+	if($type=="POST") fputs($fp,$query_post);
 	// READ RESPONSE
 	$result="";
 	while(!feof($fp)) $result.=fgets($fp,8192);
@@ -563,7 +562,11 @@ function url_get_contents($url,$type="GET") {
 	foreach($headers as $header) {
 		if(stripos($header,"location")!==false) {
 			$pos=strpos($header,":");
-			if($pos!==false) $body=url_get_contents(trim(substr($header,$pos+1)));
+			if($pos!==false) {
+				$url=trim(substr($header,$pos+1));
+				$body=url_get_contents($url,$type);
+				break;
+			}
 		}
 		if(stripos($header,"chunked")!==false) {
 			$from=0;
@@ -578,6 +581,7 @@ function url_get_contents($url,$type="GET") {
 				if($from>strlen($body)) break;
 			}
 			$body=$newbody;
+			break;
 		}
 	}
 	// RETURN RESPONSE

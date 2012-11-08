@@ -70,13 +70,13 @@ form {
 	padding:0px;
 }
 .accordion-link li {
-	padding-bottom:7px;
 	position:relative;
 	left:-16px;
 }
 .accordion-link li a {
 	text-decoration:none;
-	padding:3px 5px;
+	border:none!important;
+	background:none!important;
 }
 .accordion-link li a.submenu {
 	position:relative;

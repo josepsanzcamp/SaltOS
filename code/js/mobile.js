@@ -904,7 +904,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		$(".preiframe",obj).textinput();
 	}
 
-	function select_tunning(obj) {
+	function make_selects(obj) {
 		// UNUSED
 	}
 

@@ -899,20 +899,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var style1=getstylesheet(html2);
 		var style2=getstylesheet(html);
 		if(style1 && style2 && $(style1).attr("href")!=$(style2).attr("href")) {
-			var color1=get_colors("ui-widget-header","color");
-			var background1=get_colors("ui-widget-header","background-color");
 			$("head").append("<link href='"+$(style2).attr("href")+"' rel='stylesheet' type='text/css'></link>");
-			var interval=setInterval(function() {
-				get_colors();
-				var color2=get_colors("ui-widget-header","color");
-				var background2=get_colors("ui-widget-header","background-color");
-				var diffcolor=color1!=color2;
-				var diffbackground=background1!=background2;
-				if(diffcolor || diffbackground) {
-					clearInterval(interval);
-					update_menu(html2);
-				}
-			},100);
 		}
 		//~ console.timeEnd("update_style");
 	}
@@ -980,6 +967,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		make_tabs(screen2);
 		make_tables(screen2);
 		make_extras(screen2);
+		make_selects(screen2)
 		$(screen).replaceWith(screen2);
 		make_ckeditors(screen2);
 		setTimeout(function() {
@@ -1030,23 +1018,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		} else {
 			$(obj).addClass("none");
 		}
-		// AND PROGRAM HOVER EFFECT
-		$(".menu div a",obj).bind("mouseover",function() {
-			var color=get_colors("ui-state-active","color");
-			$(this).css("color",color);
-		}).bind("mouseout",function() {
-			$(this).css("color","");
-		});
-		// TUNNING THE MENU
-		update_menu(obj);
-	}
-
-	function update_menu(obj) {
-		if(typeof(obj)=="undefined") var obj=$("body");
-		var hasbold=$("a:first",obj).css("font-weight");
-		$(".menu div a",obj).each(function() {
-			$(this).css("font-weight",hasbold);
-		});
 	}
 
 	function toggle_menu() {
@@ -1324,13 +1295,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			eval($(this).val());
 			$(this).prop("selectedIndex",0);
 		});
-		// TUNNING THE SELECTS
-		select_tunning(obj);
 		//~ console.timeEnd("make_extras");
 	}
 
-	function select_tunning(obj) {
-		//~ console.time("select_tunning");
+	function make_selects(obj) {
+		//~ console.time("make_selects");
 		if(typeof(obj)=="undefined") var obj=$("body");
 		// TUNNING THE SELECTS
 		$("select[tunned!=true][multiple!=multiple]",obj).each(function() {
@@ -1346,7 +1315,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(div2).css("top","4px");
 			$(div2).css("right","6px");
 		});
-		//~ console.timeEnd("select_tunning");
+		//~ console.timeEnd("make_selects");
 	}
 
 	function make_draganddrop(obj) {
@@ -1893,6 +1862,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_tabs(screen);
 			make_tables(screen);
 			make_extras(screen);
+			make_selects(screen);
 			make_ckeditors(screen);
 			$("body > *").removeClass("none");
 			setTimeout(function() {

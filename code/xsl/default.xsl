@@ -138,7 +138,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<div>
 				<ul class="accordion-link">
 					<xsl:for-each select="option">
-						<li><a href="javascript:void(0)" class="{class}" onclick="{onclick}" title="{tip}" id="{name}">
+						<li><a href="javascript:void(0)" class="{class} ui-state-default" onclick="{onclick}" title="{tip}" id="{name}">
 							<xsl:if test="icon!=''">
 								<span class="saltos-icon saltos-icon-{icon}"/>
 								<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>

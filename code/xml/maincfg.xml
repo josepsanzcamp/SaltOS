@@ -57,6 +57,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<action>xml.php</action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
+		<node path="hiddens/field[name=action]" replace="true">
+			<field>
+				<name>action</name>
+				<type>hidden</type>
+				<value>update</value>
+			</field>
+		</node>
 		<fields>
 			<general>
 				<fieldset>
@@ -791,7 +798,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<type>button</type>
 					<value lang="true">buttonupdate</value>
-					<onclick>update(1)</onclick>
+					<onclick>submit1()</onclick>
 					<icon>accept</icon>
 					<class>nowrap contextmenu</class>
 				</field>

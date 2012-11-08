@@ -129,7 +129,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<icon>create</icon>
 					<class>nowrap</class>
 					<class2>disabled</class2>
-					<onclick>if(!is_disabled(this)) update(1)</onclick>
+					<onclick>if(!is_disabled(this)) submit1()</onclick>
 				</field>
 			</row>
 			<row>
