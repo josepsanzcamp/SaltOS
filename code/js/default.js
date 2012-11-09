@@ -1447,13 +1447,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			CKEDITOR.config.uiColor=background;
 			CKEDITOR.config.autoGrow_onStartup=true;
 			CKEDITOR.config.disableNativeSpellChecker=false;
-			$(ckeditors).each(function() {
-				var padre=$(this).parent();
-				var width=$(this).outerWidth()+"px";
-				$(this).ckeditor({
-					width:width
-				});
-			});
+			$(ckeditors).ckeditor();
 		}
 		//~ console.timeEnd("make_ckeditors");
 	}

@@ -902,6 +902,22 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		});
 		// STYLING IFRAME BORDER
 		$(".preiframe",obj).textinput();
+		// MERGE TODOFIXHEAD AND TODOFIXBODY INTO TODOFIXFULL
+		$(".todofixfull",obj).each(function() {
+			var full=$(this);
+			var head=$(this).next();
+			var body=$(this).next().next();
+			for(;;) {
+				var head0=$(head).find("div:first")
+				var body0=$(body).find("div:first")
+				if($(head0).length) $(full).append(head0);
+				if($(body0).length) $(full).append(body0);
+				if(!$(head0).length && !$(body0).length) break;
+			}
+			//~ head=$(head).next();
+			//~ body=$(body).next();
+			//~ $(body).prepend(head);
+		});
 	}
 
 	function make_selects(obj) {

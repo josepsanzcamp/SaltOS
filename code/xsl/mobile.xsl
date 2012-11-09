@@ -952,26 +952,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 											<h3><xsl:value-of select="title"/></h3>
 										</div>
 									</xsl:if>
-									<div data-role="content" data-theme="{/root/info/style}">
-										<xsl:if test="quick='true'">
+									<xsl:if test="quick='true'">
+										<div data-role="content" data-theme="{/root/info/style}">
 											<xsl:call-template name="form_quick">
 												<xsl:with-param name="quick" select="../../../quick"/>
 												<xsl:with-param name="prefix" select="$prefix"/>
 											</xsl:call-template>
-										</xsl:if>
+										</div>
+									</xsl:if>
+									<div data-role="content" data-theme="{/root/info/style}">
 										<xsl:call-template name="form_by_rows">
 											<xsl:with-param name="form" select="$form"/>
 											<xsl:with-param name="node" select="$node3"/>
 											<xsl:with-param name="prefix" select="$prefix"/>
 											<xsl:with-param name="iter" select="row"/>
 										</xsl:call-template>
-										<xsl:if test="buttons='true'">
+									</div>
+									<xsl:if test="buttons='true'">
+										<div data-role="content" data-theme="{/root/info/style}">
 											<xsl:call-template name="form_buttons">
 												<xsl:with-param name="buttons" select="../../../buttons"/>
 												<xsl:with-param name="prefix" select="$prefix"/>
 											</xsl:call-template>
-										</xsl:if>
-									</div>
+										</div>
+									</xsl:if>
 								</xsl:for-each>
 							</xsl:for-each>
 						</xsl:when>
@@ -982,47 +986,50 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<h3><xsl:value-of select="title"/></h3>
 									</div>
 								</xsl:if>
-								<div data-role="content" data-theme="{/root/info/style}">
-									<xsl:if test="quick='true'">
+								<xsl:if test="quick='true'">
+									<div data-role="content" data-theme="{/root/info/style}">
 										<xsl:call-template name="form_quick">
 											<xsl:with-param name="quick" select="../../../quick"/>
 											<xsl:with-param name="prefix" select="null"/>
 										</xsl:call-template>
-									</xsl:if>
-									<xsl:call-template name="form_by_rows">
-										<xsl:with-param name="form" select="$form"/>
-										<xsl:with-param name="node" select="null"/>
-										<xsl:with-param name="prefix" select="null"/>
-										<xsl:with-param name="iter" select="head"/>
-									</xsl:call-template>
-									<xsl:variable name="node3" select="."/>
-									<xsl:for-each select="$node2/*/row">
-										<xsl:variable name="node4" select="."/>
-										<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
-										<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
-										<xsl:for-each select="$node3">
-											<xsl:call-template name="form_by_rows">
-												<xsl:with-param name="form" select="$form"/>
-												<xsl:with-param name="node" select="$node4"/>
-												<xsl:with-param name="prefix" select="$prefix"/>
-												<xsl:with-param name="iter" select="row"/>
-											</xsl:call-template>
-										</xsl:for-each>
+									</div>
+								</xsl:if>
+								<xsl:variable name="node3" select="."/>
+								<xsl:for-each select="$node2/*/row">
+									<xsl:variable name="node4" select="."/>
+									<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
+									<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
+									<xsl:for-each select="$node3">
+										<div data-role="content" data-theme="{/root/info/style}">
+											<div class="todofixfull">
+											</div>
+											<div class="todofixhead">
+												<xsl:call-template name="form_by_rows">
+													<xsl:with-param name="form" select="$form"/>
+													<xsl:with-param name="node" select="null"/>
+													<xsl:with-param name="prefix" select="null"/>
+													<xsl:with-param name="iter" select="head"/>
+												</xsl:call-template>
+											</div>
+											<div class="todofixbody">
+												<xsl:call-template name="form_by_rows">
+													<xsl:with-param name="form" select="$form"/>
+													<xsl:with-param name="node" select="$node4"/>
+													<xsl:with-param name="prefix" select="$prefix"/>
+													<xsl:with-param name="iter" select="row"/>
+												</xsl:call-template>
+											</div>
+										</div>
 									</xsl:for-each>
-									<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_0_</xsl:variable>
-									<xsl:call-template name="form_by_rows">
-										<xsl:with-param name="form" select="$form"/>
-										<xsl:with-param name="node" select="null"/>
-										<xsl:with-param name="prefix" select="$prefix"/>
-										<xsl:with-param name="iter" select="tail"/>
-									</xsl:call-template>
-									<xsl:if test="buttons='true'">
+								</xsl:for-each>
+								<xsl:if test="buttons='true'">
+									<div data-role="content" data-theme="{/root/info/style}">
 										<xsl:call-template name="form_buttons">
 											<xsl:with-param name="buttons" select="../../../buttons"/>
-											<xsl:with-param name="prefix" select="$prefix"/>
+											<xsl:with-param name="prefix" select="null"/>
 										</xsl:call-template>
-									</xsl:if>
-								</div>
+									</div>
+								</xsl:if>
 							</xsl:for-each>
 						</xsl:when>
 					</xsl:choose>

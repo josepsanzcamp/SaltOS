@@ -560,15 +560,15 @@ function url_get_contents($url,$type="GET") {
 	// CHECK FOR CHUNKED CONTENT
 	$headers=explode("\n",$headers);
 	foreach($headers as $header) {
-		if(stripos($header,"location")!==false) {
-			$pos=strpos($header,":");
-			if($pos!==false) {
-				$url=trim(substr($header,$pos+1));
-				$body=url_get_contents($url,$type);
-				break;
-			}
+		if(stripos($header,"location:")!==false) {
+			$url=trim(substr($header,9));
+			$body=url_get_contents($url,$type);
+			$headers=array();
+			break;
 		}
-		if(stripos($header,"chunked")!==false) {
+	}
+	foreach($headers as $header) {
+		if(stripos($header,"transfer-encoding:")!==false && stripos($header,"chunked")!==false) {
 			$from=0;
 			$newbody="";
 			for(;;) {
@@ -581,6 +581,7 @@ function url_get_contents($url,$type="GET") {
 				if($from>strlen($body)) break;
 			}
 			$body=$newbody;
+			$headers=array();
 			break;
 		}
 	}
