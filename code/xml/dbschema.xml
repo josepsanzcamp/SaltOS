@@ -2497,15 +2497,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<fcheck>false</fcheck>
 				</field>
 				<field>
+					<name>logout</name>
+					<type>INTEGER</type>
+				</field>
+			</fields>
+		</table>
+		<table>
+			<name>tbl_security_ip</name>
+			<fields>
+				<field>
+					<name>id</name>
+					<type>INTEGER</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>id_session</name>
+					<type>INTEGER</type>
+					<fkey>tbl_sessions</fkey>
+				</field>
+				<field>
 					<name>remote_addr</name>
 					<type>TEXT</type>
 				</field>
 				<field>
-					<name>retryes</name>
-					<type>INTEGER</type>
-				</field>
-				<field>
-					<name>logout</name>
+					<name>retries</name>
 					<type>INTEGER</type>
 				</field>
 			</fields>

@@ -671,7 +671,7 @@ function check_remember() {
 	if(!useCookie("remember")) return;
 	if(!useCookie("user")) return;
 	if(!useCookie("pass")) return;
-	if(!check_security()) {
+	if(!check_security("retries") && !check_security("logouts")) {
 		sess_close();
 		setParam("action","logout");
 		include("php/action/logout.php");
@@ -709,7 +709,7 @@ function check_basicauth() {
 	if(useSession("pass")) return;
 	if(!getServer("PHP_AUTH_USER")) return;
 	if(!getServer("PHP_AUTH_PW")) return;
-	if(!check_security()) {
+	if(!check_security("retries") && !check_security("logouts")) {
 		sess_close();
 		setParam("action","logout");
 		include("php/action/logout.php");
@@ -727,65 +727,89 @@ function check_security($action="") {
 	$id_usuario=current_user();
 	$remote_addr=getServer("REMOTE_ADDR");
 	// BUSCAR ID_SECURITY
+	$query="SELECT id FROM tbl_security WHERE id_session='${id_session}'";
 	$oldcache=set_use_cache("false");
-	$query="SELECT id FROM tbl_security WHERE id_session='${id_session}' AND REMOTE_ADDR='${remote_addr}'";
 	$id_security=execute_query($query);
 	set_use_cache($oldcache);
+	if(is_array($id_security)) {
+		$query="DELETE FROM tbl_security WHERE id_session='${id_session}'";
+		db_query($query);
+		$id_security=0;
+	}
 	if(!$id_security) {
-		$query="INSERT INTO tbl_security(id,id_session,id_usuario,remote_addr,retryes,logout) VALUES(NULL,'${id_session}','0','${remote_addr}','0','0')";
+		$query="INSERT INTO tbl_security(id,id_session,id_usuario,logout) VALUES(NULL,'${id_session}','0','0')";
 		db_query($query);
 		$query="SELECT MAX(id) maximo FROM tbl_security";
 		$id_security=execute_query($query);
 	}
-	// BORRAR REGISTROS CADUCADOS
-	$query="SELECT a.id FROM tbl_security a LEFT JOIN tbl_sessions b ON a.id_session=b.id WHERE b.id IS NULL";
-	$result=execute_query_array($query);
-	if(count($result)) {
-		$result=implode(",",$result);
-		$query="DELETE FROM tbl_security WHERE id IN ($result)";
+	// BUSCAR ID_SECURITY_IP
+	$query="SELECT id FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
+	$oldcache=set_use_cache("false");
+	$id_security_ip=execute_query($query);
+	set_use_cache($oldcache);
+	if(is_array($id_security_ip)) {
+		$query="DELETE FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
 		db_query($query);
+		$id_security_ip=0;
 	}
+	if(!$id_security_ip) {
+		$query="INSERT INTO tbl_security_ip(id,id_session,remote_addr,retries) VALUES(NULL,'${id_session}','${remote_addr}','0')";
+		db_query($query);
+		$query="SELECT MAX(id) maximo FROM tbl_security_ip";
+		$id_security_ip=execute_query($query);
+	}
+	// BORRAR REGISTROS CADUCADOS
+	$query="DELETE FROM tbl_security WHERE NOT id_session IN (SELECT id FROM tbl_sessions)";
+	db_query($query);
+	$query="DELETE FROM tbl_security_ip WHERE NOT id_session IN (SELECT id FROM tbl_sessions)";
+	db_query($query);
 	// NORMAL CODE
 	if($action=="login") {
 		if($id_usuario) {
 			// MARCAR REGISTROS DEL ID_USUARIO PARA LOGOUT
 			$query="UPDATE tbl_security SET logout='1' WHERE id_usuario='${id_usuario}'";
 			db_query($query);
-			// LIMPIAR REGISTROS DEL MISMO REMOTE_ADDR
-			$query="UPDATE tbl_security SET retryes='0' WHERE remote_addr='${remote_addr}'";
+			// LIMPIAR RETRIES DEL MISMO REMOTE_ADDR
+			$query="UPDATE tbl_security_ip SET retries='0' WHERE id_session='${id_session}' OR remote_addr='${remote_addr}'";
 			db_query($query);
-			// PONER ID_USUARIO Y RETRYES EN EL REGISTRO ACTUAL
-			$query="UPDATE tbl_security SET id_usuario='${id_usuario}',retryes='0',logout='0' WHERE id='${id_security}'";
+			// PONER ID_USUARIO Y RESETEAR LOGOUT EN EL REGISTRO ACTUAL
+			$query="UPDATE tbl_security SET id_usuario='${id_usuario}',logout='0' WHERE id='${id_security}'";
 			db_query($query);
 		} else {
-			// INCREMENTAR RETRYES EN EL REGISTRO ACTUAL
-			$query="UPDATE tbl_security SET retryes=retryes+1 WHERE id='${id_security}'";
+			// INCREMENTAR RETRIES EN EL REGISTRO ACTUAL
+			$query="UPDATE tbl_security_ip SET retries=retries+1 WHERE id='${id_security_ip}'";
 			db_query($query);
 		}
 	} elseif($action=="logout") {
-		if($id_usuario) {
-			// RESETEAR ID_USUARIO Y RETRYES EN EL REGISTRO ACTUAL
-			$query="UPDATE tbl_security SET id_usuario='0',retryes='0',logout='0' WHERE id='${id_security}'";
-			db_query($query);
-		} else {
-			// RESETEAR LOGOUT EN EL REGISTRO ACTUAL
-			$query="UPDATE tbl_security SET logout='0' WHERE id='${id_security}'";
-			db_query($query);
-		}
+		// RESETEAR ID_USUARIO Y LOGOUT EN EL REGISTRO ACTUAL
+		$query="UPDATE tbl_security SET id_usuario='0',logout='0' WHERE id='${id_security}'";
+		db_query($query);
 	} elseif($action=="main") {
+		if($id_usuario) {
+			// BUSCAR LOGOUT EN EL REGISTRO ACTUAL
+			$query="SELECT logout,id_usuario FROM tbl_security WHERE id='${id_security}'";
+			$result=execute_query($query);
+			// BUSCAR COUNT DEL ID_USUARIO EN TODOS LOS REGISTROS DONDE LOGOUT=0
+			$query="SELECT COUNT(*) FROM tbl_security WHERE id_usuario='${id_usuario}' AND logout='0'";
+			$count=execute_query($query);
+			// HACER LOGOUT SI ES NECESARIO
+			if($result["logout"] || !$result["id_usuario"] || $count!=1) {
+				setParam("action","logout");
+				include("php/action/logout.php");
+			}
+		}
+	} elseif($action=="retries") {
+		// BUSCAR SUM(RETRIES) PARA TODOS LOS REGISTROS_IP DEL ID_SESSION O DEL REMOTE_ADDR
+		$query="SELECT SUM(retries) FROM tbl_security_ip WHERE id_session='${id_session}' OR remote_addr='${remote_addr}'";
+		$retries=execute_query($query);
+		return $retries<getDefault("security/maxretries");
+	} elseif($action=="logouts") {
 		// BUSCAR LOGOUT EN EL REGISTRO ACTUAL
 		$query="SELECT logout FROM tbl_security WHERE id='${id_security}'";
 		$logout=execute_query($query);
-		if($logout) {
-			// HACER LOGOUT
-			setParam("action","logout");
-			include("php/action/logout.php");
-		}
+		return !$logout;
 	} else {
-		// RETORNAR SI SUM(RETRYES)<3 PARA TODOS LOS REMOTE_ADDR
-		$query="SELECT SUM(retryes) suma FROM tbl_security WHERE remote_addr='${remote_addr}'";
-		$retryes=execute_query($query);
-		return $retryes<getDefault("security/maxretryes");
+		show_php_error(array("phperror"=>"Unknown action='$action' in check_security"));
 	}
 }
 

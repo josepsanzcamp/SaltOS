@@ -376,7 +376,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</captcha>
 	<security>
 		<filterenabled>true</filterenabled><!-- enable security module -->
-		<maxretryes>3</maxretryes><!-- number of failed retryes until displays captcha -->
+		<maxretries>3</maxretries><!-- number of failed retries until displays captcha -->
 		<allowremember>true</allowremember><!-- enable or disable the remember feature -->
 		<cookietimeout>2592000</cookietimeout><!-- 86400 (1 day) * 30 = 2592000 (1 month aprox.) -->
 		<minscore>50</minscore><!-- min password strength score -->

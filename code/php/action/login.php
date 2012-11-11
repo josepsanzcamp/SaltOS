@@ -32,7 +32,7 @@ if(getParam("action")=="login") {
 	$style=getParam("style");
 	$iconset=getParam("iconset");
 	if($user!="" || $pass!="") {
-		if(!check_security() && !check_captcha($captcha)) {
+		if(!check_security("retries") && !check_captcha($captcha)) {
 			setParam("action","logout");
 			include("php/action/logout.php");
 		}

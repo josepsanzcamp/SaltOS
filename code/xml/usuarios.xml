@@ -177,7 +177,7 @@ CASE SUBSTR(dias_sem,5,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("viernes"),0,3,
 CASE SUBSTR(dias_sem,6,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("sabado"),0,3,"UTF-8")." ' ELSE '' END ||
 CASE SUBSTR(dias_sem,7,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("domingo"),0,3,"UTF-8")." ' ELSE '' END
 */ dias_sem,
-CASE (SELECT COUNT(*) FROM tbl_security WHERE id_session IN (SELECT id FROM tbl_sessions) AND id_usuario=a.id AND logout='0') WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END logged,
+CASE (SELECT COUNT(*) FROM tbl_security WHERE id_usuario=a.id AND logout='0') WHEN 0 THEN '".LANG_ESCAPE("no")."' ELSE '".LANG_ESCAPE("yes")."' END logged,
 a.id action_id,
 /*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a_nombre) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || a_nombre */ action_title,
 CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
@@ -894,6 +894,5 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query global="id" eval="true">"DELETE FROM tbl_lastfolder WHERE `id_usuario`='$id'"</query>
 		<query global="id" eval="true">"DELETE FROM tbl_lastpage WHERE `id_usuario`='$id'"</query>
 		<query global="id" eval="true">"DELETE FROM tbl_quick WHERE `id_usuario`='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_security WHERE `id_usuario`='$id'"</query>
 	</delete>
 </root>

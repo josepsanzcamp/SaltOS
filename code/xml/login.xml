@@ -66,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<required>true</required>
 				</field>
 			</row>
-			<row ifeval="!check_security()">
+			<row ifeval="!check_security('retries')">
 				<field>
 					<label lang="true">captcha1</label>
 					<type>image</type>
@@ -83,7 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>label</class>
 				</field>
 			</row>
-			<row ifeval="!check_security()">
+			<row ifeval="!check_security('retries')">
 				<field>
 					<name>captcha</name>
 					<label lang="true">captcha2</label>
