@@ -93,8 +93,7 @@ if(getParam("action")=="captcha") {
 	if($type=="number") {
 		$code=str_pad(rand(0,pow(10,$length)-1),$length,"0",STR_PAD_LEFT);
 		sess_init();
-		useSession("${id}_value",$code);
-		useSession("${id}_ipaddr",isset($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:"null");
+		useSession($id,$code);
 		sess_close();
 	} elseif($type=="math") {
 		$max=pow(10,round($length/2))-1;
@@ -106,8 +105,7 @@ if(getParam("action")=="captcha") {
 			$real=eval("return $code;");
 		} while(strlen($code)!=$length || $real<0 || !__captcha_isprime($num1) || !__captcha_isprime($num2) || substr($num2,0,1)=="7");
 		sess_init();
-		useSession("${id}_value",$real);
-		useSession("${id}_ipaddr",isset($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:"NULL");
+		useSession($id,$real);
 		sess_close();
 	} else {
 		action_denied();

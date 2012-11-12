@@ -814,20 +814,12 @@ function check_security($action="") {
 }
 
 function check_captcha($captcha="") {
+	$id=getDefault("captcha/id","captcha");
 	$valid=1;
 	// CHECK VALUE
 	$captcha1=$captcha;
-	$captcha2=useSession("captcha_value");
-	if($captcha!="") useSession("captcha_value","null");
-	if(strlen($captcha1)==0) $valid=0;
-	if(strlen($captcha2)==0) $valid=0;
-	if($captcha1=="null") $valid=0;
-	if($captcha2=="null") $valid=0;
-	if($captcha1!=$captcha2) $valid=0;
-	// CHECK IPADDR
-	$captcha1=getServer("REMOTE_ADDR");
-	$captcha2=useSession("captcha_ipaddr");
-	if($captcha!="") useSession("captcha_ipaddr","null");
+	$captcha2=useSession($id);
+	if($captcha!="") useSession($id,"null");
 	if(strlen($captcha1)==0) $valid=0;
 	if(strlen($captcha2)==0) $valid=0;
 	if($captcha1=="null") $valid=0;
