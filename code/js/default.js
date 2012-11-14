@@ -1199,8 +1199,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// ADD THE SELECT ALL FEATURE TO LIST
 		var master="input.master[type=checkbox]";
 		var slave="input.slave[type=checkbox]";
-		$(master,obj).attr("title",function() { return lang_selectallcheckbox(); });
-		$(slave,obj).attr("title",function() { return lang_selectonecheckbox(); });
+		$(master,obj).attr("title",lang_selectallcheckbox());
+		$(slave,obj).attr("title",lang_selectonecheckbox());
 		$(master,obj).bind("click",function() {
 			$(this).prop("checked",!$(this).prop("checked"));
 		}).parent().bind("click",function() {
@@ -1790,7 +1790,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					if(!useShift && !e.shiftKey) count++;
 					if(key==e.keyCode) count++;
 					if(count==4) {
-						$(this).trigger("click");
+						if($(this).is("a,tr,td")) $(this).trigger("click");
+						if($(this).is("input,select,textarea")) $(this).focus();
 						exists=true;
 					}
 				});

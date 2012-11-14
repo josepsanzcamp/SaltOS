@@ -827,8 +827,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// ADD THE SELECT ALL FEATURE TO LIST
 		var master="input.master[type=checkbox]";
 		var slave="input.slave[type=checkbox]";
-		$(master,obj).next().html(function() { return lang_selectallcheckbox(); });
-		$(slave,obj).next().html(function() { return lang_selectonecheckbox(); });
+		$(master,obj).next().html(lang_selectallcheckbox());
+		$(slave,obj).next().html(lang_selectonecheckbox());
 		$(master,obj).bind("click",function() {
 			var value=$(this).prop("checked");
 			var ul=$(this).parent().parent().parent().parent();

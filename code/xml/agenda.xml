@@ -117,6 +117,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<onchange>copy_value("otros","buscar");</onchange>
 					<onkeypress>if(is_enterkey(event)) { copy_value("otros","buscar");buscar(); }</onkeypress>
 					<speech>true</speech>
+					<class3>shortcut_ctrl_f</class3>
 				</field>
 				<field>
 					<type>button</type>

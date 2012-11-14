@@ -76,6 +76,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</rows>
 			<width>240px</width>
+			<class3>shortcut_ctrl_f</class3>
 		</field>
 		<field>
 			<name>nextquick</name>
