@@ -1295,6 +1295,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>fichero_type</name>
 					<type>TEXT</type>
 				</field>
+				<field>
+					<name>search</name>
+					<type>TEXT</type>
+				</field>
 			</fields>
 		</table>
 		<table>

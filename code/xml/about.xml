@@ -212,16 +212,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.php.net")</onclick>
 						</field>
 						<field>
-							<label>MariaDB 5.1 (GPL-2.0)</label>
+							<label>MariaDB 5.5 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://mariadb.org")</onclick>
 						</field>
 						<field>
-							<label>MySQL 5.1 (GPL-2.0)</label>
+							<label>MySQL 5.1-5.5 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://www.mysql.com")</onclick>
+							<onclick>openwin("http://dev.mysql.com/")</onclick>
 						</field>
 					</row>
 					<row>
@@ -646,10 +646,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>OpenOffice 3.0 (LGPL-3.0)</label>
+							<label>LibreOffice 3.5 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://www.openoffice.org/")</onclick>
+							<onclick>openwin("http://www.libreoffice.org/")</onclick>
 						</field>
 						<field>
 							<label>Unoconv (GPL-2.0)</label>

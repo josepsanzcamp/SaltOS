@@ -209,7 +209,7 @@ if(getParam("action")=="viewpdf") {
 				file_put_contents($file,$data);
 				$todelete=$file;
 			}
-			// PDF DEL DOCUMENTO USANDO OPEN OFFICE
+			// PDF DEL DOCUMENTO USANDO LIBRE OFFICE
 			$ext=pathinfo($file,PATHINFO_EXTENSION);
 			if($ext=="") $ext=getDefault("exts/defaultext",".dat");
 			if($ext!="pdf") {
