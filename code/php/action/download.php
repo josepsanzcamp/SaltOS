@@ -53,7 +53,7 @@ if(getParam("action")=="download") {
 			}
 			$result=__getmail_getcid(__getmail_getnode("0",$decoded),$cid);
 			if(!$result) show_php_error(array("phperror"=>"Attachment not found"));
-			$ext=pathinfo($result["cname"],PATHINFO_EXTENSION);
+			$ext=strtolower(extension($result["cname"]));
 			if(!$ext) $ext=substr($result["ctype"],strrpos($result["ctype"],"/")+1);
 			$file=get_temp_file($ext);
 			file_put_contents($file,$result["body"]);

@@ -51,7 +51,11 @@ if(getParam("action")=="phpthumb") {
 	}
 	if(getParam("far",getParam("amp;far"))) $phpThumb->far=intval(getParam("far",getParam("amp;far")));
 	if(getParam("bg",getParam("amp;bg"))) $phpThumb->bg=getParam("bg",getParam("amp;bg"));
-	$format=image_type_from_extension($phpThumb->src);
+	// SECURITY CHECK
+	$type=saltos_content_type($phpThumb->src);
+	if(substr($type,0,5)!="image") action_denied();
+	// CONTINUE
+	$format=substr($type,6);
 	if(getParam("f",getParam("amp;f"))) $format=getParam("f",getParam("amp;f"));
 	$phpThumb->config_output_format=$format;
 	$phpThumb->q=100;
@@ -59,7 +63,7 @@ if(getParam("action")=="phpthumb") {
 	$phpThumb->fltr[]="usm|80|0.5|3";
 	$phpThumb->SetCacheFilename();
 	$cache=$phpThumb->cache_filename;
-	$cache=pathinfo($cache,PATHINFO_DIRNAME)."/".md5(pathinfo($cache,PATHINFO_FILENAME)).".".pathinfo($cache,PATHINFO_EXTENSION);
+	$cache=dirname($cache)."/".md5(basename($cache)).".".extension($cache);
 	if(!file_exists($cache)) {
 		if(!$phpThumb->GenerateThumbnail()) action_denied();
 		$phpThumb->RenderToFile($cache);

@@ -23,254 +23,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function content_type_from_extension($file) {
-	static $mimes=array();
-	if(!count($mimes)) {
-		$mimes["ez"]="application/andrew-inset";
-		$mimes["hqx"]="application/mac-binhex40";
-		$mimes["cpt"]="application/mac-compactpro";
-		$mimes["doc"]="application/msword";
-		$mimes["bin"]="application/octet-stream";
-		$mimes["dms"]="application/octet-stream";
-		$mimes["lha"]="application/octet-stream";
-		$mimes["lzh"]="application/octet-stream";
-		$mimes["exe"]="application/octet-stream";
-		$mimes["class"]="application/octet-stream";
-		$mimes["so"]="application/octet-stream";
-		$mimes["dll"]="application/octet-stream";
-		$mimes["img"]="application/octet-stream";
-		$mimes["iso"]="application/octet-stream";
-		$mimes["oda"]="application/oda";
-		$mimes["ogg"]="application/ogg";
-		$mimes["pdf"]="application/pdf";
-		$mimes["ai"]="application/postscript";
-		$mimes["eps"]="application/postscript";
-		$mimes["ps"]="application/postscript";
-		$mimes["rtf"]="application/rtf";
-		$mimes["smi"]="application/smil";
-		$mimes["smil"]="application/smil";
-		$mimes["fm"]="application/vnd.framemaker";
-		$mimes["mif"]="application/vnd.mif";
-		$mimes["xls"]="application/vnd.ms-excel";
-		$mimes["ppt"]="application/vnd.ms-powerpoint";
-		$mimes["odc"]="application/vnd.oasis.opendocument.chart";
-		$mimes["odb"]="application/vnd.oasis.opendocument.database";
-		$mimes["odf"]="application/vnd.oasis.opendocument.formula";
-		$mimes["odg"]="application/vnd.oasis.opendocument.graphics";
-		$mimes["otg"]="application/vnd.oasis.opendocument.graphics-template";
-		$mimes["odi"]="application/vnd.oasis.opendocument.image";
-		$mimes["odp"]="application/vnd.oasis.opendocument.presentation";
-		$mimes["otp"]="application/vnd.oasis.opendocument.presentation-template";
-		$mimes["ods"]="application/vnd.oasis.opendocument.spreadsheet";
-		$mimes["ots"]="application/vnd.oasis.opendocument.spreadsheet-template";
-		$mimes["odt"]="application/vnd.oasis.opendocument.text";
-		$mimes["odm"]="application/vnd.oasis.opendocument.text-master";
-		$mimes["ott"]="application/vnd.oasis.opendocument.text-template";
-		$mimes["oth"]="application/vnd.oasis.opendocument.text-web";
-		$mimes["sxw"]="application/vnd.sun.xml.writer";
-		$mimes["stw"]="application/vnd.sun.xml.writer.template";
-		$mimes["sxc"]="application/vnd.sun.xml.calc";
-		$mimes["stc"]="application/vnd.sun.xml.calc.template";
-		$mimes["sxd"]="application/vnd.sun.xml.draw";
-		$mimes["std"]="application/vnd.sun.xml.draw.template";
-		$mimes["sxi"]="application/vnd.sun.xml.impress";
-		$mimes["sti"]="application/vnd.sun.xml.impress.template";
-		$mimes["sxg"]="application/vnd.sun.xml.writer.global";
-		$mimes["sxm"]="application/vnd.sun.xml.math";
-		$mimes["sis"]="application/vnd.symbian.install";
-		$mimes["wbxml"]="application/vnd.wap.wbxml";
-		$mimes["wmlc"]="application/vnd.wap.wmlc";
-		$mimes["wmlsc"]="application/vnd.wap.wmlscriptc";
-		$mimes["bcpio"]="application/x-bcpio";
-		$mimes["torrent"]="application/x-bittorrent";
-		$mimes["bz2"]="application/x-bzip2";
-		$mimes["vcd"]="application/x-cdlink";
-		$mimes["pgn"]="application/x-chess-pgn";
-		$mimes["cpio"]="application/x-cpio";
-		$mimes["csh"]="application/x-csh";
-		$mimes["dcr"]="application/x-director";
-		$mimes["dir"]="application/x-director";
-		$mimes["dxr"]="application/x-director";
-		$mimes["dvi"]="application/x-dvi";
-		$mimes["spl"]="application/x-futuresplash";
-		$mimes["gtar"]="application/x-gtar";
-		$mimes["gz"]="application/x-gzip";
-		$mimes["tgz"]="application/x-gzip";
-		$mimes["hdf"]="application/x-hdf";
-		$mimes["jar"]="application/x-java-archive";
-		$mimes["jnlp"]="application/x-java-jnlp-file";
-		$mimes["js"]="application/x-javascript";
-		$mimes["kwd"]="application/x-kword";
-		$mimes["kwt"]="application/x-kword";
-		$mimes["ksp"]="application/x-kspread";
-		$mimes["kpr"]="application/x-kpresenter";
-		$mimes["kpt"]="application/x-kpresenter";
-		$mimes["chrt"]="application/x-kchart";
-		$mimes["kil"]="application/x-killustrator";
-		$mimes["skp"]="application/x-koan";
-		$mimes["skd"]="application/x-koan";
-		$mimes["skt"]="application/x-koan";
-		$mimes["skm"]="application/x-koan";
-		$mimes["latex"]="application/x-latex";
-		$mimes["nc"]="application/x-netcdf";
-		$mimes["cdf"]="application/x-netcdf";
-		$mimes["pl"]="application/x-perl";
-		$mimes["rpm"]="application/x-rpm";
-		$mimes["sh"]="application/x-sh";
-		$mimes["shar"]="application/x-shar";
-		$mimes["swf"]="application/x-shockwave-flash";
-		$mimes["sit"]="application/x-stuffit";
-		$mimes["sv4cpio"]="application/x-sv4cpio";
-		$mimes["sv4crc"]="application/x-sv4crc";
-		$mimes["tar"]="application/x-tar";
-		$mimes["tcl"]="application/x-tcl";
-		$mimes["tex"]="application/x-tex";
-		$mimes["texinfo"]="application/x-texinfo";
-		$mimes["texi"]="application/x-texinfo";
-		$mimes["t"]="application/x-troff";
-		$mimes["tr"]="application/x-troff";
-		$mimes["roff"]="application/x-troff";
-		$mimes["man"]="application/x-troff-man";
-		$mimes["1"]="application/x-troff-man";
-		$mimes["2"]="application/x-troff-man";
-		$mimes["3"]="application/x-troff-man";
-		$mimes["4"]="application/x-troff-man";
-		$mimes["5"]="application/x-troff-man";
-		$mimes["6"]="application/x-troff-man";
-		$mimes["7"]="application/x-troff-man";
-		$mimes["8"]="application/x-troff-man";
-		$mimes["me"]="application/x-troff-me";
-		$mimes["ms"]="application/x-troff-ms";
-		$mimes["ustar"]="application/x-ustar";
-		$mimes["src"]="application/x-wais-source";
-		$mimes["xhtml"]="application/xhtml+xml";
-		$mimes["xht"]="application/xhtml+xml";
-		$mimes["zip"]="application/zip";
-		$mimes["au"]="audio/basic";
-		$mimes["snd"]="audio/basic";
-		$mimes["mid"]="audio/midi";
-		$mimes["midi"]="audio/midi";
-		$mimes["kar"]="audio/midi";
-		$mimes["mpga"]="audio/mpeg";
-		$mimes["mp2"]="audio/mpeg";
-		$mimes["mp3"]="audio/mpeg";
-		$mimes["aif"]="audio/x-aiff";
-		$mimes["aiff"]="audio/x-aiff";
-		$mimes["aifc"]="audio/x-aiff";
-		$mimes["m3u"]="audio/x-mpegurl";
-		$mimes["ram"]="audio/x-pn-realaudio";
-		$mimes["rm"]="audio/x-pn-realaudio";
-		$mimes["ra"]="audio/x-realaudio";
-		$mimes["wav"]="audio/x-wav";
-		$mimes["wma"]="audio/x-ms-wma";
-		$mimes["wax"]="audio/x-ms-wax";
-		$mimes["pdb"]="chemical/x-pdb";
-		$mimes["xyz"]="chemical/x-xyz";
-		$mimes["bmp"]="image/bmp";
-		$mimes["gif"]="image/gif";
-		$mimes["ief"]="image/ief";
-		$mimes["jpeg"]="image/jpeg";
-		$mimes["jpg"]="image/jpeg";
-		$mimes["jpe"]="image/jpeg";
-		$mimes["jfif"]="image/jpeg";
-		$mimes["png"]="image/png";
-		$mimes["tiff"]="image/tiff";
-		$mimes["tif"]="image/tiff";
-		$mimes["djvu"]="image/vnd.djvu";
-		$mimes["djv"]="image/vnd.djvu";
-		$mimes["ico"]="image/vnd.microsoft.icon";
-		$mimes["wbmp"]="image/vnd.wap.wbmp";
-		$mimes["ras"]="image/x-cmu-raster";
-		$mimes["fts"]="image/x-fits";
-		$mimes["pnm"]="image/x-portable-anymap";
-		$mimes["pbm"]="image/x-portable-bitmap";
-		$mimes["pgm"]="image/x-portable-graymap";
-		$mimes["ppm"]="image/x-portable-pixmap";
-		$mimes["rgb"]="image/x-rgb";
-		$mimes["tga"]="image/x-targa";
-		$mimes["xbm"]="image/x-xbitmap";
-		$mimes["xpm"]="image/x-xpixmap";
-		$mimes["xwd"]="image/x-xwindowdump";
-		$mimes["art"]="message/news";
-		$mimes["eml"]="message/rfc822";
-		$mimes["mail"]="message/rfc822";
-		$mimes["igs"]="model/iges";
-		$mimes["iges"]="model/iges";
-		$mimes["msh"]="model/mesh";
-		$mimes["mesh"]="model/mesh";
-		$mimes["silo"]="model/mesh";
-		$mimes["wrl"]="model/vrml";
-		$mimes["vrml"]="model/vrml";
-		$mimes["css"]="text/css";
-		$mimes["html"]="text/html";
-		$mimes["htm"]="text/html";
-		$mimes["asc"]="text/plain";
-		$mimes["txt"]="text/plain";
-		$mimes["text"]="text/plain";
-		$mimes["pm"]="text/plain";
-		$mimes["el"]="text/plain";
-		$mimes["c"]="text/plain";
-		$mimes["h"]="text/plain";
-		$mimes["cc"]="text/plain";
-		$mimes["hh"]="text/plain";
-		$mimes["cxx"]="text/plain";
-		$mimes["hxx"]="text/plain";
-		$mimes["f90"]="text/plain";
-		$mimes["rtx"]="text/richtext";
-		$mimes["rtf"]="text/rtf";
-		$mimes["sgml"]="text/sgml";
-		$mimes["sgm"]="text/sgml";
-		$mimes["tsv"]="text/tab-separated-values";
-		$mimes["jad"]="text/vnd.sun.j2me.app-descriptor";
-		$mimes["wml"]="text/vnd.wap.wml";
-		$mimes["wmls"]="text/vnd.wap.wmlscript";
-		$mimes["pod"]="text/x-pod";
-		$mimes["etx"]="text/x-setext";
-		$mimes["vcf"]="text/x-vcard";
-		$mimes["xml"]="text/xml";
-		$mimes["xsl"]="text/xml";
-		$mimes["ent"]="text/xml-external-parsed-entity";
-		$mimes["mpeg"]="video/mpeg";
-		$mimes["mpg"]="video/mpeg";
-		$mimes["mpe"]="video/mpeg";
-		$mimes["qt"]="video/quicktime";
-		$mimes["mov"]="video/quicktime";
-		$mimes["mxu"]="video/vnd.mpegurl";
-		$mimes["flv"]="video/x-flv";
-		$mimes["asf"]="video/x-ms-asf";
-		$mimes["asx"]="video/x-ms-asf";
-		$mimes["wm"]="video/x-ms-wm";
-		$mimes["wmv"]="video/x-ms-wmv";
-		$mimes["wmx"]="video/x-ms-wmx";
-		$mimes["wvx"]="video/x-ms-wvx";
-		$mimes["avi"]="video/x-msvideo";
-		$mimes["movie"]="video/x-sgi-movie";
-		$mimes["ice"]="x-conference/x-cooltalk";
-		$mimes["json"]="application/json";
-	}
-	$ext=pathinfo($file,PATHINFO_EXTENSION);
-	$ext=strtolower($ext);
+function saltos_content_type($file) {
+	static $mimes=array(
+		"css"=>"text/css",
+		"js"=>"application/x-javascript"
+	);
+	$ext=strtolower(extension($file));
 	if(isset($mimes[$ext])) return $mimes[$ext];
-	return "application/octet-stream";
-}
-
-function image_type_from_extension($file) {
-	static $mimes=array();
-	if(!count($mimes)) {
-		$mimes["bmp"]="bmp";
-		$mimes["gif"]="gif";
-		$mimes["jpeg"]="jpeg";
-		$mimes["jpg"]="jpeg";
-		$mimes["jpe"]="jpeg";
-		$mimes["jfif"]="jpeg";
-		$mimes["png"]="png";
-		$mimes["tiff"]="tiff";
-		$mimes["tif"]="tiff";
-	}
-	$ext=pathinfo($file,PATHINFO_EXTENSION);
-	$ext=strtolower($ext);
-	if(isset($mimes[$ext])) return $mimes[$ext];
-	return "jpeg";
+	return mime_content_type($file);
 }
 
 function get_directory($key,$default="") {
@@ -282,7 +42,7 @@ function get_directory($key,$default="") {
 
 function get_temp_file($ext="") {
 	if($ext=="") $ext=getDefault("exts/defaultext",".dat");
-	if($ext[0]!=".") $ext=".${ext}";
+	if($ext[0]!=".") $ext=".".$ext;
 	$dir=get_directory("dirs/cachedir");
 	while(1) {
 		$uniqid=get_unique_id_md5();
@@ -306,7 +66,7 @@ function cache_exists($cache,$file) {
 
 function get_cache_file($data,$ext="") {
 	if(is_array($data)) $data=serialize($data);
-	if($ext=="") $ext=pathinfo($data,PATHINFO_EXTENSION);
+	if($ext=="") $ext=strtolower(extension($data));
 	if($ext=="") $ext=getDefault("exts/defaultext",".dat");
 	if(substr($ext,0,1)!=".") $ext=".".$ext;
 	$dir=get_directory("dirs/cachedir");
@@ -587,5 +347,9 @@ function url_get_contents($url,$type="GET") {
 	}
 	// RETURN RESPONSE
 	return $body;
+}
+
+function extension($file) {
+	return pathinfo($file,PATHINFO_EXTENSION);
 }
 ?>

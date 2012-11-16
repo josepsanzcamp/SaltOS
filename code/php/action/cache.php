@@ -49,7 +49,7 @@ if(getParam("action")=="cache") {
 	$usecssminify=eval_bool(getDefault("cache/usecssminify"));
 	$usejsminify=eval_bool(getDefault("cache/usejsminify"));
 	$useimginline=eval_bool(getDefault("cache/useimginline"));
-	$cache=get_cache_file(array("cache",$usecssminify,$usejsminify,$useimginline,$files),pathinfo($files,PATHINFO_EXTENSION));
+	$cache=get_cache_file(array("cache",$usecssminify,$usejsminify,$useimginline,$files),strtolower(extension($files)));
 	$files=explode(",",$files);
 	foreach($files as $key=>$val) $files[$key]=trim($val);
 	//if(file_exists($cache)) unlink($cache);
@@ -62,11 +62,11 @@ if(getParam("action")=="cache") {
 		foreach($files as $file) {
 			if(file_exists($file)) {
 				$buffer="";
-				$subcache=get_cache_file(array("subcache",$usecssminify,$usejsminify,$useimginline,$file),pathinfo($file,PATHINFO_EXTENSION));
+				$subcache=get_cache_file(array("subcache",$usecssminify,$usejsminify,$useimginline,$file),strtolower(extension($file)));
 				//if(file_exists($subcache)) unlink($subcache);
 				if(!cache_exists($subcache,$file)) {
 					if(file_exists($subcache)) unlink_protected($subcache);
-					$type=content_type_from_extension($file);
+					$type=saltos_content_type($file);
 					$isminified=strpos($file,".min.");
 					if($type=="text/css") {
 						$buffer=file_get_contents($file);

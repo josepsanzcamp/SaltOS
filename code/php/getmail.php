@@ -469,6 +469,7 @@ function __getmail_getcid($array,$hash) {
 }
 
 function __getmail_insert($message,$messageid,$state_new,$state_reply,$state_forward,$state_wait,$id_correo,$is_outbox,$state_sent,$state_error) {
+	require_once("php/unoconv.php");
 	$messageid=explode("/",$messageid);
 	$id_cuenta=$messageid[0];
 	$uidl=$messageid[1];
@@ -507,7 +508,8 @@ function __getmail_insert($message,$messageid,$state_new,$state_reply,$state_for
 		$fichero_file=$file["chash"];
 		$fichero_size=$file["csize"];
 		$fichero_type=$file["ctype"];
-		$query="INSERT INTO tbl_ficheros(id,id_aplicacion,id_registro,id_usuario,`datetime`,fichero,fichero_file,fichero_size,fichero_type) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}','${fichero}','${fichero_file}','${fichero_size}','${fichero_type}')";
+		$search=addslashes(unoconv2txt(array("data"=>$file["body"],"ext"=>strtolower(extension($file["cname"])))));
+		$query="INSERT INTO tbl_ficheros(id,id_aplicacion,id_registro,id_usuario,`datetime`,`fichero`,`fichero_file`,`fichero_size`,`fichero_type`,`search`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}','${fichero}','${fichero_file}','${fichero_size}','${fichero_type}','${search}')";
 		db_query($query);
 	}
 	// INSERT THE CONTROL REGISTER

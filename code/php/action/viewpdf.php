@@ -176,7 +176,7 @@ if(getParam("action")=="viewpdf") {
 		$temp=get_directory("dirs/cachedir");
 		$cache="$temp$hash.pdf";
 		if(!file_exists($cache)) {
-			// PDF FACTURA/ACTA/PARTE/PRESUPUESTO
+			// CREAR DEFAULT PDF
 			$action="pdf";
 			setParam("action",$action);
 			$_LANG["default"]="$page,menu,common";
@@ -205,23 +205,12 @@ if(getParam("action")=="viewpdf") {
 		$temp=get_directory("dirs/cachedir");
 		$cache="$temp$hash.pdf";
 		if(!file_exists($cache)) {
-			if(!file_exists($file)) {
-				file_put_contents($file,$data);
-				$todelete=$file;
-			}
-			// PDF DEL DOCUMENTO USANDO LIBRE OFFICE
-			$ext=pathinfo($file,PATHINFO_EXTENSION);
-			if($ext=="") $ext=getDefault("exts/defaultext",".dat");
-			if($ext!="pdf") {
-				$link="${temp}${hash}.${ext}";
-				if(!file_exists($link)) symlink($file,$link);
-				ob_passthru(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($link,$cache),getDefault("commands/__unoconv__")));
-				if(file_exists($link)) unlink($link);
-				if(!filesize($cache)) unlink($cache);
+			include("php/unoconv.php");
+			if(file_exists($file)) {
+				unoconv2pdf(array("input"=>$file,"output"=>$cache));
 			} else {
-				copy($file,$cache);
+				unoconv2pdf(array("data"=>$data,"ext"=>strtolower(extension($name)),"output"=>$cache));
 			}
-			if(isset($todelete)) unlink($todelete);
 		}
 		// PREPARAR REPORT
 		if(file_exists($cache)) {

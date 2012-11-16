@@ -158,8 +158,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</cache>
 	<commands>
 		<unoconv>unoconv</unoconv>
-		<__unoconv__>--server 127.0.0.1 --port 2002 -f pdf --stdout __INPUT__ &gt; __OUTPUT__</__unoconv__>
+		<__unoconv__>--server 127.0.0.1 --port 2002 -f pdf -o __OUTPUT__ __INPUT__</__unoconv__>
 		<__unoconv_about__>--show 2&gt;&amp;1</__unoconv_about__>
+		<pdftotext>pdftotext</pdftotext>
+		<__pdftotext__>-nopgbrk __INPUT__ __OUTPUT__</__pdftotext__>
 		<elinks>elinks</elinks>
 		<__elinks__>-dump -no-home -eval 'set document.browse.margin_width=0' __INPUT__</__elinks__>
 		<text2wave>text2wave</text2wave>
@@ -177,7 +179,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<which>which</which>
 		<__which__>__INPUT__</__which__>
 		<sqlite3>sqlite3</sqlite3><!-- ONLY USED BY BIN_SQLITE DRIVER -->
-		<__sqlite3__>__DBFILE__ '.read __INPUT__' 2&gt;&amp;1</__sqlite3__><!-- ONLY USED BY BIN_SQLITE DRIVER -->
+		<__sqlite3__>__DBFILE__ '.read __INPUT__'</__sqlite3__><!-- ONLY USED BY BIN_SQLITE DRIVER -->
 	</commands>
 	<debug>
 		<actiondebug>false</actiondebug>
@@ -214,7 +216,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<javascript>
 		<cache ifeval="!is_mobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery-1.8.2.min.js</include>
+			<include>lib/jquery/jquery-1.8.3.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery-ui-1.9.1.min.js</include>
@@ -239,7 +241,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</cache>
 		<cache ifeval="is_mobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery-1.8.2.min.js</include>
+			<include>lib/jquery/jquery-1.8.3.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery.mobile-1.2.0.min.js</include>

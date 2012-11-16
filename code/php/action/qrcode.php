@@ -181,7 +181,7 @@ if(getParam("action")=="qrcode") {
 	ob_start_protected(getDefault("obhandler"));
 	header_powered();
 	header_expires(false);
-	$type=content_type_from_extension($cache);
+	$type=saltos_content_type($cache);
 	header("Content-Type: $type");
 	readfile($cache);
 	ob_end_flush();

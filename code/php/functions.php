@@ -972,7 +972,7 @@ function pretty_html_error($msg) {
 	$html.="<style>";
 	$html.=".phperror { background:#444; color:#fff; font-family:Helvetica,Arial,sans-serif; padding:20px 0; }";
 	$favicon=getDefault("info/favicon","img/favicon.png");
-	if(file_exists($favicon) && memory_get_free()>filesize($favicon)*4/3) $favicon="data:".content_type_from_extension($favicon).";base64,".base64_encode(file_get_contents($favicon));
+	if(file_exists($favicon) && memory_get_free()>filesize($favicon)*4/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
 	$html.=".phperror h3 { background:url(".$favicon.") top left no-repeat; padding-left: 50px; min-height:32px; font-size:1.5em; margin:0; }";
 	$html.=".phperror a { color: cyan; }";
 	$html.=".phperror pre { white-space:pre-wrap; }";

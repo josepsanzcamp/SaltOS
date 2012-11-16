@@ -82,10 +82,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>feeds(id) { setParam("page","feeds"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>importaciones(id) { setParam("page","importaciones"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<!-- FOR PAGERLIST MODULE -->
-	<function>first() { page1($("#selectpage").prop("selectedIndex",0).val()); }</function>
-	<function>previous() { page1($("#selectpage").prop("selectedIndex",$("#selectpage").prop("selectedIndex")-1).val()); }</function>
-	<function>next() { page1($("#selectpage").prop("selectedIndex",$("#selectpage").prop("selectedIndex")+1).val()); }</function>
-	<function>last() { page1($("#selectpage").prop("selectedIndex",$("#selectpage").prop("options").length-1).val()); }</function>
+	<function>first() { page1($("#selectpager").prop("selectedIndex",0).val()); }</function>
+	<function>previous() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("selectedIndex")-1).val()); }</function>
+	<function>next() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("selectedIndex")+1).val()); }</function>
+	<function>last() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("options").length-1).val()); }</function>
 	<function>page1(num) { setParam("action","list"); setParam("offset",(intval(num)-1)*intval(getParam("limit"))); submit1(); }</function>
 	<function>limit1(num) { setParam("action","list"); setParam("limit",intval(num)); submit1(); }</function>
 	<!-- FOR QRCODE MODULE -->

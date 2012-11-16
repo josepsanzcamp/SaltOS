@@ -234,9 +234,9 @@ function eval_files() {
 			if(!isset($val["name"])) $val["name"]=basename($val["tmp_name"]);
 			$val["file"]=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($val["name"]);
 			if(!isset($val["size"])) $val["size"]=filesize($val["tmp_name"]);
-			if(!isset($val["type"])) $val["type"]=finfo_file(finfo_open(FILEINFO_MIME_TYPE),$val["tmp_name"]);
+			if(!isset($val["type"])) $val["type"]=saltos_content_type($val["tmp_name"]);
 			// SECURITY ISSUE
-			$ext=pathinfo($val["file"],PATHINFO_EXTENSION);
+			$ext=strtolower(extension($val["file"]));
 			if($ext=="php") $val["file"]=substr($val["file"],0,-strlen($ext)-1).getDefault("exts/defaultext",".dat");
 			// CONTINUE
 			setParam($key,$val["name"]);
@@ -248,10 +248,6 @@ function eval_files() {
 			session_error(LANG("fileuploaderror").$val["name"]);
 		}
 	}
-}
-
-function move_files($key) {
-	move_uploaded_file(__getParam_helper($key."_temp"),get_directory("dirs/filesdir").__getParam_helper($key."_file"));
 }
 
 function cache_exists_for_xml($file) {
