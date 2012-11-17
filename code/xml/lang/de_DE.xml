@@ -1185,6 +1185,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyemail>Nur in den Richtungen</onlyemail>
 		<onlysubject>Just in Case</onlysubject>
 		<onlybody>Nur Nachricht</onlybody>
+		<onlyfiles revised="false">Nur in den Dateien</onlyfiles>
 		<restocampos>In den anderen Bereichen</restocampos>
 		<filtrarcorreos>Filtern nach</filtrarcorreos>
 		<priority revised="false">Priorität</priority>

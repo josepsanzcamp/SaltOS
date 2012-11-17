@@ -1185,6 +1185,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyemail>Sóos endereaos</onlyemail>
 		<onlysubject>Sóo assunto</onlysubject>
 		<onlybody>Sóa mensajem</onlybody>
+		<onlyfiles revised="false">Sóos arquivos</onlyfiles>
 		<restocampos>O resto dos campos</restocampos>
 		<filtrarcorreos>Filtrar por</filtrarcorreos>
 		<priority revised="false">Prioridade</priority>

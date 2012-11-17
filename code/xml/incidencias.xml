@@ -257,33 +257,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,id_estado,id_usuario,fecha1,fecha2,comentarios,id_prioridad,id_proyecto,id_asignado" eval="true">"SELECT * FROM (
-SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
-	".make_extra_query_with_login("d.")." usuario,
-	e.`datetime` `datetime`,
-	CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE /*MYSQL CONCAT('link:clientes(',-a.id_cliente,'):',b_nombre) *//*SQLITE 'link:clientes(' || -a.id_cliente || '):' || b_nombre */ END cliente,
-	CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE /*MYSQL CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre) *//*SQLITE 'link:proyectos(' || -id_proyecto || '):' || p_nombre */ END proyecto,
-	/*MYSQL CONCAT('link:incidencias(',-a.id,'):',a.nombre) *//*SQLITE 'link:incidencias(' || -a.id || '):' || a.nombre */ nombre,CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
-	CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
-	a.nombre nombre2,
-	(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
-	(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
-	CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
-	a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || a.nombre */ action_title,
-	CASE ((".check_sql($page,"view").") OR ((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."')='".current_user()."')) WHEN 1 THEN 'true' ELSE 'false' END action_view,
-	CASE ((".check_sql($page,"edit").") OR ((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."')='".current_user()."')) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-		CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
-	e.id_usuario id_usuario,a.id_estado id_estado,a.id_cliente id_cliente,id_proyecto,d.id_grupo id_grupo,c.activo activo,
-	CASE id_prioridad WHEN '0' THEN '".LANG_ESCAPE("sinprioridad")."' ELSE f_nombre END prioridad,
-	a.id_prioridad id_prioridad,
-	(SELECT GROUP_CONCAT(".make_extra_query_with_login("uu.")." /*MYSQL SEPARATOR '; ' *//*SQLITE ,'; '*/) FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_incidencias_u iu WHERE iu.id_incidencia=a.id)) asignadoa
-FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre FROM tbl_incidencias a2
-LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
-LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto
-LEFT JOIN tbl_prioridades f ON f.id=a2.id_prioridad) a
-LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
-LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-LEFT JOIN tbl_estados c ON a.id_estado=c.id) z
-WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".make_like_query("nombre2,comentarios,cliente2,proyecto2,estado,prioridad,usuario,asignadoa",$comentarios)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(`datetime`))":"(1=1)")." AND (id_prioridad='$id_prioridad' OR ''='$id_prioridad') AND (((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".intval(getParam("id_asignado"))."')='".intval(getParam("id_asignado"))."' OR ''='".getParam("id_asignado")."')) AND (".check_sql($page,"list")." OR ((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".current_user()."')='".current_user()."'))"</query>
+		SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
+			".make_extra_query_with_login("d.")." usuario,
+			e.`datetime` `datetime`,
+			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE /*MYSQL CONCAT('link:clientes(',-a.id_cliente,'):',b_nombre) *//*SQLITE 'link:clientes(' || -a.id_cliente || '):' || b_nombre */ END cliente,
+			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE /*MYSQL CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre) *//*SQLITE 'link:proyectos(' || -id_proyecto || '):' || p_nombre */ END proyecto,
+			/*MYSQL CONCAT('link:incidencias(',-a.id,'):',a.nombre) *//*SQLITE 'link:incidencias(' || -a.id || '):' || a.nombre */ nombre,CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
+			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
+			a.nombre nombre2,
+			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
+			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
+			CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
+			a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || a.nombre */ action_title,
+			CASE ((".check_sql($page,"view").") OR ((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."')='".current_user()."')) WHEN 1 THEN 'true' ELSE 'false' END action_view,
+			CASE ((".check_sql($page,"edit").") OR ((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."')='".current_user()."')) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+				CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+			e.id_usuario id_usuario,a.id_estado id_estado,a.id_cliente id_cliente,id_proyecto,d.id_grupo id_grupo,c.activo activo,
+			CASE id_prioridad WHEN '0' THEN '".LANG_ESCAPE("sinprioridad")."' ELSE f_nombre END prioridad,
+			a.id_prioridad id_prioridad,
+			(SELECT GROUP_CONCAT(".make_extra_query_with_login("uu.")." /*MYSQL SEPARATOR '; ' *//*SQLITE ,'; '*/) FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_incidencias_u iu WHERE iu.id_incidencia=a.id)) asignadoa,
+			(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
+		FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre FROM tbl_incidencias a2
+		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
+		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto
+		LEFT JOIN tbl_prioridades f ON f.id=a2.id_prioridad) a
+		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
+		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+		LEFT JOIN tbl_estados c ON a.id_estado=c.id) z
+		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".make_like_query("nombre2,comentarios,cliente2,proyecto2,estado,prioridad,usuario,asignadoa,search",$comentarios)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(`datetime`))":"(1=1)")." AND (id_prioridad='$id_prioridad' OR ''='$id_prioridad') AND (((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".intval(getParam("id_asignado"))."')='".intval(getParam("id_asignado"))."' OR ''='".getParam("id_asignado")."')) AND (".check_sql($page,"list")." OR ((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".current_user()."')='".current_user()."'))"</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

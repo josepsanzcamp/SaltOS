@@ -26,11 +26,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 function saltos_content_type($file) {
 	static $mimes=array(
 		"css"=>"text/css",
-		"js"=>"application/x-javascript"
+		"js"=>"text/javascript",
+		"xml"=>"text/xml",
+		"htm"=>"text/html"
 	);
 	$ext=strtolower(extension($file));
 	if(isset($mimes[$ext])) return $mimes[$ext];
-	return mime_content_type($file);
+	if(function_exists("mime_content_type")) return mime_content_type($file);
+	if(function_exists("finfo_file")) return finfo_file(finfo_open(FILEINFO_MIME_TYPE),$file);
+	return "application/octet-stream";
 }
 
 function get_directory($key,$default="") {

@@ -77,7 +77,7 @@ if(getParam("action")=="cache") {
 							file_put_contents($subcache,$buffer);
 							chmod_protected($subcache,0666);
 						}
-					} elseif($type=="application/x-javascript") {
+					} elseif($type=="text/javascript") {
 						$buffer=file_get_contents($file);
 						if($buffer) {
 							if($usejsminify && !$isminified) $buffer=minify_js($buffer);

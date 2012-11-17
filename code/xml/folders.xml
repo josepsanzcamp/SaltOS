@@ -432,11 +432,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			'true' action_delete2,
 			CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN a.id_registro WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=a.id_registro) ELSE '0' END id_cliente,
 			CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN a.id_registro ELSE '0' END id_proyecto,
-			CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor
+			CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor,
+			(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) search
 			FROM tbl_folders_a a
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
-			WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion') AND ".make_like_query("usuario,aplicacion,id2,nombre,datetime",$filtro)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND (TRIM(IFNULL(email_privated,0))='0' OR (TRIM(IFNULL(email_privated,0))='1' AND id_usuario='".current_user()."')) AND (id_folder='$id_folder') AND (id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')) AND ".check_sql($page,"list")</query>
+			WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion') AND ".make_like_query("usuario,aplicacion,id2,nombre,datetime,search",$filtro)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND (TRIM(IFNULL(email_privated,0))='0' OR (TRIM(IFNULL(email_privated,0))='1' AND id_usuario='".current_user()."')) AND (id_folder='$id_folder') AND (id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')) AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

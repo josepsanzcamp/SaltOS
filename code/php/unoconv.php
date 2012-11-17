@@ -30,14 +30,17 @@ function __unoconv_pre($array) {
 		$input=get_temp_file($array["ext"]);
 		file_put_contents($input,$array["data"]);
 	} else {
-		show_php_error(array("phperror"=>"Call to unoconv without input"));
+		show_php_error(array("phperror"=>"Call to unoconv without valid input"));
 	}
 	if(isset($array["output"])) {
 		$output=$array["output"];
 	} else {
 		$output=get_temp_file(getDefault("exts/outputext",".out"));
 	}
-	return array($input,$output);
+	$type=saltos_content_type($input);
+	$ext=strtolower(extension($input));
+	$type0=strtok($type,"/");
+	return array($input,$output,$type,$ext,$type0);
 }
 
 function __unoconv_post($array,$input,$output) {
@@ -71,30 +74,45 @@ function __unoconv_list() {
 }
 
 function unoconv2pdf($array) {
-	list($input,$output)=__unoconv_pre($array);
-	$ext=strtolower(extension($input));
-	if($ext=="pdf") {
+	list($input,$output,$type,$ext,$type0)=__unoconv_pre($array);
+	if($type=="application/pdf") {
 		copy($input,$output);
-	} elseif(in_array($ext,__unoconv_list()) || saltos_content_type($input)=="text/plain") {
-		if(check_commands(getDefault("commands/unoconv"),60)) ob_passthru(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__unoconv__")));
+	} elseif((in_array($ext,__unoconv_list()) && !in_array($type,array("audio","video"))) || in_array($type0,array("text","message"))) {
+		if(check_commands(getDefault("commands/unoconv"),60)) {
+			ob_passthru(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__unoconv__")));
+		}
 	}
 	return __unoconv_post($array,$input,$output);
 }
 
+function __unoconv_getutf8($temp) {
+	require_once("php/getmail.php");
+	return __getmail_getutf8($temp);
+}
+
 function unoconv2txt($array) {
-	list($input,$output)=__unoconv_pre($array);
-	$ext=strtolower(extension($input));
-	if($ext=="txt" || saltos_content_type($input)=="text/plain") {
+	list($input,$output,$type,$ext,$type0)=__unoconv_pre($array);
+	if(in_array($type0,array("text","message"))) {
 		copy($input,$output);
-	} elseif($ext=="pdf") {
-		if(check_commands(getDefault("commands/pdftotext"),60)) ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
-	} elseif(in_array($ext,__unoconv_list()) && substr(saltos_content_type($input),0,5)!="image") {
-		$temp=get_temp_file(getDefault("exts/pdfext",".pdf"));
-		if(check_commands(getDefault("commands/unoconv"),60)) ob_passthru(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$temp),getDefault("commands/__unoconv__")));
-		if(file_exists($temp)) {
-			if(check_commands(getDefault("commands/pdftotext"),60)) ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($temp,$output),getDefault("commands/__pdftotext__")));
-			unlink($temp);
+	} elseif($type=="application/pdf") {
+		if(check_commands(getDefault("commands/pdftotext"),60)) {
+			ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
 		}
+	} elseif(in_array($ext,__unoconv_list()) && !in_array($type0,array("image","audio","video"))) {
+		$temp=get_temp_file(getDefault("exts/pdfext",".pdf"));
+		if(check_commands(array(getDefault("commands/unoconv"),getDefault("commands/pdftotext")),60)) {
+			ob_passthru(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$temp),getDefault("commands/__unoconv__")));
+			if(file_exists($temp)) {
+				ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($temp,$output),getDefault("commands/__pdftotext__")));
+				unlink($temp);
+			}
+		}
+	}
+	if(file_exists($output)) {
+		$temp=file_get_contents($output);
+		$temp=__unoconv_getutf8($temp);
+		$temp=encode_bad_chars($temp," ");
+		file_put_contents($output,$temp);
 	}
 	return __unoconv_post($array,$input,$output);
 }

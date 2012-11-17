@@ -1185,6 +1185,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyemail>Sólo en las direcciones</onlyemail>
 		<onlysubject>Sólo en el asunto</onlysubject>
 		<onlybody>Sólo en el mensaje</onlybody>
+		<onlyfiles>Sólo en los ficheros</onlyfiles>
 		<restocampos>En el resto de campos</restocampos>
 		<filtrarcorreos>Filtrar por</filtrarcorreos>
 		<priority>Prioridad</priority>

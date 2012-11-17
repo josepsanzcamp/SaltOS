@@ -1182,10 +1182,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<message2> messages</message2>
 		<campos>Fields</campos>
 		<allcampos>[all fields]</allcampos>
-		<onlyemail>Only in the directions</onlyemail>
-		<onlysubject>Only in the case</onlysubject>
-		<onlybody>only message</onlybody>
-		<restocampos>In the rest field</restocampos>
+		<onlyemail>Only in the email address</onlyemail>
+		<onlysubject>Only in the subject</onlysubject>
+		<onlybody>Only in the message</onlybody>
+		<onlyfiles>Only in the files</onlyfiles>
+		<restocampos>In the other fields</restocampos>
 		<filtrarcorreos>Filter by</filtrarcorreos>
 		<priority>Priority</priority>
 		<priorityhigh>High</priorityhigh>

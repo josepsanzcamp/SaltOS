@@ -366,6 +366,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<value>body</value>
 							</row>
 							<row>
+								<label lang="true">onlyfiles</label>
+								<value>files</value>
+							</row>
+							<row>
 								<label lang="true">restocampos</label>
 								<value>resto</value>
 							</row>
@@ -549,7 +553,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
-		<temp global="campos_array" eval="true">$campos_array=array(""=>"id2,from,to,cc,bcc,datetime,subject,body,estado,msgid","email"=>"from,to,cc,bcc","subject"=>"subject","body"=>"body","resto"=>"id2,datetime,estado,msgid")</temp>
+		<temp global="campos_array" eval="true">$campos_array=array(""=>"id2,from,to,cc,bcc,datetime,subject,body,estado,msgid,search","email"=>"from,to,cc,bcc","subject"=>"subject","body"=>"body","files"=>"search","resto"=>"id2,datetime,estado,msgid")</temp>
 		<temp global="campos,campos_array" eval="true">$campos=isset($campos_array[$campos])?$campos:""</temp>
 		<temp global="fecha3_array" eval="true">$fecha3_array=array(""=>"1=1","today"=>"DATE(`datetime`)=DATE('".current_date()."')","yesterday"=>"DATE(`datetime`)=DATE('".current_date(-86400)."')","week"=>"DATE(`datetime`)>=DATE('".current_date(-86400*7)."')","month"=>"DATE(`datetime`)>=DATE('".current_date(-86400*30)."')")</temp>
 		<temp global="fecha3,fecha3_array" eval="true">$fecha3=isset($fecha3_array[$fecha3])?$fecha3:""</temp>
@@ -581,7 +585,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE (".check_user($page,"create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_forward,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_wait,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_spam,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+			(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=z.id) search
 		FROM (
 		SELECT a.id id,/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
 			`from`,`to`,`cc`,`bcc`,

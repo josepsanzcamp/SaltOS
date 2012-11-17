@@ -590,7 +590,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				UNION
 				SELECT /*MYSQL CONCAT('r',id_registro,'a',id_aplicacion) *//*SQLITE 'r' || id_registro || 'a' || id_aplicacion */ id,
 					id_registro,/*SQLITE CAST(id_aplicacion AS TEXT) */ id_aplicacion FROM tbl_ficheros
-					WHERE ".($filtro?make_like_query("datetime,fichero,fichero_file,fichero_type,fichero_size",$filtro):"(1=0)")."
+					WHERE ".($filtro?make_like_query("datetime,fichero,fichero_file,fichero_type,fichero_size,search",$filtro):"(1=0)")."
 				UNION
 				SELECT /*MYSQL CONCAT('r',id_registro,'a',id_aplicacion) *//*SQLITE 'r' || id_registro || 'a' || id_aplicacion */ id,
 					id_registro,/*SQLITE CAST(id_aplicacion AS TEXT) */ id_aplicacion FROM tbl_comentarios

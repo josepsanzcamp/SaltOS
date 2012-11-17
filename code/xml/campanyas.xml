@@ -261,7 +261,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2filter,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2filter,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+			(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) search
 		FROM (
 			SELECT a.*,e.id_usuario id_usuario,d.id_grupo id_grupo,c.activo activo,
 				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado
@@ -270,7 +271,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) b
-		WHERE ".make_like_query("id,nombre,descripcion,estado,dstart,dstop",$filtro)." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id,nombre,descripcion,estado,dstart,dstop,search",$filtro)." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

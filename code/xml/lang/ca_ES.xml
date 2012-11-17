@@ -1185,6 +1185,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyemail>Només en les direccions</onlyemail>
 		<onlysubject>Només en l'assumpte</onlysubject>
 		<onlybody>Només en el missatge</onlybody>
+		<onlyfiles>Només als fitxers</onlyfiles>
 		<restocampos>A la resta de camps</restocampos>
 		<filtrarcorreos>Filtrar per</filtrarcorreos>
 		<priority>Prioritat</priority>

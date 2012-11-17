@@ -140,7 +140,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || id,-5,5) || ' - ' || nombre */ action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+			(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) search
 		FROM (
 			SELECT
 				a.*,
@@ -150,7 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) b
-		WHERE ".make_like_query("id,nombre,precio,descripcion",$filtro)." AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id,nombre,precio,descripcion,search",$filtro)." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

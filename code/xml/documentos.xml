@@ -226,13 +226,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 		CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 		CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
-		a.id_cliente id_cliente,e.id_usuario id_usuario,d.id_grupo id_grupo,id_proyecto,a.descripcion descripcion
+		a.id_cliente id_cliente,e.id_usuario id_usuario,d.id_grupo id_grupo,id_proyecto,a.descripcion descripcion,
+		(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
 	FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre FROM tbl_documentos a2
 		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
 		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto) a
 		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
-	WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".make_like_query("nombre2,descripcion,cliente2,proyecto2,usuario,datetime",$comentarios)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE(`datetime`)>=DATE('$fecha2'))":"(1=1)")." AND ".check_sql($page,"list")</query>
+	WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".make_like_query("nombre2,descripcion,cliente2,proyecto2,usuario,datetime,search",$comentarios)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE(`datetime`)>=DATE('$fecha2'))":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

@@ -248,7 +248,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2filter,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2filter,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+			(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=cc.id) search
 		FROM (SELECT a.id id,a.nombre nombre,a.activo activo,a.activo activo2,a.tel_fijo tel_fijo,a.tel_movil tel_movil,a.email email,a.comentarios comentarios,
 					/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
 					a.id_campanya id_campanya,a.id_importacion id_importacion,a.id_estado id_estado,
@@ -261,7 +262,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 				LEFT JOIN tbl_estados c ON a.id_estado=c.id
 		) cc
-		WHERE ".make_like_query("id2,usuario,nombre,direccion,codpostal,poblacion,provincia,tel_fijo,tel_movil,email,comentarios,estado",$filtro)." AND (activo2='$activo' OR ''='$activo') AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_importacion='$id_importacion' OR ''='$id_importacion') AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND c_activo='1') OR ('alldisabled'='$id_estado' AND c_activo='0')) AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id2,usuario,nombre,direccion,codpostal,poblacion,provincia,tel_fijo,tel_movil,email,comentarios,estado,search",$filtro)." AND (activo2='$activo' OR ''='$activo') AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_importacion='$id_importacion' OR ''='$id_importacion') AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND c_activo='1') OR ('alldisabled'='$id_estado' AND c_activo='0')) AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

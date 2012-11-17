@@ -248,7 +248,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2filter,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2filter,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+			(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=c.id) search
 		FROM (
 			SELECT y1.valor tel_fijo,y2.valor tel_movil,y5.valor email,
 				/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
@@ -265,7 +266,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_comunicaciones y5 ON y5.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='email') ORDER BY seleccion DESC, id ASC LIMIT 1)
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 		) c
-		WHERE ".make_like_query("id2,usuario,nombre,direccion,codpostal,poblacion,provincia,tel_fijo,tel_movil,cif,email,comentarios",$filtro)." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_importacion='$id_importacion' OR ''='$id_importacion') AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id2,usuario,nombre,direccion,codpostal,poblacion,provincia,tel_fijo,tel_movil,cif,email,comentarios,search",$filtro)." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_importacion='$id_importacion' OR ''='$id_importacion') AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

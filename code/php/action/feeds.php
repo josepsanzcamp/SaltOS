@@ -116,6 +116,7 @@ if(getParam("action")=="feeds") {
 		}
 		return $array;
 	}
+
 	function __feeds_getnode($path,$array) {
 		if(!is_array($path)) $path=explode("/",$path);
 		$elem=array_shift($path);
@@ -123,26 +124,32 @@ if(getParam("action")=="feeds") {
 		if(count($path)==0) return $array[$elem];
 		return __feeds_getnode($path,__feeds_getvalue($array[$elem]));
 	}
+
 	function __feeds_getvalue($array) {
 		return (is_array($array) && isset($array["value"]))?$array["value"]:$array;
 	}
+
 	function __feeds_getutf8($temp) {
 		require_once("php/getmail.php");
 		return __getmail_getutf8($temp);
 	}
+
 	function __feeds_html2text($html) {
 		require_once("php/getmail.php");
 		return __getmail_html2text($html);
 	}
+
 	function __feeds_xml2array($xml) {
 		$data=xml2struct($xml);
 		$data=array_reverse($data);
 		$array=__feeds_leer_nodos($data);
 		return $array;
 	}
+
 	function __feeds_array2xml($array) {
 		return escribir_nodos($array);
 	}
+
 	function __feeds_detect($array) {
 		$keys=array_keys($array);
 		if(isset($keys[0])) {
@@ -152,6 +159,7 @@ if(getParam("action")=="feeds") {
 		}
 		return "unknown";
 	}
+
 	function __feeds_fetchmain($array) {
 		$type=__feeds_detect($array);
 		$title="";
@@ -194,6 +202,7 @@ if(getParam("action")=="feeds") {
 		foreach($array as $key=>$val) $array[$key]=trim($val);
 		return $array;
 	}
+
 	function __feeds_fetchitems($array) {
 		require_once("php/defines.php");
 		$type=__feeds_detect($array);
@@ -311,14 +320,17 @@ if(getParam("action")=="feeds") {
 		foreach($items as $key=>$val) foreach($val as $key2=>$val2) $items[$key][$key2]=trim($val2);
 		return $items;
 	}
+
 	function __feeds_href_replace($temp) {
 		require_once("php/getmail.php");
 		return __getmail_href_replace($temp);
 	}
+
 	function __feeds_removescripts($temp) {
 		require_once("php/getmail.php");
 		return __getmail_removescripts($temp);
 	}
+
 	function __feeds_make_clickable($temp) {
 		require_once("php/getmail.php");
 		return __getmail_make_clickable($temp);
