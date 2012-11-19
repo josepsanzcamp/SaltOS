@@ -42,8 +42,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<file eval="true">getcwd()."/files/saltos.db"</file><!-- for SQLite -->
 		<datatypes>
 			<int>integer,int</int>
-			<string>text,varchar</string>
-			<float>decimal,float</float>
+			<string>tinytext,text,mediumtext,longtext,varchar</string>
+			<float>decimal,float,double</float>
 			<date>date</date>
 			<time>time</time>
 			<datetime>datetime</datetime>

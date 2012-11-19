@@ -1297,7 +1297,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>search</name>
-					<type>TEXT</type>
+					<type>MEDIUMTEXT</type>
 				</field>
 			</fields>
 		</table>

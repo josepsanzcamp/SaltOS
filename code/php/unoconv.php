@@ -92,13 +92,13 @@ function __unoconv_getutf8($temp) {
 
 function unoconv2txt($array) {
 	list($input,$output,$type,$ext,$type0)=__unoconv_pre($array);
-	if(in_array($type0,array("text","message"))) {
+	if($type=="text/plain") {
 		copy($input,$output);
 	} elseif($type=="application/pdf") {
 		if(check_commands(getDefault("commands/pdftotext"),60)) {
 			ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
 		}
-	} elseif(in_array($ext,__unoconv_list()) && !in_array($type0,array("image","audio","video"))) {
+	} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("image","audio","video"))) || in_array($type0,array("text","message"))) {
 		$temp=get_temp_file(getDefault("exts/pdfext",".pdf"));
 		if(check_commands(array(getDefault("commands/unoconv"),getDefault("commands/pdftotext")),60)) {
 			ob_passthru(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$temp),getDefault("commands/__unoconv__")));
@@ -111,7 +111,6 @@ function unoconv2txt($array) {
 	if(file_exists($output)) {
 		$temp=file_get_contents($output);
 		$temp=__unoconv_getutf8($temp);
-		$temp=encode_bad_chars($temp," ");
 		file_put_contents($output,$temp);
 	}
 	return __unoconv_post($array,$input,$output);
