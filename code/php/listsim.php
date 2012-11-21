@@ -115,7 +115,7 @@ function list_check_order($order,$fields2) {
 	// PREPARE THE ORDER ARRAY
 	$array=explode(",",$order);
 	foreach($array as $key=>$val) {
-		$val=encode_words($val);
+		$val=encode_words($val," ");
 		$val=explode(" ",$val,2);
 		if(!in_array($val[0],$fields)) $val[0]="id";
 		if(!isset($val[1])) $val[1]="desc";

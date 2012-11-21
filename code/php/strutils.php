@@ -154,6 +154,14 @@ function encode_words($cad,$pad=" ") {
 	return $cad;
 }
 
+function encode_search($cad,$pad=" ") {
+	static $bad_chars=null;
+	if(is_null($bad_chars)) for($i=0;$i<32;$i++) $bad_chars[]=chr($i);
+	$cad=str_replace($bad_chars,$pad,$cad);
+	$cad=encode_words($cad,$pad);
+	return $cad;
+}
+
 function querystring2array($querystring) {
 	$items=explode("&",$querystring);
 	$result=array();
@@ -212,7 +220,7 @@ function color2dec($color,$component) {
 function dateval($value) {
 	static $expr=array("-",":",",",".","/");
 	$value=str_replace($expr," ",$value);
-	$value=encode_words($value);
+	$value=encode_words($value," ");
 	$temp=explode(" ",$value);
 	foreach($temp as $key=>$val) $temp[$key]=intval($val);
 	for($i=0;$i<3;$i++) if(!isset($temp[$i])) $temp[$i]=0;
@@ -227,7 +235,7 @@ function dateval($value) {
 function timeval($value) {
 	static $expr=array("-",":",",",".","/");
 	$value=str_replace($expr," ",$value);
-	$value=encode_words($value);
+	$value=encode_words($value," ");
 	$temp=explode(" ",$value);
 	foreach($temp as $key=>$val) $temp[$key]=intval($val);
 	for($i=0;$i<3;$i++) if(!isset($temp[$i])) $temp[$i]=0;
@@ -238,7 +246,7 @@ function timeval($value) {
 function datetimeval($value) {
 	static $expr=array("-",":",",",".","/");
 	$value=str_replace($expr," ",$value);
-	$value=encode_words($value);
+	$value=encode_words($value," ");
 	$temp=explode(" ",$value);
 	foreach($temp as $key=>$val) $temp[$key]=intval($val);
 	for($i=0;$i<6;$i++) if(!isset($temp[$i])) $temp[$i]=0;

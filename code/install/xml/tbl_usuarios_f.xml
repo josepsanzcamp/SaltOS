@@ -28,8 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<id>1</id>
 		<id_usuario>1</id_usuario>
 		<url>http://www.saltos.net/portal/es/xml/rss.xml</url>
-		<title>Últimas noticias de SaltOS y RhinOS</title>
-		<description>Canal de noticias de SaltOS y RhinOS</description>
+		<title>Últimas noticias de SaltOS</title>
+		<description>Canal de noticias de SaltOS</description>
 		<image>http://www.saltos.net/portal/es/ico/header.png</image>
 		<link>http://www.saltos.net/portal/es/inicio.htm</link>
 		<disabled>0</disabled>

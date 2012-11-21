@@ -585,8 +585,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE (".check_user($page,"create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_forward,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_wait,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_spam,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
-			(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=z.id) search
+			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 		SELECT a.id id,/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
 			`from`,`to`,`cc`,`bcc`,
@@ -623,7 +622,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential")." ' ELSE '' END ||
 			CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
 			*/) estado,
-			CASE WHEN state_error!='' THEN 'state_error' WHEN state_spam=1 THEN 'state_spam' WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE '' END action_style
+			CASE WHEN state_error!='' THEN 'state_error' WHEN state_spam=1 THEN 'state_spam' WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE '' END action_style,
+			(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
 		FROM tbl_correo a
 		LEFT JOIN tbl_usuarios_c uc ON a.id_cuenta=uc.id
 		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id

@@ -508,7 +508,7 @@ function __getmail_insert($message,$messageid,$state_new,$state_reply,$state_for
 		$fichero_file=$file["chash"];
 		$fichero_size=$file["csize"];
 		$fichero_type=$file["ctype"];
-		$search=encode_bad_chars(unoconv2txt(array("data"=>$file["body"],"ext"=>strtolower(extension($file["cname"]))))," ");
+		$search=addslashes(encode_search(unoconv2txt(array("data"=>$file["body"],"ext"=>strtolower(extension($file["cname"]))))," "));
 		$query="INSERT INTO tbl_ficheros(id,id_aplicacion,id_registro,id_usuario,`datetime`,`fichero`,`fichero_file`,`fichero_size`,`fichero_type`,`search`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}','${fichero}','${fichero_file}','${fichero_size}','${fichero_type}','${search}')";
 		db_query($query);
 	}
