@@ -965,38 +965,52 @@ function show_php_error($array=null) {
 }
 
 function pretty_html_error($msg) {
-	// ORIGINAL IDEA FROM plugins.jquery.com
+	// ORIGINAL IDEA FROM:
+	// - http://plugins.jquery.com
+	// - http://www.google.com/safebrowsing/diagnostic?site=saltos.net
 	$html="<html>";
 	$html.="<head>";
 	$html.="<title>".get_name_version_revision()."</title>";
 	$html.="<style>";
-	$html.=".phperror { background:#444; color:#fff; font-family:Helvetica,Arial,sans-serif; padding:20px 0; }";
+	$html.=".phperror { padding:20px; background:#e6e6e6; font-family:Helvetica,Arial,sans-serif; color:#000; }";
+	$html.=".phperror .contents { width:80%; }";
+	$html.=".phperror .contents-rc1 { height:1px; font-size:1px; line-height:1px; background:#d6d6d6; overflow:hidden; margin:0 2px; display:block; }";
+	$html.=".phperror .contents-rc2 { height:1px; font-size:1px; line-height:1px; background:#d6d6d6; overflow:hidden; margin:0 1px; display:block; }";
+	$html.=".phperror .content { border-left:2px solid #d6d6d6; border-right:2px solid #d6d6d6; text-align:left; padding:20px 40px; background:#fff; }";
 	$favicon=getDefault("info/favicon","img/favicon.png");
 	if(file_exists($favicon) && memory_get_free()>filesize($favicon)*4/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
-	$html.=".phperror h3 { background:url(".$favicon.") top left no-repeat; padding-left: 50px; min-height:32px; font-size:1.5em; margin:0; }";
-	$html.=".phperror a { color: cyan; }";
-	$html.=".phperror pre { white-space:pre-wrap; }";
-	$html.=".phperror p { margin:0; }";
-	$html.=".phperror form { display:inline; }";
-	$html.=".phperror input { background:#fff; padding:5px; border-radius:5px; border:none; margin-right:5px; }";
-	$html.=".phperror div { background:#000; padding:20px; border-radius:20px; box-shadow:0 0 20px #222; width:800px; margin:100px auto; }";
+	$html.=".phperror h3 { background:url(${favicon}) top left no-repeat; padding-left: 48px; height:32px; font-size:24px; margin:0; }";
+	$html.=".phperror pre { white-space:pre-wrap; font-size:10px; }";
+	$html.=".phperror form { display:inline; float:right; }";
+	$html.=".phperror a { color:#00c; }";
+	$html.=".phperror form a { margin-left:12px; font-size:12px; }";
 	$html.="</style>";
 	$html.="</head>";
 	$html.="<body class='phperror'>";
-	$html.="<div>";
+	$html.="<center>";
+	$html.="<div class='contents'>";
+	$html.="<div class='contents-rc1'></div>";
+	$html.="<div class='contents-rc2'></div>";
+	$html.="<div class='content'>";
+	$bug=base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)));
+	$html.=__pretty_html_error_helper("http://bugs.saltos.net",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
+	$html.=__pretty_html_error_helper("xml.php",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
 	$html.=$msg;
-	$html.="<p>";
-	$html.="<form action='xml.php' method='post' style='display:inline'>";
-	$html.="<input type='hidden' name='page' value='home'/>";
-	$html.="<input type='submit' value='".(LANG_LOADED()?LANG("gotohome"):"Go to home")."'/>";
-	$html.="</form>";
-	$html.="<form action='http://bugs.saltos.net/' method='post' style='display:inline'>";
-	$html.="<input type='hidden' name='bug' value='".base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)))."'/>";
-	$html.="<input type='submit' value='".(LANG_LOADED()?LANG("notifybug"):"Notify bug")."'/>";
-	$html.="</form>";
-	$html.="</p>";
 	$html.="</div>";
+	$html.="<div class='contents-rc2'></div>";
+	$html.="<div class='contents-rc1'></div>";
+	$html.="</div>";
+	$html.="</center>";
 	$html.="</body>";
+	return $html;
+}
+
+function __pretty_html_error_helper($action,$hiddens,$submit) {
+	$html="";
+	$html.="<form action='${action}' method='post'>";
+	foreach($hiddens as $key=>$val) $html.="<input type='hidden' name='${key}' value='${val}'/>";
+	$html.="<a href='javascript:void(0)' onclick='this.parentNode.submit()'>${submit}</a>";
+	$html.="</form>";
 	return $html;
 }
 
