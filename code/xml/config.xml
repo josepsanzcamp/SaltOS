@@ -41,12 +41,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<name>saltos</name><!-- for MySQL -->
 		<file eval="true">getcwd()."/files/saltos.db"</file><!-- for SQLite -->
 		<datatypes>
-			<int>integer,int</int>
-			<string>tinytext,text,mediumtext,longtext,varchar</string>
-			<float>decimal,float,double</float>
-			<date>date</date>
-			<time>time</time>
-			<datetime>datetime</datetime>
+			<int>INTEGER</int>
+			<string>TINYTEXT,TEXT,MEDIUMTEXT,LONGTEXT</string>
+			<float>DECIMAL(9,2),FLOAT,DOUBLE</float>
+			<date>DATE</date>
+			<time>TIME</time>
+			<datetime>DATETIME</datetime>
 		</datatypes>
 		<usecache>true</usecache>
 		<nocaches>
@@ -93,7 +93,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<lang>es_ES</lang>
 		<style eval="true">is_mobile()?"b":"redmond"</style>
 		<stylepre eval="true">is_mobile()?"lib/jquery/jquery.mobile.theme.":"lib/jquery/jquery.theme."</stylepre>
-		<stylepost eval="true">is_mobile()?".css":"/jquery-ui-1.9.1.css"</stylepost>
+		<stylepost eval="true">is_mobile()?".css":"/jquery-ui-1.9.2.css"</stylepost>
 		<iconset>silk</iconset>
 		<iconsetpre>xml.php?action=iconset&amp;iconset=</iconsetpre>
 		<iconsetpost>&amp;format=css</iconsetpost>
@@ -219,7 +219,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery-1.8.3.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
-			<include>lib/jquery/jquery-ui-1.9.1.min.js</include>
+			<include>lib/jquery/jquery-ui-1.9.2.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.js</include>
 			<include>lib/jquery/jquery.blockUI.js</include>
 			<include>lib/jquery/jquery.jgrowl.js</include>

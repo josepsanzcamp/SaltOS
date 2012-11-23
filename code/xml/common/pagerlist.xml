@@ -42,7 +42,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<field>
 			<type>label</type>
 			<label eval="true">LANG("paginaspc")."1".LANG("spcdespc")."1"." (".LANG("regsfrom")." "."0".LANG("spcalspc")."0".LANG("spcdespc")."0".")."</label>
-			<class>nowrap infopager</class>
+			<class>nowrap</class>
+			<class2>infopager</class2>
 		</field>
 		<field ifeval="!is_mobile()">
 			<type>select</type>

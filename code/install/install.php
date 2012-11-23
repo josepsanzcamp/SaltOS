@@ -64,7 +64,7 @@ define("__BR__","<br/>");
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="lib/jquery/jquery-1.8.3.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="lib/jquery/jquery-ui-1.9.1.min.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-ui-1.9.2.min.js"></script>
 	</head>
 	<body>
 		<div class="ui-layout-north" style="margin-left:auto;margin-right:auto;width:800px">

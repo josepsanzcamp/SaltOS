@@ -183,7 +183,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</field>
 		</node>
 		<query global="page,id_usuario,id_aplicacion,filtro" eval="true">"SELECT * FROM (
-			SELECT a.*,/*MYSQL LPAD(a.id_registro,5,0) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) */ id2,
+			SELECT a.id,/*MYSQL LPAD(a.id_registro,5,0) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) */ id2,
+			a.id_aplicacion,a.id_registro,a.id_usuario,a.datetime,a.fichero,a.fichero_file,a.fichero_size,a.fichero_type,
 			d.id_grupo id_grupo,
 			/*MYSQL CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) *//*SQLITE a.id || '_' || (SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion) || '_' || a.id_registro */ action_id,
 			(SELECT /*MYSQL CONCAT('link:opencontent(\"xml.php?page=',codigo,'\"):',nombre) *//*SQLITE 'link:opencontent(\"xml.php?page=' || codigo || '\"):' || nombre */ FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,

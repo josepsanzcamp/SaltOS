@@ -601,7 +601,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>body</name>
-					<type>TEXT</type>
+					<type>MEDIUMTEXT</type>
 				</field>
 				<field>
 					<name>state_new</name>
@@ -1971,7 +1971,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_estado</name>
-					<type>INT</type>
+					<type>INTEGER</type>
 					<fkey>tbl_estados</fkey>
 				</field>
 				<field>
@@ -2102,7 +2102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_estado</name>
-					<type>INT</type>
+					<type>INTEGER</type>
 					<fkey>tbl_estados</fkey>
 				</field>
 				<field>

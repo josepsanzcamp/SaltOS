@@ -523,7 +523,7 @@ function db_schema() {
 				if(in_array($table,$tables1)) {
 					$fields1=get_fields($table);
 					$fields2=array();
-					foreach($tablespec["fields"] as $fieldspec) $fields2[]=array("name"=>$fieldspec["name"],"type"=>get_field_type($fieldspec["type"]));
+					foreach($tablespec["fields"] as $fieldspec) $fields2[]=array("name"=>$fieldspec["name"],"type"=>strtoupper($fieldspec["type"]));
 					$hash3=md5(serialize($fields1));
 					$hash4=md5(serialize($fields2));
 					if($hash3!=$hash4) {
@@ -535,7 +535,7 @@ function db_schema() {
 				} elseif(in_array($backup,$tables1)) {
 					$fields1=get_fields($backup);
 					$fields2=array();
-					foreach($tablespec["fields"] as $fieldspec) $fields2[]=array("name"=>$fieldspec["name"],"type"=>get_field_type($fieldspec["type"]));
+					foreach($tablespec["fields"] as $fieldspec) $fields2[]=array("name"=>$fieldspec["name"],"type"=>strtoupper($fieldspec["type"]));
 					$hash3=md5(serialize($fields1));
 					$hash4=md5(serialize($fields2));
 					if($hash3!=$hash4) {
