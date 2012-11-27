@@ -57,7 +57,6 @@ if(getParam("action")=="export") {
 			while($row=db_fetch_row($result)) {
 				$values=array();
 				foreach($row as $value) {
-					//$value=str_replace("'","\\'",$value);
 					$value=addslashes($value);
 					$values[]="'".$value."'";
 				}

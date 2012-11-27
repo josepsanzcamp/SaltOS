@@ -44,22 +44,33 @@ if(getParam("action")=="import") {
 		die();
 	}
 	// FUNCTIONS
+	function __import_find_chars($data,$pos,$chars) {
+		$result=array();
+		$len=strlen($chars);
+		for($i=0;$i<$len;$i++) {
+			$temp=strpos($data,$chars[$i],$pos);
+			if($temp!==false) $result[]=$temp;
+		}
+		return count($result)?min($result):false;
+	}
+
 	function __import_find_query($data,$pos) {
 		$len=strlen($data);
 		$parentesis=0;
 		$parser=1;
-		$count=$pos;
-		$letra_old="";
-		while($count<$len) {
-			$letra=$data[$count];
-			if($letra=="'" && $letra_old!="\\") $parser=!$parser;
-			elseif($letra=="(" && $parser) $parentesis++;
-			elseif($letra==")" && $parser) $parentesis--;
-			elseif($letra==";" && $parser && $parentesis==0) break;
-			$letra_old=$letra;
-			$count++;
+		$exists=0;
+		$pos2=__import_find_chars($data,$pos,"\\'();");
+		while($pos2!==false) {
+			if($data[$pos2]=="\\") $pos2++;
+			elseif($data[$pos2]=="'") $parser=!$parser;
+			elseif($data[$pos2]=="(" && $parser) $parentesis++;
+			elseif($data[$pos2]==")" && $parser) $parentesis--;
+			elseif($data[$pos2]==";" && $parser && !$parentesis) { $exists=1; break; }
+			if($pos2+1>=$len) break;
+			$pos2=__import_find_chars($data,$pos2+1,"\\'();");
 		}
-		return $count-$pos;
+		if(!$parser || $parentesis || !$exists) return 0;
+		return $pos2-$pos;
 	}
 	// DISABLE DB CACHE
 	$oldcache=set_use_cache("false");
@@ -72,16 +83,20 @@ if(getParam("action")=="import") {
 	$pos=0;
 	while($pos<$len) {
 		$count=__import_find_query($data,$pos);
-		$query=substr($data,$pos,$count);
-		db_query($query);
-		$pos=$pos+$count+1;
-		if($len-$pos<$limit && $limit>0) {
+		if($count) {
+			$query=substr($data,$pos,$count);
+			db_query($query);
+			$pos=$pos+$count+1;
+		}
+		if(($len-$pos<$limit || !$count) && $limit) {
 			$temp=gzread($fp,$limit);
 			if(strlen($temp)<$limit) $limit=0;
 			$data=substr($data,$pos).$temp;
 			unset($temp);
 			$pos=0;
 			$len=strlen($data);
+		} elseif(!$count && !$limit) {
+			break;
 		}
 	}
 	gzclose($fp);
