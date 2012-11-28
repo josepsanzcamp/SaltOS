@@ -492,7 +492,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Masonry 2.1.05 (MIT)</label>
+							<label>Masonry 2.1.06 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://desandro.com/resources/jquery-masonry/")</onclick>

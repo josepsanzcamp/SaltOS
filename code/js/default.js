@@ -1450,7 +1450,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			CKEDITOR.config.uiColor=background;
 			CKEDITOR.config.autoGrow_onStartup=true;
 			CKEDITOR.config.disableNativeSpellChecker=false;
-			$(ckeditors).ckeditor();
+			$(ckeditors).each(function() { CKEDITOR.replace(this); });
 		}
 		//~ console.timeEnd("make_ckeditors");
 	}
