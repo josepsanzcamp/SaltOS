@@ -235,6 +235,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<inline ifeval="!is_mobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<cache ifeval="!is_mobile()">
 			<include>lib/ckeditor/ckeditor.min.js</include>
+			<include>lib/ckeditor/adapters/jquery.min.js</include>
 			<include>lib/pdfjs/pdf.min.js</include>
 			<include>lib/pdfjs/viewer.min.js</include>
 		</cache>
