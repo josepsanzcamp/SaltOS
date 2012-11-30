@@ -658,16 +658,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://dag.wieers.com/home-made/unoconv/")</onclick>
 						</field>
 						<field>
-							<label>ELinks 0.12pre5 (GPL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://elinks.or.cz/")</onclick>
-						</field>
-						<field>
 							<label>ImageMagick 6.4 (ImageMagick)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.imagemagick.org/")</onclick>
+						</field>
+						<field>
+							<label>Aspell 0.60.6 (GPL-2.0, LGPL-2.0 &amp; MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://aspell.net/")</onclick>
 						</field>
 					</row>
 					<row>
@@ -698,12 +698,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Aspell 0.60.6 (GPL-2.0, LGPL-2.0 &amp; MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://aspell.net/")</onclick>
-						</field>
-						<field>
 							<label>Closure Compiler (Apache-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
@@ -712,7 +706,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>

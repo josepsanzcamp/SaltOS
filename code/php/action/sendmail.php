@@ -330,7 +330,7 @@ if(getParam("action")=="sendmail") {
 	die();
 }
 if(getParam("page")=="correo") {
-	$id_cuenta=getParam("id_cuenta")?intval(getParam("id_cuenta")):execute_query("SELECT id FROM (SELECT id,(SELECT COUNT(*) FROM tbl_correo_a WHERE valor=email_from AND id_tipo IN (1,2,3,4)) contador,email_default FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC,contador DESC) z LIMIT 1");
+	$id_cuenta=getParam("id_cuenta")?intval(getParam("id_cuenta")):execute_query("SELECT id FROM (SELECT id,(SELECT COUNT(*) FROM tbl_correo_a WHERE valor=email_from AND id_tipo IN (1,2,3,4)) contador,email_default FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC,contador DESC LIMIT 1) z");
 	$id_extra=explode("_",getParam("id"),3);
 	$from_extra="";
 	$to_extra="";

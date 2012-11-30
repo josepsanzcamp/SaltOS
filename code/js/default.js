@@ -1433,25 +1433,21 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				},100);
 			}
 		});
-		// BEGIN NORMAL CODE
-		var ckeditors=$("textarea[ckeditor=true]",obj);
-		if($(ckeditors).length) {
-			// GET COLORS
-			var background=get_colors("ui-widget-header","background-color");
-			// CREATE THE CKEDITORS
-			CKEDITOR.config.toolbarCanCollapse=false;
-			CKEDITOR.config.removePlugins="elementspath,entities,scayt,resize";
-			CKEDITOR.config.extraPlugins="syntaxhighlight,autogrow";
-			CKEDITOR.config.enterMode=CKEDITOR.ENTER_BR;
-			CKEDITOR.config.shiftEnterMode=CKEDITOR.ENTER_BR;
-			CKEDITOR.config.forcePasteAsPlainText=true;
-			CKEDITOR.config.toolbar=[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","-","Source","-","Code"]];
-			CKEDITOR.config.language=lang_default();
-			CKEDITOR.config.uiColor=background;
-			CKEDITOR.config.autoGrow_onStartup=true;
-			CKEDITOR.config.disableNativeSpellChecker=false;
-			$(ckeditors).ckeditor();
-		}
+		// CREATE THE CKEDITORS
+		$("textarea[ckeditor=true]",obj).ckeditor({
+			skin:"kama",
+			toolbarCanCollapse:false,
+			removePlugins:"elementspath,entities,scayt,resize",
+			extraPlugins:"syntaxhighlight,autogrow",
+			enterMode:CKEDITOR.ENTER_BR,
+			shiftEnterMode:CKEDITOR.ENTER_BR,
+			forcePasteAsPlainText:true,
+			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","-","Source","-","Code"]],
+			language:lang_default(),
+			uiColor:get_colors("ui-widget-header","background-color"),
+			autoGrow_onStartup:true,
+			disableNativeSpellChecker:false
+		});
 		//~ console.timeEnd("make_ckeditors");
 	}
 

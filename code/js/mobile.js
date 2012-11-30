@@ -979,7 +979,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				},100);
 			}
 		});
-		// BEGIN NORMAL CODE
+		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).autogrow();
 	}
 

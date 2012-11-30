@@ -276,32 +276,10 @@ function get_tables() {
 	return $tables;
 }
 
-function __get_field_type_explode($separator,$str) {
-	$result=array();
-	$len=strlen($str);
-	$ini=0;
-	$pars=0;
-	for($i=0;$i<$len;$i++) {
-		$letter=$str[$i];
-		if($letter=="(") {
-			$pars++;
-		} elseif($letter==")") {
-			$pars--;
-		}
-		if($letter==$separator && $pars==0) {
-			$result[]=substr($str,$ini,$i-$ini);
-			$ini=$i+1;
-		}
-	}
-	if($i!=$ini) {
-		$result[]=substr($str,$ini,$i-$ini);
-	}
-	return $result;
-}
-
 function get_field_type($type) {
+	$type=strtok($type,"(");
 	$datatypes=getDefault("db/datatypes");
-	foreach($datatypes as $key=>$val) if(in_array($type,__get_field_type_explode(",",$val))) return $key;
+	foreach($datatypes as $key=>$val) if(in_array($type,explode(",",$val))) return $key;
 	show_php_error(array("phperror"=>"Unknown type '$type' in get_field_type"));
 }
 

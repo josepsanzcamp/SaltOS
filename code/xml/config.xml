@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<datatypes>
 			<int>INTEGER</int>
 			<string>TINYTEXT,TEXT,MEDIUMTEXT,LONGTEXT</string>
-			<float>DECIMAL(9,2),FLOAT,DOUBLE</float>
+			<float>DECIMAL,FLOAT,DOUBLE</float>
 			<date>DATE</date>
 			<time>TIME</time>
 			<datetime>DATETIME</datetime>
@@ -157,29 +157,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<useimginline>true</useimginline>
 	</cache>
 	<commands>
-		<unoconv>unoconv</unoconv>
+		<unoconv>unoconv</unoconv><!-- for unoconv module -->
 		<__unoconv__>--server 127.0.0.1 --port 2002 -f pdf -o __OUTPUT__ __INPUT__</__unoconv__>
 		<__unoconv_about__>--show 2&gt;&amp;1</__unoconv_about__>
-		<pdftotext>pdftotext</pdftotext>
+		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
 		<__pdftotext__>-nopgbrk __INPUT__ __OUTPUT__</__pdftotext__>
-		<elinks>elinks</elinks>
-		<__elinks__>-dump -no-home -eval 'set document.browse.margin_width=0' __INPUT__</__elinks__>
-		<text2wave>text2wave</text2wave>
+		<text2wave>text2wave</text2wave><!-- for voice module -->
 		<__text2wave__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave__>
 		<__text2wave_es__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave_es__>
 		<__text2wave_en__>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</__text2wave_en__>
-		<ffmpeg>ffmpeg</ffmpeg>
+		<ffmpeg>ffmpeg</ffmpeg><!-- for voice module -->
 		<__ffmpeg__>-i __INPUT__ -ar 44100 -ab 64k __OUTPUT__</__ffmpeg__>
-		<apertium>apertium</apertium>
+		<apertium>apertium</apertium><!-- for translate module -->
 		<__apertium__>-f txtu __LANGS__ &lt; __INPUT__</__apertium__>
 		<__apertium_langs__>-l</__apertium_langs__>
-		<aspell>aspell</aspell>
+		<aspell>aspell</aspell><!-- for translate module -->
 		<__aspell__>-a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
 		<__aspell_langs__>dump dicts</__aspell_langs__>
-		<which>which</which>
+		<which>which</which><!-- for check commands -->
 		<__which__>__INPUT__</__which__>
-		<sqlite3>sqlite3</sqlite3><!-- ONLY USED BY BIN_SQLITE DRIVER -->
-		<__sqlite3__>__DBFILE__ '.read __INPUT__'</__sqlite3__><!-- ONLY USED BY BIN_SQLITE DRIVER -->
+		<sqlite3>sqlite3</sqlite3><!-- only used by bin_sqlite driver -->
+		<__sqlite3__>__DBFILE__ '.read __INPUT__'</__sqlite3__>
 	</commands>
 	<debug>
 		<actiondebug>false</actiondebug>

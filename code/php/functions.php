@@ -972,11 +972,9 @@ function pretty_html_error($msg) {
 	$html.="<head>";
 	$html.="<title>".get_name_version_revision()."</title>";
 	$html.="<style>";
-	$html.=".phperror { padding:20px; background:#e6e6e6; font-family:Helvetica,Arial,sans-serif; color:#000; }";
-	$html.=".phperror .contents { width:80%; }";
-	$html.=".phperror .contents-rc1 { height:1px; font-size:1px; line-height:1px; background:#d6d6d6; overflow:hidden; margin:0 2px; display:block; }";
-	$html.=".phperror .contents-rc2 { height:1px; font-size:1px; line-height:1px; background:#d6d6d6; overflow:hidden; margin:0 1px; display:block; }";
-	$html.=".phperror .content { border-left:2px solid #d6d6d6; border-right:2px solid #d6d6d6; text-align:left; padding:20px 40px; background:#fff; }";
+	$html.=".phperror { background:#e6e6e6; color:#000; padding:20px; font-family:Helvetica,Arial,sans-serif; }";
+	$html.=".phperror div.box1 { width:80%; margin-left:auto; margin-right:auto; }";
+	$html.=".phperror div.box2 { background:#fff; padding:20px 40px; border:2px solid #d6d6d6; border-radius:4px; text-align:left; }";
 	$favicon=getDefault("info/favicon","img/favicon.png");
 	if(file_exists($favicon) && memory_get_free()>filesize($favicon)*4/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
 	$html.=".phperror h3 { background:url(${favicon}) top left no-repeat; padding-left: 48px; height:32px; font-size:24px; margin:0; }";
@@ -987,20 +985,14 @@ function pretty_html_error($msg) {
 	$html.="</style>";
 	$html.="</head>";
 	$html.="<body class='phperror'>";
-	$html.="<center>";
-	$html.="<div class='contents'>";
-	$html.="<div class='contents-rc1'></div>";
-	$html.="<div class='contents-rc2'></div>";
-	$html.="<div class='content'>";
+	$html.="<div class='box1'>";
+	$html.="<div class='box2'>";
 	$bug=base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)));
 	$html.=__pretty_html_error_helper("http://bugs.saltos.net",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
 	$html.=__pretty_html_error_helper("xml.php",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
 	$html.=$msg;
 	$html.="</div>";
-	$html.="<div class='contents-rc2'></div>";
-	$html.="<div class='contents-rc1'></div>";
 	$html.="</div>";
-	$html.="</center>";
 	$html.="</body>";
 	return $html;
 }

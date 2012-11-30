@@ -154,17 +154,10 @@ function __getmail_getutf8($temp) {
 
 // FUNCTION THAT CONVERT HTML TO PLAIN TEXT
 function __getmail_html2text($html) {
-	if(check_commands(getDefault("commands/elinks"),60)) {
-		$input=get_temp_file(getDefault("exts/inputext",".in"));
-		file_put_contents($input,$html);
-		$text=ob_passthru(getDefault("commands/elinks")." ".str_replace(array("__INPUT__"),array($input),getDefault("commands/__elinks__")));
-		unlink($input);
-	} else {
-		// ADD SUPPORT TO SYSTEMS THAT CAN NOT RUN ELINKS
-		include_once("lib/html2text/class.html2text.inc");
-		$h2t=new html2text($html);
-		$text=$h2t->get_text();
-	}
+	include_once("lib/html2text/class.html2text.inc");
+	$html=str_replace("$","",$html); // SECURITY FIX
+	$h2t=new html2text($html);
+	$text=$h2t->get_text();
 	return $text;
 }
 

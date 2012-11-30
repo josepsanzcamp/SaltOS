@@ -600,7 +600,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			TRIM(/*MYSQL CONCAT(
 			CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent")." ' ELSE '' END,
 			CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror")." ' END,
-			CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent").")' ELSE '' END,
+			CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' ".LANG_ESCAPE("statenotsent")."' ELSE '' END,
 			CASE state_new WHEN 1 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END,
 			CASE state_reply WHEN 1 THEN '".LANG_ESCAPE("statereply")." ' ELSE '' END,
 			CASE state_forward WHEN 1 THEN '".LANG_ESCAPE("stateforward")." ' ELSE '' END,
