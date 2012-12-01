@@ -78,22 +78,6 @@ function __useCookie_setcookie($name,$value,$expire) {
 	setcookie("__".$name."__",$value==""?"":$expire,$expire,dirname(getServer("SCRIPT_NAME")),"",eval_bool(getDefault("server/forcessl")),false);
 }
 
-function convert_date($date) {
-	$year=substr($date,0,4);
-	$month=substr($date,5,2);
-	$day=substr($date,8,2);
-	$newdate="${day}/${month}/${year}";
-	return $newdate;
-}
-
-function invert_date($date) {
-	$day=substr($date,0,2);
-	$month=substr($date,3,2);
-	$year=substr($date,6,4);
-	$newdate="$year-$month-$day";
-	return $newdate;
-}
-
 function current_datetime($offset=0) {
 	return current_date($offset)." ".current_time($offset);
 }
