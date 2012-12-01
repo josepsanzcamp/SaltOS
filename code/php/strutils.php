@@ -165,8 +165,8 @@ function encode_search($cad,$pad=" ") {
 function querystring2array($querystring) {
 	$items=explode("&",$querystring);
 	$result=array();
-	foreach($items as $key=>$val) {
-		$par=explode("=",$val,2);
+	foreach($items as $item) {
+		$par=explode("=",$item,2);
 		if(!isset($par[1])) $par[1]="";
 		$par[1]=rawurldecode($par[1]);
 		$result[$par[0]]=$par[1];
