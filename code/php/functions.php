@@ -496,7 +496,6 @@ function cache_gc() {
 function db_schema() {
 	if(!eval_bool(getDefault("db/dbschema"))) return;
 	$file="xml/dbschema.xml";
-	if(is_array(cache_exists_for_xml($file))) return;
 	capture_next_error();
 	$hash1=CONFIG($file);
 	get_clear_error();
@@ -591,7 +590,6 @@ function db_schema() {
 function db_static() {
 	if(!eval_bool(getDefault("db/dbstatic"))) return;
 	$file="xml/dbstatic.xml";
-	if(is_array(cache_exists_for_xml($file))) return;
 	$hash1=CONFIG($file);
 	$hash2=md5(serialize(xml2array($file)));
 	if($hash1!=$hash2) {

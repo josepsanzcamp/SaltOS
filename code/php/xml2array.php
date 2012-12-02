@@ -250,28 +250,21 @@ function eval_files() {
 	}
 }
 
-function cache_exists_for_xml($file) {
-	$cache=get_cache_file($file,getDefault("exts/arrayext",".arr"));
-	if(cache_exists($cache,$file)) {
-		$array=unserialize(file_get_contents($cache));
-		if(isset($array["depend"]) && isset($array["root"])) {
-			if(cache_exists($cache,$array["depend"])) {
-				return array("cache"=>$cache,"root"=>$array["root"]);
-			}
-		}
-	}
-	return $cache;
-}
-
 function xml2array($file,$usecache=true) {
 	static $depend=array();
 	$usecache=$usecache && eval_bool(getDefault("cache/usexml2arraycache",true));
 	if(!file_exists($file)) xml_error("File not found: $file");
 	if($usecache) {
+		$cache=get_cache_file($file,getDefault("exts/arrayext",".arr"));
+		if(cache_exists($cache,$file)) {
+			$array=unserialize(file_get_contents($cache));
+			if(isset($array["depend"]) && isset($array["root"])) {
+				if(cache_exists($cache,$array["depend"])) {
+					return $array["root"];
+				}
+			}
+		}
 		$depend=array();
-		$array=cache_exists_for_xml($file);
-		if(is_array($array)) return $array["root"];
-		$cache=$array;
 	} else {
 		$depend[]=$file;
 	}
