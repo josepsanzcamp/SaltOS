@@ -133,8 +133,8 @@ function make_clickable( $text ) {
  * @since 3.4.0
  * @access private
  *
- * @param string $string The string to split
- * @param    int $goal   The desired chunk length.
+ * @param string $string The string to split.
+ * @param int $goal The desired chunk length.
  * @return array Numeric array of chunks.
  */
 function _split_str_by_whitespace( $string, $goal ) {
@@ -363,7 +363,7 @@ function wp_allowed_protocols() {
 	static $protocols;
 
 	if ( empty( $protocols ) ) {
-		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn' );
+		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp' );
 		$protocols = apply_filters( 'kses_allowed_protocols', $protocols );
 	}
 

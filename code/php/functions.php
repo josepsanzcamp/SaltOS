@@ -963,16 +963,12 @@ function show_php_error($array=null) {
 }
 
 function pretty_html_error($msg) {
-	// ORIGINAL IDEA FROM:
-	// - http://plugins.jquery.com
-	// - http://www.google.com/safebrowsing/diagnostic?site=saltos.net
 	$html="<html>";
 	$html.="<head>";
 	$html.="<title>".get_name_version_revision()."</title>";
 	$html.="<style>";
-	$html.=".phperror { background:#e6e6e6; color:#000; padding:20px; font-family:Helvetica,Arial,sans-serif; }";
-	$html.=".phperror div.box1 { width:80%; margin-left:auto; margin-right:auto; }";
-	$html.=".phperror div.box2 { background:#fff; padding:20px 40px; border:2px solid #d6d6d6; border-radius:4px; text-align:left; }";
+	$html.=".phperror { background:#eee; color:#000; padding:20px; font-family:Helvetica,Arial,sans-serif; }";
+	$html.=".phperror div { width:80%; margin:0 auto; background:#fff; padding:20px 40px; border:1px solid #aaa; border-radius:5px; text-align:left; }";
 	$favicon=getDefault("info/favicon","img/favicon.png");
 	if(file_exists($favicon) && memory_get_free()>filesize($favicon)*4/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
 	$html.=".phperror h3 { background:url(${favicon}) top left no-repeat; padding-left: 48px; height:32px; font-size:24px; margin:0; }";
@@ -983,8 +979,7 @@ function pretty_html_error($msg) {
 	$html.="</style>";
 	$html.="</head>";
 	$html.="<body class='phperror'>";
-	$html.="<div class='box1'>";
-	$html.="<div class='box2'>";
+	$html.="<div>";
 	$bug=base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)));
 	$html.=__pretty_html_error_helper("http://bugs.saltos.net",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
 	$html.=__pretty_html_error_helper("xml.php",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
@@ -999,7 +994,7 @@ function __pretty_html_error_helper($action,$hiddens,$submit) {
 	$html="";
 	$html.="<form action='${action}' method='post'>";
 	foreach($hiddens as $key=>$val) $html.="<input type='hidden' name='${key}' value='${val}'/>";
-	$html.="<a href='javascript:void(0)' onclick='this.parentNode.submit()'>${submit}</a>";
+	$html.="<input type='submit' value='${submit}'/>";
 	$html.="</form>";
 	return $html;
 }

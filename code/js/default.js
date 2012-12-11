@@ -819,7 +819,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					unloadingcontent();
 					if($(".phperror",html).length!=0) {
 						$("div[type=title]",html).remove();
-						$("div[type=body]",html).addClass("ui-corner-all");
 						unmake_ckeditors(screen);
 						$(screen).html(html);
 					} else {

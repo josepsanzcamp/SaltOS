@@ -350,3 +350,10 @@ img[isplot=true] {
 	padding:3px 5px!important;
 	border-width:1px!important;
 }
+/* FOR PHPERROR */
+.phperror {
+	padding:0!important;
+}
+.phperror div {
+	width:auto!important;
+}

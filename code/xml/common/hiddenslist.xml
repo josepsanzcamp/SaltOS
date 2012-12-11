@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<field>
 		<name>limit</name>
 		<type>hidden</type>
-		<value global="limit" eval="true">$limit=is_mobile()?intval(getDefault("regspagemobile")):min(max(intval(getParam("limit")),intval(getDefault("regspagemin"))),intval(getDefault("regspagemax")))</value>
+		<value global="limit" eval="true">$limit=is_mobile()?intval(getDefault("regspagemobile")):min(max(intval(getParam("limit",getDefault("regspagerdef"))),intval(getDefault("regspagermin"))),intval(getDefault("regspagermax")))</value>
 		<class>nofilter</class>
 	</field>
 	<field>

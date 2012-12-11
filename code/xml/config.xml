@@ -103,9 +103,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forcecss eval="true">is_mobile()?"mobile":""</forcecss>
 		<forcejs eval="true">is_mobile()?"mobile":""</forcejs>
 		<forcexsl eval="true">is_mobile()?"mobile":""</forcexsl>
-		<regspagemin>50</regspagemin>
-		<regspageincr>50</regspageincr>
-		<regspagemax>200</regspagemax>
+		<regspagermin>10</regspagermin>
+		<regspagerincr>10</regspagerincr>
+		<regspagermax>200</regspagermax>
+		<regspagerdef>50</regspagerdef>
 		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
 		<regspagemobile>25</regspagemobile>
 	</default>
