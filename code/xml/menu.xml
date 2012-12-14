@@ -157,7 +157,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<icon global="temp" eval="true">$temp</icon>
 			<tip global="row" eval="true">$row["name"]</tip>
 			<class global="row" eval="true">"nowrap droppable id_".$row["id"]." fn_dropregfolder"</class>
-			<selected global="page,id_folder,row" eval="true">($page==$temp &amp;&amp; $id_folder==$row["id"])?"true":"false"</selected>
+			<selected global="page,temp,id_folder,row" eval="true">($page==$temp &amp;&amp; $id_folder==$row["id"])?"true":"false"</selected>
 		</option>
 	</group>
 	<group ifeval="(check_user('campanyas','menu') || check_user('posiblescli','menu') || check_user('presupuestos','menu') || check_user('actas','menu') || check_user('clientes','menu') || check_user('contactos','menu'))">

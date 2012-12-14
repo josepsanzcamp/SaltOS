@@ -1052,7 +1052,7 @@ function check_postlimit() {
 function check_system() {
 	// GENERAL CHECKS
 	if(!ini_get("date.timezone")) ini_set("date.timezone","Europe/Madrid");
-	if(headers_sent()) show_php_error(array("phperror"=>"Has been Detected previous headers sended"));
+	if(headers_sent()) show_php_error(array("phperror"=>"Has been detected previous headers sended"));
 	// PACKAGE CHECKS
 	$array=array(
 		array("class_exists","DomElement","Class","php-xml"),
