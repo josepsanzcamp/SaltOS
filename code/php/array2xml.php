@@ -52,7 +52,12 @@ function escribir_nodos(&$array,$level=null) {
 		$attr="";
 		if(is_array($val) && isset($val["value"]) && isset($val["#attr"])) {
 			$attr=array();
-			foreach($val["#attr"] as $key2=>$val2) $attr[]=$key2."=".'"'.$val2.'"';
+			foreach($val["#attr"] as $key2=>$val2) {
+				$key2=limpiar_key($key2);
+				$val2=str_replace("&","&amp;",$val2);
+				if(!__escribir_nodos_check_node_name($key2)) show_php_error(array("phperror"=>"Invalid XML attr name '$key2' with the value '$val2'"));
+				$attr[]=$key2."=".'"'.$val2.'"';
+			}
 			$attr=" ".implode(" ",$attr);
 			$val=$val["value"];
 		}
