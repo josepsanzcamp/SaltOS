@@ -23,16 +23,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function begin_eval_control() {
+function eval_protected($input,$global,$source="") {
+	if(is_string($global)) foreach(explode(",",$global) as $var) global $$var;
+	if(is_array($global)) extract($global);
 	capture_next_error();
 	ob_start();
-}
-
-function end_eval_control($source) {
+	$output=eval("return $input;");
 	$error1=ob_get_clean();
 	$error2=get_clear_error();
 	$error=$error1?$error1:$error2;
-	if($error) xml_error($error,$source);
+	if($error) xml_error($error,$source?$source:$input);
+	return $output;
 }
 
 function leer_nodos(&$data,$file="") {
@@ -308,6 +309,7 @@ function eval_attr($array) {
 				if(is_array($val)) {
 					if(isset($val["value"]) && isset($val["#attr"])) {
 						$stack=array();
+						$global="";
 						$value=$val["value"];
 						$attr=$val["#attr"];
 						$count=0;
@@ -315,18 +317,14 @@ function eval_attr($array) {
 							$key2=limpiar_key($key2);
 							switch($key2) {
 								case "global":
-									$stack["global"]=$val2;
-									$val2=explode(",",$val2);
-									foreach($val2 as $var) global $$var;
+									$global=$val2;
+									foreach(explode(",",$global) as $var) global $$var;
 									break;
 								case "eval":
 									if(eval_bool($val2)) {
 										if(!$value) xml_error("Evaluation error: void expression");
 										if(!isset($stack["prefix"])) {
-											$old_value=$value;
-											begin_eval_control();
-											$value=eval("return $value;");
-											end_eval_control($old_value);
+											$value=eval_protected($value,$global);
 										} else {
 											$old_value=$value;
 											$value=array();
@@ -335,9 +333,7 @@ function eval_attr($array) {
 												$temp_value=str_replace("getParam(\"","getParam(\"$p",$temp_value);
 												$temp_value=str_replace("setParam(\"","setParam(\"$p",$temp_value);
 												$temp_value=str_replace("getParamAsArray(\"","getParamAsArray(\"$p",$temp_value);
-												begin_eval_control();
-												$value[]=eval("return $temp_value;");
-												end_eval_control($old_value);
+												$value[]=eval_protected($temp_value,$global,$old_value);
 											}
 										}
 									}
@@ -362,10 +358,7 @@ function eval_attr($array) {
 												if($exist && !$parent) break;
 											}
 											$temp_value=substr($value,$pos,$i-$pos+1);
-											$old_value=$temp_value;
-											begin_eval_control();
-											$temp_value=eval("return $temp_value;");
-											end_eval_control($old_value);
+											$temp_value=eval_protected($temp_value,$global);
 											$value=substr_replace($value,$temp_value,$pos,$i+1-$pos);
 										}
 									}
@@ -410,17 +403,11 @@ function eval_attr($array) {
 									}
 									break;
 								case "ifeval":
-									$old_value=$val2;
-									begin_eval_control();
-									$val2=eval("return $val2;");
-									end_eval_control($old_value);
+									$val2=eval_protected($val2,$global);
 									if(!$val2) $stack["remove"]=1;
 									break;
 								case "ifpreeval":
-									$old_value=$val2;
-									begin_eval_control();
-									$val2=eval("return $val2;");
-									end_eval_control($old_value);
+									$val2=eval_protected($val2,$global);
 									if(!$val2) $stack["cancel"]=1;
 									break;
 								case "require":
@@ -435,32 +422,17 @@ function eval_attr($array) {
 									$stack["for_var"]=$val2;
 									break;
 								case "from":
-									if(!is_numeric($val2)) {
-										$old_value=$val2;
-										begin_eval_control();
-										$val2=eval("return $val2;");
-										end_eval_control($old_value);
-									}
+									if(!is_numeric($val2)) $val2=eval_protected($val2,$global);
 									if(!is_numeric($val2)) xml_error("The 'from' attr requires an integer");
 									$stack["for_from"]=$val2;
 									break;
 								case "step":
-									if(!is_numeric($val2)) {
-										$old_value=$val2;
-										begin_eval_control();
-										$val2=eval("return $val2;");
-										end_eval_control($old_value);
-									}
+									if(!is_numeric($val2)) $val2=eval_protected($val2,$global);
 									if(!is_numeric($val2)) xml_error("The 'step' attr requires an integer");
 									$stack["for_step"]=$val2;
 									break;
 								case "to":
-									if(!is_numeric($val2)) {
-										$old_value=$val2;
-										begin_eval_control();
-										$val2=eval("return $val2;");
-										end_eval_control($old_value);
-									}
+									if(!is_numeric($val2)) $val2=eval_protected($val2,$global);
 									if(!is_numeric($val2)) xml_error("The 'to' attr requires an integer");
 									$stack["for_to"]=$val2;
 									break;
@@ -491,7 +463,7 @@ function eval_attr($array) {
 								if(sign($stack["for_to"]-$stack["for_from"])!=sign($stack["for_step"])) xml_error("Error sequence FOR - FROM(${param["for_from"]}) - STEP(${param["for_step"]}) - TO(${param["for_to"]})");
 								// CONTINUE
 								$attr=array_slice($attr,$count);
-								if(isset($stack["global"])) $attr=array_merge(array("global"=>$stack["global"]),$attr);
+								if($global) $attr=array_merge(array("global"=>$global),$attr);
 								$old_value=$value;
 								$value=array();
 								for($$stack["for_var"]=$stack["for_from"];$$stack["for_var"]<=$stack["for_to"];$$stack["for_var"]+=$stack["for_step"]) {
@@ -506,7 +478,7 @@ function eval_attr($array) {
 								break;
 							} elseif(isset($stack["foreach_rows"]) && isset($stack["foreach_as"])) {
 								$attr=array_slice($attr,$count);
-								if(isset($stack["global"])) $attr=array_merge(array("global"=>$stack["global"]),$attr);
+								if($global) $attr=array_merge(array("global"=>$global),$attr);
 								$old_value=$value;
 								$value=array();
 								foreach($stack["foreach_rows"] as $$stack["foreach_as"]) {

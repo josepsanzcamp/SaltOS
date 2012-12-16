@@ -45,10 +45,7 @@ if(!defined("__DEFAULT_PHP__")) {
 	}
 
 	function __eval_value($input,$row) {
-		begin_eval_control();
-		$output=eval("return $input;");
-		end_eval_control($input);
-		return $output;
+		return eval_protected($input,array("row"=>$row));
 	}
 
 	function __eval_array($array,$row) {
@@ -160,9 +157,7 @@ if(!defined("__DEFAULT_PHP__")) {
 				static $booleval=1;
 				switch($key) {
 					case "eval":
-						begin_eval_control();
-						$booleval=eval("return $val;");
-						end_eval_control($val);
+						$booleval=__eval_value($val,$row);
 						break;
 					case "constructor":
 						if(!$booleval) break;
