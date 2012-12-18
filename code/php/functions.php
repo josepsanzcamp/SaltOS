@@ -101,15 +101,16 @@ function check_time() {
 	if(!isset($_USER["id"])) return false;
 	if(!$_USER["id"]) return false;
 	$hora=current_time();
-	if($hora<$_USER["hora_ini"] || $hora>$_USER["hora_fin"]) {
+	$dia=(date("w",time())+6)%7;
+	$check_hora1=($_USER["hora_ini"]<=$_USER["hora_fin"] && ($hora<$_USER["hora_ini"] || $hora>$_USER["hora_fin"]));
+	$check_hora2=($_USER["hora_ini"]>$_USER["hora_fin"] && $hora<$_USER["hora_ini"] && $hora>$_USER["hora_fin"]);
+	$check_dia=($_USER["dias_sem"][$dia]=="0");
+	if($check_hora1 || $check_hora2) {
 		set_array($_ERROR,"error",LANG("nochecktime"));
 		reset_datauser();
-	} else {
-		$dia=(date("w",time())+6)%7;
-		if($_USER["dias_sem"][$dia]=="0") {
-			set_array($_ERROR,"error",LANG("nocheckday"));
-			reset_datauser();
-		}
+	} elseif($check_dia) {
+		set_array($_ERROR,"error",LANG("nocheckday"));
+		reset_datauser();
 	}
 }
 

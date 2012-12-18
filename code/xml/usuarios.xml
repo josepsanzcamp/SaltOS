@@ -262,7 +262,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<appsregs>
 						<appsregs global="id" eval="true">make_select_appsregs($id)</appsregs>
 					</appsregs>
-					<gcalendar eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
+					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>
 						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',link,'\"):',title) *//*SQLITE 'link:openwin(\"' || link || '\"):' || title */ title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title2 ASC"</feeds_old>
 					</feeds_old>
@@ -391,7 +391,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<appsregs>
 						<appsregs global="id" eval="true">make_select_appsregs($id)</appsregs>
 					</appsregs>
-					<gcalendar eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
+					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>
 						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',link,'\"):',title) *//*SQLITE 'link:openwin(\"' || link || '\"):' || title */ title,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title ASC"</feeds_old>
 					</feeds_old>
@@ -521,7 +521,6 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<colspan>2</colspan>
 							<required>true</required>
 							<icon>clock</icon>
-							<onchange>check_time("hora_ini","le","hora_fin")</onchange>
 						</field>
 						<field>
 							<name>hora_fin</name>
@@ -531,7 +530,6 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<icon>clock</icon>
-							<onchange>check_time("hora_fin","ge","hora_ini")</onchange>
 						</field>
 					</row>
 				</fieldset>
