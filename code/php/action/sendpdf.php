@@ -95,7 +95,7 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 		$size=__getmail_gethumansize(strlen($pdf));
 		$files["pdf_${key}"]=array("file"=>$file,"name"=>$name,"mime"=>$mime,"size"=>$size);
 	}
-	$body=implode(__HTML_NEW_LINE__,$body);
+	$body=implode("<br/>",$body);
 	//$body=__TEXT_HTML_OPEN__.$body.__TEXT_HTML_CLOSE__;
 	sess_init();
 	$_SESSION["correo"]=array("subject"=>$subject,"body"=>$body,"files"=>$files);

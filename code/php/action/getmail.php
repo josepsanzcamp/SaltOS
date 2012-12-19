@@ -67,6 +67,7 @@ if(getParam("action")=="getmail") {
 		$source=__getmail_getsource($id,8192);
 		$source=__getmail_getutf8($source);
 		$source=htmlentities($source,ENT_COMPAT,"UTF-8");
+		$source=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$source);
 		$buffer="";
 		$buffer.=__PAGE_HTML_OPEN__;
 		$buffer.=__TEXT_PLAIN_OPEN__;
@@ -104,6 +105,12 @@ if(getParam("action")=="getmail") {
 				$type=$node["type"];
 				if(__getmail_processplainhtml($disp,$type)) {
 					$temp=$node["body"];
+					if($type=="plain") {
+						$temp=htmlentities($temp,ENT_COMPAT,"UTF-8");
+						$temp=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>\n"),$temp);
+						$temp=__getmail_make_clickable($temp);
+						$temp=__getmail_href_replace($temp);
+					}
 					if($type=="html") {
 						$temp=__getmail_removescripts($temp);
 						$temp=__getmail_make_clickable($temp);
@@ -128,9 +135,8 @@ if(getParam("action")=="getmail") {
 						}
 					}
 					if(!$first) $buffer.=__TEXT_SEPARATOR__;
-					$buffer.=($type=="plain")?__TEXT_PLAIN_OPEN__:__TEXT_HTML_OPEN__;
-					$buffer.=($type=="plain")?htmlentities($temp,ENT_COMPAT,"UTF-8"):$temp;
-					$buffer.=($type=="plain")?__TEXT_PLAIN_CLOSE__:__TEXT_HTML_CLOSE__;
+					if($type=="plain") $buffer.=__TEXT_PLAIN_OPEN__.$temp.__TEXT_PLAIN_CLOSE__;
+					if($type=="html") $buffer.=__TEXT_HTML_OPEN__.$temp.__TEXT_HTML_CLOSE__;
 					$first=0;
 				}
 			}
@@ -253,6 +259,12 @@ if(getParam("action")=="getmail") {
 				$type=$node["type"];
 				if(__getmail_processplainhtml($disp,$type)) {
 					$temp=$node["body"];
+					if($type=="plain") {
+						$temp=htmlentities($temp,ENT_COMPAT,"UTF-8");
+						$temp=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>\n"),$temp);
+						$temp=__getmail_make_clickable($temp);
+						$temp=__getmail_href_replace($temp);
+					}
 					if($type=="html") {
 						$temp=__getmail_removescripts($temp);
 						$temp=__getmail_make_clickable($temp);
@@ -277,9 +289,8 @@ if(getParam("action")=="getmail") {
 						}
 					}
 					if(!$first) $buffer.=__TEXT_SEPARATOR__;
-					$buffer.=($type=="plain")?__TEXT_PLAIN_OPEN__:__TEXT_HTML_OPEN__;
-					$buffer.=($type=="plain")?htmlentities($temp,ENT_COMPAT,"UTF-8"):$temp;
-					$buffer.=($type=="plain")?__TEXT_PLAIN_CLOSE__:__TEXT_HTML_CLOSE__;
+					if($type=="plain") $buffer.=__TEXT_PLAIN_OPEN__.$temp.__TEXT_PLAIN_CLOSE__;
+					if($type=="html") $buffer.=__TEXT_HTML_OPEN__.$temp.__TEXT_HTML_CLOSE__;
 					$first=0;
 				}
 			}

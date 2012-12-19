@@ -63,7 +63,7 @@ function __report_textarea($label,$value,$repare=true) {
 		$message.="</td>\n";
 		$message.="</tr>\n";
 	}
-	if($repare) $value=str_replace("\n","<br />\n",$value);
+	if($repare) $value=str_replace("\n","<br/>",$value);
 	$message.="<tr>\n";
 	$message.="<td bgcolor='".__report_config("bgvalue")."' valign='top' align='left' width='".__report_config("big")."' colspan='2' height='100px' style='".__report_config("style")."'>";
 	$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fgvalue")."'>";

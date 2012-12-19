@@ -234,8 +234,8 @@ function eval_files() {
 		if(isset($val["tmp_name"]) && $val["tmp_name"]!="" && file_exists($val["tmp_name"])) {
 			if(!isset($val["name"])) $val["name"]=basename($val["tmp_name"]);
 			$val["file"]=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($val["name"]);
-			if(!isset($val["size"])) $val["size"]=filesize($val["tmp_name"]);
-			if(!isset($val["type"])) $val["type"]=saltos_content_type($val["tmp_name"]);
+			$val["size"]=filesize($val["tmp_name"]);
+			$val["type"]=saltos_content_type($val["tmp_name"]);
 			// SECURITY ISSUE
 			$ext=strtolower(extension($val["file"]));
 			if($ext=="php") $val["file"]=substr($val["file"],0,-strlen($ext)-1).getDefault("exts/defaultext",".dat");

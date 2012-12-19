@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!defined("__DEFINES_PHP__")) {
 	define("__DEFINES_PHP__",1);
-	define("__TEXT_PLAIN_OPEN__","<pre style=\"font-size: 10px; color: #333; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; white-space: pre-wrap; word-wrap: break-word\">");
-	define("__TEXT_PLAIN_CLOSE__","</pre>");
+	define("__TEXT_PLAIN_OPEN__","<span style=\"font-family: monospace; font-size: 10px; color: #333\">");
+	define("__TEXT_PLAIN_CLOSE__","</span>");
 	define("__TEXT_HTML_OPEN__","<span style=\"font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #333\">");
 	define("__TEXT_HTML_CLOSE__","</span>");
 	define("__TEXT_SEPARATOR__","<hr style=\"border: 0px; height: 1px; background: #ccc\"/>");
@@ -34,7 +34,5 @@ if(!defined("__DEFINES_PHP__")) {
 	define("__PAGE_HTML_CLOSE__","</body></html>");
 	define("__CSS_BLOCKQUOTE__","style=\"border-left: #ccc 1px solid; margin: 0px 0px 0px 0.8ex; padding-left: 1ex\"");
 	define("__CSS_SIGNATURE__","style=\"font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ccc\"");
-	define("__HTML_NEW_LINE__","<br />\n");
-	define("__HIDDEN_SIGNATURE__","<!-- __HIDDEN_SIGNATURE__ -->");
 }
 ?>

@@ -32,6 +32,7 @@ function __signature_from2id($from) {
 	$result=execute_query($query);
 	return $result;
 }
+
 function __signature_getfile($id) {
 	if(!$id) return null;
 	$query="SELECT * FROM tbl_usuarios_c WHERE id='$id'";
@@ -47,12 +48,15 @@ function __signature_getfile($id) {
 	$alt=$row["email_name"]." (".$row["email_from"].")";
 	return array("id"=>$id,"name"=>$name,"file"=>$file,"type"=>$type,"size"=>$size,"data"=>$data,"alt"=>$alt);
 }
+
 function __signature_getauto($file) {
 	require_once("php/defines.php");
 	if(!$file) return null;
 	if(!$file["file"]) return null;
 	if($file["type"]=="text/plain") {
-		$file["auto"]=str_replace("\n",__HTML_NEW_LINE__,trim($file["data"]));
+		$file["auto"]=trim($file["data"]);
+		$file["auto"]=htmlentities($file["auto"],ENT_COMPAT,"UTF-8");
+		$file["auto"]=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$file["auto"]);
 	} elseif($file["type"]=="text/html") {
 		$file["auto"]=trim($file["data"]);
 	} elseif(substr($file["type"],0,6)=="image/") {
@@ -64,9 +68,9 @@ function __signature_getauto($file) {
 		}
 		$file["auto"]="<img alt=\"${file["alt"]}\" border=\"0\" src=\"${file["src"]}\" />";
 	} else {
-		$file["auto"]="Name: ${file["name"]}".__HTML_NEW_LINE__."Type: ${file["type"]}".__HTML_NEW_LINE__."Size: ${file["size"]}";
+		$file["auto"]="Name: ${file["name"]}"."<br/>"."Type: ${file["type"]}"."<br/>"."Size: ${file["size"]}";
 	}
-	$file["auto"]=__HTML_NEW_LINE__.__HTML_NEW_LINE__."<span ".__CSS_SIGNATURE__.">--".__HTML_NEW_LINE__."${file["auto"]}</span>";
+	$file["auto"]="<br/><br/><signature><span ".__CSS_SIGNATURE__.">--<br/>${file["auto"]}</span></signature>";
 	return $file;
 }
 // NORMAL ACTION CODE
@@ -80,34 +84,16 @@ if(getParam("action")=="signature") {
 		$body=stripslashes(getParam("body"));
 		$cc=stripslashes(getParam("cc"));
 		$state_crt=intval(getParam("state_crt"));
-		// FIND THE OLD AND NEW SIGNATURES
+		// FIND THE OLD AND NEW ACCOUNTS
 		$cuenta_old=__signature_from2id($old);
 		$cuenta_new=__signature_from2id($new);
-		$file_old=__signature_getauto(__signature_getfile($cuenta_old));
-		$file_new=__signature_getauto(__signature_getfile($cuenta_new));
-		// REPLACE THE BODYES SIGNATURES
-		if($file_old && $file_new) {
-			$auto_old=$file_old["auto"];
-			$auto_new=$file_new["auto"];
-		} elseif($file_old && !$file_new) {
-			$auto_old=$file_old["auto"];
-			$auto_new=__HIDDEN_SIGNATURE__;
-		} elseif(!$file_old && $file_new) {
-			$auto_old=__HIDDEN_SIGNATURE__;
-			$auto_new=$file_new["auto"];
-		} elseif(!$file_old && !$file_new) {
-			$auto_old=__HIDDEN_SIGNATURE__;
-			$auto_new=__HIDDEN_SIGNATURE__;
-		}
-		$hash1=md5($body);
-		$body=str_replace($auto_old,$auto_new,$body);
-		$hash2=md5($body);
-		if($hash1==$hash2) {
-			// CKEDITOR CORRECTION
-			$auto_old=str_replace("&","&amp;",$auto_old);
-			$auto_new=str_replace("&","&amp;",$auto_new);
-			$body=str_replace($auto_old,$auto_new,$body);
-		}
+		// REPLACE THE SIGNATURE BODY
+		$file=__signature_getauto(__signature_getfile($cuenta_new));
+		$auto=$file?$file["auto"]:"<signature></signature>";
+		$pos1=strpos($body,"<signature>");
+		$pos2=strpos($body,"</signature>");
+		if($pos2!==false) $pos2=strpos($body,">",$pos2);
+		if($pos1!==false && $pos2!==false) $body=substr_replace($body,$auto,$pos1,$pos2-$pos1+1);
 		// FIND THE OLD AND NEW CC'S AND STATE_CRT'S
 		$query="SELECT * FROM tbl_usuarios_c WHERE id='".$cuenta_old."'";
 		$result_old=execute_query($query);
@@ -159,16 +145,18 @@ if(getParam("action")=="signature") {
 	header_powered();
 	header_expires(false);
 	$type=$file["type"];
-	$type1=strtok($type,"/");
-	$type2=strtok(" ");
-	if($type2=="plain") $type="text/html";
+	if($type=="text/plain") {
+		$file["data"]=htmlentities($file["data"],ENT_COMPAT,"UTF-8");
+		$file["data"]=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$file["data"]);
+		$type="text/html";
+	}
 	header("Content-Type: ${type}");
 	header("x-frame-options: SAMEORIGIN");
-	if($type1=="text") echo __PAGE_HTML_OPEN__;
-	if($type1=="text") echo ($type2=="plain")?__TEXT_PLAIN_OPEN__:__TEXT_HTML_OPEN__;
+	if($type=="text/html") echo __PAGE_HTML_OPEN__.__TEXT_HTML_OPEN__;
+	if($type=="text/plain") echo __PAGE_HTML_OPEN__.__TEXT_PLAIN_OPEN__;
 	echo $file["data"];
-	if($type1=="text") echo ($type2=="plain")?__TEXT_PLAIN_CLOSE__:__TEXT_HTML_CLOSE__;
-	if($type1=="text") echo __PAGE_HTML_CLOSE__;
+	if($type=="text/html") echo __TEXT_HTML_CLOSE__.__PAGE_HTML_CLOSE__;
+	if($type=="text/plain") echo __TEXT_PLAIN_CLOSE__.__PAGE_HTML_CLOSE__;
 	ob_end_flush();
 	die();
 }

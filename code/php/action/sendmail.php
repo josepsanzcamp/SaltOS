@@ -49,9 +49,8 @@ if(getParam("action")=="sendmail") {
 			javascript_unloading();
 			die();
 		}
-		// REMOVE OLD HIDDEN SIGNATURE IF EXISTS
-		require_once("php/defines.php");
-		$body=str_replace(__HIDDEN_SIGNATURE__,"",$body);
+		// REMOVE THE SIGNATURE TAG IF EXISTS
+		$body=str_replace(array("<signature>","</signature>"),"",$body);
 		// REPLACE SIGNATURE IF NEEDED AND ADD THE INLINE IMAGE
 		$inlines=array();
 		require_once("php/action/signature.php");
@@ -143,7 +142,7 @@ if(getParam("action")=="sendmail") {
 		foreach($_FILES as $file) {
 			if(isset($file["tmp_name"]) && $file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
 				if(!isset($file["name"])) $file["name"]=basename($file["tmp_name"]);
-				if(!isset($file["type"])) $file["type"]=saltos_content_type($file["tmp_name"]);
+				$file["type"]=saltos_content_type($file["tmp_name"]);
 				$files[]=array("file"=>$file["tmp_name"],"name"=>$file["name"],"mime"=>$file["type"]);
 			} elseif(isset($file["name"]) && $file["name"]!="") {
 				javascript_error(LANG("fileuploaderror").$file["name"]);
@@ -358,7 +357,7 @@ if(getParam("page")=="correo") {
 	if(1) { // GET THE DEFAULT SIGNATURE
 		require_once("php/action/signature.php");
 		$file=__signature_getauto(__signature_getfile($id_cuenta));
-		$body_extra=$file?$file["auto"]:__HIDDEN_SIGNATURE__;
+		$body_extra=$file?$file["auto"]:"<signature></signature>";
 	}
 	if(isset($id_extra[1]) && in_array($id_extra[1],array("reply","replyall"))) {
 		$query="SELECT * FROM tbl_correo_a WHERE id_correo='${id_extra[2]}'";
@@ -519,8 +518,13 @@ if(getParam("page")=="correo") {
 				$type=$node["type"];
 				if(__getmail_processplainhtml($disp,$type)) {
 					$temp=$node["body"];
-					$temp=__getmail_removescripts($temp);
-					$temp=trim($temp);
+					if($type=="plain") {
+						$temp=htmlentities($temp,ENT_COMPAT,"UTF-8");
+						$temp=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$temp);
+					}
+					if($type=="html") {
+						$temp=__getmail_removescripts($temp);
+					}
 					foreach($result2 as $index2=>$node2) {
 						$disp2=$node2["disp"];
 						$type2=$node2["type"];
@@ -540,13 +544,12 @@ if(getParam("page")=="correo") {
 						}
 					}
 					if(!$first) $oldbody.=__TEXT_SEPARATOR__;
-					$oldbody.=($type=="plain")?__TEXT_PLAIN_OPEN__:__TEXT_HTML_OPEN__;
-					$oldbody.=($type=="plain")?htmlentities($temp,ENT_COMPAT,"UTF-8"):$temp;
-					$oldbody.=($type=="plain")?__TEXT_PLAIN_CLOSE__:__TEXT_HTML_CLOSE__;
+					if($type=="plain") $oldbody.=__TEXT_PLAIN_OPEN__.$temp.__TEXT_PLAIN_CLOSE__;
+					if($type=="html") $oldbody.=__TEXT_HTML_OPEN__.$temp.__TEXT_HTML_CLOSE__;
 					$first=0;
 				}
 			}
-			$body_extra=$body_extra.__HTML_NEW_LINE__.__HTML_NEW_LINE__."${oldhead}".__HTML_NEW_LINE__.__HTML_NEW_LINE__."<blockquote ".__CSS_BLOCKQUOTE__.">${oldbody}</blockquote>";
+			$body_extra=$body_extra."<br/><br/>"."${oldhead}"."<br/><br/>"."<blockquote ".__CSS_BLOCKQUOTE__.">${oldbody}</blockquote>";
 		}
 	}
 	if(isset($id_extra[1]) && $id_extra[1]=="session") {
@@ -619,7 +622,7 @@ if(getParam("page")=="correo") {
 			$oldbody.=__TEXT_HTML_OPEN__;
 			$oldbody.=$row2["description"];
 			$oldbody.=__TEXT_HTML_CLOSE__;
-			$body_extra=$body_extra.__HTML_NEW_LINE__.__HTML_NEW_LINE__."${oldhead}".__HTML_NEW_LINE__.__HTML_NEW_LINE__."<blockquote ".__CSS_BLOCKQUOTE__.">${oldbody}</blockquote>";
+			$body_extra=$body_extra."<br/><br/>"."${oldhead}"."<br/><br/>"."<blockquote ".__CSS_BLOCKQUOTE__.">${oldbody}</blockquote>";
 		}
 	}
 	set_array($rows[$key],"row",array("id"=>0,"id_extra"=>implode("_",$id_extra),
