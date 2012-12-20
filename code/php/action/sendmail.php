@@ -142,7 +142,7 @@ if(getParam("action")=="sendmail") {
 		foreach($_FILES as $file) {
 			if(isset($file["tmp_name"]) && $file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
 				if(!isset($file["name"])) $file["name"]=basename($file["tmp_name"]);
-				$file["type"]=saltos_content_type($file["tmp_name"]);
+				if(!isset($file["type"])) $file["type"]=saltos_content_type($file["tmp_name"]);
 				$files[]=array("file"=>$file["tmp_name"],"name"=>$file["name"],"mime"=>$file["type"]);
 			} elseif(isset($file["name"]) && $file["name"]!="") {
 				javascript_error(LANG("fileuploaderror").$file["name"]);
@@ -357,7 +357,7 @@ if(getParam("page")=="correo") {
 	if(1) { // GET THE DEFAULT SIGNATURE
 		require_once("php/action/signature.php");
 		$file=__signature_getauto(__signature_getfile($id_cuenta));
-		$body_extra=$file?$file["auto"]:"<signature></signature>";
+		$body_extra="<br/><br/>".($file?$file["auto"]:"<signature></signature>");
 	}
 	if(isset($id_extra[1]) && in_array($id_extra[1],array("reply","replyall"))) {
 		$query="SELECT * FROM tbl_correo_a WHERE id_correo='${id_extra[2]}'";
@@ -622,12 +622,12 @@ if(getParam("page")=="correo") {
 			$oldbody.=__TEXT_HTML_OPEN__;
 			$oldbody.=$row2["description"];
 			$oldbody.=__TEXT_HTML_CLOSE__;
-			$body_extra=$body_extra."<br/><br/>"."${oldhead}"."<br/><br/>"."<blockquote ".__CSS_BLOCKQUOTE__.">${oldbody}</blockquote>";
+			$body_extra=$body_extra."<br/><br/>".$oldhead."<br/><br/><blockquote ".__CSS_BLOCKQUOTE__.">".$oldbody."</blockquote>";
 		}
 	}
 	set_array($rows[$key],"row",array("id"=>0,"id_extra"=>implode("_",$id_extra),
 		"from"=>$from_extra,"to"=>$to_extra,"cc"=>$cc_extra,"bcc"=>$bcc_extra,
-		"subject"=>$subject_extra,"body"=>"\n\n\n".$body_extra,
+		"subject"=>$subject_extra,"body"=>$body_extra,
 		"state_crt"=>$state_crt,"priority"=>0,"sensitivity"=>0));
 }
 ?>

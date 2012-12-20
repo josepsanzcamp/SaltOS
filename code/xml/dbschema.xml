@@ -1228,6 +1228,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>state_wait</name>
 					<type>INTEGER</type>
 				</field>
+				<field>
+					<name>state_cool</name>
+					<type>INTEGER</type>
+				</field>
 			</fields>
 		</table>
 		<table>

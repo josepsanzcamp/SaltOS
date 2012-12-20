@@ -70,7 +70,7 @@ function __signature_getauto($file) {
 	} else {
 		$file["auto"]="Name: ${file["name"]}"."<br/>"."Type: ${file["type"]}"."<br/>"."Size: ${file["size"]}";
 	}
-	$file["auto"]="<br/><br/><signature><span ".__CSS_SIGNATURE__.">--<br/>${file["auto"]}</span></signature>";
+	$file["auto"]="<signature><span ".__CSS_SIGNATURE__.">--<br/>${file["auto"]}</span></signature>";
 	return $file;
 }
 // NORMAL ACTION CODE

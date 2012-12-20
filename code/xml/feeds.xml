@@ -38,6 +38,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<onclick>update_state2(ID,'wait',-1);submit1()</onclick>
 				<icon>wait</icon>
 			</wait>
+			<cool>
+				<label lang="true">actioncool</label>
+				<onclick>update_state2(ID,'cool',-1);submit1()</onclick>
+				<icon>cool</icon>
+			</cool>
 		</actions>
 		<width>100%</width>
 		<fields>
@@ -85,10 +90,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<include>js/updatefeeds.js</include>
 				<include>js/feeds.js</include>
 			</cache>
-			<function>clear2() { setCheck("onlynew",false); setCheck("onlywait",false); }</function>
+			<function>clear2() { setCheck("onlynew",false); setCheck("onlywait",false); setCheck("onlycool",false); }</function>
 			<function>stateall2() { clear2(); submit1(); }</function>
 			<function>statenew() { clear2(); setCheck("onlynew",true); submit1(); }</function>
 			<function>statewait() { clear2(); setCheck("onlywait",true); submit1(); }</function>
+			<function>statecool() { clear2(); setCheck("onlycool",true); submit1(); }</function>
 			<function>clear3() { setParam("fecha1",""); setParam("fecha2",""); setParam("fecha3",""); }</function>
 			<function>stateall3() { clear3(); submit1(); }</function>
 			<function>today() { clear3(); setParam('fecha3','today'); submit1(); }</function>
@@ -97,6 +103,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<function>month() { clear3(); setParam('fecha3','month'); submit1(); }</function>
 			<function eval="true">"leidos(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgleidos")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('action2','leidos='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 			<function eval="true">"wait(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgwait")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('action2','wait='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
+			<function eval="true">"cool(val) { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgcool")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('action2','cool='+val); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 			<function eval="true">"delete2() { var id=getIds(); if(!id) return; dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete2")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','feeds'); setParam('action2','delete'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 			<function>forward(id) { setParam("page","correo"); setParam("action","form"); setParam("id","0_feed_"+id); submit1(); }</function>
 		</javascript>
@@ -175,23 +182,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">nowait</label>
 							<onclick>wait(0)</onclick>
 						</option>
+						<option>
+							<label lang="true">cool</label>
+							<onclick>cool(1)</onclick>
+						</option>
+						<option>
+							<label lang="true">nocool</label>
+							<onclick>cool(0)</onclick>
+						</option>
 					</group>
 					<group>
 						<label lang="true">filtrarfeeds</label>
 						<option>
 							<label lang="true">stateall</label>
 							<onclick>stateall2()</onclick>
-							<disabled eval="true">(!getParam("onlynew") &amp;&amp; !getParam("onlywait"))?"true":"false"</disabled>
+							<disabled eval="true">(!getParam("onlynew") &amp;&amp; !getParam("onlywait") &amp;&amp; !getParam("onlycool"))?"true":"false"</disabled>
 						</option>
 						<option>
 							<label lang="true">statenew</label>
 							<onclick>statenew()</onclick>
-							<disabled eval="true">(getParam("onlynew") &amp;&amp; !getParam("onlywait"))?"true":"false"</disabled>
+							<disabled eval="true">(getParam("onlynew") &amp;&amp; !getParam("onlywait") &amp;&amp; !getParam("onlycool"))?"true":"false"</disabled>
 						</option>
 						<option>
 							<label lang="true">statewait</label>
 							<onclick>statewait()</onclick>
-							<disabled eval="true">(!getParam("onlynew") &amp;&amp; getParam("onlywait"))?"true":"false"</disabled>
+							<disabled eval="true">(!getParam("onlynew") &amp;&amp; getParam("onlywait") &amp;&amp; !getParam("onlycool"))?"true":"false"</disabled>
+						</option>
+						<option>
+							<label lang="true">statecool</label>
+							<onclick>statecool()</onclick>
+							<disabled eval="true">(!getParam("onlynew") &amp;&amp; !getParam("onlywait") &amp;&amp; getParam("onlycool"))?"true":"false"</disabled>
 						</option>
 					</group>
 					<group>
@@ -330,6 +350,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<checked global="onlywait" eval="true">(($onlywait=getParam("onlywait"))=="1")?"true":"false"</checked>
 					</field>
 					<field>
+						<name>onlycool</name>
+						<label lang="true">onlycool</label>
+						<type>checkbox</type>
+						<value>1</value>
+						<checked global="onlycool" eval="true">(($onlycool=getParam("onlycool"))=="1")?"true":"false"</checked>
+					</field>
+					<field>
 						<name>action2</name>
 						<type>hidden</type>
 						<value></value>
@@ -354,9 +381,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</node>
 		<temp global="fecha3_array" eval="true">$fecha3_array=array(""=>"1=1","today"=>"DATE(`datetime`)=DATE('".current_date()."')","yesterday"=>"DATE(`datetime`)=DATE('".current_date(-86400)."')","week"=>"DATE(`datetime`)>=DATE('".current_date(-86400*7)."')","month"=>"DATE(`datetime`)>=DATE('".current_date(-86400*30)."')")</temp>
 		<temp global="fecha3,fecha3_array" eval="true">$fecha3=isset($fecha3_array[$fecha3])?$fecha3:""</temp>
-		<temp global="only,onlynew,onlywait" eval="true">$only=intval($onlynew).intval($onlywait)</temp>
-		<temp global="only_array" eval="true">$only_array=array("00"=>"1=1","10"=>"state_new='1'","01"=>"state_wait='1'","11"=>"(state_new='1' OR state_wait='1')")</temp>
-		<temp global="only,only_array" eval="true">$only=isset($only_array[$only])?$only:"00"</temp>
+		<temp global="only,onlynew,onlywait,onlycool" eval="true">$only=intval($onlynew).intval($onlywait).intval($onlycool)</temp>
+		<temp global="only_array" eval="true">$only_array=array("000"=>"1=1","100"=>"state_new='1'","010"=>"state_wait='1'","110"=>"(state_new='1' OR state_wait='1')","001"=>"state_cool='1'","101"=>"(state_new='1' OR state_cool='1')","011"=>"(state_wait='1' OR state_cool='1')","111"=>"(state_new='1' OR state_wait='1' OR state_cool='1')")</temp>
+		<temp global="only,only_array" eval="true">$only=isset($only_array[$only])?$only:"000"</temp>
 		<query global="page,filtro,id_usuario,id_feed,fecha1,fecha2,fecha3,fecha3_array,only,only_array" eval="true">"SELECT
 			id,id2,
 			/*MYSQL CONCAT('link:openwin(\'',link2,'\'):',feed) *//*SQLITE 'link:openwin(\'' || link2 || '\'):' || feed */ feed,
@@ -366,6 +393,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			link,
 			state_new,
 			state_wait,
+			state_cool,
 			id action_id,
 			/*MYSQL CONCAT(id2,' - ',feed,' - ',title, '(',estado,')') *//*SQLITE id2 || ' - ' || feed || ' - ' || title || ' (' || estado || ')' */ action_title,
 			/*MYSQL CONCAT('link:openwin(\'',link,'\'):',link) *//*SQLITE 'link:openwin(\'' || link || '\'):' || link */ post,
@@ -376,6 +404,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
 			CASE (".check_user("correo","create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_forward,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_wait,
+			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_cool,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 		SELECT a.id id,/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
@@ -383,18 +412,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			uf.link link2,
 			".make_extra_query_with_login("d.")." usuario,
 			CASE WHEN a.title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE a.title END title,
-			pubdate,a.description,a.link link,state_new,state_wait,
-			CASE WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE '' END action_style,
+			pubdate,a.description,a.link link,state_new,state_wait,state_cool,
+			CASE WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' WHEN state_cool=1 THEN 'state_cool' ELSE '' END action_style,
 			TRIM(/*MYSQL CONCAT(
 			CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END,
 			CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified")." ' ELSE '' END,
 			CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END,
-			CASE state_new+state_modified+state_wait WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END)
+			CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool")." ' ELSE '' END,
+			CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END)
 			*//*SQLITE
 			CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END ||
 			CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified")." ' ELSE '' END ||
 			CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END ||
-			CASE state_new+state_modified+state_wait WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
+			CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool")." ' ELSE '' END ||
+			CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
 			*/) estado,
 			e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_feed id_feed,uf.id_usuario id_usuario2
 		FROM tbl_feeds a
@@ -448,7 +479,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>800px</width>
 							<readonly>true</readonly>
-							<colspan>8</colspan>
+							<colspan>10</colspan>
 						</field>
 					</row>
 					<row>
@@ -490,6 +521,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>1px</width>
 							<width2>1px</width2>
 						</field>
+						<field>
+							<name>state_cool</name>
+							<label lang="true">statecool</label>
+							<type>checkbox</type>
+							<value>1</value>
+							<onchange>update_state2(abs(getParam('id')),'cool',this.checked?1:0)</onchange>
+							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
+							<width>1px</width>
+							<width2>1px</width2>
+						</field>
 					</row>
 					<row>
 						<field>
@@ -502,7 +543,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>link2</name>
 							<type>link</type>
 							<label global="id" eval="true">execute_query("SELECT (SELECT title FROM tbl_usuarios_f WHERE id=id_feed) feed FROM tbl_feeds WHERE id='".abs($id)."'")</label>
-							<colspan>8</colspan>
+							<colspan>10</colspan>
 						</field>
 					</row>
 					<row>
@@ -517,7 +558,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>link</type>
 							<label global="id" eval="true">execute_query("SELECT link FROM tbl_feeds WHERE id='".abs($id)."'")</label>
 							<class3>enlace</class3>
-							<colspan>8</colspan>
+							<colspan>10</colspan>
 						</field>
 					</row>
 					<row>
@@ -528,7 +569,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<value global="id" eval="true">"xml.php?action=feeds&amp;id=".abs($id)."&amp;cid=body"</value>
 							<width>800px</width>
 							<height>240px</height>
-							<colspan>8</colspan>
+							<colspan>10</colspan>
 						</field>
 					</row>
 				</fieldset>
@@ -540,7 +581,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>full</name>
 							<type>iframe</type>
-							<value global="id" eval="true">"xml.php?action=feeds&amp;id=".abs($id)."&amp;cid=full"</value>
 							<width>800px</width>
 							<height>240px</height>
 						</field>
@@ -582,6 +622,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<function>forward() { setParam("page","correo"); setParam("id","0_feed_"+abs(getParam("id"))); submit1(); }</function>
 			<function eval="true">"lang_msgnumsiwait() { return '".LANG_ESCAPE("msgnumsiwait")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumnowait() { return '".LANG_ESCAPE("msgnumnowait")."1".LANG_ESCAPE("message1")."'; }"</function>
+			<function eval="true">"lang_msgnumsicool() { return '".LANG_ESCAPE("msgnumsicool")."1".LANG_ESCAPE("message1")."'; }"</function>
+			<function eval="true">"lang_msgnumnocool() { return '".LANG_ESCAPE("msgnumnocool")."1".LANG_ESCAPE("message1")."'; }"</function>
 		</javascript>
 	</form>
 	<delete>

@@ -39,6 +39,10 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 					if(value==1) notice(lang_alert(),lang_msgnumsiwait());
 					if(value==0) notice(lang_alert(),lang_msgnumnowait());
 				}
+				if(type=="cool") {
+					if(value==1) notice(lang_alert(),lang_msgnumsicool());
+					if(value==0) notice(lang_alert(),lang_msgnumnocool());
+				}
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
@@ -46,4 +50,23 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 		});
 	}
 
+	function update_tabs2() {
+		if(getParam("action")!="form") return;
+		var id=abs(getParam("id"));
+		if(!id) return;
+		setTimeout(function() {
+			$(".tabs").bind("tabsshow",function(event,ui) {
+				var full=$("iframe[name$=full_"+id+"_full]");
+				var full_visible=$(full).is(":visible");
+				var full_has_src=($(full).attr("src")!="");
+				if(full_visible && !full_has_src) $(full).attr("src","xml.php?action=feeds&id="+id+"&cid=full");
+			});
+		},100);
+	}
+
 }
+
+"use strict";
+$(function() {
+	update_tabs2();
+});

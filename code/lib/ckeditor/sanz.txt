@@ -1,34 +1,15 @@
 Some SaltOS changes:
 
-IN
-- skins/kama/editor.css
-ADD
-- /*ADDED BY SANZ FOR SALTOS INTEGRATION */span.cke_skin_kama{border:0px;padding:1px;}/*ADDED BY SANZ FOR SALTOS INTEGRATION */
+IN skins/kama/editor.css
+FROM -moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;border:1px solid #d3d3d3;padding:5px
+TO padding:1px
 
-IN
-- ckeditor.js
-FROM
-- m.ui.addButton('Source',{label:m.lang.source,command:'source'})
-TO
-- m.ui.addButton('Source',{title:m.lang.source,command:'source'})
+IN ckeditor.js
+FROM a.ui.addButton("Source",{label:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})
+TO a.ui.addButton("Source",{label:"",title:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})
 
-IN
-- ckeditor.js
-FROM
-- m.lang.editorTitle.replace('%1',m.name)
-TO
-- ''
+IN ckeditor.js
+FROM [a.lang.editor,a.name].join()
+TO ""
 
-IN
-- ckeditor.js
-FROM
-- E.lang.editorTitle.replace('%1',E.name)
-TO
-- ''
-
-IN
-- plugins/syntaxhighlight/dialogs/syntaxhighlight.js
-FROM
-- "default":"java"
-TO
-- "default":"php"
+REMOVED samples

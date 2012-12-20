@@ -43,6 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<collapse>lib/highcontrast/actions/view-restore.png</collapse>
 		<color>lib/highcontrast/actions/edit-clear.png</color>
 		<contactos>lib/highcontrast/mimetypes/vcard.png</contactos>
+		<cool>lib/highcontrast/actions/bookmark-view-gold.png</cool>
 		<copy>lib/highcontrast/actions/edit-paste.png</copy>
 		<correo>lib/highcontrast/actions/mail_new.png</correo>
 		<create>lib/highcontrast/actions/add.png</create>
@@ -131,6 +132,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<collapse>lib/crystal/actions/window_nofullscreen.png</collapse>
 		<color>lib/crystal/apps/colors.png</color>
 		<contactos>lib/crystal/apps/kaddressbook.png</contactos>
+		<cool>lib/crystal/actions/flag_gold.png</cool>
 		<copy>lib/crystal/actions/special_paste.png</copy>
 		<correo>lib/crystal/apps/mozilla-mail.png</correo>
 		<create>lib/crystal/actions/db_add.png</create>
@@ -219,6 +221,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<collapse>lib/silk/icons/arrow_in.png</collapse>
 		<color>lib/silk/icons/palette.png</color>
 		<contactos>lib/silk/icons/book_addresses.png</contactos>
+		<cool>lib/silk/icons/tag_gold.png</cool>
 		<copy>lib/silk/icons/page_paste.png</copy>
 		<correo>lib/silk/icons/email.png</correo>
 		<create>lib/silk/icons/add.png</create>

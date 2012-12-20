@@ -1416,18 +1416,18 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					var iframe2=$(iframe,obj);
 					if(!$(iframe2).length) {
 						clearInterval(interval);
-					} else if($(iframe2).attr("isloaded")=="false") {
-						// NOTHING TO DO
-					} else if($(iframe2).is(":visible")) {
+					} else if($(iframe2).is(":visible") && $(iframe2).attr("src")!="" && $(iframe2).attr("isloaded")=="true") {
 						clearInterval(interval);
-						var minheight=$(iframe2).height();
-						var newheight=$(iframe2).contents().height();
-						if(newheight>minheight) $(iframe2).height(newheight);
-						$(iframe2).each(function() {
-							var iframe3=this.contentWindow.document;
-							$(iframe3).bind("contextmenu",function(e) { return false; });
-							$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
-						});
+						setTimeout(function() {
+							var minheight=$(iframe2).height();
+							var newheight=$(iframe2).contents().height();
+							if(newheight>minheight) $(iframe2).height(newheight);
+							$(iframe2).each(function() {
+								var iframe3=this.contentWindow.document;
+								$(iframe3).bind("contextmenu",function(e) { return false; });
+								$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
+							});
+						},100);
 					}
 				},100);
 			}
@@ -1435,13 +1435,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).ckeditor({
 			skin:"kama",
-			toolbarCanCollapse:false,
-			removePlugins:"elementspath,entities,scayt,resize",
-			extraPlugins:"syntaxhighlight,autogrow",
+			removePlugins:"bbcode,elementspath,entities,scayt,resize,divarea,onchange,codemirror",
 			enterMode:CKEDITOR.ENTER_BR,
 			shiftEnterMode:CKEDITOR.ENTER_BR,
 			forcePasteAsPlainText:true,
-			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","-","Source","-","Code"]],
+			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","-","Source"],["About"]],
 			language:lang_default(),
 			uiColor:get_colors("ui-widget-header","background-color"),
 			autoGrow_onStartup:true,

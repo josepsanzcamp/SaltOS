@@ -53,6 +53,15 @@ if(getParam("action")=="feeds") {
 					db_query($query);
 					// MOSTRAR RESULTADO
 					session_alert(LANG($action2[1]?"msgnumsiwait":"msgnumnowait","feeds").$numids.LANG("message".min($numids,2),"feeds"));
+				} elseif($action2[0]=="cool") {
+					// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
+					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_cool!='${action2[1]}'";
+					$numids=execute_query($query);
+					// PONER STATE_cool=1 EN LOS POSTS SELECCIONADOS
+					$query="UPDATE tbl_feeds SET state_new='0',state_cool='${action2[1]}' WHERE id IN ($ids) AND state_cool!='${action2[1]}'";
+					db_query($query);
+					// MOSTRAR RESULTADO
+					session_alert(LANG($action2[1]?"msgnumsicool":"msgnumnocool","feeds").$numids.LANG("message".min($numids,2),"feeds"));
 				} elseif($action2[0]=="delete") {
 					// CREAR DATOS EN TABLA DE POSTS BORRADOS
 					$query="INSERT INTO tbl_feeds_d SELECT NULL id,id_feed,link,'".current_datetime()."' FROM tbl_feeds WHERE id IN ($ids)";
@@ -601,7 +610,7 @@ if(getParam("action")=="feeds") {
 								$title=addslashes($item["title"]);
 								$pubdate=$item["pubdate"];
 								$description=addslashes($item["description"]);
-								$query="INSERT INTO tbl_feeds(id,id_feed,title,pubdate,description,link,hash,state_new,state_modified,state_wait) VALUES(NULL,'${id_feed}','${title}','${pubdate}','${description}','${link}','${hash}','1','0','0')";
+								$query="INSERT INTO tbl_feeds(id,id_feed,title,pubdate,description,link,hash,state_new,state_modified,state_wait,state_cool) VALUES(NULL,'${id_feed}','${title}','${pubdate}','${description}','${link}','${hash}','1','0','0','0')";
 								db_query($query);
 								$query="SELECT MAX(id) FROM tbl_feeds WHERE id_feed='${id_feed}'";
 								$oldcache=set_use_cache("false");

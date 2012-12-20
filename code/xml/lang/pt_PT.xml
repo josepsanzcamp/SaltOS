@@ -1418,6 +1418,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sintitle>(sem tatulo)</sintitle>
 		<post>Post RSS</post>
 		<filtrarfeeds>Filtrar por</filtrarfeeds>
+		<actioncool revised="false">Interessante</actioncool>
+		<statecool revised="false">Interessante</statecool>
+		<onlycool revised="false">Somente interessante</onlycool>
+		<cool revised="false">Interessante</cool>
+		<nocool revised="false">Desinteressante</nocool>
+		<msgcool revised="false">Deseja marcar como interessante / desinteressante todas as mensagens selecionadas?</msgcool>
+		<msgnumsicool revised="false">Foram marcados como interessante: </msgnumsicool>
+		<msgnumnocool revised="false">Foram marcados como desinteressante: </msgnumnocool>
 	</feeds>
 	<importaciones>
 		<list>Lista de importações</list>

@@ -994,7 +994,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>full</name>
 							<type>iframe</type>
-							<value global="id" eval="true">"xml.php?action=getmail&amp;id=".abs($id)."&amp;cid=full"</value>
 							<width>800px</width>
 							<height>240px</height>
 						</field>
@@ -1008,7 +1007,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>source</name>
 							<type>iframe</type>
-							<value global="id" eval="true">"xml.php?action=getmail&amp;id=".abs($id)."&amp;cid=source"</value>
 							<width>800px</width>
 							<height>240px</height>
 						</field>

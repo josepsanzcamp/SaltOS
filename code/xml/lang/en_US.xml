@@ -1399,10 +1399,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<wait>Pending</wait>
 		<borrar>Clear</borrar>
 		<borrartip>Delete all selected posts</borrartip>
-		<noleidos>Do not read</noleidos>
-		<nowait>No pending</nowait>
-		<msgleidos>Want to make as read / unread all posts selected?</msgleidos>
-		<msgwait>Want to be marked as pending / no pending all posts selected?</msgwait>
+		<noleidos>Not read</noleidos>
+		<nowait>Not pending</nowait>
+		<msgleidos>Do you want to make as read / not read all selected posts?</msgleidos>
+		<msgwait>Do you want to mark as pending / not pending all selected posts?</msgwait>
 		<msgdelete2>Delete all posts selected?</msgdelete2>
 		<msgpropietario>Only the owner of the posts you can use these benefits</msgpropietario>
 		<msgnotfound>not found selected posts, change the filter</msgnotfound>
@@ -1418,6 +1418,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sintitle>(no title)</sintitle>
 		<post>RSS Post</post>
 		<filtrarfeeds>Filter by</filtrarfeeds>
+		<actioncool>Cool</actioncool>
+		<statecool>Cool</statecool>
+		<onlycool>Only cool</onlycool>
+		<cool>Cool</cool>
+		<nocool>Not cool</nocool>
+		<msgcool>Do you want to mark as cool / not cool all selected posts?</msgcool>
+		<msgnumsicool>have been marked as cool: </msgnumsicool>
+		<msgnumnocool>has been marked as cool: </msgnumnocool>
 	</feeds>
 	<importaciones>
 		<list>List of imports</list>

@@ -166,6 +166,24 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		old_signature=signature;
 	}
 
+	function update_tabs3() {
+		if(getParam("action")!="form") return;
+		var id=abs(getParam("id"));
+		if(!id) return;
+		setTimeout(function() {
+			$(".tabs").bind("tabsshow",function(event,ui) {
+				var full=$("iframe[name$=full_"+id+"_full]");
+				var full_visible=$(full).is(":visible");
+				var full_has_src=($(full).attr("src")!="");
+				var source=$("iframe[name$=source_"+id+"_source]");
+				var source_visible=$(source).is(":visible");
+				var source_has_src=($(source).attr("src")!="");
+				if(full_visible && !full_has_src) $(full).attr("src","xml.php?action=getmail&id="+id+"&cid=full");
+				if(source_visible && !source_has_src) $(source).attr("src","xml.php?action=getmail&id="+id+"&cid=source");
+			});
+		},100);
+	}
+
 }
 
 "use strict";
@@ -173,4 +191,5 @@ $(function() {
 	update_files();
 	update_auto();
 	update_signature();
+	update_tabs3();
 });

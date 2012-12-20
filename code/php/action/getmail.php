@@ -66,6 +66,7 @@ if(getParam("action")=="getmail") {
 		if(!__getmail_checkperm($id)) action_denied();
 		$source=__getmail_getsource($id,8192);
 		$source=__getmail_getutf8($source);
+		$source=wordwrap($source,120);
 		$source=htmlentities($source,ENT_COMPAT,"UTF-8");
 		$source=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$source);
 		$buffer="";

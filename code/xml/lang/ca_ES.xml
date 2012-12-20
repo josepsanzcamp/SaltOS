@@ -1418,6 +1418,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sintitle>(sense títol)</sintitle>
 		<post>Post RSS</post>
 		<filtrarfeeds>Filtrar per</filtrarfeeds>
+		<actioncool>Interesant</actioncool>
+		<statecool>Interesant</statecool>
+		<onlycool>Només interesants</onlycool>
+		<cool>Interesant</cool>
+		<nocool>No interesant</nocool>
+		<msgcool>Voleu marcar com interesants / no interesants tots els posts seleccionats?</msgcool>
+		<msgnumsicool>S'han marcat com interesants: </msgnumsicool>
+		<msgnumnocool>S'han marcat com no interesants: </msgnumnocool>
 	</feeds>
 	<importaciones>
 		<list>Llistat d'importacions</list>
