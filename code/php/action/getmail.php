@@ -107,6 +107,7 @@ if(getParam("action")=="getmail") {
 				if(__getmail_processplainhtml($disp,$type)) {
 					$temp=$node["body"];
 					if($type=="plain") {
+						$temp=wordwrap($temp,120);
 						$temp=htmlentities($temp,ENT_COMPAT,"UTF-8");
 						$temp=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>\n"),$temp);
 						$temp=__getmail_make_clickable($temp);
@@ -261,6 +262,7 @@ if(getParam("action")=="getmail") {
 				if(__getmail_processplainhtml($disp,$type)) {
 					$temp=$node["body"];
 					if($type=="plain") {
+						$temp=wordwrap($temp,120);
 						$temp=htmlentities($temp,ENT_COMPAT,"UTF-8");
 						$temp=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>\n"),$temp);
 						$temp=__getmail_make_clickable($temp);

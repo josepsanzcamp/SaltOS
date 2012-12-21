@@ -70,7 +70,7 @@ function __signature_getauto($file) {
 	} else {
 		$file["auto"]="Name: ${file["name"]}"."<br/>"."Type: ${file["type"]}"."<br/>"."Size: ${file["size"]}";
 	}
-	$file["auto"]="<signature><span ".__CSS_SIGNATURE__.">--<br/>${file["auto"]}</span></signature>";
+	$file["auto"]="<span ".__CSS_SIGNATURE__.">--<br/>${file["auto"]}</span>";
 	return $file;
 }
 // NORMAL ACTION CODE
@@ -89,11 +89,11 @@ if(getParam("action")=="signature") {
 		$cuenta_new=__signature_from2id($new);
 		// REPLACE THE SIGNATURE BODY
 		$file=__signature_getauto(__signature_getfile($cuenta_new));
-		$auto=$file?$file["auto"]:"<signature></signature>";
+		$auto=$file?$file["auto"]:"";
 		$pos1=strpos($body,"<signature>");
+		if($pos1!==false) $pos1=strpos($body,">",$pos1);
 		$pos2=strpos($body,"</signature>");
-		if($pos2!==false) $pos2=strpos($body,">",$pos2);
-		if($pos1!==false && $pos2!==false) $body=substr_replace($body,$auto,$pos1,$pos2-$pos1+1);
+		if($pos1!==false && $pos2!==false) $body=substr_replace($body,$auto,$pos1+1,$pos2-$pos1-1);
 		// FIND THE OLD AND NEW CC'S AND STATE_CRT'S
 		$query="SELECT * FROM tbl_usuarios_c WHERE id='".$cuenta_old."'";
 		$result_old=execute_query($query);

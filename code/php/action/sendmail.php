@@ -357,7 +357,7 @@ if(getParam("page")=="correo") {
 	if(1) { // GET THE DEFAULT SIGNATURE
 		require_once("php/action/signature.php");
 		$file=__signature_getauto(__signature_getfile($id_cuenta));
-		$body_extra="<br/><br/>".($file?$file["auto"]:"<signature></signature>");
+		$body_extra="<br/><br/><signature>".($file?$file["auto"]:"")."</signature>";
 	}
 	if(isset($id_extra[1]) && in_array($id_extra[1],array("reply","replyall"))) {
 		$query="SELECT * FROM tbl_correo_a WHERE id_correo='${id_extra[2]}'";
@@ -519,6 +519,7 @@ if(getParam("page")=="correo") {
 				if(__getmail_processplainhtml($disp,$type)) {
 					$temp=$node["body"];
 					if($type=="plain") {
+						$temp=wordwrap($temp,120);
 						$temp=htmlentities($temp,ENT_COMPAT,"UTF-8");
 						$temp=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$temp);
 					}
