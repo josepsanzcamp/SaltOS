@@ -1184,6 +1184,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
+			<name>tbl_favoritos</name>
+			<fields>
+				<field>
+					<name>id</name>
+					<type>INTEGER</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>url</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>descripcion</name>
+					<type>TEXT</type>
+				</field>
+			</fields>
+		</table>
+		<table>
 			<name>tbl_feeds</name>
 			<fields>
 				<field>

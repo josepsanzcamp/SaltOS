@@ -428,6 +428,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<textos>Texts predefined</textos>
 		<ficheros>Attachments</ficheros>
 		<feeds>RSS Feed Reader</feeds>
+		<favoritos translated="false">Favoritos</favoritos>
 		<importaciones>Import</importaciones>
 		<gestioncomercial>Sales</gestioncomercial>
 		<gestionproyectos>Projects</gestionproyectos>
@@ -476,6 +477,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_textos>Create predefined texts for use in other applications</desc_textos>
 		<desc_ficheros>Access to all files of the entire application</desc_ficheros>
 		<desc_feeds>Track your RSS and Atom feeds from this application</desc_feeds>
+		<desc_favoritos translated="false">Gestione sus favoritos desde aquí</desc_favoritos>
 		<desc_importaciones>Import data for major applications from here</desc_importaciones>
 		<desc_buscador>To search in all contents of the database</desc_buscador>
 		<desc_errorlog>To see the error logs of SaltOS</desc_errorlog>
@@ -517,6 +519,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_textos>Texts</quick_textos>
 		<quick_ficheros>Attachments</quick_ficheros>
 		<quick_feeds>RSS Feeds</quick_feeds>
+		<quick_favoritos translated="false">Favoritos</quick_favoritos>
 		<quick_importaciones>Imports</quick_importaciones>
 		<quick_buscador>Search</quick_buscador>
 		<quick_errorlog>Errors</quick_errorlog>
@@ -1462,4 +1465,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Error logs</formupdate>
 		<defaultdata>File contents </defaultdata>
 	</errorlog>
+	<favoritos>
+		<list translated="false">Listado de favoritos</list>
+		<create translated="false">Nuevo favorito</create>
+		<url translated="false">URL</url>
+		<last_visit_s translated="false">Ult. Visita</last_visit_s>
+		<bookmark_ya_existe translated="false">La url que inteta guardar ya existe como favorito.</bookmark_ya_existe>
+		<invalid_url translated="false">La url no es válida, verifique la dirección web: </invalid_url>
+	</favoritos>
 </root>

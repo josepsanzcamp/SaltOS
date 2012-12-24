@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2012 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<list>
+		<title lang="true">list</title>
+		<actions include="xml/common/actions.xml" replace="true"/>
+		<width>100%</width>
+		<fields>
+			<field>
+				<name>id2</name>
+				<label lang="true">id</label>
+				<width>1px</width>
+				<sort>true</sort>
+				<order>id</order>
+			</field>
+			<field>
+				<name>url</name>
+				<label lang="true">url</label>
+				<sort>true</sort>
+				<order>url2</order>
+			</field>
+			<field>
+				<name>nombre</name>
+				<label lang="true">nombre</label>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>descripcion</name>
+				<label lang="true">descripcion</label>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>datetime</name>
+				<label lang="true">datetime</label>
+				<sort>true</sort>
+			</field>
+		</fields>
+		<javascript include="xml/common/jslist.xml"/>
+		<quick>
+			<row>
+				<field ifeval="check_filter(array('filtro'=>''))">
+					<type>label</type>
+					<label lang="true">usedfilter</label>
+					<class>nowrap</class>
+					<class2>info</class2>
+				</field>
+				<field>
+					<name>nuevofavorito</name>
+					<label lang="true">url</label>
+					<type>text</type>
+					<width>240px</width>
+					<speech>true</speech>
+					<onkeypress>if(is_enterkey(event)) add_bookmark()</onkeypress>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">create</value>
+					<tip lang="true">create</tip>
+					<onclick>add_bookmark()</onclick>
+					<icon>accept</icon>
+					<class>nowrap</class>
+				</field>
+				<field>
+					<type>separator</type>
+					<width>100%</width>
+				</field>
+				<field ifeval="check_filter(array('filtro'=>''))">
+					<type>label</type>
+					<label lang="true">usedfilter</label>
+					<class>nowrap</class>
+					<class2>info</class2>
+				</field>
+				<field>
+					<name>buscar</name>
+					<label lang="true">buscar</label>
+					<type>text</type>
+					<width>240px</width>
+					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<onchange>copy_value("filtro","buscar");</onchange>
+					<onkeypress>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkeypress>
+					<focus>true</focus>
+					<speech>true</speech>
+					<class3>shortcut_ctrl_f</class3>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">buscar</value>
+					<tip lang="true">buscartip</tip>
+					<onclick>buscar()</onclick>
+					<icon>find</icon>
+					<class>nowrap</class>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">limpiar</value>
+					<tip lang="true">limpiartip</tip>
+					<onclick>limpiar()</onclick>
+					<icon>refresh</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+			</row>
+		</quick>
+		<form>
+			<name>list</name>
+			<action>xml.php</action>
+			<method>get</method>
+			<fields>
+				<title lang="true">filter</title>
+				<buttons>true</buttons>
+				<row>
+					<field include="xml/common/hiddenslist.xml" replace="true" />
+					<field>
+						<name>filtro</name>
+						<label lang="true">filtro</label>
+						<type>text</type>
+						<width>240px</width>
+						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<colspan>2</colspan>
+						<onchange>copy_value("buscar","filtro");</onchange>
+						<speech>true</speech>
+					</field>
+				</row>
+			</fields>
+			<fields include="xml/common/filters.xml" replace="true" />
+			<fields include="xml/common/helplist.xml" replace="true" />
+			<buttons include="xml/common/buttonslist.xml" />
+		</form>
+		<pager include="xml/common/pagerlist.xml"/>
+		<node path="pager/row/field" replace="true">
+			<field>
+				<type>separator</type>
+				<width>15%</width>
+			</field>
+		</node>
+		<query global="page,filtro" eval="true">"
+		SELECT id2,id,
+			nombre,descripcion,datetime,
+			/*MYSQL CONCAT('link:openwin(\'',url,'\'):',url) *//*SQLITE 'link:openwin(\'' || url || '\'):' || url */ url,
+			url url2,
+			id action_id,
+			/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || id,-5,5) || ' - ' || nombre */ action_title,
+			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
+		FROM (
+			SELECT
+				a.*,
+				/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
+				e.id_usuario id_usuario,e.datetime datetime,
+				d.id_grupo id_grupo
+			FROM tbl_favoritos a
+				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
+				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+		) b
+		WHERE ".make_like_query("id2,url,nombre,descripcion",$filtro)." AND ".check_sql($page,"list")</query>
+		<order global="order" eval="true">$order</order>
+		<limit global="limit" eval="true">$limit</limit>
+		<offset global="offset" eval="true">$offset</offset>
+	</list>
+	<delete>
+		<query include="xml/common/qpermdelete.xml" replace="true"/>
+		<query include="xml/common/qdelete.xml" replace="true" />
+		<query include="xml/common/qcontroldelete.xml" replace="true"/>
+	</delete>
+</root>

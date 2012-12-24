@@ -428,6 +428,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<textos>Textos predefinidos</textos>
 		<ficheros>Ficheros adjuntos</ficheros>
 		<feeds>Lector de feeds RSS</feeds>
+		<favoritos>Favoritos</favoritos>
 		<importaciones>Importaciones</importaciones>
 		<gestioncomercial>Comercial</gestioncomercial>
 		<gestionproyectos>Proyectos</gestionproyectos>
@@ -476,6 +477,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_textos>Cree textos predefinidos para usarlos en otras aplicaciones</desc_textos>
 		<desc_ficheros>Acceda a todos los ficheros de toda la aplicación</desc_ficheros>
 		<desc_feeds>Siga sus feeds RSS y Atom desde esta aplicación</desc_feeds>
+		<desc_favoritos>Gestione sus favoritos desde aquí</desc_favoritos>
 		<desc_importaciones>Importe datos a las principales aplicaciones desde aquí</desc_importaciones>
 		<desc_buscador>Para buscar en toda la base de datos</desc_buscador>
 		<desc_errorlog>Para ver el registro de errores de SaltOS</desc_errorlog>
@@ -517,6 +519,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_textos>Textos</quick_textos>
 		<quick_ficheros>Ficheros</quick_ficheros>
 		<quick_feeds>Feeds RSS</quick_feeds>
+		<quick_favoritos>Favoritos</quick_favoritos>
 		<quick_importaciones>Importaciones</quick_importaciones>
 		<quick_buscador>Buscador</quick_buscador>
 		<quick_errorlog>Errores</quick_errorlog>
@@ -1462,4 +1465,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Logs de error</formupdate>
 		<defaultdata>Contenido del fichero </defaultdata>
 	</errorlog>
+	<favoritos>
+		<list>Listado de favoritos</list>
+		<create>Nuevo favorito</create>
+		<url>URL</url>
+		<last_visit_s>Ult. Visita</last_visit_s>
+		<bookmark_ya_existe>La url que inteta guardar ya existe como favorito.</bookmark_ya_existe>
+		<invalid_url>La url no es válida, verifique la dirección web: </invalid_url>
+	</favoritos>
 </root>

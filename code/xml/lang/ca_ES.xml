@@ -428,6 +428,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<textos>Textos predefinits</textos>
 		<ficheros>Fitxers adjunts</ficheros>
 		<feeds>Lector de feeds RSS</feeds>
+		<favoritos translated="false">Favoritos</favoritos>
 		<importaciones>Importacions</importaciones>
 		<gestioncomercial>Comercial</gestioncomercial>
 		<gestionproyectos>Projectes</gestionproyectos>
@@ -476,6 +477,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_textos>Creeu textos predefinits per usar-los en altres aplicacions</desc_textos>
 		<desc_ficheros>Accedeixi a tots els fitxers de tota l'aplicació</desc_ficheros>
 		<desc_feeds>Seguiu els seus feeds RSS i Atom des d'aquesta aplicació</desc_feeds>
+		<desc_favoritos translated="false">Gestione sus favoritos desde aquí</desc_favoritos>
 		<desc_importaciones>Import dades a les principals aplicacions des d'aquí</desc_importaciones>
 		<desc_buscador>Per cercar a tota la base de dades</desc_buscador>
 		<desc_errorlog>Per veure el registre d'errors de SaltOS</desc_errorlog>
@@ -517,6 +519,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_textos>Textos</quick_textos>
 		<quick_ficheros>Fitxers</quick_ficheros>
 		<quick_feeds>Feeds RSS</quick_feeds>
+		<quick_favoritos translated="false">Favoritos</quick_favoritos>
 		<quick_importaciones>Importacions</quick_importaciones>
 		<quick_buscador>Cercador</quick_buscador>
 		<quick_errorlog>Errors</quick_errorlog>
@@ -1462,4 +1465,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Logs d'error</formupdate>
 		<defaultdata>Contingut del fitxer </defaultdata>
 	</errorlog>
+	<favoritos>
+		<list translated="false">Listado de favoritos</list>
+		<create translated="false">Nuevo favorito</create>
+		<url translated="false">URL</url>
+		<last_visit_s translated="false">Ult. Visita</last_visit_s>
+		<bookmark_ya_existe translated="false">La url que inteta guardar ya existe como favorito.</bookmark_ya_existe>
+		<invalid_url translated="false">La url no es válida, verifique la dirección web: </invalid_url>
+	</favoritos>
 </root>

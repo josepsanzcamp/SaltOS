@@ -428,6 +428,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<textos>Vordefinierte Texte</textos>
 		<ficheros>Anhänge</ficheros>
 		<feeds>RSS-Feed-Reader</feeds>
+		<favoritos translated="false">Favoritos</favoritos>
 		<importaciones>Imports</importaciones>
 		<gestioncomercial>Marketing</gestioncomercial>
 		<gestionproyectos>Projekte</gestionproyectos>
@@ -476,6 +477,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_textos>Erstellen vordefinierten Texten zur Verwendung in anderen Anwendungen</desc_textos>
 		<desc_ficheros>Zugriff auf alle Dateien der gesamten Anwendung</desc_ficheros>
 		<desc_feeds>Folgen Sie Ihren RSS und Atom-Feeds aus dieser Anwendung</desc_feeds>
+		<desc_favoritos translated="false">Gestione sus favoritos desde aquí</desc_favoritos>
 		<desc_importaciones>Importieren von Daten für die wichtigsten Anwendungen</desc_importaciones>
 		<desc_buscador revised="false">Um in den gesamten Inhalt der Datenbank zu suchen</desc_buscador>
 		<desc_errorlog revised="false">Um die Fehlerprotokolle von SaltOS sehen</desc_errorlog>
@@ -517,6 +519,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_textos>Texte</quick_textos>
 		<quick_ficheros>Dateien</quick_ficheros>
 		<quick_feeds>RSS-Feeds</quick_feeds>
+		<quick_favoritos translated="false">Favoritos</quick_favoritos>
 		<quick_importaciones>Importe</quick_importaciones>
 		<quick_buscador>Suche</quick_buscador>
 		<quick_errorlog revised="false">Fehler</quick_errorlog>
@@ -1462,4 +1465,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate revised="false">Fehlerprotokolle</formupdate>
 		<defaultdata revised="false">Inhalt der Datei </defaultdata>
 	</errorlog>
+	<favoritos>
+		<list translated="false">Listado de favoritos</list>
+		<create translated="false">Nuevo favorito</create>
+		<url translated="false">URL</url>
+		<last_visit_s translated="false">Ult. Visita</last_visit_s>
+		<bookmark_ya_existe translated="false">La url que inteta guardar ya existe como favorito.</bookmark_ya_existe>
+		<invalid_url translated="false">La url no es válida, verifique la dirección web: </invalid_url>
+	</favoritos>
 </root>

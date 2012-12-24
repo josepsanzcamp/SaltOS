@@ -428,6 +428,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<textos>Textos predefinidos</textos>
 		<ficheros>Ficheros anexos</ficheros>
 		<feeds>Leitor de feeds RSS</feeds>
+		<favoritos translated="false">Favoritos</favoritos>
 		<importaciones>Importações</importaciones>
 		<gestioncomercial>Comercial</gestioncomercial>
 		<gestionproyectos>Projectos</gestionproyectos>
@@ -476,6 +477,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_textos>Crie textos predefinidos para usa-los en outras aplicações</desc_textos>
 		<desc_ficheros>Aceda a todos os ficheiros de toda a aplicação</desc_ficheros>
 		<desc_feeds>Siga os seus feeds RSS e Atom a partir desta aplicação</desc_feeds>
+		<desc_favoritos translated="false">Gestione sus favoritos desde aquí</desc_favoritos>
 		<desc_importaciones>Importe dados das principalis aplicações a partir daqui</desc_importaciones>
 		<desc_buscador revised="false">Para pesquisar todo o conteúdo do banco de dados</desc_buscador>
 		<desc_errorlog revised="false">Para ver os logs de erros de Saltos</desc_errorlog>
@@ -517,6 +519,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_textos>Textos</quick_textos>
 		<quick_ficheros>Ficheiros</quick_ficheros>
 		<quick_feeds>Feeds RSS</quick_feeds>
+		<quick_favoritos translated="false">Favoritos</quick_favoritos>
 		<quick_importaciones>Importações</quick_importaciones>
 		<quick_buscador>Pesquisador</quick_buscador>
 		<quick_errorlog revised="false">Erros</quick_errorlog>
@@ -1462,4 +1465,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate revised="false">Logs de erros</formupdate>
 		<defaultdata revised="false">Conteúdo do arquivo </defaultdata>
 	</errorlog>
+	<favoritos>
+		<list translated="false">Listado de favoritos</list>
+		<create translated="false">Nuevo favorito</create>
+		<url translated="false">URL</url>
+		<last_visit_s translated="false">Ult. Visita</last_visit_s>
+		<bookmark_ya_existe translated="false">La url que inteta guardar ya existe como favorito.</bookmark_ya_existe>
+		<invalid_url translated="false">La url no es válida, verifique la dirección web: </invalid_url>
+	</favoritos>
 </root>

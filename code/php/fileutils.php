@@ -325,13 +325,23 @@ function url_get_contents($url,$type="GET") {
 	$headers=explode("\n",$headers);
 	foreach($headers as $header) {
 		if(stripos($header,"location:")!==false) {
-			$url=trim(substr($header,9));
-			$body=url_get_contents($url,$type);
+			$url2=trim(substr($header,9));
+			$array2=parse_url($url2);
+			if(!isset($array2["scheme"])) $array2["scheme"]=$array["scheme"];
+			if(!isset($array2["host"])) $array2["host"]=$array["host"];
+			if(!isset($array2["port"]) && isset($array["port"])) $array2["port"]=$array["port"];
+			$url2=$array2["scheme"]."://".$array2["host"].(isset($array2["port"])?":".$array2["port"]:"").(isset($array2["path"])?"/".$array2["path"]:"");
+			$body=url_get_contents($url2,$type);
 			$headers=array();
 			break;
 		}
 	}
 	foreach($headers as $header) {
+		if(stripos($header,"404 Not Found")!==false) {
+			$body="";
+			$headers=array();
+			break;
+		}
 		if(stripos($header,"transfer-encoding:")!==false && stripos($header,"chunked")!==false) {
 			$from=0;
 			$newbody="";
