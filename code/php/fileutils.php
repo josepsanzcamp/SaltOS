@@ -330,7 +330,14 @@ function url_get_contents($url,$type="GET") {
 			if(!isset($array2["scheme"])) $array2["scheme"]=$array["scheme"];
 			if(!isset($array2["host"])) $array2["host"]=$array["host"];
 			if(!isset($array2["port"]) && isset($array["port"])) $array2["port"]=$array["port"];
-			$url2=$array2["scheme"]."://".$array2["host"].(isset($array2["port"])?":".$array2["port"]:"").(isset($array2["path"])?"/".$array2["path"]:"");
+			if(!isset($array2["path"])) {
+				$array2["path"]="/";
+			} elseif(substr($array2["path"],0,1)!="/") {
+				if(isset($array["path"])) $array2["path"]=$array["path"]."/".$array2["path"];
+				if(!isset($array["path"])) $array2["path"]="/".$array2["path"];
+			}
+			require_once("lib/wordpress/http_build_url.php");
+			$url2=http_build_url($url2,$array2);
 			$body=url_get_contents($url2,$type);
 			$headers=array();
 			break;

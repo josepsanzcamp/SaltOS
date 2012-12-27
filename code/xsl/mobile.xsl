@@ -564,13 +564,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="class">ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
 					</xsl:if>
-					<iframe src="" name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" frameborder="0" class="{class3}" isloaded="false" onload="$(this).attr('isloaded','true');">
+					<iframe src="" url="" name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" frameborder="0" class="{class3}">
 						<xsl:if test="readonly='true'">
 							<xsl:attribute name="readonly">true</xsl:attribute>
 						</xsl:if>
-						<xsl:attribute name="src"><xsl:value-of select="value"/></xsl:attribute>
+						<xsl:attribute name="url"><xsl:value-of select="value"/></xsl:attribute>
 						<xsl:for-each select="$node/*[name()=$name]">
-							<xsl:attribute name="src"><xsl:value-of select="."/></xsl:attribute>
+							<xsl:attribute name="url"><xsl:value-of select="."/></xsl:attribute>
 						</xsl:for-each>
 					</iframe>
 				</div>

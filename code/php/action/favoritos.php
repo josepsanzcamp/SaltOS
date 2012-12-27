@@ -60,8 +60,8 @@ function __get_metas($html) {
 // CONTINUE
 if(getParam("action")=="favoritos") {
 	$url=getParam("url");
-	$temp=parse_url($url);
-	if(!isset($temp["scheme"])) $url="http://".$url;
+	$scheme=parse_url($url,PHP_URL_SCHEME);
+	if(!$scheme) $url="http://".$url;
 	if(substr($url,-1,1)=="/") $url=substr($url,0,-1);
 	$query="SELECT id FROM tbl_favoritos WHERE url LIKE '${url}'";
 	$existe=execute_query($query);

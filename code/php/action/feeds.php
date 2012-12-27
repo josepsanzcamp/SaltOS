@@ -349,12 +349,13 @@ if(getParam("action")=="feeds") {
 		$url=getParam("url");
 		if($url=="null") $url="";
 		$url2=$url;
-		$temp=parse_url($url2);
-		if(!isset($temp["scheme"])) $url2="http://".$url2;
+		$scheme=parse_url($url,PHP_URL_SCHEME);
+		if(!$scheme) $url2="http://".$url2;
 		capture_next_error();
 		$xml=url_get_contents($url2);
 		$error=get_clear_error();
 		if(!$error) {
+			$xmlold=$xml;
 			$xml=__feeds_removescripts($xml);
 			$xml=trim($xml);
 			capture_next_error();
@@ -372,6 +373,7 @@ if(getParam("action")=="feeds") {
 				if(!$error) $url=$url2;
 			}
 			if($error) {
+				$xml=$xmlold;
 				$posatom=strpos($xml,"application/atom+xml");
 				$posrss=strpos($xml,"application/rss+xml");
 				if($posatom) {
@@ -388,27 +390,29 @@ if(getParam("action")=="feeds") {
 					$posigual=strpos($tagfeed,"=",$poshref);
 					$possimple1=strpos($tagfeed,"'",$posigual);
 					$possimple2=strpos($tagfeed,"'",$possimple1+1);
-					$posdoble1=strpos($tagfeed,"\"",$posigual);
-					$posdoble2=strpos($tagfeed,"\"",$posdoble1+1);
+					$posdoble1=strpos($tagfeed,'"',$posigual);
+					$posdoble2=strpos($tagfeed,'"',$posdoble1+1);
 					if($possimple1!==false && $possimple2!==false) {
 						$url3=substr($tagfeed,$possimple1+1,$possimple2-$possimple1-1);
 					} elseif($posdoble1!==false && $posdoble2!==false) {
 						$url3=substr($tagfeed,$posdoble1+1,$posdoble2-$posdoble1-1);
 					}
 					if(isset($url3)) {
-						$temp2=parse_url($url3);
-						if(!isset($temp2["scheme"])) {
-							$temp=parse_url($url2);
-							if(strpos($url3,$temp["host"])!==false) {
-								while(substr($url3,0,1)=="/") $url3=substr($url3,1);
-								$url3=$temp["scheme"]."://".$url3;
-							} elseif(substr($url3,0,1)=="/") {
-								while(substr($url3,0,1)=="/") $url3=substr($url3,1);
-								$url3=$temp["scheme"]."://".$temp["host"]."/".$url3;
-							} else {
-								$url3=$temp["scheme"]."://".$temp["host"]."/".dirname($temp["path"])."/".$url3;
-							}
+						$array=parse_url($url2);
+						$array2=parse_url($url3);
+						if(!isset($array2["scheme"])) $array2["scheme"]=$array["scheme"];
+						if(!isset($array2["host"])) $array2["host"]=$array["host"];
+						if(!isset($array2["port"]) && isset($array["port"])) $array2["port"]=$array["port"];
+						if(!isset($array2["path"])) {
+							$array2["path"]="/";
+						} elseif(substr($array2["path"],0,1)!="/") {
+							if(isset($array["path"])) $array2["path"]=$array["path"]."/".$array2["path"];
+							if(!isset($array["path"])) $array2["path"]="/".$array2["path"];
 						}
+						require_once("lib/wordpress/http_build_url.php");
+						$url3=http_build_url($url3,$array2);
+						unset($array);
+						unset($array2);
 						capture_next_error();
 						$xml=url_get_contents($url3);
 						$error=get_clear_error();

@@ -1416,9 +1416,17 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					var iframe2=$(iframe,obj);
 					if(!$(iframe2).length) {
 						clearInterval(interval);
-					} else if($(iframe2).is(":visible") && $(iframe2).attr("src")!="" && $(iframe2).attr("isloaded")=="true") {
-						clearInterval(interval);
-						setTimeout(function() {
+					} else if($(iframe2).is(":visible")) {
+						if(typeof($(iframe2).attr("isloaded"))=="undefined") {
+							$(iframe2).attr("isloaded","false");
+							$(iframe2).load(function() {
+								$(this).attr("isloaded","true");
+							}).each(function() {
+								var iframe3=this.contentWindow.location;
+								iframe3.replace($(this).attr("url"));
+							});
+						} else if($(iframe2).attr("isloaded")=="true") {
+							clearInterval(interval);
 							var minheight=$(iframe2).height();
 							var newheight=$(iframe2).contents().height();
 							if(newheight>minheight) $(iframe2).height(newheight);
@@ -1427,7 +1435,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 								$(iframe3).bind("contextmenu",function(e) { return false; });
 								$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
 							});
-						},100);
+						}
 					}
 				},100);
 			}
