@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 global $_CONFIG;
 global $_LANG;
 // LOAD MAIN CONFIGURATION
-$_CONFIG=eval_attr(xml2array("install/xml/config.xml",false));
+$_CONFIG=eval_attr(xml2array("install/xml/config.xml"));
 if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));
 if(getParam("env_path")) $_CONFIG["putenv"]["PATH"]=getParam("env_path");
 if(getParam("env_lang")) $_CONFIG["putenv"]["LANG"]=getParam("env_lang");
@@ -36,8 +36,13 @@ if(getDefault("putenv")) eval_putenv(getDefault("putenv"));
 $lang=getParam("lang",getDefault("lang"));
 $style=getParam("style",getDefault("style"));
 $iconset=getParam("iconset",getDefault("iconset"));
-$_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml",false));
-$_ICONSET=eval_attr(xml2array("xml/iconset.xml",false));
+$_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml"));
+$_ICONSET=eval_attr(xml2array("xml/iconset.xml"));
+// SOME ALLOWED ACTIONS
+if(getParam("action")=="themeroller") {
+	$_CONFIG["cache"]["useimginline"]="false";
+	include("php/action/".getParam("action").".php");
+}
 // SOME DEFINES
 define("__UI__","class='ui-state-default ui-corner-all'");
 define("__IMG__","style='vertical-align:middle'");
@@ -86,7 +91,7 @@ define("__BR__","<br/>");
 							<?php echo __BOLD__; ?><?php echo LANG("welcome_message"); ?><?php echo __COLOR__; ?><?php echo __BR__; ?>
 							<?php echo __BR__; ?>
 							<?php echo LANG("lang_message"); ?>
-							<?php $temp=eval_attr(xml2array("xml/common/langs.xml",false)); ?>
+							<?php $temp=eval_attr(xml2array("xml/common/langs.xml")); ?>
 							<?php $langs=array(); ?>
 							<?php foreach($temp["rows"] as $row) $langs[$row["value"]]=$row["label"]; ?>
 							<select name="lang" onchange="document.form.step.value='0';document.form.submit()" <?php echo __UI__; ?>>
@@ -97,7 +102,7 @@ define("__BR__","<br/>");
 							</select>
 							<?php echo __BR__; ?>
 							<?php echo LANG("style_message"); ?>
-							<?php $temp=eval_attr(xml2array("xml/common/styles.xml",false)); ?>
+							<?php $temp=eval_attr(xml2array("xml/common/styles.xml")); ?>
 							<?php if(!isset($temp["rows"]) && isset($temp["rows#1"])) { $temp["rows"]=$temp["rows#1"]; unset($temp["rows#1"]); } ?>
 							<?php $styles=array(); ?>
 							<?php foreach($temp["rows"] as $row) $styles[$row["value"]]=$row["label"]; ?>
@@ -109,7 +114,7 @@ define("__BR__","<br/>");
 							</select>
 							<?php echo __BR__; ?>
 							<?php echo LANG("iconset_message"); ?>
-							<?php $temp=eval_attr(xml2array("xml/common/iconset.xml",false)); ?>
+							<?php $temp=eval_attr(xml2array("xml/common/iconset.xml")); ?>
 							<?php $iconsets=array(); ?>
 							<?php foreach($temp["rows"] as $row) $iconsets[$row["value"]]=$row["label"]; ?>
 							<select name="iconset" onchange="document.form.step.value='0';document.form.submit()" <?php echo __UI__; ?>>
@@ -261,7 +266,7 @@ define("__BR__","<br/>");
 								<?php echo LANG("email"); ?>: <input type="text" size="40" <?php echo __UI__; ?> name="email" value="<?php echo getParam("email")?getParam("email"):""; ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
 								<input type="checkbox" name="forcessl" id="forcessl" value="1" style="vertical-align:-15%"/><label for="forcessl"><?php echo LANG("forcessl"); ?></label><?php echo __BR__; ?>
 								<?php echo LANG("timezone"); ?>:
-								<?php $temp=eval_attr(xml2array("xml/common/timezones.xml",false)); ?>
+								<?php $temp=eval_attr(xml2array("xml/common/timezones.xml")); ?>
 								<?php $timezone=$temp["value"]; ?>
 								<?php $timezones=array(); ?>
 								<?php foreach($temp["rows"] as $row) $timezones[$row["value"]]=$row["label"]; ?>
@@ -306,16 +311,16 @@ define("__BR__","<br/>");
 						</div>
 						<div <?php echo __DIV2__; ?>>
 							<b><?php echo LANG("language"); ?></b><?php echo __BR__; ?>
-							<?php $temp=eval_attr(xml2array("xml/common/langs.xml",false)); ?>
+							<?php $temp=eval_attr(xml2array("xml/common/langs.xml")); ?>
 							<?php $langs=array(); ?>
 							<?php foreach($temp["rows"] as $row) $langs[$row["value"]]=$row["label"]; ?>
 							<?php echo LANG("lang"); ?>: <?php echo __GREEN__.$langs[getParam("lang",getDefault("lang"))]." (".getParam("lang",getDefault("lang")).")".__COLOR__.__BR__; ?>
-							<?php $temp=eval_attr(xml2array("xml/common/styles.xml",false)); ?>
+							<?php $temp=eval_attr(xml2array("xml/common/styles.xml")); ?>
 							<?php if(!isset($temp["rows"]) && isset($temp["rows#1"])) { $temp["rows"]=$temp["rows#1"]; unset($temp["rows#1"]); } ?>
 							<?php $styles=array(); ?>
 							<?php foreach($temp["rows"] as $row) $styles[$row["value"]]=$row["label"]; ?>
 							<?php echo LANG("style"); ?>: <?php echo __GREEN__.$styles[getParam("style",getDefault("style"))]." (".getParam("style",getDefault("style")).")".__COLOR__.__BR__; ?>
-							<?php $temp=eval_attr(xml2array("xml/common/iconset.xml",false)); ?>
+							<?php $temp=eval_attr(xml2array("xml/common/iconset.xml")); ?>
 							<?php $iconsets=array(); ?>
 							<?php foreach($temp["rows"] as $row) $iconsets[$row["value"]]=$row["label"]; ?>
 							<?php echo LANG("iconset"); ?>: <?php echo __GREEN__.$iconsets[getParam("iconset",getDefault("iconset"))]." (".getParam("iconset",getDefault("iconset")).")".__COLOR__.__BR__; ?>
@@ -425,7 +430,7 @@ define("__BR__","<br/>");
 								));
 								set_array($config,"node",array(
 									"value"=>array("style"=>array(
-										"value"=>"is_mobile()?'".(is_mobile()?$style:"b")."':'".(is_mobile()?"redmond":$style)."'",
+										"value"=>"is_mobile()?'".(is_mobile()?$style:"b")."':'".(is_mobile()?"blue":$style)."'",
 										"#attr"=>array("eval"=>"true"))),
 									"#attr"=>array("path"=>"default/style","replace"=>"true")
 								));
@@ -450,7 +455,7 @@ define("__BR__","<br/>");
 									"#attr"=>array("path"=>"putenv/LANG","replace"=>"true")
 								));
 								$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
-								$buffer.=array2xml($config,false,false);
+								$buffer.=array2xml($config);
 								if(file_exists("xml/config.xml") && !file_exists("xml/config.xml.old")) {
 									rename("xml/config.xml","xml/config.xml.old");
 									file_put_contents("xml/config.xml",$buffer);
@@ -491,7 +496,7 @@ define("__BR__","<br/>");
 										$numrows=execute_query($query);
 										echo current_datetime().": ".LANG("defaultdata").": ".basename($file).": ";
 										if(!$numrows) {
-											$rows=eval_attr(xml2array($file,false));
+											$rows=eval_attr(xml2array($file));
 											foreach($rows as $row) {
 												$keys=array();
 												$vals=array();
@@ -564,7 +569,7 @@ define("__BR__","<br/>");
 											$numrows=execute_query($query);
 											echo current_datetime().": ".LANG("exampledata").": ".basename($file).": ";
 											if(!$numrows) {
-												$rows=eval_attr(xml2array($file,false));
+												$rows=eval_attr(xml2array($file));
 												foreach($rows as $row) {
 													$keys=array();
 													$vals=array();

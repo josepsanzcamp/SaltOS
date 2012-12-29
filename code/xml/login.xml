@@ -117,21 +117,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<colspan>2</colspan>
 				</actions>
 			</row>
-			<row ifeval="!getDefault('forcestyle')">
-				<field>
-					<type>separator</type>
-				</field>
-			</row>
-			<row ifeval="!getDefault('forcestyle') &amp;&amp; !is_mobile()">
-				<field>
-					<name>preview</name>
-					<label lang="true">preview</label>
-					<type>image</type>
-					<width>90px</width>
-					<height>80px</height>
-					<image global="style,stylepre" eval="true">$stylepre.$style."/preview.png"</image>
-				</field>
-			</row>
 		</fields>
 		<fields ifeval="eval_bool(getDefault('security/allowremember'))">
 			<row>

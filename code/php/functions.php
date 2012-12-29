@@ -663,6 +663,16 @@ function load_iconset($iconset) {
 	return is_array(getDefault("iconset/$iconset"));
 }
 
+function load_style($style) {
+	global $_CONFIG;
+	if(!isset($_CONFIG["themeroller"])) $_CONFIG["themeroller"]=xml2array("xml/themeroller.xml");
+	return !is_null(getDefault("themeroller/$style"));
+}
+
+function load_lang($lang) {
+	return file_exists("xml/lang/${lang}.xml");
+}
+
 function check_remember() {
 	if(!eval_bool(getDefault("security/allowremember"))) return;
 	if(useSession("user")) return;

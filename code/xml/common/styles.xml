@@ -30,104 +30,52 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<width>120px</width>
 	<rows ifeval="!is_mobile()">
 		<row>
-			<label>Base</label>
-			<value>base</value>
+			<label>Blue</label>
+			<value>blue</value>
 		</row>
 		<row>
-			<label>Black Tie</label>
-			<value>black-tie</value>
+			<label>Dark blue</label>
+			<value>blue2</value>
 		</row>
 		<row>
-			<label>Blitzer</label>
-			<value>blitzer</value>
+			<label>Light blue</label>
+			<value>blue3</value>
 		</row>
 		<row>
-			<label>Cupertino</label>
-			<value>cupertino</value>
+			<label>Red</label>
+			<value>red</value>
 		</row>
 		<row>
-			<label>Dark Hive</label>
-			<value>dark-hive</value>
+			<label>Pink</label>
+			<value>pink</value>
 		</row>
 		<row>
-			<label>Dot Luv</label>
-			<value>dot-luv</value>
+			<label>Light brown</label>
+			<value>brown</value>
 		</row>
 		<row>
-			<label>Eggplant</label>
-			<value>eggplant</value>
+			<label>Dark brown</label>
+			<value>brown2</value>
 		</row>
 		<row>
-			<label>Excite Bike</label>
-			<value>excite-bike</value>
+			<label>Dark violet</label>
+			<value>violet</value>
 		</row>
 		<row>
-			<label>Flick</label>
-			<value>flick</value>
+			<label>Light Violet</label>
+			<value>violet2</value>
 		</row>
 		<row>
-			<label>Hot Sneaks</label>
-			<value>hot-sneaks</value>
+			<label>Light green</label>
+			<value>green</value>
 		</row>
 		<row>
-			<label>Humanity</label>
-			<value>humanity</value>
+			<label>Dark green</label>
+			<value>green2</value>
 		</row>
 		<row>
-			<label>Le Frog</label>
-			<value>le-frog</value>
-		</row>
-		<row>
-			<label>Mint Choc</label>
-			<value>mint-choc</value>
-		</row>
-		<row>
-			<label>Overcast</label>
-			<value>overcast</value>
-		</row>
-		<row>
-			<label>Pepper Grinder</label>
-			<value>pepper-grinder</value>
-		</row>
-		<row>
-			<label>Redmond</label>
-			<value>redmond</value>
-		</row>
-		<row>
-			<label>Smoothness</label>
-			<value>smoothness</value>
-		</row>
-		<row>
-			<label>South Street</label>
-			<value>south-street</value>
-		</row>
-		<row>
-			<label>Start</label>
-			<value>start</value>
-		</row>
-		<row>
-			<label>Sunny</label>
-			<value>sunny</value>
-		</row>
-		<row>
-			<label>Swanky Purse</label>
-			<value>swanky-purse</value>
-		</row>
-		<row>
-			<label>Trontastic</label>
-			<value>trontastic</value>
-		</row>
-		<row>
-			<label>UI Darkness</label>
-			<value>ui-darkness</value>
-		</row>
-		<row>
-			<label>UI Lightness</label>
-			<value>ui-lightness</value>
-		</row>
-		<row>
-			<label>Vader</label>
-			<value>vader</value>
+			<label>Black</label>
+			<value>black</value>
 		</row>
 	</rows>
 	<rows ifeval="is_mobile()">
