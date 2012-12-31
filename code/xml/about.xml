@@ -258,10 +258,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
 						</field>
 						<field>
-							<label>PHPThumb 1.7.11 (GPL-2.0)</label>
+							<label>PHPMailer 5.2.2 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://phpthumb.sourceforge.net/")</onclick>
+							<onclick>openwin("http://code.google.com/a/apache-extras.org/p/phpmailer/")</onclick>
 						</field>
 						<field>
 							<label>PHPExcel 1.7.8 (LGPL-2.1)</label>
@@ -270,19 +270,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.codeplex.com/PHPExcel")</onclick>
 						</field>
 						<field>
-							<label>PHPMailer 5.2.2 (LGPL-2.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://code.google.com/a/apache-extras.org/p/phpmailer/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
 							<label>PHPLOT 5.8.0 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://sourceforge.net/projects/phplot/")</onclick>
 						</field>
+					</row>
+					<row>
 						<field>
 							<label>JSmin-php 1.1.2 (MIT)</label>
 							<type>link</type>
@@ -296,14 +290,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://code.google.com/p/cssmin/")</onclick>
 						</field>
 						<field>
-							<label>Password Strength 1.0.0 (GPL-3.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
 							<label>Google Data APIs (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
@@ -315,6 +301,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
 						</field>
+					</row>
+					<row>
 						<field>
 							<label>MimeParser 1.82 (BSD)</label>
 							<type>link</type>
@@ -327,8 +315,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
 						</field>
-					</row>
-					<row>
 						<field>
 							<label>Pop3Class 1.23 (BSD)</label>
 							<type>link</type>
@@ -341,6 +327,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/945-PHP-Create-tar-gzip-bzip2-zip-extract-tar-gzip-bzip2-.html")</onclick>
 						</field>
+					</row>
+					<row>
 						<field>
 							<label>WordPress 3.5 (GPL-2.0)</label>
 							<type>link</type>
@@ -353,6 +341,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/2695-PHP-Safely-evaluate-mathematical-expressions.html")</onclick>
 						</field>
+						<field>
+							<label>PHPass 0.3 (Public domain)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://www.openwall.com/phpass/")</onclick>
+						</field>
+						<field>
+							<label>Password Strength 1.0.0 (GPL-3.0)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
+						</field>
 					</row>
 					<row>
 						<field>
@@ -362,15 +362,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.chuggnutt.com/html2text")</onclick>
 						</field>
 						<field>
-							<label>PHPass 0.3 (Public domain)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.openwall.com/phpass/")</onclick>
-						</field>
-						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>

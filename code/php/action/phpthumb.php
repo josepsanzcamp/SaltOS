@@ -29,44 +29,69 @@ if(getParam("action")=="phpthumb") {
 	if(!file_exists($src)) $src=getcwd()."/".getParam("src",getParam("amp;src"));
 	if(!file_exists($src)) $src=get_directory("dirs/filesdir").getParam("src",getParam("amp;src"));
 	if(!file_exists($src)) action_denied();
-	// BEGIN THE PHPTHUMB WRAPPER
-	if(!isset($_SERVER["HTTP_REFERER"])) $_SERVER["HTTP_REFERER"]="";
-	$_SERVER["PHP_SELF"]=dirname(getServer("SCRIPT_NAME"))."/lib/phpthumb/phpThumb.php";
-	require_once("lib/phpthumb/phpthumb.class.php");
-	$phpThumb = new phpThumb();
-	$phpThumb->src=realpath($src);
-	$phpThumb->config_temp_directory=get_directory("dirs/cachedir");
-	$phpThumb->config_cache_directory=get_directory("dirs/cachedir");
-	$phpThumb->cache_maxage=getDefault("cache/cachegctimeout");
-	$phpThumb->cache_maxsize=10*1024*1024;
-	$phpThumb->cache_maxfiles=200;
-	$phpThumb->config_cache_force_passthru=false;
+	// PARSE PARAMETERS
+	$width=null;
 	if(getParam("w",getParam("amp;w"))) {
-		$phpThumb->w=intval(getParam("w",getParam("amp;w")));
-		if($phpThumb->w>2000) action_denied();
+		$width=intval(getParam("w",getParam("amp;w")));
+		if($width<1 || $width>2000) action_denied();
 	}
+	$height=null;
 	if(getParam("h",getParam("amp;h"))) {
-		$phpThumb->h=intval(getParam("h",getParam("amp;h")));
-		if($phpThumb->h>2000) action_denied();
+		$height=intval(getParam("h",getParam("amp;h")));
+		if($height<1 || $height>2000) action_denied();
 	}
-	if(getParam("far",getParam("amp;far"))) $phpThumb->far=intval(getParam("far",getParam("amp;far")));
-	if(getParam("bg",getParam("amp;bg"))) $phpThumb->bg=getParam("bg",getParam("amp;bg"));
 	// SECURITY CHECK
-	$type=saltos_content_type($phpThumb->src);
+	$type=saltos_content_type($src);
 	if(substr($type,0,5)!="image") action_denied();
 	// CONTINUE
 	$format=substr($type,6);
 	if(getParam("f",getParam("amp;f"))) $format=getParam("f",getParam("amp;f"));
-	$phpThumb->config_output_format=$format;
-	$phpThumb->q=100;
-	$phpThumb->config_allow_src_above_docroot=true;
-	$phpThumb->fltr[]="usm|80|0.5|3";
-	$phpThumb->SetCacheFilename();
-	$cache=$phpThumb->cache_filename;
-	$cache=dirname($cache)."/".md5(basename($cache)).".".extension($cache);
+	// PREPARE CACHE FILENAME
+	$temp=get_directory("dirs/cachedir");
+	$hash=md5(serialize(array($src,$width,$height)));
+	$cache="$temp$hash.$format";
+	// FOR DEBUG PURPOSES
+	//if(file_exists($cache)) unlink($cache);
+	// CREATE IF NOT EXISTS
 	if(!file_exists($cache)) {
-		if(!$phpThumb->GenerateThumbnail()) action_denied();
-		$phpThumb->RenderToFile($cache);
+		// LOAD IMAGE
+		$im=imagecreatefromstring(file_get_contents($src));
+		// CALCULATE SIZE
+		if(!is_null($width) && !is_null($height)) {
+			$width2=imagesx($im)*$height/imagesy($im);
+			$height2=imagesy($im)*$width/imagesx($im);
+			if($width2>$width) $height=$height2;
+			if($height2>$height) $width=$width2;
+		} elseif(is_null($width) && !is_null($height)) {
+			$width=imagesx($im)*$height/imagesy($im);
+		} elseif(!is_null($width) && is_null($height)) {
+			$height=imagesy($im)*$width/imagesx($im);
+		} elseif(is_null($width) && is_null($height)) {
+			$width=imagesx($im);
+			$height=imagesy($im);
+		}
+		// DO RESIZE
+		$im2=imagecreatetruecolor($width,$height);
+		$tr=imagecolortransparent($im);
+		if($tr>=0) {
+			$tr=imagecolorsforindex($im,$tr);
+			$tr=imagecolorallocate($im2,$tr["red"],$tr["green"],$tr["blue"]);
+			imagecolortransparent($im2,$tr);
+			imagefilledrectangle($im2,0,0,$width,$height,$tr);
+		} else {
+			imagealphablending($im2,false);
+			imagesavealpha($im2,true);
+			$tr=imagecolorallocatealpha($im2,0,0,0,127);
+			imagefilledrectangle($im2,0,0,$width,$height,$tr);
+		}
+		imagecopyresampled($im2,$im,0,0,0,0,$width,$height,imagesx($im),imagesy($im));
+		imagedestroy($im);
+		// WRITE
+		if($format=="png") imagepng($im2,$cache);
+		elseif($format=="jpeg") imagejpeg($im2,$cache);
+		elseif($format=="gif") imagegif($im2,$cache);
+		else show_php_error(array("phperror"=>"Unsupported format: format"));
+		imagedestroy($im2);
 		chmod_protected($cache,0666);
 	}
 	output_file($cache);

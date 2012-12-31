@@ -30,19 +30,13 @@ if(getParam("action")=="themeroller") {
 	$palette=xml2array("xml/themeroller.xml");
 	$cssbase="lib/jquery/jquery-ui-1.9.2.css";
 	$imgbase="lib/jquery/jquery-ui-1.9.2.images/";
-	$allbase=array_merge(array($cssbase),glob($imgbase."*.png"));
 	$mask=getParam("mask",getParam("amp;mask"));
 	$mask=strtok($mask,"?");
 	$over=getParam("over",getParam("amp;over"));
 	$over=strtok($over,"?");
-	// URL OF THE JQUERY-UI THEMEROLLER APPLICATION
-	// I USE THE REDMOND THEME WITH THE FOLLOW MODIFICATIONS:
-	// - FCACTIVE AND ICONCOLORACTIVE COPIED AS THE HOVER COLORS
-	// - CORNERRADIUS SET TO 4PX INSTEAD OF 5PX
-	$themeroller="http://jqueryui.com/themeroller/#ffDefault=Lucida%20Grande%2CLucida%20Sans%2CArial%2Csans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=4px&bgColorHeader=5c9ccc&bgTextureHeader=12_gloss_wave.png&bgImgOpacityHeader=55&borderColorHeader=4297d7&fcHeader=ffffff&iconColorHeader=d8e7f3&bgColorContent=fcfdfd&bgTextureContent=06_inset_hard.png&bgImgOpacityContent=100&borderColorContent=a6c9e2&fcContent=222222&iconColorContent=469bdd&bgColorDefault=dfeffc&bgTextureDefault=02_glass.png&bgImgOpacityDefault=85&borderColorDefault=c5dbec&fcDefault=2e6e9e&iconColorDefault=6da8d5&bgColorHover=d0e5f5&bgTextureHover=02_glass.png&bgImgOpacityHover=75&borderColorHover=79b7e7&fcHover=1d5987&iconColorHover=217bc0&bgColorActive=f5f8f9&bgTextureActive=06_inset_hard.png&bgImgOpacityActive=100&borderColorActive=79b7e7&fcActive=1d5987&iconColorActive=217bc0&bgColorHighlight=fbec88&bgTextureHighlight=01_flat.png&bgImgOpacityHighlight=55&borderColorHighlight=fad42e&fcHighlight=363636&iconColorHighlight=2e83ff&bgColorError=fef1ec&bgTextureError=02_glass.png&bgImgOpacityError=95&borderColorError=cd0a0a&fcError=cd0a0a&iconColorError=cd0a0a&bgColorOverlay=aaaaaa&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px";
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
-	$hash=md5(serialize(array($theme,$palette,$cssbase,$imgbase,$allbase,$mask,$over,$themeroller,getDefault("cache/usecssminify"),getDefault("cache/useimginline"))));
+	$hash=md5(serialize(array($theme,$palette,$cssbase,$imgbase,$mask,$over,getDefault("cache/usecssminify"),getDefault("cache/useimginline"))));
 	if($theme) $format="css";
 	if($mask) $format="png";
 	if($over) $format="png";
@@ -53,10 +47,13 @@ if(getParam("action")=="themeroller") {
 	$cache="$temp$hash.$format";
 	// FOR DEBUG PURPOSES
 	//if(file_exists($cache)) unlink($cache);
+	//$_CONFIG["cache"]["useimginline"]="false";
+	//$_CONFIG["cache"]["usecssminify"]="false";
 	// CREATE IF NOT EXISTS
+	$allbase=array_merge(array($cssbase),glob($imgbase."*.png"));
 	if(!cache_exists($cache,$allbase)) {
 		if($mask) {
-			$mask=explode("|",$mask);
+			$mask=explode(",",$mask);
 			if(count($mask)!=2) action_denied();
 			if(!file_exists($imgbase.$mask[0])) show_php_error(array("phperror"=>"Mask '${mask[0]}' not found"));
 			if(strlen($mask[1])!=6) action_denied();
@@ -64,16 +61,20 @@ if(getParam("action")=="themeroller") {
 			$sx=imagesx($im);
 			$sy=imagesy($im);
 			$im2=imagecreatetruecolor($sx,$sy);
-			imagefilledrectangle($im2,0,0,$sx,$sy,imagecolorallocate($im2,255,255,255));
+			$bg=imagecolorallocate($im2,255,255,255);
+			imagecolortransparent($im2,$bg);
+			imagefilledrectangle($im2,0,0,$sx,$sy,$bg);
 			$r=hexdec(substr($mask[1],0,2));
 			$g=hexdec(substr($mask[1],2,2));
 			$b=hexdec(substr($mask[1],4,2));
+			$cache2=array();
 			for($x=0;$x<$sx;$x++) {
 				for($y=0;$y<$sy;$y++) {
 					$z=imagecolorsforindex($im,imagecolorat($im,$x,$y));
 					unset($z["alpha"]);
 					$z=127-max(0,min(127,array_sum($z)/6));
-					imagesetpixel($im2,$x,$y,imagecolorallocatealpha($im2,$r,$g,$b,$z));
+					if(!isset($cache2[$z])) $cache2[$z]=imagecolorallocatealpha($im2,$r,$g,$b,$z);
+					imagesetpixel($im2,$x,$y,$cache2[$z]);
 				}
 			}
 			imagedestroy($im);
@@ -85,7 +86,7 @@ if(getParam("action")=="themeroller") {
 			if(!defined("__CANCEL_DIE__")) output_file($cache);
 		}
 		if($over) {
-			$over=explode("|",$over);
+			$over=explode(",",$over);
 			if(count($over)!=3) action_denied();
 			if(!file_exists($imgbase.$over[0])) show_php_error(array("phperror"=>"Over '${over[0]}' not found"));
 			if(strlen($over[1])!=6) action_denied();
@@ -93,15 +94,18 @@ if(getParam("action")=="themeroller") {
 			$sx=imagesx($im);
 			$sy=imagesy($im);
 			$im2=imagecreatetruecolor($sx,$sy);
-			imagefilledrectangle($im2,0,0,$sx,$sy,imagecolorallocate($im2,255,255,255));
+			$bg=imagecolorallocate($im2,255,255,255);
+			imagefilledrectangle($im2,0,0,$sx,$sy,$bg);
 			$r=hexdec(substr($over[1],0,2));
 			$g=hexdec(substr($over[1],2,2));
 			$b=hexdec(substr($over[1],4,2));
+			$cache2=array();
 			for($x=0;$x<$sx;$x++) {
 				for($y=0;$y<$sy;$y++) {
 					$z=imagecolorsforindex($im,imagecolorat($im,$x,$y));
 					$z=max(0,min(127,(127-$z["alpha"])*$over[2]/100));
-					imagesetpixel($im2,$x,$y,imagecolorallocatealpha($im2,$r,$g,$b,$z));
+					if(!isset($cache2[$z])) $cache2[$z]=imagecolorallocatealpha($im2,$r,$g,$b,$z);
+					imagesetpixel($im2,$x,$y,$cache2[$z]);
 				}
 			}
 			imagedestroy($im);
@@ -113,7 +117,6 @@ if(getParam("action")=="themeroller") {
 			if(!defined("__CANCEL_DIE__")) output_file($cache);
 		}
 		if($theme) {
-			if(!isset($palette[$theme])) $theme=key($palette);
 			// FUNCTIONS
 			function __themeroller_color($color,$rgb) {
 				$array=array("r"=>substr($color,0,2),"g"=>substr($color,2,2),"b"=>substr($color,4,2));
@@ -121,18 +124,26 @@ if(getParam("action")=="themeroller") {
 				for($i=0;$i<3;$i++) $result.=$array[$rgb[$i]];
 				return $result;
 			}
+
+			function __themeroller_csstrick($file,$csstrick) {
+				foreach($csstrick as $key=>$val) if(strpos($file,$key)!==false) return explode(",",$val);
+				show_php_error(array("phperror"=>"Mask '${file}' not found"));
+			}
 			// QUERY STRING TO GENERATE REDMOND THEME
 			$buffer=file_get_contents($cssbase);
+			$themeroller=$palette["themeroller"];
 			$pos=strpos($themeroller,"#");
 			$querystring=substr($themeroller,$pos+1);
 			$array=querystring2array($querystring);
 			// MODIFY COLORS TO APPLY THEME
+			if(!isset($palette["themes"][$theme])) $theme=key($palette["themes"]);
+			$rgb=$palette["themes"][$theme];
 			foreach(array("bgColor","borderColor","fc","iconColor") as $val) {
 				foreach(array("Header","Content","Default","Hover","Active") as $val2) {
-					$array[$val.$val2]=__themeroller_color($array[$val.$val2],$palette[$theme]);
+					$array[$val.$val2]=__themeroller_color($array[$val.$val2],$rgb);
 				}
 			}
-			// FIX SOME STRING THINGS
+			// PREPARE SOME STRING THINGS
 			foreach(array("iconColor") as $val) {
 				$len=strlen($val);
 				foreach($array as $key2=>$val2) {
@@ -141,7 +152,7 @@ if(getParam("action")=="themeroller") {
 							if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 							require_once("php/listsim.php");
 							saltos_context($page,$action);
-							setParam("mask","icons.png|${val2}");
+							setParam("mask","icons.png,${val2}");
 							ob_start();
 							$oldcache=$cache;
 							include(__FILE__);
@@ -151,7 +162,7 @@ if(getParam("action")=="themeroller") {
 							$data="data:image/png;base64,${data}";
 							$array["icons".substr($key2,$len)]="url(${data})";
 						} else {
-							$array["icons".substr($key2,$len)]="url(xml.php?action=themeroller&mask=icons.png|${val2})";
+							$array["icons".substr($key2,$len)]="url(xml.php?action=themeroller&mask=icons.png,${val2})";
 						}
 
 					}
@@ -167,7 +178,7 @@ if(getParam("action")=="themeroller") {
 							if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 							require_once("php/listsim.php");
 							saltos_context($page,$action);
-							setParam("over","${val2}|${bgcolor}|${bgimgopacity}");
+							setParam("over","${val2},${bgcolor},${bgimgopacity}");
 							ob_start();
 							$oldcache=$cache;
 							include(__FILE__);
@@ -177,11 +188,12 @@ if(getParam("action")=="themeroller") {
 							$data="data:image/png;base64,${data}";
 							$array["bgImgUrl".substr($key2,$len)]="url(${data})";
 						} else {
-							$array["bgImgUrl".substr($key2,$len)]="url(xml.php?action=themeroller&over=${val2}|${bgcolor}|${bgimgopacity})";
+							$array["bgImgUrl".substr($key2,$len)]="url(xml.php?action=themeroller&over=${val2},${bgcolor},${bgimgopacity})";
 						}
-						$array["bg".substr($key2,$len)."XPos"]="50%";
-						$array["bg".substr($key2,$len)."YPos"]="50%";
-						$array["bg".substr($key2,$len)."Repeat"]="repeat-x";
+						$csstrick=__themeroller_csstrick($val2,$palette["csstrick"]);
+						$array["bg".substr($key2,$len)."XPos"]=$csstrick[0];
+						$array["bg".substr($key2,$len)."YPos"]=$csstrick[1];
+						$array["bg".substr($key2,$len)."Repeat"]=$csstrick[2];
 					}
 				}
 			}

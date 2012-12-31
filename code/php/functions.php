@@ -666,7 +666,7 @@ function load_iconset($iconset) {
 function load_style($style) {
 	global $_CONFIG;
 	if(!isset($_CONFIG["themeroller"])) $_CONFIG["themeroller"]=xml2array("xml/themeroller.xml");
-	return !is_null(getDefault("themeroller/$style"));
+	return !is_null(getDefault("themeroller/themes/$style"));
 }
 
 function load_lang($lang) {
