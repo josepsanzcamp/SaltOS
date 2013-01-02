@@ -430,7 +430,7 @@ define("__BR__","<br/>");
 								));
 								set_array($config,"node",array(
 									"value"=>array("style"=>array(
-										"value"=>"is_mobile()?'".(is_mobile()?$style:"b")."':'".(is_mobile()?"blue":$style)."'",
+										"value"=>"is_mobile()?'".(is_mobile()?$style:"b")."':'".(is_mobile()?"default":$style)."'",
 										"#attr"=>array("eval"=>"true"))),
 									"#attr"=>array("path"=>"default/style","replace"=>"true")
 								));

@@ -30,52 +30,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<width>120px</width>
 	<rows ifeval="!is_mobile()">
 		<row>
-			<label>Blue</label>
-			<value>blue</value>
-		</row>
-		<row>
-			<label>Dark blue</label>
-			<value>blue2</value>
-		</row>
-		<row>
-			<label>Light blue</label>
-			<value>blue3</value>
-		</row>
-		<row>
-			<label>Red</label>
-			<value>red</value>
+			<label>Default</label>
+			<value>default</value>
 		</row>
 		<row>
 			<label>Pink</label>
 			<value>pink</value>
 		</row>
 		<row>
-			<label>Light brown</label>
+			<label>Red</label>
+			<value>red</value>
+		</row>
+		<row>
+			<label>Orange</label>
+			<value>orange</value>
+		</row>
+		<row>
+			<label>Yellow</label>
+			<value>yellow</value>
+		</row>
+		<row>
+			<label>Brown</label>
 			<value>brown</value>
 		</row>
 		<row>
-			<label>Dark brown</label>
-			<value>brown2</value>
-		</row>
-		<row>
-			<label>Dark violet</label>
-			<value>violet</value>
-		</row>
-		<row>
-			<label>Light Violet</label>
-			<value>violet2</value>
-		</row>
-		<row>
-			<label>Light green</label>
+			<label>Green</label>
 			<value>green</value>
 		</row>
 		<row>
-			<label>Dark green</label>
-			<value>green2</value>
+			<label>Cyan</label>
+			<value>cyan</value>
 		</row>
 		<row>
-			<label>Black</label>
-			<value>black</value>
+			<label>Gray</label>
+			<value>gray</value>
 		</row>
 	</rows>
 	<rows ifeval="is_mobile()">

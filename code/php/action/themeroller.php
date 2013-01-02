@@ -118,11 +118,36 @@ if(getParam("action")=="themeroller") {
 		}
 		if($theme) {
 			// FUNCTIONS
-			function __themeroller_color($color,$rgb) {
-				$array=array("r"=>substr($color,0,2),"g"=>substr($color,2,2),"b"=>substr($color,4,2));
-				$result="";
-				for($i=0;$i<3;$i++) $result.=$array[$rgb[$i]];
-				return $result;
+			function __themeroller_calibrate($r,$g,$b) {
+				$x=(299*$r+587*$g+114*$b)/1000;
+				$y=0.2126*pow($r,2.2)+0.7152*pow($g,2.2)+0.0722*pow($b,2.2);
+				$z=($r+$g+$b)/3;
+				return ($x+$y+$z)/3;
+			}
+
+			function __themeroller_colorize($color,$rgb) {
+				$r=hexdec(substr($color,0,2))/255;
+				$g=hexdec(substr($color,2,2))/255;
+				$b=hexdec(substr($color,4,2))/255;
+				$z=__themeroller_calibrate($r,$g,$b);
+				//~ echo "r=$r, g=$g, b=$b, z=$z\n";
+				$r=hexdec(substr($rgb,0,2))/255;
+				$g=hexdec(substr($rgb,2,2))/255;
+				$b=hexdec(substr($rgb,4,2))/255;
+				$iter=0;
+				for(;;) {
+					$z2=__themeroller_calibrate($r,$g,$b);
+					//~ echo "r=$r, g=$g, b=$b, z2=$z2\n";
+					if(max($r,$g,$b)>1) { $r*=0.99; $g*=0.99; $b*=0.99; }
+					elseif($iter>1000) break;
+					elseif(abs($z2-$z)<0.01) break;
+					elseif($z2<$z) { $r+=0.01; $g+=0.01; $b+=0.01; }
+					elseif($z2>$z) { $r*=0.99; $g*=0.99; $b*=0.99; }
+					$iter++;
+				}
+				//~ echo "iter=$iter\n";
+				$z=sprintf("%02x%02x%02x",$r*255,$g*255,$b*255);
+				return $z;
 			}
 
 			function __themeroller_csstrick($file,$csstrick) {
@@ -138,9 +163,10 @@ if(getParam("action")=="themeroller") {
 			// MODIFY COLORS TO APPLY THEME
 			if(!isset($palette["themes"][$theme])) $theme=key($palette["themes"]);
 			$rgb=$palette["themes"][$theme];
+			if(strlen($rgb)!=6) show_php_error(array("phperror"=>"Invalid RGB color: '$rgb'"));
 			foreach(array("bgColor","borderColor","fc","iconColor") as $val) {
 				foreach(array("Header","Content","Default","Hover","Active") as $val2) {
-					$array[$val.$val2]=__themeroller_color($array[$val.$val2],$rgb);
+					$array[$val.$val2]=__themeroller_colorize($array[$val.$val2],$rgb);
 				}
 			}
 			// PREPARE SOME STRING THINGS
