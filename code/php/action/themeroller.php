@@ -37,13 +37,11 @@ if(getParam("action")=="themeroller") {
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
 	$hash=md5(serialize(array($theme,$palette,$cssbase,$imgbase,$mask,$over,getDefault("cache/usecssminify"),getDefault("cache/useimginline"))));
-	if($theme) $format="css";
-	if($mask) $format="png";
-	if($over) $format="png";
-	if(!isset($format)) action_denied();
-	if($theme && $mask) action_denied();
-	if($mask && $over) action_denied();
-	if($over && $theme) action_denied();
+	$count=0;
+	if($theme) { $format="css"; $count++; }
+	if($mask) { $format="png"; $count++; }
+	if($over) { $format="png"; $count++; }
+	if($count!=1) action_denied();
 	$cache="$temp$hash.$format";
 	// FOR DEBUG PURPOSES
 	//if(file_exists($cache)) unlink($cache);
