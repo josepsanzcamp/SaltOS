@@ -28,7 +28,7 @@ if(typeof(__favoritos__)=="undefined" && typeof(parent.__favoritos__)=="undefine
 	var __favoritos__=1;
 
 	function add_bookmark() {
-		var data='action=favoritos&url='+$("[name$=nuevofavorito]").val();
+		var data='action=favoritos&url='+rawurlencode($("[name$=nuevofavorito]").val());
 		$.ajax({
 			url:'xml.php',
 			data:data,

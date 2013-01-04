@@ -396,7 +396,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			state_cool,
 			id action_id,
 			/*MYSQL CONCAT(id2,' - ',feed,' - ',title, '(',estado,')') *//*SQLITE id2 || ' - ' || feed || ' - ' || title || ' (' || estado || ')' */ action_title,
-			/*MYSQL CONCAT('link:openwin(\'',link,'\'):',link) *//*SQLITE 'link:openwin(\'' || link || '\'):' || link */ post,
+			/*MYSQL CONCAT('href:',link) *//*SQLITE 'href:' || link */ post,
 			action_style,
 			estado,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,

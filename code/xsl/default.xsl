@@ -274,7 +274,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</a>
 					</xsl:when>
 					<xsl:when test="substring(.,1,5)='href:'">
-						<a class="weblink draggable id_{$id}" href="javascrpit:;" onclick="">
+						<a class="weblink draggable id_{$id}" href="javascript:void(0);" onclick="">
 							<xsl:attribute name="onclick">openwin('<xsl:call-template name="replace_string">
 								<xsl:with-param name="find">'</xsl:with-param>
 								<xsl:with-param name="replace"> </xsl:with-param>
