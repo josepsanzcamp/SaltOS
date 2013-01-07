@@ -952,8 +952,8 @@ function show_php_error($array=null) {
 	$msg=getServer("SHELL")?$msg_text:$msg_html;
 	// CHECK IF CAPTURE ERROR WAS ACTIVE
 	if($_ERROR_HANDLER["level"]>0) {
-		array_pop($_ERROR_HANDLER["msg"]);
-		array_push($_ERROR_HANDLER["msg"],$msg);
+		$old=array_pop($_ERROR_HANDLER["msg"]);
+		array_push($_ERROR_HANDLER["msg"],$old.$msg);
 		$backup=$array;
 		return;
 	}
@@ -1025,7 +1025,10 @@ function __shutdown_handler() {
 	$error=error_get_last();
 	$types=array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
 	if(is_array($error) && isset($error["type"]) && in_array($error["type"],$types)) {
-		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}"));
+		global $_ERROR_HANDLER;
+		$_ERROR_HANDLER=array("level"=>0,"msg"=>array());
+		$backtrace=debug_backtrace();
+		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}","backtrace"=>$backtrace));
 	}
 }
 

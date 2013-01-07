@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<width>120px</width>
 	<rows ifeval="!is_mobile()">
 		<row>
-			<label>Default</label>
+			<label>Blue (default)</label>
 			<value>default</value>
 		</row>
 		<row>

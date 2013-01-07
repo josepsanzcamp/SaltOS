@@ -78,6 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<name>fichero_size2</name>
 				<label lang="true">size</label>
 				<sort>true</sort>
+				<order>fichero_size</order>
 			</field>
 		</fields>
 		<javascript>
