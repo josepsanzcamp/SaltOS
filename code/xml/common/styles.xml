@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<rows ifeval="!is_mobile()">
 		<row>
 			<label>Blue (default)</label>
-			<value>default</value>
+			<value>blue</value>
 		</row>
 		<row>
 			<label>Pink</label>
@@ -64,6 +64,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<row>
 			<label>Gray</label>
 			<value>gray</value>
+		</row>
+		<row>
+			<label>Blue (inverted)</label>
+			<value>invblue</value>
+		</row>
+		<row>
+			<label>Pink (inverted)</label>
+			<value>invpink</value>
+		</row>
+		<row>
+			<label>Red (inverted)</label>
+			<value>invred</value>
+		</row>
+		<row>
+			<label>Orange (inverted)</label>
+			<value>invorange</value>
+		</row>
+		<row>
+			<label>Yellow (inverted)</label>
+			<value>invyellow</value>
+		</row>
+		<row>
+			<label>Brown (inverted)</label>
+			<value>invbrown</value>
+		</row>
+		<row>
+			<label>Green (inverted)</label>
+			<value>invgreen</value>
+		</row>
+		<row>
+			<label>Cyan (inverted)</label>
+			<value>invcyan</value>
+		</row>
+		<row>
+			<label>Gray (inverted)</label>
+			<value>invgray</value>
 		</row>
 	</rows>
 	<rows ifeval="is_mobile()">

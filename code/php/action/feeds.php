@@ -337,7 +337,8 @@ if(getParam("action")=="feeds") {
 
 	function __feeds_removescripts($temp) {
 		require_once("php/getmail.php");
-		return __getmail_removescripts($temp);
+		$temp2=__getmail_removescripts($temp);
+		return $temp2?$temp2:$temp;
 	}
 
 	function __feeds_make_clickable($temp) {
@@ -355,7 +356,6 @@ if(getParam("action")=="feeds") {
 		$xml=url_get_contents($url2);
 		$error=get_clear_error();
 		if(!$error) {
-			$xmlold=$xml;
 			$xml=__feeds_removescripts($xml);
 			$xml=trim($xml);
 			capture_next_error();
@@ -373,7 +373,6 @@ if(getParam("action")=="feeds") {
 				if(!$error) $url=$url2;
 			}
 			if($error) {
-				$xml=$xmlold;
 				$posatom=strpos($xml,"application/atom+xml");
 				$posrss=strpos($xml,"application/rss+xml");
 				if($posatom) {

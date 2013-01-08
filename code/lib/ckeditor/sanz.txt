@@ -1,15 +1,20 @@
 Some SaltOS changes:
 
+IN contents.css
+COMMENT body => margin: 20px;
+COMMENT .cke_editable => font-size: 13px;
+COMMENT .cke_editable => line-height: 1.6em;
+
 IN skins/kama/editor.css
-FROM -moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;border:1px solid #d3d3d3;padding:5px
-TO padding:1px
+REPLACE -moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;border:1px solid #d3d3d3;padding:5px
+BY padding:1px
 
 IN ckeditor.js
-FROM a.ui.addButton("Source",{label:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})
-TO a.ui.addButton("Source",{label:"",title:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})
+REPLACE a.ui.addButton("Source",{label:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})
+BY a.ui.addButton("Source",{label:"",title:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})
 
 IN ckeditor.js
-FROM [a.lang.editor,a.name].join()
-TO ""
+REPLACE [a.lang.editor,a.name].join()
+BY ""
 
 REMOVED samples

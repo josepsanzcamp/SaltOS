@@ -94,14 +94,9 @@ function __getmail_getmime($id) {
 	if(!file_exists($cache)) {
 		$file=($row["is_outbox"]?get_directory("dirs/outboxdir"):get_directory("dirs/inboxdir")).$email.$fext;
 		if(!file_exists($file)) return "";
-		$fp=gzopen($file,"r");
-		$message="";
-		while(!feof($fp)) $message.=gzread($fp,8192);
-		gzclose($fp);
 		$mime=new mime_parser_class;
 		$decoded="";
-		$mime->Decode(array("Data"=>$message),$decoded);
-		$message="";
+		$mime->Decode(array("File"=>$file),$decoded);
 		file_put_contents($cache,serialize($decoded));
 		chmod_protected($cache,0666);
 	} else {
@@ -181,7 +176,7 @@ function __getmail_getfiles($array,$level=0) {
 			if($cname!="") {
 				$csize=__getmail_getnode("BodyLength",$array);
 				$hsize=__getmail_gethumansize($csize);
-				$chash=md5(serialize(array($temp,$cid,$cname,$ctype,$csize)));
+				$chash=md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE FOR MEMORY TRICK
 				$result[]=array("disp"=>$disp,"type"=>$type,"ctype"=>$ctype,"cid"=>$cid,"cname"=>$cname,"csize"=>$csize,"hsize"=>$hsize,"chash"=>$chash,"body"=>$temp);
 			}
 		}
@@ -388,7 +383,7 @@ function __getmail_getfullbody($array) {
 			if($cid!="" || $cname!="") {
 				$csize=__getmail_getnode("BodyLength",$array);
 				$hsize=__getmail_gethumansize($csize);
-				$chash=md5(serialize(array($temp,$cid,$cname,$ctype,$csize)));
+				$chash=md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE FOR MEMORY TRICK
 				$result[]=array("disp"=>$disp,"type"=>$type,"ctype"=>$ctype,"cid"=>$cid,"cname"=>$cname,"csize"=>$csize,"hsize"=>$hsize,"chash"=>$chash,"body"=>$temp);
 			}
 		}
@@ -444,7 +439,7 @@ function __getmail_getcid($array,$hash) {
 			if(strpos($ctype,";")!==false) $ctype=strtok($ctype,";");
 			if($cid=="" && $cname=="" && __getmail_processfile($disp,$type)) $cname=encode_bad_chars($ctype).getDefault("exts/defaultext",".dat");
 			$csize=__getmail_getnode("BodyLength",$array);
-			$chash=md5(serialize(array($temp,$cid,$cname,$ctype,$csize)));
+			$chash=md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE FOR MEMORY TRICK
 			if($chash==$hash) {
 				$hsize=__getmail_gethumansize($csize);
 				return array("disp"=>$disp,"type"=>$type,"ctype"=>$ctype,"cid"=>$cid,"cname"=>$cname,"csize"=>$csize,"hsize"=>$hsize,"chash"=>$chash,"body"=>$temp);
@@ -461,19 +456,17 @@ function __getmail_getcid($array,$hash) {
 	return null;
 }
 
-function __getmail_insert($message,$messageid,$state_new,$state_reply,$state_forward,$state_wait,$id_correo,$is_outbox,$state_sent,$state_error) {
+function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forward,$state_wait,$id_correo,$is_outbox,$state_sent,$state_error) {
 	require_once("php/unoconv.php");
-	$messageid=explode("/",$messageid);
-	$id_cuenta=$messageid[0];
-	$uidl=$messageid[1];
-	$size=strlen($message);
+	list($id_cuenta,$uidl)=explode("/",$messageid);
+	$size=gzfilesize($file);
 	$id_usuario=current_user();
 	$id_aplicacion=page2id("correo");
 	$datetime=current_datetime();
 	// DECODE THE MESSAGE
 	$mime=new mime_parser_class;
 	$decoded="";
-	$mime->Decode(array("Data"=>$message),$decoded);
+	$mime->Decode(array("File"=>$file),$decoded);
 	$info=__getmail_getinfo(__getmail_getnode("0",$decoded));
 	$body=__getmail_gettextbody(__getmail_getnode("0",$decoded));
 	// INSERT THE NEW EMAIL

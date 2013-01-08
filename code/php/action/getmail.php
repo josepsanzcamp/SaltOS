@@ -338,11 +338,7 @@ if(getParam("action")=="getmail") {
 		$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
 		$file=get_directory("dirs/inboxdir").getDefault("debug/getmailmsgid").$fext;
 		if(!file_exists($file)) $file=get_directory("dirs/outboxdir").getDefault("debug/getmailmsgid").$fext;
-		$fp=gzopen($file,"r");
-		$message="";
-		while(!feof($fp)) $message.=gzread($fp,8192);
-		gzclose($fp);
-		__getmail_insert($message,getDefault("debug/getmailmsgid"),1,0,0,0,0,0,0,"");
+		__getmail_insert($file,getDefault("debug/getmailmsgid"),1,0,0,0,0,0,0,"");
 		die();
 	}
 	// DATOS POP3
@@ -445,17 +441,12 @@ if(getParam("action")=="getmail") {
 							gzwrite($fp,$message);
 							gzclose($fp);
 							chmod_protected($file,0666);
+							$message=""; // TRICK TO RELEASE MEMORY
 						}
-					} else {
-						// EXIST IN OUR FILESYSTEM
-						$fp=gzopen($file,"r");
-						$message="";
-						while(!feof($fp)) $message.=gzread($fp,8192);
-						gzclose($fp);
 					}
 					if($error=="") {
 						$messageid=$id_cuenta."/".$uidls[$index];
-						$last_id=__getmail_insert($message,$messageid,1,0,0,0,0,0,0,"");
+						$last_id=__getmail_insert($file,$messageid,1,0,0,0,0,0,0,"");
 						$newemail++;
 						$voice_ids[]=$last_id;
 					}

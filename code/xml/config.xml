@@ -91,7 +91,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<format>HTML</format><!-- output format can be XML or HTML -->
 		<obhandler>ob_gzhandler</obhandler>
 		<lang>es_ES</lang>
-		<style eval="true">is_mobile()?"b":"default"</style>
+		<style eval="true">is_mobile()?"b":"blue"</style>
 		<stylepre eval="true">is_mobile()?"lib/jquery/jquery.mobile.theme.":"xml.php?action=themeroller&amp;theme="</stylepre>
 		<stylepost eval="true">is_mobile()?".css":""</stylepost>
 		<iconset>silk</iconset>

@@ -55,14 +55,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</csstrick>
 	<!-- RGB COLOR PERMUTATIONS -->
 	<themes>
-		<default>5c9ccc</default>
-		<pink>ff69b4</pink>
-		<red>8b0000</red>
-		<orange>ffa500</orange>
-		<yellow>ffff00</yellow>
-		<brown>8b4513</brown>
-		<green>008000</green>
-		<cyan>008080</cyan>
-		<gray>808080</gray>
+		<blue>5c9ccc,ffffff</blue>
+		<pink>ff69b4,ffffff</pink>
+		<red>8b0000,ffffff</red>
+		<orange>ffa500,ffffff</orange>
+		<yellow>ffff00,ffffff</yellow>
+		<brown>8b4513,ffffff</brown>
+		<green>008000,ffffff</green>
+		<cyan>008080,ffffff</cyan>
+		<gray>808080,ffffff</gray>
+		<invblue>5c9ccc,000000</invblue>
+		<invpink>ff69b4,000000</invpink>
+		<invred>8b0000,000000</invred>
+		<invorange>ffa500,000000</invorange>
+		<invyellow>ffff00,000000</invyellow>
+		<invbrown>8b4513,000000</invbrown>
+		<invgreen>008000,000000</invgreen>
+		<invcyan>008080,000000</invcyan>
+		<invgray>808080,000000</invgray>
 	</themes>
 </root>

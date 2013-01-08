@@ -1444,7 +1444,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).ckeditor({
 			skin:"kama",
-			removePlugins:"bbcode,elementspath,entities,scayt,resize,divarea,onchange,codemirror",
+			removePlugins:"bbcode,elementspath,entities,scayt,resize,divarea,onchange,codemirror,oembed,wordcount",
 			enterMode:CKEDITOR.ENTER_BR,
 			shiftEnterMode:CKEDITOR.ENTER_BR,
 			forcePasteAsPlainText:true,

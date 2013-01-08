@@ -101,8 +101,8 @@ function sendmail($from,$to,$subject,$body,$arg1="",$arg2="",$arg3="",$arg4="") 
 	get_clear_error();
 	if(!$current) return $mail->ErrorInfo;
 	$messageid=__sendmail_messageid($mail->From);
-	__sendmail_emlsaver($mail->GetSentMIMEMessage(),$messageid);
-	$last_id=__getmail_insert($mail->GetSentMIMEMessage(),$messageid,0,0,0,0,0,1,0,"");
+	$file=__sendmail_emlsaver($mail->GetSentMIMEMessage(),$messageid);
+	$last_id=__getmail_insert($file,$messageid,0,0,0,0,0,1,0,"");
 	if(CONFIG("email_async")) {
 		__sendmail_objsaver($mail,$messageid);
 		return "";
@@ -171,6 +171,7 @@ function __sendmail_emlsaver($message,$messageid) {
 	gzwrite($fp,$message);
 	gzclose($fp);
 	chmod_protected($file,0666);
+	return $file;
 }
 
 function __sendmail_objsaver($mail,$messageid) {

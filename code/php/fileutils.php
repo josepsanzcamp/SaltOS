@@ -373,4 +373,20 @@ function url_get_contents($url,$type="GET") {
 function extension($file) {
 	return pathinfo($file,PATHINFO_EXTENSION);
 }
+
+// COPIED FROM http://php.net/manual/es/function.gzread.php#110078
+function gzfilesize($filename) {
+	$gzfs = FALSE;
+	if(($zp = fopen($filename, 'r'))!==FALSE) {
+		if(@fread($zp, 2) == "\x1F\x8B") { // this is a gzip'd file
+			fseek($zp, -4, SEEK_END);
+			if(strlen($datum = @fread($zp, 4))==4)
+				extract(unpack('Vgzfs', $datum));
+		}
+		else // not a gzip'd file, revert to regular filesize function
+			$gzfs = filesize($filename);
+		fclose($zp);
+	}
+	return($gzfs);
+}
 ?>
