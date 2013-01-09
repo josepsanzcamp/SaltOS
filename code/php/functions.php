@@ -946,6 +946,8 @@ function show_php_error($array=null) {
 		$pos2=stripos($array["phperror"],"deprecated");
 		if($pos1!==false && $pos2!==false) return;
 	}
+	// ADD BACKTRACE IF NOT FOUND
+	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace();
 	// CREATE THE MESSAGE ERROR USING HTML ENTITIES AND PLAIN TEXT
 	$msg_html=do_message_error($array,"html");
 	$msg_text=do_message_error($array,"text");
@@ -968,6 +970,7 @@ function show_php_error($array=null) {
 			header("Content-Type: text/html");
 		}
 	}
+	// DUMP TO STDOUT
 	while(ob_get_level()) ob_end_clean(); // TRICK TO CLEAR SCREEN
 	echo $msg;
 	die();

@@ -1450,9 +1450,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			forcePasteAsPlainText:true,
 			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","-","Source"],["About"]],
 			language:lang_default(),
-			uiColor:get_colors("ui-widget-header","background-color"),
+			uiColor:get_colors("ui-state-default","background-color"),
 			autoGrow_onStartup:true,
 			disableNativeSpellChecker:false
+		},function() {
+			$("#"+$(this).attr("name")).next().addClass("ui-state-default ui-corner-all");
 		});
 		//~ console.timeEnd("make_ckeditors");
 	}

@@ -227,7 +227,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</field>
 		</node>
 		<query global="page,id_usuario,id_aplicacion,filtro,id_folder" eval="true">"SELECT * FROM (
-			SELECT a.id id,
+			SELECT a.id_registro id,
 			/*MYSQL LPAD(a.id_registro,5,0) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) */ id2,
 			a.id_registro id_registro,
 			a.id_aplicacion id_aplicacion,

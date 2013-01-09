@@ -7,7 +7,7 @@ COMMENT .cke_editable => line-height: 1.6em;
 
 IN skins/kama/editor.css
 REPLACE -moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;border:1px solid #d3d3d3;padding:5px
-BY padding:1px
+BY margin:1px
 
 IN ckeditor.js
 REPLACE a.ui.addButton("Source",{label:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})

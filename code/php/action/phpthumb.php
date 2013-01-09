@@ -70,6 +70,9 @@ if(getParam("action")=="phpthumb") {
 			$width=imagesx($im);
 			$height=imagesy($im);
 		}
+		// SECURITY CHECK
+		if($width<1 || $width>2000) action_denied();
+		if($height<1 || $height>2000) action_denied();
 		// DO RESIZE
 		$im2=imagecreatetruecolor($width,$height);
 		$tr=imagecolortransparent($im);
