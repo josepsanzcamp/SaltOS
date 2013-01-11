@@ -727,12 +727,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 						</field>
 						<field global="id" ifeval="$id&gt;=0">
-							<name>from</name>
+							<name>id_cuenta</name>
 							<label lang="true">from</label>
 							<type>select</type>
 							<width>800px</width>
 							<colspan>12</colspan>
-							<query eval="true">"SELECT /*MYSQL CONCAT(email_name,' &lt;',email_from,'&gt;') *//*SQLITE email_name || ' &lt;' || email_from || '&gt;' */ label,/*MYSQL CONCAT(email_name,' &lt;',email_from,'&gt;') *//*SQLITE email_name || ' &lt;' || email_from || '&gt;' */ `value`,email_default,(SELECT COUNT(*) FROM tbl_correo_a WHERE valor=email_from AND id_tipo IN (1,2,3,4)) contador FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC, contador DESC"</query>
+							<query eval="true">"SELECT
+							/*MYSQL CONCAT(email_name,' &lt;',email_from,'&gt;') *//*SQLITE email_name || ' &lt;' || email_from || '&gt;' */ label,id `value`,email_default,(SELECT COUNT(*) FROM tbl_correo_a WHERE valor=email_from AND id_tipo IN (1,2,3,4)) contador FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC, contador DESC"</query>
 							<focus>true</focus>
 							<required>true</required>
 							<onchange>update_signature(1)</onchange>

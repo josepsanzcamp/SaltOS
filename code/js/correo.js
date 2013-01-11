@@ -135,15 +135,15 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 	function update_signature(update) {
 		if(getParam("action")!="form") return;
 		if(typeof(update)=="undefined") var update=0;
-		var signature=$("select[name$=from]").val();
-		if(!signature) return;
+		var id_cuenta=$("select[name$=id_cuenta]").val();
+		if(!id_cuenta) return;
 		if(update) {
 			var body=$("textarea[name$=body]");
 			var cc=$("input[name$=_cc]");
 			var state_crt=$("input[name$=state_crt]");
 			var data="action=signature";
-			data+="&old="+rawurlencode(old_signature);
-			data+="&new="+rawurlencode(signature);
+			data+="&old="+old_signature;
+			data+="&new="+id_cuenta;
 			data+="&body="+rawurlencode($(body).val());
 			data+="&cc="+rawurlencode($(cc).val());
 			data+="&state_crt="+($(state_crt).prop("checked")?1:0);
@@ -163,7 +163,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 				}
 			});
 		}
-		old_signature=signature;
+		old_signature=id_cuenta;
 	}
 
 }

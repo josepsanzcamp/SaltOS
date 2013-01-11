@@ -31,7 +31,7 @@ if(getParam("action")=="sendmail") {
 		// GET ALL DATA
 		$prefix="default_0_";
 		$id_extra=explode("_",getParam($prefix."id_extra"),3);
-		$from=stripslashes(getParam($prefix."from"));
+		$id_cuenta=intval(getParam($prefix."id_cuenta"));
 		$to=stripslashes(getParam($prefix."to"));
 		$cc=stripslashes(getParam($prefix."cc"));
 		$bcc=stripslashes(getParam($prefix."bcc"));
@@ -40,11 +40,10 @@ if(getParam("action")=="sendmail") {
 		$state_crt=intval(getParam($prefix."state_crt"));
 		$priority=intval(getParam($prefix."priority"));
 		$sensitivity=intval(getParam($prefix."sensitivity"));
-		// FIND ACCOUNT ID
-		list($email_from,$email_name)=__sendmail_parser($from);
-		$query="SELECT id FROM tbl_usuarios_c WHERE email_from='$email_from'";
-		$id_cuenta=execute_query($query);
-		if(!$id_cuenta) {
+		// FIND ACCOUNT FROM ID_CUENTA
+		$query="SELECT /*MYSQL CONCAT(email_name,' <',email_from,'>') *//*SQLITE email_name || ' <' || email_from || '>' */ email FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND id='${id_cuenta}'";
+		$from=execute_query($query);
+		if(!$from) {
 			javascript_error(LANG("msgfromkosendmail","correo"));
 			javascript_unloading();
 			die();
@@ -331,7 +330,6 @@ if(getParam("action")=="sendmail") {
 if(getParam("page")=="correo") {
 	$id_cuenta=getParam("id_cuenta")?intval(getParam("id_cuenta")):execute_query("SELECT id FROM (SELECT id,(SELECT COUNT(*) FROM tbl_correo_a WHERE valor=email_from AND id_tipo IN (1,2,3,4)) contador,email_default FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC,contador DESC LIMIT 1) z");
 	$id_extra=explode("_",getParam("id"),3);
-	$from_extra="";
 	$to_extra="";
 	$cc_extra="";
 	$bcc_extra="";
@@ -343,7 +341,6 @@ if(getParam("page")=="correo") {
 		$result2=execute_query($query);
 		if($result2 && $id_cuenta!=$result2) $id_cuenta=$result2;
 	}
-	$from_extra=execute_query("SELECT /*MYSQL CONCAT(email_name,' <',email_from,'>') *//*SQLITE email_name || ' <' || email_from || '>' */ email FROM tbl_usuarios_c WHERE id='$id_cuenta'");
 	if(1) { // GET THE DEFAULT ADDMETOCC
 		$query="SELECT * FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND id='$id_cuenta'";
 		$result2=execute_query($query);
@@ -570,9 +567,6 @@ if(getParam("page")=="correo") {
 			foreach($_GET as $key2=>$val2) {
 				$key2=strtolower($key2);
 				if($key2=="subject") $subject_extra=__getmail_rawurldecode(getString($val2));
-				if($key2=="from") $from_extra=__getmail_rawurldecode(getString($val2))."; ";
-				if($key2=="cc") $cc_extra=__getmail_rawurldecode(getString($val2))."; ";
-				if($key2=="bcc") $bcc_extra=__getmail_rawurldecode(getString($val2))."; ";
 			}
 		} else {
 			$to_extra=__getmail_rawurldecode($id_extra[2])."; ";
@@ -627,7 +621,7 @@ if(getParam("page")=="correo") {
 		}
 	}
 	set_array($rows[$key],"row",array("id"=>0,"id_extra"=>implode("_",$id_extra),
-		"from"=>$from_extra,"to"=>$to_extra,"cc"=>$cc_extra,"bcc"=>$bcc_extra,
+		"id_cuenta"=>$id_cuenta,"to"=>$to_extra,"cc"=>$cc_extra,"bcc"=>$bcc_extra,
 		"subject"=>$subject_extra,"body"=>$body_extra,
 		"state_crt"=>$state_crt,"priority"=>0,"sensitivity"=>0));
 }

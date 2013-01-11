@@ -25,14 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 // FUNCTION DEFINITIONS
-function __signature_from2id($from) {
-	require_once("php/sendmail.php");
-	list($email_from,$email_name)=__sendmail_parser($from);
-	$query="SELECT id FROM tbl_usuarios_c WHERE email_from='$email_from'";
-	$result=execute_query($query);
-	return $result;
-}
-
 function __signature_getfile($id) {
 	if(!$id) return null;
 	$query="SELECT * FROM tbl_usuarios_c WHERE id='$id'";
@@ -84,20 +76,17 @@ if(getParam("action")=="signature") {
 		$body=stripslashes(getParam("body"));
 		$cc=stripslashes(getParam("cc"));
 		$state_crt=intval(getParam("state_crt"));
-		// FIND THE OLD AND NEW ACCOUNTS
-		$cuenta_old=__signature_from2id($old);
-		$cuenta_new=__signature_from2id($new);
 		// REPLACE THE SIGNATURE BODY
-		$file=__signature_getauto(__signature_getfile($cuenta_new));
+		$file=__signature_getauto(__signature_getfile($new));
 		$auto=$file?$file["auto"]:"";
 		$pos1=strpos($body,"<signature>");
 		if($pos1!==false) $pos1=strpos($body,">",$pos1);
 		$pos2=strpos($body,"</signature>");
 		if($pos1!==false && $pos2!==false) $body=substr_replace($body,$auto,$pos1+1,$pos2-$pos1-1);
 		// FIND THE OLD AND NEW CC'S AND STATE_CRT'S
-		$query="SELECT * FROM tbl_usuarios_c WHERE id='".$cuenta_old."'";
+		$query="SELECT * FROM tbl_usuarios_c WHERE id='".$old."'";
 		$result_old=execute_query($query);
-		$query="SELECT * FROM tbl_usuarios_c WHERE id='".$cuenta_new."'";
+		$query="SELECT * FROM tbl_usuarios_c WHERE id='".$new."'";
 		$result_new=execute_query($query);
 		// REPLACE THE CC
 		if($result_old && $result_new) {
