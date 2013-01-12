@@ -264,6 +264,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				WHEN '".page2id("textos")."' THEN (SELECT /*MYSQL CONCAT('link:textos(',-id,'):',nombre) *//*SQLITE 'link:textos(' || -id || '):' || nombre */ FROM tbl_textos WHERE id=a.id_registro)
 				WHEN '".page2id("tiposevento")."' THEN (SELECT /*MYSQL CONCAT('link:tiposevento(',-id,'):',nombre) *//*SQLITE 'link:tiposevento(' || -id || '):' || nombre */ FROM tbl_tiposevento WHERE id=a.id_registro)
 				WHEN '".page2id("usuarios")."' THEN (SELECT /*MYSQL CONCAT('link:usuarios(',-id,'):',login) *//*SQLITE 'link:usuarios(' || -id || '):' || login */ FROM tbl_usuarios WHERE id=a.id_registro)
+				WHEN '".page2id("favoritos")."' THEN (SELECT /*MYSQL CONCAT('link:favoritos(',-id,'):',nombre) *//*SQLITE 'link:favoritos(' || -id || '):' || nombre */ FROM tbl_favoritos WHERE id=a.id_registro)
 			END nombre,
 			CASE a.id_aplicacion
 				WHEN '".page2id("actas")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_actas WHERE id=a.id_registro)
@@ -324,6 +325,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				WHEN '".page2id("textos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_textos WHERE id=a.id_registro)
 				WHEN '".page2id("tiposevento")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_tiposevento WHERE id=a.id_registro)
 				WHEN '".page2id("usuarios")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',login) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || login */ FROM tbl_usuarios WHERE id=a.id_registro)
+				WHEN '".page2id("favoritos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_favoritos WHERE id=a.id_registro)
 			END action_title,
 			CASE WHEN fichero_size&gt;1073741824 THEN /*SQLITE ROUND(fichero_size/1073741824.0,2) || ' Gbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes') */
 				WHEN fichero_size&gt;1048576 THEN /*SQLITE ROUND(fichero_size/1048576.0,2) || ' Mbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes') */

@@ -310,6 +310,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				WHEN '".page2id("textos")."' THEN (SELECT /*MYSQL CONCAT('link:textos(',-id,'):',nombre) *//*SQLITE 'link:textos(' || -id || '):' || nombre */ FROM tbl_textos WHERE id=a.id_registro)
 				WHEN '".page2id("tiposevento")."' THEN (SELECT /*MYSQL CONCAT('link:tiposevento(',-id,'):',nombre) *//*SQLITE 'link:tiposevento(' || -id || '):' || nombre */ FROM tbl_tiposevento WHERE id=a.id_registro)
 				WHEN '".page2id("usuarios")."' THEN (SELECT /*MYSQL CONCAT('link:usuarios(',-id,'):',login) *//*SQLITE 'link:usuarios(' || -id || '):' || login */ FROM tbl_usuarios WHERE id=a.id_registro)
+				WHEN '".page2id("favoritos")."' THEN (SELECT /*MYSQL CONCAT('link:favoritos(',-id,'):',nombre) *//*SQLITE 'link:favoritos(' || -id || '):' || nombre */ FROM tbl_favoritos WHERE id=a.id_registro)
 			END nombre,
 			CASE a.id_aplicacion
 				WHEN '".page2id("actas")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_actas WHERE id=a.id_registro)
@@ -370,8 +371,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				WHEN '".page2id("textos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_textos WHERE id=a.id_registro)
 				WHEN '".page2id("tiposevento")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_tiposevento WHERE id=a.id_registro)
 				WHEN '".page2id("usuarios")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',login) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || login */ FROM tbl_usuarios WHERE id=a.id_registro)
+				WHEN '".page2id("favoritos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_favoritos WHERE id=a.id_registro)
 			END action_title,
-			'true' action_view3,
+			CASE a.id_aplicacion
+				WHEN '".page2id("favoritos")."' THEN 'false'
+				ELSE 'true'
+			END action_view3,
 			CASE a.id_aplicacion
 				WHEN '".page2id("actas")."' THEN 'true'
 				WHEN '".page2id("campanyas")."' THEN 'true'
@@ -401,6 +406,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE a.id_aplicacion
 				WHEN '".page2id("correo")."' THEN 'false'
 				WHEN '".page2id("feeds")."' THEN 'false'
+				WHEN '".page2id("favoritos")."' THEN 'false'
 				ELSE 'true'
 			END action_edit2,
 			CASE a.id_aplicacion
@@ -591,6 +597,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				SELECT /*MYSQL CONCAT('r',id,'a','".page2id("usuarios")."') *//*SQLITE 'r' || id || 'a' || '".page2id("usuarios")."' */ id,
 					id id_registro,'".page2id("usuarios")."' id_aplicacion FROM tbl_usuarios
 					WHERE ".($filtro?make_like_query("login,password,hora_ini,hora_fin,dias_sem",$filtro):"(1=0)")."
+				UNION
+				SELECT /*MYSQL CONCAT('r',id,'a','".page2id("favoritos")."') *//*SQLITE 'r' || id || 'a' || '".page2id("favoritos")."' */ id,
+					id id_registro,'".page2id("favoritos")."' id_aplicacion FROM tbl_favoritos
+					WHERE ".($filtro?make_like_query("url,nombre,descripcion",$filtro):"(1=0)")."
 				UNION
 				SELECT /*MYSQL CONCAT('r',id_registro,'a',id_aplicacion) *//*SQLITE 'r' || id_registro || 'a' || id_aplicacion */ id,
 					id_registro,/*SQLITE CAST(id_aplicacion AS TEXT) */ id_aplicacion FROM tbl_ficheros

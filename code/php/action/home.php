@@ -118,7 +118,12 @@ if(getParam("action")=="home") {
 				WHEN '".page2id("textos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_textos WHERE id=a.id_registro)
 				WHEN '".page2id("tiposevento")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_tiposevento WHERE id=a.id_registro)
 				WHEN '".page2id("usuarios")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',login) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || login */ FROM tbl_usuarios WHERE id=a.id_registro)
+				WHEN '".page2id("favoritos")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_favoritos WHERE id=a.id_registro)
 			END nombre,
+			CASE a.id_aplicacion
+				WHEN '".page2id("favoritos")."' THEN 'false'
+				ELSE 'true'
+			END action_view,
 			CASE a.id_aplicacion
 				WHEN '".page2id("actas")."' THEN 'true'
 				WHEN '".page2id("campanyas")."' THEN 'true'
@@ -148,6 +153,7 @@ if(getParam("action")=="home") {
 			CASE a.id_aplicacion
 				WHEN '".page2id("correo")."' THEN 'false'
 				WHEN '".page2id("feeds")."' THEN 'false'
+				WHEN '".page2id("favoritos")."' THEN 'false'
 				ELSE 'true'
 			END action_edit,
 			CASE a.id_aplicacion
@@ -209,8 +215,10 @@ if(getParam("action")=="home") {
 			set_array($_RESULT[$row["page"]],"row",array("data"=>$data,"class"=>$class,"style"=>$style));
 		}
 		$data="<b>".$row["nombre"]."</b>";
-		$urlview="opencontent(\"xml.php?page=".$row["page"]."&action=form&id=-".$row["id_registro"]."&id_folder=".$row["id_folder"]."\")";
-		$data.=" [<a href='javascript:void(0)' onclick='$urlview'>".LANG("view")."</a>]";
+		if(eval_bool($row["action_view"])) {
+			$urlview="opencontent(\"xml.php?page=".$row["page"]."&action=form&id=-".$row["id_registro"]."&id_folder=".$row["id_folder"]."\")";
+			$data.=" [<a href='javascript:void(0)' onclick='$urlview'>".LANG("view")."</a>]";
+		}
 		if(eval_bool($row["action_pdf"])) {
 			$urlpdf="openurl(\"xml.php?page=".$row["page"]."&action=pdf&id=".$row["id_registro"]."\")";
 			$data.=" [<a href='javascript:void(0)' onclick='$urlpdf'>".LANG("pdf")."</a>]";
