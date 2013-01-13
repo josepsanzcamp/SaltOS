@@ -264,7 +264,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					</appsregs>
 					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>
-						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',link,'\"):',title) *//*SQLITE 'link:openwin(\"' || link || '\"):' || title */ title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title2 ASC"</feeds_old>
+						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) *//*SQLITE 'link:openwin(\"' || REPLACE(link,':','%3A') || '\"):' || title */ title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title2 ASC"</feeds_old>
 					</feeds_old>
 					<correo_old global="id" eval="true">"SELECT *,/*MYSQL CONCAT('xml.php?action=signature&amp;id=',id) *//*SQLITE 'xml.php?action=signature&amp;id=' || id */ email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
 					<control include="xml/common/qcontrol.xml"/>
@@ -393,7 +393,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					</appsregs>
 					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>
-						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',link,'\"):',title) *//*SQLITE 'link:openwin(\"' || link || '\"):' || title */ title,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title ASC"</feeds_old>
+						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) *//*SQLITE 'link:openwin(\"' || REPLACE(link,':','%3A') || '\"):' || title */ title,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title ASC"</feeds_old>
 					</feeds_old>
 					<feeds_new global="id" eval="true">"SELECT '0' id,'".abs($id)."' id_usuario"</feeds_new>
 					<correo_old global="id" eval="true">"SELECT *,/*MYSQL CONCAT('xml.php?action=signature&amp;id=',id) *//*SQLITE 'xml.php?action=signature&amp;id=' || id */ email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>

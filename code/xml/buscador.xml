@@ -310,7 +310,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				WHEN '".page2id("textos")."' THEN (SELECT /*MYSQL CONCAT('link:textos(',-id,'):',nombre) *//*SQLITE 'link:textos(' || -id || '):' || nombre */ FROM tbl_textos WHERE id=a.id_registro)
 				WHEN '".page2id("tiposevento")."' THEN (SELECT /*MYSQL CONCAT('link:tiposevento(',-id,'):',nombre) *//*SQLITE 'link:tiposevento(' || -id || '):' || nombre */ FROM tbl_tiposevento WHERE id=a.id_registro)
 				WHEN '".page2id("usuarios")."' THEN (SELECT /*MYSQL CONCAT('link:usuarios(',-id,'):',login) *//*SQLITE 'link:usuarios(' || -id || '):' || login */ FROM tbl_usuarios WHERE id=a.id_registro)
-				WHEN '".page2id("favoritos")."' THEN (SELECT /*MYSQL CONCAT('link:favoritos(',-id,'):',nombre) *//*SQLITE 'link:favoritos(' || -id || '):' || nombre */ FROM tbl_favoritos WHERE id=a.id_registro)
+				WHEN '".page2id("favoritos")."' THEN (SELECT /*MYSQL CONCAT('link:openwin(\"',REPLACE(url,':','%3A'),'\"):',nombre) *//*SQLITE 'link:openwin(\"' || REPLACE(url,':','%3A') || '\"):' || nombre */ FROM tbl_favoritos WHERE id=a.id_registro)
 			END nombre,
 			CASE a.id_aplicacion
 				WHEN '".page2id("actas")."' THEN (SELECT /*MYSQL CONCAT(LPAD(a.id_registro,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || a.id_registro,-5,5) || ' - ' || nombre */ FROM tbl_actas WHERE id=a.id_registro)

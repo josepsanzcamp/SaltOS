@@ -313,24 +313,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										</xsl:when>
 										<xsl:when test="substring(node(),1,5)='link:'">
 											<xsl:value-of select="$label"/>:
-											<xsl:variable name="data1"><xsl:call-template name="replace_string">
-												<xsl:with-param name="find">://</xsl:with-param>
-												<xsl:with-param name="replace">%3A%2F%2F</xsl:with-param>
-												<xsl:with-param name="string" select="substring(node(),6)"/>
-											</xsl:call-template></xsl:variable>
-											<xsl:variable name="data2"><xsl:call-template name="replace_string">
-												<xsl:with-param name="find">%3A%2F%2F</xsl:with-param>
-												<xsl:with-param name="replace">://</xsl:with-param>
-												<xsl:with-param name="string" select="substring-before($data1,':')"/>
-											</xsl:call-template></xsl:variable>
-											<xsl:variable name="data3"><xsl:call-template name="replace_string">
-												<xsl:with-param name="find">%3A%2F%2F</xsl:with-param>
-												<xsl:with-param name="replace">://</xsl:with-param>
-												<xsl:with-param name="string" select="substring-after($data1,':')"/>
-											</xsl:call-template></xsl:variable>
-											<a class="applink" href="javascript:void(0)" onclick="{$data2}">
+											<a class="applink" href="javascript:void(0)" onclick="">
+												<xsl:attribute name="onclick"><xsl:call-template name="replace_string">
+													<xsl:with-param name="find">%3A</xsl:with-param>
+													<xsl:with-param name="replace">:</xsl:with-param>
+													<xsl:with-param name="string" select="substring-before(substring(node(),6),':')"/>
+												</xsl:call-template></xsl:attribute>
 												<xsl:call-template name="print_string_length">
-													<xsl:with-param name="text" select="$data3"/>
+													<xsl:with-param name="text" select="substring-after(substring(node(),6),':')"/>
 													<xsl:with-param name="size" select="$size"/>
 												</xsl:call-template>
 											</a>
@@ -718,22 +708,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								</a>
 							</xsl:when>
 							<xsl:when test="substring(.,1,5)='link:'">
-								<xsl:variable name="data1"><xsl:call-template name="replace_string">
-									<xsl:with-param name="find">://</xsl:with-param>
-									<xsl:with-param name="replace">%3A%2F%2F</xsl:with-param>
-									<xsl:with-param name="string" select="substring(.,6)"/>
-								</xsl:call-template></xsl:variable>
-								<xsl:variable name="data2"><xsl:call-template name="replace_string">
-									<xsl:with-param name="find">%3A%2F%2F</xsl:with-param>
-									<xsl:with-param name="replace">://</xsl:with-param>
-									<xsl:with-param name="string" select="substring-before($data1,':')"/>
-								</xsl:call-template></xsl:variable>
-								<xsl:variable name="data3"><xsl:call-template name="replace_string">
-									<xsl:with-param name="find">%3A%2F%2F</xsl:with-param>
-									<xsl:with-param name="replace">://</xsl:with-param>
-									<xsl:with-param name="string" select="substring-after($data1,':')"/>
-								</xsl:call-template></xsl:variable>
-								<a class="applink" href="javascript:void(0)" onclick="{$data2}"><xsl:value-of select="$data3"/></a>
+								<a class="applink" href="javascript:void(0)" onclick="">
+									<xsl:attribute name="onclick"><xsl:call-template name="replace_string">
+										<xsl:with-param name="find">%3A</xsl:with-param>
+										<xsl:with-param name="replace">:</xsl:with-param>
+										<xsl:with-param name="string" select="substring-before(substring(.,6),':')"/>
+									</xsl:call-template></xsl:attribute>
+									<xsl:value-of select="substring-after(substring(.,6),':')"/>
+								</a>
 							</xsl:when>
 							<xsl:otherwise>
 								<xsl:value-of select="."/>

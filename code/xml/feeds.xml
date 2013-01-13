@@ -386,7 +386,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<temp global="only,only_array" eval="true">$only=isset($only_array[$only])?$only:"000"</temp>
 		<query global="page,filtro,id_usuario,id_feed,fecha1,fecha2,fecha3,fecha3_array,only,only_array" eval="true">"SELECT
 			id,id2,
-			/*MYSQL CONCAT('link:openwin(\'',link2,'\'):',feed) *//*SQLITE 'link:openwin(\'' || link2 || '\'):' || feed */ feed,
+			/*MYSQL CONCAT('link:openwin(\"',REPLACE(link2,':','%3A'),'\"):',feed) *//*SQLITE 'link:openwin(\"' || REPLACE(link2,':','%3A') || '\"):' || feed */ feed,
 			usuario,
 			/*MYSQL CONCAT('link:feeds(',-id,'):',title) *//*SQLITE 'link:feeds(' || -id || '):' || title */ title,
 			pubdate,
@@ -450,7 +450,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formview</title>
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,(SELECT /*MYSQL CONCAT('openwin(\'',link,'\')') *//*SQLITE 'openwin(\'' || link || '\')' */ FROM tbl_usuarios_f WHERE id=id_feed) link2,/*MYSQL CONCAT('openwin(\'',link,'\')') *//*SQLITE 'openwin(\'' || link || '\')' */ link,CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END title FROM tbl_feeds WHERE id=".abs($id)</default>
+					<default global="id" eval="true">"SELECT *,(SELECT /*MYSQL CONCAT('openwin(\"',link,'\")') *//*SQLITE 'openwin(\"' || link || '\")' */ FROM tbl_usuarios_f WHERE id=id_feed) link2,/*MYSQL CONCAT('openwin(\"',link,'\")') *//*SQLITE 'openwin(\"' || link || '\")' */ link,CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END title FROM tbl_feeds WHERE id=".abs($id)</default>
 					<full global="id" eval="true">"SELECT '".abs($id)."' id"</full>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />

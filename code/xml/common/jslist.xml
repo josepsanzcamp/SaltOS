@@ -77,7 +77,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>presupuestos(id) { setParam("page","presupuestos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>campanyas(id) { setParam("page","campanyas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>tiposevento(id) { setParam("page","tiposevento"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>favoritos(id) { setParam("page","favoritos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>textos(id) { setParam("page","textos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>correo(id) { setParam("page","correo"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>feeds(id) { setParam("page","feeds"); setParam("action","form"); setParam("id",id); submit1(); }</function>
@@ -119,5 +118,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<include>js/filters.js</include>
 		<include>js/pagerlist.js</include>
 		<include>js/numbers.js</include>
+		<include>js/favoritos.js</include>
 	</cache>
 </root>

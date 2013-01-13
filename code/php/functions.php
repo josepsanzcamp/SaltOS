@@ -84,7 +84,7 @@ function post_datauser() {
 				$aplicacion=$row2["aplicacion"];
 				$permiso=$row2["permiso"];
 				if(!isset($_USER[$aplicacion])) $_USER[$aplicacion]=array();
-				$_USER[$aplicacion][$permiso]=(isset($_USER[$aplicacion][$permiso])?$_USER[$aplicacion][$permiso]:1) && $row2["allow"] && !$row2["deny"];
+				$_USER[$aplicacion][$permiso]=((isset($_USER[$aplicacion][$permiso])?$_USER[$aplicacion][$permiso]:1) && $row2["allow"] && !$row2["deny"])?1:0;
 			}
 			db_free($result2);
 		} else {

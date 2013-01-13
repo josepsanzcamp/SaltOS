@@ -63,7 +63,7 @@ if(getParam("action")=="favoritos") {
 	$scheme=parse_url($url,PHP_URL_SCHEME);
 	if(!$scheme) $url="http://".$url;
 	if(substr($url,-1,1)=="/") $url=substr($url,0,-1);
-	$query="SELECT id FROM tbl_favoritos WHERE url LIKE '${url}'";
+	$query="SELECT id FROM tbl_favoritos WHERE url='${url}'";
 	$existe=execute_query($query);
 	if(is_null($existe)) {
 		capture_next_error();
