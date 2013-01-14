@@ -185,6 +185,7 @@ if(getParam("action")=="themeroller") {
 			if($z<0.5) {
 				foreach(array("Content","Default","Hover","Active","Error") as $val) {
 					list($array["bgColor$val"],$array["fc$val"])=array($array["fc$val"],$array["bgColor$val"]);
+					list($array["borderColor$val"],$array["iconColor$val"])=array($array["iconColor$val"],$array["borderColor$val"]);
 				}
 			}
 			// PREPARE SOME STRING THINGS
