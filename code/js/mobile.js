@@ -778,6 +778,28 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	/* FOR RENDER THE SCREEN */
+	function getstylesheet(html) {
+		var cad1=default_stylepre();
+		var cad2=default_stylepost();
+		var style=null;
+		$("link[rel=stylesheet]",html).each(function() {
+			var href=$(this).attr("href");
+			if(strpos(href,cad1)!==false && strpos(href,cad2)!==false) style=this;
+		});
+		return style;
+	}
+
+	function update_style(html,html2) {
+		//~ console.time("update_style");
+		var style1=getstylesheet(html2);
+		var style2=getstylesheet(html);
+		if(style1 && style2 && $(style1).attr("href")!=$(style2).attr("href")) {
+			$("head").append("<link href='"+$(style2).attr("href")+"' rel='stylesheet' type='text/css'></link>");
+			get_colors();
+		}
+		//~ console.timeEnd("update_style");
+	}
+
 	function updatecontent(html) {
 		var page=$("#page");
 		$(page).hide();
@@ -808,6 +830,10 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		make_extras(screen2);
 		$(screen).replaceWith(screen2);
 		make_ckeditors(screen2);
+		setTimeout(function() {
+			var html2=$("html");
+			update_style(html,html2);
+		},100);
 		$(page).page();
 		$(page).show();
 		unloadingcontent();

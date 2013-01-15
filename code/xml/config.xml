@@ -80,7 +80,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<divisor>100</divisor>
 	</sess>
 	<server>
-		<forcessl eval="true">is_mobile()?"false":"true"</forcessl>
+		<forcessl>true</forcessl>
 		<porthttp>80</porthttp>
 		<porthttps>443</porthttps>
 	</server>
@@ -91,9 +91,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<format>HTML</format><!-- output format can be XML or HTML -->
 		<obhandler>ob_gzhandler</obhandler>
 		<lang>es_ES</lang>
-		<style eval="true">is_mobile()?"b":"blue"</style>
-		<stylepre eval="true">is_mobile()?"lib/jquery/jquery.mobile.theme.":"xml.php?action=themeroller&amp;theme="</stylepre>
-		<stylepost eval="true">is_mobile()?".css":""</stylepost>
+		<style>blue</style>
+		<stylepre>xml.php?action=themeroller&amp;theme=</stylepre>
+		<stylepost></stylepost>
 		<iconset>silk</iconset>
 		<iconsetpre>xml.php?action=iconset&amp;iconset=</iconsetpre>
 		<iconsetpost>&amp;format=css</iconsetpost>
@@ -207,9 +207,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.colorpicker.css</include>
 			<include>lib/jquery/jquery.ptTimeSelect.css</include>
 			<include>lib/jquery/jquery.jgrowl.css</include>
-		</cache>
-		<cache ifeval="is_mobile()">
-			<include>lib/jquery/jquery.mobile-1.2.0.css</include>
 		</cache>
 	</styles>
 	<javascript>

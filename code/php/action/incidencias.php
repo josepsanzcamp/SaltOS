@@ -44,19 +44,12 @@ if($page=="incidencias") {
 		return $body;
 	}
 	// DATOS SMPT
-	$host=CONFIG("email_host");
-	$port=CONFIG("email_port");
-	$extra=CONFIG("email_extra");
-	if($port || $extra) $host.=":$port:$extra";
-	$user=CONFIG("email_user");
-	$pass=CONFIG("email_pass");
-	if(!$host || !$user || !$pass) {
+	if(!CONFIG("email_host") || !CONFIG("email_user") || !CONFIG("email_pass")) {
 		session_error(LANG("msgnotsmtpemail"));
 		javascript_history(-1);
 		die();
 	}
 	// DATOS EMAIL
-	$from=CONFIG("email_name")." <".CONFIG("email_from").">";
 	$id_incidencia=intval(($action=="insert")?execute_query("SELECT MAX(id) FROM tbl_incidencias"):getParam("id"));
 	$query="SELECT y5.valor mailto,".make_extra_query_with_login("d.")." usuario
 			FROM tbl_incidencias_u a
@@ -89,7 +82,6 @@ if($page=="incidencias") {
 		db_free($result2);
 		$subject=($action=="insert")?LANG_ESCAPE("forminsert"):LANG_ESCAPE("formupdate");
 		$body=__report_begin($subject);
-		$files=array();
 		// DATOS GENERALES
 		$id_aplicacion=page2id($page);
 		// DATOS INCIDENCIA
@@ -156,7 +148,7 @@ if($page=="incidencias") {
 			// PARA DEBUGAR
 			//~ echo "<pre>SUBJECT=$subject BODY=$body TO=".sprintr($to)."</pre>"; die();
 			// ENVIAR EMAIL
-			$error=sendmail($from,$to,$subject,$body,$files,$host,$user,$pass);
+			$error=sendmail(0,$to,$subject,$body);
 			if($error) {
 				session_error($error);
 			} else {

@@ -28,13 +28,7 @@ if(getParam("action")=="support") {
 	include_once("php/report.php");
 	include_once("php/sendmail.php");
 	// DATOS SMPT
-	$host=CONFIG("email_host");
-	$port=CONFIG("email_port");
-	$extra=CONFIG("email_extra");
-	if($port || $extra) $host.=":$port:$extra";
-	$user=CONFIG("email_user");
-	$pass=CONFIG("email_pass");
-	if(!$host || !$user || !$pass) {
+	if(!CONFIG("email_host") || !CONFIG("email_user") || !CONFIG("email_pass")) {
 		session_error(LANG("msgnotsmtpemail","support"));
 		javascript_history(-1);
 		die();
@@ -45,7 +39,6 @@ if(getParam("action")=="support") {
 		javascript_history(-1);
 		die();
 	}
-	$from=CONFIG("email_name")." <".CONFIG("email_from").">";
 	$to=LANG("contact","support")." <".CONFIG("email_support").">";
 	$contact=LANG("contact","support");
 	$nombre=getParam("default_0_nombre");
@@ -57,7 +50,6 @@ if(getParam("action")=="support") {
 		session_error(LANG("msgnotcomments","support"));
 	} else {
 		$body=__report_begin($contact);
-		$files=array();
 		$body.=__report_text(LANG("nombre","support"),$nombre);
 		$body.=__report_text(LANG("subject","support"),$subject);
 		$body.=__report_textarea(LANG("comentarios","support"),$comentarios,false);
@@ -65,7 +57,7 @@ if(getParam("action")=="support") {
 		// PARA DEBUGAR
 		//~ echo $body;die();
 		// ENVIAR EMAIL
-		$send=sendmail($from,$to,$contact.": ".$subject,$body,$files,$host,$user,$pass);
+		$send=sendmail(0,$to,$contact.": ".$subject,$body);
 		if($send!="") {
 			session_error($send);
 		} else {

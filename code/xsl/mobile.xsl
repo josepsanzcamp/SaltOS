@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="title">
 	<xsl:for-each select="/root">
-		<div class="ui-bar ui-bar-{/root/info/style}">
+		<div class="ui-bar ui-bar-b">
 			<h3><xsl:call-template name="title_2"/></h3>
 		</div>
 	</xsl:for-each>
@@ -120,7 +120,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="menu">
 	<xsl:for-each select="/root/menu">
-		<div data-role="content" data-theme="{/root/info/style}">
+		<div data-role="content" data-theme="b">
 			<select class="menu" ismenu="true" data-mini="true">
 				<xsl:for-each select="group">
 					<optgroup label="{label}">
@@ -193,7 +193,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="list_quick">
 	<xsl:for-each select="quick">
-		<div data-role="content" data-theme="{/root/info/style}">
+		<div data-role="content" data-theme="b">
 			<xsl:call-template name="form_by_rows">
 				<xsl:with-param name="form" select="null"/>
 				<xsl:with-param name="node" select="null"/>
@@ -206,7 +206,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="list_pager">
 	<xsl:for-each select="pager">
-		<div data-role="content" data-theme="{/root/info/style}">
+		<div data-role="content" data-theme="b">
 			<xsl:call-template name="form_by_rows">
 				<xsl:with-param name="form" select="null"/>
 				<xsl:with-param name="node" select="null"/>
@@ -221,22 +221,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:for-each select="/root/list">
 		<xsl:call-template name="styles"/>
 		<xsl:call-template name="javascript"/>
-		<div class="ui-bar ui-bar-{/root/info/style}">
+		<div class="ui-bar ui-bar-b">
 			<h3><xsl:value-of select="title"/></h3>
 		</div>
 		<xsl:call-template name="list_quick"/>
 		<xsl:choose>
 			<xsl:when test="count(rows/row)=0">
-				<div data-role="content" data-theme="{/root/info/style}">
+				<div data-role="content" data-theme="b">
 					<xsl:value-of select="nodata/label"/>
 				</div>
 			</xsl:when>
 			<xsl:otherwise>
-				<div data-role="content" data-theme="{/root/info/style}">
+				<div data-role="content" data-theme="b">
 					<input type="checkbox" class="master" name="master" id="master" value="1" data-mini="true"/><label for="master">&#160;</label>
 				</div>
 				<xsl:for-each select="rows/row">
-					<div data-role="content" data-theme="{/root/info/style}">
+					<div data-role="content" data-theme="b">
 						<div>
 							<input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1" data-mini="true"/><label for="slave_{id}">&#160;</label>
 						</div>
@@ -888,11 +888,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xsl:when test="count($fields/row)!=0">
 			<xsl:for-each select="$fields">
 				<xsl:if test="title!=''">
-					<div class="ui-bar ui-bar-{/root/info/style}">
+					<div class="ui-bar ui-bar-b">
 						<h3><xsl:value-of select="title"/></h3>
 					</div>
 				</xsl:if>
-				<div data-role="content" data-theme="{/root/info/style}">
+				<div data-role="content" data-theme="b">
 					<xsl:if test="quick='true'">
 						<xsl:call-template name="form_quick">
 							<xsl:with-param name="quick" select="../quick"/>
@@ -930,19 +930,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
 								<xsl:for-each select="$node1/fieldset">
 									<xsl:if test="title!=''">
-										<div class="ui-bar ui-bar-{/root/info/style}">
+										<div class="ui-bar ui-bar-b">
 											<h3><xsl:value-of select="title"/></h3>
 										</div>
 									</xsl:if>
 									<xsl:if test="quick='true'">
-										<div data-role="content" data-theme="{/root/info/style}">
+										<div data-role="content" data-theme="b">
 											<xsl:call-template name="form_quick">
 												<xsl:with-param name="quick" select="../../../quick"/>
 												<xsl:with-param name="prefix" select="$prefix"/>
 											</xsl:call-template>
 										</div>
 									</xsl:if>
-									<div data-role="content" data-theme="{/root/info/style}">
+									<div data-role="content" data-theme="b">
 										<xsl:call-template name="form_by_rows">
 											<xsl:with-param name="form" select="$form"/>
 											<xsl:with-param name="node" select="$node3"/>
@@ -951,7 +951,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										</xsl:call-template>
 									</div>
 									<xsl:if test="buttons='true'">
-										<div data-role="content" data-theme="{/root/info/style}">
+										<div data-role="content" data-theme="b">
 											<xsl:call-template name="form_buttons">
 												<xsl:with-param name="buttons" select="../../../buttons"/>
 												<xsl:with-param name="prefix" select="$prefix"/>
@@ -964,12 +964,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:when test="count($node2/*[name()=$name2])=1">
 							<xsl:for-each select="$node1/fieldset">
 								<xsl:if test="title!=''">
-									<div class="ui-bar ui-bar-{/root/info/style}">
+									<div class="ui-bar ui-bar-b">
 										<h3><xsl:value-of select="title"/></h3>
 									</div>
 								</xsl:if>
 								<xsl:if test="quick='true'">
-									<div data-role="content" data-theme="{/root/info/style}">
+									<div data-role="content" data-theme="b">
 										<xsl:call-template name="form_quick">
 											<xsl:with-param name="quick" select="../../../quick"/>
 											<xsl:with-param name="prefix" select="null"/>
@@ -982,7 +982,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
 									<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
 									<xsl:for-each select="$node3">
-										<div data-role="content" data-theme="{/root/info/style}">
+										<div data-role="content" data-theme="b">
 											<div class="todofixfull">
 											</div>
 											<div class="todofixhead">
@@ -1005,7 +1005,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									</xsl:for-each>
 								</xsl:for-each>
 								<xsl:if test="buttons='true'">
-									<div data-role="content" data-theme="{/root/info/style}">
+									<div data-role="content" data-theme="b">
 										<xsl:call-template name="form_buttons">
 											<xsl:with-param name="buttons" select="../../../buttons"/>
 											<xsl:with-param name="prefix" select="null"/>
@@ -1074,7 +1074,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:call-template name="alert"/>
 					<xsl:call-template name="error"/>
 				</div>
-				<div data-role="footer" data-position="fixed" data-theme="{/root/info/style}" data-tap-toggle="false" id="jGrowl"></div>
+				<div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false" id="jGrowl"></div>
 			</div>
 		</body>
 	</html>

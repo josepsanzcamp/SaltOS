@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<label lang="true">style</label>
 	<type>select</type>
 	<width>120px</width>
-	<rows ifeval="!is_mobile()">
+	<rows>
 		<row>
 			<label>Blue (default)</label>
 			<value>blue</value>
@@ -100,16 +100,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<row>
 			<label>Gray (inverted)</label>
 			<value>invgray</value>
-		</row>
-	</rows>
-	<rows ifeval="is_mobile()">
-		<row>
-			<label>Black</label>
-			<value>a</value>
-		</row>
-		<row>
-			<label>Blue &amp; gray</label>
-			<value>b</value>
 		</row>
 	</rows>
 	<value global="style" eval="true">$style</value>

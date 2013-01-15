@@ -40,7 +40,7 @@ if(getParam("action")=="sendmail") {
 		$state_crt=intval(getParam($prefix."state_crt"));
 		$priority=intval(getParam($prefix."priority"));
 		$sensitivity=intval(getParam($prefix."sensitivity"));
-		// FIND ACCOUNT FROM ID_CUENTA
+		// SEARCH FROM
 		$query="SELECT /*MYSQL CONCAT(email_name,' <',email_from,'>') *//*SQLITE email_name || ' <' || email_from || '>' */ email FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND id='${id_cuenta}'";
 		$from=execute_query($query);
 		if(!$from) {
@@ -157,17 +157,8 @@ if(getParam("action")=="sendmail") {
 		foreach($attachs as $attach) {
 			$files[]=array("data"=>$attach["body"],"name"=>$attach["cname"],"mime"=>$attach["ctype"]);
 		}
-		// FIND ACCOUNT DATA
-		$query="SELECT * FROM tbl_usuarios_c WHERE id='$id_cuenta'";
-		$result=execute_query($query);
-		$host=$result["smtp_host"];
-		$port=$result["smtp_port"];
-		$extra=$result["smtp_extra"];
-		if($port || $extra) $host.=":$port:$extra";
-		$user=$result["smtp_user"];
-		$pass=$result["smtp_pass"];
 		// DO THE SEND ACTION
-		$send=sendmail($from,$recipients,$subject,$body,$files,$host,$user,$pass);
+		$send=sendmail($id_cuenta,$recipients,$subject,$body,$files);
 		if($send=="") {
 			$query="SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND is_outbox='1'";
 			$oldcache=set_use_cache("false");
@@ -239,46 +230,42 @@ if(getParam("action")=="sendmail") {
 			$current=$mail->PostSend();
 			$error=get_clear_error();
 			if($current!==true) {
-				$email_from=$mail->From;
-				$email_host=$mail->Host;
-				$email_port=$mail->Port;
-				$email_extra=$mail->SMTPSecure;
-				$email_user=$mail->Username;
-				$email_pass=$mail->Password;
-				$query="SELECT * FROM tbl_usuarios_c WHERE email_from='$email_from'";
-				$result2=execute_query($query);
-				if(!isset($result2["id"]) && $email_from==CONFIG("email_from")) {
-					$result2=array();
-					$result2["id"]="0";
-					$result2["smtp_host"]=CONFIG("email_host");
-					$result2["smtp_port"]=CONFIG("email_port");
-					$result2["smtp_extra"]=CONFIG("email_extra");
-					$result2["smtp_user"]=CONFIG("email_user");
-					$result2["smtp_pass"]=CONFIG("email_pass");
-				}
-				if(isset($result2["id"])) {
+				$host=$mail->Host;
+				$port=$mail->Port;
+				$extra=$mail->SMTPSecure;
+				$user=$mail->Username;
+				$pass=$mail->Password;
+				if($row["id_cuenta"]) {
+					$query="SELECT * FROM tbl_usuarios_c WHERE id='".$row["id_cuenta"]."'";
+					$result2=execute_query($query);
 					$current_host=$result2["smtp_host"];
 					$current_port=$result2["smtp_port"]?$result2["smtp_port"]:25;
 					$current_extra=$result2["smtp_extra"];
 					$current_user=$result2["smtp_user"];
 					$current_pass=$result2["smtp_pass"];
-					$idem=1;
-					if($current_host!=$email_host) $idem=0;
-					if($current_port!=$email_port) $idem=0;
-					if($current_extra!=$email_extra) $idem=0;
-					if($current_user!=$email_user) $idem=0;
-					if($current_pass!=$email_pass) $idem=0;
-					if(!$idem) {
-						$mail->Host=$current_host;
-						$mail->Port=$current_port;
-						$mail->SMTPSecure=$current_extra;
-						$mail->Username=$current_user;
-						$mail->Password=$current_pass;
-						$mail->SMTPAuth=($current_user!="" || $current_pass!="");
-						capture_next_error();
-						$current=$mail->PostSend();
-						$error=get_clear_error();
-					}
+				} else {
+					$current_host=CONFIG("email_host");
+					$current_port=CONFIG("email_port")?CONFIG("email_port"):25;
+					$current_extra=CONFIG("email_extra");
+					$current_user=CONFIG("email_user");
+					$current_pass=CONFIG("email_pass");
+				}
+				$idem=1;
+				if($current_host!=$host) $idem=0;
+				if($current_port!=$port) $idem=0;
+				if($current_extra!=$extra) $idem=0;
+				if($current_user!=$user) $idem=0;
+				if($current_pass!=$pass) $idem=0;
+				if(!$idem) {
+					$mail->Host=$current_host;
+					$mail->Port=$current_port;
+					$mail->SMTPSecure=$current_extra;
+					$mail->Username=$current_user;
+					$mail->Password=$current_pass;
+					$mail->SMTPAuth=($current_user!="" || $current_pass!="");
+					capture_next_error();
+					$current=$mail->PostSend();
+					$error=get_clear_error();
 				}
 			}
 			if($current!==true) {

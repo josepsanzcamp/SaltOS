@@ -96,11 +96,9 @@ $_RESULT=array();
 $_RESULT["info"]=getDefault("info");
 $_RESULT["styles"]=getDefault("styles");
 $_RESULT["javascript"]=getDefault("javascript");
-//~ add_css_page($_RESULT,$stylepre.$style.$stylepost);
-set_array($_RESULT["styles"],"include",$stylepre.$style.$stylepost);
-$_RESULT["info"]["style"]=$style;
 add_css_page($_RESULT,getDefault("forcecss","default"));
 add_js_page($_RESULT,getDefault("forcejs","default"));
+if(load_style($style)) set_array($_RESULT["styles"],"include",$stylepre.$style.$stylepost);
 if(load_iconset($iconset)) set_array($_RESULT["styles"],"include",$iconsetpre.$iconset.$iconsetpost);
 // SWITCH FOR EACH CASE
 if(!check_user()) {

@@ -23,44 +23,46 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function sendmail($from,$to,$subject,$body,$arg1="",$arg2="",$arg3="",$arg4="") {
+function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	require_once("lib/phpmailer/class.phpmailer.php");
 	require_once("php/getmail.php");
-	if(is_array($arg1)) {
-		$files=$arg1;
-		$host=$arg2;
-		$user=$arg3;
-		$pass=$arg4;
-	} elseif(is_array($arg4)) {
-		$host=$arg1;
-		$user=$arg2;
-		$pass=$arg3;
-		$files=$arg4;
+	// FIND ACCOUNT DATA
+	if($id_cuenta) {
+		$query="SELECT * FROM tbl_usuarios_c WHERE id='$id_cuenta'";
+		$result=execute_query($query);
+		$host=$result["smtp_host"];
+		$port=$result["smtp_port"];
+		$extra=$result["smtp_extra"];
+		$user=$result["smtp_user"];
+		$pass=$result["smtp_pass"];
+		$from=$result["email_from"];
+		$fromname=$result["email_name"];
 	} else {
-		$host=$arg1;
-		$user=$arg2;
-		$pass=$arg3;
-		$files="";
+		$host=CONFIG("email_host");
+		$port=CONFIG("email_port");
+		$extra=CONFIG("email_extra");
+		$user=CONFIG("email_user");
+		$pass=CONFIG("email_pass");
+		$from=CONFIG("email_from");
+		$fromname=CONFIG("email_name");
 	}
 	$mail=new PHPMailer();
 	if(!$mail->set("XMailer",get_name_version_revision())) return $mail->ErrorInfo;
 	if(!$mail->AddCustomHeader("X-Originating-IP",getServer("REMOTE_ADDR"))) if($mail->ErrorInfo) return $mail->ErrorInfo;
 	if(!$mail->SetLanguage("es","lib/phpmailer/language/")) return $mail->ErrorInfo;
 	if(!$mail->set("CharSet","UTF-8")) return $mail->ErrorInfo;
-	list($from,$fromname)=__sendmail_parser($from);
 	if(!$mail->SetFrom($from,$fromname)) return $mail->ErrorInfo;
 	if(!$mail->set("WordWrap",50)) return $mail->ErrorInfo;
 	$mail->IsHTML();
 	if(!in_array($host,array("mail","sendmail","qmail",""))) {
 		$mail->IsSMTP();
-		$host=explode(":",$host);
-		if(!$mail->set("Host",$host[0])) return $mail->ErrorInfo;
-		if(isset($host[1]) && $host[1]!="") if(!$mail->set("Port",$host[1])) return $mail->ErrorInfo;
-		if(isset($host[2]) && $host[2]!="") if(!$mail->set("SMTPSecure",$host[2])) return $mail->ErrorInfo;
+		if(!$mail->set("Host",$host)) return $mail->ErrorInfo;
+		if($port!="") if(!$mail->set("Port",$port)) return $mail->ErrorInfo;
+		if($extra!="") if(!$mail->set("SMTPSecure",$extra)) return $mail->ErrorInfo;
 		if(!$mail->set("Username",$user)) return $mail->ErrorInfo;
 		if(!$mail->set("Password",$pass)) return $mail->ErrorInfo;
 		if(!$mail->set("SMTPAuth",($user!="" || $pass!=""))) return $mail->ErrorInfo;
-		if(!$mail->set("Hostname",$host[0])) return $mail->ErrorInfo;
+		if(!$mail->set("Hostname",$host)) return $mail->ErrorInfo;
 	} else {
 		if($host=="mail") $mail->IsMail();
 		elseif($host=="sendmail") $mail->IsSendmail();
@@ -100,7 +102,7 @@ function sendmail($from,$to,$subject,$body,$arg1="",$arg2="",$arg3="",$arg4="") 
 	$current=$mail->PreSend();
 	get_clear_error();
 	if(!$current) return $mail->ErrorInfo;
-	$messageid=__sendmail_messageid($mail->From);
+	$messageid=__sendmail_messageid($id_cuenta,$mail->From);
 	$file=__sendmail_emlsaver($mail->GetSentMIMEMessage(),$messageid);
 	$last_id=__getmail_insert($file,$messageid,0,0,0,0,0,1,0,"");
 	if(CONFIG("email_async")) {
@@ -132,12 +134,9 @@ function __sendmail_parser($oldaddr) {
 	return array($addr,$name);
 }
 
-function __sendmail_messageid($from) {
+function __sendmail_messageid($id_cuenta,$from) {
 	require_once("php/getmail.php");
 	$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
-	$query="SELECT id FROM tbl_usuarios_c WHERE email_from='$from'";
-	$id_cuenta=execute_query($query);
-	if(!$id_cuenta) $id_cuenta=0;
 	$prefix=get_directory("dirs/outboxdir").$id_cuenta;
 	if(!file_exists($prefix)) {
 		mkdir($prefix);
