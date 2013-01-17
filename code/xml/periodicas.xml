@@ -213,7 +213,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,filter,id_cuenta,dia1,dia2,meses" eval="true">"
 		SELECT
-			/*MYSQL CONCAT('link:periodicas(',-id,'):',LPAD(id,5,0)) *//*SQLITE 'link:periodicas(' || -id || '):' || SUBSTR('00000' || id,-5,5) */ id2,id,
+			/*MYSQL CONCAT('link:periodicas(',-id,'):',LPAD(id,5,0)) *//*SQLITE 'link:periodicas(' || -id || '):' || LPAD(id,5,0) */ id2,id,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
 				/*MYSQL CONCAT('link:clientes(',-id_cliente,'):',cliente) *//*SQLITE 'link:clientes(' || -id_cliente || '):' || cliente */ END cliente,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
@@ -249,7 +249,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE cuenta END cuenta,
 			conceptos,productos,
 			(SELECT COUNT(*) FROM tbl_periodicas_v v WHERE v.id_periodica=d.id) vencimientos,
-			id action_id,/*MYSQL CONCAT(LPAD(id,5,0),' - ',cliente) *//*SQLITE SUBSTR('00000' || id,-5,5) || ' - ' || cliente */ action_title,
+			id action_id,/*MYSQL CONCAT(LPAD(id,5,0),' - ',cliente) *//*SQLITE LPAD(id,5,0) || ' - ' || cliente */ action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,

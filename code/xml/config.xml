@@ -177,8 +177,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__aspell_langs__>dump dicts</__aspell_langs__>
 		<which>which</which><!-- for check commands -->
 		<__which__>__INPUT__</__which__>
-		<sqlite3>sqlite3</sqlite3><!-- only used by bin_sqlite driver -->
-		<__sqlite3__>__DBFILE__ '.read __INPUT__'</__sqlite3__>
 	</commands>
 	<debug>
 		<actiondebug>false</actiondebug>

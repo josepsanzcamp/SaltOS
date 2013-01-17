@@ -39,12 +39,9 @@ function db_connect_sqlite3() {
 		db_query_sqlite3("PRAGMA synchronous=OFF");
 		db_query_sqlite3("PRAGMA count_changes=OFF");
 		db_query_sqlite3("PRAGMA foreign_keys=OFF");
-		// DETECT AND ADD GROUP_CONCAT
-		$query="SELECT GROUP_CONCAT(id /*SQLITE , *//*MYSQL SEPARATOR */ ',') FROM (SELECT '1' id) test2";
-		capture_next_error();
-		db_query_sqlite3($query);
-		$error=get_clear_error();
-		if($error) getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize",2);
+		if(!check_group_concat()) getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize",2);
+		if(!check_ldap()) getDefault("db/link")->createFunction("LPAD","__sqlite3_lpad",3);
+		if(!check_concat()) getDefault("db/link")->createFunction("CONCAT","__sqlite3_concat");
 	}
 	register_shutdown_function("__sqlite3_shutdown_handler");
 }
@@ -62,6 +59,14 @@ function __sqlite3_group_concat_step(&$context,$string,$separator) {
 
 function __sqlite3_group_concat_finalize(&$context) {
 	return $context;
+}
+
+function __sqlite3_lpad($input,$length,$char) {
+	return str_pad($input,$length,$char,STR_PAD_LEFT);
+}
+
+function __sqlite3_concat() {
+	return implode("",func_get_args());
 }
 
 function __db_query_sqlite3_helper($query) {

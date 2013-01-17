@@ -39,12 +39,9 @@ function db_connect_pdo_sqlite() {
 		db_query_pdo_sqlite("PRAGMA synchronous=OFF");
 		db_query_pdo_sqlite("PRAGMA count_changes=OFF");
 		db_query_pdo_sqlite("PRAGMA foreign_keys=OFF");
-		// DETECT AND ADD GROUP_CONCAT
-		$query="SELECT GROUP_CONCAT(id /*SQLITE , *//*MYSQL SEPARATOR */ ',') FROM (SELECT '1' id) test2";
-		capture_next_error();
-		db_query_pdo_sqlite($query);
-		$error=get_clear_error();
-		if($error) getDefault("db/link")->sqliteCreateAggregate("GROUP_CONCAT","__pdo_sqlite_group_concat_step","__pdo_sqlite_group_concat_finalize",2);
+		if(!check_group_concat()) getDefault("db/link")->sqliteCreateAggregate("GROUP_CONCAT","__pdo_sqlite_group_concat_step","__pdo_sqlite_group_concat_finalize",2);
+		if(!check_ldap()) getDefault("db/link")->sqliteCreateFunction("LPAD","__pdo_sqlite_lpad",3);
+		if(!check_concat()) getDefault("db/link")->sqliteCreateFunction("CONCAT","__pdo_sqlite_concat");
 	}
 	register_shutdown_function("__pdo_sqlite_shutdown_handler");
 }
@@ -62,6 +59,14 @@ function __pdo_sqlite_group_concat_step(&$context,$rows,$string,$separator) {
 
 function __pdo_sqlite_group_concat_finalize(&$context,$rows) {
 	return $context;
+}
+
+function __pdo_sqlite_lpad($input,$length,$char) {
+	return str_pad($input,$length,$char,STR_PAD_LEFT);
+}
+
+function __pdo_sqlite_concat() {
+	return implode("",func_get_args());
 }
 
 function __db_query_pdo_sqlite_helper($query) {

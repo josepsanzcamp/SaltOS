@@ -505,4 +505,26 @@ function make_select_query($page,$table,$field,$arg1=null,$arg2=null) {
 	) a WHERE ".($filter?"id IN ($filter)":"1=1")." AND ".check_sql($page,"list");
 	return $query;
 }
+
+function check_query($query) {
+	capture_next_error();
+	db_query($query);
+	$error=get_clear_error();
+	return !$error?true:false;
+}
+
+function check_group_concat() {
+	$query="SELECT GROUP_CONCAT(1)";
+	return check_query($query);
+}
+
+function check_ldap() {
+	$query="SELECT LDAP(1,5,0)";
+	return check_query($query);
+}
+
+function check_concat() {
+	$query="SELECT CONCAT(1)";
+	return check_query($query);
+}
 ?>

@@ -122,14 +122,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			nombre nombre2,
 			descripcion,
 			id action_id,
-			/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || id,-5,5) || ' - ' || nombre */ action_title,
+			/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE LPAD(id,5,0) || ' - ' || nombre */ action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 			SELECT
 				a.*,
-				/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
+				LPAD(a.id,5,0) id2,
 				e.id_usuario id_usuario,
 				d.id_grupo id_grupo
 			FROM tbl_cuentas a

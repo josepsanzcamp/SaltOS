@@ -296,7 +296,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,id_estado,fecha1,fecha2,comentarios,id_posiblecli,id_campanya" eval="true">"SELECT * FROM (
-			SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
+			SELECT LPAD(a.id,5,0) id2,a.id id,
 				".make_extra_query_with_login("d.")." usuario,
 				e.`datetime` `datetime`,
 				CASE
@@ -321,7 +321,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				(SELECT COUNT(*) FROM tbl_presupuestos_t WHERE id_presupuesto=a.id) tareas,
 				(SELECT COUNT(*) FROM tbl_presupuestos_p WHERE id_presupuesto=a.id) productos,
 				a.descripcion descripcion,a.id_campanya id_campanya,
-				a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || a.nombre */ action_title,
+				a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE LPAD(a.id,5,0) || ' - ' || a.nombre */ action_title,
 				CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 				CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 				CASE (".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").")) WHEN 1 THEN 'true' ELSE 'false' END action_copy,
@@ -369,10 +369,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
 					<agenda>
-						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,/*MYSQL LPAD(id,5,0)*//*SQLITE SUBSTR('00000' || id,-5,5)*/ id,dstart,dstop,/*MYSQL CONCAT('link:agenda(',-id,'):',nombre) *//*SQLITE 'link:agenda(' || -id || '):' || nombre */ nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,/*MYSQL CONCAT('agenda(',-id,')') *//*SQLITE 'agenda(' || -id || ')' */ link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
+						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,5,0) id,dstart,dstop,/*MYSQL CONCAT('link:agenda(',-id,'):',nombre) *//*SQLITE 'link:agenda(' || -id || '):' || nombre */ nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,/*MYSQL CONCAT('agenda(',-id,')') *//*SQLITE 'agenda(' || -id || ')' */ link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
 					</agenda>
 					<actas>
-						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,/*MYSQL LPAD(id,5,0)*//*SQLITE SUBSTR('00000' || id,-5,5)*/ id,dstart,dstop,/*MYSQL CONCAT('link:actas(',-id,'):',nombre) *//*SQLITE 'link:actas(' || -id || '):' || nombre */ nombre,/*MYSQL CONCAT('actas(',-id,')') *//*SQLITE 'actas(' || -id || ')' */ link_view,/*MYSQL CONCAT('pdfacta(',id,')') *//*SQLITE 'pdfacta(' || id || ')' */ link_pdf,/*MYSQL CONCAT('mailacta(',id,')') *//*SQLITE 'mailacta(' || id || ')' */ link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
+						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,5,0) id,dstart,dstop,/*MYSQL CONCAT('link:actas(',-id,'):',nombre) *//*SQLITE 'link:actas(' || -id || '):' || nombre */ nombre,/*MYSQL CONCAT('actas(',-id,')') *//*SQLITE 'actas(' || -id || ')' */ link_view,/*MYSQL CONCAT('pdfacta(',id,')') *//*SQLITE 'pdfacta(' || id || ')' */ link_pdf,/*MYSQL CONCAT('mailacta(',id,')') *//*SQLITE 'mailacta(' || id || ')' */ link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
 					</actas>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
@@ -1449,7 +1449,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
 		<query>"SELECT * FROM (
-			SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,
+			SELECT LPAD(a.id,5,0) id,
 				".make_extra_query_with_login("d.")." usuario,
 				e.`datetime` `datetime`,
 				CASE
@@ -1696,7 +1696,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT
 			/*MYSQL CONCAT('".LANG("presupuesto")."',' ',LPAD(id,5,0),' ',nombre) */
-			/*SQLITE '".LANG("presupuesto")."' || ' ' || SUBSTR('00000' || id,-5,5) || ' ' || nombre */ subject
+			/*SQLITE '".LANG("presupuesto")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject
 		FROM tbl_presupuestos WHERE id IN (".check_ids(getParam("id")).")"):LANG("presupuestos"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

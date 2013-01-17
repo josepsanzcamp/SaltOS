@@ -243,7 +243,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro,fecha1,fecha2,id_estado" eval="true">"
 		SELECT
-			/*MYSQL LPAD(id,5,0)*//*SQLITE SUBSTR('00000' || id,-5,5)*/ id2,id,
+			LPAD(id,5,0) id2,id,
 			/*MYSQL CONCAT('link:campanyas(',-id,'):',nombre) *//*SQLITE 'link:campanyas(' || -id || '):' || nombre */ nombre,
 			nombre nombre2,
 			dstart,dstop,estado,
@@ -256,7 +256,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) comentarios,
 			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) ficheros,
 			id action_id,
-			/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || id,-5,5) || ' - ' || nombre */ action_title,
+			/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE LPAD(id,5,0) || ' - ' || nombre */ action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2filter,
@@ -287,7 +287,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<files_old include="xml/common/qfilesold.xml" />
 					<posiblescli>
 						<posiblescli global="id" eval="true">"
-SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,
+SELECT LPAD(a.id,5,0) id,
 	/*MYSQL CONCAT('link:posiblescli(',-a.id,'):',a.nombre) *//*SQLITE 'link:posiblescli(' || -a.id || '):' || a.nombre */ nombre,
 	/*MYSQL CONCAT('tel:',tel_fijo) *//*SQLITE 'tel:' || tel_fijo */ tel_fijo,
 	/*MYSQL CONCAT('tel:',tel_movil) *//*SQLITE 'tel:' || tel_movil */ tel_movil,
@@ -303,7 +303,7 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("posiblescli","view")." ORDER
 					</posiblescli>
 					<clientes>
 						<clientes global="id" eval="true">"
-SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,
+SELECT LPAD(a.id,5,0) id,
 	/*MYSQL CONCAT('link:clientes(',-a.id,'):',a.nombre) *//*SQLITE 'link:clientes(' || -a.id || '):' || a.nombre */ nombre,
 	/*MYSQL CONCAT('tel:',y1.valor)*//*SQLITE 'tel:' || y1.valor*/ tel_fijo,
 	/*MYSQL CONCAT('tel:',y2.valor)*//*SQLITE 'tel:' || y2.valor*/ tel_movil,
@@ -322,16 +322,16 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view")." ORDER BY
 						"</clientes>
 					</clientes>
 					<agenda>
-						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,/*MYSQL LPAD(id,5,0)*//*SQLITE SUBSTR('00000' || id,-5,5)*/ id,dstart,dstop,/*MYSQL CONCAT('link:agenda(',-id,'):',nombre) *//*SQLITE 'link:agenda(' || -id || '):' || nombre */ nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,/*MYSQL CONCAT('agenda(',-id,')') *//*SQLITE 'agenda(' || -id || ')' */ link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_campanya=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
+						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,5,0) id,dstart,dstop,/*MYSQL CONCAT('link:agenda(',-id,'):',nombre) *//*SQLITE 'link:agenda(' || -id || '):' || nombre */ nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,/*MYSQL CONCAT('agenda(',-id,')') *//*SQLITE 'agenda(' || -id || ')' */ link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_campanya=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
 					</agenda>
 					<presupuestos>
-						<presupuestos global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:presupuestos(',-a.id,'):',a.nombre) *//*SQLITE 'link:presupuestos(' || -a.id || '):' || a.nombre */ presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,/*MYSQL CONCAT('presupuestos(',-a.id,')') *//*SQLITE 'presupuestos(' || -a.id || ')' */ link_view,/*MYSQL CONCAT('pdfpresupuesto(',a.id,')') *//*SQLITE 'pdfpresupuesto(' || a.id || ')' */ link_pdf,/*MYSQL CONCAT('viewpresupuesto(',a.id,')') *//*SQLITE 'viewpresupuesto(' || a.id || ')' */ link_view2,/*MYSQL CONCAT('mailpresupuesto(',a.id,')') *//*SQLITE 'mailpresupuesto(' || a.id || ')' */ link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.`datetime` DESC"</presupuestos>
+						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,5,0) id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:presupuestos(',-a.id,'):',a.nombre) *//*SQLITE 'link:presupuestos(' || -a.id || '):' || a.nombre */ presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,/*MYSQL CONCAT('presupuestos(',-a.id,')') *//*SQLITE 'presupuestos(' || -a.id || ')' */ link_view,/*MYSQL CONCAT('pdfpresupuesto(',a.id,')') *//*SQLITE 'pdfpresupuesto(' || a.id || ')' */ link_pdf,/*MYSQL CONCAT('viewpresupuesto(',a.id,')') *//*SQLITE 'viewpresupuesto(' || a.id || ')' */ link_view2,/*MYSQL CONCAT('mailpresupuesto(',a.id,')') *//*SQLITE 'mailpresupuesto(' || a.id || ')' */ link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.`datetime` DESC"</presupuestos>
 					</presupuestos>
 					<proyectosopen>
-						<proyectosopen global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:proyectos(',-a.id,'):',a.nombre) *//*SQLITE 'link:proyectos(' || -a.id || '):' || a.nombre */ proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,/*MYSQL CONCAT('proyectos(',-a.id,')') *//*SQLITE 'proyectos(' || -a.id || ')' */ link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='1' AND (".check_sql("proyectos","view").") ORDER BY e.`datetime` DESC"</proyectosopen>
+						<proyectosopen global="page,id" eval="true">"SELECT LPAD(a.id,5,0) id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:proyectos(',-a.id,'):',a.nombre) *//*SQLITE 'link:proyectos(' || -a.id || '):' || a.nombre */ proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,/*MYSQL CONCAT('proyectos(',-a.id,')') *//*SQLITE 'proyectos(' || -a.id || ')' */ link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='1' AND (".check_sql("proyectos","view").") ORDER BY e.`datetime` DESC"</proyectosopen>
 					</proyectosopen>
 					<proyectosclose>
-						<proyectosclose global="page,id" eval="true">"SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:proyectos(',-a.id,'):',a.nombre) *//*SQLITE 'link:proyectos(' || -a.id || '):' || a.nombre */ proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,/*MYSQL CONCAT('proyectos(',-a.id,')') *//*SQLITE 'proyectos(' || -a.id || ')' */ link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='0' AND (".check_sql("proyectos","view").") ORDER BY e.`datetime` DESC"</proyectosclose>
+						<proyectosclose global="page,id" eval="true">"SELECT LPAD(a.id,5,0) id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,/*MYSQL CONCAT('link:proyectos(',-a.id,'):',a.nombre) *//*SQLITE 'link:proyectos(' || -a.id || '):' || a.nombre */ proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,/*MYSQL CONCAT('proyectos(',-a.id,')') *//*SQLITE 'proyectos(' || -a.id || ')' */ link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='0' AND (".check_sql("proyectos","view").") ORDER BY e.`datetime` DESC"</proyectosclose>
 					</proyectosclose>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
@@ -534,7 +534,7 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view")." ORDER BY
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT
 			/*MYSQL CONCAT('".LANG("campanya")."',' ',LPAD(id,5,0),' ',nombre) */
-			/*SQLITE '".LANG("campanya")."' || ' ' || SUBSTR('00000' || id,-5,5) || ' ' || nombre */ subject
+			/*SQLITE '".LANG("campanya")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject
 		FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"):LANG("campanyas"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

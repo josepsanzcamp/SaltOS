@@ -185,15 +185,14 @@ define("__BR__","<br/>");
 								<?php echo LANG("select_dbtype"); ?>
 								<select name="dbtype" <?php echo __UI__; ?>>
 									<option value="pdo_sqlite">SQLite3 (PDO)<?php echo LANG("select_prefered"); ?></option>
-									<option value="pdo_mysql">MariaDB &amp; MySQL (PDO)</option>
 									<option value="sqlite3">SQLite3 (extension)</option>
+									<option value="pdo_mysql">MariaDB &amp; MySQL (PDO)</option>
 									<option value="mysql">MariaDB &amp; MySQL (extension)</option>
-									<option value="bin_sqlite">SQLite3 (experimental binary wrapper)</option>
 									<option value="mysqli">MariaDB &amp; MySQL (improved extension)</option>
 								</select>
-							<?php } elseif(in_array(getParam("dbtype"),array("pdo_sqlite","sqlite3","bin_sqlite"))) { ?>
+							<?php } elseif(in_array(getParam("dbtype"),array("pdo_sqlite","sqlite3"))) { ?>
 								<input type="hidden" name="step" value="3"/>
-								<?php $dbtypes=array("pdo_sqlite"=>"SQLite3 (PDO)","sqlite3"=>"SQLite3 (extension)","bin_sqlite"=>"SQLite3 (experimental binary wrapper)"); ?>
+								<?php $dbtypes=array("pdo_sqlite"=>"SQLite3 (PDO)","sqlite3"=>"SQLite3 (extension)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype")].__COLOR__; ?><?php echo __BR__; ?>
 								<?php $dbfile=getDefault("db/file"); ?>
 								<?php if(!file_exists($dbfile)) touch($dbfile); ?>
@@ -343,8 +342,8 @@ define("__BR__","<br/>");
 								<?php } ?>
 							<?php } ?>
 							<b><?php echo LANG("database_link"); ?>:</b><?php echo __BR__; ?>
-							<?php if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3","bin_sqlite"))) { ?>
-								<?php $dbtypes=array("pdo_sqlite"=>"SQLite3 (PDO)","sqlite3"=>"SQLite3 (extension)","bin_sqlite"=>"SQLite3 (experimental binary wrapper)"); ?>
+							<?php if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3"))) { ?>
+								<?php $dbtypes=array("pdo_sqlite"=>"SQLite3 (PDO)","sqlite3"=>"SQLite3 (extension)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype",getDefault("db/type"))].__COLOR__; ?><?php echo __BR__; ?>
 								<?php $dbfile=getDefault("db/file"); ?>
 								<?php echo LANG("dbfile"); ?>: <?php echo __GREEN__.$dbfile.__COLOR__; ?><?php echo __BR__; ?>
@@ -385,7 +384,7 @@ define("__BR__","<br/>");
 								$_CONFIG["db"]["user"]=getParam("dbuser",getDefault("db/user"));
 								$_CONFIG["db"]["pass"]=getParam("dbpass",getDefault("db/pass"));
 								$_CONFIG["db"]["name"]=getParam("dbname",getDefault("db/name"));
-								if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3","bin_sqlite"))) {
+								if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3"))) {
 									$dbfile=getDefault("db/file");
 									if(!file_exists($dbfile)) touch($dbfile);
 								}
@@ -533,7 +532,7 @@ define("__BR__","<br/>");
 								if(getParam("streetdata")) {
 									$oldcache=set_use_cache("false");
 									$dbtemp="sql";
-									if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3","bin_sqlite"))) $dbtemp="sqlite";
+									if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3"))) $dbtemp="sqlite";
 									if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_mysql","mysql","mysqli"))) $dbtemp="mysql";
 									$files=glob("install/sql/tbl_*.$dbtemp.gz");
 									if(is_array($files) && count($files)>0) {

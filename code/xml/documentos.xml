@@ -209,7 +209,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,id_usuario,fecha1,fecha2,comentarios,id_proyecto" eval="true">"SELECT * FROM (
-	SELECT /*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,a.id id,
+	SELECT LPAD(a.id,5,0) id2,a.id id,
 		".make_extra_query_with_login("d.")." usuario,
 		e.`datetime` `datetime`,
 		CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
@@ -222,7 +222,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		a.nombre nombre2,
 		(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
 		(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
-		a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE SUBSTR('00000' || a.id,-5,5) || ' - ' || a.nombre */ action_title,
+		a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE LPAD(a.id,5,0) || ' - ' || a.nombre */ action_title,
 		CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 		CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 		CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,

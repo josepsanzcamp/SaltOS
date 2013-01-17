@@ -192,7 +192,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			/*MYSQL CONCAT('tel:',tel_fijo)*//*SQLITE 'tel:' || tel_fijo*/ tel_fijo,
 			/*MYSQL CONCAT('tel:',tel_movil)*//*SQLITE 'tel:' || tel_movil*/ tel_movil,
 			/*MYSQL CONCAT('mailto:',email)*//*SQLITE 'mailto:' || email*/ email,
-			id action_id,/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE SUBSTR('00000' || id,-5,5) || ' - ' || nombre */ action_title,
+			id action_id,/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE LPAD(id,5,0) || ' - ' || nombre */ action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
@@ -200,7 +200,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 			SELECT y1.valor tel_fijo,y2.valor tel_movil,y5.valor email,x.nombre_provincia provincia,x.nombre_poblacion poblacion,x.nombre_codpostal codpostal,x.direccion direccion,
-				/*MYSQL LPAD(a.id,5,0)*//*SQLITE SUBSTR('00000' || a.id,-5,5)*/ id2,
+				LPAD(a.id,5,0) id2,
 				a.*,
 				".make_extra_query_with_login("b.")." usuario,
 				CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN (SELECT nombre FROM tbl_clientes WHERE id=a.id_registro)
