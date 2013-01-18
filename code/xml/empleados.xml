@@ -133,13 +133,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"
 		SELECT id2,id,
-			/*MYSQL CONCAT('link:empleados(',-id,'):',nombre) *//*SQLITE 'link:empleados(' || -id || '):' || nombre */ nombre,
+			CONCAT('link:empleados(',-id,'):',nombre) nombre,
 			nombre nombre2,
 			cargo,
-			/*MYSQL CONCAT('tel:',tel_fijo)*//*SQLITE 'tel:' || tel_fijo*/ tel_fijo,
-			/*MYSQL CONCAT('tel:',tel_movil)*//*SQLITE 'tel:' || tel_movil*/ tel_movil,
-			/*MYSQL CONCAT('mailto:',email)*//*SQLITE 'mailto:' || email*/ email,
-			id action_id,/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE LPAD(id,5,0) || ' - ' || nombre */ action_title,
+			CONCAT('tel:',tel_fijo) tel_fijo,
+			CONCAT('tel:',tel_movil) tel_movil,
+			CONCAT('mailto:',email) email,
+			id action_id,CONCAT(LPAD(id,5,0),' - ',nombre) action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_sql($page,"view")." OR ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
@@ -176,13 +176,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<contactos>
 						<contactos global="id,page" eval="true">"
 SELECT LPAD(a.id,5,0) id,
-	/*MYSQL CONCAT('link:contactos(',-a.id,'):',a.nombre) *//*SQLITE 'link:contactos(' || -a.id || '):' || a.nombre */ nombre,
-	/*MYSQL CONCAT('tel:',y1.valor)*//*SQLITE 'tel:' || y1.valor*/ tel_fijo,
-	/*MYSQL CONCAT('tel:',y2.valor)*//*SQLITE 'tel:' || y2.valor*/ tel_movil,
-	/*MYSQL CONCAT('mailto:',y5.valor)*//*SQLITE 'mailto:' || y5.valor*/ email,
-	/*MYSQL CONCAT('contactos(',-a.id,')') *//*SQLITE 'contactos(' || -a.id || ')' */ link_view,
-	/*MYSQL CONCAT('vcardcontactos(',-a.id,')') *//*SQLITE 'vcardcontactos(' || -a.id || ')' */ link_vcard,
-	/*MYSQL CONCAT('qrcodecontactos(',-a.id,')') *//*SQLITE 'qrcodecontactos(' || -a.id || ')' */ link_qrcode
+	 CONCAT('link:contactos(',-a.id,'):',a.nombre)  nombre,
+	 CONCAT('tel:',y1.valor) tel_fijo,
+	 CONCAT('tel:',y2.valor) tel_movil,
+	 CONCAT('mailto:',y5.valor) email,
+	 CONCAT('contactos(',-a.id,')') link_view,
+	 CONCAT('vcardcontactos(',-a.id,')') link_vcard,
+	 CONCAT('qrcodecontactos(',-a.id,')') link_qrcode
 FROM tbl_contactos a
 	LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("contactos")."' AND e.id_registro=a.id
 	LEFT JOIN tbl_direcciones x ON x.id=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id("contactos")."' AND id_registro=a.id ORDER BY seleccion DESC, id ASC LIMIT 1)

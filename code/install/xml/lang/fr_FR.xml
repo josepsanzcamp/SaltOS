@@ -50,8 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<select_prefered> (recommander)</select_prefered>
 		<selected_dbtype>Sélectionner DBMS</selected_dbtype>
 		<dbfile>fichiers base de données</dbfile>
-		<dbtest1>Tester la connexion</dbtest1>
-		<dbtest2 revised="false">Appui à la fonction de GROUP_CONCAT</dbtest2>
+		<dbtest>Tester la connexion</dbtest>
 		<dbhost>Host</dbhost>
 		<dbport revised="false">Port</dbport>
 		<dbuser>Usager</dbuser>

@@ -50,8 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<select_prefered> (recomendado)</select_prefered>
 		<selected_dbtype>SGBD seleccionado</selected_dbtype>
 		<dbfile>Ficheiro de base de dados</dbfile>
-		<dbtest1>A ligação de teste funcionou com sucesso</dbtest1>
-		<dbtest2 revised="false">Apoio à função GROUP_CONCAT</dbtest2>
+		<dbtest>A ligação de teste funcionou com sucesso</dbtest>
 		<dbhost>Máquina</dbhost>
 		<dbport revised="false">Porto</dbport>
 		<dbuser>Utilziador</dbuser>

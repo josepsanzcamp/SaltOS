@@ -28,12 +28,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ".make_extra_query_with_login("d.")." usuario,
 c.nombre grupo,
 a.`datetime`,
-/*MYSQL CONCAT('download2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') *//*SQLITE 'download2(\'$page\',\'".abs($id)."\',\'' || a.id || '\')' */ download,
-/*MYSQL CONCAT('viewpdf2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') *//*SQLITE 'viewpdf2(\'$page\',\'".abs($id)."\',\'' || a.id || '\')' */ viewpdf,
-CASE WHEN fichero_size>1073741824 THEN /*SQLITE ROUND(fichero_size/1073741824.0,2) || ' Gbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes') */
-	WHEN fichero_size>1048576 THEN /*SQLITE ROUND(fichero_size/1048576.0,2) || ' Mbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes') */
-	WHEN fichero_size>1024 THEN /*SQLITE ROUND(fichero_size/1024.0,2) || ' Kbytes' *//*MYSQL CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes') */
-	ELSE /*SQLITE fichero_size || ' bytes' *//*MYSQL CONCAT(fichero_size,' bytes') */
+CONCAT('download2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') download,
+CONCAT('viewpdf2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') viewpdf,
+CASE WHEN fichero_size>1073741824 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
+	WHEN fichero_size>1048576 THEN CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
+	WHEN fichero_size>1024 THEN CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
+	ELSE CONCAT(fichero_size,' bytes')
 END fichero_size
 FROM tbl_ficheros a
 LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id

@@ -96,7 +96,7 @@ if(getParam("action")=="themeroller") {
 		}
 	}
 	// CREATE IF NOT EXISTS
-	$allbase=array_merge(array($xml[$type]["cssbase"]),glob($xml[$type]["cssbase"]."*.png"));
+	$allbase=array_merge(array($xml[$type]["cssbase"]),glob($xml[$type]["imgbase"]."*.png"));
 	if(!cache_exists($cache,$allbase)) {
 		if($mask) {
 			$mask=explode(",",$mask);

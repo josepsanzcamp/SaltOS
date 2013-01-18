@@ -650,9 +650,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					END `to`,
 					CASE WHEN subject='' THEN '".LANG("sinsubject")."' ELSE subject END subject,
 					CONCAT(id_cuenta,'/',uidl) msgid,
-					(SELECT REPLACE(GROUP_CONCAT(
-						CONCAT(fichero,' (',fichero_size,')')
-					),',',' | ') FROM
+					(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' (',fichero_size,')')),',',' | ') FROM
 						(SELECT fichero,id_registro,
 							CASE
 								WHEN fichero_size&gt;1073741824 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')

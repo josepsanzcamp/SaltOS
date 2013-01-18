@@ -1831,6 +1831,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	$.jGrowl.defaults.closer=false;
 	$.jGrowl.defaults.position="bottom-right";
 
+	// FOR BACK COMPATIBILITY NEEDED BY SOME PLUGINS
+	$.browser=new Object();
+	$.browser.msie=/MSIE/.test(navigator.userAgent);
+	$.browser.mozilla=/Mozilla/.test(navigator.userAgent);
+	$.browser.version=7;
+
 	// WHEN DOCUMENT IS READY
 	$(function() {
 		//~ console.time("document_ready fase 0");

@@ -213,21 +213,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		".make_extra_query_with_login("d.")." usuario,
 		e.`datetime` `datetime`,
 		CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-			/*MYSQL CONCAT('link:clientes(',-a.id_cliente,'):',b_nombre) *//*SQLITE 'link:clientes(' || -a.id_cliente || '):' || b_nombre */ END cliente,
+			CONCAT('link:clientes(',-a.id_cliente,'):',b_nombre) END cliente,
 		CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-			/*MYSQL CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre) *//*SQLITE 'link:proyectos(' || -id_proyecto || '):' || p_nombre */ END proyecto,
-		/*MYSQL CONCAT('link:documentos(',-a.id,'):',a.nombre) *//*SQLITE 'link:documentos(' || -a.id || '):' || a.nombre */ nombre,
+			CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre) END proyecto,
+		CONCAT('link:documentos(',-a.id,'):',a.nombre) nombre,
 		CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
 		CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
 		a.nombre nombre2,
 		(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
 		(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
-		a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE LPAD(a.id,5,0) || ' - ' || a.nombre */ action_title,
+		a.id action_id,CONCAT(LPAD(a.id,5,0),' - ',a.nombre) action_title,
 		CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 		CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 		CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
 		a.id_cliente id_cliente,e.id_usuario id_usuario,d.id_grupo id_grupo,id_proyecto,a.descripcion descripcion,
-		(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
+		(SELECT REPLACE(GROUP_CONCAT(search),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
 	FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre FROM tbl_documentos a2
 		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
 		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto) a

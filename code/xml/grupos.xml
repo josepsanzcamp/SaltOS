@@ -119,11 +119,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query global="page,filtro" eval="true">"
 		SELECT
 			LPAD(id,5,0) id2,id,
-			/*MYSQL CONCAT('link:grupos(',-id,'):',nombre) *//*SQLITE 'link:grupos(' || -id || '):' || nombre */ nombre,
+			CONCAT('link:grupos(',-id,'):',nombre) nombre,
 			nombre nombre2,
 			descripcion,
 			id action_id,
-			/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE LPAD(id,5,0) || ' - ' || nombre */ action_title,
+			CONCAT(LPAD(id,5,0),' - ',nombre) action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
@@ -149,7 +149,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<default global="id" eval="true">"SELECT * FROM tbl_grupos WHERE id=".abs($id)</default>
 					<permisos>
 						<permisos global="id" eval="true">"
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-2') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-2 id_permiso,
@@ -160,7 +160,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-1') *//*SQLITE a.id || '_' || '-1' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-1') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-1 id_permiso,
@@ -171,7 +171,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT /*MYSQL CONCAT(a.id,'_',b.id) *//*SQLITE a.id || '_' || b.id */ id,
+						SELECT CONCAT(a.id,'_',b.id) id,
 							a.id id_aplicacion,a.nombre aplicacion,
 							b.id id_permiso,b.nombre permiso,
 							gp.allow allow,
@@ -195,7 +195,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<default>SELECT '0' id</default>
 					<permisos>
 						<permisos eval="true">"
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-2') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-2 id_permiso,
@@ -206,7 +206,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-1') *//*SQLITE a.id || '_' || '-1' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-1') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-1 id_permiso,
@@ -217,7 +217,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT /*MYSQL CONCAT(a.id,'_',b.id) *//*SQLITE a.id || '_' || b.id */ id,
+						SELECT CONCAT(a.id,'_',b.id) id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							b.id id_permiso,
@@ -241,7 +241,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<default global="id" eval="true">"SELECT * FROM tbl_grupos WHERE id=".abs($id)</default>
 					<permisos>
 						<permisos global="id" eval="true">"
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-2') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-2 id_permiso,
@@ -252,7 +252,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-1') *//*SQLITE a.id || '_' || '-1' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-1') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-1 id_permiso,
@@ -263,7 +263,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT /*MYSQL CONCAT(a.id,'_',b.id) *//*SQLITE a.id || '_' || b.id */ id,
+						SELECT CONCAT(a.id,'_',b.id) id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							b.id id_permiso,

@@ -270,8 +270,8 @@ SELECT LPAD(a.id,5,0) id2,a.id id,
 	".make_extra_query_with_login("b.")." usuario,
 	a.dstart dstart,a.dstop dstop,
 	CASE
-		WHEN a.id_cliente!='0' THEN  /*MYSQL CONCAT('link:clientes(',-a.id_cliente,'):',c1_nombre) *//*SQLITE 'link:clientes(' || -a.id_cliente || '):' || c1_nombre */
-		WHEN a.id_posiblecli!='0' THEN  /*MYSQL CONCAT('link:posiblescli(',-a.id_posiblecli,'):',c2_nombre) *//*SQLITE 'link:posiblescli(' || -a.id_posiblecli || '):' || c2_nombre */
+		WHEN a.id_cliente!='0' THEN CONCAT('link:clientes(',-a.id_cliente,'):',c1_nombre)
+		WHEN a.id_posiblecli!='0' THEN CONCAT('link:posiblescli(',-a.id_posiblecli,'):',c2_nombre)
 		ELSE '".LANG_ESCAPE("sincliente")."'
 	END cliente,
 	CASE
@@ -281,11 +281,11 @@ SELECT LPAD(a.id,5,0) id2,a.id id,
 	END cliente2,
 	CASE id_proyecto
 		WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."'
-		ELSE /*MYSQL CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre) *//*SQLITE 'link:proyectos(' || -id_proyecto || '):' || p_nombre */
+		ELSE CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre)
 	END proyecto,
-	/*MYSQL CONCAT('link:actas(',-a.id,'):',a.nombre) *//*SQLITE 'link:actas(' || -a.id || '):' || a.nombre */ nombre,
+	CONCAT('link:actas(',-a.id,'):',a.nombre) nombre,
 	CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
-	a.nombre nombre2,a.lugar lugar,a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE LPAD(a.id,5,0) || ' - ' || a.nombre */ action_title,
+	a.nombre nombre2,a.lugar lugar,a.id action_id,CONCAT(LPAD(a.id,5,0),' - ',a.nombre) action_title,
 	CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 	CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 	CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
@@ -885,9 +885,7 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 			<eval>true</eval>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT
-			/*MYSQL CONCAT('".LANG("acta")."',' ',LPAD(id,5,0),' ',nombre) */
-			/*SQLITE '".LANG("acta")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject
+		SELECT CONCAT('".LANG("acta")."',' ',LPAD(id,5,0),' ',nombre) subject
 		FROM tbl_actas WHERE id IN (".check_ids(getParam("id")).")"):LANG("actas"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

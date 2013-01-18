@@ -129,13 +129,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query global="page,filtro" eval="true">"
 		SELECT * FROM (
 			SELECT id,id2,
-				/*MYSQL CONCAT('link:importaciones(',-id,'):',nombre) *//*SQLITE 'link:importaciones(' || -id || '):' || nombre */ nombre,
+				CONCAT('link:importaciones(',-id,'):',nombre) nombre,
 				nombre nombre2,descripcion,
 				(SELECT COUNT(*) FROM tbl_posiblescli WHERE id_importacion=b.id)+(SELECT COUNT(*) FROM tbl_clientes WHERE id_importacion=b.id) total,
 				(SELECT nombre FROM tbl_aplicaciones WHERE id=id_aplicacion) aplicacion,
 				id_usuario,id_grupo,
 				id action_id,
-				/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE LPAD(id,5,0) || ' - ' || nombre */ action_title,
+				CONCAT(LPAD(id,5,0),' - ',nombre) action_title,
 				CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 				CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 				CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete

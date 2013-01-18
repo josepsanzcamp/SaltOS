@@ -639,7 +639,7 @@ if(getParam("action")=="feeds") {
 							}
 						}
 						// BORRAR REGISTROS DE LA TABLA DE FEEDS BORRADOS QUE NO EXISTEN YA
-						$query="DELETE FROM tbl_feeds_d WHERE id_feed='${id_feed}' AND NOT link IN (${links}) AND /*MYSQL UNIX_TIMESTAMP(`datetime`) *//*SQLITE STRFTIME('%s',`datetime`) */<='${unixtime_d}'";
+						$query="DELETE FROM tbl_feeds_d WHERE id_feed='${id_feed}' AND NOT link IN (${links}) AND UNIX_TIMESTAMP(`datetime`)<='${unixtime_d}'";
 						db_query($query);
 					}
 				}
@@ -686,7 +686,7 @@ if(getParam("action")=="feeds") {
 		if($modifiedfeeds>0) javascript_template("notify_voice('".$modifiedfeeds.LANG("msgmodifiedfeedsok".min($modifiedfeeds,2),"feeds")."')","saltos_voice()");
 	}
 	if(count($voice_ids)) {
-		$query="SELECT /*MYSQL CONCAT( */ (SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed) /*MYSQL , *//*SQLITE || */ '. ' /*MYSQL , *//*SQLITE || */ title /*MYSQL ) */ reader FROM tbl_feeds WHERE id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
+		$query="SELECT CONCAT((SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed),'. ',title) reader FROM tbl_feeds WHERE id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
 		$result=execute_query_array($query);
 		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","saltos_voice()");
 	}

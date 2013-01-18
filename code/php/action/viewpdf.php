@@ -122,48 +122,37 @@ if(getParam("action")=="viewpdf") {
 		$query="";
 		if($page=="facturas") $query="SELECT
 				CASE num WHEN '' THEN
-					/*MYSQL CONCAT('".LANG("albaran")."',' ',LPAD(id,5,0),' ',nombre) */
-					/*SQLITE '".LANG("albaran")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */
+					CONCAT('".LANG("albaran")."',' ',LPAD(id,5,0),' ',nombre)
 				ELSE
-					/*MYSQL CONCAT('".LANG("factura")."',' ',num,' ',nombre) */
-					/*SQLITE '".LANG("factura")."' || ' ' || num || ' ' || nombre */
+					CONCAT('".LANG("factura")."',' ',num,' ',nombre)
 				END subject
 			FROM tbl_facturas $where";
 		if($page=="actas") $query="SELECT
-				/*MYSQL CONCAT('".LANG("acta")."',' ',LPAD(id,5,0),' ',nombre) */
-				/*SQLITE '".LANG("acta")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject
+				CONCAT('".LANG("acta")."',' ',LPAD(id,5,0),' ',nombre) subject
 			FROM tbl_actas $where";
 		if($page=="partes") $query="SELECT
-				/*MYSQL CONCAT('".LANG("parte")."',' ',LPAD(id,5,0),' ',tarea) */
-				/*SQLITE '".LANG("parte")."' || ' ' || LPAD(id,5,0) || ' ' || tarea */ subject
+				CONCAT('".LANG("parte")."',' ',LPAD(id,5,0),' ',tarea) subject
 			FROM tbl_partes $where";
 		if($page=="presupuestos") $query="SELECT
-				/*MYSQL CONCAT('".LANG("presupuesto")."',' ',LPAD(id,5,0),' ',nombre) */
-				/*SQLITE '".LANG("presupuesto")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject
+				CONCAT('".LANG("presupuesto")."',' ',LPAD(id,5,0),' ',nombre) subject
 			FROM tbl_presupuestos $where";
 		if($page=="clientes") $query="SELECT
-				/*MYSQL CONCAT('".LANG("cliente")."',' ',LPAD(id,5,0),' ',nombre) */
-				/*SQLITE '".LANG("cliente")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject
+				CONCAT('".LANG("cliente")."',' ',LPAD(id,5,0),' ',nombre) subject
 			FROM tbl_clientes $where";
 		if($page=="proyectos") $query="SELECT
-				/*MYSQL CONCAT('".LANG("proyecto")."',' ',LPAD(id,5,0),' ',nombre) */
-				/*SQLITE '".LANG("proyecto")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject
+				CONCAT('".LANG("proyecto")."',' ',LPAD(id,5,0),' ',nombre) subject
 			FROM tbl_proyectos $where";
 		if($page=="posiblescli") $query="SELECT
-				/*MYSQL CONCAT('".LANG("posiblecli")."',' ',LPAD(id,5,0),' ',nombre) */
-				/*SQLITE '".LANG("posiblecli")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject
+				CONCAT('".LANG("posiblecli")."',' ',LPAD(id,5,0),' ',nombre) subject
 			FROM tbl_posiblescli $where";
 		if($page=="campanyas") $query="SELECT
-				/*MYSQL CONCAT('".LANG("campanya")."',' ',LPAD(id,5,0),' ',nombre) */
-				/*SQLITE '".LANG("campanya")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject
+				CONCAT('".LANG("campanya")."',' ',LPAD(id,5,0),' ',nombre) subject
 			FROM tbl_campanyas $where";
 		if($page=="correo") $query="SELECT
-				/*MYSQL CONCAT('".LANG("correo","menu")."',' ',LPAD(id,5,0),' ',subject) */
-				/*SQLITE '".LANG("correo","menu")."' || ' ' || LPAD(id,5,0) || ' ' || subject */ subject
+				CONCAT('".LANG("correo","menu")."',' ',LPAD(id,5,0),' ',subject) subject
 			FROM tbl_correo $where";
 		if($page=="feeds") $query="SELECT
-				/*MYSQL CONCAT('".LANG("feed","feeds")."',' ',LPAD(id,5,0),' ',title) */
-				/*SQLITE '".LANG("feed","feeds")."' || ' ' || LPAD(id,5,0) || ' ' || title */ subject
+				CONCAT('".LANG("feed","feeds")."',' ',LPAD(id,5,0),' ',title) subject
 			FROM tbl_feeds $where";
 		if($query=="") action_denied();
 		$result=db_query($query);

@@ -25,6 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<comunicaciones_principal>
-		<comunicaciones_principal global="page,id" eval="true">"SELECT a.id,id_aplicacion,id_registro,id_direccion,id_tipocom,a.nombre,seleccion,CASE WHEN 0>".intval($id)." THEN /*MYSQL CONCAT(protocolo,valor) *//*SQLITE protocolo || valor */ ELSE valor END valor FROM tbl_comunicaciones a,tbl_tiposcom b WHERE a.id_tipocom=b.id AND id_direccion=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' ORDER BY seleccion DESC, id ASC LIMIT 1)"</comunicaciones_principal>
+		<comunicaciones_principal global="page,id" eval="true">"SELECT a.id,id_aplicacion,id_registro,id_direccion,id_tipocom,a.nombre,seleccion,CASE WHEN 0>".intval($id)." THEN CONCAT(protocolo,valor) ELSE valor END valor FROM tbl_comunicaciones a,tbl_tiposcom b WHERE a.id_tipocom=b.id AND id_direccion=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' ORDER BY seleccion DESC, id ASC LIMIT 1)"</comunicaciones_principal>
 	</comunicaciones_principal>
 </root>

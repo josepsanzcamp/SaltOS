@@ -127,7 +127,7 @@ if($page=="incidencias") {
 			db_free($result2);
 			// DATOS USUARIOS
 			$query="SELECT
-					GROUP_CONCAT(".make_extra_query_with_login("b.")." /*MYSQL SEPARATOR '; ' *//*SQLITE ,'; '*/) usersdata
+					REPLACE(GROUP_CONCAT(".make_extra_query_with_login("b.")."),',','; ') usersdata
 				FROM tbl_incidencias_u a
 				LEFT JOIN tbl_usuarios b ON a.id_usuario=b.id
 				WHERE id_incidencia='$id_incidencia'";

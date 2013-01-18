@@ -27,7 +27,7 @@ if(!check_user()) action_denied();
 if($page=="agenda") {
 	$restarted=0;
 	// REINICIAR LOS NOTIFY_DSTART
-	$query="SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND notify_dstart='1' AND /*SQLITE STRFTIME('%s','".current_datetime()."')+0.0 > STRFTIME('%s',dstart)+notify_delay*3600.0*notify_sign AND STRFTIME('%s','".current_datetime()."') < STRFTIME('%s',dstop) *//*MYSQL UNIX_TIMESTAMP('".current_datetime()."')+0.0 > UNIX_TIMESTAMP(dstart)+notify_delay*3600.0*notify_sign AND UNIX_TIMESTAMP('".current_datetime()."') < UNIX_TIMESTAMP(dstop) */";
+	$query="SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND notify_dstart='1' AND UNIX_TIMESTAMP('".current_datetime()."')+0.0 > UNIX_TIMESTAMP(dstart)+notify_delay*3600.0*notify_sign AND UNIX_TIMESTAMP('".current_datetime()."') < UNIX_TIMESTAMP(dstop)";
 	$result=db_query($query);
 	while($row=db_fetch_row($result)) {
 		$id=$row["id"];
@@ -37,7 +37,7 @@ if($page=="agenda") {
 	}
 	db_free($result);
 	// REINICIAR LOS NOTIFY_DSTOP
-	$query="SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_dstop='1' AND /*SQLITE STRFTIME('%s','".current_datetime()."') > STRFTIME('%s',dstop) *//*MYSQL UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop) */";
+	$query="SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_dstop='1' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop)";
 	$result=db_query($query);
 	while($row=db_fetch_row($result)) {
 		$id=$row["id"];

@@ -32,27 +32,22 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 	if($page=="facturas") $query="
 		SELECT
 			CASE num WHEN '' THEN
-				/*MYSQL CONCAT('".LANG("albaran")."',' ',LPAD(id,5,0),' ',nombre) */
-				/*SQLITE '".LANG("albaran")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */
+				CONCAT('".LANG("albaran")."',' ',LPAD(id,5,0),' ',nombre)
 			ELSE
-				/*MYSQL CONCAT('".LANG("factura")."',' ',num,' ',nombre) */
-				/*SQLITE '".LANG("factura")."' || ' ' || num || ' ' || nombre */
+				CONCAT('".LANG("factura")."',' ',num,' ',nombre)
 			END subject,id
 		FROM tbl_facturas $where";
 	if($page=="actas") $query="
 		SELECT
-			/*MYSQL CONCAT('".LANG("acta")."',' ',LPAD(id,5,0),' ',nombre) */
-			/*SQLITE '".LANG("acta")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject,id
+			CONCAT('".LANG("acta")."',' ',LPAD(id,5,0),' ',nombre)
 		FROM tbl_actas $where";
 	if($page=="partes") $query="
 		SELECT
-			/*MYSQL CONCAT('".LANG("parte")."',' ',LPAD(id,5,0),' ',tarea) */
-			/*SQLITE '".LANG("parte")."' || ' ' || LPAD(id,5,0) || ' ' || tarea */ subject,id
+			CONCAT('".LANG("parte")."',' ',LPAD(id,5,0),' ',tarea)
 		FROM tbl_partes $where";
 	if($page=="presupuestos") $query="
 		SELECT
-			/*MYSQL CONCAT('".LANG("presupuesto")."',' ',LPAD(id,5,0),' ',nombre) */
-			/*SQLITE '".LANG("presupuesto")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */ subject,id
+			CONCAT('".LANG("presupuesto")."',' ',LPAD(id,5,0),' ',nombre)
 		FROM tbl_presupuestos $where";
 	$result=db_query($query);
 	$numrows=db_num_rows($result);

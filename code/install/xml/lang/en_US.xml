@@ -50,8 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<select_prefered> (recomended)</select_prefered>
 		<selected_dbtype>Selected DBMS</selected_dbtype>
 		<dbfile>Database file</dbfile>
-		<dbtest1>Ran the test connection</dbtest1>
-		<dbtest2>Support for the function GROUP_CONCAT</dbtest2>
+		<dbtest>Ran the test connection</dbtest>
 		<dbhost>Host</dbhost>
 		<dbport>Port</dbport>
 		<dbuser>User</dbuser>

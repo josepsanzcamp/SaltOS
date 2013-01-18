@@ -315,8 +315,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				".make_extra_query_with_login("d.")." usuario,
 				dstart,dstop,
 				CASE
-					WHEN a.id_cliente!='0' THEN /*MYSQL CONCAT('link:clientes(',-a.id_cliente,'):',b1_nombre) *//*SQLITE 'link:clientes(' || -a.id_cliente || '):' || b1_nombre */
-					WHEN a.id_posiblecli!='0' THEN /*MYSQL CONCAT('link:posiblescli(',-a.id_posiblecli,'):',b2_nombre) *//*SQLITE 'link:posiblescli(' || -a.id_posiblecli || '):' || b2_nombre */
+					WHEN a.id_cliente!='0' THEN CONCAT('link:clientes(',-a.id_cliente,'):',b1_nombre)
+					WHEN a.id_posiblecli!='0' THEN CONCAT('link:posiblescli(',-a.id_posiblecli,'):',b2_nombre)
 					ELSE '".LANG_ESCAPE("sincliente")."'
 				END cliente,
 				CASE
@@ -326,9 +326,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				END cliente2,
 				CASE id_proyecto
 					WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."'
-					ELSE /*MYSQL CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre) *//*SQLITE 'link:proyectos(' || -id_proyecto || '):' || p_nombre */
+					ELSE CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre)
 				END proyecto,
-				/*MYSQL CONCAT('link:agenda(',-a.id,'):',a.nombre) *//*SQLITE 'link:agenda(' || -a.id || '):' || a.nombre */ nombre,
+				CONCAT('link:agenda(',-a.id,'):',a.nombre) nombre,
 				CASE id_proyecto
 					WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."'
 					ELSE p_nombre
@@ -336,7 +336,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				a.nombre nombre2,
 				CASE id_tipoevento WHEN '0' THEN '".LANG_ESCAPE("sintipoevento")."' ELSE e.nombre END tipoevento,
 				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
-				a.id action_id,/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a.nombre) *//*SQLITE LPAD(a.id,5,0) || ' - ' || a.nombre */ action_title,
+				a.id action_id,CONCAT(LPAD(a.id,5,0),' - ',a.nombre) action_title,
 				CASE ((".check_sql($page,"view").") OR ((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."')>0)) WHEN 1 THEN 'true' ELSE 'false' END action_view,
 				CASE ((".check_sql($page,"edit").") OR ((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."')>0)) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 				CASE (".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").")) WHEN 1 THEN 'true' ELSE 'false' END action_copy,
@@ -344,7 +344,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				id_usuario,a.descripcion descripcion,id_tipoevento,d.id_grupo id_grupo,c.activo activo,
 				a.id_estado id_estado,a.id_cliente id_cliente,a.id_proyecto id_proyecto,
 				a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya,
-				(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=id) search
+				(SELECT REPLACE(GROUP_CONCAT(search),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=id) search
 			FROM (SELECT a2.*,b1.nombre b1_nombre,b2.nombre b2_nombre,p.nombre p_nombre FROM tbl_agenda a2
 			LEFT JOIN tbl_clientes b1 ON b1.id=a2.id_cliente
 			LEFT JOIN tbl_posiblescli b2 ON b2.id=a2.id_posiblecli
@@ -356,9 +356,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_presupuesto?"(id_presupuesto='$id_presupuesto')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".($id_tipoevento?"(id_tipoevento='$id_tipoevento')":"(1=1)")." AND ".make_like_query("nombre2,descripcion,cliente2,proyecto2,usuario,tipoevento,estado,dstart,dstop,search",$otros)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND
 			(''='$fecha3' OR
 				".($fecha3key=="DATE"?"(DATE('$fecha3val')>=DATE(dstart) AND DATE(dstop)>=DATE('$fecha3val'))":"(1=0)")." OR
-				".($fecha3key=="WEEK"?"(/*MYSQL CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1))>=CONCAT(YEAR(dstart),WEEK(dstart,1)) AND CONCAT(YEAR(dstop),WEEK(dstop,1))>=CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1)) *//*SQLITE STRFTIME('%Y%W','$fecha3val')>=STRFTIME('%Y%W',dstart) AND STRFTIME('%Y%W',dstop)>=STRFTIME('%Y%W','$fecha3val') */)":"(1=0)")." OR
-				".($fecha3key=="MNTH"?"(/*MYSQL YEAR('$fecha3val')>=YEAR(dstart) AND MONTH('$fecha3val')>=MONTH(dstart) AND YEAR(dstop)>=YEAR('$fecha3val') AND MONTH(dstop)>=MONTH('$fecha3val') *//*SQLITE STRFTIME('%Y','$fecha3val')>=STRFTIME('%Y',dstart) AND STRFTIME('%m','$fecha3val')>=STRFTIME('%m',dstart) AND STRFTIME('%Y',dstop)>=STRFTIME('%Y','$fecha3val') AND STRFTIME('%m',dstop)>=STRFTIME('%m','$fecha3val') */)":"(1=0)")." OR
-				".($fecha3key=="YEAR"?"(/*MYSQL YEAR('$fecha3val')>=YEAR(dstart) AND YEAR(dstop)>=YEAR('$fecha3val') *//*SQLITE STRFTIME('%Y','$fecha3val')>=STRFTIME('%Y',dstart) AND STRFTIME('%Y',dstop)>=STRFTIME('%Y','$fecha3val') */)":"(1=0)")."
+				".($fecha3key=="WEEK"?"(CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1))>=CONCAT(YEAR(dstart),WEEK(dstart,1)) AND CONCAT(YEAR(dstop),WEEK(dstop,1))>=CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1)))":"(1=0)")." OR
+				".($fecha3key=="MNTH"?"(YEAR('$fecha3val')>=YEAR(dstart) AND MONTH('$fecha3val')>=MONTH(dstart) AND YEAR(dstop)>=YEAR('$fecha3val') AND MONTH(dstop)>=MONTH('$fecha3val'))":"(1=0)")." OR
+				".($fecha3key=="YEAR"?"(YEAR('$fecha3val')>=YEAR(dstart) AND YEAR(dstop)>=YEAR('$fecha3val'))":"(1=0)")."
 			)
 			AND (((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=z.id AND u.id_usuario='".intval(getParam("id_asignado"))."')>0 OR ''='".getParam("id_asignado")."')) AND (".check_sql($page,"list")." OR ((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=z.id AND u.id_usuario='".current_user()."')>0))"</query>
 		<order global="order" eval="true">$order</order>

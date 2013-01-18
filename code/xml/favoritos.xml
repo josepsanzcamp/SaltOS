@@ -158,10 +158,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query global="page,filtro" eval="true">"
 		SELECT id2,id,
 			nombre,descripcion,datetime,
-			/*MYSQL CONCAT('href:',url) *//*SQLITE 'href:' || url */ url,
+			CONCAT('href:',url) url,
 			url url2,
 			id action_id,
-			/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE LPAD(id,5,0) || ' - ' || nombre */ action_title,
+			CONCAT(LPAD(id,5,0),' - ',nombre) action_title,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 			SELECT

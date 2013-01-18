@@ -187,7 +187,7 @@ if(getParam("action")=="getmail") {
 				$result["to"]=str_replace("<>","<".execute_query($query).">",$result["to"]);
 			}
 			if(!isset($result["to"])) {
-				$query="SELECT CASE WHEN (SELECT email_name FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id}'))='' THEN (SELECT email_from FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id}')) ELSE (SELECT /*SQLITE email_name || ' <' || email_from || '>' *//*MYSQL CONCAT(email_name,' <',email_from,'>') */ FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id}')) END";
+				$query="SELECT CASE WHEN (SELECT email_name FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id}'))='' THEN (SELECT email_from FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id}')) ELSE (SELECT CONCAT(email_name,' <',email_from,'>') FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id}')) END";
 				$result["to"]=execute_query($query);
 			}
 			if(isset($result["cc"])) $result["cc"]=implode("; ",$result["cc"]);
@@ -514,7 +514,7 @@ if(getParam("action")=="getmail") {
 		javascript_template("notify_voice('".$newemail.LANG("msgnewokpop3email".min($newemail,2),"correo")."')","saltos_voice()");
 	}
 	if(count($voice_ids)) {
-		$query="SELECT /*MYSQL CONCAT(`from`,'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)) *//*SQLITE `from` || '. ' || (CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END) */ reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
+		$query="SELECT CONCAT(`from`,'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)) reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
 		$result=execute_query_array($query);
 		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","saltos_voice()");
 	}

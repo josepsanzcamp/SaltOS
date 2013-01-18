@@ -386,17 +386,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<temp global="only,only_array" eval="true">$only=isset($only_array[$only])?$only:"000"</temp>
 		<query global="page,filtro,id_usuario,id_feed,fecha1,fecha2,fecha3,fecha3_array,only,only_array" eval="true">"SELECT
 			id,id2,
-			/*MYSQL CONCAT('link:openwin(\"',REPLACE(link2,':','%3A'),'\"):',feed) *//*SQLITE 'link:openwin(\"' || REPLACE(link2,':','%3A') || '\"):' || feed */ feed,
+			CONCAT('link:openwin(\"',REPLACE(link2,':','%3A'),'\"):',feed) feed,
 			usuario,
-			/*MYSQL CONCAT('link:feeds(',-id,'):',title) *//*SQLITE 'link:feeds(' || -id || '):' || title */ title,
+			CONCAT('link:feeds(',-id,'):',title) title,
 			pubdate,
 			link,
 			state_new,
 			state_wait,
 			state_cool,
 			id action_id,
-			/*MYSQL CONCAT(id2,' - ',feed,' - ',title, '(',estado,')') *//*SQLITE id2 || ' - ' || feed || ' - ' || title || ' (' || estado || ')' */ action_title,
-			/*MYSQL CONCAT('href:',link) *//*SQLITE 'href:' || link */ post,
+			CONCAT(id2,' - ',feed,' - ',title, '(',estado,')') action_title,
+			CONCAT('href:',link) post,
 			action_style,
 			estado,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
@@ -414,19 +414,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE WHEN a.title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE a.title END title,
 			pubdate,a.description,a.link link,state_new,state_wait,state_cool,
 			CASE WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' WHEN state_cool=1 THEN 'state_cool' ELSE '' END action_style,
-			TRIM(/*MYSQL CONCAT(
+			TRIM(CONCAT(
 			CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END,
 			CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified")." ' ELSE '' END,
 			CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END,
 			CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool")." ' ELSE '' END,
-			CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END)
-			*//*SQLITE
-			CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END ||
-			CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified")." ' ELSE '' END ||
-			CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END ||
-			CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool")." ' ELSE '' END ||
 			CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
-			*/) estado,
+			)) estado,
 			e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_feed id_feed,uf.id_usuario id_usuario2
 		FROM tbl_feeds a
 		LEFT JOIN tbl_usuarios_f uf ON a.id_feed=uf.id
@@ -450,7 +444,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formview</title>
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,(SELECT /*MYSQL CONCAT('openwin(\"',link,'\")') *//*SQLITE 'openwin(\"' || link || '\")' */ FROM tbl_usuarios_f WHERE id=id_feed) link2,/*MYSQL CONCAT('openwin(\"',link,'\")') *//*SQLITE 'openwin(\"' || link || '\")' */ link,CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END title FROM tbl_feeds WHERE id=".abs($id)</default>
+					<default global="id" eval="true">"SELECT *,(SELECT CONCAT('openwin(\"',link,'\")') FROM tbl_usuarios_f WHERE id=id_feed) link2,CONCAT('openwin(\"',link,'\")') link,CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END title FROM tbl_feeds WHERE id=".abs($id)</default>
 					<full global="id" eval="true">"SELECT '".abs($id)."' id"</full>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
@@ -638,7 +632,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<pdf>
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
-		<query>"SELECT *,(SELECT /*MYSQL CONCAT(title,' (',link,')') *//*SQLITE title || ' (' || link || ')' */ FROM tbl_usuarios_f WHERE id=a.id_feed) feed FROM tbl_feeds a WHERE a.id IN (".check_ids(getParam("id")).")"</query>
+		<query>"SELECT *,(SELECT CONCAT(title,' (',link,')') FROM tbl_usuarios_f WHERE id=a.id_feed) feed FROM tbl_feeds a WHERE a.id IN (".check_ids(getParam("id")).")"</query>
 		<foreach>
 			<!-- TEMPLATE -->
 			<header>
@@ -715,9 +709,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<textarea>55,$row["y"]+0.5,125,3,"L",__getmail_html2text($row["description"])</textarea>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT
-			/*MYSQL CONCAT('".LANG("feed")."',' ',LPAD(id,5,0),' ',CASE WHEN title='' THEN '".LANG("sintitle")."' ELSE title END) */
-			/*SQLITE '".LANG("feed")."' || ' ' || LPAD(id,5,0) || ' ' || CASE WHEN title='' THEN '".LANG("sintitle")."' ELSE title END */ subject
+		SELECT CONCAT('".LANG("feed")."',' ',LPAD(id,5,0),' ',CASE WHEN title='' THEN '".LANG("sintitle")."' ELSE title END) subject
 		FROM tbl_feeds WHERE id IN (".check_ids(getParam("id")).")"):LANG("feeds"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

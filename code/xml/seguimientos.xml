@@ -223,14 +223,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		SELECT LPAD(id,5,0) id2,id,
 			usuario,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-				/*MYSQL CONCAT('link:clientes(',-id_cliente,'):',cliente) *//*SQLITE 'link:clientes(' || -id_cliente || '):' || cliente */ END cliente,
+				CONCAT('link:clientes(',-id_cliente,'):',cliente) END cliente,
 			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-				/*MYSQL CONCAT('link:proyectos(',-id_proyecto,'):',proyecto) *//*SQLITE 'link:proyectos(' || -id_proyecto || '):' || proyecto */ END proyecto,
-			/*MYSQL CONCAT('link:seguimientos(',-id,'):',tarea) *//*SQLITE 'link:seguimientos(' || -id || '):' || tarea */ tarea,
+				CONCAT('link:proyectos(',-id_proyecto,'):',proyecto) END proyecto,
+			CONCAT('link:seguimientos(',-id,'):',tarea) tarea,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
 			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
 			tarea tarea2,fecha,horas,
-			id action_id,/*MYSQL CONCAT(LPAD(id,5,0),' - ',tarea) *//*SQLITE LPAD(id,5,0) || ' - ' || tarea */ action_title,
+			id action_id,CONCAT(LPAD(id,5,0),' - ',tarea) action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
@@ -412,7 +412,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<excel>
 		<query require="php/listsim.php" global="page" eval="true">"
 		SELECT
-			/*MYSQL CONCAT('\'',LPAD(a.id,5,0)) *//*SQLITE '\'' || LPAD(a.id,5,0) */ '".LANG_ESCAPE("codigo")."',
+			CONCAT('\'',LPAD(a.id,5,0)) '".LANG_ESCAPE("codigo")."',
 			".make_extra_query_with_login("b.")." '".LANG_ESCAPE("username")."',
 			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE c.nombre END '".LANG_ESCAPE("cliente")."',
 			CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END '".LANG_ESCAPE("proyecto")."',

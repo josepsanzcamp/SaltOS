@@ -67,9 +67,9 @@ define("__BR__","<br/>");
 		<link xmlns="" href="img/favicon.ico" rel="shortcut icon">
 		<title><?php echo LANG("title")." - ".get_name_version_revision(); ?></title>
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="lib/jquery/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-1.9.0.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="lib/jquery/jquery-ui-1.9.2.min.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-ui-1.10.0.min.js"></script>
 	</head>
 	<body>
 		<div class="ui-layout-north" style="margin-left:auto;margin-right:auto;width:800px">
@@ -202,13 +202,7 @@ define("__BR__","<br/>");
 								<?php capture_next_error(); db_connect(); $error=get_clear_error(); ?>
 								<?php if(stripos($error,"try to install")!==false) show_php_error(); ?>
 								<?php $cancontinue&=($error==""); ?>
-								<?php echo LANG("dbtest1"); ?>: <?php echo $error==""?__YES__:__NO__; ?><?php echo __BR__; ?>
-								<?php if(!$error) { ?>
-								<?php $query="SELECT GROUP_CONCAT(id /*SQLITE , *//*MYSQL SEPARATOR */ ',') FROM (SELECT '1' id) test2"; ?>
-								<?php capture_next_error(); db_query($query); $error=get_clear_error(); ?>
-								<?php $cancontinue&=($error==""); ?>
-								<?php echo LANG("dbtest2"); ?>: <?php echo $error==""?__YES__:__NO__; ?>
-								<?php } ?>
+								<?php echo LANG("dbtest"); ?>: <?php echo $error==""?__YES__:__NO__; ?><?php echo __BR__; ?>
 							<?php } elseif(in_array(getParam("dbtype"),array("pdo_mysql","mysql","mysqli"))) { ?>
 								<?php $dbtypes=array("pdo_mysql"=>"MariaDB &amp; MySQL (PDO)","mysql"=>"MariaDB &amp; MySQL (extension)","mysqli"=>"MariaDB &amp; MySQL (improved extension)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype")].__COLOR__; ?><?php echo __BR__; ?>
@@ -235,13 +229,7 @@ define("__BR__","<br/>");
 									<?php capture_next_error(); db_connect(); $error=get_clear_error(); ?>
 									<?php if(stripos($error,"try to install")!==false) show_php_error(); ?>
 									<?php $cancontinue&=($error==""); ?>
-									<?php echo LANG("dbtest1"); ?>: <?php echo $error==""?__YES__:__NO__; ?><?php echo __BR__; ?>
-									<?php if(!$error) { ?>
-									<?php $query="SELECT GROUP_CONCAT(id /*SQLITE , *//*MYSQL SEPARATOR */ ',') FROM (SELECT '1' id) test2"; ?>
-									<?php capture_next_error(); db_query($query); $error=get_clear_error(); ?>
-									<?php $cancontinue&=($error==""); ?>
-									<?php echo LANG("dbtest2"); ?>: <?php echo $error==""?__YES__:__NO__; ?>
-									<?php } ?>
+									<?php echo LANG("dbtest"); ?>: <?php echo $error==""?__YES__:__NO__; ?><?php echo __BR__; ?>
 								<?php } ?>
 							<?php } ?>
 						</div>

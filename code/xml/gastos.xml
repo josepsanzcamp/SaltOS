@@ -223,7 +223,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">trimestre</label>
 						<type>select</type>
 						<width>90px</width>
-						<query eval="true">"SELECT DISTINCT /*MYSQL YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)*//*SQLITE STRFTIME('%Y',fecha)*4+((STRFTIME('%m',fecha)-1)/3) */ `value`,/*MYSQL CONCAT(YEAR(fecha),' (',TRUNCATE((MONTH(fecha)-1)/3,0)+1,')')*//*SQLITE STRFTIME('%Y',fecha) || ' (' || (((STRFTIME('%m',fecha)-1)/3)+1) || ')'*/ label from tbl_gastos UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY `value` DESC"</query>
+						<query eval="true">"SELECT DISTINCT
+						YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0) `value`,CONCAT(YEAR(fecha),' (',TRUNCATE((MONTH(fecha)-1)/3,0)+1,')') label from tbl_gastos UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY `value` DESC"</query>
 						<value global="trimestre" eval="true">$trimestre=getParam("trimestre")</value>
 					</field>
 					<field>
@@ -270,7 +271,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">trimestrereg</label>
 						<type>select</type>
 						<width>90px</width>
-						<query global="page" eval="true">"SELECT DISTINCT /*MYSQL YEAR(`datetime`)*4+TRUNCATE((MONTH(`datetime`)-1)/3,0)*//*SQLITE STRFTIME('%Y',`datetime`)*4+((STRFTIME('%m',`datetime`)-1)/3) */ `value`,/*MYSQL CONCAT(YEAR(`datetime`),' (',TRUNCATE((MONTH(`datetime`)-1)/3,0)+1,')')*//*SQLITE STRFTIME('%Y',`datetime`) || ' (' || (((STRFTIME('%m',`datetime`)-1)/3)+1) || ')'*/ label from tbl_gastos a LEFT JOIN tbl_registros_i b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY `value` DESC"</query>
+						<query global="page" eval="true">"SELECT DISTINCT YEAR(`datetime`)*4+TRUNCATE((MONTH(`datetime`)-1)/3,0) `value`,CONCAT(YEAR(`datetime`),' (',TRUNCATE((MONTH(`datetime`)-1)/3,0)+1,')') label from tbl_gastos a LEFT JOIN tbl_registros_i b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY `value` DESC"</query>
 						<value global="trimestrereg" eval="true">$trimestrereg=getParam("trimestrereg")</value>
 					</field>
 					<field>
@@ -316,7 +317,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">trimestreliq</label>
 						<type>select</type>
 						<width>90px</width>
-						<query global="page" eval="true">"SELECT DISTINCT /*MYSQL YEAR(`datetime`)*4+TRUNCATE((MONTH(`datetime`)-1)/3,0)*//*SQLITE STRFTIME('%Y',`datetime`)*4+((STRFTIME('%m',`datetime`)-1)/3) */ `value`,/*MYSQL CONCAT(YEAR(`datetime`),' (',TRUNCATE((MONTH(`datetime`)-1)/3,0)+1,')')*//*SQLITE STRFTIME('%Y',`datetime`) || ' (' || (((STRFTIME('%m',`datetime`)-1)/3)+1) || ')'*/ label from tbl_gastos a LEFT JOIN tbl_registros_i b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY `value` DESC"</query>
+						<query global="page" eval="true">"SELECT DISTINCT YEAR(`datetime`)*4+TRUNCATE((MONTH(`datetime`)-1)/3,0) `value`,CONCAT(YEAR(`datetime`),' (',TRUNCATE((MONTH(`datetime`)-1)/3,0)+1,')') label from tbl_gastos a LEFT JOIN tbl_registros_i b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY `value` DESC"</query>
 						<value global="trimestreliq" eval="true">$trimestreliq=getParam("trimestreliq")</value>
 					</field>
 					<field>
@@ -366,7 +367,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<vars>1</vars>
 						<graph>bars</graph>
 						<title lang="true">plotseguimiento12meses</title>
-						<query>SELECT /*MYSQL CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) *//*SQLITE SUBSTR((((xx-1)-(xx-1)%12)/12),1,4) || '-' || SUBSTR(((xx-1)%12+101),2,2) */ y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
+						<query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
 					</field>
 					<field>
 						<type>plot</type>
@@ -375,7 +376,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<vars>1</vars>
 						<graph>pie</graph>
 						<title lang="true">plotseguimiento12meses</title>
-						<query>SELECT /*MYSQL CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) *//*SQLITE SUBSTR((((xx-1)-(xx-1)%12)/12),1,4) || '-' || SUBSTR(((xx-1)%12+101),2,2) */ y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
+						<query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN SUM(base) IS NULL THEN 0 ELSE SUM(base) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_gastos UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_gastos) a LEFT JOIN tbl_gastos b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) GROUP BY xx ORDER BY xx ASC</query>
 					</field>
 				</row>
 				<row>
@@ -386,7 +387,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<vars>1</vars>
 						<graph>bars</graph>
 						<title lang="true">plotseguimientotop10</title>
-						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN /*MYSQL CONCAT(SUBSTR(nombre,1,10),'...') *//*SQLITE SUBSTR(nombre,1,10) || '...' */ ELSE nombre END y0,SUM(base) y1 FROM tbl_gastos,tbl_proveedores WHERE tbl_gastos.id_proveedor=tbl_proveedores.id AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY y0 ORDER BY y1 DESC LIMIT 10"</query>
+						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,SUM(base) y1 FROM tbl_gastos,tbl_proveedores WHERE tbl_gastos.id_proveedor=tbl_proveedores.id AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY y0 ORDER BY y1 DESC LIMIT 10"</query>
 					</field>
 					<field>
 						<type>plot</type>
@@ -395,7 +396,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<vars>1</vars>
 						<graph>pie</graph>
 						<title lang="true">plotseguimientotop10</title>
-						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN /*MYSQL CONCAT(SUBSTR(nombre,1,10),'...') *//*SQLITE SUBSTR(nombre,1,10) || '...' */ ELSE nombre END y0,SUM(base) y1 FROM tbl_gastos,tbl_proveedores WHERE tbl_gastos.id_proveedor=tbl_proveedores.id AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY y0 ORDER BY y1 DESC LIMIT 10"</query>
+						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,SUM(base) y1 FROM tbl_gastos,tbl_proveedores WHERE tbl_gastos.id_proveedor=tbl_proveedores.id AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY y0 ORDER BY y1 DESC LIMIT 10"</query>
 					</field>
 				</row>
 			</fields>
@@ -410,7 +411,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			fecha2,
 			(SELECT COUNT(*) FROM tbl_gastos_v v WHERE v.id_gasto=e.id) vencimientos,
 			cuenta,
-			id action_id,/*MYSQL CONCAT(LPAD(id,5,0),' - ',descripcion) *//*SQLITE LPAD(id,5,0) || ' - ' || descripcion */ action_title,
+			id action_id,CONCAT(LPAD(id,5,0),' - ',descripcion) action_title,
 			CASE
 				WHEN (SELECT COUNT(*) FROM tbl_gastos_v v WHERE v.pagado=0 AND DATE('".current_date()."')>=v.fecha AND v.id_gasto=e.id)!=0 THEN 'style_pending'
 				WHEN liquidado=0 THEN 'style_alarm'
@@ -422,17 +423,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 			SELECT a.*,
-				/*MYSQL CONCAT('link:gastos(',-a.id,'):',LPAD(a.id,5,0)) *//*SQLITE 'link:gastos(' || -a.id || '):' || LPAD(a.id,5,0)*/ id2,
+				CONCAT('link:gastos(',-a.id,'):',LPAD(a.id,5,0)) id2,
 				CASE a.id_pagador WHEN '0' THEN '".LANG_ESCAPE("sinpagador")."' ELSE ".make_extra_query_with_login("b.")." END pagador,
 				CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE
-					/*MYSQL CONCAT('link:proveedores(',-a.id_proveedor,'):',c.nombre) *//*SQLITE 'link:proveedores(' || -a.id_proveedor || '):' || c.nombre */ END empresa,
+					CONCAT('link:proveedores(',-a.id_proveedor,'):',c.nombre) END empresa,
 				CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE c.nombre END empresa2,
 				c.cif cif,
 				CASE id_formapago WHEN '0' THEN '".LANG_ESCAPE("sinformapago")."' ELSE d.nombre END formapago,
 				f.id_usuario id_usuario,g.id_grupo id_grupo,f.`datetime` `datetime`,
 				".make_extra_query_with_login("g.")." usuario,
 				CASE a.id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE j.nombre END cuenta,
-				(SELECT GROUP_CONCAT(search /*SQLITE , *//*MYSQL SEPARATOR */ ' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
+				(SELECT REPLACE(GROUP_CONCAT(search),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
 			FROM tbl_gastos a
 				LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id
 				LEFT JOIN tbl_usuarios b ON a.id_pagador=b.id
@@ -441,7 +442,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
 				LEFT JOIN tbl_usuarios g ON f.id_usuario=g.id
 		) e
-		WHERE ".make_like_query("id2,num,cif,empresa,descripcion,fecha,fecha2,datetime,search",$filtro)." AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$fecha1reg' OR DATE(`datetime`)>=DATE('$fecha1reg')) AND (''='$fecha2reg' OR DATE('$fecha2reg')>=DATE(`datetime`)) AND (''='$fecha1liq' OR fecha2>=DATE('$fecha1liq')) AND (''='$fecha2liq' OR DATE('$fecha2liq')>=fecha2) AND (''='$trimestre' OR /*MYSQL '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)*//*SQLITE ROUND('$trimestre',0)=(STRFTIME('%Y',fecha)*4)+((STRFTIME('%m',fecha)-1)/3) */) AND (''='$trimestrereg' OR /*MYSQL '$trimestrereg'=YEAR(`datetime`)*4+TRUNCATE((MONTH(`datetime`)-1)/3,0)*//*SQLITE ROUND('$trimestrereg',0)=(STRFTIME('%Y',`datetime`)*4)+((STRFTIME('%m',`datetime`)-1)/3) */) AND (''='$trimestreliq' OR /*MYSQL '$trimestreliq'=YEAR(fecha2)*4+TRUNCATE((MONTH(fecha2)-1)/3,0)*//*SQLITE ROUND('$trimestreliq',0)=(STRFTIME('%Y',fecha2)*4)+((STRFTIME('%m',fecha2)-1)/3) */) AND (liquidado='$liquidado' OR ''='$liquidado') AND (id_pagador='$id_pagador' OR ''='$id_pagador') AND (id_formapago='$id_formapago' OR ''='$id_formapago') AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id2,num,cif,empresa,descripcion,fecha,fecha2,datetime,search",$filtro)." AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$fecha1reg' OR DATE(`datetime`)>=DATE('$fecha1reg')) AND (''='$fecha2reg' OR DATE('$fecha2reg')>=DATE(`datetime`)) AND (''='$fecha1liq' OR fecha2>=DATE('$fecha1liq')) AND (''='$fecha2liq' OR DATE('$fecha2liq')>=fecha2) AND (''='$trimestre' OR '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)) AND (''='$trimestrereg' OR '$trimestrereg'=YEAR(`datetime`)*4+TRUNCATE((MONTH(`datetime`)-1)/3,0)) AND (''='$trimestreliq' OR '$trimestreliq'=YEAR(fecha2)*4+TRUNCATE((MONTH(fecha2)-1)/3,0)) AND (liquidado='$liquidado' OR ''='$liquidado') AND (id_pagador='$id_pagador' OR ''='$id_pagador') AND (id_formapago='$id_formapago' OR ''='$id_formapago') AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -555,7 +556,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">epigrafe</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id `value`,/*MYSQL CONCAT('(',codigo,') ',nombre)*//*SQLITE '(' || codigo || ')' || nombre */ label FROM tbl_epigrafes ORDER BY label"</query>
+							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id `value`,CONCAT('(',codigo,') ',nombre) label FROM tbl_epigrafes ORDER BY label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<required>true</required>
@@ -991,7 +992,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 		<query match="resumen" prefix="true" eval="true">"/*MYSQL SET @__ID__ = (SELECT MAX(id) FROM tbl_gastos) */"</query>
 		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_gastos_v(id,id_gasto,fecha,percent,importe,pagado,fecha2) VALUES(NULL,/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_gastos) */,'".dateval(getParam("fecha"))."','".getParam("percent")."','".getParam("importe")."','".intval(getParam("pagado"))."','".dateval(getParam("fecha2"))."')":""</query>
 		<query match="default" prefix="true" eval="true">"UPDATE tbl_gastos SET liquidado=(SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("liquidado"))."' ELSE CASE COUNT(*)-SUM(pagado) WHEN 0 THEN 1 ELSE 0 END END liquidado FROM tbl_gastos_v WHERE id_gasto=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_gastos) */) WHERE id=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_gastos) */"</query>
-		<query eval="true">"SELECT /*MYSQL CONCAT('".LANG_ESCAPE("lastinsert")."',LPAD((SELECT MAX(id) FROM tbl_gastos),5,0)) *//*SQLITE '".LANG_ESCAPE("lastinsert")."' || LPAD((SELECT MAX(id) FROM tbl_gastos),5,0) */ action_alert"</query>
+		<query eval="true">"SELECT CONCAT('".LANG_ESCAPE("lastinsert")."',LPAD((SELECT MAX(id) FROM tbl_gastos),5,0)) action_alert"</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
@@ -1004,7 +1005,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_gastos_v WHERE `id`='".getParam("id")."'":""</query>
 		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_gastos_v(id,id_gasto,fecha,percent,importe,pagado,fecha2) VALUES(NULL,'".intval(getParam("id_gasto"))."','".dateval(getParam("fecha"))."','".getParam("percent")."','".getParam("importe")."','".intval(getParam("pagado"))."','".dateval(getParam("fecha2"))."')":""</query>
 		<query match="default" prefix="true" eval="true">"UPDATE tbl_gastos SET liquidado=(SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("liquidado"))."' ELSE CASE COUNT(*)-SUM(pagado) WHEN 0 THEN 1 ELSE 0 END END liquidado FROM tbl_gastos_v WHERE id_gasto='".getParam("id")."') WHERE id='".getParam("id")."'"</query>
-		<query eval="true">"SELECT /*MYSQL CONCAT('".LANG_ESCAPE("lastupdate")."',LPAD(".getParam("id").",5,0)) *//*SQLITE '".LANG_ESCAPE("lastupdate")."' || LPAD(".getParam("id").",5,0) */ action_alert"</query>
+		<query eval="true">"SELECT CONCAT('".LANG_ESCAPE("lastupdate")."',LPAD(".getParam("id").",5,0)) action_alert"</query>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>
 	<delete>
@@ -1013,10 +1014,10 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query global="id" eval="true">"DELETE FROM tbl_gastos_v WHERE `id_gasto`='$id'"</query>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
-		<query global="id" eval="true">"SELECT /*MYSQL CONCAT('".LANG_ESCAPE("lastdelete")."',LPAD('$id',5,0)) *//*SQLITE '".LANG_ESCAPE("lastdelete")."' || LPAD('$id',5,0) */ action_alert"</query>
+		<query global="id" eval="true">"SELECT CONCAT('".LANG_ESCAPE("lastdelete")."',LPAD('$id',5,0)) action_alert"</query>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>
 	<excel>
-		<query require="php/listsim.php" global="page" eval="true">"SELECT /*MYSQL CONCAT('\'',LPAD(id,5,0))*//*SQLITE '\'' || LPAD(id,5,0) */ '".LANG_ESCAPE("codigo")."',usuario '".LANG_ESCAPE("username")."',`datetime` '".LANG_ESCAPE("datetime")."',CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT /*MYSQL CONCAT('(',codigo,') ',nombre)*//*SQLITE '(' || codigo || ')' || nombre */ FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',cif '".LANG_ESCAPE("cif")."',/*MYSQL CONCAT('\'',num)*//*SQLITE '\'' || num */ '".LANG_ESCAPE("numfac")."',fecha '".LANG_ESCAPE("date")."',CASE id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE empresa END '".LANG_ESCAPE("empresa")."',descripcion '".LANG_ESCAPE("descripcion")."',base '".LANG_ESCAPE("base")."',iva '".CONFIG("accounting_iva_name")." (%)',ROUND(base*iva/100,2) '".CONFIG("accounting_iva_name")."',irpf '".CONFIG("accounting_irpf_name")." (%)',ROUND(base*irpf/100,2) '".CONFIG("accounting_irpf_name")."',total '".LANG_ESCAPE("total")."' FROM (SELECT CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE b.nombre END empresa2,a.id action_id,a.*,b.nombre empresa,b.cif cif,f.`datetime` `datetime`,".make_extra_query_with_login("g.")." usuario FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id LEFT JOIN tbl_usuarios g ON f.id_usuario=g.id) c WHERE id IN (".list_simulator($page).")"</query>
+		<query require="php/listsim.php" global="page" eval="true">"SELECT CONCAT('\'',LPAD(id,5,0)) '".LANG_ESCAPE("codigo")."',usuario '".LANG_ESCAPE("username")."',`datetime` '".LANG_ESCAPE("datetime")."',CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT CONCAT('(',codigo,') ',nombre) FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',cif '".LANG_ESCAPE("cif")."',CONCAT('\'',num) '".LANG_ESCAPE("numfac")."',fecha '".LANG_ESCAPE("date")."',CASE id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE empresa END '".LANG_ESCAPE("empresa")."',descripcion '".LANG_ESCAPE("descripcion")."',base '".LANG_ESCAPE("base")."',iva '".CONFIG("accounting_iva_name")." (%)',ROUND(base*iva/100,2) '".CONFIG("accounting_iva_name")."',irpf '".CONFIG("accounting_irpf_name")." (%)',ROUND(base*irpf/100,2) '".CONFIG("accounting_irpf_name")."',total '".LANG_ESCAPE("total")."' FROM (SELECT CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE b.nombre END empresa2,a.id action_id,a.*,b.nombre empresa,b.cif cif,f.`datetime` `datetime`,".make_extra_query_with_login("g.")." usuario FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id LEFT JOIN tbl_usuarios g ON f.id_usuario=g.id) c WHERE id IN (".list_simulator($page).")"</query>
 	</excel>
 </root>

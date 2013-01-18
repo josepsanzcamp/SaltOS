@@ -155,32 +155,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"SELECT * FROM (SELECT
 		LPAD(a.id,5,0) id2,a.id id,
-		/*MYSQL CONCAT('link:usuarios(',-a.id,'):',a.login) *//*SQLITE 'link:usuarios(' || -a.id || '):' || a.login */ login,a.login login2,
-		/*MYSQL CONCAT('link:grupos(',-a.id_grupo,'):',b.nombre) *//*SQLITE 'link:grupos(' || -a.id_grupo || '):' || b.nombre */ grupo,b.nombre grupo2,
-		/*MYSQL CONCAT('link:',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'(',-a.id_registro,'):',a_nombre) *//*SQLITE 'link:' || (SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion) || '(' || -a.id_registro || '):' || a_nombre */ nombre,a_nombre nombre2,
-		/*MYSQL CONCAT('mailto:',email)*//*SQLITE 'mailto:' || email*/ email,
+		CONCAT('link:usuarios(',-a.id,'):',a.login) login,a.login login2,
+		CONCAT('link:grupos(',-a.id_grupo,'):',b.nombre) grupo,b.nombre grupo2,
+		CONCAT('link:',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'(',-a.id_registro,'):',a_nombre) nombre,a_nombre nombre2,
+		CONCAT('mailto:',email) email,
 		CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
 		hora_ini,hora_fin,
-/*MYSQL CONCAT(
+CONCAT(
 CASE SUBSTR(dias_sem,1,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("lunes"),0,3,"UTF-8")." ' ELSE '' END,
 CASE SUBSTR(dias_sem,2,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("martes"),0,3,"UTF-8")." ' ELSE '' END,
 CASE SUBSTR(dias_sem,3,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("miercoles"),0,3,"UTF-8")." ' ELSE '' END,
 CASE SUBSTR(dias_sem,4,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("jueves"),0,3,"UTF-8")." ' ELSE '' END,
 CASE SUBSTR(dias_sem,5,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("viernes"),0,3,"UTF-8")." ' ELSE '' END,
 CASE SUBSTR(dias_sem,6,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("sabado"),0,3,"UTF-8")." ' ELSE '' END,
-CASE SUBSTR(dias_sem,7,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("domingo"),0,3,"UTF-8")." ' ELSE '' END)
-*//*SQLITE
-CASE SUBSTR(dias_sem,1,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("lunes"),0,3,"UTF-8")." ' ELSE '' END ||
-CASE SUBSTR(dias_sem,2,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("martes"),0,3,"UTF-8")." ' ELSE '' END ||
-CASE SUBSTR(dias_sem,3,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("miercoles"),0,3,"UTF-8")." ' ELSE '' END ||
-CASE SUBSTR(dias_sem,4,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("jueves"),0,3,"UTF-8")." ' ELSE '' END ||
-CASE SUBSTR(dias_sem,5,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("viernes"),0,3,"UTF-8")." ' ELSE '' END ||
-CASE SUBSTR(dias_sem,6,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("sabado"),0,3,"UTF-8")." ' ELSE '' END ||
 CASE SUBSTR(dias_sem,7,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("domingo"),0,3,"UTF-8")." ' ELSE '' END
-*/ dias_sem,
+) dias_sem,
 CASE (SELECT COUNT(*) FROM tbl_security WHERE id_usuario=a.id AND logout='0') WHEN 0 THEN '".LANG_ESCAPE("no")."' ELSE '".LANG_ESCAPE("yes")."' END logged,
 a.id action_id,
-/*MYSQL CONCAT(LPAD(a.id,5,0),' - ',a_nombre) *//*SQLITE LPAD(a.id,5,0) || ' - ' || a_nombre */ action_title,
+CONCAT(LPAD(a.id,5,0),' - ',a_nombre) action_title,
 CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
@@ -218,7 +210,7 @@ SUBSTR(dias_sem,7,1) domingo
 FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<permisos>
 						<permisos global="id" eval="true">"
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-2') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-2 id_permiso,
@@ -229,7 +221,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-1') *//*SQLITE a.id || '_' || '-1' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-1') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-1 id_permiso,
@@ -240,7 +232,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT /*MYSQL CONCAT(a.id,'_',b.id) *//*SQLITE a.id || '_' || b.id */ id,
+						SELECT CONCAT(a.id,'_',b.id) id,
 							a.id id_aplicacion,a.nombre aplicacion,
 							b.id id_permiso,b.nombre permiso,
 							up.allow allow,
@@ -264,9 +256,9 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					</appsregs>
 					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>
-						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) *//*SQLITE 'link:openwin(\"' || REPLACE(link,':','%3A') || '\"):' || title */ title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title2 ASC"</feeds_old>
+						<feeds_old global="id" eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title2 ASC"</feeds_old>
 					</feeds_old>
-					<correo_old global="id" eval="true">"SELECT *,/*MYSQL CONCAT('xml.php?action=signature&amp;id=',id) *//*SQLITE 'xml.php?action=signature&amp;id=' || id */ email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
+					<correo_old global="id" eval="true">"SELECT *,CONCAT('xml.php?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
@@ -279,7 +271,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<default>SELECT '0' id,'0' id_grupo,'00:00:00' hora_ini,'24:00:00' hora_fin,'1' lunes,'1' martes,'1' miercoles,'1' jueves,'1' viernes,'1' sabado,'1' domingo,'1' activo,'0' id_aplicacion,'0' id_registro</default>
 					<permisos>
 						<permisos eval="true">"
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-2') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-2 id_permiso,
@@ -290,7 +282,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-1') *//*SQLITE a.id || '_' || '-1' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-1') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-1 id_permiso,
@@ -301,7 +293,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT /*MYSQL CONCAT(a.id,'_',b.id) *//*SQLITE a.id || '_' || b.id */ id,
+						SELECT CONCAT(a.id,'_',b.id) id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							b.id id_permiso,
@@ -345,7 +337,7 @@ SUBSTR(dias_sem,7,1) domingo
 FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<permisos>
 						<permisos global="id" eval="true">"
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-2') *//*SQLITE a.id || '_' || '-2' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-2') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-2 id_permiso,
@@ -356,7 +348,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT DISTINCT /*MYSQL CONCAT(a.id,'_','-1') *//*SQLITE a.id || '_' || '-1' */ id,
+						SELECT DISTINCT CONCAT(a.id,'_','-1') id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							-1 id_permiso,
@@ -367,7 +359,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						FROM tbl_aplicaciones_p ap
 						LEFT JOIN tbl_aplicaciones a ON a.id=ap.id_aplicacion
 						UNION
-						SELECT /*MYSQL CONCAT(a.id,'_',b.id) *//*SQLITE a.id || '_' || b.id */ id,
+						SELECT CONCAT(a.id,'_',b.id) id,
 							a.id id_aplicacion,
 							a.nombre aplicacion,
 							b.id id_permiso,
@@ -393,10 +385,10 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					</appsregs>
 					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>
-						<feeds_old global="id" eval="true">"SELECT id,id_usuario,/*MYSQL CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) *//*SQLITE 'link:openwin(\"' || REPLACE(link,':','%3A') || '\"):' || title */ title,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title ASC"</feeds_old>
+						<feeds_old global="id" eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title ASC"</feeds_old>
 					</feeds_old>
 					<feeds_new global="id" eval="true">"SELECT '0' id,'".abs($id)."' id_usuario"</feeds_new>
-					<correo_old global="id" eval="true">"SELECT *,/*MYSQL CONCAT('xml.php?action=signature&amp;id=',id) *//*SQLITE 'xml.php?action=signature&amp;id=' || id */ email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
+					<correo_old global="id" eval="true">"SELECT *,CONCAT('xml.php?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
 					<correo_new global="id" eval="true">"SELECT '0' id,'".abs($id)."' id_usuario,'0' pop3_days,'xml.php?action=signature&amp;id=0' email_signature"</correo_new>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
@@ -846,11 +838,11 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_registros_i WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."') AND id_aplicacion='".page2id("correo")."'":""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_registros_u WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."') AND id_aplicacion='".page2id("correo")."'":""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."')":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/inboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml")."' *//*MYSQL CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='0'":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/inboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='0'":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/objectext",".obj")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') */ action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='0'":""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='0'":""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_correo WHERE id_cuenta='".abs($id)."'":""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_correo_d WHERE id_cuenta='".abs($id)."'":""</query>
 		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE `id`='".getParam("id")."' AND email_signature_file!=''":""</query>
@@ -869,11 +861,11 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query global="id" eval="true">"DELETE FROM tbl_registros_i WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'"</query>
 		<query global="id" eval="true">"DELETE FROM tbl_registros_u WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'"</query>
 		<query global="id" eval="true">"DELETE FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id'))"</query>
-		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/inboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml")."' *//*MYSQL CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='0'"</query>
-		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/inboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='0'"</query>
-		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
-		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
-		<query global="id" eval="true">"SELECT /*SQLITE '".get_directory("dirs/outboxdir")."' || id_cuenta || '/' || uidl || '".getDefault("exts/objectext",".obj")."' *//*MYSQL CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') */ action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
+		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='0'"</query>
+		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='0'"</query>
+		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
+		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
+		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
 		<query global="id" eval="true">"DELETE FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')"</query>
 		<query global="id" eval="true">"DELETE FROM tbl_correo_d WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')"</query>
 		<query global="id" eval="true">"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE `id_usuario`='$id' AND email_signature_file!=''"</query>

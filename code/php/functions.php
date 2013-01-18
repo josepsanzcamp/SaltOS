@@ -161,11 +161,11 @@ function check_sql($aplicacion="",$permiso="") {
 		WHERE id_aplicacion IN (
 			SELECT id
 			FROM tbl_aplicaciones
-			WHERE (SELECT /*MYSQL CONCAT(',',filter2,',') *//*SQLITE (',' || filter2 || ',') */
+			WHERE (SELECT CONCAT(',',filter2,',')
 				FROM tbl_aplicaciones
 				WHERE codigo='$aplicacion' AND filter2!=''
 			) LIKE (
-				/*MYSQL CONCAT('%,',filter1,',%') *//*SQLITE '%,' || filter1 || ',%' */
+				CONCAT('%,',filter1,',%')
 			) AND filter1!=''
 		)";
 		$result=db_query($query);

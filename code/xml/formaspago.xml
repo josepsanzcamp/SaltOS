@@ -118,11 +118,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"
 		SELECT id2,id,
-			/*MYSQL CONCAT('link:formaspago(',-id,'):',nombre) *//*SQLITE 'link:formaspago(' || -id || '):' || nombre */ nombre,
+			CONCAT('link:formaspago(',-id,'):',nombre) nombre,
 			nombre nombre2,
 			descripcion,
 			id action_id,
-			/*MYSQL CONCAT(LPAD(id,5,0),' - ',nombre) *//*SQLITE LPAD(id,5,0) || ' - ' || nombre */ action_title,
+			CONCAT(LPAD(id,5,0),' - ',nombre) action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete

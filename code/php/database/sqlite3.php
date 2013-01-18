@@ -39,9 +39,20 @@ function db_connect_sqlite3() {
 		db_query_sqlite3("PRAGMA synchronous=OFF");
 		db_query_sqlite3("PRAGMA count_changes=OFF");
 		db_query_sqlite3("PRAGMA foreign_keys=OFF");
-		if(!check_group_concat()) getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize",2);
-		if(!check_ldap()) getDefault("db/link")->createFunction("LPAD","__sqlite3_lpad",3);
-		if(!check_concat()) getDefault("db/link")->createFunction("CONCAT","__sqlite3_concat");
+		getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize",2);
+		getDefault("db/link")->createFunction("LPAD","__sqlite3_lpad",3);
+		getDefault("db/link")->createFunction("CONCAT","__sqlite3_concat");
+		getDefault("db/link")->createFunction("UNIX_TIMESTAMP","__sqlite3_unix_timestamp",1);
+		getDefault("db/link")->createFunction("YEAR","__sqlite3_year",1);
+		getDefault("db/link")->createFunction("MONTH","__sqlite3_month",1);
+		getDefault("db/link")->createFunction("WEEK","__sqlite3_week",2);
+		getDefault("db/link")->createFunction("TRUNCATE","__sqlite3_truncate",2);
+		getDefault("db/link")->createFunction("DAY","__sqlite3_day",1);
+		getDefault("db/link")->createFunction("DAYOFYEAR","__sqlite3_dayofyear",1);
+		getDefault("db/link")->createFunction("DAYOFWEEK","__sqlite3_dayofweek",1);
+		getDefault("db/link")->createFunction("HOUR","__sqlite3_hour",1);
+		getDefault("db/link")->createFunction("MINUTE","__sqlite3_minute",1);
+		getDefault("db/link")->createFunction("SECOND","__sqlite3_second",1);
 	}
 	register_shutdown_function("__sqlite3_shutdown_handler");
 }
@@ -67,6 +78,52 @@ function __sqlite3_lpad($input,$length,$char) {
 
 function __sqlite3_concat() {
 	return implode("",func_get_args());
+}
+
+function __sqlite3_unix_timestamp($date) {
+	return strtotime($date);
+}
+
+function __sqlite3_year($date) {
+	return date("Y",strtotime($date));
+}
+
+function __sqlite3_month($date) {
+	return date("m",strtotime($date));
+}
+
+function __sqlite3_week($date,$mode) {
+	$mode=$mode*86400;
+	return date("W",strtotime($date)+$mode);
+}
+
+function __sqlite3_truncate($n,$d) {
+	$d=pow(10,$d);
+	return intval($n*$d)/$d;
+}
+
+function __sqlite3_day($date) {
+	return intval(date("d",strtotime($date)));
+}
+
+function __sqlite3_dayofyear($date) {
+	return date("z",strtotime($date))+1;
+}
+
+function __sqlite3_dayofweek($date) {
+	return date("w",strtotime($date))+1;
+}
+
+function __sqlite3_hour($date) {
+	return intval(date("H",strtotime($date)));
+}
+
+function __sqlite3_minute($date) {
+	return intval(date("i",strtotime($date)));
+}
+
+function __sqlite3_second($date) {
+	return intval(date("s",strtotime($date)));
 }
 
 function __db_query_sqlite3_helper($query) {

@@ -213,12 +213,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,filter,id_cuenta,dia1,dia2,meses" eval="true">"
 		SELECT
-			/*MYSQL CONCAT('link:periodicas(',-id,'):',LPAD(id,5,0)) *//*SQLITE 'link:periodicas(' || -id || '):' || LPAD(id,5,0) */ id2,id,
+			CONCAT('link:periodicas(',-id,'):',LPAD(id,5,0)) id2,id,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-				/*MYSQL CONCAT('link:clientes(',-id_cliente,'):',cliente) *//*SQLITE 'link:clientes(' || -id_cliente || '):' || cliente */ END cliente,
+				CONCAT('link:clientes(',-id_cliente,'):',cliente) END cliente,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
 			dia,
-			/*MYSQL CONCAT(
+			CONCAT(
 			CASE SUBSTR(meses,1,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("enero"),0,3,"UTF-8")." ' ELSE '' END,
 			CASE SUBSTR(meses,2,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("febrero"),0,3,"UTF-8")." ' ELSE '' END,
 			CASE SUBSTR(meses,3,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("marzo"),0,3,"UTF-8")." ' ELSE '' END,
@@ -230,26 +230,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE SUBSTR(meses,9,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("setiembre"),0,3,"UTF-8")." ' ELSE '' END,
 			CASE SUBSTR(meses,10,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("octubre"),0,3,"UTF-8")." ' ELSE '' END,
 			CASE SUBSTR(meses,11,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("noviembre"),0,3,"UTF-8")." ' ELSE '' END,
-			CASE SUBSTR(meses,12,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("diciembre"),0,3,"UTF-8")." ' ELSE '' END)
-			*//*SQLITE
-			CASE SUBSTR(meses,1,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("enero"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,2,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("febrero"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,3,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("marzo"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,4,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("abril"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,5,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("mayo"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,6,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("junio"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,7,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("julio"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,8,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("agosto"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,9,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("setiembre"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,10,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("octubre"),0,3,"UTF-8")." ' ELSE '' END ||
-			CASE SUBSTR(meses,11,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("noviembre"),0,3,"UTF-8")." ' ELSE '' END ||
 			CASE SUBSTR(meses,12,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("diciembre"),0,3,"UTF-8")." ' ELSE '' END
-			*/ meses,
+			) meses,
 			base,ROUND(base+iva2-irpf2,2) total,
 			CASE id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE cuenta END cuenta,
 			conceptos,productos,
 			(SELECT COUNT(*) FROM tbl_periodicas_v v WHERE v.id_periodica=d.id) vencimientos,
-			id action_id,/*MYSQL CONCAT(LPAD(id,5,0),' - ',cliente) *//*SQLITE LPAD(id,5,0) || ' - ' || cliente */ action_title,
+			id action_id,CONCAT(LPAD(id,5,0),' - ',cliente) action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
@@ -281,7 +268,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formview</title>
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE /*MYSQL CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) *//*SQLITE b.id || '_' || factura_iva_bool || '_' || factura_iva_value || '_' || factura_irpf_bool || '_' || factura_irpf_value */ END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+					<default global="id" eval="true">"SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
 					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_periodicas a LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
 					<concepts_old>
 						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</concepts_old>
@@ -302,7 +289,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<query>
 					<query include="xml/common/qpermcreate.xml" replace="true" />
 					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
-					SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE /*MYSQL CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) *//*SQLITE b.id || '_' || factura_iva_bool || '_' || factura_iva_value || '_' || factura_irpf_bool || '_' || factura_irpf_value */ END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id='".substr(getParam("id"),7)."'":"
+					SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id='".substr(getParam("id"),7)."'":"
 					SELECT '0' id,'0' id_cliente,'0' id_epigrafe,'' num,'".current_date()."' fecha,'0' id_cuenta,'1' dia,'0' enero,'0' febrero,'0' marzo,'0' abril,'0' mayo,'0' junio,'0' julio,'0' agosto,'0' setiembre,'0' octubre,'0' noviembre,'0' diciembre"</default>
 					<resumen eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 					SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_periodicas a LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica WHERE a.id='".substr(getParam("id"),7)."' GROUP BY a.id) c) d":"
@@ -375,7 +362,7 @@ SELECT 'j' id,'' fecha,'0.00' percent,'0.00' importe
 				<title lang="true">formupdate</title>
 				<query>
 					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE /*MYSQL CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) *//*SQLITE b.id || '_' || factura_iva_bool || '_' || factura_iva_value || '_' || factura_irpf_bool || '_' || factura_irpf_value */ END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+					<default global="id" eval="true">"SELECT *,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta,SUBSTR(meses,1,1) enero,SUBSTR(meses,2,1) febrero,SUBSTR(meses,3,1) marzo,SUBSTR(meses,4,1) abril,SUBSTR(meses,5,1) mayo,SUBSTR(meses,6,1) junio,SUBSTR(meses,7,1) julio,SUBSTR(meses,8,1) agosto,SUBSTR(meses,9,1) setiembre,SUBSTR(meses,10,1) octubre,SUBSTR(meses,11,1) noviembre,SUBSTR(meses,12,1) diciembre FROM tbl_periodicas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
 					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_periodicas a LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
 					<concepts_old>
 						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_periodicas_c WHERE id_producto='0' AND id_periodica=".abs($id)." ORDER BY id ASC"</concepts_old>
@@ -454,7 +441,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">cuenta</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT /*MYSQL CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) *//*SQLITE id || '_' || factura_iva_bool || '_' || factura_iva_value || '_' || factura_irpf_bool || '_' || factura_irpf_value */ `value`,nombre label FROM tbl_cuentas ORDER BY label"</query>
+							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) `value`,nombre label FROM tbl_cuentas ORDER BY label"</query>
 							<focus>true</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>update_iva_irpf(true)</onchange>
@@ -465,7 +452,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">epigrafe</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id `value`,/*MYSQL CONCAT('(',codigo,') ',nombre)*//*SQLITE '(' || codigo || ')' || nombre */ label FROM tbl_epigrafes ORDER BY label"</query>
+							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id `value`,CONCAT('(',codigo,') ',nombre) label FROM tbl_epigrafes ORDER BY label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<required>true</required>

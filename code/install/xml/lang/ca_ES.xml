@@ -50,8 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<select_prefered> (recomanat)</select_prefered>
 		<selected_dbtype>SGBD seleccionat</selected_dbtype>
 		<dbfile>Fitxer base de dades</dbfile>
-		<dbtest1>Ha funcionat la connexió de prova</dbtest1>
-		<dbtest2>Suport per la funció GROUP_CONCAT</dbtest2>
+		<dbtest>Ha funcionat la connexió de prova</dbtest>
 		<dbhost>Màquina</dbhost>
 		<dbport>Port</dbport>
 		<dbuser>Usuari</dbuser>

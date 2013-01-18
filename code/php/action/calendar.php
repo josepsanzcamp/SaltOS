@@ -133,8 +133,8 @@ if(getParam("action")=="calendar") {
 			LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id
 			WHERE a.id IN ($ids)
-				AND /*SQLITE STRFTIME('%s',dstart)+0.0>=$dstart *//*MYSQL UNIX_TIMESTAMP(dstart)>=$dstart */
-				AND /*SQLITE STRFTIME('%s',dstart)+0.0<=$dstop *//*MYSQL UNIX_TIMESTAMP(dstart)<=$dstop */
+				AND UNIX_TIMESTAMP(dstart)>=$dstart
+				AND UNIX_TIMESTAMP(dstart)<=$dstop
 			ORDER BY dstart ASC, a.id ASC";
 	$result=db_query($query);
 	$current=current_datetime();

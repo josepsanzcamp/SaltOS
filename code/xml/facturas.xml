@@ -195,7 +195,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">trimestre</label>
 						<type>select</type>
 						<width>90px</width>
-						<query eval="true">"SELECT DISTINCT /*MYSQL YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)*//*SQLITE STRFTIME('%Y',fecha)*4+((STRFTIME('%m',fecha)-1)/3) */ `value`,/*MYSQL CONCAT(YEAR(fecha),' (',TRUNCATE((MONTH(fecha)-1)/3,0)+1,')')*//*SQLITE STRFTIME('%Y',fecha) || ' (' || (((STRFTIME('%m',fecha)-1)/3)+1) || ')'*/ label from tbl_facturas UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY `value` DESC"</query>
+						<query eval="true">"SELECT DISTINCT YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0) `value`,CONCAT(YEAR(fecha),' (',TRUNCATE((MONTH(fecha)-1)/3,0)+1,')') label from tbl_facturas UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY `value` DESC"</query>
 						<value global="trimestre" eval="true">$trimestre=getParam("trimestre")</value>
 						<colspan>2</colspan>
 					</field>
@@ -286,7 +286,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<vars>1</vars>
 						<graph>bars</graph>
 						<title lang="true">plotseguimiento12meses</title>
-						<query>SELECT /*MYSQL CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) *//*SQLITE SUBSTR((((xx-1)-(xx-1)%12)/12),1,4) || '-' || SUBSTR(((xx-1)%12+101),2,2) */ y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC</query>
+						<query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC</query>
 					</field>
 					<field>
 						<type>plot</type>
@@ -295,7 +295,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<vars>1</vars>
 						<graph>pie</graph>
 						<title lang="true">plotseguimiento12meses</title>
-						<query>SELECT /*MYSQL CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) *//*SQLITE SUBSTR((((xx-1)-(xx-1)%12)/12),1,4) || '-' || SUBSTR(((xx-1)%12+101),2,2) */ y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC</query>
+						<query>SELECT CONCAT(SUBSTR((((xx-1)-(xx-1)%12)/12),1,4),'-',SUBSTR(((xx-1)%12+101),2,2)) y0,CASE WHEN ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) IS NULL THEN 0 ELSE ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) END y1 FROM (SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-0 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-1 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-2 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-3 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-4 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-5 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-6 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-7 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-8 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-9 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-10 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-11 xx FROM tbl_facturas UNION SELECT MAX(SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2))-12 xx FROM tbl_facturas) a LEFT JOIN tbl_facturas b ON xx=SUBSTR(fecha,1,4)*12+SUBSTR(fecha,6,2) AND cerrado='1' LEFT JOIN tbl_facturas_c c ON c.id_factura=b.id GROUP BY xx ORDER BY xx ASC</query>
 					</field>
 				</row>
 				<row>
@@ -306,7 +306,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<vars>1</vars>
 						<graph>bars</graph>
 						<title lang="true">plotseguimientotop10</title>
-						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN /*MYSQL CONCAT(SUBSTR(nombre,1,10),'...') *//*SQLITE SUBSTR(nombre,1,10) || '...' */ ELSE nombre END y0,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) y1 FROM tbl_facturas,tbl_facturas_c WHERE tbl_facturas.id=tbl_facturas_c.id_factura AND tbl_facturas.cerrado='1' AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
+						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) y1 FROM tbl_facturas,tbl_facturas_c WHERE tbl_facturas.id=tbl_facturas_c.id_factura AND tbl_facturas.cerrado='1' AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
 					</field>
 					<field>
 						<type>plot</type>
@@ -315,7 +315,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<vars>1</vars>
 						<graph>pie</graph>
 						<title lang="true">plotseguimientotop10</title>
-						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN /*MYSQL CONCAT(SUBSTR(nombre,1,10),'...') *//*SQLITE SUBSTR(nombre,1,10) || '...' */ ELSE nombre END y0,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) y1 FROM tbl_facturas,tbl_facturas_c WHERE tbl_facturas.id=tbl_facturas_c.id_factura AND tbl_facturas.cerrado='1' AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
+						<query eval="true">"SELECT CASE WHEN LENGTH(nombre)>10 THEN CONCAT(SUBSTR(nombre,1,10),'...') ELSE nombre END y0,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) y1 FROM tbl_facturas,tbl_facturas_c WHERE tbl_facturas.id=tbl_facturas_c.id_factura AND tbl_facturas.cerrado='1' AND fecha>=DATE('".current_date(-86400*365)."') GROUP BY id_cliente ORDER BY y1 DESC LIMIT 10"</query>
 					</field>
 				</row>
 			</fields>
@@ -325,21 +325,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="cerrado,cobrado,page,id_cliente,fecha1,fecha2,trimestre,filtro,id_cuenta,id_proyecto" eval="true">"
 		SELECT
-			/*MYSQL CONCAT('link:facturas(',-id,'):',num2) *//*SQLITE 'link:facturas(' || -id || '):' || num2 */ num,id,
+			CONCAT('link:facturas(',-id,'):',num2) num,id,
 			num3,num4,
 			fecha,
 			CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE
-				/*MYSQL CONCAT('link:clientes(',-id_cliente,'):',nombre) *//*SQLITE 'link:clientes(' || -id_cliente || '):' || nombre */ END nombre,
+				CONCAT('link:clientes(',-id_cliente,'):',nombre) END nombre,
 			CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE nombre END nombre2,
 			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-				/*MYSQL CONCAT('link:proyectos(',-id_proyecto,'):',proyecto) *//*SQLITE 'link:proyectos(' || -id_proyecto || '):' || proyecto */ END proyecto,
+				CONCAT('link:proyectos(',-id_proyecto,'):',proyecto) END proyecto,
 			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
 			base,iva2,irpf2,ROUND(base+iva2-irpf2,2) total,conceptos,
 			(SELECT COUNT(*) FROM tbl_facturas_v v WHERE v.id_factura=d.id) vencimientos,
 			(CASE cerrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cerrado,
 			(CASE cobrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cobrado,
 			CASE id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE cuenta END cuenta,
-			id action_id,/*MYSQL CONCAT(num2,' - ',nombre) *//*SQLITE num2 || ' - ' || nombre */ action_title,
+			id action_id,CONCAT(num2,' - ',nombre) action_title,
 			CASE
 				WHEN cerrado=0 THEN 'style_opened'
 				WHEN cobrado=0 AND (SELECT COUNT(*) FROM tbl_facturas_v v WHERE v.cobrado=0 AND DATE('".current_date()."')>=v.fecha AND v.id_factura=d.id)!=0 THEN 'style_alarm'
@@ -356,9 +356,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"delete")." AND NOT cerrado WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
 			FROM (SELECT
-					CASE num WHEN '' THEN /*MYSQL CONCAT('".LANG_ESCAPE("albaran")." ',LPAD(a.id,5,0)) *//*SQLITE '".LANG_ESCAPE("albaran")." ' || LPAD(a.id,5,0) */ ELSE /*MYSQL CONCAT('".LANG_ESCAPE("factura")." ',num) *//*SQLITE '".LANG_ESCAPE("factura")." ' || num */ END num2,
-					CASE num WHEN '' THEN /*MYSQL CONCAT('AA',LPAD(a.id,5,0)) *//*SQLITE 'AA' || LPAD(a.id,5,0) */ ELSE /*MYSQL CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) *//*SQLITE 'FA' || SUBSTR(num,-2,2) || SUBSTR(num,1,3) */ END num3,
-					CASE num WHEN '' THEN /*MYSQL CONCAT('AZ',LPAD(a.id,5,0)) *//*SQLITE 'AZ' || LPAD(a.id,5,0) */ ELSE /*MYSQL CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) *//*SQLITE 'FZ' || SUBSTR(num,-2,2) || SUBSTR(num,1,3) */ END num4,
+					CASE num WHEN '' THEN CONCAT('".LANG_ESCAPE("albaran")." ',LPAD(a.id,5,0)) ELSE CONCAT('".LANG_ESCAPE("factura")." ',num) END num2,
+					CASE num WHEN '' THEN CONCAT('AA',LPAD(a.id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num3,
+					CASE num WHEN '' THEN CONCAT('AZ',LPAD(a.id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
 					a.*,
 					ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,
 					COUNT(b.id) conceptos,
@@ -371,7 +371,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					LEFT JOIN tbl_proyectos p ON p.id=a.id_proyecto
 				GROUP BY a.id) c
 		) d
-		WHERE ".make_like_query("id,num,cif,nombre,proyecto",$filtro)." AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$trimestre' OR /*MYSQL '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)*//*SQLITE ROUND('$trimestre',0)=STRFTIME('%Y',fecha)*4+((STRFTIME('%m',fecha)-1)/3) */) AND (''='$cerrado' OR '$cerrado'=cerrado) AND (''='$cobrado' OR '$cobrado'=cobrado) AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id,num,cif,nombre,proyecto",$filtro)." AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$trimestre' OR '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)) AND (''='$cerrado' OR '$cerrado'=cerrado) AND (''='$cobrado' OR '$cobrado'=cobrado) AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -382,7 +382,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formview</title>
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE /*MYSQL CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) *//*SQLITE b.id || '_' || factura_iva_bool || '_' || factura_iva_value || '_' || factura_irpf_bool || '_' || factura_irpf_value */ END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+					<default global="id" eval="true">"SELECT *,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
 					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
 					<concepts_old>
 						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto='0' AND id_factura=".abs($id)." ORDER BY id ASC"</concepts_old>
@@ -403,7 +403,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<query>
 					<query include="xml/common/qpermcreate.xml" replace="true" />
 					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
-					SELECT *,a.nombre nombre,'0' cerrado,'0' cobrado,'".current_date()."' fecha,'".current_date()."' fecha2,'' num,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE /*MYSQL CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) *//*SQLITE b.id || '_' || factura_iva_bool || '_' || factura_iva_value || '_' || factura_irpf_bool || '_' || factura_irpf_value */ END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id='".substr(getParam("id"),7)."'":"
+					SELECT *,a.nombre nombre,'0' cerrado,'0' cobrado,'".current_date()."' fecha,'".current_date()."' fecha2,'' num,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id='".substr(getParam("id"),7)."'":"
 					SELECT '0' id,'0' id_cliente,'0' id_proyecto,'0' id_epigrafe,'' num,'".current_date()."' fecha,'0' id_cuenta"</default>
 					<resumen eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 					SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".substr(getParam("id"),7)."' GROUP BY a.id) c) d":"
@@ -476,7 +476,7 @@ SELECT 'j' id,'' fecha,'0.00' percent,'0.00' importe
 				<title lang="true">formupdate</title>
 				<query>
 					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE /*MYSQL CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) *//*SQLITE b.id || '_' || factura_iva_bool || '_' || factura_iva_value || '_' || factura_irpf_bool || '_' || factura_irpf_value */ END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+					<default global="id" eval="true">"SELECT *,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
 					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
 					<concepts_old>
 						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto='0' AND id_factura=".abs($id)." ORDER BY id ASC"</concepts_old>
@@ -555,7 +555,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">cuenta</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT /*MYSQL CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) *//*SQLITE id || '_' || factura_iva_bool || '_' || factura_iva_value || '_' || factura_irpf_bool || '_' || factura_irpf_value */ `value`,nombre label FROM tbl_cuentas ORDER BY label"</query>
+							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) `value`,nombre label FROM tbl_cuentas ORDER BY label"</query>
 							<focus>true</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>update_iva_irpf(true)</onchange>
@@ -566,7 +566,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">epigrafe</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id `value`,/*MYSQL CONCAT('(',codigo,') ',nombre)*//*SQLITE '(' || codigo || ') ' || nombre */ label FROM tbl_epigrafes ORDER BY label"</query>
+							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id `value`,CONCAT('(',codigo,') ',nombre) label FROM tbl_epigrafes ORDER BY label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -1587,8 +1587,8 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 	</delete>
 	<excel>
 		<query require="php/listsim.php" global="page" eval="true">"SELECT
-CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT /*MYSQL CONCAT('(',codigo,') ',nombre)*//*SQLITE '(' || codigo || ') ' || nombre */ FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',
-CASE num WHEN '' THEN /*MYSQL CONCAT('\'',LPAD(id,5,0)) *//*SQLITE '\'' || LPAD(id,5,0) */ ELSE num END '".LANG_ESCAPE("numfac")."',
+CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT CONCAT('(',codigo,') ',nombre) FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',
+CASE num WHEN '' THEN CONCAT('\'',LPAD(id,5,0)) ELSE num END '".LANG_ESCAPE("numfac")."',
 fecha '".LANG_ESCAPE("date")."',cif '".LANG_ESCAPE("cif")."',
 CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE nombre END '".LANG_ESCAPE("cliente")."',
 base '".LANG_ESCAPE("base")."',iva '".CONFIG("accounting_iva_name")." (%)',iva2 '".CONFIG("accounting_iva_name")."',irpf '".CONFIG("accounting_irpf_name")." (%)',irpf2 '".CONFIG("accounting_irpf_name")."',
@@ -1599,8 +1599,8 @@ FROM (SELECT
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto,
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto2,
 CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE (SELECT nombre FROM tbl_clientes WHERE id_cliente=tbl_clientes.id) END nombre2,
-CASE num WHEN '' THEN /*MYSQL CONCAT('AA',LPAD(id,5,0)) *//*SQLITE 'AA' || LPAD(id,5,0) */ ELSE /*MYSQL CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) *//*SQLITE 'FA' || SUBSTR(num,-2,2) || SUBSTR(num,1,3) */ END num3,
-CASE num WHEN '' THEN /*MYSQL CONCAT('AZ',LPAD(id,5,0)) *//*SQLITE 'AZ' || LPAD(id,5,0) */ ELSE /*MYSQL CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) *//*SQLITE 'FZ' || SUBSTR(num,-2,2) || SUBSTR(num,1,3) */ END num4,
+CASE num WHEN '' THEN CONCAT('AA',LPAD(id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num3,
+CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
 c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
 	FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base
 		FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura GROUP BY a.id) c) d WHERE id IN (".list_simulator($page).")"</query>
@@ -1610,15 +1610,15 @@ c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
 		<margins>90,30,87,30</margins>
 		<query>"SELECT *,
 CASE num WHEN '' THEN LPAD(id,5,0) ELSE num END num,
-CASE num WHEN '' THEN /*MYSQL CONCAT('AA',LPAD(id,5,0)) *//*SQLITE 'AA' || LPAD(id,5,0) */ ELSE /*MYSQL CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) *//*SQLITE 'FA' || SUBSTR(num,-2,2) || SUBSTR(num,1,3) */ END num3,
-CASE num WHEN '' THEN /*MYSQL CONCAT('AZ',LPAD(id,5,0)) *//*SQLITE 'AZ' || LPAD(id,5,0) */ ELSE /*MYSQL CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) *//*SQLITE 'FZ' || SUBSTR(num,-2,2) || SUBSTR(num,1,3) */ END num4,
-ROUND(base+iva2+irpf2,2) total,/*MYSQL CONCAT('id_factura=',id)*//*SQLITE 'id_factura=' || id */ filtro
+CASE num WHEN '' THEN CONCAT('AA',LPAD(id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num3,
+CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
+ROUND(base+iva2+irpf2,2) total,CONCAT('id_factura=',id) filtro
 FROM (SELECT
 CASE id_proyecto WHEN '0' THEN '".LANG("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto,
 CASE id_proyecto WHEN '0' THEN '".LANG("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto2,
 CASE id_cliente WHEN '0' THEN '".LANG("sincliente")."' ELSE (SELECT nombre FROM tbl_clientes WHERE id_cliente=tbl_clientes.id) END nombre2,
-CASE num WHEN '' THEN /*MYSQL CONCAT('AA',LPAD(id,5,0)) *//*SQLITE 'AA' || LPAD(id,5,0) */ ELSE /*MYSQL CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) *//*SQLITE 'FA' || SUBSTR(num,-2,2) || SUBSTR(num,1,3) */ END num3,
-CASE num WHEN '' THEN /*MYSQL CONCAT('AZ',LPAD(id,5,0)) *//*SQLITE 'AZ' || LPAD(id,5,0) */ ELSE /*MYSQL CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) *//*SQLITE 'FZ' || SUBSTR(num,-2,2) || SUBSTR(num,1,3) */ END num4,
+CASE num WHEN '' THEN CONCAT('AA',LPAD(id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num3,
+CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
 c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.*,IFNULL(logo_left,'".CONFIG("logo_left")."') logo_left,IFNULL(logo_top,'".CONFIG("logo_top")."') logo_top,IFNULL(logo_width,'".CONFIG("logo_width")."') logo_width,IFNULL(logo_height,'".CONFIG("logo_height")."') logo_height,IFNULL(logo_file,'".CONFIG("logo_file")."') logo_file,IFNULL(color_line,'".CONFIG("color_line")."') color_line,IFNULL(color_text1,'".CONFIG("color_text1")."') color_text1,IFNULL(color_text2,'".CONFIG("color_text2")."') color_text2,IFNULL(factura_pie1,'') factura_pie1,IFNULL(factura_pie2,'') factura_pie2,IFNULL(factura_iva_bool,1) factura_iva_bool,IFNULL(factura_irpf_bool,1) factura_irpf_bool,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,e.id_usuario id_usuario FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id GROUP BY a.id) c) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
 		<foreach>
 			<!-- TEMPLATE -->
@@ -1788,11 +1788,9 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT
 			CASE num WHEN '' THEN
-				/*MYSQL CONCAT('".LANG("albaran")."',' ',LPAD(id,5,0),' ',nombre) */
-				/*SQLITE '".LANG("albaran")."' || ' ' || LPAD(id,5,0) || ' ' || nombre */
+				CONCAT('".LANG("albaran")."',' ',LPAD(id,5,0),' ',nombre)
 			ELSE
-				/*MYSQL CONCAT('".LANG("factura")."',' ',num,' ',nombre) */
-				/*SQLITE '".LANG("factura")."' || ' ' || num || ' ' || nombre */
+				CONCAT('".LANG("factura")."',' ',num,' ',nombre)
 			END subject
 		FROM tbl_facturas WHERE id IN (".check_ids(getParam("id")).")"):LANG("facturas"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>

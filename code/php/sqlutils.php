@@ -448,7 +448,7 @@ function make_like_query($keys,$values) {
 
 function make_extra_query_with_login($prefix="") {
 	$query=make_extra_query($prefix);
-	return "/*MYSQL CONCAT($query,' (',${prefix}login,')') *//*SQLITE $query || ' (' || ${prefix}login || ')' */";
+	return "CONCAT($query,' (',${prefix}login,')')";
 }
 
 function make_extra_query($prefix="") {
@@ -473,9 +473,9 @@ function make_select_appsregs($id=0) {
 	$result=db_query($query);
 	$subquery=array();
 	while($row=db_fetch_row($result)) {
-		$subquery[]="SELECT /*MYSQL CONCAT('${row["id"]}','_','-2') *//*SQLITE '${row["id"]}' || '_' || '-2' */ id,'${row["id"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
-		$subquery[]="SELECT /*MYSQL CONCAT('${row["id"]}','_','-1') *//*SQLITE '${row["id"]}' || '_' || '-1' */ id,'${row["id"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
-		$subquery[]="SELECT /*MYSQL CONCAT('${row["id"]}','_',a.id) *//*SQLITE '${row["id"]}' || '_' || a.id */ id,'${row["id"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["table"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
+		$subquery[]="SELECT CONCAT('${row["id"]}','_','-2') id,'${row["id"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
+		$subquery[]="SELECT CONCAT('${row["id"]}','_','-1') id,'${row["id"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
+		$subquery[]="SELECT CONCAT('${row["id"]}','_',a.id) id,'${row["id"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["table"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
 	}
 	db_free($result);
 	$query=implode(" UNION ",$subquery);
@@ -504,27 +504,5 @@ function make_select_query($page,$table,$field,$arg1=null,$arg2=null) {
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 	) a WHERE ".($filter?"id IN ($filter)":"1=1")." AND ".check_sql($page,"list");
 	return $query;
-}
-
-function check_query($query) {
-	capture_next_error();
-	db_query($query);
-	$error=get_clear_error();
-	return !$error?true:false;
-}
-
-function check_group_concat() {
-	$query="SELECT GROUP_CONCAT(1)";
-	return check_query($query);
-}
-
-function check_ldap() {
-	$query="SELECT LDAP(1,5,0)";
-	return check_query($query);
-}
-
-function check_concat() {
-	$query="SELECT CONCAT(1)";
-	return check_query($query);
 }
 ?>
