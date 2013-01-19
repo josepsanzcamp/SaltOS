@@ -47,14 +47,14 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 			// PROGRAM SIZES OF ELEMENTS
 			$(div).css("padding","15px 0px 0px 15px");
 			$(div).height(100);
-			$(div).parent().bind("accordionchange",function() {
+			$(div).parent().bind("accordionactivate",function() {
 				if($(div).is(":visible")) {
 					var width=$(div).width()-30;
 					$("textarea",div).width(width);
 					var height=$(div).height()-30;
 					$("textarea",div).height(height);
 				}
-			}).trigger("accordionchange");
+			}).trigger("accordionactivate");
 			// PROGRAM CALCULATOR BUTTON
 			$("textarea",div).bind("keypress",function(event) {
 				if(is_enterkey(event)) {

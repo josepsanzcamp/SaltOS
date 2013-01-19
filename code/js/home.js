@@ -76,12 +76,13 @@ if(typeof(__home__)=="undefined" && typeof(parent.__home__)=="undefined") {
 			__update_home_helper(id_folder);
 		} else {
 			setTimeout(function() {
-				var selected=getIntCookie("saltos_home_tab");
-				$(".tabs").tabs("option","selected",selected);
-				$(".tabs").bind("tabsshow",function(event,ui) {
+				var active=getIntCookie("saltos_home_tab");
+				$(".tabs").tabs("option","active",active);
+				$(".tabs").bind("tabsactivate",function(event,ui) {
 					__update_home_helper();
 					if(!$(".boxs:visible").length) return;
-					setIntCookie("saltos_home_tab",ui.index);
+					var active=$(".tabs").tabs("option","active");
+					setIntCookie("saltos_home_tab",active);
 				});
 				__update_home_helper();
 			},100);

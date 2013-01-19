@@ -799,7 +799,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>game</name>
 							<type>iframe</type>
-							<value></value>
+							<value eval="true">"xml.php?action=game&amp;r=".getDefault("info/revision")</value>
 							<width>800px</width>
 							<height>240px</height>
 						</field>
@@ -809,7 +809,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</fields>
 		<javascript>
 			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<function eval="true">"current_revision() { return '".getDefault("info/revision")."'; }"</function>
 		</javascript>
 	</form>
 </root>

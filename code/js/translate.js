@@ -93,7 +93,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 					// PROGRAM SELECT PERSISTENCE USING A COOKIE
 					__translate_get_cookie();
 					__translate_ui_reverse();
-					$("select",div).change(function() {
+					$("select",div).bind("change",function() {
 						__translate_set_cookie();
 						__translate_ui_reverse();
 					});
@@ -105,7 +105,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 			// PROGRAM SIZES OF ELEMENTS
 			$(div).css("padding","15px 0px 0px 15px");
 			$(div).height(200);
-			$(div).parent().bind("accordionchange",function() {
+			$(div).parent().bind("accordionactivate",function() {
 				if($(div).is(":visible")) {
 					var width=$(div).width()-30;
 					$("textarea",div).width(width);
@@ -116,10 +116,10 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 					var height_select=$("select",div).height();
 					$("textarea",div).height((height-height_select)/2);
 				}
-			}).trigger("accordionchange");
+			}).trigger("accordionactivate");
 			// PROGRAM AUTODETECT LANG
 			var oldtext="";
-			$("textarea:first").change(function() {
+			$("textarea:first").bind("change",function() {
 				if($(this).hasClass("ui-state-disabled")) return;
 				var text=$("textarea:first",div).val();
 				if(levenshtein(oldtext,text)<strlen(oldtext)/2) return;

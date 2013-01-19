@@ -29,7 +29,7 @@ $(function() {
 		if(!is_disabled(this)) update(1);
 	});
 	var checkbox="input[type=checkbox][name$=email_default]";
-	$(checkbox).change(function() {
+	$(checkbox).bind("change",function() {
 		var value=$(this).prop("checked");
 		$(checkbox).prop("checked",false);
 		$(this).prop("checked",value);

@@ -89,7 +89,7 @@ if(typeof(__updatedireccion__)=="undefined" && typeof(parent.__updatedireccion__
 $(function() {
 	update_direcciones();
 	var checkbox="input[type=checkbox][name^=direccion][name$=seleccion]";
-	$(checkbox).change(function() {
+	$(checkbox).bind("change",function() {
 		var value=$(this).prop("checked");
 		$(checkbox).prop("checked",false);
 		$(this).prop("checked",value);

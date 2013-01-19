@@ -922,7 +922,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// TRICK FOR DISABLE BUTTONS
 		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
 		// PROGRAM MENU SELECTS
-		$("select[ismenu=true]",obj).change(function() {
+		$("select[ismenu=true]",obj).bind("change",function() {
 			eval($(this).val());
 			$(this).prop("selectedIndex",0);
 		});

@@ -999,7 +999,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				collapsible:true,
 				heightStyle:"content",
 				active:active,
-				change:function(event,ui) {
+				activate:function(event,ui) {
 					var name=$(this).attr("id");
 					var active=ui.newHeader.length;
 					setIntCookie("saltos_ui_menu_"+name,active);
@@ -1147,11 +1147,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var full=$("input[name="+name+"]",obj);
 			var date=$("input[name="+name+"_date]",obj);
 			var time=$("input[name="+name+"_time]",obj);
-			$(date).change(function() {
+			$(date).bind("change",function() {
 				$(full).val($(date).val()+" "+$(time).val());
 				$(full).trigger("change");
 			});
-			$(time).change(function() {
+			$(time).bind("change",function() {
 				$(full).val($(date).val()+" "+$(time).val());
 				$(full).trigger("change");
 			});
@@ -1276,7 +1276,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(this).toggleClass($(this).attr("toggle"));
 		});
 		// ADD STYLES TO COLUMNIZER BOXES
-		$(".tabs",obj).bind("tabsshow",function(event,ui) {
+		$(".tabs",obj).bind("tabsactivate",function(event,ui) {
 			if($(".columnizer",this).is(":visible")) {
 				if($(".columnizer .column",this).length==0) {
 					$(".columnizer",this).columnize();
@@ -1294,7 +1294,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// TRICK FOR DISABLE BUTTONS
 		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
 		// PROGRAM MENU SELECTS
-		$("select[ismenu=true]",obj).change(function() {
+		$("select[ismenu=true]",obj).bind("change",function() {
 			eval($(this).val());
 			$(this).prop("selectedIndex",0);
 		});
@@ -1830,12 +1830,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	// DEFINE SOME DEFAULTS THAT CAN NOT BE DEFINED IN RUNTIME
 	$.jGrowl.defaults.closer=false;
 	$.jGrowl.defaults.position="bottom-right";
-
-	// FOR BACK COMPATIBILITY NEEDED BY SOME PLUGINS
-	$.browser=new Object();
-	$.browser.msie=/MSIE/.test(navigator.userAgent);
-	$.browser.mozilla=/Mozilla/.test(navigator.userAgent);
-	$.browser.version=7;
 
 	// WHEN DOCUMENT IS READY
 	$(function() {

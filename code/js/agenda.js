@@ -30,11 +30,12 @@ if(typeof(__agenda__)=="undefined" && typeof(parent.__agenda__)=="undefined") {
 	function update_tabs() {
 		if(getParam("action")!="list") return;
 		setTimeout(function() {
-			var selected=getIntCookie("saltos_agenda_tab");
-			$(".tabs").tabs("option","selected",selected);
-			$(".tabs").bind("tabsshow",function(event,ui) {
-				if(!in_array(ui.index,new Array(0,2))) return;
-				setIntCookie("saltos_agenda_tab",ui.index);
+			var active=getIntCookie("saltos_agenda_tab");
+			$(".tabs").tabs("option","active",active);
+			$(".tabs").bind("tabsactivate",function(event,ui) {
+				var active=$(".tabs").tabs("option","active");
+				if(!in_array(active,new Array(0,2))) return;
+				setIntCookie("saltos_agenda_tab",active);
 			});
 		},100);
 	}

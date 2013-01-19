@@ -73,7 +73,7 @@ if(typeof(__checkfeeds__)=="undefined" && typeof(parent.__checkfeeds__)=="undefi
 		var islist=(getParam("page")=="feeds" && getParam("action")=="list")?1:0;
 		var nocheck=$("input.slave[type=checkbox]:checked").length?0:1;
 		var istop=$(document).scrollTop()>1?0:1;
-		var intab=$(".tabs").tabs("option","selected")?0:1;
+		var intab=$(".tabs").tabs("option","active")?0:1;
 		var noover=$("td.ui-state-highlight").length?0:1;
 		return islist && nocheck && istop && intab && noover;
 	}
