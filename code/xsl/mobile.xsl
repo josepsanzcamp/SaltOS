@@ -869,6 +869,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="form_maker">
 	<form name="{name}" id="{name}" action="{action}" method="{method}" onsubmit="return false">
+		<xsl:if test="method='post'"><xsl:attribute name="enctype">multipart/form-data</xsl:attribute></xsl:if>
 		<xsl:call-template name="form_maker_1"/>
 		<xsl:call-template name="form_maker_2"/>
 	</form>

@@ -1411,23 +1411,25 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$("textarea[ckeditor!=true]",obj).autogrow();
 		// AUTO-GROWING IFRAMES
 		$("iframe",obj).each(function() {
-			if(security_iframe(this)) {
-				var iframe="#"+$(this).attr("id");
-				var interval=setInterval(function() {
-					var iframe2=$(iframe,obj);
-					if(!$(iframe2).length) {
+			var iframe="#"+$(this).attr("id");
+			var interval=setInterval(function() {
+				var iframe2=$(iframe,obj);
+				if(!$(iframe2).length) {
+					clearInterval(interval);
+				} else if($(iframe2).is(":visible")) {
+					if(typeof($(iframe2).attr("isloaded"))=="undefined") {
+						$(iframe2).attr("isloaded","false");
+						$(iframe2).load(function() {
+							$(this).attr("isloaded","true");
+						}).each(function() {
+							var iframe3=this.contentWindow.location;
+							var url=$(this).attr("url");
+							if(url) iframe3.replace(url);
+							if(!url) clearInterval(interval);
+						});
+					} else if($(iframe2).attr("isloaded")=="true") {
 						clearInterval(interval);
-					} else if($(iframe2).is(":visible")) {
-						if(typeof($(iframe2).attr("isloaded"))=="undefined") {
-							$(iframe2).attr("isloaded","false");
-							$(iframe2).load(function() {
-								$(this).attr("isloaded","true");
-							}).each(function() {
-								var iframe3=this.contentWindow.location;
-								iframe3.replace($(this).attr("url"));
-							});
-						} else if($(iframe2).attr("isloaded")=="true") {
-							clearInterval(interval);
+						if(security_iframe(this)) {
 							var minheight=$(iframe2).height();
 							var newheight=$(iframe2).contents().height();
 							if(newheight>minheight) $(iframe2).height(newheight);
@@ -1438,8 +1440,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							});
 						}
 					}
-				},100);
-			}
+				}
+			},100);
 		});
 		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).ckeditor({
