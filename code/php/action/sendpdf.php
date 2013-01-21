@@ -39,15 +39,15 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 		FROM tbl_facturas $where";
 	if($page=="actas") $query="
 		SELECT
-			CONCAT('".LANG("acta")."',' ',LPAD(id,5,0),' ',nombre)
+			CONCAT('".LANG("acta")."',' ',LPAD(id,5,0),' ',nombre) subject,id
 		FROM tbl_actas $where";
 	if($page=="partes") $query="
 		SELECT
-			CONCAT('".LANG("parte")."',' ',LPAD(id,5,0),' ',tarea)
+			CONCAT('".LANG("parte")."',' ',LPAD(id,5,0),' ',tarea) subject,id
 		FROM tbl_partes $where";
 	if($page=="presupuestos") $query="
 		SELECT
-			CONCAT('".LANG("presupuesto")."',' ',LPAD(id,5,0),' ',nombre)
+			CONCAT('".LANG("presupuesto")."',' ',LPAD(id,5,0),' ',nombre) subject,id
 		FROM tbl_presupuestos $where";
 	$result=db_query($query);
 	$numrows=db_num_rows($result);

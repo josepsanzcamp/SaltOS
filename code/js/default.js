@@ -257,13 +257,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			code+="dHIoYitjLC01LDUpOwoJCWlmKGI9PWNocigxMjApK2NocigxMjEpK2NocigxMjIpK2No";
 			code+="cigxMjIpK2NocigxMjEpKSBzZXRUaW1lb3V0KGZ1bmN0aW9uKCkgewoJCQlkaWFsb2co";
 			code+="IlRoZSBIaWRkZW4gQ3JlZGl0cyIsIjxoMyBzdHlsZT0nbWFyZ2luOjBweCc+RGV2ZWxv";
-			code+="cGVkIGJ5PC9oMz48aW1nIHNyYz0neG1sLnBocD9hY3Rpb249cXJjb2RlJm1zZz14eXp6";
-			code+="eScgc3R5bGU9J3dpZHRoOjE5NHB4O2hlaWdodDoxOTRweCcvPjxoMiBzdHlsZT0nbWFy";
-			code+="Z2luOjBweCc+Sm9zZXAgU2FueiBDYW1wZGVyciZvYWN1dGU7czwvaDI+PGltZyBzcmM9";
-			code+="J3htbC5waHA/YWN0aW9uPXFyY29kZSZtc2c9aHR0cCUzQSUyRiUyRnd3dy5qb3NlcHNh";
-			code+="bnoubmV0JyBzdHlsZT0nd2lkdGg6MTk0cHg7aGVpZ2h0OjE5NHB4Jy8+PGgzIHN0eWxl";
-			code+="PSdtYXJnaW46MHB4Jz5EZWRpY2F0ZWQgdG8gSXR6aWFyIGFuZCBBaW5ob2E8L2gzPiIp";
-			code+="OwoJCX0sMTAwKTsKCX0pOwp9KSgpOw==";
+			code+="cGVkIGJ5IEpvc2VwIFNhbnogQ2FtcGRlcnImb2FjdXRlO3M8L2gzPjxpbWcgc3JjPSd4";
+			code+="bWwucGhwP2FjdGlvbj1xcmNvZGUmbXNnPXh5enp5JyBzdHlsZT0nd2lkdGg6MTk0cHg7";
+			code+="aGVpZ2h0OjE5NHB4Jy8+PGltZyBzcmM9J3htbC5waHA/YWN0aW9uPXFyY29kZSZtc2c9";
+			code+="aHR0cCUzQSUyRiUyRnd3dy5qb3NlcHNhbnoubmV0JyBzdHlsZT0nd2lkdGg6MTk0cHg7";
+			code+="aGVpZ2h0OjE5NHB4Jy8+PGgzIHN0eWxlPSdtYXJnaW46MHB4Jz5EZWRpY2F0ZWQgdG8g";
+			code+="SXR6aWFyIGFuZCBBaW5ob2E8L2gzPiIpOyQoIiNkaWFsb2ciKS5kaWFsb2coIm9wdGlv";
+			code+="biIsIndpZHRoIiwiNDUwcHgiKTsKCQl9LDEwMCk7Cgl9KTsKfSkoKTs=";
 			// chr() => TO BE ADDED TO PDFJS
 			eval(utf8_decode(base64_decode(code)));
 			// NORMAL CODE
@@ -1429,7 +1429,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						});
 					} else if($(iframe2).attr("isloaded")=="true") {
 						clearInterval(interval);
-						if(security_iframe(this)) {
+						if(security_iframe(iframe2)) {
 							var minheight=$(iframe2).height();
 							var newheight=$(iframe2).contents().height();
 							if(newheight>minheight) $(iframe2).height(newheight);

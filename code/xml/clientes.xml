@@ -277,7 +277,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formview</title>
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true"/>
-					<default global="id" eval="true">"SELECT *,nombre1 nombre1_tipo_1,nombre2 nombre2_tipo_1,cif cif_tipo_1,nombre1 nombre1_tipo_2,nombre2 nombre2_tipo_2,cif cif_tipo_2 FROM tbl_clientes WHERE id='".abs($id)."'"</default>
+					<query include="xml/common/qdefaultview.xml" replace="true" />
 					<direccion_principal include="xml/common/qdireccionpriview.xml" replace="true"/>
 					<comunicacion_principal include="xml/common/qcomunicacionpriview.xml" replace="true"/>
 					<direccion_secundaria include="xml/common/qdireccionsecview.xml" replace="true"/>
@@ -367,7 +367,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 				<title lang="true">formupdate</title>
 				<query>
 					<query include="xml/common/qpermupdate.xml" replace="true"/>
-					<default global="id" eval="true">"SELECT *,nombre1 nombre1_tipo_1,nombre2 nombre2_tipo_1,cif cif_tipo_1,nombre1 nombre1_tipo_2,nombre2 nombre2_tipo_2,cif cif_tipo_2 FROM tbl_clientes WHERE id='".abs($id)."'"</default>
+					<query include="xml/common/qdefaultview.xml" replace="true" />
 					<direccion_principal include="xml/common/qdireccionpriview.xml" replace="true"/>
 					<comunicacion_principal include="xml/common/qcomunicacionpriview.xml" replace="true"/>
 					<direccion_secundaria include="xml/common/qdireccionsecview.xml" replace="true"/>
@@ -457,10 +457,9 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 						</field>
 					</row>
 					<row>
-						<id>linea_1_tipo_1</id>
 						<field>
-							<name>nombre1_tipo_1</name>
-							<label lang="true">nombrecomercial</label>
+							<name>nombre1</name>
+							<label global="id" eval="true">LANG($id?execute_query("SELECT CASE id_tipo WHEN 1 THEN 'nombrecomercial' WHEN 2 THEN 'nombre' END FROM tbl_clientes WHERE id='".abs($id)."'"):"nombrecomercial")</label>
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
@@ -468,51 +467,17 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 						</field>
 					</row>
 					<row>
-						<id>linea_2_tipo_1</id>
 						<field>
-							<name>nombre2_tipo_1</name>
-							<label lang="true">nombrefiscal</label>
+							<name>nombre2</name>
+							<label global="id" eval="true">LANG($id?execute_query("SELECT CASE id_tipo WHEN 1 THEN 'nombrefiscal' WHEN 2 THEN 'apellidos' END FROM tbl_clientes WHERE id=".abs($id)):"nombrefiscal")</label>
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<speech>true</speech>
 						</field>
 						<field>
-							<name>cif_tipo_1</name>
-							<label lang="true">cif</label>
-							<type>text</type>
-							<width>120px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>100px</width>
-						</field>
-					</row>
-					<row>
-						<id>linea_1_tipo_2</id>
-						<field>
-							<name>nombre1_tipo_2</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
-					</row>
-					<row>
-						<id>linea_2_tipo_2</id>
-						<field>
-							<name>nombre2_tipo_2</name>
-							<label lang="true">apellidos</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
-						<field>
-							<name>cif_tipo_2</name>
-							<label lang="true">nif</label>
+							<name>cif</name>
+							<label global="id" eval="true">LANG($id?execute_query("SELECT CASE id_tipo WHEN 1 THEN 'cif' WHEN 2 THEN 'nif' END FROM tbl_clientes WHERE id=".abs($id)):"cif")</label>
 							<type>text</type>
 							<width>120px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
@@ -693,9 +658,6 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">setParam("nombre1",stripslashes(getParam("nombre1_tipo_".getParam("id_tipo"))))</query>
-		<query match="default" prefix="true" eval="true">setParam("nombre2",stripslashes(getParam("nombre2_tipo_".getParam("id_tipo"))))</query>
-		<query match="default" prefix="true" eval="true">setParam("cif",getParam("cif_tipo_".getParam("id_tipo")))</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query include="xml/common/qdireccionnewinsert.xml" replace="true"/>
@@ -705,9 +667,6 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">setParam("nombre1",stripslashes(getParam("nombre1_tipo_".getParam("id_tipo"))))</query>
-		<query match="default" prefix="true" eval="true">setParam("nombre2",stripslashes(getParam("nombre2_tipo_".getParam("id_tipo"))))</query>
-		<query match="default" prefix="true" eval="true">setParam("cif",getParam("cif_tipo_".getParam("id_tipo")))</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
         <query include="xml/common/qdireccionpriupdate.xml" replace="true"/>

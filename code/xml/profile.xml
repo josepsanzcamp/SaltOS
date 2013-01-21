@@ -136,9 +136,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>image</type>
 							<width>80px</width>
 							<height>16px</height>
-							<image></image>
+							<image>xml.php?action=score&amp;format=png</image>
 							<phpthumb>false</phpthumb>
-							<class>ui-corner-all score</class>
+							<class>ui-corner-all score none</class>
 						</field>
 					</row>
 					<row>

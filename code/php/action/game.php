@@ -30,7 +30,7 @@ if(getParam("action")=="game") {
 	echo __PAGE_HTML_OPEN__;
 	echo "<canvas></canvas>";
 	echo "<style type='text/css'>canvas{margin-top:45px;}div{text-align:right;}</style>";
-	echo "<script type='text/javascript'>".file_get_contents("lib/js1k/bouncingbeholder.js")."</script>";
+	echo "<script type='text/javascript'>".minify_js(file_get_contents("lib/js1k/bouncingbeholder.js"))."</script>";
 	echo "<script type='text/javascript'>".file_get_contents("lib/timbre/timbre.min.js")."</script>";
 	echo "<script type='text/javascript'>".minify_js(file_get_contents("lib/timbre/004.js"))."</script>";
 	echo "<script type='text/javascript'>ex0.play();</script>";

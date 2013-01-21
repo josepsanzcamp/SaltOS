@@ -70,12 +70,13 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
 	function update_score() {
 		var pass=$("input[name$=password_new]");
 		if($(pass).val()) {
-			data="action=score&pass="+rawurlencode($(pass).val())+"&format=xml"
+			var data="action=score&pass="+rawurlencode($(pass).val())+"&format=xml"
 			$.ajax({
 				url:"xml.php",
 				data:data,
 				type:"post",
 				success:function(response) {
+					$(".score").removeClass("none");
 					$(".score").attr("src",$("root>image",response).text());
 					if(intval($("root>valid",response).text())) {
 						$(pass).removeClass("ui-state-error");
@@ -88,7 +89,7 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
 				}
 			});
 		} else {
-			$(".score").attr("src","");
+			$(".score").addClass("none");
 			$(pass).removeClass("ui-state-error");
 		}
 	}

@@ -1002,7 +1002,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 						});
 					} else if($(iframe2).attr("isloaded")=="true") {
 						clearInterval(interval);
-						if(security_iframe(this)) {
+						if(security_iframe(iframe2)) {
 							var minheight=$(iframe2).height();
 							var newheight=$(iframe2).contents().height();
 							if(newheight>minheight) $(iframe2).height(newheight);

@@ -29,7 +29,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 
 	function viewpdf(data) {
 		loadingcontent(lang_view2opening());
-		data="action=viewpdf&"+data;
+		var data="action=viewpdf&"+data;
 		$.ajax({
 			url:"xml.php",
 			data:data,
@@ -60,7 +60,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						return;
 					}
 					// CONVERT DATA TO BINARY
-					data=base64_decode(data);
+					var data=base64_decode(data);
 					var array=new ArrayBuffer(data.length);
 					var bytes=new Uint8Array(array);
 					for(var i=0,len=data.length;i<len;i++) bytes[i]=data.charCodeAt(i);

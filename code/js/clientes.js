@@ -28,16 +28,22 @@ if(typeof(__clientes__)=="undefined" && typeof(parent.__clientes__)=="undefined"
 	var __clientes__=1;
 
 	function update_tipo() {
-		var id_tipo=$("select[name$=id_tipo]");
-		if($(id_tipo).length==1) {
-			var tipo=$(id_tipo).val();
-			var linea1=(tipo==1)?"":"none";
-			var linea2=(tipo==2)?"":"none";
-			if(!document.getElementById("linea_1_tipo_1")) return;
-			document.getElementById("linea_1_tipo_1").style.display=linea1;
-			document.getElementById("linea_2_tipo_1").style.display=linea1;
-			document.getElementById("linea_1_tipo_2").style.display=linea2;
-			document.getElementById("linea_2_tipo_2").style.display=linea2;
+		var id_tipo=$("select[name$=id_tipo]").val();
+		if(id_tipo) {
+			var data="action=ajax&query=tipocliente&id_tipo="+id_tipo;
+			$.ajax({
+				url:"xml.php",
+				data:data,
+				type:"get",
+				success:function(response) {
+					$(Array("nombre1","nombre2","cif")).each(function() {
+						$("input[name$="+this+"]").parent().prev().html($("root>rows>row>"+this,response).text());
+					});
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+				}
+			});
 		}
 	}
 
@@ -131,6 +137,3 @@ if(typeof(__clientes__)=="undefined" && typeof(parent.__clientes__)=="undefined"
 	}
 
 }
-
-"use strict";
-$(function() { update_tipo(); });
