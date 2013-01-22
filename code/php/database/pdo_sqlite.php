@@ -39,20 +39,20 @@ function db_connect_pdo_sqlite() {
 		db_query_pdo_sqlite("PRAGMA synchronous=OFF");
 		db_query_pdo_sqlite("PRAGMA count_changes=OFF");
 		db_query_pdo_sqlite("PRAGMA foreign_keys=OFF");
-		getDefault("db/link")->sqliteCreateAggregate("GROUP_CONCAT","__pdo_sqlite_group_concat_step","__pdo_sqlite_group_concat_finalize",2);
-		getDefault("db/link")->sqliteCreateFunction("LPAD","__pdo_sqlite_lpad",3);
+		getDefault("db/link")->sqliteCreateAggregate("GROUP_CONCAT","__pdo_sqlite_group_concat_step","__pdo_sqlite_group_concat_finalize");
+		getDefault("db/link")->sqliteCreateFunction("LPAD","__pdo_sqlite_lpad");
 		getDefault("db/link")->sqliteCreateFunction("CONCAT","__pdo_sqlite_concat");
-		getDefault("db/link")->sqliteCreateFunction("UNIX_TIMESTAMP","__pdo_sqlite_unix_timestamp",1);
-		getDefault("db/link")->sqliteCreateFunction("YEAR","__pdo_sqlite_year",1);
-		getDefault("db/link")->sqliteCreateFunction("MONTH","__pdo_sqlite_month",1);
-		getDefault("db/link")->sqliteCreateFunction("WEEK","__pdo_sqlite_week",2);
-		getDefault("db/link")->sqliteCreateFunction("TRUNCATE","__pdo_sqlite_truncate",2);
-		getDefault("db/link")->sqliteCreateFunction("DAY","__pdo_sqlite_day",1);
-		getDefault("db/link")->sqliteCreateFunction("DAYOFYEAR","__pdo_sqlite_dayofyear",1);
-		getDefault("db/link")->sqliteCreateFunction("DAYOFWEEK","__pdo_sqlite_dayofweek",1);
-		getDefault("db/link")->sqliteCreateFunction("HOUR","__pdo_sqlite_hour",1);
-		getDefault("db/link")->sqliteCreateFunction("MINUTE","__pdo_sqlite_minute",1);
-		getDefault("db/link")->sqliteCreateFunction("SECOND","__pdo_sqlite_second",1);
+		getDefault("db/link")->sqliteCreateFunction("UNIX_TIMESTAMP","__pdo_sqlite_unix_timestamp");
+		getDefault("db/link")->sqliteCreateFunction("YEAR","__pdo_sqlite_year");
+		getDefault("db/link")->sqliteCreateFunction("MONTH","__pdo_sqlite_month");
+		getDefault("db/link")->sqliteCreateFunction("WEEK","__pdo_sqlite_week");
+		getDefault("db/link")->sqliteCreateFunction("TRUNCATE","__pdo_sqlite_truncate");
+		getDefault("db/link")->sqliteCreateFunction("DAY","__pdo_sqlite_day");
+		getDefault("db/link")->sqliteCreateFunction("DAYOFYEAR","__pdo_sqlite_dayofyear");
+		getDefault("db/link")->sqliteCreateFunction("DAYOFWEEK","__pdo_sqlite_dayofweek");
+		getDefault("db/link")->sqliteCreateFunction("HOUR","__pdo_sqlite_hour");
+		getDefault("db/link")->sqliteCreateFunction("MINUTE","__pdo_sqlite_minute");
+		getDefault("db/link")->sqliteCreateFunction("SECOND","__pdo_sqlite_second");
 	}
 	register_shutdown_function("__pdo_sqlite_shutdown_handler");
 }
@@ -62,13 +62,13 @@ function __pdo_sqlite_shutdown_handler() {
 	semaphore_release($semaphore);
 }
 
-function __pdo_sqlite_group_concat_step(&$context,$rows,$string,$separator) {
+function __pdo_sqlite_group_concat_step($context,$rows,$string,$separator=",") {
 	if($context!="") $context.=$separator;
 	$context.=$string;
 	return $context;
 }
 
-function __pdo_sqlite_group_concat_finalize(&$context,$rows) {
+function __pdo_sqlite_group_concat_finalize($context,$rows) {
 	return $context;
 }
 
@@ -77,7 +77,8 @@ function __pdo_sqlite_lpad($input,$length,$char) {
 }
 
 function __pdo_sqlite_concat() {
-	return implode("",func_get_args());
+	$array=func_get_args();
+	return implode("",$array);
 }
 
 function __pdo_sqlite_unix_timestamp($date) {

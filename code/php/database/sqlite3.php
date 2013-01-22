@@ -39,20 +39,20 @@ function db_connect_sqlite3() {
 		db_query_sqlite3("PRAGMA synchronous=OFF");
 		db_query_sqlite3("PRAGMA count_changes=OFF");
 		db_query_sqlite3("PRAGMA foreign_keys=OFF");
-		getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize",2);
-		getDefault("db/link")->createFunction("LPAD","__sqlite3_lpad",3);
+		getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize");
+		getDefault("db/link")->createFunction("LPAD","__sqlite3_lpad");
 		getDefault("db/link")->createFunction("CONCAT","__sqlite3_concat");
-		getDefault("db/link")->createFunction("UNIX_TIMESTAMP","__sqlite3_unix_timestamp",1);
-		getDefault("db/link")->createFunction("YEAR","__sqlite3_year",1);
-		getDefault("db/link")->createFunction("MONTH","__sqlite3_month",1);
-		getDefault("db/link")->createFunction("WEEK","__sqlite3_week",2);
-		getDefault("db/link")->createFunction("TRUNCATE","__sqlite3_truncate",2);
-		getDefault("db/link")->createFunction("DAY","__sqlite3_day",1);
-		getDefault("db/link")->createFunction("DAYOFYEAR","__sqlite3_dayofyear",1);
-		getDefault("db/link")->createFunction("DAYOFWEEK","__sqlite3_dayofweek",1);
-		getDefault("db/link")->createFunction("HOUR","__sqlite3_hour",1);
-		getDefault("db/link")->createFunction("MINUTE","__sqlite3_minute",1);
-		getDefault("db/link")->createFunction("SECOND","__sqlite3_second",1);
+		getDefault("db/link")->createFunction("UNIX_TIMESTAMP","__sqlite3_unix_timestamp");
+		getDefault("db/link")->createFunction("YEAR","__sqlite3_year");
+		getDefault("db/link")->createFunction("MONTH","__sqlite3_month");
+		getDefault("db/link")->createFunction("WEEK","__sqlite3_week");
+		getDefault("db/link")->createFunction("TRUNCATE","__sqlite3_truncate");
+		getDefault("db/link")->createFunction("DAY","__sqlite3_day");
+		getDefault("db/link")->createFunction("DAYOFYEAR","__sqlite3_dayofyear");
+		getDefault("db/link")->createFunction("DAYOFWEEK","__sqlite3_dayofweek");
+		getDefault("db/link")->createFunction("HOUR","__sqlite3_hour");
+		getDefault("db/link")->createFunction("MINUTE","__sqlite3_minute");
+		getDefault("db/link")->createFunction("SECOND","__sqlite3_second");
 	}
 	register_shutdown_function("__sqlite3_shutdown_handler");
 }
@@ -62,13 +62,13 @@ function __sqlite3_shutdown_handler() {
 	semaphore_release($semaphore);
 }
 
-function __sqlite3_group_concat_step(&$context,$string,$separator) {
+function __sqlite3_group_concat_step($context,$rows,$string,$separator=",") {
 	if($context!="") $context.=$separator;
 	$context.=$string;
 	return $context;
 }
 
-function __sqlite3_group_concat_finalize(&$context) {
+function __sqlite3_group_concat_finalize($context,$rows) {
 	return $context;
 }
 
@@ -77,7 +77,8 @@ function __sqlite3_lpad($input,$length,$char) {
 }
 
 function __sqlite3_concat() {
-	return implode("",func_get_args());
+	$array=func_get_args();
+	return implode("",$array);
 }
 
 function __sqlite3_unix_timestamp($date) {

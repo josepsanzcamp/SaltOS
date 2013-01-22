@@ -28,7 +28,8 @@ function saltos_content_type($file) {
 		"css"=>"text/css",
 		"js"=>"text/javascript",
 		"xml"=>"text/xml",
-		"htm"=>"text/html"
+		"htm"=>"text/html",
+		"png"=>"image/png"
 	);
 	$ext=strtolower(extension($file));
 	if(isset($mimes[$ext])) return $mimes[$ext];
