@@ -296,7 +296,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.rcdtokyo.com/etc/gdataapis/")</onclick>
 						</field>
 						<field>
-							<label>PHP Mobile Detect 2.5.3 (MIT)</label>
+							<label>PHP Mobile Detect 2.5.4 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
@@ -434,7 +434,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>blockUI 2.54 (MIT &amp; GPL*)</label>
+							<label>blockUI 2.55.0-2013.01.22 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/block/")</onclick>
@@ -557,7 +557,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
 						</field>
 						<field>
-							<label>Mozilla pdf.js (Apache-2.0)</label>
+							<label>Mozilla pdf.js 0.7.85 (Apache-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
