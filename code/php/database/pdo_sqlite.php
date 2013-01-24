@@ -39,7 +39,7 @@ function db_connect_pdo_sqlite() {
 		db_query_pdo_sqlite("PRAGMA synchronous=OFF");
 		db_query_pdo_sqlite("PRAGMA count_changes=OFF");
 		db_query_pdo_sqlite("PRAGMA foreign_keys=OFF");
-		getDefault("db/link")->sqliteCreateAggregate("GROUP_CONCAT","__pdo_sqlite_group_concat_step","__pdo_sqlite_group_concat_finalize");
+		if(!__pdo_sqlite_group_concat_check()) getDefault("db/link")->sqliteCreateAggregate("GROUP_CONCAT","__pdo_sqlite_group_concat_step","__pdo_sqlite_group_concat_finalize");
 		getDefault("db/link")->sqliteCreateFunction("LPAD","__pdo_sqlite_lpad");
 		getDefault("db/link")->sqliteCreateFunction("CONCAT","__pdo_sqlite_concat");
 		getDefault("db/link")->sqliteCreateFunction("UNIX_TIMESTAMP","__pdo_sqlite_unix_timestamp");
@@ -60,6 +60,14 @@ function db_connect_pdo_sqlite() {
 function __pdo_sqlite_shutdown_handler() {
 	$semaphore=getDefault("db/file").getDefault("exts/semext",".sem");
 	semaphore_release($semaphore);
+}
+
+function __pdo_sqlite_group_concat_check() {
+	$query="SELECT GROUP_CONCAT(1)";
+	capture_next_error();
+	db_query($query);
+	$error=get_clear_error();
+	return !$error?true:false;
 }
 
 function __pdo_sqlite_group_concat_step($context,$rows,$string,$separator=",") {

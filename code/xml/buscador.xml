@@ -571,19 +571,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					WHERE ".($filtro?make_like_query("url,nombre,descripcion",$filtro):"(1=0)")."
 				UNION
 				SELECT CONCAT('r',id_registro,'a',id_aplicacion) id,
-					id_registro,/*SQLITE CAST(id_aplicacion AS TEXT) */ id_aplicacion FROM tbl_ficheros
+					id_registro,TRIM(id_aplicacion) FROM tbl_ficheros
 					WHERE ".($filtro?make_like_query("datetime,fichero,fichero_file,fichero_type,fichero_size,search",$filtro):"(1=0)")."
 				UNION
 				SELECT CONCAT('r',id_registro,'a',id_aplicacion) id,
-					id_registro,/*SQLITE CAST(id_aplicacion AS TEXT) */ id_aplicacion FROM tbl_comentarios
+					id_registro,TRIM(id_aplicacion) FROM tbl_comentarios
 					WHERE ".($filtro?make_like_query("datetime,comentarios",$filtro):"(1=0)")."
 				UNION
 				SELECT CONCAT('r',id_registro,'a',id_aplicacion) id,
-					id_registro,/*SQLITE CAST(id_aplicacion AS TEXT) */ id_aplicacion FROM tbl_direcciones
+					id_registro,TRIM(id_aplicacion) FROM tbl_direcciones
 					WHERE ".($filtro?make_like_query("nombre,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal",$filtro):"(1=0)")."
 				UNION
 				SELECT CONCAT('r',id_registro,'a',id_aplicacion) id,
-					id_registro,/*SQLITE CAST(id_aplicacion AS TEXT) */ id_aplicacion FROM tbl_comunicaciones
+					id_registro,TRIM(id_aplicacion) FROM tbl_comunicaciones
 					WHERE ".($filtro?make_like_query("nombre,valor",$filtro):"(1=0)")."
 			) a
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro

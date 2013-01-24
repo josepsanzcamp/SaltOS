@@ -39,7 +39,7 @@ function db_connect_sqlite3() {
 		db_query_sqlite3("PRAGMA synchronous=OFF");
 		db_query_sqlite3("PRAGMA count_changes=OFF");
 		db_query_sqlite3("PRAGMA foreign_keys=OFF");
-		getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize");
+		if(!__sqlite3_group_concat_check()) getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize");
 		getDefault("db/link")->createFunction("LPAD","__sqlite3_lpad");
 		getDefault("db/link")->createFunction("CONCAT","__sqlite3_concat");
 		getDefault("db/link")->createFunction("UNIX_TIMESTAMP","__sqlite3_unix_timestamp");
@@ -60,6 +60,14 @@ function db_connect_sqlite3() {
 function __sqlite3_shutdown_handler() {
 	$semaphore=getDefault("db/file").getDefault("exts/semext",".sem");
 	semaphore_release($semaphore);
+}
+
+function __sqlite3_group_concat_check() {
+	$query="SELECT GROUP_CONCAT(1)";
+	capture_next_error();
+	db_query($query);
+	$error=get_clear_error();
+	return !$error?true:false;
 }
 
 function __sqlite3_group_concat_step($context,$rows,$string,$separator=",") {
