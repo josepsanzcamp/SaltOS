@@ -151,13 +151,16 @@ function __db_query_sqlite3_helper($query) {
 		// DUMP RESULT TO MATRIX
 		if($data && $data->numColumns()) {
 			while($row=$data->fetchArray(SQLITE3_ASSOC)) $result["rows"][]=$row;
+			$continue=false;
 			foreach($result["rows"] as $key=>$val) {
 				foreach($val as $key2=>$val2) {
 					if($key2[0]=="`" && substr($key2,-1,1)=="`") {
 						unset($result["rows"][$key][$key2]);
 						$result["rows"][$key][substr($key2,1,-1)]=$val2;
+						$continue=true;
 					}
 				}
+				if(!$continue) break;
 			}
 			$result["total"]=count($result["rows"]);
 			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);

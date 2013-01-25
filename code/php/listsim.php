@@ -42,7 +42,10 @@ function list_simulator($newpage,$ids="string") {
 	// MAKE THE LIST QUERY
 	$config=$config[$action];
 	$config=eval_attr($config);
+	// GET THE NEEDED XML NODES
 	$query0=$config["query"];
+	$limit=$config["limit"];
+	$offset=$config["offset"];
 	// CHECK ORDER
 	list($order,$array)=list_check_order($config["order"],$config["fields"]);
 	// EXECUTE THE QUERY TO GET THE REQUESTED DATA
@@ -50,6 +53,10 @@ function list_simulator($newpage,$ids="string") {
 		$query="SELECT action_id FROM ($query0) __a__ ORDER BY $order";
 		$result=execute_query_array($query);
 		if($ids=="string") $result=count($result)?implode(",",$result):"0";
+	} elseif($ids=="count") {
+		$query="SELECT COUNT(*) FROM ($query0) __a__";
+		$count=execute_query($query);
+		$result=array("count"=>$count,"limit"=>$limit,"offset"=>$offset);
 	} else {
 		$ids=check_ids($ids);
 		$query="SELECT action_title FROM ($query0) __a__ WHERE action_id IN ($ids) ORDER BY $order";
