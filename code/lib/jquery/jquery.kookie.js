@@ -1,5 +1,5 @@
 /*!
- * jQuery Cookie Plugin v1.3.0
+ * jQuery Cookie Plugin v1.3.1
  * https://github.com/carhartl/jquery-cookie
  *
  * Copyright 2013 Klaus Hartl
@@ -14,15 +14,15 @@
 	}
 
 	function decoded(s) {
-		return unRfc2068(decodeURIComponent(s.replace(pluses, ' ')));
+		return decodeURIComponent(s.replace(pluses, ' '));
 	}
 
-	function unRfc2068(value) {
-		if (value.indexOf('"') === 0) {
+	function converted(s) {
+		if (s.indexOf('"') === 0) {
 			// This is a quoted cookie as according to RFC2068, unescape
-			value = value.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+			s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
 		}
-		return value;
+		return config.json ? JSON.parse(s) : s;
 	}
 
 	var config = $.cookie = function (key, value, options) {
@@ -60,17 +60,13 @@
 			var name = decode(parts.shift());
 			var cookie = decode(parts.join('='));
 
-			if (config.json) {
-				cookie = JSON.parse(cookie);
-			}
-
 			if (key && key === name) {
-				result = cookie;
+				result = converted(cookie);
 				break;
 			}
 
 			if (!key) {
-				result[name] = cookie;
+				result[name] = converted(cookie);
 			}
 		}
 
