@@ -42,9 +42,10 @@ if(getParam("action")=="phpthumb") {
 	}
 	// SECURITY CHECK
 	$type=saltos_content_type($src);
-	if(substr($type,0,5)!="image") action_denied();
+	$type0=strtok($type,"/");
+	if($type0!="image") action_denied();
 	// CONTINUE
-	$format=substr($type,6);
+	$format=strtok("");
 	if(getParam("f",getParam("amp;f"))) $format=getParam("f",getParam("amp;f"));
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
@@ -55,18 +56,24 @@ if(getParam("action")=="phpthumb") {
 	// CREATE IF NOT EXISTS
 	if(!file_exists($cache)) {
 		// LOAD IMAGE
-		$im=imagecreatefromstring(file_get_contents($src));
+		switch($format) {
+			case "png": $im=imagecreatefrompng($src); break;
+			case "jpeg": $im=imagecreatefromjpeg($src); break;
+			case "gif": $im=imagecreatefromgif($src); break;
+			case "bmp": include_once("lib/bmpphp/BMP.php"); $im=imagecreatefrombmp($src); break;
+			default: show_php_error(array("phperror"=>"Unsupported format: $format"));
+		}
 		// CALCULATE SIZE
-		if(!is_null($width) && !is_null($height)) {
+		if(!is_null($width) && !is_null($height) && (imagesx($im)>$width || imagesy($im)>$height)) {
 			$width2=imagesx($im)*$height/imagesy($im);
 			$height2=imagesy($im)*$width/imagesx($im);
 			if($width2>$width) $height=$height2;
 			if($height2>$height) $width=$width2;
-		} elseif(is_null($width) && !is_null($height)) {
+		} elseif(is_null($width) && !is_null($height) && imagesy($im)>$height) {
 			$width=imagesx($im)*$height/imagesy($im);
-		} elseif(!is_null($width) && is_null($height)) {
+		} elseif(!is_null($width) && is_null($height) && imagesx($im)>$width) {
 			$height=imagesy($im)*$width/imagesx($im);
-		} elseif(is_null($width) && is_null($height)) {
+		} else {
 			$width=imagesx($im);
 			$height=imagesy($im);
 		}
@@ -90,10 +97,13 @@ if(getParam("action")=="phpthumb") {
 		imagecopyresampled($im2,$im,0,0,0,0,$width,$height,imagesx($im),imagesy($im));
 		imagedestroy($im);
 		// WRITE
-		if($format=="png") imagepng($im2,$cache);
-		elseif($format=="jpeg") imagejpeg($im2,$cache);
-		elseif($format=="gif") imagegif($im2,$cache);
-		else show_php_error(array("phperror"=>"Unsupported format: format"));
+		switch($format) {
+			case "png": imagepng($im2,$cache); break;
+			case "jpeg": imagejpeg($im2,$cache); break;
+			case "gif": imagegif($im2,$cache); break;
+			case "bmp": include_once("lib/bmpphp/BMP.php"); imagebmp($im2,$cache); break;
+			default: show_php_error(array("phperror"=>"Unsupported format: $format"));
+		}
 		imagedestroy($im2);
 		chmod_protected($cache,0666);
 	}

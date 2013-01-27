@@ -362,9 +362,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.chuggnutt.com/html2text")</onclick>
 						</field>
 						<field>
+							<label>BMP-PHP (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://www.phpclasses.org/package/5991-PHP-Load-and-save-images-in-the-BMP-format.html")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>3</colspan>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>

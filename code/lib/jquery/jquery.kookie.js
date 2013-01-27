@@ -5,7 +5,15 @@
  * Copyright 2013 Klaus Hartl
  * Released under the MIT license
  */
-(function ($, document, undefined) {
+(function (factory) {
+	if (typeof define === 'function' && define.amd && define.amd.jQuery) {
+		// AMD. Register as anonymous module.
+		define(['jquery'], factory);
+	} else {
+		// Browser globals.
+		factory(jQuery);
+	}
+}(function ($) {
 
 	var pluses = /\+/g;
 
@@ -31,10 +39,6 @@
 		if (value !== undefined) {
 			options = $.extend({}, config.defaults, options);
 
-			if (value === null) {
-				options.expires = -1;
-			}
-
 			if (typeof options.expires === 'number') {
 				var days = options.expires, t = options.expires = new Date();
 				t.setDate(t.getDate() + days);
@@ -54,7 +58,7 @@
 		// read
 		var decode = config.raw ? raw : decoded;
 		var cookies = document.cookie.split('; ');
-		var result = key ? null : {};
+		var result = key ? undefined : {};
 		for (var i = 0, l = cookies.length; i < l; i++) {
 			var parts = cookies[i].split('=');
 			var name = decode(parts.shift());
@@ -76,11 +80,11 @@
 	config.defaults = {};
 
 	$.removeCookie = function (key, options) {
-		if ($.cookie(key) !== null) {
-			$.cookie(key, null, options);
+		if ($.cookie(key) !== undefined) {
+			$.cookie(key, '', $.extend(options, { expires: -1 }));
 			return true;
 		}
 		return false;
 	};
 
-})(jQuery, document);
+}));
