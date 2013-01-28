@@ -27,16 +27,10 @@ if(!check_user()) action_denied();
 if(getParam("action")=="quickform") {
 	include_once("php/listsim.php");
 	$pagesim=$page;
-	if(getParam("id_folder")) {
-		$pagesim="folders";
-		lastfolder(getParam("id_folder"));
-	}
-	if(getParam("is_fichero")) {
-		$pagesim="ficheros";
-	}
-	if(getParam("is_buscador")) {
-		$pagesim="buscador";
-	}
+	if(getParam("is_fichero")) $pagesim="ficheros";
+	if(getParam("is_buscador")) $pagesim="buscador";
+	if(getParam("id_folder")) $pagesim="folders";
+	if(getParam("id_folder")) lastfolder(getParam("id_folder"));
 	$ids=list_simulator($pagesim,"array");
 	if(is_null($ids)) action_denied();
 	// FIND IF ID EXISTS IN THE LIST

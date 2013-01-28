@@ -54,19 +54,15 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 	if(!$numrows) action_denied();
 	$ids=array();
 	$body=array();
-	if($numrows==1) {
-		$row=db_fetch_row($result);
-		$subject=$row["subject"];
+	while($row=db_fetch_row($result)) {
 		$ids[]=$row["id"];
 		$body[]=$row["subject"];
-	} else {
-		$subject=LANG($page,"menu");
-		while($row=db_fetch_row($result)) {
-			$ids[]=$row["id"];
-			$body[]=$row["subject"];
-		}
 	}
+	if($numrows==1) $subject=$body[0];
+	if($numrows!=1) $subject=LANG($page,"menu");
 	db_free($result);
+	if($numrows!=1) array_unshift($ids,implode(",",$ids));
+	if($numrows!=1) array_unshift($body,LANG($page,"menu"));
 	$files=array();
 	foreach($ids as $key=>$val) {
 		// PDF FACTURA/ACTA/PARTE/PRESUPUESTO
@@ -83,8 +79,6 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 		$file=get_temp_file(getDefault("exts/pdfext",".pdf"));
 		file_put_contents($file,$pdf);
 		$name=$body[$key].".pdf";
-		//$name=str_replace(".","",$name);
-		//$name=$name.".pdf";
 		$name=encode_bad_chars_file($name);
 		$mime="application/pdf";
 		$size=__getmail_gethumansize(strlen($pdf));

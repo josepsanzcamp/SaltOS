@@ -65,7 +65,7 @@ function __sqlite3_shutdown_handler() {
 function __sqlite3_group_concat_check() {
 	$query="SELECT GROUP_CONCAT(1)";
 	capture_next_error();
-	db_query($query);
+	db_query_sqlite3($query);
 	$error=get_clear_error();
 	return !$error?true:false;
 }

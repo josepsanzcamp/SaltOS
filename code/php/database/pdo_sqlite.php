@@ -65,7 +65,7 @@ function __pdo_sqlite_shutdown_handler() {
 function __pdo_sqlite_group_concat_check() {
 	$query="SELECT GROUP_CONCAT(1)";
 	capture_next_error();
-	db_query($query);
+	db_query_pdo_sqlite($query);
 	$error=get_clear_error();
 	return !$error?true:false;
 }
