@@ -185,7 +185,7 @@ if(!file_exists($cache)) {
 			$plot->SetLegend($legend);
 			list($width2,$height2)=$plot->GetLegendSize();
 			$plot->SetMarginsPixels(NULL,$width2+10,NULL,NULL);
-			$plot->SetLegendPosition(0,0.5,'plot',1,0.5,5,0);
+			$plot->SetLegendPosition(0,0.5,"plot",1,0.5,5,0);
 		}
 		$plot->SetPlotAreaWorld(NULL,0,NULL,NULL);
 		$plot->SetYLabelType("data");
@@ -205,7 +205,7 @@ if(!file_exists($cache)) {
 			$plot->SetLegend($legend);
 			list($width2,$height2)=$plot->GetLegendSize();
 			$plot->SetMarginsPixels(NULL,$width2+10,NULL,NULL);
-			$plot->SetLegendPosition(0,0.5,'plot',1,0.5,5,0);
+			$plot->SetLegendPosition(0,0.5,"plot",1,0.5,5,0);
 		}
 		$plot->SetPlotAreaWorld(NULL,$minvalue,NULL,$maxvalue);
 		$plot->SetYLabelType("data");
@@ -226,7 +226,7 @@ if(!file_exists($cache)) {
 		foreach($values as $row) $plot->SetLegend($row[0]);
 		list($width2,$height2)=$plot->GetLegendSize();
 		$plot->SetMarginsPixels(NULL,$width2+10,NULL,NULL);
-		$plot->SetLegendPosition(0,0.5,'plot',1,0.5,0,0);
+		$plot->SetLegendPosition(0,0.5,"plot",1,0.5,0,0);
 	}
 	// FOR LINES PLOT
 	if($graph=="lines") {
@@ -237,7 +237,7 @@ if(!file_exists($cache)) {
 			$plot->SetLegend($legend);
 			list($width2,$height2)=$plot->GetLegendSize();
 			$plot->SetMarginsPixels(NULL,$width2+10,NULL,NULL);
-			$plot->SetLegendPosition(0,0.5,'plot',1,0.5,5,0);
+			$plot->SetLegendPosition(0,0.5,"plot",1,0.5,5,0);
 		}
 		$plot->SetPlotAreaWorld(NULL,$minvalue,NULL,$maxvalue);
 		$plot->SetYLabelType("data");
@@ -248,6 +248,26 @@ if(!file_exists($cache)) {
 		$plot->SetXDataLabelAngle(45);
 		$plot->SetLineWidths(1);
 		$plot->SetLineStyles("solid");
+	}
+	// FOR FINANCIAL PLOT
+	if($graph=="ohlc") {
+		$plot->SetPlotType("candlesticks2");
+		$plot->SetDataType($datatype);
+		$plot->SetTitle($title);
+		if(isset($legend[0]) && $legend[0]!="") {
+			$plot->SetLegend($legend);
+			list($width2,$height2)=$plot->GetLegendSize();
+			$plot->SetMarginsPixels(NULL,$width2+10,NULL,NULL);
+			$plot->SetLegendPosition(0,0.5,"plot",1,0.5,5,0);
+		}
+		$plot->SetDataColors(array("red","DarkGreen","red","DarkGreen"));
+		$plot->SetPlotAreaWorld(NULL,$minvalue,NULL,$maxvalue);
+		$plot->SetYLabelType("data");
+		$plot->SetPrecisionY($precision);
+		$plot->SetYDataLabelPos("plotin");
+		$plot->SetXTickLabelPos("none");
+		$plot->SetXTickPos("none");
+		$plot->SetXDataLabelAngle(45);
 	}
 	// MAKE THE IMAGE
 	$_RESULT=array("img"=>"","map"=>array());
@@ -263,6 +283,7 @@ if(!file_exists($cache)) {
 	}
 	// MAKE XML
 	$_RESULT["img"]=$plot->EncodeImage();
+	//$plot->PrintImage(); die();
 	$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
 	$buffer.=array2xml($_RESULT);
 	file_put_contents($cache,$buffer);

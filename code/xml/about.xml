@@ -472,7 +472,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
 						</field>
 						<field>
-							<label>Form 3.25 (MIT &amp; GPL*)</label>
+							<label>Form 3.26 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
@@ -504,7 +504,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.2.17 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.2.19 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
@@ -563,7 +563,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
 						</field>
 						<field>
-							<label>Mozilla pdf.js 0.7.95 (Apache-2.0)</label>
+							<label>Mozilla pdf.js 0.7.103 (Apache-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
