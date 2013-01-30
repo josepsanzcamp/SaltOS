@@ -252,7 +252,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 5.9.203 (LGPL-3.0)</label>
+							<label>TCPDF 5.9.204 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -563,7 +563,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
 						</field>
 						<field>
-							<label>Mozilla pdf.js 0.7.103 (Apache-2.0)</label>
+							<label>Mozilla pdf.js (Apache-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
