@@ -32,11 +32,10 @@ if(getParam("action")=="game") {
 	echo "<style type='text/css'>canvas{margin-top:45px;}div{text-align:right;}</style>";
 	echo "<script type='text/javascript'>".minify_js(file_get_contents("lib/js1k/bouncingbeholder.js"))."</script>";
 	echo "<script type='text/javascript'>".file_get_contents("lib/timbre/timbre.min.js")."</script>";
-	echo "<script type='text/javascript'>".minify_js(file_get_contents("lib/timbre/004.js"))."</script>";
-	echo "<script type='text/javascript'>ex0.play();</script>";
+	echo "<script type='text/javascript'>".minify_js(file_get_contents("lib/timbre/gymnopedie.js"))."</script>";
 	echo __TEXT_HTML_OPEN__;
 	echo "<div>Game: <b>Legend of The Bouncing Beholder</b> | Copyright (c) 2010 Marijn Haverbeke (ZLib/LibPNG license) | <a href='javascript:void(0)' onclick='parent.openwin(\"http://marijn.haverbeke.nl/js1k.html\")'>marijn.haverbeke.nl/js1k.html</a></div>";
-	echo "<div>Music: <b>JavaScript Library for Objective Sound Programming</b> | Timbre Synthesizer Example (MIT license) | <a href='javascript:void(0)' onclick='parent.openwin(\"http://mohayonao.github.com/timbre/\")'>mohayonao.github.com/timbre/</a></div>";
+	echo "<div>Music: <b>JavaScript Library for Objective Sound Programming</b> | Timbre Synthesizer Example (MIT license) | <a href='javascript:void(0)' onclick='parent.openwin(\"http://mohayonao.github.com/timbre.js\")'>mohayonao.github.com/timbre.js</a></div>";
 	echo __TEXT_HTML_CLOSE__;
 	echo __PAGE_HTML_CLOSE__;
 	$buffer=ob_get_clean();
