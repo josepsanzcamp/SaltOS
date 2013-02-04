@@ -146,6 +146,7 @@ if(eval_bool(getDefault("debug/errordebug"))) set_array($_ERROR,"error","Error d
 // MORE TO PREPARE THE OUTPUT
 if(isset($_ALERT)) $_RESULT["alerts"]=$_ALERT;
 if(isset($_ERROR)) $_RESULT["errors"]=$_ERROR;
+$_RESULT["info"]["color"]=getDefault("themeroller/themes/$style");
 $_RESULT["info"]["usejscache"]=getDefault("cache/usejscache");
 $_RESULT["info"]["usecsscache"]=getDefault("cache/usecsscache");
 // THE XSLT PROCESSOR CODE

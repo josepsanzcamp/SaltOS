@@ -35,6 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:for-each select="/root">
 		<link href="{info/favicon}" rel="icon"></link>
 		<link href="{info/favicon}" rel="shortcut icon"></link>
+		<meta name="msapplication-TileColor" content="#{info/color}"/>
+		<meta name="msapplication-TileImage" content="{info/favicon}"/>
 		<title><xsl:call-template name="title_2"/></title>
 		<xsl:call-template name="styles"/>
 		<xsl:call-template name="javascript"/>
