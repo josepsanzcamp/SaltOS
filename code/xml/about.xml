@@ -563,13 +563,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
 						</field>
 						<field>
-							<label>Mozilla pdf.js (Apache-2.0)</label>
+							<label>Mozilla pdf.js latest (Apache-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
 						</field>
 						<field>
-							<label>timbre.js (MIT)</label>
+							<label>timbre.js latest (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>

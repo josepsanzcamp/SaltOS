@@ -1,133 +1,81 @@
-Timbre.js
-========
+timbre.js
+=========
+JavaScript library for objective sound programming
 
-#### JavaScript Library for Objective Sound Programming ####
+Timbre.js provides a functional processing and synthesizing audio in your web apps with modern JavaScript's way like jQuery or node.js. It has many **T-Object** (formally: Timbre Object) that connected together to define the graph-based routing for overall audio rendering. It is a goal of this project to approach the next generation audio processing for web. 
 
-[Project Page](http://mohayonao.github.com/timbre/) — [Documentation](http://mohayonao.github.com/timbre/documents) — [Example01](http://mohayonao.github.com/timbre/examples/002_rhythmsequencer.html)  — [Example02](http://mohayonao.github.com/timbre/examples/003_loadwavfiles.html)  — [Example03](http://mohayonao.github.com/timbre/examples/004_timbresynth.html)
+## Project Page ##
+[English](http://mohayonao.github.com/timbre.js/) | [日本語](http://mohayonao.github.com/timbre.js/ja/)
 
+## Examples ##
+[BeatBox](http://mohayonao.github.com/timbre.js/beatbox.html) | [Chords Work](http://mohayonao.github.com/timbre.js/chord.html) | [Gymnopedie](http://mohayonao.github.com/timbre.js/satie.html) | [Khoomii](http://mohayonao.github.com/timbre.js/koomii.html) | [Reich](http://mohayonao.github.com/timbre.js/reich.html)
 
-### System Requirements ###
-* Chrome 14.0- (Web Audio API)
-* Safari 6.0- (Web Audio API)
-* Firefox 4.0- (Audio Data API)
+## Supports ##
+Timbre.js runs on a modern browser or node.js.
 
+![Chrome 14.0-](http://mohayonao.github.com/timbre.js/misc/img/chrome.png)
+![Safari 6.0-](http://mohayonao.github.com/timbre.js/misc/img/safari.png)
+![Firefox 4.0-](http://mohayonao.github.com/timbre.js/misc/img/firefox.png)
+![node.js 0.8-](http://mohayonao.github.com/timbre.js/misc/img/nodejs.png)
 
-### Usage ###
+## Installation ##
+### browser
+Include the `timbre.js` file. It will install itself as `timbre`, `T` under the global namespace.
 
-Download the [minified library](http://mohayonao.github.com/timbre/timbre.min.js) and include it in your html.
 ```html
-<script src="timbre.min.js"></script>
+<script src="timbre.js"></script>
+<script>
+  T("sin", {freq:880, mul:0.5}).play();
+</script>
 ```
 
-Timbre.js is so easy.
+### node.js
+Install via npm: `npm install timbre`, you can require it as a standard node module.
+
 ```js
-// generate a 523Hz(C4) sine
-T("sin", 523.25).play();
+var T = require("timbre");
+
+T("sin", {freq:880, mul:0.5}).play();
 ```
 
-It's useful and powerful.
-```js
-// generate a chord C-major 
-T("+", T("sin", 523.35),
-       T("sin", 659.25),
-       T("sin", 783.99)).set({mul: 0.25}).play();
-```
-
-Looks a bit like CUI Max/MSP??? SuperCollider??
-```js
-// tremolo & decay  
-T("*", T("+", T("sin", 523.35),
-              T("sin", 659.25),
-              T("sin", 783.99)).set({mul: 0.25}),
-       T("+tri", 2),
-       T("adsr", 100, 2500).bang()).play();
-```
-
-### License ###
+## License ##
 
 MIT
 
-### ChangeLog ###
-2012 09 21 - **v12.09.21** (342.43 KB, minified:122.46 KB)
-* Fix: for iOS6
 
+## ChangeLog ##
+**WORKING** (335.49KB)
+* Added: using Float64Array mode, `T.setup({f64:true})`
+* Fixed: performance improvement
 
-2012 07 24 - **v12.07.23** (342.42 KB, minified:122.46 KB)
-* Fix `T("adsr", ..., onended)`
-* Add `T("mml")` synthpoly property
+**13.02.06** (337.50KB)
+* Fixed: support iOS6.1
 
+**13.02.02** (335.97KB)
+* Fixed: decoder for webkit
 
-2012 07 23 - **v12.07.23** (341.36 KB, minified:122.06 KB)
-* Fix timing control of audioprocessing for Firefox/Linux
+**13.02.01** (335.96KB)
+* Added: `T("reverb")`
+* Added: `T("chorus")`
+* Added: `T("eq")`
+* Added: `T("mediastream")`
+* Added: `T("-")`, `T("/")`, `T("min")`, `T("max")`
+* Added: `T("WebAudioAPI:recv")`, `T("WebAudioAPI:send")` at extras
+* Added: `T("MoogFF")` at extras
+* Renamed: `T("phaseshift")` to `T("phaser")`
+* Renamed: event names `scope`, `fft` to `data` (`T("scope")`, `T("spectrum")`)
+* Fixed: `T("osc").phase`, `T("osc").fb`
+* Fixed: `T("biquad").plot()`
+* Fixed: `T("mml").isEnded`
 
+**13.01.20a** (294.82KB)
+* Renamed: `T("comp").postGain` to `T("comp").gain`
 
-2012 07 22 - **v12.07.22** (340.72 KB, minified:121.92 KB)
-* Fix `T("mml")` segno cannot jump correct
-* Improve `T("mml")` selected property
+**13.01.20** (294.83KB)
+* Added: `T("adshr")`, `T("ahdsfr")`
+* Added: `T("comp")`
+* Added: `T("phaseshift")`
 
-
-2012 07 18 - **v12.07.18** (334.32 KB, minified:120.13 KB)
-* Note: Change the version format (Ubuntu style version numbering)
-* Add `T("mml")` mml scheduler
-* Add `T("fnoise")` frequency noise
-* Add `T("aux")`
-* Add `T("efx.comp")` compressor
-* Add `T("efx.reverb)` reverb
-* Improved `T("noise")`, `T("pink")` add mul argument for constructor
-* Improved `T("adsr")`, `T("ease")`, `T("glide)` add ar-mode
-* Improved `T("osc")` add wave shaping
-
-
-2012 07 08 - **v0.3.7** (294.64 KB, minified:110.66 KB)
-* Add `T("-")` subtract signals
-* Add `T("/")` divide signals
-* Add `T("%")` modulo signals
-* Add `T("math")` math functions
-* Improved `T("audio").src` accept a [File Object]
-
-
-2012 06 21 - **v0.3.6** (272.25 KB, minified:103.22 KB)
-* Added `T("pink")` pink noise generator
-* Added `T("pong)` signal folding
-* Added `T("s&h")` sample & hold
-* Improved `T("adsr")`, `T("perc")` arguments for constructor
-
-
-2012 06 20 - **v0.3.5** (257.92 KB, minified:98.90 KB)
-* Improved `T("audio")` by selecting audio sources(*.ogg, *.mp3, *.wav)
-
-
-2012 06 20 - **v0.3.4** (257.07 KB, minified:98.58 KB)
-* Safari 6
-
-
-2012 06 19 - **v0.3.3** (256.87 KB, minified:98.52 KB)
-* Added `T("clip")`, `T("pwm")`
-* Improved `T("adsr)`, `T("perc")` by adding envelope curves.
-* Removed `timbre.fn.doEvent` that is an inline-expands function 
-
-
-2012 06 17 - **v0.3.2** (292.79 KB, minified:107.25 KB)
-* Update `compiler.coffee` for Inline-expands functions, improve performance??
-
-
-2012 06 14 - **v0.3.1**
-* Improved `T("schedule")`
-
-
-2012 06 12 - **v0.3.0** (241.66 KB, minified:94.13 KB)
-* Added `T("schedule")`, `T("scale")`
-
-
-2012 06 07 - **v0.2.1**
-* Added `timbre.setup()` that the initial configuration
-
-
-2012 06 04 - **v0.2.0** (217.75 KB, minified:84.00 KB)
-* Added `T("phasor")`, `T("oscx")`
-* Added `T().isUndefined` property
-
-
-2012 06 02 - **v0.1.0** (206.26 KB, minified:79.67 KB)
-
-* Initial release of Timbre.js
+**13.01.18a** (268.71KB)
+* new version (beta)
+* [Overview of what's new and changed from old timbre.js v12.XX](https://github.com/mohayonao/timbre.js/wiki/Overview-of-what's-new-and-changed-from-old-timbre.js-v12.XX)
