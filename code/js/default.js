@@ -614,7 +614,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	function init_history() {
-		window.onhashchange=function() {
+		$(window).bind("hashchange",function() {
 			// TRICK FOR OLD BROWSERS
 			if(ignore_onhashchange) {
 				ignore_onhashchange=0;
@@ -625,7 +625,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			url=hash_decode(url);
 			addcontent("cancel");
 			opencontent(url);
-		};
+		});
 		var url=current_href();
 		var pos=strrpos(url,"/");
 		if(pos!==false) url=substr(url,pos+1);
@@ -1446,7 +1446,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).ckeditor({
 			skin:"kama",
-			removePlugins:"bbcode,elementspath,entities,scayt,resize,divarea,onchange,codemirror,oembed,wordcount",
+			removePlugins:"",
 			enterMode:CKEDITOR.ENTER_BR,
 			shiftEnterMode:CKEDITOR.ENTER_BR,
 			forcePasteAsPlainText:true,
