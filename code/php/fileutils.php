@@ -326,8 +326,8 @@ function url_get_contents($url,$type="GET") {
 	// CHECK FOR CHUNKED CONTENT
 	$headers=explode("\n",$headers);
 	foreach($headers as $header) {
-		if(stripos($header,"location:")!==false) {
-			$url2=trim(substr($header,9));
+		if(stripos($header,"location:")!==false && stripos($header,"-location:")===false) {
+			$url2=trim(substr($header,strpos($header,":",stripos($header,"location:"))+1));
 			$array2=parse_url($url2);
 			if(!isset($array2["scheme"])) $array2["scheme"]=$array["scheme"];
 			if(!isset($array2["host"])) $array2["host"]=$array["host"];
@@ -351,6 +351,8 @@ function url_get_contents($url,$type="GET") {
 			$headers=array();
 			break;
 		}
+	}
+	foreach($headers as $header) {
 		if(stripos($header,"transfer-encoding:")!==false && stripos($header,"chunked")!==false) {
 			$from=0;
 			$newbody="";
