@@ -23,7 +23,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function __escribir_nodos_check_node_name($name) {
+function remove_bad_chars($temp) {
+	static $bad_chars=null;
+	if(is_null($bad_chars)) {
+		$bad_chars=array(0,1,2,3,4,5,6,7,8,11,12,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
+		foreach($bad_chars as $key=>$val) $bad_chars[$key]=chr($val);
+	}
+	$temp=str_replace($bad_chars,"",$temp);
+	return $temp;
+}
+
+function __array2xml_check_node_name($name) {
 	try {
 		new DomElement($name);
 		return 1;
@@ -32,12 +42,7 @@ function __escribir_nodos_check_node_name($name) {
 	}
 }
 
-function escribir_nodos(&$array,$level=null) {
-	static $bad_chars=null;
-	if(is_null($bad_chars)) {
-		$bad_chars=array(0,1,2,3,4,5,6,7,8,11,12,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
-		foreach($bad_chars as $key=>$val) $bad_chars[$key]=chr($val);
-	}
+function __array2xml_write_nodes(&$array,$level=null) {
 	if(is_null($level)) {
 		$prefix="";
 		$postfix="";
@@ -55,7 +60,7 @@ function escribir_nodos(&$array,$level=null) {
 			foreach($val["#attr"] as $key2=>$val2) {
 				$key2=limpiar_key($key2);
 				$val2=str_replace("&","&amp;",$val2);
-				if(!__escribir_nodos_check_node_name($key2)) show_php_error(array("phperror"=>"Invalid XML attr name '$key2' with the value '$val2'"));
+				if(!__array2xml_check_node_name($key2)) show_php_error(array("phperror"=>"Invalid XML attr name '$key2' with the value '$val2'"));
 				$attr[]=$key2."=".'"'.$val2.'"';
 			}
 			$attr=" ".implode(" ",$attr);
@@ -63,11 +68,11 @@ function escribir_nodos(&$array,$level=null) {
 		}
 		if(is_array($val)) {
 			$buffer.="$prefix<$key$attr>$postfix";
-			$buffer.=escribir_nodos($val,$level);
+			$buffer.=__array2xml_write_nodes($val,$level);
 			$buffer.="$prefix</$key>$postfix";
 		} else {
-			if(!__escribir_nodos_check_node_name($key)) show_php_error(array("phperror"=>"Invalid XML tag name '$key' for the value '$val'"));
-			$val=str_replace($bad_chars,"",$val);
+			if(!__array2xml_check_node_name($key)) show_php_error(array("phperror"=>"Invalid XML tag name '$key' for the value '$val'"));
+			$val=remove_bad_chars($val);
 			if(strpos($val,"<")!==false || strpos($val,"&")!==false) {
 				$count=1;
 				while($count) $val=str_replace("]]>","",$val,$count);
@@ -87,7 +92,7 @@ function array2xml($array,$usecache=true,$usexmlminify=true) {
 		$cache=get_cache_file(array($array,$usexmlminify),getDefault("exts/xmlext",".xml"));
 		if(file_exists($cache)) return file_get_contents($cache);
 	}
-	$buffer=escribir_nodos($array,$usexmlminify?null:0);
+	$buffer=__array2xml_write_nodes($array,$usexmlminify?null:0);
 	if($usecache) {
 		file_put_contents($cache,$buffer);
 		chmod_protected($cache,0666);

@@ -36,7 +36,7 @@ function eval_protected($input,$global,$source="") {
 	return $output;
 }
 
-function leer_nodos(&$data,$file="") {
+function struct2array(&$data,$file="") {
 	$array=array();
 	while($linea=array_pop($data)) {
 		$name=$linea["tag"];
@@ -47,7 +47,7 @@ function leer_nodos(&$data,$file="") {
 		if(isset($linea["attributes"])) $attr=$linea["attributes"];
 		if($type=="open") {
 			// CASE 1 <some>
-			$value=leer_nodos($data,$file);
+			$value=struct2array($data,$file);
 			$path="";
 			$action="";
 			foreach($attr as $key=>$val) {
@@ -272,7 +272,7 @@ function xml2array($file,$usecache=true) {
 	$xml=file_get_contents($file);
 	$data=xml2struct($xml,$file);
 	$data=array_reverse($data);
-	$array=leer_nodos($data,$file);
+	$array=struct2array($data,$file);
 	if($usecache) {
 		$array["source"]=$file;
 		$array["depend"]=array_unique($depend);
@@ -287,6 +287,8 @@ function xml2struct($xml,$file="") {
 	$parser=xml_parser_create();
 	xml_parser_set_option($parser,XML_OPTION_CASE_FOLDING,0);
 	xml_parser_set_option($parser,XML_OPTION_TARGET_ENCODING,"UTF-8");
+	$array=array();
+	$index=array();
 	xml_parse_into_struct($parser,$xml,$array,$index);
 	$code=xml_get_error_code($parser);
 	if($code) {

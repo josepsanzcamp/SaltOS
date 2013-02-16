@@ -90,7 +90,7 @@ if(getParam("action")=="feeds") {
 		die();
 	}
 	// FUNCTIONS
-	function __feeds_leer_nodos(&$data) {
+	function __feeds_struct2array(&$data) {
 		$array=array();
 		while($linea=array_pop($data)) {
 			$name=$linea["tag"];
@@ -101,7 +101,7 @@ if(getParam("action")=="feeds") {
 			if(isset($linea["attributes"])) $attr=$linea["attributes"];
 			if($type=="open") {
 				// caso 1 <algo>
-				$value=__feeds_leer_nodos($data);
+				$value=__feeds_struct2array($data);
 				if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
 				set_array($array,$name,$value);
 			} elseif($type=="close") {
@@ -151,12 +151,12 @@ if(getParam("action")=="feeds") {
 	function __feeds_xml2array($xml) {
 		$data=xml2struct($xml);
 		$data=array_reverse($data);
-		$array=__feeds_leer_nodos($data);
+		$array=__feeds_struct2array($data);
 		return $array;
 	}
 
 	function __feeds_array2xml($array) {
-		return escribir_nodos($array);
+		return __array2xml_write_nodes($array);
 	}
 
 	function __feeds_detect($array) {
@@ -345,6 +345,10 @@ if(getParam("action")=="feeds") {
 		require_once("php/getmail.php");
 		return __getmail_make_clickable($temp);
 	}
+
+	function __feeds_remove_bad_chars($temp) {
+		return remove_bad_chars($temp);
+	}
 	// NORMAL CODE
 	if(getParam("url")) {
 		$url=getParam("url");
@@ -363,6 +367,12 @@ if(getParam("action")=="feeds") {
 			$error=get_clear_error();
 			if(strpos($error,"XML_ERR_NAME_REQUIRED")!==false) {
 				$xml=str_replace("&","&amp;",$xml);
+				capture_next_error();
+				$array=__feeds_xml2array($xml);
+				$error=get_clear_error();
+			}
+			if(strpos($error,"Invalid character")!==false) {
+				$xml=__feeds_remove_bad_chars($xml);
 				capture_next_error();
 				$array=__feeds_xml2array($xml);
 				$error=get_clear_error();
@@ -423,6 +433,12 @@ if(getParam("action")=="feeds") {
 							$error=get_clear_error();
 							if(strpos($error,"XML_ERR_NAME_REQUIRED")!==false) {
 								$xml=str_replace("&","&amp;",$xml);
+								capture_next_error();
+								$array=__feeds_xml2array($xml);
+								$error=get_clear_error();
+							}
+							if(strpos($error,"Invalid character")!==false) {
+								$xml=__feeds_remove_bad_chars($xml);
 								capture_next_error();
 								$array=__feeds_xml2array($xml);
 								$error=get_clear_error();
@@ -574,6 +590,12 @@ if(getParam("action")=="feeds") {
 			$error=get_clear_error();
 			if(strpos($error,"XML_ERR_NAME_REQUIRED")!==false) {
 				$xml=str_replace("&","&amp;",$xml);
+				capture_next_error();
+				$array=__feeds_xml2array($xml);
+				$error=get_clear_error();
+			}
+			if(strpos($error,"Invalid character")!==false) {
+				$xml=__feeds_remove_bad_chars($xml);
 				capture_next_error();
 				$array=__feeds_xml2array($xml);
 				$error=get_clear_error();

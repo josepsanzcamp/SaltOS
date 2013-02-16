@@ -478,7 +478,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
 						</field>
 						<field>
-							<label>jGrowl 1.2.6 (MIT &amp; GPL*)</label>
+							<label>jGrowl 1.2.10 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://stanlemon.net/projects/jgrowl.html")</onclick>
