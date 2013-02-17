@@ -148,11 +148,42 @@ if(getParam("action")=="feeds") {
 		return __getmail_html2text($html);
 	}
 
-	function __feeds_xml2array($xml) {
+	function __feeds_xml2array_helper($xml) {
 		$data=xml2struct($xml);
 		$data=array_reverse($data);
 		$array=__feeds_struct2array($data);
 		return $array;
+	}
+
+	function __feeds_xml2array($xml) {
+		capture_next_error();
+		$array=__feeds_xml2array_helper($xml);
+		$error=get_clear_error();
+		if(strpos($error,"Reserved XML Name")!==false) {
+			$xml=trim($xml);
+			capture_next_error();
+			$array=__feeds_xml2array_helper($xml);
+			$error=get_clear_error();
+		}
+		if(strpos($error,"Invalid document")!==false) {
+			$xml=__feeds_removescripts($xml);
+			capture_next_error();
+			$array=__feeds_xml2array_helper($xml);
+			$error=get_clear_error();
+		}
+		if(strpos($error,"XML_ERR_NAME_REQUIRED")!==false) {
+			$xml=str_replace("&","&amp;",$xml);
+			capture_next_error();
+			$array=__feeds_xml2array_helper($xml);
+			$error=get_clear_error();
+		}
+		if(strpos($error,"Invalid character")!==false) {
+			$xml=__feeds_remove_bad_chars($xml);
+			capture_next_error();
+			$array=__feeds_xml2array_helper($xml);
+			$error=get_clear_error();
+		}
+		return array($array,$error);
 	}
 
 	function __feeds_array2xml($array) {
@@ -337,8 +368,7 @@ if(getParam("action")=="feeds") {
 
 	function __feeds_removescripts($temp) {
 		require_once("php/getmail.php");
-		$temp2=__getmail_removescripts($temp);
-		return $temp2?$temp2:$temp;
+		return __getmail_removescripts($temp);
 	}
 
 	function __feeds_make_clickable($temp) {
@@ -360,23 +390,7 @@ if(getParam("action")=="feeds") {
 		$xml=url_get_contents($url2);
 		$error=get_clear_error();
 		if(!$error) {
-			$xml=__feeds_removescripts($xml);
-			$xml=trim($xml);
-			capture_next_error();
-			$array=__feeds_xml2array($xml);
-			$error=get_clear_error();
-			if(strpos($error,"XML_ERR_NAME_REQUIRED")!==false) {
-				$xml=str_replace("&","&amp;",$xml);
-				capture_next_error();
-				$array=__feeds_xml2array($xml);
-				$error=get_clear_error();
-			}
-			if(strpos($error,"Invalid character")!==false) {
-				$xml=__feeds_remove_bad_chars($xml);
-				capture_next_error();
-				$array=__feeds_xml2array($xml);
-				$error=get_clear_error();
-			}
+			list($array,$error)=__feeds_xml2array($xml);
 			if(!$error) {
 				$type=__feeds_detect($array);
 				if($type=="unknown") $error=1;
@@ -426,23 +440,7 @@ if(getParam("action")=="feeds") {
 						$xml=url_get_contents($url3);
 						$error=get_clear_error();
 						if(!$error) {
-							$xml=__feeds_removescripts($xml);
-							$xml=trim($xml);
-							capture_next_error();
-							$array=__feeds_xml2array($xml);
-							$error=get_clear_error();
-							if(strpos($error,"XML_ERR_NAME_REQUIRED")!==false) {
-								$xml=str_replace("&","&amp;",$xml);
-								capture_next_error();
-								$array=__feeds_xml2array($xml);
-								$error=get_clear_error();
-							}
-							if(strpos($error,"Invalid character")!==false) {
-								$xml=__feeds_remove_bad_chars($xml);
-								capture_next_error();
-								$array=__feeds_xml2array($xml);
-								$error=get_clear_error();
-							}
+							list($array,$error)=__feeds_xml2array($xml);
 							if(!$error) {
 								$type=__feeds_detect($array);
 								if($type=="unknown") $error=1;
@@ -583,23 +581,7 @@ if(getParam("action")=="feeds") {
 		$xml=url_get_contents($url);
 		$error=get_clear_error();
 		if(!$error) {
-			$xml=__feeds_removescripts($xml);
-			$xml=trim($xml);
-			capture_next_error();
-			$array=__feeds_xml2array($xml);
-			$error=get_clear_error();
-			if(strpos($error,"XML_ERR_NAME_REQUIRED")!==false) {
-				$xml=str_replace("&","&amp;",$xml);
-				capture_next_error();
-				$array=__feeds_xml2array($xml);
-				$error=get_clear_error();
-			}
-			if(strpos($error,"Invalid character")!==false) {
-				$xml=__feeds_remove_bad_chars($xml);
-				capture_next_error();
-				$array=__feeds_xml2array($xml);
-				$error=get_clear_error();
-			}
+			list($array,$error)=__feeds_xml2array($xml);
 			if(!$error) {
 				$type=__feeds_detect($array);
 				if($type=="unknown") $error=1;

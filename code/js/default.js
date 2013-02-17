@@ -1087,7 +1087,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// THIS CODE SEARCH THE TAB USING THE OLD OPENED TAB STORED IN A COOKIE
 		// TOO, FIND ALL OBJECTS FROM THE FORM AND IF EXIST THE FOCUSED ATTRIBUTE,
 		// SEARCH THE INDEX OF THE TAB THAT CONTAIN THE OBJECT
-		var selected=0;
+		var active=0;
 		$("[focused=true]:first",obj).each(function() {
 			focused=this;
 			var thetab=$(this).parent();
@@ -1095,7 +1095,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if($(thetab).hasClass("sitabs") && substr($(thetab).attr("id"),0,5)=="tabid") {
 					var index=0;
 					$("[id^=tabid][class=sitabs]",obj).each(function() {
-						if($(this).attr("id")==$(thetab).attr("id")) selected=index;
+						if($(this).attr("id")==$(thetab).attr("id")) active=index;
 						index++;
 					});
 					break;
@@ -1105,7 +1105,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// TRUE, CREATE THE TABS
 		$(".tabs",obj).tabs({
-			selected:selected
+			active:active
 		});
 		//~ console.timeEnd("make_tabs");
 	}
