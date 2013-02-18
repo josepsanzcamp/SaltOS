@@ -29,7 +29,7 @@ if($page=="presupuestos") {
 	$id_presupuesto=abs(intval(getParam("id")));
 	$query="SELECT * FROM tbl_presupuestos WHERE id='$id_presupuesto'";
 	$row=execute_query($query);
-	if($row==null) action_denied();
+	if($row===null) action_denied();
 	$id_proyecto=$row["id_proyecto"];
 	if($id_proyecto>0) {
 		session_error(LANG("projectexists","presupuestos"));
@@ -96,7 +96,7 @@ if($page=="posiblescli") {
 	$id_posiblecli=abs(intval(getParam("id")));
 	$query="SELECT * FROM tbl_posiblescli WHERE id='$id_posiblecli'";
 	$row=execute_query($query);
-	if($row==null) action_denied();
+	if($row===null) action_denied();
 	// CREAR CLIENTE
 	$id_campanya=$row["id_campanya"];
 	$id_importacion=$row["id_importacion"];

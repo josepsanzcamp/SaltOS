@@ -140,7 +140,7 @@ function encode_words($cad,$pad=" ") {
 
 function encode_search($cad,$pad=" ") {
 	static $bad_chars=null;
-	if(is_null($bad_chars)) for($i=0;$i<32;$i++) $bad_chars[]=chr($i);
+	if($bad_chars===null) for($i=0;$i<32;$i++) $bad_chars[]=chr($i);
 	$cad=str_replace($bad_chars,$pad,$cad);
 	$cad=encode_words($cad,$pad);
 	return $cad;
@@ -329,7 +329,7 @@ function xml2html($buffer,$usecache=true) {
 
 function is_mobile() {
 	static $ismobile=null;
-	if(is_null($ismobile)) {
+	if($ismobile===null) {
 		include("lib/mobiledetect/Mobile_Detect.php");
 		if(!isset($_SERVER["HTTP_ACCEPT"])) $_SERVER["HTTP_ACCEPT"]="";
 		if(!isset($_SERVER["HTTP_USER_AGENT"])) $_SERVER["HTTP_USER_AGENT"]="";

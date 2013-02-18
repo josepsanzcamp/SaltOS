@@ -27,7 +27,7 @@ if(!check_user()) action_denied();
 if(getParam("action")=="pagerlist") {
 	include_once("php/listsim.php");
 	$result=list_simulator($page,"count");
-	if(is_null($result)) action_denied();
+	if($result===null) action_denied();
 	// PREPARE SOME VARS
 	$currentpage=intval($result["offset"]/$result["limit"])+1;
 	$totalpages=intval(($result["count"]-1)/$result["limit"])+1;

@@ -440,7 +440,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>blockUI 2.56.0-2013.01.31 (MIT &amp; GPL*)</label>
+							<label>blockUI 2.57 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/block/")</onclick>

@@ -79,7 +79,7 @@ function make_select_config($keys) {
 		$query="SELECT valor '$key' FROM tbl_configuracion WHERE clave='$key'";
 		$subquery[]="($query) $key";
 		$config=execute_query($query);
-		if(is_null($config)) {
+		if($config===null) {
 			$val=CONFIG($key);
 			$query="INSERT INTO tbl_configuracion(`id`,`clave`,`valor`) VALUES(NULL,'$key','$val')";
 			db_query($query);
@@ -486,10 +486,10 @@ function make_select_query($page,$table,$field,$arg1=null,$arg2=null) {
 	// CHECKS FOR OPTIONAL ARGUMENTS
 	$filter="";
 	$haspos=false;
-	if(!is_null($arg1) && is_string($arg1)) $filter=$arg1;
-	if(!is_null($arg1) && is_bool($arg1)) $haspos=$arg1;
-	if(!is_null($arg2) && is_string($arg2)) $filter=$arg2;
-	if(!is_null($arg2) && is_bool($arg2)) $haspos=$arg2;
+	if($arg1!==null && is_string($arg1)) $filter=$arg1;
+	if($arg1!==null && is_bool($arg1)) $haspos=$arg1;
+	if($arg2!==null && is_string($arg2)) $filter=$arg2;
+	if($arg2!==null && is_bool($arg2)) $haspos=$arg2;
 	// REPARE FIELD LIST FOR SUBQUERY
 	$temp=explode(",",is_array($field)?$field[1]:$field);
 	foreach($temp as $key=>$val) {

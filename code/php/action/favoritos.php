@@ -65,7 +65,7 @@ if(getParam("action")=="favoritos") {
 	if(substr($url,-1,1)=="/") $url=substr($url,0,-1);
 	$query="SELECT id FROM tbl_favoritos WHERE url='${url}'";
 	$existe=execute_query($query);
-	if(is_null($existe)) {
+	if($existe===null) {
 		capture_next_error();
 		$html=url_get_contents($url);
 		$error=get_clear_error();

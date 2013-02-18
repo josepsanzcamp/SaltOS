@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function remove_bad_chars($temp) {
 	static $bad_chars=null;
-	if(is_null($bad_chars)) {
+	if($bad_chars===null) {
 		$bad_chars=array(0,1,2,3,4,5,6,7,8,11,12,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
 		foreach($bad_chars as $key=>$val) $bad_chars[$key]=chr($val);
 	}
@@ -43,7 +43,7 @@ function __array2xml_check_node_name($name) {
 }
 
 function __array2xml_write_nodes(&$array,$level=null) {
-	if(is_null($level)) {
+	if($level===null) {
 		$prefix="";
 		$postfix="";
 	} else {
@@ -75,7 +75,7 @@ function __array2xml_write_nodes(&$array,$level=null) {
 			$val=remove_bad_chars($val);
 			if(strpos($val,"<")!==false || strpos($val,"&")!==false) {
 				$count=1;
-				while($count) $val=str_replace("]]>","",$val,$count);
+				while($count) $val=str_replace(array("<![CDATA[","]]>"),"",$val,$count);
 				$val="<![CDATA[$val]]>";
 			}
 			$buffer.=($val!="")?"$prefix<$key$attr>$val</$key>$postfix":"$prefix<$key$attr/>$postfix";

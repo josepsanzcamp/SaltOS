@@ -32,7 +32,7 @@ if(getParam("action")=="quickform") {
 	if(getParam("id_folder")) $pagesim="folders";
 	if(getParam("id_folder")) lastfolder(getParam("id_folder"));
 	$ids=list_simulator($pagesim,"array");
-	if(is_null($ids)) action_denied();
+	if($ids===null) action_denied();
 	// FIND IF ID EXISTS IN THE LIST
 	$id_abs=abs($id);
 	$index=-1;

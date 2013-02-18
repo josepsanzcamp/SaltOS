@@ -64,14 +64,14 @@ if(getParam("action")=="phpthumb") {
 			default: show_php_error(array("phperror"=>"Unsupported format: $format"));
 		}
 		// CALCULATE SIZE
-		if(!is_null($width) && !is_null($height) && (imagesx($im)>$width || imagesy($im)>$height)) {
+		if($width!==null && $height!==null && (imagesx($im)>$width || imagesy($im)>$height)) {
 			$width2=imagesx($im)*$height/imagesy($im);
 			$height2=imagesy($im)*$width/imagesx($im);
 			if($width2>$width) $height=$height2;
 			if($height2>$height) $width=$width2;
-		} elseif(is_null($width) && !is_null($height) && imagesy($im)>$height) {
+		} elseif($width===null && $height!==null && imagesy($im)>$height) {
 			$width=imagesx($im)*$height/imagesy($im);
-		} elseif(!is_null($width) && is_null($height) && imagesx($im)>$width) {
+		} elseif($width!==null && $height===null && imagesx($im)>$width) {
 			$height=imagesy($im)*$width/imagesx($im);
 		} else {
 			$width=imagesx($im);

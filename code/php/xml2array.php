@@ -397,7 +397,7 @@ function eval_attr($array) {
 									if(eval_bool($val2)) {
 										if(CONFIG_LOADED()) {
 											$newvalue=CONFIG($value);
-											if(is_null($newvalue)) xml_error("Configuration '$value' not found");
+											if($newvalue===null) xml_error("Configuration '$value' not found");
 											$value=$newvalue;
 										} else {
 											$stack["cancel"]=1;

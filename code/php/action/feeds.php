@@ -220,7 +220,7 @@ if(getParam("action")=="feeds") {
 			$title=__feeds_getutf8(__feeds_getvalue(__feeds_getnode("feed/title",$array)));
 			$link=__feeds_getnode("feed/link",$array);
 			$count=0;
-			while($link!=null) {
+			while($link!==null) {
 				$rel=__feeds_getnode("#attr/rel",$link);
 				$type=__feeds_getnode("#attr/type",$link);
 				if($rel=="alternate" && $type=="text/html") {
@@ -250,7 +250,7 @@ if(getParam("action")=="feeds") {
 		if($type=="rdf") {
 			$item=__feeds_getvalue(__feeds_getnode("rdf:RDF/item",$array));
 			$count=0;
-			while($item!=null) {
+			while($item!==null) {
 				$title=__feeds_getnode("title",$item);
 				if(is_array($title)) {
 					$title=__feeds_array2xml($title);
@@ -274,7 +274,7 @@ if(getParam("action")=="feeds") {
 		} elseif($type=="rss2") {
 			$item=__feeds_getvalue(__feeds_getnode("rss/channel/item",$array));
 			$count=0;
-			while($item!=null) {
+			while($item!==null) {
 				$title=__feeds_getnode("title",$item);
 				if(is_array($title)) {
 					$title=__feeds_array2xml($title);
@@ -298,7 +298,7 @@ if(getParam("action")=="feeds") {
 		} elseif($type=="atom") {
 			$item=__feeds_getvalue(__feeds_getnode("feed/entry",$array));
 			$count=0;
-			while($item!=null) {
+			while($item!==null) {
 				$title=__feeds_getvalue(__feeds_getnode("title",$item));
 				if(is_array($title)) {
 					$title=__feeds_array2xml($title);
@@ -309,7 +309,7 @@ if(getParam("action")=="feeds") {
 				}
 				$link=__feeds_getnode("link",$item);
 				$count2=0;
-				while($link!=null) {
+				while($link!==null) {
 					$rel=__feeds_getnode("#attr/rel",$link);
 					$type=__feeds_getnode("#attr/type",$link);
 					if($rel=="alternate" && $type=="text/html") {

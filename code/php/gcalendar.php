@@ -43,7 +43,7 @@ function __gcalendar_unformat($datetime) {
 
 function __gcalendar_insert($service,$title,$content,$where,$dstart,$dstop) {
 	// CHECK FOR A VALID SERVICE
-	if($service==null) return false;
+	if($service===null) return false;
 	// PREPARE DATETIME STRINGS
 	$dstart=__gcalendar_format($dstart);
 	$dstop=__gcalendar_format($dstop);
@@ -66,7 +66,7 @@ function __gcalendar_insert($service,$title,$content,$where,$dstart,$dstop) {
 
 function __gcalendar_update($service,$url,$title,$content,$where,$dstart,$dstop) {
 	// CHECK FOR A VALID SERVICE
-	if($service==null) return false;
+	if($service===null) return false;
 	// PREPARE DATETIME STRINGS
 	$dstart=__gcalendar_format($dstart);
 	$dstop=__gcalendar_format($dstop);
@@ -85,7 +85,7 @@ function __gcalendar_update($service,$url,$title,$content,$where,$dstart,$dstop)
 
 function __gcalendar_delete($service,$url) {
 	// CHECK FOR A VALID SERVICE
-	if($service==null) return false;
+	if($service===null) return false;
 	// MAKE THE DELETE
 	if(!$service->delete($url)) return false;
 	return true;
@@ -165,7 +165,7 @@ function __gcalendar_struct($datas) {
 
 function __gcalendar_feed($service,$extra=array()) {
 	// CHECK FOR A VALID SERVICE
-	if($service==null) return false;
+	if($service===null) return false;
 	// REQUEST THE FEED
 	$result=array();
 	$index=1;

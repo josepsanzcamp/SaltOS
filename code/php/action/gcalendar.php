@@ -45,7 +45,7 @@ if(getParam("action")=="gcalendar") {
 		javascript_history(-1);
 		die();
 	}
-	if($service==null) {
+	if($service===null) {
 		session_error(LANG("invalidgcalendarpassword",$page));
 		javascript_history(-1);
 		die();

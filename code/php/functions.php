@@ -306,7 +306,7 @@ function CONFIG($key) {
 function setConfig($key,$val) {
 	$query="SELECT valor FROM tbl_configuracion WHERE clave='$key'";
 	$config=execute_query($query);
-	if(is_null($config)) {
+	if($config===null) {
 		$query="INSERT INTO tbl_configuracion(`id`,`clave`,`valor`) VALUES(NULL,'$key','$val')";
 		db_query($query);
 	} else {
@@ -666,7 +666,7 @@ function load_iconset($iconset) {
 function load_style($style) {
 	global $_CONFIG;
 	if(!isset($_CONFIG["themeroller"])) $_CONFIG["themeroller"]=xml2array("xml/themeroller.xml");
-	return !is_null(getDefault("themeroller/themes/$style"));
+	return getDefault("themeroller/themes/$style")!==null;
 }
 
 function load_lang($lang) {
@@ -938,8 +938,8 @@ function __do_message_error_helper(&$item,$key,$dict) {
 function show_php_error($array=null) {
 	global $_ERROR_HANDLER;
 	static $backup=null;
-	if(is_null($array)) $array=$backup;
-	if(is_null($array)) return;
+	if($array===null) $array=$backup;
+	if($array===null) return;
 	// REFUSE THE DEPRECATED WARNINGS
 	if(isset($array["phperror"])) {
 		$pos1=stripos($array["phperror"],"function");
