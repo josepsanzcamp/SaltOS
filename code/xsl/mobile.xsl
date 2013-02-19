@@ -1057,7 +1057,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template match='/'>
-	<html xmlns="http://www.w3.org/1999/xhtml">
+	<html xmlns="http://www.w3.org/1999/xhtml" lang="{/root/info/lang}" dir="{/root/info/dir}">
 		<head>
 			<xsl:call-template name="head"/>
 		</head>

@@ -24,6 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
+	<dir>ltr</dir>
 	<default>common</default>
 	<common>
 		<nopage>Seleccione una aplicación para empezar a trabajar</nopage>
@@ -1455,6 +1456,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<eu>Euskera</eu>
 		<gl>Gallego</gl>
 		<fr>Francés</fr>
+		<ar>Árabe</ar>
 	</translate>
 	<buscador>
 		<list>Buscador</list>

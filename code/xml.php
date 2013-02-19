@@ -149,6 +149,8 @@ if(isset($_ERROR)) $_RESULT["errors"]=$_ERROR;
 $_RESULT["info"]["color"]=getDefault("themeroller/themes/$style");
 $_RESULT["info"]["usejscache"]=getDefault("cache/usejscache");
 $_RESULT["info"]["usecsscache"]=getDefault("cache/usecsscache");
+$_RESULT["info"]["lang"]=$lang;
+$_RESULT["info"]["dir"]=$_LANG["dir"];
 // THE XSLT PROCESSOR CODE
 $xsl="default";
 if(file_exists("xsl/${page}.xsl")) $xsl=$page;

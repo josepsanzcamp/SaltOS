@@ -168,8 +168,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>mailto("agencewebtictacto@gmail.com")</onclick>
 						</field>
 						<field>
-							<type>separator</type>
+							<label>Arabic (Saudi Arabia) (Mohammed Mubarak)</label>
+							<type>link</type>
 							<class>tbody</class>
+							<onclick>mailto("mawedElkareem@gmail.com")</onclick>
 						</field>
 					</row>
 					<row>

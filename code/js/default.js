@@ -842,18 +842,15 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	function fix4html(str) {
-		// GET THE CONTENTS OF HTML TAG IF EXISTS
-		var pos1=strpos(str,"<html");
-		var pos2=strpos(str,">",pos1);
-		var pos3=strpos(str,"</html>",pos2);
-		if(pos1!==false && pos2!==false && pos3!==false) str=substr(str,pos2+1,pos3-pos2-1);
-		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
-		str=str_replace("<title","<div type='title'",str);
-		str=str_replace("</title>","</div>",str);
+		// REPLACE HTML, HEAD, BODY AND TITLE BY DIV ELEMENTS
+		str=str_replace("<html","<div type='html'",str);
+		str=str_replace("</html>","</div>",str);
 		str=str_replace("<head","<div type='head'",str);
 		str=str_replace("</head>","</div>",str);
 		str=str_replace("<body","<div type='body'",str);
 		str=str_replace("</body>","</div>",str);
+		str=str_replace("<title","<div type='title'",str);
+		str=str_replace("</title>","</div>",str);
 		// RETURN THE STRING
 		return str;
 	}
@@ -921,10 +918,19 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("updatecontent");
 		unloadingcontent();
 		$(document).scrollTop(0);
+		// UPDATE THE LANG AND  DIR IF NEEDED
+		var temp=$("html");
+		var temp2=$("div[type=html]",html);
+		if($(temp).attr("lang")!=$(temp2).attr("lang")) {
+			$(temp).attr("lang",$(temp2).attr("lang"));
+		}
+		if($(temp).attr("dir")!=$(temp2).attr("dir")) {
+			$(temp).attr("dir",$(temp2).attr("dir"));
+		}
 		// UPDATE THE TITLE IF NEEDED
-		var divtitle=$("div[type=title]",html);
-		if(document.title!=$(divtitle).text()) {
-			document.title=$(divtitle).text();
+		var title2=$("div[type=title]",html);
+		if(document.title!=$(title2).text()) {
+			document.title=$(title2).text();
 		}
 		// UPDATE THE NORTH PANEL IF NEEDED
 		//~ console.time("updatecontent north fase 0");

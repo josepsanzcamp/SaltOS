@@ -746,18 +746,15 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function fix4html(str) {
-		// GET THE CONTENTS OF HTML TAG IF EXISTS
-		var pos1=strpos(str,"<html");
-		var pos2=strpos(str,">",pos1);
-		var pos3=strpos(str,"</html>",pos2);
-		if(pos1!==false && pos2!==false && pos3!==false) str=substr(str,pos2+1,pos3-pos2-1);
-		// REPLACE TITLE, HEAD AND BODY BY DIV ELEMENTS
-		str=str_replace("<title","<div type='title'",str);
-		str=str_replace("</title>","</div>",str);
+		// REPLACE HTML, HEAD, BODY AND TITLE BY DIV ELEMENTS
+		str=str_replace("<html","<div type='html'",str);
+		str=str_replace("</html>","</div>",str);
 		str=str_replace("<head","<div type='head'",str);
 		str=str_replace("</head>","</div>",str);
 		str=str_replace("<body","<div type='body'",str);
 		str=str_replace("</body>","</div>",str);
+		str=str_replace("<title","<div type='title'",str);
+		str=str_replace("</title>","</div>",str);
 		// RETURN THE STRING
 		return str;
 	}
@@ -804,9 +801,14 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		var page=$("#page");
 		$(page).hide();
 		$(page).page("destroy");
+		// UPDATE THE LANG AND DIR
+		var temp=$("html");
+		var temp2=$("div[type=html]",html);
+		$(temp).attr("lang",$(temp2).attr("lang"));
+		$(temp).attr("dir",$(temp2).attr("dir"));
 		// UPDATE THE TITLE
-		var divtitle=$("div[type=title]",html);
-		document.title=$(divtitle).text();
+		var title2=$("div[type=title]",html);
+		document.title=$(divtitle2).text();
 		// UPDATE THE NORTH PANEL
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);

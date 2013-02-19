@@ -57,6 +57,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<label>French (France)</label>
 			<value>fr_FR</value>
 		</row>
+		<row>
+			<label>Arabic (Saudi Arabia)</label>
+			<value>ar_SA</value>
+		</row>
 	</rows>
 	<value global="lang" eval="true">$lang</value>
 	<onchange>submit1()</onchange>

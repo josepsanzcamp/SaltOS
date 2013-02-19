@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2012 by Josep Sanz Campderrós
+More information in http://www.saltos.net or info@saltos.net
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>common</default>
+	<common>
+		<title>اعداد برنامج SaltOS</title>
+		<yes>نعم</yes>
+		<no>لا</no>
+		<language>اختيار اللغة ,المظهر والايقونات</language>
+		<welcome_message>مرحبا بك في اعداد برنامج  SaltOS </welcome_message>
+		<lang_message>إختر اللغة: </lang_message>
+		<style_message>إختر المظهر: </style_message>
+		<iconset_message>إختر الايقونات: </iconset_message>
+		<begin_message>اضغط علي "التالي" لاعداد SaltOS فقط في 5 خطوات سهلة</begin_message>
+		<back>السابق</back>
+		<next>التالي</next>
+		<test>تحقق</test>
+		<install>تثبيت SaltOS</install>
+		<saltos>تشغيل SaltOS</saltos>
+		<is_writable>التحقق من إذن الكتابة</is_writable>
+		<is_executable>التحقق من البرامج الخارجية</is_executable>
+		<directory> دليل </directory>
+		<file>ملف</file>
+		<executable>تنفيذي</executable>
+		<database_link>الاتصال بقاعدة البيانات</database_link>
+		<select_dbtype>اختر ال DBMS</select_dbtype>
+		<select_prefered> (مفضل)</select_prefered>
+		<selected_dbtype>DBMS المختار</selected_dbtype>
+		<dbfile>ملف قاعدة البيانات</dbfile>
+		<dbtest>تشيل اختبار الاتصال</dbtest>
+		<dbhost>المضيف</dbhost>
+		<dbport>الميناء</dbport>
+		<dbuser>المستخدم</dbuser>
+		<dbpass>كلمة المرور</dbpass>
+		<dbname>إسم قاعدة البيانات</dbname>
+		<admin_account>بيانات الوصول لحساب المدير</admin_account>
+		<user>المستخدم</user>
+		<pass>كلمة المرور</pass>
+		<email>بريد</email>
+		<optional>اختياري</optional>
+		<forcessl>اجبار استخدام SSL (https)</forcessl>
+		<timezone> المنطقة الزمني</timezone>
+		<exampledata>استيراد عينة بيانات</exampledata>
+		<undefined>غير معرف</undefined>
+		<install_input>ملخص وتأكيد التثبيت</install_input>
+		<install_output>ناتج التثبيت</install_output>
+		<config>حفظ الاعدادات للوصول لقاعدة البيانات</config>
+		<dbschema>انشاء الجداول في قاعدة البيانات</dbschema>
+		<dbstatic>استيراد البيانات الداخلية</dbstatic>
+		<streetdata>استيراد بيانات الشارع</streetdata>
+		<defaultdata>استيراد بيانات عامة</defaultdata>
+		<permissiondata>انشاء صلاحيات مدير للمجموعة</permissiondata>
+		<delete>حذف ملفات التثبيت</delete>
+		<rename>إعادة تسمية ملفات التثبيت</rename>
+		<finish>اكتمل التثبيت</finish>
+		<gotohome>اعادة تحميل الصفحة</gotohome>
+		<notifybug>التبليغ عن مشكلة</notifybug>
+		<step>الخطوة</step>
+		<lang>اللغة</lang>
+		<style>المظهر</style>
+		<iconset>الايقونات</iconset>
+		<env_vars>متغيرات بيئة النظام</env_vars>
+		<env_path>المسار</env_path>
+		<env_lang>الغة</env_lang>
+	</common>
+</root>
