@@ -1481,7 +1481,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:call-template name="head"/>
 		</head>
 		<body>
-			<table class="width100 none" cellpadding="0" cellspacing="0" border="0">
+			<table class="width100 none {/root/info/dir}" cellpadding="0" cellspacing="0" border="0">
 				<tr>
 					<td valign="top" colspan="2">
 						<div class="ui-layout-north">

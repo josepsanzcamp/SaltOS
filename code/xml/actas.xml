@@ -706,7 +706,7 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 				<margins>0,0,0,0</margins>
 				<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
 				<!-- PONER MARCA DE AGUA -->
-				<font>"Helvetica","B",CONFIG("water_actas_size"),"#eeeeee"</font>
+				<font>"normal","B",CONFIG("water_actas_size"),"#eeeeee"</font>
 				<text>CONFIG("water_actas_posx"),CONFIG("water_actas_posy"),CONFIG("water_actas_text"),CONFIG("water_actas_angle")</text>
 				<margins>50,30,30,30</margins>
 				<setxy>30,50</setxy>
@@ -714,7 +714,7 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 			<footer>
 				<margins>0,0,0,0</margins>
 				<!-- PONER PIE DE PAGINA -->
-				<font>"Helvetica","",6,CONFIG("color_text2")</font>
+				<font>"normal","",6,CONFIG("color_text2")</font>
 				<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
 				<margins>50,30,30,30</margins>
 			</footer>
@@ -724,13 +724,13 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 			<!-- VOLCAR DATOS -->
 			<setxy>30,50</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("acta")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],75,4,"L",$row["id"]</textarea>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>105,$row["y"],25,4,"R",LANG("userinsert")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>130,$row["y"],75,4,"L",$row["usuario"]</textarea>
 			<eval>$row["id_cliente"]</eval>
 				<getxy>"x","y"</getxy>
@@ -740,13 +740,13 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("cliente")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],75,4,"L",$row["cliente"]</textarea>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>105,$row["y"],25,4,"R",LANG("cif")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>130,$row["y"],75,4,"L",$row["cif"]</textarea>
 			<eval>$row["id_proyecto"]</eval>
 				<getxy>"x","y"</getxy>
@@ -756,9 +756,9 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("proyecto")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],100,4,"L",$row["proyecto"]</textarea>
 			<eval>true</eval>
 			<getxy>"x","y"</getxy>
@@ -768,13 +768,13 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("dstart")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],50,4,"L",$row["dstart"]</textarea>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>105,$row["y"],25,4,"R",LANG("dstop")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>130,$row["y"],50,4,"L",$row["dstop"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
@@ -783,9 +783,9 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("nombre")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],100,4,"L",$row["nombre"]</textarea>
 			<eval>$row["lugar"]</eval>
 				<getxy>"x","y"</getxy>
@@ -795,9 +795,9 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("lugar")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],100,4,"L",$row["lugar"]</textarea>
 			<eval>true</eval>
 			<getxy>"x","y"</getxy>
@@ -809,9 +809,9 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 			<getxy>"x","y"</getxy>
 			<checky>4</checky>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("asistentes")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],100,4,"L",$row["asistentes"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
@@ -822,9 +822,9 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 			<getxy>"x","y"</getxy>
 			<checky>4</checky>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("temas")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],125,4,"L",trim($row["temas"])</textarea>
 			<eval>$row["aceptados"]</eval>
 				<getxy>"x","y"</getxy>
@@ -836,9 +836,9 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 				<getxy>"x","y"</getxy>
 				<checky>4</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("aceptados")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",trim($row["aceptados"])</textarea>
 			<eval>$row["cancelados"]</eval>
 				<getxy>"x","y"</getxy>
@@ -850,9 +850,9 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 				<getxy>"x","y"</getxy>
 				<checky>4</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("cancelados")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",trim($row["cancelados"])</textarea>
 			<eval>$row["pendientes"]</eval>
 				<getxy>"x","y"</getxy>
@@ -864,9 +864,9 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 				<getxy>"x","y"</getxy>
 				<checky>4</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("pendientes")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",trim($row["pendientes"])</textarea>
 			<eval>$row["comentarios"]</eval>
 				<getxy>"x","y"</getxy>
@@ -878,9 +878,9 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 				<getxy>"x","y"</getxy>
 				<checky>4</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("comentarios")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",trim($row["comentarios"])</textarea>
 			<eval>true</eval>
 		</foreach>

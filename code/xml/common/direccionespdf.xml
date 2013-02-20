@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+1</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],150,4,"C",LANG("direccionesold")</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+1</setxy>
@@ -52,44 +52,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("nombre")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],125,4,"L",$row["nombre"]</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+2</setxy>
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("direccion")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],125,4,"L",$row["direccion"]</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+2</setxy>
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("pais")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],75,4,"L",$row["nombre_pais"]</textarea>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>105,$row["y"],25,4,"R",LANG("provincia")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>130,$row["y"],75,4,"L",$row["nombre_provincia"]</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+2</setxy>
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("poblacion")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],75,4,"L",$row["nombre_poblacion"]</textarea>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>105,$row["y"],25,4,"R",LANG("codpostal")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>130,$row["y"],75,4,"L",$row["nombre_codpostal"]</textarea>
 		<!-- COMUNICACIONES CLIENTE -->
 		<query>"SELECT *,(SELECT nombre FROM tbl_tiposcom WHERE id=id_tipocom) tipocom FROM tbl_comunicaciones WHERE id_aplicacion='".$row["id_aplicacion"]."' AND id_registro='".$row["id_registro"]."' AND id_direccion='".$row["id"]."'"</query>
@@ -99,9 +99,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<checky>4</checky>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",$row["tipocom"]</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],125,4,"L",$row["nombre"]?$row["valor"]." (".$row["nombre"].")":$row["valor"]</textarea>
 		</foreach>
 	</foreach>

@@ -41,13 +41,17 @@ form {
 }
 .ui-layout-north .left {
 	float:left;
-	margin-top:-1px;
-	margin-left:4px;
+	margin:-1px 4px 0px 4px;
+}
+.rtl .ui-layout-north .left {
+	float:right;
 }
 .ui-layout-north .right {
 	float:right;
-	margin-top:-1px;
-	margin-right:4px;
+	margin:-1px 4px 0px 4px;
+}
+.rtl .ui-layout-north .right {
+	float:left;
 }
 .ui-layout-north .texto {
 	text-align:center;
@@ -57,6 +61,9 @@ form {
 .ui-layout-west {
 	padding:1px 0px 2px 2px;
 	width:198px;
+}
+.rtl .ui-layout-west {
+	padding:1px 2px 2px 0px;
 }
 .ui-layout-center {
 	padding:2px 2px 2px 2px;
@@ -73,6 +80,9 @@ form {
 	position:relative;
 	left:-16px;
 }
+.rtl .accordion-link li {
+	left:16px;
+}
 .accordion-link li a {
 	text-decoration:none;
 	border:none!important;
@@ -81,6 +91,9 @@ form {
 .accordion-link li a.submenu {
 	position:relative;
 	left:16px!important;
+}
+.rtl .accordion-link li a.submenu {
+	left:-16px!important;
 }
 .ui-tabs {
 	border:none!important;
@@ -91,6 +104,11 @@ form {
 }
 .ui-tabs-nav li {
 	margin-right:2px!important;
+}
+.rtl .ui-tabs-nav li {
+	float:right!important;
+	margin-right:0px!important;
+	margin-left:2px!important;
 }
 a.ui-state-default {
 	padding:3px 5px;
@@ -168,15 +186,24 @@ iframe.ui-state-default {
 .tabla tr td.noright {
 	border-right:0px;
 }
+.tabla tr td.noleft {
+	border-left:0px;
+}
 /* FOR ALIGNMENTS AND STYLES */
 .left{
 	text-align:left;
+}
+.rtl .left{
+	text-align:right;
 }
 .center{
 	text-align:center;
 }
 .right{
 	text-align:right;
+}
+.rtl .right{
+	text-align:left;
 }
 .top {
 	vertical-align:top;

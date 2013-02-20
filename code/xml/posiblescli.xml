@@ -709,7 +709,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<margins>0,0,0,0</margins>
 			<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
 			<!-- PONER MARCA DE AGUA -->
-			<font>"Helvetica","B",CONFIG("water_posiblescli_size"),"#eeeeee"</font>
+			<font>"normal","B",CONFIG("water_posiblescli_size"),"#eeeeee"</font>
 			<text>CONFIG("water_posiblescli_posx"),CONFIG("water_posiblescli_posy"),CONFIG("water_posiblescli_text"),CONFIG("water_posiblescli_angle")</text>
 			<margins>50,30,30,30</margins>
 			<setxy>30,50</setxy>
@@ -717,7 +717,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<footer>
 			<margins>0,0,0,0</margins>
 			<!-- PONER PIE DE PAGINA -->
-			<font>"Helvetica","",6,CONFIG("color_text2")</font>
+			<font>"normal","",6,CONFIG("color_text2")</font>
 			<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
 			<margins>50,30,30,30</margins>
 		</footer>

@@ -1062,7 +1062,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:call-template name="head"/>
 		</head>
 		<body>
-			<div data-role="page" id="page">
+			<div data-role="page" id="page" class="{/root/info/dir}">
 				<div class="ui-layout-north">
 					<xsl:call-template name="title"/>
 				</div>

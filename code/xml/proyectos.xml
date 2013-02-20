@@ -1659,7 +1659,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 			<margins>0,0,0,0</margins>
 			<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
 			<!-- PONER MARCA DE AGUA -->
-			<font>"Helvetica","B",CONFIG("water_proyectos_size"),"#eeeeee"</font>
+			<font>"normal","B",CONFIG("water_proyectos_size"),"#eeeeee"</font>
 			<text>CONFIG("water_proyectos_posx"),CONFIG("water_proyectos_posy"),CONFIG("water_proyectos_text"),CONFIG("water_proyectos_angle")</text>
 			<margins>50,30,30,30</margins>
 			<setxy>30,50</setxy>
@@ -1667,7 +1667,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		<footer>
 			<margins>0,0,0,0</margins>
 			<!-- poner pie de pagina -->
-			<font>"Helvetica","",6,CONFIG("color_text2")</font>
+			<font>"normal","",6,CONFIG("color_text2")</font>
 			<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
 			<margins>50,30,30,30</margins>
 		</footer>

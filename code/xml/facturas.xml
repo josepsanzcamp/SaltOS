@@ -1627,7 +1627,7 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<margins>0,0,0,0</margins>
 				<image>$row["logo_left"],$row["logo_top"],$row["logo_width"],$row["logo_height"],get_directory("dirs/filesdir").$row["logo_file"]</image>
 				<!-- PONER MARCA DE AGUA -->
-				<font>"Helvetica","B",$row["cerrado"]?CONFIG("water_facturas_size"):CONFIG("water_albaranes_size"),"#eeeeee"</font>
+				<font>"normal","B",$row["cerrado"]?CONFIG("water_facturas_size"):CONFIG("water_albaranes_size"),"#eeeeee"</font>
 				<text>$row["cerrado"]?CONFIG("water_facturas_posx"):CONFIG("water_albaranes_posx"),
 					$row["cerrado"]?CONFIG("water_facturas_posy"):CONFIG("water_albaranes_posy"),
 					$row["cerrado"]?CONFIG("water_facturas_text"):CONFIG("water_albaranes_text"),
@@ -1635,18 +1635,18 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<!-- PONER CAJA FACTURA -->
 				<color>$row["color_line"],"#000000"</color>
 				<rect>130,45,50,16,"D",0.15,1</rect>
-				<font>"Helvetica","B",8,$row["color_text1"]</font>
+				<font>"normal","B",8,$row["color_text1"]</font>
 				<text>131,46,$row["cerrado"]?LANG("factura"):LANG("albaran")</text>
 				<line>130,51,180,51</line>
-				<font>"Helvetica","",8,$row["color_text2"]</font>
+				<font>"normal","",8,$row["color_text2"]</font>
 				<text>131,52,$row["cerrado"]?LANG("numfacxxx").": ".$row["num"]:LANG("numalbxxx").": ".$row["num"]</text>
 				<text>131,56,LANG("fechaemision").": ".$row["fecha"]</text>
 				<!-- PONER CAJA CLIENTE -->
 				<rect>30,45,90,36,"D",0.15,1</rect>
-				<font>"Helvetica","B",8,$row["color_text1"]</font>
+				<font>"normal","B",8,$row["color_text1"]</font>
 				<text>31,46,LANG("clientdata")</text>
 				<line>30,51,120,51</line>
-				<font>"Helvetica","",8,$row["color_text2"]</font>
+				<font>"normal","",8,$row["color_text2"]</font>
 				<text>31,52,LANG("titular").": ".$row["nombre"]</text>
 				<text>31,56,LANG("cif").": ".$row["cif"]</text>
 				<text>31,60,LANG("direccion").": ".$row["direccion"]</text>
@@ -1656,7 +1656,7 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<text>31,76,LANG("codpostal").": ".$row["nombre_codpostal"]</text>
 				<!-- PONER CAJA CONCEPTOS -->
 				<rect>30,90,150,120,"D",0.15,1</rect>
-				<font>"Helvetica","B",8,$row["color_text1"]</font>
+				<font>"normal","B",8,$row["color_text1"]</font>
 				<textarea>30,91,90,4,"C",LANG("concepto")</textarea>
 				<textarea>120,91,15,4,"C",LANG("unid")</textarea>
 				<textarea>135,91,15,4,"C",LANG("prun")</textarea>
@@ -1673,7 +1673,7 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 			<footer>
 				<margins>0,0,0,0</margins>
 				<!-- PONER PIE DE PAGINA -->
-				<font>"Helvetica","",6,$row["color_text2"]</font>
+				<font>"normal","",6,$row["color_text2"]</font>
 				<textarea>30,270,150,4,"C",$row["factura_pie1"]</textarea>
 				<textarea>30,273,150,4,"C",$row["factura_pie2"]</textarea>
 				<pageno>30,279,150,4,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
@@ -1683,7 +1683,7 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 			<newpage></newpage>
 			<!-- PONER LOS CONCEPTOS -->
 			<query>"SELECT *,'".$row["color_line"]."' color_line,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total FROM tbl_facturas_c WHERE ".$row["filtro"]." ORDER BY id ASC"</query>
-			<font>"Helvetica","",8,$row["color_text2"]</font>
+			<font>"normal","",8,$row["color_text2"]</font>
 			<setxy>30,97</setxy>
 			<foreach>
 				<getxy>"x","y"</getxy>
@@ -1708,12 +1708,12 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<line>130,231,180,231</line>
 				<line>130,237,180,237</line>
 				<line>165,219,165,243</line>
-				<font>"Helvetica","B",8,$row["color_text1"]</font>
+				<font>"normal","B",8,$row["color_text1"]</font>
 				<textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
 				<textarea>130,226,35,4,"R",CONFIG("accounting_iva_name")." (".$row["iva"]."%)"</textarea>
 				<textarea>130,232,35,4,"R",CONFIG("accounting_irpf_name")." (".$row["irpf"]."%)"</textarea>
 				<textarea>130,238,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
-				<font>"Helvetica","",8,$row["color_text2"]</font>
+				<font>"normal","",8,$row["color_text2"]</font>
 				<textarea>165,220,15,4,"R",$row["base"]</textarea>
 				<textarea>165,226,15,4,"R",$row["iva2"]</textarea>
 				<textarea>165,232,15,4,"R",$row["irpf2"]</textarea>
@@ -1724,11 +1724,11 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<line>130,225,180,225</line>
 				<line>130,231,180,231</line>
 				<line>165,219,165,237</line>
-				<font>"Helvetica","B",8,$row["color_text1"]</font>
+				<font>"normal","B",8,$row["color_text1"]</font>
 				<textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
 				<textarea>130,226,35,4,"R",CONFIG("accounting_iva_name")." (".$row["iva"]."%)"</textarea>
 				<textarea>130,232,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
-				<font>"Helvetica","",8,$row["color_text2"]</font>
+				<font>"normal","",8,$row["color_text2"]</font>
 				<textarea>165,220,15,4,"R",$row["base"]</textarea>
 				<textarea>165,226,15,4,"R",$row["iva2"]</textarea>
 				<textarea>165,232,15,4,"R",$row["total"]</textarea>
@@ -1738,11 +1738,11 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<line>130,225,180,225</line>
 				<line>130,231,180,231</line>
 				<line>165,219,165,237</line>
-				<font>"Helvetica","B",8,$row["color_text1"]</font>
+				<font>"normal","B",8,$row["color_text1"]</font>
 				<textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
 				<textarea>130,226,35,4,"R",CONFIG("accounting_irpf_name")." (".$row["irpf"]."%)"</textarea>
 				<textarea>130,232,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
-				<font>"Helvetica","",8,$row["color_text2"]</font>
+				<font>"normal","",8,$row["color_text2"]</font>
 				<textarea>165,220,15,4,"R",$row["base"]</textarea>
 				<textarea>165,226,15,4,"R",$row["irpf2"]</textarea>
 				<textarea>165,232,15,4,"R",$row["total"]</textarea>
@@ -1751,18 +1751,18 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<rect>130,219,50,12,"D",0.15,1</rect>
 				<line>130,225,180,225</line>
 				<line>165,219,165,231</line>
-				<font>"Helvetica","B",8,$row["color_text1"]</font>
+				<font>"normal","B",8,$row["color_text1"]</font>
 				<textarea>130,220,35,4,"R",LANG("baseimponible")." (".CONFIG("accounting_currency").")"</textarea>
 				<textarea>130,226,35,4,"R",LANG("totalapagar")." (".CONFIG("accounting_currency").")"</textarea>
-				<font>"Helvetica","",8,$row["color_text2"]</font>
+				<font>"normal","",8,$row["color_text2"]</font>
 				<textarea>165,220,15,4,"R",$row["base"]</textarea>
 				<textarea>165,226,15,4,"R",$row["total"]</textarea>
 			<eval>$row["notas"]</eval>
 				<!-- MONTAR CAJA DE NOTAS -->
-				<font>"Helvetica","B",8,$row["color_text1"]</font>
+				<font>"normal","B",8,$row["color_text1"]</font>
 				<text>31,220,LANG("notas")</text>
 				<line>30,225,120,225</line>
-				<font>"Helvetica","",8,$row["color_text2"]</font>
+				<font>"normal","",8,$row["color_text2"]</font>
 				<textarea>30,226,90,4,"L",$row["notas"]</textarea>
 				<getxy>"x","y"</getxy>
 			<eval>$row["notas"] AND $row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
@@ -1776,7 +1776,7 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 			<eval>true</eval>
 			<!-- ACTIVAR EVAL OTRA VEZ -->
 			<query>"SELECT *,(SELECT cerrado FROM tbl_facturas WHERE id=id_factura) cerrado FROM tbl_facturas_v WHERE ".$row["filtro"]." ORDER BY fecha DESC"</query>
-			<font>"Helvetica","",6,$row["color_text2"]</font>
+			<font>"normal","",6,$row["color_text2"]</font>
 			<setxy>30,264</setxy>
 			<foreach>
 				<getxy>"x","y"</getxy>

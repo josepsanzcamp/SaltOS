@@ -56,9 +56,12 @@ if(typeof(__home__)=="undefined" && typeof(parent.__home__)=="undefined") {
 							var div="<div class='"+clase+"' style='"+estilo+"'>"+data+"</div>";
 							$(divs).append(div);
 						});
+						// SUPPORT FOR LTR AND RTL LANGS
+						var dir=$("html").attr("dir");
 						$(divs).masonry({
 							itemSelector:".box",
-							isResizable:true
+							isResizable:true,
+							isRTL:(dir=="rtl")
 						});
 					});
 					unloadingcontent();

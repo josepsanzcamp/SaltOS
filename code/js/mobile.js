@@ -806,6 +806,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		var temp2=$("div[type=html]",html);
 		$(temp).attr("lang",$(temp2).attr("lang"));
 		$(temp).attr("dir",$(temp2).attr("dir"));
+		$(".ltr,.rtl").removeClass("ltr rtl").addClass($(temp2).attr("dir"));
 		// UPDATE THE TITLE
 		var title2=$("div[type=title]",html);
 		document.title=$(divtitle2).text();

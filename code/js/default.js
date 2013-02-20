@@ -926,6 +926,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		}
 		if($(temp).attr("dir")!=$(temp2).attr("dir")) {
 			$(temp).attr("dir",$(temp2).attr("dir"));
+			$(".ltr,.rtl").removeClass("ltr rtl").addClass($(temp2).attr("dir"));
 		}
 		// UPDATE THE TITLE IF NEEDED
 		var title2=$("div[type=title]",html);
@@ -1322,7 +1323,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(div2).css("border","none");
 			$(div2).css("position","absolute");
 			$(div2).css("top","4px");
-			$(div2).css("right","6px");
+			// SUPPORT FOR LTR AND RTL LANGS
+			var dir=$("html").attr("dir");
+			var rtl={"ltr":{"right":"right"},"rtl":{"right":"left"}};
+			$(div2).css(rtl[dir]["right"],"6px");
 		});
 		//~ console.timeEnd("make_selects");
 	}
@@ -1542,6 +1546,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	function make_tables(obj) {
 		//~ console.time("make_tables");
 		if(typeof(obj)=="undefined") var obj=$("body");
+		// SUPPORT FOR LTR AND RTL LANGS
+		var dir=$("html").attr("dir");
+		var rtl={
+			"ltr":{"ui-corner-tl":"ui-corner-tl","ui-corner-tr":"ui-corner-tr","ui-corner-bl":"ui-corner-bl","ui-corner-br":"ui-corner-br","noright":"noright"},
+			"rtl":{"ui-corner-tl":"ui-corner-tr","ui-corner-tr":"ui-corner-tl","ui-corner-bl":"ui-corner-br","ui-corner-br":"ui-corner-bl","noright":"noleft"}
+		};
 		// GET ALL TABLES OF THE TABLA CLASS
 		$(".tabla",obj).each(function() {
 			if($(".thead",this).length>0) {
@@ -1571,9 +1581,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						var total=$(tds).length;
 						var count=1;
 						$(tds).each(function() {
-							if(count<total) $(this).addClass("noright");
-							if(count==1) $(this).removeClass("ui-corner-bl");
-							if(count==total) $(this).removeClass("ui-corner-br");
+							if(count<total) $(this).addClass(rtl[dir]["noright"]);
+							if(count==1) $(this).removeClass(rtl[dir]["ui-corner-bl"]);
+							if(count==total) $(this).removeClass(rtl[dir]["ui-corner-br"]);
 							count++;
 						});
 					} else if(tdshead!=null && numhead+numbody+numdata>0) {
@@ -1582,10 +1592,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						var total=$(tds).length;
 						var count=1;
 						$(tds).each(function() {
-							if(count<total) $(this).addClass("noright notop");
+							if(count<total) $(this).addClass("notop").addClass(rtl[dir]["noright"]);
 							if(count==total) $(this).addClass("notop")
-							if(count==1) $(this).removeClass("ui-corner-bl");
-							if(count==total) $(this).removeClass("ui-corner-br");
+							if(count==1) $(this).removeClass(rtl[dir]["ui-corner-bl"]);
+							if(count==total) $(this).removeClass(rtl[dir]["ui-corner-br"]);
 							count++;
 						});
 					} else if(tdshead!=null) {
@@ -1593,8 +1603,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						var total=$(tds).length;
 						var count=1;
 						$(tds).each(function() {
-							if(count==1) $(this).addClass("ui-corner-tl");
-							if(count==total) $(this).addClass("ui-corner-tr");
+							if(count==1) $(this).addClass(rtl[dir]["ui-corner-tl"]);
+							if(count==total) $(this).addClass(rtl[dir]["ui-corner-tr"]);
 							count++;
 						});
 						tdshead=null;
@@ -1602,8 +1612,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						var total=$(tds).length;
 						var count=1;
 						$(tds).each(function() {
-							if(count==1) $(this).addClass("ui-corner-bl");
-							if(count==total) $(this).addClass("ui-corner-br");
+							if(count==1) $(this).addClass(rtl[dir]["ui-corner-bl"]);
+							if(count==total) $(this).addClass(rtl[dir]["ui-corner-br"]);
 							count++;
 						});
 						tdsbody=null;
@@ -1647,16 +1657,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					var total=$(tds).length;
 					var count=1;
 					$(tds).each(function() {
-						if(count==1) $(this).addClass("ui-corner-tl");
-						if(count==total) $(this).addClass("ui-corner-tr");
+						if(count==1) $(this).addClass(rtl[dir]["ui-corner-tl"]);
+						if(count==total) $(this).addClass(rtl[dir]["ui-corner-tr"]);
 						count++;
 					});
 					var tds=$("td",tdsbody);
 					var total=$(tds).length;
 					var count=1;
 					$(tds).each(function() {
-						if(count==1) $(this).addClass("ui-corner-bl");
-						if(count==total) $(this).addClass("ui-corner-br");
+						if(count==1) $(this).addClass(rtl[dir]["ui-corner-bl"]);
+						if(count==total) $(this).addClass(rtl[dir]["ui-corner-br"]);
 						count++;
 					});
 				}

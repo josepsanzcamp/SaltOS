@@ -151,6 +151,12 @@ if(!defined("__DEFAULT_PHP__")) {
 			}
 		}
 
+		// SUPPORT FOR LTR AND RTL LANGS
+		global $_LANG;
+		$dir=$_LANG["dir"];
+		$rtl=array("ltr"=>array("L"=>"L","C"=>"C","R"=>"R"),"rtl"=>array("L"=>"R","C"=>"C","R"=>"L"));
+		$fonts=array("normal"=>"dejavusanscondensed","mono"=>"dejavusansmono");
+
 		if(is_array($array)) {
 			foreach($array as $key=>$val) {
 				$key=strtok($key,"#");
@@ -164,6 +170,7 @@ if(!defined("__DEFAULT_PHP__")) {
 						$temp=__eval_array(__eval_explode(",",$val),$row);
 						$pdf=new PDF($temp[0],$temp[1],$temp[2]);
 						$pdf->SetCreator(get_name_version_revision());
+						$pdf->setRTL($dir=="rtl");
 						$pdf->Init();
 						break;
 					case "margins":
@@ -217,7 +224,7 @@ if(!defined("__DEFAULT_PHP__")) {
 						if(!$booleval) break;
 						$temp2=__eval_array(__eval_explode(",",$val,4),$row);
 						$temp=array($temp2[0],$temp2[1],$temp2[2],color2dec($temp2[3],"R"),color2dec($temp2[3],"G"),color2dec($temp2[3],"B"));
-						$pdf->SetFont($temp[0],$temp[1],$temp[2]);
+						$pdf->SetFont($fonts[$temp[0]],$temp[1],$temp[2]);
 						$pdf->SetTextColor($temp[3],$temp[4],$temp[5]);
 						break;
 					case "image":
@@ -245,7 +252,7 @@ if(!defined("__DEFAULT_PHP__")) {
 						if(isset($temp[6])) $pdf->Rotate($temp[6],$temp[0],$temp[1]);
 						$pdf->SetXY($temp[0],$temp[1]);
 						if(!isset($temp[6])) $pdf->check_y($temp[3]);
-						$pdf->MultiCell($temp[2],$temp[3],$temp[5],0,$temp[4]);
+						$pdf->MultiCell($temp[2],$temp[3],$temp[5],0,$rtl[$dir][$temp[4]]);
 						if(isset($temp[6])) $pdf->StopTransform();
 						break;
 					case "color":

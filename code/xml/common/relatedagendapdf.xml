@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+1</setxy>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],150,4,"C",$row["title"]</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+1</setxy>
@@ -44,9 +44,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<checky>4</checky>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("campanya")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],125,4,"L",$row["campanya"]</textarea>
 		<eval>isset($row["posiblecli"]) &amp;&amp; $row["posiblecli"]</eval>
 			<getxy>"x","y"</getxy>
@@ -54,9 +54,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<checky>4</checky>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("posiblecli")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],125,4,"L",$row["posiblecli"]</textarea>
 		<eval>isset($row["cliente"]) &amp;&amp; $row["cliente"]</eval>
 			<getxy>"x","y"</getxy>
@@ -64,9 +64,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<checky>4</checky>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("cliente")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],125,4,"L",$row["cliente"]</textarea>
 		<eval>isset($row["proyecto"]) &amp;&amp; $row["proyecto"]</eval>
 			<getxy>"x","y"</getxy>
@@ -74,9 +74,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<checky>4</checky>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("proyecto")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],125,4,"L",$row["proyecto"]</textarea>
 		<eval>isset($row["presupuesto"]) &amp;&amp; $row["presupuesto"]</eval>
 			<getxy>"x","y"</getxy>
@@ -84,9 +84,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<checky>4</checky>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("presupuesto")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],125,4,"L",$row["presupuesto"]</textarea>
 		<eval>true</eval>
 		<getxy>"x","y"</getxy>
@@ -94,62 +94,62 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("dstart")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],75,4,"L",$row["dstart"]</textarea>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>105,$row["y"],25,4,"R",LANG("dstop")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>130,$row["y"],75,4,"L",$row["dstop"]</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+2</setxy>
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("nombre")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],125,4,"L",$row["nombre"]</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+2</setxy>
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("lugar")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],75,4,"L",$row["lugar"]</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+2</setxy>
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("tipoevento")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],75,4,"L",$row["tipoevento"]</textarea>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>105,$row["y"],25,4,"R",LANG("estado")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>130,$row["y"],75,4,"L",$row["estado"]</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+2</setxy>
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("descripcion")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],125,4,"L",trim($row["descripcion"])</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+2</setxy>
 		<getxy>"x","y"</getxy>
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
-		<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("asignadoa","agenda")</textarea>
-		<font>"Helvetica","",8,CONFIG("color_text2")</font>
+		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],125,4,"L",$row["asignadoa"]</textarea>
 		<!-- COMENTARIOS DEL EVENTO -->
 		<commentspdf include="xml/common/commentspdf.xml" replace="true" />

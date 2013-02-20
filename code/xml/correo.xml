@@ -1140,7 +1140,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<margins>0,0,0,0</margins>
 				<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
 				<!-- PONER MARCA DE AGUA -->
-				<font>"Helvetica","B",CONFIG("water_correo_size"),"#eeeeee"</font>
+				<font>"normal","B",CONFIG("water_correo_size"),"#eeeeee"</font>
 				<text>CONFIG("water_correo_posx"),CONFIG("water_correo_posy"),CONFIG("water_correo_text"),CONFIG("water_correo_angle")</text>
 				<margins>50,30,30,30</margins>
 				<setxy>30,50</setxy>
@@ -1148,7 +1148,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<footer>
 				<margins>0,0,0,0</margins>
 				<!-- PONER PIE DE PAGINA -->
-				<font>"Helvetica","",6,CONFIG("color_text2")</font>
+				<font>"normal","",6,CONFIG("color_text2")</font>
 				<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
 				<margins>50,30,30,30</margins>
 			</footer>
@@ -1158,9 +1158,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<!-- DATOS CORREO -->
 			<setxy>30,50</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("from")</textarea>
-			<font>"Courier","B",7,CONFIG("color_text2")</font>
+			<font>"mono","B",7,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"]+0.5,125,3,"L",$row["from"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
@@ -1169,9 +1169,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("to")</textarea>
-			<font>"Courier","B",7,CONFIG("color_text2")</font>
+			<font>"mono","B",7,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"]+0.5,125,3,"L",$row["to"]</textarea>
 			<eval>$row["cc"]</eval>
 				<getxy>"x","y"</getxy>
@@ -1181,9 +1181,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("cc")</textarea>
-				<font>"Courier","B",7,CONFIG("color_text2")</font>
+				<font>"mono","B",7,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"]+0.5,125,3,"L",$row["cc"]</textarea>
 			<eval>$row["bcc"]</eval>
 				<getxy>"x","y"</getxy>
@@ -1193,9 +1193,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("bcc")</textarea>
-				<font>"Courier","B",7,CONFIG("color_text2")</font>
+				<font>"mono","B",7,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"]+0.5,125,3,"L",$row["bcc"]</textarea>
 			<eval>true</eval>
 			<getxy>"x","y"</getxy>
@@ -1205,9 +1205,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("date")</textarea>
-			<font>"Courier","B",7,CONFIG("color_text2")</font>
+			<font>"mono","B",7,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"]+0.5,75,3,"L",$row["datetime"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
@@ -1216,9 +1216,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("subject")</textarea>
-			<font>"Courier","B",7,CONFIG("color_text2")</font>
+			<font>"mono","B",7,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"]+0.5,125,3,"L",$row["subject"]</textarea>
 			<eval>$row["files"]</eval>
 				<getxy>"x","y"</getxy>
@@ -1228,9 +1228,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("shortattachments")</textarea>
-				<font>"Courier","B",7,CONFIG("color_text2")</font>
+				<font>"mono","B",7,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"]+0.5,125,3,"L",$row["files"]</textarea>
 			<eval>true</eval>
 			<getxy>"x","y"</getxy>
@@ -1240,9 +1240,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("message")</textarea>
-			<font>"Courier","B",7,CONFIG("color_text2")</font>
+			<font>"mono","B",7,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"]+0.5,125,3,"L",$row["body"]</textarea>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("

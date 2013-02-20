@@ -25,9 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .boxs div.box {
 	padding:3px 5px;
 	margin:0px 2px 2px 0px;
-	float:left;
 	width:220px;
 	overflow:hidden;
+}
+.rtl .boxs div.box {
+	margin:0px 0px 2px 2px;
 }
 .boxs div.box a {
 	text-decoration:none;

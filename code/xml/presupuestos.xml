@@ -1492,7 +1492,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<margins>0,0,0,0</margins>
 				<image>CONFIG("logo_left"),CONFIG("logo_top"),CONFIG("logo_width"),CONFIG("logo_height"),get_directory("dirs/filesdir").CONFIG("logo_file")</image>
 				<!-- PONER MARCA DE AGUA -->
-				<font>"Helvetica","B",CONFIG("water_presupuestos_size"),"#eeeeee"</font>
+				<font>"normal","B",CONFIG("water_presupuestos_size"),"#eeeeee"</font>
 				<text>CONFIG("water_presupuestos_posx"),CONFIG("water_presupuestos_posy"),CONFIG("water_presupuestos_text"),CONFIG("water_presupuestos_angle")</text>
 				<margins>50,30,30,30</margins>
 				<setxy>30,50</setxy>
@@ -1500,7 +1500,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<footer>
 				<margins>0,0,0,0</margins>
 				<!-- PONER PIE DE PAGINA -->
-				<font>"Helvetica","",6,CONFIG("color_text2")</font>
+				<font>"normal","",6,CONFIG("color_text2")</font>
 				<pageno>30,279,150,0,"R",LANG("paginaspc"),LANG("spcdespc")</pageno>
 				<margins>50,30,30,30</margins>
 			</footer>
@@ -1510,13 +1510,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<!-- DATOS PRESUPUESTO -->
 			<setxy>30,50</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("presupuesto")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],75,4,"L",$row["id"]</textarea>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>105,$row["y"],25,4,"R",LANG("date")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>130,$row["y"],75,4,"L",$row["fecha"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
@@ -1525,13 +1525,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("cliente")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],75,4,"L",$row["cliente"]</textarea>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>105,$row["y"],25,4,"R",LANG("cif")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>130,$row["y"],75,4,"L",$row["cif"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
@@ -1540,9 +1540,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
-			<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("proyecto")</textarea>
-			<font>"Helvetica","",8,CONFIG("color_text2")</font>
+			<font>"normal","",8,CONFIG("color_text2")</font>
 			<textarea>55,$row["y"],125,4,"L",$row["nombre"]</textarea>
 			<eval>$row["objetivos"]</eval>
 				<!-- OBJETIVOS -->
@@ -1555,9 +1555,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<checky>8</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("objetivos")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",trim($row["objetivos"])</textarea>
 				<!-- CORRECCION DE ERROR -->
 				<getxy>"x","y2"</getxy>
@@ -1574,9 +1574,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<checky>8</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("funcional")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",trim($row["funcional"])</textarea>
 				<!-- CORRECCION DE ERROR -->
 				<getxy>"x","y2"</getxy>
@@ -1593,9 +1593,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<checky>8</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("tecnica")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",trim($row["tecnica"])</textarea>
 				<!-- CORRECCION DE ERROR -->
 				<getxy>"x","y2"</getxy>
@@ -1612,9 +1612,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<checky>8</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("extras")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",trim($row["extras"])</textarea>
 				<!-- CORRECCION DE ERROR -->
 				<getxy>"x","y2"</getxy>
@@ -1631,14 +1631,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<checky>8</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("valoracion")</textarea>
 			<eval>$row["productos"]</eval>
 				<!-- PRODUCTOS -->
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],25,4,"L",LANG("productos").":"</textarea>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<query>"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2,(SELECT nombre FROM tbl_productos b WHERE b.id=a.id_producto) producto FROM tbl_presupuestos_p a WHERE id_presupuesto='".intval($row["id"])."'"</query>
 				<foreach>
 					<getxy>"x","y"</getxy>
@@ -1655,10 +1655,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 			<eval>$row["tareas"]</eval>
 				<!-- TAREAS -->
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],25,4,"L",LANG("tareas").":"</textarea>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<query>"SELECT *,ROUND(horas*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_presupuestos_t WHERE id_presupuesto='".intval($row["id"])."'"</query>
 				<foreach>
 					<getxy>"x","y"</getxy>
@@ -1673,7 +1673,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text2")</font>
+				<font>"normal","B",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",LANG("preciototal").": ".($row["total1"]+$row["total2"]).CONFIG("accounting_currency")</textarea>
 			<eval>$row["condiciones"]</eval>
 				<!-- CONDICIONES DEL PRESUPUESTO -->
@@ -1686,9 +1686,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<checky>8</checky>
 				<getxy>"x","y"</getxy>
-				<font>"Helvetica","B",8,CONFIG("color_text1")</font>
+				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("condiciones")</textarea>
-				<font>"Helvetica","",8,CONFIG("color_text2")</font>
+				<font>"normal","",8,CONFIG("color_text2")</font>
 				<textarea>55,$row["y"],125,4,"L",trim($row["condiciones"])</textarea>
 			<eval>true</eval>
 			<!-- FIN -->
