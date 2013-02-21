@@ -801,20 +801,28 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		var page=$("#page");
 		$(page).hide();
 		$(page).page("destroy");
-		// UPDATE THE LANG AND DIR
+		// UPDATE THE LANG AND DIR IF NEEDED
 		var temp=$("html");
 		var temp2=$("div[type=html]",html);
-		$(temp).attr("lang",$(temp2).attr("lang"));
-		$(temp).attr("dir",$(temp2).attr("dir"));
-		$(".ltr,.rtl").removeClass("ltr rtl").addClass($(temp2).attr("dir"));
-		// UPDATE THE TITLE
+		if($(temp).attr("lang")!=$(temp2).attr("lang")) {
+			$(temp).attr("lang",$(temp2).attr("lang"));
+		}
+		if($(temp).attr("dir")!=$(temp2).attr("dir")) {
+			$(temp).attr("dir",$(temp2).attr("dir"));
+			$(".ltr,.rtl").removeClass("ltr rtl").addClass($(temp2).attr("dir"));
+		}
+		// UPDATE THE TITLE IF NEEDED
 		var title2=$("div[type=title]",html);
-		document.title=$(divtitle2).text();
-		// UPDATE THE NORTH PANEL
+		if(document.title!=$(title2).text()) {
+			document.title=$(title2).text();
+		}
+		// UPDATE THE NORTH PANEL IF NEEDED
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
-		make_extras(header2);
-		$(header).replaceWith(header2);
+		if($(header).text()!=$(header2).text()) {
+			make_extras(header2);
+			$(header).replaceWith(header2);
+		}
 		// CHECK FOR LOGIN AND LOGOUT
 		var menu=$(".ui-layout-west");
 		var menu2=$(".ui-layout-west",html);
@@ -823,8 +831,10 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// IF LOGIN
 		if(saltos_login) sync_cookies("start");
 		// UPDATE THE MENU
-		make_extras(menu2);
-		$(menu).replaceWith(menu2);
+		if($(".menu",menu).text()!=$(".menu",menu2).text()) {
+			make_extras(menu2);
+			$(menu).replaceWith(menu2);
+		}
 		// IF LOGOUT
 		if(saltos_logout) sync_cookies("stop");
 		// UPDATE THE CENTER PANE
@@ -943,9 +953,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				if($(body0).length) $(full).append(body0);
 				if(!$(head0).length && !$(body0).length) break;
 			}
-			//~ head=$(head).next();
-			//~ body=$(body).next();
-			//~ $(body).prepend(head);
 		});
 	}
 

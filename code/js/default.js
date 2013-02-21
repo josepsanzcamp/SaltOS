@@ -918,7 +918,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("updatecontent");
 		unloadingcontent();
 		$(document).scrollTop(0);
-		// UPDATE THE LANG AND  DIR IF NEEDED
+		// UPDATE THE LANG AND DIR IF NEEDED
 		var temp=$("html");
 		var temp2=$("div[type=html]",html);
 		if($(temp).attr("lang")!=$(temp2).attr("lang")) {
