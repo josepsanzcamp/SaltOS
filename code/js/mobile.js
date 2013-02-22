@@ -1091,6 +1091,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	$.mobile.ajaxEnabled=false;
 	$.mobile.linkBindingEnabled=false;
 	$.mobile.hashListeningEnabled=false;
+	$.mobile.ignoreContentEnabled=true;
 	//~ $.mobile.page.prototype.options.keepNative="*";
 
 	// TO DO COMPATIBLE WITH DESKTOP PLUGINS

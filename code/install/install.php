@@ -61,6 +61,13 @@ define("__DIV1__","class='ui-widget-header ui-corner-tl ui-corner-tr' style='mar
 define("__DIV2__","class='ui-widget-content ui-corner-bl ui-corner-br' style='margin:0px auto 2px auto;padding:5px'");
 define("__DIV3__","style='margin:10px auto;padding:0px;text-align:right'");
 define("__BR__","<br/>");
+define("__XML__","install/xml/tbl_*.xml");
+define("__SQL__","install/sql/tbl_*.sql.gz");
+define("__UTF8__","install/sql/utf8.sql.gz");
+define("__DISABLE__","install/sql/disable.sql.gz");
+define("__BEGIN__","install/sql/begin.sql.gz");
+define("__COMMIT__","install/sql/commit.sql.gz");
+define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -475,7 +482,7 @@ define("__BR__","<br/>");
 								}
 								// IMPORT DEFAULT CONFIGURATION
 								$oldcache=set_use_cache("false");
-								$files=glob("install/xml/tbl_*.xml");
+								$files=glob(__XML__);
 								if(is_array($files) && count($files)>0) {
 									foreach($files as $file) {
 										$table=basename($file,".xml");
@@ -519,25 +526,31 @@ define("__BR__","<br/>");
 								// IMPORT STREET INFORMATION USING AN OPTIMIZATION FROM COMMAND LINE
 								if(getParam("streetdata")) {
 									$oldcache=set_use_cache("false");
-									$dbtemp="sql";
-									if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3"))) $dbtemp="sqlite";
-									if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_mysql","mysql","mysqli"))) $dbtemp="mysql";
-									$files=glob("install/sql/tbl_*.$dbtemp.gz");
+									$files=glob(__SQL__);
 									if(is_array($files) && count($files)>0) {
 										foreach($files as $file) {
-											$table=basename($file,".$dbtemp.gz");
+											$table=basename($file,".sql.gz");
 											$query="SELECT COUNT(*) FROM $table";
 											$numrows=execute_query($query);
 											echo current_datetime().": ".LANG("streetdata").": ".basename($file).": ";
 											if(!$numrows) {
-												if($dbtemp=="sqlite" && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/sqlite_install")))) {
-													ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__INPUT__"),array($file),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/sqlite3_install")." ".str_replace(array("__DBFILE__"),array(getDefault("db/file")),getDefault("commands/__sqlite3_install__")));
-												} elseif($dbtemp=="mysql" && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/mysql_install")))) {
-													ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__INPUT__"),array($file),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/mysql_install")." ".str_replace(array("__DBHOST__","__DBPORT__","__DBUSER__","__DBPASS__","__DBNAME__"),array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),getDefault("commands/__mysql_install__")));
+												if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3")) && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/sqlite3_install")))) {
+													$error=ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__UTF8__","__DISABLE__","__BEGIN__","__INPUT__","__COMMIT__"),array("","",__BEGIN__,$file,__COMMIT__),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/sqlite3_install")." ".str_replace(array("__DBFILE__"),array(getDefault("db/file")),getDefault("commands/__sqlite3_install__")));
+													if($error=="") {
+														echo __YES__.__BR__;
+													} else {
+														echo __NO__.__BR__;
+													}
+												} elseif(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_mysql","mysql","mysqli")) && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/mysql_install")))) {
+													$error=ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__UTF8__","__DISABLE__","__BEGIN__","__INPUT__","__COMMIT__"),array(__UTF8__,__DISABLE__,__BEGIN__,$file,__COMMIT__),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/mysql_install")." ".str_replace(array("__DBHOST__","__DBPORT__","__DBUSER__","__DBPASS__","__DBNAME__"),array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),getDefault("commands/__mysql_install__")));
+													if($error=="") {
+														echo __YES__.__BR__;
+													} else {
+														echo __NO__.__BR__;
+													}
 												} else {
-													foreach(gzfile($file) as $query) db_query($query);
+													echo __NO__.__BR__;
 												}
-												echo __YES__.__BR__;
 											} else {
 												echo __NO__.__BR__;
 											}
@@ -548,7 +561,7 @@ define("__BR__","<br/>");
 								// IMPORT EXAMPLE DATA
 								if(getParam("exampledata")) {
 									$oldcache=set_use_cache("false");
-									$files=glob("install/xml/example/tbl_*.xml");
+									$files=glob(__EXAMPLE__);
 									if(is_array($files) && count($files)>0) {
 										foreach($files as $file) {
 											$table=basename($file,".xml");

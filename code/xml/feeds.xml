@@ -660,8 +660,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("title")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"]+0.5,125,3,"L",$row["title"]?$row["title"]:LANG("sintitle")</textarea>
+			<font>"mono","",8,CONFIG("color_text2")</font>
+			<textarea>55,$row["y"],125,4,"L",$row["title"]?$row["title"]:LANG("sintitle")</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
@@ -671,8 +671,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("date")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"]+0.5,75,3,"L",$row["pubdate"]</textarea>
+			<font>"mono","",8,CONFIG("color_text2")</font>
+			<textarea>55,$row["y"],125,4,"L",$row["pubdate"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
@@ -682,8 +682,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("feed")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"]+0.5,125,3,"L",$row["feed"]</textarea>
+			<font>"mono","",8,CONFIG("color_text2")</font>
+			<textarea>55,$row["y"],125,4,"L",$row["feed"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
@@ -693,8 +693,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("link")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"]+0.5,125,3,"L",$row["link"]</textarea>
+			<font>"mono","",8,CONFIG("color_text2")</font>
+			<textarea>55,$row["y"],125,4,"L",$row["link"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
@@ -704,9 +704,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("descripcion")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
+			<font>"mono","",8,CONFIG("color_text2")</font>
 			<eval>include_once("php/getmail.php")</eval>
-			<textarea>55,$row["y"]+0.5,125,3,"L",__getmail_html2text($row["description"])</textarea>
+			<textarea>55,$row["y"],125,4,"L",__getmail_html2text($row["description"])</textarea>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT CONCAT('".LANG("feed")."',' ',LPAD(id,5,0),' ',CASE WHEN title='' THEN '".LANG("sintitle")."' ELSE title END) subject

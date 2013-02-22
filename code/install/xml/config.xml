@@ -31,6 +31,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<mysql_install>mysql</mysql_install>
 		<__mysql_install__>-h__DBHOST__ -P__DBPORT__ -u__DBUSER__ -p__DBPASS__ __DBNAME__</__mysql_install__>
 		<zcat_install>zcat</zcat_install>
-		<__zcat_install__>__INPUT__</__zcat_install__>
+		<__zcat_install__>__UTF8__ __DISABLE__ __BEGIN__ __INPUT__ __COMMIT__</__zcat_install__>
 	</install>
 </root>

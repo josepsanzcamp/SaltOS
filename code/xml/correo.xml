@@ -1160,8 +1160,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("from")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"]+0.5,125,3,"L",$row["from"]</textarea>
+			<font>"mono","",8,CONFIG("color_text2")</font>
+			<textarea>55,$row["y"],125,4,"L",$row["from"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
@@ -1171,8 +1171,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("to")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"]+0.5,125,3,"L",$row["to"]</textarea>
+			<font>"mono","",8,CONFIG("color_text2")</font>
+			<textarea>55,$row["y"],125,4,"L",$row["to"]</textarea>
 			<eval>$row["cc"]</eval>
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
@@ -1183,8 +1183,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("cc")</textarea>
-				<font>"mono","B",7,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"]+0.5,125,3,"L",$row["cc"]</textarea>
+				<font>"mono","",8,CONFIG("color_text2")</font>
+				<textarea>55,$row["y"],125,4,"L",$row["cc"]</textarea>
 			<eval>$row["bcc"]</eval>
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
@@ -1195,8 +1195,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("bcc")</textarea>
-				<font>"mono","B",7,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"]+0.5,125,3,"L",$row["bcc"]</textarea>
+				<font>"mono","",8,CONFIG("color_text2")</font>
+				<textarea>55,$row["y"],125,4,"L",$row["bcc"]</textarea>
 			<eval>true</eval>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
@@ -1207,8 +1207,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("date")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"]+0.5,75,3,"L",$row["datetime"]</textarea>
+			<font>"mono","",8,CONFIG("color_text2")</font>
+			<textarea>55,$row["y"],125,4,"L",$row["datetime"]</textarea>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
 			<getxy>"x","y"</getxy>
@@ -1218,8 +1218,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("subject")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"]+0.5,125,3,"L",$row["subject"]</textarea>
+			<font>"mono","",8,CONFIG("color_text2")</font>
+			<textarea>55,$row["y"],125,4,"L",$row["subject"]</textarea>
 			<eval>$row["files"]</eval>
 				<getxy>"x","y"</getxy>
 				<setxy>$row["x"],$row["y"]+2</setxy>
@@ -1230,8 +1230,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<getxy>"x","y"</getxy>
 				<font>"normal","B",8,CONFIG("color_text1")</font>
 				<textarea>30,$row["y"],25,4,"R",LANG("shortattachments")</textarea>
-				<font>"mono","B",7,CONFIG("color_text2")</font>
-				<textarea>55,$row["y"]+0.5,125,3,"L",$row["files"]</textarea>
+				<font>"mono","",8,CONFIG("color_text2")</font>
+				<textarea>55,$row["y"],125,4,"L",$row["files"]</textarea>
 			<eval>true</eval>
 			<getxy>"x","y"</getxy>
 			<setxy>$row["x"],$row["y"]+2</setxy>
@@ -1242,8 +1242,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<getxy>"x","y"</getxy>
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("message")</textarea>
-			<font>"mono","B",7,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"]+0.5,125,3,"L",$row["body"]</textarea>
+			<font>"mono","",8,CONFIG("color_text2")</font>
+			<textarea>55,$row["y"],125,4,"L",$row["body"]</textarea>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT

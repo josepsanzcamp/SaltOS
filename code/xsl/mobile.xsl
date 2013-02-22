@@ -233,12 +233,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:when>
 			<xsl:otherwise>
 				<div data-role="content" data-theme="b">
-					<input type="checkbox" class="master" name="master" id="master" value="1" data-mini="true"/><label for="master">&#160;</label>
+					<input type="checkbox" class="master" name="master" id="master" value="1" data-mini="true" data-iconpos="left"/><label for="master"></label>
 				</div>
 				<xsl:for-each select="rows/row">
 					<div data-role="content" data-theme="b">
 						<div>
-							<input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1" data-mini="true"/><label for="slave_{id}">&#160;</label>
+							<input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1" data-mini="true" data-iconpos="left"/><label for="slave_{id}"></label>
 						</div>
 						<xsl:variable name="id" select="action_id"/>
 						<xsl:variable name="style" select="action_style"/>
@@ -596,7 +596,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</xsl:when>
 		<xsl:when test="type='checkbox'">
 			<div>
-				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" labeled="{label}" data-mini="true">
+				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" labeled="{label}" data-mini="true" data-iconpos="left">
 					<xsl:if test="checked='true'">
 						<xsl:attribute name="checked">checked</xsl:attribute>
 					</xsl:if>
@@ -609,7 +609,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</xsl:if>
 				</input>
 				<xsl:if test="label!=''">
-					<xsl:text> </xsl:text><label for="{$prefix}{name}"><xsl:value-of select="label"/></label>
+					<label for="{$prefix}{name}"><xsl:value-of select="label"/></label>
 				</xsl:if>
 			</div>
 		</xsl:when>
