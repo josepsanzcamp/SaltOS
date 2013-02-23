@@ -63,8 +63,8 @@ define("__DIV3__","style='margin:10px auto;padding:0px;text-align:right'");
 define("__BR__","<br/>");
 define("__XML__","install/xml/tbl_*.xml");
 define("__SQL__","install/sql/tbl_*.sql.gz");
-define("__UTF8__","install/sql/utf8.sql.gz");
-define("__DISABLE__","install/sql/disable.sql.gz");
+define("__SQLITE__","install/sql/sqlite.sql.gz");
+define("__MYSQL__","install/sql/mysql.sql.gz");
 define("__BEGIN__","install/sql/begin.sql.gz");
 define("__COMMIT__","install/sql/commit.sql.gz");
 define("__EXAMPLE__","install/xml/example/tbl_*.xml");
@@ -535,14 +535,14 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 											echo current_datetime().": ".LANG("streetdata").": ".basename($file).": ";
 											if(!$numrows) {
 												if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3")) && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/sqlite3_install")))) {
-													$error=ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__UTF8__","__DISABLE__","__BEGIN__","__INPUT__","__COMMIT__"),array("","",__BEGIN__,$file,__COMMIT__),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/sqlite3_install")." ".str_replace(array("__DBFILE__"),array(getDefault("db/file")),getDefault("commands/__sqlite3_install__")));
+													$error=ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__INIT__","__BEGIN__","__INPUT__","__COMMIT__"),array(__SQLITE__,__BEGIN__,$file,__COMMIT__),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/sqlite3_install")." ".str_replace(array("__DBFILE__"),array(getDefault("db/file")),getDefault("commands/__sqlite3_install__")));
 													if($error=="") {
 														echo __YES__.__BR__;
 													} else {
 														echo __NO__.__BR__;
 													}
 												} elseif(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_mysql","mysql","mysqli")) && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/mysql_install")))) {
-													$error=ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__UTF8__","__DISABLE__","__BEGIN__","__INPUT__","__COMMIT__"),array(__UTF8__,__DISABLE__,__BEGIN__,$file,__COMMIT__),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/mysql_install")." ".str_replace(array("__DBHOST__","__DBPORT__","__DBUSER__","__DBPASS__","__DBNAME__"),array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),getDefault("commands/__mysql_install__")));
+													$error=ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__INIT__","__BEGIN__","__INPUT__","__COMMIT__"),array(__MYSQL__,__BEGIN__,$file,__COMMIT__),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/mysql_install")." ".str_replace(array("__DBHOST__","__DBPORT__","__DBUSER__","__DBPASS__","__DBNAME__"),array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),getDefault("commands/__mysql_install__")));
 													if($error=="") {
 														echo __YES__.__BR__;
 													} else {

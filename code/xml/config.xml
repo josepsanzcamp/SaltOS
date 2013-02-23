@@ -59,14 +59,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<noexport>tbl_aplicaciones</noexport>
 			<noexport>tbl_aplicaciones_i</noexport>
 			<noexport>tbl_aplicaciones_p</noexport>
+			<noexport>tbl_estados_a</noexport>
+			<noexport>tbl_permisos</noexport>
+			<noexport>tbl_tiposcom</noexport>
 			<noexport>tbl_calles</noexport>
 			<noexport>tbl_codpostal</noexport>
-			<noexport>tbl_estados_a</noexport>
 			<noexport>tbl_paises</noexport>
-			<noexport>tbl_permisos</noexport>
 			<noexport>tbl_poblaciones</noexport>
 			<noexport>tbl_provincias</noexport>
-			<noexport>tbl_tiposcom</noexport>
+			<noexport>tbl_security</noexport>
+			<noexport>tbl_security_ip</noexport>
+			<noexport>tbl_sessions</noexport>
 		</noexports>
 		<dbschema>true</dbschema>
 		<dbstatic>true</dbstatic>

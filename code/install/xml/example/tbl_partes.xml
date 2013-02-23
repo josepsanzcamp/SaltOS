@@ -1,0 +1,1202 @@
+<root>
+	<row>
+		<id>1</id>
+		<id_cliente>5</id_cliente>
+		<tarea>eget magna. Suspendisse tristique neque</tarea>
+		<fecha>2012-11-21</fecha>
+		<comentarios>netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy</comentarios>
+		<horas>5</horas>
+		<precio>61</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2013-08-17</fecha2>
+	</row>
+	<row>
+		<id>2</id>
+		<id_cliente>0</id_cliente>
+		<tarea>nec mauris blandit mattis. Cras</tarea>
+		<fecha>2012-04-14</fecha>
+		<comentarios>non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis ullamcorper viverra. Maecenas iaculis aliquet diam. Sed diam lorem,</comentarios>
+		<horas>6</horas>
+		<precio>55</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2012-05-02</fecha2>
+	</row>
+	<row>
+		<id>3</id>
+		<id_cliente>7</id_cliente>
+		<tarea>vitae mauris sit amet lorem</tarea>
+		<fecha>2012-11-16</fecha>
+		<comentarios>ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis</comentarios>
+		<horas>6</horas>
+		<precio>68</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>6</id_proyecto>
+		<fecha2>2013-03-30</fecha2>
+	</row>
+	<row>
+		<id>4</id>
+		<id_cliente>2</id_cliente>
+		<tarea>auctor ullamcorper, nisl arcu iaculis</tarea>
+		<fecha>2014-01-16</fecha>
+		<comentarios>ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim.</comentarios>
+		<horas>4</horas>
+		<precio>48</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2013-05-17</fecha2>
+	</row>
+	<row>
+		<id>5</id>
+		<id_cliente>9</id_cliente>
+		<tarea>vel nisl. Quisque fringilla euismod enim. Etiam</tarea>
+		<fecha>2012-12-29</fecha>
+		<comentarios>tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus et magnis dis parturient montes,</comentarios>
+		<horas>6</horas>
+		<precio>38</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2013-05-01</fecha2>
+	</row>
+	<row>
+		<id>6</id>
+		<id_cliente>9</id_cliente>
+		<tarea>non justo. Proin non massa non ante bibendum ullamcorper. Duis</tarea>
+		<fecha>2012-07-08</fecha>
+		<comentarios>iaculis nec, eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit</comentarios>
+		<horas>7</horas>
+		<precio>87</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2012-08-09</fecha2>
+	</row>
+	<row>
+		<id>7</id>
+		<id_cliente>4</id_cliente>
+		<tarea>eget metus eu erat semper rutrum. Fusce dolor quam,</tarea>
+		<fecha>2012-06-30</fecha>
+		<comentarios>Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu</comentarios>
+		<horas>1</horas>
+		<precio>39</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>6</id_proyecto>
+		<fecha2>2012-09-30</fecha2>
+	</row>
+	<row>
+		<id>8</id>
+		<id_cliente>7</id_cliente>
+		<tarea>orci, adipiscing non, luctus sit amet,</tarea>
+		<fecha>2013-05-02</fecha>
+		<comentarios>Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam</comentarios>
+		<horas>10</horas>
+		<precio>72</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2012-06-24</fecha2>
+	</row>
+	<row>
+		<id>9</id>
+		<id_cliente>2</id_cliente>
+		<tarea>Sed congue, elit sed consequat</tarea>
+		<fecha>2012-05-30</fecha>
+		<comentarios>pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet</comentarios>
+		<horas>7</horas>
+		<precio>77</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>1</id_proyecto>
+		<fecha2>2014-01-20</fecha2>
+	</row>
+	<row>
+		<id>10</id>
+		<id_cliente>4</id_cliente>
+		<tarea>conubia nostra, per inceptos hymenaeos. Mauris ut</tarea>
+		<fecha>2012-03-13</fecha>
+		<comentarios>Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras</comentarios>
+		<horas>1</horas>
+		<precio>30</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2013-02-10</fecha2>
+	</row>
+	<row>
+		<id>11</id>
+		<id_cliente>2</id_cliente>
+		<tarea>tellus sem mollis dui, in sodales</tarea>
+		<fecha>2012-10-02</fecha>
+		<comentarios>vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam auctor,</comentarios>
+		<horas>10</horas>
+		<precio>34</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2012-05-20</fecha2>
+	</row>
+	<row>
+		<id>12</id>
+		<id_cliente>1</id_cliente>
+		<tarea>amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt</tarea>
+		<fecha>2013-03-24</fecha>
+		<comentarios>Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu</comentarios>
+		<horas>1</horas>
+		<precio>38</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2012-06-08</fecha2>
+	</row>
+	<row>
+		<id>13</id>
+		<id_cliente>10</id_cliente>
+		<tarea>cursus, diam at pretium aliquet, metus urna convallis erat, eget</tarea>
+		<fecha>2014-02-04</fecha>
+		<comentarios>Nullam lobortis quam a felis ullamcorper viverra. Maecenas iaculis aliquet diam. Sed diam lorem, auctor quis, tristique</comentarios>
+		<horas>2</horas>
+		<precio>41</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2013-03-02</fecha2>
+	</row>
+	<row>
+		<id>14</id>
+		<id_cliente>3</id_cliente>
+		<tarea>adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper.</tarea>
+		<fecha>2012-05-28</fecha>
+		<comentarios>libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt aliquam</comentarios>
+		<horas>3</horas>
+		<precio>25</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>3</id_proyecto>
+		<fecha2>2012-04-15</fecha2>
+	</row>
+	<row>
+		<id>15</id>
+		<id_cliente>1</id_cliente>
+		<tarea>orci, in consequat enim diam</tarea>
+		<fecha>2012-08-21</fecha>
+		<comentarios>eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu</comentarios>
+		<horas>3</horas>
+		<precio>18</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>3</id_proyecto>
+		<fecha2>2013-02-17</fecha2>
+	</row>
+	<row>
+		<id>16</id>
+		<id_cliente>1</id_cliente>
+		<tarea>cursus vestibulum. Mauris magna. Duis dignissim</tarea>
+		<fecha>2013-02-17</fecha>
+		<comentarios>dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis semper.</comentarios>
+		<horas>6</horas>
+		<precio>74</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2013-01-31</fecha2>
+	</row>
+	<row>
+		<id>17</id>
+		<id_cliente>8</id_cliente>
+		<tarea>facilisis non, bibendum sed, est. Nunc laoreet lectus</tarea>
+		<fecha>2013-01-23</fecha>
+		<comentarios>Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis</comentarios>
+		<horas>3</horas>
+		<precio>88</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2012-07-10</fecha2>
+	</row>
+	<row>
+		<id>18</id>
+		<id_cliente>1</id_cliente>
+		<tarea>mauris, rhoncus id, mollis nec, cursus a,</tarea>
+		<fecha>2013-07-12</fecha>
+		<comentarios>non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui.</comentarios>
+		<horas>3</horas>
+		<precio>89</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>6</id_proyecto>
+		<fecha2>2013-04-12</fecha2>
+	</row>
+	<row>
+		<id>19</id>
+		<id_cliente>1</id_cliente>
+		<tarea>nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce</tarea>
+		<fecha>2013-12-03</fecha>
+		<comentarios>aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In</comentarios>
+		<horas>8</horas>
+		<precio>16</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2013-01-21</fecha2>
+	</row>
+	<row>
+		<id>20</id>
+		<id_cliente>6</id_cliente>
+		<tarea>urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat</tarea>
+		<fecha>2013-07-09</fecha>
+		<comentarios>bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor</comentarios>
+		<horas>6</horas>
+		<precio>89</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>5</id_proyecto>
+		<fecha2>2013-06-02</fecha2>
+	</row>
+	<row>
+		<id>21</id>
+		<id_cliente>0</id_cliente>
+		<tarea>Integer eu lacus. Quisque imperdiet, erat nonummy</tarea>
+		<fecha>2013-06-26</fecha>
+		<comentarios>libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna.</comentarios>
+		<horas>3</horas>
+		<precio>53</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2013-04-03</fecha2>
+	</row>
+	<row>
+		<id>22</id>
+		<id_cliente>8</id_cliente>
+		<tarea>congue, elit sed consequat auctor, nunc nulla vulputate dui, nec</tarea>
+		<fecha>2013-04-14</fecha>
+		<comentarios>ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae,</comentarios>
+		<horas>7</horas>
+		<precio>89</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2013-01-09</fecha2>
+	</row>
+	<row>
+		<id>23</id>
+		<id_cliente>6</id_cliente>
+		<tarea>consequat, lectus sit amet luctus vulputate, nisi sem</tarea>
+		<fecha>2013-04-09</fecha>
+		<comentarios>eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem semper auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus. In mi pede, nonummy ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu</comentarios>
+		<horas>8</horas>
+		<precio>49</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2013-04-16</fecha2>
+	</row>
+	<row>
+		<id>24</id>
+		<id_cliente>0</id_cliente>
+		<tarea>nec, imperdiet nec, leo. Morbi neque tellus, imperdiet</tarea>
+		<fecha>2013-11-17</fecha>
+		<comentarios>et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit,</comentarios>
+		<horas>4</horas>
+		<precio>40</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2013-02-26</fecha2>
+	</row>
+	<row>
+		<id>25</id>
+		<id_cliente>6</id_cliente>
+		<tarea>non, lobortis quis, pede. Suspendisse dui. Fusce</tarea>
+		<fecha>2013-10-16</fecha>
+		<comentarios>molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem semper auctor. Mauris</comentarios>
+		<horas>9</horas>
+		<precio>33</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2013-04-22</fecha2>
+	</row>
+	<row>
+		<id>26</id>
+		<id_cliente>10</id_cliente>
+		<tarea>augue ut lacus. Nulla tincidunt, neque vitae</tarea>
+		<fecha>2013-09-24</fecha>
+		<comentarios>tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper. Duis at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero</comentarios>
+		<horas>1</horas>
+		<precio>65</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2013-02-15</fecha2>
+	</row>
+	<row>
+		<id>27</id>
+		<id_cliente>4</id_cliente>
+		<tarea>mauris ipsum porta elit, a feugiat tellus lorem eu metus.</tarea>
+		<fecha>2013-07-28</fecha>
+		<comentarios>vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc</comentarios>
+		<horas>4</horas>
+		<precio>82</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2012-09-10</fecha2>
+	</row>
+	<row>
+		<id>28</id>
+		<id_cliente>2</id_cliente>
+		<tarea>aliquam iaculis, lacus pede sagittis augue, eu tempor erat</tarea>
+		<fecha>2012-08-01</fecha>
+		<comentarios>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac</comentarios>
+		<horas>3</horas>
+		<precio>17</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2013-04-02</fecha2>
+	</row>
+	<row>
+		<id>29</id>
+		<id_cliente>10</id_cliente>
+		<tarea>Integer sem elit, pharetra ut,</tarea>
+		<fecha>2012-08-08</fecha>
+		<comentarios>Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus.</comentarios>
+		<horas>4</horas>
+		<precio>25</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2013-03-20</fecha2>
+	</row>
+	<row>
+		<id>30</id>
+		<id_cliente>2</id_cliente>
+		<tarea>a mi fringilla mi lacinia mattis. Integer</tarea>
+		<fecha>2013-05-04</fecha>
+		<comentarios>vel quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac</comentarios>
+		<horas>7</horas>
+		<precio>29</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>5</id_proyecto>
+		<fecha2>2012-10-05</fecha2>
+	</row>
+	<row>
+		<id>31</id>
+		<id_cliente>6</id_cliente>
+		<tarea>euismod et, commodo at, libero. Morbi accumsan</tarea>
+		<fecha>2013-04-01</fecha>
+		<comentarios>at, nisi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim. Sed nulla ante, iaculis nec, eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas</comentarios>
+		<horas>7</horas>
+		<precio>38</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2013-05-19</fecha2>
+	</row>
+	<row>
+		<id>32</id>
+		<id_cliente>6</id_cliente>
+		<tarea>eget, venenatis a, magna. Lorem ipsum dolor sit amet,</tarea>
+		<fecha>2012-09-14</fecha>
+		<comentarios>cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque</comentarios>
+		<horas>9</horas>
+		<precio>94</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2013-08-25</fecha2>
+	</row>
+	<row>
+		<id>33</id>
+		<id_cliente>3</id_cliente>
+		<tarea>venenatis lacus. Etiam bibendum fermentum metus. Aenean sed</tarea>
+		<fecha>2012-12-23</fecha>
+		<comentarios>nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi</comentarios>
+		<horas>1</horas>
+		<precio>56</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2012-04-24</fecha2>
+	</row>
+	<row>
+		<id>34</id>
+		<id_cliente>1</id_cliente>
+		<tarea>massa. Quisque porttitor eros nec tellus. Nunc</tarea>
+		<fecha>2013-11-20</fecha>
+		<comentarios>euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere</comentarios>
+		<horas>7</horas>
+		<precio>60</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2013-04-26</fecha2>
+	</row>
+	<row>
+		<id>35</id>
+		<id_cliente>1</id_cliente>
+		<tarea>erat neque non quam. Pellentesque habitant morbi tristique senectus</tarea>
+		<fecha>2012-07-18</fecha>
+		<comentarios>conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec</comentarios>
+		<horas>6</horas>
+		<precio>92</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2014-01-23</fecha2>
+	</row>
+	<row>
+		<id>36</id>
+		<id_cliente>8</id_cliente>
+		<tarea>vel lectus. Cum sociis natoque</tarea>
+		<fecha>2013-04-17</fecha>
+		<comentarios>porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus.</comentarios>
+		<horas>3</horas>
+		<precio>40</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2013-07-24</fecha2>
+	</row>
+	<row>
+		<id>37</id>
+		<id_cliente>3</id_cliente>
+		<tarea>rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere</tarea>
+		<fecha>2013-07-30</fecha>
+		<comentarios>a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu</comentarios>
+		<horas>7</horas>
+		<precio>47</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>6</id_proyecto>
+		<fecha2>2012-07-22</fecha2>
+	</row>
+	<row>
+		<id>38</id>
+		<id_cliente>0</id_cliente>
+		<tarea>sem elit, pharetra ut, pharetra</tarea>
+		<fecha>2012-06-25</fecha>
+		<comentarios>Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et</comentarios>
+		<horas>7</horas>
+		<precio>18</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2012-11-28</fecha2>
+	</row>
+	<row>
+		<id>39</id>
+		<id_cliente>7</id_cliente>
+		<tarea>ante dictum cursus. Nunc mauris elit,</tarea>
+		<fecha>2013-11-16</fecha>
+		<comentarios>ullamcorper. Duis at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque.</comentarios>
+		<horas>4</horas>
+		<precio>65</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2012-08-24</fecha2>
+	</row>
+	<row>
+		<id>40</id>
+		<id_cliente>9</id_cliente>
+		<tarea>posuere, enim nisl elementum purus,</tarea>
+		<fecha>2012-04-29</fecha>
+		<comentarios>eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque neque. Nullam nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed</comentarios>
+		<horas>7</horas>
+		<precio>28</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>5</id_proyecto>
+		<fecha2>2013-04-17</fecha2>
+	</row>
+	<row>
+		<id>41</id>
+		<id_cliente>9</id_cliente>
+		<tarea>sollicitudin a, malesuada id, erat. Etiam vestibulum massa rutrum magna.</tarea>
+		<fecha>2013-03-12</fecha>
+		<comentarios>dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor</comentarios>
+		<horas>1</horas>
+		<precio>41</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>3</id_proyecto>
+		<fecha2>2013-08-23</fecha2>
+	</row>
+	<row>
+		<id>42</id>
+		<id_cliente>0</id_cliente>
+		<tarea>Donec non justo. Proin non massa</tarea>
+		<fecha>2013-07-13</fecha>
+		<comentarios>sit amet, consectetuer adipiscing elit. Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper. Duis at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi</comentarios>
+		<horas>9</horas>
+		<precio>22</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2014-02-09</fecha2>
+	</row>
+	<row>
+		<id>43</id>
+		<id_cliente>5</id_cliente>
+		<tarea>malesuada malesuada. Integer id magna et ipsum cursus</tarea>
+		<fecha>2013-12-02</fecha>
+		<comentarios>leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim</comentarios>
+		<horas>6</horas>
+		<precio>36</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2013-04-05</fecha2>
+	</row>
+	<row>
+		<id>44</id>
+		<id_cliente>10</id_cliente>
+		<tarea>In ornare sagittis felis. Donec tempor, est ac</tarea>
+		<fecha>2013-01-31</fecha>
+		<comentarios>scelerisque neque. Nullam nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non,</comentarios>
+		<horas>4</horas>
+		<precio>57</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2013-02-21</fecha2>
+	</row>
+	<row>
+		<id>45</id>
+		<id_cliente>6</id_cliente>
+		<tarea>enim. Etiam imperdiet dictum magna.</tarea>
+		<fecha>2013-07-19</fecha>
+		<comentarios>Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue</comentarios>
+		<horas>10</horas>
+		<precio>52</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2014-02-19</fecha2>
+	</row>
+	<row>
+		<id>46</id>
+		<id_cliente>3</id_cliente>
+		<tarea>aliquam iaculis, lacus pede sagittis augue,</tarea>
+		<fecha>2013-12-29</fecha>
+		<comentarios>dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia</comentarios>
+		<horas>4</horas>
+		<precio>77</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2012-07-26</fecha2>
+	</row>
+	<row>
+		<id>47</id>
+		<id_cliente>3</id_cliente>
+		<tarea>ante dictum cursus. Nunc mauris elit,</tarea>
+		<fecha>2014-01-22</fecha>
+		<comentarios>mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc</comentarios>
+		<horas>8</horas>
+		<precio>84</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>1</id_proyecto>
+		<fecha2>2012-05-18</fecha2>
+	</row>
+	<row>
+		<id>48</id>
+		<id_cliente>2</id_cliente>
+		<tarea>Cras interdum. Nunc sollicitudin commodo ipsum.</tarea>
+		<fecha>2013-08-06</fecha>
+		<comentarios>scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan</comentarios>
+		<horas>1</horas>
+		<precio>26</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2012-07-19</fecha2>
+	</row>
+	<row>
+		<id>49</id>
+		<id_cliente>0</id_cliente>
+		<tarea>Donec sollicitudin adipiscing ligula. Aenean gravida</tarea>
+		<fecha>2013-08-01</fecha>
+		<comentarios>luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim. Sed nulla ante, iaculis nec, eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna</comentarios>
+		<horas>6</horas>
+		<precio>85</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>3</id_proyecto>
+		<fecha2>2013-01-05</fecha2>
+	</row>
+	<row>
+		<id>50</id>
+		<id_cliente>2</id_cliente>
+		<tarea>eget, volutpat ornare, facilisis eget, ipsum. Donec</tarea>
+		<fecha>2012-06-08</fecha>
+		<comentarios>amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque,</comentarios>
+		<horas>7</horas>
+		<precio>27</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2012-06-14</fecha2>
+	</row>
+	<row>
+		<id>51</id>
+		<id_cliente>10</id_cliente>
+		<tarea>nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut</tarea>
+		<fecha>2013-09-04</fecha>
+		<comentarios>cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim.</comentarios>
+		<horas>1</horas>
+		<precio>14</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2013-10-12</fecha2>
+	</row>
+	<row>
+		<id>52</id>
+		<id_cliente>1</id_cliente>
+		<tarea>neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede</tarea>
+		<fecha>2012-08-03</fecha>
+		<comentarios>mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam auctor, velit</comentarios>
+		<horas>9</horas>
+		<precio>68</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2012-03-18</fecha2>
+	</row>
+	<row>
+		<id>53</id>
+		<id_cliente>2</id_cliente>
+		<tarea>dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed</tarea>
+		<fecha>2012-07-03</fecha>
+		<comentarios>tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada</comentarios>
+		<horas>6</horas>
+		<precio>84</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>3</id_proyecto>
+		<fecha2>2014-02-21</fecha2>
+	</row>
+	<row>
+		<id>54</id>
+		<id_cliente>4</id_cliente>
+		<tarea>nisi magna sed dui. Fusce aliquam,</tarea>
+		<fecha>2013-12-30</fecha>
+		<comentarios>purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris</comentarios>
+		<horas>4</horas>
+		<precio>16</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>5</id_proyecto>
+		<fecha2>2012-07-13</fecha2>
+	</row>
+	<row>
+		<id>55</id>
+		<id_cliente>0</id_cliente>
+		<tarea>vel sapien imperdiet ornare. In faucibus.</tarea>
+		<fecha>2013-05-13</fecha>
+		<comentarios>faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim diam vel arcu. Curabitur ut odio vel est tempor bibendum. Donec felis orci, adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim</comentarios>
+		<horas>2</horas>
+		<precio>69</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>1</id_proyecto>
+		<fecha2>2013-10-12</fecha2>
+	</row>
+	<row>
+		<id>56</id>
+		<id_cliente>5</id_cliente>
+		<tarea>non enim. Mauris quis turpis vitae purus</tarea>
+		<fecha>2014-01-28</fecha>
+		<comentarios>elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla. Donec non justo. Proin non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus</comentarios>
+		<horas>10</horas>
+		<precio>13</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2013-10-26</fecha2>
+	</row>
+	<row>
+		<id>57</id>
+		<id_cliente>6</id_cliente>
+		<tarea>orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu,</tarea>
+		<fecha>2013-11-01</fecha>
+		<comentarios>ac, eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque neque. Nullam nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque</comentarios>
+		<horas>3</horas>
+		<precio>48</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2013-03-28</fecha2>
+	</row>
+	<row>
+		<id>58</id>
+		<id_cliente>9</id_cliente>
+		<tarea>condimentum. Donec at arcu. Vestibulum ante ipsum primis in</tarea>
+		<fecha>2013-09-26</fecha>
+		<comentarios>at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam</comentarios>
+		<horas>1</horas>
+		<precio>67</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>5</id_proyecto>
+		<fecha2>2014-02-18</fecha2>
+	</row>
+	<row>
+		<id>59</id>
+		<id_cliente>8</id_cliente>
+		<tarea>Duis sit amet diam eu dolor egestas rhoncus.</tarea>
+		<fecha>2014-02-14</fecha>
+		<comentarios>Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim. Mauris quis turpis vitae purus gravida</comentarios>
+		<horas>7</horas>
+		<precio>22</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2013-09-21</fecha2>
+	</row>
+	<row>
+		<id>60</id>
+		<id_cliente>1</id_cliente>
+		<tarea>Vivamus nisi. Mauris nulla. Integer</tarea>
+		<fecha>2012-03-17</fecha>
+		<comentarios>magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim</comentarios>
+		<horas>4</horas>
+		<precio>25</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>7</id_proyecto>
+		<fecha2>2014-01-15</fecha2>
+	</row>
+	<row>
+		<id>61</id>
+		<id_cliente>4</id_cliente>
+		<tarea>convallis, ante lectus convallis est,</tarea>
+		<fecha>2013-07-12</fecha>
+		<comentarios>In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius</comentarios>
+		<horas>3</horas>
+		<precio>66</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2013-03-30</fecha2>
+	</row>
+	<row>
+		<id>62</id>
+		<id_cliente>7</id_cliente>
+		<tarea>vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean</tarea>
+		<fecha>2014-02-16</fecha>
+		<comentarios>Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc</comentarios>
+		<horas>8</horas>
+		<precio>44</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2012-10-16</fecha2>
+	</row>
+	<row>
+		<id>63</id>
+		<id_cliente>0</id_cliente>
+		<tarea>lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede</tarea>
+		<fecha>2013-10-22</fecha>
+		<comentarios>et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc.</comentarios>
+		<horas>10</horas>
+		<precio>68</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>6</id_proyecto>
+		<fecha2>2013-05-25</fecha2>
+	</row>
+	<row>
+		<id>64</id>
+		<id_cliente>10</id_cliente>
+		<tarea>ultrices posuere cubilia Curae; Phasellus ornare.</tarea>
+		<fecha>2012-03-10</fecha>
+		<comentarios>non justo. Proin non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse</comentarios>
+		<horas>3</horas>
+		<precio>21</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>1</id_proyecto>
+		<fecha2>2012-09-29</fecha2>
+	</row>
+	<row>
+		<id>65</id>
+		<id_cliente>4</id_cliente>
+		<tarea>lectus quis massa. Mauris vestibulum,</tarea>
+		<fecha>2012-12-28</fecha>
+		<comentarios>venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi</comentarios>
+		<horas>4</horas>
+		<precio>78</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2013-03-17</fecha2>
+	</row>
+	<row>
+		<id>66</id>
+		<id_cliente>5</id_cliente>
+		<tarea>magna nec quam. Curabitur vel lectus. Cum</tarea>
+		<fecha>2013-03-01</fecha>
+		<comentarios>ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis ullamcorper viverra. Maecenas iaculis aliquet diam. Sed diam lorem, auctor quis, tristique ac, eleifend vitae, erat.</comentarios>
+		<horas>5</horas>
+		<precio>19</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2012-11-23</fecha2>
+	</row>
+	<row>
+		<id>67</id>
+		<id_cliente>0</id_cliente>
+		<tarea>aliquet libero. Integer in magna. Phasellus</tarea>
+		<fecha>2013-08-24</fecha>
+		<comentarios>eu elit. Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue.</comentarios>
+		<horas>7</horas>
+		<precio>86</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2014-02-17</fecha2>
+	</row>
+	<row>
+		<id>68</id>
+		<id_cliente>1</id_cliente>
+		<tarea>Etiam ligula tortor, dictum eu,</tarea>
+		<fecha>2013-02-26</fecha>
+		<comentarios>egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa.</comentarios>
+		<horas>10</horas>
+		<precio>77</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2012-09-06</fecha2>
+	</row>
+	<row>
+		<id>69</id>
+		<id_cliente>0</id_cliente>
+		<tarea>eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec</tarea>
+		<fecha>2013-04-01</fecha>
+		<comentarios>luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam</comentarios>
+		<horas>1</horas>
+		<precio>76</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2014-01-08</fecha2>
+	</row>
+	<row>
+		<id>70</id>
+		<id_cliente>2</id_cliente>
+		<tarea>Duis at lacus. Quisque purus sapien, gravida non,</tarea>
+		<fecha>2013-04-10</fecha>
+		<comentarios>Proin non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean</comentarios>
+		<horas>3</horas>
+		<precio>10</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>5</id_proyecto>
+		<fecha2>2012-07-24</fecha2>
+	</row>
+	<row>
+		<id>71</id>
+		<id_cliente>6</id_cliente>
+		<tarea>Maecenas ornare egestas ligula. Nullam</tarea>
+		<fecha>2013-01-14</fecha>
+		<comentarios>pede, nonummy ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti</comentarios>
+		<horas>4</horas>
+		<precio>68</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2012-06-20</fecha2>
+	</row>
+	<row>
+		<id>72</id>
+		<id_cliente>6</id_cliente>
+		<tarea>tellus lorem eu metus. In lorem.</tarea>
+		<fecha>2013-09-28</fecha>
+		<comentarios>diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique</comentarios>
+		<horas>7</horas>
+		<precio>10</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2013-03-10</fecha2>
+	</row>
+	<row>
+		<id>73</id>
+		<id_cliente>0</id_cliente>
+		<tarea>Mauris eu turpis. Nulla aliquet.</tarea>
+		<fecha>2012-04-07</fecha>
+		<comentarios>sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque</comentarios>
+		<horas>1</horas>
+		<precio>49</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>7</id_proyecto>
+		<fecha2>2012-03-10</fecha2>
+	</row>
+	<row>
+		<id>74</id>
+		<id_cliente>7</id_cliente>
+		<tarea>et risus. Quisque libero lacus, varius et, euismod et, commodo</tarea>
+		<fecha>2012-03-13</fecha>
+		<comentarios>parturient montes, nascetur ridiculus mus. Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim.</comentarios>
+		<horas>10</horas>
+		<precio>64</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2012-10-18</fecha2>
+	</row>
+	<row>
+		<id>75</id>
+		<id_cliente>10</id_cliente>
+		<tarea>turpis. In condimentum. Donec at</tarea>
+		<fecha>2013-07-30</fecha>
+		<comentarios>Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla. Donec non justo. Proin non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris</comentarios>
+		<horas>10</horas>
+		<precio>65</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>3</id_proyecto>
+		<fecha2>2013-03-06</fecha2>
+	</row>
+	<row>
+		<id>76</id>
+		<id_cliente>2</id_cliente>
+		<tarea>dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a</tarea>
+		<fecha>2012-04-29</fecha>
+		<comentarios>ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem</comentarios>
+		<horas>8</horas>
+		<precio>55</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2013-05-04</fecha2>
+	</row>
+	<row>
+		<id>77</id>
+		<id_cliente>5</id_cliente>
+		<tarea>euismod in, dolor. Fusce feugiat. Lorem ipsum dolor sit</tarea>
+		<fecha>2012-06-02</fecha>
+		<comentarios>mus. Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim.</comentarios>
+		<horas>9</horas>
+		<precio>15</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2014-02-16</fecha2>
+	</row>
+	<row>
+		<id>78</id>
+		<id_cliente>0</id_cliente>
+		<tarea>eleifend egestas. Sed pharetra, felis eget varius</tarea>
+		<fecha>2013-01-17</fecha>
+		<comentarios>ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio</comentarios>
+		<horas>9</horas>
+		<precio>96</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>5</id_proyecto>
+		<fecha2>2013-06-14</fecha2>
+	</row>
+	<row>
+		<id>79</id>
+		<id_cliente>10</id_cliente>
+		<tarea>lacus. Nulla tincidunt, neque vitae semper egestas, urna justo</tarea>
+		<fecha>2013-08-01</fecha>
+		<comentarios>tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate,</comentarios>
+		<horas>4</horas>
+		<precio>95</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>3</id_proyecto>
+		<fecha2>2013-04-12</fecha2>
+	</row>
+	<row>
+		<id>80</id>
+		<id_cliente>7</id_cliente>
+		<tarea>viverra. Donec tempus, lorem fringilla ornare placerat, orci</tarea>
+		<fecha>2012-11-07</fecha>
+		<comentarios>habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate</comentarios>
+		<horas>5</horas>
+		<precio>82</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2014-01-26</fecha2>
+	</row>
+	<row>
+		<id>81</id>
+		<id_cliente>7</id_cliente>
+		<tarea>Suspendisse sagittis. Nullam vitae diam. Proin</tarea>
+		<fecha>2013-03-05</fecha>
+		<comentarios>pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque</comentarios>
+		<horas>2</horas>
+		<precio>96</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2012-07-30</fecha2>
+	</row>
+	<row>
+		<id>82</id>
+		<id_cliente>8</id_cliente>
+		<tarea>natoque penatibus et magnis dis parturient montes, nascetur</tarea>
+		<fecha>2014-02-03</fecha>
+		<comentarios>adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui.</comentarios>
+		<horas>3</horas>
+		<precio>73</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>1</id_proyecto>
+		<fecha2>2013-10-29</fecha2>
+	</row>
+	<row>
+		<id>83</id>
+		<id_cliente>0</id_cliente>
+		<tarea>Mauris vel turpis. Aliquam adipiscing lobortis risus. In</tarea>
+		<fecha>2013-01-08</fecha>
+		<comentarios>diam lorem, auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque</comentarios>
+		<horas>8</horas>
+		<precio>98</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2013-03-29</fecha2>
+	</row>
+	<row>
+		<id>84</id>
+		<id_cliente>4</id_cliente>
+		<tarea>et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus</tarea>
+		<fecha>2013-07-06</fecha>
+		<comentarios>metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla</comentarios>
+		<horas>4</horas>
+		<precio>30</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>7</id_proyecto>
+		<fecha2>2012-12-03</fecha2>
+	</row>
+	<row>
+		<id>85</id>
+		<id_cliente>3</id_cliente>
+		<tarea>fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus</tarea>
+		<fecha>2013-03-21</fecha>
+		<comentarios>ultricies ligula. Nullam enim. Sed nulla ante, iaculis nec, eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus</comentarios>
+		<horas>8</horas>
+		<precio>34</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>2</id_proyecto>
+		<fecha2>2013-05-12</fecha2>
+	</row>
+	<row>
+		<id>86</id>
+		<id_cliente>5</id_cliente>
+		<tarea>libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus</tarea>
+		<fecha>2013-01-30</fecha>
+		<comentarios>eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est</comentarios>
+		<horas>6</horas>
+		<precio>86</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2013-04-01</fecha2>
+	</row>
+	<row>
+		<id>87</id>
+		<id_cliente>6</id_cliente>
+		<tarea>cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin</tarea>
+		<fecha>2013-07-05</fecha>
+		<comentarios>eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu</comentarios>
+		<horas>1</horas>
+		<precio>51</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2012-06-13</fecha2>
+	</row>
+	<row>
+		<id>88</id>
+		<id_cliente>8</id_cliente>
+		<tarea>tellus non magna. Nam ligula</tarea>
+		<fecha>2013-12-17</fecha>
+		<comentarios>eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus.</comentarios>
+		<horas>4</horas>
+		<precio>72</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2012-05-07</fecha2>
+	</row>
+	<row>
+		<id>89</id>
+		<id_cliente>4</id_cliente>
+		<tarea>congue, elit sed consequat auctor, nunc nulla</tarea>
+		<fecha>2013-12-25</fecha>
+		<comentarios>imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque</comentarios>
+		<horas>4</horas>
+		<precio>55</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2013-04-21</fecha2>
+	</row>
+	<row>
+		<id>90</id>
+		<id_cliente>0</id_cliente>
+		<tarea>Donec luctus aliquet odio. Etiam ligula</tarea>
+		<fecha>2013-12-29</fecha>
+		<comentarios>et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac</comentarios>
+		<horas>7</horas>
+		<precio>17</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2012-06-16</fecha2>
+	</row>
+	<row>
+		<id>91</id>
+		<id_cliente>1</id_cliente>
+		<tarea>condimentum. Donec at arcu. Vestibulum ante ipsum primis in</tarea>
+		<fecha>2013-04-10</fecha>
+		<comentarios>eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in</comentarios>
+		<horas>8</horas>
+		<precio>57</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2013-10-15</fecha2>
+	</row>
+	<row>
+		<id>92</id>
+		<id_cliente>9</id_cliente>
+		<tarea>dictum sapien. Aenean massa. Integer vitae nibh. Donec est</tarea>
+		<fecha>2013-01-22</fecha>
+		<comentarios>Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at</comentarios>
+		<horas>5</horas>
+		<precio>53</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>3</id_proyecto>
+		<fecha2>2012-07-18</fecha2>
+	</row>
+	<row>
+		<id>93</id>
+		<id_cliente>8</id_cliente>
+		<tarea>eu lacus. Quisque imperdiet, erat nonummy</tarea>
+		<fecha>2012-03-29</fecha>
+		<comentarios>non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis</comentarios>
+		<horas>2</horas>
+		<precio>51</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2013-04-22</fecha2>
+	</row>
+	<row>
+		<id>94</id>
+		<id_cliente>0</id_cliente>
+		<tarea>porttitor scelerisque neque. Nullam nisl. Maecenas malesuada</tarea>
+		<fecha>2013-05-18</fecha>
+		<comentarios>euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat.</comentarios>
+		<horas>2</horas>
+		<precio>79</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>8</id_proyecto>
+		<fecha2>2014-01-22</fecha2>
+	</row>
+	<row>
+		<id>95</id>
+		<id_cliente>5</id_cliente>
+		<tarea>dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et</tarea>
+		<fecha>2013-02-22</fecha>
+		<comentarios>nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada</comentarios>
+		<horas>6</horas>
+		<precio>71</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>7</id_proyecto>
+		<fecha2>2012-04-15</fecha2>
+	</row>
+	<row>
+		<id>96</id>
+		<id_cliente>1</id_cliente>
+		<tarea>dapibus ligula. Aliquam erat volutpat.</tarea>
+		<fecha>2012-07-10</fecha>
+		<comentarios>pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque</comentarios>
+		<horas>7</horas>
+		<precio>35</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>10</id_proyecto>
+		<fecha2>2013-03-23</fecha2>
+	</row>
+	<row>
+		<id>97</id>
+		<id_cliente>4</id_cliente>
+		<tarea>sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor</tarea>
+		<fecha>2014-01-07</fecha>
+		<comentarios>netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas.</comentarios>
+		<horas>6</horas>
+		<precio>88</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>0</id_proyecto>
+		<fecha2>2013-10-01</fecha2>
+	</row>
+	<row>
+		<id>98</id>
+		<id_cliente>0</id_cliente>
+		<tarea>Curabitur egestas nunc sed libero. Proin sed turpis nec mauris</tarea>
+		<fecha>2013-11-04</fecha>
+		<comentarios>nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis ullamcorper viverra. Maecenas iaculis aliquet diam. Sed diam lorem, auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare egestas ligula.</comentarios>
+		<horas>6</horas>
+		<precio>62</precio>
+		<liquidado>1</liquidado>
+		<id_proyecto>4</id_proyecto>
+		<fecha2>2013-11-03</fecha2>
+	</row>
+	<row>
+		<id>99</id>
+		<id_cliente>0</id_cliente>
+		<tarea>mi. Aliquam gravida mauris ut mi. Duis risus</tarea>
+		<fecha>2012-11-08</fecha>
+		<comentarios>lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse</comentarios>
+		<horas>1</horas>
+		<precio>18</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>9</id_proyecto>
+		<fecha2>2012-08-06</fecha2>
+	</row>
+	<row>
+		<id>100</id>
+		<id_cliente>7</id_cliente>
+		<tarea>Cras vehicula aliquet libero. Integer in magna.</tarea>
+		<fecha>2012-11-14</fecha>
+		<comentarios>metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque</comentarios>
+		<horas>4</horas>
+		<precio>84</precio>
+		<liquidado>0</liquidado>
+		<id_proyecto>5</id_proyecto>
+		<fecha2>2013-04-14</fecha2>
+	</row>
+</root>

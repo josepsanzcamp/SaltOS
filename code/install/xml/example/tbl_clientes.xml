@@ -1,97 +1,1402 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!--
- ____        _ _    ___  ____
-/ ___|  __ _| | |_ / _ \/ ___|
-\___ \ / _` | | __| | | \___ \
- ___) | (_| | | |_| |_| |___) |
-|____/ \__,_|_|\__|\___/|____/
-
-SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2012 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
 <root>
 	<row>
 		<id>1</id>
-		<id_campanya>0</id_campanya>
-		<id_importacion>0</id_importacion>
+		<id_campanya>5</id_campanya>
+		<id_importacion>10</id_importacion>
 		<id_tipo>1</id_tipo>
-		<nombre>Client 1</nombre>
-		<nombre1>Client 1 Co.Ltd.</nombre1>
-		<nombre2>Client 1 Co.Ltd.</nombre2>
-		<cif>C11111111</cif>
-		<comentarios>Client 1 comments</comentarios>
-		<corriente/>
-		<contable/>
-		<diapago>0</diapago>
+		<nombre>odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis</nombre>
+		<nombre1>elit, pharetra ut, pharetra sed, hendrerit a,</nombre1>
+		<nombre2>scelerisque neque sed sem egestas blandit.</nombre2>
+		<cif>79135038-I</cif>
+		<comentarios>arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat.</comentarios>
+		<corriente>1473-8911-11-2600485304</corriente>
+		<contable>106</contable>
+		<diapago>15</diapago>
 	</row>
 	<row>
 		<id>2</id>
-		<id_campanya>0</id_campanya>
-		<id_importacion>0</id_importacion>
-		<id_tipo>2</id_tipo>
-		<nombre>Client 2</nombre>
-		<nombre1>Client 2 Co.Ltd.</nombre1>
-		<nombre2>Client 2 Co.Ltd.</nombre2>
-		<cif>C22222222</cif>
-		<comentarios>Client 2 comments</comentarios>
-		<corriente/>
-		<contable/>
-		<diapago>0</diapago>
+		<id_campanya>6</id_campanya>
+		<id_importacion>7</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Etiam vestibulum massa rutrum magna. Cras convallis</nombre>
+		<nombre1>amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie</nombre1>
+		<nombre2>in felis. Nulla tempor augue</nombre2>
+		<cif>25017238-M</cif>
+		<comentarios>blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros.</comentarios>
+		<corriente>5461-8759-71-4383780202</corriente>
+		<contable>453</contable>
+		<diapago>17</diapago>
 	</row>
 	<row>
 		<id>3</id>
-		<id_campanya>0</id_campanya>
-		<id_importacion>0</id_importacion>
-		<id_tipo>3</id_tipo>
-		<nombre>Client 3</nombre>
-		<nombre1>Client 3 Co.Ltd.</nombre1>
-		<nombre2>Client 3 Co.Ltd.</nombre2>
-		<cif>C33333333</cif>
-		<comentarios>Client 3 comments</comentarios>
-		<corriente/>
-		<contable/>
-		<diapago>0</diapago>
+		<id_campanya>3</id_campanya>
+		<id_importacion>6</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>pede. Nunc sed orci lobortis</nombre>
+		<nombre1>auctor, velit eget laoreet posuere, enim nisl elementum purus, accumsan</nombre1>
+		<nombre2>Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie</nombre2>
+		<cif>67133105-P</cif>
+		<comentarios>Nullam nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor</comentarios>
+		<corriente>9129-4328-95-4204313377</corriente>
+		<contable>059</contable>
+		<diapago>11</diapago>
 	</row>
 	<row>
 		<id>4</id>
-		<id_campanya>0</id_campanya>
+		<id_campanya>9</id_campanya>
 		<id_importacion>0</id_importacion>
-		<id_tipo>4</id_tipo>
-		<nombre>Client 4</nombre>
-		<nombre1>Client 4 Co.Ltd.</nombre1>
-		<nombre2>Client 4 Co.Ltd.</nombre2>
-		<cif>C44444444</cif>
-		<comentarios>Client 4 comments</comentarios>
-		<corriente/>
-		<contable/>
-		<diapago>0</diapago>
+		<id_tipo>1</id_tipo>
+		<nombre>Aenean eget magna. Suspendisse tristique neque venenatis</nombre>
+		<nombre1>ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero</nombre1>
+		<nombre2>cursus non, egestas a, dui. Cras pellentesque. Sed</nombre2>
+		<cif>05547432-X</cif>
+		<comentarios>dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis ullamcorper viverra. Maecenas iaculis aliquet diam. Sed diam lorem, auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare</comentarios>
+		<corriente>3946-2232-72-6631990751</corriente>
+		<contable>816</contable>
+		<diapago>9</diapago>
 	</row>
 	<row>
 		<id>5</id>
+		<id_campanya>9</id_campanya>
+		<id_importacion>1</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>malesuada id, erat. Etiam vestibulum</nombre>
+		<nombre1>gravida sit amet, dapibus id, blandit</nombre1>
+		<nombre2>In nec orci. Donec nibh. Quisque</nombre2>
+		<cif>99323596-G</cif>
+		<comentarios>ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum</comentarios>
+		<corriente>3594-3552-62-4541643174</corriente>
+		<contable>177</contable>
+		<diapago>12</diapago>
+	</row>
+	<row>
+		<id>6</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>3</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Donec porttitor tellus non magna. Nam ligula elit, pretium</nombre>
+		<nombre1>diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat.</nombre1>
+		<nombre2>purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula</nombre2>
+		<cif>73829082-O</cif>
+		<comentarios>tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean</comentarios>
+		<corriente>6000-2844-51-8641401206</corriente>
+		<contable>934</contable>
+		<diapago>6</diapago>
+	</row>
+	<row>
+		<id>7</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ac turpis egestas. Fusce aliquet magna a neque.</nombre>
+		<nombre1>arcu. Vestibulum ante ipsum primis in faucibus</nombre1>
+		<nombre2>nulla ante, iaculis nec, eleifend non, dapibus rutrum, justo.</nombre2>
+		<cif>27701263-A</cif>
+		<comentarios>erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut</comentarios>
+		<corriente>2783-9899-23-1691296471</corriente>
+		<contable>749</contable>
+		<diapago>23</diapago>
+	</row>
+	<row>
+		<id>8</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Curae; Phasellus ornare. Fusce mollis. Duis sit amet diam eu</nombre>
+		<nombre1>pellentesque, tellus sem mollis dui, in sodales elit erat</nombre1>
+		<nombre2>sed turpis nec mauris blandit mattis. Cras</nombre2>
+		<cif>67557480-O</cif>
+		<comentarios>Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper. Duis at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce</comentarios>
+		<corriente>7693-1758-15-6871899644</corriente>
+		<contable>210</contable>
+		<diapago>25</diapago>
+	</row>
+	<row>
+		<id>9</id>
+		<id_campanya>9</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>auctor, velit eget laoreet posuere, enim nisl elementum purus, accumsan</nombre>
+		<nombre1>dolor sit amet, consectetuer adipiscing elit.</nombre1>
+		<nombre2>adipiscing, enim mi tempor lorem, eget mollis lectus pede</nombre2>
+		<cif>90066881-O</cif>
+		<comentarios>et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum.</comentarios>
+		<corriente>6596-1304-50-3450452321</corriente>
+		<contable>331</contable>
+		<diapago>2</diapago>
+	</row>
+	<row>
+		<id>10</id>
 		<id_campanya>0</id_campanya>
 		<id_importacion>0</id_importacion>
-		<id_tipo>5</id_tipo>
-		<nombre>Client 5</nombre>
-		<nombre1>Client 5 Co.Ltd.</nombre1>
-		<nombre2>Client 5 Co.Ltd.</nombre2>
-		<cif>C55555555</cif>
-		<comentarios>Client 5 comments</comentarios>
-		<corriente/>
-		<contable/>
-		<diapago>0</diapago>
+		<id_tipo>1</id_tipo>
+		<nombre>magna. Duis dignissim tempor arcu. Vestibulum</nombre>
+		<nombre1>Nam tempor diam dictum sapien. Aenean massa. Integer</nombre1>
+		<nombre2>tempus eu, ligula. Aenean euismod mauris</nombre2>
+		<cif>08339890-F</cif>
+		<comentarios>id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit</comentarios>
+		<corriente>2715-1465-78-5784931063</corriente>
+		<contable>147</contable>
+		<diapago>15</diapago>
+	</row>
+	<row>
+		<id>11</id>
+		<id_campanya>4</id_campanya>
+		<id_importacion>6</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>elit erat vitae risus. Duis a mi</nombre>
+		<nombre1>enim non nisi. Aenean eget metus. In nec orci.</nombre1>
+		<nombre2>placerat. Cras dictum ultricies ligula.</nombre2>
+		<cif>25662130-T</cif>
+		<comentarios>eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique</comentarios>
+		<corriente>2123-1873-34-8803380496</corriente>
+		<contable>643</contable>
+		<diapago>8</diapago>
+	</row>
+	<row>
+		<id>12</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>dictum placerat, augue. Sed molestie. Sed id risus quis</nombre>
+		<nombre1>dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed</nombre1>
+		<nombre2>gravida. Aliquam tincidunt, nunc ac mattis ornare,</nombre2>
+		<cif>78165400-I</cif>
+		<comentarios>ut erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis.</comentarios>
+		<corriente>6197-5832-36-4011739288</corriente>
+		<contable>070</contable>
+		<diapago>21</diapago>
+	</row>
+	<row>
+		<id>13</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>sagittis. Nullam vitae diam. Proin dolor. Nulla</nombre>
+		<nombre1>amet, dapibus id, blandit at, nisi. Cum sociis</nombre1>
+		<nombre2>eleifend egestas. Sed pharetra, felis eget varius</nombre2>
+		<cif>40434660-C</cif>
+		<comentarios>sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem semper auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus. In mi pede, nonummy ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</comentarios>
+		<corriente>2452-7407-20-4552929567</corriente>
+		<contable>971</contable>
+		<diapago>10</diapago>
+	</row>
+	<row>
+		<id>14</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>8</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Duis volutpat nunc sit amet metus.</nombre>
+		<nombre1>egestas, urna justo faucibus lectus, a sollicitudin orci sem</nombre1>
+		<nombre2>ipsum leo elementum sem, vitae</nombre2>
+		<cif>93844674-D</cif>
+		<comentarios>eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci.</comentarios>
+		<corriente>3232-7007-71-0990178599</corriente>
+		<contable>528</contable>
+		<diapago>28</diapago>
+	</row>
+	<row>
+		<id>15</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>tempor arcu. Vestibulum ut eros</nombre>
+		<nombre1>est, congue a, aliquet vel, vulputate eu, odio. Phasellus at</nombre1>
+		<nombre2>egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie</nombre2>
+		<cif>52052824-Y</cif>
+		<comentarios>pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer</comentarios>
+		<corriente>0318-8073-26-3800060253</corriente>
+		<contable>784</contable>
+		<diapago>7</diapago>
+	</row>
+	<row>
+		<id>16</id>
+		<id_campanya>0</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>odio. Phasellus at augue id ante dictum</nombre>
+		<nombre1>purus mauris a nunc. In at pede. Cras vulputate</nombre1>
+		<nombre2>odio, auctor vitae, aliquet nec, imperdiet</nombre2>
+		<cif>90898124-N</cif>
+		<comentarios>sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet,</comentarios>
+		<corriente>5116-3790-54-2667084904</corriente>
+		<contable>802</contable>
+		<diapago>23</diapago>
+	</row>
+	<row>
+		<id>17</id>
+		<id_campanya>9</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>risus. Nunc ac sem ut dolor dapibus</nombre>
+		<nombre1>malesuada fames ac turpis egestas.</nombre1>
+		<nombre2>conubia nostra, per inceptos hymenaeos. Mauris ut quam</nombre2>
+		<cif>91661625-X</cif>
+		<comentarios>Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus.</comentarios>
+		<corriente>6900-8056-17-4005406258</corriente>
+		<contable>275</contable>
+		<diapago>27</diapago>
+	</row>
+	<row>
+		<id>18</id>
+		<id_campanya>9</id_campanya>
+		<id_importacion>1</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ut nisi a odio semper cursus. Integer</nombre>
+		<nombre1>est arcu ac orci. Ut</nombre1>
+		<nombre2>vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo</nombre2>
+		<cif>78783400-Y</cif>
+		<comentarios>gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est,</comentarios>
+		<corriente>4410-7799-44-9360770440</corriente>
+		<contable>238</contable>
+		<diapago>4</diapago>
+	</row>
+	<row>
+		<id>19</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>3</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>consequat nec, mollis vitae, posuere at, velit. Cras lorem</nombre>
+		<nombre1>lectus pede et risus. Quisque libero</nombre1>
+		<nombre2>orci, consectetuer euismod est arcu ac orci. Ut semper</nombre2>
+		<cif>07477422-I</cif>
+		<comentarios>enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus</comentarios>
+		<corriente>4365-8151-43-2063896763</corriente>
+		<contable>747</contable>
+		<diapago>16</diapago>
+	</row>
+	<row>
+		<id>20</id>
+		<id_campanya>2</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>eu nibh vulputate mauris sagittis placerat. Cras</nombre>
+		<nombre1>Nulla aliquet. Proin velit. Sed malesuada</nombre1>
+		<nombre2>Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem,</nombre2>
+		<cif>05510654-V</cif>
+		<comentarios>vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem semper auctor. Mauris vel turpis. Aliquam</comentarios>
+		<corriente>2408-1719-19-5313866263</corriente>
+		<contable>218</contable>
+		<diapago>12</diapago>
+	</row>
+	<row>
+		<id>21</id>
+		<id_campanya>2</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>diam luctus lobortis. Class aptent taciti sociosqu ad litora</nombre>
+		<nombre1>lorem eu metus. In lorem. Donec elementum, lorem</nombre1>
+		<nombre2>In nec orci. Donec nibh. Quisque nonummy</nombre2>
+		<cif>93264283-T</cif>
+		<comentarios>sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula</comentarios>
+		<corriente>0016-2705-88-9028744595</corriente>
+		<contable>438</contable>
+		<diapago>4</diapago>
+	</row>
+	<row>
+		<id>22</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>0</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ipsum ac mi eleifend egestas. Sed</nombre>
+		<nombre1>Donec tempus, lorem fringilla ornare</nombre1>
+		<nombre2>odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat</nombre2>
+		<cif>75355833-U</cif>
+		<comentarios>ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu dui. Cum sociis natoque penatibus</comentarios>
+		<corriente>6111-6171-45-3162343034</corriente>
+		<contable>898</contable>
+		<diapago>10</diapago>
+	</row>
+	<row>
+		<id>23</id>
+		<id_campanya>5</id_campanya>
+		<id_importacion>7</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>accumsan convallis, ante lectus convallis est, vitae sodales nisi magna</nombre>
+		<nombre1>eros non enim commodo hendrerit.</nombre1>
+		<nombre2>non, feugiat nec, diam. Duis</nombre2>
+		<cif>62080126-M</cif>
+		<comentarios>vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque</comentarios>
+		<corriente>7771-7155-14-9616558161</corriente>
+		<contable>891</contable>
+		<diapago>19</diapago>
+	</row>
+	<row>
+		<id>24</id>
+		<id_campanya>10</id_campanya>
+		<id_importacion>3</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>mi lacinia mattis. Integer eu lacus. Quisque imperdiet,</nombre>
+		<nombre1>Nullam scelerisque neque sed sem egestas</nombre1>
+		<nombre2>leo. Morbi neque tellus, imperdiet non, vestibulum nec,</nombre2>
+		<cif>66772296-F</cif>
+		<comentarios>semper tellus id nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi</comentarios>
+		<corriente>8136-2071-08-7916598458</corriente>
+		<contable>026</contable>
+		<diapago>25</diapago>
+	</row>
+	<row>
+		<id>25</id>
+		<id_campanya>5</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>dui. Cras pellentesque. Sed dictum.</nombre>
+		<nombre1>vulputate, posuere vulputate, lacus. Cras interdum.</nombre1>
+		<nombre2>odio a purus. Duis elementum, dui quis accumsan convallis, ante</nombre2>
+		<cif>35733832-S</cif>
+		<comentarios>lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim diam vel arcu. Curabitur ut odio vel est tempor bibendum. Donec felis orci, adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum.</comentarios>
+		<corriente>3942-3914-17-2660873778</corriente>
+		<contable>035</contable>
+		<diapago>12</diapago>
+	</row>
+	<row>
+		<id>26</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec,</nombre>
+		<nombre1>euismod urna. Nullam lobortis quam a</nombre1>
+		<nombre2>semper. Nam tempor diam dictum sapien. Aenean massa.</nombre2>
+		<cif>77578996-F</cif>
+		<comentarios>faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat</comentarios>
+		<corriente>2406-1752-00-6754676028</corriente>
+		<contable>703</contable>
+		<diapago>16</diapago>
+	</row>
+	<row>
+		<id>27</id>
+		<id_campanya>10</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ante lectus convallis est, vitae sodales nisi magna</nombre>
+		<nombre1>erat volutpat. Nulla facilisis. Suspendisse</nombre1>
+		<nombre2>suscipit, est ac facilisis facilisis, magna tellus faucibus leo,</nombre2>
+		<cif>94769070-S</cif>
+		<comentarios>dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit,</comentarios>
+		<corriente>1138-1669-69-4620261047</corriente>
+		<contable>085</contable>
+		<diapago>19</diapago>
+	</row>
+	<row>
+		<id>28</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>6</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>tellus. Nunc lectus pede, ultrices a, auctor non, feugiat</nombre>
+		<nombre1>at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac</nombre1>
+		<nombre2>Integer sem elit, pharetra ut, pharetra sed, hendrerit</nombre2>
+		<cif>63030990-L</cif>
+		<comentarios>rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris.</comentarios>
+		<corriente>4896-9339-29-6950788038</corriente>
+		<contable>779</contable>
+		<diapago>3</diapago>
+	</row>
+	<row>
+		<id>29</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>sed pede. Cum sociis natoque penatibus et magnis dis</nombre>
+		<nombre1>eu erat semper rutrum. Fusce dolor quam, elementum at,</nombre1>
+		<nombre2>Fusce mi lorem, vehicula et, rutrum eu, ultrices sit</nombre2>
+		<cif>93437356-Y</cif>
+		<comentarios>Aliquam adipiscing lobortis risus. In mi pede, nonummy ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit</comentarios>
+		<corriente>9208-3360-05-1842679654</corriente>
+		<contable>698</contable>
+		<diapago>27</diapago>
+	</row>
+	<row>
+		<id>30</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>cursus a, enim. Suspendisse aliquet, sem ut</nombre>
+		<nombre1>non magna. Nam ligula elit,</nombre1>
+		<nombre2>rhoncus. Proin nisl sem, consequat</nombre2>
+		<cif>69596601-U</cif>
+		<comentarios>Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla. Donec non justo. Proin non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt</comentarios>
+		<corriente>0439-1837-81-7531841464</corriente>
+		<contable>059</contable>
+		<diapago>1</diapago>
+	</row>
+	<row>
+		<id>31</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>7</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>orci, adipiscing non, luctus sit amet,</nombre>
+		<nombre1>vulputate, nisi sem semper erat, in consectetuer ipsum nunc id</nombre1>
+		<nombre2>adipiscing non, luctus sit amet, faucibus ut,</nombre2>
+		<cif>24517399-A</cif>
+		<comentarios>inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit</comentarios>
+		<corriente>2374-8388-98-8049399243</corriente>
+		<contable>589</contable>
+		<diapago>21</diapago>
+	</row>
+	<row>
+		<id>32</id>
+		<id_campanya>6</id_campanya>
+		<id_importacion>3</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Cum sociis natoque penatibus et magnis dis parturient</nombre>
+		<nombre1>dictum eu, placerat eget, venenatis a,</nombre1>
+		<nombre2>blandit mattis. Cras eget nisi dictum augue malesuada</nombre2>
+		<cif>59398286-C</cif>
+		<comentarios>eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem semper auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus. In mi pede, nonummy ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui nec urna suscipit nonummy.</comentarios>
+		<corriente>0319-6531-33-8965497253</corriente>
+		<contable>747</contable>
+		<diapago>20</diapago>
+	</row>
+	<row>
+		<id>33</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>10</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis</nombre>
+		<nombre1>sodales. Mauris blandit enim consequat purus. Maecenas</nombre1>
+		<nombre2>adipiscing elit. Etiam laoreet, libero</nombre2>
+		<cif>20374517-L</cif>
+		<comentarios>in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis</comentarios>
+		<corriente>0538-7814-38-1687682899</corriente>
+		<contable>003</contable>
+		<diapago>25</diapago>
+	</row>
+	<row>
+		<id>34</id>
+		<id_campanya>5</id_campanya>
+		<id_importacion>10</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>viverra. Maecenas iaculis aliquet diam. Sed</nombre>
+		<nombre1>massa lobortis ultrices. Vivamus rhoncus.</nombre1>
+		<nombre2>Proin non massa non ante bibendum ullamcorper.</nombre2>
+		<cif>02394822-Z</cif>
+		<comentarios>enim. Nunc ut erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at</comentarios>
+		<corriente>7699-4895-83-4324655391</corriente>
+		<contable>325</contable>
+		<diapago>10</diapago>
+	</row>
+	<row>
+		<id>35</id>
+		<id_campanya>6</id_campanya>
+		<id_importacion>3</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus</nombre>
+		<nombre1>non, sollicitudin a, malesuada id, erat. Etiam vestibulum</nombre1>
+		<nombre2>semper auctor. Mauris vel turpis.</nombre2>
+		<cif>99689162-P</cif>
+		<comentarios>amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor</comentarios>
+		<corriente>0606-9073-22-6863798790</corriente>
+		<contable>797</contable>
+		<diapago>17</diapago>
+	</row>
+	<row>
+		<id>36</id>
+		<id_campanya>9</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>et, rutrum eu, ultrices sit</nombre>
+		<nombre1>Praesent luctus. Curabitur egestas nunc sed</nombre1>
+		<nombre2>ut mi. Duis risus odio, auctor vitae, aliquet</nombre2>
+		<cif>51969382-A</cif>
+		<comentarios>lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget</comentarios>
+		<corriente>3582-3830-70-6699742301</corriente>
+		<contable>921</contable>
+		<diapago>16</diapago>
+	</row>
+	<row>
+		<id>37</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>eu, ultrices sit amet, risus. Donec nibh</nombre>
+		<nombre1>eget, volutpat ornare, facilisis eget, ipsum.</nombre1>
+		<nombre2>est arcu ac orci. Ut semper pretium neque. Morbi quis</nombre2>
+		<cif>10094174-T</cif>
+		<comentarios>Donec felis orci, adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem</comentarios>
+		<corriente>6198-4903-12-9373725102</corriente>
+		<contable>212</contable>
+		<diapago>6</diapago>
+	</row>
+	<row>
+		<id>38</id>
+		<id_campanya>6</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>id, mollis nec, cursus a,</nombre>
+		<nombre1>et magnis dis parturient montes, nascetur ridiculus</nombre1>
+		<nombre2>et, rutrum eu, ultrices sit amet, risus. Donec nibh</nombre2>
+		<cif>47947360-H</cif>
+		<comentarios>lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed</comentarios>
+		<corriente>6791-8041-26-3802826301</corriente>
+		<contable>871</contable>
+		<diapago>8</diapago>
+	</row>
+	<row>
+		<id>39</id>
+		<id_campanya>5</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Nulla semper tellus id nunc interdum feugiat. Sed</nombre>
+		<nombre1>iaculis enim, sit amet ornare lectus justo eu arcu. Morbi</nombre1>
+		<nombre2>at pretium aliquet, metus urna convallis erat,</nombre2>
+		<cif>25530657-Z</cif>
+		<comentarios>aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae</comentarios>
+		<corriente>2208-6094-70-7356834170</corriente>
+		<contable>435</contable>
+		<diapago>22</diapago>
+	</row>
+	<row>
+		<id>40</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>augue id ante dictum cursus.</nombre>
+		<nombre1>Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra,</nombre1>
+		<nombre2>Morbi accumsan laoreet ipsum. Curabitur consequat, lectus</nombre2>
+		<cif>82582963-S</cif>
+		<comentarios>mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis eget varius ultrices, mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat.</comentarios>
+		<corriente>3817-9883-24-1564571320</corriente>
+		<contable>245</contable>
+		<diapago>4</diapago>
+	</row>
+	<row>
+		<id>41</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>eu, ligula. Aenean euismod mauris</nombre>
+		<nombre1>laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate,</nombre1>
+		<nombre2>Proin sed turpis nec mauris blandit mattis. Cras</nombre2>
+		<cif>02591815-A</cif>
+		<comentarios>Proin eget odio. Aliquam vulputate ullamcorper magna. Sed eu eros. Nam consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus sit amet ante. Vivamus non lorem vitae odio sagittis semper. Nam tempor diam dictum sapien. Aenean massa. Integer vitae nibh. Donec est mauris, rhoncus id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida.</comentarios>
+		<corriente>4295-6169-51-0367385230</corriente>
+		<contable>365</contable>
+		<diapago>9</diapago>
+	</row>
+	<row>
+		<id>42</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>rutrum eu, ultrices sit amet, risus.</nombre>
+		<nombre1>feugiat placerat velit. Quisque varius. Nam</nombre1>
+		<nombre2>dui lectus rutrum urna, nec luctus felis purus ac tellus.</nombre2>
+		<cif>25142093-C</cif>
+		<comentarios>magna. Cras convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede.</comentarios>
+		<corriente>8683-8242-90-5759901306</corriente>
+		<contable>658</contable>
+		<diapago>2</diapago>
+	</row>
+	<row>
+		<id>43</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>10</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>convallis dolor. Quisque tincidunt pede</nombre>
+		<nombre1>eu, eleifend nec, malesuada ut, sem.</nombre1>
+		<nombre2>pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero.</nombre2>
+		<cif>02837037-O</cif>
+		<comentarios>iaculis enim, sit amet ornare lectus justo eu arcu. Morbi</comentarios>
+		<corriente>5937-3349-92-0720823013</corriente>
+		<contable>141</contable>
+		<diapago>15</diapago>
+	</row>
+	<row>
+		<id>44</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>laoreet, libero et tristique pellentesque, tellus sem mollis dui, in</nombre>
+		<nombre1>diam eu dolor egestas rhoncus. Proin nisl sem, consequat</nombre1>
+		<nombre2>fringilla mi lacinia mattis. Integer eu</nombre2>
+		<cif>50184187-D</cif>
+		<comentarios>elit, pharetra ut, pharetra sed, hendrerit a, arcu. Sed et libero. Proin mi. Aliquam gravida mauris ut mi. Duis risus odio, auctor vitae, aliquet nec, imperdiet nec, leo. Morbi neque tellus, imperdiet non, vestibulum nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam auctor, velit eget laoreet posuere, enim nisl elementum</comentarios>
+		<corriente>1325-4385-80-0939917145</corriente>
+		<contable>756</contable>
+		<diapago>18</diapago>
+	</row>
+	<row>
+		<id>45</id>
+		<id_campanya>10</id_campanya>
+		<id_importacion>8</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>et risus. Quisque libero lacus, varius et, euismod et,</nombre>
+		<nombre1>Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed</nombre1>
+		<nombre2>vel arcu eu odio tristique</nombre2>
+		<cif>06745326-M</cif>
+		<comentarios>velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo ipsum. Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat</comentarios>
+		<corriente>3101-3560-03-6010809503</corriente>
+		<contable>561</contable>
+		<diapago>28</diapago>
+	</row>
+	<row>
+		<id>46</id>
+		<id_campanya>2</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>nec, euismod in, dolor. Fusce feugiat. Lorem ipsum dolor</nombre>
+		<nombre1>dolor. Nulla semper tellus id nunc interdum</nombre1>
+		<nombre2>porttitor tellus non magna. Nam ligula elit,</nombre2>
+		<cif>85831945-O</cif>
+		<comentarios>justo sit amet nulla. Donec non justo. Proin non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia</comentarios>
+		<corriente>6266-8694-30-4556350196</corriente>
+		<contable>945</contable>
+		<diapago>11</diapago>
+	</row>
+	<row>
+		<id>47</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>nec urna et arcu imperdiet</nombre>
+		<nombre1>placerat eget, venenatis a, magna. Lorem</nombre1>
+		<nombre2>lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas</nombre2>
+		<cif>42301742-E</cif>
+		<comentarios>a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus</comentarios>
+		<corriente>7438-6346-70-9447549314</corriente>
+		<contable>737</contable>
+		<diapago>25</diapago>
+	</row>
+	<row>
+		<id>48</id>
+		<id_campanya>6</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem,</nombre>
+		<nombre1>placerat, orci lacus vestibulum lorem, sit amet</nombre1>
+		<nombre2>fringilla cursus purus. Nullam scelerisque neque sed</nombre2>
+		<cif>03438018-B</cif>
+		<comentarios>lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec</comentarios>
+		<corriente>8177-5923-20-1855619367</corriente>
+		<contable>392</contable>
+		<diapago>23</diapago>
+	</row>
+	<row>
+		<id>49</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>3</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>aliquet libero. Integer in magna. Phasellus dolor elit,</nombre>
+		<nombre1>Vestibulum accumsan neque et nunc. Quisque ornare tortor</nombre1>
+		<nombre2>ligula. Donec luctus aliquet odio. Etiam</nombre2>
+		<cif>70362682-V</cif>
+		<comentarios>in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate dui, nec tempus mauris erat eget ipsum. Suspendisse sagittis. Nullam vitae diam. Proin dolor. Nulla semper tellus id nunc interdum feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet odio.</comentarios>
+		<corriente>3392-7500-53-8268904832</corriente>
+		<contable>535</contable>
+		<diapago>4</diapago>
+	</row>
+	<row>
+		<id>50</id>
+		<id_campanya>6</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>imperdiet ullamcorper. Duis at lacus. Quisque purus sapien, gravida non,</nombre>
+		<nombre1>orci quis lectus. Nullam suscipit, est ac facilisis facilisis,</nombre1>
+		<nombre2>odio. Nam interdum enim non nisi. Aenean</nombre2>
+		<cif>56717860-T</cif>
+		<comentarios>magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis arcu vel quam dignissim pharetra. Nam ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec</comentarios>
+		<corriente>6880-6122-48-3003800441</corriente>
+		<contable>009</contable>
+		<diapago>5</diapago>
+	</row>
+	<row>
+		<id>51</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>8</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>eros non enim commodo hendrerit. Donec porttitor tellus non</nombre>
+		<nombre1>blandit at, nisi. Cum sociis natoque penatibus et magnis</nombre1>
+		<nombre2>vel, venenatis vel, faucibus id, libero.</nombre2>
+		<cif>32345594-V</cif>
+		<comentarios>sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim diam vel arcu. Curabitur ut odio vel est tempor bibendum. Donec felis orci, adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem ipsum</comentarios>
+		<corriente>1842-3834-92-5603461087</corriente>
+		<contable>311</contable>
+		<diapago>23</diapago>
+	</row>
+	<row>
+		<id>52</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>6</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>porttitor interdum. Sed auctor odio</nombre>
+		<nombre1>Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros</nombre1>
+		<nombre2>eget tincidunt dui augue eu tellus. Phasellus elit</nombre2>
+		<cif>08092485-A</cif>
+		<comentarios>tellus justo sit amet nulla. Donec non justo. Proin non massa non ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet, metus urna convallis erat, eget tincidunt dui augue eu tellus. Phasellus elit pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer mauris id sapien. Cras dolor dolor, tempus non, lacinia at, iaculis quis, pede. Praesent eu</comentarios>
+		<corriente>4025-0133-34-1018156712</corriente>
+		<contable>702</contable>
+		<diapago>20</diapago>
+	</row>
+	<row>
+		<id>53</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>7</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu</nombre>
+		<nombre1>dui quis accumsan convallis, ante</nombre1>
+		<nombre2>mollis. Integer tincidunt aliquam arcu.</nombre2>
+		<cif>77190425-P</cif>
+		<comentarios>magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi nibh lacinia orci, consectetuer euismod est arcu</comentarios>
+		<corriente>4421-1439-55-6821691102</corriente>
+		<contable>883</contable>
+		<diapago>23</diapago>
+	</row>
+	<row>
+		<id>54</id>
+		<id_campanya>10</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ut, nulla. Cras eu tellus eu augue porttitor</nombre>
+		<nombre1>Aliquam adipiscing lobortis risus. In mi</nombre1>
+		<nombre2>luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae</nombre2>
+		<cif>40893849-L</cif>
+		<comentarios>Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id</comentarios>
+		<corriente>5927-0309-14-7027570767</corriente>
+		<contable>176</contable>
+		<diapago>4</diapago>
+	</row>
+	<row>
+		<id>55</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ac sem ut dolor dapibus</nombre>
+		<nombre1>lectus pede, ultrices a, auctor non, feugiat nec, diam.</nombre1>
+		<nombre2>Sed congue, elit sed consequat auctor, nunc</nombre2>
+		<cif>52783797-K</cif>
+		<comentarios>Duis at lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum. Fusce dolor quam, elementum at, egestas a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci. Phasellus dapibus quam quis diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper</comentarios>
+		<corriente>1572-2494-16-5211209556</corriente>
+		<contable>184</contable>
+		<diapago>27</diapago>
+	</row>
+	<row>
+		<id>56</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam</nombre>
+		<nombre1>mi tempor lorem, eget mollis lectus pede et risus. Quisque</nombre1>
+		<nombre2>Nam porttitor scelerisque neque. Nullam nisl. Maecenas malesuada fringilla</nombre2>
+		<cif>69609015-Q</cif>
+		<comentarios>ac nulla. In tincidunt congue turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit</comentarios>
+		<corriente>7686-2333-18-2301160034</corriente>
+		<contable>630</contable>
+		<diapago>21</diapago>
+	</row>
+	<row>
+		<id>57</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>1</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a,</nombre>
+		<nombre1>at pretium aliquet, metus urna convallis</nombre1>
+		<nombre2>sem egestas blandit. Nam nulla magna, malesuada vel,</nombre2>
+		<cif>42076494-S</cif>
+		<comentarios>ridiculus mus. Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu nibh vulputate mauris sagittis placerat. Cras dictum ultricies ligula. Nullam enim. Sed nulla ante, iaculis nec, eleifend non, dapibus</comentarios>
+		<corriente>8419-5532-94-9258030789</corriente>
+		<contable>119</contable>
+		<diapago>26</diapago>
+	</row>
+	<row>
+		<id>58</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>consequat dolor vitae dolor. Donec fringilla.</nombre>
+		<nombre1>luctus et ultrices posuere cubilia</nombre1>
+		<nombre2>interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt</nombre2>
+		<cif>99142346-H</cif>
+		<comentarios>lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero</comentarios>
+		<corriente>1761-4405-50-4343455250</corriente>
+		<contable>142</contable>
+		<diapago>18</diapago>
+	</row>
+	<row>
+		<id>59</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>6</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>augue, eu tempor erat neque non quam.</nombre>
+		<nombre1>orci. Ut semper pretium neque. Morbi quis urna. Nunc</nombre1>
+		<nombre2>Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper</nombre2>
+		<cif>31881432-X</cif>
+		<comentarios>natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed pede nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl.</comentarios>
+		<corriente>2127-4885-30-1062549243</corriente>
+		<contable>551</contable>
+		<diapago>11</diapago>
+	</row>
+	<row>
+		<id>60</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>6</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>lorem ipsum sodales purus, in molestie tortor nibh sit amet</nombre>
+		<nombre1>sapien, cursus in, hendrerit consectetuer, cursus et,</nombre1>
+		<nombre2>pede. Praesent eu dui. Cum sociis natoque penatibus et</nombre2>
+		<cif>85064605-V</cif>
+		<comentarios>eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris</comentarios>
+		<corriente>0669-9025-63-9396241817</corriente>
+		<contable>678</contable>
+		<diapago>11</diapago>
+	</row>
+	<row>
+		<id>61</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ad litora torquent per conubia nostra, per inceptos</nombre>
+		<nombre1>tortor, dictum eu, placerat eget, venenatis a, magna.</nombre1>
+		<nombre2>neque. Sed eget lacus. Mauris non</nombre2>
+		<cif>42154618-P</cif>
+		<comentarios>tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus mauris a nunc. In at pede. Cras vulputate velit eu sem. Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis</comentarios>
+		<corriente>2723-5412-19-6240875607</corriente>
+		<contable>029</contable>
+		<diapago>17</diapago>
+	</row>
+	<row>
+		<id>62</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>6</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>molestie in, tempus eu, ligula. Aenean euismod mauris</nombre>
+		<nombre1>aliquet libero. Integer in magna. Phasellus</nombre1>
+		<nombre2>arcu. Sed et libero. Proin mi. Aliquam</nombre2>
+		<cif>68500719-K</cif>
+		<comentarios>orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim diam vel arcu. Curabitur ut</comentarios>
+		<corriente>4310-9170-37-6033655105</corriente>
+		<contable>780</contable>
+		<diapago>24</diapago>
+	</row>
+	<row>
+		<id>63</id>
+		<id_campanya>9</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>iaculis enim, sit amet ornare lectus justo eu arcu. Morbi</nombre>
+		<nombre1>taciti sociosqu ad litora torquent per conubia</nombre1>
+		<nombre2>aliquet odio. Etiam ligula tortor, dictum eu, placerat eget,</nombre2>
+		<cif>37755782-J</cif>
+		<comentarios>Cras dictum ultricies ligula. Nullam enim. Sed nulla ante, iaculis nec, eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris magna. Duis dignissim tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit,</comentarios>
+		<corriente>7613-7185-99-3884618986</corriente>
+		<contable>364</contable>
+		<diapago>24</diapago>
+	</row>
+	<row>
+		<id>64</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>1</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>fringilla euismod enim. Etiam gravida molestie arcu.</nombre>
+		<nombre1>vulputate, posuere vulputate, lacus. Cras interdum. Nunc sollicitudin commodo</nombre1>
+		<nombre2>eu odio tristique pharetra. Quisque ac</nombre2>
+		<cif>05114614-B</cif>
+		<comentarios>Curae; Phasellus ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet</comentarios>
+		<corriente>4633-6209-84-7064311334</corriente>
+		<contable>395</contable>
+		<diapago>16</diapago>
+	</row>
+	<row>
+		<id>65</id>
+		<id_campanya>4</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>conubia nostra, per inceptos hymenaeos. Mauris ut quam vel</nombre>
+		<nombre1>arcu et pede. Nunc sed orci lobortis augue scelerisque</nombre1>
+		<nombre2>molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas</nombre2>
+		<cif>41971856-Q</cif>
+		<comentarios>risus. In mi pede, nonummy ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae,</comentarios>
+		<corriente>0031-3767-62-3040867941</corriente>
+		<contable>350</contable>
+		<diapago>3</diapago>
+	</row>
+	<row>
+		<id>66</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>10</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>pede, malesuada vel, venenatis vel, faucibus</nombre>
+		<nombre1>mi lorem, vehicula et, rutrum eu,</nombre1>
+		<nombre2>sit amet massa. Quisque porttitor eros nec tellus. Nunc</nombre2>
+		<cif>89655327-R</cif>
+		<comentarios>dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem semper auctor. Mauris vel turpis. Aliquam adipiscing lobortis risus. In mi pede, nonummy ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed</comentarios>
+		<corriente>7284-2355-86-6563826399</corriente>
+		<contable>185</contable>
+		<diapago>22</diapago>
+	</row>
+	<row>
+		<id>67</id>
+		<id_campanya>4</id_campanya>
+		<id_importacion>10</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>nascetur ridiculus mus. Aenean eget magna.</nombre>
+		<nombre1>lectus, a sollicitudin orci sem eget massa.</nombre1>
+		<nombre2>cubilia Curae; Donec tincidunt. Donec vitae erat</nombre2>
+		<cif>28963540-F</cif>
+		<comentarios>parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique</comentarios>
+		<corriente>5891-1813-76-1262436864</corriente>
+		<contable>143</contable>
+		<diapago>22</diapago>
+	</row>
+	<row>
+		<id>68</id>
+		<id_campanya>9</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget</nombre>
+		<nombre1>gravida sit amet, dapibus id, blandit</nombre1>
+		<nombre2>mauris, aliquam eu, accumsan sed, facilisis vitae, orci.</nombre2>
+		<cif>48239506-T</cif>
+		<comentarios>ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean</comentarios>
+		<corriente>9766-6207-74-5637449909</corriente>
+		<contable>492</contable>
+		<diapago>21</diapago>
+	</row>
+	<row>
+		<id>69</id>
+		<id_campanya>9</id_campanya>
+		<id_importacion>8</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>id magna et ipsum cursus vestibulum. Mauris magna.</nombre>
+		<nombre1>mauris ipsum porta elit, a</nombre1>
+		<nombre2>Curabitur massa. Vestibulum accumsan neque et nunc. Quisque</nombre2>
+		<cif>41572246-U</cif>
+		<comentarios>erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla</comentarios>
+		<corriente>5544-5549-46-7345906756</corriente>
+		<contable>171</contable>
+		<diapago>26</diapago>
+	</row>
+	<row>
+		<id>70</id>
+		<id_campanya>10</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>turpis. Aliquam adipiscing lobortis risus. In mi pede, nonummy</nombre>
+		<nombre1>nibh lacinia orci, consectetuer euismod est arcu ac</nombre1>
+		<nombre2>erat. Sed nunc est, mollis non, cursus non, egestas</nombre2>
+		<cif>11675622-J</cif>
+		<comentarios>nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat, orci lacus vestibulum lorem, sit amet ultricies sem magna nec quam. Curabitur vel lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec dignissim magna a tortor. Nunc commodo auctor velit. Aliquam nisl. Nulla eu neque pellentesque massa lobortis ultrices. Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis,</comentarios>
+		<corriente>9576-2224-03-3077692363</corriente>
+		<contable>580</contable>
+		<diapago>9</diapago>
+	</row>
+	<row>
+		<id>71</id>
+		<id_campanya>4</id_campanya>
+		<id_importacion>7</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>mauris, aliquam eu, accumsan sed, facilisis vitae, orci.</nombre>
+		<nombre1>Duis mi enim, condimentum eget,</nombre1>
+		<nombre2>pede, malesuada vel, venenatis vel, faucibus id, libero. Donec consectetuer</nombre2>
+		<cif>05827231-P</cif>
+		<comentarios>vulputate, risus a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem</comentarios>
+		<corriente>3085-4589-39-2757369665</corriente>
+		<contable>714</contable>
+		<diapago>1</diapago>
+	</row>
+	<row>
+		<id>72</id>
+		<id_campanya>10</id_campanya>
+		<id_importacion>7</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>faucibus. Morbi vehicula. Pellentesque tincidunt</nombre>
+		<nombre1>ac urna. Ut tincidunt vehicula risus. Nulla eget</nombre1>
+		<nombre2>vel, venenatis vel, faucibus id, libero. Donec consectetuer</nombre2>
+		<cif>81040079-H</cif>
+		<comentarios>nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel nisl. Quisque fringilla euismod enim. Etiam gravida molestie arcu. Sed eu</comentarios>
+		<corriente>0819-5752-99-2965092048</corriente>
+		<contable>968</contable>
+		<diapago>12</diapago>
+	</row>
+	<row>
+		<id>73</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Mauris quis turpis vitae purus gravida sagittis. Duis</nombre>
+		<nombre1>Aenean eget metus. In nec orci. Donec nibh. Quisque</nombre1>
+		<nombre2>commodo hendrerit. Donec porttitor tellus non</nombre2>
+		<cif>22107497-R</cif>
+		<comentarios>Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis ullamcorper viverra. Maecenas iaculis aliquet diam. Sed diam lorem, auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam</comentarios>
+		<corriente>2924-0730-31-4006523648</corriente>
+		<contable>960</contable>
+		<diapago>26</diapago>
+	</row>
+	<row>
+		<id>74</id>
+		<id_campanya>4</id_campanya>
+		<id_importacion>4</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>semper. Nam tempor diam dictum</nombre>
+		<nombre1>orci, adipiscing non, luctus sit amet, faucibus ut, nulla.</nombre1>
+		<nombre2>primis in faucibus orci luctus et ultrices</nombre2>
+		<cif>68741873-H</cif>
+		<comentarios>malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est. Nunc laoreet lectus quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim diam vel arcu. Curabitur ut odio vel est tempor bibendum. Donec felis orci, adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu</comentarios>
+		<corriente>9362-0019-71-8167275612</corriente>
+		<contable>300</contable>
+		<diapago>23</diapago>
+	</row>
+	<row>
+		<id>75</id>
+		<id_campanya>2</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>augue id ante dictum cursus. Nunc mauris elit,</nombre>
+		<nombre1>Lorem ipsum dolor sit amet, consectetuer adipiscing</nombre1>
+		<nombre2>ornare, elit elit fermentum risus,</nombre2>
+		<cif>63864846-T</cif>
+		<comentarios>ut quam vel sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc</comentarios>
+		<corriente>4700-4128-13-6412936945</corriente>
+		<contable>583</contable>
+		<diapago>8</diapago>
+	</row>
+	<row>
+		<id>76</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Suspendisse non leo. Vivamus nibh dolor, nonummy ac, feugiat non,</nombre>
+		<nombre1>diam luctus lobortis. Class aptent taciti</nombre1>
+		<nombre2>Cras convallis convallis dolor. Quisque tincidunt pede</nombre2>
+		<cif>24447360-A</cif>
+		<comentarios>Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec,</comentarios>
+		<corriente>2069-9045-98-8205207448</corriente>
+		<contable>793</contable>
+		<diapago>6</diapago>
+	</row>
+	<row>
+		<id>77</id>
+		<id_campanya>6</id_campanya>
+		<id_importacion>7</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>neque venenatis lacus. Etiam bibendum fermentum metus. Aenean sed</nombre>
+		<nombre1>consequat, lectus sit amet luctus vulputate, nisi sem semper erat,</nombre1>
+		<nombre2>dui. Fusce diam nunc, ullamcorper eu, euismod ac, fermentum vel,</nombre2>
+		<cif>59953552-J</cif>
+		<comentarios>Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede.</comentarios>
+		<corriente>9927-4751-68-3242911801</corriente>
+		<contable>390</contable>
+		<diapago>27</diapago>
+	</row>
+	<row>
+		<id>78</id>
+		<id_campanya>4</id_campanya>
+		<id_importacion>6</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>dolor. Fusce feugiat. Lorem ipsum dolor sit amet,</nombre>
+		<nombre1>risus. Quisque libero lacus, varius et,</nombre1>
+		<nombre2>at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas</nombre2>
+		<cif>16591750-D</cif>
+		<comentarios>accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis</comentarios>
+		<corriente>3865-6760-77-9034636528</corriente>
+		<contable>784</contable>
+		<diapago>20</diapago>
+	</row>
+	<row>
+		<id>79</id>
+		<id_campanya>0</id_campanya>
+		<id_importacion>1</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>nibh. Aliquam ornare, libero at</nombre>
+		<nombre1>dictum ultricies ligula. Nullam enim.</nombre1>
+		<nombre2>nibh dolor, nonummy ac, feugiat non, lobortis quis,</nombre2>
+		<cif>11688655-P</cif>
+		<comentarios>lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut dolor dapibus gravida. Aliquam tincidunt, nunc ac mattis ornare, lectus ante dictum mi, ac mattis velit justo nec</comentarios>
+		<corriente>0327-9456-39-3416447007</corriente>
+		<contable>123</contable>
+		<diapago>2</diapago>
+	</row>
+	<row>
+		<id>80</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>10</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>eros non enim commodo hendrerit. Donec porttitor tellus non</nombre>
+		<nombre1>venenatis lacus. Etiam bibendum fermentum metus.</nombre1>
+		<nombre2>dolor dolor, tempus non, lacinia at, iaculis quis,</nombre2>
+		<cif>93549279-O</cif>
+		<comentarios>diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt</comentarios>
+		<corriente>2749-7579-80-9006769325</corriente>
+		<contable>360</contable>
+		<diapago>21</diapago>
+	</row>
+	<row>
+		<id>81</id>
+		<id_campanya>5</id_campanya>
+		<id_importacion>3</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo</nombre>
+		<nombre1>parturient montes, nascetur ridiculus mus. Proin vel nisl. Quisque</nombre1>
+		<nombre2>risus varius orci, in consequat</nombre2>
+		<cif>00168048-A</cif>
+		<comentarios>lorem, eget mollis lectus pede et risus. Quisque libero lacus, varius et, euismod et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur consequat, lectus sit amet luctus vulputate, nisi sem semper erat, in consectetuer ipsum nunc id enim. Curabitur massa. Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus. Nunc ac sem ut</comentarios>
+		<corriente>6255-6709-31-6941339843</corriente>
+		<contable>954</contable>
+		<diapago>15</diapago>
+	</row>
+	<row>
+		<id>82</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>6</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ipsum cursus vestibulum. Mauris magna. Duis</nombre>
+		<nombre1>turpis non enim. Mauris quis turpis vitae</nombre1>
+		<nombre2>turpis. In condimentum. Donec at arcu.</nombre2>
+		<cif>67348379-Z</cif>
+		<comentarios>dui quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce aliquam, enim nec tempus scelerisque, lorem ipsum sodales purus, in molestie tortor nibh sit amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices</comentarios>
+		<corriente>1080-9248-89-3143408525</corriente>
+		<contable>299</contable>
+		<diapago>20</diapago>
+	</row>
+	<row>
+		<id>83</id>
+		<id_campanya>8</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus</nombre>
+		<nombre1>fermentum arcu. Vestibulum ante ipsum primis</nombre1>
+		<nombre2>augue. Sed molestie. Sed id risus quis</nombre2>
+		<cif>04238017-M</cif>
+		<comentarios>In mi pede, nonummy ut, molestie in, tempus eu, ligula. Aenean euismod mauris eu elit. Nulla facilisi. Sed neque. Sed eget lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</comentarios>
+		<corriente>8727-3436-32-2157879012</corriente>
+		<contable>154</contable>
+		<diapago>15</diapago>
+	</row>
+	<row>
+		<id>84</id>
+		<id_campanya>4</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Curabitur sed tortor. Integer aliquam adipiscing</nombre>
+		<nombre1>Cras sed leo. Cras vehicula</nombre1>
+		<nombre2>scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada</nombre2>
+		<cif>66209842-D</cif>
+		<comentarios>aliquet odio. Etiam ligula tortor, dictum eu, placerat eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam laoreet, libero et tristique pellentesque, tellus sem mollis dui, in sodales elit erat vitae risus. Duis a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque imperdiet, erat nonummy ultricies ornare, elit elit fermentum risus, at fringilla purus</comentarios>
+		<corriente>9358-4706-34-1708908487</corriente>
+		<contable>059</contable>
+		<diapago>4</diapago>
+	</row>
+	<row>
+		<id>85</id>
+		<id_campanya>5</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>mauris. Integer sem elit, pharetra ut, pharetra sed, hendrerit</nombre>
+		<nombre1>Cum sociis natoque penatibus et</nombre1>
+		<nombre2>lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse</nombre2>
+		<cif>17987512-S</cif>
+		<comentarios>In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper, nisl arcu iaculis enim, sit amet ornare lectus justo eu arcu. Morbi sit amet massa. Quisque porttitor eros nec tellus. Nunc lectus pede, ultrices a, auctor non, feugiat nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida nunc sed pede. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique</comentarios>
+		<corriente>5934-3114-61-5191892376</corriente>
+		<contable>456</contable>
+		<diapago>10</diapago>
+	</row>
+	<row>
+		<id>86</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Aliquam gravida mauris ut mi. Duis risus odio,</nombre>
+		<nombre1>commodo at, libero. Morbi accumsan laoreet ipsum.</nombre1>
+		<nombre2>vitae sodales nisi magna sed dui. Fusce aliquam,</nombre2>
+		<cif>19830202-V</cif>
+		<comentarios>blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut,</comentarios>
+		<corriente>9001-4889-45-2777372227</corriente>
+		<contable>415</contable>
+		<diapago>23</diapago>
+	</row>
+	<row>
+		<id>87</id>
+		<id_campanya>2</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>aliquet lobortis, nisi nibh lacinia orci, consectetuer</nombre>
+		<nombre1>in lobortis tellus justo sit</nombre1>
+		<nombre2>ipsum. Phasellus vitae mauris sit amet lorem semper</nombre2>
+		<cif>67656691-W</cif>
+		<comentarios>mauris ipsum porta elit, a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis.</comentarios>
+		<corriente>6069-3867-92-5214685247</corriente>
+		<contable>924</contable>
+		<diapago>15</diapago>
+	</row>
+	<row>
+		<id>88</id>
+		<id_campanya>9</id_campanya>
+		<id_importacion>0</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>a ultricies adipiscing, enim mi tempor lorem, eget mollis lectus</nombre>
+		<nombre1>tellus lorem eu metus. In lorem.</nombre1>
+		<nombre2>pede, ultrices a, auctor non, feugiat nec, diam.</nombre2>
+		<cif>44621324-X</cif>
+		<comentarios>tellus non magna. Nam ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula eu enim. Etiam imperdiet dictum magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac facilisis facilisis, magna tellus faucibus leo, in lobortis tellus justo sit amet nulla.</comentarios>
+		<corriente>3149-3963-10-8004096859</corriente>
+		<contable>295</contable>
+		<diapago>16</diapago>
+	</row>
+	<row>
+		<id>89</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>10</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ipsum ac mi eleifend egestas. Sed pharetra, felis</nombre>
+		<nombre1>semper auctor. Mauris vel turpis. Aliquam</nombre1>
+		<nombre2>convallis, ante lectus convallis est, vitae</nombre2>
+		<cif>60857278-C</cif>
+		<comentarios>a feugiat tellus lorem eu metus. In lorem. Donec elementum, lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. Nam nulla magna, malesuada vel, convallis in, cursus et, eros. Proin ultrices. Duis volutpat nunc sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a ultricies adipiscing, enim</comentarios>
+		<corriente>5881-6319-37-5563146361</corriente>
+		<contable>970</contable>
+		<diapago>15</diapago>
+	</row>
+	<row>
+		<id>90</id>
+		<id_campanya>4</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>dui, semper et, lacinia vitae, sodales</nombre>
+		<nombre1>Sed eu eros. Nam consequat</nombre1>
+		<nombre2>nunc, ullamcorper eu, euismod ac, fermentum vel, mauris. Integer sem</nombre2>
+		<cif>90631668-E</cif>
+		<comentarios>felis. Donec tempor, est ac mattis semper, dui lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem,</comentarios>
+		<corriente>5292-5545-24-0763904084</corriente>
+		<contable>080</contable>
+		<diapago>10</diapago>
+	</row>
+	<row>
+		<id>91</id>
+		<id_campanya>0</id_campanya>
+		<id_importacion>7</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>blandit. Nam nulla magna, malesuada vel, convallis in, cursus et,</nombre>
+		<nombre1>elit, pellentesque a, facilisis non,</nombre1>
+		<nombre2>Nullam feugiat placerat velit. Quisque varius. Nam</nombre2>
+		<cif>36990424-N</cif>
+		<comentarios>id, mollis nec, cursus a, enim. Suspendisse aliquet, sem ut cursus luctus, ipsum leo elementum sem, vitae aliquam eros turpis non enim. Mauris quis turpis vitae purus gravida sagittis. Duis gravida. Praesent eu nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem. Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit amet lorem semper auctor. Mauris vel turpis. Aliquam</comentarios>
+		<corriente>8813-9079-98-3952934377</corriente>
+		<contable>647</contable>
+		<diapago>18</diapago>
+	</row>
+	<row>
+		<id>92</id>
+		<id_campanya>5</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>turpis. In condimentum. Donec at arcu. Vestibulum ante ipsum primis</nombre>
+		<nombre1>massa. Integer vitae nibh. Donec est mauris, rhoncus id,</nombre1>
+		<nombre2>ridiculus mus. Aenean eget magna. Suspendisse tristique neque</nombre2>
+		<cif>29636524-X</cif>
+		<comentarios>lacus. Quisque purus sapien, gravida non, sollicitudin a, malesuada id, erat. Etiam vestibulum massa rutrum magna. Cras convallis convallis dolor. Quisque tincidunt pede ac urna. Ut tincidunt vehicula risus. Nulla eget</comentarios>
+		<corriente>1145-4131-61-7136104260</corriente>
+		<contable>556</contable>
+		<diapago>26</diapago>
+	</row>
+	<row>
+		<id>93</id>
+		<id_campanya>2</id_campanya>
+		<id_importacion>2</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>id, mollis nec, cursus a, enim. Suspendisse aliquet, sem</nombre>
+		<nombre1>in faucibus orci luctus et ultrices posuere</nombre1>
+		<nombre2>blandit at, nisi. Cum sociis natoque</nombre2>
+		<cif>19932194-Y</cif>
+		<comentarios>posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede blandit congue. In scelerisque scelerisque dui. Suspendisse ac metus vitae velit</comentarios>
+		<corriente>5289-5401-07-0291915640</corriente>
+		<contable>830</contable>
+		<diapago>4</diapago>
+	</row>
+	<row>
+		<id>94</id>
+		<id_campanya>6</id_campanya>
+		<id_importacion>1</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>Sed dictum. Proin eget odio.</nombre>
+		<nombre1>Phasellus fermentum convallis ligula. Donec luctus</nombre1>
+		<nombre2>Cum sociis natoque penatibus et magnis dis parturient montes,</nombre2>
+		<cif>56007104-E</cif>
+		<comentarios>faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, vitae sodales nisi magna sed dui. Fusce</comentarios>
+		<corriente>3158-8096-39-8919021796</corriente>
+		<contable>367</contable>
+		<diapago>11</diapago>
+	</row>
+	<row>
+		<id>95</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>10</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>mollis non, cursus non, egestas a, dui. Cras pellentesque.</nombre>
+		<nombre1>Morbi non sapien molestie orci tincidunt adipiscing. Mauris</nombre1>
+		<nombre2>In lorem. Donec elementum, lorem ut aliquam</nombre2>
+		<cif>83682321-E</cif>
+		<comentarios>aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis</comentarios>
+		<corriente>0242-0493-07-7361178416</corriente>
+		<contable>343</contable>
+		<diapago>6</diapago>
+	</row>
+	<row>
+		<id>96</id>
+		<id_campanya>7</id_campanya>
+		<id_importacion>7</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>adipiscing, enim mi tempor lorem, eget mollis lectus pede et</nombre>
+		<nombre1>Donec fringilla. Donec feugiat metus sit amet ante. Vivamus</nombre1>
+		<nombre2>nunc. Quisque ornare tortor at risus. Nunc ac sem ut</nombre2>
+		<cif>62902309-C</cif>
+		<comentarios>ultricies ligula. Nullam enim. Sed nulla ante, iaculis nec, eleifend non, dapibus rutrum, justo. Praesent luctus. Curabitur egestas nunc sed libero. Proin sed turpis nec mauris blandit mattis. Cras eget nisi dictum augue malesuada malesuada. Integer id magna et ipsum cursus vestibulum. Mauris</comentarios>
+		<corriente>2520-0473-91-5689576665</corriente>
+		<contable>295</contable>
+		<diapago>8</diapago>
+	</row>
+	<row>
+		<id>97</id>
+		<id_campanya>1</id_campanya>
+		<id_importacion>9</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>amet, consectetuer adipiscing elit. Aliquam</nombre>
+		<nombre1>Proin non massa non ante bibendum ullamcorper. Duis</nombre1>
+		<nombre2>augue ac ipsum. Phasellus vitae mauris</nombre2>
+		<cif>93231532-B</cif>
+		<comentarios>lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan</comentarios>
+		<corriente>0577-1424-38-6579566298</corriente>
+		<contable>130</contable>
+		<diapago>14</diapago>
+	</row>
+	<row>
+		<id>98</id>
+		<id_campanya>5</id_campanya>
+		<id_importacion>5</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>ante bibendum ullamcorper. Duis cursus, diam at pretium aliquet,</nombre>
+		<nombre1>congue, elit sed consequat auctor, nunc nulla vulputate dui, nec</nombre1>
+		<nombre2>diam lorem, auctor quis, tristique ac, eleifend vitae, erat.</nombre2>
+		<cif>53596935-R</cif>
+		<comentarios>eget lacus. Mauris non dui nec urna suscipit nonummy. Fusce fermentum fermentum arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, luctus ut, pellentesque eget, dictum placerat, augue. Sed molestie. Sed id risus quis diam luctus lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Mauris ut quam vel sapien imperdiet ornare. In faucibus.</comentarios>
+		<corriente>6492-6807-20-2761429183</corriente>
+		<contable>628</contable>
+		<diapago>18</diapago>
+	</row>
+	<row>
+		<id>99</id>
+		<id_campanya>10</id_campanya>
+		<id_importacion>8</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>convallis est, vitae sodales nisi magna sed dui.</nombre>
+		<nombre1>posuere cubilia Curae; Donec tincidunt. Donec vitae erat vel pede</nombre1>
+		<nombre2>diam. Duis mi enim, condimentum</nombre2>
+		<cif>63953784-A</cif>
+		<comentarios>ac turpis egestas. Fusce aliquet magna a neque. Nullam ut nisi a odio semper cursus. Integer mollis. Integer tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus. Donec egestas. Aliquam nec enim. Nunc ut erat. Sed nunc</comentarios>
+		<corriente>1920-1137-42-4403942755</corriente>
+		<contable>395</contable>
+		<diapago>27</diapago>
+	</row>
+	<row>
+		<id>100</id>
+		<id_campanya>3</id_campanya>
+		<id_importacion>3</id_importacion>
+		<id_tipo>1</id_tipo>
+		<nombre>gravida nunc sed pede. Cum sociis natoque penatibus et</nombre>
+		<nombre1>et netus et malesuada fames ac</nombre1>
+		<nombre2>tempor augue ac ipsum. Phasellus vitae mauris</nombre2>
+		<cif>15239081-M</cif>
+		<comentarios>nulla at sem molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est, congue a, aliquet vel, vulputate eu, odio. Phasellus at augue id ante dictum cursus. Nunc mauris elit, dictum eu, eleifend nec, malesuada ut, sem.</comentarios>
+		<corriente>8261-9263-12-2540282124</corriente>
+		<contable>287</contable>
+		<diapago>18</diapago>
 	</row>
 </root>
