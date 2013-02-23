@@ -610,10 +610,13 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		if(typeof(callback)=="undefined") var callback=function() {};
 		loadingcontent(lang_sending());
 		$(form).ajaxSubmit({
-			beforeSend:function(XMLHttpRequest) {
-				jqxhr=XMLHttpRequest;
-			},
 			beforeSerialize:function(jqForm,options) {
+				// TRICK FOR ADD ENCTYPE IF HAS FILES
+				var numfiles=0;
+				$("input[type=file]",jqForm).each(function() {
+					if($(this).val()!="") numfiles++;
+				});
+				if(numfiles>0) $(jqForm).attr("enctype","multipart/form-data");
 				// TRICK FOR FIX THE MAX_INPUT_VARS ISSUE
 				var max_input_vars=ini_get_max_input_vars();
 				if(max_input_vars>0) {
@@ -655,6 +658,9 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				var action=$(jqForm).attr("action");
 				var query=$.param(formData);
 				addcontent(action+"?"+query);
+			},
+			beforeSend:function(XMLHttpRequest) {
+				jqxhr=XMLHttpRequest;
 			},
 			success:function(data,textStatus,XMLHttpRequest) {
 				callback();
@@ -1091,7 +1097,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	$.mobile.ajaxEnabled=false;
 	$.mobile.linkBindingEnabled=false;
 	$.mobile.hashListeningEnabled=false;
-	$.mobile.ignoreContentEnabled=true;
+	$.mobile.pushStateEnabled=false;
 	//~ $.mobile.page.prototype.options.keepNative="*";
 
 	// TO DO COMPATIBLE WITH DESKTOP PLUGINS

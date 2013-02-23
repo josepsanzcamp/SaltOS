@@ -533,7 +533,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
-				<textarea name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="{class3}" data-mini="true">
+				<textarea name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="textarea {class3}" data-mini="true">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="readonly">true</xsl:attribute>
 						<xsl:attribute name="class">ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
@@ -869,7 +869,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="form_maker">
 	<form name="{name}" id="{name}" action="{action}" method="{method}" onsubmit="return false">
-		<xsl:if test="method='post'"><xsl:attribute name="enctype">multipart/form-data</xsl:attribute></xsl:if>
+		<!-- <xsl:if test="method='post'"><xsl:attribute name="enctype">multipart/form-data</xsl:attribute></xsl:if> -->
 		<xsl:call-template name="form_maker_1"/>
 		<xsl:call-template name="form_maker_2"/>
 	</form>

@@ -75,6 +75,10 @@ iframe {
 	margin-bottom:6px;
 }
 
+.textarea {
+	min-height:60px!important;
+}
+
 /* SOME JQUERY MOBILE TRICKS */
 .ui-btn {
 	margin-left:0!important;
