@@ -1,0 +1,102 @@
+id|id_cliente|id_epigrafe|nombre|direccion|nombre_pais|nombre_provincia|nombre_poblacion|nombre_codpostal|cif|fecha|iva|id_cuenta|fecha2|id_proyecto
+1|6|3|a ultricies adipiscing, enim mi|9253 Suspendisse Street|Syrian Arab Republic|N.-H.|Alhambra|LE0 9ME|83228547-N|2013-07-20|21|2|2013-03-06|4
+2|5|3|Suspendisse non leo. Vivamus nibh|3395 Mattis St.|Estonia|BOR|Charlottesville|49703|55010540-N|2013-10-09|21|1|2012-12-18|4
+3|7|4|at lacus. Quisque purus sapien, gravida non, sollicitudin|3987 Nunc Road|Holy See (Vatican City State)|Yukon|Idaho Springs|L2 6AQ|65978614-Q|2013-03-23|21|2|2013-11-29|4
+4|9|2|fringilla purus mauris a nunc. In at pede. Cras vulputate|Ap #803-2139 Sit St.|Congo|ON|Oxford|L5S 6W3|07899777-Y|2013-05-10|21|2|2013-01-26|1
+5|6|3|nulla. Integer vulputate, risus a ultricies adipiscing, enim mi|808-8657 Aliquet. Av.|Luxembourg|Co. Fermanagh|Moultrie|5422GF|67321119-Y|2013-09-07|21|2|2012-03-23|8
+6|0|1|ridiculus mus. Aenean eget magna. Suspendisse|5748 Orci. St.|Tonga|Manitoba|Normal|09010|90668671-I|2012-09-28|21|1|2013-06-07|3
+7|4|1|cursus in, hendrerit consectetuer, cursus et, magna. Praesent interdum ligula|481-4880 Ultricies St.|Egypt|ID|Klamath Falls|C12 8HO|75816772-W|2013-02-05|21|2|2012-03-02|3
+8|3|1|Aenean euismod mauris eu elit. Nulla facilisi.|P.O. Box 228, 8383 Quis, Rd.|Virgin Islands, British|Overijssel|Grambling|N8Y 3B8|36168685-F|2012-07-05|21|2|2013-03-14|0
+9|9|2|Maecenas ornare egestas ligula. Nullam feugiat|P.O. Box 591, 2090 Diam Rd.|Israel|Gr.|Ansonia|6814KH|30323562-C|2013-12-15|21|2|2013-07-10|3
+10|2|7|aliquet. Phasellus fermentum convallis ligula. Donec luctus aliquet odio.|836-2580 Vitae Avenue|Nigeria|Dumfries-shire|Healdsburg|69422|50071749-W|2012-09-10|21|1|2012-09-30|7
+11|7|10|nunc. Quisque ornare tortor at risus. Nunc ac|P.O. Box 373, 375 Facilisis St.|Nicaragua|Zuid Holland|Perth Amboy|4429LC|37706396-J|2013-03-31|21|2|2012-11-03|4
+12|7|9|nisi sem semper erat, in consectetuer ipsum nunc id|P.O. Box 799, 1125 Orci Av.|Mauritius|Zld.|Escondido|H6M 2I8|23281077-W|2012-12-01|21|2|2012-05-04|10
+13|4|10|felis. Donec tempor, est ac mattis semper,|8734 Euismod St.|Luxembourg|Gelderland|North Tonawanda|87994|77326720-H|2012-10-04|21|1|2013-08-02|0
+14|0|8|amet lorem semper auctor. Mauris vel|Ap #499-3015 Egestas. Rd.|Eritrea|Overijssel|Hermosa Beach|P1L 8FS|04701924-M|2012-07-26|21|2|2012-12-30|8
+15|1|9|Donec egestas. Duis ac arcu. Nunc mauris. Morbi non|P.O. Box 339, 2425 Cursus Rd.|Iceland|PE|Boston|17941|42114987-O|2013-03-11|21|2|2013-05-17|8
+16|7|2|rutrum lorem ac risus. Morbi metus. Vivamus|P.O. Box 804, 8117 Libero Ave|Faroe Islands|Co. Leitrim|Idaho Falls|62759|39715059-H|2012-06-17|21|1|2013-12-27|0
+17|1|4|metus eu erat semper rutrum.|P.O. Box 769, 665 Cubilia St.|Mayotte|Gelderland|Guayanilla|M1G 1A5|41655758-U|2012-06-13|21|2|2013-09-02|9
+18|2|0|et ipsum cursus vestibulum. Mauris magna.|P.O. Box 371, 9694 Nostra, Road|Micronesia|BDF|Norwich|E3Y 7C7|46566929-H|2012-04-07|21|1|2013-05-03|2
+19|9|9|nibh lacinia orci, consectetuer euismod est arcu ac orci.|2941 Arcu Street|Svalbard and Jan Mayen|Utah|Fort Wayne|X92 8DF|14433310-K|2013-08-30|21|2|2013-03-24|7
+20|2|2|risus, at fringilla purus mauris a nunc. In|Ap #447-6003 Ac Ave|Namibia|LDY|Los Alamitos|X7N 1U8|46568146-X|2012-11-15|21|1|2013-01-26|5
+21|8|7|gravida mauris ut mi. Duis risus odio,|737-1549 Ultrices St.|Christmas Island|CA|Marietta|2556EK|81959352-M|2013-10-06|21|2|2013-11-27|7
+22|2|1|rutrum non, hendrerit id, ante. Nunc|429-5966 Placerat, Rd.|Christmas Island|Fl.|Norwalk|2168ID|82704966-M|2013-09-20|21|1|2012-03-09|0
+23|3|10|fringilla mi lacinia mattis. Integer eu lacus.|8390 Nulla St.|Cyprus|Nebraska|Healdsburg|E5O 2D2|62275103-E|2013-04-24|21|1|2013-12-18|0
+24|5|4|feugiat non, lobortis quis, pede. Suspendisse dui. Fusce|296-7860 Dolor. Street|Guinea-bissau|Z.-H.|Menomonee Falls|2563XV|60814314-Q|2012-05-31|21|2|2013-11-28|4
+25|10|2|molestie tellus. Aenean egestas hendrerit neque. In ornare|Ap #946-603 Rutrum Street|Singapore|NH|Ponce|WC0 9OR|52054604-Y|2012-06-24|21|1|2013-03-16|10
+26|4|10|et magnis dis parturient montes,|Ap #765-3387 Viverra. Ave|Indonesia|NY|The Dalles|43547|50244151-V|2012-07-01|21|2|2012-10-25|6
+27|7|2|elit pede, malesuada vel, venenatis|Ap #448-6283 Conubia Street|Greenland|Dr.|Charlotte|QA6 2EM|59011074-J|2013-12-22|21|2|2012-03-30|10
+28|9|10|dolor quam, elementum at, egestas a, scelerisque|Ap #727-9164 Augue Rd.|South Georgia and The South Sandwich Islands|Limburg|Deadwood|KT5 1DX|79858359-V|2012-10-05|21|2|2013-12-27|8
+29|10|5|ullamcorper, nisl arcu iaculis enim, sit|716-3385 Lorem Ave|Sierra Leone|SC|Corinth|TQ03 5VM|25477764-A|2013-02-26|21|2|2012-09-03|8
+30|3|7|cursus in, hendrerit consectetuer, cursus|P.O. Box 254, 7684 Nisi. Avenue|Ethiopia|Idaho|Fargo|9596AA|08835998-Y|2012-03-11|21|1|2012-03-12|7
+31|3|10|Duis mi enim, condimentum eget,|Ap #583-8075 Duis Rd.|Mali|Hawaii|Methuen|X5 5VK|58421444-W|2012-05-14|21|1|2013-09-08|4
+32|8|7|feugiat placerat velit. Quisque varius. Nam|Ap #340-5579 Nisi St.|South Africa|Tennessee|South El Monte|1765EO|42929264-G|2012-12-26|21|2|2013-06-27|8
+33|0|8|Suspendisse commodo tincidunt nibh. Phasellus nulla. Integer vulputate, risus a|780-7593 Auctor Avenue|Belarus|Banffshire|Pomona|YO8 5ZB|76883768-S|2013-12-06|21|2|2013-07-29|5
+34|0|2|vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci|231-4026 Enim. St.|Belgium|KKD|Casper|9526JY|59461300-K|2014-01-27|21|1|2013-10-27|8
+35|6|0|molestie. Sed id risus quis diam luctus lobortis. Class|Ap #317-9308 Nulla Road|Faroe Islands|AK|Marquette|1161GA|64825653-A|2012-06-07|21|2|2013-10-24|10
+36|5|0|luctus et ultrices posuere cubilia|P.O. Box 368, 7372 At, Ave|Anguilla|Prince Edward Island|Sonoma|01455|48133145-N|2012-06-19|21|2|2013-07-29|8
+37|9|8|Nullam suscipit, est ac facilisis facilisis, magna tellus|Ap #186-8137 Aliquam Rd.|Norfolk Island|KY|Selma|F5F 6D7|78566127-V|2013-05-17|21|2|2013-03-23|7
+38|4|10|Donec consectetuer mauris id sapien. Cras|P.O. Box 341, 4021 Commodo St.|Togo|ID|Pierre|3765NL|23063422-L|2013-01-05|21|1|2013-08-13|9
+39|1|6|Donec nibh. Quisque nonummy ipsum non arcu.|P.O. Box 848, 7771 Et, Rd.|Benin|CAI|Norman|HW0 5CN|85391800-J|2012-05-13|21|2|2012-11-16|1
+40|4|4|nunc. Quisque ornare tortor at|P.O. Box 680, 8025 Inceptos Rd.|Myanmar|Illinois|Walnut|9900BL|39573566-F|2013-03-06|21|1|2013-06-11|0
+41|3|6|et ipsum cursus vestibulum. Mauris magna. Duis|2352 Eros. Rd.|Senegal|Co. Monaghan|Minot|D1Z 7VP|95897433-O|2012-12-05|21|1|2013-06-07|8
+42|6|0|in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus|2452 Sed St.|Canada|ROX|Port St. Lucie|P5W 1W2|66443535-Q|2012-07-02|21|1|2012-08-29|9
+43|6|9|purus. Maecenas libero est, congue a, aliquet vel, vulputate|1246 Arcu Rd.|Ethiopia|N.-Br.|Oneonta|15268|83311808-B|2014-01-12|21|1|2012-07-29|10
+44|2|8|convallis dolor. Quisque tincidunt pede ac urna.|143-5053 Tempus St.|Uruguay|Gelderland|Green Bay|54653|76878628-H|2013-12-21|21|1|2012-05-15|3
+45|8|3|felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus.|P.O. Box 958, 4751 Nulla. Avenue|Czech Republic|Fr.|North Las Vegas|3495KE|87560154-B|2012-08-02|21|1|2013-12-12|5
+46|0|8|elit, pretium et, rutrum non, hendrerit id,|Ap #939-6638 Metus Ave|Zimbabwe|Zeeland|Hollywood|09964|04854690-R|2013-06-06|21|2|2012-12-16|6
+47|3|7|non massa non ante bibendum ullamcorper.|154-6453 Sem St.|Mayotte|North Carolina|Evanston|W5 3VP|94258974-V|2013-06-13|21|2|2012-06-01|9
+48|5|4|luctus. Curabitur egestas nunc sed libero.|Ap #429-7308 Et Rd.|Ethiopia|Co. Wexford|Frankfort|90764|55230665-P|2014-02-17|21|1|2013-07-06|10
+49|9|5|et, commodo at, libero. Morbi accumsan|7790 Fames St.|Libyan Arab Jamahiriya|Ov.|Columbus|47913|57577429-I|2013-06-13|21|1|2013-08-24|0
+50|9|6|Nulla interdum. Curabitur dictum. Phasellus in felis. Nulla|211-9961 Leo. Street|Bermuda|Groningen|Vallejo|R3L 9F7|03899403-R|2012-10-27|21|1|2013-09-07|7
+51|5|10|sit amet luctus vulputate, nisi sem semper erat, in consectetuer|P.O. Box 768, 3995 Nulla Rd.|Malaysia|YKS|Fort Smith|FV0H 1SR|63162098-C|2012-04-01|21|1|2012-09-02|7
+52|4|2|dui. Suspendisse ac metus vitae velit|P.O. Box 148, 9403 Id, St.|Georgia|STD|Meridian|EX7 1SW|88520706-X|2013-05-29|21|2|2012-08-02|9
+53|4|6|massa. Vestibulum accumsan neque et nunc. Quisque|Ap #324-1451 Nec Avenue|El Salvador|Oxfordshire|Arlington|I4T 4Y6|46482875-T|2012-07-23|21|2|2012-05-25|9
+54|7|6|placerat, orci lacus vestibulum lorem, sit amet ultricies|737-6516 Non Street|Tuvalu|Drenthe|Springfield|60735|48335902-N|2012-04-05|21|2|2012-07-14|2
+55|10|5|erat volutpat. Nulla facilisis. Suspendisse commodo tincidunt nibh. Phasellus nulla.|P.O. Box 327, 4812 Risus. St.|Fiji|BRE|San Dimas|E8Y 2A4|56751646-T|2012-05-22|21|2|2013-04-14|2
+56|8|6|Curabitur consequat, lectus sit amet luctus vulputate, nisi|4045 Egestas Rd.|Turkmenistan|New Hampshire|Biloxi|V6 6NC|32624480-I|2013-03-18|21|2|2013-11-21|3
+57|3|5|sit amet, dapibus id, blandit at, nisi. Cum sociis natoque|5147 Leo, Rd.|Cook Islands|BUT|Frederick|92331|36099349-X|2012-09-27|21|2|2013-05-27|8
+58|5|8|pede. Suspendisse dui. Fusce diam nunc,|1545 Dolor Av.|American Samoa|DFD|Batavia|C3E 5R1|36611331-L|2012-11-21|21|1|2013-02-21|6
+59|1|7|faucibus ut, nulla. Cras eu tellus eu|Ap #373-9504 Quam Avenue|El Salvador|Hawaii|Forrest City|4087GG|83890143-D|2013-01-04|21|2|2013-01-09|1
+60|4|0|Nam nulla magna, malesuada vel, convallis in,|Ap #521-1743 Fringilla Avenue|Gambia|Maryland|Santa Cruz|UT82 1ZJ|80794644-D|2013-10-22|21|2|2013-07-17|4
+61|7|7|Nullam scelerisque neque sed sem egestas|2277 Vulputate Av.|New Caledonia|YT|Woonsocket|S6S 3A1|49795314-E|2013-09-11|21|1|2012-04-06|4
+62|5|9|eu tempor erat neque non quam. Pellentesque|8985 Per St.|Uganda|Groningen|Cumberland|Y3U 3L2|43488327-Q|2012-03-14|21|2|2014-01-05|5
+63|2|9|et, eros. Proin ultrices. Duis volutpat nunc|P.O. Box 381, 9475 Phasellus St.|Guinea-bissau|GMP|Dixon|D4L 4C0|68596979-Z|2013-07-31|21|1|2013-07-24|10
+64|2|8|felis eget varius ultrices, mauris ipsum|P.O. Box 951, 496 Amet Avenue|San Marino|Gelderland|Greenfield|23902|99582210-L|2012-12-06|21|1|2012-05-14|4
+65|1|10|justo. Proin non massa non ante bibendum ullamcorper.|212-5588 Ut Av.|Greece|JSY|Des Moines|C4M 3L9|36346904-U|2012-06-09|21|2|2012-03-31|3
+66|9|0|ultricies adipiscing, enim mi tempor lorem,|821-6837 Mauris. Rd.|Austria|OH|Ogden|C9A 2L8|60141436-X|2013-11-23|21|1|2012-05-06|6
+67|7|4|tincidunt pede ac urna. Ut tincidunt vehicula|9068 Magna. Ave|India|NU|Maywood|7831FA|18466816-L|2012-06-16|21|1|2013-06-25|3
+68|3|0|tincidunt vehicula risus. Nulla eget metus eu erat semper rutrum.|4412 Orci Rd.|Gibraltar|Virginia|Newton|B7 3YW|93747046-B|2013-07-28|21|1|2013-01-20|8
+69|6|5|tellus faucibus leo, in lobortis tellus justo sit amet|880-6394 Mollis St.|Cyprus|ID|Peru|CI5 5XP|70445108-F|2013-05-07|21|2|2013-08-01|9
+70|6|4|libero et tristique pellentesque, tellus|Ap #584-6833 Fringilla Road|Mexico|Gr.|Phoenix|CE9 1ZD|46990078-N|2013-12-15|21|1|2013-12-09|2
+71|0|6|nonummy ut, molestie in, tempus eu, ligula.|8733 Nonummy St.|Myanmar|Utrecht|Victoria|81099|84426581-S|2012-11-06|21|1|2013-11-05|6
+72|6|9|ac ipsum. Phasellus vitae mauris sit amet lorem semper|3901 Id, Ave|Macao|Zuid Holland|Torrance|37485|55371959-D|2012-11-09|21|2|2013-05-26|0
+73|0|1|nulla. In tincidunt congue turpis. In condimentum. Donec|941-4344 Faucibus Rd.|Burundi|NL|Wynne|7133CL|97498074-N|2012-04-13|21|1|2012-08-05|10
+74|3|7|nec, leo. Morbi neque tellus, imperdiet|172-4182 Neque Avenue|Lesotho|CLK|Clovis|E3E 8T6|91628924-X|2013-10-29|21|2|2012-12-18|3
+75|2|6|augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan|P.O. Box 680, 9217 Luctus Street|Suriname|IL|Springfield|1233RH|02528232-O|2012-07-03|21|2|2012-03-06|5
+76|4|8|a, auctor non, feugiat nec, diam. Duis mi enim,|639-5870 Vitae Street|Central African Republic|Noord Brabant|Azusa|39162|72116999-S|2013-04-19|21|1|2013-01-30|3
+77|9|5|sit amet metus. Aliquam erat volutpat. Nulla facilisis. Suspendisse|P.O. Box 166, 3019 Tincidunt Street|Anguilla|Fr.|Amesbury|FD5 1BG|43538329-Q|2014-01-12|21|2|2013-04-22|10
+78|3|3|ridiculus mus. Proin vel nisl. Quisque|Ap #839-2982 Ultrices Avenue|Bhutan|East Riding of Yorkshire|Port Orford|B3L 3D0|61094249-G|2012-11-11|21|2|2012-09-06|5
+79|2|6|consectetuer adipiscing elit. Aliquam auctor, velit eget|913-4038 Donec Road|Syrian Arab Republic|INV|Miami|N78 9QC|14640046-J|2013-11-01|21|2|2012-06-02|8
+80|6|2|libero. Proin sed turpis nec mauris blandit mattis.|8408 Mi Rd.|Portugal|Drenthe|Vancouver|O4 7OW|49506122-R|2012-11-26|21|2|2012-10-01|7
+81|10|5|lacus. Aliquam rutrum lorem ac|234-412 Ipsum St.|Cape Verde|OFF|Hot Springs|K6H 6V9|76671805-Z|2012-09-10|21|2|2013-02-28|0
+82|5|2|orci, consectetuer euismod est arcu ac orci. Ut semper pretium|427-5188 Semper Rd.|Uruguay|Friesland|Nashville|35731|77882079-M|2014-01-27|21|1|2014-01-03|9
+83|8|2|faucibus orci luctus et ultrices posuere cubilia Curae;|749-6523 Urna. Av.|China|Dr.|Mount Pleasant|3941WY|41724447-G|2012-09-18|21|2|2012-10-31|9
+84|10|6|eu enim. Etiam imperdiet dictum|4146 Orci Ave|Paraguay|YT|Bandon|8272QO|53032658-F|2012-12-23|21|2|2012-11-14|6
+85|10|0|sociis natoque penatibus et magnis dis parturient montes,|Ap #861-5844 Posuere St.|Singapore|Zuid Holland|McAlester|9004XH|76967594-O|2013-01-25|21|1|2014-02-01|1
+86|4|2|ridiculus mus. Proin vel nisl. Quisque fringilla euismod enim.|983-9147 Pede. Rd.|South Georgia and The South Sandwich Islands|HAM|New Brunswick|G0D 2MR|87729579-Z|2013-01-27|21|2|2013-02-25|9
+87|10|4|per conubia nostra, per inceptos hymenaeos. Mauris ut|Ap #829-493 Laoreet Road|Germany|Ayrshire|Phenix City|XS06 6AU|59705098-R|2012-05-21|21|2|2013-07-12|10
+88|1|3|at fringilla purus mauris a nunc. In at pede. Cras|Ap #693-7058 Curae; Avenue|Honduras|Wigtownshire|Fort Collins|3752PE|95108185-C|2012-04-09|21|1|2014-01-09|8
+89|10|6|molestie orci tincidunt adipiscing. Mauris|P.O. Box 483, 5176 Eu Street|Viet Nam|PE|Coral Springs|2341YN|71277204-O|2012-05-01|21|2|2012-04-06|0
+90|2|6|Cum sociis natoque penatibus et magnis dis parturient montes,|Ap #905-1737 Dolor St.|Seychelles|PE|Fayetteville|0860IE|31257024-E|2014-01-10|21|1|2013-08-20|3
+91|7|4|facilisis lorem tristique aliquet. Phasellus|372-718 Lorem St.|Guadeloupe|Fife|Aguadilla|53777|96022420-G|2013-04-04|21|1|2012-07-07|6
+92|4|7|faucibus leo, in lobortis tellus|Ap #761-4666 Suspendisse Ave|Azerbaijan|RI|Oneida|96317|55109825-G|2012-08-30|21|1|2013-08-28|10
+93|5|3|Cras interdum. Nunc sollicitudin commodo ipsum.|8924 Consectetuer St.|Uzbekistan|Co. Laois|Mount Vernon|S4D 5R6|76971190-C|2013-11-02|21|1|2012-04-14|10
+94|1|8|odio. Etiam ligula tortor, dictum eu, placerat eget,|790-8686 Mi, St.|Yemen|MB|Hot Springs|11112|23215083-Z|2013-05-10|21|2|2013-01-02|8
+95|8|6|elit, pharetra ut, pharetra sed,|Ap #242-7778 Fringilla St.|Tajikistan|MB|Lubbock|7345SL|42118216-L|2012-03-22|21|2|2013-12-25|2
+96|6|0|nunc risus varius orci, in consequat enim|568-2448 Nonummy. Ave|Martinique|Florida|Palo Alto|W4I 1B7|79939371-C|2012-09-15|21|2|2014-01-28|3
+97|7|8|magnis dis parturient montes, nascetur ridiculus mus.|P.O. Box 773, 1539 Sagittis Avenue|Algeria|Ontario|Ann Arbor|J9N 2D6|28996460-K|2013-08-12|21|2|2012-04-02|5
+98|8|2|malesuada vel, convallis in, cursus et,|860-2869 Cras St.|Jamaica|Maryland|Newburgh|68229|60818037-Q|2013-09-28|21|2|2012-10-01|5
+99|8|4|nec orci. Donec nibh. Quisque nonummy ipsum|241-9174 Massa Rd.|Reunion|Massachusetts|Merced|S3R 0BI|50734144-S|2014-01-28|21|2|2012-12-30|6
+100|5|6|Quisque fringilla euismod enim. Etiam|296-7206 Orci Street|Chile|Nevada|Brookings|NA7 0NK|81037189-N|2012-09-06|21|1|2012-08-02|2
+

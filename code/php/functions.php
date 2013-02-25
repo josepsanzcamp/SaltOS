@@ -340,7 +340,9 @@ function __aplicaciones($tipo,$dato) {
 			$diccionario["page2id"][$row["codigo"]]=$row["id"];
 			$diccionario["id2page"][$row["id"]]=$row["codigo"];
 			$diccionario["page2table"][$row["codigo"]]=$row["table"];
+			$diccionario["table2page"][$row["table"]]=$row["codigo"];
 			$diccionario["id2table"][$row["id"]]=$row["table"];
+			$diccionario["table2id"][$row["table"]]=$row["id"];
 		}
 		db_free($result);
 	}
@@ -361,7 +363,15 @@ function page2table($page) {
 	return __aplicaciones(__FUNCTION__,$page);
 }
 
+function table2page($page) {
+	return __aplicaciones(__FUNCTION__,$page);
+}
+
 function id2table($id) {
+	return __aplicaciones(__FUNCTION__,$id);
+}
+
+function table2id($id) {
 	return __aplicaciones(__FUNCTION__,$id);
 }
 

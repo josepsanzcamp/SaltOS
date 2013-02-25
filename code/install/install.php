@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 global $_CONFIG;
 global $_LANG;
 // LOAD MAIN CONFIGURATION
-$_CONFIG=eval_attr(xml2array("install/xml/config.xml"));
+$_CONFIG=eval_attr(xml2array("xml/config.xml"));
 if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));
 if(getParam("env_path")) $_CONFIG["putenv"]["PATH"]=getParam("env_path");
 if(getParam("env_lang")) $_CONFIG["putenv"]["LANG"]=getParam("env_lang");
@@ -61,13 +61,9 @@ define("__DIV1__","class='ui-widget-header ui-corner-tl ui-corner-tr' style='mar
 define("__DIV2__","class='ui-widget-content ui-corner-bl ui-corner-br' style='margin:0px auto 2px auto;padding:5px'");
 define("__DIV3__","style='margin:10px auto;padding:0px;text-align:right'");
 define("__BR__","<br/>");
-define("__XML__","install/xml/tbl_*.xml");
-define("__SQL__","install/sql/tbl_*.sql.gz");
-define("__SQLITE__","install/sql/sqlite.sql.gz");
-define("__MYSQL__","install/sql/mysql.sql.gz");
-define("__BEGIN__","install/sql/begin.sql.gz");
-define("__COMMIT__","install/sql/commit.sql.gz");
-define("__EXAMPLE__","install/xml/example/tbl_*.xml");
+define("__DEFAULT__","install/xml/tbl_*.xml");
+define("__EXAMPLE__","install/csv/example/tbl_*.csv");
+define("__STREET__","install/csv/street/tbl_*.csv.gz");
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -271,16 +267,16 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 									<?php } ?>
 								</select>
 								<?php echo __BR__; ?>
-								<input type="checkbox" name="streetdata" id="streetdata" value="1" style="vertical-align:-15%"/><label for="streetdata"><?php echo LANG("streetdata"); ?></label><?php echo __BR__; ?>
 								<input type="checkbox" name="exampledata" id="exampledata" value="1" style="vertical-align:-15%"/><label for="exampledata"><?php echo LANG("exampledata"); ?></label><?php echo __BR__; ?>
+								<input type="checkbox" name="streetdata" id="streetdata" value="1" style="vertical-align:-15%"/><label for="streetdata"><?php echo LANG("streetdata"); ?></label><?php echo __BR__; ?>
 								<?php $cancontinue=0; ?>
 								<?php unset($_GET["user"]); ?>
 								<?php unset($_GET["pass"]); ?>
 								<?php unset($_GET["email"]); ?>
 								<?php unset($_GET["forcessl"]); ?>
 								<?php unset($_GET["timezone"]); ?>
-								<?php unset($_GET["streetdata"]); ?>
 								<?php unset($_GET["exampledata"]); ?>
+								<?php unset($_GET["streetdata"]); ?>
 							<?php } else { ?>
 								<input type="hidden" name="step" value="4"/>
 								<?php echo LANG("user"); ?>: <?php echo __GREEN__.getParam("user").__COLOR__; ?><?php echo __BR__; ?>
@@ -288,8 +284,8 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 								<?php echo LANG("email"); ?>: <?php echo getParam("email")?__GREEN__.getParam("email").__COLOR__:__RED__.LANG("undefined").__COLOR__; ?><?php echo __BR__; ?>
 								<?php echo LANG("forcessl"); ?>: <?php echo getParam("forcessl")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
 								<?php echo LANG("timezone"); ?>: <?php echo __GREEN__.getParam("timezone").__COLOR__; ?><?php echo __BR__; ?>
-								<?php echo LANG("streetdata"); ?>: <?php echo getParam("streetdata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
 								<?php echo LANG("exampledata"); ?>: <?php echo getParam("exampledata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
+								<?php echo LANG("streetdata"); ?>: <?php echo getParam("streetdata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
 							<?php } ?>
 						</div>
 						<div <?php echo __DIV3__; ?>>
@@ -357,8 +353,8 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 							<?php echo LANG("email"); ?>: <?php echo getParam("email")?__GREEN__.getParam("email").__COLOR__:__RED__.LANG("undefined").__COLOR__; ?><?php echo __BR__; ?>
 							<?php echo LANG("forcessl"); ?>: <?php echo getParam("forcessl")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
 							<?php echo LANG("timezone"); ?>: <?php echo __GREEN__.getParam("timezone",getDefault("ini_set/date.timezone")).__COLOR__; ?><?php echo __BR__; ?>
-							<?php echo LANG("streetdata"); ?>: <?php echo getParam("streetdata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
 							<?php echo LANG("exampledata"); ?>: <?php echo getParam("exampledata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo LANG("streetdata"); ?>: <?php echo getParam("streetdata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
 						</div>
 						<div <?php echo __DIV3__; ?>>
 							<?php echo __BACK__; ?>
@@ -469,7 +465,7 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 								} else {
 									echo __NO__.__BR__;
 								}
-								// INSERT THE STATIC REGISTERS
+								// INSERT THE STATIC DATA
 								echo current_datetime().": ".LANG("dbstatic").": ";
 								capture_next_error();
 								$exists=CONFIG("xml/dbstatic.xml");
@@ -480,9 +476,9 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 								} else {
 									echo __NO__.__BR__;
 								}
-								// IMPORT DEFAULT CONFIGURATION
+								// IMPORT DEFAULT DATA
 								$oldcache=set_use_cache("false");
-								$files=glob(__XML__);
+								$files=glob(__DEFAULT__);
 								if(is_array($files) && count($files)>0) {
 									foreach($files as $file) {
 										$table=basename($file,".xml");
@@ -491,6 +487,8 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 										echo current_datetime().": ".LANG("defaultdata").": ".basename($file).": ";
 										if(!$numrows) {
 											$rows=eval_attr(xml2array($file));
+											$id_aplicacion=table2id($table);
+											$datetime=current_datetime();
 											foreach($rows as $row) {
 												$keys=array();
 												$vals=array();
@@ -502,6 +500,10 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 												$vals=implode(",",$vals);
 												$query="INSERT INTO `$table`($keys) VALUES($vals)";
 												db_query($query);
+												if($id_aplicacion) {
+													$query="INSERT INTO tbl_registros_i(id,id_aplicacion,id_registro,id_usuario,datetime) VALUES(NULL,'${id_aplicacion}','${row["id"]}','1','${datetime}')";
+													db_query($query);
+												}
 											}
 											echo __YES__.__BR__;
 										} else {
@@ -523,34 +525,39 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 									echo __NO__.__BR__;
 								}
 								set_use_cache($oldcache);
-								// IMPORT STREET INFORMATION USING AN OPTIMIZATION FROM COMMAND LINE
-								if(getParam("streetdata")) {
+								// IMPORT EXAMPLE DATA
+								if(getParam("exampledata")) {
 									$oldcache=set_use_cache("false");
-									$files=glob(__SQL__);
+									$files=glob(__EXAMPLE__);
 									if(is_array($files) && count($files)>0) {
 										foreach($files as $file) {
-											$table=basename($file,".sql.gz");
+											$table=basename($file,".csv");
 											$query="SELECT COUNT(*) FROM $table";
 											$numrows=execute_query($query);
-											echo current_datetime().": ".LANG("streetdata").": ".basename($file).": ";
+											echo current_datetime().": ".LANG("exampledata").": ".basename($file).": ";
 											if(!$numrows) {
-												if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3")) && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/sqlite3_install")))) {
-													$error=ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__INIT__","__BEGIN__","__INPUT__","__COMMIT__"),array(__SQLITE__,__BEGIN__,$file,__COMMIT__),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/sqlite3_install")." ".str_replace(array("__DBFILE__"),array(getDefault("db/file")),getDefault("commands/__sqlite3_install__")));
-													if($error=="") {
-														echo __YES__.__BR__;
-													} else {
-														echo __NO__.__BR__;
+												$rows=file($file);
+												$keys=array_shift($rows);
+												$keys=trim($keys);
+												$keys=explode("|",$keys);
+												$keys="`".implode("`,`",$keys)."`";
+												$id_aplicacion=table2id($table);
+												$datetime=current_datetime();
+												foreach($rows as $row) {
+													$row=trim($row);
+													if($row!="") {
+														$row=explode("|",$row);
+														$id_registro=$row[0];
+														$row="'".implode("','",$row)."'";
+														$query="INSERT INTO `$table`($keys) VALUES($row)";
+														db_query($query);
+														if($id_aplicacion) {
+															$query="INSERT INTO tbl_registros_i(id,id_aplicacion,id_registro,id_usuario,datetime) VALUES(NULL,'${id_aplicacion}','${id_registro}','1','${datetime}')";
+															db_query($query);
+														}
 													}
-												} elseif(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_mysql","mysql","mysqli")) && check_commands(array(getDefault("commands/zcat_install"),getDefault("commands/mysql_install")))) {
-													$error=ob_passthru(getDefault("commands/zcat_install")." ".str_replace(array("__INIT__","__BEGIN__","__INPUT__","__COMMIT__"),array(__MYSQL__,__BEGIN__,$file,__COMMIT__),getDefault("commands/__zcat_install__"))." | ".getDefault("commands/mysql_install")." ".str_replace(array("__DBHOST__","__DBPORT__","__DBUSER__","__DBPASS__","__DBNAME__"),array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),getDefault("commands/__mysql_install__")));
-													if($error=="") {
-														echo __YES__.__BR__;
-													} else {
-														echo __NO__.__BR__;
-													}
-												} else {
-													echo __NO__.__BR__;
 												}
+												echo __YES__.__BR__;
 											} else {
 												echo __NO__.__BR__;
 											}
@@ -558,28 +565,37 @@ define("__EXAMPLE__","install/xml/example/tbl_*.xml");
 									}
 									set_use_cache($oldcache);
 								}
-								// IMPORT EXAMPLE DATA
-								if(getParam("exampledata")) {
+								// IMPORT STREET DATA
+								if(getParam("streetdata")) {
 									$oldcache=set_use_cache("false");
-									$files=glob(__EXAMPLE__);
+									$files=glob(__STREET__);
 									if(is_array($files) && count($files)>0) {
 										foreach($files as $file) {
-											$table=basename($file,".xml");
+											$table=basename($file,".csv.gz");
 											$query="SELECT COUNT(*) FROM $table";
 											$numrows=execute_query($query);
-											echo current_datetime().": ".LANG("exampledata").": ".basename($file).": ";
+											echo current_datetime().": ".LANG("streetdata").": ".basename($file).": ";
 											if(!$numrows) {
-												$rows=eval_attr(xml2array($file));
-												foreach($rows as $row) {
-													$keys=array();
-													$vals=array();
-													foreach($row as $key=>$val) {
-														$keys[]="`${key}`";
-														$vals[]=($val=="NULL")?$val:"'${val}'";
+												$rows=gzfile($file);
+												$keys=array_shift($rows);
+												$keys=trim($keys);
+												$keys=explode("|",$keys);
+												$keys="`".implode("`,`",$keys)."`";
+												foreach($rows as $index=>$row) {
+													$row=trim($row);
+													if($row!="") {
+														$row=str_replace("'","''",$row);
+														$row=explode("|",$row);
+														$row="'".implode("','",$row)."'";
+														$rows[$index]=$row;
+													} else {
+														unset($rows[$index]);
 													}
-													$keys=implode(",",$keys);
-													$vals=implode(",",$vals);
-													$query="INSERT INTO `$table`($keys) VALUES($vals)";
+												}
+												$rows=array_chunk($rows,100);
+												foreach($rows as $row) {
+													$row=implode("),(",$row);
+													$query="INSERT INTO `$table`($keys) VALUES($row)";
 													db_query($query);
 												}
 												echo __YES__.__BR__;
