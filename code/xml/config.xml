@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</info>
 	<db>
 		<type>pdo_sqlite</type>
-		<host>127.0.0.1</host><!-- for MySQL -->
+		<host>localhost</host><!-- for MySQL -->
 		<port>3306</port><!-- for MySQL -->
 		<user>saltos</user><!-- for MySQL -->
 		<pass>saltos</pass><!-- for MySQL -->
@@ -62,7 +62,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<noexport>tbl_estados_a</noexport>
 			<noexport>tbl_permisos</noexport>
 			<noexport>tbl_tiposcom</noexport>
-			<noexport>tbl_calles</noexport>
 			<noexport>tbl_codpostal</noexport>
 			<noexport>tbl_paises</noexport>
 			<noexport>tbl_poblaciones</noexport>

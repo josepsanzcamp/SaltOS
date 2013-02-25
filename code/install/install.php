@@ -43,6 +43,9 @@ if(getParam("action")=="themeroller") {
 	$_CONFIG["cache"]["useimginline"]="false";
 	include("php/action/".getParam("action").".php");
 }
+// SUPPORT FOR LTR AND RTL LANGS
+$dir=$_LANG["dir"];
+$textalign=array("ltr"=>"right","rtl"=>"left");
 // SOME DEFINES
 define("__UI__","class='ui-state-default ui-corner-all'");
 define("__IMG__","style='vertical-align:middle'");
@@ -59,13 +62,13 @@ define("__YES__",__GREEN__.LANG("yes").__COLOR__);
 define("__NO__",__RED__.LANG("no").__COLOR__);
 define("__DIV1__","class='ui-widget-header ui-corner-tl ui-corner-tr' style='margin:0px auto;padding:5px'");
 define("__DIV2__","class='ui-widget-content ui-corner-bl ui-corner-br' style='margin:0px auto 2px auto;padding:5px'");
-define("__DIV3__","style='margin:10px auto;padding:0px;text-align:right'");
+define("__DIV3__","style='margin:10px auto;padding:0px;text-align:".$textalign[$dir]."'");
 define("__BR__","<br/>");
 define("__DEFAULT__","install/xml/tbl_*.xml");
 define("__EXAMPLE__","install/csv/example/tbl_*.csv");
 define("__STREET__","install/csv/street/tbl_*.csv.gz");
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $lang; ?>" dir="<?php echo $dir; ?>">
 	<head>
 		<link xmlns="" href="img/favicon.ico" rel="shortcut icon">
 		<title><?php echo LANG("title")." - ".get_name_version_revision(); ?></title>
@@ -593,10 +596,28 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 													}
 												}
 												$rows=array_chunk($rows,100);
+												$error="";
 												foreach($rows as $row) {
 													$row=implode("),(",$row);
 													$query="INSERT INTO `$table`($keys) VALUES($row)";
+													capture_next_error();
 													db_query($query);
+													$error=get_clear_error();
+													if($error) $break;
+												}
+												if($error) {
+													capture_next_error();
+													db_query("BEGIN");
+													get_clear_error();
+													foreach($rows as $row) {
+														foreach($row as $temp) {
+															$query="INSERT INTO `$table`($keys) VALUES($temp)";
+															db_query($query);
+														}
+													}
+													capture_next_error();
+													db_query("COMMIT");
+													get_clear_error();
 												}
 												echo __YES__.__BR__;
 											} else {

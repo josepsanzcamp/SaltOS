@@ -293,24 +293,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
-			<name>tbl_calles</name>
-			<fields>
-				<field>
-					<name>id</name>
-					<type>INTEGER</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>codpostal</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>nombre</name>
-					<type>TEXT</type>
-				</field>
-			</fields>
-		</table>
-		<table>
 			<name>tbl_campanyas</name>
 			<fields>
 				<field>
