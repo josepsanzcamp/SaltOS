@@ -214,12 +214,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<albaran>Waybill</albaran>
 		<msglogout>Do you want to exit the application?</msglogout>
 		<mostrarcomo>Show as</mostrarcomo>
-		<direccionesold>Address</direccionesold>
-		<direccionesnew>New address</direccionesnew>
-		<tipocom>Type com.</tipocom>
-		<valorcom>Communication</valorcom>
-		<seleccion>Preferred</seleccion>
-		<seleccion2>Pref.</seleccion2>
 		<nif>N.I.F.</nif>
 		<vcard>VCard</vcard>
 		<cargo>Position</cargo>
@@ -278,7 +272,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sending>Sending data, please wait...</sending>
 		<prod>Prod</prod>
 		<addfile>Add file</addfile>
-		<addcomunicacion>Add comunication</addcomunicacion>
 		<addproduct>Add product</addproduct>
 		<addconcept>Add concept</addconcept>
 		<addvencimiento>Add maturity</addvencimiento>

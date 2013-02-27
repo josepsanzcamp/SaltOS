@@ -420,11 +420,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				UNION
 				SELECT  CONCAT('r',id,'a','".page2id("clientes")."')  id,
 					id id_registro,'".page2id("clientes")."' id_aplicacion FROM tbl_clientes
-					WHERE ".($filtro?make_like_query("nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago",$filtro):"(1=0)")."
+					WHERE ".($filtro?make_like_query("nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id,'a','".page2id("contactos")."')  id,
 					id id_registro,'".page2id("contactos")."' id_aplicacion FROM tbl_contactos
-					WHERE ".($filtro?make_like_query("nombre,nombre1,nombre2,cargo,comentarios",$filtro):"(1=0)")."
+					WHERE ".($filtro?make_like_query("nombre,nombre1,nombre2,cargo,comentarios,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax",$filtro):"(1=0)")."
 				UNION
 				SELECT CONCAT('r',id,'a','".page2id("correo")."') id,
 					id id_registro,'".page2id("correo")."' id_aplicacion FROM tbl_correo
@@ -440,7 +440,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				UNION
 				SELECT  CONCAT('r',id,'a','".page2id("empleados")."')  id,
 					id id_registro,'".page2id("empleados")."' id_aplicacion FROM tbl_empleados
-					WHERE ".($filtro?make_like_query("nombre,nombre1,nombre2,cargo,comentarios",$filtro):"(1=0)")."
+					WHERE ".($filtro?make_like_query("nombre,nombre1,nombre2,cargo,comentarios,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id,'a','".page2id("epigrafes")."')  id,
 					id id_registro,'".page2id("epigrafes")."' id_aplicacion FROM tbl_epigrafes
@@ -535,7 +535,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				UNION
 				SELECT  CONCAT('r',id,'a','".page2id("proveedores")."')  id,
 					id id_registro,'".page2id("proveedores")."' id_aplicacion FROM tbl_proveedores
-					WHERE ".($filtro?make_like_query("nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago",$filtro):"(1=0)")."
+					WHERE ".($filtro?make_like_query("nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id,'a','".page2id("proyectos")."')  id,
 					id id_registro,'".page2id("proyectos")."' id_aplicacion FROM tbl_proyectos
@@ -577,14 +577,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				SELECT CONCAT('r',id_registro,'a',id_aplicacion) id,
 					id_registro,TRIM(id_aplicacion) FROM tbl_comentarios
 					WHERE ".($filtro?make_like_query("datetime,comentarios",$filtro):"(1=0)")."
-				UNION
-				SELECT CONCAT('r',id_registro,'a',id_aplicacion) id,
-					id_registro,TRIM(id_aplicacion) FROM tbl_direcciones
-					WHERE ".($filtro?make_like_query("nombre,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal",$filtro):"(1=0)")."
-				UNION
-				SELECT CONCAT('r',id_registro,'a',id_aplicacion) id,
-					id_registro,TRIM(id_aplicacion) FROM tbl_comunicaciones
-					WHERE ".($filtro?make_like_query("nombre,valor",$filtro):"(1=0)")."
 			) a
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z

@@ -214,12 +214,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<albaran>Feuille de route</albaran>
 		<msglogout>Voulez-vous quitter l'application?</msglogout>
 		<mostrarcomo>Montrer que</mostrarcomo>
-		<direccionesold>Adresse</direccionesold>
-		<direccionesnew> Nouvelle adresse</direccionesnew>
-		<tipocom>com Type.</tipocom>
-		<valorcom>Communication</valorcom>
-		<seleccion>La sélection</seleccion>
-		<seleccion2> Pref.</seleccion2>
 		<nif>N.I.F.</nif>
 		<vcard>CV info</vcard>
 		<cargo>Position</cargo>
@@ -278,7 +272,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sending>Envoi de données, s'il vous plaît d'attendre l'envoi de ...</sending>
 		<prod>Prod</prod>
 		<addfile>Ajouter un fichier</addfile>
-		<addcomunicacion>Ajouter une communication</addcomunicacion>
 		<addproduct revised="false">Ajouter le produit</addproduct>
 		<addconcept revised="false">Ajouter notion</addconcept>
 		<addvencimiento revised="false">Ajouter la maturité</addvencimiento>

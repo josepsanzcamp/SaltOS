@@ -214,12 +214,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<albaran>بوليصة الشحن</albaran>
 		<msglogout>هل تريد الخروج من التطبيق</msglogout>
 		<mostrarcomo>اظهار ك</mostrarcomo>
-		<direccionesold>العنوان</direccionesold>
-		<direccionesnew>عنوان جديد</direccionesnew>
-		<tipocom>نوع الاتصال.</tipocom>
-		<valorcom>التواصل</valorcom>
-		<seleccion>المفضل</seleccion>
-		<seleccion2>Pref.</seleccion2>
 		<nif>N.I.F.</nif>
 		<vcard>فيزا كارد</vcard>
 		<cargo>الموضع</cargo>
@@ -278,7 +272,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sending>يتم ارسال البيانات ,الرجاء الانتظار...</sending>
 		<prod>الحث</prod>
 		<addfile>اضافة ملف</addfile>
-		<addcomunicacion>اضافة اتصال</addcomunicacion>
 		<addproduct>اضافة منتج</addproduct>
 		<addconcept>إضافة مفهوم</addconcept>
 		<addvencimiento>اضافة استحقاق</addvencimiento>

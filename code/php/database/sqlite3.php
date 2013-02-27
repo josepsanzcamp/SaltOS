@@ -53,6 +53,7 @@ function db_connect_sqlite3() {
 		getDefault("db/link")->createFunction("HOUR","__sqlite3_hour");
 		getDefault("db/link")->createFunction("MINUTE","__sqlite3_minute");
 		getDefault("db/link")->createFunction("SECOND","__sqlite3_second");
+		getDefault("db/link")->createFunction("MD5","__sqlite3_MD5");
 	}
 	register_shutdown_function("__sqlite3_shutdown_handler");
 }
@@ -133,6 +134,10 @@ function __sqlite3_minute($date) {
 
 function __sqlite3_second($date) {
 	return intval(date("s",strtotime($date)));
+}
+
+function __sqlite3_md5($temp) {
+	return md5($temp);
 }
 
 function __db_query_sqlite3_helper($query) {

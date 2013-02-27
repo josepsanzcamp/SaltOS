@@ -50,8 +50,6 @@ if(getParam("action")=="viewpdf") {
 		if($page=="clientes") $queryes=array(
 			"SELECT * FROM tbl_clientes $where",
 			"SELECT * FROM tbl_comentarios WHERE id_aplicacion='".page2id("clientes")."' AND id_registro IN (SELECT id FROM tbl_clientes $where)",
-			"SELECT * FROM tbl_direcciones WHERE id_aplicacion='".page2id("clientes")."' AND id_registro IN (SELECT id FROM tbl_clientes $where)",
-			"SELECT * FROM tbl_comunicaciones WHERE id_aplicacion='".page2id("clientes")."' AND id_registro IN (SELECT id FROM tbl_clientes $where)",
 			"SELECT * FROM tbl_contactos WHERE id_aplicacion='".page2id("clientes")."' AND id_registro IN (SELECT id FROM tbl_clientes $where) AND '".getParam("contactos")."'='1'",
 			"SELECT * FROM tbl_incidencias WHERE id_cliente IN (SELECT id FROM tbl_clientes $where) AND '".getParam("incidencias")."'='1'",
 			"SELECT * FROM tbl_proyectos WHERE id_cliente IN (SELECT id FROM tbl_clientes $where) AND '".getParam("proyectos")."'='1'",

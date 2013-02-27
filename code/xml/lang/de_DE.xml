@@ -214,12 +214,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<albaran>Lieferscheine</albaran>
 		<msglogout>Anwendung beenden?</msglogout>
 		<mostrarcomo>Anzeigen als</mostrarcomo>
-		<direccionesold>Addressen</direccionesold>
-		<direccionesnew>Neue Addresse</direccionesnew>
-		<tipocom>Komm. Art</tipocom>
-		<valorcom>Kommunikation</valorcom>
-		<seleccion>Bevorzugte</seleccion>
-		<seleccion2>Bvz.</seleccion2>
 		<nif>Ausw.-Nummer</nif>
 		<vcard>VCard</vcard>
 		<cargo>Posten</cargo>
@@ -278,7 +272,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sending>Daten werden gesendet, bitte warten ...</sending>
 		<prod>Prod.</prod>
 		<addfile>Datei hochladen</addfile>
-		<addcomunicacion>Datei Kommunikation</addcomunicacion>
 		<addproduct revised="false">Den Artikel</addproduct>
 		<addconcept revised="false">Add-Konzept</addconcept>
 		<addvencimiento revised="false">Add Reife</addvencimiento>

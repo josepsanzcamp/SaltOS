@@ -74,10 +74,78 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
 		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("direccion")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],125,4,"L",$row["direccion"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("pais")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],75,4,"L",$row["nombre_pais"]</textarea>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>105,$row["y"],25,4,"R",LANG("provincia")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>130,$row["y"],75,4,"L",$row["nombre_provincia"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("poblacion")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],75,4,"L",$row["nombre_poblacion"]</textarea>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>105,$row["y"],25,4,"R",LANG("codpostal")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>130,$row["y"],75,4,"L",$row["nombre_codpostal"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("email")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],75,4,"L",$row["email"]</textarea>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>105,$row["y"],25,4,"R",LANG("tel_fijo")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>130,$row["y"],75,4,"L",$row["tel_fijo"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("web")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],75,4,"L",$row["web"]</textarea>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>105,$row["y"],25,4,"R",LANG("fax")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>130,$row["y"],75,4,"L",$row["fax"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>105,$row["y"],25,4,"R",LANG("tel_movil")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>130,$row["y"],75,4,"L",$row["tel_movil"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>30,$row["y"],25,4,"R",LANG("comentarios")</textarea>
 		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>55,$row["y"],125,4,"L",trim($row["comentarios"])</textarea>
-		<!-- DIRECCIONES CONTACTO -->
-		<direccionespdf include="xml/common/direccionespdf.xml" replace="true" />
 	</foreach>
 </root>

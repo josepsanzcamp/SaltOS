@@ -51,27 +51,9 @@ if($page=="incidencias") {
 	}
 	// DATOS EMAIL
 	$id_incidencia=intval(($action=="insert")?execute_query("SELECT MAX(id) FROM tbl_incidencias"):getParam("id"));
-	$query="SELECT y5.valor mailto,".make_extra_query_with_login("d.")." usuario
+	$query="SELECT ".make_extra_query_with_field("email","d.")." mailto,".make_extra_query_with_login("d.")." usuario
 			FROM tbl_incidencias_u a
 			LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id
-			LEFT JOIN tbl_direcciones x
-				ON x.id=(
-					SELECT id
-					FROM tbl_direcciones
-					WHERE id_aplicacion=d.id_aplicacion AND id_registro=d.id_registro
-					ORDER BY seleccion DESC, id ASC LIMIT 1
-				)
-			LEFT JOIN tbl_comunicaciones y5
-				ON y5.id=(
-					SELECT id
-					FROM tbl_comunicaciones
-					WHERE id_direccion=x.id AND id_tipocom=(
-						SELECT id
-						FROM tbl_tiposcom
-						WHERE codigo='email'
-					)
-					ORDER BY seleccion DESC, id ASC LIMIT 1
-				)
 			WHERE a.id_incidencia='$id_incidencia'";
 	$result2=db_query($query);
 	if(db_num_rows($result2)) {

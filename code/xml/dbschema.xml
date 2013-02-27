@@ -337,11 +337,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<fkey>tbl_campanyas</fkey>
 				</field>
 				<field>
-					<name>id_importacion</name>
-					<type>INTEGER</type>
-					<fkey>tbl_importaciones</fkey>
-				</field>
-				<field>
 					<name>id_tipo</name>
 					<type>INTEGER</type>
 				</field>
@@ -376,6 +371,66 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>diapago</name>
 					<type>INTEGER</type>
+				</field>
+				<field>
+					<name>direccion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>id_pais</name>
+					<type>INTEGER</type>
+					<fkey>tbl_paises</fkey>
+				</field>
+				<field>
+					<name>id_provincia</name>
+					<type>INTEGER</type>
+					<fkey>tbl_provincias</fkey>
+				</field>
+				<field>
+					<name>id_poblacion</name>
+					<type>INTEGER</type>
+					<fkey>tbl_poblaciones</fkey>
+				</field>
+				<field>
+					<name>id_codpostal</name>
+					<type>INTEGER</type>
+					<fkey>tbl_codpostal</fkey>
+				</field>
+				<field>
+					<name>nombre_pais</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_provincia</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_poblacion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_codpostal</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>email</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>web</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>tel_fijo</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>tel_movil</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>fax</name>
+					<type>TEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -427,47 +482,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>comentarios</name>
 					<type>TEXT</type>
-				</field>
-			</fields>
-		</table>
-		<table>
-			<name>tbl_comunicaciones</name>
-			<fields>
-				<field>
-					<name>id</name>
-					<type>INTEGER</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>id_aplicacion</name>
-					<type>INTEGER</type>
-					<fkey>tbl_aplicaciones</fkey>
-				</field>
-				<field>
-					<name>id_registro</name>
-					<type>INTEGER</type>
-				</field>
-				<field>
-					<name>id_direccion</name>
-					<type>INTEGER</type>
-					<fkey>tbl_direcciones</fkey>
-				</field>
-				<field>
-					<name>id_tipocom</name>
-					<type>INTEGER</type>
-					<fkey>tbl_tiposcom</fkey>
-				</field>
-				<field>
-					<name>nombre</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>valor</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>seleccion</name>
-					<type>INTEGER</type>
 				</field>
 			</fields>
 		</table>
@@ -524,6 +538,66 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>comentarios</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>direccion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>id_pais</name>
+					<type>INTEGER</type>
+					<fkey>tbl_paises</fkey>
+				</field>
+				<field>
+					<name>id_provincia</name>
+					<type>INTEGER</type>
+					<fkey>tbl_provincias</fkey>
+				</field>
+				<field>
+					<name>id_poblacion</name>
+					<type>INTEGER</type>
+					<fkey>tbl_poblaciones</fkey>
+				</field>
+				<field>
+					<name>id_codpostal</name>
+					<type>INTEGER</type>
+					<fkey>tbl_codpostal</fkey>
+				</field>
+				<field>
+					<name>nombre_pais</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_provincia</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_poblacion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_codpostal</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>email</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>web</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>tel_fijo</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>tel_movil</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>fax</name>
 					<type>TEXT</type>
 				</field>
 			</fields>
@@ -781,73 +855,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
-			<name>tbl_direcciones</name>
-			<fields>
-				<field>
-					<name>id</name>
-					<type>INTEGER</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>id_aplicacion</name>
-					<type>INTEGER</type>
-					<fkey>tbl_aplicaciones</fkey>
-				</field>
-				<field>
-					<name>id_registro</name>
-					<type>INTEGER</type>
-				</field>
-				<field>
-					<name>nombre</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>direccion</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>id_pais</name>
-					<type>INTEGER</type>
-					<fkey>tbl_paises</fkey>
-				</field>
-				<field>
-					<name>id_provincia</name>
-					<type>INTEGER</type>
-					<fkey>tbl_provincias</fkey>
-				</field>
-				<field>
-					<name>id_poblacion</name>
-					<type>INTEGER</type>
-					<fkey>tbl_poblaciones</fkey>
-				</field>
-				<field>
-					<name>id_codpostal</name>
-					<type>INTEGER</type>
-					<fkey>tbl_codpostal</fkey>
-				</field>
-				<field>
-					<name>nombre_pais</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>nombre_provincia</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>nombre_poblacion</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>nombre_codpostal</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>seleccion</name>
-					<type>INTEGER</type>
-				</field>
-			</fields>
-		</table>
-		<table>
 			<name>tbl_documentos</name>
 			<fields>
 				<field>
@@ -901,6 +908,66 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>comentarios</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>direccion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>id_pais</name>
+					<type>INTEGER</type>
+					<fkey>tbl_paises</fkey>
+				</field>
+				<field>
+					<name>id_provincia</name>
+					<type>INTEGER</type>
+					<fkey>tbl_provincias</fkey>
+				</field>
+				<field>
+					<name>id_poblacion</name>
+					<type>INTEGER</type>
+					<fkey>tbl_poblaciones</fkey>
+				</field>
+				<field>
+					<name>id_codpostal</name>
+					<type>INTEGER</type>
+					<fkey>tbl_codpostal</fkey>
+				</field>
+				<field>
+					<name>nombre_pais</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_provincia</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_poblacion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_codpostal</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>email</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>web</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>tel_fijo</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>tel_movil</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>fax</name>
 					<type>TEXT</type>
 				</field>
 			</fields>
@@ -1642,6 +1709,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
+			<name>tbl_importaciones_i</name>
+			<fields>
+				<field>
+					<name>id</name>
+					<type>INTEGER</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>id_importacion</name>
+					<type>INTEGER</type>
+					<fkey>tbl_importaciones</fkey>
+					<fcheck>false</fcheck>
+				</field>
+				<field>
+					<name>id_registro</name>
+					<type>INTEGER</type>
+				</field>
+				<field>
+					<name>hash</name>
+					<type>TEXT</type>
+				</field>
+			</fields>
+		</table>
+		<table>
 			<name>tbl_incidencias</name>
 			<fields>
 				<field>
@@ -1973,11 +2064,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<fkey>tbl_campanyas</fkey>
 				</field>
 				<field>
-					<name>id_importacion</name>
-					<type>INTEGER</type>
-					<fkey>tbl_importaciones</fkey>
-				</field>
-				<field>
 					<name>id_estado</name>
 					<type>INTEGER</type>
 					<fkey>tbl_estados</fkey>
@@ -2287,6 +2373,66 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>diapago</name>
 					<type>INTEGER</type>
+				</field>
+				<field>
+					<name>direccion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>id_pais</name>
+					<type>INTEGER</type>
+					<fkey>tbl_paises</fkey>
+				</field>
+				<field>
+					<name>id_provincia</name>
+					<type>INTEGER</type>
+					<fkey>tbl_provincias</fkey>
+				</field>
+				<field>
+					<name>id_poblacion</name>
+					<type>INTEGER</type>
+					<fkey>tbl_poblaciones</fkey>
+				</field>
+				<field>
+					<name>id_codpostal</name>
+					<type>INTEGER</type>
+					<fkey>tbl_codpostal</fkey>
+				</field>
+				<field>
+					<name>nombre_pais</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_provincia</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_poblacion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>nombre_codpostal</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>email</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>web</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>tel_fijo</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>tel_movil</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>fax</name>
+					<type>TEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -2624,32 +2770,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
-			<name>tbl_tiposcom</name>
-			<fields>
-				<field>
-					<name>id</name>
-					<type>INTEGER</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>nombre</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>protocolo</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>descripcion</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>codigo</name>
-					<type>TEXT</type>
-				</field>
-			</fields>
-		</table>
-		<table>
 			<name>tbl_tiposevento</name>
 			<fields>
 				<field>
@@ -2954,18 +3074,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_registro</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<name>comunicaciones</name>
-			<table>tbl_comunicaciones</table>
-			<fields>
-				<field>
-					<name>id_direccion</name>
-				</field>
-				<field>
-					<name>id_tipocom</name>
 				</field>
 			</fields>
 		</index>

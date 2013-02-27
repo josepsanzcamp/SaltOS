@@ -131,7 +131,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			SELECT id,id2,
 				CONCAT('link:importaciones(',-id,'):',nombre) nombre,
 				nombre nombre2,descripcion,
-				(SELECT COUNT(*) FROM tbl_posiblescli WHERE id_importacion=b.id)+(SELECT COUNT(*) FROM tbl_clientes WHERE id_importacion=b.id) total,
+				(SELECT COUNT(*) FROM tbl_importaciones_i WHERE id_importacion=b.id) total,
 				(SELECT nombre FROM tbl_aplicaciones WHERE id=id_aplicacion) aplicacion,
 				id_usuario,id_grupo,
 				id action_id,

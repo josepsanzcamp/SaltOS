@@ -199,9 +199,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
-			SELECT y1.valor tel_fijo,y2.valor tel_movil,y5.valor email,x.nombre_provincia provincia,x.nombre_poblacion poblacion,x.nombre_codpostal codpostal,x.direccion direccion,
-				LPAD(a.id,5,0) id2,
-				a.*,
+			SELECT a.*,LPAD(a.id,5,0) id2,
 				".make_extra_query_with_login("b.")." usuario,
 				CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN (SELECT nombre FROM tbl_clientes WHERE id=a.id_registro)
 					WHEN '".page2id("proyectos")."' THEN (SELECT t2.nombre FROM tbl_proyectos t1 LEFT JOIN tbl_clientes t2 ON t1.id_cliente=t2.id WHERE t1.id=a.id_registro) END cliente,
@@ -217,13 +215,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				e.`datetime`,e.id_usuario id_usuario,b.id_grupo id_grupo
 				FROM tbl_contactos a
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
-				LEFT JOIN tbl_direcciones x ON x.id=(SELECT id FROM tbl_direcciones WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id ORDER BY seleccion DESC, id ASC LIMIT 1)
-				LEFT JOIN tbl_comunicaciones y1 ON y1.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='phone') ORDER BY seleccion DESC, id ASC LIMIT 1)
-				LEFT JOIN tbl_comunicaciones y2 ON y2.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='movil') ORDER BY seleccion DESC, id ASC LIMIT 1)
-				LEFT JOIN tbl_comunicaciones y5 ON y5.id=(SELECT id FROM tbl_comunicaciones WHERE id_direccion=x.id AND id_tipocom=(SELECT id FROM tbl_tiposcom WHERE codigo='email') ORDER BY seleccion DESC, id ASC LIMIT 1)
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 		) d
-		WHERE ".make_like_query("id2,usuario,cliente,proyecto,nombre,direccion,codpostal,poblacion,provincia,tel_fijo,tel_movil,email,comentarios",$filtro)." AND (id_cliente=ROUND('$id_cliente') OR ''='$id_cliente') AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id2,usuario,cliente,proyecto,nombre,direccion,nombre_codpostal,nombre_poblacion,nombre_provincia,nombre_pais,tel_fijo,tel_movil,email,comentarios",$filtro)." AND (id_cliente=ROUND('$id_cliente') OR ''='$id_cliente') AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -241,10 +235,6 @@ CASE id_aplicacion WHEN '".page2id("proyectos")."' THEN id_registro ELSE '0' END
 CASE id_aplicacion WHEN '".page2id("proveedores")."' THEN id_registro ELSE '0' END id_proveedor,
 CASE id_aplicacion WHEN '".page2id("empleados")."' THEN id_registro ELSE '0' END id_empleado
 FROM tbl_contactos WHERE id=".abs($id)</default>
-					<direccion_principal include="xml/common/qdireccionpriview.xml" replace="true"/>
-					<comunicacion_principal include="xml/common/qcomunicacionpriview.xml" replace="true"/>
-					<direccion_secundaria include="xml/common/qdireccionsecview.xml" replace="true"/>
-					<comunicacion_secundaria include="xml/common/qcomunicacionsecview.xml" replace="true"/>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
@@ -255,8 +245,6 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 				<query>
 					<query include="xml/common/qpermcreate.xml" replace="true" />
 					<default eval="true">"SELECT '0' id,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_proveedor"))."' id_proveedor,'".intval(getParam("id_empleado"))."' id_empleado"</default>
-					<direccion_new include="xml/common/qdireccionnew.xml" replace="true"/>
-					<comunicacion_new include="xml/common/qcomunicacionnew.xml" replace="true"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
@@ -272,12 +260,6 @@ CASE id_aplicacion WHEN '".page2id("proyectos")."' THEN id_registro ELSE '0' END
 CASE id_aplicacion WHEN '".page2id("proveedores")."' THEN id_registro ELSE '0' END id_proveedor,
 CASE id_aplicacion WHEN '".page2id("empleados")."' THEN id_registro ELSE '0' END id_empleado
 FROM tbl_contactos WHERE id=".abs($id)</default>
-					<direccion_principal include="xml/common/qdireccionpriview.xml" replace="true"/>
-					<comunicacion_principal include="xml/common/qcomunicacionpriview.xml" replace="true"/>
-					<direccion_secundaria include="xml/common/qdireccionsecview.xml" replace="true"/>
-					<comunicacion_secundaria include="xml/common/qcomunicacionsecview.xml" replace="true"/>
-					<direccion_new include="xml/common/qdireccionnew.xml" replace="true"/>
-					<comunicacion_new include="xml/common/qcomunicacionnew.xml" replace="true"/>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
@@ -312,10 +294,6 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 							<icon>view</icon>
 						</field>
 						<field>
-							<type>separator</type>
-							<width>10px</width>
-						</field>
-						<field>
 							<name>id_proveedor</name>
 							<label lang="true">proveedor</label>
 							<type>select</type>
@@ -338,10 +316,6 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>proyectos(-abs(ID))</link>
 							<icon>view</icon>
-						</field>
-						<field>
-							<type>separator</type>
-							<width>10px</width>
 						</field>
 						<field>
 							<name>id_empleado</name>
@@ -382,9 +356,6 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 							<speech>true</speech>
 						</field>
 						<field>
-							<type>separator</type>
-						</field>
-						<field>
 							<name>cargo</name>
 							<label lang="true">cargo</label>
 							<type>text</type>
@@ -416,6 +387,129 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 					</row>
 					<row>
 						<field>
+							<name>direccion</name>
+							<label lang="true">direccion</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>nombre_pais</name>
+							<label lang="true">pais</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>id_pais</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>nombre_provincia</name>
+							<label lang="true">provincia</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>id_provincia</name>
+							<type>hidden</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>nombre_poblacion</name>
+							<label lang="true">poblacion</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>id_poblacion</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>nombre_codpostal</name>
+							<label lang="true">codpostal</label>
+							<type>text</type>
+							<width>120px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+						<field>
+							<name>id_codpostal</name>
+							<type>hidden</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>email</name>
+							<label lang="true">email</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>tel_fijo</name>
+							<label lang="true">tel_fijo</label>
+							<type>text</type>
+							<width>90px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>web</name>
+							<label lang="true">web</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<speech>true</speech>
+						</field>
+						<field>
+							<name>fax</name>
+							<label lang="true">fax</label>
+							<type>text</type>
+							<width>90px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+							<colspan>2</colspan>
+						</field>
+						<field>
+							<name>tel_movil</name>
+							<label lang="true">tel_movil</label>
+							<type>text</type>
+							<width>90px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
 							<name>comentarios</name>
 							<label lang="true">comentarios</label>
 							<type>textarea</type>
@@ -427,18 +521,6 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 					</row>
 				</fieldset>
 			</default>
-			<direccion_principal include="xml/common/direccionesold.xml" />
-			<node path="direccion_principal/fieldset/row" before="true">
-				<title lang="true">direccionesold</title>
-			</node>
-			<comunicaciones_principal include="xml/common/comunicacionesold.xml" />
-			<direccion_secundaria include="xml/common/direccionesold.xml" />
-			<comunicaciones_secundaria include="xml/common/comunicacionesold.xml" />
-			<direccion_new include="xml/common/direccionesnew.xml" />
-			<node path="direccion_new/fieldset/row" before="true">
-				<title lang="true">direccionesnew</title>
-			</node>
-			<comunicaciones_new include="xml/common/comunicacionesnew.xml" />
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
 			<help include="xml/common/helpform.xml" />
@@ -466,8 +548,6 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_aplicacion",page2id("empleados")):""</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query include="xml/common/qdireccionnewinsert.xml" replace="true"/>
-		<query include="xml/common/qcomunicacionnewinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
@@ -482,19 +562,11 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 		<query match="default" prefix="true" eval="true">getParam("id_empleado")?setParam("id_aplicacion",page2id("empleados")):""</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-        <query include="xml/common/qdireccionpriupdate.xml" replace="true"/>
-        <query include="xml/common/qdireccionsecupdate.xml" replace="true"/>
-        <query include="xml/common/qcomunicacionpriupdate.xml" replace="true"/>
-        <query include="xml/common/qcomunicacionsecupdate.xml" replace="true"/>
-        <query include="xml/common/qdireccionnewupdate.xml" replace="true"/>
-        <query include="xml/common/qcomunicacionnewupdate.xml" replace="true"/>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query include="xml/common/qdirecciondelete.xml" replace="true"/>
-		<query include="xml/common/qcomunicaciondelete.xml" replace="true"/>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>

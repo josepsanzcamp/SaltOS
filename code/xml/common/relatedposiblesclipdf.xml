@@ -151,13 +151,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<checky>4</checky>
 		<getxy>"x","y"</getxy>
 		<font>"normal","B",8,CONFIG("color_text1")</font>
-		<textarea>30,$row["y"],25,4,"R",LANG("facturacion","posiblescli")</textarea>
-		<font>"normal","",8,CONFIG("color_text2")</font>
-		<textarea>55,$row["y"],75,4,"L",$row["facturacion"]</textarea>
-		<font>"normal","B",8,CONFIG("color_text1")</font>
 		<textarea>105,$row["y"],25,4,"R",LANG("tel_movil")</textarea>
 		<font>"normal","",8,CONFIG("color_text2")</font>
 		<textarea>130,$row["y"],75,4,"L",$row["tel_movil"]</textarea>
+		<getxy>"x","y"</getxy>
+		<setxy>$row["x"],$row["y"]+2</setxy>
+		<getxy>"x","y"</getxy>
+		<checky>4</checky>
+		<getxy>"x","y"</getxy>
+		<font>"normal","B",8,CONFIG("color_text1")</font>
+		<textarea>30,$row["y"],25,4,"R",LANG("facturacion","posiblescli")</textarea>
+		<font>"normal","",8,CONFIG("color_text2")</font>
+		<textarea>55,$row["y"],75,4,"L",$row["facturacion"]</textarea>
 		<getxy>"x","y"</getxy>
 		<setxy>$row["x"],$row["y"]+2</setxy>
 		<getxy>"x","y"</getxy>

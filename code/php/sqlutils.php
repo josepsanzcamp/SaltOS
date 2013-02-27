@@ -468,6 +468,25 @@ function make_extra_query($prefix="") {
 	return $stack[$hash];
 }
 
+function make_extra_query_with_field($field,$prefix="") {
+	static $stack=array();
+	$hash=md5(serialize(array($field,$prefix)));
+	if(!isset($stack[$hash])) {
+		$query="SELECT * FROM tbl_aplicaciones WHERE `table`!='' AND `field`!=''";
+		$result=db_query($query);
+		$cases=array("CASE ${prefix}id_aplicacion");
+		while($row=db_fetch_row($result)) {
+			$fields=get_fields($row["table"]);
+			foreach($fields as $key=>$val) $fields[$key]=$val["name"];
+			if(in_array($field,$fields)) $cases[]="WHEN '${row["id"]}' THEN (SELECT ${field} FROM ${row["table"]} WHERE id=${prefix}id_registro)";
+		}
+		db_free($result);
+		$cases[]="END";
+		$stack[$hash]=implode(" ",$cases);
+	}
+	return $stack[$hash];
+}
+
 function make_select_appsregs($id=0) {
 	$query="SELECT * FROM tbl_aplicaciones WHERE `table`!='' AND `field`!=''";
 	$result=db_query($query);

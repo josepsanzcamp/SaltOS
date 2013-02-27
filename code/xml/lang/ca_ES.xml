@@ -214,12 +214,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<albaran>Albarà</albaran>
 		<msglogout>Voleu sortir de l'aplicació?</msglogout>
 		<mostrarcomo>Mostra com</mostrarcomo>
-		<direccionesold>Adreces</direccionesold>
-		<direccionesnew>Noves adreces</direccionesnew>
-		<tipocom>Tipus com.</tipocom>
-		<valorcom>Comunicació</valorcom>
-		<seleccion>Preferida</seleccion>
-		<seleccion2>Pref.</seleccion2>
 		<nif>NIF</nif>
 		<vcard>Targeta de presentació electrònica</vcard>
 		<cargo>Càrrec</cargo>
@@ -278,7 +272,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sending>Enviant dades, espereu un moment...</sending>
 		<prod>Prod.</prod>
 		<addfile>Afegir fitxers</addfile>
-		<addcomunicacion>Afegir comunicació</addcomunicacion>
 		<addproduct>Afegir producte</addproduct>
 		<addconcept>Afegir concepte</addconcept>
 		<addvencimiento>Afegir venciment</addvencimiento>

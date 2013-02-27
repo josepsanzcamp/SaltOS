@@ -28,7 +28,6 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 	$where="WHERE id='".abs(getParam("id"))."'";
 	$id_aplicacion=page2id($page);
 	if($page=="contactos") {
-		// BUSCAR DATOS CONTACTO
 		$query="SELECT * FROM tbl_contactos $where";
 		$result=db_query($query);
 		$row=db_fetch_row($result);
@@ -38,21 +37,32 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 		$nombre2=$row["nombre2"];
 		$cargo=$row["cargo"];
 		$comentarios=$row["comentarios"];
+		// BUSCAR DATOS CLIENTE O PROVEEDOR
 		$id_cliente=($id_aplicacion==page2id("clientes"))?$row["id_cliente"]:0;
 		$id_proveedor=($id_aplicacion==page2id("proveedores"))?$row["id_proveedor"]:0;
 		$id_empleado=($id_aplicacion==page2id("empleados"))?$row["id_empleado"]:0;
-		$id_registro=$row["id"];
-		// BUSCAR DATOS CLIENTE O PROVEEDOR
 		if($id_cliente) $query="SELECT * FROM tbl_clientes WHERE id='$id_cliente'";
 		if($id_proveedor) $query="SELECT * FROM tbl_proveedores WHERE id='$id_proveedor'";
 		if($id_empleado) $query="SELECT * FROM tbl_empleados WHERE id='$id_empleado'";
 		$result=db_query($query);
-		$row=db_fetch_row($result);
+		$row2=db_fetch_row($result);
 		db_free($result);
-		$organizacion=$row["nombre"];
+		$organizacion=$row2["nombre"];
+		// CONTINUAR
+		$direccion=$row["direccion"];
+		$pais=$row["nombre_pais"];
+		$provincia=$row["nombre_provincia"];
+		$poblacion=$row["nombre_poblacion"];
+		$codpostal=$row["nombre_codpostal"];
+		$tel_fijo=$row["tel_fijo"];
+		$tel_casa="";
+		$tel_movil=$row["tel_movil"];
+		$fax=$row["fax"];
+		$web=$row["web"];
+		$email=$row["email"];
+		$email2="";
 	}
 	if($page=="clientes" || $page=="proveedores" || $page=="empleados") {
-		// BUSCAR DATOS CLIENTE O PROVEEDOR
 		if($page=="clientes") $query="SELECT * FROM tbl_clientes $where";
 		if($page=="proveedores") $query="SELECT * FROM tbl_proveedores $where";
 		if($page=="empleados") $query="SELECT * FROM tbl_empleados $where";
@@ -64,40 +74,19 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 		$nombre2="";
 		$cargo="";
 		$comentarios=$row["comentarios"];
-		$id_registro=$row["id"];
 		$organizacion=$row["nombre"];
-	}
-	if($page=="contactos" || $page=="clientes" || $page=="proveedores" || $page=="empleados") {
-		// BUSCAR DIRECCION PREFERIDA
-		$query="SELECT * FROM tbl_direcciones WHERE id_aplicacion='$id_aplicacion' AND id_registro='$id_registro' ORDER BY seleccion DESC,id ASC LIMIT 1";
-		$result=db_query($query);
-		$row=db_fetch_row($result);
-		db_free($result);
 		$direccion=$row["direccion"];
-		$codpostal=$row["nombre_codpostal"];
-		$poblacion=$row["nombre_poblacion"];
-		$provincia=$row["nombre_provincia"];
 		$pais=$row["nombre_pais"];
-		$id_direccion=$row["id"];
-		// BUSCAR COMUNICACIONES PREFERIDAS
-		$lista=array(
-			array(1,"tel_fijo",0),
-			array(3,"tel_casa",0),
-			array(2,"tel_movil",0),
-			array(4,"fax",0),
-			array(6,"web",0),
-			array(5,"email",0),
-			array(5,"email2",1));
-		foreach($lista as $key=>$val) {
-			$id_tipocom=$val[0];
-			$variable=$val[1];
-			$offset=$val[2];
-			$query="SELECT * FROM tbl_comunicaciones WHERE id_aplicacion='$id_aplicacion' AND id_registro='$id_registro' AND id_direccion='$id_direccion' AND id_tipocom='$id_tipocom' ORDER BY seleccion DESC,id ASC LIMIT $offset,1";
-			$result=db_query($query);
-			$row=db_fetch_row($result);
-			db_free($result);
-			$$variable=$row["valor"];
-		}
+		$provincia=$row["nombre_provincia"];
+		$poblacion=$row["nombre_poblacion"];
+		$codpostal=$row["nombre_codpostal"];
+		$tel_fijo=$row["tel_fijo"];
+		$tel_casa="";
+		$tel_movil=$row["tel_movil"];
+		$fax=$row["fax"];
+		$web=$row["web"];
+		$email=$row["email"];
+		$email2="";
 	}
 	if($page=="posiblescli") {
 		$query="SELECT * FROM tbl_posiblescli $where";
@@ -118,7 +107,7 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 		$tel_fijo=$row["tel_fijo"];
 		$tel_casa="";
 		$tel_movil=$row["tel_movil"];
-		$fax="";
+		$fax=$row["fax"];
 		$web=$row["web"];
 		$email=$row["email"];
 		$email2="";

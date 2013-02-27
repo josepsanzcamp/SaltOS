@@ -29,17 +29,10 @@ if($page=="clientes") {
 	$query=array();
 	if($id_cliente) $query[]="INSERT INTO tbl_facturas
 		SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
-			IFNULL(direccion,''),
-			IFNULL(id_pais,''),IFNULL(id_provincia,''),IFNULL(id_poblacion,''),IFNULL(id_codpostal,''),
-			IFNULL(nombre_pais,''),IFNULL(nombre_provincia,''),IFNULL(nombre_poblacion,''),IFNULL(nombre_codpostal,''),
+			direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 			cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
 			'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas
 		FROM tbl_clientes a
-		LEFT JOIN tbl_direcciones x
-			ON x.id=(SELECT id
-				FROM tbl_direcciones
-				WHERE id_aplicacion='".page2id("clientes")."' AND id_registro='$id_cliente'
-				ORDER BY seleccion DESC, id ASC LIMIT 1)
 		WHERE a.id='$id_cliente'";
 	if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 		`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
@@ -89,17 +82,10 @@ if($page=="partes") {
 			$query=array();
 			if($id_cliente) $query[]="INSERT INTO tbl_facturas
 				SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
-					IFNULL(direccion,''),
-					IFNULL(id_pais,''),IFNULL(id_provincia,''),IFNULL(id_poblacion,''),IFNULL(id_codpostal,''),
-					IFNULL(nombre_pais,''),IFNULL(nombre_provincia,''),IFNULL(nombre_poblacion,''),IFNULL(nombre_codpostal,''),
+					direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 					cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
 					'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas
 				FROM tbl_clientes a
-				LEFT JOIN tbl_direcciones x
-					ON x.id=(SELECT id
-						FROM tbl_direcciones
-						WHERE id_aplicacion='".page2id("clientes")."' AND id_registro='$id_cliente'
-						ORDER BY seleccion DESC, id ASC LIMIT 1)
 				WHERE a.id='$id_cliente'";
 			if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 				`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
@@ -176,16 +162,10 @@ if($page=="proyectos" && getParam("extra")=="partes") {
 	$query=array();
 	if($id_cliente) $query[]="INSERT INTO tbl_facturas
 		SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
-			IFNULL(direccion,''),
-			IFNULL(id_pais,''),IFNULL(id_provincia,''),IFNULL(id_poblacion,''),IFNULL(id_codpostal,''),
-			IFNULL(nombre_pais,''),IFNULL(nombre_provincia,''),IFNULL(nombre_poblacion,''),IFNULL(nombre_codpostal,''),
+			direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 			cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
 			'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'$id_proyecto' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas
 		FROM tbl_clientes a
-		LEFT JOIN tbl_direcciones x ON x.id=(SELECT id
-			FROM tbl_direcciones
-			WHERE id_aplicacion='".page2id("clientes")."' AND id_registro='$id_cliente'
-			ORDER BY seleccion DESC, id ASC LIMIT 1)
 		WHERE a.id='$id_cliente'";
 	if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 		`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
@@ -234,16 +214,10 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 		$query=array();
 		if($id_cliente) $query[]="INSERT INTO tbl_facturas
 			SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
-				IFNULL(direccion,''),
-				IFNULL(id_pais,''),IFNULL(id_provincia,''),IFNULL(id_poblacion,''),IFNULL(id_codpostal,''),
-				IFNULL(nombre_pais,''),IFNULL(nombre_provincia,''),IFNULL(nombre_poblacion,''),IFNULL(nombre_codpostal,''),
+				direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 				cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
 				'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'$id_proyecto' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas
 			FROM tbl_clientes a
-			LEFT JOIN tbl_direcciones x ON x.id=(SELECT id
-				FROM tbl_direcciones
-				WHERE id_aplicacion='".page2id("clientes")."' AND id_registro='$id_cliente'
-				ORDER BY seleccion DESC, id ASC LIMIT 1)
 			WHERE a.id='$id_cliente'";
 		if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 			`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
@@ -308,17 +282,11 @@ if($page=="periodicas") {
 			$query=array();
 			if($id_cliente) $query[]="INSERT INTO tbl_facturas
 				SELECT NULL id,'$id_cliente' id_cliente,'$id_epigrafe' id_epigrafe,a.nombre,
-					IFNULL(direccion,''),
-					IFNULL(id_pais,''),IFNULL(id_provincia,''),IFNULL(id_poblacion,''),IFNULL(id_codpostal,''),
-					IFNULL(nombre_pais,''),IFNULL(nombre_provincia,''),IFNULL(nombre_poblacion,''),IFNULL(nombre_codpostal,''),
+					direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 					cif,'' num,'".current_date()."' fecha,'$iva' iva,'$irpf' irpf,
 					'0' cerrado,'0' cobrado,'$id_cuenta' id_cuenta,'".current_date()."' fecha2,
 					'0' id_proyecto,'$id_periodica' id_periodica,'$meses' mes_periodica,'' notas
 				FROM tbl_clientes a
-				LEFT JOIN tbl_direcciones x ON x.id=(SELECT id
-					FROM tbl_direcciones
-					WHERE id_aplicacion='".page2id("clientes")."' AND id_registro='$id_cliente'
-					ORDER BY seleccion DESC, id ASC LIMIT 1)
 				WHERE a.id='$id_cliente'";
 			if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 				`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,

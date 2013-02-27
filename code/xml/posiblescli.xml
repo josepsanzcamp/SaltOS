@@ -100,7 +100,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field ifeval="check_filter(array('filtro'=>'','activo'=>'','id_campanya'=>'','id_importacion'=>'','id_estado'=>''))">
+				<field ifeval="check_filter(array('filtro'=>'','activo'=>'','id_campanya'=>'','id_estado'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>
@@ -161,18 +161,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
 					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
-					<field>
-						<name>id_importacion</name>
-						<label lang="true">importacion</label>
-						<type>select</type>
-						<width>240px</width>
-						<query eval="true">make_select_query("importaciones","tbl_importaciones","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslasimportaciones")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sinimportacion")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
-						<value global="id_importacion" eval="true">$id_importacion=getParam("id_importacion")</value>
-					</field>
 				</row>
 				<row>
 					<field>
@@ -228,7 +216,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,filtro,activo,id_campanya,id_importacion,id_estado" eval="true">"
+		<query global="page,filtro,activo,id_campanya,id_estado" eval="true">"
 		SELECT id,id2,
 			CONCAT('link:posiblescli(',-id,'):',nombre) nombre,
 			CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
@@ -251,7 +239,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (SELECT a.id id,a.nombre nombre,a.activo activo,a.activo activo2,a.tel_fijo tel_fijo,a.tel_movil tel_movil,a.email email,a.comentarios comentarios,
 					LPAD(a.id,5,0) id2,
-					a.id_campanya id_campanya,a.id_importacion id_importacion,a.id_estado id_estado,
+					a.id_campanya id_campanya,a.id_estado id_estado,
 					e.id_usuario id_usuario,b.id_grupo id_grupo,
 					a.nombre_pais pais,a.nombre_provincia provincia,a.nombre_poblacion poblacion,a.nombre_codpostal codpostal,a.direccion direccion,
 					".make_extra_query_with_login("b.")." usuario,
@@ -262,7 +250,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 				LEFT JOIN tbl_estados c ON a.id_estado=c.id
 		) cc
-		WHERE ".make_like_query("id2,usuario,nombre,direccion,codpostal,poblacion,provincia,tel_fijo,tel_movil,email,comentarios,estado,search",$filtro)." AND (activo2='$activo' OR ''='$activo') AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_importacion='$id_importacion' OR ''='$id_importacion') AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND c_activo='1') OR ('alldisabled'='$id_estado' AND c_activo='0')) AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id2,usuario,nombre,direccion,codpostal,poblacion,provincia,tel_fijo,tel_movil,email,comentarios,estado,search",$filtro)." AND (activo2='$activo' OR ''='$activo') AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND c_activo='1') OR ('alldisabled'='$id_estado' AND c_activo='0')) AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -295,7 +283,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">forminsert</title>
 				<query>
 					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default>SELECT '0' id,'0' id_campanya,'0' id_importacion,'0' id_estado</default>
+					<default>SELECT '0' id,'0' id_campanya,'0' id_estado</default>
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
@@ -352,17 +340,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>campanyas(-abs(ID))</link>
-							<icon>view</icon>
-						</field>
-						<field>
-							<name>id_importacion</name>
-							<label lang="true">importacion</label>
-							<type>select</type>
-							<width>240px</width>
-							<query eval="true">make_select_query("importaciones","tbl_importaciones","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinimportacion")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
-							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>importaciones(-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 					</row>
