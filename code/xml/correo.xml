@@ -1243,7 +1243,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("message")</textarea>
 			<font>"mono","",8,CONFIG("color_text2")</font>
-			<textarea>55,$row["y"],125,4,"L",$row["body"]</textarea>
+			<textarea>55,$row["y"],125,4,"L",trim($row["body"])</textarea>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT
