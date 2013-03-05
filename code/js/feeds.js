@@ -50,4 +50,34 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 		});
 	}
 
+	function feed2bookmark(id) {
+		if(!id) return;
+		var data="action=ajax&query=feed2bookmark&id="+id;
+		$.ajax({
+			url:"xml.php",
+			data:data,
+			type:"get",
+			success:function (response) {
+				$("root>rows>row",response).each(function() {
+					var link=$("link",this).text();
+					var data='action=favoritos&url='+rawurlencode(link);
+					$.ajax({
+						url:'xml.php',
+						data:data,
+						type:"post",
+						success:function(response) {
+							$(".ui-layout-center").append(response);
+						},
+						error:function(XMLHttpRequest,textStatus,errorThrown) {
+							errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+						}
+					});
+				});
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+			}
+		});
+	}
+
 }

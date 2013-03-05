@@ -98,15 +98,13 @@ if(getParam("action")=="favoritos") {
 			$datetime=current_datetime();
 			$query="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}')";
 			db_query($query);
-			// RETURN
-			javascript_history(0);
+			javascript_alert(LANG("bookmarkadded","favoritos"));
+			if(getParam("refresh")) javascript_history(0);
 		} else {
-			// invalid url avisar
-			javascript_alert(LANG("invalid_url","favoritos").getParam("url"));
+			javascript_alert(LANG("invalidurl","favoritos").getParam("url"));
 		}
 	} else {
-		// ya existe avisar
-		javascript_alert(LANG("bookmark_ya_existe","favoritos"));
+		javascript_alert(LANG("bookmarkexists","favoritos"));
 	}
 	die();
 }

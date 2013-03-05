@@ -1309,7 +1309,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).bind("change",function() {
 			eval($(this).val());
-			$(this).prop("selectedIndex",0);
+			//~ $(this).prop("selectedIndex",0);
 		});
 		//~ console.timeEnd("make_extras");
 	}

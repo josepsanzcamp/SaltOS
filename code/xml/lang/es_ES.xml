@@ -1423,6 +1423,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgcool>Desea marcar como interesantes / no interesantes todos los posts seleccionados?</msgcool>
 		<msgnumsicool>Se han marcado como interesantes: </msgnumsicool>
 		<msgnumnocool>Se han marcado como no interesantes: </msgnumnocool>
+		<actionfavoritos>Añadir a favoritos</actionfavoritos>
 	</feeds>
 	<importaciones>
 		<list>Listado de importaciones</list>
@@ -1464,8 +1465,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<list>Listado de favoritos</list>
 		<create>Nuevo favorito</create>
 		<url>URL</url>
-		<last_visit_s>Ult. Visita</last_visit_s>
-		<bookmark_ya_existe>La url que inteta guardar ya existe como favorito.</bookmark_ya_existe>
-		<invalid_url>La url no es válida, verifique la dirección web: </invalid_url>
+		<bookmarkexists>La url que inteta guardar ya existe como favorito.</bookmarkexists>
+		<invalidurl>La url no es válida, verifique la dirección web: </invalidurl>
+		<bookmarkadded>La url se ha añadido correctamente a favoritos</bookmarkadded>
 	</favoritos>
 </root>

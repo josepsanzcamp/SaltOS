@@ -28,6 +28,7 @@ if(typeof(__calendar__)=="undefined" && typeof(parent.__calendar__)=="undefined"
 	var __calendar__=1;
 
 	function update_calendar() {
+		if(!$("[id^=cell_]").length) return;
 		var data="action=calendar&offset="+getIntCookie("saltos_calendar_offset");
 		$.ajax({
 			url:"xml.php",

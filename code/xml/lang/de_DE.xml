@@ -1423,6 +1423,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgcool revised="false">Wollen Sie mars als interessierte / nicht alle ausgewählten Beiträge interessiert?</msgcool>
 		<msgnumsicool revised="false">Wurden als interessant markiert: </msgnumsicool>
 		<msgnumnocool revised="false">Wurden als interessant nicht markiert: </msgnumnocool>
+		<actionfavoritos translated="false">Add to bookmarks</actionfavoritos>
 	</feeds>
 	<importaciones>
 		<list>Import-Liste</list>
@@ -1464,8 +1465,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<list translated="false">Listado de favoritos</list>
 		<create translated="false">Nuevo favorito</create>
 		<url translated="false">URL</url>
-		<last_visit_s translated="false">Ult. Visita</last_visit_s>
-		<bookmark_ya_existe translated="false">La url que inteta guardar ya existe como favorito.</bookmark_ya_existe>
-		<invalid_url translated="false">La url no es válida, verifique la dirección web: </invalid_url>
+		<bookmarkexists translated="false">La url que inteta guardar ya existe como favorito.</bookmarkexists>
+		<invalidurl translated="false">La url no es válida, verifique la dirección web: </invalidurl>
+		<bookmarkadded translated="false">The url was successfully added to bookmarks</bookmarkadded>
 	</favoritos>
 </root>

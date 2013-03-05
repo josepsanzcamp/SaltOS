@@ -1424,6 +1424,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgcool>هل تريد تعليم  جميع المشاركاتب كرائعة/غير رائعة؟</msgcool>
 		<msgnumsicool>تم تعليمها كرائعة: </msgnumsicool>
 		<msgnumnocool>تم تعليمها كرائعة:  </msgnumnocool>
+		<actionfavoritos translated="false">Add to bookmarks</actionfavoritos>
 	</feeds>
 	<importaciones>
 		<list>قائمة الاستيرادات</list>
@@ -1465,8 +1466,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<list translated="false">قائمة المفضلة</list>
 		<create translated="false">مفضلة جديدة</create>
 		<url translated="false">URL</url>
-		<last_visit_s translated="false">اخر زيارات</last_visit_s>
-		<bookmark_ya_existe translated="false">عنوان URL الذي تحاول حفظه موجود مسبقا في قائمة المفضلة لديط.</bookmark_ya_existe>
-		<invalid_url translated="false">عنوان URL غير صالح،الرجاء  التحقق من عنوان الويب: </invalid_url>
+		<bookmarkexists translated="false">عنوان URL الذي تحاول حفظه موجود مسبقا في قائمة المفضلة لديط.</bookmarkexists>
+		<invalidurl translated="false">عنوان URL غير صالح،الرجاء  التحقق من عنوان الويب: </invalidurl>
+		<bookmarkadded translated="false">The url was successfully added to bookmarks</bookmarkadded>
 	</favoritos>
 </root>

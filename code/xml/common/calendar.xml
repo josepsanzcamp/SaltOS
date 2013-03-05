@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fields>
+	<fields ifeval="!is_mobile()">
 		<title lang="true">calendar</title>
 		<width>100%</width>
 		<row>
@@ -119,7 +119,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</field>
 		</row>
 	</fields>
-	<fields>
+	<fields ifeval="!is_mobile()">
 		<class>tabla</class>
 		<width>100%</width>
 		<row>

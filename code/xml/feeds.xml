@@ -43,6 +43,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<onclick>update_state2(ID,'cool',-1);submit1()</onclick>
 				<icon>cool</icon>
 			</cool>
+			<favoritos>
+				<label lang="true">actionfavoritos</label>
+				<onclick>feed2bookmark(ID)</onclick>
+				<icon>favoritos</icon>
+			</favoritos>
 		</actions>
 		<width>100%</width>
 		<fields>
@@ -405,6 +410,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE (".check_user("correo","create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_forward,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_wait,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_cool,
+			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_favoritos,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 		SELECT a.id id,LPAD(a.id,5,0) id2,

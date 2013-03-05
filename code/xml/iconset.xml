@@ -240,7 +240,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<excel>lib/silk/icons/page_white_excel.png</excel>
 		<expand>lib/silk/icons/arrow_out.png</expand>
 		<facturas>lib/silk/icons/money.png</facturas>
-		<favoritos>lib/silk/icons/book_addresses.png</favoritos>
+		<favoritos>lib/silk/icons/star.png</favoritos>
 		<feeds>lib/silk/icons/feed.png</feeds>
 		<ficheros>lib/silk/icons/folder.png</ficheros>
 		<find>lib/silk/icons/magnifier.png</find>

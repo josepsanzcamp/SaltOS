@@ -48,6 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- FOR FEEDS APPS -->
 	<feeds eval="true">"SELECT id,CONCAT(title,' (',url,')') nombre FROM tbl_usuarios_f WHERE id_usuario='".intval(getParam("id_usuario"))."' ORDER BY nombre"</feeds>
 	<state2 eval="true">in_array(getParam("type"),array("wait","cool"))?"UPDATE tbl_feeds SET state_new='0',state_".getParam("type")."='".(intval(getParam("value"))>-1?intval(getParam("value")):abs(1-execute_query("SELECT state_".getParam("type")." FROM tbl_feeds WHERE id='".abs(getParam("id"))."'")))."' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='".abs(getParam("id"))."' AND id_usuario='".current_user()."')":""</state2>
+	<feed2bookmark eval="true">"SELECT link FROM tbl_feeds WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='".abs(getParam("id"))."' AND id_usuario='".current_user()."')"</feed2bookmark>
 	<!-- FOR FILTER MODULE -->
 	<loadfilter eval="true">"SELECT querystring FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' AND id='".intval(getParam("id"))."'"</loadfilter>
 	<updatefilter eval="true">"UPDATE tbl_filters SET querystring='".getParam("querystring")."' WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' AND id='".intval(getParam("id"))."'"</updatefilter>
