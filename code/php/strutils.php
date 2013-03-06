@@ -283,7 +283,7 @@ function header_etag($hash) {
 		ob_start_protected(getDefault("obhandler"));
 		header_powered();
 		header_expires();
-		header("HTTP/1.0 304 Not Modified");
+		header("HTTP/1.1 304 Not Modified");
 		ob_end_flush();
 		die();
 	}

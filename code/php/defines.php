@@ -27,12 +27,12 @@ if(!defined("__DEFINES_PHP__")) {
 	define("__DEFINES_PHP__",1);
 	define("__TEXT_PLAIN_OPEN__","<span style=\"font-family: monospace; font-size: 10px; color: #333\">");
 	define("__TEXT_PLAIN_CLOSE__","</span>");
-	define("__TEXT_HTML_OPEN__","<span style=\"font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #333\">");
+	define("__TEXT_HTML_OPEN__","<span style=\"font-family: Lucida Grande,Lucida Sans,Arial,sans-serif; font-size: 11px; color: #333\">");
 	define("__TEXT_HTML_CLOSE__","</span>");
 	define("__TEXT_SEPARATOR__","<hr style=\"border: 0px; height: 1px; background: #ccc\"/>");
 	define("__PAGE_HTML_OPEN__","<html><head><style type=\"text/css\">body { margin:0px; padding:0px; }</style></head><body>");
 	define("__PAGE_HTML_CLOSE__","</body></html>");
 	define("__CSS_BLOCKQUOTE__","style=\"border-left: #ccc 1px solid; margin: 0px 0px 0px 0.8ex; padding-left: 1ex\"");
-	define("__CSS_SIGNATURE__","style=\"font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ccc\"");
+	define("__CSS_SIGNATURE__","style=\"font-family: Lucida Grande,Lucida Sans,Arial,sans-serif; font-size: 11px; color: #ccc\"");
 }
 ?>

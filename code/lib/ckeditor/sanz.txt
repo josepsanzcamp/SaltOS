@@ -1,9 +1,11 @@
 Some SaltOS changes:
 
 IN contents.css
-COMMENT body => margin: 20px;
-COMMENT .cke_editable => font-size: 13px;
-COMMENT .cke_editable => line-height: 1.6em;
+SET body => font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;
+SET body => font-size: 11px;
+REMOVE body => margin: 20px;
+REMOVE .cke_editable => font-size: 13px;
+REMOVE .cke_editable => line-height: 1.6em;
 
 IN skins/kama/editor.css
 REPLACE -moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;border:1px solid #d3d3d3;padding:5px

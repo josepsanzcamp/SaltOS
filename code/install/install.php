@@ -88,6 +88,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 		<div class="ui-layout-center" style="margin-left:auto;margin-right:auto;width:800px">
 			<div class="ui-widget">
 				<form name="form">
+					<?php // STEP 0 ?>
 					<?php if(intval(getParam("step"))==0) { ?>
 						<div <?php echo __DIV1__; ?>>
 							<?php echo LANG("step")." 0 - ".LANG("language"); ?>
@@ -136,6 +137,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						<div <?php echo __DIV3__; ?>>
 							<?php echo __NEXT__; ?>
 						</div>
+					<?php // STEP 1 ?>
 					<?php } elseif(intval(getParam("step"))==1) { ?>
 						<div <?php echo __DIV1__; ?>>
 							<?php echo LANG("step")." 1 - ".LANG("is_writable"); ?>
@@ -144,6 +146,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							<input type="hidden" name="step" value="2"/>
 							<?php $cancontinue=1; ?>
 							<?php $_CONFIG["dirs"][]=getcwd()."/xml"; ?>
+							<?php $_CONFIG["dirs"][]=getcwd()."/install"; ?>
 							<?php foreach(getDefault("dirs") as $dir) { ?>
 								<?php $cancontinue&=($iswritable=is_writable($dir)); ?>
 								<?php echo substr($dir,-4,4)==".xml"?LANG("file").":":LANG("directory").":"; ?> <?php echo $dir; ?>: <?php echo $iswritable?__YES__:__NO__; ?><?php echo __BR__; ?>
@@ -180,6 +183,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						<?php unset($_GET["env_path"]); ?>
 						<?php unset($_GET["env_lang"]); ?>
 						<?php foreach($_GET as $key=>$val) echo "<input type='hidden' name='$key' value='$val'/>"; ?>
+					<?php // STEP 2 ?>
 					<?php } elseif(intval(getParam("step"))==2) { ?>
 						<div <?php echo __DIV1__; ?>>
 							<?php echo LANG("step")." 2 - ".LANG("database_link"); ?>
@@ -246,6 +250,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						</div>
 						<?php unset($_GET["step"]); ?>
 						<?php foreach($_GET as $key=>$val) echo "<input type='hidden' name='$key' value='$val'/>"; ?>
+					<?php // STEP 3 ?>
 					<?php } elseif(intval(getParam("step"))==3) { ?>
 						<div <?php echo __DIV1__; ?>>
 							<?php echo LANG("step")." 3 - ".LANG("admin_account"); ?>
@@ -297,6 +302,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						</div>
 						<?php unset($_GET["step"]); ?>
 						<?php foreach($_GET as $key=>$val) echo "<input type='hidden' name='$key' value='$val'/>"; ?>
+					<?php // STEP 4 ?>
 					<?php } elseif(intval(getParam("step"))==4) { ?>
 						<input type="hidden" name="step" value="5"/>
 						<div <?php echo __DIV1__; ?>>
@@ -319,6 +325,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							<?php echo LANG("iconset"); ?>: <?php echo __GREEN__.$iconsets[getParam("iconset",getDefault("iconset"))]." (".getParam("iconset",getDefault("iconset")).")".__COLOR__.__BR__; ?>
 							<b><?php echo LANG("is_writable"); ?></b><?php echo __BR__; ?>
 							<?php $_CONFIG["dirs"][]=getcwd()."/xml"; ?>
+							<?php $_CONFIG["dirs"][]=getcwd()."/install"; ?>
 							<?php foreach(getDefault("dirs") as $dir) { ?>
 								<?php $iswritable=is_writable($dir); ?>
 								<?php echo substr($dir,-4,4)==".xml"?LANG("file").":":LANG("directory").":"; ?> <?php echo $dir; ?>: <?php echo $iswritable?__YES__:__NO__; ?><?php echo __BR__; ?>
@@ -365,6 +372,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						</div>
 						<?php unset($_GET["step"]); ?>
 						<?php foreach($_GET as $key=>$val) echo "<input type='hidden' name='$key' value='$val'/>"; ?>
+					<?php // STEP 5 ?>
 					<?php } elseif(intval(getParam("step"))==5) { ?>
 						<div <?php echo __DIV1__; ?>>
 							<?php echo LANG("step")." 5 - ".LANG("install_output"); ?>

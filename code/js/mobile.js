@@ -943,7 +943,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).bind("change",function() {
 			eval($(this).val());
-			//~ $(this).prop("selectedIndex",0);
+			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
 		});
 		// STYLING IFRAME BORDER
 		$(".preiframe",obj).textinput();
