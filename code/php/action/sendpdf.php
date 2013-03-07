@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user()) action_denied();
 if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 	require_once("php/getmail.php");
-	require_once("php/defines.php");
 	// DATOS FACTURA/ACTA/PARTE/PRESUPUESTO
 	$where="WHERE id IN (".check_ids(getParam("id")).")";
 	if($page=="facturas") $query="
@@ -85,7 +84,7 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 		$files["pdf_${key}"]=array("file"=>$file,"name"=>$name,"mime"=>$mime,"size"=>$size);
 	}
 	$body=implode("<br/>",$body);
-	//$body=__TEXT_HTML_OPEN__.$body.__TEXT_HTML_CLOSE__;
+	//$body=__HTML_TEXT_OPEN__.$body.__HTML_TEXT_CLOSE__;
 	sess_init();
 	$_SESSION["correo"]=array("subject"=>$subject,"body"=>$body,"files"=>$files);
 	sess_close();

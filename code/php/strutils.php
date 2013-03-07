@@ -348,11 +348,6 @@ function normalize_value($value) {
 	return $value;
 }
 
-define("__INFO_NAME__","SaltOS");
-define("__INFO_VERSION__","3.1");
-define("__INFO_REVISION__",svnversion("../code"));
-define("__INFO_COPYRIGHT__","Copyright (C) 2012 by Josep Sanz Campderrós");
-
 function get_name_version_revision($copyright=false) {
 	return getDefault("info/name",__INFO_NAME__)." v".getDefault("info/version",__INFO_VERSION__)." r".getDefault("info/revision",__INFO_REVISION__).($copyright?", ".getDefault("info/copyright",__INFO_COPYRIGHT__):"");
 }

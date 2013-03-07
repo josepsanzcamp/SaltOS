@@ -396,7 +396,6 @@ if(getParam("page")=="correo") {
 	}
 	if(isset($id_extra[1]) && in_array($id_extra[1],array("reply","replyall","forward"))) {
 		require_once("php/getmail.php");
-		require_once("php/defines.php");
 		$query="SELECT * FROM tbl_correo WHERE id='${id_extra[2]}'";
 		$row2=execute_query($query);
 		if($row2 && isset($row2["subject"])) {
@@ -406,9 +405,9 @@ if(getParam("page")=="correo") {
 		}
 		if(isset($row2["datetime"]) && isset($finded_from)) {
 			$oldhead="";
-			$oldhead.=__TEXT_HTML_OPEN__;
+			$oldhead.=__HTML_TEXT_OPEN__;
 			$oldhead.=LANG("embeddedmessage");
-			$oldhead.=__TEXT_HTML_CLOSE__;
+			$oldhead.=__HTML_TEXT_CLOSE__;
 			$oldhead=str_replace("#datetime#",$row2["datetime"],$oldhead);
 			$oldhead=str_replace("#fromname#",$finded_from["nombre"]?$finded_from["nombre"]:$finded_from["valor"],$oldhead);
 			$oldbody="";
@@ -447,38 +446,36 @@ if(getParam("page")=="correo") {
 				if(!isset($result2["cc"])) unset($lista["cc"]);
 				if(!isset($result2["bcc"])) unset($lista["bcc"]);
 				if(!$result2["subject"]) $result2["subject"]=LANG("sinsubject","correo");
-				$oldbody.="<div style='background:#ffffff'>";
-				$oldbody.="<table>";
+				$oldbody.=__HTML_BOX_OPEN__;
+				$oldbody.=__HTML_TABLE_OPEN__;
 				foreach($lista as $key2=>$val2) {
 					$result2[$key2]=str_replace(array("<",">"),array("&lt;","&gt;"),$result2[$key2]);
-					$oldbody.="<tr>";
-					$oldbody.="<td align='right' nowrap='nowrap'>";
-					$oldbody.=__TEXT_HTML_OPEN__;
+					$oldbody.=__HTML_ROW_OPEN__;
+					$oldbody.=__HTML_RCELL_OPEN__;
+					$oldbody.=__HTML_TEXT_OPEN__;
 					$oldbody.=$lista[$key2].":";
-					$oldbody.=__TEXT_HTML_CLOSE__;
-					$oldbody.="</td>";
-					$oldbody.="<td>";
-					$oldbody.="<b>";
-					$oldbody.=__TEXT_HTML_OPEN__;
-					$oldbody.=$result2[$key2];
-					$oldbody.=__TEXT_HTML_CLOSE__;
-					$oldbody.="</b>";
-					$oldbody.="</td>";
-					$oldbody.="</tr>";
+					$oldbody.=__HTML_TEXT_CLOSE__;
+					$oldbody.=__HTML_CELL_CLOSE__;
+					$oldbody.=__HTML_CELL_OPEN__;
+					$oldbody.=__HTML_TEXT_OPEN__;
+					$oldbody.="<b>".$result2[$key2]."</b>";
+					$oldbody.=__HTML_TEXT_CLOSE__;
+					$oldbody.=__HTML_CELL_CLOSE__;
+					$oldbody.=__HTML_ROW_CLOSE__;
 				}
 				$first=1;
 				foreach($result2["files"] as $file) {
 					$cname=$file["cname"];
 					$hsize=$file["hsize"];
 					if($first) {
-						$oldbody.="<tr>";
-						$oldbody.="<td align='right' nowrap='nowrap'>";
-						$oldbody.=__TEXT_HTML_OPEN__;
+						$oldbody.=__HTML_ROW_OPEN__;
+						$oldbody.=__HTML_RCELL_OPEN__;
+						$oldbody.=__HTML_TEXT_OPEN__;
 						$oldbody.=LANG("attachments","correo").":";
-						$oldbody.=__TEXT_HTML_CLOSE__;
-						$oldbody.="</td>";
-						$oldbody.="<td>";
-						$oldbody.=__TEXT_HTML_OPEN__;
+						$oldbody.=__HTML_TEXT_CLOSE__;
+						$oldbody.=__HTML_CELL_CLOSE__;
+						$oldbody.=__HTML_CELL_OPEN__;
+						$oldbody.=__HTML_TEXT_OPEN__;
 					} else {
 						$oldbody.=" | ";
 					}
@@ -486,13 +483,13 @@ if(getParam("page")=="correo") {
 					$first=0;
 				}
 				if(!$first) {
-					$oldbody.=__TEXT_HTML_CLOSE__;
-					$oldbody.="</td>";
-					$oldbody.="</tr>";
+					$oldbody.=__HTML_TEXT_CLOSE__;
+					$oldbody.=__HTML_CELL_CLOSE__;
+					$oldbody.=__HTML_ROW_CLOSE__;
 				}
-				$oldbody.="</table>";
-				$oldbody.="</div>";
-				$oldbody.=__TEXT_SEPARATOR__;
+				$oldbody.=__HTML_TABLE_CLOSE__;
+				$oldbody.=__HTML_BOX_CLOSE__;
+				$oldbody.=__HTML_SEPARATOR__;
 			}
 			$result2=__getmail_getfullbody(__getmail_getnode("0",$decoded));
 			$first=1;
@@ -528,13 +525,13 @@ if(getParam("page")=="correo") {
 							}
 						}
 					}
-					if(!$first) $oldbody.=__TEXT_SEPARATOR__;
-					if($type=="plain") $oldbody.=__TEXT_PLAIN_OPEN__.$temp.__TEXT_PLAIN_CLOSE__;
-					if($type=="html") $oldbody.=__TEXT_HTML_OPEN__.$temp.__TEXT_HTML_CLOSE__;
+					if(!$first) $oldbody.=__HTML_SEPARATOR__;
+					if($type=="plain") $oldbody.=__PLAIN_TEXT_OPEN__.$temp.__PLAIN_TEXT_CLOSE__;
+					if($type=="html") $oldbody.=__HTML_TEXT_OPEN__.$temp.__HTML_TEXT_CLOSE__;
 					$first=0;
 				}
 			}
-			$body_extra=$body_extra."<br/><br/>"."${oldhead}"."<br/><br/>"."<blockquote ".__CSS_BLOCKQUOTE__.">${oldbody}</blockquote>";
+			$body_extra=$body_extra.__HTML_NEWLINE__.__HTML_NEWLINE__.$oldhead.__HTML_NEWLINE__.__HTML_NEWLINE__.__BLOCKQUOTE_OPEN__.$oldbody.__BLOCKQUOTE_CLOSE__;
 		}
 	}
 	if(isset($id_extra[1]) && $id_extra[1]=="session") {
@@ -560,15 +557,14 @@ if(getParam("page")=="correo") {
 		}
 	}
 	if(isset($id_extra[1]) && $id_extra[1]=="feed") {
-		require_once("php/defines.php");
 		$query="SELECT *,(SELECT title FROM tbl_usuarios_f WHERE id=id_feed) feed,(SELECT link FROM tbl_usuarios_f WHERE id=id_feed) link2 FROM tbl_feeds WHERE id='${id_extra[2]}'";
 		$row2=execute_query($query);
 		if($row2) {
 			$subject_extra=LANG("forwardsubject").$row2["title"];
 			$oldhead="";
-			$oldhead.=__TEXT_HTML_OPEN__;
+			$oldhead.=__HTML_TEXT_OPEN__;
 			$oldhead.=LANG("embeddedmessage");
-			$oldhead.=__TEXT_HTML_CLOSE__;
+			$oldhead.=__HTML_TEXT_CLOSE__;
 			$oldhead=str_replace("#datetime#",$row2["pubdate"],$oldhead);
 			$oldhead=str_replace("#fromname#",$row2["feed"],$oldhead);
 			$oldbody="";
@@ -578,33 +574,31 @@ if(getParam("page")=="correo") {
 				"feed"=>array("lang"=>LANG("feed","feeds"),"link"=>"link2"),
 				"link"=>array("lang"=>LANG("link","feeds"),"link"=>"link"),
 			);
-			$oldbody.="<div style='background:#ffffff'>";
-			$oldbody.="<table>";
+			$oldbody.=__HTML_BOX_OPEN__;
+			$oldbody.=__HTML_TABLE_OPEN__;
 			foreach($lista as $key2=>$val2) {
-				$oldbody.="<tr>";
-				$oldbody.="<td align='right' nowrap='nowrap'>";
-				$oldbody.=__TEXT_HTML_OPEN__;
+				$oldbody.=__HTML_ROW_OPEN__;
+				$oldbody.=__HTML_RCELL_OPEN__;
+				$oldbody.=__HTML_TEXT_OPEN__;
 				$oldbody.=$val2["lang"].":";
-				$oldbody.=__TEXT_HTML_CLOSE__;
-				$oldbody.="</td>";
-				$oldbody.="<td>";
-				$oldbody.="<b>";
-				$oldbody.=__TEXT_HTML_OPEN__;
+				$oldbody.=__HTML_TEXT_CLOSE__;
+				$oldbody.=__HTML_CELL_CLOSE__;
+				$oldbody.=__HTML_CELL_OPEN__;
+				$oldbody.=__HTML_TEXT_OPEN__;
 				if($val2["link"]!="") $oldbody.="<a href='".$row2[$val2["link"]]."'>";
-				$oldbody.=$row2[$key2];
+				$oldbody.="<b>".$row2[$key2]."</b>";
 				if($val2["link"]!="") $oldbody.="</a>";
-				$oldbody.=__TEXT_HTML_CLOSE__;
-				$oldbody.="</b>";
-				$oldbody.="</td>";
-				$oldbody.="</tr>";
+				$oldbody.=__HTML_TEXT_CLOSE__;
+				$oldbody.=__HTML_CELL_CLOSE__;
+				$oldbody.=__HTML_ROW_CLOSE__;
 			}
-			$oldbody.="</table>";
-			$oldbody.="</div>";
-			$oldbody.=__TEXT_SEPARATOR__;
-			$oldbody.=__TEXT_HTML_OPEN__;
+			$oldbody.=__HTML_TABLE_CLOSE__;
+			$oldbody.=__HTML_BOX_CLOSE__;
+			$oldbody.=__HTML_SEPARATOR__;
+			$oldbody.=__HTML_TEXT_OPEN__;
 			$oldbody.=$row2["description"];
-			$oldbody.=__TEXT_HTML_CLOSE__;
-			$body_extra=$body_extra."<br/><br/>".$oldhead."<br/><br/><blockquote ".__CSS_BLOCKQUOTE__.">".$oldbody."</blockquote>";
+			$oldbody.=__HTML_TEXT_CLOSE__;
+			$body_extra=$body_extra.__HTML_NEWLINE__.__HTML_NEWLINE__.$oldhead.__HTML_NEWLINE__.__HTML_NEWLINE__.__BLOCKQUOTE_OPEN__.$oldbody.__BLOCKQUOTE_CLOSE__;
 		}
 	}
 	set_array($rows[$key],"row",array("id"=>0,"id_extra"=>implode("_",$id_extra),

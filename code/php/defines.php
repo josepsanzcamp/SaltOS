@@ -23,16 +23,32 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if(!defined("__DEFINES_PHP__")) {
-	define("__DEFINES_PHP__",1);
-	define("__TEXT_PLAIN_OPEN__","<span style=\"font-family: monospace; font-size: 10px; color: #333\">");
-	define("__TEXT_PLAIN_CLOSE__","</span>");
-	define("__TEXT_HTML_OPEN__","<span style=\"font-family: Lucida Grande,Lucida Sans,Arial,sans-serif; font-size: 11px; color: #333\">");
-	define("__TEXT_HTML_CLOSE__","</span>");
-	define("__TEXT_SEPARATOR__","<hr style=\"border: 0px; height: 1px; background: #ccc\"/>");
-	define("__PAGE_HTML_OPEN__","<html><head><style type=\"text/css\">body { margin:0px; padding:0px; }</style></head><body>");
-	define("__PAGE_HTML_CLOSE__","</body></html>");
-	define("__CSS_BLOCKQUOTE__","style=\"border-left: #ccc 1px solid; margin: 0px 0px 0px 0.8ex; padding-left: 1ex\"");
-	define("__CSS_SIGNATURE__","style=\"font-family: Lucida Grande,Lucida Sans,Arial,sans-serif; font-size: 11px; color: #ccc\"");
+define("__INFO_NAME__","SaltOS");
+define("__INFO_VERSION__","3.1");
+define("__INFO_REVISION__",svnversion("../code"));
+define("__INFO_COPYRIGHT__","Copyright (C) 2012 by Josep Sanz Campderrós");
+
+function post_defines() {
+	define("__HTML_PAGE_OPEN__",'<html><head><style type="text/css">'.getDefault("defines/htmlpage").'</style></head><body>');
+	define("__HTML_PAGE_CLOSE__",'</body></html>');
+	define("__HTML_BOX_OPEN__",'<div style="'.getDefault("defines/htmlbox").'">');
+	define("__HTML_BOX_CLOSE__",'</div>');
+	define("__HTML_TABLE_OPEN__",'<table>');
+	define("__HTML_TABLE_CLOSE__",'</table>');
+	define("__HTML_ROW_OPEN__",'<tr>');
+	define("__HTML_ROW_CLOSE__",'</tr>');
+	define("__HTML_CELL_OPEN__",'<td>');
+	define("__HTML_RCELL_OPEN__",'<td align="right" nowrap="nowrap">');
+	define("__HTML_CELL_CLOSE__",'</td>');
+	define("__HTML_TEXT_OPEN__",'<span style="'.getDefault("defines/htmltext").'">');
+	define("__HTML_TEXT_CLOSE__",'</span>');
+	define("__PLAIN_TEXT_OPEN__",'<span style="'.getDefault("defines/plaintext").'">');
+	define("__PLAIN_TEXT_CLOSE__",'</span>');
+	define("__HTML_SEPARATOR__",'<hr style="'.getDefault("defines/separator").'"/>');
+	define("__HTML_NEWLINE__",'<br/>');
+	define("__BLOCKQUOTE_OPEN__",'<blockquote style="'.getDefault("defines/blockquote").'">');
+	define("__BLOCKQUOTE_CLOSE__",'</blockquote>');
+	define("__SIGNATURE_OPEN__",'<span style="'.getDefault("defines/signature").'">');
+	define("__SIGNATURE_CLOSE__",'</span>');
 }
 ?>

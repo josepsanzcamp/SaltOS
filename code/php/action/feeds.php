@@ -244,7 +244,6 @@ if(getParam("action")=="feeds") {
 	}
 
 	function __feeds_fetchitems($array) {
-		require_once("php/defines.php");
 		$type=__feeds_detect($array);
 		$items=array();
 		if($type=="rdf") {
@@ -344,7 +343,7 @@ if(getParam("action")=="feeds") {
 				}
 				// TRUE, PREPARE THE DESCRIPTION TO USE IN APPLICATION
 				$description="";
-				if($summary && $content) $description=$summary.__TEXT_SEPARATOR__.$content;
+				if($summary && $content) $description=$summary.__HTML_SEPARATOR__.$content;
 				if($summary && !$content) $description=$summary;
 				if(!$summary && $content) $description=$content;
 				// CONTINUE
@@ -470,7 +469,6 @@ if(getParam("action")=="feeds") {
 		output_buffer($buffer,"text/xml");
 	}
 	if(getParam("id")) {
-		require_once("php/defines.php");
 		$id=intval(getParam("id"));
 		$query="SELECT *,(SELECT title FROM tbl_usuarios_f WHERE id=id_feed) feed,(SELECT link FROM tbl_usuarios_f WHERE id=id_feed) link2 FROM tbl_feeds WHERE id='${id}'";
 		$row=execute_query($query);
@@ -480,11 +478,11 @@ if(getParam("action")=="feeds") {
 		$cid=getParam("cid");
 		if($cid=="body") {
 			$buffer="";
-			$buffer.=__PAGE_HTML_OPEN__;
-			$buffer.=__TEXT_HTML_OPEN__;
+			$buffer.=__HTML_PAGE_OPEN__;
+			$buffer.=__HTML_TEXT_OPEN__;
 			$buffer.=$row["description"];
-			$buffer.=__TEXT_HTML_CLOSE__;
-			$buffer.=__PAGE_HTML_CLOSE__;
+			$buffer.=__HTML_TEXT_CLOSE__;
+			$buffer.=__HTML_PAGE_CLOSE__;
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires(false);
@@ -501,34 +499,32 @@ if(getParam("action")=="feeds") {
 				"feed"=>array("lang"=>LANG("feed","feeds"),"link"=>"link2"),
 				"link"=>array("lang"=>LANG("link","feeds"),"link"=>"link"),
 			);
-			$buffer.=__PAGE_HTML_OPEN__;
-			$buffer.="<div style='background:#ffffff'>";
-			$buffer.="<table>";
+			$buffer.=__HTML_PAGE_OPEN__;
+			$buffer.=__HTML_BOX_OPEN__;
+			$buffer.=__HTML_TABLE_OPEN__;
 			foreach($lista as $key=>$val) {
-				$buffer.="<tr>";
-				$buffer.="<td align='right' nowrap='nowrap'>";
-				$buffer.=__TEXT_HTML_OPEN__;
+				$buffer.=__HTML_ROW_OPEN__;
+				$buffer.=__HTML_RCELL_OPEN__;
+				$buffer.=__HTML_TEXT_OPEN__;
 				$buffer.=$val["lang"].":";
-				$buffer.=__TEXT_HTML_CLOSE__;
-				$buffer.="</td>";
-				$buffer.="<td>";
-				$buffer.="<b>";
-				$buffer.=__TEXT_HTML_OPEN__;
+				$buffer.=__HTML_TEXT_CLOSE__;
+				$buffer.=__HTML_CELL_CLOSE__;
+				$buffer.=__HTML_CELL_OPEN__;
+				$buffer.=__HTML_TEXT_OPEN__;
 				if($val["link"]!="") $buffer.="<a onclick='parent.openwin(this.href);return false' href='".addslashes($row[$val["link"]])."'>";
-				$buffer.=$row[$key];
+				$buffer.="<b>".$row[$key]."</b>";
 				if($val["link"]!="") $buffer.="</a>";
-				$buffer.=__TEXT_HTML_CLOSE__;
-				$buffer.="</b>";
-				$buffer.="</td>";
-				$buffer.="</tr>";
+				$buffer.=__HTML_TEXT_CLOSE__;
+				$buffer.=__HTML_CELL_CLOSE__;
+				$buffer.=__HTML_ROW_CLOSE__;
 			}
-			$buffer.="</table>";
-			$buffer.="</div>";
-			$buffer.=__TEXT_SEPARATOR__;
-			$buffer.=__TEXT_HTML_OPEN__;
+			$buffer.=__HTML_TABLE_CLOSE__;
+			$buffer.=__HTML_BOX_CLOSE__;
+			$buffer.=__HTML_SEPARATOR__;
+			$buffer.=__HTML_TEXT_OPEN__;
 			$buffer.=$row["description"];
-			$buffer.=__TEXT_HTML_CLOSE__;
-			$buffer.=__PAGE_HTML_CLOSE__;
+			$buffer.=__HTML_TEXT_CLOSE__;
+			$buffer.=__HTML_PAGE_CLOSE__;
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires(false);

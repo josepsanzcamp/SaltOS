@@ -34,6 +34,7 @@ include("php/fileutils.php");
 include("php/xml2array.php");
 include("php/array2xml.php");
 include("php/history.php");
+include("php/defines.php");
 // SOME IMPORTANT ITEMS
 program_error_handler();
 check_system();
@@ -66,6 +67,7 @@ $_CONFIG=eval_attr($_CONFIG);
 post_datauser();
 check_time();
 check_postlimit();
+post_defines();
 // GET THE STYLES
 $style=getDefault("style");
 $style=useCookie("style","",$style);

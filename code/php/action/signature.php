@@ -42,7 +42,6 @@ function __signature_getfile($id) {
 }
 
 function __signature_getauto($file) {
-	require_once("php/defines.php");
 	if(!$file) return null;
 	if(!$file["file"]) return null;
 	if($file["type"]=="text/plain") {
@@ -62,12 +61,11 @@ function __signature_getauto($file) {
 	} else {
 		$file["auto"]="Name: ${file["name"]}"."<br/>"."Type: ${file["type"]}"."<br/>"."Size: ${file["size"]}";
 	}
-	$file["auto"]="<span ".__CSS_SIGNATURE__.">--<br/>${file["auto"]}</span>";
+	$file["auto"]=__SIGNATURE_OPEN__."--".__HTML_NEWLINE__.$file["auto"].__SIGNATURE_CLOSE__;
 	return $file;
 }
 // NORMAL ACTION CODE
 if(getParam("action")=="signature") {
-	require_once("php/defines.php");
 	// DETECT IF IS A REQUEST FOR REPLACE BODY, CC AND STATE_CRT
 	if(getParam("old") && getParam("new")) {
 		require_once("php/sendmail.php");
@@ -141,11 +139,11 @@ if(getParam("action")=="signature") {
 	}
 	header("Content-Type: ${type}");
 	header("x-frame-options: SAMEORIGIN");
-	if($type=="text/html") echo __PAGE_HTML_OPEN__.__TEXT_HTML_OPEN__;
-	if($type=="text/plain") echo __PAGE_HTML_OPEN__.__TEXT_PLAIN_OPEN__;
+	if($type=="text/html") echo __HTML_PAGE_OPEN__.__HTML_TEXT_OPEN__;
+	if($type=="text/plain") echo __HTML_PAGE_OPEN__.__PLAIN_TEXT_OPEN__;
 	echo $file["data"];
-	if($type=="text/html") echo __TEXT_HTML_CLOSE__.__PAGE_HTML_CLOSE__;
-	if($type=="text/plain") echo __TEXT_PLAIN_CLOSE__.__PAGE_HTML_CLOSE__;
+	if($type=="text/html") echo __HTML_TEXT_CLOSE__.__HTML_PAGE_CLOSE__;
+	if($type=="text/plain") echo __PLAIN_TEXT_CLOSE__.__HTML_PAGE_CLOSE__;
 	ob_end_flush();
 	die();
 }

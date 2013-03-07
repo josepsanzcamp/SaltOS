@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user()) action_denied();
 if(getParam("action")=="getmail") {
 	require_once("php/getmail.php");
-	require_once("php/defines.php");
 	// CHECK FOR SESSION REQUEST
 	if(getParam("id")=="session" && getParam("cid")) {
 		$cid=getParam("cid");
@@ -70,11 +69,11 @@ if(getParam("action")=="getmail") {
 		$source=htmlentities($source,ENT_COMPAT,"UTF-8");
 		$source=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$source);
 		$buffer="";
-		$buffer.=__PAGE_HTML_OPEN__;
-		$buffer.=__TEXT_PLAIN_OPEN__;
+		$buffer.=__HTML_PAGE_OPEN__;
+		$buffer.=__PLAIN_TEXT_OPEN__;
 		$buffer.=$source;
-		$buffer.=__TEXT_PLAIN_CLOSE__;
-		$buffer.=__PAGE_HTML_CLOSE__;
+		$buffer.=__PLAIN_TEXT_CLOSE__;
+		$buffer.=__HTML_PAGE_CLOSE__;
 		ob_start_protected(getDefault("obhandler"));
 		header_powered();
 		header_expires(false);
@@ -98,7 +97,7 @@ if(getParam("action")=="getmail") {
 		if($cid=="body") {
 			$result=__getmail_getfullbody(__getmail_getnode("0",$decoded));
 			$buffer="";
-			$buffer.=__PAGE_HTML_OPEN__;
+			$buffer.=__HTML_PAGE_OPEN__;
 			$first=1;
 			$useimginline=eval_bool(getDefault("cache/useimginline"));
 			foreach($result as $index=>$node) {
@@ -136,13 +135,13 @@ if(getParam("action")=="getmail") {
 							}
 						}
 					}
-					if(!$first) $buffer.=__TEXT_SEPARATOR__;
-					if($type=="plain") $buffer.=__TEXT_PLAIN_OPEN__.$temp.__TEXT_PLAIN_CLOSE__;
-					if($type=="html") $buffer.=__TEXT_HTML_OPEN__.$temp.__TEXT_HTML_CLOSE__;
+					if(!$first) $buffer.=__HTML_SEPARATOR__;
+					if($type=="plain") $buffer.=__PLAIN_TEXT_OPEN__.$temp.__PLAIN_TEXT_CLOSE__;
+					if($type=="html") $buffer.=__HTML_TEXT_OPEN__.$temp.__HTML_TEXT_CLOSE__;
 					$first=0;
 				}
 			}
-			$buffer.=__PAGE_HTML_CLOSE__;
+			$buffer.=__HTML_PAGE_CLOSE__;
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires(false);
@@ -205,25 +204,23 @@ if(getParam("action")=="getmail") {
 			if(!isset($result["cc"])) unset($lista["cc"]);
 			if(!isset($result["bcc"])) unset($lista["bcc"]);
 			if(!$result["subject"]) $result["subject"]=LANG("sinsubject","correo");
-			$buffer.=__PAGE_HTML_OPEN__;
-			$buffer.="<div style='background:#ffffff'>";
-			$buffer.="<table>";
+			$buffer.=__HTML_PAGE_OPEN__;
+			$buffer.=__HTML_BOX_OPEN__;
+			$buffer.=__HTML_TABLE_OPEN__;
 			foreach($lista as $key=>$val) {
 				$result[$key]=str_replace(array("<",">"),array("&lt;","&gt;"),$result[$key]);
-				$buffer.="<tr>";
-				$buffer.="<td align='right' nowrap='nowrap'>";
-				$buffer.=__TEXT_HTML_OPEN__;
+				$buffer.=__HTML_ROW_OPEN__;
+				$buffer.=__HTML_RCELL_OPEN__;
+				$buffer.=__HTML_TEXT_OPEN__;
 				$buffer.=$lista[$key].":";
-				$buffer.=__TEXT_HTML_CLOSE__;
-				$buffer.="</td>";
-				$buffer.="<td>";
-				$buffer.="<b>";
-				$buffer.=__TEXT_HTML_OPEN__;
-				$buffer.=$result[$key];
-				$buffer.=__TEXT_HTML_CLOSE__;
-				$buffer.="</b>";
-				$buffer.="</td>";
-				$buffer.="</tr>";
+				$buffer.=__HTML_TEXT_CLOSE__;
+				$buffer.=__HTML_CELL_CLOSE__;
+				$buffer.=__HTML_CELL_OPEN__;
+				$buffer.=__HTML_TEXT_OPEN__;
+				$buffer.="<b>".$result[$key]."</b>";
+				$buffer.=__HTML_TEXT_CLOSE__;
+				$buffer.=__HTML_CELL_CLOSE__;
+				$buffer.=__HTML_ROW_CLOSE__;
 			}
 			$first=1;
 			foreach($result["files"] as $file) {
@@ -231,14 +228,14 @@ if(getParam("action")=="getmail") {
 				$chash=$file["chash"];
 				$hsize=$file["hsize"];
 				if($first) {
-					$buffer.="<tr>";
-					$buffer.="<td align='right' nowrap='nowrap'>";
-					$buffer.=__TEXT_HTML_OPEN__;
+					$buffer.=__HTML_ROW_OPEN__;
+					$buffer.=__HTML_RCELL_OPEN__;
+					$buffer.=__HTML_TEXT_OPEN__;
 					$buffer.=LANG("attachments","correo").":";
-					$buffer.=__TEXT_HTML_CLOSE__;
-					$buffer.="</td>";
-					$buffer.="<td>";
-					$buffer.=__TEXT_HTML_OPEN__;
+					$buffer.=__HTML_TEXT_CLOSE__;
+					$buffer.=__HTML_CELL_CLOSE__;
+					$buffer.=__HTML_CELL_OPEN__;
+					$buffer.=__HTML_TEXT_OPEN__;
 				} else {
 					$buffer.=" | ";
 				}
@@ -246,13 +243,13 @@ if(getParam("action")=="getmail") {
 				$first=0;
 			}
 			if(!$first) {
-				$buffer.=__TEXT_HTML_CLOSE__;
-				$buffer.="</td>";
-				$buffer.="</tr>";
+				$buffer.=__HTML_TEXT_CLOSE__;
+				$buffer.=__HTML_CELL_CLOSE__;
+				$buffer.=__HTML_ROW_CLOSE__;
 			}
-			$buffer.="</table>";
-			$buffer.="</div>";
-			$buffer.=__TEXT_SEPARATOR__;
+			$buffer.=__HTML_TABLE_CLOSE__;
+			$buffer.=__HTML_BOX_CLOSE__;
+			$buffer.=__HTML_SEPARATOR__;
 			$result=__getmail_getfullbody(__getmail_getnode("0",$decoded));
 			$first=1;
 			$useimginline=eval_bool(getDefault("cache/useimginline"));
@@ -291,13 +288,13 @@ if(getParam("action")=="getmail") {
 							}
 						}
 					}
-					if(!$first) $buffer.=__TEXT_SEPARATOR__;
-					if($type=="plain") $buffer.=__TEXT_PLAIN_OPEN__.$temp.__TEXT_PLAIN_CLOSE__;
-					if($type=="html") $buffer.=__TEXT_HTML_OPEN__.$temp.__TEXT_HTML_CLOSE__;
+					if(!$first) $buffer.=__HTML_SEPARATOR__;
+					if($type=="plain") $buffer.=__PLAIN_TEXT_OPEN__.$temp.__PLAIN_TEXT_CLOSE__;
+					if($type=="html") $buffer.=__HTML_TEXT_OPEN__.$temp.__HTML_TEXT_CLOSE__;
 					$first=0;
 				}
 			}
-			$buffer.=__PAGE_HTML_CLOSE__;
+			$buffer.=__HTML_PAGE_CLOSE__;
 			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires(false);
