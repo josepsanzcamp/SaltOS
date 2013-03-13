@@ -73,7 +73,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 		<link xmlns="" href="img/favicon.ico" rel="shortcut icon">
 		<title><?php echo LANG("title")." - ".get_name_version_revision(); ?></title>
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-2.0.0b2.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="lib/jquery/jquery-ui-1.10.1.min.js"></script>
 	</head>
