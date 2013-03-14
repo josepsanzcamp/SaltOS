@@ -248,7 +248,8 @@ function force_ssl() {
 	if($serverport==$porthttps) return;
 	// MAIN VARIABLES
 	$protocol="https://";
-	$servername=getServer("SERVER_NAME");
+	$servername=getDefault("server/hostname");
+	if(!$servername) $servername=getServer("SERVER_NAME");
 	$added="";
 	$scriptname=getServer("SCRIPT_NAME");
 	$querystring=str_replace("+","%20",getServer("QUERY_STRING"));

@@ -171,7 +171,8 @@ function sprintr($array) {
 function get_base() {
 	// MAIN VARIABLES
 	$protocol="http://";
-	$servername=getServer("SERVER_NAME");
+	$servername=getDefault("server/hostname");
+	if(!$servername) $servername=getServer("SERVER_NAME");
 	$added="";
 	$scriptname=getServer("SCRIPT_NAME");
 	// SOME CHECKS
@@ -449,8 +450,10 @@ function svnversion($dir) {
 			if(isset($data[3])) $rev=intval($data[3]);
 			break;
 		}
-		if($dir=="/") break;
-		$dir=realpath($dir."/..");
+		// CONTINUE
+		$newdir=realpath($dir."/..");
+		if($newdir==$dir) break;
+		$dir=$newdir;
 	}
 	return $rev;
 }

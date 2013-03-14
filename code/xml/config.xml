@@ -82,7 +82,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<divisor>100</divisor>
 	</sess>
 	<server>
-		<forcessl>true</forcessl>
+		<hostname></hostname>
+		<forcessl>false</forcessl>
 		<porthttp>80</porthttp>
 		<porthttps>443</porthttps>
 	</server>
