@@ -52,7 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<selected_dbtype>SGBD seleccionado</selected_dbtype>
 		<dbfile>Fichero base de datos</dbfile>
 		<dbtest>Funcionó la conexión de prueba</dbtest>
-		<dbhost>Máquina</dbhost>
+		<dbhost>Servidor BBDD</dbhost>
 		<dbport>Puerto</dbport>
 		<dbuser>Usuario</dbuser>
 		<dbpass>Clave</dbpass>
@@ -62,8 +62,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pass>Clave</pass>
 		<email>Correo electrónico</email>
 		<optional>Opcional</optional>
-		<forcessl>Forzar SSL (https)</forcessl>
+		<server_config>Configuración del servidor</server_config>
 		<timezone>Zona horaria</timezone>
+		<hostname>Servidor web</hostname>
+		<automatic>Automático</automatic>
+		<forcessl>Forzar SSL (https)</forcessl>
+		<porthttp>Puerto http</porthttp>
+		<porthttps>Puerto https</porthttps>
+		<initial_data>Carga de datos iniciales</initial_data>
 		<exampledata>Importar datos de ejemplo</exampledata>
 		<undefined>Sin definir</undefined>
 		<install_input>Resumen y confirmación de la instalación</install_input>

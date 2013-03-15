@@ -52,7 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<selected_dbtype>SGBD seleccionat</selected_dbtype>
 		<dbfile>Fitxer base de dades</dbfile>
 		<dbtest>Ha funcionat la connexió de prova</dbtest>
-		<dbhost>Màquina</dbhost>
+		<dbhost>Servidor BBDD</dbhost>
 		<dbport>Port</dbport>
 		<dbuser>Usuari</dbuser>
 		<dbpass>Clau</dbpass>
@@ -62,8 +62,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pass>Clau</pass>
 		<email>Correu electrònic</email>
 		<optional>Opcional</optional>
-		<forcessl>Forçar SSL (https)</forcessl>
+		<server_config>Configuració del servidor</server_config>
 		<timezone>Zona horària</timezone>
+		<hostname>Servidor web</hostname>
+		<automatic>Automatic</automatic>
+		<forcessl>Forçar SSL (https)</forcessl>
+		<porthttp>Port http</porthttp>
+		<porthttps>Port https</porthttps>
+		<initial_data>Carrega de dades inicials</initial_data>
 		<exampledata>Importar dades d'exemple</exampledata>
 		<undefined>Sense definir</undefined>
 		<install_input>Resum i confirmació de la instal·lació</install_input>

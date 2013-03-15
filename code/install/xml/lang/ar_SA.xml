@@ -62,8 +62,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pass>كلمة المرور</pass>
 		<email>بريد</email>
 		<optional>اختياري</optional>
-		<forcessl>اجبار استخدام SSL (https)</forcessl>
+		<server_config translated="false">Server configuration</server_config>
 		<timezone> المنطقة الزمني</timezone>
+		<hostname translated="false">Web server</hostname>
+		<automatic translated="false">Automatic</automatic>
+		<forcessl>اجبار استخدام SSL (https)</forcessl>
+		<porthttp translated="false">Http port</porthttp>
+		<porthttps translated="false">Https port</porthttps>
+		<initial_data translated="false">Initial import data</initial_data>
 		<exampledata>استيراد عينة بيانات</exampledata>
 		<undefined>غير معرف</undefined>
 		<install_input>ملخص وتأكيد التثبيت</install_input>

@@ -64,6 +64,7 @@ define("__DIV1__","class='ui-widget-header ui-corner-tl ui-corner-tr' style='mar
 define("__DIV2__","class='ui-widget-content ui-corner-bl ui-corner-br' style='margin:0px auto 2px auto;padding:5px'");
 define("__DIV3__","style='margin:10px auto;padding:0px;text-align:".$textalign[$dir]."'");
 define("__BR__","<br/>");
+define("__HR__","<hr style='border:0px;height:1px;background:#ccc'/>");
 define("__DEFAULT__","install/xml/tbl_*.xml");
 define("__EXAMPLE__","install/csv/example/tbl_*.csv");
 define("__STREET__","install/csv/street/tbl_*.csv.gz");
@@ -75,7 +76,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="lib/jquery/jquery-2.0.0b2.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="lib/jquery/jquery-ui-1.10.1.min.js"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-ui-1.10.2.min.js"></script>
 	</head>
 	<body>
 		<div class="ui-layout-north" style="margin-left:auto;margin-right:auto;width:800px">
@@ -158,7 +159,6 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						<div <?php echo __DIV2__; ?>>
 							<?php echo LANG("env_path"); ?>: <input type="text" size="40" onchange="document.form.step.value='1';document.form.submit()" <?php echo __UI__; ?> name="env_path" value="<?php echo getDefault("putenv/PATH"); ?>"/><?php echo __BR__; ?>
 							<?php echo LANG("env_lang"); ?>: <input type="text" size="20" onchange="document.form.step.value='1';document.form.submit()" <?php echo __UI__; ?> name="env_lang" value="<?php echo getDefault("putenv/LANG"); ?>"/><?php echo __BR__; ?>
-
 						</div>
 						<div <?php echo __DIV1__; ?>>
 							<?php echo LANG("step")." 1 - ".LANG("is_executable"); ?>
@@ -257,44 +257,49 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						</div>
 						<div <?php echo __DIV2__; ?>>
 							<?php $cancontinue=1; ?>
-							<?php if(!getParam("user") || !getParam("pass") || !getParam("timezone")) { ?>
-								<input type="hidden" name="step" value="3"/>
-								<?php echo LANG("user"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="user" value="<?php echo getParam("user")?getParam("user"):"admin"; ?>"/><?php echo __BR__; ?>
-								<?php echo LANG("pass"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="pass" value="<?php echo getParam("pass")?getParam("pass"):"admin"; ?>"/><?php echo __BR__; ?>
-								<?php echo LANG("email"); ?>: <input type="text" size="40" <?php echo __UI__; ?> name="email" value="<?php echo getParam("email")?getParam("email"):""; ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
-								<input type="checkbox" name="forcessl" id="forcessl" value="1" style="vertical-align:-15%"/><label for="forcessl"><?php echo LANG("forcessl"); ?></label><?php echo __BR__; ?>
-								<?php echo LANG("timezone"); ?>:
-								<?php $temp=eval_attr(xml2array("xml/common/timezones.xml")); ?>
-								<?php $timezone=$temp["value"]; ?>
-								<?php $timezones=array(); ?>
-								<?php foreach($temp["rows"] as $row) $timezones[$row["value"]]=$row["label"]; ?>
-								<select name="timezone" <?php echo __UI__; ?>>
-									<?php foreach($timezones as $key=>$val) { ?>
-										<?php $selected=($timezone==$key)?"selected":""; ?>
-										<option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $val; ?></option>
-									<?php } ?>
-								</select>
-								<?php echo __BR__; ?>
-								<input type="checkbox" name="exampledata" id="exampledata" value="1" style="vertical-align:-15%"/><label for="exampledata"><?php echo LANG("exampledata"); ?></label><?php echo __BR__; ?>
-								<input type="checkbox" name="streetdata" id="streetdata" value="1" style="vertical-align:-15%"/><label for="streetdata"><?php echo LANG("streetdata"); ?></label><?php echo __BR__; ?>
-								<?php $cancontinue=0; ?>
-								<?php unset($_GET["user"]); ?>
-								<?php unset($_GET["pass"]); ?>
-								<?php unset($_GET["email"]); ?>
-								<?php unset($_GET["forcessl"]); ?>
-								<?php unset($_GET["timezone"]); ?>
-								<?php unset($_GET["exampledata"]); ?>
-								<?php unset($_GET["streetdata"]); ?>
-							<?php } else { ?>
-								<input type="hidden" name="step" value="4"/>
-								<?php echo LANG("user"); ?>: <?php echo __GREEN__.getParam("user").__COLOR__; ?><?php echo __BR__; ?>
-								<?php echo LANG("pass"); ?>: <?php echo __GREEN__.getParam("pass").__COLOR__; ?><?php echo __BR__; ?>
-								<?php echo LANG("email"); ?>: <?php echo getParam("email")?__GREEN__.getParam("email").__COLOR__:__RED__.LANG("undefined").__COLOR__; ?><?php echo __BR__; ?>
-								<?php echo LANG("forcessl"); ?>: <?php echo getParam("forcessl")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
-								<?php echo LANG("timezone"); ?>: <?php echo __GREEN__.getParam("timezone").__COLOR__; ?><?php echo __BR__; ?>
-								<?php echo LANG("exampledata"); ?>: <?php echo getParam("exampledata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
-								<?php echo LANG("streetdata"); ?>: <?php echo getParam("streetdata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
-							<?php } ?>
+							<input type="hidden" name="step" value="4"/>
+							<?php echo LANG("user"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="user" value="<?php echo getParam("user")?getParam("user"):"admin"; ?>"/><?php echo __BR__; ?>
+							<?php echo LANG("pass"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="pass" value="<?php echo getParam("pass")?getParam("pass"):"admin"; ?>"/><?php echo __BR__; ?>
+							<?php echo LANG("email"); ?>: <input type="text" size="40" <?php echo __UI__; ?> name="email" value="<?php echo getParam("email")?getParam("email"):""; ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
+						</div>
+						<div <?php echo __DIV1__; ?>>
+							<?php echo LANG("step")." 3 - ".LANG("server_config"); ?>
+						</div>
+						<div <?php echo __DIV2__; ?>>
+							<?php echo LANG("timezone"); ?>:
+							<?php $temp=eval_attr(xml2array("xml/common/timezones.xml")); ?>
+							<?php $timezone=$temp["value"]; ?>
+							<?php $timezones=array(); ?>
+							<?php foreach($temp["rows"] as $row) $timezones[$row["value"]]=$row["label"]; ?>
+							<select name="timezone" <?php echo __UI__; ?>>
+								<?php foreach($timezones as $key=>$val) { ?>
+									<?php $selected=($timezone==$key)?"selected":""; ?>
+									<option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $val; ?></option>
+								<?php } ?>
+							</select>
+							<?php echo __BR__; ?>
+							<?php echo LANG("hostname"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="hostname" value="<?php echo getParam("hostname"); ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
+							<input type="checkbox" name="forcessl" id="forcessl" value="1" style="vertical-align:-15%"/><label for="forcessl"><?php echo LANG("forcessl"); ?></label><?php echo __BR__; ?>
+							<?php echo LANG("porthttp"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttp" value="<?php echo getParam("porthttp")?getParam("porthttp"):"80"; ?>"/><?php echo __BR__; ?>
+							<?php echo LANG("porthttps"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttps" value="<?php echo getParam("porthttps")?getParam("porthttps"):"443"; ?>"/><?php echo __BR__; ?>
+						</div>
+						<div <?php echo __DIV1__; ?>>
+							<?php echo LANG("step")." 3 - ".LANG("initial_data"); ?>
+						</div>
+						<div <?php echo __DIV2__; ?>>
+							<input type="checkbox" name="exampledata" id="exampledata" value="1" style="vertical-align:-15%"/><label for="exampledata"><?php echo LANG("exampledata"); ?></label><?php echo __BR__; ?>
+							<input type="checkbox" name="streetdata" id="streetdata" value="1" style="vertical-align:-15%"/><label for="streetdata"><?php echo LANG("streetdata"); ?></label><?php echo __BR__; ?>
+							<?php $cancontinue=0; ?>
+							<?php unset($_GET["user"]); ?>
+							<?php unset($_GET["pass"]); ?>
+							<?php unset($_GET["email"]); ?>
+							<?php unset($_GET["timezone"]); ?>
+							<?php unset($_GET["hostname"]); ?>
+							<?php unset($_GET["forcessl"]); ?>
+							<?php unset($_GET["porthttp"]); ?>
+							<?php unset($_GET["porthttps"]); ?>
+							<?php unset($_GET["exampledata"]); ?>
+							<?php unset($_GET["streetdata"]); ?>
 						</div>
 						<div <?php echo __DIV3__; ?>>
 							<?php echo __BACK__; ?>
@@ -323,6 +328,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							<?php $iconsets=array(); ?>
 							<?php foreach($temp["rows"] as $row) $iconsets[$row["value"]]=$row["label"]; ?>
 							<?php echo LANG("iconset"); ?>: <?php echo __GREEN__.$iconsets[getParam("iconset",getDefault("iconset"))]." (".getParam("iconset",getDefault("iconset")).")".__COLOR__.__BR__; ?>
+							<?php echo __HR__; ?>
 							<b><?php echo LANG("is_writable"); ?></b><?php echo __BR__; ?>
 							<?php $_CONFIG["dirs"][]=getcwd()."/xml"; ?>
 							<?php $_CONFIG["dirs"][]=getcwd()."/install"; ?>
@@ -330,9 +336,11 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 								<?php $iswritable=is_writable($dir); ?>
 								<?php echo substr($dir,-4,4)==".xml"?LANG("file").":":LANG("directory").":"; ?> <?php echo $dir; ?>: <?php echo $iswritable?__YES__:__NO__; ?><?php echo __BR__; ?>
 							<?php } ?>
+							<?php echo __HR__; ?>
 							<b><?php echo LANG("env_vars"); ?></b><?php echo __BR__; ?>
 							<?php echo LANG("env_path"); ?>: <?php echo __GREEN__.getParam("env_path",getDefault("putenv/PATH")).__COLOR__.__BR__; ?>
 							<?php echo LANG("env_lang"); ?>: <?php echo __GREEN__.getParam("env_lang",getDefault("putenv/LANG")).__COLOR__.__BR__; ?>
+							<?php echo __HR__; ?>
 							<b><?php echo LANG("is_executable"); ?></b><?php echo __BR__; ?>
 							<?php $procesed=array(); ?>
 							<?php foreach(getDefault("commands") as $index=>$command) { ?>
@@ -342,6 +350,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 									<?php $procesed[]=$command; ?>
 								<?php } ?>
 							<?php } ?>
+							<?php echo __HR__; ?>
 							<b><?php echo LANG("database_link"); ?>:</b><?php echo __BR__; ?>
 							<?php if(in_array(getParam("dbtype",getDefault("db/type")),array("pdo_sqlite","sqlite3"))) { ?>
 								<?php $dbtypes=array("pdo_sqlite"=>"SQLite3 (PDO)","sqlite3"=>"SQLite3 (extension)"); ?>
@@ -357,12 +366,20 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 								<?php echo LANG("dbpass"); ?>: <?php echo getParam("dbpass")?__GREEN__.getParam("dbpass").__COLOR__:__RED__.LANG("undefined").__COLOR__; ?><?php echo __BR__; ?>
 								<?php echo LANG("dbname"); ?>: <?php echo __GREEN__.getParam("dbname",getDefault("db/name")).__COLOR__; ?><?php echo __BR__; ?>
 							<?php } ?>
+							<?php echo __HR__; ?>
 							<b><?php echo LANG("admin_account"); ?>:</b><?php echo __BR__; ?>
 							<?php echo LANG("user"); ?>: <?php echo __GREEN__.getParam("user","admin").__COLOR__; ?><?php echo __BR__; ?>
 							<?php echo LANG("pass"); ?>: <?php echo __GREEN__.getParam("pass","admin").__COLOR__; ?><?php echo __BR__; ?>
 							<?php echo LANG("email"); ?>: <?php echo getParam("email")?__GREEN__.getParam("email").__COLOR__:__RED__.LANG("undefined").__COLOR__; ?><?php echo __BR__; ?>
-							<?php echo LANG("forcessl"); ?>: <?php echo getParam("forcessl")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo __HR__; ?>
+							<b><?php echo LANG("server_config"); ?>:</b><?php echo __BR__; ?>
 							<?php echo LANG("timezone"); ?>: <?php echo __GREEN__.getParam("timezone",getDefault("ini_set/date.timezone")).__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo LANG("hostname"); ?>: <?php echo getParam("hostname")?__GREEN__.getParam("hostname").__COLOR__:__RED__.LANG("automatic").__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo LANG("forcessl"); ?>: <?php echo getParam("forcessl")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo LANG("porthttp"); ?>: <?php echo __GREEN__.getParam("porthttp").__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo LANG("porthttps"); ?>: <?php echo __GREEN__.getParam("porthttps").__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo __HR__; ?>
+							<b><?php echo LANG("initial_data"); ?>:</b><?php echo __BR__; ?>
 							<?php echo LANG("exampledata"); ?>: <?php echo getParam("exampledata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
 							<?php echo LANG("streetdata"); ?>: <?php echo getParam("streetdata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
 						</div>
@@ -395,11 +412,34 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 								// SAVE THE config.xml WITH THE NEW CONFIGURATION
 								echo current_datetime().": ".LANG("config").": ";
 								$config=array();
-								// SET DATABASE CONFIGURATION
+								// LOAD OLD XML
 								set_array($config,"node",array(
 									"value"=>"",
 									"#attr"=>array("include"=>"xml/config.xml.old","replace"=>"true")
 								));
+								// STEP 0
+								set_array($config,"node",array(
+									"value"=>array("lang"=>$lang),
+									"#attr"=>array("path"=>"default/lang","replace"=>"true")
+								));
+								set_array($config,"node",array(
+									"value"=>array("style"=>$style),
+									"#attr"=>array("path"=>"default/style","replace"=>"true")
+								));
+								set_array($config,"node",array(
+									"value"=>array("iconset"=>$iconset),
+									"#attr"=>array("path"=>"default/iconset","replace"=>"true")
+								));
+								// STEP 1
+								set_array($config,"node",array(
+									"value"=>array("PATH"=>getParam("env_path",getDefault("putenv/PATH"))),
+									"#attr"=>array("path"=>"putenv/PATH","replace"=>"true")
+								));
+								set_array($config,"node",array(
+									"value"=>array("LANG"=>getParam("env_lang",getDefault("putenv/LANG"))),
+									"#attr"=>array("path"=>"putenv/LANG","replace"=>"true")
+								));
+								// STEP 2
 								set_array($config,"node",array(
 									"value"=>array("type"=>getParam("dbtype",getDefault("db/type"))),
 									"#attr"=>array("path"=>"db/type","replace"=>"true")
@@ -424,38 +464,29 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 									"value"=>array("name"=>getParam("dbname",getDefault("db/name"))),
 									"#attr"=>array("path"=>"db/name","replace"=>"true")
 								));
-								// SET MORE THINGS
+								// STEP 3
 								set_array($config,"node",array(
-									"value"=>array("lang"=>$lang),
-									"#attr"=>array("path"=>"default/lang","replace"=>"true")
+									"value"=>array("date.timezone"=>getParam("timezone",getDefault("ini_set/date.timezone"))),
+									"#attr"=>array("path"=>"ini_set/date.timezone","replace"=>"true")
 								));
 								set_array($config,"node",array(
-									"value"=>array("style"=>array(
-										"value"=>"is_mobile()?'".(is_mobile()?$style:"b")."':'".(is_mobile()?"blue":$style)."'",
-										"#attr"=>array("eval"=>"true"))),
-									"#attr"=>array("path"=>"default/style","replace"=>"true")
-								));
-								set_array($config,"node",array(
-									"value"=>array("iconset"=>$iconset),
-									"#attr"=>array("path"=>"default/iconset","replace"=>"true")
+									"value"=>array("hostname"=>getParam("hostname")),
+									"#attr"=>array("path"=>"server/hostname","replace"=>"true")
 								));
 								set_array($config,"node",array(
 									"value"=>array("forcessl"=>getParam("forcessl")?"true":"false"),
 									"#attr"=>array("path"=>"server/forcessl","replace"=>"true")
 								));
 								set_array($config,"node",array(
-									"value"=>array("date.timezone"=>getParam("timezone",getDefault("ini_set/date.timezone"))),
-									"#attr"=>array("path"=>"ini_set/date.timezone","replace"=>"true")
+									"value"=>array("porthttp"=>getParam("porthttp",80)),
+									"#attr"=>array("path"=>"server/porthttp","replace"=>"true")
 								));
 								set_array($config,"node",array(
-									"value"=>array("PATH"=>getParam("env_path",getDefault("putenv/PATH"))),
-									"#attr"=>array("path"=>"putenv/PATH","replace"=>"true")
-								));
-								set_array($config,"node",array(
-									"value"=>array("LANG"=>getParam("env_lang",getDefault("putenv/LANG"))),
-									"#attr"=>array("path"=>"putenv/LANG","replace"=>"true")
+									"value"=>array("porthttps"=>getParam("porthttps",443)),
+									"#attr"=>array("path"=>"server/porthttps","replace"=>"true")
 								));
 								$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+								$_CONFIG["cache"]["usexmlminify"]="false";
 								$buffer.=array2xml($config);
 								if(file_exists("xml/config.xml") && !file_exists("xml/config.xml.old")) {
 									rename("xml/config.xml","xml/config.xml.old");

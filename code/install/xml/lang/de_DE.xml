@@ -62,8 +62,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pass>Passwort</pass>
 		<email>E-Mail-Adresse</email>
 		<optional>Optional</optional>
-		<forcessl>Obligatorische Verbindung via SSL (https)</forcessl>
+		<server_config translated="false">Server configuration</server_config>
 		<timezone revised="false">Zeitzone</timezone>
+		<hostname translated="false">Web server</hostname>
+		<automatic translated="false">Automatic</automatic>
+		<forcessl>Obligatorische Verbindung via SSL (https)</forcessl>
+		<porthttp translated="false">Http port</porthttp>
+		<porthttps translated="false">Https port</porthttps>
+		<initial_data translated="false">Initial import data</initial_data>
 		<exampledata>Beispieldaten importieren</exampledata>
 		<undefined>Undefiniert</undefined>
 		<install_input>Zusammenfassung und Bestätigung der Installation</install_input>
