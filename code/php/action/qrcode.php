@@ -44,11 +44,11 @@ if(getParam("action")=="qrcode") {
 	$cache=get_cache_file($msg,getDefault("exts/pngext",".png"));
 	//~ if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
-		require_once("lib/tcpdf/qrcode.php");
+		require_once("lib/tcpdf/tcpdf_barcodes_2d.php");
 		$levels=array("L","M","Q","H");
 		$factors=array(0.07,0.15,0.25,0.30);
 		for($i=0;$i<4;$i++) {
-			$barcode=new QRcode($msg,$levels[$i]);
+			$barcode=new TCPDF2DBarcode($msg,"QRCODE,".$levels[$i]);
 			$array=$barcode->getBarcodeArray();
 			if(!isset($array["num_cols"]) || !isset($array["num_rows"])) action_denied();
 			$total=$array["num_cols"]*$array["num_rows"];

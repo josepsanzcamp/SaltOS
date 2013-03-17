@@ -40,7 +40,7 @@ if(getParam("action")=="barcode") {
 	$cache=get_cache_file($msg,getDefault("exts/pngext",".png"));
 	//~ if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
-		require_once("lib/tcpdf/barcodes.php");
+		require_once("lib/tcpdf/tcpdf_barcodes_1d.php");
 		$barcode=new TCPDFBarcode($msg,"C39");
 		$array=$barcode->getBarcodeArray();
 		if(!isset($array["maxw"])) action_denied();
