@@ -557,6 +557,7 @@ if(getParam("page")=="correo") {
 		}
 	}
 	if(isset($id_extra[1]) && $id_extra[1]=="feed") {
+		require_once("php/getmail.php");
 		$query="SELECT *,(SELECT title FROM tbl_usuarios_f WHERE id=id_feed) feed,(SELECT link FROM tbl_usuarios_f WHERE id=id_feed) link2 FROM tbl_feeds WHERE id='${id_extra[2]}'";
 		$row2=execute_query($query);
 		if($row2) {

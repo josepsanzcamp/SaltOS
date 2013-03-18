@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user()) action_denied();
 if(getParam("action")=="game") {
 	ob_start();
+	require_once("php/getmail.php");
 	echo __HTML_PAGE_OPEN__;
 	echo "<canvas></canvas>";
 	echo "<style type='text/css'>canvas{margin-top:45px;}div{text-align:right;}</style>";

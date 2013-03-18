@@ -28,6 +28,29 @@ require_once("lib/pop3class/mime_parser.php");
 require_once("lib/pop3class/rfc822_addresses.php");
 require_once("lib/pop3class/pop3.php");
 
+// SOME DEFINES
+define("__HTML_PAGE_OPEN__",'<html><head><style type="text/css">'.getDefault("defines/htmlpage").'</style></head><body>');
+define("__HTML_PAGE_CLOSE__",'</body></html>');
+define("__HTML_BOX_OPEN__",'<div style="'.getDefault("defines/htmlbox").'">');
+define("__HTML_BOX_CLOSE__",'</div>');
+define("__HTML_TABLE_OPEN__",'<table>');
+define("__HTML_TABLE_CLOSE__",'</table>');
+define("__HTML_ROW_OPEN__",'<tr>');
+define("__HTML_ROW_CLOSE__",'</tr>');
+define("__HTML_CELL_OPEN__",'<td>');
+define("__HTML_RCELL_OPEN__",'<td align="right" nowrap="nowrap">');
+define("__HTML_CELL_CLOSE__",'</td>');
+define("__HTML_TEXT_OPEN__",'<span style="'.getDefault("defines/htmltext").'">');
+define("__HTML_TEXT_CLOSE__",'</span>');
+define("__PLAIN_TEXT_OPEN__",'<span style="'.getDefault("defines/plaintext").'">');
+define("__PLAIN_TEXT_CLOSE__",'</span>');
+define("__HTML_SEPARATOR__",'<hr style="'.getDefault("defines/separator").'"/>');
+define("__HTML_NEWLINE__",'<br/>');
+define("__BLOCKQUOTE_OPEN__",'<blockquote style="'.getDefault("defines/blockquote").'">');
+define("__BLOCKQUOTE_CLOSE__",'</blockquote>');
+define("__SIGNATURE_OPEN__",'<span style="'.getDefault("defines/signature").'">');
+define("__SIGNATURE_CLOSE__",'</span>');
+
 // REMOVE ALL BODY (ONLY FOR DEBUG PURPOSES)
 function __getmail_removebody($array) {
 	if(isset($array["Body"])) $array["Body"]="##### BODY REMOVED FOR DEBUG PURPOSES #####";

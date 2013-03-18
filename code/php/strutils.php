@@ -350,7 +350,7 @@ function normalize_value($value) {
 }
 
 function get_name_version_revision($copyright=false) {
-	return getDefault("info/name",__INFO_NAME__)." v".getDefault("info/version",__INFO_VERSION__)." r".getDefault("info/revision",__INFO_REVISION__).($copyright?", ".getDefault("info/copyright",__INFO_COPYRIGHT__):"");
+	return getDefault("info/name","SaltOS")." v".getDefault("info/version","3.1")." r".getDefault("info/revision",svnversion("../code")).($copyright?", ".getDefault("info/copyright","Copyright (C) 2013 by Josep Sanz Campderrós"):"");
 }
 
 function getServer($index,$default="") {
@@ -432,28 +432,33 @@ function inline_images($buffer) {
 }
 
 function svnversion($dir) {
-	$rev=0;
-	$dir=realpath($dir);
-	for(;;) {
-		// FOR SUBVERSION >= 12
-		$file="$dir/.svn/wc.db";
-		if(file_exists($file)) {
-			$data=file_get_contents($file);
-			$pos=strpos($data,"normalfile");
-			if($pos!==false) $rev=ord($data[$pos-1])+ord($data[$pos-2])*256;
-			break;
+	static $rev=null;
+	if($rev===null) {
+		$rev=0;
+		$dir=realpath($dir);
+		for(;;) {
+			// FOR SUBVERSION >= 12
+			$file="$dir/.svn/wc.db";
+			if(file_exists($file)) {
+				$data=file_get_contents($file);
+				$pos=strpos($data,"normalfile");
+				if($pos!==false) $rev=ord($data[$pos-1])+ord($data[$pos-2])*256;
+				break;
+			}
+			// FOR SUBVERSION <= 11
+			$file="$dir/.svn/entries";
+			if(file_exists($file)) {
+				$data=file($file);
+				if(isset($data[3])) $rev=intval($data[3]);
+				break;
+			}
+			// CONTINUE
+			capture_next_error();
+			$temp=realpath($dir."/..");
+			$error=get_clear_error();
+			if($error || $dir==$temp) break;
+			$dir=$temp;
 		}
-		// FOR SUBVERSION <= 11
-		$file="$dir/.svn/entries";
-		if(file_exists($file)) {
-			$data=file($file);
-			if(isset($data[3])) $rev=intval($data[3]);
-			break;
-		}
-		// CONTINUE
-		$newdir=realpath($dir."/..");
-		if($newdir==$dir) break;
-		$dir=$newdir;
 	}
 	return $rev;
 }

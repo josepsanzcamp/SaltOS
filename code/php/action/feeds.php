@@ -469,6 +469,7 @@ if(getParam("action")=="feeds") {
 		output_buffer($buffer,"text/xml");
 	}
 	if(getParam("id")) {
+		require_once("php/getmail.php");
 		$id=intval(getParam("id"));
 		$query="SELECT *,(SELECT title FROM tbl_usuarios_f WHERE id=id_feed) feed,(SELECT link FROM tbl_usuarios_f WHERE id=id_feed) link2 FROM tbl_feeds WHERE id='${id}'";
 		$row=execute_query($query);

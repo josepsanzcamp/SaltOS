@@ -61,6 +61,7 @@ function __signature_getauto($file) {
 	} else {
 		$file["auto"]="Name: ${file["name"]}"."<br/>"."Type: ${file["type"]}"."<br/>"."Size: ${file["size"]}";
 	}
+	require_once("php/getmail.php");
 	$file["auto"]=__SIGNATURE_OPEN__."--".__HTML_NEWLINE__.$file["auto"].__SIGNATURE_CLOSE__;
 	return $file;
 }
@@ -139,6 +140,7 @@ if(getParam("action")=="signature") {
 	}
 	header("Content-Type: ${type}");
 	header("x-frame-options: SAMEORIGIN");
+	require_once("php/getmail.php");
 	if($type=="text/html") echo __HTML_PAGE_OPEN__.__HTML_TEXT_OPEN__;
 	if($type=="text/plain") echo __HTML_PAGE_OPEN__.__PLAIN_TEXT_OPEN__;
 	echo $file["data"];

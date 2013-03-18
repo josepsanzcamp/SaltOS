@@ -84,6 +84,7 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 		$files["pdf_${key}"]=array("file"=>$file,"name"=>$name,"mime"=>$mime,"size"=>$size);
 	}
 	$body=implode("<br/>",$body);
+	//require_once("php/getmail.php");
 	//$body=__HTML_TEXT_OPEN__.$body.__HTML_TEXT_CLOSE__;
 	sess_init();
 	$_SESSION["correo"]=array("subject"=>$subject,"body"=>$body,"files"=>$files);

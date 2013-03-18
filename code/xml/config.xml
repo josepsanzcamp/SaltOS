@@ -25,10 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<info>
-		<name eval="true">__INFO_NAME__</name>
-		<version eval="true">__INFO_VERSION__</version>
-		<revision eval="true">__INFO_REVISION__</revision>
-		<copyright eval="true">__INFO_COPYRIGHT__</copyright>
+		<name>SaltOS</name>
+		<version>3.1</version>
+		<revision eval="true">svnversion("../code")</revision>
+		<copyright>Copyright (C) 2013 by Josep Sanz Campderrós</copyright>
 		<title config="true">application_title</title>
 		<favicon>img/favicon.png</favicon>
 	</info>
