@@ -431,11 +431,12 @@ function inline_images($buffer) {
 	return $buffer;
 }
 
-function svnversion($dir) {
+function svnversion($dir=".") {
 	static $rev=null;
 	if($rev===null) {
 		$rev=0;
 		$dir=realpath($dir);
+		if(!$dir) $dir=getcwd();
 		for(;;) {
 			// FOR SUBVERSION >= 12
 			$file="$dir/.svn/wc.db";

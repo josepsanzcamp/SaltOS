@@ -278,10 +278,10 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 								<?php } ?>
 							</select>
 							<?php echo __BR__; ?>
-							<?php echo LANG("hostname"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="hostname" value="<?php echo getParam("hostname"); ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
-							<input type="checkbox" name="forcessl" id="forcessl" value="1" style="vertical-align:-15%"/><label for="forcessl"><?php echo LANG("forcessl"); ?></label><?php echo __BR__; ?>
-							<?php echo LANG("porthttp"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttp" value="<?php echo getParam("porthttp")?getParam("porthttp"):"80"; ?>"/><?php echo __BR__; ?>
-							<?php echo LANG("porthttps"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttps" value="<?php echo getParam("porthttps")?getParam("porthttps"):"443"; ?>"/><?php echo __BR__; ?>
+							<?php echo LANG("hostname"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="hostname" value="<?php echo getParam("hostname",getDefault("server/hostname")); ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
+							<input type="checkbox" name="forcessl" id="forcessl" value="1" style="vertical-align:-15%" <?php if(eval_bool(getDefault("server/forcessl"))) echo "checked='true'" ?>/><label for="forcessl"><?php echo LANG("forcessl"); ?></label><?php echo __BR__; ?>
+							<?php echo LANG("porthttp"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttp" value="<?php echo getParam("porthttp",getDefault("server/porthttp")); ?>"/><?php echo __BR__; ?>
+							<?php echo LANG("porthttps"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttps" value="<?php echo getParam("porthttps",getDefault("server/porthttps")); ?>"/><?php echo __BR__; ?>
 						</div>
 						<div <?php echo __DIV1__; ?>>
 							<?php echo LANG("step")." 3 - ".LANG("initial_data"); ?>
@@ -374,10 +374,10 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							<?php echo __HR__; ?>
 							<b><?php echo LANG("server_config"); ?>:</b><?php echo __BR__; ?>
 							<?php echo LANG("timezone"); ?>: <?php echo __GREEN__.getParam("timezone",getDefault("ini_set/date.timezone")).__COLOR__; ?><?php echo __BR__; ?>
-							<?php echo LANG("hostname"); ?>: <?php echo getParam("hostname")?__GREEN__.getParam("hostname").__COLOR__:__RED__.LANG("automatic").__COLOR__; ?><?php echo __BR__; ?>
-							<?php echo LANG("forcessl"); ?>: <?php echo getParam("forcessl")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
-							<?php echo LANG("porthttp"); ?>: <?php echo __GREEN__.getParam("porthttp").__COLOR__; ?><?php echo __BR__; ?>
-							<?php echo LANG("porthttps"); ?>: <?php echo __GREEN__.getParam("porthttps").__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo LANG("hostname"); ?>: <?php echo getParam("hostname",getDefault("server/hostname"))?__GREEN__.getParam("hostname",getDefault("server/hostname")).__COLOR__:__RED__.LANG("automatic").__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo LANG("forcessl"); ?>: <?php echo getParam("forcessl",eval_bool(getDefault("server/forcessl")))?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo LANG("porthttp"); ?>: <?php echo __GREEN__.getParam("porthttp",getDefault("server/porthttp")).__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo LANG("porthttps"); ?>: <?php echo __GREEN__.getParam("porthttps",getDefault("server/porthttps")).__COLOR__; ?><?php echo __BR__; ?>
 							<?php echo __HR__; ?>
 							<b><?php echo LANG("initial_data"); ?>:</b><?php echo __BR__; ?>
 							<?php echo LANG("exampledata"); ?>: <?php echo getParam("exampledata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
@@ -470,19 +470,19 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 									"#attr"=>array("path"=>"ini_set/date.timezone","replace"=>"true")
 								));
 								set_array($config,"node",array(
-									"value"=>array("hostname"=>getParam("hostname")),
+									"value"=>array("hostname"=>getParam("hostname",getDefault("server/hostname"))),
 									"#attr"=>array("path"=>"server/hostname","replace"=>"true")
 								));
 								set_array($config,"node",array(
-									"value"=>array("forcessl"=>getParam("forcessl")?"true":"false"),
+									"value"=>array("forcessl"=>getParam("forcessl",eval_bool(getDefault("server/forcessl")))?"true":"false"),
 									"#attr"=>array("path"=>"server/forcessl","replace"=>"true")
 								));
 								set_array($config,"node",array(
-									"value"=>array("porthttp"=>getParam("porthttp",80)),
+									"value"=>array("porthttp"=>getParam("porthttp",getDefault("server/porthttp"))),
 									"#attr"=>array("path"=>"server/porthttp","replace"=>"true")
 								));
 								set_array($config,"node",array(
-									"value"=>array("porthttps"=>getParam("porthttps",443)),
+									"value"=>array("porthttps"=>getParam("porthttps",getDefault("server/porthttps"))),
 									"#attr"=>array("path"=>"server/porthttps","replace"=>"true")
 								));
 								$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
