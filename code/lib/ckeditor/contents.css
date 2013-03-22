@@ -6,7 +6,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 body
 {
 	/* Font */
-	font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;
+	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
 	font-size: 11px;
 
 	/* Text color */
@@ -15,10 +15,17 @@ body
 	/* Remove the background color to make it transparent */
 	background-color: #fff;
 
+/*
+	margin: 20px;
+*/
 }
 
 .cke_editable
 {
+/*
+	font-size: 13px;
+	line-height: 1.6em;
+*/
 }
 
 blockquote
@@ -93,4 +100,8 @@ pre
 {
 	white-space: pre-wrap; /* CSS 2.1 */
 	word-wrap: break-word; /* IE7 */
+}
+
+.marker {
+    background-color: Yellow;
 }
