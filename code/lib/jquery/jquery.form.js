@@ -1,6 +1,6 @@
 /*!
  * jQuery Form Plugin
- * version: 3.28.0-2013.02.06
+ * version: 3.31.0-2013.03.22
  * @requires jQuery v1.5 or later
  *
  * Examples and documentation at: http://malsup.com/jquery/form/
@@ -57,6 +57,21 @@ var feature = {};
 feature.fileapi = $("<input type='file'/>").get(0).files !== undefined;
 feature.formdata = window.FormData !== undefined;
 
+var hasProp = !!$.fn.prop;
+
+// attr2 uses prop when it can but checks the return type for
+// an expected string.  this accounts for the case where a form 
+// contains inputs with names like "action" or "method"; in those
+// cases "prop" returns the element
+$.fn.attr2 = function(a, b) {
+    if ( ! hasProp )
+        return this.attr.apply(this, arguments);
+    var val = this.prop.apply(this, arguments);
+    if ( ( val && val.jquery ) || typeof val === 'string' )
+        return val;
+    return this.attr.apply(this, arguments);
+};
+
 /**
  * ajaxSubmit() provides a mechanism for immediately submitting
  * an HTML form using AJAX.
@@ -76,8 +91,9 @@ $.fn.ajaxSubmit = function(options) {
         options = { success: options };
     }
 
-    method = this.attr('method');
-    action = this.attr('action');
+    method = this.attr2('method');
+    action = this.attr2('action');
+
     url = (typeof action === 'string') ? $.trim(action) : '';
     url = url || window.location.href || '';
     if (url) {
@@ -290,14 +306,13 @@ $.fn.ajaxSubmit = function(options) {
     // private function for handling file uploads (hat tip to YAHOO!)
     function fileUploadIframe(a) {
         var form = $form[0], el, i, s, g, id, $io, io, xhr, sub, n, timedOut, timeoutHandle;
-        var useProp = !!$.fn.prop;
         var deferred = $.Deferred();
 
         if (a) {
             // ensure that every serialized input is still enabled
             for (i=0; i < elements.length; i++) {
                 el = $(elements[i]);
-                if ( useProp )
+                if ( hasProp )
                     el.prop('disabled', false);
                 else
                     el.removeAttr('disabled');
@@ -309,9 +324,9 @@ $.fn.ajaxSubmit = function(options) {
         id = 'jqFormIO' + (new Date().getTime());
         if (s.iframeTarget) {
             $io = $(s.iframeTarget);
-            n = $io.attr('name');
+            n = $io.attr2('name');
             if (!n)
-                 $io.attr('name', id);
+                 $io.attr2('name', id);
             else
                 id = n;
         }
@@ -408,7 +423,7 @@ $.fn.ajaxSubmit = function(options) {
         // take a breath so that pending repaints get some cpu time before the upload starts
         function doSubmit() {
             // make sure form attrs are set
-            var t = $form.attr('target'), a = $form.attr('action');
+            var t = $form.attr2('target'), a = $form.attr2('action');
 
             // update form attrs in IE friendly way
             form.setAttribute('target',id);
@@ -832,13 +847,13 @@ $.fn.formToArray = function(semantic, elements) {
     for(i=0, max=els.length; i < max; i++) {
         el = els[i];
         n = el.name;
-        if (!n) {
+        if (!n || el.disabled) {
             continue;
         }
 
         if (semantic && form.clk && el.type == "image") {
             // handle image inputs on the fly when semantic == true
-            if(!el.disabled && form.clk == el) {
+            if(form.clk == el) {
                 a.push({name: n, value: $(el).val(), type: el.type });
                 a.push({name: n+'.x', value: form.clk_x}, {name: n+'.y', value: form.clk_y});
             }
@@ -853,7 +868,7 @@ $.fn.formToArray = function(semantic, elements) {
                 a.push({name: n, value: v[j]});
             }
         }
-        else if (feature.fileapi && el.type == 'file' && !el.disabled) {
+        else if (feature.fileapi && el.type == 'file') {
             if (elements)
                 elements.push(el);
             var files = el.files;
@@ -1047,7 +1062,7 @@ $.fn.clearFields = $.fn.clearInputs = function(includeHidden) {
         }
 		else if (t == "file") {
 			if (/MSIE/.test(navigator.userAgent)) {
-				$(this).replaceWith($(this).clone());
+				$(this).replaceWith($(this).clone(true));
 			} else {
 				$(this).val('');
 			}

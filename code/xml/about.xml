@@ -474,7 +474,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
 						</field>
 						<field>
-							<label>Form 3.27 (MIT &amp; GPL*)</label>
+							<label>Form 3.31 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
