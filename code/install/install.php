@@ -77,6 +77,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 		<script type="text/javascript" src="lib/jquery/jquery-2.0.0b2.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="lib/jquery/jquery-ui-1.10.2.min.js"></script>
+		<script type="text/javascript">$(function() { $("a:last").focus(); });</script>
 	</head>
 	<body>
 		<div class="ui-layout-north" style="margin-left:auto;margin-right:auto;width:800px">
