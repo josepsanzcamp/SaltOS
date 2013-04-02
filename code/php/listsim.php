@@ -106,7 +106,10 @@ function saltos_context($newpage="",$newaction="") {
 		$_LANG["default"]=$oldlang;
 		$oldlang="";
 	} else {
-		show_php_error(array("phperror"=>"saltos_context internal error"));
+		show_php_error(array(
+			"phperror"=>"saltos_context internal error",
+			"details"=>sprintr(array("newpage"=>$newpage,"newaction"=>$newaction,"oldpage"=>$oldpage,"oldaction"=>$oldaction))
+		));
 	}
 }
 

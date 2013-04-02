@@ -32,9 +32,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<no>No</no>
 		<language>Language, style and icons selection</language>
 		<welcome_message>Welcome to the SaltOS setup program</welcome_message>
-		<lang_message>Select the language: </lang_message>
-		<style_message>Select the style: </style_message>
-		<iconset_message>Select the icons: </iconset_message>
+		<lang_message>Select the language</lang_message>
+		<style_message>Select the style</style_message>
+		<iconset_message>Select the icons</iconset_message>
 		<begin_message>Press "Next" to begin the SaltOS setup with only 5 easy steps</begin_message>
 		<back>Back</back>
 		<next>Next</next>
@@ -92,5 +92,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<env_vars>Environment variables</env_vars>
 		<env_path>PATH</env_path>
 		<env_lang>LANG</env_lang>
+		<applications>Applications</applications>
+		<select_layer>Select the layer</select_layer>
+		<selected_layer>Layer selected</selected_layer>
+		<layer_all>All applications</layer_all>
+		<layer_personal>Personal applications</layer_personal>
+		<select_apps>Select the applications</select_apps>
+		<selected_apps>Applications selected</selected_apps>
 	</common>
 </root>

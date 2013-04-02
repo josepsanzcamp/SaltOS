@@ -32,9 +32,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<no>لا</no>
 		<language>اختيار اللغة ,المظهر والايقونات</language>
 		<welcome_message>مرحبا بك في اعداد برنامج  SaltOS </welcome_message>
-		<lang_message>إختر اللغة: </lang_message>
-		<style_message>إختر المظهر: </style_message>
-		<iconset_message>إختر الايقونات: </iconset_message>
+		<lang_message>إختر اللغة</lang_message>
+		<style_message>إختر المظهر</style_message>
+		<iconset_message>إختر الايقونات</iconset_message>
 		<begin_message>اضغط علي "التالي" لاعداد SaltOS فقط في 5 خطوات سهلة</begin_message>
 		<back>السابق</back>
 		<next>التالي</next>
@@ -92,5 +92,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<env_vars>متغيرات بيئة النظام</env_vars>
 		<env_path>المسار</env_path>
 		<env_lang>الغة</env_lang>
+		<applications translated="false">Applications</applications>
+		<select_layer translated="false">Select the layer</select_layer>
+		<selected_layer translated="false">Layer selected</selected_layer>
+		<layer_all translated="false">All applications</layer_all>
+		<layer_personal translated="false">Personal applications</layer_personal>
+		<select_apps translated="false">Select the applications</select_apps>
+		<selected_apps translated="false">Applications selected</selected_apps>
 	</common>
 </root>

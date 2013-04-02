@@ -1,3 +1,13 @@
+6.0.009 (2013-04-02)
+	- Adding back some files that were not properly committed on the latest release.
+
+6.0.008 (2013-04-01)
+	- Duplicated encoding maps was removed from tcpdf_font_data.php.
+	- Fixing bug on AddTTFFont().
+
+6.0.007 (2013-03-29)
+	- HTML/CSS font size conversion were improved.
+
 6.0.006 (2013-03-27)
 	- Bug related to SVG and EPS files on xobjects were fixed.
 

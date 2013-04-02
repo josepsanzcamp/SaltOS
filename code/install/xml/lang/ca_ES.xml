@@ -32,9 +32,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<no>No</no>
 		<language>Selecció del idioma, diseny i icones</language>
 		<welcome_message>Benvingut al programa d'instal·lació de SaltOS</welcome_message>
-		<lang_message>Seleccioneu l'idioma: </lang_message>
-		<style_message>Seleccioneu el diseny: </style_message>
-		<iconset_message>Seleccioneu les icones: </iconset_message>
+		<lang_message>Seleccioneu l'idioma</lang_message>
+		<style_message>Seleccioneu el diseny</style_message>
+		<iconset_message>Seleccioneu les icones</iconset_message>
 		<begin_message>Premi "Següent" per instal·lar SaltOS 5 senzills passos</begin_message>
 		<back>Anterior</back>
 		<next>Següent</next>
@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<file>Fitxer</file>
 		<executable>Executable</executable>
 		<database_link>Connexió a la base de dades</database_link>
-		<select_dbtype>Seleccioneu l'SGBD</select_dbtype>
+		<select_dbtype>Seleccioni el SGBD</select_dbtype>
 		<select_prefered> (recomanat)</select_prefered>
 		<selected_dbtype>SGBD seleccionat</selected_dbtype>
 		<dbfile>Fitxer base de dades</dbfile>
@@ -92,5 +92,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<env_vars>Variables d'entorn</env_vars>
 		<env_path>PATH</env_path>
 		<env_lang>LANG</env_lang>
+		<applications>Aplicacions</applications>
+		<select_layer>Seleccioni el perfil</select_layer>
+		<selected_layer>Perfil seleccionat</selected_layer>
+		<layer_all>Totes les aplicacions</layer_all>
+		<layer_personal>Aplicacions d'us personal</layer_personal>
+		<select_apps>Seleccioni les aplicacions</select_apps>
+		<selected_apps>Aplicacions seleccionades</selected_apps>
 	</common>
 </root>

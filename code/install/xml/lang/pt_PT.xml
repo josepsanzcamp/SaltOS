@@ -32,9 +32,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<no>Não</no>
 		<language revised="false">Seleção de idioma, design e ícones</language>
 		<welcome_message>Bem vindo ao programa de instalação do SaltOS</welcome_message>
-		<lang_message>Selecione o idioma: </lang_message>
-		<style_message revised="false">Selecione o design: </style_message>
-		<iconset_message revised="false">Selecione os ícones: </iconset_message>
+		<lang_message>Selecione o idioma</lang_message>
+		<style_message revised="false">Selecione o design</style_message>
+		<iconset_message revised="false">Selecione os ícones</iconset_message>
 		<begin_message>Pressione "Seguinte" para instalar o SaltOS em 5 simples passos</begin_message>
 		<back>Anterior</back>
 		<next>Seguinte</next>
@@ -92,5 +92,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<env_vars revised="false">Variáveis ​​de ambiente</env_vars>
 		<env_path>PATH</env_path>
 		<env_lang>LANG</env_lang>
+		<applications translated="false">Applications</applications>
+		<select_layer translated="false">Select the layer</select_layer>
+		<selected_layer translated="false">Layer selected</selected_layer>
+		<layer_all translated="false">All applications</layer_all>
+		<layer_personal translated="false">Personal applications</layer_personal>
+		<select_apps translated="false">Select the applications</select_apps>
+		<selected_apps translated="false">Applications selected</selected_apps>
 	</common>
 </root>

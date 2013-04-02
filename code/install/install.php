@@ -40,8 +40,11 @@ $_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml"));
 $_ICONSET=eval_attr(xml2array("xml/iconset.xml"));
 // SOME ALLOWED ACTIONS
 if(getParam("action")=="themeroller") {
-	$_CONFIG["cache"]["useimginline"]="false";
-	include("php/action/".getParam("action").".php");
+	global $page;
+	global $action;
+	$page=getParam("page",getDefault("page"));
+	$action=getParam("action",getDefault("action"));
+	include("php/action/".$action.".php");
 }
 // SUPPORT FOR LTR AND RTL LANGS
 $dir=$_LANG["dir"];
@@ -90,16 +93,16 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 		<div class="ui-layout-center" style="margin-left:auto;margin-right:auto;width:800px">
 			<div class="ui-widget">
 				<form name="form">
-					<?php // STEP 0 ?>
-					<?php if(intval(getParam("step"))==0) { ?>
+					<?php $step=0; ?>
+					<?php if(intval(getParam("step"))==$step++) { ?>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 0 - ".LANG("language"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("language"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
-							<input type="hidden" name="step" value="1"/>
+							<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1 ?>"/>
 							<?php echo __BOLD__; ?><?php echo LANG("welcome_message"); ?><?php echo __COLOR__; ?><?php echo __BR__; ?>
 							<?php echo __BR__; ?>
-							<?php echo LANG("lang_message"); ?>
+							<?php echo LANG("lang_message"); ?>:
 							<?php $temp=eval_attr(xml2array("xml/common/langs.xml")); ?>
 							<?php $langs=array(); ?>
 							<?php foreach($temp["rows"] as $row) $langs[$row["value"]]=$row["label"]; ?>
@@ -110,9 +113,8 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 								<?php } ?>
 							</select>
 							<?php echo __BR__; ?>
-							<?php echo LANG("style_message"); ?>
+							<?php echo LANG("style_message"); ?>:
 							<?php $temp=eval_attr(xml2array("xml/common/styles.xml")); ?>
-							<?php if(!isset($temp["rows"]) && isset($temp["rows#1"])) { $temp["rows"]=$temp["rows#1"]; unset($temp["rows#1"]); } ?>
 							<?php $styles=array(); ?>
 							<?php foreach($temp["rows"] as $row) $styles[$row["value"]]=$row["label"]; ?>
 							<select name="style" onchange="document.form.step.value='0';document.form.submit()" <?php echo __UI__; ?>>
@@ -122,7 +124,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 								<?php } ?>
 							</select>
 							<?php echo __BR__; ?>
-							<?php echo LANG("iconset_message"); ?>
+							<?php echo LANG("iconset_message"); ?>:
 							<?php $temp=eval_attr(xml2array("xml/common/iconset.xml")); ?>
 							<?php $iconsets=array(); ?>
 							<?php foreach($temp["rows"] as $row) $iconsets[$row["value"]]=$row["label"]; ?>
@@ -139,13 +141,12 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						<div <?php echo __DIV3__; ?>>
 							<?php echo __NEXT__; ?>
 						</div>
-					<?php // STEP 1 ?>
-					<?php } elseif(intval(getParam("step"))==1) { ?>
+					<?php } elseif(intval(getParam("step"))==$step++) { ?>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 1 - ".LANG("is_writable"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("is_writable"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
-							<input type="hidden" name="step" value="2"/>
+							<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1; ?>"/>
 							<?php $cancontinue=1; ?>
 							<?php $_CONFIG["dirs"][]=getcwd()."/xml"; ?>
 							<?php $_CONFIG["dirs"][]=getcwd()."/install"; ?>
@@ -155,14 +156,14 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							<?php } ?>
 						</div>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 1 - ".LANG("env_vars"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("env_vars"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
 							<?php echo LANG("env_path"); ?>: <input type="text" size="40" onchange="document.form.step.value='1';document.form.submit()" <?php echo __UI__; ?> name="env_path" value="<?php echo getDefault("putenv/PATH"); ?>"/><?php echo __BR__; ?>
 							<?php echo LANG("env_lang"); ?>: <input type="text" size="20" onchange="document.form.step.value='1';document.form.submit()" <?php echo __UI__; ?> name="env_lang" value="<?php echo getDefault("putenv/LANG"); ?>"/><?php echo __BR__; ?>
 						</div>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 1 - ".LANG("is_executable"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("is_executable"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
 							<?php $cancontinue2=1; ?>
@@ -184,16 +185,15 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						<?php unset($_GET["env_path"]); ?>
 						<?php unset($_GET["env_lang"]); ?>
 						<?php foreach($_GET as $key=>$val) echo "<input type='hidden' name='$key' value='$val'/>"; ?>
-					<?php // STEP 2 ?>
-					<?php } elseif(intval(getParam("step"))==2) { ?>
+					<?php } elseif(intval(getParam("step"))==$step++) { ?>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 2 - ".LANG("database_link"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("database_link"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
 							<?php $cancontinue=1; ?>
 							<?php if(!getParam("dbtype")) { ?>
-								<input type="hidden" name="step" value="2"/>
-								<?php echo LANG("select_dbtype"); ?>
+								<input type="hidden" name="step" value="<?php echo intval(getParam("step")); ?>"/>
+								<?php echo LANG("select_dbtype"); ?>:
 								<select name="dbtype" <?php echo __UI__; ?>>
 									<option value="pdo_sqlite">SQLite3 (PDO)<?php echo LANG("select_prefered"); ?></option>
 									<option value="sqlite3">SQLite3 (extension)</option>
@@ -202,7 +202,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 									<option value="mysqli">MariaDB &amp; MySQL (improved extension)</option>
 								</select>
 							<?php } elseif(in_array(getParam("dbtype"),array("pdo_sqlite","sqlite3"))) { ?>
-								<input type="hidden" name="step" value="3"/>
+								<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1; ?>"/>
 								<?php $dbtypes=array("pdo_sqlite"=>"SQLite3 (PDO)","sqlite3"=>"SQLite3 (extension)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype")].__COLOR__; ?><?php echo __BR__; ?>
 								<?php $dbfile=getDefault("db/file"); ?>
@@ -217,15 +217,16 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							<?php } elseif(in_array(getParam("dbtype"),array("pdo_mysql","mysql","mysqli"))) { ?>
 								<?php $dbtypes=array("pdo_mysql"=>"MariaDB &amp; MySQL (PDO)","mysql"=>"MariaDB &amp; MySQL (extension)","mysqli"=>"MariaDB &amp; MySQL (improved extension)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype")].__COLOR__; ?><?php echo __BR__; ?>
+								<?php echo __HR__; ?>
 								<?php if(!getParam("dbhost") || !getParam("dbport") || !getParam("dbname")) { ?>
-									<input type="hidden" name="step" value="2"/>
+									<input type="hidden" name="step" value="<?php echo intval(getParam("step")); ?>"/>
 									<?php echo LANG("dbhost"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="dbhost" value="<?php echo getDefault("db/host"); ?>"/><?php echo __BR__; ?>
 									<?php echo LANG("dbport"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="dbport" value="<?php echo getDefault("db/port"); ?>"/><?php echo __BR__; ?>
 									<?php echo LANG("dbuser"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="dbuser" value="<?php echo getDefault("db/user"); ?>"/><?php echo __BR__; ?>
 									<?php echo LANG("dbpass"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="dbpass" value="<?php echo getDefault("db/pass"); ?>"/><?php echo __BR__; ?>
 									<?php echo LANG("dbname"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="dbname" value="<?php echo getDefault("db/name"); ?>"/><?php echo __BR__; ?>
 								<?php } else { ?>
-									<input type="hidden" name="step" value="3"/>
+									<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1; ?>"/>
 									<?php echo LANG("dbhost"); ?>: <?php echo __GREEN__.getParam("dbhost").__COLOR__; ?><?php echo __BR__; ?>
 									<?php echo LANG("dbport"); ?>: <?php echo __GREEN__.getParam("dbport").__COLOR__; ?><?php echo __BR__; ?>
 									<?php echo LANG("dbuser"); ?>: <?php echo getParam("dbuser")?__GREEN__.getParam("dbuser").__COLOR__:__RED__.LANG("undefined").__COLOR__; ?><?php echo __BR__; ?>
@@ -251,20 +252,18 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						</div>
 						<?php unset($_GET["step"]); ?>
 						<?php foreach($_GET as $key=>$val) echo "<input type='hidden' name='$key' value='$val'/>"; ?>
-					<?php // STEP 3 ?>
-					<?php } elseif(intval(getParam("step"))==3) { ?>
+					<?php } elseif(intval(getParam("step"))==$step++) { ?>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 3 - ".LANG("admin_account"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("admin_account"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
-							<?php $cancontinue=1; ?>
-							<input type="hidden" name="step" value="4"/>
+							<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1; ?>"/>
 							<?php echo LANG("user"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="user" value="<?php echo getParam("user")?getParam("user"):"admin"; ?>"/><?php echo __BR__; ?>
 							<?php echo LANG("pass"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="pass" value="<?php echo getParam("pass")?getParam("pass"):"admin"; ?>"/><?php echo __BR__; ?>
 							<?php echo LANG("email"); ?>: <input type="text" size="40" <?php echo __UI__; ?> name="email" value="<?php echo getParam("email")?getParam("email"):""; ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
 						</div>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 3 - ".LANG("server_config"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("server_config"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
 							<?php echo LANG("timezone"); ?>:
@@ -280,27 +279,16 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							</select>
 							<?php echo __BR__; ?>
 							<?php echo LANG("hostname"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="hostname" value="<?php echo getParam("hostname",getDefault("server/hostname")); ?>"/> (<?php echo LANG("optional"); ?>)<?php echo __BR__; ?>
-							<input type="checkbox" name="forcessl" id="forcessl" value="1" style="vertical-align:-15%" <?php if(eval_bool(getDefault("server/forcessl"))) echo "checked='true'" ?>/><label for="forcessl"><?php echo LANG("forcessl"); ?></label><?php echo __BR__; ?>
+							<input type="checkbox" name="forcessl" id="forcessl" value="1" <?php if(eval_bool(getDefault("server/forcessl"))) echo "checked='true'" ?>/><label style="vertical-align:25%" for="forcessl"><?php echo LANG("forcessl"); ?></label><?php echo __BR__; ?>
 							<?php echo LANG("porthttp"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttp" value="<?php echo getParam("porthttp",getDefault("server/porthttp")); ?>"/><?php echo __BR__; ?>
 							<?php echo LANG("porthttps"); ?>: <input type="text" size="20" <?php echo __UI__; ?> name="porthttps" value="<?php echo getParam("porthttps",getDefault("server/porthttps")); ?>"/><?php echo __BR__; ?>
 						</div>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 3 - ".LANG("initial_data"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("initial_data"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
-							<input type="checkbox" name="exampledata" id="exampledata" value="1" style="vertical-align:-15%"/><label for="exampledata"><?php echo LANG("exampledata"); ?></label><?php echo __BR__; ?>
-							<input type="checkbox" name="streetdata" id="streetdata" value="1" style="vertical-align:-15%"/><label for="streetdata"><?php echo LANG("streetdata"); ?></label><?php echo __BR__; ?>
-							<?php $cancontinue=0; ?>
-							<?php unset($_GET["user"]); ?>
-							<?php unset($_GET["pass"]); ?>
-							<?php unset($_GET["email"]); ?>
-							<?php unset($_GET["timezone"]); ?>
-							<?php unset($_GET["hostname"]); ?>
-							<?php unset($_GET["forcessl"]); ?>
-							<?php unset($_GET["porthttp"]); ?>
-							<?php unset($_GET["porthttps"]); ?>
-							<?php unset($_GET["exampledata"]); ?>
-							<?php unset($_GET["streetdata"]); ?>
+							<input type="checkbox" name="exampledata" id="exampledata" value="1"/><label style="vertical-align:25%" for="exampledata"><?php echo LANG("exampledata"); ?></label><?php echo __BR__; ?>
+							<input type="checkbox" name="streetdata" id="streetdata" value="1"/><label style="vertical-align:25%" for="streetdata"><?php echo LANG("streetdata"); ?></label><?php echo __BR__; ?>
 						</div>
 						<div <?php echo __DIV3__; ?>>
 							<?php echo __BACK__; ?>
@@ -308,11 +296,68 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						</div>
 						<?php unset($_GET["step"]); ?>
 						<?php foreach($_GET as $key=>$val) echo "<input type='hidden' name='$key' value='$val'/>"; ?>
-					<?php // STEP 4 ?>
-					<?php } elseif(intval(getParam("step"))==4) { ?>
-						<input type="hidden" name="step" value="5"/>
+					<?php } elseif(intval(getParam("step"))==$step++) { ?>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 4 - ".LANG("install_input"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("applications"); ?>
+						</div>
+						<div <?php echo __DIV2__; ?>>
+							<?php if(!getParam("layer")) { ?>
+								<input type="hidden" name="step" value="<?php echo intval(getParam("step")); ?>"/>
+								<?php echo LANG("select_layer"); ?>:
+								<?php $temp=eval_attr(xml2array("install/xml/layers.xml")); ?>
+								<select name="layer" <?php echo __UI__; ?>>
+									<?php foreach($temp as $layer) { ?>
+										<option value="<?php echo $layer["name"]; ?>"><?php echo LANG("layer_".$layer["name"]); ?></option>
+									<?php } ?>
+								</select>
+							<?php } else { ?>
+								<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1; ?>"/>
+								<?php $temp=eval_attr(xml2array("install/xml/layers.xml")); ?>
+								<?php $layer=array("name"=>"all","apps"=>array("app"=>"*")); ?>
+								<?php foreach($temp as $temp2) if($temp2["name"]==getParam("layer")) $layer=$temp2; ?>
+								<?php echo LANG("selected_layer"); ?>: <?php echo __GREEN__.LANG("layer_".$layer["name"]).__COLOR__; ?><?php echo __BR__; ?>
+								<?php echo __HR__; ?>
+								<?php $temp=eval_attr(xml2array("xml/dbstatic.xml")); ?>
+								<?php $apps=array(); ?>
+								<?php foreach($temp["tbl_aplicaciones"] as $app) { ?>
+									<?php $exists=0; ?>
+									<?php foreach($temp["tbl_aplicaciones_p"] as $perm) { ?>
+										<?php if($app["id"]==$perm["id_aplicacion"]) $exists=1; ?>
+									<?php } ?>
+									<?php if($exists) $apps[]=array("id"=>$app["id"],"codigo"=>$app["codigo"],"nombre"=>$app["nombre"],"checked"=>in_array($app["codigo"],$layer["apps"]) || in_array("*",$layer["apps"])); ?>
+								<?php } ?>
+								<?php $count=0; ?>
+								<table class="width100" cellpadding="0" cellspacing="0" border="0" style="font:inherit">
+									<tr>
+										<td class="width1 nowrap top">
+											<?php echo LANG("select_apps"); ?>:
+										</td>
+										<td>
+											<table class="width100" cellpadding="0" cellspacing="0" border="0" style="font:inherit">
+												<?php foreach($apps as $app) { ?>
+													<?php if($count%4==0) { ?><tr><?php } ?>
+													<td class="width25">
+														<input type="checkbox" name="_<?php echo $app["id"]; ?>" id="_<?php echo $app["id"]; ?>" value="1" <?php if(eval_bool($app["checked"])) echo "checked='true'" ?>/><label style="vertical-align:25%" for="_<?php echo $app["id"]; ?>"><?php echo $app["nombre"]; ?></label>
+													</td>
+													<?php if($count%4==3) { ?></tr><?php } ?>
+													<?php $count++; ?>
+												<?php } ?>
+											</table>
+										</td>
+									</tr>
+								</table>
+							<?php } ?>
+						</div>
+						<div <?php echo __DIV3__; ?>>
+							<?php echo __BACK__; ?>
+							<?php echo __NEXT__; ?>
+						</div>
+						<?php unset($_GET["step"]); ?>
+						<?php foreach($_GET as $key=>$val) echo "<input type='hidden' name='$key' value='$val'/>"; ?>
+					<?php } elseif(intval(getParam("step"))==$step++) { ?>
+						<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1; ?>"/>
+						<div <?php echo __DIV1__; ?>>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("install_input"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
 							<b><?php echo LANG("language"); ?></b><?php echo __BR__; ?>
@@ -383,6 +428,25 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							<b><?php echo LANG("initial_data"); ?>:</b><?php echo __BR__; ?>
 							<?php echo LANG("exampledata"); ?>: <?php echo getParam("exampledata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
 							<?php echo LANG("streetdata"); ?>: <?php echo getParam("streetdata")?__GREEN__.__YES__.__COLOR__:__RED__.__NO__.__COLOR__; ?><?php echo __BR__; ?>
+							<?php echo __HR__; ?>
+							<b><?php echo LANG("applications"); ?>:</b><?php echo __BR__; ?>
+							<?php $temp=eval_attr(xml2array("install/xml/layers.xml")); ?>
+							<?php $layer=array("name"=>"all","apps"=>array("app"=>"*")); ?>
+							<?php foreach($temp as $temp2) if($temp2["name"]==getParam("layer")) $layer=$temp2; ?>
+							<?php echo LANG("selected_layer"); ?>: <?php echo __GREEN__.LANG("layer_".$layer["name"]).__COLOR__; ?><?php echo __BR__; ?>
+							<?php $temp=eval_attr(xml2array("xml/dbstatic.xml")); ?>
+							<?php $apps=array(); ?>
+							<?php foreach($temp["tbl_aplicaciones"] as $app) if(getParam("_".$app["id"])) $apps[]=$app["nombre"]; ?>
+							<?php if(!count($apps)) { ?>
+								<?php foreach($temp["tbl_aplicaciones"] as $app) { ?>
+									<?php $exists=0; ?>
+									<?php foreach($temp["tbl_aplicaciones_p"] as $perm) { ?>
+										<?php if($app["id"]==$perm["id_aplicacion"]) $exists=1; ?>
+									<?php } ?>
+									<?php if($exists) if(in_array($app["codigo"],$layer["apps"]) || in_array("*",$layer["apps"])) $apps[]=$app["nombre"]; ?>
+								<?php } ?>
+							<?php } ?>
+							<?php echo LANG("selected_apps"); ?>: <?php echo __GREEN__.implode(", ",$apps).__COLOR__; ?><?php echo __BR__; ?>
 						</div>
 						<div <?php echo __DIV3__; ?>>
 							<?php echo __BACK__; ?>
@@ -390,10 +454,9 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 						</div>
 						<?php unset($_GET["step"]); ?>
 						<?php foreach($_GET as $key=>$val) echo "<input type='hidden' name='$key' value='$val'/>"; ?>
-					<?php // STEP 5 ?>
-					<?php } elseif(intval(getParam("step"))==5) { ?>
+					<?php } elseif(intval(getParam("step"))==$step++) { ?>
 						<div <?php echo __DIV1__; ?>>
-							<?php echo LANG("step")." 5 - ".LANG("install_output"); ?>
+							<?php echo LANG("step")." ".intval(getParam("step"))." - ".LANG("install_output"); ?>
 						</div>
 						<div <?php echo __DIV2__; ?>>
 							<?php
@@ -561,7 +624,19 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 								$query="SELECT COUNT(*) FROM tbl_grupos_p";
 								$numrows=execute_query($query);
 								if(!$numrows) {
-									$query="INSERT INTO tbl_grupos_p SELECT NULL id,a.id id_grupo,b.id_aplicacion id_aplicacion,b.id_permiso id_permiso,'1' allow,'0' deny FROM tbl_grupos a,tbl_aplicaciones_p b";
+									$temp=eval_attr(xml2array("install/xml/layers.xml"));
+									$layer=array("name"=>"all","apps"=>array("app"=>"*"));
+									foreach($temp as $temp2) if($temp2["name"]==getParam("layer")) $layer=$temp2;
+									$temp=eval_attr(xml2array("xml/dbstatic.xml"));
+									$apps=array();
+									foreach($temp["tbl_aplicaciones"] as $app) if(getParam("_".$app["id"])) $apps[]=$app["id"];
+									if(!count($apps)) {
+										foreach($temp["tbl_aplicaciones"] as $app) {
+											if(in_array($app["codigo"],$layer["apps"]) || in_array("*",$layer["apps"])) $apps[]=$app["id"];
+										}
+									}
+									$apps=implode(",",$apps);
+									$query="INSERT INTO tbl_grupos_p SELECT NULL id,a.id id_grupo,b.id_aplicacion id_aplicacion,b.id_permiso id_permiso,'1' allow,'0' deny FROM tbl_grupos a,tbl_aplicaciones_p b WHERE b.id_aplicacion IN ($apps)";
 									db_query($query);
 									echo __YES__.__BR__;
 								} else {
