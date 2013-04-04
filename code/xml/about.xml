@@ -254,7 +254,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.0.009 (LGPL-3.0)</label>
+							<label>TCPDF 6.0.010 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -272,7 +272,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.codeplex.com/PHPExcel")</onclick>
 						</field>
 						<field>
-							<label>PHPLOT 5.8.0 (LGPL-2.1)</label>
+							<label>PHPLOT 6.0.0 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://sourceforge.net/projects/phplot/")</onclick>
@@ -298,7 +298,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.rcdtokyo.com/etc/gdataapis/")</onclick>
 						</field>
 						<field>
-							<label>PHP Mobile Detect 2.5.8 (MIT)</label>
+							<label>PHP Mobile Detect 2.5.9 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
@@ -474,7 +474,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
 						</field>
 						<field>
-							<label>Form 3.31 (MIT &amp; GPL*)</label>
+							<label>Form 3.32 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>

@@ -575,13 +575,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	// TRICK FOR OLD BROWSERS
-	var ignore_onhashchange=0;
+	var ignore_hashchange=0;
 
 	function history_pushState(url) {
 		// TRICK FOR OLD BROWSERS
 		if(typeof(history.pushState)!='function') {
 			if(window.location.href!=url) {
-				ignore_onhashchange=1;
+				ignore_hashchange=1;
 				window.location.href=url;
 			}
 			return;
@@ -590,7 +590,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		history.pushState(null,null,url);
 		// CHECK FOR SOME FUCKED BROWSERS
 		if(window.location.href!=url) {
-			ignore_onhashchange=1;
+			ignore_hashchange=1;
 			window.location.href=url;
 		}
 	}
@@ -599,7 +599,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// TRICK FOR OLD BROWSERS
 		if(typeof(history.replaceState)!='function') {
 			if(window.location.href!=url) {
-				ignore_onhashchange=1;
+				ignore_hashchange=1;
 				window.location.replace(url);
 			}
 			return;
@@ -608,7 +608,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		history.replaceState(null,null,url);
 		// CHECK FOR SOME FUCKED BROWSERS
 		if(window.location.href!=url) {
-			ignore_onhashchange=1;
+			ignore_hashchange=1;
 			window.location.replace(url);
 		}
 	}
@@ -616,8 +616,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	function init_history() {
 		$(window).bind("hashchange",function() {
 			// TRICK FOR OLD BROWSERS
-			if(ignore_onhashchange) {
-				ignore_onhashchange=0;
+			if(ignore_hashchange) {
+				ignore_hashchange=0;
 				return;
 			}
 			// NORMAL CODE
@@ -652,7 +652,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			return;
 		}
 		if(url=="error") {
-			ignore_onhashchange=1;
+			ignore_hashchange=1;
 			history.go(-1);
 			return;
 		}
