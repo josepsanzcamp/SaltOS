@@ -241,7 +241,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery-2.0.0b2.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
-			<include>lib/jquery/jquery.mobile-1.3.0.min.js</include>
+			<include>lib/jquery/jquery.mobile-1.3.1.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.js</include>
 		</cache>
 	</javascript>
