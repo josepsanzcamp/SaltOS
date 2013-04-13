@@ -480,7 +480,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
 						</field>
 						<field>
-							<label>jGrowl 1.2.11 (MIT &amp; GPL*)</label>
+							<label>jGrowl 1.2.12 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://stanlemon.net/projects/jgrowl.html")</onclick>
@@ -506,7 +506,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.2.22 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.2.24 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>

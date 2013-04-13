@@ -8,8 +8,8 @@
  *  - http://www.gnu.org/copyleft/gpl.html
  *
  * Author: Mark J Panaghiston
- * Version: 2.2.22
- * Date: 29th March 2013
+ * Version: 2.2.24
+ * Date: 12th April 2013
  */
 
 /* Code verified using http://www.jshint.com/ */
@@ -454,8 +454,8 @@
 	$.jPlayer.prototype = {
 		count: 0, // Static Variable: Change it via prototype.
 		version: { // Static Object
-			script: "2.2.22",
-			needFlash: "2.2.20",
+			script: "2.2.24",
+			needFlash: "2.2.23",
 			flash: "unknown"
 		},
 		options: { // Instanced in $.jPlayer() constructor
@@ -489,7 +489,7 @@
 				gui: ".jp-gui", // The interface used with autohide feature.
 				noSolution: ".jp-no-solution" // For error feedback when jPlayer cannot find a solution.
 			},
-			smoothPlayBar: true, // Smooths the play bar transitions, which affects clicks and short media with big changes per second.
+			smoothPlayBar: false, // Smooths the play bar transitions, which affects clicks and short media with big changes per second.
 			fullScreen: false, // Native Full Screen
 			fullWindow: false,
 			autohide: {
