@@ -1,6 +1,6 @@
 /*!
  * jQuery blockUI plugin
- * Version 2.59.0-2013.04.05
+ * Version 2.60.0-2013.04.05
  * @requires jQuery v1.7 or later
  *
  * Examples at: http://malsup.com/jquery/block/
@@ -81,7 +81,7 @@
 			});
 		};
 
-		$.blockUI.version = 2.59; // 2nd generation blocking at no extra cost!
+		$.blockUI.version = 2.60; // 2nd generation blocking at no extra cost!
 
 		// override these in your code to change the default behavior and style
 		$.blockUI.defaults = {
@@ -185,6 +185,9 @@
 			// if true, focus will be placed in the first available input field when
 			// page blocking
 			focusInput: true,
+            
+            // elements that can receive focus
+            focusableElements: ':input:enabled:visible',
 
 			// suppresses the use of overlay styles on FF/Linux (due to performance issues with opacity)
 			// no longer needed in 2012
@@ -405,7 +408,7 @@
 
 			if (full) {
 				pageBlock = lyr3[0];
-				pageBlockEls = $(':input:enabled:visible',pageBlock);
+				pageBlockEls = $(opts.focusableElements,pageBlock);
 				if (opts.focusInput)
 					setTimeout(focus, 20);
 			}
