@@ -112,7 +112,6 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 		if(!exists_voice()) return;
 		$("body").append("<div id='voice'></div>");
 		$("#voice").jPlayer({
-			swfPath:"lib/jquery/jquery.jplayer.swf",
 			volume:1,
 			play:function() {
 				voice_playing=1;
@@ -126,10 +125,10 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 				voice_executing=0;
 				toolbar_voice();
 			},
-			errorAlerts:false,
+			errorAlerts:true,
 			warningAlerts:false,
-			solution:"html,flash",
-			supplied:"mp3",
+			solution:"html",
+			supplied:"oga",
 			ready:function() {
 				setInterval(function() {
 					if(voice_executing) {
@@ -137,7 +136,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 					} else if(voice_texts.length>0) {
 						var text=voice_texts.shift();
 						var url="xml.php?action=voice&text="+rawurlencode(text);
-						$("#voice").jPlayer("setMedia",{ mp3:url });
+						$("#voice").jPlayer("setMedia",{ oga:url });
 						$("#voice").jPlayer("play");
 						voice_executing=1;
 						toolbar_voice();

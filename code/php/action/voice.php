@@ -27,26 +27,26 @@ if(!check_user()) action_denied();
 if(getParam("action")=="voice") {
 	require_once("php/translate.php");
 	// SOME CHECKS
-	if(!check_commands(array(getDefault("commands/text2wave"),getDefault("commands/ffmpeg")),60)) action_denied();
+	if(!check_commands(array(getDefault("commands/text2wave"),getDefault("commands/wavetoogg")),60)) action_denied();
 	// NORMAL OPERATION
 	$text=getParam("text");
 	$dirhash=get_directory("dirs/cachedir").md5(serialize(array("voice",$text)));
-	$cache=$dirhash.getDefault("exts/mp3ext",".mp3");
+	$cache=$dirhash.getDefault("exts/oggext",".ogg");
 	//if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
-		// DETECT THE LANG AND OVERWRITE THE COMMAND/__TEXT2WAVE__
-		$langs=__translate_detect_aspell_langs(stripslashes($text));
-		$__text2wave__="__text2wave__";
-		if(getDefault("commands/__text2wave_${langs[0]}__")) $__text2wave__="__text2wave_${langs[0]}__";
 		// CONVERT THE TEXT 2 VOICE IN WAV FORMAT
 		$textcache=$dirhash.getDefault("exts/textext",".txt");
 		file_put_contents($textcache,utf8_decode($text));
 		$wavcache=$dirhash.getDefault("exts/wavext",".wav");
-		ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/${__text2wave__}")));
+		// DETECT THE LANG TO USE THE APPROPRIATE COMMAND/__TEXT2WAVE_XX__
+		$langs=__translate_detect_aspell_langs(stripslashes($text));
+		if(getDefault("commands/__text2wave_${langs[0]}__")) ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/__text2wave_${langs[0]}__")));
+		// CONTINUE WITH DEFAULT COMMAND/__TEXT2WAVE__ IF NEEDED
+		if(!file_exists($wavcache)) ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/__text2wave__")));
 		unlink($textcache);
 		if(!file_exists($wavcache)) action_denied();
-		// CONVERT THE WAV TO MP3 FORMAT
-		ob_passthru(getDefault("commands/ffmpeg")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($wavcache,$cache),getDefault("commands/__ffmpeg__")));
+		// CONVERT THE WAV TO OGG FORMAT
+		ob_passthru(getDefault("commands/wavetoogg")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($wavcache,$cache),getDefault("commands/__wavetoogg__")));
 		unlink($wavcache);
 		if(!file_exists($cache)) action_denied();
 		chmod_protected($cache,0666);

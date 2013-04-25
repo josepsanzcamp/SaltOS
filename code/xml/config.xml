@@ -134,7 +134,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tarext>.tar</tarext>
 		<excelext>.xls</excelext>
 		<wavext>.wav</wavext>
-		<mp3ext>.mp3</mp3ext>
+		<oggext>.ogg</oggext>
 		<htmlext>.htm</htmlext>
 		<sqlext>.sql</sqlext>
 		<csvext>.csv</csvext>
@@ -167,11 +167,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
 		<__pdftotext__>-nopgbrk __INPUT__ __OUTPUT__</__pdftotext__>
 		<text2wave>text2wave</text2wave><!-- for voice module -->
-		<__text2wave__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave__>
+		<__text2wave__>__INPUT__ -o __OUTPUT__</__text2wave__>
 		<__text2wave_es__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave_es__>
 		<__text2wave_en__>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</__text2wave_en__>
-		<ffmpeg>ffmpeg</ffmpeg><!-- for voice module -->
-		<__ffmpeg__>-i __INPUT__ -ar 44100 -ab 64k __OUTPUT__</__ffmpeg__>
+		<wavetoogg>oggenc</wavetoogg><!-- for voice module -->
+		<__wavetoogg__>__INPUT__ -o __OUTPUT__</__wavetoogg__>
 		<apertium>apertium</apertium><!-- for translate module -->
 		<__apertium__>-f txtu __LANGS__ &lt; __INPUT__</__apertium__>
 		<__apertium_langs__>-l</__apertium_langs__>

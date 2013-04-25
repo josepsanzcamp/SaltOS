@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap shortcut_ctrl_m</class>
 		</option>
 	</header>
-	<header ifeval="!is_mobile() &amp;&amp; check_commands(array(getDefault('commands/text2wave'),getDefault('commands/ffmpeg')),60)">
+	<header ifeval="!is_mobile() &amp;&amp; check_commands(array(getDefault('commands/text2wave'),getDefault('commands/wavetoogg')),60)">
 		<class>left</class>
 		<option>
 			<label lang="true">playvoice</label>
