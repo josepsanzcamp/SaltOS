@@ -499,6 +499,6 @@ function ob_start_protected($param="") {
 }
 
 function isphp54() {
-	return version_compare(PHP_VERSION,"5.4","ge");
+	return version_compare(PHP_VERSION,"5.4",">=");
 }
 ?>
