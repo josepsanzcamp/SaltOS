@@ -38,6 +38,7 @@ function db_connect_sqlite3() {
 		db_query_sqlite3("PRAGMA cache_size=2000");
 		db_query_sqlite3("PRAGMA synchronous=OFF");
 		db_query_sqlite3("PRAGMA count_changes=OFF");
+		db_query_sqlite3("PRAGMA temp_store=MEMORY");
 		db_query_sqlite3("PRAGMA foreign_keys=OFF");
 		if(!__sqlite3_group_concat_check()) getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize");
 		getDefault("db/link")->createFunction("LPAD","__sqlite3_lpad");
