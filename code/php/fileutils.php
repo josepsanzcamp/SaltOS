@@ -110,70 +110,62 @@ function addlog($msg,$file="") {
 }
 
 function semaphore_acquire($file,$timeout=100000) {
-	global $_SEMAPHORE;
-	if(!isset($_SEMAPHORE)) $_SEMAPHORE=array();
-	$hash=md5($file);
-	if(!isset($_SEMAPHORE[$hash])) $_SEMAPHORE[$hash]=null;
-	init_random();
-	while($timeout>=0) {
-		if(!$_SEMAPHORE[$hash]) break;
-		$usleep=rand(0,1000);
-		usleep($usleep);
-		$timeout-=$usleep;
-	}
-	if($timeout<0) {
-		return false;
-	}
-	while($timeout>=0) {
-		capture_next_error();
-		$_SEMAPHORE[$hash]=fopen($file,"a");
-		get_clear_error();
-		if($_SEMAPHORE[$hash]) break;
-		$usleep=rand(0,1000);
-		usleep($usleep);
-		$timeout-=$usleep;
-	}
-	if($timeout<0) {
-		return false;
-	}
-	chmod_protected($file,0666);
-	touch_protected($file);
-	while($timeout>=0) {
-		capture_next_error();
-		$result=flock($_SEMAPHORE[$hash],LOCK_EX|LOCK_NB);
-		get_clear_error();
-		if($result) break;
-		$usleep=rand(0,1000);
-		usleep($usleep);
-		$timeout-=$usleep;
-	}
-	if($timeout<0) {
-		if($_SEMAPHORE[$hash]) {
-			capture_next_error();
-			fclose($_SEMAPHORE[$hash]);
-			get_clear_error();
-			$_SEMAPHORE[$hash]=null;
-		}
-		return false;
-	}
-	return true;
+	return __semaphore_helper(__FUNCTION__,$file,$timeout);
 }
 
 function semaphore_release($file) {
-	global $_SEMAPHORE;
+	return __semaphore_helper(__FUNCTION__,$file,null);
+}
+
+function __semaphore_helper($fn,$file,$timeout) {
+	static $stack=array();
 	$hash=md5($file);
-	if($_SEMAPHORE[$hash]) {
-		capture_next_error();
-		flock($_SEMAPHORE[$hash],LOCK_UN);
-		get_clear_error();
-		capture_next_error();
-		fclose($_SEMAPHORE[$hash]);
-		get_clear_error();
-		$_SEMAPHORE[$hash]=null;
-	} else {
-		return false;
+	if(!isset($stack[$hash])) $stack[$hash]=null;
+	if(stripos($fn,"acquire")!==false) {
+		init_random();
+		if($stack[$hash]) return false;
+		while($timeout>=0) {
+			capture_next_error();
+			$stack[$hash]=fopen($file,"a");
+			get_clear_error();
+			if($stack[$hash]) break;
+			$timeout-=usleep_protected(rand(0,1000));
+		}
+		if($timeout<0) {
+			return false;
+		}
+		chmod_protected($file,0666);
+		touch_protected($file);
+		while($timeout>=0) {
+			capture_next_error();
+			$result=flock($stack[$hash],LOCK_EX|LOCK_NB);
+			get_clear_error();
+			if($result) break;
+			$timeout-=usleep_protected(rand(0,1000));
+		}
+		if($timeout<0) {
+			if($stack[$hash]) {
+				capture_next_error();
+				fclose($stack[$hash]);
+				get_clear_error();
+				$stack[$hash]=null;
+			}
+			return false;
+		}
+		return true;
 	}
-	return true;
+	if(stripos($fn,"release")!==false) {
+		if(!$stack[$hash]) return false;
+		capture_next_error();
+		flock($stack[$hash],LOCK_UN);
+		get_clear_error();
+		capture_next_error();
+		fclose($stack[$hash]);
+		get_clear_error();
+		$stack[$hash]=null;
+		return true;
+	}
+	return false;
 }
 
 function semi_realpath($file) {

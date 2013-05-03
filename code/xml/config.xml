@@ -216,7 +216,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery-2.0.0.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
-			<include>lib/jquery/jquery-ui-1.10.2.min.js</include>
+			<include>lib/jquery/jquery-ui-1.10.3.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.js</include>
 			<include>lib/jquery/jquery.blockUI.js</include>
 			<include>lib/jquery/jquery.jgrowl.js</include>

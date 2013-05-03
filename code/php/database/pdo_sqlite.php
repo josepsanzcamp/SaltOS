@@ -37,8 +37,6 @@ function db_connect_pdo_sqlite() {
 	if(getDefault("db/link")) {
 		db_query_pdo_sqlite("PRAGMA cache_size=2000");
 		db_query_pdo_sqlite("PRAGMA synchronous=OFF");
-		db_query_pdo_sqlite("PRAGMA count_changes=OFF");
-		db_query_pdo_sqlite("PRAGMA temp_store=MEMORY");
 		db_query_pdo_sqlite("PRAGMA foreign_keys=OFF");
 		if(!__pdo_sqlite_group_concat_check()) getDefault("db/link")->sqliteCreateAggregate("GROUP_CONCAT","__pdo_sqlite_group_concat_step","__pdo_sqlite_group_concat_finalize");
 		getDefault("db/link")->sqliteCreateFunction("LPAD","__pdo_sqlite_lpad");

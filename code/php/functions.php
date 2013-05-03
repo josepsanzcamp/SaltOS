@@ -1146,4 +1146,17 @@ function debug($name,$end=0) {
 function debugEnd($name) {
 	debug($name,1);
 }
+
+function usleep_protected($usec) {
+	$socket=socket_create(AF_UNIX,SOCK_STREAM,0);
+	$read=null;
+	$write=null;
+	$except=array($socket);
+	capture_next_error();
+	$time1=microtime(true);
+	socket_select($read,$write,$except,intval($usec/1000000),intval($usec%1000000));
+	$time2=microtime(true);
+	get_clear_error();
+	return ($time2-$time1)*1000000;
+}
 ?>
