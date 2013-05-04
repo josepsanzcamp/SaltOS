@@ -152,6 +152,8 @@ function __semaphore_helper($fn,$file,$timeout) {
 			}
 			return false;
 		}
+		ftruncate($stack[$hash],0);
+		fwrite($stack[$hash],getmypid());
 		return true;
 	}
 	if(stripos($fn,"release")!==false) {
