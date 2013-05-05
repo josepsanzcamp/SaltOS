@@ -30,11 +30,11 @@ function db_connect_sqlite3() {
 	if(!is_writable(getDefault("db/file"))) { db_error_sqlite3(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	try {
 		$_CONFIG["db"]["link"]=new SQLite3(getDefault("db/file"));
-		getDefault("db/link")->busyTimeout(60000);
 	} catch(SQLite3Exception $e) {
 		db_error_sqlite3(array("exception"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
+		getDefault("db/link")->busyTimeout(0);
 		db_query_sqlite3("PRAGMA cache_size=2000");
 		db_query_sqlite3("PRAGMA synchronous=OFF");
 		db_query_sqlite3("PRAGMA foreign_keys=OFF");

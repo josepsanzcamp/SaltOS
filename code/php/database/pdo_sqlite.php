@@ -30,11 +30,12 @@ function db_connect_pdo_sqlite() {
 	if(!is_writable(getDefault("db/file"))) { db_error_pdo_sqlite(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	try {
 		$_CONFIG["db"]["link"]=new PDO("sqlite:".getDefault("db/file"));
-		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 	} catch(PDOException $e) {
 		db_error_pdo_sqlite(array("exception"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
+		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
+		getDefault("db/link")->setAttribute(PDO::ATTR_TIMEOUT,0);
 		db_query_pdo_sqlite("PRAGMA cache_size=2000");
 		db_query_pdo_sqlite("PRAGMA synchronous=OFF");
 		db_query_pdo_sqlite("PRAGMA foreign_keys=OFF");

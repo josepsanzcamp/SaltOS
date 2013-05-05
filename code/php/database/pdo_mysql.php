@@ -28,11 +28,11 @@ function db_connect_pdo_mysql() {
 	if(!class_exists("PDO")) { db_error_pdo_mysql(array("phperror"=>"Class PDO not found","details"=>"Try to install php-mysqlnd package")); return; }
 	try {
 		$_CONFIG["db"]["link"]=new PDO("mysql:host=".getDefault("db/host").";port=".getDefault("db/port").";dbname=".getDefault("db/name"),getDefault("db/user"),getDefault("db/pass"));
-		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 	} catch(PDOException $e) {
 		db_error_pdo_mysql(array("exception"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
+		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
 		db_query_pdo_mysql("SET NAMES 'UTF8'");
 		db_query_pdo_mysql("SET FOREIGN_KEY_CHECKS=0");
 		db_query_pdo_mysql("SET GROUP_CONCAT_MAX_LEN:=@@MAX_ALLOWED_PACKET");
