@@ -29,10 +29,10 @@ function db_connect_pdo_mysql() {
 	try {
 		$_CONFIG["db"]["link"]=new PDO("mysql:host=".getDefault("db/host").";port=".getDefault("db/port").";dbname=".getDefault("db/name"),getDefault("db/user"),getDefault("db/pass"));
 	} catch(PDOException $e) {
-		db_error_pdo_mysql(array("exception"=>$e->getMessage()));
+		db_error_pdo_mysql(array("dberror"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
-		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
+		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 		db_query_pdo_mysql("SET NAMES 'UTF8'");
 		db_query_pdo_mysql("SET FOREIGN_KEY_CHECKS=0");
 		db_query_pdo_mysql("SET GROUP_CONCAT_MAX_LEN:=@@MAX_ALLOWED_PACKET");
@@ -45,12 +45,8 @@ function __db_query_pdo_mysql_helper($query) {
 		// DO QUERY
 		try {
 			$data=getDefault("db/link")->query($query);
-			if($data===false) {
-				$error=getDefault("db/link")->errorInfo();
-				if(isset($error[2])) db_error_pdo_mysql(array("dberror"=>$error[2],"query"=>$query));
-			}
 		} catch(PDOException $e) {
-			db_error_pdo_mysql(array("exception"=>$e->getMessage(),"query"=>$query));
+			db_error_pdo_mysql(array("dberror"=>$e->getMessage(),"query"=>$query));
 		}
 		// DUMP RESULT TO MATRIX
 		if($data && $data->columnCount()>0) {

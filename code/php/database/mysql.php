@@ -26,8 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 function db_connect_mysql() {
 	global $_CONFIG;
 	if(!function_exists("mysql_connect")) { db_error_mysql(array("phperror"=>"mysql_connect not found","details"=>"Try to install php-mysqlnd package")); return; }
-	$_CONFIG["db"]["link"]=mysql_connect(getDefault("db/host").":".getDefault("db/port"),getDefault("db/user"),getDefault("db/pass")) or db_error_mysql(array("dberror"=>"mysql_connect()"));
-	mysql_select_db(getDefault("db/name"),getDefault("db/link")) or db_error_mysql(array("dberror"=>"mysql_select_db()"));
+	$_CONFIG["db"]["link"]=mysql_connect(getDefault("db/host").":".getDefault("db/port"),getDefault("db/user"),getDefault("db/pass")) or db_error_mysql(array("dberror"=>mysql_error(getDefault("db/link"))));
+	mysql_select_db(getDefault("db/name"),getDefault("db/link")) or db_error_mysql(array("dberror"=>mysql_error(getDefault("db/link"))));
 	if(getDefault("db/link")) {
 		db_query_mysql("SET NAMES 'UTF8'");
 		db_query_mysql("SET FOREIGN_KEY_CHECKS=0");

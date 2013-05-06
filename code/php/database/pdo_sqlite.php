@@ -31,10 +31,10 @@ function db_connect_pdo_sqlite() {
 	try {
 		$_CONFIG["db"]["link"]=new PDO("sqlite:".getDefault("db/file"));
 	} catch(PDOException $e) {
-		db_error_pdo_sqlite(array("exception"=>$e->getMessage()));
+		db_error_pdo_sqlite(array("dberror"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
-		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
+		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 		getDefault("db/link")->setAttribute(PDO::ATTR_TIMEOUT,0);
 		db_query_pdo_sqlite("PRAGMA cache_size=2000");
 		db_query_pdo_sqlite("PRAGMA synchronous=OFF");
@@ -144,14 +144,24 @@ function __db_query_pdo_sqlite_helper($query) {
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
 	if($query) {
 		// DO QUERY
-		try {
-			$data=getDefault("db/link")->query($query);
-			if($data===false) {
-				$error=getDefault("db/link")->errorInfo();
-				if(isset($error[2])) db_error_pdo_sqlite(array("dberror"=>$error[2],"query"=>$query));
+		$timeout=getDefault("db/semaphoretimeout",10000000);
+		while(1) {
+			try {
+				$data=getDefault("db/link")->query($query);
+				break;
+			} catch(PDOException $e) {
+				if($timeout<=0) {
+					db_error_pdo_sqlite(array("dberror"=>$e->getMessage(),"query"=>$query));
+					break;
+				} elseif(stripos($e->getMessage(),"database is locked")!==false) {
+					$timeout-=usleep_protected(rand(0,1000));
+				} elseif(stripos($e->getMessage(),"database schema has changed")!==false) {
+					$timeout-=usleep_protected(rand(0,1000));
+				} else {
+					db_error_pdo_sqlite(array("dberror"=>$e->getMessage(),"query"=>$query));
+					break;
+				}
 			}
-		} catch(PDOException $e) {
-			db_error_pdo_sqlite(array("exception"=>$e->getMessage(),"query"=>$query));
 		}
 		// DUMP RESULT TO MATRIX
 		if($data && $data->columnCount()>0) {

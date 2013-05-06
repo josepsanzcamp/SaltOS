@@ -28,11 +28,10 @@ function db_connect_sqlite3() {
 	if(!class_exists("SQLite3")) { db_error_sqlite3(array("phperror"=>"Class SQLite3 not found","details"=>"Try to install php-pdo package")); return; }
 	if(!file_exists(getDefault("db/file"))) { db_error_sqlite3(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
 	if(!is_writable(getDefault("db/file"))) { db_error_sqlite3(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
-	try {
-		$_CONFIG["db"]["link"]=new SQLite3(getDefault("db/file"));
-	} catch(SQLite3Exception $e) {
-		db_error_sqlite3(array("exception"=>$e->getMessage()));
-	}
+	capture_next_error();
+	$_CONFIG["db"]["link"]=new SQLite3(getDefault("db/file"));
+	$error=get_clear_error();
+	if($error) db_error_sqlite3(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg()));
 	if(getDefault("db/link")) {
 		getDefault("db/link")->busyTimeout(0);
 		db_query_sqlite3("PRAGMA cache_size=2000");
@@ -143,14 +142,23 @@ function __db_query_sqlite3_helper($query) {
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
 	if($query) {
 		// DO QUERY
-		try {
+		$timeout=getDefault("db/semaphoretimeout",10000000);
+		while(1) {
+			capture_next_error();
 			$data=getDefault("db/link")->query($query);
-			if($data===false) {
-				$error=getDefault("db/link")->errorInfo();
-				if(isset($error[2])) db_error_sqlite3(array("dberror"=>$error[2],"query"=>$query));
+			$error=get_clear_error();
+			if(!$error) break;
+			if($timeout<=0) {
+				db_error_sqlite3(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg(),"query"=>$query));
+				break;
+			} elseif(stripos($error,"database is locked")!==false) {
+				$timeout-=usleep_protected(rand(0,1000));
+			} elseif(stripos($error,"database schema has changed")!==false) {
+				$timeout-=usleep_protected(rand(0,1000));
+			} else {
+				db_error_sqlite3(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg(),"query"=>$query));
+				break;
 			}
-		} catch(SQLite3Exception $e) {
-			db_error_sqlite3(array("exception"=>$e->getMessage(),"query"=>$query));
 		}
 		// DUMP RESULT TO MATRIX
 		if($data && $data->numColumns()) {

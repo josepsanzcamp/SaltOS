@@ -221,11 +221,15 @@ if(getParam("action")=="themeroller") {
 							$bgcolor=$array["bgColor".substr($key2,$len)];
 							$bgimgopacity=$array["bgImgOpacity".substr($key2,$len)];
 							$bgalpha=isset($array["bgAlpha".substr($key2,$len)])?$array["bgAlpha".substr($key2,$len)]:"ffffff";
+							$bgImage=glob($xml[$type]["imgbase"]."*${val2}.png");
+							if(!isset($bgImage[0])) show_php_error(array("phperror"=>"bgImage '${val2}' not found"));
+							if(!file_exists($bgImage[0])) show_php_error(array("phperror"=>"bgImage '${bgImage[0]}' not found"));
+							$bgImage=basename($bgImage[0]);
 							if(eval_bool(getDefault("cache/useimginline"))) {
 								if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 								require_once("php/listsim.php");
 								saltos_context($page,$action);
-								setParam("over","${val2},${bgcolor},${bgimgopacity},${bgalpha}");
+								setParam("over","${bgImage},${bgcolor},${bgimgopacity},${bgalpha}");
 								ob_start();
 								$oldcache=$cache;
 								include(__FILE__);
@@ -235,9 +239,10 @@ if(getParam("action")=="themeroller") {
 								$data="data:image/png;base64,${data}";
 								$array["bgImgUrl".substr($key2,$len)]="url(${data})";
 							} else {
-								$array["bgImgUrl".substr($key2,$len)]="url(xml.php?action=themeroller&over=${val2},${bgcolor},${bgimgopacity},${bgalpha})";
+								$array["bgImgUrl".substr($key2,$len)]="url(xml.php?action=themeroller&over=${bgImage},${bgcolor},${bgimgopacity},${bgalpha})";
 							}
-							$csstrick=__themeroller_csstrick($val2,$xml[$type]["csstrick"]);
+							if(!isset($xml[$type]["csstrick"][$val2])) show_php_error(array("phperror"=>"csstrick '${val2}' not found"));
+							$csstrick=explode(",",$xml[$type]["csstrick"][$val2]);
 							$array["bg".substr($key2,$len)."XPos"]=$csstrick[0];
 							$array["bg".substr($key2,$len)."YPos"]=$csstrick[1];
 							$array["bg".substr($key2,$len)."Repeat"]=$csstrick[2];
