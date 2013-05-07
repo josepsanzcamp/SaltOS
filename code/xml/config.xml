@@ -102,10 +102,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<iconsetpost>&amp;format=css</iconsetpost>
 		<forcelang></forcelang>
 		<forcestyle></forcestyle>
-		<forceiconset eval="true">is_mobile()?"mobile":""</forceiconset>
-		<forcecss eval="true">is_mobile()?"mobile":""</forcecss>
-		<forcejs eval="true">is_mobile()?"mobile":""</forcejs>
-		<forcexsl eval="true">is_mobile()?"mobile":""</forcexsl>
+		<forceiconset eval="true">ismobile()?"mobile":""</forceiconset>
+		<forcecss eval="true">ismobile()?"mobile":""</forcecss>
+		<forcejs eval="true">ismobile()?"mobile":""</forcejs>
+		<forcexsl eval="true">ismobile()?"mobile":""</forcexsl>
 		<regspagermin>10</regspagermin>
 		<regspagerincr>10</regspagerincr>
 		<regspagermax>200</regspagermax>
@@ -134,7 +134,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tarext>.tar</tarext>
 		<excelext>.xls</excelext>
 		<wavext>.wav</wavext>
-		<oggext>.ogg</oggext>
+		<mp3ext>.mp3</mp3ext>
 		<htmlext>.htm</htmlext>
 		<sqlext>.sql</sqlext>
 		<csvext>.csv</csvext>
@@ -158,7 +158,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<usejsminify>true</usejsminify>
 		<usexmlminify>true</usexmlminify>
 		<usehtmlminify>true</usehtmlminify>
-		<useimginline>true</useimginline>
+		<useimginline eval="true">ismsie()?"false":"true"</useimginline>
 	</cache>
 	<commands>
 		<unoconv>unoconv</unoconv><!-- for unoconv module -->
@@ -170,8 +170,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__text2wave__>__INPUT__ -o __OUTPUT__</__text2wave__>
 		<__text2wave_es__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave_es__>
 		<__text2wave_en__>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</__text2wave_en__>
-		<wavetoogg>oggenc</wavetoogg><!-- for voice module -->
-		<__wavetoogg__>__INPUT__ -o __OUTPUT__</__wavetoogg__>
+		<wavetomp3>lame</wavetomp3><!-- for voice module -->
+		<__wavetomp3__>__INPUT__ __OUTPUT__</__wavetomp3__>
 		<apertium>apertium</apertium><!-- for translate module -->
 		<__apertium__>-f txtu __LANGS__ &lt; __INPUT__</__apertium__>
 		<__apertium_langs__>-l</__apertium_langs__>
@@ -204,16 +204,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</preevals>
 	</parser>
 	<styles>
-		<cache ifeval="!is_mobile()">
+		<cache ifeval="!ismobile()">
 			<include>lib/jquery/jquery.colorpicker.css</include>
 			<include>lib/jquery/jquery.ptTimeSelect.css</include>
 			<include>lib/jquery/jquery.jgrowl.css</include>
 		</cache>
 	</styles>
 	<javascript>
-		<cache ifeval="!is_mobile()">
+		<cache ifeval="!ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery-2.0.0.min.js</include>
+			<include ifeval="ismsie(array(6,7,8))">lib/jquery/jquery-1.9.1.min.js</include>
+			<include ifeval="!ismsie(array(6,7,8))">lib/jquery/jquery-2.0.0.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery-ui-1.10.3.min.js</include>
@@ -221,7 +222,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.blockUI.js</include>
 			<include>lib/jquery/jquery.jgrowl.js</include>
 		</cache>
-		<cache ifeval="!is_mobile()">
+		<cache ifeval="!ismobile()">
 			<include>lib/jquery/jquery.colorpicker.js</include>
 			<include>lib/jquery/jquery.ptTimeSelect.js</include>
 			<include>lib/jquery/jquery.masonry.js</include>
@@ -229,14 +230,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.jplayer.js</include>
 			<include>lib/jquery/jquery.columnizer.js</include>
 		</cache>
-		<inline ifeval="!is_mobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
-		<cache ifeval="!is_mobile()">
+		<inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
+		<cache ifeval="!ismobile()">
 			<include>lib/ckeditor/ckeditor.min.js</include>
 			<include>lib/ckeditor/adapters/jquery.min.js</include>
-			<include>lib/pdfjs/pdf.min.js</include>
-			<include>lib/pdfjs/viewer.min.js</include>
+			<include ifeval="!ismsie()">lib/pdfjs/pdf.min.js</include>
+			<include ifeval="!ismsie()">lib/pdfjs/viewer.min.js</include>
 		</cache>
-		<cache ifeval="is_mobile()">
+		<cache ifeval="ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
 			<include>lib/jquery/jquery-2.0.0.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>

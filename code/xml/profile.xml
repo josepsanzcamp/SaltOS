@@ -91,7 +91,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>2</colspan>
 						</field>
 					</row>
-					<row ifeval="!getDefault('forceiconset') &amp;&amp; !is_mobile()">
+					<row ifeval="!getDefault('forceiconset') &amp;&amp; !ismobile()">
 						<field>
 							<field include="xml/common/iconset.xml" replace="true" />
 							<colspan>2</colspan>
@@ -151,7 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset ifeval="!is_mobile()">
+				<fieldset ifeval="!ismobile()">
 					<buttons>true</buttons>
 					<row>
 						<field>
@@ -187,7 +187,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset ifeval="!is_mobile()">
+				<fieldset ifeval="!ismobile()">
 					<buttons>true</buttons>
 					<title lang="true">quick</title>
 					<row>
@@ -402,9 +402,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="default" prefix="true" eval="true">getParam("password_new")?"UPDATE tbl_security SET `logout`='1' WHERE `id_usuario`='".current_user()."'":""</query>
 		<query match="default" prefix="true" eval="true">use_table_cookies("lang",getParam("lang"))?"":""</query>
 		<query match="default" prefix="true" eval="true">use_table_cookies("style",getParam("style"))?"":""</query>
-		<query ifeval="!is_mobile()"  match="default" prefix="true" eval="true">use_table_cookies("iconset",getParam("iconset"))?"":""</query>
-		<query ifeval="!is_mobile()" match="default" prefix="true" eval="true">"DELETE FROM tbl_quick WHERE id_usuario='".current_user()."'"</query>
-		<query ifeval="!is_mobile()" global="var_i" for="var_i" from="1" to="12" match="default" prefix="true" eval="true">"INSERT INTO tbl_quick(id,id_usuario,button,codigo) VALUES(NULL,'".current_user()."','f$var_i','".getParam("quick_button_f$var_i")."')"</query>
+		<query ifeval="!ismobile()"  match="default" prefix="true" eval="true">use_table_cookies("iconset",getParam("iconset"))?"":""</query>
+		<query ifeval="!ismobile()" match="default" prefix="true" eval="true">"DELETE FROM tbl_quick WHERE id_usuario='".current_user()."'"</query>
+		<query ifeval="!ismobile()" global="var_i" for="var_i" from="1" to="12" match="default" prefix="true" eval="true">"INSERT INTO tbl_quick(id,id_usuario,button,codigo) VALUES(NULL,'".current_user()."','f$var_i','".getParam("quick_button_f$var_i")."')"</query>
 		<query match="folders_old" prefix="true" eval="true">getParam("name_new") &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id!='".intval(getParam("id"))."' AND id_usuario='".current_user()."' AND name='".getParam("name_new")."'")?"UPDATE tbl_folders SET name='".getParam("name_new")."' WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>
 		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders_a WHERE id_folder='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_folders WHERE id='".intval(getParam("id"))."')='".current_user()."'":""</query>
 		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>

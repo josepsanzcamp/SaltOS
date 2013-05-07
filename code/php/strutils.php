@@ -328,7 +328,7 @@ function xml2html($buffer,$usecache=true) {
 	return $buffer;
 }
 
-function is_mobile() {
+function ismobile() {
 	static $ismobile=null;
 	if($ismobile===null) {
 		include("lib/mobiledetect/Mobile_Detect.php");
@@ -500,5 +500,17 @@ function ob_start_protected($param="") {
 
 function isphp54() {
 	return version_compare(PHP_VERSION,"5.4",">=");
+}
+
+function ismsie($version=null) {
+	$useragent=getServer("HTTP_USER_AGENT");
+	if($version===null) {
+		return strpos($useragent,"MSIE")!==false;
+	} elseif(is_string($version)) {
+		return strpos($useragent,"MSIE ${version}")!==false;
+	} elseif(is_array($version)) {
+		foreach($version as $v) if(strpos($useragent,"MSIE ${v}")!==false) return true;
+		return false;
+	}
 }
 ?>

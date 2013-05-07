@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(getParam("action")=="themeroller") {
 	// GET PARAMETERS
 	$xml=xml2array("xml/themeroller.xml");
-	$type=is_mobile()?"mobile":"desktop";
+	$type=ismobile()?"mobile":"desktop";
 	$theme=getParam("theme",getParam("amp;theme"));
 	$theme=strtok($theme,"?");
 	$mask=getParam("mask",getParam("amp;mask"));

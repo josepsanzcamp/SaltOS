@@ -109,7 +109,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<colspan>2</colspan>
 				</actions>
 			</row>
-			<row ifeval="!getDefault('forceiconset') &amp;&amp; !is_mobile()">
+			<row ifeval="!getDefault('forceiconset') &amp;&amp; !ismobile()">
 				<field>
 					<field include="xml/common/iconset.xml" replace="true" />
 				</field>
@@ -139,7 +139,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 			</row>
 		</fields>
-		<fields ifeval="!is_mobile()">
+		<fields ifeval="!ismobile()">
 			<row>
 				<field>
 					<label lang="true">mobileaccess</label>

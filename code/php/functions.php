@@ -953,9 +953,11 @@ function show_php_error($array=null) {
 	if($array===null) return;
 	// REFUSE THE DEPRECATED WARNINGS
 	if(isset($array["phperror"])) {
-		$pos1=stripos($array["phperror"],"function");
-		$pos2=stripos($array["phperror"],"deprecated");
+		$pos1=stripos($array["phperror"],"deprecated");
+		$pos2=stripos($array["phperror"],"function");
+		$pos3=stripos($array["phperror"],"method");
 		if($pos1!==false && $pos2!==false) return;
+		if($pos1!==false && $pos3!==false) return;
 	}
 	// ADD BACKTRACE IF NOT FOUND
 	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace();

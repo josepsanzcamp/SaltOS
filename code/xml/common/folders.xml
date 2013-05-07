@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<fieldset ifeval="!is_mobile()">
+	<fieldset ifeval="!ismobile()">
 		<width>700px</width>
 		<title lang="true">foldersdata</title>
 		<head>

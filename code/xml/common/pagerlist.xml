@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap</class>
 			<class2>infopager</class2>
 		</field>
-		<field ifeval="!is_mobile()">
+		<field ifeval="!ismobile()">
 			<type>select</type>
 			<name>selectlimit</name>
 			<label lang="true">regspage</label>
@@ -62,7 +62,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<type>separator</type>
 			<width>50%</width>
 		</field>
-		<field ifeval="is_mobile()">
+		<field ifeval="ismobile()">
 			<type>select</type>
 			<name>selectpager</name>
 			<rows>
@@ -78,7 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<type>button</type>
 			<tip lang="true">first</tip>
 			<label lang="true">first</label>
-			<value ifeval="is_mobile()">&lt;&lt;</value>
+			<value ifeval="ismobile()">&lt;&lt;</value>
 			<onclick>if(!is_disabled(this)) first()</onclick>
 			<icon>first</icon>
 			<class>nowrap contextmenu</class>
@@ -89,13 +89,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<type>button</type>
 			<tip lang="true">previous</tip>
 			<label lang="true">previous</label>
-			<value ifeval="is_mobile()">&lt;</value>
+			<value ifeval="ismobile()">&lt;</value>
 			<onclick>if(!is_disabled(this)) previous()</onclick>
 			<icon>previous</icon>
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
 		</field>
-		<field ifeval="!is_mobile()">
+		<field ifeval="!ismobile()">
 			<type>select</type>
 			<name>selectpager</name>
 			<rows>
@@ -111,7 +111,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<type>button</type>
 			<tip lang="true">next</tip>
 			<label lang="true">next</label>
-			<value ifeval="is_mobile()">&gt;</value>
+			<value ifeval="ismobile()">&gt;</value>
 			<onclick>if(!is_disabled(this)) next()</onclick>
 			<icon>next</icon>
 			<class>nowrap contextmenu</class>
@@ -122,7 +122,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<type>button</type>
 			<tip lang="true">last</tip>
 			<label lang="true">last</label>
-			<value ifeval="is_mobile()">&gt;&gt;</value>
+			<value ifeval="ismobile()">&gt;&gt;</value>
 			<onclick>if(!is_disabled(this)) last()</onclick>
 			<icon>last</icon>
 			<class>nowrap contextmenu</class>

@@ -744,7 +744,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 					<row global="id" ifeval="$id&gt;=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_objetivos</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -774,7 +774,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 					<row global="id" ifeval="$id&gt;=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_funcional</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -804,7 +804,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 					<row global="id" ifeval="$id&gt;=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_tecnica</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -834,7 +834,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 					<row global="id" ifeval="$id&gt;=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_extras</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -1353,7 +1353,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 					<row global="id" ifeval="$id&gt;=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_condiciones</name>
 							<label lang="true">textos</label>
 							<type>select</type>

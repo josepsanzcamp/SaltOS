@@ -98,7 +98,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>mailto("josep.sanz@saltos.net")</onclick>
 						</field>
 						<field>
-							<label>Jordi Company (Business developer)</label>
+							<label>Jordi Company (Developer)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("jcompany@saltos.net")</onclick>
@@ -396,7 +396,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpjs.org/")</onclick>
 						</field>
 						<field>
-							<label>JQuery 2.0.0 (MIT)</label>
+							<label>JQuery 1.9.1/2.0.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jquery.com/")</onclick>
@@ -692,10 +692,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://forja.guadalinex.org/projects/hispavoces/")</onclick>
 						</field>
 						<field>
-							<label>Vorbis tools (GPL-2)</label>
+							<label>Lame (GPL-2)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://www.xiph.org/")</onclick>
+							<onclick>openwin("http://lame.sourceforge.net/")</onclick>
 						</field>
 						<field>
 							<label>Apertium 3.2 (GPL2.0)</label>
@@ -738,7 +738,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset ifeval="!is_mobile() &amp;&amp; check_commands(getDefault('commands/unoconv'),60)">
+				<fieldset ifeval="!ismobile() &amp;&amp; check_commands(getDefault('commands/unoconv'),60)">
 					<title lang="true">ooformats</title>
 					<row>
 						<field>
@@ -769,7 +769,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<temp global="directory,extension,files" eval="true">$files=glob($directory."*".$extension)</temp>
 				<temp global="files" eval="true">$files=(is_array($files) &amp;&amp; count($files)>0)?$files:array()</temp>
 				<temp global="directory,extension,files" eval="true">$files=str_replace(array($directory,$extension),"",$files)</temp>
-				<fieldset ifeval="!is_mobile()" global="files,row" foreach="files" as="row">
+				<fieldset ifeval="!ismobile()" global="files,row" foreach="files" as="row">
 					<title global="row" eval="true">LANG("license").$row</title>
 					<row>
 						<field>
@@ -795,7 +795,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset ifeval="!is_mobile()">
+				<fieldset ifeval="!ismobile()">
 					<title lang="true">game</title>
 					<row>
 						<field>

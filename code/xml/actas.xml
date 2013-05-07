@@ -495,7 +495,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						</field>
 					</row>
 					<row global="id" ifeval="$id>=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_temas</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -525,7 +525,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						</field>
 					</row>
 					<row global="id" ifeval="$id>=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_aceptados</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -555,7 +555,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						</field>
 					</row>
 					<row global="id" ifeval="$id>=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_cancelados</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -585,7 +585,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						</field>
 					</row>
 					<row global="id" ifeval="$id>=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_pendientes</name>
 							<label lang="true">textos</label>
 							<type>select</type>
@@ -615,7 +615,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						</field>
 					</row>
 					<row global="id" ifeval="$id>=0">
-						<field ifeval="!is_mobile()">
+						<field ifeval="!ismobile()">
 							<name>textos_comentarios</name>
 							<label lang="true">textos</label>
 							<type>select</type>

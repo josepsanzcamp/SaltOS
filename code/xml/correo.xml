@@ -179,7 +179,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>nowrap contextmenu</class>
 					<disabled eval="true">execute_query("SELECT COUNT(*) FROM tbl_correo a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'")==0?"true":"false"</disabled>
 				</field>
-				<field ifeval="!is_mobile()">
+				<field ifeval="!ismobile()">
 					<type>menu</type>
 					<name>options</name>
 					<tip lang="true">optionstip</tip>
@@ -738,7 +738,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<required global="id" eval="true">$id>=0?"true":"false"</required>
 							<speech>true</speech>
 						</field>
-						<field global="id" ifeval="!is_mobile() &amp;&amp; $id&gt;=0">
+						<field global="id" ifeval="!ismobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>
 							<icon>delete</icon>
 							<value></value>
@@ -757,7 +757,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 							<speech>true</speech>
 						</field>
-						<field global="id" ifeval="!is_mobile() &amp;&amp; $id&gt;=0">
+						<field global="id" ifeval="!ismobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>
 							<icon>delete</icon>
 							<value></value>
@@ -776,7 +776,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 							<speech>true</speech>
 						</field>
-						<field global="id" ifeval="!is_mobile() &amp;&amp; $id&gt;=0">
+						<field global="id" ifeval="!ismobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>
 							<icon>delete</icon>
 							<value></value>
@@ -955,7 +955,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 						</field>
 					</row>
-					<row global="id" ifeval="!is_mobile() &amp;&amp; $id&gt;=0">
+					<row global="id" ifeval="!ismobile() &amp;&amp; $id&gt;=0">
 						<field>
 							<name>textos_body</name>
 							<label lang="true">textos</label>
@@ -976,7 +976,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</default>
 			<files_old include="xml/common/filesold.xml" />
 			<files_new include="xml/common/filesnew.xml"/>
-			<full ifeval="!is_mobile()">
+			<full ifeval="!ismobile()">
 				<fieldset>
 					<title lang="true">fulldata</title>
 					<row>
@@ -990,7 +990,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 			</full>
-			<source ifeval="!is_mobile()">
+			<source ifeval="!ismobile()">
 				<fieldset>
 					<title lang="true">sourcedata</title>
 					<row>

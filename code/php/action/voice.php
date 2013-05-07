@@ -27,11 +27,11 @@ if(!check_user()) action_denied();
 if(getParam("action")=="voice") {
 	require_once("php/translate.php");
 	// SOME CHECKS
-	if(!check_commands(array(getDefault("commands/text2wave"),getDefault("commands/wavetoogg")),60)) action_denied();
+	if(!check_commands(array(getDefault("commands/text2wave"),getDefault("commands/wavetomp3")),60)) action_denied();
 	// NORMAL OPERATION
 	$text=getParam("text");
 	$dirhash=get_directory("dirs/cachedir").md5(serialize(array("voice",$text)));
-	$cache=$dirhash.getDefault("exts/oggext",".ogg");
+	$cache=$dirhash.getDefault("exts/mp3ext",".mp3");
 	//if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		// CONVERT THE TEXT 2 VOICE IN WAV FORMAT
@@ -45,8 +45,8 @@ if(getParam("action")=="voice") {
 		if(!file_exists($wavcache)) ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/__text2wave__")));
 		unlink($textcache);
 		if(!file_exists($wavcache)) action_denied();
-		// CONVERT THE WAV TO OGG FORMAT
-		ob_passthru(getDefault("commands/wavetoogg")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($wavcache,$cache),getDefault("commands/__wavetoogg__")));
+		// CONVERT THE WAV TO MP3 FORMAT
+		ob_passthru(getDefault("commands/wavetomp3")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($wavcache,$cache),getDefault("commands/__wavetomp3__")));
 		unlink($wavcache);
 		if(!file_exists($cache)) action_denied();
 		chmod_protected($cache,0666);
