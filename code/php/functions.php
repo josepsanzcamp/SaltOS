@@ -147,18 +147,17 @@ function check_sql($aplicacion="",$permiso="") {
 			}
 		}
 		// CHECK FOR APLICATION/REGISTER FILTERS
-		$query="SELECT * FROM (
-			SELECT a.id_aplicacion id_aplicacion,a.id_registro id_registro,b.filter1 filter
-			FROM tbl_usuarios a
-			LEFT JOIN tbl_aplicaciones b ON a.id_aplicacion=b.id
-			WHERE a.id='${_USER["id"]}'
+		$query="SELECT a.id_aplicacion id_aplicacion,a.id_registro id_registro,b.filter1 filter FROM (
+			SELECT id_aplicacion,id_registro
+			FROM tbl_usuarios
+			WHERE id='${_USER["id"]}'
 			UNION
-			SELECT a.id_aplicacion id_aplicacion,a.id_registro id_registro,b.filter1 filter
-			FROM tbl_usuarios_r a
-			LEFT JOIN tbl_aplicaciones b ON a.id_aplicacion=b.id
-			WHERE a.id_usuario='${_USER["id"]}'
+			SELECT id_aplicacion,id_registro
+			FROM tbl_usuarios_r
+			WHERE id_usuario='${_USER["id"]}'
 		) a
-		WHERE id_aplicacion IN (
+		LEFT JOIN tbl_aplicaciones b ON a.id_aplicacion=b.id
+		WHERE a.id_aplicacion IN (
 			SELECT id
 			FROM tbl_aplicaciones
 			WHERE (SELECT CONCAT(',',filter2,',')

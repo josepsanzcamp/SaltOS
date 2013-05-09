@@ -68,11 +68,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>lugar</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>asistentes</name>
@@ -143,11 +143,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>lugar</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_tipoevento</name>
@@ -181,7 +181,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_gcalendar</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>sync_gcalendar</name>
@@ -220,27 +220,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>codigo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>table</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>field</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>filter1</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>filter2</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -302,7 +302,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -342,19 +342,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre1</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre2</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>cif</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -362,11 +362,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>corriente</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>contable</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>diapago</name>
@@ -374,7 +374,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_pais</name>
@@ -398,39 +398,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -449,7 +449,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -495,11 +495,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>clave</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>valor</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -522,19 +522,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre1</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre2</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>cargo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -542,7 +542,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_pais</name>
@@ -566,39 +566,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -618,11 +618,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>clave</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>valor</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -641,7 +641,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>uidl</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>datetime</name>
@@ -653,7 +653,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>subject</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>body</name>
@@ -693,7 +693,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>state_error</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>state_crt</name>
@@ -709,7 +709,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>from</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>to</name>
@@ -749,11 +749,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>valor</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -772,7 +772,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>uidl</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>datetime</name>
@@ -790,7 +790,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -814,35 +814,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>logo_file</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>color_line</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>color_text1</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>color_text2</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>factura_iva_bool</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>factura_iva_value</name>
-					<type>TEXT</type>
+					<type>DECIMAL(9,2)</type>
 				</field>
 				<field>
 					<name>factura_irpf_bool</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>factura_irpf_value</name>
-					<type>TEXT</type>
+					<type>DECIMAL(9,2)</type>
 				</field>
 				<field>
 					<name>factura_pie1</name>
@@ -869,7 +869,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -892,19 +892,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre1</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre2</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>cargo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -912,7 +912,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_pais</name>
@@ -936,39 +936,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -982,11 +982,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>codigo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1004,7 +1004,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1060,11 +1060,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_pais</name>
@@ -1088,27 +1088,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>cif</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>num</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fecha</name>
@@ -1242,11 +1242,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>url</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1269,7 +1269,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>title</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>pubdate</name>
@@ -1281,11 +1281,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>link</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>hash</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>state_new</name>
@@ -1320,7 +1320,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>link</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>datetime</name>
@@ -1356,11 +1356,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>fichero</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fichero_file</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fichero_size</name>
@@ -1368,7 +1368,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>fichero_type</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>search</name>
@@ -1397,7 +1397,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>querystring</name>
@@ -1421,7 +1421,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>name</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -1459,7 +1459,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1492,7 +1492,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>num</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fecha</name>
@@ -1600,11 +1600,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>login</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>password</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -1618,7 +1618,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1700,7 +1700,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1728,7 +1728,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>hash</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -1747,7 +1747,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_estado</name>
@@ -1829,7 +1829,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>page</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -1843,7 +1843,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -1862,7 +1862,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>tarea</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fecha</name>
@@ -1936,7 +1936,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>meses</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -2015,7 +2015,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>codigo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>pos</name>
@@ -2023,7 +2023,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -2042,7 +2042,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -2070,23 +2070,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>cif</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>contacto</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>cargo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_pais</name>
@@ -2110,51 +2110,51 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>facturacion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>iae_cod</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>iae_desc</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -2192,7 +2192,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_estado</name>
@@ -2278,7 +2278,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>tarea</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>horas</name>
@@ -2304,7 +2304,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -2322,7 +2322,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>precio</name>
@@ -2344,19 +2344,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre1</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre2</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>cif</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -2364,11 +2364,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>corriente</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>contable</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>diapago</name>
@@ -2376,7 +2376,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_pais</name>
@@ -2400,39 +2400,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -2451,7 +2451,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -2475,7 +2475,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>id_estado</name>
@@ -2537,7 +2537,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>tarea</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>horas</name>
@@ -2569,11 +2569,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>button</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>codigo</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -2675,7 +2675,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>remote_addr</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>retries</name>
@@ -2730,7 +2730,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>sess_file</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>sess_data</name>
@@ -2752,7 +2752,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -2779,7 +2779,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -2815,11 +2815,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>login</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>password</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>hora_ini</name>
@@ -2831,7 +2831,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>dias_sem</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -2851,47 +2851,47 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>email_name</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email_from</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email_signature</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email_signature_file</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email_signature_type</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email_signature_size</name>
-					<type>TEXT</type>
+					<type>INTEGER</type>
 				</field>
 				<field>
 					<name>pop3_host</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>pop3_port</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>pop3_extra</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>pop3_user</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>pop3_pass</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>pop3_delete</name>
@@ -2899,27 +2899,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>pop3_days</name>
-					<type>TEXT</type>
+					<type>INTEGER</type>
 				</field>
 				<field>
 					<name>smtp_host</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>smtp_port</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>smtp_extra</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>smtp_user</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>smtp_pass</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>email_disabled</name>
@@ -2959,11 +2959,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>url</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>title</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>description</name>
@@ -2971,11 +2971,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>image</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>link</name>
-					<type>TEXT</type>
+					<type>TINYTEXT</type>
 				</field>
 				<field>
 					<name>disabled</name>
