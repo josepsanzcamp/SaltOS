@@ -53,12 +53,6 @@ function db_connect_sqlite3() {
 		getDefault("db/link")->createFunction("SECOND","__sqlite3_second");
 		getDefault("db/link")->createFunction("MD5","__sqlite3_MD5");
 	}
-	register_shutdown_function("__sqlite3_shutdown_handler");
-}
-
-function __sqlite3_shutdown_handler() {
-	$semaphore=getDefault("db/file").getDefault("exts/semext",".sem");
-	semaphore_release($semaphore);
 }
 
 function __sqlite3_group_concat_check() {

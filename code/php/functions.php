@@ -1037,6 +1037,7 @@ function __exception_handler($e) {
 }
 
 function __shutdown_handler() {
+	semaphore_shutdown();
 	$error=error_get_last();
 	$types=array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
 	if(is_array($error) && isset($error["type"]) && in_array($error["type"],$types)) {

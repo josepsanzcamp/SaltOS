@@ -30,32 +30,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_campanya</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_campanyas</fkey>
 				</field>
 				<field>
 					<name>id_posiblecli</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_posiblescli</fkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>id_presupuesto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_presupuestos</fkey>
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 				</field>
 				<field>
@@ -68,11 +68,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>lugar</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>asistentes</name>
@@ -105,32 +105,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_campanya</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_campanyas</fkey>
 				</field>
 				<field>
 					<name>id_posiblecli</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_posiblescli</fkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>id_presupuesto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_presupuestos</fkey>
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 				</field>
 				<field>
@@ -143,20 +143,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>lugar</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_tipoevento</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_tiposevento</fkey>
 				</field>
 				<field>
 					<name>id_estado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_estados</fkey>
 				</field>
 				<field>
@@ -169,23 +169,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>notify_sign</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>notify_dstart</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>notify_dstop</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_gcalendar</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>sync_gcalendar</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -194,18 +194,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_agenda</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_agenda</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 				</field>
 			</fields>
@@ -215,32 +215,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>codigo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>table</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>field</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>filter1</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>filter2</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -249,26 +249,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_permiso</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_permisos</fkey>
 				</field>
 				<field>
 					<name>allow</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>deny</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -277,17 +277,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_permiso</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_permisos</fkey>
 				</field>
 			</fields>
@@ -297,12 +297,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -318,7 +318,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_estado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_estados</fkey>
 				</field>
 			</fields>
@@ -328,33 +328,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_campanya</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_campanyas</fkey>
 				</field>
 				<field>
 					<name>id_tipo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre1</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre2</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>cif</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -362,75 +362,75 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>corriente</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>contable</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>diapago</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_pais</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_paises</fkey>
 				</field>
 				<field>
 					<name>id_provincia</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_provincias</fkey>
 				</field>
 				<field>
 					<name>id_poblacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_poblaciones</fkey>
 				</field>
 				<field>
 					<name>id_codpostal</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_codpostal</fkey>
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -439,17 +439,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_poblacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_poblaciones</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -458,21 +458,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_registro</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 				</field>
 				<field>
@@ -490,16 +490,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>clave</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>valor</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -508,33 +508,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_registro</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre1</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre2</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>cargo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -542,63 +542,63 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_pais</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_paises</fkey>
 				</field>
 				<field>
 					<name>id_provincia</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_provincias</fkey>
 				</field>
 				<field>
 					<name>id_poblacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_poblaciones</fkey>
 				</field>
 				<field>
 					<name>id_codpostal</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_codpostal</fkey>
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -607,22 +607,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>clave</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>valor</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -631,17 +631,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_cuenta</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios_c</fkey>
 				</field>
 				<field>
 					<name>uidl</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>datetime</name>
@@ -649,11 +649,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>size</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>subject</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>body</name>
@@ -661,55 +661,55 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>state_new</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>state_reply</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>state_forward</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>state_wait</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>state_spam</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_correo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>is_outbox</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>state_sent</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>state_error</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>state_crt</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>priority</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>sensitivity</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>from</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>to</name>
@@ -725,7 +725,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>files</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -734,26 +734,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_correo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_correo</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_tipo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>valor</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -762,17 +762,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_cuenta</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios_c</fkey>
 				</field>
 				<field>
 					<name>uidl</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>datetime</name>
@@ -785,12 +785,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -798,39 +798,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>logo_left</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>logo_top</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>logo_width</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>logo_height</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>logo_file</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>color_line</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>color_text1</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>color_text2</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>factura_iva_bool</name>
-					<type>TINYTEXT</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>factura_iva_value</name>
@@ -838,7 +838,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>factura_irpf_bool</name>
-					<type>TINYTEXT</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>factura_irpf_value</name>
@@ -859,17 +859,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -877,7 +877,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 				</field>
 			</fields>
@@ -887,24 +887,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre1</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre2</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>cargo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -912,63 +912,63 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_pais</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_paises</fkey>
 				</field>
 				<field>
 					<name>id_provincia</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_provincias</fkey>
 				</field>
 				<field>
 					<name>id_poblacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_poblaciones</fkey>
 				</field>
 				<field>
 					<name>id_codpostal</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_codpostal</fkey>
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -977,16 +977,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>codigo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -999,12 +999,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1012,16 +1012,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>pos</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>activo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -1030,12 +1030,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 			</fields>
@@ -1045,70 +1045,70 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>id_epigrafe</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_epigrafes</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_pais</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_paises</fkey>
 				</field>
 				<field>
 					<name>id_provincia</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_provincias</fkey>
 				</field>
 				<field>
 					<name>id_poblacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_poblaciones</fkey>
 				</field>
 				<field>
 					<name>id_codpostal</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_codpostal</fkey>
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>cif</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>num</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fecha</name>
@@ -1124,15 +1124,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>cerrado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>cobrado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_cuenta</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_cuentas</fkey>
 				</field>
 				<field>
@@ -1141,17 +1141,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 				</field>
 				<field>
 					<name>id_periodica</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_periodicas</fkey>
 				</field>
 				<field>
 					<name>mes_periodica</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>notas</name>
@@ -1164,18 +1164,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_factura</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_facturas</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_producto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_productos</fkey>
 				</field>
 				<field>
@@ -1201,12 +1201,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_factura</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_facturas</fkey>
 					<fcheck>false</fcheck>
 				</field>
@@ -1224,7 +1224,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>cobrado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>fecha2</name>
@@ -1237,16 +1237,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>url</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1259,17 +1259,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_feed</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios_f</fkey>
 				</field>
 				<field>
 					<name>title</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>pubdate</name>
@@ -1281,27 +1281,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>link</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>hash</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>state_new</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>state_modified</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>state_wait</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>state_cool</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -1310,17 +1310,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_feed</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios_f</fkey>
 				</field>
 				<field>
 					<name>link</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>datetime</name>
@@ -1333,21 +1333,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_registro</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 				</field>
 				<field>
@@ -1356,19 +1356,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>fichero</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>fichero_file</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>fichero_size</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>fichero_type</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>search</name>
@@ -1381,23 +1381,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>querystring</name>
@@ -1410,18 +1410,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>name</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -1430,22 +1430,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_folder</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_folders</fkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_registro</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -1454,12 +1454,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1472,27 +1472,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>id_epigrafe</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_epigrafes</fkey>
 				</field>
 				<field>
 					<name>id_proveedor</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proveedores</fkey>
 				</field>
 				<field>
 					<name>num</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fecha</name>
@@ -1520,17 +1520,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_pagador</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 				</field>
 				<field>
 					<name>id_formapago</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_formaspago</fkey>
 				</field>
 				<field>
 					<name>liquidado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>fecha2</name>
@@ -1538,12 +1538,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_cuenta</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_cuentas</fkey>
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 				</field>
 			</fields>
@@ -1553,12 +1553,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_gasto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_gastos</fkey>
 					<fcheck>false</fcheck>
 				</field>
@@ -1576,7 +1576,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>pagado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>fecha2</name>
@@ -1589,22 +1589,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuario</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>login</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>password</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -1613,12 +1613,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1631,32 +1631,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_grupo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_grupos</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_permiso</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_permisos</fkey>
 				</field>
 				<field>
 					<name>allow</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>deny</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -1665,18 +1665,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
@@ -1690,17 +1690,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -1713,22 +1713,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_importacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_importaciones</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_registro</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>hash</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -1737,21 +1737,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_estado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_estados</fkey>
 				</field>
 				<field>
@@ -1760,12 +1760,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 				</field>
 				<field>
 					<name>id_prioridad</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_prioridades</fkey>
 				</field>
 			</fields>
@@ -1775,18 +1775,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_incidencia</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_incidencias</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 				</field>
 			</fields>
@@ -1796,18 +1796,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_folder</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_folders</fkey>
 					<fcheck>false</fcheck>
 				</field>
@@ -1818,18 +1818,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>page</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -1838,12 +1838,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -1852,17 +1852,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>tarea</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fecha</name>
@@ -1886,11 +1886,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>liquidado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 				</field>
 				<field>
@@ -1904,22 +1904,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>id_epigrafe</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_epigrafes</fkey>
 				</field>
 				<field>
 					<name>id_cuenta</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_cuentas</fkey>
 				</field>
 				<field>
@@ -1932,11 +1932,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>dia</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>meses</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -1945,18 +1945,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_periodica</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_periodicas</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_producto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_productos</fkey>
 				</field>
 				<field>
@@ -1982,12 +1982,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_periodica</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_periodicas</fkey>
 					<fcheck>false</fcheck>
 				</field>
@@ -2010,20 +2010,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>codigo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>pos</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -2032,17 +2032,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_provincia</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_provincias</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -2051,110 +2051,110 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>activo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_campanya</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_campanyas</fkey>
 				</field>
 				<field>
 					<name>id_estado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_estados</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>cif</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>contacto</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>cargo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_pais</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_paises</fkey>
 				</field>
 				<field>
 					<name>id_provincia</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_provincias</fkey>
 				</field>
 				<field>
 					<name>id_poblacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_poblaciones</fkey>
 				</field>
 				<field>
 					<name>id_codpostal</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_codpostal</fkey>
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>facturacion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>iae_cod</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>iae_desc</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -2167,36 +2167,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_campanya</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_campanyas</fkey>
 				</field>
 				<field>
 					<name>id_posiblecli</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_posiblescli</fkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_estado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_estados</fkey>
 				</field>
 				<field>
@@ -2234,18 +2234,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_presupuesto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_presupuestos</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_producto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_productos</fkey>
 				</field>
 				<field>
@@ -2267,18 +2267,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_presupuesto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_presupuestos</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>tarea</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>horas</name>
@@ -2299,12 +2299,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -2317,12 +2317,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>precio</name>
@@ -2339,24 +2339,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre1</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre2</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>cif</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>comentarios</name>
@@ -2364,75 +2364,75 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>corriente</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>contable</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>diapago</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>direccion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_pais</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_paises</fkey>
 				</field>
 				<field>
 					<name>id_provincia</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_provincias</fkey>
 				</field>
 				<field>
 					<name>id_poblacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_poblaciones</fkey>
 				</field>
 				<field>
 					<name>id_codpostal</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_codpostal</fkey>
 				</field>
 				<field>
 					<name>nombre_pais</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_provincia</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_poblacion</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>nombre_codpostal</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>web</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_fijo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>tel_movil</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fax</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -2441,17 +2441,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_pais</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_paises</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -2460,26 +2460,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_campanya</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_campanyas</fkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>id_estado</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_estados</fkey>
 				</field>
 				<field>
@@ -2493,18 +2493,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_producto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_productos</fkey>
 				</field>
 				<field>
@@ -2526,18 +2526,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>tarea</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>horas</name>
@@ -2558,22 +2558,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>button</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>codigo</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -2582,21 +2582,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_registro</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
@@ -2611,21 +2611,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_registro</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
@@ -2640,23 +2640,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_session</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_sessions</fkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>logout</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -2665,21 +2665,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_session</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_sessions</fkey>
 				</field>
 				<field>
 					<name>remote_addr</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>retries</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -2688,12 +2688,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_cliente</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_clientes</fkey>
 				</field>
 				<field>
@@ -2710,12 +2710,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_proyecto</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_proyectos</fkey>
 				</field>
 				<field>
 					<name>id_tarea</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_tareas</fkey>
 				</field>
 			</fields>
@@ -2725,20 +2725,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>sess_file</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>sess_data</name>
-					<type>TEXT</type>
+					<type>MEDIUMTEXT</type>
 				</field>
 				<field>
 					<name>sess_time</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -2747,12 +2747,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -2760,12 +2760,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>publico</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -2774,12 +2774,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>nombre</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
@@ -2792,34 +2792,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_grupo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_grupos</fkey>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_registro</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>activo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>login</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>password</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>hora_ini</name>
@@ -2831,7 +2831,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>dias_sem</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -2840,106 +2840,106 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>email_name</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email_from</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email_signature</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email_signature_file</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email_signature_type</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email_signature_size</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>pop3_host</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>pop3_port</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>pop3_extra</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>pop3_user</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>pop3_pass</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>pop3_delete</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>pop3_days</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>smtp_host</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>smtp_port</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>smtp_extra</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>smtp_user</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>smtp_pass</name>
-					<type>TINYTEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>email_disabled</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>email_privated</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>email_default</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>email_addmetocc</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>email_crt</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -2948,22 +2948,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>url</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>title</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>description</name>
@@ -2971,15 +2971,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>image</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>link</name>
-					<type>TINYTEXT</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>disabled</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -2988,18 +2988,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_grupo</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_grupos</fkey>
 				</field>
 			</fields>
@@ -3009,32 +3009,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_permiso</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_permisos</fkey>
 				</field>
 				<field>
 					<name>allow</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 				<field>
 					<name>deny</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -3043,23 +3043,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<field>
 					<name>id</name>
-					<type>INTEGER</type>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
 					<pkey>true</pkey>
 				</field>
 				<field>
 					<name>id_usuario</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>id_aplicacion</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 					<fkey>tbl_aplicaciones</fkey>
 				</field>
 				<field>
 					<name>id_registro</name>
-					<type>INTEGER</type>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>

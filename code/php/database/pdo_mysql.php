@@ -59,8 +59,19 @@ function __db_query_pdo_mysql_helper($query) {
 }
 
 function db_query_pdo_mysql($query) {
+	$semaphore=getDefault("db/file").getDefault("exts/semext",".sem");
+	semaphore_acquire($semaphore,getDefault("db/semaphoretimeout",10000000));
 	$query=parse_query($query,"MYSQL");
-	return __db_query_pdo_mysql_helper($query);
+	$temp1=__db_query_pdo_mysql_helper("SHOW GLOBAL STATUS LIKE 'Created_tmp_disk_tables'");
+	$result=__db_query_pdo_mysql_helper($query);
+	$temp2=__db_query_pdo_mysql_helper("SHOW GLOBAL STATUS LIKE 'Created_tmp_disk_tables'");
+	if($temp1["rows"][0]["Value"]!=$temp2["rows"][0]["Value"]) {
+		file_put_contents("files/queries.log",$query.";\n",FILE_APPEND);
+		file_put_contents("files/queries.log",sprintr($temp1["rows"][0]),FILE_APPEND);
+		file_put_contents("files/queries.log",sprintr($temp2["rows"][0]),FILE_APPEND);
+	}
+	semaphore_release($semaphore);
+	return $result;
 }
 
 function db_disconnect_pdo_mysql() {

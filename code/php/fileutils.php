@@ -117,13 +117,17 @@ function semaphore_release($file) {
 	return __semaphore_helper(__FUNCTION__,$file,null);
 }
 
+function semaphore_shutdown() {
+	return __semaphore_helper(__FUNCTION__,null,null);
+}
+
 function __semaphore_helper($fn,$file,$timeout) {
 	static $stack=array();
-	$hash=md5($file);
-	if(!isset($stack[$hash])) $stack[$hash]=null;
 	if(stripos($fn,"acquire")!==false) {
-		init_random();
+		$hash=md5($file);
+		if(!isset($stack[$hash])) $stack[$hash]=null;
 		if($stack[$hash]) return false;
+		init_random();
 		while($timeout>=0) {
 			capture_next_error();
 			$stack[$hash]=fopen($file,"a");
@@ -155,8 +159,9 @@ function __semaphore_helper($fn,$file,$timeout) {
 		ftruncate($stack[$hash],0);
 		fwrite($stack[$hash],getmypid());
 		return true;
-	}
-	if(stripos($fn,"release")!==false) {
+	} elseif(stripos($fn,"release")!==false) {
+		$hash=md5($file);
+		if(!isset($stack[$hash])) $stack[$hash]=null;
 		if(!$stack[$hash]) return false;
 		capture_next_error();
 		flock($stack[$hash],LOCK_UN);
@@ -165,6 +170,19 @@ function __semaphore_helper($fn,$file,$timeout) {
 		fclose($stack[$hash]);
 		get_clear_error();
 		$stack[$hash]=null;
+		return true;
+	} elseif(stripos($fn,"shutdown")!==false) {
+		foreach($stack as $hash=>$val) {
+			if($stack[$hash]) {
+				capture_next_error();
+				flock($stack[$hash],LOCK_UN);
+				get_clear_error();
+				capture_next_error();
+				fclose($stack[$hash]);
+				get_clear_error();
+				$stack[$hash]=null;
+			}
+		}
 		return true;
 	}
 	return false;

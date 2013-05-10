@@ -23,7 +23,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function parse_query($query,$type) {
+function parse_query($query,$type="") {
+	if($type=="") $type=__parse_query_type();
 	$pos=__parse_query_strpos($query,"/*");
 	$len=strlen($type);
 	while($pos!==false) {
@@ -35,7 +36,7 @@ function parse_query($query,$type) {
 				$pos3=__parse_query_strpos($query,"/*",$pos+2);
 			}
 			if(substr($query,$pos+2,$len)==$type) {
-				$query=substr($query,0,$pos).substr($query,$pos+2+$len,$pos2-$pos-2-$len).substr($query,$pos2+2);
+				$query=substr($query,0,$pos).trim(substr($query,$pos+2+$len,$pos2-$pos-2-$len)).substr($query,$pos2+2);
 			} else {
 				$query=substr($query,0,$pos).substr($query,$pos2+2);
 			}
@@ -45,6 +46,20 @@ function parse_query($query,$type) {
 		}
 	}
 	return $query;
+}
+
+function __parse_query_type() {
+	switch(getDefault("db/type")) {
+		case "pdo_sqlite":
+		case "sqlite3":
+			return "SQLITE";
+		case "pdo_mysql":
+		case "mysql":
+		case "mysqli":
+			return "MYSQL";
+		default:
+			show_php_error(array("phperror"=>"Unknown type '".getDefault("db/type")."'"));
+	}
 }
 
 function __parse_query_strpos($haystack,$needle,$offset=0) {
@@ -139,8 +154,7 @@ function make_update_query($table) {
 }
 
 function make_dependencies_query($table,$label) {
-	$file="xml/dbschema.xml";
-	$dbschema=xml2array($file);
+	$dbschema=xml2array("xml/dbschema.xml");
 	if(isset($dbschema["tables"])) {
 		$deps=array();
 		foreach($dbschema["tables"] as $tablespec) {
@@ -214,19 +228,13 @@ function execute_query_extra($query,$extra) {
 	return $rows;
 }
 
-function __get_fields_mysql_fix($type) {
-	$type=strtoupper($type);
-	if($type=="INT(11)") return "INTEGER";
-	return $type;
-}
-
 function get_fields($table) {
     $query="/*MYSQL SHOW COLUMNS FROM $table *//*SQLITE PRAGMA TABLE_INFO($table) */";
     $result=db_query($query);
 	$fields=array();
     while($row=db_fetch_row($result)) {
-		if(isset($row["Field"])) $fields[]=array("name"=>$row["Field"],"type"=>__get_fields_mysql_fix($row["Type"]));
-		if(isset($row["name"])) $fields[]=array("name"=>$row["name"],"type"=>$row["type"]);
+		if(isset($row["Field"])) $fields[]=array("name"=>$row["Field"],"type"=>strtoupper($row["Type"]));
+		if(isset($row["name"])) $fields[]=array("name"=>$row["name"],"type"=>strtoupper($row["type"]));
     }
 	db_free($result);
 	return $fields;
@@ -277,7 +285,9 @@ function get_tables() {
 }
 
 function get_field_type($type) {
+	$type=parse_query($type);
 	$type=strtok($type,"(");
+	$type=strtoupper($type);
 	$datatypes=getDefault("db/datatypes");
 	foreach($datatypes as $key=>$val) if(in_array($type,explode(",",$val))) return $key;
 	show_php_error(array("phperror"=>"Unknown type '$type' in get_field_type"));
@@ -288,7 +298,7 @@ function sql_create_table($tablespec) {
 	$fields=array();
 	foreach($tablespec["fields"] as $field) {
 		$name=$field["name"];
-		$type=strtoupper($field["type"]);
+		$type=$field["type"];
 		$type2=get_field_type($type);
 		if($type2=="int") $def=intval(0);
 		elseif($type2=="float") $def=floatval(0);
@@ -298,12 +308,7 @@ function sql_create_table($tablespec) {
 		elseif($type2=="string") $def="";
 		else show_php_error(array("phperror"=>"Unknown type '${type}' in sql_create_table"));
 		$extra="NOT NULL DEFAULT '$def'";
-		if(isset($field["pkey"])) {
-			$pkey=$field["pkey"];
-			if(eval_bool($pkey)) {
-				$extra="PRIMARY KEY /*MYSQL AUTO_INCREMENT *//*SQLITE AUTOINCREMENT */";
-			}
-		}
+		if(isset($field["pkey"]) && eval_bool($field["pkey"])) $extra="PRIMARY KEY /*MYSQL AUTO_INCREMENT *//*SQLITE AUTOINCREMENT */";
 		$fields[]="`$name` $type $extra";
 	}
 	foreach($tablespec["fields"] as $field) {
@@ -448,7 +453,7 @@ function make_like_query($keys,$values) {
 
 function make_extra_query_with_login($prefix="") {
 	$query=make_extra_query($prefix);
-	return "CONCAT($query,' (',${prefix}login,')')";
+	return "SUBSTR(CONCAT($query,' (',${prefix}login,')'),1,255)";
 }
 
 function make_extra_query($prefix="") {

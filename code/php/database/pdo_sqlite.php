@@ -55,12 +55,6 @@ function db_connect_pdo_sqlite() {
 		getDefault("db/link")->sqliteCreateFunction("SECOND","__pdo_sqlite_second");
 		getDefault("db/link")->sqliteCreateFunction("MD5","__pdo_sqlite_md5");
 	}
-	register_shutdown_function("__pdo_sqlite_shutdown_handler");
-}
-
-function __pdo_sqlite_shutdown_handler() {
-	$semaphore=getDefault("db/file").getDefault("exts/semext",".sem");
-	semaphore_release($semaphore);
 }
 
 function __pdo_sqlite_group_concat_check() {
