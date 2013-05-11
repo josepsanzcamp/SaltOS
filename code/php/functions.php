@@ -518,8 +518,7 @@ function db_schema() {
 		$dbschema=eval_attr(xml2array($file));
 		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
 			$tables1=get_tables();
-			$tables2=array();
-			foreach($dbschema["tables"] as $tablespec) $tables2[]=$tablespec["name"];
+			$tables2=get_tables_from_dbschema();
 			foreach($tables1 as $table) {
 				$isbackup=(substr($table,0,2)=="__" && substr($table,-2,2)=="__");
 				if(!$isbackup && !in_array($table,$tables2)) {
@@ -532,8 +531,7 @@ function db_schema() {
 				$backup="__${table}__";
 				if(in_array($table,$tables1)) {
 					$fields1=get_fields($table);
-					$fields2=array();
-					foreach($tablespec["fields"] as $fieldspec) $fields2[]=array("name"=>$fieldspec["name"],"type"=>strtoupper($fieldspec["type"]));
+					$fields2=get_fields_from_dbschema($table);
 					$hash3=md5(serialize($fields1));
 					$hash4=md5(serialize($fields2));
 					if($hash3!=$hash4) {
@@ -544,8 +542,7 @@ function db_schema() {
 					}
 				} elseif(in_array($backup,$tables1)) {
 					$fields1=get_fields($backup);
-					$fields2=array();
-					foreach($tablespec["fields"] as $fieldspec) $fields2[]=array("name"=>$fieldspec["name"],"type"=>strtoupper($fieldspec["type"]));
+					$fields2=get_fields_from_dbschema($table);
 					$hash3=md5(serialize($fields1));
 					$hash4=md5(serialize($fields2));
 					if($hash3!=$hash4) {
@@ -1150,15 +1147,21 @@ function debugEnd($name) {
 }
 
 function usleep_protected($usec) {
-	$socket=socket_create(AF_UNIX,SOCK_STREAM,0);
-	$read=null;
-	$write=null;
-	$except=array($socket);
-	capture_next_error();
+	if(function_exists("socket_create")) {
+		$socket=socket_create(AF_UNIX,SOCK_STREAM,0);
+		$read=null;
+		$write=null;
+		$except=array($socket);
+		capture_next_error();
+		$time1=microtime(true);
+		socket_select($read,$write,$except,intval($usec/1000000),intval($usec%1000000));
+		$time2=microtime(true);
+		get_clear_error();
+		return ($time2-$time1)*1000000;
+	}
 	$time1=microtime(true);
-	socket_select($read,$write,$except,intval($usec/1000000),intval($usec%1000000));
+	usleep($usec);
 	$time2=microtime(true);
-	get_clear_error();
 	return ($time2-$time1)*1000000;
 }
 ?>

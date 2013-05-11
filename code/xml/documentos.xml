@@ -208,7 +208,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_usuario,fecha1,fecha2,comentarios,id_proyecto" eval="true">"SELECT * FROM (
+		<query global="page,id_cliente,id_usuario,fecha1,fecha2,comentarios,id_proyecto" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,action_id,action_title,action_view,action_edit,action_delete,id_cliente,id_usuario,id_grupo,id_proyecto,descripcion FROM (
 	SELECT LPAD(a.id,5,0) id2,a.id id,
 		".make_extra_query_with_login("d.")." usuario,
 		e.`datetime` `datetime`,

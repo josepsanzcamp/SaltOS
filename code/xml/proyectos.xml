@@ -332,7 +332,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,id_estado,fecha1,fecha2,comentarios,id_campanya" eval="true">"
-		SELECT *,
+		SELECT id2,id,datetime,cliente,cliente2,nombre,nombre2,total1,total2,total3,total4,estado,comentarios,ficheros,tareas,productos,seguimientos,descripcion,id_campanya,action_id,action_title,id_usuario,id_estado,id_cliente,id_grupo,activo,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,

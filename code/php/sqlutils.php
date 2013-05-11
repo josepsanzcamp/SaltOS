@@ -111,7 +111,7 @@ function make_update_config($clave) {
 }
 
 function make_insert_query($table) {
-	$fields=get_fields($table);
+	$fields=get_fields_from_dbschema($table);
 	$list1=array();
 	$list2=array();
 	foreach($fields as $field) {
@@ -134,7 +134,7 @@ function make_insert_query($table) {
 }
 
 function make_update_query($table) {
-	$fields=get_fields($table);
+	$fields=get_fields_from_dbschema($table);
 	$list=array();
 	foreach($fields as $field) {
 		$type=$field["type"];
@@ -481,7 +481,7 @@ function make_extra_query_with_field($field,$prefix="") {
 		$result=db_query($query);
 		$cases=array("CASE ${prefix}id_aplicacion");
 		while($row=db_fetch_row($result)) {
-			$fields=get_fields($row["table"]);
+			$fields=get_fields_from_dbschema($row["table"]);
 			foreach($fields as $key=>$val) $fields[$key]=$val["name"];
 			if(in_array($field,$fields)) $cases[]="WHEN '${row["id"]}' THEN (SELECT ${field} FROM ${row["table"]} WHERE id=${prefix}id_registro)";
 		}
@@ -528,5 +528,34 @@ function make_select_query($page,$table,$field,$arg1=null,$arg2=null) {
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 	) a WHERE ".($filter?"id IN ($filter)":"1=1")." AND ".check_sql($page,"list");
 	return $query;
+}
+
+function get_tables_from_dbschema() {
+	return __dbschema_helper(__FUNCTION__,"");
+}
+
+function get_fields_from_dbschema($table) {
+	return __dbschema_helper(__FUNCTION__,$table);
+}
+
+function __dbschema_helper($fn,$table) {
+	static $tables=null;
+	if($tables===null) {
+		$file="xml/dbschema.xml";
+		$dbschema=eval_attr(xml2array($file));
+		$tables=array();
+		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
+			foreach($dbschema["tables"] as $tablespec) {
+				$tables[$tablespec["name"]]=array();
+				foreach($tablespec["fields"] as $fieldspec) $tables[$tablespec["name"]][]=array("name"=>$fieldspec["name"],"type"=>strtoupper(parse_query($fieldspec["type"])));
+			}
+		}
+	}
+	if(stripos($fn,"get_tables")!==false) {
+		return array_keys($tables);
+	} elseif(stripos($fn,"get_fields")!==false) {
+		if(isset($tables[$table])) return $tables[$table];
+	}
+	return array();
 }
 ?>
