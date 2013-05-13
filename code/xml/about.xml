@@ -98,15 +98,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>mailto("josep.sanz@saltos.net")</onclick>
 						</field>
 						<field>
-							<label>Jordi Company (Developer)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("jcompany@saltos.net")</onclick>
-						</field>
-						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>
@@ -272,7 +266,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.codeplex.com/PHPExcel")</onclick>
 						</field>
 						<field>
-							<label>PHPLOT 6.0.0 (LGPL-2.1)</label>
+							<label>PHPLOT 6.1.0 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://sourceforge.net/projects/phplot/")</onclick>
