@@ -1496,6 +1496,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			hide:{ effect:"none" },
 			tooltipClass:"ui-state-highlight",
 			track:true,
+			open:function(event,ui) {
+				ui.tooltip.css("max-width",$(window).width()/2);
+			},
 			content:function() {
 				// GET THE TITLE VALUE
 				var title=trim($(this).attr("title"));
@@ -1507,20 +1510,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					// FIX SOME ISSUES
 					if(strpos(title,"<")!==false || strpos(title,">")!==false) {
 						title=str_replace(new Array("<",">"),new Array("&lt;","&gt;"),title);
-					}
-					// REPAIR LONG TITLES WITH FORCED BREAK LINES
-					if(strlen(title)>100) {
-						words=explode(" ",title);
-						title="";
-						count=0;
-						$(words).each(function() {
-							if(count>100) {
-								title+="<br/>";
-								count=0;
-							}
-							title+=this+" ";
-							count+=strlen(this)+1;
-						});
 					}
 					// MOVE DATA FROM TITLE TO TITLE2
 					$(this).attr("title","");
