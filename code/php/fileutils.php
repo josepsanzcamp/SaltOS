@@ -123,13 +123,18 @@ function semaphore_shutdown() {
 
 function __semaphore_helper($fn,$file,$timeout) {
 	static $stack=array();
-	$dir=get_directory("dirs/filesdir",getcwd()."/files");
-	file_put_contents("$dir/semaphore.log",current_datetime_decimals()."\n",FILE_APPEND);
-	file_put_contents("$dir/semaphore.log","fn=".$fn."\n",FILE_APPEND);
-	file_put_contents("$dir/semaphore.log","file=".$file."\n",FILE_APPEND);
-	file_put_contents("$dir/semaphore.log","timeout=".$timeout."\n",FILE_APPEND);
-	file_put_contents("$dir/semaphore.log","pid=".getmypid()."\n",FILE_APPEND);
-	file_put_contents("$dir/semaphore.log","stack=".implode(",",$stack)."\n",FILE_APPEND);
+	file_put_contents(
+		implode("",array(
+			get_directory("dirs/filesdir",getcwd()."/files"),
+			"semaphore.log"
+		)),implode(" ",array(
+			current_datetime_decimals(),
+			getmypid(),
+			$fn,
+			$file,
+			$timeout,
+			implode(" ",$stack)
+		))."\n",FILE_APPEND);
 	if(stripos($fn,"acquire")!==false) {
 		$hash=md5($file);
 		if(!isset($stack[$hash])) $stack[$hash]=null;
