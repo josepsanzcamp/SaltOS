@@ -2,5 +2,3 @@
 I removed for security reasons the:
 - lib/tcpdf/doc
 - lib/tcpdf/examples
-- lib/tcpdf/images/*
-- lib/tcpdf/cache/*

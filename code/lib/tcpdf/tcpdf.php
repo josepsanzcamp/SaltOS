@@ -1,11 +1,11 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 6.0.014
+// Version     : 6.0.017
 // Begin       : 2002-08-03
-// Last Update : 2013-05-13
+// Last Update : 2013-05-16
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
-// License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3
+// License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
 // Copyright (C) 2002-2013 Nicola Asuni - Tecnick.com LTD
 //
@@ -139,26 +139,21 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 6.0.014
+ * @version 6.0.017
  */
 
-if (!defined('K_TCPDF_EXTERNAL_CONFIG')) {
-	// Main configuration file. Define the K_TCPDF_EXTERNAL_CONFIG constant to skip this file.
-	require_once(dirname(__FILE__).'/config/tcpdf_config.php');
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+// TCPDF configuration
+require_once(__DIR__.'/tcpdf_autoconfig.php');
 // TCPDF static font methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_font_data.php');
+require_once(__DIR__.'/include/tcpdf_font_data.php');
 // TCPDF static font methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_fonts.php');
+require_once(__DIR__.'/include/tcpdf_fonts.php');
 // TCPDF static color methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_colors.php');
+require_once(__DIR__.'/include/tcpdf_colors.php');
 // TCPDF static image methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_images.php');
+require_once(__DIR__.'/include/tcpdf_images.php');
 // TCPDF static methods and data
-require_once(dirname(__FILE__).'/include/tcpdf_static.php');
+require_once(__DIR__.'/include/tcpdf_static.php');
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -168,7 +163,7 @@ require_once(dirname(__FILE__).'/include/tcpdf_static.php');
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 6.0.014
+ * @version 6.0.017
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF {
@@ -4267,12 +4262,6 @@ class TCPDF {
 				$this->xobjects[$this->xobjid]['fonts'][$fontkey] = $fb['i'];
 			}
 			return $fontdata;
-		}
-		if (isset($type)) {
-			unset($type);
-		}
-		if (isset($cw)) {
-			unset($cw);
 		}
 		// get specified font directory (if any)
 		$fontdir = false;
@@ -9624,7 +9613,7 @@ class TCPDF {
 		// if required, add standard sRGB_IEC61966-2.1 blackscaled ICC colour profile
 		if ($this->pdfa_mode OR $this->force_srgb) {
 			$iccobj = $this->_newobj();
-			$icc = file_get_contents(dirname(__FILE__).'/include/sRGB.icc');
+			$icc = file_get_contents(__DIR__.'/include/sRGB.icc');
 			$filter = '';
 			if ($this->compress) {
 				$filter = ' /Filter /FlateDecode';
@@ -10857,7 +10846,7 @@ class TCPDF {
 	 * @param $user_pass (String) user password. Empty by default.
 	 * @param $owner_pass (String) owner password. If not specified, a random value is used.
 	 * @param $mode (int) encryption strength: 0 = RC4 40 bit; 1 = RC4 128 bit; 2 = AES 128 bit; 3 = AES 256 bit.
-	 * @param $pubkeys (String) array of recipients containing public-key certificates ('c') and permissions ('p'). For example: array(array('c' => 'file://../config/cert/tcpdf.crt', 'p' => array('print')))
+	 * @param $pubkeys (String) array of recipients containing public-key certificates ('c') and permissions ('p'). For example: array(array('c' => 'file://../examples/data/cert/tcpdf.crt', 'p' => array('print')))
 	 * @public
 	 * @since 2.0.000 (2008-01-02)
 	 * @author Nicola Asuni
@@ -13427,8 +13416,7 @@ class TCPDF {
 		++$this->n; // signature object ($this->sig_obj_id + 1)
 		$this->signature_data = array();
 		if (strlen($signing_cert) == 0) {
-			$signing_cert = 'file://'.dirname(__FILE__).'/config/cert/tcpdf.crt';
-			$private_key_password = 'tcpdfdemo';
+			$this->Error('Please provide a certificate file and password!');
 		}
 		if (strlen($private_key) == 0) {
 			$private_key = $signing_cert;
@@ -15063,7 +15051,7 @@ class TCPDF {
 		if (TCPDF_STATIC::empty_string(trim($code))) {
 			return;
 		}
-		require_once(dirname(__FILE__).'/tcpdf_barcodes_1d.php');
+		require_once(__DIR__.'/tcpdf_barcodes_1d.php');
 		// save current graphic settings
 		$gvars = $this->getGraphicVars();
 		// create new barcode object
@@ -15379,7 +15367,7 @@ class TCPDF {
 		if (TCPDF_STATIC::empty_string(trim($code))) {
 			return;
 		}
-		require_once(dirname(__FILE__).'/tcpdf_barcodes_2d.php');
+		require_once(__DIR__.'/tcpdf_barcodes_2d.php');
 		// save current graphic settings
 		$gvars = $this->getGraphicVars();
 		// create new barcode object
@@ -18811,7 +18799,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				if (isset($tag['attribute']['action'])) {
 					$this->form_action = $tag['attribute']['action'];
 				} else {
-					$this->form_action = K_PATH_URL.$_SERVER['SCRIPT_NAME'];
+					$this->Error('Please explicitly set action attribute path!');
 				}
 				if (isset($tag['attribute']['enctype'])) {
 					$this->form_enctype = $tag['attribute']['enctype'];
