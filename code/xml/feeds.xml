@@ -427,6 +427,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool")." ' ELSE '' END,
 			CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
 			)) estado,
+			e.datetime `datetime`,
 			e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_feed id_feed,uf.id_usuario id_usuario2
 		FROM tbl_feeds a
 		LEFT JOIN tbl_usuarios_f uf ON a.id_feed=uf.id
