@@ -34,6 +34,7 @@ if(getParam("action")=="translate") {
 	// SOME FUNCTIONS
 	function __translate_get_options($filter="") {
 		if(!is_array($filter)) $filter=explode(",",$filter);
+		if($filter[0]=="") unset($filter[0]);
 		$options=array();
 		$langs=__translate_get_apertium_langs();
 		if(count($langs)>0) {
