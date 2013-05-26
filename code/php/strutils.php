@@ -436,7 +436,7 @@ function svnversion($dir=".") {
 	if($rev===null) {
 		$rev=0;
 		$dir=realpath($dir);
-		if(!$dir) $dir=getcwd();
+		if(!$dir) $dir=getcwd_protected();
 		for(;;) {
 			// FOR SUBVERSION >= 12
 			$file="$dir/.svn/wc.db";

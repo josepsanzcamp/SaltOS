@@ -40,7 +40,7 @@ function saltos_content_type($file) {
 }
 
 function get_directory($key,$default="") {
-	$default=$default?$default:getcwd()."/cache";
+	$default=$default?$default:getcwd_protected()."/cache";
 	$dir=getDefault($key,$default);
 	$bar=(substr($dir,-1,1)!="/")?"/":"";
 	return $dir.$bar;
@@ -86,7 +86,7 @@ function __addlog_helper($a) {
 
 function addlog($msg,$file="") {
 	if(!$file) $file=getDefault("debug/logfile","saltos.log");
-	$dir=get_directory("dirs/filesdir",getcwd()."/files");
+	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
 	$maxlines=intval(getDefault("debug/maxlines",1000));
 	if($maxlines>0 && file_exists($dir.$file) && memory_get_free()>filesize($dir.$file)) {
 		capture_next_error();
@@ -404,5 +404,11 @@ function gzfilesize($filename) {
 		fclose($zp);
 	}
 	return($gzfs);
+}
+
+function getcwd_protected() {
+	$dir=getcwd();
+	if($dir=="/") $dir=dirname(getServer("SCRIPT_FILENAME"));
+	return $dir;
 }
 ?>
