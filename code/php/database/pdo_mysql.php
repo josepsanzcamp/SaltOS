@@ -39,28 +39,33 @@ function db_connect_pdo_mysql() {
 	}
 }
 
-function __db_query_pdo_mysql_helper($query) {
+function db_query_pdo_mysql($query,$extra="query") {
+	$query=parse_query($query,"MYSQL");
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
-	if($query) {
-		// DO QUERY
-		try {
-			$data=getDefault("db/link")->query($query);
-		} catch(PDOException $e) {
-			db_error_pdo_mysql(array("dberror"=>$e->getMessage(),"query"=>$query));
+	if(!$query) return $result;
+	// DO QUERY
+	try {
+		$stmt=getDefault("db/link")->query($query);
+	} catch(PDOException $e) {
+		db_error_pdo_mysql(array("dberror"=>$e->getMessage(),"query"=>$query));
+	}
+	// DUMP RESULT TO MATRIX
+	if($stmt && $stmt->columnCount()>0) {
+		if($extra=="auto") {
+			$extra=$stmt->columnCount()>1?"query":"column";
 		}
-		// DUMP RESULT TO MATRIX
-		if($data && $data->columnCount()>0) {
-			$result["rows"]=$data->fetchAll(PDO::FETCH_ASSOC);
+		if($extra=="query") {
+			$result["rows"]=$stmt->fetchAll(PDO::FETCH_ASSOC);
 			$result["total"]=count($result["rows"]);
 			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
 		}
+		if($extra=="column") {
+			$result["rows"]=$stmt->fetchAll(PDO::FETCH_COLUMN);
+			$result["total"]=count($result["rows"]);
+			$result["header"]=array("__a__");
+		}
 	}
 	return $result;
-}
-
-function db_query_pdo_mysql($query) {
-	$query=parse_query($query,"MYSQL");
-	return __db_query_pdo_mysql_helper($query);
 }
 
 function db_disconnect_pdo_mysql() {

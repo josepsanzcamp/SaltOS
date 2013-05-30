@@ -32,17 +32,16 @@ function db_connect() {
 	return $func();
 }
 
-function db_query($query) {
+function db_query($query,$extra="query") {
 	static $stack=array();
 	$query=trim($query);
 	// CHECK CACHE
-	$hash=md5($query);
+	$hash=md5(serialize(array($query,$extra)));
 	$usecache=eval_bool(get_use_cache($query));
 	if($usecache && isset($stack[$hash])) return $stack[$hash];
 	// DO QUERY
 	$func=__FUNCTION__."_".getDefault("db/type");
-	$result=$func($query);
-	$result["rows"]=array_reverse($result["rows"]);
+	$result=$func($query,$extra);
 	// AND RETURN
 	if($usecache) $stack[$hash]=$result;
 	return $result;
@@ -60,7 +59,15 @@ function db_error($array) {
 
 // shared functions
 function db_fetch_row(&$result) {
+	if(!isset($result["__array_reverse__"])) {
+		$result["rows"]=array_reverse($result["rows"]);
+		$result["__array_reverse__"]=1;
+	}
 	return array_pop($result["rows"]);
+}
+
+function db_fetch_all(&$result) {
+	return $result["rows"];
 }
 
 function db_num_rows($result) {

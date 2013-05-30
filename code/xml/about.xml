@@ -292,7 +292,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.rcdtokyo.com/etc/gdataapis/")</onclick>
 						</field>
 						<field>
-							<label>PHP Mobile Detect 2.6.0 (MIT)</label>
+							<label>PHP Mobile Detect 2.6.1 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
@@ -500,7 +500,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.3.4 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.3.5 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>

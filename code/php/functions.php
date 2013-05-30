@@ -1054,12 +1054,6 @@ function program_error_handler() {
 	register_shutdown_function("__shutdown_handler");
 }
 
-function number_row_index($row) {
-	$ret=array();
-	foreach($row as $r) $ret[]=$r;
-	return $ret;
-}
-
 function init_random() {
 	static $init=false;
 	if($init) return;

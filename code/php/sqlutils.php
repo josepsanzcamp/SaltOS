@@ -180,38 +180,26 @@ function make_dependencies_query($table,$label) {
 }
 
 function execute_query($query) {
-	$result=db_query($query);
+	$result=db_query($query,"auto");
 	$numrows=db_num_rows($result);
 	$numfields=db_num_fields($result);
 	$value=null;
 	if($numrows==1 && $numfields==1) {
-		$row=db_fetch_row($result);
-		$field=db_field_name($result,0);
-		$value=$row[$field];
+		$value=db_fetch_row($result);
 	} elseif($numrows==1 && $numfields>1) {
 		$value=db_fetch_row($result);
 	} elseif($numrows>1 && $numfields==1) {
-		$field=db_field_name($result,0);
-		$value=array();
-		while($row=db_fetch_row($result)) $value[]=$row[$field];
+		$value=db_fetch_all($result);
 	} elseif($numrows>1 && $numfields>1) {
-		$value=array();
-		while($row=db_fetch_row($result)) $value[]=$row;
+		$value=db_fetch_all($result);
 	}
 	db_free($result);
 	return $value;
 }
 
 function execute_query_array($query) {
-	$result=db_query($query);
-	$numfields=db_num_fields($result);
-	$rows=array();
-	if($numfields==1) {
-		$field=db_field_name($result,0);
-		while($row=db_fetch_row($result)) $rows[]=$row[$field];
-	} else {
-		while($row=db_fetch_row($result)) $rows[]=$row;
-	}
+	$result=db_query($query,"auto");
+	$rows=db_fetch_all($result);
 	db_free($result);
 	return $rows;
 }

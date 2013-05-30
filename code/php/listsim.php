@@ -49,14 +49,14 @@ function list_simulator($newpage,$ids="string") {
 	// CHECK ORDER
 	list($order,$array)=list_check_order($config["order"],$config["fields"]);
 	// EXECUTE THE QUERY TO GET THE REQUESTED DATA
-	if($ids=="string" || $ids=="array") {
-		$query="SELECT action_id FROM ($query0) __a__ ORDER BY $order";
-		$result=execute_query_array($query);
-		if($ids=="string") $result=count($result)?implode(",",$result):"0";
-	} elseif($ids=="count") {
+	if($ids=="count") {
 		$query="SELECT COUNT(*) FROM ($query0) __a__";
 		$count=execute_query($query);
 		$result=array("count"=>$count,"limit"=>$limit,"offset"=>$offset);
+	} elseif($ids=="string" || $ids=="array") {
+		$query="SELECT action_id FROM ($query0) __a__ ORDER BY $order";
+		$result=execute_query_array($query);
+		if($ids=="string") $result=count($result)?implode(",",$result):"0";
 	} else {
 		$ids=check_ids($ids);
 		$query="SELECT action_title FROM ($query0) __a__ WHERE action_id IN ($ids) ORDER BY $order";

@@ -132,14 +132,25 @@ function __sqlite3_md5($temp) {
 	return md5($temp);
 }
 
-function __db_query_sqlite3_helper($query) {
+function db_query_sqlite3($query,$extra="query") {
+	$query=parse_query($query,"SQLITE");
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
-	if($query) {
+	if(!$query) return $result;
+	// TRICK TO DO THE STRIP SLASHES
+	$pos=strpos($query,"\\");
+	while($pos!==false) {
+		$extra=$query[$pos+1]=="'"?"'":"";
+		$query=substr_replace($query,$extra,$pos,1);
+		$pos=strpos($query,"\\",$pos+1);
+	}
+	// CONTINUE THE NORMAL OPERATION
+	$semaphore=getDefault("db/file").getDefault("exts/semext",".sem");
+	if(semaphore_acquire($semaphore,getDefault("db/semaphoretimeout",10000000))) {
 		// DO QUERY
 		$timeout=getDefault("db/semaphoretimeout",10000000);
 		while(1) {
 			capture_next_error();
-			$data=getDefault("db/link")->query($query);
+			$stmt=getDefault("db/link")->query($query);
 			$error=get_clear_error();
 			if(!$error) break;
 			if($timeout<=0) {
@@ -154,41 +165,34 @@ function __db_query_sqlite3_helper($query) {
 				break;
 			}
 		}
-		// DUMP RESULT TO MATRIX
-		if($data && $data->numColumns()) {
-			while($row=$data->fetchArray(SQLITE3_ASSOC)) $result["rows"][]=$row;
-			$continue=false;
-			foreach($result["rows"] as $key=>$val) {
-				foreach($val as $key2=>$val2) {
-					if($key2[0]=="`" && substr($key2,-1,1)=="`") {
-						unset($result["rows"][$key][$key2]);
-						$result["rows"][$key][substr($key2,1,-1)]=$val2;
-						$continue=true;
-					}
-				}
-				if(!$continue) break;
-			}
-			$result["total"]=count($result["rows"]);
-			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
-		}
-	}
-	return $result;
-}
-
-function db_query_sqlite3($query) {
-	$query=parse_query($query,"SQLITE");
-	// TRICK TO DO THE STRIP SLASHES
-	$pos=strpos($query,"\\");
-	while($pos!==false) {
-		$extra=$query[$pos+1]=="'"?"'":"";
-		$query=substr_replace($query,$extra,$pos,1);
-		$pos=strpos($query,"\\",$pos+1);
-	}
-	// CONTINUE THE NORMAL OPERATION
-	$semaphore=getDefault("db/file").getDefault("exts/semext",".sem");
-	if(semaphore_acquire($semaphore,getDefault("db/semaphoretimeout",10000000))) {
-		$result=__db_query_sqlite3_helper($query);
 		semaphore_release($semaphore);
+		// DUMP RESULT TO MATRIX
+		if($stmt && $stmt->numColumns()) {
+			if($extra=="auto") {
+				$extra=$stmt->numColumns()>1?"query":"column";
+			}
+			if($extra=="query") {
+				while($row=$stmt->fetchArray(SQLITE3_ASSOC)) $result["rows"][]=$row;
+				$continue=false;
+				foreach($result["rows"] as $key=>$val) {
+					foreach($val as $key2=>$val2) {
+						if($key2[0]=="`" && substr($key2,-1,1)=="`") {
+							unset($result["rows"][$key][$key2]);
+							$result["rows"][$key][substr($key2,1,-1)]=$val2;
+							$continue=true;
+						}
+					}
+					if(!$continue) break;
+				}
+				$result["total"]=count($result["rows"]);
+				if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
+			}
+			if($extra=="column") {
+				while($row=$stmt->fetchArray(SQLITE3_NUM)) $result["rows"][]=$row[0];
+				$result["total"]=count($result["rows"]);
+				$result["header"]=array("__a__");
+			}
+		}
 	} else {
 		db_error_sqlite3(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
 	}
