@@ -71,15 +71,18 @@ define("__HR__","<hr style='border:0px;height:1px;background:#ccc'/>");
 define("__DEFAULT__","install/xml/tbl_*.xml");
 define("__EXAMPLE__","install/csv/example/tbl_*.csv");
 define("__STREET__","install/csv/street/tbl_*.csv.gz");
+// JQUERY VERSIONS
+$jquery=array(true=>"lib/jquery/jquery-1.10.1.min.js",false=>"lib/jquery/jquery-2.0.2.min.js");
+$jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $lang; ?>" dir="<?php echo $dir; ?>">
 	<head>
 		<link xmlns="" href="img/favicon.ico" rel="shortcut icon">
 		<title><?php echo LANG("title")." - ".get_name_version_revision(); ?></title>
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="lib/jquery/jquery-1.10.0.min.js"></script>
+		<script type="text/javascript" src="<?php echo $jquery[ismsie(array(6,7,8))]; ?>"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="lib/jquery/jquery-ui-1.10.3.min.js"></script>
+		<script type="text/javascript" src="<?php echo $jqueryui; ?>"></script>
 		<script type="text/javascript">$(function() { $("a:last").focus(); });</script>
 	</head>
 	<body>
