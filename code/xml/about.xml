@@ -260,7 +260,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://code.google.com/a/apache-extras.org/p/phpmailer/")</onclick>
 						</field>
 						<field>
-							<label>PHPExcel 1.7.8 (LGPL-2.1)</label>
+							<label>PHPExcel 1.7.9 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.codeplex.com/PHPExcel")</onclick>

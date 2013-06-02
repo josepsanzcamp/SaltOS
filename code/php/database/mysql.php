@@ -35,7 +35,7 @@ function db_connect_mysql() {
 	}
 }
 
-function db_query_mysql($query,$extra="query") {
+function db_query_mysql($query,$fetch="query") {
 	$query=parse_query($query,"MYSQL");
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
 	if(!$query) return $result;
@@ -43,16 +43,16 @@ function db_query_mysql($query,$extra="query") {
 	$stmt=mysql_query($query,getDefault("db/link")) or db_error_mysql(array("dberror"=>mysql_error(getDefault("db/link")),"query"=>$query));
 	// DUMP RESULT TO MATRIX
 	if(!is_bool($stmt) && mysql_num_fields($stmt)) {
-		if($extra=="auto") {
-			$extra=mysql_num_fields($stmt)>1?"query":"column";
+		if($fetch=="auto") {
+			$fetch=mysql_num_fields($stmt)>1?"query":"column";
 		}
-		if($extra=="query") {
+		if($fetch=="query") {
 			while($row=mysql_fetch_assoc($stmt)) $result["rows"][]=$row;
 			$result["total"]=count($result["rows"]);
 			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
 			mysql_free_result($stmt);
 		}
-		if($extra=="column") {
+		if($fetch=="column") {
 			while($row=mysql_fetch_row($stmt)) $result["rows"][]=$row[0];
 			$result["total"]=count($result["rows"]);
 			$result["header"]=array("__a__");

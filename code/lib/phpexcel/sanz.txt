@@ -1,4 +1,0 @@
-
-I removed for security reasons the:
-- lib/phpexcel/PHPExcel/Shared/JAMA/examples
-- lib/phpexcel/PHPExcel/Shared/JAMA/tests

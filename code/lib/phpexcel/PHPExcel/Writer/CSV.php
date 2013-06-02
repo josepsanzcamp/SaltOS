@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2012 PHPExcel
+ * Copyright (c) 2006 - 2013 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,10 +19,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
  * @category   PHPExcel
- * @package	PHPExcel_Writer
- * @copyright  Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @package	PHPExcel_Writer_CSV
+ * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license	http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version	1.7.8, 2012-10-12
+ * @version	1.7.9, 2013-06-02
  */
 
 
@@ -30,10 +30,10 @@
  * PHPExcel_Writer_CSV
  *
  * @category   PHPExcel
- * @package	PHPExcel_Writer
- * @copyright  Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @package	PHPExcel_Writer_CSV
+ * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Writer_CSV implements PHPExcel_Writer_IWriter {
+class PHPExcel_Writer_CSV extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter {
 	/**
 	 * PHPExcel object
 	 *
@@ -70,13 +70,6 @@ class PHPExcel_Writer_CSV implements PHPExcel_Writer_IWriter {
 	private $_sheetIndex	= 0;
 
 	/**
-	 * Pre-calculate formulas
-	 *
-	 * @var boolean
-	 */
-	private $_preCalculateFormulas = true;
-
-	/**
 	 * Whether to write a BOM (for UTF8).
 	 *
 	 * @var boolean
@@ -103,21 +96,21 @@ class PHPExcel_Writer_CSV implements PHPExcel_Writer_IWriter {
 	 * Save PHPExcel to file
 	 *
 	 * @param	string		$pFilename
-	 * @throws	Exception
+	 * @throws	PHPExcel_Writer_Exception
 	 */
 	public function save($pFilename = null) {
 		// Fetch sheet
 		$sheet = $this->_phpExcel->getSheet($this->_sheetIndex);
 
-		$saveDebugLog = PHPExcel_Calculation::getInstance()->writeDebugLog;
-		PHPExcel_Calculation::getInstance()->writeDebugLog = false;
+		$saveDebugLog = PHPExcel_Calculation::getInstance($this->_phpExcel)->getDebugLog()->getWriteDebugLog();
+		PHPExcel_Calculation::getInstance($this->_phpExcel)->getDebugLog()->setWriteDebugLog(FALSE);
 		$saveArrayReturnType = PHPExcel_Calculation::getArrayReturnType();
 		PHPExcel_Calculation::setArrayReturnType(PHPExcel_Calculation::RETURN_ARRAY_AS_VALUE);
 
 		// Open file
 		$fileHandle = fopen($pFilename, 'wb+');
 		if ($fileHandle === false) {
-			throw new Exception("Could not open file $pFilename for writing.");
+			throw new PHPExcel_Writer_Exception("Could not open file $pFilename for writing.");
 		}
 
 		if ($this->_excelCompatibility) {
@@ -146,7 +139,7 @@ class PHPExcel_Writer_CSV implements PHPExcel_Writer_IWriter {
 		fclose($fileHandle);
 
 		PHPExcel_Calculation::setArrayReturnType($saveArrayReturnType);
-		PHPExcel_Calculation::getInstance()->writeDebugLog = $saveDebugLog;
+		PHPExcel_Calculation::getInstance($this->_phpExcel)->getDebugLog()->setWriteDebugLog($saveDebugLog);
 	}
 
 	/**
@@ -278,7 +271,7 @@ class PHPExcel_Writer_CSV implements PHPExcel_Writer_IWriter {
 	 *
 	 * @param	mixed	$pFileHandle	PHP filehandle
 	 * @param	array	$pValues		Array containing values in a row
-	 * @throws	Exception
+	 * @throws	PHPExcel_Writer_Exception
 	 */
 	private function _writeLine($pFileHandle = null, $pValues = null) {
 		if (is_array($pValues)) {
@@ -313,27 +306,8 @@ class PHPExcel_Writer_CSV implements PHPExcel_Writer_IWriter {
 				fwrite($pFileHandle, $line);
 			}
 		} else {
-			throw new Exception("Invalid data row passed to CSV writer.");
+			throw new PHPExcel_Writer_Exception("Invalid data row passed to CSV writer.");
 		}
 	}
 
-	/**
-	 * Get Pre-Calculate Formulas
-	 *
-	 * @return boolean
-	 */
-	public function getPreCalculateFormulas() {
-		return $this->_preCalculateFormulas;
-	}
-
-	/**
-	 * Set Pre-Calculate Formulas
-	 *
-	 * @param boolean $pValue	Pre-Calculate Formulas?
-	 * @return PHPExcel_Writer_CSV
-	 */
-	public function setPreCalculateFormulas($pValue = true) {
-		$this->_preCalculateFormulas = $pValue;
-		return $this;
-	}
 }

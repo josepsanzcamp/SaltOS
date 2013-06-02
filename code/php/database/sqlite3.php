@@ -132,7 +132,7 @@ function __sqlite3_md5($temp) {
 	return md5($temp);
 }
 
-function db_query_sqlite3($query,$extra="query") {
+function db_query_sqlite3($query,$fetch="query") {
 	$query=parse_query($query,"SQLITE");
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
 	if(!$query) return $result;
@@ -168,10 +168,10 @@ function db_query_sqlite3($query,$extra="query") {
 		semaphore_release($semaphore);
 		// DUMP RESULT TO MATRIX
 		if($stmt && $stmt->numColumns()) {
-			if($extra=="auto") {
-				$extra=$stmt->numColumns()>1?"query":"column";
+			if($fetch=="auto") {
+				$fetch=$stmt->numColumns()>1?"query":"column";
 			}
-			if($extra=="query") {
+			if($fetch=="query") {
 				while($row=$stmt->fetchArray(SQLITE3_ASSOC)) $result["rows"][]=$row;
 				$continue=false;
 				foreach($result["rows"] as $key=>$val) {
@@ -187,7 +187,7 @@ function db_query_sqlite3($query,$extra="query") {
 				$result["total"]=count($result["rows"]);
 				if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
 			}
-			if($extra=="column") {
+			if($fetch=="column") {
 				while($row=$stmt->fetchArray(SQLITE3_NUM)) $result["rows"][]=$row[0];
 				$result["total"]=count($result["rows"]);
 				$result["header"]=array("__a__");

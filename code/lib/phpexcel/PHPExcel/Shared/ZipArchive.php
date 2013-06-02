@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2012 PHPExcel
+ * Copyright (c) 2006 - 2013 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  * @category   PHPExcel
  * @package    PHPExcel_Shared_ZipArchive
- * @copyright  Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    1.7.8, 2012-10-12
+ * @version    1.7.9, 2013-06-02
  */
 
 if (!defined('PCLZIP_TEMPORARY_DIR')) {
@@ -36,7 +36,7 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/PCLZip/pclzip.lib.php';
  *
  * @category   PHPExcel
  * @package    PHPExcel_Shared_ZipArchive
- * @copyright  Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Shared_ZipArchive
 {
@@ -105,7 +105,7 @@ class PHPExcel_Shared_ZipArchive
 								PCLZIP_OPT_ADD_PATH, $filenameParts["dirname"]
 							   );
 		if ($res == 0) {
-			throw new Exception("Error zipping files : " . $this->_zip->errorInfo(true));
+			throw new PHPExcel_Writer_Exception("Error zipping files : " . $this->_zip->errorInfo(true));
 		}
 
 		unlink($this->_tempDir.'/'.$filenameParts["basename"]);

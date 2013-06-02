@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2012 PHPExcel
+ * Copyright (c) 2006 - 2013 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  * @category   PHPExcel
  * @package    PHPExcel_Writer_Excel2007
- * @copyright  Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    1.7.8, 2012-10-12
+ * @version    1.7.9, 2013-06-02
  */
 
 
@@ -30,26 +30,11 @@
  * PHPExcel_Writer_Excel2007
  *
  * @category   PHPExcel
- * @package    PHPExcel_Writer_Excel2007
- * @copyright  Copyright (c) 2006 - 2012 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @package    PHPExcel_Writer_2007
+ * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
+class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
 {
-	/**
-	 * Write charts that are defined in the workbook?
-	 * Identifies whether the Writer should write definitions for any charts that exist in the PHPExcel object;
-	 *
-	 * @var	boolean
-	 */
-	private $_includeCharts = false;
-
-	/**
-	 * Pre-calculate formulas
-	 *
-	 * @var boolean
-	 */
-	private $_preCalculateFormulas = true;
-
 	/**
 	 * Office2003 compatibility
 	 *
@@ -120,20 +105,6 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 	 */
 	private $_drawingHashTable;
 
-	/**
-	 * Use disk caching where possible?
-	 *
-	 * @var boolean
-	 */
-	private $_useDiskCaching = false;
-
-	/**
-	 * Disk caching directory
-	 *
-	 * @var string
-	 */
-	private $_diskCachingDirectory	= './';
-
     /**
      * Create a new PHPExcel_Writer_Excel2007
      *
@@ -191,7 +162,7 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 	 * Save PHPExcel to file
 	 *
 	 * @param 	string 		$pFilename
-	 * @throws 	Exception
+	 * @throws 	PHPExcel_Writer_Exception
 	 */
 	public function save($pFilename = null)
 	{
@@ -208,8 +179,8 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 				}
 			}
 
-			$saveDebugLog = PHPExcel_Calculation::getInstance()->writeDebugLog;
-			PHPExcel_Calculation::getInstance()->writeDebugLog = false;
+			$saveDebugLog = PHPExcel_Calculation::getInstance($this->_spreadSheet)->getDebugLog()->getWriteDebugLog();
+			PHPExcel_Calculation::getInstance($this->_spreadSheet)->getDebugLog()->setWriteDebugLog(FALSE);
 			$saveDateReturnType = PHPExcel_Calculation_Functions::getReturnDateType();
 			PHPExcel_Calculation_Functions::setReturnDateType(PHPExcel_Calculation_Functions::RETURNDATE_EXCEL);
 
@@ -245,7 +216,7 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 			// Try opening the ZIP file
 			if ($objZip->open($pFilename, $zipOverWrite) !== true) {
 				if ($objZip->open($pFilename, $zipCreate) !== true) {
-					throw new Exception("Could not open " . $pFilename . " for writing.");
+					throw new PHPExcel_Writer_Exception("Could not open " . $pFilename . " for writing.");
 				}
 			}
 
@@ -342,7 +313,6 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 				if ($this->getDrawingHashTable()->getByIndex($i) instanceof PHPExcel_Worksheet_Drawing) {
 					$imageContents = null;
 					$imagePath = $this->getDrawingHashTable()->getByIndex($i)->getPath();
-
 					if (strpos($imagePath, 'zip://') !== false) {
 						$imagePath = substr($imagePath, 6);
 						$imagePathSplitted = explode('#', $imagePath);
@@ -371,22 +341,22 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 			}
 
 			PHPExcel_Calculation_Functions::setReturnDateType($saveDateReturnType);
-			PHPExcel_Calculation::getInstance()->writeDebugLog = $saveDebugLog;
+			PHPExcel_Calculation::getInstance($this->_spreadSheet)->getDebugLog()->setWriteDebugLog($saveDebugLog);
 
 			// Close file
 			if ($objZip->close() === false) {
-				throw new Exception("Could not close zip file $pFilename.");
+				throw new PHPExcel_Writer_Exception("Could not close zip file $pFilename.");
 			}
 
 			// If a temporary file was used, copy it to the correct file stream
 			if ($originalFilename != $pFilename) {
 				if (copy($pFilename, $originalFilename) === false) {
-					throw new Exception("Could not copy temporary zip file $pFilename to $originalFilename.");
+					throw new PHPExcel_Writer_Exception("Could not copy temporary zip file $pFilename to $originalFilename.");
 				}
 				@unlink($pFilename);
 			}
 		} else {
-			throw new Exception("PHPExcel object unassigned.");
+			throw new PHPExcel_Writer_Exception("PHPExcel object unassigned.");
 		}
 	}
 
@@ -394,13 +364,13 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 	 * Get PHPExcel object
 	 *
 	 * @return PHPExcel
-	 * @throws Exception
+	 * @throws PHPExcel_Writer_Exception
 	 */
 	public function getPHPExcel() {
 		if ($this->_spreadSheet !== null) {
 			return $this->_spreadSheet;
 		} else {
-			throw new Exception("No PHPExcel assigned.");
+			throw new PHPExcel_Writer_Exception("No PHPExcel assigned.");
 		}
 	}
 
@@ -408,7 +378,7 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
 	 * Set PHPExcel object
 	 *
 	 * @param 	PHPExcel 	$pPHPExcel	PHPExcel object
-	 * @throws	Exception
+	 * @throws	PHPExcel_Writer_Exception
 	 * @return PHPExcel_Writer_Excel2007
 	 */
 	public function setPHPExcel(PHPExcel $pPHPExcel = null) {
@@ -479,49 +449,6 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
     	return $this->_drawingHashTable;
     }
 
-	/**
-	 * Write charts in workbook?
-	 *		If this is true, then the Writer will write definitions for any charts that exist in the PHPExcel object.
-	 *		If false (the default) it will ignore any charts defined in the PHPExcel object.
-	 *
-	 * @return	boolean
-	 */
-	public function getIncludeCharts() {
-		return $this->_includeCharts;
-	}
-
-	/**
-	 * Set write charts in workbook
-	 *		Set to true, to advise the Writer to include any charts that exist in the PHPExcel object.
-	 *		Set to false (the default) to ignore charts.
-	 *
-	 * @param	boolean	$pValue
-	 *
-	 * @return	PHPExcel_Writer_Excel2007
-	 */
-	public function setIncludeCharts($pValue = false) {
-		$this->_includeCharts = (boolean) $pValue;
-		return $this;
-	}
-
-    /**
-     * Get Pre-Calculate Formulas
-     *
-     * @return boolean
-     */
-    public function getPreCalculateFormulas() {
-    	return $this->_preCalculateFormulas;
-    }
-
-    /**
-     * Set Pre-Calculate Formulas
-     *
-     * @param boolean $pValue	Pre-Calculate Formulas?
-     */
-    public function setPreCalculateFormulas($pValue = true) {
-    	$this->_preCalculateFormulas = $pValue;
-    }
-
     /**
      * Get Office2003 compatibility
      *
@@ -532,7 +459,7 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
     }
 
     /**
-     * Set Pre-Calculate Formulas
+     * Set Office2003 compatibility
      *
      * @param boolean $pValue	Office2003 compatibility?
      * @return PHPExcel_Writer_Excel2007
@@ -542,42 +469,4 @@ class PHPExcel_Writer_Excel2007 implements PHPExcel_Writer_IWriter
     	return $this;
     }
 
-	/**
-	 * Get use disk caching where possible?
-	 *
-	 * @return boolean
-	 */
-	public function getUseDiskCaching() {
-		return $this->_useDiskCaching;
-	}
-
-	/**
-	 * Set use disk caching where possible?
-	 *
-	 * @param 	boolean 	$pValue
-	 * @param	string		$pDirectory		Disk caching directory
-	 * @throws	Exception	Exception when directory does not exist
-	 * @return PHPExcel_Writer_Excel2007
-	 */
-	public function setUseDiskCaching($pValue = false, $pDirectory = null) {
-		$this->_useDiskCaching = $pValue;
-
-		if ($pDirectory !== NULL) {
-    		if (is_dir($pDirectory)) {
-    			$this->_diskCachingDirectory = $pDirectory;
-    		} else {
-    			throw new Exception("Directory does not exist: $pDirectory");
-    		}
-		}
-		return $this;
-	}
-
-	/**
-	 * Get disk caching directory
-	 *
-	 * @return string
-	 */
-	public function getDiskCachingDirectory() {
-		return $this->_diskCachingDirectory;
-	}
 }

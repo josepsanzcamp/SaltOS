@@ -39,7 +39,7 @@ function db_connect_pdo_mysql() {
 	}
 }
 
-function db_query_pdo_mysql($query,$extra="query") {
+function db_query_pdo_mysql($query,$fetch="query") {
 	$query=parse_query($query,"MYSQL");
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
 	if(!$query) return $result;
@@ -51,15 +51,15 @@ function db_query_pdo_mysql($query,$extra="query") {
 	}
 	// DUMP RESULT TO MATRIX
 	if($stmt && $stmt->columnCount()>0) {
-		if($extra=="auto") {
-			$extra=$stmt->columnCount()>1?"query":"column";
+		if($fetch=="auto") {
+			$fetch=$stmt->columnCount()>1?"query":"column";
 		}
-		if($extra=="query") {
+		if($fetch=="query") {
 			$result["rows"]=$stmt->fetchAll(PDO::FETCH_ASSOC);
 			$result["total"]=count($result["rows"]);
 			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
 		}
-		if($extra=="column") {
+		if($fetch=="column") {
 			$result["rows"]=$stmt->fetchAll(PDO::FETCH_COLUMN);
 			$result["total"]=count($result["rows"]);
 			$result["header"]=array("__a__");

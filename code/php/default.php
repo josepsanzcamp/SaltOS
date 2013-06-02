@@ -331,9 +331,10 @@ if(!defined("__DEFAULT_PHP__")) {
 		db_free($result);
 		set_include_path("lib/phpexcel:".get_include_path());
 		include_once("PHPExcel.php");
-		$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
-		$cacheSettings=array("memoryCacheSize"=>"8MB");
-		PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);
+		// TODO: POSSIBLE PHPEXCEL 1.7.9 BUG
+		//~ $cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+		//~ $cacheSettings=array("memoryCacheSize"=>"8MB");
+		//~ PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);
 		$objPHPExcel=new PHPExcel();
 		$objPHPExcel->getProperties()->setCreator(get_name_version_revision());
 		$objPHPExcel->getProperties()->setLastModifiedBy(current_datetime());
