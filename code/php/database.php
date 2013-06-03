@@ -32,16 +32,16 @@ function db_connect() {
 	return $func();
 }
 
-function db_query($query,$extra="query") {
+function db_query($query,$fetch="query") {
 	static $stack=array();
 	$query=trim($query);
 	// CHECK CACHE
-	$hash=md5(serialize(array($query,$extra)));
+	$hash=md5(serialize(array($query,$fetch)));
 	$usecache=eval_bool(get_use_cache($query));
 	if($usecache && isset($stack[$hash])) return $stack[$hash];
 	// DO QUERY
 	$func=__FUNCTION__."_".getDefault("db/type");
-	$result=$func($query,$extra);
+	$result=$func($query,$fetch);
 	// AND RETURN
 	if($usecache) $stack[$hash]=$result;
 	return $result;
