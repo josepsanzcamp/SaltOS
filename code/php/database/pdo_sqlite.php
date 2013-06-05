@@ -147,9 +147,9 @@ function db_query_pdo_sqlite($query,$fetch="query") {
 	}
 	// CONTINUE THE NORMAL OPERATION
 	$semaphore=getDefault("db/file").getDefault("exts/semext",".sem");
-	if(semaphore_acquire($semaphore,getDefault("db/semaphoretimeout",10000000))) {
+	$timeout=getDefault("db/semaphoretimeout",10000000);
+	if(semaphore_acquire($semaphore,$timeout)) {
 		// DO QUERY
-		$timeout=getDefault("db/semaphoretimeout",10000000);
 		while(1) {
 			try {
 				$stmt=getDefault("db/link")->query($query);

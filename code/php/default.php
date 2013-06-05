@@ -94,8 +94,7 @@ if(!defined("__DEFAULT_PHP__")) {
 
 		if(!defined("__CLASS_PDF__")) {
 			define("__CLASS_PDF__",1);
-			// TODO: TCPDF REQUIRES __DIR__ DEFINED WITH THE TCPDF DIRECTORY
-			if(!defined("__DIR__")) define("__DIR__",getcwd()."/lib/tcpdf");
+
 			include("lib/tcpdf/tcpdf.php");
 
 			class PDF extends TCPDF {
