@@ -335,9 +335,9 @@ function url_get_contents($url,$type="GET") {
 	$result=explode("\r\n\r\n",$result,2);
 	$headers=isset($result[0])?$result[0]:"";
 	$body=isset($result[1])?$result[1]:"";
-	// CHECK FOR CHUNKED CONTENT
+	// SOME CHECKS
 	$headers=explode("\n",$headers);
-	foreach($headers as $header) {
+	foreach($headers as $index=>$header) {
 		if(stripos($header,"location:")!==false && stripos($header,"-location:")===false) {
 			$url2=trim(substr($header,strpos($header,":",stripos($header,"location:"))+1));
 			$array2=parse_url($url2);
@@ -353,18 +353,18 @@ function url_get_contents($url,$type="GET") {
 			require_once("lib/wordpress/http_build_url.php");
 			$url2=http_build_url($url2,$array2);
 			$body=url_get_contents($url2,$type);
-			$headers=array();
+			unset($headers[$index]);
 			break;
 		}
 	}
-	foreach($headers as $header) {
+	foreach($headers as $index=>$header) {
 		if(stripos($header,"404 Not Found")!==false) {
 			$body="";
-			$headers=array();
+			unset($headers[$index]);
 			break;
 		}
 	}
-	foreach($headers as $header) {
+	foreach($headers as $index=>$header) {
 		if(stripos($header,"transfer-encoding:")!==false && stripos($header,"chunked")!==false) {
 			$from=0;
 			$newbody="";
@@ -378,7 +378,19 @@ function url_get_contents($url,$type="GET") {
 				if($from>strlen($body)) break;
 			}
 			$body=$newbody;
-			$headers=array();
+			unset($headers[$index]);
+			break;
+		}
+	}
+	foreach($headers as $index=>$header) {
+		if(stripos($header,"content-encoding:")!==false && stripos($header,"gzip")!==false) {
+			$body=gzdecode($body);
+			unset($headers[$index]);
+			break;
+		}
+		if(stripos($header,"content-encoding:")!==false && stripos($header,"deflate")!==false) {
+			$body=gzinflate($body);
+			unset($headers[$index]);
 			break;
 		}
 	}
@@ -410,5 +422,18 @@ function getcwd_protected() {
 	$dir=getcwd();
 	if($dir=="/") $dir=dirname(getServer("SCRIPT_FILENAME"));
 	return $dir;
+}
+
+if(!function_exists("gzdecode")) {
+	function gzdecode($data) {
+		$file=get_temp_file(getDefault("exts/gzipext",".gz"));
+		file_put_contents($file,$data);
+		$size=gzfilesize($file);
+		$fp=gzopen($file,"r");
+		$data=gzread($fp,$size);
+		gzclose($fp);
+		unlink($file);
+		return $data;
+	}
 }
 ?>

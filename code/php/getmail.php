@@ -99,7 +99,7 @@ function __getmail_getsource($id,$max=0) {
 	if(!file_exists($file)) return "";
 	$fp=gzopen($file,"r");
 	$message="";
-	if(!$max) $max=filesize($file)+1;
+	if(!$max) $max=gzfilesize($file);
 	while(!feof($fp) && strlen($message)<$max) $message.=gzread($fp,min(8192,$max-strlen($message)));
 	if(!feof($fp)) $message.="\n...";
 	gzclose($fp);
