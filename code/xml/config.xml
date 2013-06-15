@@ -225,10 +225,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cache ifeval="!ismobile()">
 			<include>lib/jquery/jquery.colorpicker.js</include>
 			<include>lib/jquery/jquery.ptTimeSelect.js</include>
-			<include>lib/jquery/jquery.masonry.js</include>
 			<include>lib/jquery/jquery.favicon.js</include>
 			<include>lib/jquery/jquery.jplayer.js</include>
 			<include>lib/jquery/jquery.columnizer.js</include>
+			<include>lib/masonry/masonry.pkgd.min.js</include>
 		</cache>
 		<inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<cache ifeval="!ismobile()">

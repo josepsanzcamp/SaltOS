@@ -488,10 +488,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Masonry 2.1.08 (MIT)</label>
+							<label>Masonry 3.0.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://desandro.com/resources/jquery-masonry/")</onclick>
+							<onclick>openwin("http://desandro.com/masonry/")</onclick>
 						</field>
 						<field>
 							<label>Favicon 0.2.1 (MIT &amp; GPL*)</label>
