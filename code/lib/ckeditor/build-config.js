@@ -7,8 +7,8 @@
 /**
  * This file was added automatically by CKEditor builder.
  * You may re-use it at any time at http://ckeditor.com/builder to build CKEditor again.
- * 
- * NOTE: 
+ *
+ * NOTE:
  *    This file is not used by CKEditor, you may remove it.
  *    Changing this file will not change your CKEditor configuration.
  */
@@ -20,7 +20,6 @@ var CKBUILDER_CONFIG = {
 		'dev',
 		'.gitignore',
 		'.gitattributes',
-		'README.md',
 		'.mailmap'
 	],
 	plugins : {
@@ -87,22 +86,17 @@ var CKBUILDER_CONFIG = {
 		'fakeobjects' : 1,
 		'richcombo' : 1,
 		'listblock' : 1,
-		'insertpre' : 1,
 		'menubutton' : 1,
 		'iframedialog' : 1,
 		'xml' : 1,
 		'ajax' : 1,
 		'bidi' : 1,
-		'confighelper' : 1,
 		'devtools' : 1,
 		'docprops' : 1,
-		'htmlbuttons' : 1,
-		'mediaembed' : 1,
 		'placeholder' : 1,
 		'stylesheetparser' : 1,
 		'tableresize' : 1,
-		'uicolor' : 1,
-		'wsc' : 1
+		'uicolor' : 1
 	},
 	languages : {
 		'ar' : 1,
