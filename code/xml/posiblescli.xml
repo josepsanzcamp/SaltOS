@@ -679,7 +679,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<pdf>
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
-		<query>"SELECT *,'".LANG("defaultdata")."' title,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado,'".page2id("posiblescli")."' id_aplicacion FROM tbl_posiblescli WHERE id IN (".check_ids(getParam("id")).")"</query>
+		<query>"SELECT *,'".LANG_ESCAPE("defaultdata")."' title,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado,'".page2id("posiblescli")."' id_aplicacion FROM tbl_posiblescli WHERE id IN (".check_ids(getParam("id")).")"</query>
 		<!-- TEMPLATE -->
 		<header>
 			<!-- LOGO -->
@@ -706,19 +706,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<!-- COMENTARIOS POSIBLESCLI -->
 			<commentspdf include="xml/common/commentspdf.xml" replace="true" />
 			<!-- EVENTOS DEL POSIBLECLI -->
-			<query>"SELECT a.*,'".LANG("agendadata","posiblescli")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=a.id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
+			<query>"SELECT a.*,'".LANG_ESCAPE("agendadata","posiblescli")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=a.id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
 			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_agenda_u iu WHERE iu.id_agenda=a.id)) asignadoa
 			FROM tbl_agenda a WHERE a.id_posiblecli='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
 			<relatedagenda include="xml/common/relatedagendapdf.xml" replace="true" />
 			<!-- PRESUPUESTOS DEL POSIBLECLI -->
-			<query>"SELECT *,'".LANG("presupuestosdata","posiblescli")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_posiblecli='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("presupuestosdata","posiblescli")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_posiblecli='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id ASC"</query>
 			<relatedpresupuestos include="xml/common/relatedpresupuestospdf.xml" replace="true" />
 			<!-- ACTAS DEL POSIBLECLI -->
-			<query>"SELECT *,'".LANG("actasdata","posiblescli")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_posiblecli='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("actasdata","posiblescli")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_posiblecli='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
 			<relatedactas include="xml/common/relatedactaspdf.xml" replace="true" />
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG("posiblecli")."',' ',LPAD(id,5,0),' ',nombre) subject
+		SELECT CONCAT('".LANG_ESCAPE("posiblecli")."',' ',LPAD(id,5,0),' ',nombre) subject
 		FROM tbl_posiblescli WHERE id IN (".check_ids(getParam("id")).")"):LANG("posiblescli"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

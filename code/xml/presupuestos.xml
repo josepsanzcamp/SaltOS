@@ -1455,12 +1455,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				CASE
 					WHEN a.id_cliente!='0' THEN b1.nombre
 					WHEN a.id_posiblecli!='0' THEN b2.nombre
-					ELSE '".LANG("sincliente")."'
+					ELSE '".LANG_ESCAPE("sincliente")."'
 				END cliente,
 				CASE
 					WHEN a.id_cliente!='0' THEN b1.nombre
 					WHEN a.id_posiblecli!='0' THEN b2.nombre
-					ELSE '".LANG("sincliente")."'
+					ELSE '".LANG_ESCAPE("sincliente")."'
 				END cliente2,
 				CASE
 					WHEN a.id_cliente!='0' THEN b1.cif
@@ -1472,7 +1472,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				a.fecha fecha,
 				(SELECT ROUND(SUM(precio*horas*(100.0-descuento)/100.0),2) FROM tbl_presupuestos_t WHERE id_presupuesto=a.id) total1,
 				(SELECT ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) FROM tbl_presupuestos_p WHERE id_presupuesto=a.id) total2,
-				CASE a.id_estado WHEN '0' THEN '".LANG("sinestado")."' ELSE c.nombre END estado,
+				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
 				(SELECT COUNT(*) FROM tbl_presupuestos_t WHERE id_presupuesto=a.id) tareas,
 				(SELECT COUNT(*) FROM tbl_presupuestos_p WHERE id_presupuesto=a.id) productos,
 				a.descripcion descripcion,a.id_campanya id_campanya,
@@ -1694,7 +1694,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<!-- FIN -->
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG("presupuesto")."',' ',LPAD(id,5,0),' ',nombre) subject
+		SELECT CONCAT('".LANG_ESCAPE("presupuesto")."',' ',LPAD(id,5,0),' ',nombre) subject
 		FROM tbl_presupuestos WHERE id IN (".check_ids(getParam("id")).")"):LANG("presupuestos"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

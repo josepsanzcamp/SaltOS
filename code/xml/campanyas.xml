@@ -483,7 +483,7 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view")." ORDER BY
 	<pdf>
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
-		<query>"SELECT *,'".LANG("defaultdata")."' title,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado,'".page2id("campanyas")."' id_aplicacion FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"</query>
+		<query>"SELECT *,'".LANG_ESCAPE("defaultdata")."' title,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado,'".page2id("campanyas")."' id_aplicacion FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"</query>
 		<!-- TEMPLATE -->
 		<header>
 			<!-- LOGO -->
@@ -510,25 +510,25 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view")." ORDER BY
 			<!-- COMENTARIOS DE LA CAMPANYA -->
 			<commentspdf include="xml/common/commentspdf.xml" replace="true" />
 			<!-- POSIBLESCLI DE LA CAMPANYA -->
-			<query>"SELECT *,'".LANG("posiblesclidata","campanyas")."' title,'".page2id("campanyas")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_posiblescli WHERE id_campanya='".$row["id"]."' AND '".getParam("posiblescli")."'='1' ORDER BY id ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("posiblesclidata","campanyas")."' title,'".page2id("campanyas")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_posiblescli WHERE id_campanya='".$row["id"]."' AND '".getParam("posiblescli")."'='1' ORDER BY id ASC"</query>
 			<relatedposiblescli include="xml/common/relatedposiblesclipdf.xml" replace="true" />
 			<!-- CLIENTES DE LA CAMPANYA -->
-			<query>"SELECT *,'".LANG("clientesdata","campanyas")."' title,'".page2id("campanyas")."' id_aplicacion,CASE id_tipo WHEN '1' THEN '".LANG("clientejuridico")."' WHEN '2' THEN '".LANG("clientefiscal")."' END tipocliente FROM tbl_clientes WHERE id_campanya='".$row["id"]."' AND '".getParam("clientes")."'='1' ORDER BY id ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("clientesdata","campanyas")."' title,'".page2id("campanyas")."' id_aplicacion,CASE id_tipo WHEN '1' THEN '".LANG_ESCAPE("clientejuridico")."' WHEN '2' THEN '".LANG_ESCAPE("clientefiscal")."' END tipocliente FROM tbl_clientes WHERE id_campanya='".$row["id"]."' AND '".getParam("clientes")."'='1' ORDER BY id ASC"</query>
 			<relatedclientes include="xml/common/relatedclientespdf.xml" replace="true" />
 			<!-- EVENTOS DE LA CAMPANYA -->
-			<query>"SELECT a.*,'".LANG("agendadata","campanyas")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
+			<query>"SELECT a.*,'".LANG_ESCAPE("agendadata","campanyas")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
 			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_agenda_u iu WHERE iu.id_agenda=a.id)) asignadoa
 			FROM tbl_agenda a WHERE a.id_campanya='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
 			<relatedagenda include="xml/common/relatedagendapdf.xml" replace="true" />
 			<!-- PRESUPUESTOS DE LA CAMPANYA -->
-			<query>"SELECT *,'".LANG("presupuestosdata","campanyas")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_campanya='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id_posiblecli ASC,id ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("presupuestosdata","campanyas")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_campanya='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id_posiblecli ASC,id ASC"</query>
 			<relatedpresupuestos include="xml/common/relatedpresupuestospdf.xml" replace="true" />
 			<!-- ACTAS DE LA CAMPANYA -->
-			<query>"SELECT *,'".LANG("actasdata","campanyas")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_campanya='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("actasdata","campanyas")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_campanya='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
 			<relatedactas include="xml/common/relatedactaspdf.xml" replace="true" />
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG("campanya")."',' ',LPAD(id,5,0),' ',nombre) subject
-		FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"):LANG("campanyas"))).getDefault("exts/pdfext",".pdf")</output>
+		SELECT CONCAT('".LANG_ESCAPE("campanya")."',' ',LPAD(id,5,0),' ',nombre) subject
+		FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"):LANG_ESCAPE("campanyas"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

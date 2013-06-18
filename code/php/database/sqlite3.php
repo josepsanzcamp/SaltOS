@@ -37,7 +37,8 @@ function db_connect_sqlite3() {
 		db_query_sqlite3("PRAGMA cache_size=2000");
 		db_query_sqlite3("PRAGMA synchronous=OFF");
 		db_query_sqlite3("PRAGMA foreign_keys=OFF");
-		if(!__sqlite3_group_concat_check()) getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize");
+		if(!__sqlite3_check("SELECT GROUP_CONCAT(1)")) getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize");
+		if(!__sqlite3_check("SELECT REPLACE(1,2,3)")) getDefault("db/link")->createFunction("REPLACE","__sqlite3_replace");
 		getDefault("db/link")->createFunction("LPAD","__sqlite3_lpad");
 		getDefault("db/link")->createFunction("CONCAT","__sqlite3_concat");
 		getDefault("db/link")->createFunction("UNIX_TIMESTAMP","__sqlite3_unix_timestamp");
@@ -55,8 +56,7 @@ function db_connect_sqlite3() {
 	}
 }
 
-function __sqlite3_group_concat_check() {
-	$query="SELECT GROUP_CONCAT(1)";
+function __sqlite3_check($query) {
 	capture_next_error();
 	db_query_sqlite3($query);
 	$error=get_clear_error();
@@ -71,6 +71,10 @@ function __sqlite3_group_concat_step($context,$rows,$string,$separator=",") {
 
 function __sqlite3_group_concat_finalize($context,$rows) {
 	return $context;
+}
+
+function __sqlite3_replace($subject,$search,$replace) {
+	return str_replace($search,$replace,$subject);
 }
 
 function __sqlite3_lpad($input,$length,$char) {

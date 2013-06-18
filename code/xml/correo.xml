@@ -1119,7 +1119,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						ELSE SUBSTR(CONCAT(uc.email_name,' &lt;',uc.email_from,'&gt;'),1,255)
 						END
 					END `to`,
-					CASE WHEN subject='' THEN '".LANG("sinsubject")."' ELSE subject END subject,
+					CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END subject,
 					(SELECT REPLACE(GROUP_CONCAT(SUBSTR(CONCAT(fichero,' (',fichero_size,')'),1,255)),',',', ') FROM
 						(SELECT fichero,id_registro,
 							CASE
@@ -1247,7 +1247,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT
-			CONCAT('".LANG("correo")."',' ',LPAD(id,5,0),' ',CASE WHEN subject='' THEN '".LANG("sinsubject")."' ELSE subject END) subject
+			CONCAT('".LANG_ESCAPE("correo")."',' ',LPAD(id,5,0),' ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END) subject
 		FROM tbl_correo WHERE id IN (".check_ids(getParam("id")).")"):LANG("correo"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

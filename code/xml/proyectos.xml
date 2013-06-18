@@ -1648,7 +1648,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 	<pdf>
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
-		<query>"SELECT *,'".LANG("defaultdata")."' title,'".page2id("proyectos")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_proyectos WHERE id IN (".check_ids(getParam("id")).")"</query>
+		<query>"SELECT *,'".LANG_ESCAPE("defaultdata")."' title,'".page2id("proyectos")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_proyectos WHERE id IN (".check_ids(getParam("id")).")"</query>
 		<!-- TEMPLATE -->
 		<header>
 			<!-- LOGO -->
@@ -1673,53 +1673,53 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		<relatedproyectos include="xml/common/relatedproyectospdf.xml" replace="true" />
 		<foreach>
 			<!-- CONTACTOS PROYECTO -->
-			<query>"SELECT *,'".LANG("contactdata")."' title,'".page2id("contactos")."' id_aplicacion FROM tbl_contactos WHERE id_aplicacion='".page2id("proyectos")."' AND id_registro='".$row["id"]."' AND '".getParam("contactos")."'='1' ORDER BY nombre ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("contactdata")."' title,'".page2id("contactos")."' id_aplicacion FROM tbl_contactos WHERE id_aplicacion='".page2id("proyectos")."' AND id_registro='".$row["id"]."' AND '".getParam("contactos")."'='1' ORDER BY nombre ASC"</query>
 			<relatedcontacts include="xml/common/relatedcontactspdf.xml" replace="true" />
 			<!-- SEGUIMIENTOS PROYECTO -->
-			<query>"SELECT *,'".LANG("seguimientos")."' title,'".page2id("seguimientos")."' id_aplicacion,(SELECT tarea FROM tbl_proyectos_t WHERE id_tarea=id) tarea FROM tbl_seguimientos WHERE id_proyecto='".$row["id"]."' AND '".getParam("seguimientos")."'='1' ORDER BY fecha ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("seguimientos")."' title,'".page2id("seguimientos")."' id_aplicacion,(SELECT tarea FROM tbl_proyectos_t WHERE id_tarea=id) tarea FROM tbl_seguimientos WHERE id_proyecto='".$row["id"]."' AND '".getParam("seguimientos")."'='1' ORDER BY fecha ASC"</query>
 			<relatedseguimientos include="xml/common/relatedseguimientospdf.xml" replace="true" />
 			<!-- INCIDENCIAS ABIERTAS PROYECTO -->
 			<query>"SELECT a.*,
 			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_incidencias_u iu WHERE iu.id_incidencia=a.id)) asignadoa,
-			'".LANG("incidentopen")."' title,'".page2id("incidencias")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,(SELECT nombre FROM tbl_prioridades WHERE id=a.id_prioridad) prioridad FROM tbl_incidencias a WHERE a.id_proyecto='".$row["id"]."' AND a.id_estado IN (SELECT id FROM tbl_estados WHERE activo='1') AND '".getParam("incidencias")."'='1' ORDER BY a.id ASC"</query>
+			'".LANG_ESCAPE("incidentopen")."' title,'".page2id("incidencias")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,(SELECT nombre FROM tbl_prioridades WHERE id=a.id_prioridad) prioridad FROM tbl_incidencias a WHERE a.id_proyecto='".$row["id"]."' AND a.id_estado IN (SELECT id FROM tbl_estados WHERE activo='1') AND '".getParam("incidencias")."'='1' ORDER BY a.id ASC"</query>
 			<relatedincidencias include="xml/common/relatedincidenciaspdf.xml" replace="true" />
 			<!-- INCIDENCIAS CERRADAS PROYECTO -->
 			<query>"SELECT a.*,
 			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_incidencias_u iu WHERE iu.id_incidencia=a.id)) asignadoa,
-			'".LANG("incidentclose")."' title,'".page2id("incidencias")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,(SELECT nombre FROM tbl_prioridades WHERE id=a.id_prioridad) prioridad FROM tbl_incidencias a WHERE a.id_proyecto='".$row["id"]."' AND a.id_estado IN (SELECT id FROM tbl_estados WHERE activo='0') AND '".getParam("incidencias")."'='1' ORDER BY a.id ASC"</query>
+			'".LANG_ESCAPE("incidentclose")."' title,'".page2id("incidencias")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,(SELECT nombre FROM tbl_prioridades WHERE id=a.id_prioridad) prioridad FROM tbl_incidencias a WHERE a.id_proyecto='".$row["id"]."' AND a.id_estado IN (SELECT id FROM tbl_estados WHERE activo='0') AND '".getParam("incidencias")."'='1' ORDER BY a.id ASC"</query>
 			<relatedincidencias include="xml/common/relatedincidenciaspdf.xml" replace="true" />
 			<!-- PARTES ABIERTOS PROYECTO -->
-			<query>"SELECT *,'".LANG("partesopen")."' title,'".page2id("partes")."' id_aplicacion,(CASE liquidado WHEN 1 THEN '".LANG("yes")."' ELSE '".LANG("no")."' END) liquidado2 FROM tbl_partes WHERE id_proyecto='".$row["id"]."' AND liquidado='0' AND '".getParam("partes")."'='1' ORDER BY fecha ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("partesopen")."' title,'".page2id("partes")."' id_aplicacion,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado2 FROM tbl_partes WHERE id_proyecto='".$row["id"]."' AND liquidado='0' AND '".getParam("partes")."'='1' ORDER BY fecha ASC"</query>
 			<relatedpartes include="xml/common/relatedpartespdf.xml" replace="true" />
 			<!-- PARTES CERRADOS PROYECTO -->
-			<query>"SELECT *,'".LANG("partesclose")."' title,'".page2id("partes")."' id_aplicacion,(CASE liquidado WHEN 1 THEN '".LANG("yes")."' ELSE '".LANG("no")."' END) liquidado2 FROM tbl_partes WHERE id_proyecto='".$row["id"]."' AND liquidado='1' AND '".getParam("partes")."'='1' ORDER BY fecha ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("partesclose")."' title,'".page2id("partes")."' id_aplicacion,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado2 FROM tbl_partes WHERE id_proyecto='".$row["id"]."' AND liquidado='1' AND '".getParam("partes")."'='1' ORDER BY fecha ASC"</query>
 			<relatedpartes include="xml/common/relatedpartespdf.xml" replace="true" />
 			<!-- ALBARANES -->
-			<query>"SELECT *,'".LANG("albaranes")."' title,(SELECT CONCAT('(',codigo,') ',nombre) nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta FROM tbl_facturas WHERE id_proyecto='".$row["id"]."' AND cerrado='0' AND '".getParam("facturas")."'='1' ORDER BY fecha ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("albaranes")."' title,(SELECT CONCAT('(',codigo,') ',nombre) nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta FROM tbl_facturas WHERE id_proyecto='".$row["id"]."' AND cerrado='0' AND '".getParam("facturas")."'='1' ORDER BY fecha ASC"</query>
 			<relatedfacturas include="xml/common/relatedfacturaspdf.xml" replace="true" />
 			<!-- FACTURAS NO COBRADAS -->
-			<query>"SELECT *,'".LANG("facturaopen","proyectos")."' title,(SELECT CONCAT('(',codigo,') ',nombre) nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta FROM tbl_facturas WHERE id_proyecto='".$row["id"]."' AND cerrado='1' AND cobrado='0' AND '".getParam("facturas")."'='1' ORDER BY fecha ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("facturaopen","proyectos")."' title,(SELECT CONCAT('(',codigo,') ',nombre) nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta FROM tbl_facturas WHERE id_proyecto='".$row["id"]."' AND cerrado='1' AND cobrado='0' AND '".getParam("facturas")."'='1' ORDER BY fecha ASC"</query>
 			<relatedfacturas include="xml/common/relatedfacturaspdf.xml" replace="true" />
 			<!-- FACTURAS SI COBRADAS -->
-			<query>"SELECT *,'".LANG("facturaclose","proyectos")."' title,(SELECT CONCAT('(',codigo,') ',nombre) nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta FROM tbl_facturas WHERE id_proyecto='".$row["id"]."' AND cerrado='1' AND cobrado='1' AND '".getParam("facturas")."'='1' ORDER BY fecha ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("facturaclose","proyectos")."' title,(SELECT CONCAT('(',codigo,') ',nombre) nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta FROM tbl_facturas WHERE id_proyecto='".$row["id"]."' AND cerrado='1' AND cobrado='1' AND '".getParam("facturas")."'='1' ORDER BY fecha ASC"</query>
 			<relatedfacturas include="xml/common/relatedfacturaspdf.xml" replace="true" />
 			<!-- GASTOS DEL PROYECTO -->
-			<query>"SELECT *,'".LANG("gastosdata","proyectos")."' title,(SELECT CONCAT('(',codigo,') ',nombre) nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta,(SELECT nombre FROM tbl_proveedores WHERE id=id_proveedor) proveedor,(SELECT nombre FROM tbl_formaspago WHERE id=id_formapago) formapago,".make_extra_query_with_login("d.")." pagador,CASE liquidado WHEN '1' THEN '".LANG("yes")."' ELSE '".LANG("no")."' END liquidado2 FROM tbl_gastos a LEFT JOIN tbl_usuarios d ON a.id_pagador=d.id WHERE id_proyecto='".$row["id"]."' AND '".getParam("gastos")."'='1' ORDER BY d.id ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("gastosdata","proyectos")."' title,(SELECT CONCAT('(',codigo,') ',nombre) nombre FROM tbl_epigrafes WHERE id=id_epigrafe) epigrafe,(SELECT nombre FROM tbl_cuentas WHERE id=id_cuenta) cuenta,(SELECT nombre FROM tbl_proveedores WHERE id=id_proveedor) proveedor,(SELECT nombre FROM tbl_formaspago WHERE id=id_formapago) formapago,".make_extra_query_with_login("d.")." pagador,CASE liquidado WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END liquidado2 FROM tbl_gastos a LEFT JOIN tbl_usuarios d ON a.id_pagador=d.id WHERE id_proyecto='".$row["id"]."' AND '".getParam("gastos")."'='1' ORDER BY d.id ASC"</query>
 			<relatedgastos include="xml/common/relatedgastospdf.xml" replace="true" />
 			<!-- EVENTOS DEL PROYECTO -->
-			<query>"SELECT a.*,'".LANG("agendadata","proyectos")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=a.id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
+			<query>"SELECT a.*,'".LANG_ESCAPE("agendadata","proyectos")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=a.id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
 			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_agenda_u iu WHERE iu.id_agenda=a.id)) asignadoa
 			FROM tbl_agenda a WHERE a.id_proyecto='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
 			<relatedagenda include="xml/common/relatedagendapdf.xml" replace="true" />
 			<!-- PRESUPUESTOS DEL PROYECTO -->
-			<query>"SELECT *,'".LANG("presupuestosdata","proyectos")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_proyecto='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("presupuestosdata","proyectos")."' title,'".page2id("presupuestos")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_estados WHERE id=id_estado) estado FROM tbl_presupuestos WHERE id_proyecto='".$row["id"]."' AND '".getParam("presupuestos")."'='1' ORDER BY id ASC"</query>
 			<relatedpresupuestos include="xml/common/relatedpresupuestospdf.xml" replace="true" />
 			<!-- ACTAS DEL PROYECTO -->
-			<query>"SELECT *,'".LANG("actasdata","proyectos")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_proyecto='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
+			<query>"SELECT *,'".LANG_ESCAPE("actasdata","proyectos")."' title,'".page2id("actas")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=id_campanya) campanya,(SELECT nombre FROM tbl_presupuestos WHERE id=id_presupuesto) presupuesto FROM tbl_actas WHERE id_proyecto='".$row["id"]."' AND '".getParam("actas")."'='1' ORDER BY id ASC"</query>
 			<relatedactas include="xml/common/relatedactaspdf.xml" replace="true" />
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG("proyecto")."',' ',LPAD(id,5,0),' ',nombre) subject
+		SELECT CONCAT('".LANG_ESCAPE("proyecto")."',' ',LPAD(id,5,0),' ',nombre) subject
 		FROM tbl_proyectos WHERE id IN (".check_ids(getParam("id")).")"):LANG("proyectos"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

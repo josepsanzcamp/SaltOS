@@ -634,7 +634,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<pdf>
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
-		<query>"SELECT CASE id_cliente WHEN '0' THEN '".LANG("sincliente")."' ELSE cliente END cliente2,CASE id_proyecto WHEN '0' THEN '".LANG("sinproyecto")."' ELSE proyecto END proyecto2,tarea tarea2,LPAD(id,5,0) id,usuario,CASE id_cliente WHEN '0' THEN '".LANG("sincliente")."' ELSE cliente END cliente,CASE id_proyecto WHEN '0' THEN '".LANG("sinproyecto")."' ELSE proyecto END proyecto,cif,tarea,fecha,comentarios,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG("yes")."' ELSE '".LANG("no")."' END) liquidado,fecha2 FROM (SELECT a.*,
+		<query>"SELECT CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,tarea tarea2,LPAD(id,5,0) id,usuario,CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto,cif,tarea,fecha,comentarios,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,fecha2 FROM (SELECT a.*,
 		".make_extra_query_with_login("b.")." usuario,
 		c.nombre cliente,p.nombre proyecto,c.cif cif,e.`datetime`,e.id_usuario id_usuario FROM tbl_partes a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_clientes c ON a.id_cliente=c.id LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
 		<foreach>
@@ -764,7 +764,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<textarea>155,$row["y"],25,4,"L",$row["fecha2"]</textarea>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG("parte")."',' ',LPAD(id,5,0),' ',tarea) subject
+		SELECT CONCAT('".LANG_ESCAPE("parte")."',' ',LPAD(id,5,0),' ',tarea) subject
 		FROM tbl_partes WHERE id IN (".check_ids(getParam("id")).")"):LANG("partes"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 	<excel>

@@ -675,20 +675,20 @@ SELECT
 	CASE
 		WHEN a.id_cliente!='0' THEN c1.nombre
 		WHEN a.id_posiblecli!='0' THEN c2.nombre
-		ELSE '".LANG("sincliente")."'
+		ELSE '".LANG_ESCAPE("sincliente")."'
 	END cliente,
 	CASE
 		WHEN a.id_cliente!='0' THEN c1.nombre
 		WHEN a.id_posiblecli!='0' THEN c2.nombre
-		ELSE '".LANG("sincliente")."'
+		ELSE '".LANG_ESCAPE("sincliente")."'
 	END cliente2,
 	CASE
 		WHEN a.id_cliente!='0' THEN c1.cif
 		WHEN a.id_posiblecli!='0' THEN c2.cif
 		ELSE ''
 	END cif,
-	CASE id_proyecto WHEN '0' THEN '".LANG("sinproyecto")."' ELSE p.nombre END proyecto,
-	CASE id_proyecto WHEN '0' THEN '".LANG("sinproyecto")."' ELSE p.nombre END proyecto2,
+	CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END proyecto,
+	CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END proyecto2,
 	a.nombre nombre2,
 	LPAD(a.id,5,0) id,
 	".make_extra_query_with_login("b.")." usuario,
@@ -885,7 +885,7 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 			<eval>true</eval>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG("acta")."',' ',LPAD(id,5,0),' ',nombre) subject
+		SELECT CONCAT('".LANG_ESCAPE("acta")."',' ',LPAD(id,5,0),' ',nombre) subject
 		FROM tbl_actas WHERE id IN (".check_ids(getParam("id")).")"):LANG("actas"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

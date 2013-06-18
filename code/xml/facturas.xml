@@ -1614,9 +1614,9 @@ CASE num WHEN '' THEN CONCAT('AA',LPAD(id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2
 CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
 ROUND(base+iva2+irpf2,2) total,CONCAT('id_factura=',id) filtro
 FROM (SELECT
-CASE id_proyecto WHEN '0' THEN '".LANG("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto,
-CASE id_proyecto WHEN '0' THEN '".LANG("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto2,
-CASE id_cliente WHEN '0' THEN '".LANG("sincliente")."' ELSE (SELECT nombre FROM tbl_clientes WHERE id_cliente=tbl_clientes.id) END nombre2,
+CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto,
+CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto2,
+CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE (SELECT nombre FROM tbl_clientes WHERE id_cliente=tbl_clientes.id) END nombre2,
 CASE num WHEN '' THEN CONCAT('AA',LPAD(id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num3,
 CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
 c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.*,IFNULL(logo_left,'".CONFIG("logo_left")."') logo_left,IFNULL(logo_top,'".CONFIG("logo_top")."') logo_top,IFNULL(logo_width,'".CONFIG("logo_width")."') logo_width,IFNULL(logo_height,'".CONFIG("logo_height")."') logo_height,IFNULL(logo_file,'".CONFIG("logo_file")."') logo_file,IFNULL(color_line,'".CONFIG("color_line")."') color_line,IFNULL(color_text1,'".CONFIG("color_text1")."') color_text1,IFNULL(color_text2,'".CONFIG("color_text2")."') color_text2,IFNULL(factura_pie1,'') factura_pie1,IFNULL(factura_pie2,'') factura_pie2,IFNULL(factura_iva_bool,1) factura_iva_bool,IFNULL(factura_irpf_bool,1) factura_irpf_bool,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,e.id_usuario id_usuario FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id GROUP BY a.id) c) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
@@ -1788,9 +1788,9 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT
 			CASE num WHEN '' THEN
-				CONCAT('".LANG("albaran")."',' ',LPAD(id,5,0),' ',nombre)
+				CONCAT('".LANG_ESCAPE("albaran")."',' ',LPAD(id,5,0),' ',nombre)
 			ELSE
-				CONCAT('".LANG("factura")."',' ',num,' ',nombre)
+				CONCAT('".LANG_ESCAPE("factura")."',' ',num,' ',nombre)
 			END subject
 		FROM tbl_facturas WHERE id IN (".check_ids(getParam("id")).")"):LANG("facturas"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
