@@ -122,13 +122,15 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 									$(dialog2).append(canvas);
 									// CONTINUE UNTIL RENDER
 									var context=canvas.getContext("2d");
-									var textLayer=new TextLayerBuilder(div);
-									var renderContext={
+									var textLayer=new TextLayerBuilder({
+										textLayerDiv:div,
+										pageIndex:numPage-1
+									});
+									page.render({
 										canvasContext:context,
 										viewport:viewport,
 										textLayer:textLayer
-									};
-									page.render(renderContext).then(fn);
+									}).then(fn);
 									page.getTextContent().then(function(textContent) {
 										textLayer.setTextContent(textContent);
 									});
