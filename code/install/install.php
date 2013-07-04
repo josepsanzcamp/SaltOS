@@ -72,7 +72,7 @@ define("__DEFAULT__","install/xml/tbl_*.xml");
 define("__EXAMPLE__","install/csv/example/tbl_*.csv");
 define("__STREET__","install/csv/street/tbl_*.csv.gz");
 // JQUERY VERSIONS
-$jquery=array(true=>"lib/jquery/jquery-1.10.1.min.js",false=>"lib/jquery/jquery-2.0.2.min.js");
+$jquery=array(true=>"lib/jquery/jquery-1.10.2.min.js",false=>"lib/jquery/jquery-2.0.3.min.js");
 $jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $lang; ?>" dir="<?php echo $dir; ?>">

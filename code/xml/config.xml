@@ -213,8 +213,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<javascript>
 		<cache ifeval="!ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include ifeval="ismsie(array(6,7,8))">lib/jquery/jquery-1.10.1.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/jquery/jquery-2.0.2.min.js</include>
+			<include ifeval="ismsie(array(6,7,8))">lib/jquery/jquery-1.10.2.min.js</include>
+			<include ifeval="!ismsie(array(6,7,8))">lib/jquery/jquery-2.0.3.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery-ui-1.10.3.min.js</include>
@@ -243,7 +243,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</cache>
 		<cache ifeval="ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery-2.0.2.min.js</include>
+			<include>lib/jquery/jquery-2.0.3.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery.mobile-1.3.1.min.js</include>

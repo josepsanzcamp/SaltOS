@@ -292,7 +292,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.rcdtokyo.com/etc/gdataapis/")</onclick>
 						</field>
 						<field>
-							<label>PHP Mobile Detect 2.6.2 (MIT)</label>
+							<label>PHP Mobile Detect 2.6.3 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
@@ -390,7 +390,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpjs.org/")</onclick>
 						</field>
 						<field>
-							<label>JQuery 1.10.1/2.0.2 (MIT)</label>
+							<label>JQuery 1.10.2/2.0.3 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jquery.com/")</onclick>
@@ -402,7 +402,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 4.1.2 DEV (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 4.1.2 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>
@@ -510,32 +510,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label lang="true">ckeditor_plugins</label>
-							<type>label</type>
-							<class>thead</class>
-							<colspan>4</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Syntaxhighlight 1.0 (LGPL*)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://code.google.com/p/ckeditor-syntaxhighlight/")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>

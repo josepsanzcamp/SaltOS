@@ -1021,7 +1021,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<php_plugins>PHP اضافات:</php_plugins>
 		<javascript_base>Javascript اساسية:</javascript_base>
 		<jquery_plugins>JQuery اضافات:</jquery_plugins>
-		<ckeditor_plugins>CKEditor اضافات:</ckeditor_plugins>
 		<javascript_plugins>Javascript اضافات:</javascript_plugins>
 		<other_plugins>إضافات اخرى:</other_plugins>
 		<server_plugins>اضافات الخادم:</server_plugins>

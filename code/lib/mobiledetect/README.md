@@ -15,7 +15,9 @@
 <i>Mobile_Detect is a lightweight PHP class for detecting mobile devices (including tablets).
 It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.</i>
 
-You may consider this script as being part of the <b>RESS</b> (Responsive Web Design with Server-Side Component) movement. You can find out more on the topic by reading these articles: [Improve Mobile Support With Server-Side-Enhanced Responsive Design](http://mobile.smashingmagazine.com/2013/04/09/improve-mobile-support-with-server-side-enhanced-responsive-design/) and [RESS: Responsive Design + Server Side Components](http://www.lukew.com/ff/entry.asp?1392).
+You may consider this script as being part of the <b>RESS</b> (Responsive Web Design with Server-Side Component) movement. You can find out more on the topic by reading these articles: <a href="http://mobile.smashingmagazine.com/2013/04/09/improve-mobile-support-with-server-side-enhanced-responsive-design/">Improve Mobile Support With Server-Side-Enhanced Responsive Design</a> and <a href="http://www.lukew.com/ff/entry.asp?1392">RESS: Responsive Design + Server Side Components</a>.
+
+Related presentations: <a href="http://www.slideshare.net/pgodel/creating-mobile-apps-with-php-symfony2">Creating mobile apps with PHP &amp; Symfony2 (2013)</a>, <a href="http://www.w3.org/2013/Talks/responsive-design.pdf">Responsive Design (2013)</a>
 
 ## Demo
 
@@ -176,6 +178,11 @@ $detect->version('Opera Mini'); // 5.0 (float)
  <tr>
   <td>PrestaShop</td>
   <td><p>Free, secure and open source shopping cart platform. Included in the distribution since 1.5.x.</p></td>
+ </tr>
+
+ <tr>
+  <td>Zend Framework</td>
+  <td><p><a href="https://github.com/neilime/zf2-mobile-detect.git">ZF2 Mobile-Detect</a> - Zend Framework 2 module that provides Mobile-Detect features (Mobile_Detect class as a service, helper for views and plugin controllers). Made by <a href="https://github.com/neilime">neilime</a></p></td>
  </tr>
 
   <tr>

@@ -7,8 +7,8 @@
 /**
  * This file was added automatically by CKEditor builder.
  * You may re-use it at any time at http://ckeditor.com/builder to build CKEditor again.
- *
- * NOTE:
+ * 
+ * NOTE: 
  *    This file is not used by CKEditor, you may remove it.
  *    Changing this file will not change your CKEditor configuration.
  */
@@ -20,6 +20,7 @@ var CKBUILDER_CONFIG = {
 		'dev',
 		'.gitignore',
 		'.gitattributes',
+		'README.md',
 		'.mailmap'
 	],
 	plugins : {
@@ -64,7 +65,6 @@ var CKBUILDER_CONFIG = {
 		'preview' : 1,
 		'print' : 1,
 		'removeformat' : 1,
-		'save' : 1,
 		'selectall' : 1,
 		'showblocks' : 1,
 		'showborders' : 1,

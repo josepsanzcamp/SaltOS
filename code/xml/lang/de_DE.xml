@@ -1020,7 +1020,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<php_plugins>PHP plugins:</php_plugins>
 		<javascript_base>Javascript Basis:</javascript_base>
 		<jquery_plugins>JQuery plugins:</jquery_plugins>
-		<ckeditor_plugins>CKEditor plugins:</ckeditor_plugins>
 		<javascript_plugins>Javascript-Plugins:</javascript_plugins>
 		<other_plugins revised="false">Andere plugins:</other_plugins>
 		<server_plugins>Server-Plugins:</server_plugins>
