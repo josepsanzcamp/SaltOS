@@ -15,7 +15,7 @@ REPLACE a.ui.addButton("Source",{label:a.lang.sourcearea.toolbar,command:"source
 BY a.ui.addButton("Source",{label:"",title:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})
 
 IN ckeditor.min.js
-REPLACE [a.lang.editor,a.name].join()
+REPLACE [a.lang.editor,a.name].join(", ")
 BY ""
 
 REMOVED samples

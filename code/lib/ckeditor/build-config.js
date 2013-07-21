@@ -96,7 +96,8 @@ var CKBUILDER_CONFIG = {
 		'placeholder' : 1,
 		'stylesheetparser' : 1,
 		'tableresize' : 1,
-		'uicolor' : 1
+		'uicolor' : 1,
+		'indentlist' : 1
 	},
 	languages : {
 		'ar' : 1,
