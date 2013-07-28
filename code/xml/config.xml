@@ -106,8 +106,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forcecss eval="true">ismobile()?"mobile":""</forcecss>
 		<forcejs eval="true">ismobile()?"mobile":""</forcejs>
 		<forcexsl eval="true">ismobile()?"mobile":""</forcexsl>
-		<regspagermin>10</regspagermin>
-		<regspagerincr>10</regspagerincr>
+		<regspagermin>25</regspagermin>
+		<regspagerincr>25</regspagerincr>
 		<regspagermax>200</regspagermax>
 		<regspagerdef>50</regspagerdef>
 		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
@@ -246,7 +246,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery-2.0.3.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
-			<include>lib/jquery/jquery.mobile-1.3.1.min.js</include>
+			<include>lib/jquery/jquery.mobile-1.3.2.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.js</include>
 		</cache>
 	</javascript>
