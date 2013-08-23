@@ -20,7 +20,7 @@
 		overflow : false,
 		// this function is called after content is columnized
 		doneFunc : function(){},
-		// if the content should be columnized into a
+		// if the content should be columnized into a 
 		// container node other than it's own node
 		target : false,
 		// re-columnizing when images reload might make things
@@ -119,7 +119,7 @@
 		 * is a text node, then it will try to split that text node. otherwise
 		 * it will leave the node in $pullOutHere and return with a height
 		 * smaller than targetHeight.
-		 *
+		 * 
          * Returns a boolean on whether we did some splitting successfully at a text point
          * (so we know we don't need to split a real element). return false if the caller should
          * split a node if possible to end this column.
@@ -207,7 +207,7 @@
 		}
 
 		/**
-		 * Split up an element, which is more complex than splitting text. We need to create
+		 * Split up an element, which is more complex than splitting text. We need to create 
 		 * two copies of the element with it's contents divided between each
 		 */
 		function split($putInHere, $pullOutHere, $parentColumn, targetHeight){
@@ -225,7 +225,7 @@
 				var $cloneMe = $pullOutHere.contents(":first");
 				//
 				// make sure we're splitting an element
-				if($cloneMe.get(0).nodeType != 1) return;
+				if( typeof $cloneMe.get(0) == 'undefined' || $cloneMe.get(0).nodeType != 1 ) return;
 
 				//
 				// clone the node with all data and events
@@ -258,7 +258,7 @@
 					}else if($clone.is("img") || $cloneMe.hasClass(prefixTheClassName("dontsplit"))){
 						//
 						// it's either an image that's too tall, or an unsplittable node
-						// that's too tall. leave it in the pullOutHere and we'll add it to the
+						// that's too tall. leave it in the pullOutHere and we'll add it to the 
 						// next column
 						$clone.remove();
 					}else{
@@ -271,6 +271,13 @@
 							// this node still has non-text nodes to split
 							// add the split class and then recur
 							$cloneMe.addClass(prefixTheClassName("split"));
+							
+							//if this node was ol element, the child should continue the number ordering
+							if($cloneMe.get(0).tagName == 'OL'){
+								var startWith = $clone.get(0).childElementCount + $clone.get(0).start;
+								$cloneMe.attr('start',startWith+1);
+							}
+							
 							if($cloneMe.children().length){
 								split($clone, $cloneMe, $parentColumn, targetHeight);
 							}
@@ -337,7 +344,7 @@
 				overflow.innerHTML = html;
 
 			}else{
-				$col.append($destroyable);
+				$col.append($destroyable.contents());
 			}
 			$inBox.data("columnizing", false);
 
@@ -418,7 +425,7 @@
 			}
 
 			//
-			// We loop as we try and workout a good height to use. We know it initially as an average
+			// We loop as we try and workout a good height to use. We know it initially as an average 
 			// but if the last column is higher than the first ones (which can happen, depending on split
 			// points) we need to raise 'adjustment'. We try this over a few iterations until we're 'solid'.
 			//
@@ -495,7 +502,6 @@
 							numCols ++;
 						}
 					}
-
 				}
 				if(options.overflow && !scrollHorizontally){
 					var IE6 = false /*@cc_on || @_jscript_version < 5.7 @*/;
@@ -597,6 +603,8 @@
 			}
 			$inBox.find(prefixTheClassName("column", true)).find(":first" + prefixTheClassName("removeiffirst", true)).remove();
 			$inBox.find(prefixTheClassName("column", true)).find(':last' + prefixTheClassName("removeiflast", true)).remove();
+			$inBox.find(prefixTheClassName("split", true)).find(":first" + prefixTheClassName("removeiffirst", true)).remove();
+			$inBox.find(prefixTheClassName("split", true)).find(':last' + prefixTheClassName("removeiflast", true)).remove();
 			$inBox.data("columnizing", false);
 
 			if(options.overflow){

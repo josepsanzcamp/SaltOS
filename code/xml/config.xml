@@ -235,10 +235,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/ckeditor/ckeditor.min.js</include>
 			<include>lib/ckeditor/adapters/jquery.min.js</include>
 			<include ifeval="!ismsie()">lib/pdfjs/pdf.min.js</include>
-			<include ifeval="!ismsie()">lib/pdfjs/ui_utils.min.js</include>
-			<include ifeval="!ismsie()">lib/pdfjs/text_layer_builder.min.js</include>
-			<include ifeval="!ismsie()">lib/pdfjs/pdf_find_bar.min.js</include>
-			<include ifeval="!ismsie()">lib/pdfjs/pdf_find_controller.min.js</include>
+			<include ifeval="!ismsie()">lib/pdfjs/compatibility.min.js</include>
 			<include ifeval="!ismsie()">lib/pdfjs/viewer.min.js</include>
 		</cache>
 		<cache ifeval="ismobile()">
