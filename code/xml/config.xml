@@ -153,9 +153,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<usearray2xmlcache>true</usearray2xmlcache>
 		<usexml2htmlcache>true</usexml2htmlcache>
 		<usecsscache>true</usecsscache>
-		<usejscache>false</usejscache>
+		<usejscache>true</usejscache>
 		<usecssminify>true</usecssminify>
-		<usejsminify>false</usejsminify>
+		<usejsminify>true</usejsminify>
 		<usexmlminify>true</usexmlminify>
 		<usehtmlminify>true</usehtmlminify>
 		<useimginline eval="true">ismsie()?"false":"true"</useimginline>
