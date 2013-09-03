@@ -248,7 +248,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.0.023 (LGPL-3.0)</label>
+							<label>TCPDF 6.0.024 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -436,7 +436,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>blockUI 2.64 (MIT &amp; GPL*)</label>
+							<label>blockUI 2.65 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/block/")</onclick>
@@ -468,7 +468,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
 						</field>
 						<field>
-							<label>Form 3.40 (MIT &amp; GPL*)</label>
+							<label>Form 3.42 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
