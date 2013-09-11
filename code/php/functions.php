@@ -951,7 +951,7 @@ function show_php_error($array=null) {
 	if(isset($array["phperror"])) {
 		$pos1=stripos($array["phperror"],"deprecated");
 		$pos2=stripos($array["phperror"],"function");
-		$pos3=stripos($array["phperror"],"method");
+		$pos3=stripos($array["phperror"],"extension");
 		if($pos1!==false && $pos2!==false) return;
 		if($pos1!==false && $pos3!==false) return;
 	}

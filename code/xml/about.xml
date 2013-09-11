@@ -326,7 +326,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>WordPress 3.6 (GPL-2.0)</label>
+							<label>WordPress 3.6.1 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://wordpress.org/download/")</onclick>
