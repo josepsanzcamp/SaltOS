@@ -384,7 +384,7 @@ function url_get_contents($url,$type="GET") {
 	}
 	foreach($headers as $index=>$header) {
 		if(stripos($header,"content-encoding:")!==false && stripos($header,"gzip")!==false) {
-			$body=gzdecode($body);
+			$body=gunzip($body);
 			unset($headers[$index]);
 			break;
 		}
@@ -402,6 +402,23 @@ function extension($file) {
 	return pathinfo($file,PATHINFO_EXTENSION);
 }
 
+function getcwd_protected() {
+	$dir=getcwd();
+	if($dir=="/") $dir=dirname(getServer("SCRIPT_FILENAME"));
+	return $dir;
+}
+
+function gunzip($data) {
+	$file=get_temp_file(getDefault("exts/gzipext",".gz"));
+	file_put_contents($file,$data);
+	$size=gzfilesize($file);
+	$fp=gzopen($file,"r");
+	$data=gzread($fp,$size);
+	gzclose($fp);
+	unlink($file);
+	return $data;
+}
+
 // COPIED FROM http://php.net/manual/es/function.gzread.php#110078
 function gzfilesize($filename) {
 	$gzfs = FALSE;
@@ -416,24 +433,5 @@ function gzfilesize($filename) {
 		fclose($zp);
 	}
 	return($gzfs);
-}
-
-function getcwd_protected() {
-	$dir=getcwd();
-	if($dir=="/") $dir=dirname(getServer("SCRIPT_FILENAME"));
-	return $dir;
-}
-
-if(!function_exists("gzdecode")) {
-	function gzdecode($data) {
-		$file=get_temp_file(getDefault("exts/gzipext",".gz"));
-		file_put_contents($file,$data);
-		$size=gzfilesize($file);
-		$fp=gzopen($file,"r");
-		$data=gzread($fp,$size);
-		gzclose($fp);
-		unlink($file);
-		return $data;
-	}
 }
 ?>
