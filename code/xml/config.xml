@@ -346,6 +346,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_iva_value>18.00</accounting_iva_value>
 		<accounting_irpf_name>I.R.P.F.</accounting_irpf_name>
 		<accounting_irpf_value>15.00</accounting_irpf_value>
+		<zero_padding_digits>5</zero_padding_digits>
+		<invoice_count_size>3</invoice_count_size>
+		<invoice_date_size>2</invoice_date_size>
 	</configs>
 	<ini_set>
 		<session.bug_compat_42 ifeval="!isphp54()">On</session.bug_compat_42>

@@ -356,9 +356,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"delete")." AND NOT cerrado WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
 			FROM (SELECT
-					CASE num WHEN '' THEN CONCAT('".LANG_ESCAPE("albaran")." ',LPAD(a.id,5,0)) ELSE CONCAT('".LANG_ESCAPE("factura")." ',num) END num2,
-					CASE num WHEN '' THEN CONCAT('AA',LPAD(a.id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num3,
-					CASE num WHEN '' THEN CONCAT('AZ',LPAD(a.id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
+					CASE num WHEN '' THEN CONCAT('".LANG_ESCAPE("albaran")." ',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('".LANG_ESCAPE("factura")." ',num) END num2,
+					CASE num WHEN '' THEN CONCAT('AA',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
+					CASE num WHEN '' THEN CONCAT('AZ',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
 					a.*,
 					ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,
 					COUNT(b.id) conceptos,
@@ -1539,15 +1539,19 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query match="default" prefix="true" eval="true">"INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,`direccion`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`) VALUES(NULL,'".intval(getParam("id_cliente"))."','".intval(getParam("id_epigrafe"))."','".getParam("nombre")."','".getParam("direccion")."','".getParam("nombre_codpostal")."','".getParam("nombre_poblacion")."','".getParam("nombre_provincia")."','".getParam("nombre_pais")."','".getParam("id_codpostal")."','".getParam("id_poblacion")."','".getParam("id_provincia")."','".getParam("id_pais")."','".getParam("cif")."','','".dateval(getParam("fecha"))."','0.00','0.00','0','0','".intval(getParam("id_cuenta"))."','".dateval(getParam("fecha2"))."','".intval(getParam("id_proyecto"))."','0','0','".getParam("notas")."')"</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query match="resumen" prefix="true" eval="true">"/*MYSQL SET @__ID__=(SELECT MAX(id) FROM tbl_facturas) */"</query>
-		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_facturas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_facturas) */"</query>
-		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_facturas) */,'0','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_facturas) */,'".intval(getParam("id_producto"))."',(SELECT nombre FROM tbl_productos WHERE id='".intval(getParam("id_producto"))."'),'".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
-		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_facturas_v(id,id_factura,fecha,percent,importe,cobrado,fecha2) VALUES(NULL,/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_facturas) */,'".dateval(getParam("fecha"))."','".floatval(getParam("percent"))."','".floatval(getParam("importe"))."','".intval(getParam("cobrado"))."','".dateval(getParam("fecha2"))."')":""</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?"/*MYSQL SET @__NEW_NUM_FACTURA__=(SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,3,0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),3,2))) FROM tbl_facturas WHERE SUBSTR(num,5,2)=(SELECT SUBSTR(YEAR('".current_date()."'),3,2)) AND id_cuenta='".intval(getParam("id_cuenta"))."') */":""</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?"UPDATE tbl_facturas SET cerrado=1,num=/*MYSQL @__NEW_NUM_FACTURA__ *//*SQLITE (SELECT SUBSTR('000' || (IFNULL(MAX(num),0)+1),-3,3) || '/' || SUBSTR(STRFTIME('%Y','".current_date()."'),-2,2) FROM tbl_facturas WHERE SUBSTR(num,-2,2)=(SELECT SUBSTR(STRFTIME('%Y','".current_date()."'),-2,2)) AND id_cuenta='".intval(getParam("id_cuenta"))."') */,fecha='".current_date()."' WHERE id=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_facturas) */":""</query>
-		<query match="default" prefix="true" eval="true">getParam("cobrado")?"UPDATE tbl_facturas SET cobrado=1 WHERE id=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_facturas) */":""</query>
-		<query match="default" prefix="true" eval="true">"UPDATE tbl_facturas SET cobrado=(SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_facturas) */) WHERE id=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_facturas) */"</query>
+		<query match="resumen" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_facturas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`='".getParam("id")."'"</query>
+		<query match="concepts_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".getParam("id")."','0','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
+		<query match="products_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".getParam("id")."','".intval(getParam("id_producto"))."',(SELECT nombre FROM tbl_productos WHERE id='".intval(getParam("id_producto"))."'),'".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
+		<query match="vencimientos_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_facturas_v(id,id_factura,fecha,percent,importe,cobrado,fecha2) VALUES(NULL,'".getParam("id")."','".dateval(getParam("fecha"))."','".floatval(getParam("percent"))."','".floatval(getParam("importe"))."','".intval(getParam("cobrado"))."','".dateval(getParam("fecha2"))."')":""</query>
+		<query match="default" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="default" prefix="true" eval="true">getParam("cerrado")?setParam("new_num_factura",execute_query("(SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,".intval(CONFIG("invoice_count_size")).",0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),-2,2))) FROM tbl_facturas WHERE SUBSTR(num,-2,2)=(SELECT SUBSTR(YEAR('".current_date()."'),-2,2)) AND id_cuenta='".intval(getParam("id_cuenta"))."')")):""</query>
+		<query match="default" prefix="true" eval="true">getParam("cerrado")?"UPDATE tbl_facturas SET cerrado=1,num='".getParam("new_num_factura")."',fecha='".current_date()."' WHERE id='".getParam("id")."'":""</query>
+		<query match="default" prefix="true" eval="true">getParam("cobrado")?"UPDATE tbl_facturas SET cobrado=1 WHERE id='".getParam("id")."'":""</query>
+		<query match="default" prefix="true" eval="true">"UPDATE tbl_facturas SET cobrado=(SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".getParam("id")."') WHERE id='".getParam("id")."'"</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
@@ -1564,10 +1568,10 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		<query match="vencimientos_old" prefix="true" eval="true">"UPDATE tbl_facturas_v SET `fecha`='".dateval(getParam("fecha"))."',`percent`='".getParam("percent")."',`importe`='".floatval(getParam("importe"))."',`cobrado`='".intval(getParam("cobrado"))."',`fecha2`='".dateval(getParam("fecha2"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
 		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_v WHERE `id`='".intval(getParam("id"))."'":""</query>
 		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_facturas_v(id,id_factura,fecha,percent,importe,cobrado,fecha2) VALUES(NULL,'".intval(getParam("id_factura"))."','".dateval(getParam("fecha"))."','".floatval(getParam("percent"))."','".floatval(getParam("importe"))."','".intval(getParam("cobrado"))."','".dateval(getParam("fecha2"))."')":""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cerrado")?"/*MYSQL SET @__OLD_NUM_FACTURA__=(SELECT CONCAT(SUBSTR(num,3,3),'/',SUBSTR(num,1,2)) FROM (SELECT MAX(CONCAT(SUBSTR(num,5,2),SUBSTR(num,1,3))) num FROM tbl_facturas WHERE id_cuenta='".intval(getParam("id_cuenta"))."') a) */":""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cerrado")?"SELECT '".LANG_ESCAPE("errorfac101")."' action_error,'0' action_commit FROM tbl_facturas WHERE id='".intval(getParam("id"))."' AND cerrado='1' AND num!=/*MYSQL @__OLD_NUM_FACTURA__ *//*SQLITE (SELECT SUBSTR(num,3,3) || '/' || SUBSTR(num,1,2) FROM (SELECT MAX(SUBSTR(num,5,2) || SUBSTR(num,1,3)) num FROM tbl_facturas WHERE id_cuenta='".intval(getParam("id_cuenta"))."') a) */":""</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?"/*MYSQL SET @__NEW_NUM_FACTURA__=(SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,3,0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),3,2))) FROM tbl_facturas WHERE SUBSTR(num,5,2)=(SELECT SUBSTR(YEAR('".current_date()."'),3,2)) AND id_cuenta='".intval(getParam("id_cuenta"))."')*/":""</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?"UPDATE tbl_facturas SET cerrado='1',num=/*MYSQL @__NEW_NUM_FACTURA__ *//*SQLITE (SELECT SUBSTR('000' || (IFNULL(MAX(num),0)+1),-3,3) || '/' || SUBSTR(STRFTIME('%Y','".current_date()."'),-2,2) FROM tbl_facturas WHERE SUBSTR(num,-2,2)=(SELECT SUBSTR(STRFTIME('%Y','".current_date()."'),-2,2)) AND id_cuenta='".intval(getParam("id_cuenta"))."') */,fecha='".current_date()."' WHERE id='".intval(getParam("id"))."' AND cerrado='0'":""</query>
+		<query match="default" prefix="true" eval="true">!getParam("cerrado")?setParam("old_num_factura",execute_query("SELECT CONCAT(SUBSTR(num,-".intval(CONFIG("invoice_count_size"))."),'/',SUBSTR(num,1,".intval(CONFIG("invoice_date_size")).")) FROM (SELECT MAX(CONCAT(SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size"))."))) num FROM tbl_facturas WHERE id_cuenta='".intval(getParam("id_cuenta"))."') a")):""</query>
+		<query match="default" prefix="true" eval="true">!getParam("cerrado")?"SELECT '".LANG_ESCAPE("errorfac101")."' action_error,'0' action_commit FROM tbl_facturas WHERE id='".intval(getParam("id"))."' AND cerrado='1' AND num!='".getParam("old_num_factura")."'":""</query>
+		<query match="default" prefix="true" eval="true">getParam("cerrado")?setParam("new_num_factura",execute_query("SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,".intval(CONFIG("invoice_count_size")).",0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size"))."))) FROM tbl_facturas WHERE SUBSTR(num,-".intval(CONFIG("invoice_date_size")).")=(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).")) AND id_cuenta='".intval(getParam("id_cuenta"))."'")):""</query>
+		<query match="default" prefix="true" eval="true">getParam("cerrado")?"UPDATE tbl_facturas SET cerrado='1',num='".getParam("new_num_factura")."',fecha='".current_date()."' WHERE id='".intval(getParam("id"))."' AND cerrado='0'":""</query>
 		<query match="default" prefix="true" eval="true">!getParam("cerrado")?"UPDATE tbl_facturas SET cerrado='0',num='' WHERE id='".intval(getParam("id"))."' AND cerrado='1'":""</query>
 		<query match="default" prefix="true" eval="true">getParam("cobrado")?"UPDATE tbl_facturas SET cobrado='1' WHERE id='".intval(getParam("id"))."' AND cobrado='0'":""</query>
 		<query match="default" prefix="true" eval="true">!getParam("cobrado")?"UPDATE tbl_facturas SET cobrado='0' WHERE id='".intval(getParam("id"))."' AND cobrado='1'":""</query>
@@ -1588,7 +1592,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 	<excel>
 		<query require="php/listsim.php" global="page" eval="true">"SELECT
 CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT CONCAT('(',codigo,') ',nombre) FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',
-CASE num WHEN '' THEN CONCAT('\'',LPAD(id,5,0)) ELSE num END '".LANG_ESCAPE("numfac")."',
+CASE num WHEN '' THEN CONCAT('\'',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE num END '".LANG_ESCAPE("numfac")."',
 fecha '".LANG_ESCAPE("date")."',cif '".LANG_ESCAPE("cif")."',
 CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE nombre END '".LANG_ESCAPE("cliente")."',
 base '".LANG_ESCAPE("base")."',iva '".CONFIG("accounting_iva_name")." (%)',iva2 '".CONFIG("accounting_iva_name")."',irpf '".CONFIG("accounting_irpf_name")." (%)',irpf2 '".CONFIG("accounting_irpf_name")."',
@@ -1599,8 +1603,8 @@ FROM (SELECT
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto,
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto2,
 CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE (SELECT nombre FROM tbl_clientes WHERE id_cliente=tbl_clientes.id) END nombre2,
-CASE num WHEN '' THEN CONCAT('AA',LPAD(id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num3,
-CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
+CASE num WHEN '' THEN CONCAT('AA',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
+CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
 c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
 	FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base
 		FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura GROUP BY a.id) c) d WHERE id IN (".list_simulator($page).")"</query>
@@ -1609,16 +1613,16 @@ c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
 		<constructor>"P","mm","A4"</constructor>
 		<margins>90,30,87,30</margins>
 		<query>"SELECT *,
-CASE num WHEN '' THEN LPAD(id,5,0) ELSE num END num,
-CASE num WHEN '' THEN CONCAT('AA',LPAD(id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num3,
-CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
+CASE num WHEN '' THEN LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) ELSE num END num,
+CASE num WHEN '' THEN CONCAT('AA',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
+CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
 ROUND(base+iva2+irpf2,2) total,CONCAT('id_factura=',id) filtro
 FROM (SELECT
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto,
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto2,
 CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE (SELECT nombre FROM tbl_clientes WHERE id_cliente=tbl_clientes.id) END nombre2,
-CASE num WHEN '' THEN CONCAT('AA',LPAD(id,5,0)) ELSE CONCAT('FA',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num3,
-CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,5,0)) ELSE CONCAT('FZ',SUBSTR(num,-2,2),SUBSTR(num,1,3)) END num4,
+CASE num WHEN '' THEN CONCAT('AA',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
+CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
 c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.*,IFNULL(logo_left,'".CONFIG("logo_left")."') logo_left,IFNULL(logo_top,'".CONFIG("logo_top")."') logo_top,IFNULL(logo_width,'".CONFIG("logo_width")."') logo_width,IFNULL(logo_height,'".CONFIG("logo_height")."') logo_height,IFNULL(logo_file,'".CONFIG("logo_file")."') logo_file,IFNULL(color_line,'".CONFIG("color_line")."') color_line,IFNULL(color_text1,'".CONFIG("color_text1")."') color_text1,IFNULL(color_text2,'".CONFIG("color_text2")."') color_text2,IFNULL(factura_pie1,'') factura_pie1,IFNULL(factura_pie2,'') factura_pie2,IFNULL(factura_iva_bool,1) factura_iva_bool,IFNULL(factura_irpf_bool,1) factura_irpf_bool,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,e.id_usuario id_usuario FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id GROUP BY a.id) c) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
 		<foreach>
 			<!-- TEMPLATE -->
@@ -1788,7 +1792,7 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT
 			CASE num WHEN '' THEN
-				CONCAT('".LANG_ESCAPE("albaran")."',' ',LPAD(id,5,0),' ',nombre)
+				CONCAT('".LANG_ESCAPE("albaran")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre)
 			ELSE
 				CONCAT('".LANG_ESCAPE("factura")."',' ',num,' ',nombre)
 			END subject

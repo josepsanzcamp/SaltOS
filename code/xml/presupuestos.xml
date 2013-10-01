@@ -296,7 +296,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,id_estado,fecha1,fecha2,comentarios,id_posiblecli,id_campanya" eval="true">"SELECT id2,id,usuario,datetime,cliente,cliente2,nombre,nombre2,fecha,total1,total2,total3,estado,comentarios,ficheros,tareas,productos,descripcion,id_campanya,action_id,action_title,action_view,action_edit,action_copy,action_pdf2,action_view2,action_mail,action_delete,id_usuario,id_estado,id_cliente,id_posiblecli,id_grupo,activo,id_proyecto FROM (
-			SELECT LPAD(a.id,5,0) id2,a.id id,
+			SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 				".make_extra_query_with_login("d.")." usuario,
 				e.`datetime` `datetime`,
 				CASE
@@ -321,7 +321,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				(SELECT COUNT(*) FROM tbl_presupuestos_t WHERE id_presupuesto=a.id) tareas,
 				(SELECT COUNT(*) FROM tbl_presupuestos_p WHERE id_presupuesto=a.id) productos,
 				a.descripcion descripcion,a.id_campanya id_campanya,
-				a.id action_id,CONCAT(LPAD(a.id,5,0),' - ',a.nombre) action_title,
+				a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
 				CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 				CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 				CASE (".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").")) WHEN 1 THEN 'true' ELSE 'false' END action_copy,
@@ -369,10 +369,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
 					<agenda>
-						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,5,0) id,dstart,dstop,CONCAT('link:agenda(',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
+						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:agenda(',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
 					</agenda>
 					<actas>
-						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,5,0) id,dstart,dstop,CONCAT('link:actas(',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
+						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:actas(',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
 					</actas>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
@@ -1409,9 +1409,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/autonombre.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query match="detalle" prefix="true" eval="true">"/*MYSQL SET @__ID__ = (SELECT MAX(id) FROM tbl_presupuestos) */"</query>
-		<query match="detalle" prefix="true" eval="true">"UPDATE tbl_presupuestos SET objetivos='".getParam("objetivos")."',funcional='".getParam("funcional")."',tecnica='".getParam("tecnica")."',extras='".getParam("extras")."' WHERE id=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_presupuestos) */"</query>
-		<query match="condiciones" prefix="true" eval="true">"UPDATE tbl_presupuestos SET condiciones='".getParam("condiciones")."' WHERE id=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_presupuestos) */"</query>
+		<query match="detalle" prefix="true" global="page" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table($page)))</query>
+		<query match="detalle" prefix="true" eval="true">"UPDATE tbl_presupuestos SET objetivos='".getParam("objetivos")."',funcional='".getParam("funcional")."',tecnica='".getParam("tecnica")."',extras='".getParam("extras")."' WHERE id='".getParam("id")."'"</query>
+		<query match="condiciones" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="condiciones" prefix="true" eval="true">"UPDATE tbl_presupuestos SET condiciones='".getParam("condiciones")."' WHERE id='".getParam("id")."'"</query>
 		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_presupuestos_t(id,id_presupuesto,tarea,horas,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_presupuestos),'".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
 		<query match="productos_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_presupuestos_p(id,id_presupuesto,id_producto,unidades,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_presupuestos),'".getParam("id_producto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
@@ -1438,8 +1439,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="page,id" eval="true">"DELETE FROM tbl_presupuestos_t WHERE `id_presupuesto`='$id'"</query>
-		<query global="page,id" eval="true">"DELETE FROM tbl_presupuestos_p WHERE `id_presupuesto`='$id'"</query>
+		<query eval="true">"DELETE FROM tbl_presupuestos_t WHERE `id_presupuesto`='".abs(getParam("id"))."'"</query>
+		<query eval="true">"DELETE FROM tbl_presupuestos_p WHERE `id_presupuesto`='".abs(getParam("id"))."'"</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
@@ -1449,7 +1450,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
 		<query>"SELECT * FROM (
-			SELECT LPAD(a.id,5,0) id,
+			SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
 				".make_extra_query_with_login("d.")." usuario,
 				e.`datetime` `datetime`,
 				CASE
@@ -1694,7 +1695,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<!-- FIN -->
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG_ESCAPE("presupuesto")."',' ',LPAD(id,5,0),' ',nombre) subject
+		SELECT CONCAT('".LANG_ESCAPE("presupuesto")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
 		FROM tbl_presupuestos WHERE id IN (".check_ids(getParam("id")).")"):LANG("presupuestos"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

@@ -139,14 +139,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CONCAT('tel:',tel_fijo) tel_fijo,
 			CONCAT('tel:',tel_movil) tel_movil,
 			CONCAT('mailto:',email) email,
-			id action_id,CONCAT(LPAD(id,5,0),' - ',nombre) action_title,
+			id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_sql($page,"view")." OR ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
 			CASE ".check_sql($page,"view")." OR ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
-			SELECT a.*,LPAD(a.id,5,0) id2,
+			SELECT a.*,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
 				".make_extra_query_with_login("b.")." usuario,
 				e.`datetime` `datetime`,e.id_usuario id_usuario,b.id_grupo id_grupo
 			FROM tbl_proveedores a
@@ -168,7 +168,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<graficas>SELECT '1' id</graficas>
 					<contactos>
 						<contactos global="id,page" eval="true">"
-SELECT LPAD(a.id,5,0) id,
+SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
 	CONCAT('link:contactos(',-a.id,'):',a.nombre) nombre,
 	CONCAT('tel:',tel_fijo) tel_fijo,
 	CONCAT('tel:',tel_movil) tel_movil,
@@ -182,7 +182,7 @@ FROM tbl_contactos a
 WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores")."') AND (".check_sql("contactos","view").") ORDER BY a.nombre ASC"</contactos>
 					</contactos>
 					<gastos>
-						<gastos global="id" eval="true">"SELECT id_usuario,id_grupo,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,LPAD(id,5,0) id,empresa,fecha,num,base,total,CONCAT('gastos(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,b.nombre empresa FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("gastos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) c WHERE id_proveedor=".abs($id)." AND (".check_sql("gastos","view").") ORDER BY fecha DESC"</gastos>
+						<gastos global="id" eval="true">"SELECT id_usuario,id_grupo,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,empresa,fecha,num,base,total,CONCAT('gastos(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,b.nombre empresa FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("gastos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) c WHERE id_proveedor=".abs($id)." AND (".check_sql("gastos","view").") ORDER BY fecha DESC"</gastos>
 					</gastos>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />

@@ -192,14 +192,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CONCAT('tel:',tel_fijo) tel_fijo,
 			CONCAT('tel:',tel_movil) tel_movil,
 			CONCAT('mailto:',email) email,
-			id action_id,CONCAT(LPAD(id,5,0),' - ',nombre) action_title,
+			id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_vcard,
 			CASE (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_qrcode,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
-			SELECT a.*,LPAD(a.id,5,0) id2,
+			SELECT a.*,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
 				".make_extra_query_with_login("b.")." usuario,
 				CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN (SELECT nombre FROM tbl_clientes WHERE id=a.id_registro)
 					WHEN '".page2id("proyectos")."' THEN (SELECT t2.nombre FROM tbl_proyectos t1 LEFT JOIN tbl_clientes t2 ON t1.id_cliente=t2.id WHERE t1.id=a.id_registro) END cliente,

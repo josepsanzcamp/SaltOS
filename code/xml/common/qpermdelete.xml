@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM (SELECT a.id,".check_sql($page).",e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".page2table($page)." a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."') z WHERE NOT ".check_sql($page,"delete")</query>
-	<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ".page2table($page)." WHERE id='".abs($id)."')=0"</query>
-	<query global="page,id" preeval="true" eval="true">make_dependencies_query(page2table($page),LANG("deldenied"))</query>
+	<query eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM (SELECT a.id,".check_sql(getParam("page")).",e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".page2table(getParam("page"))." a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs(getParam("id"))."') z WHERE NOT ".check_sql(getParam("page"),"delete")</query>
+	<query eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ".page2table(getParam("page"))." WHERE id='".abs(getParam("id"))."')=0"</query>
+	<query preeval="true" eval="true">make_dependencies_query(page2table(getParam("page")),LANG("deldenied"))</query>
 </root>

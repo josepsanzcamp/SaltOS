@@ -587,7 +587,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"view")." WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_spam,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
-		SELECT a.id id,LPAD(a.id,5,0) id2,
+		SELECT a.id id,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
 			`from`,`to`,`cc`,`bcc`,
 			uc.email_name email_name,uc.email_from email_from,
 			a.`datetime` `datetime`,body,
@@ -1247,7 +1247,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT
-			CONCAT('".LANG_ESCAPE("correo")."',' ',LPAD(id,5,0),' ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END) subject
+			CONCAT('".LANG_ESCAPE("correo")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END) subject
 		FROM tbl_correo WHERE id IN (".check_ids(getParam("id")).")"):LANG("correo"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

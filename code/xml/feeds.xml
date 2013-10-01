@@ -413,7 +413,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_favoritos,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
-		SELECT a.id id,LPAD(a.id,5,0) id2,
+		SELECT a.id id,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
 			uf.title feed,
 			uf.link link2,
 			".make_extra_query_with_login("d.")." usuario,
@@ -716,7 +716,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<textarea>55,$row["y"],125,4,"L",trim(__getmail_html2text($row["description"]))</textarea>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG_ESCAPE("feed")."',' ',LPAD(id,5,0),' ',CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END) subject
+		SELECT CONCAT('".LANG_ESCAPE("feed")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END) subject
 		FROM tbl_feeds WHERE id IN (".check_ids(getParam("id")).")"):LANG("feeds"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 </root>

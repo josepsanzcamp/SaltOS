@@ -213,7 +213,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,filter,id_cuenta,dia1,dia2,meses" eval="true">"
 		SELECT
-			CONCAT('link:periodicas(',-id,'):',LPAD(id,5,0)) id2,id,
+			CONCAT('link:periodicas(',-id,'):',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) id2,id,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
 				CONCAT('link:clientes(',-id_cliente,'):',cliente) END cliente,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
@@ -236,7 +236,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE cuenta END cuenta,
 			conceptos,productos,
 			(SELECT COUNT(*) FROM tbl_periodicas_v v WHERE v.id_periodica=d.id) vencimientos,
-			id action_id,CONCAT(LPAD(id,5,0),' - ',cliente) action_title,
+			id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',cliente) action_title,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").") WHEN 1 THEN 'true' ELSE 'false' END action_copy,
@@ -246,8 +246,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				(SELECT
 					a.*,
 					ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,
-					SUM(CASE b.id_producto WHEN '0' THEN '0' ELSE '1' END) conceptos,
-					SUM(CASE b.id_producto WHEN '0' THEN '1' ELSE '0' END) productos,
+					SUM(CASE b.id_producto WHEN '0' THEN '1' ELSE '0' END) conceptos,
+					SUM(CASE b.id_producto WHEN '0' THEN '0' ELSE '1' END) productos,
 					e.id_usuario id_usuario,d.id_grupo id_grupo,j.nombre cuenta,IFNULL(l.nombre,'') cliente
 				FROM tbl_periodicas a
 					LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id
@@ -1323,11 +1323,14 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 		<query match="default" prefix="true" eval="true">setParam("meses",intval(getParam("enero")).intval(getParam("febrero")).intval(getParam("marzo")).intval(getParam("abril")).intval(getParam("mayo")).intval(getParam("junio")).intval(getParam("julio")).intval(getParam("agosto")).intval(getParam("setiembre")).intval(getParam("octubre")).intval(getParam("noviembre")).intval(getParam("diciembre")))</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query match="resumen" prefix="true" eval="true">"/*MYSQL SET @__ID__ = (SELECT MAX(id) FROM tbl_periodicas) */"</query>
-		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_periodicas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`=/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_periodicas) */"</query>
-		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?"INSERT INTO tbl_periodicas_c(id,id_periodica,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_periodicas) */,'0','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_periodicas_c(id,id_periodica,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_periodicas) */,'".intval(getParam("id_producto"))."',(SELECT nombre FROM tbl_productos WHERE id='".intval(getParam("id_producto"))."'),'".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
-		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_periodicas_v(id,id_periodica,fecha,percent,importe) VALUES(NULL,/*MYSQL @__ID__ *//*SQLITE (SELECT MAX(id) FROM tbl_periodicas) */,'".dateval(getParam("fecha"))."','".getParam("percent")."','".getParam("importe")."')":""</query>
+		<query match="resumen" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_periodicas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`='".getParam("id")."'"</query>
+		<query match="concepts_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?"INSERT INTO tbl_periodicas_c(id,id_periodica,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".getParam("id")."','0','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
+		<query match="products_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_periodicas_c(id,id_periodica,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".getParam("id")."','".intval(getParam("id_producto"))."',(SELECT nombre FROM tbl_productos WHERE id='".intval(getParam("id_producto"))."'),'".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
+		<query match="vencimientos_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
+		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_periodicas_v(id,id_periodica,fecha,percent,importe) VALUES(NULL,'".getParam("id")."','".dateval(getParam("fecha"))."','".getParam("percent")."','".getParam("importe")."')":""</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
@@ -1350,8 +1353,8 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="id" eval="true">"DELETE FROM tbl_periodicas_c WHERE `id_periodica`='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_periodicas_v WHERE `id_periodica`='$id'"</query>
+		<query eval="true">"DELETE FROM tbl_periodicas_c WHERE `id_periodica`='".abs(getParam("id"))."'"</query>
+		<query eval="true">"DELETE FROM tbl_periodicas_v WHERE `id_periodica`='".abs(getParam("id"))."'"</query>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>

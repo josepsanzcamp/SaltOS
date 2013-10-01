@@ -44,13 +44,8 @@ function __getParam_helper($index,$default="") {
 	return $default;
 }
 
-function getParamAsArray($prefix,$default="") {
-	$len=strlen($prefix);
-	$result=array();
-	foreach(array_merge($_POST,$_GET) as $key=>$val) {
-		if(substr($key,0,$len)==$prefix) $result[substr($key,$len)]=getParam($key,$default);
-	}
-	return $result;
+function getParamWithoutPrefix($index,$default="") {
+	return getParam($index,$default);
 }
 
 function setParam($index,$value="") {

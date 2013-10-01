@@ -334,7 +334,6 @@ function eval_attr($array) {
 												$temp_value=$old_value;
 												$temp_value=str_replace("getParam(\"","getParam(\"$p",$temp_value);
 												$temp_value=str_replace("setParam(\"","setParam(\"$p",$temp_value);
-												$temp_value=str_replace("getParamAsArray(\"","getParamAsArray(\"$p",$temp_value);
 												$value[]=eval_protected($temp_value,$global,$old_value);
 											}
 										}

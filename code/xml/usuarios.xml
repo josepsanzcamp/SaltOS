@@ -154,7 +154,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"SELECT * FROM (SELECT
-		LPAD(a.id,5,0) id2,a.id id,
+		LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 		CONCAT('link:usuarios(',-a.id,'):',a.login) login,a.login login2,
 		CONCAT('link:grupos(',-a.id_grupo,'):',b.nombre) grupo,b.nombre grupo2,
 		CONCAT('link:',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'(',-a.id_registro,'):',a_nombre) nombre,a_nombre nombre2,
@@ -172,7 +172,7 @@ CASE SUBSTR(dias_sem,7,1) WHEN '1' THEN '".mb_substr(LANG_ESCAPE("domingo"),0,3,
 ) dias_sem,
 CASE (SELECT COUNT(*) FROM tbl_security WHERE id_usuario=a.id AND logout='0') WHEN 0 THEN '".LANG_ESCAPE("no")."' ELSE '".LANG_ESCAPE("yes")."' END logged,
 a.id action_id,
-CONCAT(LPAD(a.id,5,0),' - ',a_nombre) action_title,
+CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a_nombre) action_title,
 CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
 CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,

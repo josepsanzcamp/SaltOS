@@ -311,7 +311,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,id_proyecto,id_presupuesto,id_estado,id_usuario,fecha1,fecha2,otros,id_tipoevento,fecha3,fecha3key,fecha3val,id_posiblecli,id_asignado,id_campanya" eval="true">"SELECT id2,id,usuario,dstart,dstop,cliente,cliente2,proyecto,nombre,proyecto2,nombre2,tipoevento,estado,action_id,action_title,action_view,action_edit,action_copy,action_delete,id_usuario,descripcion,id_tipoevento,id_grupo,activo,id_estado,id_cliente,id_proyecto,id_posiblecli,id_presupuesto,id_campanya FROM (
-			SELECT LPAD(a.id,5,0) id2,a.id id,
+			SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 				".make_extra_query_with_login("d.")." usuario,
 				dstart,dstop,
 				CASE
@@ -336,7 +336,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				a.nombre nombre2,
 				CASE id_tipoevento WHEN '0' THEN '".LANG_ESCAPE("sintipoevento")."' ELSE e.nombre END tipoevento,
 				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
-				a.id action_id,CONCAT(LPAD(a.id,5,0),' - ',a.nombre) action_title,
+				a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
 				CASE ((".check_sql($page,"view").") OR ((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."')>0)) WHEN 1 THEN 'true' ELSE 'false' END action_view,
 				CASE ((".check_sql($page,"edit").") OR ((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."')>0)) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 				CASE (".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").")) WHEN 1 THEN 'true' ELSE 'false' END action_copy,

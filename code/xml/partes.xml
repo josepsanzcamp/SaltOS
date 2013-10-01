@@ -362,7 +362,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,liquidado,id_usuario,fecha1,fecha2,fecha1liq,fecha2liq,comentarios,id_proyecto" eval="true">"
-		SELECT LPAD(id,5,0) id2,id,
+		SELECT LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
 			usuario,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
 				CONCAT('link:clientes(',-id_cliente,'):',cliente) END cliente,
@@ -376,7 +376,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			fecha2,
 			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=d.id) comentarios,
 			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=d.id) ficheros,
-			id action_id,CONCAT(LPAD(id,5,0),' - ',tarea) action_title,
+			id action_id,CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',tarea) action_title,
 			CASE
 				WHEN liquidado=1 THEN ''
 				WHEN fecha2=fecha THEN ''
@@ -634,7 +634,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<pdf>
 		<constructor>"P","mm","A4"</constructor>
 		<margins>50,30,30,30</margins>
-		<query>"SELECT CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,tarea tarea2,LPAD(id,5,0) id,usuario,CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto,cif,tarea,fecha,comentarios,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,fecha2 FROM (SELECT a.*,
+		<query>"SELECT CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,tarea tarea2,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,usuario,CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente,CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto,cif,tarea,fecha,comentarios,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,fecha2 FROM (SELECT a.*,
 		".make_extra_query_with_login("b.")." usuario,
 		c.nombre cliente,p.nombre proyecto,c.cif cif,e.`datetime`,e.id_usuario id_usuario FROM tbl_partes a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_clientes c ON a.id_cliente=c.id LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
 		<foreach>
@@ -764,13 +764,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<textarea>155,$row["y"],25,4,"L",$row["fecha2"]</textarea>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
-		SELECT CONCAT('".LANG_ESCAPE("parte")."',' ',LPAD(id,5,0),' ',tarea) subject
+		SELECT CONCAT('".LANG_ESCAPE("parte")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',tarea) subject
 		FROM tbl_partes WHERE id IN (".check_ids(getParam("id")).")"):LANG("partes"))).getDefault("exts/pdfext",".pdf")</output>
 	</pdf>
 	<excel>
 		<query require="php/listsim.php" global="page" eval="true">"
 		SELECT
-			CONCAT('\'',LPAD(a.id,5,0)) '".LANG_ESCAPE("codigo")."',
+			CONCAT('\'',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) '".LANG_ESCAPE("codigo")."',
 			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE c.nombre END '".LANG_ESCAPE("cliente")."',
 			CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p.nombre END '".LANG_ESCAPE("proyecto")."',
 			tarea '".LANG_ESCAPE("tarea")."',
