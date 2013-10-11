@@ -50,7 +50,7 @@ function db_query_pdo_mysql($query,$fetch="query") {
 		db_error_pdo_mysql(array("dberror"=>$e->getMessage(),"query"=>$query));
 	}
 	// DUMP RESULT TO MATRIX
-	if($stmt && $stmt->columnCount()>0) {
+	if(isset($stmt) && $stmt && $stmt->columnCount()>0) {
 		if($fetch=="auto") {
 			$fetch=$stmt->columnCount()>1?"query":"column";
 		}

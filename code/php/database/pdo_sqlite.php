@@ -174,7 +174,7 @@ function db_query_pdo_sqlite($query,$fetch="query") {
 		}
 		semaphore_release($semaphore);
 		// DUMP RESULT TO MATRIX
-		if($stmt && $stmt->columnCount()>0) {
+		if(isset($stmt) && $stmt && $stmt->columnCount()>0) {
 			if($fetch=="auto") {
 				$fetch=$stmt->columnCount()>1?"query":"column";
 			}
