@@ -126,7 +126,7 @@ function check_user($aplicacion="",$permiso="") {
 	return $_USER[$aplicacion][$permiso];
 }
 
-function check_sql($aplicacion="",$permiso="") {
+function check_sql($aplicacion="",$permiso="",$prefix="") {
 	// INITIAL CHECK
 	global $_ERROR;
 	if(isset($_ERROR)) return 0;
@@ -173,7 +173,7 @@ function check_sql($aplicacion="",$permiso="") {
 			$filters=array();
 			while($row=db_fetch_row($result)) {
 				if(check_user($aplicacion,"user_${permiso}")) {
-					$filter=($id_aplicacion==$row["id_aplicacion"])?"id":$row["filter"];
+					$filter=($id_aplicacion==$row["id_aplicacion"])?"${prefix}id":$row["filter"];
 					if(!isset($filters[$filter])) $filters[$filter]=array();
 					$filters[$filter][]=$row["id_registro"];
 				}
