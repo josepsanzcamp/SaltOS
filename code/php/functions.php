@@ -952,8 +952,10 @@ function show_php_error($array=null) {
 		$pos1=stripos($array["phperror"],"deprecated");
 		$pos2=stripos($array["phperror"],"function");
 		$pos3=stripos($array["phperror"],"extension");
+		$pos4=stripos($array["phperror"],"modifier");
 		if($pos1!==false && $pos2!==false) return;
 		if($pos1!==false && $pos3!==false) return;
+		if($pos1!==false && $pos4!==false) return;
 	}
 	// ADD BACKTRACE IF NOT FOUND
 	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace();
