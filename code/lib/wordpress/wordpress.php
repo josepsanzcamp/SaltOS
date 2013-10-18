@@ -310,21 +310,16 @@ function esc_url( $url, $protocols = null, $_context = 'display' ) {
  * @since 2.8.1
  * @access private
  *
- * @param string|array $search
- * @param string $subject
- * @return string The processed string
+ * @param string|array $search The value being searched for, otherwise known as the needle. An array may be used to designate multiple needles.
+ * @param string $subject The string being searched and replaced on, otherwise known as the haystack.
+ * @return string The string with the replaced svalues.
  */
 function _deep_replace( $search, $subject ) {
-	$found = true;
 	$subject = (string) $subject;
-	while ( $found ) {
-		$found = false;
-		foreach ( (array) $search as $val ) {
-			while ( strpos( $subject, $val ) !== false ) {
-				$found = true;
-				$subject = str_replace( $val, '', $subject );
-			}
-		}
+
+	$count = 1;
+	while ( $count ) {
+		$subject = str_replace( $search, '', $subject, $count );
 	}
 
 	return $subject;
@@ -414,27 +409,36 @@ function wp_kses_bad_protocol($string, $allowed_protocols) {
  *
  * The function allows for additional arguments to be added and passed to hooks.
  * <code>
- * function example_hook($string, $arg1, $arg2)
- * {
- *		//Do stuff
- *		return $string;
+ * // Our filter callback function
+ * function example_callback( $string, $arg1, $arg2 ) {
+ *	// (maybe) modify $string
+ *	return $string;
  * }
- * $value = apply_filters('example_filter', 'filter me', 'arg1', 'arg2');
+ * add_filter( 'example_filter', 'example_callback', 10, 3 );
+ *
+ * // Apply the filters by calling the 'example_callback' function we
+ * // "hooked" to 'example_filter' using the add_filter() function above.
+ * // - 'example_filter' is the filter hook $tag
+ * // - 'filter me' is the value being filtered
+ * // - $arg1 and $arg2 are the additional arguments passed to the callback.
+ * $value = apply_filters( 'example_filter', 'filter me', $arg1, $arg2 );
  * </code>
  *
  * @package WordPress
  * @subpackage Plugin
- * @since 0.71
- * @global array $wp_filter Stores all of the filters
- * @global array $merged_filters Merges the filter hooks using this function.
+ *
+ * @global array $wp_filter         Stores all of the filters
+ * @global array $merged_filters    Merges the filter hooks using this function.
  * @global array $wp_current_filter stores the list of current filters with the current one last
  *
- * @param string $tag The name of the filter hook.
+ * @since 0.71
+ *
+ * @param string $tag  The name of the filter hook.
  * @param mixed $value The value on which the filters hooked to <tt>$tag</tt> are applied on.
- * @param mixed $var,... Additional variables passed to the functions hooked to <tt>$tag</tt>.
+ * @param mixed $var   Additional variables passed to the functions hooked to <tt>$tag</tt>.
  * @return mixed The filtered value after all hooked functions are applied to it.
  */
-function apply_filters($tag, $value) {
+function apply_filters( $tag, $value ) {
 	global $wp_filter, $merged_filters, $wp_current_filter;
 
 	$args = array();

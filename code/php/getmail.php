@@ -172,9 +172,8 @@ function __getmail_getutf8($temp) {
 
 // FUNCTION THAT CONVERT HTML TO PLAIN TEXT
 function __getmail_html2text($html) {
-	include_once("lib/html2text/class.html2text.inc");
-	$html=str_replace("$","",$html); // SECURITY FIX
-	$h2t=new html2text($html);
+	include_once("lib/roundcube/rcube_html2text.php");
+	$h2t=new rcube_html2text($html);
 	$text=$h2t->get_text();
 	return $text;
 }

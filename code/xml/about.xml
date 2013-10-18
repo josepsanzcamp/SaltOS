@@ -326,7 +326,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>WordPress 3.6.1 (GPL-2.0)</label>
+							<label>WordPress latest (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://wordpress.org/download/")</onclick>
@@ -352,10 +352,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Html2Text (GPL-2.0)</label>
+							<label>RoundCubeMail latest (GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://www.chuggnutt.com/html2text")</onclick>
+							<onclick>openwin("https://github.com/roundcube/roundcubemail")</onclick>
 						</field>
 						<field>
 							<label>BMP-PHP (MIT)</label>

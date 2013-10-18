@@ -947,22 +947,17 @@ function show_php_error($array=null) {
 	static $backup=null;
 	if($array===null) $array=$backup;
 	if($array===null) return;
-	// REFUSE THE DEPRECATED WARNINGS
-	if(isset($array["phperror"])) {
-		$pos1=stripos($array["phperror"],"deprecated");
-		$pos2=stripos($array["phperror"],"function");
-		$pos3=stripos($array["phperror"],"extension");
-		$pos4=stripos($array["phperror"],"modifier");
-		if($pos1!==false && $pos2!==false) return;
-		if($pos1!==false && $pos3!==false) return;
-		if($pos1!==false && $pos4!==false) return;
-	}
 	// ADD BACKTRACE IF NOT FOUND
 	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace();
 	// CREATE THE MESSAGE ERROR USING HTML ENTITIES AND PLAIN TEXT
 	$msg_html=do_message_error($array,"html");
 	$msg_text=do_message_error($array,"text");
 	$msg=getServer("SHELL")?$msg_text:$msg_html;
+	// REFUSE THE DEPRECATED WARNINGS
+	if(isset($array["phperror"]) && stripos($array["phperror"],"deprecated")!==false) {
+		addlog($msg_text,getDefault("debug/warningfile","warning.log"));
+		return;
+	}
 	// CHECK IF CAPTURE ERROR WAS ACTIVE
 	if($_ERROR_HANDLER["level"]>0) {
 		$old=array_pop($_ERROR_HANDLER["msg"]);
