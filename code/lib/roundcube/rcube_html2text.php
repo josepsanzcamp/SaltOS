@@ -627,6 +627,7 @@ class rcube_html2text
     public function blockquote_citation_ballback($m)
     {
         $line  = ltrim($m[2]);
+        // MODIFIED BY SANZ TO PREVENT A NOTICE WHEN LINE IS VOID!!!
         $space = ($line!='' && $line[0] == '>') ? '' : ' ';
 
         return $m[1] . '>' . $space . $line;
