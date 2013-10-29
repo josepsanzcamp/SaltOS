@@ -1069,7 +1069,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc2_import>Wählen Sie die Importdatei mit der Taste [Durchsuchen] und dann die Taste [Import], um neue Daten aus dem Backup-Last</desc2_import>
 		<desc3_import>Wichtig: Der Import löscht den aktuellen Daten in der Anwendung haben</desc3_import>
 		<filenotfound>Kann der Inhalt der Importdatei gelesen</filenotfound>
-		<filefoundok>Es hat die Sicherung korrekt importiert</filefoundok>
+		<filefoundok>Es hat die Sicherung korrekt importiert </filefoundok>
+		<fileimporterror translated="false">Error when trying to import the file </fileimporterror>
 	</datacfg>
 	<correo>
 		<list>Mailing List</list>

@@ -29,7 +29,6 @@ if(getParam("action")=="import") {
 	$ok=0;
 	foreach($_FILES as $file) {
 		if(isset($file["tmp_name"]) && $file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
-			$file=$file["tmp_name"];
 			$ok=1;
 			break;
 		} elseif(isset($file["name"]) && $file["name"]!="") {
@@ -75,7 +74,7 @@ if(getParam("action")=="import") {
 	// DISABLE DB CACHE
 	$oldcache=set_use_cache("false");
 	// OPEN FILE
-	$fp=gzopen($file,"r");
+	$fp=gzopen($file["tmp_name"],"r");
 	// IMPORT QUERYES
 	$limit=1000000; // 1MB aprox.
 	$data=gzread($fp,$limit*2);
@@ -85,7 +84,15 @@ if(getParam("action")=="import") {
 		$count=__import_find_query($data,$pos);
 		if($count) {
 			$query=substr($data,$pos,$count);
+			capture_next_error();
 			db_query($query);
+			$error=get_clear_error();
+			if($error!="") {
+				gzclose($fp);
+				session_error(LANG("fileimporterror","datacfg").$file["name"]);
+				javascript_history(-1);
+				die();
+			}
 			$pos=$pos+$count+1;
 		}
 		if(($len-$pos<$limit || !$count) && $limit) {
@@ -103,7 +110,7 @@ if(getParam("action")=="import") {
 	// RESTORE DB CACHE
 	set_use_cache($oldcache);
 	// RETURN
-	session_alert(LANG("filefoundok","datacfg"));
+	session_alert(LANG("filefoundok","datacfg").$file["name"]);
 	javascript_history(-1);
 	die();
 }

@@ -685,8 +685,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<defaultcrt>تشغيل تطبيق تاكيد الاستلام</defaultcrt>
 		<gcalendar>تقويم Google </gcalendar>
 		<prefgcalendar>خدمة مزامنة التقويم مع تقويم Google </prefgcalendar>
-		<prefgcalendar2>مع هذا الخيار، يمكنك استخدام التقويم من تقويم Google من SaltOS، والحفاظ على البيانات المحدثة تلقائيا دون الحاجة إلى القلق حول الحاجة إلى تكرار البيانات من التقويم إلى
-		أخر</prefgcalendar2>
+		<prefgcalendar2>مع هذا الخيار، يمكنك استخدام التقويم من تقويم Google من SaltOS، والحفاظ على البيانات المحدثة تلقائيا دون الحاجة إلى القلق حول الحاجة إلى تكرار البيانات من التقويم إلى أخر</prefgcalendar2>
 		<logingcalendar>حساب بريد gmail</logingcalendar>
 		<feedstitle>قم بتهيئة التغذيات التي تود قرائتها من SaltOS ( RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
 		<url>URL</url>
@@ -1071,6 +1070,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc3_import>مهم: الاستيراد يقوم بحذف البيانات الموجودة حاليا علي التطبيق</desc3_import>
 		<filenotfound>غير قادر علي قرائة محتويات الملف الراد استيراده</filenotfound>
 		<filefoundok>لقد تم جلب بيانات ال backup بنجاح</filefoundok>
+		<fileimporterror translated="false">Error when trying to import the file </fileimporterror>
 	</datacfg>
 	<correo>
 		<list>قائمة البريد</list>

@@ -1069,7 +1069,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc2_import>Seleccione el fichero a importar pulsando el botón [Examinar] y luego pulse el botón [Importar] para realizar la carga de los nuevos datos desde la copia de seguridad</desc2_import>
 		<desc3_import>Importante: La importación borrará los datos actuales que tenga en la aplicación</desc3_import>
 		<filenotfound>No se ha podido leer el contenido del fichero de importación</filenotfound>
-		<filefoundok>Se ha importado la copia de respaldo correctamente</filefoundok>
+		<filefoundok>Se ha importado correctamente la copia de respaldo </filefoundok>
+		<fileimporterror>Se ha producido un error al importar el fichero </fileimporterror>
 	</datacfg>
 	<correo>
 		<list>Listado de correos</list>

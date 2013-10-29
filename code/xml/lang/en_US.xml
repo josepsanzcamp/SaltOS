@@ -1069,7 +1069,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc2_import>Select the file to import by clicking [Browse] and then press the [Import] to upload the new data from the backup</desc2_import>
 		<desc3_import>Important: The import deletes the current data you have in the application</desc3_import>
 		<filenotfound>Unable to read the contents of import file</filenotfound>
-		<filefoundok>It has imported the backup correctly</filefoundok>
+		<filefoundok>It has imported correctly the backup </filefoundok>
+		<fileimporterror>Error when trying to import the file </fileimporterror>
 	</datacfg>
 	<correo>
 		<list>Mailing List</list>

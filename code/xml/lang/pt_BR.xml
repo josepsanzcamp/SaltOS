@@ -1069,7 +1069,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc2_import>Selecione o arquivo a importar clicando no botão [Examinar] e depois no botao [Importar] para realizar a carga dos novos dados inclusive a cópia de segurança</desc2_import>
 		<desc3_import>Importante: A importação apagará os dados atuais da aplicação</desc3_import>
 		<filenotfound>Não foi possível ler o conteúdo do arquivo de importação</filenotfound>
-		<filefoundok>A restauração dos dados foi efetuada com sucesso</filefoundok>
+		<filefoundok revised="false">A restauração foi efetuada com sucesso dos dados </filefoundok>
+		<fileimporterror translated="false">Error when trying to import the file </fileimporterror>
 	</datacfg>
 	<correo>
 		<list>Lista de mensagens</list>

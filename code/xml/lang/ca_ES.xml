@@ -1069,7 +1069,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc2_import>Seleccioneu el fitxer a importar prement el botó [Examinar] i després premeu el botó [Importar] per realitzar la càrrega de les noves dades des de la còpia de seguretat</desc2_import>
 		<desc3_import>Important: La importació esborrarà les dades actuals que tingui en l'aplicació</desc3_import>
 		<filenotfound>No s'ha pogut llegir el contingut del fitxer d'importació</filenotfound>
-		<filefoundok>S'ha importat la còpia de seguretat correctament</filefoundok>
+		<filefoundok>S'ha importat correctament la còpia de seguretat </filefoundok>
+		<fileimporterror>S'ha produit un error al importar el fitxer </fileimporterror>
 	</datacfg>
 	<correo>
 		<list>Llistat de correus</list>

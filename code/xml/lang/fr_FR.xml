@@ -1069,7 +1069,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc2_import>Sélectionnez le fichier à importer en cliquant sur [Parcourir], puis appuyez sur [Importer] pour télécharger les nouvelles données de la sauvegarde</desc2_import>
 		<desc3_import>Important: La suppression d'importer les données actuelles que vous avez dans l'application</desc3_import>
 		<filenotfound>Impossible de lire le contenu de fichier d'importation</filenotfound>
-		<filefoundok>Il a importé la sauvegarde correctement</filefoundok>
+		<filefoundok revised="false">Il a importé correctement la sauvegarde </filefoundok>
+		<fileimporterror translated="false">Error when trying to import the file </fileimporterror>
 	</datacfg>
 	<correo>
 		<list>Liste d'envoi par courriel</list>
