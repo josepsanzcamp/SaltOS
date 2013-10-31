@@ -79,12 +79,16 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 			if(isset($file["file"]) && isset($file["cid"])) if(!$mail->AddEmbeddedImage($file["file"],$file["cid"],$file["name"],"base64",$file["mime"])) return $mail->ErrorInfo;
 		}
 	}
+	$bcc=array();
 	if(is_array($to)) {
 		$valids=array("to:","cc:","bcc:","crt:","priority:","sensitivity:","replyto:");
 		foreach($to as $addr) {
 			$type=$valids[0];
 			foreach($valids as $valid) if(strncasecmp($addr,$valid,strlen($valid))==0) $type=$valid;
 			$addr=substr($addr,strlen($type));
+			// EXTRA FOR POPULATE $bcc
+			if($type==$valids[2]) $bcc[]=$addr;
+			// CONTINUE
 			list($addr,$addrname)=__sendmail_parser($addr);
 			if($type==$valids[0]) if(!$mail->AddAddress($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
 			if($type==$valids[1]) if(!$mail->AddCC($addr,$addrname)) if($mail->ErrorInfo) return $mail->ErrorInfo;
@@ -105,6 +109,7 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	$messageid=__sendmail_messageid($id_cuenta,$mail->From);
 	$file=__sendmail_emlsaver($mail->GetSentMIMEMessage(),$messageid);
 	$last_id=__getmail_insert($file,$messageid,0,0,0,0,0,1,0,"");
+	if(count($bcc)) __getmail_add_bcc($last_id,$bcc); // BCC DOESN'T APPEAR IN THE RFC822 SOMETIMES
 	if(CONFIG("email_async")) {
 		__sendmail_objsaver($mail,$messageid);
 		return "";

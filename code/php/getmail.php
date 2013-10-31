@@ -170,7 +170,7 @@ function __getmail_getutf8($temp) {
 	return $temp;
 }
 
-// FUNCTION THAT CONVERT HTML TO PLAIN TEXT
+// USING ROUNDCUBEMAIL FEATURES
 function __getmail_html2text($html) {
 	include_once("lib/roundcube/rcube_html2text.php");
 	$h2t=new rcube_html2text($html);
@@ -572,5 +572,20 @@ function __getmail_make_clickable($temp) {
 	require_once("lib/wordpress/wordpress.php");
 	$temp=make_clickable($temp);
 	return $temp;
+}
+
+function __getmail_add_bcc($id,$bcc) {
+	foreach($bcc as $addr) {
+		list($valor,$nombre)=__sendmail_parser($addr);
+		$id_tipo=4; // DEFINED IN __getmail_getinfo FUNCTION
+		$nombre=addslashes($nombre);
+		$valor=addslashes($valor);
+		$query="INSERT INTO tbl_correo_a(`id`,`id_correo`,`id_tipo`,`nombre`,`valor`) VALUES(NULL,'${id}','${id_tipo}','${nombre}','${valor}')";
+		db_query($query);
+	}
+	$bcc=implode("; ",$bcc);
+	$bcc=addslashes($bcc);
+	$query="UPDATE tbl_correo SET `bcc`='${bcc}' WHERE id='${id}'";
+	db_query($query);
 }
 ?>

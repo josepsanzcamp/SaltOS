@@ -1,4 +1,4 @@
 
 Detected and fixed a notice message when $line is void in line 630 of the rcube_html2text.php
 - From: $space = $line[0] == '>' ? '' : ' ';
-- To: $space = ($line!='' && $line[0] == '>') ? '' : ' ';
+- To: $space = ($line != '' && $line[0] == '>') ? '' : ' ';
