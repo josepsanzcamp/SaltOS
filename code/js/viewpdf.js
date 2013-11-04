@@ -65,8 +65,9 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 					var bytes=new Uint8Array(array);
 					for(var i=0,len=data.length;i<len;i++) bytes[i]=data.charCodeAt(i);
 					// CREATE PDFDOC
-					//~ PDFJS.disableWorker=true;
 					PDFJS.workerSrc = 'lib/pdfjs/pdf.worker.min.js';
+					//~ PDFJS.disableWorker=true;
+					PDFJS.disableRange=true;
 					PDFJS.getDocument(array).then(function(pdf) {
 						// CHECK FOR NUMPAGES>0
 						if(!pdf.numPages) {
@@ -106,8 +107,9 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						var width=$(dialog2).dialog("option","width")-60;
 						var fn=function() {
 							numPage++;
-							if(numPage<=pdf.numPages && $(dialog2).is(":visible")) {
+							if(numPage<=pdf.numPages) {
 								pdf.getPage(numPage).then(function(page) {
+									if(!$(dialog2).is(":visible")) return;
 									// CALCULATE SIZE
 									var viewport=page.getViewport(1);
 									var scale=width/viewport.width;
