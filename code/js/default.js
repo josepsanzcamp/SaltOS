@@ -470,7 +470,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				};
 				cookies_counter=0;
 			} else {
-				$.cookie(name,value,{path:"/"});
+				$.cookie(name,value,{expires:365,path:"/"});
 			}
 		} else {
 			if(cookies_data[hash].val!=value) {
