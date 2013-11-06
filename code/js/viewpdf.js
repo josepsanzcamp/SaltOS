@@ -69,15 +69,14 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 					//~ PDFJS.disableWorker=true;
 					PDFJS.disableRange=true;
 					PDFJS.getDocument(array).then(function(pdf) {
+						unloadingcontent();
 						// CHECK FOR NUMPAGES>0
 						if(!pdf.numPages) {
-							unloadingcontent();
 							var br="<br/>";
 							dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+hash,{});
 							return;
 						}
 						// BEGIN OPEN DIALOG
-						unloadingcontent();
 						dialog(lang_view2()+" - "+title);
 						var dialog2=$("#dialog");
 						$(dialog2).html("");
@@ -141,6 +140,8 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 							}
 						};
 						fn();
+					},function(message,exception) {
+						errorcontent(0,message);
 					});
 				});
 			},
