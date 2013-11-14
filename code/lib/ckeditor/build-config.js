@@ -98,8 +98,8 @@ var CKBUILDER_CONFIG = {
 		'tableresize' : 1,
 		'uicolor' : 1,
 		'indentlist' : 1,
-		'codemirror' : 1,
-		'insertpre' : 1
+		'widget' : 1,
+		'lineutils' : 1
 	},
 	languages : {
 		'ar' : 1,
@@ -109,6 +109,6 @@ var CKBUILDER_CONFIG = {
 		'de' : 1,
 		'pt-br' : 1,
 		'pt' : 1,
-		'es' : 1,
+		'es' : 1
 	}
 };

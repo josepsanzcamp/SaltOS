@@ -1462,12 +1462,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).ckeditor({
 			skin:"kama",
-			extraPlugins:"insertpre",
+			extraPlugins:"",
 			removePlugins:"",
 			enterMode:CKEDITOR.ENTER_BR,
 			shiftEnterMode:CKEDITOR.ENTER_BR,
 			forcePasteAsPlainText:true,
-			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","InsertPre"],["About"]],
+			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source"],["About"]],
 			language:lang_default(),
 			uiColor:get_colors("ui-state-default","background-color"),
 			autoGrow_onStartup:true,
