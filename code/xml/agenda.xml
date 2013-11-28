@@ -99,6 +99,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick>
 			<row>
 				<field>
+					<type>button</type>
+					<value lang="true">create</value>
+					<tip lang="true">create</tip>
+					<onclick>create()</onclick>
+					<icon>create</icon>
+					<class>nowrap contextmenu</class>
+					<class2>shortcut_ctrl_insert</class2>
+					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
+				</field>
+				<field>
 					<type>separator</type>
 					<width>100%</width>
 				</field>

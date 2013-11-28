@@ -149,12 +149,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
-		<node path="pager/row/field" replace="true">
-			<field>
-				<type>separator</type>
-				<width>15%</width>
-			</field>
-		</node>
 		<query global="page,filtro" eval="true">"
 		SELECT id2,id,
 			nombre,descripcion,datetime,

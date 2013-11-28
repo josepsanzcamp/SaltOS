@@ -220,12 +220,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
-		<node path="pager/row/field" replace="true">
-			<field>
-				<type>separator</type>
-				<width>15%</width>
-			</field>
-		</node>
 		<query global="page,id_usuario,id_aplicacion,filtro,id_folder" eval="true">"SELECT id,id2,id_registro,id_aplicacion,id_folder,id_usuario,id_grupo,datetime,comments,files,action_id,aplicacion,usuario,email_privated,nombre,action_title,action_view3,action_pdf4,action_view4,action_edit2,action_copy2,action_reply2,action_replyall2,action_forward2,action_delete2,id_cliente,id_proyecto,id_proveedor FROM (
 			SELECT a.id_registro id,
 			LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,

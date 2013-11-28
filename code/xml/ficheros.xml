@@ -177,12 +177,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
-		<node path="pager/row/field" replace="true">
-			<field>
-				<type>separator</type>
-				<width>15%</width>
-			</field>
-		</node>
 		<query global="page,id_usuario,id_aplicacion,filtro" eval="true">"SELECT id, id_aplicacion, id_registro, id_usuario, datetime, fichero, fichero_file, fichero_size, fichero_type, id2, id_grupo, action_id, aplicacion, usuario, email_privated, nombre, action_title, fichero_size2, action_download, action_viewpdf FROM (
 			SELECT a.*,LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
 			d.id_grupo id_grupo,
