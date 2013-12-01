@@ -306,7 +306,16 @@ function esc_url( $url, $protocols = null, $_context = 'display' ) {
 			return '';
 	}
 
-	return apply_filters('clean_url', $good_protocol_url, $original_url, $_context);
+	/**
+	 * Filter a string cleaned and escaped for output as a URL.
+	 *
+	 * @since 2.3.0
+	 *
+	 * @param string $good_protocol_url The cleaned URL to be returned.
+	 * @param string $original_url      The URL prior to cleaning.
+	 * @param string $_context          If 'display', replace ampersands and single quotes only.
+	 */
+	return apply_filters( 'clean_url', $good_protocol_url, $original_url, $_context );
 }
 
 /**
