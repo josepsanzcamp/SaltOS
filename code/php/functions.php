@@ -1005,8 +1005,8 @@ function pretty_html_error($msg) {
 	$html.=__pretty_html_error_helper("xml.php",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
 	$html.=$msg;
 	$html.="</div>";
-	$html.="</div>";
 	$html.="</body>";
+	$html.="</html>";
 	return $html;
 }
 
