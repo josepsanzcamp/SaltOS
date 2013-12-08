@@ -177,6 +177,12 @@ if(getParam("action")=="feeds") {
 			$array=__feeds_xml2array_helper($xml);
 			$error=get_clear_error();
 		}
+		if(strpos($error,"EntityRef")!==false) {
+			$xml=str_replace("&","&amp;",$xml);
+			capture_next_error();
+			$array=__feeds_xml2array_helper($xml);
+			$error=get_clear_error();
+		}
 		if(strpos($error,"Invalid character")!==false) {
 			$xml=__feeds_remove_bad_chars($xml);
 			capture_next_error();
