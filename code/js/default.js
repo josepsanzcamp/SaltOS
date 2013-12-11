@@ -1424,7 +1424,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("make_ckeditors");
 		if(typeof(obj)=="undefined") var obj=$("body");
 		// AUTO-GROWING TEXTAREA
-		$("textarea[ckeditor!=true]",obj).autogrow();
+		$("textarea[ckeditor!=true][codemirror!=true]",obj).autogrow();
 		// AUTO-GROWING IFRAMES
 		$("iframe",obj).each(function() {
 			var iframe="#"+$(this).attr("id");
@@ -1474,6 +1474,21 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			disableNativeSpellChecker:false
 		},function() {
 			$("#"+$(this).attr("name")).next().addClass("ui-state-default ui-corner-all");
+		});
+		// CREATE THE CODE MIRROR
+		$("textarea[codemirror=true]",obj).each(function() {
+			var width=$(this).width();
+			var height=$(this).height();
+			var classes=$(this).attr("class");
+			var cm=CodeMirror.fromTextArea(this,{
+				lineNumbers:true
+			});
+			$(this).data("cm",cm);
+			cm.setSize(width,height);
+			$(this).next().addClass(classes);
+			cm.on("change",function() {
+				cm.save();
+			});
 		});
 		//~ console.timeEnd("make_ckeditors");
 	}

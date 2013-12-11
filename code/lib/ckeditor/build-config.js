@@ -99,7 +99,8 @@ var CKBUILDER_CONFIG = {
 		'uicolor' : 1,
 		'indentlist' : 1,
 		'widget' : 1,
-		'lineutils' : 1
+		'lineutils' : 1,
+		'codemirror' : 1
 	},
 	languages : {
 		'ar' : 1,

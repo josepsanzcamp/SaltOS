@@ -402,7 +402,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 4.3 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 4.3.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>
@@ -416,9 +416,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
 						</field>
 						<field>
+							<label>CodeMirror latest (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://codemirror.net/")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>3</colspan>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -488,7 +494,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Masonry 3.1.2 (MIT)</label>
+							<label>Masonry 3.1.3 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://desandro.com/masonry/")</onclick>

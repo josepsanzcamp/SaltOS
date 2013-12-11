@@ -80,8 +80,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<streetdata>استيراد بيانات الشارع</streetdata>
 		<defaultdata>استيراد بيانات عامة</defaultdata>
 		<permissiondata>انشاء صلاحيات مدير للمجموعة</permissiondata>
-		<delete>حذف ملفات التثبيت</delete>
-		<rename>إعادة تسمية ملفات التثبيت</rename>
 		<finish>اكتمل التثبيت</finish>
 		<gotohome>اعادة تحميل الصفحة</gotohome>
 		<notifybug>التبليغ عن مشكلة</notifybug>

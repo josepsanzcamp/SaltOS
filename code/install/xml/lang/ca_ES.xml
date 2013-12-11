@@ -80,8 +80,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<streetdata>Importar dades del carrer</streetdata>
 		<defaultdata>Importar dades genèriques</defaultdata>
 		<permissiondata>Crear permisos per al grup administrador que</permissiondata>
-		<delete>Esborrar fitxers de la instal·lació</delete>
-		<rename>Canviar el nom fitxers de la instal·lació</rename>
 		<finish>Fi de la instal·lació</finish>
 		<gotohome>Tornar a carregar</gotohome>
 		<notifybug>Notificar error</notifybug>

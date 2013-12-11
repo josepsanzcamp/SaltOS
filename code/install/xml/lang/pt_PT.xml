@@ -80,8 +80,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<streetdata>Importar dados de geográficos</streetdata>
 		<defaultdata revised="false">Importar dados genéricos</defaultdata>
 		<permissiondata>Criar permissões para o grupo administador</permissiondata>
-		<delete>Apagar ficheros de instalação</delete>
-		<rename>Renomear ficheiros de instalação</rename>
 		<finish>Fim da instalação</finish>
 		<gotohome>Voltar a carregar</gotohome>
 		<notifybug>Notificar falha</notifybug>

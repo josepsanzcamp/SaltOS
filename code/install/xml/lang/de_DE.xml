@@ -80,8 +80,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<streetdata>Addressen importieren</streetdata>
 		<defaultdata revised="false">Importieren Sie generische Daten</defaultdata>
 		<permissiondata>Erstellen der Berechtigungen für die Administrator-Gruppe</permissiondata>
-		<delete>Installationsdateien löschen</delete>
-		<rename>Installationsdateien umbenennen</rename>
 		<finish>Ende der Installation</finish>
 		<gotohome>Aktualisieren</gotohome>
 		<notifybug>Fehler benachrichtigen</notifybug>

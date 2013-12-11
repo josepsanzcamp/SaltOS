@@ -80,8 +80,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<streetdata>Import street data</streetdata>
 		<defaultdata>Import generic data</defaultdata>
 		<permissiondata>Create administer permissions for the group</permissiondata>
-		<delete>Remove the installation files</delete>
-		<rename>Rename the installation files</rename>
 		<finish>Installation Complete</finish>
 		<gotohome>Reload page</gotohome>
 		<notifybug>Report bug</notifybug>

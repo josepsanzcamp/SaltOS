@@ -39,7 +39,7 @@ program_error_handler();
 check_system();
 fix_input_vars();
 // NORMAL OPERATION
-$_CONFIG=eval_attr(xml2array("xml/config.xml"));
+$_CONFIG=eval_attr(xml2array("files/config.xml"));
 if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));
 if(getDefault("putenv")) eval_putenv(getDefault("putenv"));
 // EXECUTE SOME ITEMS

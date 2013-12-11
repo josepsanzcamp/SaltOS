@@ -798,7 +798,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<textarea name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width};height:{height}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" ckeditor="{ckeditor}">
+				<textarea name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width};height:{height}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" ckeditor="{ckeditor}" codemirror="{codemirror}">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="readonly">true</xsl:attribute>
 						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class3"/></xsl:attribute>

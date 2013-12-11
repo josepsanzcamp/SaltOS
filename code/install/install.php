@@ -151,8 +151,6 @@ $jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 						<div <?php echo __DIV2__; ?>>
 							<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1; ?>"/>
 							<?php $cancontinue=1; ?>
-							<?php $_CONFIG["dirs"][]=getcwd()."/xml"; ?>
-							<?php $_CONFIG["dirs"][]=getcwd()."/install"; ?>
 							<?php foreach(getDefault("dirs") as $dir) { ?>
 								<?php $cancontinue&=($iswritable=is_writable($dir)); ?>
 								<?php echo substr($dir,-4,4)==".xml"?LANG("file").":":LANG("directory").":"; ?> <?php echo $dir; ?>: <?php echo $iswritable?__YES__:__NO__; ?><?php echo __BR__; ?>
@@ -379,8 +377,6 @@ $jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 							<?php echo LANG("iconset"); ?>: <?php echo __GREEN__.$iconsets[getParam("iconset",getDefault("iconset"))]." (".getParam("iconset",getDefault("iconset")).")".__COLOR__.__BR__; ?>
 							<?php echo __HR__; ?>
 							<b><?php echo LANG("is_writable"); ?></b><?php echo __BR__; ?>
-							<?php $_CONFIG["dirs"][]=getcwd()."/xml"; ?>
-							<?php $_CONFIG["dirs"][]=getcwd()."/install"; ?>
 							<?php foreach(getDefault("dirs") as $dir) { ?>
 								<?php $iswritable=is_writable($dir); ?>
 								<?php echo substr($dir,-4,4)==".xml"?LANG("file").":":LANG("directory").":"; ?> <?php echo $dir; ?>: <?php echo $iswritable?__YES__:__NO__; ?><?php echo __BR__; ?>
@@ -479,10 +475,10 @@ $jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 								// SAVE THE config.xml WITH THE NEW CONFIGURATION
 								echo current_datetime().": ".LANG("config").": ";
 								$config=array();
-								// LOAD OLD XML
+								// LOAD CONFIG.XML
 								set_array($config,"node",array(
 									"value"=>"",
-									"#attr"=>array("include"=>"xml/config.xml.old","replace"=>"true")
+									"#attr"=>array("include"=>"xml/config.xml","replace"=>"true")
 								));
 								// STEP 0
 								set_array($config,"node",array(
@@ -555,12 +551,10 @@ $jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 								$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
 								$_CONFIG["cache"]["usexmlminify"]="false";
 								$buffer.=array2xml($config);
-								if(file_exists("xml/config.xml") && !file_exists("xml/config.xml.old")) {
-									rename("xml/config.xml","xml/config.xml.old");
-									file_put_contents("xml/config.xml",$buffer);
+								file_put_contents("files/config.xml",$buffer);
+								if(file_exists("files/config.xml")) {
 									echo __YES__.__BR__;
 								} else {
-									file_put_contents("xml/config.xml.new",$buffer);
 									echo __NO__.__BR__;
 								}
 								// CREATE THE DATABASE SCHEMA
@@ -744,28 +738,6 @@ $jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 										}
 									}
 									set_use_cache($oldcache);
-								}
-								// DELETE OR RENAME INSTALL FILES
-								if(is_link("install")) {
-									echo current_datetime().": ".LANG("delete").": ";
-									capture_next_error();
-									unlink("install");
-									get_clear_error();
-									if(!file_exists("install")) {
-										echo __YES__.__BR__;
-									} else {
-										echo __NO__.__BR__;
-									}
-								} else {
-									echo current_datetime().": ".LANG("rename").": ";
-									capture_next_error();
-									rename("install","__install");
-									get_clear_error();
-									if(!file_exists("install")) {
-										echo __YES__.__BR__;
-									} else {
-										echo __NO__.__BR__;
-									}
 								}
 								// END OF INSTALL
 								echo current_datetime().": ".LANG("finish").__BR__;

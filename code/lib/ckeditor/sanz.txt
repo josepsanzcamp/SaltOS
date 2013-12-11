@@ -18,4 +18,8 @@ IN ckeditor.min.js
 REPLACE [a.lang.editor,a.name].join(", ")
 BY ""
 
+IN plugins/codemirror/css/codemirror.min.css
+REPLACE font-size:inherit
+BY font-size:11px
+
 REMOVED samples

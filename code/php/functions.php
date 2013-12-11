@@ -1083,7 +1083,7 @@ function check_system() {
 		array("function_exists","mb_strpos","Function","php-mbstring"));
 	foreach($array as $a) if(!$a[0]($a[1])) show_php_error(array("phperror"=>"$a[2] $a[1] not found","details"=>"Try to install $a[3] package"));
 	// INSTALL CHECK
-	if(file_exists("install/install.php")) { include("install/install.php"); die(); }
+	if(!file_exists("files/config.xml")) { include("install/install.php"); die(); }
 }
 
 function action_denied() {
