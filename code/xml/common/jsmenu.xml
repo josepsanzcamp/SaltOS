@@ -80,6 +80,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- FOR SELECT ALL CHECKBOX FEATURE -->
 	<function eval="true">"lang_selectallcheckbox() { return '".LANG_ESCAPE("selectallcheckbox")."'; }"</function>
 	<function eval="true">"lang_selectonecheckbox() { return '".LANG_ESCAPE("selectonecheckbox")."'; }"</function>
+	<!-- FOR PLOT FEATURE -->
+	<function eval="true">"lang_withoutinfo() { return '".LANG_ESCAPE("withoutinfo")."'; }"</function>
 	<!-- FOR MAX_INPUT_VARS FEATURE -->
 	<function eval="true">"ini_get_max_input_vars() { return '".intval(ini_get("max_input_vars"))."'; }"</function>
 	<!-- USING CACHE -->

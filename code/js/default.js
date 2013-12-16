@@ -1118,7 +1118,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// TRUE, CREATE THE TABS
 		$(".tabs",obj).tabs({
-			active:active
+			active:active,
+			activate:function(event,ui) {
+				$("svg[isplot=true]",ui.newPanel).each(function() {
+					var chart=$(this).data("chart");
+					chart.update();
+				});
+			}
 		});
 		//~ console.timeEnd("make_tabs");
 	}
@@ -1228,39 +1234,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(slave,table).prop("checked",!value);
 			if(!value) $(".tbody",table).addClass("ui-state-highlight");
 			if(value) $(".tbody",table).removeClass("ui-state-highlight");
-		});
-		// REQUEST THE PLOTS
-		var attrs=new Array("title","legend","vars","colors","graph","ticks","posx",
-			"data1","data2","data3","data4","data5","data6","data7","data8","data9","data10",
-			"data11","data12","data13","data14","data15","data16");
-		$("img[isplot=true]",obj).each(function() {
-			var querystring="action=phplot";
-			querystring+="&width="+$(this).width();
-			querystring+="&height="+$(this).height();
-			for(var i=0,len=attrs.length;i<len;i++) {
-				var data=$(this).attr(attrs[i]);
-				if(typeof(data)!="undefined") querystring+="&"+attrs[i]+"="+rawurlencode(data);
-			};
-			var img=this;
-			$.ajax({
-				url:"xml.php",
-				data:querystring,
-				type:"post",
-				success:function(response) {
-					$(img).attr("src",$("root>img",response).text());
-					var map=$(img).attr("usemap");
-					$("root>map>area",response).each(function() {
-						var shape=$("shape",this).text();
-						var coords=$("coords",this).text();
-						var value=$("value",this).text();
-						var area="<area shape='"+shape+"' coords='"+coords+"' title='"+value+"'>";
-						$(map,obj).append(area);
-					});
-				},
-				error:function(XMLHttpRequest,textStatus,errorThrown) {
-					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-				}
-			});
 		});
 		// PROGRAM CHECK ENTER
 		$("input,select",obj).bind("keypress",function(event) {
@@ -1490,17 +1463,94 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				cm.save();
 			});
 		});
+		// CREATE THE PLOTS
+		$("svg[isplot=true]",obj).each(function() {
+			var obj=this;
+			// GET DATA
+			var width=intval($(this).width());
+			var height=intval($(this).height());
+			var title=$(this).attr("ititle");
+			var legend=explode("|",$(this).attr("legend"));
+			var vars=intval($(this).attr("vars"));
+			var colors=explode("|",$(this).attr("colors"));
+			var graph=$(this).attr("graph");
+			var ticks=explode("|",$(this).attr("ticks"));
+			var posx=explode("|",$(this).attr("posx"));
+			var datas=[];
+			for(var i=1;i<=16;i++) datas[i]=explode("|",$(this).attr("data"+i));
+			// REPAIR DATA
+			if(legend[count(legend)-1]=="") array_pop(legend);
+			if(colors[count(colors)-1]=="") array_pop(colors);
+			if(ticks[count(ticks)-1]=="") array_pop(ticks);
+			if(posx[count(posx)-1]=="") array_pop(posx);
+			for(var i=1;i<=16;i++) if(datas[i][count(datas[i])-1]=="") array_pop(datas[i]);
+			// PREPARE DATA
+			var data=[];
+			for(var i=1;i<=vars;i++) {
+				var j=i-1;
+				data[j]=[];
+				data[j]["key"]=title;
+				if(vars>1) data[j]["key"]=legend[j];
+				data[j]["values"]=[];
+				for(var k=0;k<count(ticks);k++) {
+					data[j]["values"][k]=[];
+					data[j]["values"][k]["x"]=ticks[k];
+					data[j]["values"][k]["y"]=datas[i][k];
+				}
+			}
+			// DO THE PLOT
+			nv.addGraph(function() {
+				var chart;
+				// FOR EACH SUPPORTED GRAPH AND VARS
+				if(graph=="bars" && vars==1) {
+					chart=nv.models.discreteBarChart()
+						.noData(lang_withoutinfo())
+						.tooltipContent(function(key,x,y,e,graph) { return "<span class='ui-state-highlight ui-corner-all'>"+x+": "+y+"</span>";})
+						.color(d3.scale.category20().range())
+						.showValues(true);
+				}
+				if(graph=="pie" && vars==1) {
+					chart=nv.models.pieChart()
+						.noData(lang_withoutinfo())
+						.tooltipContent(function(key,x,y,e,graph) { return "<span class='ui-state-highlight ui-corner-all'>"+key+": "+x+"</span>";})
+						.color(d3.scale.category20().range());
+					data=data[0]["values"];
+				}
+				if(graph=="bars" && vars>=2) {
+					chart=nv.models.multiBarChart()
+						.noData(lang_withoutinfo())
+						.tooltipContent(function(key,x,y,e,graph) { return "<span class='ui-state-highlight ui-corner-all'>"+x+": "+y+"</span>";})
+						.color(d3.scale.category20().range())
+						.margin({bottom:75})
+						.rotateLabels(45)
+						.groupSpacing(0.1)
+						.showControls(false);
+				}
+				// CONTINUE
+				d3.select(obj)
+					.datum(data)
+					.call(chart);
+				$(obj).data("chart",chart);
+				//~ nv.utils.windowResize(chart.update);
+				return chart;
+			});
+		});
 		//~ console.timeEnd("make_ckeditors");
 	}
 
 	function unmake_ckeditors(obj) {
 		//~ console.time("unmake_ckeditors");
 		if(typeof(obj)=="undefined") var obj=$("body");
-		// REMOVE THE CKEDITORS (IMPORTANT ISSUE!!!)
+		// REMOVE THE CKEDITORS (IMPORTANT THING!!!)
 		$("textarea[ckeditor=true]",obj).each(function() {
 			var name=$(this).attr("name");
 			if(CKEDITOR.instances[name]) CKEDITOR.instances[name].destroy();
 		});
+		// REMOVE THE PLOTS (IMPORTANT THING!!!)
+		$("svg[isplot=true]",obj).each(function() {
+			d3.select(this).remove();
+		});
+		while(nv.graphs.length>0) nv.graphs.pop();
 		//~ console.timeEnd("unmake_ckeditors");
 	}
 

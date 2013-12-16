@@ -287,6 +287,11 @@ table {
 	margin-right:auto;
 	border-spacing:0px;
 }
+td.title {
+	white-space:nowrap;
+	padding:0px 3px;
+	height:22px;
+}
 /* FOR IMAGE OBJECT */
 img.image {
 	padding:5px;
@@ -376,8 +381,18 @@ span.number {
 	margin-right:15px;
 }
 /* FOR PLOTS */
-img[isplot=true] {
+svg[isplot=true] {
 	margin:2px;
+}
+svg[isplot=true] * {
+	font-size:11px!important;
+}
+.nvtooltip {
+	background:none!important;
+	border:none!important;
+}
+.nvtooltip span {
+  padding:1px 3px;
 }
 /* FOR TOOLTIPS */
 .ui-tooltip {

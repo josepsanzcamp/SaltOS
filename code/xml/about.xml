@@ -248,7 +248,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.0.051 (LGPL-3.0)</label>
+							<label>TCPDF 6.0.052 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -266,19 +266,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.codeplex.com/PHPExcel")</onclick>
 						</field>
 						<field>
-							<label>PHPLOT 6.1.0 (LGPL-2.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://sourceforge.net/projects/phplot/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
 							<label>JSmin-php 1.1.2 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://github.com/rgrove/jsmin-php/")</onclick>
 						</field>
+					</row>
+					<row>
 						<field>
 							<label>CssMin 3.0.1 (MIT)</label>
 							<type>link</type>
@@ -297,14 +291,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
 						</field>
-					</row>
-					<row>
 						<field>
 							<label>MimeParser 1.82 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
 						</field>
+					</row>
+					<row>
 						<field>
 							<label>RFC822 Addresses 1.15 (BSD)</label>
 							<type>link</type>
@@ -323,14 +317,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/945-PHP-Create-tar-gzip-bzip2-zip-extract-tar-gzip-bzip2-.html")</onclick>
 						</field>
-					</row>
-					<row>
 						<field>
 							<label>WordPress latest (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://wordpress.org/download/")</onclick>
 						</field>
+					</row>
+					<row>
 						<field>
 							<label>EvalMath (BSD)</label>
 							<type>link</type>
@@ -349,14 +343,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
 						</field>
-					</row>
-					<row>
 						<field>
 							<label>RoundCubeMail latest (GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/roundcube/roundcubemail")</onclick>
 						</field>
+					</row>
+					<row>
 						<field>
 							<label>BMP-PHP (MIT)</label>
 							<type>link</type>
@@ -366,7 +360,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>
@@ -402,29 +396,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 4.3.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://ckeditor.com/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
 							<label>JQuery Mobile 1.3.2 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
-						</field>
-						<field>
-							<label>CodeMirror latest (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://codemirror.net/")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -506,7 +481,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.5.1 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.5.2 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
@@ -533,22 +508,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Bouncing Beholder (ZLib/LibPNG)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
-						</field>
-						<field>
 							<label>Mozilla pdf.js latest (Apache-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
 						</field>
 						<field>
+							<label>Bouncing Beholder (ZLib/LibPNG)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
+						</field>
+						<field>
 							<label>timbre.js latest (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
+						</field>
+						<field>
+							<label>CKEditor 4.3.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://ckeditor.com/")</onclick>
+						</field>
+					</row>
+					<row>
+						<field>
+							<label>CodeMirror latest (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://codemirror.net/")</onclick>
+						</field>
+						<field>
+							<label>D3.js (BSD)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://d3js.org/")</onclick>
+						</field>
+						<field>
+							<label>NVD3 (Apache-2.0)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://nvd3.org/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>

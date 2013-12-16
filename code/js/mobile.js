@@ -879,39 +879,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			var ul=$(this).parent().parent().parent().parent();
 			$(slave,ul).prop("checked",value).checkboxradio("refresh");
 		});
-		// REQUEST THE PLOTS
-		var attrs=new Array("title","legend","vars","colors","graph","ticks","posx",
-			"data1","data2","data3","data4","data5","data6","data7","data8","data9","data10",
-			"data11","data12","data13","data14","data15","data16");
-		$("img[isplot=true]",obj).each(function() {
-			var querystring="action=phplot";
-			querystring+="&width="+$(this).width();
-			querystring+="&height="+$(this).height();
-			for(var i=0,len=attrs.length;i<len;i++) {
-				var data=$(this).attr(attrs[i]);
-				if(typeof(data)!="undefined") querystring+="&"+attrs[i]+"="+rawurlencode(data);
-			};
-			var img=this;
-			$.ajax({
-				url:"xml.php",
-				data:querystring,
-				type:"post",
-				success:function(response) {
-					$(img).attr("src",$("root>img",response).text());
-					var map=$(img).attr("usemap");
-					$("root>map>area",response).each(function() {
-						var shape=$("shape",this).text();
-						var coords=$("coords",this).text();
-						var value=$("value",this).text();
-						var area="<area shape='"+shape+"' coords='"+coords+"' title='"+value+"'>";
-						$(map).append(area);
-					});
-				},
-				error:function(XMLHttpRequest,textStatus,errorThrown) {
-					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-				}
-			});
-		});
 		// PROGRAM CHECK ENTER
 		$("input,select",obj).bind("keypress",function(event) {
 			if(is_enterkey(event)) {
@@ -997,7 +964,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	function make_ckeditors(obj) {
 		if(typeof(obj)=="undefined") var obj=$("body");
 		// AUTO-GROWING TEXTAREA
-		$("textarea[ckeditor!=true]",obj).autogrow();
+		$("textarea[ckeditor!=true][codemirror!=true]",obj).autogrow();
 		// AUTO-GROWING IFRAMES
 		$("iframe",obj).each(function() {
 			var iframe="#"+$(this).attr("id");
@@ -1034,6 +1001,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		});
 		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).autogrow();
+		// CREATE THE CODE MIRROR
+		$("textarea[codemirror=true]",obj).autogrow();
 	}
 
 	var focused=null;

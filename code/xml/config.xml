@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<favicon>img/favicon.png</favicon>
 	</info>
 	<db>
-		<type>pdo_mysql</type>
+		<type>pdo_sqlite</type>
 		<host>localhost</host><!-- for MySQL -->
 		<port>3306</port><!-- for MySQL -->
 		<user>saltos</user><!-- for MySQL -->
@@ -212,6 +212,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/codemirror/codemirror.min.css</include>
 			<include>lib/codemirror/codemirror.theme.min.css</include>
 			<include>lib/codemirror/codemirror.addon.min.css</include>
+			<include>lib/d3js/nv.d3.min.css</include>
 		</cache>
 	</styles>
 	<javascript>
@@ -245,6 +246,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/codemirror/codemirror.mode.min.js</include>
 			<include>lib/codemirror/codemirror.addon.min.js</include>
 			<include>lib/codemirror/codemirror.keymap.min.js</include>
+			<include>lib/d3js/d3.min.js</include>
+			<include>lib/d3js/nv.d3.min.js</include>
 		</cache>
 		<cache ifeval="ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
