@@ -40,7 +40,8 @@ if(typeof(__updateproductos__)=="undefined" && typeof(parent.__updateproductos__
 				$("root>rows>row",response).each(function() {
 					precio.value=$("precio",this).text();
 				});
-				update_totales();
+				if(in_array(getParam("page"),new Array("facturas","periodicas"))) update_totales_factura();
+				if(in_array(getParam("page"),new Array("presupuestos","proyectos"))) update_totales_proyecto();
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

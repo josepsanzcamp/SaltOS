@@ -469,12 +469,14 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			return false;
 		}
 		// ACTIVATE THE BLOCK UI FEATURE
-		$.mobile.showPageLoadingMsg("e",message,true);
+		//~ $.mobile.showPageLoadingMsg("e",message,true);
+		$('body').addClass('ui-loading');
 		return true;
 	}
 
 	function unloadingcontent() {
-		$.mobile.hidePageLoadingMsg();
+		//~ $.mobile.hidePageLoadingMsg();
+		$('body').removeClass('ui-loading');
 	}
 
 	function isloadingcontent() {

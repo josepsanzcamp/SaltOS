@@ -34,15 +34,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 .ui-state-highlight {
-	border: 1px solid #fad42e;
-	background: #fbec88;
-	color: #363636;
+	border: 1px solid #fad42e!important;
+	background: #fbec88!important;
+	color: #363636!important;
 }
 
 .ui-state-error {
-	border: 1px solid #cd0a0a;
-	background: #fef1ec;
-	color: #cd0a0a;
+	border: 1px solid #cd0a0a!important;
+	background: #fef1ec!important;
+	color: #cd0a0a!important;
 }
 
 /* AUTO-GROWING IFRAMES */
@@ -85,7 +85,11 @@ iframe {
 }
 
 /* FOR DEFAULT LINKS */
-.ui-link {
+.tellink.ui-link,
+.faxlink.ui-link,
+.maillink.ui-link,
+.weblink.ui-link,
+.applink.ui-link {
 	color:inherit!important;
 }
 

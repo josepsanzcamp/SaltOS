@@ -338,7 +338,7 @@ $jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 												<?php foreach($apps as $app) { ?>
 													<?php if($count%4==0) { ?><tr><?php } ?>
 													<td class="width25">
-														<input type="checkbox" name="_<?php echo $app["id"]; ?>" id="_<?php echo $app["id"]; ?>" value="1" <?php if(eval_bool($app["checked"])) echo "checked='true'" ?>/><label style="vertical-align:25%" for="_<?php echo $app["id"]; ?>"><?php echo $app["nombre"]; ?></label>
+														<input type="checkbox" name="app_<?php echo $app["id"]; ?>" id="app_<?php echo $app["id"]; ?>" value="1" <?php if(eval_bool($app["checked"])) echo "checked='true'" ?>/><label style="vertical-align:25%" for="app_<?php echo $app["id"]; ?>"><?php echo $app["nombre"]; ?></label>
 													</td>
 													<?php if($count%4==3) { ?></tr><?php } ?>
 													<?php $count++; ?>
@@ -435,7 +435,7 @@ $jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 							<?php echo LANG("selected_layer"); ?>: <?php echo __GREEN__.LANG("layer_".$layer["name"]).__COLOR__; ?><?php echo __BR__; ?>
 							<?php $temp=eval_attr(xml2array("xml/dbstatic.xml")); ?>
 							<?php $apps=array(); ?>
-							<?php foreach($temp["tbl_aplicaciones"] as $app) if(getParam("_".$app["id"])) $apps[]=$app["nombre"]; ?>
+							<?php foreach($temp["tbl_aplicaciones"] as $app) if(getParam("app_".$app["id"])) $apps[]=$app["nombre"]; ?>
 							<?php if(!count($apps)) { ?>
 								<?php foreach($temp["tbl_aplicaciones"] as $app) { ?>
 									<?php $exists=0; ?>
@@ -626,7 +626,7 @@ $jqueryui="lib/jquery/jquery-ui-1.10.3.min.js";
 									foreach($temp as $temp2) if($temp2["name"]==getParam("layer")) $layer=$temp2;
 									$temp=eval_attr(xml2array("xml/dbstatic.xml"));
 									$apps=array();
-									foreach($temp["tbl_aplicaciones"] as $app) if(getParam("_".$app["id"])) $apps[]=$app["id"];
+									foreach($temp["tbl_aplicaciones"] as $app) if(getParam("app_".$app["id"])) $apps[]=$app["id"];
 									if(!count($apps)) {
 										foreach($temp["tbl_aplicaciones"] as $app) {
 											if(in_array($app["codigo"],$layer["apps"]) || in_array("*",$layer["apps"])) $apps[]=$app["id"];
