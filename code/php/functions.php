@@ -493,13 +493,11 @@ function cache_gc() {
 	if(rand(0,intval(getDefault("cache/cachegcdivisor")))>intval(getDefault("cache/cachegcprobability"))) return;
 	$semaphore=get_cache_file("cache_gc",getDefault("exts/semext",".sem"));
 	if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) return;
-	$files=glob(get_directory("dirs/cachedir")."*");
-	if(is_array($files) && count($files)>0) {
-		$delta=time()-intval(getDefault("cache/cachegctimeout"));
-		foreach($files as $file) {
-			list($mtime,$error)=filemtime_protected($file);
-			if(!$error && $delta>$mtime) unlink_protected($file);
-		}
+	$files=glob_protected(get_directory("dirs/cachedir")."*");
+	$delta=time()-intval(getDefault("cache/cachegctimeout"));
+	foreach($files as $file) {
+		list($mtime,$error)=filemtime_protected($file);
+		if(!$error && $delta>$mtime) unlink_protected($file);
 	}
 	semaphore_release($semaphore);
 }

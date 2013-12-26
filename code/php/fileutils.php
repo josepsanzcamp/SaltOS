@@ -442,4 +442,9 @@ function gzfilesize($filename) {
 	}
 	return($gzfs);
 }
+
+function glob_protected($pattern) {
+	$array=glob($pattern);
+	return is_array($array)?$array:array();
+}
 ?>

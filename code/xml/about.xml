@@ -741,8 +741,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 				<temp global="directory" eval="true">$directory="lib/licenses/"</temp>
 				<temp global="extension" eval="true">$extension=".txt"</temp>
-				<temp global="directory,extension,files" eval="true">$files=glob($directory."*".$extension)</temp>
-				<temp global="files" eval="true">$files=(is_array($files) &amp;&amp; count($files)>0)?$files:array()</temp>
+				<temp global="directory,extension,files" eval="true">$files=glob_protected($directory."*".$extension)</temp>
 				<temp global="directory,extension,files" eval="true">$files=str_replace(array($directory,$extension),"",$files)</temp>
 				<fieldset ifeval="!ismobile()" global="files,row" foreach="files" as="row">
 					<title global="row" eval="true">LANG("license").$row</title>

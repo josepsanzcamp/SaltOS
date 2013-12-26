@@ -96,7 +96,7 @@ if(getParam("action")=="themeroller") {
 		}
 	}
 	// CREATE IF NOT EXISTS
-	$allbase=array_merge(array($xml[$type]["cssbase"]),glob($xml[$type]["imgbase"]."*.png"));
+	$allbase=array_merge(array($xml[$type]["cssbase"]),glob_protected($xml[$type]["imgbase"]."*.png"));
 	if(!cache_exists($cache,$allbase)) {
 		if($mask) {
 			$mask=explode(",",$mask);
@@ -221,7 +221,7 @@ if(getParam("action")=="themeroller") {
 							$bgcolor=$array["bgColor".substr($key2,$len)];
 							$bgimgopacity=$array["bgImgOpacity".substr($key2,$len)];
 							$bgalpha=isset($array["bgAlpha".substr($key2,$len)])?$array["bgAlpha".substr($key2,$len)]:"ffffff";
-							$bgImage=glob($xml[$type]["imgbase"]."*${val2}.png");
+							$bgImage=glob_protected($xml[$type]["imgbase"]."*${val2}.png");
 							if(!isset($bgImage[0])) show_php_error(array("phperror"=>"bgImage '${val2}' not found"));
 							if(!file_exists($bgImage[0])) show_php_error(array("phperror"=>"bgImage '${bgImage[0]}' not found"));
 							$bgImage=basename($bgImage[0]);
