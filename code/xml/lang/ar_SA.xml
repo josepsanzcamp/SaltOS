@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<otroscampos>مجالات اخرى</otroscampos>
 		<excel>اكسل</excel>
 		<exceltip>تحميل ملف إكسل مع البيانات الحالية</exceltip>
-		<pdf>PDF</pdf>
+		<pdf translated="false">Download PDF</pdf>
 		<pdftip>تحميل ملف PDF مع البيانات الحالية</pdftip>
 		<epigrafe>عنوان</epigrafe>
 		<campoauto>(*) حقل تلقائي</campoauto>
@@ -373,6 +373,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desktoptxt>تم تمكين دمج الاشعارات مع سطح المكتب</desktoptxt>
 		<selectallcheckbox>تحديد جميع السجلات</selectallcheckbox>
 		<selectonecheckbox>تحديد هذا السجل</selectonecheckbox>
+		<formapago>دفع</formapago>
+		<todaslasformasdepago>[جميع أشكال الدفع]</todaslasformasdepago>
+		<sinformapago>[لايوجد مدفوعات]</sinformapago>
 	</common>
 	<login>
 		<logintitle>الوصول للتطبيق</logintitle>
@@ -423,6 +426,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<ficheros>المرفقات</ficheros>
 		<feeds>RSS قارئ موجز</feeds>
 		<favoritos translated="false">المفضلات</favoritos>
+		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
 		<importaciones>استيراد</importaciones>
 		<gestioncomercial>المبيعات</gestioncomercial>
 		<gestionproyectos>المشاريع</gestionproyectos>
@@ -472,6 +476,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_ficheros>الوصول إلى جميع ملفات التطبيق بالكامل</desc_ficheros>
 		<desc_feeds>تتبع خلاصات RSS و اتوم من هذا التطبيق</desc_feeds>
 		<desc_favoritos translated="false">إدارة المفضلة من هنا</desc_favoritos>
+		<desc_ivas translated="false">Manage the taxes from here</desc_ivas>
 		<desc_importaciones>استيراد البيانات للتطبيقات الرئيسية من هنا</desc_importaciones>
 		<desc_buscador>للبحث في جميع محتويات قاعدة البيانات</desc_buscador>
 		<desc_errorlog>لمشاهدة سجلات الخطأ في SaltOS</desc_errorlog>
@@ -752,8 +757,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>تعديل نفقة</formupdate>
 		<defaultdata>بيانات نفقة</defaultdata>
 		<pagadopor>الدفع</pagadopor>
-		<formapago>دفع</formapago>
-		<todaslasformasdepago>[جميع أشكال الدفع]</todaslasformasdepago>
 		<liquidar>تسوية</liquidar>
 		<dateliq>تاريخ التسوية</dateliq>
 		<msgliquidar>هل تريد حذف النفقة المحددة؟</msgliquidar>
@@ -765,7 +768,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<totalliquidar>مجموع  مصاريف التصفية </totalliquidar>
 		<plotseguimientotop10>10 موردين مع زيادة حجم التداول في العام السابق</plotseguimientotop10>
 		<plotseguimiento12meses>نفقات العام الماضي</plotseguimiento12meses>
-		<sinformapago>[لايوجد مدفوعات]</sinformapago>
 		<sinpagador>[بدون دفع]</sinpagador>
 		<vencimientos_old>الاستحقاق</vencimientos_old>
 		<vencimientos_new>إستحقاق جديد</vencimientos_new>
@@ -1284,6 +1286,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>إضافة منتج جديد</forminsert>
 		<formupdate>تغيير في المنتج</formupdate>
 		<defaultdata>بيانات المنتج</defaultdata>
+		<ref translated="false">Ref.</ref>
+		<precioanterior translated="false">PrPri</precioanterior>
+		<precioanteriortip translated="false">Previous price</precioanteriortip>
+		<peso translated="false">Weight</peso>
+		<volumen translated="false">Volume</volumen>
+		<dimensiones translated="false">Dimensions</dimensiones>
+		<fotofile translated="false">Current photo</fotofile>
+		<fotofilenew translated="false">New photo</fotofilenew>
+		<siniva eval="true" translated="false">"[Without ".CONFIG("accounting_iva_name")."]"</siniva>
 	</productos>
 	<presupuestos>
 		<list>قائمة بالميزانيات</list>
@@ -1319,6 +1330,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tecnicapdf>التقني</tecnicapdf>
 		<extraspdf>معلومات</extraspdf>
 		<condicionespdf>الشروط</condicionespdf>
+		<actionfacturar translated="false">Bill</actionfacturar>
+		<msgfacturar translated="false">Want to check the budget?</msgfacturar>
+		<errorfacturar translated="false">There is already a bill of this budget</errorfacturar>
+		<okfacturar translated="false">Has billed the budget properly</okfacturar>
 	</presupuestos>
 	<campanyas>
 		<list>قائمة الحملات</list>
@@ -1469,4 +1484,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<invalidurl translated="false">عنوان URL غير صالح،الرجاء  التحقق من عنوان الويب: </invalidurl>
 		<bookmarkadded translated="false">The url was successfully added to bookmarks</bookmarkadded>
 	</favoritos>
+	<ivas>
+		<list eval="true" translated="false">"List of ".CONFIG("accounting_iva_name")</list>
+		<create eval="true" translated="false">"New ".CONFIG("accounting_iva_name")</create>
+		<formview eval="true" translated="false">"Details of the ".CONFIG("accounting_iva_name")</formview>
+		<forminsert eval="true" translated="false">"Added a new ".CONFIG("accounting_iva_name")</forminsert>
+		<formupdate eval="true" translated="false">"Changing the ".CONFIG("accounting_iva_name")</formupdate>
+		<defaultdata eval="true" translated="false">"Data of the ".CONFIG("accounting_iva_name")</defaultdata>
+	</ivas>
 </root>

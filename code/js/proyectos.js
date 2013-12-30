@@ -105,7 +105,7 @@ if(typeof(__proyectos__)=="undefined" && typeof(parent.__proyectos__)=="undefine
 		for(var i=0,len=document.form.elements.length;i<len;i++) {
 			obj=document.form.elements[i];
 			if(obj.type) {
-				if(obj.name.substr(0,9)=="productos" && obj.name.substr(obj.name.length-8,8)=="unidades") {
+				if(obj.name.substr(0,8)=="products" && obj.name.substr(obj.name.length-8,8)=="unidades") {
 					var prefix=obj.name.substr(0,obj.name.length-8);
 					var unidades_obj=eval("document.form."+prefix+"unidades");
 					var precio_obj=eval("document.form."+prefix+"precio");

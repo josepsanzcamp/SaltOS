@@ -134,7 +134,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<textarea>30,$row["y"],60,4,"L",$row["tarea"]</textarea>
 		</foreach>
 		<!-- PRODUCTOS PROYECTO -->
-		<query>"SELECT a.*,ROUND(a.precio*a.unidades*(100.0-a.descuento)/100.0,2) total2,b.nombre producto FROM tbl_proyectos_p a LEFT JOIN tbl_productos b ON b.id=a.id_producto WHERE id_proyecto='".$row["id"]."' ORDER BY id ASC"</query>
+		<query>"SELECT *,ROUND(precio*unidades*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto='".$row["id"]."' ORDER BY id ASC"</query>
 		<foreach>
 			<eval>$row["__ROW_NUMBER__"]==1</eval>
 				<getxy>"x","y"</getxy>
@@ -176,7 +176,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<textarea>135,$row["y"],15,4,"R",$row["precio"].CONFIG("accounting_currency")</textarea>
 			<textarea>150,$row["y"],15,4,"R",$row["descuento"]."%"</textarea>
 			<textarea>165,$row["y"],15,4,"R",$row["total2"].CONFIG("accounting_currency")</textarea>
-			<textarea>30,$row["y"],90,4,"L",$row["producto"]</textarea>
+			<textarea>30,$row["y"],90,4,"L",$row["concepto"]</textarea>
 		</foreach>
 		<!-- RESUMEN -->
 		<getxy>"x","y"</getxy>

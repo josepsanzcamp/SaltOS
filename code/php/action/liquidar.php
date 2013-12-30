@@ -31,13 +31,13 @@ if($page=="clientes") {
 		SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
 			direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 			cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
-			'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas
+			'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'0' id_presupuesto
 		FROM tbl_clientes a
 		WHERE a.id='$id_cliente'";
 	if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 		`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
-		`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
-		VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','0','0','0','')";
+		`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`,`id_formapago`,`id_presupuesto`)
+		VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','0','0','0','','0','0')";
 	$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
 		VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 	$prefix=array();
@@ -84,13 +84,13 @@ if($page=="partes") {
 				SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
 					direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 					cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
-					'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas
+					'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'0' id_presupuesto
 				FROM tbl_clientes a
 				WHERE a.id='$id_cliente'";
 			if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 				`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
-				`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
-				VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','0','0','0','')";
+				`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`,`id_formapago`,`id_presupuesto`)
+				VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','0','0','0','','0','0')";
 			$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
 				VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 			$liquidar=0;
@@ -164,13 +164,13 @@ if($page=="proyectos" && getParam("extra")=="partes") {
 		SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
 			direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 			cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
-			'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'$id_proyecto' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas
+			'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'$id_proyecto' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'0' id_presupuesto
 		FROM tbl_clientes a
 		WHERE a.id='$id_cliente'";
 	if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 		`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
-		`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
-		VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','$id_proyecto','0','0','')";
+		`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`,`id_formapago`,`id_presupuesto`)
+		VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','$id_proyecto','0','0','','0','0')";
 	$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
 		VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 	$prefix=array();
@@ -216,13 +216,13 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 			SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
 				direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 				cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
-				'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'$id_proyecto' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas
+				'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'$id_proyecto' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'0' id_presupuesto
 			FROM tbl_clientes a
 			WHERE a.id='$id_cliente'";
 		if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 			`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
-			`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
-			VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','$id_proyecto','0','0','')";
+			`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`,`id_formapago`,`id_presupuesto`)
+			VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','$id_proyecto','0','0','','0','0')";
 		$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
 			VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 		// GET THE TASKS
@@ -239,8 +239,8 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 		$ids_productos=count($ids)?implode(",",$ids):0;
 		// CONTINUE WITH NORMAL OPERATION
 		$liquidar=0;
-		$query2="SELECT id_producto,(SELECT nombre FROM tbl_productos b WHERE b.id=a.id_producto) concepto,unidades,descuento,precio
-					FROM tbl_proyectos_p a
+		$query2="SELECT id_producto,concepto,unidades,descuento,precio
+					FROM tbl_proyectos_p
 					WHERE id_proyecto='$id_proyecto' and id IN ($ids_productos)
 				UNION
 				SELECT '0' id_producto,tarea concepto,horas unidades,descuento,precio
@@ -249,7 +249,7 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 		$result=execute_query_array($query2);
 		foreach($result as $row) {
 			$id_producto=$row["id_producto"];
-			$concepto=$row["concepto"];
+			$concepto=addslashes($row["concepto"]);
 			$unidades=$row["unidades"];
 			$descuento=$row["descuento"];
 			$precio=$row["precio"];
@@ -276,6 +276,7 @@ if($page=="periodicas") {
 			$id_cliente=$row["id_cliente"];
 			$id_epigrafe=$row["id_epigrafe"];
 			$id_cuenta=$row["id_cuenta"];
+			$id_formapago=$row["id_formapago"];
 			$id_periodica=$row["id"];
 			$iva=$row["iva"];
 			$irpf=$row["irpf"];
@@ -285,14 +286,14 @@ if($page=="periodicas") {
 					direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
 					cif,'' num,'".current_date()."' fecha,'$iva' iva,'$irpf' irpf,
 					'0' cerrado,'0' cobrado,'$id_cuenta' id_cuenta,'".current_date()."' fecha2,
-					'0' id_proyecto,'$id_periodica' id_periodica,'$meses' mes_periodica,'' notas
+					'0' id_proyecto,'$id_periodica' id_periodica,'$meses' mes_periodica,'' notas,'$id_formapago' id_formapago,'0' id_presupuesto
 				FROM tbl_clientes a
 				WHERE a.id='$id_cliente'";
 			if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
 				`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
-				`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`)
+				`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`,`id_formapago`,`id_presupuesto`)
 				VALUES(NULL,'$id_cliente','$id_epigrafe','','','0','0','0','0','','','','','','','".current_date()."','$iva','$irpf',
-					'0','0','$id_cuenta','".current_date()."','0','$id_periodica','$meses','')";
+					'0','0','$id_cuenta','".current_date()."','0','$id_periodica','$meses','','$id_formapago','0')";
 			$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
 				VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
 			$hacer=0;
@@ -321,6 +322,66 @@ if($page=="periodicas") {
 		session_alert(LANG("totalliquidar","periodicas").$total);
 	} else {
 		session_error(LANG("msgerror","periodicas"));
+	}
+	javascript_history(-1);
+	die();
+}
+if($page=="presupuestos") {
+	$id_presupuesto=abs(getParam("id"));
+	$id_cliente=execute_query("SELECT id_cliente FROM tbl_presupuestos WHERE id='$id_presupuesto'");
+	$query2="SELECT id FROM tbl_facturas WHERE id_presupuesto='$id_presupuesto' AND cerrado='0'";
+	$id_factura=execute_query($query2);
+	if(!$id_factura) {
+		$query=array();
+		if($id_cliente) $query[]="INSERT INTO tbl_facturas
+			SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
+				direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
+				cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
+				'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'$id_presupuesto' id_presupuesto
+			FROM tbl_clientes a
+			WHERE a.id='$id_cliente'";
+		if(!$id_cliente) $query[]="INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,
+			`direccion`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,
+			`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`,`id_formapago`,`id_presupuesto`)
+			VALUES(NULL,'$id_cliente','0','','','0','0','0','0','','','','','','','".current_date()."','0.00','0.00','0','0','0','".current_date()."','0','0','0','','0','$id_presupuesto')";
+		$query[]="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
+			VALUES(NULL,'".page2id("facturas")."',(SELECT MAX(id) FROM tbl_facturas),'".current_user()."','".current_datetime()."')";
+		// GET THE TASKS
+		$prefix=array();
+		foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,17)=="prefix_tareas_old") $prefix[]=$val;
+		$ids=array();
+		foreach($prefix as $p) if(getParam($p."liquidar")) $ids[]=intval(getParam($p."id"));
+		$ids_tareas=count($ids)?implode(",",$ids):0;
+		// GET THE PRODUCTS
+		$prefix=array();
+		foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,20)=="prefix_productos_old") $prefix[]=$val;
+		$ids=array();
+		foreach($prefix as $p) if(getParam($p."liquidar")) $ids[]=intval(getParam($p."id"));
+		$ids_productos=count($ids)?implode(",",$ids):0;
+		// CONTINUE WITH NORMAL OPERATION
+		$liquidar=0;
+		$query2="SELECT id_producto,concepto,unidades,descuento,precio
+					FROM tbl_presupuestos_p
+					WHERE id_presupuesto='$id_presupuesto' and id IN ($ids_productos)
+				UNION
+				SELECT '0' id_producto,tarea concepto,horas unidades,descuento,precio
+					FROM tbl_presupuestos_t
+					WHERE id_presupuesto='$id_presupuesto' and id IN ($ids_tareas)";
+		$result=execute_query_array($query2);
+		foreach($result as $row) {
+			$id_producto=$row["id_producto"];
+			$concepto=addslashes($row["concepto"]);
+			$unidades=$row["unidades"];
+			$descuento=$row["descuento"];
+			$precio=$row["precio"];
+			$query[]="INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio)
+				VALUES(NULL,(SELECT MAX(id) FROM tbl_facturas),'$id_producto','$concepto','$unidades','$descuento','$precio')";
+			$liquidar=1;
+		}
+		if($liquidar) foreach($query as $q) db_query($q);
+		session_alert(LANG("okfacturar","presupuestos"));
+	} else {
+		session_error(LANG("errorfacturar","presupuestos"));
 	}
 	javascript_history(-1);
 	die();

@@ -76,11 +76,12 @@ if($page=="presupuestos") {
 	$result=execute_query_array($query);
 	foreach($result as $row) {
 		$id_producto=$row["id_producto"];
+		$concepto=addslashes($row["concepto"]);
 		$unidades=$row["unidades"];
 		$precio=$row["precio"];
 		$descuento=$row["descuento"];
-		$query="INSERT INTO tbl_proyectos_p(`id`,`id_proyecto`,`id_producto`,`unidades`,`precio`,`descuento`)
-			VALUES(NULL,'$id_proyecto','$id_producto','$unidades','$precio','$descuento')";
+		$query="INSERT INTO tbl_proyectos_p(`id`,`id_proyecto`,`id_producto`,`concepto`,`unidades`,`precio`,`descuento`)
+			VALUES(NULL,'$id_proyecto','$id_producto','$concepto','$unidades','$precio','$descuento')";
 		db_query($query);
 	}
 	// RELACIONAR PRESUPUESTO CON EL PROYECTO

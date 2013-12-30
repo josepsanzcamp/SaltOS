@@ -1157,6 +1157,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>notas</name>
 					<type>TEXT</type>
 				</field>
+				<field>
+					<name>id_formapago</name>
+					<type>INT(11)</type>
+					<fkey>tbl_formaspago</fkey>
+				</field>
+				<field>
+					<name>id_presupuesto</name>
+					<type>INT(11)</type>
+					<fkey>tbl_presupuestos</fkey>
+				</field>
 			</fields>
 		</table>
 		<table>
@@ -1792,6 +1802,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
+			<name>tbl_ivas</name>
+			<fields>
+				<field>
+					<name>id</name>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>nombre</name>
+					<type>VARCHAR(255)</type>
+				</field>
+				<field>
+					<name>descripcion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>valor</name>
+					<type>DECIMAL(9,2)</type>
+				</field>
+			</fields>
+		</table>
+		<table>
 			<name>tbl_lastfolder</name>
 			<fields>
 				<field>
@@ -1937,6 +1969,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>meses</name>
 					<type>VARCHAR(255)</type>
+				</field>
+				<field>
+					<name>id_formapago</name>
+					<type>INT(11)</type>
+					<fkey>tbl_formaspago</fkey>
 				</field>
 			</fields>
 		</table>
@@ -2249,6 +2286,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<fkey>tbl_productos</fkey>
 				</field>
 				<field>
+					<name>concepto</name>
+					<type>TEXT</type>
+				</field>
+				<field>
 					<name>unidades</name>
 					<type>DECIMAL(9,2)</type>
 				</field>
@@ -2325,12 +2366,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>VARCHAR(255)</type>
 				</field>
 				<field>
-					<name>precio</name>
-					<type>DECIMAL(9,2)</type>
+					<name>ref</name>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>descripcion</name>
 					<type>TEXT</type>
+				</field>
+				<field>
+					<name>precio</name>
+					<type>DECIMAL(9,2)</type>
+				</field>
+				<field>
+					<name>id_iva</name>
+					<type>INT(11)</type>
+					<fkey>tbl_ivas</fkey>
+				</field>
+				<field>
+					<name>precio2</name>
+					<type>DECIMAL(9,2)</type>
+				</field>
+				<field>
+					<name>foto_file</name>
+					<type>VARCHAR(255)</type>
+				</field>
+				<field>
+					<name>peso</name>
+					<type>DECIMAL(9,2)</type>
+				</field>
+				<field>
+					<name>volumen</name>
+					<type>DECIMAL(9,2)</type>
+				</field>
+				<field>
+					<name>dimensiones</name>
+					<type>VARCHAR(255)</type>
+				</field>
+				<field>
+					<name>web</name>
+					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>
@@ -2506,6 +2580,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_producto</name>
 					<type>INT(11)</type>
 					<fkey>tbl_productos</fkey>
+				</field>
+				<field>
+					<name>concepto</name>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>unidades</name>

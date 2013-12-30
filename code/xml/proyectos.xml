@@ -398,12 +398,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<tareas_old>
 						<tareas_old global="id" eval="true">"SELECT a.*,ROUND(a.horas*a.precio*(100.0-descuento)/100.0,2) total2,SUM(b.horas) horas2,ROUND(SUM(b.horas)*a.precio*(100.0-descuento)/100.0,2) total3 FROM tbl_proyectos_t a LEFT JOIN tbl_seguimientos b ON a.id=b.id_tarea WHERE a.id_proyecto=".abs($id)." GROUP BY a.id ORDER BY a.id ASC"</tareas_old>
 					</tareas_old>
-					<productos_head>
-						<productos_head>SELECT '1' id</productos_head>
-					</productos_head>
-					<productos_old>
-						<productos_old global="id" eval="true">"SELECT *,ROUND(precio*unidades*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto=".abs($id)." ORDER BY id ASC"</productos_old>
-					</productos_old>
+					<products_head>
+						<products_head>SELECT '1' id</products_head>
+					</products_head>
+					<products_old>
+						<products_old global="id" eval="true">"SELECT *,ROUND(precio*unidades*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto=".abs($id)." ORDER BY id ASC"</products_old>
+					</products_old>
 					<graficas>SELECT '1' id</graficas>
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
@@ -496,29 +496,29 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						SELECT 'i' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 						SELECT 'j' id,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2"</tareas_new>
 					</tareas_new>
-					<productos_head>
-						<productos_head>SELECT '1' id</productos_head>
-					</productos_head>
-					<productos_new>
-						<productos_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
-						SELECT id,descuento,id_producto,unidades,precio,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto='".substr(getParam("id"),7)."' UNION
-						SELECT 'a' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'b' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'c' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'd' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'e' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2":"
-						SELECT 'a' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'b' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'c' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'd' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'e' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'f' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'g' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'h' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'i' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'j' id,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2
-						"</productos_new>
-					</productos_new>
+					<products_head>
+						<products_head>SELECT '1' id</products_head>
+					</products_head>
+					<products_new>
+						<products_new eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
+						SELECT id,descuento,id_producto,concepto,unidades,precio,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto='".substr(getParam("id"),7)."' UNION
+						SELECT 'a' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'b' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'c' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'd' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'e' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2":"
+						SELECT 'a' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'b' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'c' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'd' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'e' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'f' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'g' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'h' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'i' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'j' id,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2
+						"</products_new>
+					</products_new>
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
@@ -551,25 +551,25 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						SELECT 'i' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2 UNION
 						SELECT 'j' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0.00' precio,'0.00' total2"</tareas_new>
 					</tareas_new>
-					<productos_head>
-						<productos_head>SELECT '1' id</productos_head>
-					</productos_head>
-					<productos_old>
-						<productos_old global="id" eval="true">"SELECT *,ROUND(precio*unidades*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto=".abs($id)." ORDER BY id ASC"</productos_old>
-					</productos_old>
-					<productos_new>
-						<productos_new global="id" eval="true">"
-						SELECT 'a' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'b' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'c' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'd' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'e' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'f' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'g' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'h' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'i' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
-						SELECT 'j' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'0.00' unidades,'0.00' precio,'0.00' total2"</productos_new>
-					</productos_new>
+					<products_head>
+						<products_head>SELECT '1' id</products_head>
+					</products_head>
+					<products_old>
+						<products_old global="id" eval="true">"SELECT *,ROUND(precio*unidades*(100.0-descuento)/100.0,2) total2 FROM tbl_proyectos_p WHERE id_proyecto=".abs($id)." ORDER BY id ASC"</products_old>
+					</products_old>
+					<products_new>
+						<products_new global="id" eval="true">"
+						SELECT 'a' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'b' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'c' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'd' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'e' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'f' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'g' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'h' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'i' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2 UNION
+						SELECT 'j' id,'$id' id_proyecto,'0.00' horas,'0.00' descuento,'0' id_producto,'' concepto,'0.00' unidades,'0.00' precio,'0.00' total2"</products_new>
+					</products_new>
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
 					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
@@ -1160,7 +1160,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 					</tail>
 				</fieldset>
 			</tareas_new>
-			<productos_head>
+			<products_head>
 				<fieldset>
 					<title lang="true">productosproyecto</title>
 					<width>700px</width>
@@ -1202,8 +1202,8 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						</field>
 					</head>
 				</fieldset>
-			</productos_head>
-			<productos_old>
+			</products_head>
+			<products_old>
 				<fieldset>
 					<width>700px</width>
 					<head>
@@ -1269,8 +1269,11 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						</field>
 						<field>
 							<name>id_producto</name>
-							<type>select</type>
-							<query eval="true">make_select_query("productos","tbl_productos","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproducto")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>concepto</name>
+							<type>text</type>
 							<width>400px</width>
 							<class>tbody</class>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
@@ -1321,8 +1324,8 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						</field>
 					</row>
 				</fieldset>
-			</productos_old>
-			<productos_new>
+			</products_old>
+			<products_new>
 				<fieldset>
 					<width>700px</width>
 					<head>
@@ -1369,11 +1372,13 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						</field>
 						<field>
 							<name>id_producto</name>
-							<type>select</type>
-							<query eval="true">make_select_query("productos","tbl_productos","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproducto")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>concepto</name>
+							<type>text</type>
 							<width>400px</width>
 							<class>tbody</class>
-							<onchange>update_producto(this)</onchange>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1420,7 +1425,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						</field>
 					</tail>
 				</fieldset>
-			</productos_new>
+			</products_new>
 			<graficas>
 				<fieldset>
 					<title lang="true">graficas</title>
@@ -1625,7 +1630,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_proyectos_t(id,id_proyecto,tarea,horas,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_proyectos),'".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
-		<query match="productos_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_proyectos_p(id,id_proyecto,id_producto,unidades,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_proyectos),'".getParam("id_producto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_proyectos_p(id,id_proyecto,id_producto,concepto,unidades,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_proyectos),'".getParam("id_producto")."','".getParam("concepto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
@@ -1636,9 +1641,9 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		<query match="tareas_old" prefix="true" eval="true">"UPDATE tbl_proyectos_t SET `tarea`='".getParam("tarea")."',`horas`='".getParam("horas")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
 		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_t WHERE `id`='".getParam("id")."'":""</query>
 		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_proyectos_t(id,id_proyecto,tarea,horas,precio,descuento) VALUES(NULL,'".intval(getParam("id_proyecto"))."','".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
-		<query match="productos_old" prefix="true" eval="true">"UPDATE tbl_proyectos_p SET `id_producto`='".getParam("id_producto")."',`unidades`='".getParam("unidades")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
-		<query match="productos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_p WHERE `id`='".getParam("id")."'":""</query>
-		<query match="productos_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_proyectos_p(id,id_proyecto,id_producto,unidades,precio,descuento) VALUES(NULL,'".intval(getParam("id_proyecto"))."','".getParam("id_producto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query match="products_old" prefix="true" eval="true">"UPDATE tbl_proyectos_p SET `id_producto`='".getParam("id_producto")."',`concepto`='".getParam("concepto")."',`unidades`='".getParam("unidades")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
+		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_p WHERE `id`='".getParam("id")."'":""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_proyectos_p(id,id_proyecto,id_producto,concepto,unidades,precio,descuento) VALUES(NULL,'".intval(getParam("id_proyecto"))."','".getParam("id_producto")."','".getParam("concepto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
 		<query include="xml/common/qfilesdelete.xml" replace="true" />
 		<query include="xml/common/qfilesupdate.xml" replace="true"/>
 		<query include="xml/common/qcommentsdelete.xml" replace="true" />

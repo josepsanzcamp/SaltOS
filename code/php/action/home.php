@@ -92,7 +92,7 @@ if(getParam("action")=="home") {
 				WHEN '".page2id("posiblescli")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_posiblescli WHERE id=a.id_registro)
 				WHEN '".page2id("presupuestos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_presupuestos WHERE id=a.id_registro)
 				WHEN '".page2id("prioridades")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_prioridades WHERE id=a.id_registro)
-				WHEN '".page2id("productos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_productos WHERE id=a.id_registro)
+				WHEN '".page2id("productos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',CASE ref WHEN '' THEN nombre ELSE CONCAT(nombre,' (',ref,')') END)  FROM tbl_productos WHERE id=a.id_registro)
 				WHEN '".page2id("proveedores")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_proveedores WHERE id=a.id_registro)
 				WHEN '".page2id("proyectos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_proyectos WHERE id=a.id_registro)
 				WHEN '".page2id("seguimientos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',comentarios)  FROM tbl_seguimientos WHERE id=a.id_registro)

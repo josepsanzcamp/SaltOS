@@ -886,10 +886,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_size")?make_update_config("water_feeds_size"):""</query>
 		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_angle")?make_update_config("water_feeds_angle"):""</query>
 		<!-- logo section -->
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_left")?make_update_config("logo_left"):""</query>
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_top")?make_update_config("logo_top"):""</query>
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_width")?make_update_config("logo_width"):""</query>
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_height")?make_update_config("logo_height"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_left")!=""?make_update_config("logo_left"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_top")!=""?make_update_config("logo_top"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_width")!=""?make_update_config("logo_width"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_height")!=""?make_update_config("logo_height"):""</query>
 		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?"SELECT valor action_delete FROM tbl_configuracion WHERE clave='logo_file' AND SUBSTR(valor,1,7)!='../img/'":""</query>
 		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?"UPDATE tbl_configuracion SET valor='".getParam("logo_file_new_file")."' WHERE clave='logo_file'":""</query>
 		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_line")?make_update_config("color_line"):""</query>

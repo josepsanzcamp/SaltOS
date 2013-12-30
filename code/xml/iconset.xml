@@ -73,6 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<home>lib/highcontrast/actions/gohome.png</home>
 		<importaciones>lib/highcontrast/apps/terminal.png</importaciones>
 		<incidencias>lib/highcontrast/apps/bug-buddy.png</incidencias>
+		<ivas>lib/highcontrast/apps/terminal.png</ivas>
 		<last>lib/highcontrast/actions/stock_last.png</last>
 		<logout>lib/highcontrast/actions/system-log-out.png</logout>
 		<mail>lib/highcontrast/actions/mail-forward.png</mail>
@@ -163,6 +164,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<home>lib/crystal/apps/home.png</home>
 		<importaciones>lib/crystal/apps/fifteenpieces.png</importaciones>
 		<incidencias>lib/crystal/apps/bug.png</incidencias>
+		<ivas>lib/crystal/apps/fifteenpieces.png</ivas>
 		<last>lib/crystal/actions/2rightarrow.png</last>
 		<logout>lib/crystal/actions/logout.png</logout>
 		<mail>lib/crystal/actions/mail_forward.png</mail>
@@ -253,6 +255,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<home>lib/silk/icons/application_home.png</home>
 		<importaciones>lib/silk/icons/application.png</importaciones>
 		<incidencias>lib/silk/icons/bug.png</incidencias>
+		<ivas>lib/silk/icons/application.png</ivas>
 		<last>lib/silk/icons/resultset_last.png</last>
 		<logout>lib/silk/icons/door_out.png</logout>
 		<mail>lib/silk/icons/email_go.png</mail>

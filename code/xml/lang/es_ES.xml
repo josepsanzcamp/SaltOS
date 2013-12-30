@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<otroscampos>Otros campos</otroscampos>
 		<excel>Excel</excel>
 		<exceltip>Descarguese un fichero Excel con los datos actuales</exceltip>
-		<pdf>PDF</pdf>
+		<pdf>Descargar PDF</pdf>
 		<pdftip>Descarguese un fichero PDF con los datos actuales</pdftip>
 		<epigrafe>Epígrafe</epigrafe>
 		<campoauto>(*) Campo automático</campoauto>
@@ -373,6 +373,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desktoptxt>Notificaciones integradas con el escritorio activadas</desktoptxt>
 		<selectallcheckbox>Seleccionar todos los registros</selectallcheckbox>
 		<selectonecheckbox>Seleccionar este registro</selectonecheckbox>
+		<formapago>Forma de pago</formapago>
+		<todaslasformasdepago>[Todas las formas de pago]</todaslasformasdepago>
+		<sinformapago>[Sin forma de pago]</sinformapago>
 	</common>
 	<login>
 		<logintitle>Acceso a la aplicación</logintitle>
@@ -423,6 +426,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<ficheros>Ficheros adjuntos</ficheros>
 		<feeds>Lector de feeds RSS</feeds>
 		<favoritos>Favoritos</favoritos>
+		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
 		<importaciones>Importaciones</importaciones>
 		<gestioncomercial>Comercial</gestioncomercial>
 		<gestionproyectos>Proyectos</gestionproyectos>
@@ -472,6 +476,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_ficheros>Acceda a todos los ficheros de toda la aplicación</desc_ficheros>
 		<desc_feeds>Siga sus feeds RSS y Atom desde esta aplicación</desc_feeds>
 		<desc_favoritos>Gestione sus favoritos desde aquí</desc_favoritos>
+		<desc_ivas>Gestione los tipos de impuestos desde aquí</desc_ivas>
 		<desc_importaciones>Importe datos a las principales aplicaciones desde aquí</desc_importaciones>
 		<desc_buscador>Para buscar en toda la base de datos</desc_buscador>
 		<desc_errorlog>Para ver el registro de errores de SaltOS</desc_errorlog>
@@ -752,8 +757,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Modificación del gasto</formupdate>
 		<defaultdata>Datos del gasto</defaultdata>
 		<pagadopor>Pagador</pagadopor>
-		<formapago>Forma de pago</formapago>
-		<todaslasformasdepago>[Todas las formas de pago]</todaslasformasdepago>
 		<liquidar>Liquidar</liquidar>
 		<dateliq>Fecha liq.</dateliq>
 		<msgliquidar>Desea liquidar los gastos seleccionados?</msgliquidar>
@@ -765,7 +768,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<totalliquidar>Los gastos liquidados suman un total de: </totalliquidar>
 		<plotseguimientotop10>Los 10 proveedores con mayor facturación del último año</plotseguimientotop10>
 		<plotseguimiento12meses>Gastos del último año</plotseguimiento12meses>
-		<sinformapago>[Sin forma de pago]</sinformapago>
 		<sinpagador>[Sin pagador]</sinpagador>
 		<vencimientos_old>Vencimientos</vencimientos_old>
 		<vencimientos_new>Nuevos vencimientos</vencimientos_new>
@@ -1284,6 +1286,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Alta de un nuevo producto</forminsert>
 		<formupdate>Modificación del producto</formupdate>
 		<defaultdata>Datos del producto</defaultdata>
+		<ref>Ref.</ref>
+		<precioanterior>PrAnt</precioanterior>
+		<precioanteriortip>Precio anterior</precioanteriortip>
+		<peso>Peso</peso>
+		<volumen>Volumen</volumen>
+		<dimensiones>Dimensiones</dimensiones>
+		<fotofile>Foto actual</fotofile>
+		<fotofilenew>Nueva foto</fotofilenew>
+		<siniva eval="true">"[Sin ".CONFIG("accounting_iva_name")."]"</siniva>
 	</productos>
 	<presupuestos>
 		<list>Listado de presupuestos</list>
@@ -1319,6 +1330,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tecnicapdf>Técnica</tecnicapdf>
 		<extraspdf>Información</extraspdf>
 		<condicionespdf>Condiciones</condicionespdf>
+		<actionfacturar>Facturar</actionfacturar>
+		<msgfacturar>Desea facturar el proyecto?</msgfacturar>
+		<errorfacturar>Ya existe una factura de este presupuesto</errorfacturar>
+		<okfacturar>Se ha facturado correctamente el presupuesto</okfacturar>
 	</presupuestos>
 	<campanyas>
 		<list>Listado de campañas</list>
@@ -1469,4 +1484,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<invalidurl>La url no es válida, verifique la dirección web: </invalidurl>
 		<bookmarkadded>La url se ha añadido correctamente a favoritos</bookmarkadded>
 	</favoritos>
+	<ivas>
+		<list eval="true">"Listado de ".CONFIG("accounting_iva_name")</list>
+		<create eval="true">"Nuevo ".CONFIG("accounting_iva_name")</create>
+		<formview eval="true">"Detalle del ".CONFIG("accounting_iva_name")</formview>
+		<forminsert eval="true">"Alta de un nuevo ".CONFIG("accounting_iva_name")</forminsert>
+		<formupdate eval="true">"Modificacion del ".CONFIG("accounting_iva_name")</formupdate>
+		<defaultdata eval="true">"Datos del ".CONFIG("accounting_iva_name")</defaultdata>
+	</ivas>
 </root>

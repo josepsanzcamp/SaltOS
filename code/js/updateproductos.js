@@ -27,26 +27,53 @@ if(typeof(__updateproductos__)=="undefined" && typeof(parent.__updateproductos__
 	"use strict";
 	var __updateproductos__=1;
 
-	function update_producto(obj) {
-		var prefix=obj.name.substr(0,obj.name.length-11);
-		var precio=eval("document.form."+prefix+"precio");
-		precio.value="0.00";
-		var data="action=ajax&query=producto&id_producto="+$(obj).val();
-		$.ajax({
-			url:"xml.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				$("root>rows>row",response).each(function() {
-					precio.value=$("precio",this).text();
-				});
-				if(in_array(getParam("page"),new Array("facturas","periodicas"))) update_totales_factura();
-				if(in_array(getParam("page"),new Array("presupuestos","proyectos"))) update_totales_proyecto();
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
+	function update_productos() {
+		$("input[name^=products][name$=concepto]").each(function() {
+			var key=$(this).attr("name");
+			var prefix="";
+			$("input[name^=prefix_]").each(function() {
+				var val=$(this).val();
+				if(key.substr(0,val.length)==val) prefix=val;
+			});
+			$(this).autocomplete({
+				delay:300,
+				source:function(request,response) {
+					var term=request.term;
+					var input=this.element;
+					var data="action=ajax&format=json&query=productos&term="+term;
+					$.ajax({
+						url:"xml.php",
+						data:data,
+						type:"get",
+						dataType:"json",
+						success:function(data) {
+							// TO CANCEL OLD REQUESTS
+							var term2=$(input).val();
+							if(term==term2) response(data);
+						},
+						error:function(XMLHttpRequest,textStatus,errorThrown) {
+							errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+						}
+					});
+				},
+				search:function() {
+					return this.value.length>0;
+				},
+				focus:function() {
+					return false;
+				},
+				select:function(event,ui) {
+					$("#"+prefix+"id_producto").val(ui.item.id);
+					$("#"+prefix+"precio").val(ui.item.precio);
+					if(in_array(getParam("page"),new Array("facturas","periodicas"))) update_totales_factura();
+					if(in_array(getParam("page"),new Array("presupuestos","proyectos"))) update_totales_proyecto();
+					this.value=ui.item.label;
+					return false;
+				}
+			});
 		});
 	}
-
 }
+
+"use strict";
+$(function() { update_productos(); });

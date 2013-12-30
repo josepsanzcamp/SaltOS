@@ -347,6 +347,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</update>
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
+		<query eval="true">"SELECT logo_file action_delete FROM tbl_cuentas WHERE `id`='".getParam("id")."' AND SUBSTR(logo_file,1,7)!='../img/'"</query>
 		<query include="xml/common/qdelete.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>

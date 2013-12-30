@@ -24,6 +24,25 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(getParam("action")=="phpthumb") {
+	// INCLUDE HELPER LIBRARIES
+	include_once("lib/bmpphp/BMP.php");
+	// DEFINE FUNCTIONS
+	function imagecreatefromtiff($src) {
+		if(extension_loaded('imagick')) {
+			$im2=new Imagick();
+			$im2->readImage($src);
+			$im2->setImageFormat('png');
+			$im=imagecreatefromstring($im2->getImageBlob());
+			$im2->destroy();
+		} else {
+			$file=get_temp_file(getDefault("exts/pngext",".png"));
+			ob_passthru("convert ${src} ${file}");
+			if(!file_exists($file)) show_php_error(array("phperror"=>"ImageMagick failed using convert command line"));
+			$im=imagecreatefrompng($file);
+			unlink($file);
+		}
+		return $im;
+	}
 	// FIND THE REAL FILE
 	$src=getParam("src",getParam("amp;src"));
 	if(!file_exists($src)) $src=getcwd()."/".getParam("src",getParam("amp;src"));
@@ -45,23 +64,24 @@ if(getParam("action")=="phpthumb") {
 	$type0=strtok($type,"/");
 	if($type0!="image") action_denied();
 	// CONTINUE
-	$format=strtok("");
-	if(getParam("f",getParam("amp;f"))) $format=getParam("f",getParam("amp;f"));
+	$format_input=strtok("");
+	$format_output=getParam("f",getParam("amp;f","png"));
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
 	$hash=md5(serialize(array($src,$width,$height)));
-	$cache="$temp$hash.$format";
+	$cache="${temp}${hash}.${format_output}";
 	// FOR DEBUG PURPOSES
 	//if(file_exists($cache)) unlink($cache);
 	// CREATE IF NOT EXISTS
 	if(!file_exists($cache)) {
 		// LOAD IMAGE
-		switch($format) {
+		switch($format_input) {
 			case "png": $im=imagecreatefrompng($src); break;
 			case "jpeg": $im=imagecreatefromjpeg($src); break;
 			case "gif": $im=imagecreatefromgif($src); break;
-			case "bmp": include_once("lib/bmpphp/BMP.php"); $im=imagecreatefrombmp($src); break;
-			default: show_php_error(array("phperror"=>"Unsupported format: $format"));
+			case "bmp": $im=imagecreatefrombmp($src); break;
+			case "tiff": $im=imagecreatefromtiff($src); break;
+			default: show_php_error(array("phperror"=>"Unsupported input format: ${format_input}"));
 		}
 		// CALCULATE SIZE
 		if($width!==null && $height!==null && (imagesx($im)>$width || imagesy($im)>$height)) {
@@ -97,12 +117,12 @@ if(getParam("action")=="phpthumb") {
 		imagecopyresampled($im2,$im,0,0,0,0,$width,$height,imagesx($im),imagesy($im));
 		imagedestroy($im);
 		// WRITE
-		switch($format) {
+		switch($format_output) {
 			case "png": imagepng($im2,$cache); break;
 			case "jpeg": imagejpeg($im2,$cache); break;
 			case "gif": imagegif($im2,$cache); break;
-			case "bmp": include_once("lib/bmpphp/BMP.php"); imagebmp($im2,$cache); break;
-			default: show_php_error(array("phperror"=>"Unsupported format: $format"));
+			case "bmp": imagebmp($im2,$cache); break;
+			default: show_php_error(array("phperror"=>"Unsupported output format: ${format_output}"));
 		}
 		imagedestroy($im2);
 		chmod_protected($cache,0666);

@@ -414,7 +414,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<query include="xml/common/qpermcreate.xml" replace="true" />
 					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 					SELECT *,a.nombre nombre,'0' cerrado,'0' cobrado,'".current_date()."' fecha,'".current_date()."' fecha2,'' num,a.id id,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id='".substr(getParam("id"),7)."'":"
-					SELECT '0' id,'0' id_cliente,'0' id_proyecto,'0' id_epigrafe,'' num,'".current_date()."' fecha,'0' id_cuenta"</default>
+					SELECT '0' id,'0' id_cliente,'0' id_proyecto,CASE (SELECT COUNT(*) FROM tbl_epigrafes) WHEN 1 THEN (SELECT id FROM tbl_epigrafes) ELSE '0' END id_epigrafe,CASE (SELECT COUNT(*) FROM tbl_formaspago) WHEN 1 THEN (SELECT id FROM tbl_formaspago) ELSE '0' END id_formapago,'' num,'".current_date()."' fecha,CASE (SELECT COUNT(*) FROM tbl_cuentas) WHEN 1 THEN (SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) FROM tbl_cuentas) ELSE '0' END id_cuenta"</default>
 					<resumen eval="true">substr(getParam("id"),0,7)=="0_copy_"?"
 					SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".substr(getParam("id"),7)."' GROUP BY a.id) c) d":"
 					SELECT '0' id,'0.00' base,'0' iva,'0.00' iva2,'0' irpf,'0.00' irpf2,'0.00' total"</resumen>
@@ -577,6 +577,17 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<type>select</type>
 							<width>240px</width>
 							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id `value`,SUBSTR(CONCAT('(',codigo,') ',nombre),1,255) label FROM tbl_epigrafes ORDER BY label"</query>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>id_formapago</name>
+							<label lang="true">formapago</label>
+							<type>select</type>
+							<width>240px</width>
+							<query eval="true">make_select_query("formaspago","tbl_formaspago","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinformapago")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -1174,11 +1185,13 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<name>id_producto</name>
-							<type>select</type>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>concepto</name>
+							<type>text</type>
 							<width>400px</width>
-							<query eval="true">make_select_query("productos","tbl_productos","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproducto")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 							<class>tbody</class>
-							<onchange>update_producto(this)</onchange>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 						<field>
@@ -1270,11 +1283,13 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<name>id_producto</name>
-							<type>select</type>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>concepto</name>
+							<type>text</type>
 							<width>400px</width>
-							<query eval="true">make_select_query("productos","tbl_productos","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproducto")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 							<class>tbody</class>
-							<onchange>update_producto(this)</onchange>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1547,14 +1562,14 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 	</form>
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">"INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,`direccion`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`) VALUES(NULL,'".intval(getParam("id_cliente"))."','".intval(getParam("id_epigrafe"))."','".getParam("nombre")."','".getParam("direccion")."','".getParam("nombre_codpostal")."','".getParam("nombre_poblacion")."','".getParam("nombre_provincia")."','".getParam("nombre_pais")."','".getParam("id_codpostal")."','".getParam("id_poblacion")."','".getParam("id_provincia")."','".getParam("id_pais")."','".getParam("cif")."','','".dateval(getParam("fecha"))."','0.00','0.00','0','0','".intval(getParam("id_cuenta"))."','".dateval(getParam("fecha2"))."','".intval(getParam("id_proyecto"))."','0','0','".getParam("notas")."')"</query>
+		<query match="default" prefix="true" eval="true">"INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,`direccion`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`,`id_formapago`,`id_presupuesto`) VALUES(NULL,'".intval(getParam("id_cliente"))."','".intval(getParam("id_epigrafe"))."','".getParam("nombre")."','".getParam("direccion")."','".getParam("nombre_codpostal")."','".getParam("nombre_poblacion")."','".getParam("nombre_provincia")."','".getParam("nombre_pais")."','".getParam("id_codpostal")."','".getParam("id_poblacion")."','".getParam("id_provincia")."','".getParam("id_pais")."','".getParam("cif")."','','".dateval(getParam("fecha"))."','0.00','0.00','0','0','".intval(getParam("id_cuenta"))."','".dateval(getParam("fecha2"))."','".intval(getParam("id_proyecto"))."','0','0','".getParam("notas")."','".intval(getParam("id_formapago"))."','0')"</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query match="resumen" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
 		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_facturas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`='".getParam("id")."'"</query>
 		<query match="concepts_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
 		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".getParam("id")."','0','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
 		<query match="products_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".getParam("id")."','".intval(getParam("id_producto"))."',(SELECT nombre FROM tbl_productos WHERE id='".intval(getParam("id_producto"))."'),'".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".getParam("id")."','".intval(getParam("id_producto"))."','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
 		<query match="vencimientos_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
 		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_facturas_v(id,id_factura,fecha,percent,importe,cobrado,fecha2) VALUES(NULL,'".getParam("id")."','".dateval(getParam("fecha"))."','".floatval(getParam("percent"))."','".floatval(getParam("importe"))."','".intval(getParam("cobrado"))."','".dateval(getParam("fecha2"))."')":""</query>
 		<query match="default" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
@@ -1566,15 +1581,15 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">"UPDATE tbl_facturas SET `id_cliente`='".intval(getParam("id_cliente"))."',`id_epigrafe`='".intval(getParam("id_epigrafe"))."',`nombre`='".getParam("nombre")."',`direccion`='".getParam("direccion")."',`nombre_codpostal`='".getParam("nombre_codpostal")."',`nombre_poblacion`='".getParam("nombre_poblacion")."',`nombre_provincia`='".getParam("nombre_provincia")."',`nombre_pais`='".getParam("nombre_pais")."',`id_codpostal`='".getParam("id_codpostal")."',`id_poblacion`='".getParam("id_poblacion")."',`id_provincia`='".getParam("id_provincia")."',`id_pais`='".getParam("id_pais")."',`cif`='".getParam("cif")."',`id_cuenta`='".intval(getParam("id_cuenta"))."',`fecha2`='".dateval(getParam("fecha2"))."',`id_proyecto`='".intval(getParam("id_proyecto"))."',`notas`='".getParam("notas")."' WHERE `id`='".intval(getParam("id"))."'"</query>
+		<query match="default" prefix="true" eval="true">"UPDATE tbl_facturas SET `id_cliente`='".intval(getParam("id_cliente"))."',`id_epigrafe`='".intval(getParam("id_epigrafe"))."',`nombre`='".getParam("nombre")."',`direccion`='".getParam("direccion")."',`nombre_codpostal`='".getParam("nombre_codpostal")."',`nombre_poblacion`='".getParam("nombre_poblacion")."',`nombre_provincia`='".getParam("nombre_provincia")."',`nombre_pais`='".getParam("nombre_pais")."',`id_codpostal`='".getParam("id_codpostal")."',`id_poblacion`='".getParam("id_poblacion")."',`id_provincia`='".getParam("id_provincia")."',`id_pais`='".getParam("id_pais")."',`cif`='".getParam("cif")."',`id_cuenta`='".intval(getParam("id_cuenta"))."',`fecha2`='".dateval(getParam("fecha2"))."',`id_proyecto`='".intval(getParam("id_proyecto"))."',`notas`='".getParam("notas")."',`id_formapago`='".intval(getParam("id_formapago"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_facturas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
 		<query match="concepts_old" prefix="true" eval="true">"UPDATE tbl_facturas_c SET `concepto`='".getParam("concepto")."',`unidades`='".floatval(getParam("unidades"))."',`descuento`='".getParam("descuento")."',`precio`='".floatval(getParam("precio"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
 		<query match="concepts_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE `id`='".intval(getParam("id"))."'":""</query>
 		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".intval(getParam("id_factura"))."','0','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
-		<query match="products_old" prefix="true" eval="true">"UPDATE tbl_facturas_c SET `id_producto`='".intval(getParam("id_producto"))."',`concepto`=(SELECT nombre FROM tbl_productos WHERE id='".intval(getParam("id_producto"))."'),`unidades`='".floatval(getParam("unidades"))."',`descuento`='".getParam("descuento")."',`precio`='".floatval(getParam("precio"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
+		<query match="products_old" prefix="true" eval="true">"UPDATE tbl_facturas_c SET `id_producto`='".intval(getParam("id_producto"))."',`concepto`='".getParam("concepto")."',`unidades`='".floatval(getParam("unidades"))."',`descuento`='".getParam("descuento")."',`precio`='".floatval(getParam("precio"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
 		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE `id`='".intval(getParam("id"))."'":""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".intval(getParam("id_factura"))."','".intval(getParam("id_producto"))."',(SELECT nombre FROM tbl_productos WHERE id='".intval(getParam("id_producto"))."'),'".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".intval(getParam("id_factura"))."','".intval(getParam("id_producto"))."','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
 		<query match="vencimientos_old" prefix="true" eval="true">"UPDATE tbl_facturas_v SET `fecha`='".dateval(getParam("fecha"))."',`percent`='".getParam("percent")."',`importe`='".floatval(getParam("importe"))."',`cobrado`='".intval(getParam("cobrado"))."',`fecha2`='".dateval(getParam("fecha2"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
 		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_v WHERE `id`='".intval(getParam("id"))."'":""</query>
 		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_facturas_v(id,id_factura,fecha,percent,importe,cobrado,fecha2) VALUES(NULL,'".intval(getParam("id_factura"))."','".dateval(getParam("fecha"))."','".floatval(getParam("percent"))."','".floatval(getParam("importe"))."','".intval(getParam("cobrado"))."','".dateval(getParam("fecha2"))."')":""</query>
@@ -1601,14 +1616,15 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 	</delete>
 	<excel>
 		<query require="php/listsim.php" global="page" eval="true">"SELECT
-CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT CONCAT('(',codigo,') ',nombre) FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',
 CASE num WHEN '' THEN CONCAT('\'',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE num END '".LANG_ESCAPE("numfac")."',
 fecha '".LANG_ESCAPE("date")."',cif '".LANG_ESCAPE("cif")."',
 CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE nombre END '".LANG_ESCAPE("cliente")."',
 base '".LANG_ESCAPE("base")."',iva '".CONFIG("accounting_iva_name")." (%)',iva2 '".CONFIG("accounting_iva_name")."',irpf '".CONFIG("accounting_irpf_name")." (%)',irpf2 '".CONFIG("accounting_irpf_name")."',
 ROUND(base+iva2-irpf2,2) '".LANG_ESCAPE("total")."',
 (CASE cerrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) '".LANG_ESCAPE("cerrado")."',
-(CASE cobrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) '".LANG_ESCAPE("cobrado")."'
+(CASE cobrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) '".LANG_ESCAPE("cobrado")."',
+CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT CONCAT('(',codigo,') ',nombre) FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',
+CASE id_formapago WHEN '0' THEN '".LANG_ESCAPE("sinformapago")."' ELSE (SELECT nombre FROM tbl_formaspago WHERE id_formapago=tbl_formaspago.id) END '".LANG_ESCAPE("formapago")."'
 FROM (SELECT
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto,
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto2,
@@ -1623,17 +1639,20 @@ c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2
 		<constructor>"P","mm","A4"</constructor>
 		<margins>90,30,87,30</margins>
 		<query>"SELECT *,
-CASE num WHEN '' THEN LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) ELSE num END num,
+num,
+LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) num2,
 CASE num WHEN '' THEN CONCAT('AA',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
 CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
-ROUND(base+iva2+irpf2,2) total,CONCAT('id_factura=',id) filtro
+ROUND(base+iva2+irpf2,2) total,CONCAT('id_factura=',id) filtro,
+formapago
 FROM (SELECT
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto,
 CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE (SELECT nombre FROM tbl_proyectos WHERE id_proyecto=tbl_proyectos.id) END proyecto2,
 CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE (SELECT nombre FROM tbl_clientes WHERE id_cliente=tbl_clientes.id) END nombre2,
+CASE id_formapago WHEN '0' THEN '".LANG_ESCAPE("sinformapago")."' ELSE (SELECT nombre FROM tbl_formaspago WHERE id_formapago=tbl_formaspago.id) END formapago,
 CASE num WHEN '' THEN CONCAT('AA',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FA',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num3,
 CASE num WHEN '' THEN CONCAT('AZ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) ELSE CONCAT('FZ',SUBSTR(num,-".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size")).")) END num4,
-c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.*,IFNULL(logo_left,'".CONFIG("logo_left")."') logo_left,IFNULL(logo_top,'".CONFIG("logo_top")."') logo_top,IFNULL(logo_width,'".CONFIG("logo_width")."') logo_width,IFNULL(logo_height,'".CONFIG("logo_height")."') logo_height,IFNULL(logo_file,'".CONFIG("logo_file")."') logo_file,IFNULL(color_line,'".CONFIG("color_line")."') color_line,IFNULL(color_text1,'".CONFIG("color_text1")."') color_text1,IFNULL(color_text2,'".CONFIG("color_text2")."') color_text2,IFNULL(factura_pie1,'') factura_pie1,IFNULL(factura_pie2,'') factura_pie2,IFNULL(factura_iva_bool,1) factura_iva_bool,IFNULL(factura_irpf_bool,1) factura_irpf_bool,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,e.id_usuario id_usuario FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id GROUP BY a.id) c) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
+c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.*,IFNULL(logo_left,'".CONFIG("logo_left")."') logo_left,IFNULL(logo_top,'".CONFIG("logo_top")."') logo_top,IFNULL(logo_width,'".CONFIG("logo_width")."') logo_width,IFNULL(logo_height,'".CONFIG("logo_height")."') logo_height,IFNULL(logo_file,'".CONFIG("logo_file")."') logo_file,IFNULL(color_line,'".CONFIG("color_line")."') color_line,IFNULL(color_text1,'".CONFIG("color_text1")."') color_text1,IFNULL(color_text2,'".CONFIG("color_text2")."') color_text2,IFNULL(factura_pie1,'') factura_pie1,IFNULL(factura_pie2,'') factura_pie2,IFNULL(factura_iva_bool,1) factura_iva_bool,IFNULL(factura_irpf_bool,1) factura_irpf_bool,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base,e.id_usuario id_usuario FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id LEFT JOIN tbl_formaspago f ON a.id_formapago=f.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id GROUP BY a.id) c) d WHERE ROUND(id) IN (".check_ids(getParam("id")).")"</query>
 		<foreach>
 			<!-- TEMPLATE -->
 			<header>
@@ -1648,13 +1667,26 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 					$row["cerrado"]?CONFIG("water_facturas_angle"):CONFIG("water_albaranes_angle")</text>
 				<!-- PONER CAJA FACTURA -->
 				<color>$row["color_line"],"#000000"</color>
-				<rect>130,45,50,16,"D",0.15,1</rect>
-				<font>"normal","B",8,$row["color_text1"]</font>
-				<text>131,46,$row["cerrado"]?LANG("factura"):LANG("albaran")</text>
-				<line>130,51,180,51</line>
-				<font>"normal","",8,$row["color_text2"]</font>
-				<text>131,52,$row["cerrado"]?LANG("numfacxxx").": ".$row["num"]:LANG("numalbxxx").": ".$row["num"]</text>
-				<text>131,56,LANG("fechaemision").": ".$row["fecha"]</text>
+				<eval>!$row["cerrado"]</eval>
+					<rect>130,45,50,20,"D",0.15,1</rect>
+					<font>"normal","B",8,$row["color_text1"]</font>
+					<text>131,46,LANG("albaran")</text>
+					<line>130,51,180,51</line>
+					<font>"normal","",8,$row["color_text2"]</font>
+					<text>131,52,LANG("numalbxxx").": ".$row["num2"]</text>
+					<text>131,56,LANG("fechaemision").": ".$row["fecha"]</text>
+					<text>131,60,LANG("formapago").": ".$row["formapago"]</text>
+				<eval>$row["cerrado"]</eval>
+					<rect>130,45,50,24,"D",0.15,1</rect>
+					<font>"normal","B",8,$row["color_text1"]</font>
+					<text>131,46,LANG("factura")</text>
+					<line>130,51,180,51</line>
+					<font>"normal","",8,$row["color_text2"]</font>
+					<text>131,56,LANG("numfacxxx").": ".$row["num"]</text>
+					<text>131,52,LANG("numalbxxx").": ".$row["num2"]</text>
+					<text>131,60,LANG("fechaemision").": ".$row["fecha"]</text>
+					<text>131,64,LANG("formapago").": ".$row["formapago"]</text>
+				<eval>true</eval>
 				<!-- PONER CAJA CLIENTE -->
 				<rect>30,45,90,36,"D",0.15,1</rect>
 				<font>"normal","B",8,$row["color_text1"]</font>
@@ -1732,8 +1764,8 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<textarea>165,226,15,4,"R",$row["iva2"]</textarea>
 				<textarea>165,232,15,4,"R",$row["irpf2"]</textarea>
 				<textarea>165,238,15,4,"R",$row["total"]</textarea>
-			<eval>$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
 			<!-- PONER CAJA FINAL IVA + NOT IRPF-->
+			<eval>$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
 				<rect>130,219,50,18,"D",0.15,1</rect>
 				<line>130,225,180,225</line>
 				<line>130,231,180,231</line>
@@ -1746,8 +1778,8 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<textarea>165,220,15,4,"R",$row["base"]</textarea>
 				<textarea>165,226,15,4,"R",$row["iva2"]</textarea>
 				<textarea>165,232,15,4,"R",$row["total"]</textarea>
-			<eval>!$row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
 			<!-- PONER CAJA FINAL NOT IVA + IRPF-->
+			<eval>!$row["factura_iva_bool"] AND $row["factura_irpf_bool"]</eval>
 				<rect>130,219,50,18,"D",0.15,1</rect>
 				<line>130,225,180,225</line>
 				<line>130,231,180,231</line>
@@ -1760,8 +1792,8 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<textarea>165,220,15,4,"R",$row["base"]</textarea>
 				<textarea>165,226,15,4,"R",$row["irpf2"]</textarea>
 				<textarea>165,232,15,4,"R",$row["total"]</textarea>
-			<eval>!$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
 			<!-- PONER CAJA FINAL NOT IVA + NOT IRPF-->
+			<eval>!$row["factura_iva_bool"] AND !$row["factura_irpf_bool"]</eval>
 				<rect>130,219,50,12,"D",0.15,1</rect>
 				<line>130,225,180,225</line>
 				<line>165,219,165,231</line>
@@ -1771,10 +1803,10 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<font>"normal","",8,$row["color_text2"]</font>
 				<textarea>165,220,15,4,"R",$row["base"]</textarea>
 				<textarea>165,226,15,4,"R",$row["total"]</textarea>
+			<!-- MONTAR CAJA DE NOTAS -->
 			<eval>$row["notas"]</eval>
-				<!-- MONTAR CAJA DE NOTAS -->
 				<font>"normal","B",8,$row["color_text1"]</font>
-				<text>31,220,LANG("notas")</text>
+				<text>30,220,LANG("notas")</text>
 				<line>30,225,120,225</line>
 				<font>"normal","",8,$row["color_text2"]</font>
 				<textarea>30,226,90,4,"L",$row["notas"]</textarea>

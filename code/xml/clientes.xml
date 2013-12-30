@@ -429,6 +429,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<speech>true</speech>
+							<onkeypress ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkeypress>
 						</field>
 					</row>
 					<row>
@@ -439,6 +440,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<speech>true</speech>
+							<onkeypress ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkeypress>
 						</field>
 						<field>
 							<name>cif</name>
@@ -462,6 +464,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<speech>true</speech>
+							<onkeypress ifeval="!getParam('id')">$(this).prop("writed",true)</onkeypress>
 						</field>
 					</row>
 					<row>

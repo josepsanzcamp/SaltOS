@@ -81,6 +81,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>correo(id) { setParam("page","correo"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>feeds(id) { setParam("page","feeds"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<function>importaciones(id) { setParam("page","importaciones"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>ivas(id) { setParam("page","ivas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<!-- FOR PAGERLIST MODULE -->
 	<function>first() { page1($("#selectpager").prop("selectedIndex",0).val()); }</function>
 	<function>previous() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("selectedIndex")-1).val()); }</function>

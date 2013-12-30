@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<otroscampos>Altres camps</otroscampos>
 		<excel>Excel</excel>
 		<exceltip>Descarregui's un fitxer Excel amb les dades actuals</exceltip>
-		<pdf>PDF</pdf>
+		<pdf>Descarregar PDF</pdf>
 		<pdftip>Descarregui's un fitxer PDF amb les dades actuals</pdftip>
 		<epigrafe>Epígraf</epigrafe>
 		<campoauto>(*) Camp automàtic</campoauto>
@@ -373,6 +373,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desktoptxt>Notificacions integrades amb l'escriptori activades</desktoptxt>
 		<selectallcheckbox>Seleccionar tots els registres</selectallcheckbox>
 		<selectonecheckbox>Seleccionar aquest registre</selectonecheckbox>
+		<formapago>Forma de pagament</formapago>
+		<todaslasformasdepago>[Totes les formes de pagament]</todaslasformasdepago>
+		<sinformapago>[Sense forma de pagament]</sinformapago>
 	</common>
 	<login>
 		<logintitle>Accés a l'aplicació</logintitle>
@@ -422,7 +425,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<textos>Textos predefinits</textos>
 		<ficheros>Fitxers adjunts</ficheros>
 		<feeds>Lector de feeds RSS</feeds>
-		<favoritos translated="false">Favoritos</favoritos>
+		<favoritos>Favorits</favoritos>
+		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
 		<importaciones>Importacions</importaciones>
 		<gestioncomercial>Comercial</gestioncomercial>
 		<gestionproyectos>Projectes</gestionproyectos>
@@ -471,7 +475,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_textos>Creeu textos predefinits per usar-los en altres aplicacions</desc_textos>
 		<desc_ficheros>Accedeixi a tots els fitxers de tota l'aplicació</desc_ficheros>
 		<desc_feeds>Seguiu els seus feeds RSS i Atom des d'aquesta aplicació</desc_feeds>
-		<desc_favoritos translated="false">Gestione sus favoritos desde aquí</desc_favoritos>
+		<desc_favoritos>Gestioni els seus favorits des d'aquí</desc_favoritos>
+		<desc_ivas>Administrar els impostos des d'aquí</desc_ivas>
 		<desc_importaciones>Import dades a les principals aplicacions des d'aquí</desc_importaciones>
 		<desc_buscador>Per cercar a tota la base de dades</desc_buscador>
 		<desc_errorlog>Per veure el registre d'errors de SaltOS</desc_errorlog>
@@ -513,7 +518,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_textos>Textos</quick_textos>
 		<quick_ficheros>Fitxers</quick_ficheros>
 		<quick_feeds>Feeds RSS</quick_feeds>
-		<quick_favoritos translated="false">Favoritos</quick_favoritos>
+		<quick_favoritos>Favorits</quick_favoritos>
 		<quick_importaciones>Importacions</quick_importaciones>
 		<quick_buscador>Cercador</quick_buscador>
 		<quick_errorlog>Errors</quick_errorlog>
@@ -752,8 +757,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Modificació de la despesa</formupdate>
 		<defaultdata>Dades de la despesa</defaultdata>
 		<pagadopor>pagador</pagadopor>
-		<formapago>Forma de pagament</formapago>
-		<todaslasformasdepago>[Totes les formes de pagament]</todaslasformasdepago>
 		<liquidar>Liquidar</liquidar>
 		<dateliq>Data liq.</dateliq>
 		<msgliquidar>Voleu liquidar les despeses seleccionats?</msgliquidar>
@@ -765,7 +768,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<totalliquidar>Les despeses liquidats sumen un total de: </totalliquidar>
 		<plotseguimientotop10>Els 10 proveïdors amb més facturació de l'últim any</plotseguimientotop10>
 		<plotseguimiento12meses>Despeses de l'últim any</plotseguimiento12meses>
-		<sinformapago>[Sense forma de pagament]</sinformapago>
 		<sinpagador>[Sense pagador]</sinpagador>
 		<vencimientos_old>Venciments</vencimientos_old>
 		<vencimientos_new>Nous venciments</vencimientos_new>
@@ -1284,6 +1286,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Alta d'un nou producte</forminsert>
 		<formupdate>Modificació del producte</formupdate>
 		<defaultdata>Dades del producte</defaultdata>
+		<ref>Ref.</ref>
+		<precioanterior>PrAnt</precioanterior>
+		<precioanteriortip>Preu anterior</precioanteriortip>
+		<peso>Pes</peso>
+		<volumen>Volum</volumen>
+		<dimensiones>Dimensions</dimensiones>
+		<fotofile>Foto actual</fotofile>
+		<fotofilenew>Nova foto</fotofilenew>
+		<siniva eval="true">"[Sense ".CONFIG("accounting_iva_name")."]"</siniva>
 	</productos>
 	<presupuestos>
 		<list>Llistat de pressupostos</list>
@@ -1319,6 +1330,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tecnicapdf>Tècnica</tecnicapdf>
 		<extraspdf>Informació</extraspdf>
 		<condicionespdf>Condicions</condicionespdf>
+		<actionfacturar>Facturar</actionfacturar>
+		<msgfacturar>Voleu facturar el pressupost?</msgfacturar>
+		<errorfacturar>Ja hi ha una factura d'aquest pressupost</errorfacturar>
+		<okfacturar>S'ha facturat correctament el pressupost</okfacturar>
 	</presupuestos>
 	<campanyas>
 		<list>Llistat de campanyes</list>
@@ -1423,7 +1438,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgcool>Voleu marcar com interesants / no interesants tots els posts seleccionats?</msgcool>
 		<msgnumsicool>S'han marcat com interesants: </msgnumsicool>
 		<msgnumnocool>S'han marcat com no interesants: </msgnumnocool>
-		<actionfavoritos translated="false">Añadir a favoritos</actionfavoritos>
+		<actionfavoritos>Afegir als favorits</actionfavoritos>
 	</feeds>
 	<importaciones>
 		<list>Llistat d'importacions</list>
@@ -1462,11 +1477,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<defaultdata>Contingut del fitxer </defaultdata>
 	</errorlog>
 	<favoritos>
-		<list translated="false">Listado de favoritos</list>
-		<create translated="false">Nuevo favorito</create>
-		<url translated="false">URL</url>
-		<bookmarkexists translated="false">La url que inteta guardar ya existe como favorito.</bookmarkexists>
-		<invalidurl translated="false">La url no es válida, verifique la dirección web: </invalidurl>
-		<bookmarkadded translated="false">La url se ha añadido correctamente a favoritos</bookmarkadded>
+		<list>Listado de favorits</list>
+		<create>Nou favorit</create>
+		<url>URL</url>
+		<bookmarkexists>La URL que inteta guardar ja existeix com a favorit.</bookmarkexists>
+		<invalidurl>La URL no és vàlida, verifiqui l'adreça web: </invalidurl>
+		<bookmarkadded>La URL s'ha afegit correctament als favorits</bookmarkadded>
 	</favoritos>
+	<ivas>
+		<list eval="true">"Llistat de ".CONFIG("accounting_iva_name")</list>
+		<create eval="true">"Nou ".CONFIG("accounting_iva_name")</create>
+		<formview eval="true">"Detalls del ".CONFIG("accounting_iva_name")</formview>
+		<forminsert eval="true">"Alta d'un nou ".CONFIG("accounting_iva_name")</forminsert>
+		<formupdate eval="true">"Modificació del ".CONFIG("accounting_iva_name")</formupdate>
+		<defaultdata eval="true">"Dades del ".CONFIG("accounting_iva_name")</defaultdata>
+	</ivas>
 </root>

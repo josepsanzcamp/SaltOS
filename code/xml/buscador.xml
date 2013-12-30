@@ -449,9 +449,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					WHERE ".($filtro?make_like_query("nombre,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,cif,num,fecha,iva,irpf,fecha2,notas",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id_factura,'a','".page2id("facturas")."')  id,
-					id_factura,'".page2id("facturas")."' id_aplicacion FROM tbl_facturas_c aa
-					LEFT JOIN tbl_productos bb ON aa.id_producto=bb.id
-					WHERE ".($filtro?make_like_query("aa.unidades,aa.precio,aa.descuento,bb.nombre",$filtro):"(1=0)")."
+					id_factura,'".page2id("facturas")."' id_aplicacion FROM tbl_facturas_c
+					WHERE ".($filtro?make_like_query("concepto,unidades,precio,descuento",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id_factura,'a','".page2id("facturas")."')  id,
 					id_factura,'".page2id("facturas")."' id_aplicacion FROM tbl_facturas_v
@@ -494,9 +493,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					WHERE ".($filtro?make_like_query("iva,irpf,dia,meses",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id_periodica,'a','".page2id("periodicas")."')  id,
-					id_periodica,'".page2id("periodicas")."' id_aplicacion FROM tbl_periodicas_c aa
-					LEFT JOIN tbl_productos bb ON aa.id_producto=bb.id
-					WHERE ".($filtro?make_like_query("aa.unidades,aa.precio,aa.descuento,bb.nombre",$filtro):"(1=0)")."
+					id_periodica,'".page2id("periodicas")."' id_aplicacion FROM tbl_periodicas_c
+					WHERE ".($filtro?make_like_query("concepto,unidades,precio,descuento",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id_periodica,'a','".page2id("periodicas")."')  id,
 					id_periodica,'".page2id("periodicas")."' id_aplicacion FROM tbl_periodicas_v
@@ -511,9 +509,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					WHERE ".($filtro?make_like_query("nombre,fecha,descripcion,objetivos,funcional,tecnica,extras,condiciones",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id_presupuesto,'a','".page2id("presupuestos")."')  id,
-					id_presupuesto,'".page2id("presupuestos")."' id_aplicacion FROM tbl_presupuestos_p aa
-					LEFT JOIN tbl_productos bb ON aa.id_producto=bb.id
-					WHERE ".($filtro?make_like_query("aa.unidades,aa.precio,aa.descuento,bb.nombre",$filtro):"(1=0)")."
+					id_presupuesto,'".page2id("presupuestos")."' id_aplicacion FROM tbl_presupuestos_p
+					WHERE ".($filtro?make_like_query("concepto,unidades,precio,descuento",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id_presupuesto,'a','".page2id("presupuestos")."')  id,
 					id_presupuesto,'".page2id("presupuestos")."' id_aplicacion FROM tbl_presupuestos_t
@@ -525,7 +522,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				UNION
 				SELECT  CONCAT('r',id,'a','".page2id("productos")."')  id,
 					id id_registro,'".page2id("productos")."' id_aplicacion FROM tbl_productos
-					WHERE ".($filtro?make_like_query("nombre,precio,descripcion",$filtro):"(1=0)")."
+					WHERE ".($filtro?make_like_query("nombre,ref,descripcion,precio,precio2,peso,volumen,dimensiones",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id,'a','".page2id("proveedores")."')  id,
 					id id_registro,'".page2id("proveedores")."' id_aplicacion FROM tbl_proveedores
@@ -536,9 +533,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					WHERE ".($filtro?make_like_query("nombre,descripcion",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id_proyecto,'a','".page2id("proyectos")."')  id,
-					id_proyecto,'".page2id("proyectos")."' id_aplicacion FROM tbl_proyectos_p aa
-					LEFT JOIN tbl_productos bb ON aa.id_producto=bb.id
-					WHERE ".($filtro?make_like_query("aa.unidades,aa.precio,aa.descuento,bb.nombre",$filtro):"(1=0)")."
+					id_proyecto,'".page2id("proyectos")."' id_aplicacion FROM tbl_proyectos_p
+					WHERE ".($filtro?make_like_query("concepto,unidades,precio,descuento",$filtro):"(1=0)")."
 				UNION
 				SELECT  CONCAT('r',id_proyecto,'a','".page2id("proyectos")."')  id,
 					id_proyecto,'".page2id("proyectos")."' id_aplicacion FROM tbl_proyectos_t

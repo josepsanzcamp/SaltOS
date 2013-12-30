@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<otroscampos>Weitere Felder</otroscampos>
 		<excel>Excel</excel>
 		<exceltip>Download der aktuellen Daten in Excel Format</exceltip>
-		<pdf>PDF</pdf>
+		<pdf translated="false">Download PDF</pdf>
 		<pdftip>Downloaden der aktuellen Daten in PDF Format</pdftip>
 		<epigrafe>?????</epigrafe>
 		<campoauto>(*) Automatisches Feld</campoauto>
@@ -373,6 +373,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desktoptxt revised="false">Benachrichtigungen mit Desktop aktiviert integriert</desktoptxt>
 		<selectallcheckbox revised="false">Wählen Sie alle Rekorde</selectallcheckbox>
 		<selectonecheckbox revised="false">Wählen Sie diesen Eintrag</selectonecheckbox>
+		<formapago>Zahlscheinpolizze</formapago>
+		<todaslasformasdepago>[Alle Formen der Zahlung]</todaslasformasdepago>
+		<sinformapago>[Ohne Zahlung]</sinformapago>
 	</common>
 	<login>
 		<logintitle>Programmzugang</logintitle>
@@ -423,6 +426,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<ficheros>Anhänge</ficheros>
 		<feeds>RSS-Feed-Reader</feeds>
 		<favoritos translated="false">Favoritos</favoritos>
+		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
 		<importaciones>Imports</importaciones>
 		<gestioncomercial>Marketing</gestioncomercial>
 		<gestionproyectos>Projekte</gestionproyectos>
@@ -472,6 +476,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_ficheros>Zugriff auf alle Dateien der gesamten Anwendung</desc_ficheros>
 		<desc_feeds>Folgen Sie Ihren RSS und Atom-Feeds aus dieser Anwendung</desc_feeds>
 		<desc_favoritos translated="false">Gestione sus favoritos desde aquí</desc_favoritos>
+		<desc_ivas translated="false">Manage the taxes from here</desc_ivas>
 		<desc_importaciones>Importieren von Daten für die wichtigsten Anwendungen</desc_importaciones>
 		<desc_buscador revised="false">Um in den gesamten Inhalt der Datenbank zu suchen</desc_buscador>
 		<desc_errorlog revised="false">Um die Fehlerprotokolle von SaltOS sehen</desc_errorlog>
@@ -752,8 +757,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Ändern Ausgaben</formupdate>
 		<defaultdata>Ausgabendaten</defaultdata>
 		<pagadopor>Bezahlen</pagadopor>
-		<formapago>Zahlscheinpolizze</formapago>
-		<todaslasformasdepago>[Alle Formen der Zahlung]</todaslasformasdepago>
 		<liquidar>Liquidieren</liquidar>
 		<dateliq>Datum fl.</dateliq>
 		<msgliquidar>Wish zu liquidieren ausgewählte Ausgaben?</msgliquidar>
@@ -765,7 +768,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<totalliquidar>Die Ausgaben bezahlt insgesamt:</totalliquidar>
 		<plotseguimientotop10>Die 10-Lieferantenn mit dem höchsten Umsatz im vergangenen Jahr</plotseguimientotop10>
 		<plotseguimiento12meses>Die Ausgaben im vergangenen Jahr</plotseguimiento12meses>
-		<sinformapago>[Ohne Zahlung]</sinformapago>
 		<sinpagador>[Ohne Zahlung]</sinpagador>
 		<vencimientos_old>Laufzeiten</vencimientos_old>
 		<vencimientos_new>Stundung</vencimientos_new>
@@ -1284,6 +1286,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Es wurde ein neues Produkt</forminsert>
 		<formupdate>Produkt-Modifikation</formupdate>
 		<defaultdata>Angaben zum Produkt</defaultdata>
+		<ref translated="false">Ref.</ref>
+		<precioanterior translated="false">PrPri</precioanterior>
+		<precioanteriortip translated="false">Previous price</precioanteriortip>
+		<peso translated="false">Weight</peso>
+		<volumen translated="false">Volume</volumen>
+		<dimensiones translated="false">Dimensions</dimensiones>
+		<fotofile translated="false">Current photo</fotofile>
+		<fotofilenew translated="false">New photo</fotofilenew>
+		<siniva eval="true" translated="false">"[Without ".CONFIG("accounting_iva_name")."]"</siniva>
 	</productos>
 	<presupuestos>
 		<list>Budget-Übersicht</list>
@@ -1319,6 +1330,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tecnicapdf>Technische</tecnicapdf>
 		<extraspdf>Information</extraspdf>
 		<condicionespdf>Allgemeine</condicionespdf>
+		<actionfacturar translated="false">Bill</actionfacturar>
+		<msgfacturar translated="false">Want to check the budget?</msgfacturar>
+		<errorfacturar translated="false">There is already a bill of this budget</errorfacturar>
+		<okfacturar translated="false">Has billed the budget properly</okfacturar>
 	</presupuestos>
 	<campanyas>
 		<list>Kampagne Liste</list>
@@ -1469,4 +1484,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<invalidurl translated="false">La url no es válida, verifique la dirección web: </invalidurl>
 		<bookmarkadded translated="false">The url was successfully added to bookmarks</bookmarkadded>
 	</favoritos>
+	<ivas>
+		<list eval="true" translated="false">"List of ".CONFIG("accounting_iva_name")</list>
+		<create eval="true" translated="false">"New ".CONFIG("accounting_iva_name")</create>
+		<formview eval="true" translated="false">"Details of the ".CONFIG("accounting_iva_name")</formview>
+		<forminsert eval="true" translated="false">"Added a new ".CONFIG("accounting_iva_name")</forminsert>
+		<formupdate eval="true" translated="false">"Changing the ".CONFIG("accounting_iva_name")</formupdate>
+		<defaultdata eval="true" translated="false">"Data of the ".CONFIG("accounting_iva_name")</defaultdata>
+	</ivas>
 </root>

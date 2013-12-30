@@ -86,12 +86,4 @@ if(typeof(__updatedireccion__)=="undefined" && typeof(parent.__updatedireccion__
 }
 
 "use strict";
-$(function() {
-	update_direcciones();
-	var checkbox="input[type=checkbox][name^=direccion][name$=seleccion]";
-	$(checkbox).bind("change",function() {
-		var value=$(this).prop("checked");
-		$(checkbox).prop("checked",false);
-		$(this).prop("checked",value);
-	});
-});
+$(function() { update_direcciones(); });
