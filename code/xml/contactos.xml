@@ -238,13 +238,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formview</title>
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="page,id" eval="true">"SELECT *,
-CASE id_aplicacion WHEN '".page2id("clientes")."' THEN id_registro
-	WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=id_registro) ELSE '0' END id_cliente,
+					<default global="page,id" eval="true">"SELECT *,(SELECT CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END FROM tbl_clientes WHERE id=id_cliente) nombre_cliente FROM (SELECT *,
+CASE id_aplicacion WHEN '".page2id("clientes")."' THEN id_registro WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=id_registro) ELSE '0' END id_cliente,
 CASE id_aplicacion WHEN '".page2id("proyectos")."' THEN id_registro ELSE '0' END id_proyecto,
 CASE id_aplicacion WHEN '".page2id("proveedores")."' THEN id_registro ELSE '0' END id_proveedor,
 CASE id_aplicacion WHEN '".page2id("empleados")."' THEN id_registro ELSE '0' END id_empleado
-FROM tbl_contactos WHERE id=".abs($id)</default>
+FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
@@ -263,13 +262,12 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 				<title lang="true">formupdate</title>
 				<query>
 					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default global="page,id" eval="true">"SELECT *,
-CASE id_aplicacion WHEN '".page2id("clientes")."' THEN id_registro
-	WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=id_registro) ELSE '0' END id_cliente,
+					<default global="page,id" eval="true">"SELECT *,(SELECT CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END FROM tbl_clientes WHERE id=id_cliente) nombre_cliente FROM (SELECT *,
+CASE id_aplicacion WHEN '".page2id("clientes")."' THEN id_registro WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=id_registro) ELSE '0' END id_cliente,
 CASE id_aplicacion WHEN '".page2id("proyectos")."' THEN id_registro ELSE '0' END id_proyecto,
 CASE id_aplicacion WHEN '".page2id("proveedores")."' THEN id_registro ELSE '0' END id_proveedor,
 CASE id_aplicacion WHEN '".page2id("empleados")."' THEN id_registro ELSE '0' END id_empleado
-FROM tbl_contactos WHERE id=".abs($id)</default>
+FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
@@ -293,13 +291,25 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 						</field>
 						<field>
 							<name>id_cliente</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>nombre_cliente</name>
 							<label lang="true">cliente</label>
-							<type>select</type>
+							<type>text</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_proyectos();update_contactos(this)</onchange>
+							<autocomplete>true</autocomplete>
+							<querycomplete>clientes</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_cliente").val(ui.item.id);
+								$("select[name$=id_proveedor]").val(0);
+								$("select[name$=id_proyecto]").val(0);
+								$("select[name$=id_empleado]").val(0);
+								update_proyectos();
+								update_contacto();
+							</oncomplete>
 							<link>clientes(-abs(ID))</link>
 							<icon>view</icon>
 						</field>
@@ -313,7 +323,14 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 							<colspan>3</colspan>
 							<link>proveedores(-abs(ID))</link>
 							<icon>view</icon>
-							<onchange>update_contactos(this)</onchange>
+							<onchange>
+								$("input[name$=id_cliente]").val(0);
+								$("input[name$=nombre_cliente]").val("");
+								$("select[name$=id_proyecto]").val(0);
+								$("select[name$=id_empleado]").val(0);
+								update_proyectos();
+								update_contacto();
+							</onchange>
 						</field>
 					</row>
 					<row>
@@ -337,7 +354,14 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 							<colspan>3</colspan>
 							<link>empleados(-abs(ID))</link>
 							<icon>view</icon>
-							<onchange>update_contactos(this)</onchange>
+							<onchange>
+								$("input[name$=id_cliente]").val(0);
+								$("input[name$=nombre_cliente]").val("");
+								$("select[name$=id_proveedor]").val(0);
+								$("select[name$=id_proyecto]").val(0);
+								update_proyectos();
+								update_contacto();
+							</onchange>
 						</field>
 					</row>
 					<row>
@@ -417,7 +441,9 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
+							<autocomplete>true</autocomplete>
+							<querycomplete>paises</querycomplete>
+							<oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
 						</field>
 						<field>
 							<name>id_pais</name>
@@ -429,7 +455,10 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
+							<autocomplete>true</autocomplete>
+							<querycomplete>provincias</querycomplete>
+							<filtercomplete>id_pais</filtercomplete>
+							<oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
 						</field>
 						<field>
 							<name>id_provincia</name>
@@ -443,7 +472,10 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
+							<autocomplete>true</autocomplete>
+							<querycomplete>poblaciones</querycomplete>
+							<filtercomplete>id_provincia</filtercomplete>
+							<oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
 						</field>
 						<field>
 							<name>id_poblacion</name>
@@ -455,6 +487,10 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 							<type>text</type>
 							<width>120px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<autocomplete>true</autocomplete>
+							<querycomplete>codpostales</querycomplete>
+							<filtercomplete>id_poblacion</filtercomplete>
+							<oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
 						</field>
 						<field>
 							<name>id_codpostal</name>
@@ -541,7 +577,6 @@ FROM tbl_contactos WHERE id=".abs($id)</default>
 			<javascript include="xml/common/jsform.xml" replace="true"/>
 			<cache>
 				<include>js/updateproyectos.js</include>
-				<include>js/updatedireccion.js</include>
 			</cache>
 		</javascript>
 	</form>

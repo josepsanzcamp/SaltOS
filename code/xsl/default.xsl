@@ -543,8 +543,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:if test="label!=''">
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
-			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
+			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
+				<input type="text" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" isautocomplete="{autocomplete}" querycomplete="{querycomplete}" filtercomplete="{filtercomplete}" oncomplete="{oncomplete}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
@@ -561,6 +561,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</xsl:otherwise>
 					</xsl:choose>
 				</input>
+				<xsl:if test="link!=''">
+					<xsl:if test="readonly='true'">
+						<a href="javascript:void(0)" class="ui-state-default ui-corner-all" islink="true" fnlink="{link}" forlink="{$prefix}{name}">
+							<span class="saltos-icon saltos-icon-{icon}" title="{tip2}"/>
+						</a>
+					</xsl:if>
+				</xsl:if>
 			</td>
 		</xsl:when>
 		<xsl:when test="type='integer'">
@@ -858,7 +865,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</select>
 				<xsl:if test="link!=''">
 					<xsl:if test="readonly='true'">
-						<a href="javascript:void(0)" class="ui-state-default ui-corner-all" islink="true" fnlink="{link}">
+						<a href="javascript:void(0)" class="ui-state-default ui-corner-all" islink="true" fnlink="{link}" forlink="{$prefix}{name}">
 							<span class="saltos-icon saltos-icon-{icon}" title="{tip2}"/>
 						</a>
 					</xsl:if>

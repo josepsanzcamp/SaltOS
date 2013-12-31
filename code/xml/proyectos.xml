@@ -1277,6 +1277,13 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<width>400px</width>
 							<class>tbody</class>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<autocomplete>true</autocomplete>
+							<querycomplete>productos</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_producto").val(ui.item.id);
+								$("#"+prefix+"precio").val(ui.item.precio);
+								update_totales_proyecto();
+							</oncomplete>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1379,6 +1386,13 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<type>text</type>
 							<width>400px</width>
 							<class>tbody</class>
+							<autocomplete>true</autocomplete>
+							<querycomplete>productos</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_producto").val(ui.item.id);
+								$("#"+prefix+"precio").val(ui.item.precio);
+								update_totales_proyecto();
+							</oncomplete>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1617,9 +1631,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		</node>
 		<javascript>
 			<javascript include="xml/common/jsform.xml" replace="true"/>
-			<cache>
-				<include>js/updateproductos.js</include>
-			</cache>
 			<function eval="true">"liquidar1() { dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgliquidar")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','liquidar'); setParam('extra','partes'); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 			<function eval="true">"facturar() { dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgfacturar")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','liquidar'); setParam('extra','facturas'); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 		</javascript>

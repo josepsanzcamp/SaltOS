@@ -388,7 +388,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>posiblescli(-abs(ID))</link>
 							<icon>view</icon>
-							<onchange>update_clientes(this);update_proyectos();update_presupuestos()</onchange>
+							<onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
 						</field>
 						<field>
 							<name>id_presupuesto</name>
@@ -410,7 +410,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_clientes(this);update_proyectos();update_presupuestos()</onchange>
+							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
 							<link>clientes(-abs(ID))</link>
 							<icon>view</icon>
 						</field>
@@ -651,7 +651,6 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 		<javascript>
 			<javascript include="xml/common/jsform.xml" replace="true"/>
 			<cache>
-				<include>js/updateclientes.js</include>
 				<include>js/updateproyectos.js</include>
 				<include>js/updatepresupuestos.js</include>
 				<include>js/addtextos.js</include>

@@ -358,7 +358,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formview</title>
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
-					<default include="xml/common/qdefaultview.xml" replace="true" />
+					<default global="page,id" eval="true">"SELECT *,(SELECT CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END FROM tbl_clientes WHERE id=id_cliente) nombre_cliente FROM ".page2table($page)." WHERE id=".abs($id)</default>
 					<resumen>
 						<resumen>SELECT '1' id</resumen>
 					</resumen>
@@ -453,7 +453,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formupdate</title>
 				<query>
 					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default include="xml/common/qdefaultview.xml" replace="true" />
+					<default global="page,id" eval="true">"SELECT *,(SELECT CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END FROM tbl_clientes WHERE id=id_cliente) nombre_cliente FROM ".page2table($page)." WHERE id=".abs($id)</default>
 					<resumen>
 						<resumen>SELECT '1' id</resumen>
 					</resumen>
@@ -531,7 +531,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>posiblescli(-abs(ID))</link>
 							<icon>view</icon>
-							<onchange>update_clientes(this);update_proyectos()</onchange>
+							<onchange>$("input[name$=id_cliente]").val(0);$("input[name$=nombre_cliente]").val("");update_proyectos()</onchange>
 						</field>
 						<field>
 							<name>id_campanya</name>
@@ -547,14 +547,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<row>
 						<field>
 							<name>id_cliente</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>nombre_cliente</name>
 							<label lang="true">cliente</label>
-							<type>select</type>
+							<type>text</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<autocomplete>true</autocomplete>
+							<querycomplete>clientes</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_cliente").val(ui.item.id);
+								$("select[name$=id_posiblecli]").val(0);
+								update_proyectos();
+							</oncomplete>
 							<link>clientes(-abs(ID))</link>
 							<icon>view</icon>
-							<onchange>update_clientes(this);update_proyectos()</onchange>
 						</field>
 						<field>
 							<name>id_proyecto</name>
@@ -1234,6 +1243,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>400px</width>
 							<class>tbody</class>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<autocomplete>true</autocomplete>
+							<querycomplete>productos</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_producto").val(ui.item.id);
+								$("#"+prefix+"precio").val(ui.item.precio);
+								update_totales_proyecto();
+							</oncomplete>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1331,6 +1347,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>400px</width>
 							<class>tbody</class>
+							<autocomplete>true</autocomplete>
+							<querycomplete>productos</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_producto").val(ui.item.id);
+								$("#"+prefix+"precio").val(ui.item.precio);
+								update_totales_proyecto();
+							</oncomplete>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1449,9 +1472,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<javascript include="xml/common/jsform.xml" replace="true"/>
 			<cache>
 				<include>js/proyectos.js</include>
-				<include>js/updateclientes.js</include>
 				<include>js/updateproyectos.js</include>
-				<include>js/updateproductos.js</include>
 				<include>js/addtextos.js</include>
 			</cache>
 			<function eval="true">"migrar() { dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("msgcrear")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','migrar'); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>

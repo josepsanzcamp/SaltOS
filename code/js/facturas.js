@@ -122,7 +122,7 @@ if(typeof(__facturas__)=="undefined" && typeof(parent.__facturas__)=="undefined"
 	}
 
 	function update_datos() {
-		var cliente=$("select[name$=id_cliente]");
+		var cliente=$("input[name$=id_cliente]");
 		$("input[name$=nombre]").val("");
 		$("input[name$=cif]").val("");
 		$("input[name$=direccion]").val("");

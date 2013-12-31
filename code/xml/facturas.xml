@@ -392,7 +392,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formview</title>
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+					<default global="id" eval="true">"SELECT *,CASE a.cif WHEN '' THEN a.nombre ELSE CONCAT(a.nombre,' (',a.cif,')') END nombre_cliente,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
 					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
 					<concepts_old>
 						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto='0' AND id_factura=".abs($id)." ORDER BY id ASC"</concepts_old>
@@ -486,7 +486,7 @@ SELECT 'j' id,'' fecha,'0.00' percent,'0.00' importe
 				<title lang="true">formupdate</title>
 				<query>
 					<query include="xml/common/qpermupdate.xml" replace="true" />
-					<default global="id" eval="true">"SELECT *,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
+					<default global="id" eval="true">"SELECT *,CASE a.cif WHEN '' THEN a.nombre ELSE CONCAT(a.nombre,' (',a.cif,')') END nombre_cliente,a.id id,a.nombre nombre,CASE id_cuenta WHEN 0 THEN '0' ELSE CONCAT(b.id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) END id_cuenta FROM tbl_facturas a LEFT JOIN tbl_cuentas b ON a.id_cuenta=b.id WHERE a.id=".abs($id)</default>
 					<resumen global="id" eval="true">"SELECT id,base,iva,irpf,iva2,irpf2,ROUND(base+iva2+irpf2,2) total FROM (SELECT c.*,ROUND(base*iva/100.0,2) iva2,ROUND(-base*irpf/100.0,2) irpf2 FROM (SELECT a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura WHERE a.id='".abs($id)."' GROUP BY a.id) c) d"</resumen>
 					<concepts_old>
 						<concepts_old global="id" eval="true">"SELECT *,ROUND(unidades*precio*(100.0-descuento)/100.0,2) total2 FROM tbl_facturas_c WHERE id_producto='0' AND id_factura=".abs($id)." ORDER BY id ASC"</concepts_old>
@@ -613,12 +613,21 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 					<row>
 						<field>
 							<name>id_cliente</name>
+							<type>hidden</type>
+						</field>
+						<field>
+							<name>nombre_cliente</name>
 							<label lang="true">cliente</label>
-							<type>select</type>
+							<type>text</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_proyectos();update_datos()</onchange>
+							<autocomplete>true</autocomplete>
+							<querycomplete>clientes</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_cliente").val(ui.item.id);
+								update_proyectos();
+								update_datos();
+							</oncomplete>
 							<link>clientes(-abs(ID))</link>
 							<icon>view</icon>
 						</field>
@@ -684,7 +693,9 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
+							<autocomplete>true</autocomplete>
+							<querycomplete>paises</querycomplete>
+							<oncomplete>$("#"+prefix+"id_pais").val(ui.item.id);</oncomplete>
 						</field>
 						<field>
 							<name>id_pais</name>
@@ -696,7 +707,10 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
+							<autocomplete>true</autocomplete>
+							<querycomplete>provincias</querycomplete>
+							<filtercomplete>id_pais</filtercomplete>
+							<oncomplete>$("#"+prefix+"id_provincia").val(ui.item.id);</oncomplete>
 						</field>
 						<field>
 							<name>id_provincia</name>
@@ -710,7 +724,10 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
+							<autocomplete>true</autocomplete>
+							<querycomplete>poblaciones</querycomplete>
+							<filtercomplete>id_provincia</filtercomplete>
+							<oncomplete>$("#"+prefix+"id_poblacion").val(ui.item.id);</oncomplete>
 						</field>
 						<field>
 							<name>id_poblacion</name>
@@ -722,6 +739,10 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<type>text</type>
 							<width>120px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<autocomplete>true</autocomplete>
+							<querycomplete>codpostales</querycomplete>
+							<filtercomplete>id_poblacion</filtercomplete>
+							<oncomplete>$("#"+prefix+"id_codpostal").val(ui.item.id);</oncomplete>
 						</field>
 						<field>
 							<name>id_codpostal</name>
@@ -1193,6 +1214,13 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<width>400px</width>
 							<class>tbody</class>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<autocomplete>true</autocomplete>
+							<querycomplete>productos</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_producto").val(ui.item.id);
+								$("#"+prefix+"precio").val(ui.item.precio);
+								update_totales_factura();
+							</oncomplete>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1290,6 +1318,13 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<type>text</type>
 							<width>400px</width>
 							<class>tbody</class>
+							<autocomplete>true</autocomplete>
+							<querycomplete>productos</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_producto").val(ui.item.id);
+								$("#"+prefix+"precio").val(ui.item.precio);
+								update_totales_factura();
+							</oncomplete>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1554,8 +1589,6 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 			<javascript include="xml/common/jsform.xml" replace="true"/>
 			<cache>
 				<include>js/updateproyectos.js</include>
-				<include>js/updateproductos.js</include>
-				<include>js/updatedireccion.js</include>
 				<include>js/updatevencimientos.js</include>
 			</cache>
 		</javascript>
@@ -1828,7 +1861,7 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 				<getxy>"x","y"</getxy>
 				<textarea>30,$row["y"],150,4,"C",LANG($row["cerrado"]?"vencimientosfactura":"vencimientosalbaran").": ".$row["fecha"].", ".$row["percent"]."%".", ".$row["importe"].CONFIG("accounting_currency")</textarea>
 				<getxy>"x","y"</getxy>
-				<setxy>30,$row["y"]-3</setxy>
+				<setxy>30,$row["y"]-1.5</setxy>
 			</foreach>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("

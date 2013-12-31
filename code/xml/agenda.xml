@@ -465,7 +465,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>posiblescli(-abs(ID))</link>
 							<icon>view</icon>
-							<onchange>update_clientes(this);update_proyectos();update_presupuestos()</onchange>
+							<onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
 							<colspan>3</colspan>
 						</field>
 						<field>
@@ -487,7 +487,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<onchange>update_clientes(this);update_proyectos();update_presupuestos()</onchange>
+							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
 							<link>clientes(-abs(ID))</link>
 							<icon>view</icon>
 							<colspan>3</colspan>
@@ -708,7 +708,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<javascript>
 			<javascript include="xml/common/jsform.xml" replace="true"/>
 			<cache>
-				<include>js/updateclientes.js</include>
 				<include>js/updateproyectos.js</include>
 				<include>js/updatepresupuestos.js</include>
 			</cache>

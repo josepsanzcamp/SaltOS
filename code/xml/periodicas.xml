@@ -1038,6 +1038,13 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>400px</width>
 							<class>tbody</class>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<autocomplete>true</autocomplete>
+							<querycomplete>productos</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_producto").val(ui.item.id);
+								$("#"+prefix+"precio").val(ui.item.precio);
+								update_totales_factura();
+							</oncomplete>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1135,6 +1142,13 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<type>text</type>
 							<width>400px</width>
 							<class>tbody</class>
+							<autocomplete>true</autocomplete>
+							<querycomplete>productos</querycomplete>
+							<oncomplete>
+								$("#"+prefix+"id_producto").val(ui.item.id);
+								$("#"+prefix+"precio").val(ui.item.precio);
+								update_totales_factura();
+							</oncomplete>
 						</field>
 						<field>
 							<name>unidades</name>
@@ -1338,7 +1352,6 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 			<javascript include="xml/common/jsform.xml" replace="true"/>
 			<cache>
 				<include>js/facturas.js</include>
-				<include>js/updateproductos.js</include>
 				<include>js/updatevencimientos.js</include>
 			</cache>
 		</javascript>

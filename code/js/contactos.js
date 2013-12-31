@@ -27,14 +27,39 @@ if(typeof(__contactos__)=="undefined" && typeof(parent.__contactos__)=="undefine
 	"use strict";
 	var __contactos__=1;
 
-	function update_contactos(obj) {
-		var cliente=$("select[name$=id_cliente]");
-		var proveedor=$("select[name$=id_proveedor]");
-		var empleado=$("select[name$=id_empleado]");
-		if(obj!=cliente[0]) $(cliente).val("0");
-		if(obj!=proveedor[0]) $(proveedor).val("0");
-		if(obj!=empleado[0]) $(empleado).val("0");
-		if(obj!=cliente[0]) update_proyectos();
+	function update_contacto() {
+		var id_cliente=intval($("input[name$=id_cliente]").val());
+		var id_proveedor=intval($("select[name$=id_proveedor]").val());
+		var id_empleado=intval($("select[name$=id_empleado]").val());
+		var id_proyecto=intval($("select[name$=id_proyecto]").val());
+		var data="";
+		if(id_cliente) data="action=ajax&query=cliente&id_cliente="+id_cliente;
+		if(id_proveedor) data=""; // TODO
+		if(id_empleado) data=""; // TODO
+		if(id_proyecto) data=""; // TODO
+		if(data) {
+			$.ajax({
+				url:"xml.php",
+				data:data,
+				type:"get",
+				success:function(response) {
+					$("root>rows>row",response).each(function() {
+						$("input[name$=direccion]").val($("direccion",this).text());
+						$("input[name$=id_pais]").val($("id_pais",this).text());
+						$("input[name$=id_provincia]").val($("id_provincia",this).text());
+						$("input[name$=id_poblacion]").val($("id_poblacion",this).text());
+						$("input[name$=id_codpostal]").val($("id_codpostal",this).text());
+						$("input[name$=nombre_pais]").val($("nombre_pais",this).text());
+						$("input[name$=nombre_provincia]").val($("nombre_provincia",this).text());
+						$("input[name$=nombre_poblacion]").val($("nombre_poblacion",this).text());
+						$("input[name$=nombre_codpostal]").val($("nombre_codpostal",this).text());
+					});
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+				}
+			});
+		}
 	}
 
 }
