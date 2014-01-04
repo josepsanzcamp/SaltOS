@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2013 by Josep Sanz Campderrós
+Copyright (C) 2007-2014 by Josep Sanz Campderrós
 More information in http://www.saltos.net or info@saltos.net
 
 This program is free software: you can redistribute it and/or modify
@@ -310,6 +310,12 @@ if(!defined("__DEFAULT_PHP__")) {
 						if(!$booleval) break;
 						$temp=__eval_array(__eval_explode(",",$val,1),$row);
 						$pdf->check_y($temp[0]);
+						break;
+					case "link":
+						if(!$booleval) break;
+						$temp=__eval_array(__eval_explode(",",$val,4),$row);
+						$pdf->SetXY($temp[0],$temp[1]);
+						$pdf->Cell(0,0,$temp[2],0,0,"",false,$temp[3]);
 						break;
 					default:
 						show_php_error(array("phperror"=>"Eval PDF Tag error: $key"));

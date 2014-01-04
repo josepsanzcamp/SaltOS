@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2013 by Josep Sanz Campderrós
+Copyright (C) 2007-2014 by Josep Sanz Campderrós
 More information in http://www.saltos.net or info@saltos.net
 
 This program is free software: you can redistribute it and/or modify
@@ -248,7 +248,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.0.052 (LGPL-3.0)</label>
+							<label>TCPDF 6.0.053 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -487,10 +487,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
 						</field>
 						<field>
-							<label>Grab Bag - Assorted Detritus (MIT)</label>
+							<label>Auto-growing textarea (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag")</onclick>
+							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag/blob/master/javascripts/jquery.autogrow-textarea.js")</onclick>
 						</field>
 					</row>
 					<row>
@@ -534,7 +534,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>CodeMirror latest (MIT)</label>
+							<label>Code Mirror latest (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://codemirror.net/")</onclick>

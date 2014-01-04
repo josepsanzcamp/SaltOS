@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2013 by Josep Sanz Campderrós
+Copyright (C) 2007-2014 by Josep Sanz Campderrós
 More information in http://www.saltos.net or info@saltos.net
 
 This program is free software: you can redistribute it and/or modify
@@ -237,6 +237,15 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 		$ids=array();
 		foreach($prefix as $p) if(getParam($p."liquidar")) $ids[]=intval(getParam($p."id"));
 		$ids_productos=count($ids)?implode(",",$ids):0;
+		// CHECK WHEN USER DONT SELECT NOTHING!!!
+		if($ids_tareas=="0" && $ids_productos=="0") {
+			$query2="SELECT id FROM tbl_proyectos_t WHERE id_proyecto='${id_proyecto}'";
+			$ids=execute_query_array($query2);
+			$ids_tareas=count($ids)?implode(",",$ids):0;
+			$query2="SELECT id FROM tbl_proyectos_p WHERE id_proyecto='${id_proyecto}'";
+			$ids=execute_query_array($query2);
+			$ids_productos=count($ids)?implode(",",$ids):0;
+		}
 		// CONTINUE WITH NORMAL OPERATION
 		$liquidar=0;
 		$query2="SELECT id_producto,concepto,unidades,descuento,precio
@@ -358,6 +367,15 @@ if($page=="presupuestos") {
 		$ids=array();
 		foreach($prefix as $p) if(getParam($p."liquidar")) $ids[]=intval(getParam($p."id"));
 		$ids_productos=count($ids)?implode(",",$ids):0;
+		// CHECK WHEN USER DONT SELECT NOTHING!!!
+		if($ids_tareas=="0" && $ids_productos=="0") {
+			$query2="SELECT id FROM tbl_presupuestos_t WHERE id_presupuesto='${id_presupuesto}'";
+			$ids=execute_query_array($query2);
+			$ids_tareas=count($ids)?implode(",",$ids):0;
+			$query2="SELECT id FROM tbl_presupuestos_p WHERE id_presupuesto='${id_presupuesto}'";
+			$ids=execute_query_array($query2);
+			$ids_productos=count($ids)?implode(",",$ids):0;
+		}
 		// CONTINUE WITH NORMAL OPERATION
 		$liquidar=0;
 		$query2="SELECT id_producto,concepto,unidades,descuento,precio
