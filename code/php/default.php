@@ -297,13 +297,17 @@ if(!defined("__DEFAULT_PHP__")) {
 							$pdf->SetXY($temp[0],$temp[1]);
 							$a=isset($temp[2])?$temp[2]:"";
 							$b=isset($temp[3])?$temp[3]:"";
-							$pdf->Cell(0,0,$a.$pdf->PageNo().$b.$pdf->getAliasNbPages());
+							$pdf->Cell(0,0,$a.$pdf->getAliasNumPage().$b.$pdf->getAliasNbPages());
 						} else {
+							 // TO FIX AN ALIGN BUG
+							if($temp[4]=="C") $temp[0]+=7.5;
+							if($temp[4]=="R") $temp[0]+=15;
+							// CONTINUE
 							$pdf->SetXY($temp[0],$temp[1]);
 							$a=isset($temp[5])?$temp[5]:"";
 							$b=isset($temp[6])?$temp[6]:"";
 							$pdf->check_y($temp[3]);
-							$pdf->MultiCell($temp[2],$temp[3],$a.$pdf->PageNo().$b.$pdf->getAliasNbPages(),0,$temp[4]);
+							$pdf->MultiCell($temp[2],$temp[3],$a.$pdf->getAliasNumPage().$b.$pdf->getAliasNbPages(),0,$temp[4]);
 						}
 						break;
 					case "checky":
