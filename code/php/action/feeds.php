@@ -618,7 +618,7 @@ if(getParam("action")=="feeds") {
 								// SI NO ESTA EL LINK DESCARGADO EN LOS LINKS EXISTENTES NI EN LOS MARCADOS COMO BORRADOS
 								$link=addslashes($link);
 								$title=addslashes($item["title"]);
-								$pubdate=$item["pubdate"];
+								$pubdate=addslashes($item["pubdate"]);
 								$description=addslashes($item["description"]);
 								$query="INSERT INTO tbl_feeds(id,id_feed,title,pubdate,description,link,hash,state_new,state_modified,state_wait,state_cool) VALUES(NULL,'${id_feed}','${title}','${pubdate}','${description}','${link}','${hash}','1','0','0','0')";
 								db_query($query);
@@ -636,7 +636,7 @@ if(getParam("action")=="feeds") {
 								$query="SELECT id FROM tbl_feeds WHERE id_feed='${id_feed}' AND link='${link}'";
 								$last_id=execute_query($query);
 								$title=addslashes($item["title"]);
-								$pubdate=$item["pubdate"];
+								$pubdate=addslashes($item["pubdate"]);
 								$description=addslashes($item["description"]);
 								$query="UPDATE tbl_feeds SET title='${title}',pubdate='${pubdate}',description='${description}',hash='${hash}',state_new='1',state_modified='1' WHERE id='${last_id}'";
 								db_query($query);
