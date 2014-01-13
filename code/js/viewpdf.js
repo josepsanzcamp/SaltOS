@@ -132,7 +132,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 										canvasContext:context,
 										viewport:viewport,
 										textLayer:textLayer
-									}).then(fn);
+									}).promise.then(fn);
 									page.getTextContent().then(function(textContent) {
 										textLayer.setTextContent(textContent);
 									});
