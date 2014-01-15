@@ -248,7 +248,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.0.053 (LGPL-3.0)</label>
+							<label>TCPDF 6.0.055 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -358,9 +358,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpclasses.org/package/5991-PHP-Load-and-save-images-in-the-BMP-format.html")</onclick>
 						</field>
 						<field>
+							<label>JShrink 0.5.2 (BSD)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://github.com/tedivm/JShrink/")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>3</colspan>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>

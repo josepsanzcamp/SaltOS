@@ -396,10 +396,12 @@ function minify_css($buffer) {
 }
 
 function minify_js($buffer) {
-	include_once("lib/minify/jsmin-1.1.2.php");
+	if(isphp53()) include_once("lib/minify/Minifier.php");
+	if(!isphp53()) include_once("lib/minify/jsmin-1.1.2.php");
 	capture_next_error();
 	try {
-		$buffer2=JSMin::minify($buffer);
+		if(isphp53()) $buffer2=Minifier::minify($buffer);
+		if(!isphp53()) $buffer2=JSMin::minify($buffer);
 	} catch(Exception $e) {
 		__exception_handler($e);
 	}
@@ -491,6 +493,10 @@ function ob_start_protected($param="") {
 	if($param!="") ob_start($param);
 	$error=get_clear_error();
 	if($error) ob_start();
+}
+
+function isphp53() {
+	return version_compare(PHP_VERSION,"5.3",">=");
 }
 
 function isphp54() {
