@@ -222,7 +222,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include ifeval="!ismsie(array(6,7,8))">lib/jquery/jquery-2.0.3.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
-			<include>lib/jquery/jquery-ui-1.10.3.min.js</include>
+			<include>lib/jquery/jquery-ui-1.10.4.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.js</include>
 			<include>lib/jquery/jquery.blockUI.js</include>
 			<include>lib/jquery/jquery.jgrowl.js</include>
@@ -368,6 +368,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<max_execution_time>600</max_execution_time>
 		<date.timezone>Europe/Madrid</date.timezone>
 		<default_charset>UTF-8</default_charset>
+		<gd.jpeg_ignore_warning>1</gd.jpeg_ignore_warning>
 	</ini_set>
 	<putenv>
 		<PATH>/bin:/usr/bin:/usr/local/bin</PATH>

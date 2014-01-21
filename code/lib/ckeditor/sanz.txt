@@ -10,9 +10,8 @@ IN skins/kama/editor.css
 REPLACE -moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;border:1px solid #d3d3d3;padding:5px
 BY margin:1px
 
-IN ckeditor.min.js
-REPLACE a.ui.addButton("Source",{label:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})
-BY a.ui.addButton("Source",{label:"",title:a.lang.sourcearea.toolbar,command:"source",toolbar:"mode,10"})
+IN skins/kama/editor.css
+REMOVE .cke_button__source_label,
 
 IN ckeditor.min.js
 REPLACE [a.lang.editor,a.name].join(", ")
