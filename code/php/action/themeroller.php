@@ -51,10 +51,7 @@ if(getParam("action")=="themeroller") {
 		define("__THEMEROLLER_PHP__",1);
 
 		function __themeroller_calibrate($r,$g,$b) {
-			$x=(299*$r+587*$g+114*$b)/1000;
-			$y=0.2126*pow($r,2.2)+0.7152*pow($g,2.2)+0.0722*pow($b,2.2);
-			$z=($r+$g+$b)/3;
-			return ($x+$y+$z)/3;
+			return 0.299*$r+0.587*$g+0.114*$b;
 		}
 
 		function __themeroller_colorize($color,$rgb) {

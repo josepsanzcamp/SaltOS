@@ -62,21 +62,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<themes>
 		<blue>5c9ccc</blue>
 		<pink>ff69b4</pink>
-		<red>8b0000</red>
+		<red>ff6666</red>
 		<orange>ffa500</orange>
-		<yellow>ffff00</yellow>
+		<yellow>808000</yellow>
 		<brown>8b4513</brown>
-		<green>008000</green>
-		<cyan>008080</cyan>
-		<gray>808080</gray>
+		<green>66cc66</green>
+		<cyan>66cccc</cyan>
+		<gray>999999</gray>
 		<invblue>5c9ccc</invblue>
 		<invpink>ff69b4</invpink>
-		<invred>8b0000</invred>
+		<invred>ff6666</invred>
 		<invorange>ffa500</invorange>
-		<invyellow>ffff00</invyellow>
+		<invyellow>808000</invyellow>
 		<invbrown>8b4513</invbrown>
-		<invgreen>008000</invgreen>
-		<invcyan>008080</invcyan>
-		<invgray>808080</invgray>
+		<invgreen>66cc66</invgreen>
+		<invcyan>66cccc</invcyan>
+		<invgray>999999</invgray>
 	</themes>
 </root>
