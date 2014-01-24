@@ -903,6 +903,14 @@ function get_clear_error() {
 	global $_ERROR_HANDLER;
 	if($_ERROR_HANDLER["level"]<=0) show_php_error(array("phperror"=>"error_handler without levels availables"));
 	$_ERROR_HANDLER["level"]--;
+	// TRICK TO PREVENT THAT SHUTDOWN_HANDLER CAPTURES THE ERROR
+	$error=error_get_last();
+	if(is_array($error) && isset($error["type"]) && $error["type"]!=E_USER_NOTICE) {
+		set_error_handler("var_dump",0);
+		trigger_error("");
+		restore_error_handler();
+	}
+	// CONTINUE
 	return array_pop($_ERROR_HANDLER["msg"]);
 }
 
@@ -1019,7 +1027,6 @@ function __pretty_html_error_helper($action,$hiddens,$submit) {
 
 function __error_handler($type,$message,$file,$line) {
 	$backtrace=debug_backtrace();
-	array_shift($backtrace);
 	show_php_error(array("phperror"=>"${message} (code ${type})","details"=>"Error on file '${file}' at line ${line}","backtrace"=>$backtrace));
 }
 
