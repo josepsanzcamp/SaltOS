@@ -429,36 +429,11 @@ function inline_images($buffer) {
 }
 
 function svnversion($dir=".") {
-	static $rev=null;
-	if($rev===null) {
-		$rev=0;
-		$dir=realpath($dir);
-		if(!$dir) $dir=getcwd_protected();
-		for(;;) {
-			// FOR SUBVERSION >= 12
-			$file="$dir/.svn/wc.db";
-			if(file_exists($file)) {
-				$data=file_get_contents($file);
-				$pos=strpos($data,"normalfile");
-				if($pos!==false) $rev=ord($data[$pos-1])+ord($data[$pos-2])*256;
-				break;
-			}
-			// FOR SUBVERSION <= 11
-			$file="$dir/.svn/entries";
-			if(file_exists($file)) {
-				$data=file($file);
-				if(isset($data[3])) $rev=intval($data[3]);
-				break;
-			}
-			// CONTINUE
-			capture_next_error();
-			$temp=realpath($dir."/..");
-			$error=get_clear_error();
-			if($error || $dir==$temp) break;
-			$dir=$temp;
-		}
-	}
-	return $rev;
+	return intval(ob_passthru("cd ${dir}; svnversion",60));
+}
+
+function gitversion($dir=".") {
+	return intval(ob_passthru("cd ${dir}; git rev-list HEAD --count",60));
 }
 
 function check_password($pass,$hash) {
