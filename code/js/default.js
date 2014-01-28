@@ -853,7 +853,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				addcontent(action+"?"+query);
 			},
 			beforeSend:function(XMLHttpRequest) {
-				jqxhr=XMLHttpRequest;
+				make_abort_obj=XMLHttpRequest;
 			},
 			success:function(data,textStatus,XMLHttpRequest) {
 				//~ console.timeEnd("submitcontent");
@@ -886,7 +886,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			type:type,
 			beforeSend:function(XMLHttpRequest) {
 				addcontent(url);
-				jqxhr=XMLHttpRequest;
+				make_abort_obj=XMLHttpRequest;
 			},
 			success:function(data,textStatus,XMLHttpRequest) {
 				//~ console.timeEnd("opencontent");
@@ -1221,7 +1221,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// SEARCH THE INDEX OF THE TAB THAT CONTAIN THE OBJECT
 		var active=0;
 		$("[focused=true]:first",obj).each(function() {
-			focused=this;
+			make_focus_obj=this;
 			var thetab=$(this).parent();
 			while(thetab) {
 				if($(thetab).hasClass("sitabs") && substr($(thetab).attr("id"),0,5)=="tabid") {
@@ -1760,15 +1760,17 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.timeEnd("make_tooltips");
 	}
 
-	var focused=null;
+	var make_focus_obj=null;
 
 	function make_focus() {
 		//~ console.time("make_focus");
 		// FOCUS THE OBJECT WITH FOCUSED ATTRIBUTE
-		if(focused) $(focused).trigger("focus");
-		focused=null;
+		if(make_focus_obj) $(make_focus_obj).trigger("focus");
+		make_focus_obj=null;
 		//~ console.timeEnd("make_focus");
 	}
+
+	var make_tables_pos=-1;
 
 	function make_tables(obj) {
 		//~ console.time("make_tables");
@@ -1862,12 +1864,33 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						}).bind("mouseout",function() {
 							var value=$(slave,this).prop("checked");
 							if(!value) $(".tbody",this).removeClass("ui-state-highlight");
-						}).bind("click",function() {
+						}).bind("click",function(event) {
 							var checkbox=$(slave,this);
 							var value=$(checkbox).prop("checked");
 							$(checkbox).prop("checked",!value);
 							if(!value) $(".tbody",this).addClass("ui-state-highlight");
 							if(value) $(".tbody",this).removeClass("ui-state-highlight");
+							// CHECK FOR MULTIPLE SELECTION
+							var count=0;
+							var pos=-1;
+							$(this).parent().find(slave).each(function() {
+								if(this==checkbox[0]) pos=count;
+								count++;
+							});
+							if(event.ctrlKey) {
+								var count=0;
+								var from=min(make_tables_pos,pos);
+								var to=max(make_tables_pos,pos);
+								console.debug("from="+from+", to="+to);
+								$(this).parent().find(slave).each(function() {
+									if(count>=from && count<=to) {
+										$(this).prop("checked",true);
+										$(this).parent().parent().find(".tbody").addClass("ui-state-highlight");
+									}
+									count++;
+								});
+							}
+							make_tables_pos=pos;
 						});
 						$(slave,this).bind("click",function() {
 							$(this).prop("checked",!$(this).prop("checked"));
@@ -2017,7 +2040,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function make_shortcuts() {
 		var codes={"backspace":8, "tab":9, "enter":13, "pauseBreak":19, "capsLock":20, "escape":27, "space":32, "pageUp":33, "pageDown":34, "end":35, "home":36, "leftArrow":37, "upArrow":38, "rightArrow":39, "downArrow":40, "insert":45, "delete":46, "0":48, "1":49, "2":50, "3":51, "4":52, "5":53, "6":54, "7":55, "8":56, "9":57, "a":65, "b":66, "c":67, "d":68, "e":69, "f":70, "g":71, "h":72, "i":73, "j":74, "k":75, "l":76, "m":77, "n":78, "o":79, "p":80, "q":81, "r":82, "s":83, "t":84, "u":85, "v":86, "w":87, "x":88, "y":89, "z":90, "leftWindowKey":91, "rightWindowKey":92, "selectKey":93, "numpad0":96, "numpad1":97, "numpad2":98, "numpad3":99, "numpad4":100, "numpad5":101, "numpad6":102, "numpad7":103, "numpad8":104, "numpad9":105, "multiply":106, "add":107, "subtract":109, "decimalPoint":110, "divide":111, "f1":112, "f2":113, "f3":114, "f4":115, "f5":116, "f6":117, "f7":118, "f8":119, "f9":120, "f10":121, "f11":122, "f12":123, "numLock":144, "scrollLock":145, "semiColon":186, "equalSign":187, "comma":188, "dash":189, "period":190, "forwardSlash":191, "graveAccent":192, "openBracket":219, "backSlash":220, "closeBraket":221, "singleQuote":222};
-		$(document).bind("keydown",function(e) {
+		$(document).bind("keydown",function(event) {
 			if(!isloadingcontent()) {
 				var exists=false;
 				$("[class*=shortcut_]").each(function() {
@@ -2034,13 +2057,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						else key=codes[temp[i]];
 					}
 					var count=0;
-					if(useAlt && e.altKey) count++;
-					if(!useAlt && !e.altKey) count++;
-					if(useCtrl && e.ctrlKey) count++;
-					if(!useCtrl && !e.ctrlKey) count++;
-					if(useShift && e.shiftKey) count++;
-					if(!useShift && !e.shiftKey) count++;
-					if(key==e.keyCode) count++;
+					if(useAlt && event.altKey) count++;
+					if(!useAlt && !event.altKey) count++;
+					if(useCtrl && event.ctrlKey) count++;
+					if(!useCtrl && !event.ctrlKey) count++;
+					if(useShift && event.shiftKey) count++;
+					if(!useShift && !event.shiftKey) count++;
+					if(key==event.keyCode) count++;
 					if(count==4) {
 						if($(this).is("a,tr,td")) $(this).trigger("click");
 						if($(this).is("input,select,textarea")) $(this).focus();
@@ -2052,13 +2075,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 	}
 
-	var jqxhr=null;
+	var make_abort_obj=null;
 
 	function make_abort() {
 		$(document).bind("keydown",function(event) {
-			if(is_escapekey(event) && jqxhr) {
-				jqxhr.abort();
-				jqxhr=null;
+			if(is_escapekey(event) && make_abort_obj) {
+				make_abort_obj.abort();
+				make_abort_obj=null;
 			}
 		});
 	}

@@ -13,7 +13,9 @@ Note about the php.saltos.min.js file
   - intval
   - is_numeric
   - levenshtein
+  - max
   - md5
+  - min
   - mktime
   - nl2br
   - parse_url

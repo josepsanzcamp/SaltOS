@@ -662,7 +662,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				addcontent(action+"?"+query);
 			},
 			beforeSend:function(XMLHttpRequest) {
-				jqxhr=XMLHttpRequest;
+				make_abort_obj=XMLHttpRequest;
 			},
 			success:function(data,textStatus,XMLHttpRequest) {
 				callback();
@@ -687,7 +687,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			type:"get",
 			beforeSend:function(XMLHttpRequest) {
 				addcontent(url);
-				jqxhr=XMLHttpRequest;
+				make_abort_obj=XMLHttpRequest;
 			},
 			success:function(data,textStatus,XMLHttpRequest) {
 				callback();
@@ -1007,7 +1007,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		$("textarea[codemirror=true]",obj).autogrow();
 	}
 
-	var focused=null;
+	var make_focus_obj=null;
 
 	function make_focus(obj) {
 		// UNUSED
@@ -1048,7 +1048,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		return color;
 	}
 
-	var jqxhr=null;
+	var make_abort_obj=null;
 
 	function make_abort() {
 		// UNUSED

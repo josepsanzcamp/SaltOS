@@ -2,7 +2,7 @@
 /*
  * pop3.php
  *
- * @(#) $Header: /home/mlemos/cvsroot/pop3/pop3.php,v 1.23 2009/01/31 04:06:12 mlemos Exp $
+ * @(#) $Header: /opt2/ena/metal/pop3/pop3.php,v 1.24 2014/01/27 10:46:48 mlemos Exp $
  *
  */
 
@@ -193,7 +193,8 @@ class pop3_class
 		}
 		$this->CloseConnection();
 		$this->state="DISCONNECTED";
-		pop3_class::SetConnection(-1, $this->connection_name, $this);
+		$pop3_class = new pop3_class();
+		$pop3_class->SetConnection(-1, $this->connection_name, $this);
 		return("");
 	}
 
@@ -651,7 +652,10 @@ class pop3_class
 		if($this->state!="TRANSACTION")
 			return($this->SetError("cannot get the name of a POP3 connection that was not established and the user has logged in"));
 		if(strlen($this->connection_name) == 0)
-			pop3_class::SetConnection(1, $this->connection_name, $this);
+		{
+			$pop3_class = new pop3_class();
+			$pop3_class->SetConnection(1, $this->connection_name, $this);
+		}
 		$connection_name = $this->connection_name;
 		return('');
 	}
@@ -723,7 +727,8 @@ class pop3_stream
 			return($this->SetError("the message can only be opened for reading"));
 		$url=parse_url($path);
 		$host = $url['host'];
-		$pop3 = &pop3_class::SetConnection(0, $host, $this->pop3);
+		$pop3_class = new pop3_class();
+		$pop3 = &$pop3_class->SetConnection(0, $host, $this->pop3);
 		if(IsSet($pop3))
 		{
 			$this->pop3 = &$pop3;

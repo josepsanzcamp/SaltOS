@@ -306,7 +306,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
 						</field>
 						<field>
-							<label>Pop3Class 1.23 (BSD)</label>
+							<label>Pop3Class 1.24 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/2-PHP-Access-to-e-mail-mailboxes-using-the-POP3-protocol.html")</onclick>

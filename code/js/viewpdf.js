@@ -35,7 +35,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 			data:data,
 			type:"get",
 			beforeSend:function(XMLHttpRequest) {
-				jqxhr=XMLHttpRequest;
+				make_abort_obj=XMLHttpRequest;
 			},
 			success:function(response) {
 				// CHECK FOR VALID XML STRUCTURE
