@@ -429,11 +429,65 @@ function inline_images($buffer) {
 }
 
 function svnversion($dir=".") {
-	return intval(ob_passthru("cd ${dir}; svnversion",60));
+	// USING SVNVERSION
+	if(check_commands("svnversion",60)) {
+		return intval(ob_passthru("cd ${dir}; svnversion",60));
+	}
+	// ALTERNATIVE METHOD
+	static $rev=null;
+	if($rev===null) {
+		$rev=0;
+		$dir=realpath($dir);
+		if(!$dir) $dir=getcwd_protected();
+		for(;;) {
+			// FOR SUBVERSION <= 11
+			$file="$dir/.svn/entries";
+			if(file_exists($file)) {
+				$data=file($file);
+				if(isset($data[3])) $rev=intval($data[3]);
+				break;
+			}
+			// FOR SUBVERSION >= 12
+			$file="$dir/.svn/wc.db";
+			if(file_exists($file)) {
+				$query="SELECT MAX(revision) FROM NODES";
+				if(class_exists("PDO")) {
+					capture_next_error();
+					$link=new PDO("sqlite:${file}");
+					$stmt=$link->query($query);
+					if($stmt) $rev=intval($stmt->fetchColumn());
+					$link=null;
+					get_clear_error();
+				} elseif(class_exists("SQLite3")) {
+					capture_next_error();
+					$link=new SQLite3($file);
+					$rev=intval($link->querySingle($query));
+					$link->close();
+					get_clear_error();
+				} elseif(check_commands("sqlite3",60)) {
+					$rev=intval(ob_passthru("sqlite3 '${file}' '${query}'",60));
+				}
+				break;
+			}
+			// CONTINUE
+			capture_next_error();
+			$temp=realpath($dir."/..");
+			$error=get_clear_error();
+			if($error || $dir==$temp) break;
+			$dir=$temp;
+		}
+	}
+	// NOTHING TO DO
+	return $rev;
 }
 
 function gitversion($dir=".") {
-	return intval(ob_passthru("cd ${dir}; git rev-list HEAD --count",60));
+	// USING GIT
+	if(check_commands("git",60)) {
+		return intval(ob_passthru("cd ${dir}; git rev-list HEAD --count",60));
+	}
+	// NOTHING TO DO
+	return 0;
 }
 
 function check_password($pass,$hash) {

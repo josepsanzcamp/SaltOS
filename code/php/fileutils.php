@@ -293,7 +293,7 @@ function touch_protected($file) {
 function check_commands($commands,$expires=0) {
 	if(!is_array($commands)) $commands=explode(",",$commands);
 	$result=1;
-	foreach($commands as $command) $result&=ob_passthru(getDefault("commands/which")." ".str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__")),$expires)?1:0;
+	foreach($commands as $command) $result&=ob_passthru(getDefault("commands/which","which")." ".str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__","__INPUT__")),$expires)?1:0;
 	return $result;
 }
 
