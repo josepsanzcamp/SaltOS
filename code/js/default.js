@@ -1881,7 +1881,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 								var count=0;
 								var from=min(make_tables_pos,pos);
 								var to=max(make_tables_pos,pos);
-								console.debug("from="+from+", to="+to);
 								$(this).parent().find(slave).each(function() {
 									if(count>=from && count<=to) {
 										$(this).prop("checked",true);
