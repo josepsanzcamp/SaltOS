@@ -60,8 +60,7 @@ if(typeof(__home__)=="undefined" && typeof(parent.__home__)=="undefined") {
 						var dir=$("html").attr("dir");
 						$(divs).masonry({
 							itemSelector:".box",
-							isResizable:true,
-							isRTL:(dir=="rtl")
+							isOriginLeft:(dir=="ltr")
 						});
 					});
 					unloadingcontent();
