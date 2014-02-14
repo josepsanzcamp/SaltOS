@@ -210,8 +210,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.ptTimeSelect.css</include>
 			<include>lib/jquery/jquery.jgrowl.css</include>
 			<include>lib/codemirror/codemirror.min.css</include>
-			<include>lib/codemirror/codemirror.theme.min.css</include>
-			<include>lib/codemirror/codemirror.addon.min.css</include>
 			<include>lib/d3js/nv.d3.min.css</include>
 		</cache>
 	</styles>
@@ -244,8 +242,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include ifeval="!ismsie()">lib/pdfjs/viewer.min.js</include>
 			<include>lib/codemirror/codemirror.min.js</include>
 			<include>lib/codemirror/codemirror.mode.min.js</include>
-			<include>lib/codemirror/codemirror.addon.min.js</include>
-			<include>lib/codemirror/codemirror.keymap.min.js</include>
 			<include>lib/d3js/d3.min.js</include>
 			<include>lib/d3js/nv.d3.min.js</include>
 		</cache>

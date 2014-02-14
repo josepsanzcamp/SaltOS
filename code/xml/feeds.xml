@@ -158,8 +158,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>options</name>
 					<tip lang="true">optionstip</tip>
 					<label lang="true">options</label>
-					<group>
+					<option>
 						<label lang="true">options</label>
+						<onclick></onclick>
+					</option>
+					<group>
 						<option>
 							<label lang="true">pdf</label>
 							<onclick>pdf()</onclick>
