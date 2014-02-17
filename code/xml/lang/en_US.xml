@@ -1287,8 +1287,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Changes in the product</formupdate>
 		<defaultdata>Product Data</defaultdata>
 		<ref>Ref.</ref>
-		<precioanterior>PrPri</precioanterior>
-		<precioanteriortip>Previous price</precioanteriortip>
 		<peso>Weight</peso>
 		<volumen>Volume</volumen>
 		<dimensiones>Dimensions</dimensiones>

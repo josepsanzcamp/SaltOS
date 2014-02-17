@@ -2378,13 +2378,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>DECIMAL(9,2)</type>
 				</field>
 				<field>
+					<name>descuento</name>
+					<type>DECIMAL(9,2)</type>
+				</field>
+				<field>
 					<name>id_iva</name>
 					<type>INT(11)</type>
 					<fkey>tbl_ivas</fkey>
-				</field>
-				<field>
-					<name>precio2</name>
-					<type>DECIMAL(9,2)</type>
 				</field>
 				<field>
 					<name>foto_file</name>

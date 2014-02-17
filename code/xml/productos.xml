@@ -52,14 +52,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<sort>true</sort>
 			</field>
 			<field>
-				<name>iva</name>
-				<label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
+				<name>descuento</name>
+				<label eval="true">LANG("dto")." (%)"</label>
 				<sort>true</sort>
 			</field>
 			<field>
-				<name>precio2</name>
-				<label eval="true">LANG("precioanterior")." (".CONFIG("accounting_currency").")"</label>
-				<tip lang="true">precioanteriortip</tip>
+				<name>iva</name>
+				<label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
 				<sort>true</sort>
 			</field>
 			<field>
@@ -160,7 +159,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CONCAT('link:productos(',-id,'):',nombre) nombre,
 			nombre nombre2,ref,
 			precio,
-			CASE precio2 WHEN 0 THEN '' ELSE precio2 END precio2,
+			descuento,
 			iva,
 			CONCAT('href:',web) web,
 			web web2,
@@ -181,7 +180,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) b
-		WHERE ".make_like_query("id,nombre,ref,descripcion,iva,precio,precio2,peso,volumen,dimensiones,web,search",$filtro)." AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id,nombre,ref,descripcion,iva,precio,descuento,peso,volumen,dimensiones,web,search",$filtro)." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -297,11 +296,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>60px</width>
 						</field>
 						<field>
-							<name>id_iva</name>
-							<label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
-							<type>select</type>
+							<name>precio2</name>
+							<label eval="true">LANG("dto")." (%)"</label>
+							<type>float</type>
 							<width>90px</width>
-							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("siniva")."' label UNION SELECT id `value`,nombre label FROM tbl_ivas ORDER BY label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 						<field>
@@ -309,10 +307,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>60px</width>
 						</field>
 						<field>
-							<name>precio2</name>
-							<label eval="true">LANG("precioanterior")." (".CONFIG("accounting_currency").")"</label>
-							<type>float</type>
+							<name>id_iva</name>
+							<label eval="true">CONFIG("accounting_iva_name")." (%)"</label>
+							<type>select</type>
 							<width>90px</width>
+							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("siniva")."' label UNION SELECT id `value`,nombre label FROM tbl_ivas ORDER BY label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>

@@ -22,44 +22,32 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-.estado.state_new {
-	background:#00aa00;
-	background-color: #00aa00;
+.estado.state_new,
+.estado.state_wait,
+.estado.state_spam,
+.estado.state_error {
 	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
 	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	color:#ffffff;
+}
+.estado.state_new {
+	background-color: #33aa33;
 }
 .estado.state_wait {
-	background-color: #0000aa;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	color:#ffffff;
+	background-color: #114477;
 }
 .estado.state_spam {
-	background-color: #aa0000;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	color:#ffffff;
+	background-color: #aa3333;
 }
 .estado.state_error {
-	background-color: #aa0000;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	color:#ffffff;
+	background-color: #aa3333;
 }
 /* SET TO RED THE LABEL OF THE INPUT BOX IN THE EMAIL FORM */
 .state_error {
 	color:#aa0000;
 }
-
 /* FOR MOBILE DEVICES */
 label a {
 	color:inherit!important;

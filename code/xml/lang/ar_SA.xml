@@ -1287,8 +1287,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>تغيير في المنتج</formupdate>
 		<defaultdata>بيانات المنتج</defaultdata>
 		<ref translated="false">Ref.</ref>
-		<precioanterior translated="false">PrPri</precioanterior>
-		<precioanteriortip translated="false">Previous price</precioanteriortip>
 		<peso translated="false">Weight</peso>
 		<volumen translated="false">Volume</volumen>
 		<dimensiones translated="false">Dimensions</dimensiones>

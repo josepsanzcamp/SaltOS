@@ -22,27 +22,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-.cerrado.style_opened {
-	background-color: #0000aa;
+.cerrado.style_opened,
+.cobrado.style_closed,
+.cobrado.style_alarm {
 	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
 	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	color:#ffffff;
+}
+.cerrado.style_opened {
+	background-color: #114477;
 }
 .cobrado.style_closed {
-	background-color: #0000aa;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	color:#ffffff;
+	background-color: #114477;
 }
 .cobrado.style_alarm {
-	background-color: #aa0000;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	color:#ffffff;
+	background-color: #aa3333;
 }
