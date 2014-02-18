@@ -62,6 +62,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<sort>true</sort>
 			</field>
 			<field>
+				<name>total</name>
+				<label eval="true">LANG("total")." (".CONFIG("accounting_currency").")"</label>
+				<sort>true</sort>
+			</field>
+			<field>
 				<name>web</name>
 				<label lang="true">web</label>
 				<sort>true</sort>
@@ -161,6 +166,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			precio,
 			descuento,
 			iva,
+			ROUND(precio*(1-descuento/100)*(1+iva/100),2) total,
 			CONCAT('href:',web) web,
 			web web2,
 			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) ficheros,
