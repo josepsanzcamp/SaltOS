@@ -166,7 +166,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			precio,
 			descuento,
 			iva,
-			ROUND(precio*(1-descuento/100)*(1+iva/100),2) total,
+			ROUND(precio*(1-descuento/100)*(1+IFNULL(iva,0)/100),2) total,
 			CONCAT('href:',web) web,
 			web web2,
 			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=b.id) ficheros,
