@@ -189,6 +189,9 @@ if(getParam("action")=="feeds") {
 			$array=__feeds_xml2array_helper($xml);
 			$error=get_clear_error();
 		}
+		if(strpos($error,"Invalid document end")!==false) {
+			$error=""; // KNOWN ISSUE
+		}
 		return array($array,$error);
 	}
 
