@@ -634,23 +634,24 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			fadeOut:0,
 			overlayCSS:{
 				cursor:"",
-				opacity:0.1
+				opacity:0.3,
+				backgroundColor:"#aaa"
 			},
 			css:{
+				cursor:"",
+				opacity:0.9,
 				border:"0px",
 				padding:"15px",
-				opacity:0.9,
-				backgroundColor:background,
 				"border-radius":"10px",
 				"-moz-border-radius":"10px",
 				"-webkit-border-radius":"10px",
-				"box-shadow":"5px 5px 10px rgba(0,0,0,0.4)",
-				"-moz-box-shadow":"5px 5px 10px rgba(0,0,0,0.4)",
-				"-webkit-box-shadow":"5px 5px 10px rgba(0,0,0,0.4)",
+				"box-shadow":"0px 5px 10px rgba(0,0,0,0.5)",
+				"-moz-box-shadow":"0px 5px 10px rgba(0,0,0,0.5)",
+				"-webkit-box-shadow":"0px 5px 10px rgba(0,0,0,0.5)",
 				color:color,
+				backgroundColor:background,
 				"font-family":fontfamily,
 				left:($(window).width()-500)/2+"px",
-				cursor:"",
 				width:"500px"
 			}
 		});

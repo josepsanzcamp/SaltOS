@@ -442,9 +442,6 @@ function wp_kses_bad_protocol($string, $allowed_protocols) {
  * $value = apply_filters( 'example_filter', 'filter me', $arg1, $arg2 );
  * </code>
  *
- * @package WordPress
- * @subpackage Plugin
- *
  * @global array $wp_filter         Stores all of the filters
  * @global array $merged_filters    Merges the filter hooks using this function.
  * @global array $wp_current_filter stores the list of current filters with the current one last
