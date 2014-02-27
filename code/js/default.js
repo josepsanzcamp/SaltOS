@@ -1565,7 +1565,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			language:lang_default(),
 			uiColor:get_colors("ui-state-default","background-color"),
 			autoGrow_onStartup:true,
-			disableNativeSpellChecker:false
+			disableNativeSpellChecker:false,
+			dialog_backgroundCoverColor:"#aaa",
+			dialog_backgroundCoverOpacity:0.3
 		},function() {
 			$("#"+$(this).attr("name")).next().addClass("ui-state-default ui-corner-all");
 		});
