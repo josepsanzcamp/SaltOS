@@ -408,7 +408,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
 						</field>
 						<field>
-							<label>JQuery Mobile 1.4.1 (MIT)</label>
+							<label>JQuery Mobile 1.4.2 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
