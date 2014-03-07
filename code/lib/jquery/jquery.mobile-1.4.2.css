@@ -72,7 +72,8 @@
 	background-image: url(images/carat-u-white.svg);
 }
 .ui-icon-check:after,
-html.ui-btn.ui-checkbox-on:after {
+/* Used ui-checkbox-on twice to increase specificity. If active state has background-image for gradient this rule overrides. */
+html .ui-btn.ui-checkbox-on.ui-checkbox-on:after {
 	background-image: url(images/check-white.svg);
 }
 .ui-icon-clock:after {
@@ -245,8 +246,8 @@ html.ui-btn.ui-checkbox-on:after {
 }
 .ui-alt-icon.ui-icon-check:after,
 .ui-alt-icon .ui-icon-check:after,
-.ui-alt-icon.ui-btn.ui-checkbox-on:after,
-.ui-alt-icon .ui-btn.ui-checkbox-on:after {
+html .ui-alt-icon.ui-btn.ui-checkbox-on:after,
+html .ui-alt-icon .ui-btn.ui-checkbox-on:after {
 	background-image: url(images/check-black.svg);
 }
 .ui-alt-icon.ui-icon-clock:after,
@@ -4922,7 +4923,7 @@ html .ui-btn.ui-checkbox-on:after {
 
 /* Loader */
 .ui-icon-loading {
-	background: url("images/ajax-loader.gif");
+	background: url(images/ajax-loader.gif);
 	background-size: 2.875em 2.875em;
 }
 
