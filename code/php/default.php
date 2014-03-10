@@ -233,7 +233,9 @@ if(!defined("__DEFAULT_PHP__")) {
 						if(isset($temp[5])) $pdf->StartTransform();
 						if(isset($temp[5])) $pdf->Rotate($temp[5],$temp[0],$temp[1]);
 						if(!file_exists($temp[4])) $temp[4]=get_directory("dirs/filesdir").getDefault("configs/logo_file","img/deflogo.png");
+						capture_next_error(); // TO PREVENT SOME SPURIOUS BUGS
 						$pdf->Image($temp[4],$temp[0],$temp[1],$temp[2],$temp[3]);
+						get_clear_error();
 						if(isset($temp[5])) $pdf->StopTransform();
 						break;
 					case "text":
