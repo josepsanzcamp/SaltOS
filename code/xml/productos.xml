@@ -302,7 +302,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>60px</width>
 						</field>
 						<field>
-							<name>precio2</name>
+							<name>descuento</name>
 							<label eval="true">LANG("dto")." (%)"</label>
 							<type>float</type>
 							<width>90px</width>

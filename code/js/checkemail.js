@@ -86,9 +86,10 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 			return
 		}
 		// NORMAL USAGE
+		var data="action=sendmail&ajax=1";
 		$.ajax({
 			url:"xml.php",
-			data:"action=sendmail&ajax=1",
+			data:data,
 			type:"get",
 			success:function(response) {
 				$(".ui-layout-center").append(response);

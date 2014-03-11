@@ -370,7 +370,7 @@ function output_buffer($buffer,$type) {
 }
 
 function output_file($file) {
-	$hash=md5(file_get_contents($file));
+	$hash=md5_file($file);
 	header_etag($hash);
 	ob_start_protected(getDefault("obhandler"));
 	header_powered();

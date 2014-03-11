@@ -83,7 +83,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 				var emails=explode(";",request.term);
 				var term=trim(emails.pop());
 				var input=this.element;
-				var data="action=ajax&format=json&query=emails&term="+term;
+				var data="action=ajax&format=json&query=emails&term="+rawurlencode(term);
 				$.ajax({
 					url:"xml.php",
 					data:data,

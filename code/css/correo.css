@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	background-color: #aa3333;
 }
 /* SET TO RED THE LABEL OF THE INPUT BOX IN THE EMAIL FORM */
-.state_error {
+input.state_error {
 	color:#aa0000;
 }
 /* FOR MOBILE DEVICES */

@@ -72,7 +72,7 @@ if(getParam("action")=="download") {
 		$size=$result["fichero_size"];
 	}
 	if(!defined("__CANCEL_HEADER__")) {
-		$hash=md5(file_get_contents($file));
+		$hash=md5_file($file);
 		header_etag($hash);
 		ob_start_protected("");
 		header_powered();
