@@ -87,6 +87,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<class>nowrap</class>
 			</field>
 			<field>
+				<name>size2</name>
+				<label lang="true">size</label>
+				<sort>true</sort>
+				<order>size</order>
+				<class>nowrap</class>
+			</field>
+			<field>
 				<name>files</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
@@ -585,6 +592,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			END to2,
 			CONCAT('link:correo(',-id,'):',subject) subject,
 			`datetime`,
+			`size`,
+			CASE
+				WHEN `size`&gt;1073741824 THEN CONCAT(ROUND(`size`/1073741824.0,2),' Gbytes')
+				WHEN `size`&gt;1048576 THEN CONCAT(ROUND(`size`/1048576.0,2),' Mbytes')
+				WHEN `size`&gt;1024 THEN CONCAT(ROUND(`size`/1024.0,2),' Kbytes')
+				ELSE CONCAT(`size`,' bytes')
+			END size2,
 			files,
 			estado,
 			id action_id,
@@ -603,7 +617,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		SELECT a.id id,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
 			`from`,`to`,`cc`,`bcc`,
 			uc.email_name email_name,uc.email_from email_from,
-			a.`datetime` `datetime`,body,
+			a.`datetime` `datetime`,a.`size` `size`,body,
 			`files`,
 			e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_cuenta id_cuenta,
 			state_new,state_wait,state_spam,is_outbox,
