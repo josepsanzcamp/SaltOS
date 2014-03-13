@@ -54,9 +54,9 @@ if(getParam("action")=="themeroller") {
 			return 0.299*$r+0.587*$g+0.114*$b;
 		}
 
-		function __themeroller_colorize($color,$rgb) {
+		function __themeroller_colorize($color,$rgb,$mult=1,$incr=0) {
 			list($r,$g,$b)=__themeroller_components($color,true);
-			$z=__themeroller_calibrate($r,$g,$b);
+			$z=__themeroller_calibrate($r,$g,$b)*$mult+$incr;
 			//~ echo "r=$r, g=$g, b=$b, z=$z\n";
 			list($r,$g,$b)=__themeroller_components($rgb,true);
 			$iter=0;
@@ -82,13 +82,13 @@ if(getParam("action")=="themeroller") {
 
 		function __themeroller_components($color,$normalize=false) {
 			$len=strlen($color);
-			if($len==6) { $bias=2; $div=255; }
-			elseif($len==3) { $bias=1; $div=15; }
+			if($len==3) { $size=1; $div=15; $mult=16; }
+			elseif($len==6) { $size=2; $div=255; $mult=1; }
 			else show_php_error(array("phperror"=>"Invalid color: '$color'"));
-			$r=hexdec(substr($color,0,$bias));
-			$g=hexdec(substr($color,$bias,$bias));
-			$b=hexdec(substr($color,$bias+$bias,$bias));
-			if($normalize) list($r,$g,$b)=array($r/$div,$g/$div,$b/$div);
+			$r=hexdec(substr($color,0*$size,$size));
+			$g=hexdec(substr($color,1*$size,$size));
+			$b=hexdec(substr($color,2*$size,$size));
+			list($r,$g,$b)=$normalize?array($r/$div,$g/$div,$b/$div):array($r*$mult,$g*$mult,$b*$mult);
 			return array($r,$g,$b);
 		}
 	}
@@ -278,15 +278,20 @@ if(getParam("action")=="themeroller") {
 				// INVERT BG<=>FC COLORS IF NEEDED
 				if(substr($theme,0,3)=="inv") {
 					foreach($array as $key=>$val) {
-						if(substr($key,0,7)=="b-body-" && substr($val,0,1)=="#") {
-							list($array[$key],$array["a-".substr($key,2)])=array($array["a-".substr($key,2)],$array[$key]);
+						if(substr($key,0,7)=="a-body-" && substr($val,0,1)=="#") {
+							list($array[$key],$array["b-".substr($key,2)])=array($array["b-".substr($key,2)],$array[$key]);
 						}
 					}
 				}
+				// FORCE TO INVERT SOME COLORS
+				$colors=array("a-bar-color","a-page-color","a-link-color","a-bup-color","a-bhover-color","a-bdown-color","a-active-color");
+				foreach($colors as $val) {
+					list($array[$val],$array["b-".substr($val,2)])=array($array["b-".substr($val,2)],$array[$val]);
+				}
 				// MODIFY COLORS TO APPLY THEME
 				foreach($array as $key=>$val) {
-					if(substr($key,0,2)=="b-" && substr($val,0,1)=="#") {
-						if(substr($key,0,7)!="b-body-") $array[$key]="#".__themeroller_colorize(substr($val,1),$rgb);
+					if(substr($key,0,2)=="a-" && !in_array($key,$colors) && substr($key,0,7)!="a-body-" && substr($val,0,1)=="#") {
+						$array[$key]="#".__themeroller_colorize(substr($val,1),$rgb,0.7,0);
 					}
 				}
 				// PREPARE SOME STRING THINGS

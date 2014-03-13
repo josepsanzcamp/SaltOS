@@ -23,14 +23,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/* DIALOG FIXES */
+#dialog {
+	z-index:99999;
+}
+
 /* TO DISABLE THE DIALOG CLOSE BUTTON */
 .ui-dialog .ui-header .ui-btn-icon-notext {
 	display:none;
-}
-
-/* TO DO COMPATIBLE WITH DESKTOP */
-.ui-state-disabled {
-	opacity:0.3!important;
 }
 
 .ui-state-highlight {
@@ -55,50 +55,32 @@ iframe {
 	width:100%;
 }
 
-/* DIALOG FIXES */
-#dialog {
-	z-index:99999;
-}
-
-/* FOR ALIGNMENTS AND STYLES */
-.select {
-	margin-top:6px;
-	margin-bottom:6px;
-}
-
 .none {
 	display:none!important;
-}
-
-.info {
-	margin-top:6px;
-	margin-bottom:6px;
 }
 
 .textarea {
 	min-height:60px!important;
 }
 
-/* SOME JQUERY MOBILE TRICKS */
-.ui-btn {
-	margin-left:0!important;
-}
-
-/* FOR DEFAULT LINKS */
-.tellink.ui-link,
-.faxlink.ui-link,
-.maillink.ui-link,
-.weblink.ui-link,
-.applink.ui-link {
-	color:inherit!important;
-}
-
 /* FOR NOTIFICATIONS */
 .ui-footer {
 	border:none!important;
 	background:none!important;
+	min-height:0px!important;
 }
 
 .ui-footer div {
 	margin:15px;
+}
+
+/* FOR LOADED WIDGET */
+.ui-loader {
+	box-shadow:0px 5px 10px rgba(0,0,0,0.5)!important;
+	-moz-box-shadow:0px 5px 10px rgba(0,0,0,0.5)!important;
+	-webkit-box-shadow:0px 5px 10px rgba(0,0,0,0.5)!important;
+}
+
+.siwrap {
+	white-space:normal;
 }

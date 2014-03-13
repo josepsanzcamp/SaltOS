@@ -29,20 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<type>separator</type>
 			<width>100%</width>
 		</field>
-		<field ifeval="ismobile()">
-			<name>selectquick</name>
-			<type>select</type>
-			<onchange>page1(this.value)</onchange>
-			<listsim require="php/listsim.php" global="label,page,id" eval="true">$label=list_simulator($page,abs($id))</listsim>
-			<rows>
-				<row>
-					<label global="label" eval="true">isset($label[0])?$label[0]:""</label>
-					<value></value>
-				</row>
-			</rows>
-			<width>240px</width>
-		</field>
-		<field>
+		<field ifeval="!ismobile()">
 			<name>firstquick</name>
 			<type>button</type>
 			<tip lang="true">first</tip>
@@ -53,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_home</class2>
 		</field>
-		<field>
+		<field ifeval="!ismobile()">
 			<name>previousquick</name>
 			<type>button</type>
 			<tip lang="true">previous</tip>
@@ -64,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
 		</field>
-		<field ifeval="!ismobile()">
+		<field>
 			<name>selectquick</name>
 			<type>select</type>
 			<onchange>page1(this.value)</onchange>
@@ -78,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<width>240px</width>
 			<class3>shortcut_ctrl_f</class3>
 		</field>
-		<field>
+		<field ifeval="!ismobile()">
 			<name>nextquick</name>
 			<type>button</type>
 			<tip lang="true">next</tip>
@@ -89,7 +76,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
 		</field>
-		<field>
+		<field ifeval="!ismobile()">
 			<name>lastquick</name>
 			<type>button</type>
 			<tip lang="true">last</tip>

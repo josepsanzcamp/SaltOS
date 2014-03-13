@@ -267,8 +267,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		if(message=="") return false;
 		if($("#dialog").length==0) {
 			$("body").append("<div data-role='dialog' id='dialog'></div>");
-			$("#dialog").append("<div data-role='header' data-theme='e'><h1></h1></div>");
-			$("#dialog").append("<div data-role='content' data-theme='e'><h4></h4><p></p></div>");
+			$("#dialog").append("<div data-role='header'><h1></h1></div>");
+			$("#dialog").append("<div data-role='content'><h4></h4><p></p></div>");
 		}
 		$("#dialog h1").html(title);
 		$("#dialog h4").html(message);
@@ -327,7 +327,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		if(typeof(arg3)=="function") action=arg3;
 		if(typeof(arg3)=="string") theme=arg3;
 		// EXECUTE THE CODE TO ADD THE INLINE NOTIFICATION
-		$(".ui-footer").prepend("<div class='ui-bar ui-bar-e ui-corner-all jGrowl-notification "+theme+"'>"+title+": "+message+"</div>");
+		$(".ui-footer").prepend("<div class='ui-bar ui-corner-all jGrowl-notification "+theme+"'>"+title+": "+message+"</div>");
 		var div=$(".ui-footer div:first");
 		var timeout=null;
 		if(!sticky) {
@@ -471,7 +471,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		$.mobile.loading("show",{
 			text:message,
 			textVisible:true,
-			theme:"e",
+			theme:"a",
 			html:""
 		});
 		return true;
@@ -906,9 +906,9 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// TO CLEAR AMBIGUOUS THINGS
 		$(".nowrap.siwrap",obj).removeClass("nowrap siwrap");
 		// TRICK FOR STYLING THE INFO NOTIFY
-		$(".info",obj).addClass("ui-bar ui-bar-e ui-corner-all");
+		$(".info",obj).addClass("ui-bar ui-state-highlight ui-corner-all");
 		// TRICK FOR STYLING THE TITLES
-		$(".title",obj).addClass("ui-bar ui-bar-b ui-corner-all");
+		$(".title",obj).addClass("ui-bar ui-state-highlight ui-corner-all");
 		// TRICK FOR DISABLE BUTTONS
 		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
 		// PROGRAM MENU SELECTS

@@ -69,7 +69,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field ifeval="check_filter(array('filtro'=>''))">
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>

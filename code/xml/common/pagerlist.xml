@@ -56,40 +56,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<type>separator</type>
 			<width>50%</width>
 		</field>
-		<field ifeval="ismobile()">
-			<type>select</type>
-			<name>selectpager</name>
-			<rows>
-				<row>
-					<label global="offset,limit" eval="true">intval($offset/$limit)+1</label>
-					<value></value>
-				</row>
-			</rows>
-			<onchange>page1(this.value)</onchange>
-		</field>
-		<field>
+		<field ifeval="!ismobile()">
 			<name>firstpager</name>
 			<type>button</type>
 			<tip lang="true">first</tip>
 			<label lang="true">first</label>
-			<value ifeval="ismobile()">&lt;&lt;</value>
 			<onclick>if(!is_disabled(this)) first()</onclick>
 			<icon>first</icon>
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_home</class2>
 		</field>
-		<field>
+		<field ifeval="!ismobile()">
 			<name>previouspager</name>
 			<type>button</type>
 			<tip lang="true">previous</tip>
 			<label lang="true">previous</label>
-			<value ifeval="ismobile()">&lt;</value>
 			<onclick>if(!is_disabled(this)) previous()</onclick>
 			<icon>previous</icon>
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
 		</field>
-		<field ifeval="!ismobile()">
+		<field>
 			<type>select</type>
 			<name>selectpager</name>
 			<rows>
@@ -100,23 +87,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</rows>
 			<onchange>page1(this.value)</onchange>
 		</field>
-		<field>
+		<field ifeval="!ismobile()">
 			<name>nextpager</name>
 			<type>button</type>
 			<tip lang="true">next</tip>
 			<label lang="true">next</label>
-			<value ifeval="ismobile()">&gt;</value>
 			<onclick>if(!is_disabled(this)) next()</onclick>
 			<icon>next</icon>
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
 		</field>
-		<field>
+		<field ifeval="!ismobile()">
 			<name>lastpager</name>
 			<type>button</type>
 			<tip lang="true">last</tip>
 			<label lang="true">last</label>
-			<value ifeval="ismobile()">&gt;&gt;</value>
 			<onclick>if(!is_disabled(this)) last()</onclick>
 			<icon>last</icon>
 			<class>nowrap contextmenu</class>

@@ -111,7 +111,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field ifeval="check_filter(array('id_pagador'=>'','liquidado'=>'','id_formapago'=>'','fecha1'=>'', 'fecha2'=>'','trimestre'=>'', 'id_cliente'=>'','fecha1reg'=>'','fecha2reg'=>'','trimestrereg'=>'','id_proyecto'=>'','fecha1liq'=>'','fecha2liq'=>'','trimestreliq'=>'', 'id_proveedor'=>'','filtro'=>'','id_cuenta'=>''))">
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_pagador'=>'','liquidado'=>'','id_formapago'=>'','fecha1'=>'', 'fecha2'=>'','trimestre'=>'', 'id_cliente'=>'','fecha1reg'=>'','fecha2reg'=>'','trimestrereg'=>'','id_proyecto'=>'','fecha1liq'=>'','fecha2liq'=>'','trimestreliq'=>'', 'id_proveedor'=>'','filtro'=>'','id_cuenta'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>
@@ -137,7 +137,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<icon>find</icon>
 					<class>nowrap</class>
 				</field>
-				<field>
+				<field ifeval="!ismobile()">
 					<type>button</type>
 					<value lang="true">excel</value>
 					<tip lang="true">exceltip</tip>
@@ -367,7 +367,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields>
+			<fields ifeval="!ismobile()">
 				<title lang="true">graficas</title>
 				<row>
 					<field>

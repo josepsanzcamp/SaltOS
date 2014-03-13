@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="title">
 	<xsl:for-each select="/root">
-		<div class="ui-bar ui-bar-b">
+		<div data-role="header">
 			<h3><xsl:call-template name="title_2"/></h3>
 		</div>
 	</xsl:for-each>
@@ -120,8 +120,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="menu">
 	<xsl:for-each select="/root/menu">
-		<div data-role="content" data-theme="b">
-			<select class="menu" ismenu="true" data-mini="true">
+		<ul data-role="listview">
+			<li><select class="menu" ismenu="true" data-mini="true">
 				<xsl:for-each select="group">
 					<optgroup label="{label}">
 						<xsl:for-each select="option">
@@ -134,8 +134,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</xsl:for-each>
 					</optgroup>
 				</xsl:for-each>
-			</select>
-		</div>
+			</select></li>
+		</ul>
 	</xsl:for-each>
 </xsl:template>
 
@@ -193,27 +193,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="list_quick">
 	<xsl:for-each select="quick">
-		<div data-role="content" data-theme="b">
+		<ul data-role="listview"><li>
 			<xsl:call-template name="form_by_rows">
 				<xsl:with-param name="form" select="null"/>
 				<xsl:with-param name="node" select="null"/>
 				<xsl:with-param name="prefix" select="null"/>
 				<xsl:with-param name="iter" select="row"/>
 			</xsl:call-template>
-		</div>
+		</li></ul>
 	</xsl:for-each>
 </xsl:template>
 
 <xsl:template name="list_pager">
 	<xsl:for-each select="pager">
-		<div data-role="content" data-theme="b">
+		<ul data-role="listview"><li>
 			<xsl:call-template name="form_by_rows">
 				<xsl:with-param name="form" select="null"/>
 				<xsl:with-param name="node" select="null"/>
 				<xsl:with-param name="prefix" select="null"/>
 				<xsl:with-param name="iter" select="row"/>
 			</xsl:call-template>
-		</div>
+		</li></ul>
 	</xsl:for-each>
 </xsl:template>
 
@@ -221,141 +221,140 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:for-each select="/root/list">
 		<xsl:call-template name="styles"/>
 		<xsl:call-template name="javascript"/>
-		<div class="ui-bar ui-bar-b">
+		<div data-role="header">
 			<h3><xsl:value-of select="title"/></h3>
 		</div>
 		<xsl:call-template name="list_quick"/>
 		<xsl:choose>
 			<xsl:when test="count(rows/row)=0">
-				<div data-role="content" data-theme="b">
-					<xsl:value-of select="nodata/label"/>
-				</div>
+				<ul data-role="listview">
+					<li><xsl:value-of select="nodata/label"/></li>
+				</ul>
 			</xsl:when>
 			<xsl:otherwise>
-				<div data-role="content" data-theme="b">
-					<input type="checkbox" class="master" name="master" id="master" value="1" data-mini="true" data-iconpos="left"/><label for="master"></label>
-				</div>
-				<xsl:for-each select="rows/row">
-					<div data-role="content" data-theme="b">
-						<div>
+				<ul data-role="listview">
+					<li><input type="checkbox" class="master" name="master" id="master" value="1" data-mini="true" data-iconpos="left"/><label for="master"></label></li>
+					<xsl:for-each select="rows/row">
+						<li>
 							<input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1" data-mini="true" data-iconpos="left"/><label for="slave_{id}"></label>
-						</div>
-						<xsl:variable name="id" select="action_id"/>
-						<xsl:variable name="style" select="action_style"/>
-						<xsl:variable name="row" select="*"/>
-						<xsl:for-each select="../../fields/field">
-							<xsl:variable name="name" select="name"/>
-							<xsl:variable name="size" select="size"/>
-							<xsl:variable name="class" select="class"/>
-							<xsl:variable name="label" select="label"/>
-							<xsl:for-each select="$row[name()=$name]">
-								<div>
-									<xsl:choose>
-										<xsl:when test="node()=''">
-											<xsl:value-of select="$label"/>:
-											<xsl:text>-</xsl:text>
-										</xsl:when>
-										<xsl:when test="substring(node(),1,4)='tel:'">
-											<xsl:value-of select="$label"/>:
-											<a class="tellink" href="javascript:void(0)" onclick="">
-												<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
-													<xsl:with-param name="find">'</xsl:with-param>
-													<xsl:with-param name="replace"> </xsl:with-param>
-													<xsl:with-param name="string" select="node()"/>
-												</xsl:call-template>')</xsl:attribute>
+							<xsl:variable name="id" select="action_id"/>
+							<xsl:variable name="style" select="action_style"/>
+							<xsl:variable name="row" select="*"/>
+							<xsl:for-each select="../../fields/field">
+								<xsl:variable name="name" select="name"/>
+								<xsl:variable name="size" select="size"/>
+								<xsl:variable name="class" select="class"/>
+								<xsl:variable name="label" select="label"/>
+								<xsl:for-each select="$row[name()=$name]">
+									<div class="siwrap">
+										<xsl:choose>
+											<xsl:when test="node()=''">
+												<xsl:value-of select="$label"/>:
+												<xsl:text>-</xsl:text>
+											</xsl:when>
+											<xsl:when test="substring(node(),1,4)='tel:'">
+												<xsl:value-of select="$label"/>:
+												<a class="tellink" href="javascript:void(0)" onclick="">
+													<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
+														<xsl:with-param name="find">'</xsl:with-param>
+														<xsl:with-param name="replace"> </xsl:with-param>
+														<xsl:with-param name="string" select="node()"/>
+													</xsl:call-template>')</xsl:attribute>
+													<xsl:call-template name="print_string_length">
+														<xsl:with-param name="text" select="substring(node(),5)"/>
+														<xsl:with-param name="size" select="$size"/>
+													</xsl:call-template>
+												</a>
+											</xsl:when>
+											<xsl:when test="substring(node(),1,4)='fax:'">
+												<xsl:value-of select="$label"/>:
+												<a class="faxlink" href="javascript:void(0)" onclick="">
+													<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
+														<xsl:with-param name="find">'</xsl:with-param>
+														<xsl:with-param name="replace"> </xsl:with-param>
+														<xsl:with-param name="string" select="node()"/>
+													</xsl:call-template>')</xsl:attribute>
+													<xsl:call-template name="print_string_length">
+														<xsl:with-param name="text" select="substring(node(),5)"/>
+														<xsl:with-param name="size" select="$size"/>
+													</xsl:call-template>
+												</a>
+											</xsl:when>
+											<xsl:when test="substring(node(),1,7)='mailto:'">
+												<xsl:value-of select="$label"/>:
+												<a class="maillink" href="javascript:void(0)" onclick="">
+													<xsl:attribute name="onclick">mailto('<xsl:call-template name="replace_string">
+														<xsl:with-param name="find">'</xsl:with-param>
+														<xsl:with-param name="replace"> </xsl:with-param>
+														<xsl:with-param name="string" select="substring(node(),8)"/>
+													</xsl:call-template>')</xsl:attribute>
+													<xsl:call-template name="print_string_length">
+														<xsl:with-param name="text" select="substring(node(),8)"/>
+														<xsl:with-param name="size" select="$size"/>
+													</xsl:call-template>
+												</a>
+											</xsl:when>
+											<xsl:when test="substring(node(),1,5)='href:'">
+												<xsl:value-of select="$label"/>:
+												<a class="weblink" href="javascript:void(0)" onclick="">
+													<xsl:attribute name="onclick">openwin('<xsl:call-template name="replace_string">
+														<xsl:with-param name="find">'</xsl:with-param>
+														<xsl:with-param name="replace"> </xsl:with-param>
+														<xsl:with-param name="string" select="substring(node(),6)"/>
+													</xsl:call-template>')</xsl:attribute>
+													<xsl:call-template name="print_string_length">
+														<xsl:with-param name="text" select="substring(node(),6)"/>
+														<xsl:with-param name="size" select="$size"/>
+													</xsl:call-template>
+												</a>
+											</xsl:when>
+											<xsl:when test="substring(node(),1,5)='link:'">
+												<xsl:value-of select="$label"/>:
+												<a class="applink" href="javascript:void(0)" onclick="">
+													<xsl:attribute name="onclick"><xsl:call-template name="replace_string">
+														<xsl:with-param name="find">%3A</xsl:with-param>
+														<xsl:with-param name="replace">:</xsl:with-param>
+														<xsl:with-param name="string" select="substring-before(substring(node(),6),':')"/>
+													</xsl:call-template></xsl:attribute>
+													<xsl:call-template name="print_string_length">
+														<xsl:with-param name="text" select="substring-after(substring(node(),6),':')"/>
+														<xsl:with-param name="size" select="$size"/>
+													</xsl:call-template>
+												</a>
+											</xsl:when>
+											<xsl:otherwise>
+												<xsl:value-of select="$label"/>:
 												<xsl:call-template name="print_string_length">
-													<xsl:with-param name="text" select="substring(node(),5)"/>
+													<xsl:with-param name="text" select="node()"/>
 													<xsl:with-param name="size" select="$size"/>
 												</xsl:call-template>
-											</a>
-										</xsl:when>
-										<xsl:when test="substring(node(),1,4)='fax:'">
-											<xsl:value-of select="$label"/>:
-											<a class="faxlink" href="javascript:void(0)" onclick="">
-												<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
-													<xsl:with-param name="find">'</xsl:with-param>
-													<xsl:with-param name="replace"> </xsl:with-param>
-													<xsl:with-param name="string" select="node()"/>
-												</xsl:call-template>')</xsl:attribute>
-												<xsl:call-template name="print_string_length">
-													<xsl:with-param name="text" select="substring(node(),5)"/>
-													<xsl:with-param name="size" select="$size"/>
-												</xsl:call-template>
-											</a>
-										</xsl:when>
-										<xsl:when test="substring(node(),1,7)='mailto:'">
-											<xsl:value-of select="$label"/>:
-											<a class="maillink" href="javascript:void(0)" onclick="">
-												<xsl:attribute name="onclick">mailto('<xsl:call-template name="replace_string">
-													<xsl:with-param name="find">'</xsl:with-param>
-													<xsl:with-param name="replace"> </xsl:with-param>
-													<xsl:with-param name="string" select="substring(node(),8)"/>
-												</xsl:call-template>')</xsl:attribute>
-												<xsl:call-template name="print_string_length">
-													<xsl:with-param name="text" select="substring(node(),8)"/>
-													<xsl:with-param name="size" select="$size"/>
-												</xsl:call-template>
-											</a>
-										</xsl:when>
-										<xsl:when test="substring(node(),1,5)='href:'">
-											<xsl:value-of select="$label"/>:
-											<a class="weblink" href="javascript:void(0)" onclick="">
-												<xsl:attribute name="onclick">openwin('<xsl:call-template name="replace_string">
-													<xsl:with-param name="find">'</xsl:with-param>
-													<xsl:with-param name="replace"> </xsl:with-param>
-													<xsl:with-param name="string" select="substring(node(),6)"/>
-												</xsl:call-template>')</xsl:attribute>
-												<xsl:call-template name="print_string_length">
-													<xsl:with-param name="text" select="substring(node(),6)"/>
-													<xsl:with-param name="size" select="$size"/>
-												</xsl:call-template>
-											</a>
-										</xsl:when>
-										<xsl:when test="substring(node(),1,5)='link:'">
-											<xsl:value-of select="$label"/>:
-											<a class="applink" href="javascript:void(0)" onclick="">
-												<xsl:attribute name="onclick"><xsl:call-template name="replace_string">
-													<xsl:with-param name="find">%3A</xsl:with-param>
-													<xsl:with-param name="replace">:</xsl:with-param>
-													<xsl:with-param name="string" select="substring-before(substring(node(),6),':')"/>
-												</xsl:call-template></xsl:attribute>
-												<xsl:call-template name="print_string_length">
-													<xsl:with-param name="text" select="substring-after(substring(node(),6),':')"/>
-													<xsl:with-param name="size" select="$size"/>
-												</xsl:call-template>
-											</a>
-										</xsl:when>
-										<xsl:otherwise>
-											<xsl:value-of select="$label"/>:
-											<xsl:call-template name="print_string_length">
-												<xsl:with-param name="text" select="node()"/>
-												<xsl:with-param name="size" select="$size"/>
-											</xsl:call-template>
-										</xsl:otherwise>
-									</xsl:choose>
-								</div>
-							</xsl:for-each>
-						</xsl:for-each>
-						<div>
-							<xsl:for-each select="*[substring(name(),1,7)='action_']">
-								<xsl:variable name="name" select="substring(name(),8)"/>
-								<xsl:variable name="value" select="."/>
-								<xsl:for-each select="../../../actions/*[name()=$name][$value='true']">
-									<a href="javascript:void(0)" data-role="button" data-mini="true" data-inline="true">
-										<xsl:attribute name="onclick">
-											<xsl:call-template name="replace_string">
-												<xsl:with-param name="find">ID</xsl:with-param>
-												<xsl:with-param name="replace" select="$id"/>
-												<xsl:with-param name="string" select="onclick"/>
-											</xsl:call-template>
-										</xsl:attribute>
-										<xsl:value-of select="label"/>
-									</a>
+											</xsl:otherwise>
+										</xsl:choose>
+									</div>
 								</xsl:for-each>
 							</xsl:for-each>
-						</div>
-					</div>
-				</xsl:for-each>
+							<select ismenu="true" data-mini="true">
+								<option></option>
+								<xsl:for-each select="*[substring(name(),1,7)='action_']">
+									<xsl:variable name="name" select="substring(name(),8)"/>
+									<xsl:variable name="value" select="."/>
+									<xsl:for-each select="../../../actions/*[name()=$name][$value='true']">
+										<option>
+											<xsl:attribute name="value">
+												<xsl:call-template name="replace_string">
+													<xsl:with-param name="find">ID</xsl:with-param>
+													<xsl:with-param name="replace" select="$id"/>
+													<xsl:with-param name="string" select="onclick"/>
+												</xsl:call-template>
+											</xsl:attribute>
+											<xsl:value-of select="label"/>
+										</option>
+									</xsl:for-each>
+								</xsl:for-each>
+							</select>
+						</li>
+					</xsl:for-each>
+				</ul>
 			</xsl:otherwise>
 		</xsl:choose>
 		<xsl:call-template name="list_pager"/>
@@ -379,7 +378,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</input>
 		</xsl:when>
 		<xsl:when test="type='text'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -403,7 +402,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='integer'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -424,7 +423,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='float'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -445,7 +444,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='color'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -466,7 +465,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='date'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -487,7 +486,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='time'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -508,7 +507,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='datetime'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -529,7 +528,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='textarea'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -546,7 +545,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='iframe'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -567,7 +566,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='select'">
-			<div class="select">
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -595,35 +594,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='checkbox'">
-			<div>
-				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" labeled="{label}" data-mini="true" data-iconpos="left">
-					<xsl:if test="checked='true'">
-						<xsl:attribute name="checked">checked</xsl:attribute>
-					</xsl:if>
-					<xsl:variable name="value" select="value"/>
-					<xsl:for-each select="$node/*[name()=$name][.=$value]">
-						<xsl:attribute name="checked">checked</xsl:attribute>
-					</xsl:for-each>
-					<xsl:if test="readonly='true'">
-						<xsl:attribute name="disabled">true</xsl:attribute>
-					</xsl:if>
-				</input>
-				<xsl:if test="label!=''">
-					<label for="{$prefix}{name}"><xsl:value-of select="label"/></label>
+			<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" labeled="{label}" data-mini="true" data-iconpos="left">
+				<xsl:if test="checked='true'">
+					<xsl:attribute name="checked">checked</xsl:attribute>
 				</xsl:if>
-			</div>
+				<xsl:variable name="value" select="value"/>
+				<xsl:for-each select="$node/*[name()=$name][.=$value]">
+					<xsl:attribute name="checked">checked</xsl:attribute>
+				</xsl:for-each>
+				<xsl:if test="readonly='true'">
+					<xsl:attribute name="disabled">true</xsl:attribute>
+				</xsl:if>
+			</input>
+			<xsl:if test="label!=''">
+				<label for="{$prefix}{name}"><xsl:value-of select="label"/></label>
+			</xsl:if>
 		</xsl:when>
 		<xsl:when test="type='button'">
-			<a href="javascript:void(0)" onclick="{onclick}" focused="{focus}" labeled="{label}" class="{class2}" id="{$prefix}{name}" data-role="button" data-mini="true" data-inline="true">
-				<xsl:if test="disabled='true'">
-					<xsl:attribute name="onclick"></xsl:attribute>
-					<xsl:attribute name="class">ui-disabled <xsl:value-of select="class2"/></xsl:attribute>
-				</xsl:if>
-				<xsl:value-of select="value"/>
-			</a>
+			<span>
+				<a href="javascript:void(0)" onclick="{onclick}" focused="{focus}" labeled="{label}" class="{class2}" id="{$prefix}{name}" data-role="button" data-mini="true" data-inline="true">
+					<xsl:if test="disabled='true'">
+						<xsl:attribute name="onclick"></xsl:attribute>
+						<xsl:attribute name="class">ui-disabled <xsl:value-of select="class2"/></xsl:attribute>
+					</xsl:if>
+					<xsl:value-of select="value"/>
+				</a>
+			</span>
 		</xsl:when>
 		<xsl:when test="type='password'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></label>
 				</xsl:if>
@@ -642,28 +641,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<!-- NOTHING TO DO -->
 		</xsl:when>
 		<xsl:when test="type='link'">
-			<xsl:variable name="tip">
-				<xsl:choose>
-					<xsl:when test="tip!=''">
-						<xsl:value-of select="tip"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="label"/>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:variable>
-			<a href="javascript:void(0)" onclick="{onclick}" focused="{focus}" labeled="{label}" title="{$tip}" id="{$prefix}{name}" data-role="button" data-mini="true" data-inline="true">
-				<xsl:for-each select="$node/*[name()=$name]">
-					<xsl:attribute name="onclick">javascript:<xsl:value-of select="."/></xsl:attribute>
-				</xsl:for-each>
-				<xsl:value-of select="label"/>
-			</a>
+			<div class="ui-field-contain">
+				<xsl:variable name="tip">
+					<xsl:choose>
+						<xsl:when test="tip!=''">
+							<xsl:value-of select="tip"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="label"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<a href="javascript:void(0)" onclick="{onclick}" focused="{focus}" labeled="{label}" title="{$tip}" id="{$prefix}{name}" data-role="button" data-mini="true" data-inline="true">
+					<xsl:for-each select="$node/*[name()=$name]">
+						<xsl:attribute name="onclick">javascript:<xsl:value-of select="."/></xsl:attribute>
+					</xsl:for-each>
+					<xsl:value-of select="label"/>
+				</a>
+			</div>
 		</xsl:when>
 		<xsl:when test="type='separator'">
 			<!-- NOTHING TO DO -->
 		</xsl:when>
 		<xsl:when test="type='label'">
-			<div>
+			<div class="ui-field-contain">
 				<label id="{$prefix}{name}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:choose>
@@ -727,43 +728,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='image'">
-			<div>
+			<div class="ui-field-contain">
 				<xsl:if test="label!=''">
 					<label for="{$prefix}{name}"><xsl:value-of select="label"/></label>
 				</xsl:if>
-				<div>
-					<img class="{class}" src="" id="{$prefix}{name}">
-						<xsl:choose>
-							<xsl:when test="class!=''"/>
-							<xsl:otherwise>
-								<xsl:attribute name="class">image</xsl:attribute>
-							</xsl:otherwise>
-						</xsl:choose>
-						<xsl:variable name="width" select="width"/>
-						<xsl:variable name="height" select="height"/>
-						<xsl:choose>
-							<xsl:when test="phpthumb='false'">
-								<xsl:attribute name="src"><xsl:value-of select="image"/></xsl:attribute>
-								<xsl:for-each select="$node/*[name()=$name]">
-									<xsl:attribute name="src"><xsl:value-of select="."/></xsl:attribute>
-								</xsl:for-each>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:attribute name="src">xml.php?action=phpthumb&amp;src=<xsl:value-of select="image"/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
-								<xsl:for-each select="$node/*[name()=$name]">
-									<xsl:attribute name="src">xml.php?action=phpthumb&amp;src=<xsl:value-of select="."/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
-								</xsl:for-each>
-							</xsl:otherwise>
-						</xsl:choose>
-					</img>
-				</div>
+				<img class="{class}" src="" id="{$prefix}{name}">
+					<xsl:choose>
+						<xsl:when test="class!=''"/>
+						<xsl:otherwise>
+							<xsl:attribute name="class">image</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
+					<xsl:variable name="width" select="width"/>
+					<xsl:variable name="height" select="height"/>
+					<xsl:choose>
+						<xsl:when test="phpthumb='false'">
+							<xsl:attribute name="src"><xsl:value-of select="image"/></xsl:attribute>
+							<xsl:for-each select="$node/*[name()=$name]">
+								<xsl:attribute name="src"><xsl:value-of select="."/></xsl:attribute>
+							</xsl:for-each>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:attribute name="src">xml.php?action=phpthumb&amp;src=<xsl:value-of select="image"/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
+							<xsl:for-each select="$node/*[name()=$name]">
+								<xsl:attribute name="src">xml.php?action=phpthumb&amp;src=<xsl:value-of select="."/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
+							</xsl:for-each>
+						</xsl:otherwise>
+					</xsl:choose>
+				</img>
 			</div>
 		</xsl:when>
 		<xsl:when test="type='columnizer'">
-			<div class="columnizer {class2}"><xsl:value-of disable-output-escaping="yes" select="label"/></div>
+			<div class="ui-field-contain">
+				<div class="columnizer {class2}"><xsl:value-of disable-output-escaping="yes" select="label"/></div>
+			</div>
 		</xsl:when>
 		<xsl:when test="type='menu'">
-			<div>
+			<div class="ui-field-contain">
 				<select name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeypress="{onkeypress}" focused="{focus}" isrequired="{required}" labeled="{label}" class="{class2}" ismenu="true" data-mini="true">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
@@ -849,11 +850,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xsl:when test="count($fields/row)!=0">
 			<xsl:for-each select="$fields">
 				<xsl:if test="title!=''">
-					<div class="ui-bar ui-bar-b">
+					<div data-role="header">
 						<h3><xsl:value-of select="title"/></h3>
 					</div>
 				</xsl:if>
-				<div data-role="content" data-theme="b">
+				<ul data-role="listview"><li>
 					<xsl:if test="quick='true'">
 						<xsl:call-template name="form_quick">
 							<xsl:with-param name="quick" select="../quick"/>
@@ -872,7 +873,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<xsl:with-param name="prefix" select="null"/>
 						</xsl:call-template>
 					</xsl:if>
-				</div>
+				</li></ul>
 			</xsl:for-each>
 		</xsl:when>
 		<xsl:otherwise>
@@ -891,33 +892,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
 								<xsl:for-each select="$node1/fieldset">
 									<xsl:if test="title!=''">
-										<div class="ui-bar ui-bar-b">
+										<div data-role="header">
 											<h3><xsl:value-of select="title"/></h3>
 										</div>
 									</xsl:if>
 									<xsl:if test="quick='true'">
-										<div data-role="content" data-theme="b">
+										<ul data-role="listview"><li>
 											<xsl:call-template name="form_quick">
 												<xsl:with-param name="quick" select="../../../quick"/>
 												<xsl:with-param name="prefix" select="$prefix"/>
 											</xsl:call-template>
-										</div>
+										</li></ul>
 									</xsl:if>
-									<div data-role="content" data-theme="b">
+									<ul data-role="listview"><li>
 										<xsl:call-template name="form_by_rows">
 											<xsl:with-param name="form" select="$form"/>
 											<xsl:with-param name="node" select="$node3"/>
 											<xsl:with-param name="prefix" select="$prefix"/>
 											<xsl:with-param name="iter" select="row"/>
 										</xsl:call-template>
-									</div>
+									</li></ul>
 									<xsl:if test="buttons='true'">
-										<div data-role="content" data-theme="b">
+										<ul data-role="listview"><li>
 											<xsl:call-template name="form_buttons">
 												<xsl:with-param name="buttons" select="../../../buttons"/>
 												<xsl:with-param name="prefix" select="$prefix"/>
 											</xsl:call-template>
-										</div>
+										</li></ul>
 									</xsl:if>
 								</xsl:for-each>
 							</xsl:for-each>
@@ -925,17 +926,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:when test="count($node2/*[name()=$name2])=1">
 							<xsl:for-each select="$node1/fieldset">
 								<xsl:if test="title!=''">
-									<div class="ui-bar ui-bar-b">
+									<div data-role="header">
 										<h3><xsl:value-of select="title"/></h3>
 									</div>
 								</xsl:if>
 								<xsl:if test="quick='true'">
-									<div data-role="content" data-theme="b">
+									<ul data-role="listview"><li>
 										<xsl:call-template name="form_quick">
 											<xsl:with-param name="quick" select="../../../quick"/>
 											<xsl:with-param name="prefix" select="null"/>
 										</xsl:call-template>
-									</div>
+									</li></ul>
 								</xsl:if>
 								<xsl:variable name="node3" select="."/>
 								<xsl:for-each select="$node2/*/row">
@@ -943,7 +944,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
 									<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
 									<xsl:for-each select="$node3">
-										<div data-role="content" data-theme="b">
+										<ul data-role="listview"><li>
 											<div class="todofixfull">
 											</div>
 											<div class="todofixhead">
@@ -962,16 +963,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 													<xsl:with-param name="iter" select="row"/>
 												</xsl:call-template>
 											</div>
-										</div>
+										</li></ul>
 									</xsl:for-each>
 								</xsl:for-each>
 								<xsl:if test="buttons='true'">
-									<div data-role="content" data-theme="b">
+									<ul data-role="listview"><li>
 										<xsl:call-template name="form_buttons">
 											<xsl:with-param name="buttons" select="../../../buttons"/>
 											<xsl:with-param name="prefix" select="null"/>
 										</xsl:call-template>
-									</div>
+									</li></ul>
 								</xsl:if>
 							</xsl:for-each>
 						</xsl:when>
@@ -1022,7 +1023,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:call-template name="head"/>
 		</head>
 		<body>
-			<div data-role="page" id="page" class="{/root/info/dir}">
+			<div data-role="page" id="page" class="{/root/info/dir}" data-theme="a">
 				<div class="ui-layout-north">
 					<xsl:call-template name="title"/>
 				</div>
@@ -1035,7 +1036,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:call-template name="alert"/>
 					<xsl:call-template name="error"/>
 				</div>
-				<div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false" id="jGrowl"></div>
+				<div data-role="footer" data-position="fixed" data-tap-toggle="false" id="jGrowl"></div>
 			</div>
 		</body>
 	</html>

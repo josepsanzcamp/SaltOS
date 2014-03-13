@@ -106,7 +106,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field ifeval="check_filter(array('id_cliente'=>'','id_cuenta'=>'','dia1'=>'','dia2'=>'','meses'=>'',))">
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_cliente'=>'','id_cuenta'=>'','dia1'=>'','dia2'=>'','meses'=>'',))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>
@@ -1043,6 +1043,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<oncomplete>
 								$("#"+prefix+"id_producto").val(ui.item.id);
 								$("#"+prefix+"precio").val(ui.item.precio);
+								$("#"+prefix+"descuento").val(ui.item.descuento);
 								update_totales_factura();
 							</oncomplete>
 						</field>
@@ -1147,6 +1148,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<oncomplete>
 								$("#"+prefix+"id_producto").val(ui.item.id);
 								$("#"+prefix+"precio").val(ui.item.precio);
+								$("#"+prefix+"descuento").val(ui.item.descuento);
 								update_totales_factura();
 							</oncomplete>
 						</field>
