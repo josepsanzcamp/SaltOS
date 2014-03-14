@@ -463,7 +463,7 @@ switch($action) {
 						if(isset($row["action_delete"])) {
 							$delete=$row["action_delete"];
 							if(substr($delete,0,1)!="/") $delete=get_directory("dirs/filesdir").$delete;
-							if(file_exists($delete)) unlink($delete);
+							if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 						}
 						if(isset($row["action_error"])) {
 							$error=$row["action_error"];

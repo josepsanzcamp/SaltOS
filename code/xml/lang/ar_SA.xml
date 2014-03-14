@@ -376,6 +376,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formapago>دفع</formapago>
 		<todaslasformasdepago>[جميع أشكال الدفع]</todaslasformasdepago>
 		<sinformapago>[لايوجد مدفوعات]</sinformapago>
+		<actions translated="false">Options of this register</actions>
 	</common>
 	<login>
 		<logintitle>الوصول للتطبيق</logintitle>

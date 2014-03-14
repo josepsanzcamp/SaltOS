@@ -376,6 +376,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formapago>Zahlscheinpolizze</formapago>
 		<todaslasformasdepago>[Alle Formen der Zahlung]</todaslasformasdepago>
 		<sinformapago>[Ohne Zahlung]</sinformapago>
+		<actions translated="false">Options of this register</actions>
 	</common>
 	<login>
 		<logintitle>Programmzugang</logintitle>

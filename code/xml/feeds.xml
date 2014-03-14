@@ -531,32 +531,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 					<row>
-						<field>
-							<type>label</type>
-							<label lang="true">feed</label>
-							<class>right</class>
-							<height>22px</height>
-						</field>
+						<height>22px</height>
 						<field>
 							<name>link2</name>
 							<type>link</type>
 							<label global="id" eval="true">execute_query("SELECT (SELECT title FROM tbl_usuarios_f WHERE id=id_feed) feed FROM tbl_feeds WHERE id='".abs($id)."'")</label>
 							<colspan>10</colspan>
+							<label2 lang="true">feed</label2>
 						</field>
 					</row>
 					<row>
-						<field>
-							<type>label</type>
-							<label lang="true">link</label>
-							<class>right</class>
-							<height>22px</height>
-						</field>
+						<height>22px</height>
 						<field>
 							<name>link</name>
 							<type>link</type>
 							<label global="id" eval="true">execute_query("SELECT link FROM tbl_feeds WHERE id='".abs($id)."'")</label>
 							<class3>enlace</class3>
 							<colspan>10</colspan>
+							<label2 lang="true">link</label2>
 						</field>
 					</row>
 					<row>

@@ -84,6 +84,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"lang_withoutinfo() { return '".LANG_ESCAPE("withoutinfo")."'; }"</function>
 	<!-- FOR MAX_INPUT_VARS FEATURE -->
 	<function eval="true">"ini_get_max_input_vars() { return '".intval(ini_get("max_input_vars"))."'; }"</function>
+	<!-- FOR ACTIONS FEATURE -->
+	<function eval="true">"lang_actions() { return '".LANG_ESCAPE("actions")."'; }"</function>
 	<!-- USING CACHE -->
 	<cache>
 		<!-- FOR DATEPICKER -->

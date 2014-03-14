@@ -883,6 +883,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			var ul=$(this).parent().parent().parent().parent();
 			$(slave,ul).prop("checked",value).checkboxradio("refresh");
 		});
+		// ADD THE ACTIONS DEFAULT OPTION LABEL
+		$(".actions").find("option:eq(0)",obj).html(lang_actions());
 		// PROGRAM CHECK ENTER
 		$("input,select",obj).bind("keypress",function(event) {
 			if(is_enterkey(event)) {
@@ -917,7 +919,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
 		});
 		// STYLING IFRAME BORDER
-		$(".preiframe",obj).textinput();
+		$(".preiframe",obj).addClass("ui-input-text ui-body-inherit ui-corner-all ui-mini ui-shadow-inset");
 		// MERGE TODOFIXHEAD AND TODOFIXBODY INTO TODOFIXFULL
 		$(".todofixfull",obj).each(function() {
 			var full=$(this);

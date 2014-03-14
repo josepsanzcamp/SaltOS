@@ -125,7 +125,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<xsl:for-each select="group">
 					<optgroup label="{label}">
 						<xsl:for-each select="option">
-							<option value="{onclick}" title="{tip}">
+							<option value="{onclick}">
 								<xsl:if test="selected='true'">
 									<xsl:attribute name="selected">true</xsl:attribute>
 								</xsl:if>
@@ -158,7 +158,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xsl:when test="$size!=''">
 			<xsl:choose>
 				<xsl:when test="string-length($text)>=$size">
-					<span title="{$text}"><xsl:value-of select="substring($text,1,$size)"/><xsl:text>...</xsl:text></span>
+					<xsl:value-of select="substring($text,1,$size)"/><xsl:text>...</xsl:text>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="$text"/>
@@ -246,7 +246,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<xsl:variable name="class" select="class"/>
 								<xsl:variable name="label" select="label"/>
 								<xsl:for-each select="$row[name()=$name]">
-									<div class="siwrap">
+									<div>
 										<xsl:choose>
 											<xsl:when test="node()=''">
 												<xsl:value-of select="$label"/>:
@@ -333,7 +333,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									</div>
 								</xsl:for-each>
 							</xsl:for-each>
-							<select ismenu="true" data-mini="true">
+							<select class="actions" ismenu="true" data-mini="true">
 								<option></option>
 								<xsl:for-each select="*[substring(name(),1,7)='action_']">
 									<xsl:variable name="name" select="substring(name(),8)"/>
@@ -642,17 +642,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</xsl:when>
 		<xsl:when test="type='link'">
 			<div class="ui-field-contain">
-				<xsl:variable name="tip">
-					<xsl:choose>
-						<xsl:when test="tip!=''">
-							<xsl:value-of select="tip"/>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of select="label"/>
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:variable>
-				<a href="javascript:void(0)" onclick="{onclick}" focused="{focus}" labeled="{label}" title="{$tip}" id="{$prefix}{name}" data-role="button" data-mini="true" data-inline="true">
+				<xsl:if test="label2!=''">
+					<label for="{$prefix}{name}"><xsl:value-of select="label2"/></label>
+				</xsl:if>
+				<a href="javascript:void(0)" onclick="{onclick}" focused="{focus}" labeled="{label}" id="{$prefix}{name}" data-role="button" data-mini="true">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="onclick">javascript:<xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>

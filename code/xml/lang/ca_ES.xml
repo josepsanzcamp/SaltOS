@@ -376,6 +376,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formapago>Forma de pagament</formapago>
 		<todaslasformasdepago>[Totes les formes de pagament]</todaslasformasdepago>
 		<sinformapago>[Sense forma de pagament]</sinformapago>
+		<actions>Accions d'aquest registre</actions>
 	</common>
 	<login>
 		<logintitle>Accés a l'aplicació</logintitle>
