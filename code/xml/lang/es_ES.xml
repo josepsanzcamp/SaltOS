@@ -962,6 +962,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folderstab>Carpetas de usuario</folderstab>
 		<folderspref>Configure aquí las carpetas de usuario para luego dejar lo que desee</folderspref>
 		<newfolder>Nueva carpeta de usuario</newfolder>
+		<withoutparent>[Sin carpeta]</withoutparent>
+		<inparentfolder>y cuelga de la carpeta</inparentfolder>
+		<namefolder>Nombre de la carpeta</namefolder>
+		<parentfolder>Cuelga de la carpeta</parentfolder>
 	</profile>
 	<maincfg>
 		<formupdate>Configuración</formupdate>

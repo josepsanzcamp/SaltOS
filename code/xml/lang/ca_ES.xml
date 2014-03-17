@@ -962,6 +962,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folderstab>Carpetes d'usuari</folderstab>
 		<folderspref>Configureu aquí les carpetes d'usuari per després deixar el que vulgui</folderspref>
 		<newfolder>Nova carpeta d'usuari</newfolder>
+		<withoutparent>[Sense carpeta]</withoutparent>
+		<inparentfolder>y penja de la carpeta</inparentfolder>
+		<namefolder>Nom de la carpeta</namefolder>
+		<parentfolder>Penja de la carpeta</parentfolder>
 	</profile>
 	<maincfg>
 		<formupdate>Configuració</formupdate>

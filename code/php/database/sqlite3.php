@@ -52,7 +52,8 @@ function db_connect_sqlite3() {
 		getDefault("db/link")->createFunction("HOUR","__sqlite3_hour");
 		getDefault("db/link")->createFunction("MINUTE","__sqlite3_minute");
 		getDefault("db/link")->createFunction("SECOND","__sqlite3_second");
-		getDefault("db/link")->createFunction("MD5","__sqlite3_MD5");
+		getDefault("db/link")->createFunction("MD5","__sqlite3_md5");
+		getDefault("db/link")->createFunction("REPEAT","__sqlite3_repeat");
 	}
 }
 
@@ -134,6 +135,10 @@ function __sqlite3_second($date) {
 
 function __sqlite3_md5($temp) {
 	return md5($temp);
+}
+
+function __sqlite3_repeat($str,$count) {
+	return str_repeat($str,$count);
 }
 
 function db_query_sqlite3($query,$fetch="query") {

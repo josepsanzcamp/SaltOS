@@ -1424,6 +1424,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<pkey>true</pkey>
 				</field>
 				<field>
+					<name>id_parent</name>
+					<type>INT(11)</type>
+					<fkey>tbl_folders</fkey>
+					<fcheck>false</fcheck>
+				</field>
+				<field>
 					<name>id_usuario</name>
 					<type>INT(11)</type>
 					<fkey>tbl_usuarios</fkey>
@@ -1432,6 +1438,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>name</name>
 					<type>VARCHAR(255)</type>
+				</field>
+				<field>
+					<name>pos</name>
+					<type>INT(11)</type>
+				</field>
+				<field>
+					<name>depth</name>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>

@@ -36,9 +36,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<default eval="true">"SELECT '0' id FROM tbl_usuarios WHERE id='".current_user()."'"</default>
 					<folders eval="true">"SELECT '0' id FROM tbl_usuarios WHERE id='".current_user()."'"</folders>
 					<folders_old>
-						<folders_old eval="true">"SELECT * FROM tbl_folders WHERE id_usuario='".current_user()."' ORDER BY name ASC"</folders_old>
+						<folders_old eval="true">"SELECT * FROM tbl_folders WHERE id_usuario='".current_user()."' ORDER BY pos ASC"</folders_old>
 					</folders_old>
-					<folders_new eval="true">"SELECT '0' id FROM tbl_usuarios WHERE id='".current_user()."'"</folders_new>
+					<folders_new eval="true">"SELECT '0' id,'0' id_parent FROM tbl_usuarios WHERE id='".current_user()."'"</folders_new>
 					<gcalendar ifeval="check_user('profile','gcalendar')" eval="true">"SELECT g.* FROM tbl_usuarios u LEFT JOIN tbl_gcalendar g ON g.id_usuario=u.id WHERE u.id='".current_user()."'"</gcalendar>
 					<feeds_old ifeval="check_user('profile','feeds')">
 						<feeds_old eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".current_user()."' ORDER BY title2 ASC,id ASC"</feeds_old>
@@ -241,9 +241,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<head>
 						<field>
 							<type>label</type>
-							<label lang="true">folderstab</label>
+							<label lang="true">namefolder</label>
 							<class>thead</class>
-							<colspan>2</colspan>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">parentfolder</label>
+							<class>thead</class>
 						</field>
 						<field>
 							<type>separator</type>
@@ -258,15 +262,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<name>name</name>
-							<type>label</type>
-							<class>tbody</class>
-						</field>
-						<field>
-							<name>name_new</name>
 							<type>text</type>
 							<width>240px</width>
 							<class>tbody</class>
 							<speech>true</speech>
+						</field>
+						<field>
+							<name>id_parent</name>
+							<type>select</type>
+							<class>tbody</class>
+							<query eval="true">"SELECT '".LANG_ESCAPE("withoutparent")."' `label`, '0' `value` UNION SELECT name `label`,id `value` FROM tbl_folders WHERE id_usuario='".current_user()."'"</query>
+							<width>240px</width>
 						</field>
 						<field>
 							<type>checkbox</type>
@@ -294,6 +300,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<onchange>$("#folders_new_0_add").removeClass("ui-state-disabled")</onchange>
 							<speech>true</speech>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>id_parent</name>
+							<label lang="true">inparentfolder</label>
+							<type>select</type>
+							<class>tbody</class>
+							<query eval="true">"SELECT '".LANG_ESCAPE("withoutparent")."' `label`, '0' `value` UNION SELECT name `label`,id `value` FROM tbl_folders WHERE id_usuario='".current_user()."'"</query>
+							<width>240px</width>
 						</field>
 						<field>
 							<name>add</name>
@@ -405,10 +421,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query ifeval="!ismobile()"  match="default" prefix="true" eval="true">use_table_cookies("iconset",getParam("iconset"))?"":""</query>
 		<query ifeval="!ismobile()" match="default" prefix="true" eval="true">"DELETE FROM tbl_quick WHERE id_usuario='".current_user()."'"</query>
 		<query ifeval="!ismobile()" global="var_i" for="var_i" from="1" to="12" match="default" prefix="true" eval="true">"INSERT INTO tbl_quick(id,id_usuario,button,codigo) VALUES(NULL,'".current_user()."','f$var_i','".getParam("quick_button_f$var_i")."')"</query>
-		<query match="folders_old" prefix="true" eval="true">getParam("name_new") &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id!='".intval(getParam("id"))."' AND id_usuario='".current_user()."' AND name='".getParam("name_new")."'")?"UPDATE tbl_folders SET name='".getParam("name_new")."' WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>
+		<query match="folders_old" prefix="true" eval="true">intval(getParam("id"))!=intval(getParam("id_parent")) &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id!='".intval(getParam("id"))."' AND id_parent='".intval(getParam("id_parent"))."' AND id_usuario='".current_user()."' AND name='".getParam("name")."'")?"UPDATE tbl_folders SET id_parent='".intval(getParam("id_parent"))."',name='".getParam("name")."' WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>
 		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders_a WHERE id_folder='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_folders WHERE id='".intval(getParam("id"))."')='".current_user()."'":""</query>
 		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>
-		<query match="folders_new" prefix="true" eval="true">getParam("name") &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."' AND name='".getParam("name")."'")?"INSERT INTO tbl_folders(id,id_usuario,name) VALUES(NULL,'".current_user()."','".getParam("name")."')":""</query>
+		<query match="folders_new" prefix="true" eval="true">getParam("name") &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id_parent='".intval(getParam("id_parent"))."' AND id_usuario='".current_user()."' AND name='".getParam("name")."'")?"INSERT INTO tbl_folders(id,id_parent,id_usuario,name) VALUES(NULL,'".intval(getParam("id_parent"))."','".current_user()."','".getParam("name")."')":""</query>
+		<query match="folders_new" prefix="true">SELECT 'php/action/folders.php' action_include</query>
 		<query ifeval="check_user('profile','gcalendar')" match="gcalendar" prefix="true" eval="true">execute_query("SELECT COUNT(*) FROM tbl_gcalendar WHERE id_usuario='".current_user()."'")?"UPDATE tbl_gcalendar SET `login`='".getParam("login")."',`password`='".getParam("password")."' WHERE id_usuario='".current_user()."'":"INSERT INTO tbl_gcalendar(id,id_usuario,login,password) VALUES(NULL,'".current_user()."','".getParam("login")."','".getParam("password")."')"</query>
 		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_registros_i WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("feeds")."'":""</query>
 		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_registros_u WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("feeds")."'":""</query>

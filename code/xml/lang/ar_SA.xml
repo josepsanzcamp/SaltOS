@@ -962,6 +962,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folderstab>مجلدات المستخدم</folderstab>
 		<folderspref>قم بتهيئة مجلدات المستخدم هنا ثم اترك ما تريد</folderspref>
 		<newfolder>مجلد مستخدم جديد</newfolder>
+		<withoutparent translated="false">[Without folder]</withoutparent>
+		<inparentfolder translated="false">and is hanging in the folder</inparentfolder>
+		<namefolder translated="false">Name of the folder</namefolder>
+		<parentfolder translated="false">Hanging in the folder</parentfolder>
 	</profile>
 	<maincfg>
 		<formupdate>الاعدادات</formupdate>

@@ -55,6 +55,7 @@ function db_connect_pdo_sqlite() {
 		getDefault("db/link")->sqliteCreateFunction("MINUTE","__pdo_sqlite_minute");
 		getDefault("db/link")->sqliteCreateFunction("SECOND","__pdo_sqlite_second");
 		getDefault("db/link")->sqliteCreateFunction("MD5","__pdo_sqlite_md5");
+		getDefault("db/link")->sqliteCreateFunction("REPEAT","__pdo_sqlite_repeat");
 	}
 }
 
@@ -136,6 +137,10 @@ function __pdo_sqlite_second($date) {
 
 function __pdo_sqlite_md5($temp) {
 	return md5($temp);
+}
+
+function __pdo_sqlite_repeat($str,$count) {
+	return str_repeat($str,$count);
 }
 
 function db_query_pdo_sqlite($query,$fetch="query") {

@@ -481,7 +481,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Masonry 3.1.4 (MIT)</label>
+							<label>Masonry 3.1.5 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://desandro.com/masonry/")</onclick>

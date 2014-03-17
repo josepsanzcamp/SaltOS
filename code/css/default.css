@@ -97,6 +97,76 @@ form {
 .rtl .accordion-link li a.submenu {
 	left:-16px!important;
 }
+.accordion-link li a.depth_1 {
+	position:relative;
+	left:16px!important;
+}
+.accordion-link li a.depth_2 {
+	position:relative;
+	left:32px!important;
+}
+.accordion-link li a.depth_3 {
+	position:relative;
+	left:48px!important;
+}
+.accordion-link li a.depth_4 {
+	position:relative;
+	left:64px!important;
+}
+.accordion-link li a.depth_5 {
+	position:relative;
+	left:80px!important;
+}
+.accordion-link li a.depth_6 {
+	position:relative;
+	left:96px!important;
+}
+.accordion-link li a.depth_7 {
+	position:relative;
+	left:112px!important;
+}
+.accordion-link li a.depth_8 {
+	position:relative;
+	left:128px!important;
+}
+.accordion-link li a.depth_9 {
+	position:relative;
+	left:144px!important;
+}
+.accordion-link li a.depth_10 {
+	position:relative;
+	left:160px!important;
+}
+.rtl .accordion-link li a.depth_1 {
+	left:-16px!important;
+}
+.rtl .accordion-link li a.depth_2 {
+	left:-32px!important;
+}
+.rtl .accordion-link li a.depth_3 {
+	left:-48px!important;
+}
+.rtl .accordion-link li a.depth_4 {
+	left:-64px!important;
+}
+.rtl .accordion-link li a.depth_5 {
+	left:-80px!important;
+}
+.rtl .accordion-link li a.depth_6 {
+	left:-96px!important;
+}
+.rtl .accordion-link li a.depth_7 {
+	left:-112px!important;
+}
+.rtl .accordion-link li a.depth_8 {
+	left:-128px!important;
+}
+.rtl .accordion-link li a.depth_9 {
+	left:-144px!important;
+}
+.rtl .accordion-link li a.depth_10 {
+	left:-160px!important;
+}
 .ui-tabs {
 	border:none!important;
 	padding:0!important;

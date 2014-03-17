@@ -962,6 +962,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folderstab>User-Ordner</folderstab>
 		<folderspref>Konfigurieren Boxen hier und dann verlassen, was Sie wollen</folderspref>
 		<newfolder>Neue Benutzer-Ordner</newfolder>
+		<withoutparent translated="false">[Without folder]</withoutparent>
+		<inparentfolder translated="false">and is hanging in the folder</inparentfolder>
+		<namefolder translated="false">Name of the folder</namefolder>
+		<parentfolder translated="false">Hanging in the folder</parentfolder>
 	</profile>
 	<maincfg>
 		<formupdate>Konfiguration</formupdate>

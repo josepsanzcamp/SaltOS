@@ -962,6 +962,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folderstab>User folders</folderstab>
 		<folderspref>Configure the user folders here and then leave what you want</folderspref>
 		<newfolder>New user folder</newfolder>
+		<withoutparent>[Without folder]</withoutparent>
+		<inparentfolder>and is hanging in the folder</inparentfolder>
+		<namefolder>Name of the folder</namefolder>
+		<parentfolder>Hanging in the folder</parentfolder>
 	</profile>
 	<maincfg>
 		<formupdate>Settings</formupdate>

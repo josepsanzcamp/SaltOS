@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!--
+<?php
+/*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
 \___ \ / _` | | __| | | \___ \
@@ -22,7 +22,22 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-<root>
-	<folders global="page,id" eval="true">"SELECT id,CONCAT(REPEAT('- ',depth),name) name,(SELECT COUNT(*) FROM tbl_folders_a b WHERE a.id=b.id_folder AND id_aplicacion=".page2id($page)." AND id_registro=".abs($id).") activado FROM tbl_folders a WHERE id_usuario='".current_user()."' ORDER BY pos ASC;"</folders>
-</root>
+*/
+if(!check_user()) action_denied();
+if($page=="profile") {
+	if(!function_exists("update_folders_tree")) {
+		function update_folders_tree($id_usuario,$id_parent=0,&$pos=0,$depth=0) {
+			$query="SELECT id FROM tbl_folders WHERE id_usuario='${id_usuario}' AND id_parent='${id_parent}' ORDER BY name ASC";
+			$result=db_query($query);
+			while($row=db_fetch_row($result)) {
+				$query="UPDATE tbl_folders SET pos=${pos},depth=${depth} WHERE id_usuario='${id_usuario}' AND id=${row["id"]}";
+				db_query($query);
+				$pos++;
+				update_folders_tree($id_usuario,$row["id"],$pos,$depth+1);
+			}
+			db_free($result);
+		}
+	}
+	update_folders_tree(current_user());
+}
+?>

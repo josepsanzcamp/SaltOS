@@ -962,6 +962,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folderstab>Dossier utilisateur</folderstab>
 		<folderspref>Configurer les dossiers utilisateur ici, puis inscrivez ce que vous semble pertinent</folderspref>
 		<newfolder>Nouveau dossier utilisateur</newfolder>
+		<withoutparent translated="false">[Without folder]</withoutparent>
+		<inparentfolder translated="false">and is hanging in the folder</inparentfolder>
+		<namefolder translated="false">Name of the folder</namefolder>
+		<parentfolder translated="false">Hanging in the folder</parentfolder>
 	</profile>
 	<maincfg>
 		<formupdate>Paramètres</formupdate>
