@@ -24,9 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 // NEEDED INCLUDES
-require_once("lib/pop3class/mime_parser.php");
-require_once("lib/pop3class/rfc822_addresses.php");
-require_once("lib/pop3class/pop3.php");
+require_once("lib/phpclasses/mime_parser.php");
+require_once("lib/phpclasses/rfc822_addresses.php");
+require_once("lib/phpclasses/pop3.php");
 
 // SOME DEFINES
 define("__HTML_PAGE_OPEN__",'<html><head><style type="text/css">'.getDefault("defines/htmlpage").'</style></head><body>');

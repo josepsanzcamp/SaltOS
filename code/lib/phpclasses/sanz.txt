@@ -1,6 +1,7 @@
 Code downloaded from:
 - http://www.phpclasses.org/package/2-PHP-Access-to-e-mail-mailboxes-using-the-POP3-protocol.html
 - http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html
+- http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html
 
 I modified the mime_parser.php file to replace the follows functions:
 - fopen by gzopen

@@ -297,111 +297,29 @@ function check_commands($commands,$expires=0) {
 	return $result;
 }
 
-function url_get_contents($url,$type="GET") {
-	// PREPARE ARRAY
+function url_get_contents($url) {
+	// CHECK SCHEME
 	$scheme=parse_url($url,PHP_URL_SCHEME);
 	if(!$scheme) $url="http://".$url;
-	$array=parse_url($url);
-	$scheme=$array["scheme"];
-	$ports=array("http"=>80,"https"=>443);
-	if(!isset($ports[$scheme])) {
-		show_php_error(array("phperror"=>"Unknown scheme '$scheme'"));
-		return false;
-	}
-	$port=isset($array["port"])?$array["port"]:$ports[$scheme];
-	$host_socket=($scheme=="https"?"ssl://":"").$array["host"];
-	$host_port=$array["host"].(in_array($port,$ports)?"":":$port");
-	$path=isset($array["path"])?$array["path"]:"/";
-	$query_get=isset($array["query"])?"?".$array["query"]:"";
-	$query_post=isset($array["query"])?$array["query"]:"";
-	$type=strtoupper($type);
-	if(!in_array($type,array("GET","POST"))) {
-		show_php_error(array("phperror"=>"Unknown type '$type'"));
-		return false;
-	}
-	// OPEN THE SOCKET
-	$fp=fsockopen($host_socket,$port);
-	if(!$fp) {
-		show_php_error(array("phperror"=>"Could not open the socket"));
-		return false;
-	}
-	// SEND REQUEST
-	fputs($fp,"${type} ${path}${query_get} HTTP/1.1\r\n");
-	fputs($fp,"Host: ${host_port}\r\n");
-	if($type=="POST") fputs($fp,"Content-type: application/x-www-form-urlencoded\r\n");
-	if($type=="POST") fputs($fp,"Content-length: ".strlen($query_post)."\r\n");
-	fputs($fp,"User-Agent: ".get_name_version_revision()."\r\n");
-	fputs($fp,"Referer: ".get_base()."\r\n");
-	fputs($fp,"Connection: close\r\n\r\n");
-	if($type=="POST") fputs($fp,$query_post);
-	// READ RESPONSE
-	$result="";
-	while(!feof($fp)) $result.=fgets($fp,8192);
-	// CLOSE SOCKET
-	fclose($fp);
-	// PREPARE RESPONSE
-	$result=explode("\r\n\r\n",$result,2);
-	$headers=isset($result[0])?$result[0]:"";
-	$body=isset($result[1])?$result[1]:"";
-	// SOME CHECKS
-	$headers=explode("\n",$headers);
-	foreach($headers as $index=>$header) {
-		if(stripos($header,"location:")!==false && stripos($header,"-location:")===false) {
-			$url2=trim(substr($header,strpos($header,":",stripos($header,"location:"))+1));
-			$array2=parse_url($url2);
-			if(!isset($array2["scheme"])) $array2["scheme"]=$array["scheme"];
-			if(!isset($array2["host"])) $array2["host"]=$array["host"];
-			if(!isset($array2["port"]) && isset($array["port"])) $array2["port"]=$array["port"];
-			if(!isset($array2["path"])) {
-				$array2["path"]="/";
-			} elseif(substr($array2["path"],0,1)!="/") {
-				if(isset($array["path"])) $array2["path"]=$array["path"]."/".$array2["path"];
-				if(!isset($array["path"])) $array2["path"]="/".$array2["path"];
-			}
-			require_once("lib/wordpress/http_build_url.php");
-			$url2=http_build_url($url2,$array2);
-			$body=url_get_contents($url2,$type);
-			unset($headers[$index]);
-			break;
-		}
-	}
-	foreach($headers as $index=>$header) {
-		if(stripos($header,"404 Not Found")!==false) {
-			$body="";
-			unset($headers[$index]);
-			break;
-		}
-	}
-	foreach($headers as $index=>$header) {
-		if(stripos($header,"transfer-encoding:")!==false && stripos($header,"chunked")!==false) {
-			$from=0;
-			$newbody="";
-			for(;;) {
-				$pos=strpos($body,"\r\n",$from);
-				if($pos===false) breaK;
-				$chunked=hexdec(substr($body,$from,$pos-$from));
-				$from=$pos+2;
-				$newbody.=substr($body,$from,$chunked);
-				$from+=$chunked+2;
-				if($from>strlen($body)) break;
-			}
-			$body=$newbody;
-			unset($headers[$index]);
-			break;
-		}
-	}
-	foreach($headers as $index=>$header) {
-		if(stripos($header,"content-encoding:")!==false && stripos($header,"gzip")!==false) {
-			$body=gunzip($body);
-			unset($headers[$index]);
-			break;
-		}
-		if(stripos($header,"content-encoding:")!==false && stripos($header,"deflate")!==false) {
-			$body=gzinflate($body);
-			unset($headers[$index]);
-			break;
-		}
-	}
+	// DO THE REQUEST
+	require_once("lib/phpclasses/http.php");
+	$http=new http_class;
+	$http->user_agent=get_name_version_revision();
+	$http->follow_redirect=1;
+	$arguments=array();
+	$error=$http->GetRequestArguments($url,$arguments);
+	if($error!="") return "";
+	$error=$http->Open($arguments);
+	if($error!="") return "";
+	$error=$http->SendRequest($arguments);
+	if($error!="") return "";
+	$headers=array();
+	$error=$http->ReadReplyHeaders($headers);
+	if($error!="") return "";
+	$body="";
+	$error=$http->ReadWholeReplyBody($body);
+	if($error!="") return "";
+	$http->Close();
 	// RETURN RESPONSE
 	return $body;
 }
@@ -414,17 +332,6 @@ function getcwd_protected() {
 	$dir=getcwd();
 	if($dir=="/") $dir=dirname(getServer("SCRIPT_FILENAME"));
 	return $dir;
-}
-
-function gunzip($data) {
-	$file=get_temp_file(getDefault("exts/gzipext",".gz"));
-	file_put_contents($file,$data);
-	$size=gzfilesize($file);
-	$fp=gzopen($file,"r");
-	$data=gzread($fp,$size);
-	gzclose($fp);
-	unlink($file);
-	return $data;
 }
 
 // COPIED FROM http://php.net/manual/es/function.gzread.php#110078
