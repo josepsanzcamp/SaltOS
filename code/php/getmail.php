@@ -174,7 +174,9 @@ function __getmail_getutf8($temp) {
 function __getmail_html2text($html) {
 	include_once("lib/roundcube/rcube_html2text.php");
 	$h2t=new rcube_html2text($html);
+	capture_next_error();
 	$text=$h2t->get_text();
+	get_clear_error();
 	return $text;
 }
 
@@ -327,8 +329,8 @@ function __getmail_gettextbody($array,$level=0) {
 	if(__getmail_processplainhtml($disp,$type)) {
 		$temp=__getmail_getnode("Body",$array);
 		if($temp) {
-			if($type=="html") $temp=__getmail_html2text($temp);
 			$temp=__getmail_getutf8($temp);
+			if($type=="html") $temp=__getmail_html2text($temp);
 			$result[]=array("type"=>$type,"body"=>$temp);
 		}
 	} elseif(__getmail_processmessage($disp,$type)) {
