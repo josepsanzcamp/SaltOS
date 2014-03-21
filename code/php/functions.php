@@ -961,7 +961,10 @@ function show_php_error($array=null) {
 	$msg=getServer("SHELL")?$msg_text:$msg_html;
 	// REFUSE THE DEPRECATED WARNINGS
 	if(isset($array["phperror"]) && stripos($array["phperror"],"deprecated")!==false) {
-		addlog($msg_text,getDefault("debug/warningfile","warning.log"));
+		$hash=md5($msg_text);
+		$file=getDefault("debug/warningfile","warning.log");
+		if(checklog($hash,$file)) $msg_text="";
+		addlog("${msg_text}***** ${hash} *****",$file);
 		return;
 	}
 	// CHECK IF CAPTURE ERROR WAS ACTIVE
@@ -972,7 +975,10 @@ function show_php_error($array=null) {
 		return;
 	}
 	// ADD THE MSG_ALT TO THE ERROR LOG FILE
-	addlog($msg_text,getDefault("debug/errorfile","error.log"));
+	$hash=md5($msg_text);
+	$file=getDefault("debug/errorfile","error.log");
+	if(checklog($hash,$file)) $msg_text="";
+	addlog("${msg_text}***** ${hash} *****",$file);
 	// PREPARE THE FINAL REPORT (ONLY IN NOT SHELL MODE)
 	if(!getServer("SHELL")) {
 		$msg=pretty_html_error($msg);

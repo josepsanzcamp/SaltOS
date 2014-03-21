@@ -84,6 +84,17 @@ function __addlog_helper($a) {
 	return current_datetime_decimals().": ".$a;
 }
 
+function checklog($hash,$file="") {
+	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
+	if(file_exists($dir.$file) && memory_get_free()>filesize($dir.$file)) {
+		capture_next_error();
+		$buffer=file_get_contents($dir.$file);
+		$error=get_clear_error();
+		if(!$error && strpos($buffer,$hash)!==false) return 1;
+	}
+	return 0;
+}
+
 function addlog($msg,$file="") {
 	if(!$file) $file=getDefault("debug/logfile","saltos.log");
 	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
@@ -101,16 +112,7 @@ function addlog($msg,$file="") {
 		}
 	}
 	$msg=trim($msg);
-	$hash=md5($msg);
-	$repeated=0;
-	if(file_exists($dir.$file) && memory_get_free()>filesize($dir.$file)) {
-		capture_next_error();
-		$buffer=file_get_contents($dir.$file);
-		$error=get_clear_error();
-		if(!$error && strpos($buffer,$hash)!==false) $repeated=1;
-	}
-	$msg=$repeated?array():explode("\n",$msg);
-	array_push($msg,"***** ${hash} *****");
+	$msg=explode("\n",$msg);
 	$msg=array_map("__addlog_helper",$msg);
 	$msg=implode("\n",$msg)."\n";
 	file_put_contents($dir.$file,$msg,FILE_APPEND);
