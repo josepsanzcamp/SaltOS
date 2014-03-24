@@ -23,9 +23,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function eval_protected($input,$global,$source="") {
-	if(is_string($global)) foreach(explode(",",$global) as $var) global $$var;
-	if(is_array($global)) extract($global);
+function eval_protected($input,$global="",$source="") {
+	if(is_string($global) && $global!="") foreach(explode(",",$global) as $var) global $$var;
+	if(is_array($global) && count($global)) extract($global);
 	capture_next_error();
 	ob_start();
 	$output=eval("return $input;");

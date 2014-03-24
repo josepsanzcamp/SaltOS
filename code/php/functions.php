@@ -822,6 +822,9 @@ function check_security($action="") {
 		$query="SELECT logout FROM tbl_security WHERE id='${id_security}'";
 		$logout=execute_query($query);
 		return !$logout;
+	} elseif($action=="captcha") {
+		$query="UPDATE tbl_security_ip SET retries=0 WHERE id='${id_security_ip}'";
+		db_query($query);
 	} else {
 		show_php_error(array("phperror"=>"Unknown action='$action' in check_security"));
 	}

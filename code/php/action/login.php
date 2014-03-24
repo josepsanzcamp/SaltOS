@@ -32,7 +32,9 @@ if(getParam("action")=="login") {
 	$style=getParam("style");
 	$iconset=getParam("iconset");
 	if($user!="" || $pass!="") {
-		if(!check_security("retries") && !check_captcha($captcha)) {
+		$check1=check_security("retries");
+		$check2=check_captcha($captcha);
+		if(!$check1 && !$check2) {
 			setParam("action","logout");
 			include("php/action/logout.php");
 		}
@@ -53,6 +55,9 @@ if(getParam("action")=="login") {
 				useCookie("pass","null");
 				useCookie("remember","null");
 			}
+		}
+		if(!$check1 && $check2) {
+			check_security("captcha");
 		}
 	}
 	useCookie("lang",$lang);
