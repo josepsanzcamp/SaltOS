@@ -139,4 +139,135 @@ if($page=="incidencias") {
 		}
 	}
 }
+if($page=="correo") {
+	if($action=="form") {
+		include_once("php/getmail.php");
+		// DATOS CORREO
+		$ok=0;
+		$email_support=CONFIG("email_support");
+		if($email_support) {
+			$id_correo=abs($id);
+			if(__getmail_checkperm($id_correo)) {
+				$decoded=__getmail_getmime($id_correo);
+				if($decoded) {
+					$info=__getmail_getinfo(__getmail_getnode("0",$decoded));
+					foreach($info["emails"] as $email) {
+						if(strpos($email_support,$email["valor"])!==false) $ok=1;
+					}
+				}
+			}
+		}
+	}
+	if($action=="incidencias") {
+		include_once("php/getmail.php");
+		include_once("php/unoconv.php");
+		// FUNCIONES
+		function __incidencias_codigo($id) {
+			return substr(str_repeat("0",CONFIG("zero_padding_digits")).$id,-CONFIG("zero_padding_digits"),CONFIG("zero_padding_digits"));
+		}
+		// DATOS CORREO
+		$id_correo=abs($id);
+		if(!__getmail_checkperm($id_correo)) action_denied();
+		$decoded=__getmail_getmime($id_correo);
+		if(!$decoded) {
+			session_error(LANG("msgopenerrorpop3email","correo"));
+			javascript_history(-1);
+			die();
+		}
+		// CHECK SI EXISTE LA INCIDENCIA
+		$query="SELECT id FROM tbl_incidencias WHERE id_correo='${id_correo}'";
+		$id_incidencia=execute_query($query);
+		if($id_incidencia) {
+			session_error(LANG("incidenciaexists","correo").__incidencias_codigo($id_incidencia));
+			javascript_history(-1);
+			die();
+		}
+		// COJER DATOS DEL EMAIL
+		$info=__getmail_getinfo(__getmail_getnode("0",$decoded));
+		$body=__getmail_gettextbody(__getmail_getnode("0",$decoded));
+		$result=__getmail_getfullbody(__getmail_getnode("0",$decoded));
+		$files=__getmail_getfiles(__getmail_getnode("0",$decoded));
+		// CHECK EMAIL_SUPPORT
+		$email_support=CONFIG("email_support");
+		if(!$email_support) {
+			session_error(LANG("notsupportdefined","correo"));
+			javascript_history(-1);
+			die();
+		}
+		$ok=0;
+		foreach($info["emails"] as $email) {
+			if(strpos($email_support,$email["valor"])!==false) $ok=1;
+		}
+		if(!$ok) {
+			session_error(LANG("notsupportfound","correo"));
+			javascript_history(-1);
+			die();
+		}
+		// HACER INSERT INCIDENCIA
+		$subject2=addslashes($info["subject"]);
+		$body2=addslashes($body);
+		$query="INSERT INTO tbl_incidencias(id_cliente,nombre,id_estado,descripcion,id_proyecto,id_prioridad,id_correo) VALUES('0','${subject2}','0','${body2}','0','0','${id_correo}')";
+		db_query($query);
+		$query="SELECT MAX(id) FROM tbl_incidencias";
+		$id_incidencia=execute_query($query);
+		// HACER INSERT REGISTRO CONTROL
+		$id_aplicacion=page2id("incidencias");
+		$id_usuario=current_user();
+		$datetime=current_datetime();
+		$query="INSERT INTO tbl_registros_i(`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}')";
+		db_query($query);
+		// AÑADIR PDF CON CORREO ORIGINAL
+		$action="pdf";
+		setParam("action","pdf");
+		$_LANG["default"]="$page,menu,common";
+		$_CONFIG[$page]=xml2array("xml/$page.xml");
+		$_GET["id"]=$id_correo;
+		ob_start();
+		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
+		if(!defined("__CANCEL_HEADER__")) define("__CANCEL_HEADER__",1);
+		include("php/default.php");
+		$pdf=ob_get_clean();
+		$name=encode_bad_chars_file(LANG("correo","menu")." ".__incidencias_codigo($id_correo)." ".$info["subject"].getDefault("exts/pdfext",".pdf"));
+		$file=time()."_".get_unique_id_md5()."_".$name;
+		$size=strlen($pdf);
+		$type="application/pdf";
+		file_put_contents(get_directory("dirs/filesdir").$file,$pdf);
+		$search=addslashes(encode_search(unoconv2txt(array("input"=>get_directory("dirs/filesdir").$file))," "));
+		$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','${search}')";
+		db_query($query);
+		// AÑADIR IMAGENES INLINE
+		foreach($result as $index=>$node) {
+			$disp=$node["disp"];
+			$type=$node["type"];
+			if(!__getmail_processplainhtml($disp,$type) && !__getmail_processmessage($disp,$type)) {
+				$cid=$node["cid"];
+				if($cid!="") {
+					$name=addslashes($node["cname"]);
+					$file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($node["cname"]);
+					file_put_contents(get_directory("dirs/filesdir").$file,$node["body"]);
+					$size=$node["csize"];
+					$type=$node["ctype"];
+					$search=addslashes(encode_search(unoconv2txt(array("input"=>get_directory("dirs/filesdir").$file))," "));
+					$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','${search}')";
+					db_query($query);
+				}
+			}
+		}
+		// AÑADIR ADJUNTOS
+		foreach($files as $node) {
+			$name=addslashes($node["cname"]);
+			$file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($node["cname"]);
+			file_put_contents(get_directory("dirs/filesdir").$file,$node["body"]);
+			$size=$node["csize"];
+			$type=$node["ctype"];
+			$search=addslashes(encode_search(unoconv2txt(array("input"=>get_directory("dirs/filesdir").$file))," "));
+			$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','${search}')";
+			db_query($query);
+		}
+		// REBOTAR AL FORMULARIO PARA CONTESTAR
+		session_alert(LANG("addincidenciaok").__incidencias_codigo($id_incidencia));
+		javascript_location_page("correo&action=form&id=0_replyall_".$id_correo);
+		die();
+	}
+}
 ?>

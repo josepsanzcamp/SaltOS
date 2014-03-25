@@ -39,7 +39,15 @@ if(getParam("action")=="support") {
 		javascript_history(-1);
 		die();
 	}
-	$to=LANG("contact","support")." <".CONFIG("email_support").">";
+	$to=array();
+	foreach(explode(";",CONFIG("email_support")) as $addr) {
+		$addr=trim($addr);
+		list($addr,$addrname)=__sendmail_parser($addr);
+		if($addr!="") {
+			if($addrname!="") $to[]="to:".$addrname." <".$addr.">";
+			if($addrname=="") $to[]="to:".LANG("contact","support")." <".$addr.">";
+		}
+	}
 	$contact=LANG("contact","support");
 	$nombre=getParam("default_0_nombre");
 	$subject=getParam("default_0_subject");

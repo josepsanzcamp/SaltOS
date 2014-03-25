@@ -1201,6 +1201,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sensitivitypersonal>Personal</sensitivitypersonal>
 		<sensitivityprivate>Privado</sensitivityprivate>
 		<sensitivityconfidential>Confidencial</sensitivityconfidential>
+		<addincidencia>Crear incidencia</addincidencia>
+		<addincidenciatip>Crea una incidencia a partir de este correo</addincidenciatip>
+		<addincidenciamsg>Desea crear una incidencia a partir de este correo?</addincidenciamsg>
+		<addincidenciaok>Se ha creado la incidencia con el código: </addincidenciaok>
+		<notsupportdefined>No se ha definido la cuenta de correo de soporte</notsupportdefined>
+		<notsupportfound>Este correo no contiene la cuenta de correo de soporte</notsupportfound>
+		<incidenciaexists>Esta incidencia ya existe y tiene el código: </incidenciaexists>
 	</correo>
 	<cuentas>
 		<list>Listado de cuentas</list>

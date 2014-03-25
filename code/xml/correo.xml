@@ -1039,6 +1039,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick include="xml/common/quickform.xml" />
 		<buttons>
 			<row>
+				<field global="id" ifeval="$id&lt;0">
+					<type>button</type>
+					<value lang="true">addincidencia</value>
+					<tip lang="true">addincidenciatip</tip>
+					<onclick>addincidencia()</onclick>
+					<disabled global="page,action,id,ok" require="php/action/incidencias.php" eval="true">$ok?"false":"true"</disabled>
+					<class>nowrap contextmenu</class>
+					<icon>incidencias</icon>
+				</field>
 				<field>
 					<type>separator</type>
 					<width>100%</width>
@@ -1121,6 +1130,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<function eval="true">"lang_msgnumnowait() { return '".LANG_ESCAPE("msgnumnowait")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumsispam() { return '".LANG_ESCAPE("msgnumsispam")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumnospam() { return '".LANG_ESCAPE("msgnumnospam")."1".LANG_ESCAPE("message1")."'; }"</function>
+			<function eval="true">"addincidencia() { dialog(\"".LANG_ESCAPE("confirm")."\",\"".LANG_ESCAPE("addincidenciamsg")."\",{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','incidencias'); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 		</javascript>
 	</form>
 	<delete>
