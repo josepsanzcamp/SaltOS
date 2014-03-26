@@ -1366,11 +1366,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>fichero</name>
-					<type>TEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fichero_file</name>
-					<type>TEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>fichero_size</name>
