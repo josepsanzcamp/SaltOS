@@ -104,9 +104,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>mailto("jcompany@saltos.net")</onclick>
 						</field>
 						<field>
+							<label>Andrés Diaz (Beta tester)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>mailto("adiaz@bewsystems.com")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>
