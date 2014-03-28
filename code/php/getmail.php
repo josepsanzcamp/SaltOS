@@ -164,22 +164,6 @@ function __getmail_getdisposition($array) {
 	return $disp;
 }
 
-// RETURN THE UTF-8 CONVERTED STRING IF IT'S NEEDED
-function __getmail_getutf8($temp) {
-	if(!mb_check_encoding($temp,"UTF-8")) $temp=mb_convert_encoding($temp,"UTF-8");
-	return $temp;
-}
-
-// USING ROUNDCUBEMAIL FEATURES
-function __getmail_html2text($html) {
-	include_once("lib/roundcube/rcube_html2text.php");
-	$h2t=new rcube_html2text($html);
-	capture_next_error();
-	$text=$h2t->get_text();
-	get_clear_error();
-	return $text;
-}
-
 // RETURN AN ARRAY OF ATTACHMENTS FILES
 function __getmail_getfiles($array,$level=0) {
 	$result=array();
@@ -191,7 +175,7 @@ function __getmail_getfiles($array,$level=0) {
 			$cid=__getmail_getnode("Headers/content-id:",$array);
 			if(substr($cid,0,1)=="<") $cid=substr($cid,1);
 			if(substr($cid,-1,1)==">") $cid=substr($cid,0,-1);
-			$cname=__getmail_getutf8(__getmail_getnode("FileName",$array));
+			$cname=getutf8(__getmail_getnode("FileName",$array));
 			$location=__getmail_getnode("Headers/content-location:",$array);
 			if($cid=="" && $cname=="" && $location!="") $cid=$location;
 			$ctype=__getmail_getnode("Headers/content-type:",$array);
@@ -208,7 +192,7 @@ function __getmail_getfiles($array,$level=0) {
 		// THIS DATA IS USED BY THE NEXT TRICK
 		$temp=__getmail_getnode("Body",$array);
 		if($temp) {
-			$temp=__getmail_getutf8($temp);
+			$temp=getutf8($temp);
 			$result[]=array("disp"=>$disp,"type"=>$type,"body"=>$temp);
 		}
 	} elseif(__getmail_processmessage($disp,$type)) {
@@ -269,8 +253,8 @@ function __getmail_getinfo($array) {
 		if($addresses) {
 			$temp=array();
 			foreach($addresses as $a) {
-				$name=__getmail_getutf8(__getmail_getnode("name",$a));
-				$addr=__getmail_getutf8(__getmail_getnode("address",$a));
+				$name=getutf8(__getmail_getnode("name",$a));
+				$addr=getutf8(__getmail_getnode("address",$a));
 				$result["emails"][]=array("id_tipo"=>$key,"tipo"=>$val,"nombre"=>$name,"valor"=>$addr);
 				$temp[]=($name!="")?$name."<".$addr.">":$addr;
 			}
@@ -291,7 +275,7 @@ function __getmail_getinfo($array) {
 	}
 	if($subject) {
 		if(is_array($subject)) $subject=$subject[0]; // TO PREVENT ERRORS WHEN THE HEADER IS MALFORMED
-		$subject=__getmail_getutf8($subject);
+		$subject=getutf8($subject);
 		$result["subject"]=$subject;
 	}
 	// CHECK X-SPAM-STATUS HEADER
@@ -329,8 +313,8 @@ function __getmail_gettextbody($array,$level=0) {
 	if(__getmail_processplainhtml($disp,$type)) {
 		$temp=__getmail_getnode("Body",$array);
 		if($temp) {
-			$temp=__getmail_getutf8($temp);
-			if($type=="html") $temp=__getmail_html2text($temp);
+			$temp=getutf8($temp);
+			if($type=="html") $temp=html2text($temp);
 			$result[]=array("type"=>$type,"body"=>$temp);
 		}
 	} elseif(__getmail_processmessage($disp,$type)) {
@@ -381,7 +365,7 @@ function __getmail_getfullbody($array) {
 	if(__getmail_processplainhtml($disp,$type)) {
 		$temp=__getmail_getnode("Body",$array);
 		if($temp) {
-			$temp=__getmail_getutf8($temp);
+			$temp=getutf8($temp);
 			$result[]=array("disp"=>$disp,"type"=>$type,"body"=>$temp);
 		}
 	} elseif(__getmail_processmessage($disp,$type)) {
@@ -398,7 +382,7 @@ function __getmail_getfullbody($array) {
 			$cid=__getmail_getnode("Headers/content-id:",$array);
 			if(substr($cid,0,1)=="<") $cid=substr($cid,1);
 			if(substr($cid,-1,1)==">") $cid=substr($cid,0,-1);
-			$cname=__getmail_getutf8(__getmail_getnode("FileName",$array));
+			$cname=getutf8(__getmail_getnode("FileName",$array));
 			$location=__getmail_getnode("Headers/content-location:",$array);
 			if($cid=="" && $cname=="" && $location!="") $cid=$location;
 			$ctype=__getmail_getnode("Headers/content-type:",$array);
@@ -456,7 +440,7 @@ function __getmail_getcid($array,$hash) {
 			$cid=__getmail_getnode("Headers/content-id:",$array);
 			if(substr($cid,0,1)=="<") $cid=substr($cid,1);
 			if(substr($cid,-1,1)==">") $cid=substr($cid,0,-1);
-			$cname=__getmail_getutf8(__getmail_getnode("FileName",$array));
+			$cname=getutf8(__getmail_getnode("FileName",$array));
 			$location=__getmail_getnode("Headers/content-location:",$array);
 			if($cid=="" && $cname=="" && $location!="") $cid=$location;
 			$ctype=__getmail_getnode("Headers/content-type:",$array);

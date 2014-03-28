@@ -85,22 +85,12 @@ function unoconv2pdf($array) {
 	return __unoconv_post($array,$input,$output);
 }
 
-function __unoconv_getutf8($temp) {
-	require_once("php/getmail.php");
-	return __getmail_getutf8($temp);
-}
-
-function __unoconv_html2text($temp) {
-	require_once("php/getmail.php");
-	return __getmail_html2text($temp);
-}
-
 function unoconv2txt($array) {
 	list($input,$output,$type,$ext,$type0)=__unoconv_pre($array);
 	if($type=="text/plain") {
 		copy($input,$output);
 	} elseif($type=="text/html") {
-		file_put_contents($output,__unoconv_html2text(file_get_contents($input)));
+		file_put_contents($output,html2text(file_get_contents($input)));
 	} elseif($type=="application/pdf") {
 		if(check_commands(getDefault("commands/pdftotext"),60)) {
 			ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
@@ -117,7 +107,7 @@ function unoconv2txt($array) {
 	}
 	if(file_exists($output)) {
 		$temp=file_get_contents($output);
-		$temp=__unoconv_getutf8($temp);
+		$temp=getutf8($temp);
 		file_put_contents($output,$temp);
 	}
 	return __unoconv_post($array,$input,$output);

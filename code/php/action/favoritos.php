@@ -70,7 +70,6 @@ if(getParam("action")=="favoritos") {
 		$html=url_get_contents($url);
 		$error=get_clear_error();
 		if(!$error && $html!="") {
-			require_once("php/getmail.php");
 			// NOMBRE EN TAG TITLE
 			$nombre=$url;
 			$pos1=stripos($html,"<title>");
@@ -86,8 +85,8 @@ if(getParam("action")=="favoritos") {
 				if(isset($meta["property"]) && $meta["property"]=="og:title" && isset($meta["content"])) $nombre=$meta["content"];
 			}
 			// INSERT EN TBL_FAVORITOS
-			$nombre=addslashes(html_entity_decode(__getmail_getutf8($nombre),ENT_COMPAT,"UTF-8"));
-			$descripcion=addslashes(html_entity_decode(__getmail_getutf8($descripcion),ENT_COMPAT,"UTF-8"));
+			$nombre=addslashes(html_entity_decode(getutf8($nombre),ENT_COMPAT,"UTF-8"));
+			$descripcion=addslashes(html_entity_decode(getutf8($descripcion),ENT_COMPAT,"UTF-8"));
 			$query="INSERT INTO tbl_favoritos(`id`,`url`,`nombre`,`descripcion`) VALUES(NULL,'${url}','${nombre}','${descripcion}')";
 			db_query($query);
 			// INSERT EN TBL_REGISTROS_I

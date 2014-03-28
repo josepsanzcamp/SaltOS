@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user($page,"export")) action_denied();
-if(getParam("action")=="export") {
+if($page=="datacfg") {
 	// DISABLE DB CACHE
 	$oldcache=set_use_cache("false");
 	// CONTINUE

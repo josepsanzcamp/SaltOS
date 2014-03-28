@@ -2587,6 +2587,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</row>
 		<row>
 			<id>NULL</id>
+			<id_aplicacion>40</id_aplicacion>
+			<id_permiso>15</id_permiso>
+		</row>
+		<row>
+			<id>NULL</id>
+			<id_aplicacion>40</id_aplicacion>
+			<id_permiso>16</id_permiso>
+		</row>
+		<row>
+			<id>NULL</id>
 			<id_aplicacion>23</id_aplicacion>
 			<id_permiso>17</id_permiso>
 		</row>

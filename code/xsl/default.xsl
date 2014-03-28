@@ -945,7 +945,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}" nowrap="nowrap">
-				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" size="{size}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}"/>
+				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" size="{size}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-corner-all"/>
 			</td>
 		</xsl:when>
 		<xsl:when test="type='link'">

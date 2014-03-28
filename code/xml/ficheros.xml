@@ -180,7 +180,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query global="page,id_usuario,id_aplicacion,filtro" eval="true">"SELECT id, id_aplicacion, id_registro, id_usuario, datetime, fichero, fichero_file, fichero_size, fichero_type, id2, id_grupo, action_id, aplicacion, usuario, email_privated, nombre, action_title, fichero_size2, action_download, action_viewpdf FROM (
 			SELECT a.*,LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
 			d.id_grupo id_grupo,
-			 CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro)  action_id,
+			 CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
 			(SELECT  CONCAT('link:opencontent(\"xml.php?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
 			".make_extra_query_with_login("d.")." usuario,
 			CASE e.id_aplicacion

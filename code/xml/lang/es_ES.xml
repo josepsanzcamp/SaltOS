@@ -1458,6 +1458,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Modificación de la importación</formupdate>
 		<defaultdata>Datos de la importación</defaultdata>
 		<sinaplicacion>[Sin aplicación]</sinaplicacion>
+		<importdata>Datos del fichero</importdata>
 	</importaciones>
 	<folders>
 		<notfound>Carpeta no encontrada</notfound>

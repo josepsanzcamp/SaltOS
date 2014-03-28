@@ -135,17 +135,7 @@ if(getParam("action")=="feeds") {
 	}
 
 	function __feeds_getvalue($array) {
-		return (is_array($array) && isset($array["value"]))?$array["value"]:$array;
-	}
-
-	function __feeds_getutf8($temp) {
-		require_once("php/getmail.php");
-		return __getmail_getutf8($temp);
-	}
-
-	function __feeds_html2text($html) {
-		require_once("php/getmail.php");
-		return __getmail_html2text($html);
+		return (is_array($array) && isset($array["value"]) && isset($array["#attr"]))?$array["value"]:$array;
 	}
 
 	function __feeds_xml2array_helper($xml) {
@@ -216,17 +206,17 @@ if(getParam("action")=="feeds") {
 		$description="";
 		$image="img/deffeed.png";
 		if($type=="rdf") {
-			$title=__feeds_getutf8(__feeds_getnode("rdf:RDF/channel/title",$array));
+			$title=getutf8(__feeds_getnode("rdf:RDF/channel/title",$array));
 			$link=__feeds_getnode("rdf:RDF/channel/link",$array);
-			$description=__feeds_getutf8(__feeds_getnode("rdf:RDF/channel/description",$array));
+			$description=getutf8(__feeds_getnode("rdf:RDF/channel/description",$array));
 			$image=__feeds_getnode("rdf:RDF/image/url",$array);
 		} elseif($type=="rss2") {
-			$title=__feeds_getutf8(__feeds_getnode("rss/channel/title",$array));
+			$title=getutf8(__feeds_getnode("rss/channel/title",$array));
 			$link=__feeds_getnode("rss/channel/link",$array);
-			$description=__feeds_getutf8(__feeds_getnode("rss/channel/description",$array));
+			$description=getutf8(__feeds_getnode("rss/channel/description",$array));
 			$image=__feeds_getnode("rss/channel/image/url",$array);
 		} elseif($type=="atom") {
-			$title=__feeds_getutf8(__feeds_getvalue(__feeds_getnode("feed/title",$array)));
+			$title=getutf8(__feeds_getvalue(__feeds_getnode("feed/title",$array)));
 			$link=__feeds_getnode("feed/link",$array);
 			$count=0;
 			while($link!==null) {
@@ -245,7 +235,7 @@ if(getParam("action")=="feeds") {
 			if(!$link && isset($alternate)) $link=$alternate;
 			// FIX FOR GOOGLE GROUPS
 			if(!$link) $link=__feeds_getnode("feed/id",$array);
-			$description=__feeds_getutf8(__feeds_getvalue(__feeds_getnode("feed/subtitle",$array)));
+			$description=getutf8(__feeds_getvalue(__feeds_getnode("feed/subtitle",$array)));
 		}
 		$array=array("title"=>$title,"link"=>$link,"description"=>$description,"image"=>$image);
 		foreach($array as $key=>$val) $array[$key]=trim($val);
@@ -262,15 +252,15 @@ if(getParam("action")=="feeds") {
 				$title=__feeds_getnode("title",$item);
 				if(is_array($title)) {
 					$title=__feeds_array2xml($title);
-					$title=__feeds_getutf8($title);
-					$title=__feeds_html2text($title);
+					$title=getutf8($title);
+					$title=html2text($title);
 				} else {
-					$title=__feeds_getutf8($title);
+					$title=getutf8($title);
 				}
 				$link=__feeds_getnode("link",$item);
 				$description=__feeds_getnode("description",$item);
 				if(is_array($description)) $description=__feeds_array2xml($description);
-				$description=__feeds_getutf8($description);
+				$description=getutf8($description);
 				$pubdate=__feeds_getnode("dc:date",$item);
 				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
 				$hash=md5(serialize(array($title,$pubdate,$description,$link)));
@@ -286,15 +276,15 @@ if(getParam("action")=="feeds") {
 				$title=__feeds_getnode("title",$item);
 				if(is_array($title)) {
 					$title=__feeds_array2xml($title);
-					$title=__feeds_getutf8($title);
-					$title=__feeds_html2text($title);
+					$title=getutf8($title);
+					$title=html2text($title);
 				} else {
-					$title=__feeds_getutf8($title);
+					$title=getutf8($title);
 				}
 				$link=__feeds_getnode("link",$item);
 				$description=__feeds_getnode("description",$item);
 				if(is_array($description)) $description=__feeds_array2xml($description);
-				$description=__feeds_getutf8($description);
+				$description=getutf8($description);
 				$pubdate=__feeds_getnode("pubDate",$item);
 				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
 				$hash=md5(serialize(array($title,$pubdate,$description,$link)));
@@ -310,10 +300,10 @@ if(getParam("action")=="feeds") {
 				$title=__feeds_getvalue(__feeds_getnode("title",$item));
 				if(is_array($title)) {
 					$title=__feeds_array2xml($title);
-					$title=__feeds_getutf8($title);
-					$title=__feeds_html2text($title);
+					$title=getutf8($title);
+					$title=html2text($title);
 				} else {
-					$title=__feeds_getutf8($title);
+					$title=getutf8($title);
 				}
 				$link=__feeds_getnode("link",$item);
 				$count2=0;
@@ -336,10 +326,10 @@ if(getParam("action")=="feeds") {
 				// GET CONTENT (AND SUMMARY IS OPTIONAL IN SOME FEEDS)
 				$summary=__feeds_getvalue(__feeds_getnode("summary",$item));
 				if(is_array($summary)) $summary=__feeds_array2xml($summary);
-				$summary=trim(__feeds_getutf8($summary));
+				$summary=trim(getutf8($summary));
 				$content=__feeds_getvalue(__feeds_getnode("content",$item));
 				if(is_array($content)) $content=__feeds_array2xml($content);
-				$content=trim(__feeds_getutf8($content));
+				$content=trim(getutf8($content));
 				// FIX SOME ISSUES ABOUT SOME HTML WITH NO TEXT CONTENT
 				$summary_plain=trim(strip_tags($summary));
 				if(!$summary_plain) $summary="";

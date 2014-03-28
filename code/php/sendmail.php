@@ -70,7 +70,7 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	}
 	if(!$mail->set("Subject",$subject)) return $mail->ErrorInfo;
 	if(!$mail->set("Body",$body)) return $mail->ErrorInfo;
-	if(!$mail->set("AltBody",__getmail_html2text($body))) return $mail->ErrorInfo;
+	if(!$mail->set("AltBody",html2text($body))) return $mail->ErrorInfo;
 	if(is_array($files)) {
 		foreach($files as $file) {
 			if(isset($file["data"]) && !isset($file["cid"])) $mail->AddStringAttachment($file["data"],$file["name"],"base64",$file["mime"]);

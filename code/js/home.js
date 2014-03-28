@@ -63,7 +63,6 @@ if(typeof(__home__)=="undefined" && typeof(parent.__home__)=="undefined") {
 							isOriginLeft:(dir=="ltr")
 						});
 					});
-					unloadingcontent();
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown) {
 					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

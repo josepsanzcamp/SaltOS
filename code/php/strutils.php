@@ -543,4 +543,20 @@ function ismsie($version=null) {
 		return false;
 	}
 }
+
+// USING ROUNDCUBEMAIL FEATURES
+function html2text($html) {
+	include_once("lib/roundcube/rcube_html2text.php");
+	$h2t=new rcube_html2text($html);
+	capture_next_error();
+	$text=$h2t->get_text();
+	get_clear_error();
+	return $text;
+}
+
+// RETURN THE UTF-8 CONVERTED STRING IF IT'S NEEDED
+function getutf8($temp) {
+	if(!mb_check_encoding($temp,"UTF-8")) $temp=mb_convert_encoding($temp,"UTF-8");
+	return $temp;
+}
 ?>

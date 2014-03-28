@@ -35,6 +35,10 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 			data:data,
 			type:"get",
 			success:function (response) {
+				if(type=="new") {
+					if(value==1) notice(lang_alert(),lang_msgnumnoleidos());
+					if(value==0) notice(lang_alert(),lang_msgnumsileidos());
+				}
 				if(type=="wait") {
 					if(value==1) notice(lang_alert(),lang_msgnumsiwait());
 					if(value==0) notice(lang_alert(),lang_msgnumnowait());
@@ -166,6 +170,22 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		old_signature=id_cuenta;
 	}
 
+	function update_checkbox() {
+		if(getParam("action")!="form") return;
+		var checkbox="input[name="+$("input[name$=state_new]").attr("name")+"]";
+		if($(checkbox).prop("checked")) {
+			var interval=setInterval(function() {
+				if(!$(checkbox).length) {
+					clearInterval(interval);
+				} else if($(checkbox).prop("writed")) {
+					clearInterval(interval);
+				} else {
+					$(checkbox).prop("checked",!$(checkbox).prop("checked"));
+				}
+			},1000);
+		}
+	}
+
 }
 
 "use strict";
@@ -173,4 +193,5 @@ $(function() {
 	update_files();
 	update_auto();
 	update_signature();
+	update_checkbox();
 });

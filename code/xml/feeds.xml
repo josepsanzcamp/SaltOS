@@ -701,8 +701,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<font>"normal","B",8,CONFIG("color_text1")</font>
 			<textarea>30,$row["y"],25,4,"R",LANG("descripcion")</textarea>
 			<font>"mono","",8,CONFIG("color_text2")</font>
-			<eval>include_once("php/getmail.php")</eval>
-			<textarea>55,$row["y"],125,4,"L",trim(__getmail_html2text($row["description"]))</textarea>
+			<textarea>55,$row["y"],125,4,"L",trim(html2text($row["description"]))</textarea>
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT CONCAT('".LANG_ESCAPE("feed")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END) subject
