@@ -36,7 +36,10 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 			data:data,
 			type:"get",
 			success:function(response) {
-				$(".importdata").html(response);
+				var obj=$(".importdata");
+				$(obj).html(response);
+				make_tables(obj);
+				make_selects(obj);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

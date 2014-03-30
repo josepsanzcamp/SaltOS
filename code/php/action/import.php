@@ -26,10 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user($page,"import")) action_denied();
 if($page=="importaciones") {
 	include("php/import.php");
-	echo "TODO";
+	$id_importacion=abs(getParam("id"));
+	$array=__import_importfile($id_importacion,array(0,7));
+	echo __import_make_table($array);
 	die();
 }
 if($page=="datacfg") {
+	include("php/import.php");
 	// GET THE FILE
 	$ok=0;
 	foreach($_FILES as $file) {
@@ -46,35 +49,6 @@ if($page=="datacfg") {
 		session_error(LANG("filenotfound","datacfg"));
 		javascript_history(-1);
 		die();
-	}
-	// FUNCTIONS
-	function __import_find_chars($data,$pos,$chars) {
-		$result=array();
-		$len=strlen($chars);
-		for($i=0;$i<$len;$i++) {
-			$temp=strpos($data,$chars[$i],$pos);
-			if($temp!==false) $result[]=$temp;
-		}
-		return count($result)?min($result):false;
-	}
-
-	function __import_find_query($data,$pos) {
-		$len=strlen($data);
-		$parentesis=0;
-		$parser=1;
-		$exists=0;
-		$pos2=__import_find_chars($data,$pos,"\\'();");
-		while($pos2!==false) {
-			if($data[$pos2]=="\\") $pos2++;
-			elseif($data[$pos2]=="'") $parser=!$parser;
-			elseif($data[$pos2]=="(" && $parser) $parentesis++;
-			elseif($data[$pos2]==")" && $parser) $parentesis--;
-			elseif($data[$pos2]==";" && $parser && !$parentesis) { $exists=1; break; }
-			if($pos2+1>=$len) break;
-			$pos2=__import_find_chars($data,$pos2+1,"\\'();");
-		}
-		if(!$parser || $parentesis || !$exists) return 0;
-		return $pos2-$pos;
 	}
 	// DISABLE DB CACHE
 	$oldcache=set_use_cache("false");

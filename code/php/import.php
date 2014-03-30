@@ -23,149 +23,56 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function __import_eval_with_vars($eval,$vars="") {
-	$oldeval=$eval;
-	if(!is_array($vars)) $vars=array();
-	extract($vars);
-	if(substr($eval,-1,1)==";") $eval=substr($eval,0,-1);
-	$eval=__import_eval_explode(";",$eval);
-	if(!count($eval)) $eval[]="";
-	$eval[count($eval)-1]="return ".$eval[count($eval)-1].";";
-	$eval=implode(";",$eval);
-	capture_next_error();
-	ob_start();
-	$eval=eval($eval);
-	$error1=ob_get_clean();
-	$error2=get_clear_error();
-	if($error1.$error2) show_php_error(array("phperror"=>"Internal error: $oldeval","details"=>$error1.$error2,"backtrace"=>debug_backtrace()));
-	$vars=compact(array_keys($vars));
-	return array($eval,$vars);
-}
-
-function __import_make_insert_query($table,$array) {
-	$list1=array();
-	$list2=array();
-	foreach($array as $key=>$val) {
-		$list1[]="`".$key."`";
-		$list2[]="'".getString($val)."'";
+function __import_find_chars($data,$pos,$chars) {
+	$result=array();
+	$len=strlen($chars);
+	for($i=0;$i<$len;$i++) {
+		$temp=strpos($data,$chars[$i],$pos);
+		if($temp!==false) $result[]=$temp;
 	}
-	$list1=implode(",",$list1);
-	$list2=implode(",",$list2);
-	$query="INSERT INTO $table($list1) VALUES($list2)";
-	return $query;
+	return count($result)?min($result):false;
 }
 
-function __import_make_update_query($table,$array,$id) {
-	$list1=array();
-	foreach($array as $key=>$val) {
-		$list1[]="`".$key."`='".getString($val)."'";
+function __import_find_query($data,$pos) {
+	$len=strlen($data);
+	$parentesis=0;
+	$parser=1;
+	$exists=0;
+	$pos2=__import_find_chars($data,$pos,"\\'();");
+	while($pos2!==false) {
+		if($data[$pos2]=="\\") $pos2++;
+		elseif($data[$pos2]=="'") $parser=!$parser;
+		elseif($data[$pos2]=="(" && $parser) $parentesis++;
+		elseif($data[$pos2]==")" && $parser) $parentesis--;
+		elseif($data[$pos2]==";" && $parser && !$parentesis) { $exists=1; break; }
+		if($pos2+1>=$len) break;
+		$pos2=__import_find_chars($data,$pos2+1,"\\'();");
 	}
-	$list1=implode(",",$list1);
-	$query="UPDATE $table SET $list1 WHERE id='$id'";
-	return $query;
+	if(!$parser || $parentesis || !$exists) return 0;
+	return $pos2-$pos;
 }
 
-function __import_getnode($path,$array) {
-	if(!is_array($path)) $path=explode("/",$path);
-	$elem=array_shift($path);
-	if(!is_array($array) || !isset($array[$elem])) return null;
-	if(count($path)==0) return $array[$elem];
-	return __import_getnode($path,__import_getvalue($array[$elem]));
-}
-
-function __import_getvalue($array) {
-	return (is_array($array) && isset($array["value"]) && isset($array["#attr"]))?$array["value"]:$array;
-}
-
-function __import_importfile($id_importacion) {
+function __import_importfile($id_importacion,$nodes=null) {
 	$query="SELECT * FROM tbl_ficheros WHERE id_aplicacion='".page2id("importaciones")."' AND id_registro='".abs($id_importacion)."'";
 	$row=execute_query($query);
-	switch($row["fichero_type"]) {
+	$file=get_directory("dirs/filesdir").$row["fichero_file"];
+	$type=$row["fichero_type"];
+	switch($type) {
 		case "application/xml":
-			$temp=__import_xml2array($file);
-			$tree=__import_xml2tree($temp,$levels,$array,$needed);
+			$array=__import_xml2array($file);
 			break;
 		case "text/plain":
-			$temp=__import_csv2array($file,$fixbug);
-			$tree=__import_matrix2tree($temp,$levels,$array,$needed);
+		case "text/csv":
+			$array=__import_csv2array($file,$nodes);
 			break;
 		case "application/vnd.ms-excel":
-			$temp=__import_xls2array($file);
-			$tree=__import_matrix2tree($temp,$levels,$array,$needed);
+		case "application/excel":
+			$array=__import_xls2array($file,$nodes);
 			break;
 		default:
-			show_php_error("Unknown type '$tipo'");
+			show_php_error(array("phperror"=>"Unknown type '${type}' for file '${file}' (id_importacion='${id_importacion}')"));
 	}
-	return $tree;
-}
-
-function __import_matrix2tree_rec($row,$levels,$array,&$hashes,&$result,$needed) {
-	$level=array_shift($levels);
-	$row2=__import_process_block($row,__import_getnode(__import_getnode("usar",$level),$array));
-	if(is_null($needed) || $needed=="" || (!is_null($needed) && $needed!="" && isset($row2[$needed]) && $row2[$needed]!="")) {
-		$hash=md5(serialize($row2));
-		if(count($levels)) {
-			if(!isset($hashes[$hash])) {
-				$hashes[$hash]=array();
-				$result[]=array($row2,array());
-			}
-			$pos=array_search($hash,array_keys($hashes));
-			__import_matrix2tree_rec($row,$levels,$array,$hashes[$hash],$result[$pos][1],null);
-		} else {
-			$hashes[]=$hash;
-			$result[]=$row2;
-		}
-	}
-}
-
-function __import_matrix2tree($data,$levels,$array,$needed) {
-	$header=array_shift($data);
-	foreach($header as $key=>$val) $header[$key]=encode_bad_chars($val);
-	$hashes=array();
-	$result=array();
-	foreach($data as $key=>$val) __import_matrix2tree_rec(array_combine($header,$val),$levels,$array,$hashes,$result,$needed);
-	return $result;
-}
-
-function __import_xml2tree($data,$levels,$array,$needed) {
-	$result=array();
-	$level=array_shift($levels);
-	$data=__import_getnode(__import_getnode("from",$level),$data);
-	$temp=__import_getnode("value",$data);
-	if(!is_null($temp)) $data=$temp;
-	$fields=__import_getnode(__import_getnode("usar",$level),$array);
-	if(count($levels)) $from_next=__import_getnode("from",reset($levels));
-	$tabla=__import_getnode("tabla",$level);
-	foreach($data as $key=>$val) {
-		if(is_array($val)) {
-			if(isset($from_next)) {
-				$backup=isset($val[$from_next])?$val[$from_next]:null;
-				unset($val[$from_next]);
-			}
-			foreach($val as $key2=>$val2) {
-				$temp=encode_bad_chars($key2);
-				$val[$temp]=$val2;
-				unset($val[$key2]);
-			}
-			$val=__import_process_block($val,$fields);
-			if(isset($from_next)) {
-				if(is_null($needed) || $needed=="" || (!is_null($needed) && $needed!="" && isset($val[$needed]) && $val[$needed]!="")) {
-					if(is_array($backup) && count($backup)) {
-						$result[]=array($val,__import_xml2tree(array($from_next=>$backup),$levels,$array,null));
-					} else {
-						$result[]=array($val,array());
-					}
-				}
-				unset($backup);
-			} else {
-				$result[]=$val;
-			}
-		} else {
-			$val=__import_process_block(array(encode_bad_chars(limpiar_key($key))=>$val),$fields);
-			$result[]=$val;
-		}
-	}
-	return $result;
+	return $array;
 }
 
 function __import_xml2array($file) {
@@ -212,27 +119,22 @@ function __import_struct2array(&$data) {
 	return $array;
 }
 
-function __import_csv2array($file,$fixbug) {
+function __import_csv2array($file,$nodes,$sep=";") {
 	$fd=fopen($file,"r");
 	$array=array();
 	$count=null;
-	while($row=fgetcsv($fd,0,";")) {
+	while($row=fgetcsv($fd,0,$sep)) {
 		foreach($row as $key=>$val) $row[$key]=getutf8($val);
 		if(is_null($count)) $count=count($row);
 		$total=count($row);
-		if(!is_null($fixbug) && $fixbug!="" && $total==$count+1) {
-			$row[$fixbug].=";".$row[$fixbug+1];
-			$total--;
-			for($i=$fixbug+1;$i<$total;$i++) $row[$i]=$row[$i+1];
-			unset($row[$total]);
-		}
 		if($total==$count) $array[]=$row;
 	}
 	fclose($fd);
+	$array=__import_array2tree($array,$nodes);
 	return $array;
 }
 
-function __import_xls2array($file) {
+function __import_xls2array($file,$nodes) {
 	set_include_path("lib/phpexcel:".get_include_path());
 	include_once("PHPExcel.php");
 	require_once('PHPExcel/Reader/Excel5.php');
@@ -243,6 +145,94 @@ function __import_xls2array($file) {
 	unset($objReader);
 	unset($objPHPExcel);
 	unset($SheetCollection);
+	$array=__import_array2tree($array,$nodes);
 	return $array;
+}
+
+function __import_array2tree($array,$nodes) {
+	if(!$nodes) return $array;
+	$head=array_shift($array);
+	$count_head=count($head);
+	$count_nodes=count($nodes);
+	foreach($nodes as $key=>$val) {
+		if($key==$count_nodes-1) $nodes[$key]=array("offset"=>$val,"length"=>$count_head-$val);
+		else $nodes[$key]=array("offset"=>$val,"length"=>$nodes[$key+1]-$val);
+	}
+	$array=__import_array2tree_rec($array,$nodes);
+	echo "<pre>";
+	print_r($array);
+	echo "</pre>";
+	die();
+	return $array;
+}
+
+function __import_array2tree_rec($array,$nodes) {
+	$node=array_shift($nodes);
+	$result=array();
+	foreach($array as $key=>$val) {
+		$array2=array_splice($val,$node["offset"],$node["length"]);
+		$hash=md5(serialize($array2));
+		if(!isset($result[$hash])) $result[$hash]=array();
+		if(count($nodes)) {
+			if(!isset($result[$hash]["data"])) $result[$hash]["data"]=$array2;
+			if(!isset($result[$hash]["rows"])) $result[$hash]["rows"]=array();
+			$result[$hash]["rows"][]=__import_array2tree_rec($array,$nodes);
+		} else {
+			$result[$hash]=$array2;
+		}
+	}
+	return $result;
+}
+
+function __import_col2name($col) {
+	static $chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	static $len=26;
+	$index1=intval($col/$len)-1;
+	$index2=$col%$len;
+	if($index1==-1) return $chars[$index2];
+	return $chars[$index1].$chars[$index2];
+}
+
+function __import_make_table($array,$select=null) {
+	$head=array_shift($array);
+	$result="";
+	$result.="<table class='tabla width100'>\n";
+	$result.="<tr>\n";
+	foreach($head as $col=>$field) {
+		$result.="<td class='thead center'>\n";
+		$result.=__import_col2name($col);
+		$result.="</td>\n";
+	}
+	$result.="</tr>\n";
+	if(is_array($select)) {
+		$result.="<tr>\n";
+		foreach($head as $col=>$field) {
+			$result.="<td class='tbody center'>\n";
+			$result.="<select class='ui-state-default ui-corner-all' name='${field}'>\n";
+			$result.="<option value=''></option>\n";
+			foreach($select as $value=>$option) $result.="<option value='${value}'>${option}</option>\n";
+			$result.="</select>";
+			$result.="</td>\n";
+		}
+		$result.="</tr>\n";
+	}
+	$result.="<tr>\n";
+	foreach($head as $field) {
+		$result.="<td class='thead center'>\n";
+		$result.=$field;
+		$result.="</td>\n";
+	}
+	$result.="</tr>\n";
+	foreach($array as $line=>$row) {
+		$result.="<tr>\n";
+		foreach($row as $field) {
+			$result.="<td class='tbody'>\n";
+			$result.=$field;
+			$result.="</td>\n";
+		}
+		$result.="</tr>\n";
+	}
+	$result.="</table>\n";
+	return $result;
 }
 ?>
