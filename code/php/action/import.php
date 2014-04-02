@@ -27,8 +27,13 @@ if(!check_user($page,"import")) action_denied();
 if($page=="importaciones") {
 	include("php/import.php");
 	$id_importacion=abs(getParam("id"));
-	$array=__import_importfile($id_importacion,array(0,7));
-	echo __import_make_table($array);
+	$array=__import_importfile($id_importacion,array("A,B,C,D,E,J,K","F,G,H,I"));
+	//~ $array=__import_importfile($id_importacion);
+	$array=__import_tree2array($array);
+	$head=array_keys($array[0]);
+	$buffer=__import_make_table(array("auto"=>true,"select"=>$head,"head"=>$head,"data"=>$array,"limit"=>20));
+	//~ $buffer=__import_make_table(array("auto"=>true,"data"=>$array,"limit"=>20));
+	output_buffer($buffer,"text/html");
 	die();
 }
 if($page=="datacfg") {
