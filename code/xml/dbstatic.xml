@@ -33,6 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>nombre</field>
 			<filter1>id_cliente</filter1>
 			<filter2>id_cliente</filter2>
+			<node0>id_tipo,nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax</node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>2</id>
@@ -42,6 +44,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>3</id>
@@ -51,6 +55,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>4</id>
@@ -60,6 +66,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>nombre</field>
 			<filter1>id_proyecto</filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>5</id>
@@ -69,6 +77,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>6</id>
@@ -78,6 +88,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>7</id>
@@ -87,6 +99,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
+			<node0>nombre,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,cif,num,fecha,iva,irpf</node0>
+			<node1>concepto,unidades,descuento,precio</node1>
 		</row>
 		<row>
 			<id>8</id>
@@ -96,6 +110,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
+			<node0>num,fecha,descripcion,base,iva,irpf,total</node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>9</id>
@@ -105,6 +121,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>10</id>
@@ -114,6 +132,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>11</id>
@@ -123,6 +143,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>12</id>
@@ -132,6 +154,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>13</id>
@@ -141,6 +165,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>14</id>
@@ -150,6 +176,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>15</id>
@@ -159,6 +187,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>16</id>
@@ -168,6 +198,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>17</id>
@@ -177,6 +209,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>18</id>
@@ -186,6 +220,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>19</id>
@@ -195,6 +231,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>20</id>
@@ -204,6 +242,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>21</id>
@@ -213,6 +253,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>nombre</field>
 			<filter1>id_proveedor</filter1>
 			<filter2>id_proveedor</filter2>
+			<node0>nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax</node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>22</id>
@@ -222,6 +264,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>23</id>
@@ -231,6 +275,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>24</id>
@@ -240,6 +286,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>25</id>
@@ -249,6 +297,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>26</id>
@@ -258,6 +308,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>27</id>
@@ -267,6 +319,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>28</id>
@@ -276,6 +330,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>29</id>
@@ -285,6 +341,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>30</id>
@@ -294,6 +352,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>31</id>
@@ -303,6 +363,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>nombre</field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>32</id>
@@ -312,6 +374,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0>activo,nombre,cif,contacto,cargo,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax,facturacion,iae_cod,iae_desc,comentarios</node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>33</id>
@@ -321,6 +385,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0>nombre,ref,descripcion,precio,descuento,id_iva,peso,volumen,dimensiones,web</node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>34</id>
@@ -330,6 +396,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>35</id>
@@ -339,6 +407,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>36</id>
@@ -348,6 +418,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>37</id>
@@ -357,6 +429,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>38</id>
@@ -366,6 +440,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>39</id>
@@ -375,6 +451,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>40</id>
@@ -384,6 +462,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>41</id>
@@ -393,6 +473,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>42</id>
@@ -402,6 +484,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 		<row>
 			<id>43</id>
@@ -411,6 +495,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field></field>
 			<filter1></filter1>
 			<filter2></filter2>
+			<node0></node0>
+			<node1></node1>
 		</row>
 	</tbl_aplicaciones>
 	<tbl_aplicaciones_i>

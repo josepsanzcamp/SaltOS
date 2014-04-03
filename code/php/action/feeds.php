@@ -90,42 +90,6 @@ if(getParam("action")=="feeds") {
 		die();
 	}
 	// FUNCTIONS
-	function __feeds_struct2array(&$data) {
-		$array=array();
-		while($linea=array_pop($data)) {
-			$name=$linea["tag"];
-			$type=$linea["type"];
-			$value="";
-			if(isset($linea["value"])) $value=$linea["value"];
-			$attr=array();
-			if(isset($linea["attributes"])) $attr=$linea["attributes"];
-			if($type=="open") {
-				// caso 1 <algo>
-				$value=__feeds_struct2array($data);
-				if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
-				set_array($array,$name,$value);
-			} elseif($type=="close") {
-				// caso 2 </algo>
-				return $array;
-			} elseif($type=="complete") {
-				if($value=="") {
-					// caso 3 <algo/>
-					if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
-					set_array($array,$name,$value);
-				} else {
-					// caso 4 <algo>algo</algo>
-					if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
-					set_array($array,$name,$value);
-				}
-			} elseif($type=="cdata") {
-				// NOTHING TO DO
-			} else {
-				xml_error("Unknown tag type with name '&lt;/$name&gt;'",$linea);
-			}
-		}
-		return $array;
-	}
-
 	function __feeds_getnode($path,$array) {
 		if(!is_array($path)) $path=explode("/",$path);
 		$elem=array_shift($path);
@@ -139,9 +103,10 @@ if(getParam("action")=="feeds") {
 	}
 
 	function __feeds_xml2array_helper($xml) {
+		require_once("php/import.php");
 		$data=xml2struct($xml);
 		$data=array_reverse($data);
-		$array=__feeds_struct2array($data);
+		$array=__import_struct2array($data);
 		return $array;
 	}
 
@@ -156,7 +121,7 @@ if(getParam("action")=="feeds") {
 			$error=get_clear_error();
 		}
 		if(strpos($error,"Invalid document")!==false) {
-			$xml=__feeds_removescripts($xml);
+			$xml=remove_script_tag($xml);
 			capture_next_error();
 			$array=__feeds_xml2array_helper($xml);
 			$error=get_clear_error();
@@ -174,7 +139,7 @@ if(getParam("action")=="feeds") {
 			$error=get_clear_error();
 		}
 		if(strpos($error,"Invalid character")!==false) {
-			$xml=__feeds_remove_bad_chars($xml);
+			$xml=remove_bad_chars($xml);
 			capture_next_error();
 			$array=__feeds_xml2array_helper($xml);
 			$error=get_clear_error();
@@ -183,10 +148,6 @@ if(getParam("action")=="feeds") {
 			$error=""; // KNOWN ISSUE
 		}
 		return array($array,$error);
-	}
-
-	function __feeds_array2xml($array) {
-		return __array2xml_write_nodes($array);
 	}
 
 	function __feeds_detect($array) {
@@ -243,6 +204,7 @@ if(getParam("action")=="feeds") {
 	}
 
 	function __feeds_fetchitems($array) {
+		require_once("php/getmail.php");
 		$type=__feeds_detect($array);
 		$items=array();
 		if($type=="rdf") {
@@ -251,7 +213,7 @@ if(getParam("action")=="feeds") {
 			while($item!==null) {
 				$title=__feeds_getnode("title",$item);
 				if(is_array($title)) {
-					$title=__feeds_array2xml($title);
+					$title=__array2xml_write_nodes($title);
 					$title=getutf8($title);
 					$title=html2text($title);
 				} else {
@@ -259,7 +221,7 @@ if(getParam("action")=="feeds") {
 				}
 				$link=__feeds_getnode("link",$item);
 				$description=__feeds_getnode("description",$item);
-				if(is_array($description)) $description=__feeds_array2xml($description);
+				if(is_array($description)) $description=__array2xml_write_nodes($description);
 				$description=getutf8($description);
 				$pubdate=__feeds_getnode("dc:date",$item);
 				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
@@ -275,7 +237,7 @@ if(getParam("action")=="feeds") {
 			while($item!==null) {
 				$title=__feeds_getnode("title",$item);
 				if(is_array($title)) {
-					$title=__feeds_array2xml($title);
+					$title=__array2xml_write_nodes($title);
 					$title=getutf8($title);
 					$title=html2text($title);
 				} else {
@@ -283,7 +245,7 @@ if(getParam("action")=="feeds") {
 				}
 				$link=__feeds_getnode("link",$item);
 				$description=__feeds_getnode("description",$item);
-				if(is_array($description)) $description=__feeds_array2xml($description);
+				if(is_array($description)) $description=__array2xml_write_nodes($description);
 				$description=getutf8($description);
 				$pubdate=__feeds_getnode("pubDate",$item);
 				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
@@ -299,7 +261,7 @@ if(getParam("action")=="feeds") {
 			while($item!==null) {
 				$title=__feeds_getvalue(__feeds_getnode("title",$item));
 				if(is_array($title)) {
-					$title=__feeds_array2xml($title);
+					$title=__array2xml_write_nodes($title);
 					$title=getutf8($title);
 					$title=html2text($title);
 				} else {
@@ -325,10 +287,10 @@ if(getParam("action")=="feeds") {
 				if(!$link) $link=__feeds_getnode("#attr/href",__feeds_getnode("link",$item));
 				// GET CONTENT (AND SUMMARY IS OPTIONAL IN SOME FEEDS)
 				$summary=__feeds_getvalue(__feeds_getnode("summary",$item));
-				if(is_array($summary)) $summary=__feeds_array2xml($summary);
+				if(is_array($summary)) $summary=__array2xml_write_nodes($summary);
 				$summary=trim(getutf8($summary));
 				$content=__feeds_getvalue(__feeds_getnode("content",$item));
-				if(is_array($content)) $content=__feeds_array2xml($content);
+				if(is_array($content)) $content=__array2xml_write_nodes($content);
 				$content=trim(getutf8($content));
 				// FIX SOME ISSUES ABOUT SOME HTML WITH NO TEXT CONTENT
 				$summary_plain=trim(strip_tags($summary));
@@ -357,25 +319,6 @@ if(getParam("action")=="feeds") {
 		}
 		foreach($items as $key=>$val) foreach($val as $key2=>$val2) $items[$key][$key2]=trim($val2);
 		return $items;
-	}
-
-	function __feeds_href_replace($temp) {
-		require_once("php/getmail.php");
-		return __getmail_href_replace($temp);
-	}
-
-	function __feeds_removescripts($temp) {
-		require_once("php/getmail.php");
-		return __getmail_removescripts($temp);
-	}
-
-	function __feeds_make_clickable($temp) {
-		require_once("php/getmail.php");
-		return __getmail_make_clickable($temp);
-	}
-
-	function __feeds_remove_bad_chars($temp) {
-		return remove_bad_chars($temp);
 	}
 	// NORMAL CODE
 	if(getParam("url")) {
@@ -473,8 +416,8 @@ if(getParam("action")=="feeds") {
 		$query="SELECT *,(SELECT title FROM tbl_usuarios_f WHERE id=id_feed) feed,(SELECT link FROM tbl_usuarios_f WHERE id=id_feed) link2 FROM tbl_feeds WHERE id='${id}'";
 		$row=execute_query($query);
 		if(!$row) die();
-		$row["description"]=__feeds_make_clickable($row["description"]);
-		$row["description"]=__feeds_href_replace($row["description"]);
+		$row["description"]=saltos_make_clickable($row["description"]);
+		$row["description"]=href_replace($row["description"]);
 		$cid=getParam("cid");
 		if($cid=="body") {
 			$buffer="";
@@ -628,6 +571,13 @@ if(getParam("action")=="feeds") {
 								$link=addslashes($link);
 								$query="SELECT id FROM tbl_feeds WHERE id_feed='${id_feed}' AND link='${link}'";
 								$last_id=execute_query($query);
+								// TO PREVENT SOME SPURIOUS BUG
+								if(is_array($last_id)) {
+									$last_id=array_pop($last_id);
+									$query="DELETE FROM tbl_feeds WHERE id_feed='${id_feed}' AND link='${link}' AND id!=${last_id}";
+									db_query($query);
+								}
+								// CONTINUE
 								$title=addslashes($item["title"]);
 								$pubdate=addslashes($item["pubdate"]);
 								$description=addslashes($item["description"]);

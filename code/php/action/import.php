@@ -27,12 +27,18 @@ if(!check_user($page,"import")) action_denied();
 if($page=="importaciones") {
 	include("php/import.php");
 	$id_importacion=abs(getParam("id"));
-	$array=__import_importfile($id_importacion,array("A,B,C,D,E,J,K","F,G,H,I"));
-	//~ $array=__import_importfile($id_importacion);
+	$query="SELECT * FROM tbl_aplicaciones WHERE id=(SELECT id_aplicacion FROM tbl_importaciones WHERE id='${id_importacion}')";
+	$row=execute_query($query);
+	if($row===null) show_php_error(array("phperror"=>"Unknown aplicacion (id_importacion='${id_importacion}')"));
+	$nodes=array();
+	if($row["node0"]) $nodes[]=$row["node0"];
+	if($row["node1"]) $nodes[]=$row["node1"];
+	if(!count($nodes)) $nodes=null;
+	$array=__import_importfile($id_importacion,$nodes);
 	$array=__import_tree2array($array);
+	$select=explode(",",implode(",",$nodes));
 	$head=array_keys($array[0]);
-	$buffer=__import_make_table(array("auto"=>true,"select"=>$head,"head"=>$head,"data"=>$array,"limit"=>20));
-	//~ $buffer=__import_make_table(array("auto"=>true,"data"=>$array,"limit"=>20));
+	$buffer=__import_make_table(array("auto"=>true,"select"=>$select,"head"=>$head,"data"=>$array,"limit"=>20));
 	output_buffer($buffer,"text/html");
 	die();
 }

@@ -63,12 +63,6 @@ function __getmail_removebody($array) {
 	return $array;
 }
 
-// REMOVE ALL SCRIPT TAGS
-function __getmail_removescripts($temp) {
-	$temp=preg_replace("@<script[^>]*?.*?</script>@siu","",$temp);
-	return $temp;
-}
-
 // THE FOLLOW FUNCTIONS UNIFY THE CONCEPT OF PROCESS
 function __getmail_processmessage($disp,$type) {
 	return ($type=="message" && $disp=="inline");
@@ -518,45 +512,9 @@ function __getmail_update($campo,$valor,$id) {
 	db_query($query);
 }
 
-// FOR SOME HREF REPLACEMENTS
-function __getmail_href_replace($temp) {
-	// REPLACE THE INTERNALS LINKS TO OPENCONTENT CALLS
-	$orig="href='".get_base();
-	$dest=str_replace("href=","__href__=",$orig);
-	$onclick="onclick='parent.opencontent(this.href);return false' ";
-	$orig=array($orig,str_replace("'",'"',$orig),str_replace("'",'',$orig));
-	$dest=array($onclick.$dest,$onclick.str_replace("'",'"',$dest),$onclick.str_replace("'",'',$dest));
-	$temp=str_replace($orig,$dest,$temp);
-	// REPLACE THE MAILTO LINKS TO MAILTO CALLS
-	$orig="href='mailto:";
-	$dest=str_replace("href=","__href__=",$orig);
-	$onclick="onclick='parent.mailto(parent.substr(this.href,7));return false' ";
-	$orig=array($orig,str_replace("'",'"',$orig),str_replace("'",'',$orig));
-	$dest=array($onclick.$dest,$onclick.str_replace("'",'"',$dest),$onclick.str_replace("'",'',$dest));
-	$temp=str_replace($orig,$dest,$temp);
-	// REPLACE THE REST OF LINKS TO OPENWIN CALLS
-	$orig="href='";
-	$dest=str_replace("href=","__href__=",$orig);
-	$onclick="onclick='parent.openwin(this.href);return false' ";
-	$orig=array($orig,str_replace("'",'"',$orig),str_replace("'",'',$orig));
-	$dest=array($onclick.$dest,$onclick.str_replace("'",'"',$dest),$onclick.str_replace("'",'',$dest));
-	$temp=str_replace($orig,$dest,$temp);
-	// RESTORE THE __HREF__= TO HREF=
-	$temp=str_replace("__href__=","href=",$temp);
-	return $temp;
-}
-
 // FOR RAWURLDECODE AUTO DETECTION
 function __getmail_rawurldecode($temp) {
 	if(strpos($temp,"%20")!==false) $temp=rawurldecode($temp);
-	return $temp;
-}
-
-// USING WORDPRESS FEATURES
-function __getmail_make_clickable($temp) {
-	global $allowedentitynames;
-	require_once("lib/wordpress/wordpress.php");
-	$temp=make_clickable($temp);
 	return $temp;
 }
 

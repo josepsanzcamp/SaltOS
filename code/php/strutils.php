@@ -559,4 +559,46 @@ function getutf8($temp) {
 	if(!mb_check_encoding($temp,"UTF-8")) $temp=mb_convert_encoding($temp,"UTF-8");
 	return $temp;
 }
+
+// USING WORDPRESS FEATURES
+function saltos_make_clickable($temp) {
+	global $allowedentitynames;
+	require_once("lib/wordpress/wordpress.php");
+	$temp=make_clickable($temp);
+	return $temp;
+}
+
+// FOR SOME HREF REPLACEMENTS
+function href_replace($temp) {
+	// REPLACE THE INTERNALS LINKS TO OPENCONTENT CALLS
+	$orig="href='".get_base();
+	$dest=str_replace("href=","__href__=",$orig);
+	$onclick="onclick='parent.opencontent(this.href);return false' ";
+	$orig=array($orig,str_replace("'",'"',$orig),str_replace("'",'',$orig));
+	$dest=array($onclick.$dest,$onclick.str_replace("'",'"',$dest),$onclick.str_replace("'",'',$dest));
+	$temp=str_replace($orig,$dest,$temp);
+	// REPLACE THE MAILTO LINKS TO MAILTO CALLS
+	$orig="href='mailto:";
+	$dest=str_replace("href=","__href__=",$orig);
+	$onclick="onclick='parent.mailto(parent.substr(this.href,7));return false' ";
+	$orig=array($orig,str_replace("'",'"',$orig),str_replace("'",'',$orig));
+	$dest=array($onclick.$dest,$onclick.str_replace("'",'"',$dest),$onclick.str_replace("'",'',$dest));
+	$temp=str_replace($orig,$dest,$temp);
+	// REPLACE THE REST OF LINKS TO OPENWIN CALLS
+	$orig="href='";
+	$dest=str_replace("href=","__href__=",$orig);
+	$onclick="onclick='parent.openwin(this.href);return false' ";
+	$orig=array($orig,str_replace("'",'"',$orig),str_replace("'",'',$orig));
+	$dest=array($onclick.$dest,$onclick.str_replace("'",'"',$dest),$onclick.str_replace("'",'',$dest));
+	$temp=str_replace($orig,$dest,$temp);
+	// RESTORE THE __HREF__= TO HREF=
+	$temp=str_replace("__href__=","href=",$temp);
+	return $temp;
+}
+
+// REMOVE ALL SCRIPT TAGS
+function remove_script_tag($temp) {
+	$temp=preg_replace("@<script[^>]*?.*?</script>@siu","",$temp);
+	return $temp;
+}
 ?>

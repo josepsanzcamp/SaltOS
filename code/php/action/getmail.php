@@ -109,13 +109,13 @@ if(getParam("action")=="getmail") {
 						$temp=wordwrap($temp,120);
 						$temp=htmlentities($temp,ENT_COMPAT,"UTF-8");
 						$temp=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>\n"),$temp);
-						$temp=__getmail_make_clickable($temp);
-						$temp=__getmail_href_replace($temp);
+						$temp=saltos_make_clickable($temp);
+						$temp=href_replace($temp);
 					}
 					if($type=="html") {
-						$temp=__getmail_removescripts($temp);
-						$temp=__getmail_make_clickable($temp);
-						$temp=__getmail_href_replace($temp);
+						$temp=remove_script_tag($temp);
+						$temp=saltos_make_clickable($temp);
+						$temp=href_replace($temp);
 					}
 					foreach($result as $index2=>$node2) {
 						$disp2=$node2["disp"];
@@ -262,13 +262,13 @@ if(getParam("action")=="getmail") {
 						$temp=wordwrap($temp,120);
 						$temp=htmlentities($temp,ENT_COMPAT,"UTF-8");
 						$temp=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>\n"),$temp);
-						$temp=__getmail_make_clickable($temp);
-						$temp=__getmail_href_replace($temp);
+						$temp=saltos_make_clickable($temp);
+						$temp=href_replace($temp);
 					}
 					if($type=="html") {
-						$temp=__getmail_removescripts($temp);
-						$temp=__getmail_make_clickable($temp);
-						$temp=__getmail_href_replace($temp);
+						$temp=remove_script_tag($temp);
+						$temp=saltos_make_clickable($temp);
+						$temp=href_replace($temp);
 					}
 					foreach($result as $index2=>$node2) {
 						$disp2=$node2["disp"];

@@ -237,6 +237,9 @@ iframe.ui-state-default {
 	margin:1px;
 	background:#ffffff!important;
 }
+img.ui-state-default {
+	margin:0px 1px;
+}
 /* FOR TABLES */
 .tabla tr td.thead {
 	white-space:nowrap;

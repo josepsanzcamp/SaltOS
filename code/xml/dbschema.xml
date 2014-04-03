@@ -242,6 +242,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>filter2</name>
 					<type>VARCHAR(255)</type>
 				</field>
+				<field>
+					<name>node0</name>
+					<type>VARCHAR(255)</type>
+				</field>
+				<field>
+					<name>node1</name>
+					<type>VARCHAR(255)</type>
+				</field>
 			</fields>
 		</table>
 		<table>
@@ -1729,30 +1737,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>descripcion</name>
 					<type>TEXT</type>
-				</field>
-			</fields>
-		</table>
-		<table>
-			<name>tbl_importaciones_i</name>
-			<fields>
-				<field>
-					<name>id</name>
-					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>id_importacion</name>
-					<type>INT(11)</type>
-					<fkey>tbl_importaciones</fkey>
-					<fcheck>false</fcheck>
-				</field>
-				<field>
-					<name>id_registro</name>
-					<type>INT(11)</type>
-				</field>
-				<field>
-					<name>hash</name>
-					<type>VARCHAR(255)</type>
 				</field>
 			</fields>
 		</table>

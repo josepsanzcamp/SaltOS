@@ -95,6 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<colspan>10</colspan>
 			<width>600px</width>
 			<size>60</size>
+			<class3>ui-state-default ui-corner-all</class3>
 		</field>
 	</row>
 	<row>
@@ -248,18 +249,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</row>
 	<row>
 		<field>
+			<type>separator</type>
+		</field>
+	</row>
+	<row>
+		<field>
 			<name>pop3_delete</name>
 			<label lang="true">pop3delete</label>
 			<type>checkbox</type>
 			<value>1</value>
 			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<colspan>2</colspan>
+			<colspan>5</colspan>
 		</field>
 		<field>
 			<name>pop3_days</name>
 			<type>text</type>
 			<width>60px</width>
-			<colspan>2</colspan>
 			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 		</field>
 		<field>

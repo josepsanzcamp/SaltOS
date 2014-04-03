@@ -505,7 +505,7 @@ if(getParam("page")=="correo") {
 						$temp=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$temp);
 					}
 					if($type=="html") {
-						$temp=__getmail_removescripts($temp);
+						$temp=remove_script_tag($temp);
 					}
 					foreach($result2 as $index2=>$node2) {
 						$disp2=$node2["disp"];

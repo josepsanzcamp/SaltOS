@@ -7,8 +7,8 @@
  * http://opensource.org/licenses/MIT
  *
  * Author: Mark J Panaghiston
- * Version: 2.5.6
- * Date: 1st April 2014
+ * Version: 2.6.0
+ * Date: 2nd April 2014
  */
 
 /* Code verified using http://www.jshint.com/ */
@@ -113,6 +113,7 @@
 	$.each(
 		[
 			'ready',
+			'setmedia', // Fires when the media is set
 			'flashreset', // Similar to the ready event if the Flash solution is set to display:none and then shown again or if it's reloaded for another reason by the browser. For example, using CSS position:fixed on Firefox for the full screen feature.
 			'resize', // Occurs when the size changes through a full/restore screen operation or if the size/sizeFull options are changed.
 			'repeat', // Occurs when the repeat status changes. Usually through clicks on the repeat button of the interface.
@@ -470,8 +471,8 @@
 	$.jPlayer.prototype = {
 		count: 0, // Static Variable: Change it via prototype.
 		version: { // Static Object
-			script: "2.5.6",
-			needFlash: "2.5.2",
+			script: "2.6.0",
+			needFlash: "2.6.0",
 			flash: "unknown"
 		},
 		options: { // Instanced in $.jPlayer() constructor
@@ -481,6 +482,8 @@
 			preload: 'metadata',  // HTML5 Spec values: none, metadata, auto.
 			volume: 0.8, // The volume. Number 0 to 1.
 			muted: false,
+			remainingDuration: false, // When true, the remaining time is shown in the duration GUI element.
+			toggleDuration: false, // When true, clicks on the duration toggle between the duration and remaining display.
 			playbackRate: 1,
 			defaultPlaybackRate: 1,
 			minPlaybackRate: 0.5,
@@ -504,6 +507,7 @@
 				playbackRateBarValue: ".jp-playback-rate-bar-value",
 				currentTime: ".jp-current-time",
 				duration: ".jp-duration",
+				title: ".jp-title",
 				fullScreen: ".jp-full-screen", // *
 				restoreScreen: ".jp-restore-screen", // *
 				repeat: ".jp-repeat",
@@ -655,6 +659,7 @@
 			currentPercentAbsolute: 0,
 			currentTime: 0,
 			duration: 0,
+			remaining: 0,
 			videoWidth: 0, // Intrinsic width of the video in pixels.
 			videoHeight: 0, // Intrinsic height of the video in pixels.
 			readyState: 0,
@@ -1442,6 +1447,8 @@
 			this.status.currentPercentAbsolute = cpa;
 			this.status.currentTime = ct;
 
+			this.status.remaining = this.status.duration - this.status.currentTime;
+
 			this.status.videoWidth = media.videoWidth;
 			this.status.videoHeight = media.videoHeight;
 
@@ -1591,6 +1598,7 @@
 			this.status.currentPercentAbsolute = status.currentPercentAbsolute;
 			this.status.currentTime = status.currentTime;
 			this.status.duration = status.duration;
+			this.status.remaining = status.duration - status.currentTime;
 
 			this.status.videoWidth = status.videoWidth;
 			this.status.videoHeight = status.videoHeight;
@@ -1651,11 +1659,33 @@
 					this.css.jq.playBar.width(this.status.currentPercentRelative+"%");
 				}
 			}
+			var currentTimeText = '';
 			if(this.css.jq.currentTime.length) {
-				this.css.jq.currentTime.text(this._convertTime(this.status.currentTime));
+				currentTimeText = this._convertTime(this.status.currentTime);
+				if(currentTimeText !== this.css.jq.currentTime.text()) {
+					this.css.jq.currentTime.text(this._convertTime(this.status.currentTime));
+				}
 			}
+			var durationText = '',
+				duration = this.status.duration,
+				remaining = this.status.remaining;
 			if(this.css.jq.duration.length) {
-				this.css.jq.duration.text(this._convertTime(this.status.duration));
+				if(typeof this.status.media.duration === 'string') {
+					durationText = this.status.media.duration;
+				} else {
+					if(typeof this.status.media.duration === 'number') {
+						duration = this.status.media.duration;
+						remaining = duration - this.status.currentTime;
+					}
+					if(this.options.remainingDuration) {
+						durationText = (remaining > 0 ? '-' : '') + this._convertTime(remaining);
+					} else {
+						durationText = this._convertTime(duration);
+					}
+				}
+				if(durationText !== this.css.jq.duration.text()) {
+					this.css.jq.duration.text(durationText);
+				}
 			}
 		},
 		_convertTime: ConvertTime.prototype.time,
@@ -1782,10 +1812,22 @@
 						}
 					}
 				}
+				if(this.css.jq.title.length) {
+					if(typeof media.title === 'string') {
+						this.css.jq.title.html(media.title);
+						if(this.htmlElement.audio) {
+							this.htmlElement.audio.setAttribute('title', media.title);
+						}
+						if(this.htmlElement.video) {
+							this.htmlElement.video.setAttribute('title', media.title);
+						}
+					}
+				}
 				this.status.srcSet = true;
 				this.status.media = $.extend({}, media);
 				this._updateButtons(false);
 				this._updateInterface();
+				this._trigger($.jPlayer.event.setmedia);
 			} else { // jPlayer cannot support any formats provided in this browser
 				// Send an error event
 				this._error( {
@@ -2122,6 +2164,11 @@
 				});
 			}
 		},
+		duration: function(e) {
+			if(this.options.toggleDuration) {
+				this._setOption("remainingDuration", !this.options.remainingDuration);
+			}
+		},
 		seekBar: function(e) { // Handles clicks on the seekBar
 			if(this.css.jq.seekBar.length) {
 				// Using $(e.currentTarget) to enable multiple seek bars
@@ -2342,6 +2389,13 @@
 					break;
 				case "loop" :
 					this._loop(value);
+					break;
+				case "remainingDuration" :
+					this.options[key] = value;
+					this._updateInterface();
+					break;
+				case "toggleDuration" :
+					this.options[key] = value;
 					break;
 				case "nativeVideoControls" :
 					this.options[key] = $.extend({}, this.options[key], value); // store a merged copy of it, incase not all properties changed.

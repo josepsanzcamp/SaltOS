@@ -175,36 +175,39 @@ function __import_removevoid($array) {
 		foreach($cols as $val2) unset($val[$val2]);
 		$array[$key]=array_values($val);
 	}
-	//~ echo "<pre>";
-	//~ print_r($array);
-	//~ echo "</pre>";
-	//~ die();
 	return $array;
 }
 
 function __import_array2tree($array,$nodes) {
 	if(!count($array)) return $array;
+	$head=array_shift($array);
 	if(!$nodes) {
-		$nodes=array(range(0,count($array[0])-1));
+		$nodes=array(range(0,count($head)-1));
 	} else {
+		$col=0;
 		foreach($nodes as $key=>$val) {
 			if(!is_array($val)) $val=explode(",",$val);
 			$nodes[$key]=array();
 			foreach($val as $key2=>$val2) {
-				$nodes[$key][$key2]=__import_name2col($val2);
+				if(in_array($val2,$head)) $nodes[$key][$key2]=array_search($val2,$head);
+				elseif(__import_isname($val2)) $nodes[$key][$key2]=__import_name2col($val2);
+				elseif(!is_numeric($val2)) $nodes[$key][$key2]=$col;
+				$col++;
 			}
 		}
 	}
-	$head=array_shift($array);
 	$result=array();
 	foreach($array as $line) {
 		$parts=array();
 		foreach($nodes as $node) {
-			$head2=array_intersect_key($head,array_flip($node));
-			$line2=array_intersect_key($line,array_flip($node));
-			$line3=array_combine($head2,$line2);
-			$hash=md5(serialize($line3));
-			$parts[$hash]=$line3;
+			$node2=array_flip($node);
+			$head2=array_intersect_key($head,$node2);
+			if(count($head2)) {
+				$line2=array_intersect_key($line,$node2);
+				$line3=array_combine($head2,$line2);
+				$hash=md5(serialize($line3));
+				$parts[$hash]=$line3;
+			}
 		}
 		__import_array2tree_setter($result,$parts);
 	}
@@ -263,18 +266,22 @@ function __import_col2name($col) {
 	return $chars[$index1].$chars[$index2];
 }
 
+function __import_isname($name) {
+	return in_array(strlen($name),array(1,2));
+}
+
 function __import_name2col($name) {
 	static $chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	static $len=26;
 	$len2=strlen($name);
-	if($len2<1 || $len2>2) show_php_error(array("phperror"=>"Value '${name}' out of range"));
+	if(!in_array($len2,array(1,2))) show_php_error(array("phperror"=>"Value '${name}' out of range"));
 	if($len2==1) return strpos($chars,$name[0]);
 	return (strpos($chars,$name[0])+1)*26+strpos($chars,$name[1]);
 }
 
 function __import_make_table($array) {
-	if(isset($array["data"]) && is_array($array["data"]) && count($array["data"])) $head1=$array["data"][0];
-	if(isset($array["head"]) && is_array($array["head"]) && count($array["head"])) $head2=$array["head"];
+	if(isset($array["head"]) && is_array($array["head"]) && count($array["head"])) $head1=$array["head"];
+	elseif(isset($array["data"]) && is_array($array["data"]) && count($array["data"])) $head2=$array["data"][0];
 	if(isset($array["limit"]) && is_numeric($array["limit"]) && $array["limit"]>0) $limit=$array["limit"];
 	$result="";
 	$result.="<table class='tabla width100'>\n";
@@ -284,7 +291,7 @@ function __import_make_table($array) {
 			if(isset($head1) || isset($head2)) {
 				$result.="<tr>\n";
 				if(isset($head1)) $head=$head1;
-				if(isset($head2)) $head=$head2;
+				elseif(isset($head2)) $head=$head2;
 				$col=0;
 				foreach($head as $field) {
 					$result.="<td class='thead center'>\n";
@@ -300,15 +307,21 @@ function __import_make_table($array) {
 			if(isset($head1) || isset($head2)) {
 				$result.="<tr>\n";
 				if(isset($head1)) $head=$head1;
-				if(isset($head2)) $head=$head2;
+				elseif(isset($head2)) $head=$head2;
 				$col=0;
 				foreach($head as $field) {
-					if(isset($head1)) $field="col_".strtolower(__import_col2name($col));
-					if(isset($head2)) $field="field_".strtolower($field);
+					$name=__import_col2name($col);
+					if(isset($head1)) $field2="field_".strtolower($field);
+					elseif(isset($head2)) $field2="col_".strtolower($name);
 					$result.="<td class='tbody center'>\n";
-					$result.="<select class='ui-state-default ui-corner-all' name='${field}'>\n";
+					$result.="<select class='ui-state-default ui-corner-all' name='${field2}'>\n";
 					$result.="<option value=''></option>\n";
-					foreach($val as $value=>$option) $result.="<option value='${value}'>${option}</option>\n";
+					foreach($val as $index=>$option) {
+						$selected="";
+						if(isset($head1) && $option==$field) $selected="selected";
+						elseif(isset($head2) && $index==$col) $selected="selected";
+						$result.="<option value='${option}' ${selected}>${option}</option>\n";
+					}
 					$result.="</select>";
 					$result.="</td>\n";
 					$col++;

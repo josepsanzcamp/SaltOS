@@ -384,6 +384,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>500px</width>
 							<size>50</size>
 							<colspan>8</colspan>
+							<class3>ui-state-default ui-corner-all</class3>
 						</field>
 					</row>
 				</fieldset>
