@@ -51,3 +51,11 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 
 "use strict";
 $(function() { update_importdata(); });
+
+$(function() {
+	if(getParam("action")!="form") return;
+	if(getParam("id")==0) return;
+	setTimeout(function() {
+		$(".tabs").tabs("option","active",1);
+	},100);
+});

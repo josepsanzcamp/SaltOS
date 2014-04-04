@@ -70,7 +70,7 @@ function __import_importfile($id_importacion,$nodes=null) {
 			break;
 		case "application/vnd.ms-excel":
 		case "application/excel":
-			$array=__import_xls2array($file);
+			$array=__import_xls2array($file,0);
 			$array=__import_array2tree($array,$nodes);
 			break;
 		default:
@@ -135,7 +135,7 @@ function __import_csv2array($file,$sep) {
 	return $array;
 }
 
-function __import_xls2array($file) {
+function __import_xls2array($file,$sheet) {
 	set_include_path("lib/phpexcel:".get_include_path());
 	include_once("PHPExcel.php");
 	$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
@@ -144,11 +144,31 @@ function __import_xls2array($file) {
 	$objReader=PHPExcel_IOFactory::createReaderForFile($file);
 	$objReader->setReadDataOnly(true);
 	$objPHPExcel=$objReader->load($file);
-	$SheetCollection=$objPHPExcel->getAllSheets();
-	$array=$SheetCollection[0]->toArray();
+	$objSheet=$objPHPExcel->getSheet($sheet);
+	// DETECT COLS AND ROWS WITH DATA
+	$cells=$objSheet->getCellCollection(true);
+	$cols=array();
+	$rows=array();
+	foreach($cells as $cell) {
+		list($col,$row)=__import_cell2colrow($cell);
+		$cols[$col]=$col;
+		$rows[$row]=$row;
+	}
+	// READ DATA
+	$array=array();
+	foreach($rows as $row) {
+		$temp=array();
+		foreach($cols as $col) {
+			$temp[]=$objSheet->getCell($col.$row)->getValue();
+		}
+		$array[]=$temp;
+	}
+	// RELEASE MEMORY
+	unset($objFilter);
 	unset($objReader);
 	unset($objPHPExcel);
-	unset($SheetCollection);
+	unset($objSheet);
+	// CONTINUE
 	$array=__import_removevoid($array);
 	return $array;
 }
@@ -256,27 +276,43 @@ function __import_tree2array($array) {
 	return $result;
 }
 
-function __import_col2name($col) {
-	static $chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	static $len=26;
-	if($col>$len*$len+$len) show_php_error(array("phperror"=>"Value '${col}' out of range"));
-	$index1=intval($col/$len)-1;
-	$index2=$col%$len;
-	if($index1==-1) return $chars[$index2];
-	return $chars[$index1].$chars[$index2];
+// COPIED FROM http://www.php.net/manual/en/function.base-convert.php#94874
+function __import_col2name($n) {
+    $r = '';
+    for ($i = 1; $n >= 0 && $i < 10; $i++) {
+        $r = chr(0x41 + ($n % pow(26, $i) / pow(26, $i - 1))) . $r;
+        $n -= pow(26, $i);
+    }
+    return $r;
+}
+
+// COPIED FROM http://www.php.net/manual/en/function.base-convert.php#94874
+function __import_name2col($a) {
+    $r = 0;
+    $l = strlen($a);
+    for ($i = 0; $i < $l; $i++) {
+        $r += pow(26, $i) * (ord($a[$l - $i - 1]) - 0x40);
+    }
+    return $r - 1;
 }
 
 function __import_isname($name) {
-	return in_array(strlen($name),array(1,2));
+	$len=strlen($name);
+	for($i=0;$i<$len;$i++) {
+		if($name[$i]<'A' || $name[$i]>'Z') return false;
+	}
+	return true;
 }
 
-function __import_name2col($name) {
-	static $chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	static $len=26;
-	$len2=strlen($name);
-	if(!in_array($len2,array(1,2))) show_php_error(array("phperror"=>"Value '${name}' out of range"));
-	if($len2==1) return strpos($chars,$name[0]);
-	return (strpos($chars,$name[0])+1)*26+strpos($chars,$name[1]);
+function __import_cell2colrow($cell) {
+	$col="";
+	$row="";
+	$len=strlen($cell);
+	for($i=0;$i<$len;$i++) {
+		if($cell[$i]>='A' && $cell[$i]<='Z') $col.=$cell[$i];
+		if($cell[$i]>='0' && $cell[$i]<='9') $row.=$cell[$i];
+	}
+	return array($col,$row);
 }
 
 function __import_make_table($array) {
