@@ -27,18 +27,23 @@ if(!check_user($page,"import")) action_denied();
 if($page=="importaciones") {
 	include("php/import.php");
 	$id_importacion=abs(getParam("id"));
-	$query="SELECT * FROM tbl_aplicaciones WHERE id=(SELECT id_aplicacion FROM tbl_importaciones WHERE id='${id_importacion}')";
+	// GET FILE DATA
+	$query="SELECT * FROM tbl_ficheros WHERE id_aplicacion='".page2id("importaciones")."' AND id_registro='".abs($id_importacion)."'";
 	$row=execute_query($query);
-	if($row===null) show_php_error(array("phperror"=>"Unknown aplicacion (id_importacion='${id_importacion}')"));
-	$nodes=array();
-	if($row["node0"]) $nodes[]=$row["node0"];
-	if($row["node1"]) $nodes[]=$row["node1"];
-	if(!count($nodes)) $nodes=null;
-	$array=__import_importfile($id_importacion,$nodes);
-	$array=__import_tree2array($array);
-	$select=explode(",",implode(",",$nodes));
-	$head=array_keys($array[0]);
-	$buffer=__import_make_table(array("auto"=>true,"select"=>$select,"head"=>$head,"data"=>$array,"limit"=>20));
+	if($row===null) show_php_error(array("phperror"=>"Unknown fichero (id_importacion='${id_importacion}')"));
+	// GET SPECIFIC DATA
+	$query="SELECT * FROM tbl_aplicaciones WHERE id=(SELECT id_aplicacion FROM tbl_importaciones WHERE id='${id_importacion}')";
+	$row2=execute_query($query);
+	if($row2===null) show_php_error(array("phperror"=>"Unknown aplicacion (id_importacion='${id_importacion}')"));
+	// CALL IMPORT FILE
+	$array=import_file(array(
+		"file"=>get_directory("dirs/filesdir").$row["fichero_file"],
+		"type"=>$row["fichero_type"],
+		"nodes"=>array($row2["node0"],$row2["node1"])
+	));
+	// DISPLAY OUTPUT
+	$select=explode(",",implode(",",array($row2["node0"],$row2["node1"])));
+	$buffer=__import_make_table(array("auto"=>true,"select"=>$select,"head"=>true,"data"=>$array,"limit"=>20));
 	output_buffer($buffer,"text/html");
 	die();
 }

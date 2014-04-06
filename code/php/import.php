@@ -52,30 +52,40 @@ function __import_find_query($data,$pos) {
 	return $pos2-$pos;
 }
 
-function __import_importfile($id_importacion,$nodes=null) {
-	$query="SELECT * FROM tbl_ficheros WHERE id_aplicacion='".page2id("importaciones")."' AND id_registro='".abs($id_importacion)."'";
-	$row=execute_query($query);
-	if($row===null) show_php_error(array("phperror"=>"Unknown import file (id_importacion='${id_importacion}')"));
-	$file=get_directory("dirs/filesdir").$row["fichero_file"];
-	$type=$row["fichero_type"];
-	switch($type) {
+function import_file($args) {
+	// CHECK PARAMETERS
+	if(!isset($args["type"])) show_php_error(array("phperror"=>"Unknown type"));
+	if(!isset($args["file"])) show_php_error(array("phperror"=>"Unknown file"));
+	if(!isset($args["separator"])) $args["separator"]=";";
+	if(!isset($args["sheet"])) $args["sheet"]=0;
+	if(!isset($args["nodes"])) $args["nodes"]=array();
+	if(!isset($args["preimport"])) $args["preimport"]="";
+	if(!isset($args["postimport"])) $args["postimport"]="";
+	// CONTINUE
+	switch($args["type"]) {
 		case "application/xml":
 		case "text/xml":
-			$array=__import_xml2array($file);
+		case "xml":
+			$array=__import_xml2array($args["file"]);
 			break;
 		case "text/plain":
 		case "text/csv":
-			$array=__import_csv2array($file,";");
-			$array=__import_array2tree($array,$nodes);
+		case "csv":
+			$array=__import_csv2array($args["file"],$args["separator"]);
+			if($args["preimport"]) $array=$args["preimport"]($array,$args);
+			$array=__import_array2tree($array,$args["nodes"]);
 			break;
 		case "application/vnd.ms-excel":
 		case "application/excel":
-			$array=__import_xls2array($file,0);
-			$array=__import_array2tree($array,$nodes);
+		case "excel":
+			$array=__import_xls2array($args["file"],$args["sheet"]);
+			if($args["preimport"])  $array=$args["preimport"]($array,$args);
+			$array=__import_array2tree($array,$args["nodes"]);
 			break;
 		default:
-			show_php_error(array("phperror"=>"Unknown type '${type}' for file '${file}' (id_importacion='${id_importacion}')"));
+			show_php_error(array("phperror"=>"Unknown type '${array["type"]}' for file '${array["file"]}'"));
 	}
+	if($args["postimport"])  $array=$args["postimport"]($array,$args);
 	return $array;
 }
 
@@ -201,7 +211,7 @@ function __import_removevoid($array) {
 function __import_array2tree($array,$nodes) {
 	if(!count($array)) return $array;
 	$head=array_shift($array);
-	if(!$nodes) {
+	if(!is_array($nodes) || !count($nodes)) {
 		$nodes=array(range(0,count($head)-1));
 	} else {
 		$col=0;
@@ -264,10 +274,8 @@ function __import_tree2array($array) {
 	$result=array();
 	foreach($array as $node) {
 		if(isset($node["row"]) && isset($node["rows"])) {
-			$void_row=array_fill_keys(array_keys($node["row"]),"");
-			foreach(__import_tree2array($node["rows"]) as $line=>$row) {
-				if($line==0) $result[]=array_merge($node["row"],$row);
-				if($line!=0) $result[]=array_merge($void_row,$row);
+			foreach(__import_tree2array($node["rows"]) as $row) {
+				$result[]=array_merge($node["row"],$row);
 			}
 		} else {
 			$result[]=$node;
@@ -315,47 +323,50 @@ function __import_cell2colrow($cell) {
 	return array($col,$row);
 }
 
+function __import_getkeys($array) {
+	$result=array();
+	if(isset($array[0])) {
+		$node=$array[0];
+		if(isset($node["row"]) && isset($node["rows"])) {
+			$result=array_merge(array_keys($node["row"]),__import_getkeys($node["rows"]));
+		} else {
+			$result=array_keys($node);
+		}
+	}
+	return $result;
+}
+
 function __import_make_table($array) {
-	if(isset($array["head"]) && is_array($array["head"]) && count($array["head"])) $head1=$array["head"];
-	elseif(isset($array["data"]) && is_array($array["data"]) && count($array["data"])) $head2=$array["data"][0];
-	if(isset($array["limit"]) && is_numeric($array["limit"]) && $array["limit"]>0) $limit=$array["limit"];
+	$head=(isset($array["data"]) && is_array($array["data"]) && count($array["data"]))?__import_getkeys($array["data"]):"";
+	$limit=(isset($array["limit"]) && is_numeric($array["limit"]) && $array["limit"]>0)?$array["limit"]:0;
 	$result="";
 	$result.="<table class='tabla width100'>\n";
 	foreach($array as $key=>$val) {
 		$key=limpiar_key($key);
 		if($key=="auto" && !is_array($val) && eval_bool($val)) {
-			if(isset($head1) || isset($head2)) {
+			if(is_array($head)) {
 				$result.="<tr>\n";
-				if(isset($head1)) $head=$head1;
-				elseif(isset($head2)) $head=$head2;
 				$col=0;
 				foreach($head as $field) {
-					$result.="<td class='thead center'>\n";
+					$result.="<td class='thead center'>";
 					$result.=__import_col2name($col);
 					$result.="</td>\n";
 					$col++;
 				}
 				$result.="</tr>\n";
 			}
-			unset($head);
 		}
 		if($key=="select" && is_array($val) && count($val)) {
-			if(isset($head1) || isset($head2)) {
+			if(is_array($head)) {
 				$result.="<tr>\n";
-				if(isset($head1)) $head=$head1;
-				elseif(isset($head2)) $head=$head2;
 				$col=0;
 				foreach($head as $field) {
-					$name=__import_col2name($col);
-					if(isset($head1)) $field2="field_".strtolower($field);
-					elseif(isset($head2)) $field2="col_".strtolower($name);
-					$result.="<td class='tbody center'>\n";
-					$result.="<select class='ui-state-default ui-corner-all' name='${field2}'>\n";
+					$name="col_".__import_col2name($col);
+					$result.="<td class='tbody center'>";
+					$result.="<select class='ui-state-default ui-corner-all' name='${name}'>\n";
 					$result.="<option value=''></option>\n";
 					foreach($val as $index=>$option) {
-						$selected="";
-						if(isset($head1) && $option==$field) $selected="selected";
-						elseif(isset($head2) && $index==$col) $selected="selected";
+						$selected=(isset($head[$index]) && $head[$index]==$option)?"selected":"";
 						$result.="<option value='${option}' ${selected}>${option}</option>\n";
 					}
 					$result.="</select>";
@@ -364,33 +375,79 @@ function __import_make_table($array) {
 				}
 				$result.="</tr>\n";
 			}
-			unset($head);
 		}
-		if($key=="head" && is_array($val) && count($val)) {
-			$result.="<tr>\n";
-			foreach($val as $field) {
-				$result.="<td class='thead center'>\n";
-				$result.=$field;
-				$result.="</td>\n";
-			}
-			$result.="</tr>\n";
-		}
-		if($key=="data" && is_array($val) && count($val)) {
-			$count=0;
-			foreach($val as $line=>$row) {
+		if($key=="head" && !is_array($val) && eval_bool($val)) {
+			if(is_array($head)) {
 				$result.="<tr>\n";
-				foreach($row as $field) {
-					$result.="<td class='tbody'>\n";
+				foreach($head as $field) {
+					$result.="<td class='thead center'>";
 					$result.=$field;
 					$result.="</td>\n";
 				}
 				$result.="</tr>\n";
-				$count++;
-				if(isset($limit) && $count>=$limit) break;
 			}
+		}
+		if($key=="data" && is_array($val) && count($val)) {
+			$result.=__import_make_table_rec($val,$limit);
 		}
 	}
 	$result.="</table>\n";
+	return $result;
+}
+
+function __import_getrowspan($array) {
+	$result=0;
+	foreach($array as $node) {
+		if(isset($node["row"]) && isset($node["rows"])) {
+			$result+=__import_getrowspan($node["rows"]);
+		} else {
+			$result++;
+		}
+	}
+	return $result;
+}
+
+function __import_make_table_trs($action) {
+	static $open=0;
+	static $lines=0;
+	$result="";
+	if($action=="open" && !$open) {
+		$result="<tr>\n";
+		$open=1;
+	}
+	if($action=="close" && $open) {
+		$result="</tr>\n";
+		$open=0;
+		$lines++;
+	}
+	if($action=="lines") {
+		$result=$lines;
+	}
+	return $result;
+}
+
+function __import_make_table_rec($array,$limit) {
+	$result="";
+	foreach($array as $node) {
+		$result.=__import_make_table_trs("open");
+		if(isset($node["row"]) && isset($node["rows"])) {
+			$rowspan=__import_getrowspan($node["rows"]);
+			foreach($node["row"] as $field) {
+				$result.="<td class='tbody' rowspan='${rowspan}'>";
+				$result.=$field;
+				$result.="</td>\n";
+			}
+			$result.=__import_make_table_rec($node["rows"],$limit);
+		} else {
+			foreach($node as $field) {
+				$result.="<td class='tbody'>";
+				$result.=$field;
+				$result.="</td>\n";
+			}
+		}
+		$result.=__import_make_table_trs("close");
+		if($limit && __import_make_table_trs("lines")>=$limit) break;
+	}
 	return $result;
 }
 ?>
