@@ -43,7 +43,7 @@ if($page=="importaciones") {
 	));
 	// DISPLAY OUTPUT
 	$select=explode(",",implode(",",array($row2["node0"],$row2["node1"])));
-	$buffer=__import_make_table(array("auto"=>true,"select"=>$select,"head"=>true,"data"=>$array,"limit"=>20));
+	$buffer=__import_make_table(array("auto"=>true,"select"=>$select,"head"=>true,"data"=>$array,"limit"=>20,"width"=>90));
 	output_buffer($buffer,"text/html");
 	die();
 }

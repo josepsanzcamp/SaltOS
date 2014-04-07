@@ -54,13 +54,13 @@ function __import_find_query($data,$pos) {
 
 function import_file($args) {
 	// CHECK PARAMETERS
-	if(!isset($args["type"])) show_php_error(array("phperror"=>"Unknown type"));
 	if(!isset($args["file"])) show_php_error(array("phperror"=>"Unknown file"));
-	if(!isset($args["separator"])) $args["separator"]=";";
+	if(!isset($args["type"])) show_php_error(array("phperror"=>"Unknown type"));
+	if(!isset($args["sep"])) $args["sep"]=";";
 	if(!isset($args["sheet"])) $args["sheet"]=0;
 	if(!isset($args["nodes"])) $args["nodes"]=array();
-	if(!isset($args["preimport"])) $args["preimport"]="";
-	if(!isset($args["postimport"])) $args["postimport"]="";
+	if(!isset($args["prefn"])) $args["prefn"]="";
+	if(!isset($args["postfn"])) $args["postfn"]="";
 	// CONTINUE
 	switch($args["type"]) {
 		case "application/xml":
@@ -71,21 +71,21 @@ function import_file($args) {
 		case "text/plain":
 		case "text/csv":
 		case "csv":
-			$array=__import_csv2array($args["file"],$args["separator"]);
-			if($args["preimport"]) $array=$args["preimport"]($array,$args);
+			$array=__import_csv2array($args["file"],$args["sep"]);
+			if($args["prefn"]) $array=$args["prefn"]($array,$args);
 			$array=__import_array2tree($array,$args["nodes"]);
 			break;
 		case "application/vnd.ms-excel":
 		case "application/excel":
 		case "excel":
 			$array=__import_xls2array($args["file"],$args["sheet"]);
-			if($args["preimport"])  $array=$args["preimport"]($array,$args);
+			if($args["prefn"])  $array=$args["prefn"]($array,$args);
 			$array=__import_array2tree($array,$args["nodes"]);
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown type '${array["type"]}' for file '${array["file"]}'"));
 	}
-	if($args["postimport"])  $array=$args["postimport"]($array,$args);
+	if($args["postfn"])  $array=$args["postfn"]($array,$args);
 	return $array;
 }
 
@@ -134,6 +134,7 @@ function __import_struct2array(&$data) {
 }
 
 function __import_csv2array($file,$sep) {
+	if($sep=="\\t") $sep="\t";
 	$fd=fopen($file,"r");
 	$array=array();
 	while($row=fgetcsv($fd,0,$sep)) {
@@ -339,6 +340,8 @@ function __import_getkeys($array) {
 function __import_make_table($array) {
 	$head=(isset($array["data"]) && is_array($array["data"]) && count($array["data"]))?__import_getkeys($array["data"]):"";
 	$limit=(isset($array["limit"]) && is_numeric($array["limit"]) && $array["limit"]>0)?$array["limit"]:0;
+	$offset=(isset($array["offset"]) && is_numeric($array["offset"]) && $array["offset"]>0)?$array["offset"]:0;
+	$width=(isset($array["width"]) && is_numeric($array["width"]) && $array["width"]>0)?$array["width"]."px":"";
 	$result="";
 	$result.="<table class='tabla width100'>\n";
 	foreach($array as $key=>$val) {
@@ -363,7 +366,7 @@ function __import_make_table($array) {
 				foreach($head as $field) {
 					$name="col_".__import_col2name($col);
 					$result.="<td class='tbody center'>";
-					$result.="<select class='ui-state-default ui-corner-all' name='${name}'>\n";
+					$result.="<select class='ui-state-default ui-corner-all' name='${name}' style='width:${width}'>\n";
 					$result.="<option value=''></option>\n";
 					foreach($val as $index=>$option) {
 						$selected=(isset($head[$index]) && $head[$index]==$option)?"selected":"";
@@ -388,7 +391,7 @@ function __import_make_table($array) {
 			}
 		}
 		if($key=="data" && is_array($val) && count($val)) {
-			$result.=__import_make_table_rec($val,$limit);
+			$result.=__import_make_table_rec($val,$limit,$offset);
 		}
 	}
 	$result.="</table>\n";
@@ -409,7 +412,6 @@ function __import_getrowspan($array) {
 
 function __import_make_table_trs($action) {
 	static $open=0;
-	static $lines=0;
 	$result="";
 	if($action=="open" && !$open) {
 		$result="<tr>\n";
@@ -418,16 +420,13 @@ function __import_make_table_trs($action) {
 	if($action=="close" && $open) {
 		$result="</tr>\n";
 		$open=0;
-		$lines++;
-	}
-	if($action=="lines") {
-		$result=$lines;
 	}
 	return $result;
 }
 
-function __import_make_table_rec($array,$limit) {
+function __import_make_table_rec($array,$limit,$offset,$level=0) {
 	$result="";
+	$lines=0;
 	foreach($array as $node) {
 		$result.=__import_make_table_trs("open");
 		if(isset($node["row"]) && isset($node["rows"])) {
@@ -437,7 +436,7 @@ function __import_make_table_rec($array,$limit) {
 				$result.=$field;
 				$result.="</td>\n";
 			}
-			$result.=__import_make_table_rec($node["rows"],$limit);
+			$result.=__import_make_table_rec($node["rows"],$limit,$offset,$level+1);
 		} else {
 			foreach($node as $field) {
 				$result.="<td class='tbody'>";
@@ -446,7 +445,9 @@ function __import_make_table_rec($array,$limit) {
 			}
 		}
 		$result.=__import_make_table_trs("close");
-		if($limit && __import_make_table_trs("lines")>=$limit) break;
+		$lines++;
+		if(!$level && $offset && $lines<=$offset) $result="";
+		if(!$level && $limit && $lines>=$offset+$limit) break;
 	}
 	return $result;
 }

@@ -1796,7 +1796,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				var trs=$("tr",this);
 				var tdshead=null;
 				var tdsbody=null;
-				var trimpar=1;
+				var trimpar=0;
 				$(trs).each(function() {
 					if($(this).hasClass("none")) return;
 					// MORE VARIABLES
@@ -1813,8 +1813,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						var count=1;
 						$(tds).each(function() {
 							if(count<total) $(this).addClass(rtl[dir]["noright"]);
-							if(count==1) $(this).removeClass(rtl[dir]["ui-corner-bl"]);
-							if(count==total) $(this).removeClass(rtl[dir]["ui-corner-br"]);
 							count++;
 						});
 					} else if(tdshead!=null && numhead+numbody+numdata>0) {
@@ -1825,8 +1823,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						$(tds).each(function() {
 							if(count<total) $(this).addClass("notop").addClass(rtl[dir]["noright"]);
 							if(count==total) $(this).addClass("notop")
-							if(count==1) $(this).removeClass(rtl[dir]["ui-corner-bl"]);
-							if(count==total) $(this).removeClass(rtl[dir]["ui-corner-br"]);
 							count++;
 						});
 					} else if(tdshead!=null) {
@@ -1851,11 +1847,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					}
 					// ADD THE TIMPAR CLASS TO THE CELLS THAT CONTAIN THE TBODY BY STEPS OF 2
 					if(numbody>0) {
+						trimpar=(trimpar+1)%2;
 						var clase=trimpar?"ui-widget-content":"ui-state-default";
 						$(".tbody",this).addClass(clase);
-						trimpar=(trimpar+1)%2;
 					} else if(numhead>0) {
-						trimpar=1;
+						trimpar=0;
 					}
 					// PROGRAM THE HIGHLIGHT EFFECT FOR EACH ROW
 					if(numbody>0 && numcell==0) {
