@@ -338,60 +338,91 @@ function __import_getkeys($array) {
 }
 
 function __import_make_table($array) {
-	$head=(isset($array["data"]) && is_array($array["data"]) && count($array["data"]))?__import_getkeys($array["data"]):"";
-	$limit=(isset($array["limit"]) && is_numeric($array["limit"]) && $array["limit"]>0)?$array["limit"]:0;
-	$offset=(isset($array["offset"]) && is_numeric($array["offset"]) && $array["offset"]>0)?$array["offset"]:0;
-	$width=(isset($array["width"]) && is_numeric($array["width"]) && $array["width"]>0)?$array["width"]."px":"";
 	$result="";
 	$result.="<table class='tabla width100'>\n";
-	foreach($array as $key=>$val) {
-		$key=limpiar_key($key);
-		if($key=="auto" && !is_array($val) && eval_bool($val)) {
-			if(is_array($head)) {
-				$result.="<tr>\n";
-				$col=0;
-				foreach($head as $field) {
-					$result.="<td class='thead center'>";
-					$result.=__import_col2name($col);
-					$result.="</td>\n";
-					$col++;
-				}
-				$result.="</tr>\n";
-			}
-		}
-		if($key=="select" && is_array($val) && count($val)) {
-			if(is_array($head)) {
-				$result.="<tr>\n";
-				$col=0;
-				foreach($head as $field) {
-					$name="col_".__import_col2name($col);
-					$result.="<td class='tbody center'>";
-					$result.="<select class='ui-state-default ui-corner-all' name='${name}' style='width:${width}'>\n";
-					$result.="<option value=''></option>\n";
-					foreach($val as $index=>$option) {
-						$selected=(isset($head[$index]) && $head[$index]==$option)?"selected":"";
-						$result.="<option value='${option}' ${selected}>${option}</option>\n";
+	if(!count($array["data"])) {
+		$result.="<tr>\n";
+		$result.="<td class='thead ui-widget-header center ui-corner-top'></td>";
+		$result.="</tr>\n";
+		$result.="<tr>\n";
+		$result.="<td class='tbody ui-widget-content center ui-corner-bottom nodata'>".LANG("nodata")."</td>";
+		$result.="</tr>\n";
+	} else {
+		$head=(isset($array["data"]) && is_array($array["data"]) && count($array["data"]))?__import_getkeys($array["data"]):"";
+		$limit=(isset($array["limit"]) && is_numeric($array["limit"]) && $array["limit"]>0)?$array["limit"]:0;
+		$offset=(isset($array["offset"]) && is_numeric($array["offset"]) && $array["offset"]>0)?$array["offset"]:0;
+		$width=(isset($array["width"]) && is_numeric($array["width"]) && $array["width"]>0)?$array["width"]."px":"";
+		$first=1;
+		foreach($array as $key=>$val) {
+			$key=limpiar_key($key);
+			if($key=="auto" && !is_array($val) && eval_bool($val)) {
+				if(is_array($head)) {
+					$last=count($head)-1;
+					$result.="<tr>\n";
+					$col=0;
+					foreach($head as $col=>$field) {
+						$noright=($col<$last)?"noright":"";
+						$notop=(!$first)?"notop":"";
+						$extra="";
+						if($first && $col==0) $extra="ui-corner-tl";
+						if($first && $col==$last) $extra="ui-corner-tr";
+						$result.="<td class='thead ui-widget-header center ${noright} ${notop} ${extra}'>";
+						$result.=__import_col2name($col);
+						$result.="</td>\n";
+						$col++;
 					}
-					$result.="</select>";
-					$result.="</td>\n";
-					$col++;
+					$result.="</tr>\n";
+					$first=0;
 				}
-				$result.="</tr>\n";
 			}
-		}
-		if($key=="head" && !is_array($val) && eval_bool($val)) {
-			if(is_array($head)) {
-				$result.="<tr>\n";
-				foreach($head as $field) {
-					$result.="<td class='thead center'>";
-					$result.=$field;
-					$result.="</td>\n";
+			if($key=="select" && is_array($val) && count($val)) {
+				if(is_array($head)) {
+					$last=count($head)-1;
+					$result.="<tr>\n";
+					$col=0;
+					foreach($head as $col=>$field) {
+						$name="col_".__import_col2name($col);
+						$noright=($col<$last)?"noright":"";
+						$notop=(!$first)?"notop":"";
+						$extra="";
+						if($first && $col==0) $extra="ui-corner-tl";
+						if($first && $col==$last) $extra="ui-corner-tr";
+						$result.="<td class='tbody ui-widget-content center ${noright} ${notop} ${extra}'>";
+						$result.="<select class='ui-state-default ui-corner-all' name='${name}' style='width:${width}'>\n";
+						$result.="<option value=''></option>\n";
+						foreach($val as $index=>$option) {
+							$selected=(isset($head[$index]) && $head[$index]==$option)?"selected":"";
+							$result.="<option value='${option}' ${selected}>${option}</option>\n";
+						}
+						$result.="</select>";
+						$result.="</td>\n";
+						$col++;
+					}
+					$result.="</tr>\n";
+					$first=0;
 				}
-				$result.="</tr>\n";
 			}
-		}
-		if($key=="data" && is_array($val) && count($val)) {
-			$result.=__import_make_table_rec($val,$limit,$offset);
+			if($key=="head" && !is_array($val) && eval_bool($val)) {
+				if(is_array($head)) {
+					$last=count($head)-1;
+					$result.="<tr>\n";
+					foreach($head as $col=>$field) {
+						$noright=($col<$last)?"noright":"";
+						$notop=(!$first)?"notop":"";
+						$extra="";
+						if($first && $col==0) $extra="ui-corner-tl";
+						if($first && $col==$last) $extra="ui-corner-tr";
+						$result.="<td class='thead ui-widget-header center siwrap ${noright} ${notop} ${extra}'>";
+						$result.=$field;
+						$result.="</td>\n";
+					}
+					$result.="</tr>\n";
+					$first=0;
+				}
+			}
+			if($key=="data" && is_array($val) && count($val)) {
+				$result.=__import_make_table_rec($val,$limit,$offset);
+			}
 		}
 	}
 	$result.="</table>\n";
@@ -424,22 +455,27 @@ function __import_make_table_trs($action) {
 	return $result;
 }
 
-function __import_make_table_rec($array,$limit,$offset,$level=0) {
+function __import_make_table_rec($array,$limit,$offset,$class="",$level=0) {
+	static $classes=array("ui-widget-content","ui-state-default");
 	$result="";
 	$lines=0;
 	foreach($array as $node) {
+		if(!$level) $class=$classes[$lines%2];
 		$result.=__import_make_table_trs("open");
 		if(isset($node["row"]) && isset($node["rows"])) {
 			$rowspan=__import_getrowspan($node["rows"]);
 			foreach($node["row"] as $field) {
-				$result.="<td class='tbody' rowspan='${rowspan}'>";
+				$result.="<td class='tbody ${class} noright notop' rowspan='${rowspan}'>";
 				$result.=$field;
 				$result.="</td>\n";
 			}
-			$result.=__import_make_table_rec($node["rows"],$limit,$offset,$level+1);
+			$result.=__import_make_table_rec($node["rows"],$limit,$offset,$class,$level+1);
 		} else {
-			foreach($node as $field) {
-				$result.="<td class='tbody'>";
+			$last=count($node)-1;
+			$node=array_values($node);
+			foreach($node as $col=>$field) {
+				$noright=($col<$last)?"noright":"";
+				$result.="<td class='tbody ${class} ${noright} notop'>";
 				$result.=$field;
 				$result.="</td>\n";
 			}
@@ -450,5 +486,29 @@ function __import_make_table_rec($array,$limit,$offset,$level=0) {
 		if(!$level && $limit && $lines>=$offset+$limit) break;
 	}
 	return $result;
+}
+
+function __import_filter($array,$filter) {
+	if($filter=="") return $array;
+	$result=array();
+	foreach($array as $node) {
+		if(__import_filter_rec($node,$filter)) $result[]=$node;
+	}
+	return $result;
+}
+
+function __import_filter_rec($node,$filter) {
+	if(isset($node["row"]) && isset($node["rows"])) {
+		foreach($node["row"] as $val) {
+			if(stripos($val,$filter)!==false) return true;
+		}
+		foreach($node["rows"] as $node2) {
+			if(__import_filter_rec($node2,$filter)) return true;
+		}
+	} else {
+		foreach($node as $val) {
+			if(stripos($val,$filter)!==false) return true;
+		}
+	}
 }
 ?>

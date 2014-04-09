@@ -1787,7 +1787,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabla",obj).each(function() {
 			if($(".thead",this).length>0) {
 				// FIXS FOR POSIBLE NEXT RECALLS
-				$("td",this).removeClass("ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br ui-widget-header ui-widget-content ui-state-default ui-state-highlight");
+				$("td",this).removeClass("ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br ui-widget-header ui-widget-content ui-state-default ui-state-highlight notop "+rtl[dir]["noright"]);
 				$("[hasbind=true]",this).unbind();
 				// STYLING THE THEAD AND NODATA
 				$(".thead",this).addClass("ui-widget-header");

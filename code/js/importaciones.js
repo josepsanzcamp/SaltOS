@@ -27,35 +27,95 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 	"use strict";
 	var __importaciones__=1;
 
-	function update_importdata() {
+	function import_submit1() {
 		if(getParam("action")!="form") return;
 		if(getParam("id")=="0") return;
-		var data="page=importaciones&action=import&id="+getParam("id");
+		var id=getParam("id");
+		var buscar=$("input[name$=buscar]").val();
+		var limit=getParam("limit");
+		var offset=getParam("offset");
+		var data="page=importaciones&action=import&id="+id+"&buscar="+buscar+"&limit="+limit+"&offset="+offset;
+		loadingcontent();
 		$.ajax({
 			url:"xml.php",
 			data:data,
 			type:"get",
 			success:function(response) {
+				unloadingcontent();
 				var obj=$(".importdata");
-				$(obj).html(response);
-				make_tables(obj);
-				make_selects(obj);
+				var width=$(obj).width();
+				$(obj).html("<div>"+response+"</div>");
+				$("div",obj).css("overflow","auto");
+				$("div",obj).width(width);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				unloadingcontent();
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
 		});
 	};
 
+	function import_pager(info,page,pages,first,previous,next,last) {
+		$(".infopager").html(info);
+		var options="";
+		for(var i=1;i<=pages;i++) {
+			var selected=(i==page)?"selected='selected'":"";
+			options+="<option value='"+i+"' "+selected+">"+i+"</option>";
+		};
+		$("select[id$=selectpager]").html(options);
+		if(!first) $("a[id$=firstpager]").addClass("ui-state-disabled");
+		if(!previous) $("a[id$=previouspager]").addClass("ui-state-disabled");
+		if(!next) $("a[id$=nextpager]").addClass("ui-state-disabled");
+		if(!last) $("a[id$=lastpager]").addClass("ui-state-disabled");
+		if(first) $("a[id$=firstpager]").removeClass("ui-state-disabled");
+		if(previous) $("a[id$=previouspager]").removeClass("ui-state-disabled");
+		if(next) $("a[id$=nextpager]").removeClass("ui-state-disabled");
+		if(last) $("a[id$=lastpager]").removeClass("ui-state-disabled");
+	}
+
+	function import_buscar() {
+		import_submit1();
+	}
+
+	function import_limpiar() {
+		$("input[name$=buscar]").val("");
+		import_submit1();
+	}
+
+	function import_first() {
+		import_page1($("select[id$=selectpager]").prop("selectedIndex",0).val());
+	}
+
+	function import_previous() {
+		import_page1($("select[id$=selectpager]").prop("selectedIndex",$("select[id$=selectpager]").prop("selectedIndex")-1).val());
+	}
+
+	function import_next() {
+		import_page1($("select[id$=selectpager]").prop("selectedIndex",$("select[id$=selectpager]").prop("selectedIndex")+1).val());
+	}
+
+	function import_last() {
+		import_page1($("select[id$=selectpager]").prop("selectedIndex",$("select[id$=selectpager]").prop("options").length-1).val());
+	}
+
+	function import_page1(num) {
+		setParam("offset",(intval(num)-1)*intval(getParam("limit")));
+		import_submit1();
+	}
+
+	function import_limit1(num) {
+		setParam("limit",intval(num));
+		import_submit1();
+	}
+
 }
 
 "use strict";
-$(function() { update_importdata(); });
-
 $(function() {
 	if(getParam("action")!="form") return;
 	if(getParam("id")==0) return;
 	setTimeout(function() {
 		$(".tabs").tabs("option","active",1);
+		import_submit1();
 	},100);
 });

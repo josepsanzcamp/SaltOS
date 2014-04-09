@@ -71,7 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gastos>lib/highcontrast/apps/calc.png</gastos>
 		<grupos>lib/highcontrast/actions/contact-new.png</grupos>
 		<home>lib/highcontrast/actions/gohome.png</home>
-		<importaciones>lib/highcontrast/apps/terminal.png</importaciones>
+		<importaciones>lib/highcontrast/actions/folder-new.png</importaciones>
 		<incidencias>lib/highcontrast/apps/bug-buddy.png</incidencias>
 		<ivas>lib/highcontrast/apps/terminal.png</ivas>
 		<last>lib/highcontrast/actions/stock_last.png</last>
@@ -162,7 +162,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gastos>lib/crystal/actions/money.png</gastos>
 		<grupos>lib/crystal/actions/edit_group.png</grupos>
 		<home>lib/crystal/apps/home.png</home>
-		<importaciones>lib/crystal/apps/fifteenpieces.png</importaciones>
+		<importaciones>lib/crystal/apps/ark.png</importaciones>
 		<incidencias>lib/crystal/apps/bug.png</incidencias>
 		<ivas>lib/crystal/apps/fifteenpieces.png</ivas>
 		<last>lib/crystal/actions/2rightarrow.png</last>
@@ -253,7 +253,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gastos>lib/silk/icons/money.png</gastos>
 		<grupos>lib/silk/icons/group.png</grupos>
 		<home>lib/silk/icons/application_home.png</home>
-		<importaciones>lib/silk/icons/application.png</importaciones>
+		<importaciones>lib/silk/icons/application_link.png</importaciones>
 		<incidencias>lib/silk/icons/bug.png</incidencias>
 		<ivas>lib/silk/icons/application.png</ivas>
 		<last>lib/silk/icons/resultset_last.png</last>

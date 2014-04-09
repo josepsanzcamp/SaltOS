@@ -42,9 +42,28 @@ if($page=="importaciones") {
 		"nodes"=>array($row2["node0"],$row2["node1"])
 	));
 	// DISPLAY OUTPUT
+	ob_start_protected(getDefault("obhandler"));
+	header_powered();
+	header_expires(false);
+	header("Content-type: text/html");
+	$array=__import_filter($array,getParam("buscar"));
+	$offset=getParam("offset",0);
+	$limit=getParam("limit",getDefault("regspagerdef"));
+	$count=count($array);
 	$select=explode(",",implode(",",array($row2["node0"],$row2["node1"])));
-	$buffer=__import_make_table(array("auto"=>true,"select"=>$select,"head"=>true,"data"=>$array,"limit"=>20,"width"=>90));
-	output_buffer($buffer,"text/html");
+	$buffer=__import_make_table(array("auto"=>true,"select"=>$select,"head"=>true,"data"=>$array,"limit"=>$limit,"offset"=>$offset,"width"=>120));
+	$currentpage=intval($offset/$limit)+1;
+	$totalpages=intval(($count-1)/$limit)+1;
+	$currentregini=min($offset+1,$count);
+	$currentregend=min($offset+$limit,$count);
+	$first=($currentpage>1)?1:0;
+	$previous=($currentpage>1)?1:0;
+	$next=($currentpage<$totalpages)?1:0;
+	$last=($currentpage<$totalpages)?1:0;
+	$buffer.=javascript_template("import_pager('".LANG("paginaspc").$currentpage.LANG("spcdespc").$totalpages." (".LANG("regsfrom",$page)." ".$currentregini.LANG("spcalspc").$currentregend.LANG("spcdespc").$count.")."."',".$currentpage.",".$totalpages.",".$first.",".$previous.",".$next.",".$last.")");
+	$buffer.=javascript_template(javascript_settimeout("make_selects(\$('.importdata'))",100));
+	echo $buffer;
+	ob_end_flush();
 	die();
 }
 if($page=="datacfg") {

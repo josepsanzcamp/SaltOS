@@ -201,7 +201,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<name>form</name>
 		<action>xml.php</action>
 		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
+		<hiddens>
+			<hiddens include="xml/common/hiddensform.xml" replace="true"/>
+			<field>
+				<name>limit</name>
+				<type>hidden</type>
+				<value global="limit" eval="true">$limit=ismobile()?intval(getDefault("regspagemobile")):min(max(intval(getParam("limit",getDefault("regspagerdef"))),intval(getDefault("regspagermin"))),intval(getDefault("regspagermax")))</value>
+				<class>nofilter</class>
+			</field>
+			<field>
+				<name>offset</name>
+				<type>hidden</type>
+				<value global="offset" eval="true">$offset=max(intval(getParam("offset",0)),0)</value>
+				<class>nofilter</class>
+			</field>
+		</hiddens>
 		<fields>
 			<default>
 				<fieldset>
@@ -275,8 +289,148 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<width>100%</width>
 					<row>
 						<field>
+							<type>grid</type>
+							<rows>
+								<row>
+									<field>
+										<type>separator</type>
+										<width>100%</width>
+									</field>
+									<field>
+										<name>buscar</name>
+										<label lang="true">buscar</label>
+										<type>text</type>
+										<width>240px</width>
+										<onkeypress>if(is_enterkey(event)) import_buscar();</onkeypress>
+										<focus>true</focus>
+										<speech>true</speech>
+										<class3>shortcut_ctrl_f</class3>
+									</field>
+									<field>
+										<type>button</type>
+										<value lang="true">buscar</value>
+										<tip lang="true">buscartip</tip>
+										<onclick>import_buscar()</onclick>
+										<icon>find</icon>
+										<class>nowrap</class>
+									</field>
+									<field>
+										<type>button</type>
+										<value lang="true">limpiar</value>
+										<tip lang="true">limpiartip</tip>
+										<onclick>import_limpiar()</onclick>
+										<icon>refresh</icon>
+										<class>nowrap contextmenu</class>
+									</field>
+								</row>
+							</rows>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
 							<type>separator</type>
 							<class>importdata</class>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>grid</type>
+							<rows>
+								<row>
+									<field>
+										<type>separator</type>
+										<width>10%</width>
+									</field>
+									<field>
+										<type>separator</type>
+										<width>50%</width>
+									</field>
+									<field>
+										<type>label</type>
+										<label eval="true">LANG("paginaspc")."1".LANG("spcdespc")."1"." (".LANG("regsfrom")." "."0".LANG("spcalspc")."0".LANG("spcdespc")."0".")."</label>
+										<class>nowrap</class>
+										<class2>infopager</class2>
+									</field>
+									<field>
+										<type>select</type>
+										<name>selectlimit</name>
+										<label lang="true">regspage</label>
+										<rows>
+											<row global="var_i" for="var_i" from="intval(getDefault('regspagermin'))" step="intval(getDefault('regspagerincr'))" to="intval(getDefault('regspagermax'))">
+												<label global="var_i" eval="true">$var_i</label>
+												<value global="var_i" eval="true">$var_i</value>
+											</row>
+										</rows>
+										<value global="limit" eval="true">$limit</value>
+										<onchange>import_limit1(this.value)</onchange>
+									</field>
+									<field>
+										<type>separator</type>
+										<width>50%</width>
+									</field>
+									<field>
+										<name>firstpager</name>
+										<type>button</type>
+										<tip lang="true">first</tip>
+										<label lang="true">first</label>
+										<onclick>if(!is_disabled(this)) import_first()</onclick>
+										<icon>first</icon>
+										<class>nowrap contextmenu</class>
+										<class2>ui-state-disabled shortcut_ctrl_home</class2>
+									</field>
+									<field>
+										<name>previouspager</name>
+										<type>button</type>
+										<tip lang="true">previous</tip>
+										<label lang="true">previous</label>
+										<onclick>if(!is_disabled(this)) import_previous()</onclick>
+										<icon>previous</icon>
+										<class>nowrap contextmenu</class>
+										<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
+									</field>
+									<field>
+										<type>select</type>
+										<name>selectpager</name>
+										<rows>
+											<row>
+												<label global="offset,limit" eval="true">intval($offset/$limit)+1</label>
+												<value></value>
+											</row>
+										</rows>
+										<onchange>import_page1(this.value)</onchange>
+									</field>
+									<field>
+										<name>nextpager</name>
+										<type>button</type>
+										<tip lang="true">next</tip>
+										<label lang="true">next</label>
+										<onclick>if(!is_disabled(this)) import_next()</onclick>
+										<icon>next</icon>
+										<class>nowrap contextmenu</class>
+										<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
+									</field>
+									<field>
+										<name>lastpager</name>
+										<type>button</type>
+										<tip lang="true">last</tip>
+										<label lang="true">last</label>
+										<onclick>if(!is_disabled(this)) import_last()</onclick>
+										<icon>last</icon>
+										<class>nowrap contextmenu</class>
+										<class2>ui-state-disabled shortcut_ctrl_end</class2>
+									</field>
+								</row>
+							</rows>
 						</field>
 					</row>
 				</fieldset>

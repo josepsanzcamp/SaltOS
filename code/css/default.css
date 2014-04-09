@@ -343,10 +343,10 @@ img.ui-state-default {
 	font-weight:bold;
 }
 .nowrap {
-	white-space:nowrap;
+	white-space:nowrap!important;
 }
 .siwrap {
-	white-space:normal;
+	white-space:normal!important;
 }
 .notabs {
 	display:none;
