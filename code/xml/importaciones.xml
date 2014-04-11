@@ -52,6 +52,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<sort>true</sort>
 				<order>fichero2</order>
 			</field>
+			<field>
+				<name>fichero_size2</name>
+				<label lang="true">size</label>
+				<sort>true</sort>
+				<order>fichero_size</order>
+			</field>
 		</fields>
 		<javascript>
 			<javascript include="xml/common/jslist.xml" replace="true"/>
@@ -143,7 +149,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				(SELECT nombre FROM tbl_aplicaciones WHERE id=id_aplicacion) aplicacion,
 				CONCAT('link:download2(\'',f_id,'_${page}_',b.id,'\'):',fichero) fichero,
 				fichero fichero2,
+				fichero_size,
+				CASE WHEN fichero_size&gt;1073741824 THEN  CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
+					WHEN fichero_size&gt;1048576 THEN  CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
+					WHEN fichero_size&gt;1024 THEN  CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
+					ELSE  CONCAT(fichero_size,' bytes')
+				END fichero_size2,
 				id_usuario,id_grupo,
+				descripcion,
 				id action_id,
 				CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre) action_title,
 				CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
@@ -152,14 +165,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			FROM (
 				SELECT a.*,
 					LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
-					e.id_usuario id_usuario,d.id_grupo id_grupo,f.id f_id,f.fichero
+					e.id_usuario id_usuario,d.id_grupo id_grupo,f.id f_id,f.fichero,f.fichero_size
 				FROM tbl_importaciones a
 					LEFT JOIN tbl_ficheros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
 					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 			) b
 		) c
-		WHERE ".make_like_query("id2,nombre2,descripcion,fichero2,aplicacion,total",$filtro)." AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id2,nombre2,descripcion,fichero2,aplicacion",$filtro)." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -292,6 +305,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>grid</type>
 							<rows>
 								<row>
+									<field>
+										<type>button</type>
+										<value lang="true">buttonreturn</value>
+										<tip lang="true">buttonreturn</tip>
+										<onclick>goback()</onclick>
+										<class>nowrap contextmenu</class>
+										<icon>return</icon>
+									</field>
 									<field>
 										<type>separator</type>
 										<width>100%</width>

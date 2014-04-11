@@ -133,8 +133,14 @@ function __import_struct2array(&$data) {
 	return $array;
 }
 
+function __import_specialchars($arg) {
+	$orig=array("\\t","\\r","\\n");
+	$dest=array("\t","\r","\n");
+	return str_replace($orig,$dest,$arg);
+}
+
 function __import_csv2array($file,$sep) {
-	if($sep=="\\t") $sep="\t";
+	$sep=__import_specialchars($sep);
 	$fd=fopen($file,"r");
 	$array=array();
 	while($row=fgetcsv($fd,0,$sep)) {
@@ -287,6 +293,10 @@ function __import_tree2array($array) {
 
 // COPIED FROM http://www.php.net/manual/en/function.base-convert.php#94874
 function __import_col2name($n) {
+	if(is_array($n)) {
+		foreach($n as $key=>$val) $n[$key]=__import_col2name($val);
+		return $n;
+	}
     $r = '';
     for ($i = 1; $n >= 0 && $i < 10; $i++) {
         $r = chr(0x41 + ($n % pow(26, $i) / pow(26, $i - 1))) . $r;
@@ -297,6 +307,10 @@ function __import_col2name($n) {
 
 // COPIED FROM http://www.php.net/manual/en/function.base-convert.php#94874
 function __import_name2col($a) {
+	if(is_array($a)) {
+		foreach($a as $key=>$val) $a[$key]=__import_name2col($val);
+		return $a;
+	}
     $r = 0;
     $l = strlen($a);
     for ($i = 0; $i < $l; $i++) {
@@ -352,6 +366,7 @@ function __import_make_table($array) {
 		$limit=(isset($array["limit"]) && is_numeric($array["limit"]) && $array["limit"]>0)?$array["limit"]:0;
 		$offset=(isset($array["offset"]) && is_numeric($array["offset"]) && $array["offset"]>0)?$array["offset"]:0;
 		$width=(isset($array["width"]) && is_numeric($array["width"]) && $array["width"]>0)?$array["width"]."px":"";
+		$edit=(isset($array["edit"]) && is_array($array["edit"]) && count($array["edit"]))?__import_name2col($array["edit"]):array();
 		$first=1;
 		foreach($array as $key=>$val) {
 			$key=limpiar_key($key);
@@ -412,7 +427,7 @@ function __import_make_table($array) {
 						$extra="";
 						if($first && $col==0) $extra="ui-corner-tl";
 						if($first && $col==$last) $extra="ui-corner-tr";
-						$result.="<td class='thead ui-widget-header center siwrap ${noright} ${notop} ${extra}'>";
+						$result.="<td class='thead ui-widget-header center ${noright} ${notop} ${extra}'>";
 						$result.=$field;
 						$result.="</td>\n";
 					}
@@ -421,7 +436,7 @@ function __import_make_table($array) {
 				}
 			}
 			if($key=="data" && is_array($val) && count($val)) {
-				$result.=__import_make_table_rec($val,$limit,$offset);
+				$result.=__import_make_table_rec($val,$limit,$offset,$edit,$width);
 			}
 		}
 	}
@@ -455,35 +470,42 @@ function __import_make_table_trs($action) {
 	return $result;
 }
 
-function __import_make_table_rec($array,$limit,$offset,$class="",$level=0) {
+function __import_make_table_rec($array,$limit,$offset,$edit,$width,$class="",$depth=0,$path="") {
 	static $classes=array("ui-widget-content","ui-state-default");
 	$result="";
 	$lines=0;
-	foreach($array as $node) {
-		if(!$level) $class=$classes[$lines%2];
+	foreach($array as $key=>$node) {
+		if(!$depth) $class=$classes[$lines%2];
 		$result.=__import_make_table_trs("open");
 		if(isset($node["row"]) && isset($node["rows"])) {
 			$rowspan=__import_getrowspan($node["rows"]);
-			foreach($node["row"] as $field) {
-				$result.="<td class='tbody ${class} noright notop' rowspan='${rowspan}'>";
-				$result.=$field;
-				$result.="</td>\n";
-			}
-			$result.=__import_make_table_rec($node["rows"],$limit,$offset,$class,$level+1);
+			$result.=__import_make_table_row($node["row"],$class,$rowspan,count($node["row"]),$depth,$edit,$width,$path."/row/".$key);
+			$result.=__import_make_table_rec($node["rows"],$limit,$offset,$edit,$width,$class,$depth+count($node["row"]),$path."/row/".$key);
 		} else {
-			$last=count($node)-1;
-			$node=array_values($node);
-			foreach($node as $col=>$field) {
-				$noright=($col<$last)?"noright":"";
-				$result.="<td class='tbody ${class} ${noright} notop'>";
-				$result.=$field;
-				$result.="</td>\n";
-			}
+			$result.=__import_make_table_row($node,$class,1,count($node)-1,$depth,$edit,$width,$path."/row/".$key);
 		}
 		$result.=__import_make_table_trs("close");
 		$lines++;
-		if(!$level && $offset && $lines<=$offset) $result="";
-		if(!$level && $limit && $lines>=$offset+$limit) break;
+		if(!$depth && $offset && $lines<=$offset) $result="";
+		if(!$depth && $limit && $lines>=$offset+$limit) break;
+	}
+	return $result;
+}
+
+function __import_make_table_row($row,$class,$rowspan,$last,$depth,$edit,$width,$path) {
+	$result="";
+	$col=0;
+	foreach($row as $key=>$field) {
+		$noright=($col<$last)?"noright":"";
+		$result.="<td class='tbody ${class} ${noright} notop nowrap' rowspan='${rowspan}' style='min-width:${width}'>";
+		if(in_array($depth+$col,$edit)) {
+			$name=$path."/col/".$col;
+			$result.="<input type='text' class='ui-state-default ui-corner-all importsave' name='${name}' value='${field}' style='width:${width}'/>";
+		} else {
+			$result.=$field;
+		}
+		$result.="</td>\n";
+		$col++;
 	}
 	return $result;
 }
@@ -509,6 +531,43 @@ function __import_filter_rec($node,$filter) {
 		foreach($node as $val) {
 			if(stripos($val,$filter)!==false) return true;
 		}
+	}
+}
+
+function __import_apply_patch(&$array,$key,$val) {
+	$key=explode("/",$key);
+	$key=array_reverse($key);
+	array_pop($key);
+	__import_apply_patch_rec($array,$key,$val);
+}
+
+function __import_apply_patch_rec(&$array,$key,$val) {
+	$key0=array_pop($key);
+	$key1=array_pop($key);
+	if($key0=="row") {
+		if(isset($array["rows"][$key1])) {
+			__import_apply_patch_rec($array["rows"][$key1],$key,$val);
+		} elseif(isset($array[$key1])) {
+			__import_apply_patch_rec($array[$key1],$key,$val);
+		} else {
+			show_php_error(array("phperror"=>"Path '${key0}' for '${key1}' not found"));
+		}
+	} elseif($key0=="col") {
+		if(isset($array["row"]) && isset($array["rows"])) {
+			$col=0;
+			foreach($array["row"] as $key2=>$val2) {
+				if($col==$key1) $array["row"][$key2]=$val;
+				$col++;
+			}
+		} else {
+			$col=0;
+			foreach($array as $key2=>$val2) {
+				if($col==$key1) $array[$key2]=$val;
+				$col++;
+			}
+		}
+	} else {
+		show_php_error(array("phperror"=>"Unknown '${key0}' for '${key1}'"));
 	}
 }
 ?>

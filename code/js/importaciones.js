@@ -43,10 +43,13 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 			success:function(response) {
 				unloadingcontent();
 				var obj=$(".importdata");
+				var offset=$("div",obj).scrollLeft();
+				$(obj).html("<div></div>");
 				var width=$(obj).width();
 				$(obj).html("<div>"+response+"</div>");
 				$("div",obj).css("overflow","auto");
 				$("div",obj).width(width);
+				$("div",obj).scrollLeft(offset);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				unloadingcontent();
@@ -74,11 +77,13 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 	}
 
 	function import_buscar() {
+		setParam("offset",0);
 		import_submit1();
 	}
 
 	function import_limpiar() {
 		$("input[name$=buscar]").val("");
+		setParam("offset",0);
 		import_submit1();
 	}
 
@@ -105,6 +110,7 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 
 	function import_limit1(num) {
 		setParam("limit",intval(num));
+		setParam("offset",0);
 		import_submit1();
 	}
 
