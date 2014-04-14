@@ -181,7 +181,6 @@ function __import_xls2array($file,$sheet) {
 		$array[]=$temp;
 	}
 	// RELEASE MEMORY
-	unset($objFilter);
 	unset($objReader);
 	unset($objPHPExcel);
 	unset($objSheet);
@@ -444,11 +443,11 @@ function __import_make_table($array) {
 	return $result;
 }
 
-function __import_getrowspan($array) {
+function __import_make_table_rowspan($array) {
 	$result=0;
 	foreach($array as $node) {
 		if(isset($node["row"]) && isset($node["rows"])) {
-			$result+=__import_getrowspan($node["rows"]);
+			$result+=__import_make_table_rowspan($node["rows"]);
 		} else {
 			$result++;
 		}
@@ -478,7 +477,7 @@ function __import_make_table_rec($array,$limit,$offset,$edit,$width,$class="",$d
 		if(!$depth) $class=$classes[$lines%2];
 		$result.=__import_make_table_trs("open");
 		if(isset($node["row"]) && isset($node["rows"])) {
-			$rowspan=__import_getrowspan($node["rows"]);
+			$rowspan=__import_make_table_rowspan($node["rows"]);
 			$result.=__import_make_table_row($node["row"],$class,$rowspan,count($node["row"]),$depth,$edit,$width,$path."/row/".$key);
 			$result.=__import_make_table_rec($node["rows"],$limit,$offset,$edit,$width,$class,$depth+count($node["row"]),$path."/row/".$key);
 		} else {
@@ -510,26 +509,50 @@ function __import_make_table_row($row,$class,$rowspan,$last,$depth,$edit,$width,
 	return $result;
 }
 
-function __import_filter($array,$filter) {
-	if($filter=="") return $array;
+function __import_filter($array,$filter,$eval=0) {
 	$result=array();
 	foreach($array as $node) {
-		if(__import_filter_rec($node,$filter)) $result[]=$node;
+		if(__import_filter_rec($node,$filter,$eval)) $result[]=$node;
 	}
 	return $result;
 }
 
-function __import_filter_rec($node,$filter) {
+function __import_filter_rec($node,$filter,$eval,$depth=0) {
 	if(isset($node["row"]) && isset($node["rows"])) {
+		// NORMAL FILTER
 		foreach($node["row"] as $val) {
 			if(stripos($val,$filter)!==false) return true;
 		}
+		// EVAL FILTER
+		if($eval) {
+			$vars=array_values($node["row"]);
+			$keys=array_keys($vars);
+			foreach($keys as $key=>$val) $keys[$key]=__import_col2name($depth+$val);
+			$vars=array_combine($keys,$vars);
+			capture_next_error();
+			$result=eval_protected($filter,$vars);
+			$error=get_clear_error();
+			if($result && !$error) return true;
+		}
+		// RECURSIVE CALL
 		foreach($node["rows"] as $node2) {
-			if(__import_filter_rec($node2,$filter)) return true;
+			if(__import_filter_rec($node2,$filter,$eval,$depth+count($node["row"]))) return true;
 		}
 	} else {
+		// NORMAL FILTER
 		foreach($node as $val) {
 			if(stripos($val,$filter)!==false) return true;
+		}
+		// EVAL FILTER
+		if($eval) {
+			$vars=array_values($node);
+			$keys=array_keys($vars);
+			foreach($keys as $key=>$val) $keys[$key]=__import_col2name($depth+$val);
+			$vars=array_combine($keys,$vars);
+			capture_next_error();
+			$result=eval_protected($filter,$vars);
+			$error=get_clear_error();
+			if($result && !$error) return true;
 		}
 	}
 }

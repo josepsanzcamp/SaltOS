@@ -382,6 +382,14 @@ function wp_allowed_protocols() {
 
 	if ( empty( $protocols ) ) {
 		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp' );
+
+		/**
+		 * Filter the list of protocols allowed in HTML attributes.
+		 * 
+		 * @since 3.0.0 
+		 *
+		 * @param array $protocols Array of allowed protocols e.g. 'http', 'ftp', 'tel', and more.
+		 */
 		$protocols = apply_filters( 'kses_allowed_protocols', $protocols );
 	}
 

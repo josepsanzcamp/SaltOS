@@ -1401,7 +1401,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).bind("change",function() {
-			eval($(this).val());
+			if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
 			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
 		});
 		//~ console.timeEnd("make_extras");

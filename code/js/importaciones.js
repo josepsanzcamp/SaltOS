@@ -34,7 +34,7 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 		var buscar=$("input[name$=buscar]").val();
 		var limit=getParam("limit");
 		var offset=getParam("offset");
-		var data="page=importaciones&action=import&id="+id+"&buscar="+buscar+"&limit="+limit+"&offset="+offset;
+		var data="page=importaciones&action=import&id="+id+"&buscar="+rawurlencode(buscar)+"&limit="+limit+"&offset="+offset;
 		loadingcontent();
 		$.ajax({
 			url:"xml.php",

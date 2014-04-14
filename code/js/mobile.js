@@ -283,6 +283,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		}
 		$("#dialog").page();
 		$("#dialog").css("margin-top",$(document).scrollTop());
+		$("#dialog .ui-content").addClass("ui-state-highlight");
 		$("#dialog").show();
 		$("#dialog p a:first").trigger("focus");
 		var interval=setInterval(function() {
@@ -474,6 +475,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			theme:"a",
 			html:""
 		});
+		$(".ui-loader:visible").addClass("ui-state-highlight");
 		return true;
 	}
 
@@ -915,7 +917,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
 		// PROGRAM MENU SELECTS
 		$("select[ismenu=true]",obj).bind("change",function() {
-			eval($(this).val());
+			if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
 			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
 		});
 		// STYLING IFRAME BORDER

@@ -46,7 +46,8 @@ if($page=="importaciones") {
 	header_powered();
 	header_expires(false);
 	header("Content-type: text/html");
-	$array=__import_filter($array,getParam("buscar"));
+	$buscar=getParam("buscar");
+	if($buscar!="") $array=__import_filter($array,stripslashes($buscar));
 	$offset=getParam("offset",0);
 	$limit=getParam("limit",getDefault("regspagerdef"));
 	$count=count($array);
