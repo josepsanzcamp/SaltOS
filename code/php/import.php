@@ -61,6 +61,7 @@ function import_file($args) {
 	if(!isset($args["nodes"])) $args["nodes"]=array();
 	if(!isset($args["prefn"])) $args["prefn"]="";
 	if(!isset($args["postfn"])) $args["postfn"]="";
+	if(!file_exists($args["file"])) return "Error: File '$file' not found";
 	// CONTINUE
 	switch($args["type"]) {
 		case "application/xml":
@@ -79,6 +80,7 @@ function import_file($args) {
 		case "application/excel":
 		case "excel":
 			$array=__import_xls2array($args["file"],$args["sheet"]);
+			if(!is_array($array)) return $array;
 			if($args["prefn"])  $array=$args["prefn"]($array,$args);
 			$array=__import_array2tree($array,$args["nodes"]);
 			break;
@@ -160,6 +162,20 @@ function __import_xls2array($file,$sheet) {
 	PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);
 	$objReader=PHPExcel_IOFactory::createReaderForFile($file);
 	$objReader->setReadDataOnly(true);
+	// CHECK THE SHEET PARAM
+	$sheets=$objReader->listWorksheetNames($file);
+	if(is_numeric($sheet)) {
+		if(!isset($sheets[$sheet])) return "Error: Sheet number '${sheet}' not found";
+	} else {
+		foreach($sheets as $sheet2=>$name2) {
+			if($sheet==$name2) {
+				$sheet=$sheet2;
+				break;
+			}
+		}
+		if(!is_numeric($sheet)) return "Error: Sheet named '${sheet}' not found";
+	}
+	// CONTINUE
 	$objPHPExcel=$objReader->load($file);
 	$objSheet=$objPHPExcel->getSheet($sheet);
 	// DETECT COLS AND ROWS WITH DATA
@@ -245,20 +261,20 @@ function __import_array2tree($array,$nodes) {
 				$parts[$hash]=$line3;
 			}
 		}
-		__import_array2tree_setter($result,$parts);
+		__import_array2tree_set($result,$parts);
 	}
 	$result=__import_array2tree_clean($result);
 	return $result;
 }
 
-function __import_array2tree_setter(&$result,$parts) {
+function __import_array2tree_set(&$result,$parts) {
 	$part=each($parts);
 	$key=$part["key"];
 	$val=$part["value"];
 	unset($parts[$key]);
 	if(count($parts)) {
 		if(!isset($result[$key])) $result[$key]=array("row"=>$val,"rows"=>array());
-		__import_array2tree_setter($result[$key]["rows"],$parts);
+		__import_array2tree_set($result[$key]["rows"],$parts);
 	} else {
 		$result[$key]=$val;
 	}
@@ -353,7 +369,14 @@ function __import_getkeys($array) {
 function __import_make_table($array) {
 	$result="";
 	$result.="<table class='tabla width100'>\n";
-	if(!count($array["data"])) {
+	if(!is_array($array["data"])) {
+		$result.="<tr>\n";
+		$result.="<td class='thead ui-widget-header center ui-corner-top'></td>";
+		$result.="</tr>\n";
+		$result.="<tr>\n";
+		$result.="<td class='tbody ui-widget-content center ui-corner-bottom nodata'>".$array["data"]."</td>";
+		$result.="</tr>\n";
+	} elseif(!count($array["data"])) {
 		$result.="<tr>\n";
 		$result.="<td class='thead ui-widget-header center ui-corner-top'></td>";
 		$result.="</tr>\n";

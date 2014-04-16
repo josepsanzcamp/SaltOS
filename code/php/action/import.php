@@ -46,11 +46,13 @@ if($page=="importaciones") {
 	header_powered();
 	header_expires(false);
 	header("Content-type: text/html");
-	$buscar=getParam("buscar");
-	if($buscar!="") $array=__import_filter($array,stripslashes($buscar));
+	if(is_array($array)) {
+		$buscar=getParam("buscar");
+		if($buscar!="") $array=__import_filter($array,stripslashes($buscar));
+	}
 	$offset=getParam("offset",0);
 	$limit=getParam("limit",getDefault("regspagerdef"));
-	$count=count($array);
+	$count=is_array($array)?count($array):0;
 	$select=explode(",",implode(",",array($row2["node0"],$row2["node1"])));
 	$buffer=__import_make_table(array("auto"=>true,"select"=>$select,"head"=>true,"data"=>$array,"limit"=>$limit,"offset"=>$offset,"width"=>120));
 	$currentpage=intval($offset/$limit)+1;
