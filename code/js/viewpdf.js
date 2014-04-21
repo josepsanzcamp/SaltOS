@@ -133,9 +133,9 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 										viewport:viewport,
 										textLayer:textLayer
 									}).promise.then(fn);
-									page.getTextContent().then(function(textContent) {
-										textLayer.setTextContent(textContent);
-									});
+									//~ page.getTextContent().then(function(textContent) {
+										//~ textLayer.setTextContent(textContent);
+									//~ });
 								});
 							}
 						};

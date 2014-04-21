@@ -47,6 +47,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<order>nombre2</order>
 			</field>
 			<field>
+				<name>datetime</name>
+				<label lang="true">datetime</label>
+				<sort>true</sort>
+			</field>
+			<field>
 				<name>fichero</name>
 				<label lang="true">fichero</label>
 				<sort>true</sort>
@@ -146,6 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			SELECT id,id2,
 				CONCAT('link:importaciones(',-id,'):',nombre) nombre,
 				nombre nombre2,
+				datetime,
 				(SELECT nombre FROM tbl_aplicaciones WHERE id=id_aplicacion) aplicacion,
 				CONCAT('link:download2(\'',f_id,'_${page}_',b.id,'\'):',fichero) fichero,
 				fichero fichero2,
@@ -165,14 +171,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			FROM (
 				SELECT a.*,
 					LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
-					e.id_usuario id_usuario,d.id_grupo id_grupo,f.id f_id,f.fichero,f.fichero_size
+					e.id_usuario id_usuario,d.id_grupo id_grupo,f.id f_id,f.fichero,f.fichero_size,f.datetime
 				FROM tbl_importaciones a
 					LEFT JOIN tbl_ficheros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
 					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 			) b
 		) c
-		WHERE ".make_like_query("id2,nombre2,descripcion,fichero2,aplicacion",$filtro)." AND ".check_sql($page,"list")</query>
+		WHERE ".make_like_query("id2,nombre2,descripcion,fichero2,aplicacion,datetime",$filtro)." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
