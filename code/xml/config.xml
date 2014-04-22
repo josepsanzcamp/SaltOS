@@ -237,8 +237,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/ckeditor/ckeditor.min.js</include>
 			<include>lib/ckeditor/adapters/jquery.min.js</include>
 			<include>lib/pdfjs/pdf.min.js</include>
-			<include>lib/pdfjs/compatibility.min.js</include>
-			<include>lib/pdfjs/viewer.min.js</include>
+			<include>lib/pdfjs/pdf_find_bar.min.js</include>
+			<include>lib/pdfjs/pdf_find_controller.min.js</include>
+			<include>lib/pdfjs/ui_utils.min.js</include>
+			<include>lib/pdfjs/text_layer_builder.min.js</include>
 			<include>lib/codemirror/codemirror.min.js</include>
 			<include>lib/codemirror/codemirror.mode.min.js</include>
 			<include>lib/d3js/d3.min.js</include>

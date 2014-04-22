@@ -27,6 +27,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 	"use strict";
 	var __viewpdf__=1;
 
+	// ORIGINAL IDEA FROM pdf.js/examples/text-selection/js/minimal.js
 	function viewpdf(data) {
 		loadingcontent(lang_view2opening());
 		var data="action=viewpdf&"+data;
@@ -65,9 +66,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 					var bytes=new Uint8Array(array);
 					for(var i=0,len=data.length;i<len;i++) bytes[i]=data.charCodeAt(i);
 					// CREATE PDFDOC
-					PDFJS.workerSrc = 'lib/pdfjs/pdf.worker.min.js';
-					//~ PDFJS.disableWorker=true;
-					PDFJS.disableRange=true;
+					PDFJS.workerSrc="lib/pdfjs/pdf.worker.min.js";
 					PDFJS.getDocument(array).then(function(pdf) {
 						unloadingcontent();
 						// CHECK FOR NUMPAGES>0
@@ -113,29 +112,48 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 									var viewport=page.getViewport(1);
 									var scale=width/viewport.width;
 									viewport=page.getViewport(scale);
-									// CREATE TEXTLAYER
-									var div=document.createElement('div');
-									div.className='textLayer';
-									$(dialog2).append(div);
 									// CREATE CANVAS
-									var canvas=document.createElement("canvas");
-									canvas.width=viewport.width;
-									canvas.height=viewport.height;
-									$(dialog2).append(canvas);
-									// CONTINUE UNTIL RENDER
+									var $canvas=$("<canvas></canvas>");
+									var canvas=$canvas.get(0);
 									var context=canvas.getContext("2d");
-									var textLayer=new TextLayerBuilder({
-										textLayerDiv:div,
-										pageIndex:numPage-1
+									var outputScale=getOutputScale(context);
+									canvas.width=(Math.floor(viewport.width)*outputScale.sx)|0;
+									canvas.height=(Math.floor(viewport.height)*outputScale.sy)|0;
+									canvas.style.width=Math.floor(viewport.width)+'px';
+									canvas.style.height=Math.floor(viewport.height)+'px';
+									$(dialog2).append($canvas);
+									// CREATE DIV
+									var $div=jQuery("<div></div>");
+									var div=$div.get(0);
+									$div.addClass("textLayer")
+									$div.css("height",canvas.style.height)
+									$div.css("width",canvas.style.width)
+									var canvasOffset=$canvas.offset();
+									var dialogOffset=$(dialog2).offset();
+									var dialogScrollTop=$(dialog2).scrollTop();
+									$div.offset({
+										top:Math.floor(canvasOffset.top-dialogOffset.top+dialogScrollTop),
+										left:Math.floor(canvasOffset.left-dialogOffset.left)
 									});
-									page.render({
-										canvasContext:context,
-										viewport:viewport,
-										textLayer:textLayer
-									}).promise.then(fn);
-									//~ page.getTextContent().then(function(textContent) {
-										//~ textLayer.setTextContent(textContent);
-									//~ });
+									context._scaleX=outputScale.sx;
+									context._scaleY=outputScale.sy;
+									if(outputScale.scaled) {
+										context.scale(outputScale.sx,outputScale.sy);
+									}
+									$(dialog2).append($div);
+									// RENDER PAGE
+									page.getTextContent().then(function(textContent) {
+										var textLayer=new TextLayerBuilder({
+											textLayerDiv:div,
+											viewport:viewport,
+											pageIndex:numPage-1
+										});
+										textLayer.setTextContent(textContent);
+										page.render({
+											canvasContext:context,
+											viewport:viewport
+										}).promise.then(fn);
+									});
 								});
 							}
 						};

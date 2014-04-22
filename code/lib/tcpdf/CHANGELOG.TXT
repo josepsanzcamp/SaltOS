@@ -1,3 +1,9 @@
+6.0.068 (2014-04-22)
+	- Some Datamatrix barcode bugs were fixed.
+
+6.0.067 (2014-04-21)
+	- startLayer() method signature was changed to include a new "lock" parameter.
+
 6.0.066 (2014-04-20)
 	- Bug #908 "Linebreak is not considered when getting length of the next string" was fixed.
 
