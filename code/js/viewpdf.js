@@ -135,6 +135,8 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 										top:Math.floor(canvasOffset.top-dialogOffset.top+dialogScrollTop),
 										left:Math.floor(canvasOffset.left-dialogOffset.left)
 									});
+									//~ $div.css("background-color","#336699");
+									//~ $div.css("opacity",".5");
 									context._scaleX=outputScale.sx;
 									context._scaleY=outputScale.sy;
 									if(outputScale.scaled) {

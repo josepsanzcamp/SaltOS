@@ -400,10 +400,9 @@ function __import_make_table($array) {
 					foreach($head as $col=>$field) {
 						$noright=($col<$last)?"noright":"";
 						$notop=(!$first)?"notop":"";
-						$extra="";
-						if($first && $col==0) $extra="ui-corner-tl";
-						if($first && $col==$last) $extra="ui-corner-tr";
-						$result.="<td class='thead ui-widget-header center ${noright} ${notop} ${extra}'>";
+						$cornertl=($first && $col==0)?"ui-corner-tl":"";
+						$cornertr=($first && $col==$last)?"ui-corner-tr":"";
+						$result.="<td class='thead ui-widget-header center ${noright} ${notop} ${cornertl} ${cornertr}'>";
 						$result.=__import_col2name($col);
 						$result.="</td>\n";
 						$col++;
@@ -421,10 +420,9 @@ function __import_make_table($array) {
 						$name="col_".__import_col2name($col);
 						$noright=($col<$last)?"noright":"";
 						$notop=(!$first)?"notop":"";
-						$extra="";
-						if($first && $col==0) $extra="ui-corner-tl";
-						if($first && $col==$last) $extra="ui-corner-tr";
-						$result.="<td class='tbody ui-widget-content center ${noright} ${notop} ${extra}'>";
+						$cornertl=($first && $col==0)?"ui-corner-tl":"";
+						$cornertr=($first && $col==$last)?"ui-corner-tr":"";
+						$result.="<td class='tbody ui-widget-content center ${noright} ${notop} ${cornertl} ${cornertr}'>";
 						$result.="<select class='ui-state-default ui-corner-all' name='${name}' style='width:${width}'>\n";
 						$result.="<option value=''></option>\n";
 						foreach($val as $index=>$option) {
@@ -446,10 +444,9 @@ function __import_make_table($array) {
 					foreach($head as $col=>$field) {
 						$noright=($col<$last)?"noright":"";
 						$notop=(!$first)?"notop":"";
-						$extra="";
-						if($first && $col==0) $extra="ui-corner-tl";
-						if($first && $col==$last) $extra="ui-corner-tr";
-						$result.="<td class='thead ui-widget-header center ${noright} ${notop} ${extra}'>";
+						$cornertl=($first && $col==0)?"ui-corner-tl":"";
+						$cornertr=($first && $col==$last)?"ui-corner-tr":"";
+						$result.="<td class='thead ui-widget-header center ${noright} ${notop} ${cornertl} ${cornertr}'>";
 						$result.=$field;
 						$result.="</td>\n";
 					}
@@ -501,25 +498,35 @@ function __import_make_table_rec($array,$limit,$offset,$edit,$width,$class="",$d
 		$result.=__import_make_table_trs("open");
 		if(isset($node["row"]) && isset($node["rows"])) {
 			$rowspan=__import_make_table_rowspan($node["rows"]);
-			$result.=__import_make_table_row($node["row"],$class,$rowspan,count($node["row"]),$depth,$edit,$width,$path."/row/".$key);
+			$result.=__import_make_table_row($node["row"],$class,$rowspan,$depth,$depth+count($node["row"]),$edit,$width,$path."/row/".$key);
 			$result.=__import_make_table_rec($node["rows"],$limit,$offset,$edit,$width,$class,$depth+count($node["row"]),$path."/row/".$key);
 		} else {
-			$result.=__import_make_table_row($node,$class,1,count($node)-1,$depth,$edit,$width,$path."/row/".$key);
+			$result.=__import_make_table_row($node,$class,1,$depth,$depth+count($node)-1,$edit,$width,$path."/row/".$key);
 		}
 		$result.=__import_make_table_trs("close");
 		$lines++;
 		if(!$depth && $offset && $lines<=$offset) $result="";
 		if(!$depth && $limit && $lines>=$offset+$limit) break;
 	}
+	if(!$depth) {
+		$corners=array("ui-corner-bl-disabled"=>"ui-corner-bl","ui-corner-br-disabled"=>"ui-corner-br");
+		foreach($corners as $key=>$val) {
+			$pos=strrpos($result,$key);
+			$result=substr_replace($result,$val,$pos,strlen($key));
+			$result=str_replace($key,"",$result);
+		}
+	}
 	return $result;
 }
 
-function __import_make_table_row($row,$class,$rowspan,$last,$depth,$edit,$width,$path) {
+function __import_make_table_row($row,$class,$rowspan,$depth,$last,$edit,$width,$path) {
 	$result="";
 	$col=0;
 	foreach($row as $key=>$field) {
-		$noright=($col<$last)?"noright":"";
-		$result.="<td class='tbody ${class} ${noright} notop nowrap' rowspan='${rowspan}' style='min-width:${width}'>";
+		$noright=($depth+$col<$last)?"noright":"";
+		$cornerbl=($depth+$col==0)?"ui-corner-bl-disabled":"";
+		$cornerbr=($depth+$col==$last)?"ui-corner-br-disabled":"";
+		$result.="<td class='tbody ${class} ${noright} notop nowrap ${cornerbl} ${cornerbr}' rowspan='${rowspan}' style='min-width:${width}'>";
 		if(in_array($depth+$col,$edit)) {
 			$name=$path."/col/".$col;
 			$result.="<input type='text' class='ui-state-default ui-corner-all importsave' name='${name}' value='${field}' style='width:${width}'/>";
