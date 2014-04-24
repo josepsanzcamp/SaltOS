@@ -223,10 +223,14 @@ function unset_array(&$array,$name) {
 	foreach($array as $key=>$val) if(strncmp($name,$key,$len)==0) unset($array[$key]);
 }
 
-function limpiar_key($key) {
-	$pos=strpos($key,"#");
-	if($pos!==false) $key=substr($key,0,$pos);
-	return $key;
+function limpiar_key($arg) {
+	if(is_array($arg)) {
+		foreach($arg as $key=>$val) $arg[$key]=limpiar_key($val);
+		return $arg;
+	}
+	$pos=strpos($arg,"#");
+	if($pos!==false) $arg=substr($arg,0,$pos);
+	return $arg;
 }
 
 function eval_files() {

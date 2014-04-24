@@ -121,8 +121,5 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 $(function() {
 	if(getParam("action")!="form") return;
 	if(getParam("id")==0) return;
-	setTimeout(function() {
-		$(".tabs").tabs("option","active",1);
-		import_submit1();
-	},100);
+	import_submit1();
 });

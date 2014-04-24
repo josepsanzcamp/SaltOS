@@ -233,6 +233,11 @@ function __import_removevoid($array) {
 function __import_array2tree($array,$nodes) {
 	if(!count($array)) return $array;
 	$head=array_shift($array);
+	// FIX FOR DUPLICATES
+	$temp=array();
+	foreach($head as $temp2) set_array($temp,$temp2,"");
+	$head=array_keys($temp);
+	// CONTINUE
 	if(!is_array($nodes) || !count($nodes)) {
 		$nodes=array(range(0,count($head)-1));
 	} else {
@@ -297,7 +302,11 @@ function __import_tree2array($array) {
 	foreach($array as $node) {
 		if(isset($node["row"]) && isset($node["rows"])) {
 			foreach(__import_tree2array($node["rows"]) as $row) {
-				$result[]=array_merge($node["row"],$row);
+				// FIX FOR DUPLICATES
+				$temp=$node["row"];
+				foreach($row as $key=>$val) set_array($temp,$key,$val);
+				// CONTINUE
+				$result[]=$temp;
 			}
 		} else {
 			$result[]=$node;
@@ -447,7 +456,7 @@ function __import_make_table($array) {
 						$cornertl=($first && $col==0)?"ui-corner-tl":"";
 						$cornertr=($first && $col==$last)?"ui-corner-tr":"";
 						$result.="<td class='thead ui-widget-header center ${noright} ${notop} ${cornertl} ${cornertr}'>";
-						$result.=$field;
+						$result.=limpiar_key($field);
 						$result.="</td>\n";
 					}
 					$result.="</tr>\n";
