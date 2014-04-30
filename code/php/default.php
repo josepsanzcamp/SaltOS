@@ -496,7 +496,12 @@ switch($action) {
 			}
 			if(!$commit) break;
 		}
-		javascript_history($go);
+		if(is_numeric($go)) {
+			javascript_history($go);
+		} else {
+			javascript_history("update");
+			javascript_location_page($go);
+		}
 		die();
 	case "list":
 		include("php/listsim.php");
@@ -565,7 +570,12 @@ switch($action) {
 			if($fixquery) $rows=$rows["default"];
 			set_array($_RESULT[$action],"rows",$rows);
 			if($go) {
-				javascript_history($go);
+				if(is_numeric($go)) {
+					javascript_history($go);
+				} else {
+					javascript_history("update");
+					javascript_location_page($go);
+				}
 				die();
 			}
 		} else {

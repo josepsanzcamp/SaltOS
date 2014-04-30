@@ -33,19 +33,27 @@ function javascript_headers() {
 
 function javascript_location($url,$cond="") {
 	$temp="";
-	$temp.="if(typeof(parent.opencontent)=='function') parent.opencontent('$url');";
-	$temp.="else if(typeof(opencontent)=='function') opencontent('$url');";
-	$temp.="else window.location.href='$url';";
+	$temp.="if(typeof(parent.opencontent)=='function') parent.opencontent('${url}');";
+	$temp.="else if(typeof(opencontent)=='function') opencontent('${url}');";
+	$temp.="else window.location.href='${url}';";
 	javascript_template($temp,$cond);
 }
 
 function javascript_history($go,$cond="") {
 	$temp="";
-	if($go) $temp.="if(typeof(parent.history)=='object') parent.history.go($go);";
-	if($go) $temp.="else if(typeof(history)=='object') history.go($go);";
-	if(!$go) $temp.="if(typeof(parent.addcontent)=='function') parent.addcontent('reload');";
-	if(!$go) $temp.="else if(typeof(addcontent)=='function') addcontent('reload');";
-	if(!$go) $temp.="else window.location.reload();";
+	if(is_numeric($go)) {
+		if($go) {
+			$temp.="if(typeof(parent.history)=='object') parent.history.go(${go});";
+			$temp.="else if(typeof(history)=='object') history.go(${go});";
+		} else {
+			$temp.="if(typeof(parent.addcontent)=='function') parent.addcontent('reload');";
+			$temp.="else if(typeof(addcontent)=='function') addcontent('reload');";
+			$temp.="else window.location.reload();";
+		}
+	} else {
+		$temp.="if(typeof(parent.addcontent)=='function') parent.addcontent('${go}');";
+		$temp.="else if(typeof(addcontent)=='function') addcontent('${go}');";
+	}
 	javascript_template($temp,$cond);
 }
 
@@ -54,7 +62,7 @@ function javascript_location_base($args) {
 }
 
 function javascript_location_page($page) {
-	if($page!="") $page="?page=$page";
+	if($page!="") $page="?page=${page}";
 	javascript_location_base($page);
 }
 
@@ -67,8 +75,8 @@ function javascript_alert($message,$cond="") {
 		$message=addslashes($message);
 		$class="ui-state-highlight";
 		$temp="";
-		$temp.="if(typeof(parent.notice)=='function') parent.notice('$title','$message',false,'$class');";
-		$temp.="else if(typeof(notice)=='function') notice('$title','$message',false,'$class');";
+		$temp.="if(typeof(parent.notice)=='function') parent.notice('${title}','${message}',false,'${class}');";
+		$temp.="else if(typeof(notice)=='function') notice('${title}','${message}',false,'${class}');";
 		javascript_template($temp,$cond);
 	}
 }
@@ -82,8 +90,8 @@ function javascript_error($message,$cond="") {
 		$message=addslashes($message);
 		$class="ui-state-error";
 		$temp="";
-		$temp.="if(typeof(parent.notice)=='function') parent.notice('$title','$message',false,'$class');";
-		$temp.="else if(typeof(notice)=='function') notice('$title','$message',false,'$class');";
+		$temp.="if(typeof(parent.notice)=='function') parent.notice('${title}','${message}',false,'${class}');";
+		$temp.="else if(typeof(notice)=='function') notice('${title}','${message}',false,'${class}');";
 		javascript_template($temp,$cond);
 	}
 }
@@ -96,13 +104,13 @@ function javascript_unloading($cond="") {
 }
 
 function javascript_settimeout($temp,$timeout,$cond="") {
-	$temp="setTimeout(function() { $temp; },$timeout);";
+	$temp="setTimeout(function() { ${temp} },${timeout});";
 	javascript_template($temp,$cond);
 }
 
 function javascript_template($temp,$cond="") {
 	javascript_headers();
-	if($cond) $temp="if($cond) { $temp }";
+	if($cond) $temp="if($cond) { ${temp} }";
 	if(eval_bool(getDefault("cache/usejsminify"))) $temp=minify_js($temp);
 	echo "<script type='text/javascript'>";
 	echo $temp;

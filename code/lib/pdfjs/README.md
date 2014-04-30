@@ -13,6 +13,7 @@ get involved checkout:
 
 + [Workflow](https://github.com/mozilla/pdf.js/wiki/Contributing)
 + [Style Guide](https://github.com/mozilla/pdf.js/wiki/Style-Guide)
++ [FAQ](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions)
 + [Good Beginner Bugs](https://github.com/mozilla/pdf.js/issues?direction=desc&labels=5-good-beginner-bug&page=1&sort=created&state=open)
 + [Priorities](https://github.com/mozilla/pdf.js/issues/milestones)
 + [Attend a Public Meeting](https://github.com/mozilla/pdf.js/wiki/Weekly-Public-Meetings)
@@ -110,6 +111,10 @@ Even more learning resources can be found at:
 + https://github.com/mozilla/pdf.js/wiki/Additional-Learning-Resources
 
 ## Questions
+
+Check out our FAQs and get answers to common questions:
+
++ https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions
 
 Talk to us on IRC:
 

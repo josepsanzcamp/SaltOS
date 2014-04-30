@@ -556,7 +556,7 @@ function __import_filter($array,$filter,$eval=0) {
 	return $result;
 }
 
-function __import_filter_rec($node,$filter,$eval,$depth=0) {
+function __import_filter_rec($node,$filter,$eval,$parent=array()) {
 	if(isset($node["row"]) && isset($node["rows"])) {
 		// NORMAL FILTER
 		foreach($node["row"] as $val) {
@@ -564,9 +564,9 @@ function __import_filter_rec($node,$filter,$eval,$depth=0) {
 		}
 		// EVAL FILTER
 		if($eval) {
-			$vars=array_values($node["row"]);
+			$vars=array_merge($parent,array_values($node["row"]));
 			$keys=array_keys($vars);
-			foreach($keys as $key=>$val) $keys[$key]=__import_col2name($depth+$val);
+			foreach($keys as $key=>$val) $keys[$key]=__import_col2name($val);
 			$vars=array_combine($keys,$vars);
 			capture_next_error();
 			$result=eval_protected($filter,$vars);
@@ -575,7 +575,7 @@ function __import_filter_rec($node,$filter,$eval,$depth=0) {
 		}
 		// RECURSIVE CALL
 		foreach($node["rows"] as $node2) {
-			if(__import_filter_rec($node2,$filter,$eval,$depth+count($node["row"]))) return true;
+			if(__import_filter_rec($node2,$filter,$eval,array_merge($parent,array_values($node["row"])))) return true;
 		}
 	} else {
 		// NORMAL FILTER
@@ -584,9 +584,9 @@ function __import_filter_rec($node,$filter,$eval,$depth=0) {
 		}
 		// EVAL FILTER
 		if($eval) {
-			$vars=array_values($node);
+			$vars=array_merge($parent,array_values($node));
 			$keys=array_keys($vars);
-			foreach($keys as $key=>$val) $keys[$key]=__import_col2name($depth+$val);
+			foreach($keys as $key=>$val) $keys[$key]=__import_col2name($val);
 			$vars=array_combine($keys,$vars);
 			capture_next_error();
 			$result=eval_protected($filter,$vars);

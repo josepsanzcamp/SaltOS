@@ -180,6 +180,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__aspell_langs__>dump dicts</__aspell_langs__>
 		<which>which</which><!-- for check commands -->
 		<__which__>__INPUT__</__which__>
+		<convert>convert</convert><!-- for ocr module included in unoconv -->
+		<__convert__>convert __INPUT__ -resize __WIDTH__x__HEIGHT__ __OUTPUT__</__convert__>
+		<__convert_size__>__INPUT__ -print '%w %h' /dev/null</__convert_size__>
+		<ocr>tesseract</ocr><!-- for ocr module included in unoconv -->
+		<__ocr__>__INPUT__ __OUTPUT__</__ocr__>
 	</commands>
 	<debug>
 		<actiondebug>false</actiondebug>

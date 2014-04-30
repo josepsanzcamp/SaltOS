@@ -497,6 +497,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function hash_decode(hash) {
+		if(typeof(history_data[hash])=="undefined") history_data[hash]="";
 		var url=history_data[hash];
 		return url;
 	}
