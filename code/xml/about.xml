@@ -304,7 +304,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
 						</field>
 						<field>
-							<label>MimeParser 1.82 (BSD)</label>
+							<label>MimeParser 1.86 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>

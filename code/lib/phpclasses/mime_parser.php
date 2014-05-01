@@ -2,7 +2,7 @@
 /*
  * mime_parser.php
  *
- * @(#) $Id: mime_parser.php,v 1.85 2012/08/23 12:19:59 mlemos Exp $
+ * @(#) $Id: mime_parser.php,v 1.86 2012/10/19 05:05:24 mlemos Exp $
  *
  */
 
@@ -30,7 +30,7 @@ define('MIME_ADDRESS_FIRST',            2);
 
 	<package>net.manuellemos.mimeparser</package>
 
-	<version>@(#) $Id: mime_parser.php,v 1.85 2012/08/23 12:19:59 mlemos Exp $</version>
+	<version>@(#) $Id: mime_parser.php,v 1.86 2012/10/19 05:05:24 mlemos Exp $</version>
 	<copyright>Copyright © (C) Manuel Lemos 2006 - 2008</copyright>
 	<title>MIME parser</title>
 	<author>Manuel Lemos</author>
@@ -2235,9 +2235,16 @@ class mime_parser_class
 									if(strlen($body))
 										$results['Response'] = $body;
 									break;
+								default:
+									$this->SetErrorWithContact('the report type is '.$parameters['report-type'].' is not yet supported');
+									$results['Response'] = $this->error;
+									$this->error = '';
+									break;
 							}
+							$results['Type'] = $parameters['report-type'];
 						}
-						$results['Type'] = $parameters['report-type'];
+						else
+							return($this->SetError('this '.$content_type.' message is not well formed because it does not define the report type'));
 						break;
 
 					case 'signed':
