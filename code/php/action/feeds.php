@@ -220,14 +220,16 @@ if(getParam("action")=="feeds") {
 					$title=getutf8($title);
 				}
 				$link=__feeds_getnode("link",$item);
+				if(is_array($link)) $link=array_shift($link);
 				$description=__feeds_getnode("description",$item);
 				if(is_array($description)) $description=__array2xml_write_nodes($description);
 				$description=getutf8($description);
 				$pubdate=__feeds_getnode("dc:date",$item);
+				if(is_array($pubdate)) $pubdate=array_shift($pubdate);
 				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
 				$hash=md5(serialize(array($title,$pubdate,$description,$link)));
 				if(!$pubdate) $pubdate=current_datetime();
-				$items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
+				if($title!="" && $link!="") $items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
 				$count++;
 				$item=__feeds_getvalue(__feeds_getnode("rdf:RDF/item#${count}",$array));
 			}
@@ -244,14 +246,16 @@ if(getParam("action")=="feeds") {
 					$title=getutf8($title);
 				}
 				$link=__feeds_getnode("link",$item);
+				if(is_array($link)) $link=array_shift($link);
 				$description=__feeds_getnode("description",$item);
 				if(is_array($description)) $description=__array2xml_write_nodes($description);
 				$description=getutf8($description);
 				$pubdate=__feeds_getnode("pubDate",$item);
+				if(is_array($pubdate)) $pubdate=array_shift($pubdate);
 				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
 				$hash=md5(serialize(array($title,$pubdate,$description,$link)));
 				if(!$pubdate) $pubdate=current_datetime();
-				$items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
+				if($title!="" && $link!="") $items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
 				$count++;
 				$item=__feeds_getvalue(__feeds_getnode("rss/channel/item#${count}",$array));
 			}
@@ -285,6 +289,7 @@ if(getParam("action")=="feeds") {
 				if(!$link && isset($alternate)) $link=$alternate;
 				// FIX FOR GOOGLE GROUPS
 				if(!$link) $link=__feeds_getnode("#attr/href",__feeds_getnode("link",$item));
+				if(is_array($link)) $link=array_shift($link);
 				// GET CONTENT (AND SUMMARY IS OPTIONAL IN SOME FEEDS)
 				$summary=__feeds_getvalue(__feeds_getnode("summary",$item));
 				if(is_array($summary)) $summary=__array2xml_write_nodes($summary);
@@ -309,10 +314,11 @@ if(getParam("action")=="feeds") {
 				if(!$summary && $content) $description=$content;
 				// CONTINUE
 				$pubdate=__feeds_getnode("updated",$item);
+				if(is_array($pubdate)) $pubdate=array_shift($pubdate);
 				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
 				$hash=md5(serialize(array($title,$pubdate,$description,$link)));
 				if(!$pubdate) $pubdate=current_datetime();
-				$items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
+				if($title!="" && $link!="") $items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
 				$count++;
 				$item=__feeds_getvalue(__feeds_getnode("feed/entry#${count}",$array));
 			}
