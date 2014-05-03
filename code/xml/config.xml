@@ -221,7 +221,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<javascript>
 		<cache ifeval="!ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery-2.1.0.min.js</include>
+			<include>lib/jquery/jquery-2.1.1.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery-ui-1.10.4.min.js</include>
@@ -253,7 +253,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</cache>
 		<cache ifeval="ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery-2.1.0.min.js</include>
+			<include>lib/jquery/jquery-2.1.1.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery.mobile-1.4.2.min.js</include>
