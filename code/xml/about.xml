@@ -408,7 +408,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpjs.org/")</onclick>
 						</field>
 						<field>
-							<label>JQuery 2.1.1 (MIT)</label>
+							<label>JQuery 1.11.1/2.1.1 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jquery.com/")</onclick>

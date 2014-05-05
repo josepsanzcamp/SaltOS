@@ -72,7 +72,7 @@ define("__DEFAULT__","install/xml/tbl_*.xml");
 define("__EXAMPLE__","install/csv/example/tbl_*.csv");
 define("__STREET__","install/csv/street/tbl_*.csv.gz");
 // JQUERY VERSIONS
-$jquery="lib/jquery/jquery-2.1.1.min.js";
+$jquery=array(true=>"lib/jquery/jquery-1.11.1.min.js",false=>"lib/jquery/jquery-2.1.1.min.js");
 $jqueryui="lib/jquery/jquery-ui-1.10.4.min.js";
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $lang; ?>" dir="<?php echo $dir; ?>">
@@ -80,7 +80,7 @@ $jqueryui="lib/jquery/jquery-ui-1.10.4.min.js";
 		<link xmlns="" href="img/favicon.ico" rel="shortcut icon">
 		<title><?php echo LANG("title")." - ".get_name_version_revision(); ?></title>
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="<?php echo $jquery; ?>"></script>
+		<script type="text/javascript" src="<?php echo $jquery[ismsie(array(6,7,8))]; ?>"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="<?php echo $jqueryui; ?>"></script>
 		<script type="text/javascript">$(function() { $("a:last").focus(); });</script>
