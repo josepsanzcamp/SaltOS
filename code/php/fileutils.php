@@ -356,4 +356,19 @@ function glob_protected($pattern) {
 	$array=glob($pattern);
 	return is_array($array)?$array:array();
 }
+
+function find_files($dir,$ext="") {
+	$files=glob("${dir}/*");
+	$result=array();
+	foreach($files as $file) {
+		if(is_dir($file)) {
+			$result=array_merge($result,find_files($file));
+		} elseif(is_file($file)) {
+			if(!$ext || extension($file)==$ext) $result[]=$file;
+		} else {
+			show_php_error(array("phperror"=>"Unknown type of archive for '${file}'"));
+		}
+	}
+	return $result;
+}
 ?>

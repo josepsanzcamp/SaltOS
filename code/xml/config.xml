@@ -143,6 +143,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pngext>.png</pngext>
 		<targzipext>.tgz</targzipext>
 		<tarbzipext>.tbz</tarbzipext>
+		<pbmext>.pbm</pbmext>
+		<tiffext>.tif</tiffext>
+		<boxext>.box</boxext>
 	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>
@@ -180,11 +183,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__aspell_langs__>dump dicts</__aspell_langs__>
 		<which>which</which><!-- for check commands -->
 		<__which__>__INPUT__</__which__>
+		<pdfimages>pdfimages</pdfimages><!-- for ocr module included in unoconv -->
+		<__pdfimages__>__INPUT__ __OUTPUT__</__pdfimages__>
 		<convert>convert</convert><!-- for ocr module included in unoconv -->
-		<__convert__>convert __INPUT__ -resize __WIDTH__x__HEIGHT__ __OUTPUT__</__convert__>
-		<__convert_size__>__INPUT__ -print '%w %h' /dev/null</__convert_size__>
-		<ocr>tesseract</ocr><!-- for ocr module included in unoconv -->
-		<__ocr__>__INPUT__ __OUTPUT__</__ocr__>
+		<__convert__>convert __INPUT__ __OUTPUT__</__convert__>
+		<__convert_resize__>convert __INPUT__ -resize __WIDTH__x__HEIGHT__ __OUTPUT__</__convert_resize__>
+		<__convert_getsize__>__INPUT__ -print '%w %h' /dev/null</__convert_getsize__>
+		<tesseract>tesseract</tesseract><!-- for ocr module included in unoconv -->
+		<__tesseract__>__INPUT__ __OUTPUT__ makebox</__tesseract__>
 	</commands>
 	<debug>
 		<actiondebug>false</actiondebug>

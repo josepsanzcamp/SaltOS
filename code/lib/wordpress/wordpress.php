@@ -385,8 +385,8 @@ function wp_allowed_protocols() {
 
 		/**
 		 * Filter the list of protocols allowed in HTML attributes.
-		 * 
-		 * @since 3.0.0 
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param array $protocols Array of allowed protocols e.g. 'http', 'ftp', 'tel', and more.
 		 */

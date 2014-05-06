@@ -112,4 +112,99 @@ function unoconv2txt($array) {
 	}
 	return __unoconv_post($array,$input,$output);
 }
+
+function __unoconv_img2ocr($file) {
+	if(!check_commands(getDefault("commands/tesseract"),60)) return "";
+	$box=str_replace(getDefault("exts/tiffext",".tif"),getDefault("exts/boxext",".box"),$file);
+	$tmp=str_replace(getDefault("exts/tiffext",".tif"),"",$file);
+	if(!file_exists($box)) ob_passthru(getDefault("commands/tesseract")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tmp),getDefault("commands/__tesseract__")));
+	$txt=str_replace(getDefault("exts/tiffext",".tif"),getDefault("exts/textext",".txt"),$file);
+	if(!file_exists($txt)) __unoconv_box2txt($box,$txt);
+	return $txt;
+}
+
+function __unoconv_pdf2ocr($pdf) {
+	if(!check_commands(array(getDefault("commands/pdfimages"),getDefault("commands/convert")),60)) return "";
+	$result=array();
+	// EXTRACT ALL IMAGES FROM PDF
+	$root=get_directory("dirs/cachedir").md5_file($pdf);
+	$pbm="${root}-000.pbm";
+	if(!file_exists($pbm)) ob_passthru(getDefault("commands/pdfimages")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($pdf,$root),getDefault("commands/__pdfimages__")));
+	// CONVERT ALL IMAGES TO TIFF
+	$files=glob("${root}-*.pbm");
+	foreach($files as $file) {
+		$tif=str_replace(getDefault("exts/pbmext",".pbm"),getDefault("exts/tiffext",".tif"),$file);
+		if(!file_exists($tif)) {
+			if(!isset($width) && !isset($height)) {
+				// GET SIZES OF THE PDF
+				$size=ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__"),array($pdf),getDefault("commands/__convert_getsize__")));
+				list($width,$height)=explode(" ",$size);
+				$zoom=2.77; // EQUIVALENT TO 300DPI APROX
+				$width=intval($width*$zoom);
+				$height=intval($height*$zoom);
+			}
+			// CONTINUE
+			ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__","__WIDTH__","__HEIGHT__","__OUTPUT__"),array($file,$width,$height,$tif),getDefault("commands/__convert_resize__")));
+		}
+	}
+	// EXTRACT ALL TEXT FROM TIFF
+	$files=glob("${root}-*.tif");
+	foreach($files as $file) {
+		$txt=__unoconv_img2ocr($file);
+		$result[]=file_get_contents($txt);
+	}
+	$result=implode("\n\n",$result);
+	return $result;
+}
+
+function __unoconv_box2txt($box,$txt) {
+	$lines=file($box,FILE_IGNORE_NEW_LINES);
+	$result=array("");
+	if(isset($lines[0])) {
+		// COMPUTE SOME SIZE VARS
+		$temp=explode(" ",$lines[0]);
+		$pos1=array(($temp[3]+$temp[1])/2,($temp[4]+$temp[2])/2,$temp[3]-$temp[1],$temp[4]-$temp[2]);
+		$index=0;
+		$defx=array(0);
+		$minx=($temp[3]+$temp[1])/2;
+		$maxx=($temp[3]+$temp[1])/2;
+		foreach($lines as $line) {
+			$temp=explode(" ",$line);
+			$pos2=array(($temp[3]+$temp[1])/2,($temp[4]+$temp[2])/2,$temp[3]-$temp[1],$temp[4]-$temp[2]);
+			$incrx=$pos2[0]-$pos1[0];
+			$incry=$pos2[1]-$pos1[1];
+			if($incry>max($pos1[3],$pos2[3]) || $incrx<0) {
+				$index++;
+				$defx[$index]=0;
+			}
+			$defx[$index]++;
+			$minx=min($minx,($temp[3]+$temp[1])/2);
+			$maxx=max($maxx,($temp[3]+$temp[1])/2);
+			$pos1=$pos2;
+		}
+		$defx=($maxx-$minx)/max($defx);
+		// MAKE THE TEXT RESULT
+		$temp=explode(" ",$lines[0]);
+		$pos1=array(($temp[3]+$temp[1])/2,($temp[4]+$temp[2])/2,$temp[3]-$temp[1],$temp[4]-$temp[2]);
+		$index=0;
+		foreach($lines as $line) {
+			$temp=explode(" ",$line);
+			$pos2=array(($temp[3]+$temp[1])/2,($temp[4]+$temp[2])/2,$temp[3]-$temp[1],$temp[4]-$temp[2]);
+			$incrx=$pos2[0]-$pos1[0];
+			$incry=$pos2[1]-$pos1[1];
+			if($incry>max($pos1[3],$pos2[3]) || $incrx<0) {
+				$index++;
+				$result[$index]="";
+				$spaces=intval(($pos2[0]-$minx)/$defx);
+			} else {
+				$spaces=intval(($incrx-min($pos1[2],$pos2[2]))/$defx);
+			}
+			if($spaces>0) $result[$index].=str_repeat(" ",$spaces);
+			$result[$index].=$temp[0];
+			$pos1=$pos2;
+		}
+	}
+	$result=implode("\n",$result);
+	file_put_contents($txt,$result);
+}
 ?>
