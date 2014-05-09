@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 function db_connect() {
 	$php="php/database/".getDefault("db/type").".php";
 	if(!file_exists($php)) show_php_error(array("phperror"=>"Type '".getDefault("db/type")."' not found"));
-	include_once($php);
+	require_once($php);
 	$func=__FUNCTION__."_".getDefault("db/type");
 	return $func();
 }

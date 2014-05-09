@@ -43,7 +43,7 @@ if(getParam("action")=="download") {
 			$type=$result["mime"];
 			$size=$result["size"];
 		} else {
-			include_once("php/getmail.php");
+			require_once("php/getmail.php");
 			$decoded=__getmail_getmime($id_registro);
 			if(!$decoded) show_php_error(array("phperror"=>"Email not found"));
 			if(strlen($cid)!=32) {

@@ -86,6 +86,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"ini_get_max_input_vars() { return '".intval(ini_get("max_input_vars"))."'; }"</function>
 	<!-- FOR ACTIONS FEATURE -->
 	<function eval="true">"lang_actions() { return '".LANG_ESCAPE("actions")."'; }"</function>
+	<!-- FOR INDEXING MODULE -->
+	<function eval="true">"config_indexing_interval() { return intval('".CONFIG('indexing_interval')."')*1000; }"</function>
 	<!-- USING CACHE -->
 	<cache>
 		<!-- FOR DATEPICKER -->
@@ -95,6 +97,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<include>js/checkemail.js</include>
 		<include>js/checkfeeds.js</include>
 		<include>js/checksession.js</include>
+		<include>js/checkindexing.js</include>
 		<include>js/favicon.js</include>
 		<include>js/voice.js</include>
 		<include>js/translate.js</include>

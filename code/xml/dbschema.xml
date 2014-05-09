@@ -1392,6 +1392,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>search</name>
 					<type>MEDIUMTEXT</type>
 				</field>
+				<field>
+					<name>indexed</name>
+					<type>INT(11)</type>
+				</field>
 			</fields>
 		</table>
 		<table>

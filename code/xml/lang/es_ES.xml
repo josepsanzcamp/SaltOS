@@ -377,6 +377,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasformasdepago>[Todas las formas de pago]</todaslasformasdepago>
 		<sinformapago>[Sin forma de pago]</sinformapago>
 		<actions>Acciones sobre este registro</actions>
+		<msgtotalindexed1> fichero indexado en la base de datos</msgtotalindexed1>
+		<msgtotalindexed2> ficheros indexados en la base de datos</msgtotalindexed2>
 	</common>
 	<login>
 		<logintitle>Acceso a la aplicación</logintitle>
@@ -984,6 +986,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<feedstimeout>Olvidar feeds borrados pasados</feedstimeout>
 		<sessioninterval>Comprobar aviso de cerrar sesión cada</sessioninterval>
 		<sessionwarning>Avisar el cierre de sesión antes de</sessionwarning>
+		<indexinginterval>Indexar archivos nuevos cada</indexinginterval>
 		<emailsupport>Email para el soporte técnico</emailsupport>
 		<segundos>segundos</segundos>
 		<dias>días</dias>

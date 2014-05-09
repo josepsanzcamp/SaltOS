@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="quickform") {
-	include_once("php/listsim.php");
+	require_once("php/listsim.php");
 	$pagesim=$page;
 	if(getParam("is_fichero")) $pagesim="ficheros";
 	if(getParam("is_buscador")) $pagesim="buscador";

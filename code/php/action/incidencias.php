@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if($page=="incidencias") {
-	include_once("php/report.php");
-	include_once("php/sendmail.php");
+	require_once("php/report.php");
+	require_once("php/sendmail.php");
 	// FUNCIONES
 	function __incidencias_packreport($campos,$tipos,$row) {
 		$body="";
@@ -141,7 +141,7 @@ if($page=="incidencias") {
 }
 if($page=="correo") {
 	if($action=="form") {
-		include_once("php/getmail.php");
+		require_once("php/getmail.php");
 		// DATOS CORREO
 		$ok=0;
 		$email_support=CONFIG("email_support");
@@ -159,8 +159,7 @@ if($page=="correo") {
 		}
 	}
 	if($action=="incidencias") {
-		include_once("php/getmail.php");
-		include_once("php/unoconv.php");
+		require_once("php/getmail.php");
 		// FUNCIONES
 		function __incidencias_codigo($id) {
 			return substr(str_repeat("0",CONFIG("zero_padding_digits")).$id,-CONFIG("zero_padding_digits"),CONFIG("zero_padding_digits"));
@@ -232,8 +231,7 @@ if($page=="correo") {
 		$size=strlen($pdf);
 		$type="application/pdf";
 		file_put_contents(get_directory("dirs/filesdir").$file,$pdf);
-		$search=addslashes(encode_search(unoconv2txt(array("input"=>get_directory("dirs/filesdir").$file))," "));
-		$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','${search}')";
+		$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','')";
 		db_query($query);
 		// AÑADIR IMAGENES INLINE
 		foreach($result as $index=>$node) {
@@ -247,8 +245,7 @@ if($page=="correo") {
 					file_put_contents(get_directory("dirs/filesdir").$file,$node["body"]);
 					$size=$node["csize"];
 					$type=$node["ctype"];
-					$search=addslashes(encode_search(unoconv2txt(array("input"=>get_directory("dirs/filesdir").$file))," "));
-					$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','${search}')";
+					$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','')";
 					db_query($query);
 				}
 			}
@@ -260,8 +257,7 @@ if($page=="correo") {
 			file_put_contents(get_directory("dirs/filesdir").$file,$node["body"]);
 			$size=$node["csize"];
 			$type=$node["ctype"];
-			$search=addslashes(encode_search(unoconv2txt(array("input"=>get_directory("dirs/filesdir").$file))," "));
-			$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','${search}')";
+			$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','')";
 			db_query($query);
 		}
 		// REBOTAR AL FORMULARIO PARA CONTESTAR

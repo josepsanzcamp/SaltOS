@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="support") {
-	include_once("php/report.php");
-	include_once("php/sendmail.php");
+	require_once("php/report.php");
+	require_once("php/sendmail.php");
 	// DATOS SMPT
 	if(!CONFIG("email_host") || !CONFIG("email_user") || !CONFIG("email_pass")) {
 		session_error(LANG("msgnotsmtpemail","support"));

@@ -24,5 +24,5 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query require="php/unoconv.php" global="id,page" match="files_new" prefix="true" eval="true">getParam("fichero_file")?"INSERT INTO tbl_ficheros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`fichero`,`fichero_file`,`fichero_size`,`fichero_type`,`search`) VALUES(NULL,'".page2id($page)."','".abs($id)."','".current_user()."','".current_datetime()."','".getParam("fichero")."','".getParam("fichero_file")."','".getParam("fichero_size")."','".getParam("fichero_type")."','".addslashes(encode_search(unoconv2txt(array("input"=>get_directory("dirs/filesdir").getParam("fichero_file")))," "))."')":""</query>
+	<query global="id,page" match="files_new" prefix="true" eval="true">getParam("fichero_file")?"INSERT INTO tbl_ficheros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`fichero`,`fichero_file`,`fichero_size`,`fichero_type`,`search`) VALUES(NULL,'".page2id($page)."','".abs($id)."','".current_user()."','".current_datetime()."','".getParam("fichero")."','".getParam("fichero_file")."','".getParam("fichero_size")."','".getParam("fichero_type")."','')":""</query>
 </root>

@@ -135,6 +135,18 @@ function __import_struct2array(&$data) {
 	return $array;
 }
 
+function __import_getnode($path,$array) {
+	if(!is_array($path)) $path=explode("/",$path);
+	$elem=array_shift($path);
+	if(!is_array($array) || !isset($array[$elem])) return null;
+	if(count($path)==0) return $array[$elem];
+	return __import_getnode($path,__import_getvalue($array[$elem]));
+}
+
+function __import_getvalue($array) {
+	return (is_array($array) && isset($array["value"]) && isset($array["#attr"]))?$array["value"]:$array;
+}
+
 function __import_specialchars($arg) {
 	$orig=array("\\t","\\r","\\n");
 	$dest=array("\t","\r","\n");
@@ -156,7 +168,7 @@ function __import_csv2array($file,$sep) {
 
 function __import_xls2array($file,$sheet) {
 	set_include_path("lib/phpexcel:".get_include_path());
-	include_once("PHPExcel.php");
+	require_once("PHPExcel.php");
 	$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
 	$cacheSettings=array("memoryCacheSize"=>"8MB");
 	PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);

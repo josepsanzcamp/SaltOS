@@ -342,7 +342,7 @@ if(!defined("__DEFAULT_PHP__")) {
 		}
 		db_free($result);
 		set_include_path("lib/phpexcel:".get_include_path());
-		include_once("PHPExcel.php");
+		require_once("PHPExcel.php");
 		$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
 		$cacheSettings=array("memoryCacheSize"=>"8MB");
 		PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);

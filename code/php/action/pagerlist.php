@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="pagerlist") {
-	include_once("php/listsim.php");
+	require_once("php/listsim.php");
 	$result=list_simulator($page,"count");
 	if($result===null) action_denied();
 	// PREPARE SOME VARS

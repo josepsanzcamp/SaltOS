@@ -47,7 +47,7 @@ if(getParam("action")=="calendar") {
 		$year--;
 	}
 	// SIMULAR EL LISTADO PARA OBTENER LOS IDS
-	include_once("php/listsim.php");
+	require_once("php/listsim.php");
 	$ids=list_simulator("agenda");
 	// MONTAR SELECT CON MESES Y AÑOS
 	$meses=array("",LANG("enero"),LANG("febrero"),LANG("marzo"),

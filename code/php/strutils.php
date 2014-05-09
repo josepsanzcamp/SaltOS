@@ -383,7 +383,7 @@ function output_file($file) {
 }
 
 function minify_css($buffer) {
-	include_once("lib/minify/cssmin-v3.0.1.php");
+	require_once("lib/minify/cssmin-v3.0.1.php");
 	capture_next_error();
 	try {
 		$buffer2=CssMin::minify($buffer);
@@ -396,8 +396,8 @@ function minify_css($buffer) {
 }
 
 function minify_js($buffer) {
-	if(isphp53()) include_once("lib/minify/Minifier.php");
-	if(!isphp53()) include_once("lib/minify/jsmin-1.1.2.php");
+	if(isphp53()) require_once("lib/minify/Minifier.php");
+	if(!isphp53()) require_once("lib/minify/jsmin-1.1.2.php");
 	capture_next_error();
 	try {
 		if(isphp53()) $buffer2=Minifier::minify($buffer);
@@ -546,7 +546,7 @@ function ismsie($version=null) {
 
 // USING ROUNDCUBEMAIL FEATURES
 function html2text($html) {
-	include_once("lib/roundcube/rcube_html2text.php");
+	require_once("lib/roundcube/rcube_html2text.php");
 	$h2t=new rcube_html2text($html);
 	capture_next_error();
 	$text=$h2t->get_text();
