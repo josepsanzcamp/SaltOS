@@ -13,11 +13,21 @@ if($test==2) {
 
 if($test==3) {
 	$txt=array();
-	$txt[]=file_get_contents(__unoconv_img2ocr("files/todolinux-000.tif"));
-	$txt[]=file_get_contents(__unoconv_img2ocr("files/todolinux-001.tif"));
-	$txt[]=file_get_contents(__unoconv_img2ocr("files/todolinux-002.tif"));
-	$txt[]=file_get_contents(__unoconv_img2ocr("files/todolinux-003.tif"));
+	$txt[]=__unoconv_tif2ocr("files/todolinux-000.tif");
+	$txt[]=__unoconv_tif2ocr("files/todolinux-001.tif");
+	$txt[]=__unoconv_tif2ocr("files/todolinux-002.tif");
+	$txt[]=__unoconv_tif2ocr("files/todolinux-003.tif");
 	$txt=implode("\n",$txt);
+}
+
+if($test==4) {
+	__unoconv_pdf2ocr("files/201404231157.pdf");
+	__unoconv_pdf2ocr("files/11941051.pdf");
+	__unoconv_tif2ocr("files/todolinux-000.tif");
+	__unoconv_tif2ocr("files/todolinux-001.tif");
+	__unoconv_tif2ocr("files/todolinux-002.tif");
+	__unoconv_tif2ocr("files/todolinux-003.tif");
+	$txt="";
 }
 
 $txt=htmlentities($txt,ENT_COMPAT,"UTF-8");

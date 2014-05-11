@@ -121,7 +121,7 @@ function unoconv2txt($array) {
 	return __unoconv_post($array,$input,$output);
 }
 
-function __unoconv_img2ocr($file) {
+function __unoconv_tif2ocr($file) {
 	if(!check_commands(getDefault("commands/tesseract"),60)) return "";
 	$hocr=str_replace(getDefault("exts/tiffext",".tif"),getDefault("exts/hocrext",".html"),$file);
 	$tmp=str_replace(getDefault("exts/tiffext",".tif"),"",$file);
@@ -135,7 +135,7 @@ function __unoconv_img2ocr($file) {
 	$txt=str_replace(getDefault("exts/tiffext",".tif"),getDefault("exts/textext",".txt"),$file);
 	//~ if(file_exists($txt)) unlink($txt);
 	if(!file_exists($txt)) __unoconv_hocr2txt($hocr,$txt);
-	return $txt;
+	return file_get_contents($txt);
 }
 
 function __unoconv_pdf2ocr($pdf) {
@@ -163,35 +163,41 @@ function __unoconv_pdf2ocr($pdf) {
 		}
 	}
 	// EXTRACT ALL TEXT FROM TIFF
-	$files=glob("${root}-*.tif");
+	$files=glob("${root}-*".getDefault("exts/tiffext",".tif"));
 	foreach($files as $file) {
-		$txt=__unoconv_img2ocr($file);
-		$result[]=file_get_contents($txt);
+		$result[]=__unoconv_tif2ocr($file);
 	}
 	$result=implode("\n",$result);
 	return $result;
 }
 
-function __unoconv_histogram($values,$usage) {
+function __unoconv_histogram($values,$usage1,$usage2) {
 	$histo=array();
 	foreach($values as $val) {
-		$val=intval($val);
+		$val=round($val,0);
 		if(!isset($histo[$val])) $histo[$val]=0;
 		$histo[$val]++;
 	}
-	$suma=array_sum($histo);
+	//~ echo "<pre>";
+	//~ arsort($histo);
+	//~ print_r($histo);
+	//~ echo "</pre>";
+	$count1=count($values);
+	$count2=count($histo);
 	$percent=1;
-	$incr=pow(10,-round(log($suma,10),0));
+	$incr=0.01;
 	for(;;) {
 		$value=0;
 		$total=0;
+		$used=0;
 		foreach($histo as $key=>$val) {
-			if($val>=$suma*$percent) {
+			if($val>=$count1*$percent) {
 				$value+=$key*$val;
 				$total+=$val;
+				$used++;
 			}
 		}
-		if($total>=$suma*$usage) break;
+		if($total>=$count1*$usage1 && $used>=$count2*$usage2) break;
 		$percent-=$incr;
 		if($percent<0) break;
 	};
@@ -223,6 +229,28 @@ function __unoconv_node2value($node) {
 	while(is_array($node["value"])) $node["value"]=array_pop($node["value"]);
 	$node["value"]=trim($node["value"]);
 	return $node["value"];
+}
+
+function __unoconv_lines2matrix($lines,$width,$height) {
+	$matrix=array();
+	foreach($lines as $index=>$line) {
+		if($line[0]=="line") {
+			$posy=round((($line[4]+$line[2])/2)/$height,0);
+			if(!isset($matrix[$posy])) $matrix[$posy]=array();
+		}
+		if($line[0]=="word") {
+			if($line[5]=="") $line[5]="~"; // AS MAKEBOX FEATURE
+			$len=mb_strlen($line[5],"UTF-8");
+			$bias=($line[3]-$line[1])/($len*2);
+			$posx=round(($line[1]+$bias)/$width,0);
+			for($i=0;$i<$len;$i++) {
+				if(isset($matrix[$posy][$posx])) return $index;
+				$matrix[$posy][$posx]=mb_substr($line[5],$i,1,"UTF-8");
+				$posx++;
+			}
+		}
+	}
+	return $matrix;
 }
 
 function __unoconv_hocr2txt($hocr,$txt) {
@@ -259,58 +287,22 @@ function __unoconv_hocr2txt($hocr,$txt) {
 			$pos1=$pos2;
 		}
 	}
-	$angle=__unoconv_histogram($angles,0.5);
+	$angle=__unoconv_histogram($angles,0.5,0.5);
 	// APPLY ANGLE CORRECTION
 	foreach($lines as $index=>$line) {
 		if($line[1]!=0 && $line[2]!=0) list($line[1],$line[2])=__unoconv_rotate($line[1],$line[2],-$angle);
 		if($line[3]!=0 && $line[4]!=0) list($line[3],$line[4])=__unoconv_rotate($line[3],$line[4],-$angle);
 		$lines[$index]=$line;
 	}
-	// COMPUTE SIZE
-	$sizes=array();
-	foreach($lines as $line) {
-		if($line[0]=="line") {
-			$posy=($line[4]+$line[2])/2;
-			if(!isset($sizes[$posy])) $sizes[$posy]=array(0,0,0,0,0);
-			$sizes[$posy][1]=min($sizes[$posy][1],$line[2]);
-			$sizes[$posy][3]=max($sizes[$posy][3],$line[4]);
-		}
-		if($line[0]=="word" && $line[5]!="") {
-			if($sizes[$posy][0]==0) $sizes[$posy][0]=$line[1];
-			if($sizes[$posy][1]==0) $sizes[$posy][1]=$line[2];
-			$sizes[$posy][0]=min($sizes[$posy][0],$line[1]);
-			$sizes[$posy][2]=max($sizes[$posy][2],$line[3]);
-			$sizes[$posy][4]+=mb_strlen($line[5],"UTF-8");
-		}
-	}
-	$widths=array();
-	$heights=array();
-	foreach($sizes as $key=>$val) {
-		if($val[4]!=0) {
-			$incrx=($val[2]-$val[0])/$val[4];
-			$incry=$val[3]-$val[1];
-			for($i=0;$i<$val[4];$i++) {
-				$widths[]=$incrx;
-				$heights[]=$incry;
-			}
-		}
-	}
-	$width=__unoconv_histogram($widths,0.5)*0.9;
-	$height=__unoconv_histogram($heights,0.5)*0.9;
 	// COMPUTE MATRIX
-	$matrix=array();
-	foreach($lines as $line) {
-		if($line[0]=="line") {
-			$posy=round((($line[4]+$line[2])/2)/$height,0);
-			if(!isset($matrix[$posy])) $matrix[$posy]=array();
-		}
-		if($line[0]=="word") {
-			$posx=round($line[1]/$width,0);
-			if(!isset($matrix[$posy][$posx])) $matrix[$posy][$posx]="";
-			if($line[5]=="") $line[5]="~"; // AS MAKEBOX FEATURE
-			$matrix[$posy][$posx].=$line[5];
-		}
+	$matrix=null;
+	for($size=80;$size<800;$size+=10) {
+		$width=($lines[0][3]-$lines[0][1])/$size;
+		$height=($lines[0][4]-$lines[0][2])/$size;
+		$matrix=__unoconv_lines2matrix($lines,$width,$height);
+		if(is_array($matrix)) break;
 	}
+	//~ echo "<pre>".sprintr(array($size,$width,$height))."</pre>";
 	// MAKE OUTPUT
 	$buffer=array();
 	$minx=round($lines[0][1]/$width,0);
@@ -319,16 +311,8 @@ function __unoconv_hocr2txt($hocr,$txt) {
 	$maxy=round($lines[0][4]/$height,0);
 	for($y=$miny;$y<=$maxy;$y++) {
 		$temp=array();
-		$extra=0;
 		for($x=$minx;$x<=$maxx;$x++) {
-			if(isset($matrix[$y][$x])) {
-				$temp[]=$matrix[$y][$x];
-				$extra+=max(mb_strlen($matrix[$y][$x],"UTF-8")-1,0);
-			} elseif($extra>0) {
-				$extra--;
-			} else {
-				$temp[]=" ";
-			}
+			$temp[]=isset($matrix[$y][$x])?$matrix[$y][$x]:" ";
 		}
 		$buffer[]=implode("",$temp);
 	}
