@@ -34,7 +34,7 @@ if(getParam("action")=="indexing") {
 		die();
 	}
 	// INDEXING FILES
-	$query="SELECT * FROM tbl_ficheros WHERE id_usuario='".current_user()."' AND indexed='0'";
+	$query="SELECT * FROM tbl_ficheros WHERE id_usuario='".current_user()."' AND indexed='0' ORDER BY id ASC";
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {

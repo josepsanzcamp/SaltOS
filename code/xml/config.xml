@@ -145,6 +145,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<targzipext>.tgz</targzipext>
 		<tarbzipext>.tbz</tarbzipext>
 		<tiffext>.tif</tiffext>
+		<hocrext>.html</hocrext>
 	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>
@@ -182,11 +183,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__aspell_langs__>dump dicts</__aspell_langs__>
 		<which>which</which><!-- for check commands -->
 		<__which__>__INPUT__</__which__>
-		<pdfimages>pdfimages</pdfimages><!-- for ocr module included in unoconv -->
-		<__pdfimages__>__INPUT__ __OUTPUT__</__pdfimages__>
+		<pdftoppm>pdftoppm</pdftoppm><!-- for ocr module included in unoconv -->
+		<__pdftoppm__>__INPUT__ __OUTPUT__</__pdftoppm__>
 		<convert>convert</convert><!-- for ocr module included in unoconv -->
-		<__convert__>convert __INPUT__ -resize __WIDTH__x__HEIGHT__ -rotate __ANGLE__ __OUTPUT__</__convert__>
+		<__convert__>__INPUT__ __OUTPUT__</__convert__>
 		<__convert_getsize__>__INPUT__ -print '%w %h' /dev/null</__convert_getsize__>
+		<__convert_resize__>__INPUT__ -resize __WIDTH__x__HEIGHT__ __OUTPUT__</__convert_resize__>
+		<__convert_rotate__>__INPUT__ -rotate __ANGLE__ __OUTPUT__</__convert_rotate__>
 		<tesseract>tesseract</tesseract><!-- for ocr module included in unoconv -->
 		<__tesseract__>__INPUT__ __OUTPUT__ hocr</__tesseract__>
 		<timeout>timeout</timeout>
