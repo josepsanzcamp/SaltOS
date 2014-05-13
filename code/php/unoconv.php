@@ -80,11 +80,14 @@ function __unoconv_pdf2txt($input,$output) {
 
 function __unoconv_all2pdf($input,$output) {
 	if(!check_commands(getDefault("commands/unoconv"),60)) return;
-	$cmd=getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__unoconv__"));
+	ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__unoconv__"))));
+}
+
+function __unoconv_timeout($cmd) {
 	if(check_commands(getDefault("commands/timeout"),60)) {
 		$cmd=getDefault("commands/timeout")." ".str_replace(array("__TIMEOUT__","__COMMAND__"),array(getDefault("commandtimeout",60),$cmd),getDefault("commands/__timeout__"));
 	}
-	ob_passthru($cmd);
+	return $cmd;
 }
 
 function unoconv2pdf($array) {
@@ -125,80 +128,39 @@ function unoconv2txt($array) {
 }
 
 function __unoconv_img2ocr($file) {
-	if(!check_commands(getDefault("commands/convert"),60)) return "";
+	if(!check_commands(array(getDefault("commands/convert"),getDefault("commands/tesseract")),60)) return "";
 	$type=saltos_content_type($file);
 	if($type!="image/tiff") {
-		$tif=get_cache_file(array($file,0),getDefault("exts/tiffext",".tif"));
-		if(!file_exists($tif)) {
-			ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tif),getDefault("commands/__convert__")));
+		$tiff=get_cache_file($file,getDefault("exts/tiffext",".tif"));
+		//~ if(file_exists($tiff)) unlink($tiff);
+		if(!file_exists($tiff)) {
+			ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tiff),getDefault("commands/__convert__")));
 		}
-		$file=$tif;
+		$file=$tiff;
 	}
-	$result=__unoconv_tif2ocr($file);
-	if($result=="") {
-		foreach(array(90,270) as $angle) {
-			$file2=get_cache_file(array($file,$angle),getDefault("exts/tiffext",".tif"));
-			if(!file_exists($file2)) {
-				ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__","__ANGLE__","__OUTPUT__"),array($file,$angle,$file2),getDefault("commands/__convert_rotate__")));
-			}
-			$result2=__unoconv_tif2ocr($file2);
-			if($result2!="") {
-				if($result=="") $result=$result2;
-				elseif(mb_strlen($result2,"UTF-8")<mb_strlen($result,"UTF-8")) $result=$result2;
-			}
-		}
-	}
-	return $result;
-}
-
-function __unoconv_tif2ocr($file) {
-	if(!check_commands(getDefault("commands/tesseract"),60)) return "";
 	$hocr=get_cache_file($file,getDefault("exts/hocrext",".html"));
 	//~ if(file_exists($hocr)) unlink($hocr);
 	if(!file_exists($hocr)) {
 		$tmp=str_replace(getDefault("exts/hocrext",".html"),"",$hocr);
-		$cmd=getDefault("commands/tesseract")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tmp),getDefault("commands/__tesseract__"));
-		if(check_commands(getDefault("commands/timeout"),60)) {
-			$cmd=getDefault("commands/timeout")." ".str_replace(array("__TIMEOUT__","__COMMAND__"),array(getDefault("commandtimeout",60),$cmd),getDefault("commands/__timeout__"));
-		}
-		ob_passthru($cmd);
+		ob_passthru(__unoconv_timeout(getDefault("commands/tesseract")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tmp),getDefault("commands/__tesseract__"))));
 		if(!file_exists($hocr)) return "";
 	}
 	$txt=str_replace(getDefault("exts/hocrext",".html"),getDefault("exts/textext",".txt"),$hocr);
 	//~ if(file_exists($txt)) unlink($txt);
-	if(!file_exists($txt)) file_put_contents($txt,__unoconv_hocr2txt($hocr,$txt));
+	if(!file_exists($txt)) file_put_contents($txt,__unoconv_hocr2txt($hocr));
 	return file_get_contents($txt);
 }
 
 function __unoconv_pdf2ocr($pdf) {
-	if(!check_commands(array(getDefault("commands/pdftoppm"),getDefault("commands/convert")),60)) return "";
+	if(!check_commands(getDefault("commands/pdftoppm"),60)) return "";
 	$result=array();
 	// EXTRACT ALL IMAGES FROM PDF
 	$root=get_directory("dirs/cachedir").md5_file($pdf);
 	$files=glob("${root}-*");
 	if(!count($files)) ob_passthru(getDefault("commands/pdftoppm")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($pdf,$root),getDefault("commands/__pdftoppm__")));
-	// CONVERT ALL IMAGES TO TIFF
-	$files=glob("${root}-*");
-	foreach($files as $file) {
-		$tif=str_replace(".".extension($file),getDefault("exts/tiffext",".tif"),$file);
-		if(!file_exists($tif)) {
-			if(!isset($width) && !isset($height)) {
-				// GET SIZES OF THE PDF
-				$size=ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__"),array($pdf),getDefault("commands/__convert_getsize__")));
-				list($width,$height)=explode(" ",$size);
-				$zoom=4.16; // EQUIVALENT TO 300DPI APROX
-				$width=intval($width*$zoom);
-				$height=intval($height*$zoom);
-			}
-			// CONTINUE
-			ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__","__WIDTH__","__HEIGHT__","__OUTPUT__"),array($file,$width,$height,$tif),getDefault("commands/__convert_resize__")));
-		}
-	}
 	// EXTRACT ALL TEXT FROM TIFF
-	$files=glob("${root}-*".getDefault("exts/tiffext",".tif"));
-	foreach($files as $file) {
-		$result[]=__unoconv_img2ocr($file);
-	}
+	$files=glob("${root}-*");
+	foreach($files as $file) $result[]=__unoconv_img2ocr($file);
 	$result=implode("\n\n",$result);
 	return $result;
 }
@@ -214,7 +176,6 @@ function __unoconv_histogram($values,$usage1,$usage2) {
 	//~ arsort($histo);
 	//~ print_r($histo);
 	//~ echo "</pre>";
-	//~ die();
 	$count1=count($values);
 	$count2=count($histo);
 	$percent=1;
@@ -239,7 +200,7 @@ function __unoconv_histogram($values,$usage1,$usage2) {
 }
 
 function __unoconv_rotate($posx,$posy,$angle) {
-	$ang=rad2deg(atan($posy/$posx));
+	$ang=rad2deg(atan2($posy,$posx));
 	$mod=sqrt($posx*$posx+$posy*$posy);
 	$ang=deg2rad($ang+$angle);
 	$posx=$mod*cos($ang);
@@ -272,18 +233,34 @@ function __unoconv_lines2matrix($lines,$width,$height) {
 			if(!isset($matrix[$posy])) $matrix[$posy]=array();
 		}
 		if($line[0]=="word") {
-			if($line[5]=="") $line[5]="~"; // AS MAKEBOX FEATURE
-			$len=mb_strlen($line[5],"UTF-8");
-			$bias=($line[3]-$line[1])/($len*2);
-			$posx=round(($line[1]+$bias)/$width,0);
-			for($i=0;$i<$len;$i++) {
-				if(isset($matrix[$posy][$posx])) return $index;
-				$matrix[$posy][$posx]=mb_substr($line[5],$i,1,"UTF-8");
-				$posx++;
+			if($line[5]=="") {
+				// AS MAKEBOX FEATURE
+				$bias=($line[3]-$line[1])/2;
+				$posx=round(($line[1]+$bias)/$width,0);
+				if(!isset($matrix[$posy][$posx])) $matrix[$posy][$posx]="~";
+			} else {
+				// AS DEFAULT FEATURE
+				$len=mb_strlen($line[5],"UTF-8");
+				$bias=($line[3]-$line[1])/($len*2);
+				$posx=round(($line[1]+$bias)/$width,0);
+				for($i=0;$i<$len;$i++) {
+					if(isset($matrix[$posy][$posx])) return $index;
+					$matrix[$posy][$posx]=mb_substr($line[5],$i,1,"UTF-8");
+					$posx++;
+				}
 			}
 		}
 	}
 	return $matrix;
+}
+
+function __unoconv_fixline($line,$pos1,$pos2,$pos3,$pos4) {
+	$temp=$line;
+	$line[1]=$temp[$pos1];
+	$line[2]=$temp[$pos2];
+	$line[3]=$temp[$pos3];
+	$line[4]=$temp[$pos4];
+	return $line;
 }
 
 function __unoconv_hocr2txt($hocr) {
@@ -323,22 +300,40 @@ function __unoconv_hocr2txt($hocr) {
 	if($words<1) return "";
 	//~ echo "<pre>".sprintr($lines)."</pre>";
 	// COMPUTE ANGLE
-	$pos1=array(($lines[0][3]+$lines[0][1])/2,($lines[0][4]+$lines[0][2])/2);
 	$angles=array();
 	foreach($lines as $line) {
-		if($line[0]=="word" && $line[5]!="") {
+		if($line[0]=="line") {
+			$pos1=null;
+		}
+		if($line[0]=="word") {
 			$pos2=array(($line[3]+$line[1])/2,($line[4]+$line[2])/2);
-			$incrx=$pos2[0]-$pos1[0];
-			$incry=$pos2[1]-$pos1[1];
-			if($incrx>0) $angles[]=rad2deg(atan($incry/$incrx));
+			if(is_array($pos1)) {
+				$incrx=$pos2[0]-$pos1[0];
+				$incry=$pos2[1]-$pos1[1];
+				$angles[]=rad2deg(atan2($incry,$incrx));
+			}
 			$pos1=$pos2;
 		}
 	}
-	$angle=count($angles)?__unoconv_histogram($angles,0.5,0.5):0;
+	$angle=count($angles)?__unoconv_histogram($angles,0.25,0):0;
+	//~ echo "<pre>".sprintr(array($angle))."</pre>";
 	// APPLY ANGLE CORRECTION
+	$quadrant=null;
 	foreach($lines as $index=>$line) {
 		if($line[1]!=0 && $line[2]!=0) list($line[1],$line[2])=__unoconv_rotate($line[1],$line[2],-$angle);
 		if($line[3]!=0 && $line[4]!=0) list($line[3],$line[4])=__unoconv_rotate($line[3],$line[4],-$angle);
+		if($index==0) {
+			$incrx=$line[3]-$line[1];
+			$incry=$line[4]-$line[2];
+			if($incrx>=0 && $incry>=0) $quadrant=0;
+			elseif($incrx>=0 && $incry<0) $quadrant=1;
+			elseif($incrx<0 && $incry<0) $quadrant=2;
+			elseif($incrx<0 && $incry>=0) $quadrant=3;
+			//~ echo "<pre>".sprintr(array($incrx,$incry,$quadrant))."</pre>";
+		}
+		if($quadrant==1) $line=__unoconv_fixline($line,1,4,3,2);
+		elseif($quadrant==2) $line=__unoconv_fixline($line,3,4,1,2);
+		elseif($quadrant==3) $line=__unoconv_fixline($line,3,2,1,4);
 		$lines[$index]=$line;
 	}
 	// COMPUTE MATRIX
