@@ -113,6 +113,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
 		<regspagemobile>25</regspagemobile>
 		<commandtimeout>60</commandtimeout>
+		<enablevoice>true</enablevoice>
+		<enabletranslate>true</enabletranslate>
+		<enableindexing>true</enableindexing>
 	</default>
 	<dirs>
 		<filesdir eval="true">getcwd()."/files"</filesdir>
@@ -184,7 +187,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<which>which</which><!-- for check commands -->
 		<__which__>__INPUT__</__which__>
 		<pdftoppm>pdftoppm</pdftoppm><!-- for ocr module included in unoconv -->
-		<__pdftoppm__>-r 300 __INPUT__ __OUTPUT__</__pdftoppm__>
+		<__pdftoppm__>-r 300 -l 1000 __INPUT__ __OUTPUT__</__pdftoppm__>
 		<convert>convert</convert><!-- for ocr module included in unoconv -->
 		<__convert__>__INPUT__ __OUTPUT__</__convert__>
 		<tesseract>tesseract</tesseract><!-- for ocr module included in unoconv -->

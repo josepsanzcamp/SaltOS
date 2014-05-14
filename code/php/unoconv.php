@@ -23,39 +23,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function __unoconv_pre($array) {
-	if(isset($array["input"])) {
-		$input=$array["input"];
-	} elseif(isset($array["data"]) && isset($array["ext"])) {
-		$input=get_temp_file($array["ext"]);
-		file_put_contents($input,$array["data"]);
-	} else {
-		show_php_error(array("phperror"=>"Call to unoconv without valid input"));
-	}
-	if(isset($array["output"])) {
-		$output=$array["output"];
-	} else {
-		$output=get_temp_file(getDefault("exts/outputext",".out"));
-	}
-	$type=saltos_content_type($input);
-	$ext=strtolower(extension($input));
-	$type0=strtok($type,"/");
-	return array($input,$output,$type,$ext,$type0);
-}
-
-function __unoconv_post($array,$input,$output) {
-	if(!isset($array["input"])) {
-		unlink($input);
-	}
-	if(!isset($array["output"]) && file_exists($output)) {
-		$result=file_get_contents($output);
-		unlink($output);
-	} else {
-		$result="";
-	}
-	return $result;
-}
-
 function __unoconv_list() {
 	if(!check_commands(getDefault("commands/unoconv"),60)) return array();
 	$abouts=ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),60);
@@ -90,41 +57,51 @@ function __unoconv_timeout($cmd) {
 	return $cmd;
 }
 
-function unoconv2pdf($array) {
-	list($input,$output,$type,$ext,$type0)=__unoconv_pre($array);
-	if($type=="application/pdf") {
-		copy($input,$output);
-	} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("audio","video"))) || in_array($type0,array("text","message"))) {
-		__unoconv_all2pdf($input,$output);
+function unoconv2pdf($input) {
+	$output=get_cache_file($input,getDefault("exts/pdfext",".pdf"));
+	if(!file_exists($output)) {
+		$type=saltos_content_type($input);
+		$ext=strtolower(extension($input));
+		$type0=saltos_content_type0($type);
+		if($type=="application/pdf") {
+			copy($input,$output);
+		} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("audio","video"))) || in_array($type0,array("text","message"))) {
+			__unoconv_all2pdf($input,$output);
+		}
 	}
-	return __unoconv_post($array,$input,$output);
+	return file_exists($output)?file_get_contents($output):"";
 }
 
-function unoconv2txt($array) {
-	list($input,$output,$type,$ext,$type0)=__unoconv_pre($array);
-	if($type=="text/plain") {
-		copy($input,$output);
-	} elseif($type=="text/html") {
-		file_put_contents($output,html2text(file_get_contents($input)));
-	} elseif($type=="application/pdf") {
-		__unoconv_pdf2txt($input,$output);
-		if(!file_exists($output) || trim(file_get_contents($output))=="") {
-			file_put_contents($output,__unoconv_pdf2ocr($input));
+function unoconv2txt($input) {
+	$output=get_cache_file($input,getDefault("exts/textext",".txt"));
+	if(!file_exists($output)) {
+		$type=saltos_content_type($input);
+		$ext=strtolower(extension($input));
+		$type0=saltos_content_type0($type);
+		if($type=="text/plain") {
+			copy($input,$output);
+		} elseif($type=="text/html") {
+			file_put_contents($output,html2text(file_get_contents($input)));
+		} elseif($type=="application/pdf") {
+			__unoconv_pdf2txt($input,$output);
+			if(!file_exists($output) || trim(file_get_contents($output))=="") {
+				file_put_contents($output,__unoconv_pdf2ocr($input));
+			}
+		} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("image","audio","video"))) || in_array($type0,array("text","message"))) {
+			$temp=get_temp_file(getDefault("exts/pdfext",".pdf"));
+			__unoconv_all2pdf($input,$temp);
+			if(file_exists($temp)) {
+				__unoconv_pdf2txt($temp,$output);
+				unlink($temp);
+			}
+		} elseif($type0=="image") {
+			file_put_contents($output,__unoconv_img2ocr($input));
 		}
-	} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("image","audio","video"))) || in_array($type0,array("text","message"))) {
-		$temp=get_temp_file(getDefault("exts/pdfext",".pdf"));
-		__unoconv_all2pdf($input,$temp);
-		if(file_exists($temp)) {
-			__unoconv_pdf2txt($temp,$output);
-			unlink($temp);
+		if(file_exists($output)) {
+			file_put_contents($output,getutf8(file_get_contents($output)));
 		}
-	} elseif($type0=="image") {
-		file_put_contents($output,__unoconv_img2ocr($input));
 	}
-	if(file_exists($output)) {
-		file_put_contents($output,getutf8(file_get_contents($output)));
-	}
-	return __unoconv_post($array,$input,$output);
+	return file_exists($output)?file_get_contents($output):"";
 }
 
 function __unoconv_img2ocr($file) {
@@ -135,6 +112,7 @@ function __unoconv_img2ocr($file) {
 		//~ if(file_exists($tiff)) unlink($tiff);
 		if(!file_exists($tiff)) {
 			ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tiff),getDefault("commands/__convert__")));
+			if(!file_exists($tiff)) return "";
 		}
 		$file=$tiff;
 	}
@@ -145,21 +123,18 @@ function __unoconv_img2ocr($file) {
 		ob_passthru(__unoconv_timeout(getDefault("commands/tesseract")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tmp),getDefault("commands/__tesseract__"))));
 		if(!file_exists($hocr)) return "";
 	}
-	$txt=str_replace(getDefault("exts/hocrext",".html"),getDefault("exts/textext",".txt"),$hocr);
-	//~ if(file_exists($txt)) unlink($txt);
-	if(!file_exists($txt)) file_put_contents($txt,__unoconv_hocr2txt($hocr));
-	return file_get_contents($txt);
+	return __unoconv_hocr2txt($hocr);
 }
 
 function __unoconv_pdf2ocr($pdf) {
 	if(!check_commands(getDefault("commands/pdftoppm"),60)) return "";
-	$result=array();
 	// EXTRACT ALL IMAGES FROM PDF
 	$root=get_directory("dirs/cachedir").md5_file($pdf);
 	$files=glob("${root}-*");
 	if(!count($files)) ob_passthru(getDefault("commands/pdftoppm")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($pdf,$root),getDefault("commands/__pdftoppm__")));
 	// EXTRACT ALL TEXT FROM TIFF
 	$files=glob("${root}-*");
+	$result=array();
 	foreach($files as $file) $result[]=__unoconv_img2ocr($file);
 	$result=implode("\n\n",$result);
 	return $result;
@@ -318,7 +293,6 @@ function __unoconv_hocr2txt($hocr) {
 	$angle=count($angles)?__unoconv_histogram($angles,0.25,0):0;
 	//~ echo "<pre>".sprintr(array($angle))."</pre>";
 	// APPLY ANGLE CORRECTION
-	$quadrant=null;
 	foreach($lines as $index=>$line) {
 		if($line[1]!=0 && $line[2]!=0) list($line[1],$line[2])=__unoconv_rotate($line[1],$line[2],-$angle);
 		if($line[3]!=0 && $line[4]!=0) list($line[3],$line[4])=__unoconv_rotate($line[3],$line[4],-$angle);

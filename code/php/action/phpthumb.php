@@ -61,7 +61,7 @@ if(getParam("action")=="phpthumb") {
 	}
 	// SECURITY CHECK
 	$type=saltos_content_type($src);
-	$type0=strtok($type,"/");
+	$type0=saltos_content_type0($type);
 	if($type0!="image") action_denied();
 	// CONTINUE
 	$format_input=strtok("");

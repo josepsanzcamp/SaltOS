@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="translate") {
+	if(!eval_bool(getDefault("enabletranslate"))) return;
 	require_once("php/translate.php");
 	// CHECK COMMANDS
 	if(!check_commands(array(getDefault("commands/apertium"),getDefault("commands/aspell")),60)) action_denied();

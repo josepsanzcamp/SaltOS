@@ -54,8 +54,8 @@ if(getParam("action")=="download") {
 			$result=__getmail_getcid(__getmail_getnode("0",$decoded),$cid);
 			if(!$result) show_php_error(array("phperror"=>"Attachment not found"));
 			$ext=strtolower(extension($result["cname"]));
-			if(!$ext) $ext=substr($result["ctype"],strrpos($result["ctype"],"/")+1);
-			$file=get_temp_file($ext);
+			if(!$ext) $ext=strtolower(extension2($result["ctype"]));
+			$file=get_cache_file($cid,$ext);
 			file_put_contents($file,$result["body"]);
 			$name=$result["cname"];
 			$type=$result["ctype"];
@@ -78,13 +78,12 @@ if(getParam("action")=="download") {
 		header_powered();
 		header_expires($hash);
 		header("Content-Disposition: attachment; filename=\"${name}\"");
-		header("Content-Type: $type");
+		header("Content-Type: ${type}");
 		readfile($file);
 		ob_end_flush();
 	} else {
 		readfile($file);
 	}
-	if($page=="correo" && $id_registro!="session") unlink($file);
 	if(!defined("__CANCEL_DIE__")) die();
 }
 ?>

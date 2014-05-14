@@ -330,6 +330,20 @@ function extension($file) {
 	return pathinfo($file,PATHINFO_EXTENSION);
 }
 
+function extension2($mime) {
+	return saltos_content_type1($mime);
+}
+
+function saltos_content_type0($mime) {
+	$mime=explode("/",$mime);
+	return array_shift($mime);
+}
+
+function saltos_content_type1($mime) {
+	$mime=explode("/",$mime);
+	return array_pop($mime);
+}
+
 function getcwd_protected() {
 	$dir=getcwd();
 	if($dir=="/") $dir=dirname(getServer("SCRIPT_FILENAME"));

@@ -242,7 +242,8 @@ function eval_files() {
 			if(!isset($val["type"])) $val["type"]=saltos_content_type($val["tmp_name"]);
 			// SECURITY ISSUE
 			$ext=strtolower(extension($val["file"]));
-			if($ext=="php") $val["file"]=substr($val["file"],0,-strlen($ext)-1).getDefault("exts/defaultext",".dat");
+			if(!$ext) $ext=strtolower(extension2($val["mime"]));
+			if(in_array($ext,array("php","x-php"))) $val["file"]=str_replace(".php",getDefault("exts/defaultext",".dat"),$val["file"]);
 			// CONTINUE
 			setParam($key,$val["name"]);
 			setParam($key."_file",$val["file"]);

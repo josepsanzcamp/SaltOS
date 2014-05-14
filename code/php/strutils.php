@@ -134,10 +134,24 @@ function encode_words($cad,$pad=" ") {
 }
 
 function encode_search($cad,$pad=" ") {
+	static $orig=array(
+		"á","à","ä","é","è","ë","í","ì","ï","ó","ò","ö","ú","ù","ü","ñ","ç",
+		"Á","À","Ä","É","È","Ë","Í","Ì","Ï","Ó","Ò","Ö","Ú","Ù","Ü","Ñ","Ç");
+	static $dest=array(
+		"a","a","a","e","e","e","i","i","i","o","o","o","u","u","u","n","c",
+		"a","a","a","e","e","e","i","i","i","o","o","o","u","u","u","n","c");
 	static $bad_chars=null;
-	if($bad_chars===null) for($i=0;$i<32;$i++) $bad_chars[]=chr($i);
+	if($bad_chars===null) {
+		$bad_chars=array(",",".",";",":","'",'"',"`","´");
+		for($i=0;$i<32;$i++) $bad_chars[]=chr($i);
+	}
+	$cad=str_replace($orig,$dest,$cad);
 	$cad=str_replace($bad_chars,$pad,$cad);
+	$cad=strtolower($cad);
 	$cad=encode_words($cad,$pad);
+	$cad=explode($pad,$cad);
+	$cad=array_unique($cad);
+	$cad=implode($pad,$cad);
 	return $cad;
 }
 

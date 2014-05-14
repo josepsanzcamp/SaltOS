@@ -193,11 +193,11 @@ if(getParam("action")=="viewpdf") {
 		$cache="$temp$hash.pdf";
 		if(!file_exists($cache)) {
 			include("php/unoconv.php");
-			if(file_exists($file)) {
-				unoconv2pdf(array("input"=>$file,"output"=>$cache));
-			} else {
-				unoconv2pdf(array("data"=>$data,"ext"=>strtolower(extension($name)),"output"=>$cache));
+			if(!file_exists($file)) {
+				$file=get_cache_file($file);
+				file_put_contents($file,$data);
 			}
+			file_put_contents($cache,unoconv2pdf($file));
 		}
 		// PREPARAR REPORT
 		if(file_exists($cache)) {

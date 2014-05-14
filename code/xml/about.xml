@@ -208,7 +208,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Apache 2.2 (Apache-2.0)</label>
+							<label>Apache 2.2 (ASL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://httpd.apache.org")</onclick>
@@ -532,7 +532,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Mozilla pdf.js latest (Apache-2.0)</label>
+							<label>Mozilla pdf.js latest (ASL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
@@ -570,7 +570,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://d3js.org/")</onclick>
 						</field>
 						<field>
-							<label>NVD3 (Apache-2.0)</label>
+							<label>NVD3 (ASL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://nvd3.org/")</onclick>
@@ -697,7 +697,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://lame.sourceforge.net/")</onclick>
 						</field>
 						<field>
-							<label>Apertium 3.2 (GPL2.0)</label>
+							<label>Apertium 3.2 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.apertium.org/")</onclick>
@@ -705,15 +705,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Closure Compiler (Apache-2.0)</label>
+							<label>Closure Compiler (ASL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/closure/compiler")</onclick>
 						</field>
 						<field>
+							<label>Tesseract OCR (ASL-2.0)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://code.google.com/p/tesseract-ocr/")</onclick>
+						</field>
+						<field>
+							<label>Poppler (GPL-2.0, GPL-3.0)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://poppler.freedesktop.org/")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>

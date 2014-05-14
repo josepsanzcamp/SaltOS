@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="indexing") {
+	#if(!eval_bool(getDefault("enableindexing"))) return;
 	require_once("php/unoconv.php");
 	require_once("php/getmail.php");
 	// CHECK THE SEMAPHORE
@@ -34,7 +35,7 @@ if(getParam("action")=="indexing") {
 		die();
 	}
 	// INDEXING FILES
-	$query="SELECT * FROM tbl_ficheros WHERE id_usuario='".current_user()."' AND indexed='0' ORDER BY id ASC";
+	$query="SELECT * FROM tbl_ficheros WHERE id_usuario='".current_user()."' AND indexed='0' ORDER BY id ASC LIMIT 1000";
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
@@ -61,12 +62,13 @@ if(getParam("action")=="indexing") {
 			}
 			if(!$file) show_php_error(array("phperror"=>"Attachment not found","details"=>sprintr($row)));
 			$ext=strtolower(extension($file["cname"]));
-			if(!$ext) $ext=substr($file["ctype"],strrpos($file["ctype"],"/")+1);
-			$args=array("data"=>$file["body"],"ext"=>$ext);
+			if(!$ext) $ext=strtolower(extension2($file["ctype"]));
+			$input=get_cache_file($row["fichero_file"],$ext);
+			file_put_contents($input,$file["body"]);
 		} else {
-			$args=array("input"=>get_directory("dirs/filesdir").$row["fichero_file"]);
+			$input=get_directory("dirs/filesdir").$row["fichero_file"];
 		}
-		$search=addslashes(encode_search(unoconv2txt($args)," "));
+		$search=addslashes(encode_search(unoconv2txt($input)," "));
 		$query="UPDATE tbl_ficheros SET indexed='1',search='${search}' WHERE id='${row["id"]}'";
 		db_query($query);
 		$total++;
