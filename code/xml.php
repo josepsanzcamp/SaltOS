@@ -43,6 +43,7 @@ $_CONFIG=eval_attr(xml2array("files/config.xml"));
 if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));
 if(getDefault("putenv")) eval_putenv(getDefault("putenv"));
 // EXECUTE SOME ITEMS
+time_get_usage(true);
 force_ssl();
 cache_gc();
 db_connect();

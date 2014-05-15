@@ -150,7 +150,7 @@ function encode_search($cad,$pad=" ") {
 	$cad=strtolower($cad);
 	$cad=encode_words($cad,$pad);
 	$cad=explode($pad,$cad);
-	$cad=array_unique($cad);
+	$cad=array_flip(array_flip($cad));
 	$cad=implode($pad,$cad);
 	return $cad;
 }

@@ -378,7 +378,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ini_set>
 		<session.bug_compat_42 ifeval="!isphp54()">On</session.bug_compat_42>
 		<register_globals ifeval="!isphp54()">Off</register_globals>
-		<memory_limit>128M</memory_limit><!-- to allow emails with 30Mb of attachments -->
+		<memory_limit>192M</memory_limit>
 		<max_execution_time>600</max_execution_time>
 		<date.timezone>Europe/Madrid</date.timezone>
 		<default_charset>UTF-8</default_charset>

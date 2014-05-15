@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="indexing") {
-	#if(!eval_bool(getDefault("enableindexing"))) return;
+	if(!eval_bool(getDefault("enableindexing"))) return;
 	require_once("php/unoconv.php");
 	require_once("php/getmail.php");
 	// CHECK THE SEMAPHORE
@@ -35,10 +35,11 @@ if(getParam("action")=="indexing") {
 		die();
 	}
 	// INDEXING FILES
-	$query="SELECT * FROM tbl_ficheros WHERE id_usuario='".current_user()."' AND indexed='0' ORDER BY id ASC LIMIT 1000";
+	$query="SELECT id,id_aplicacion,id_registro,fichero_file FROM tbl_ficheros WHERE id_usuario='".current_user()."' AND indexed='0'";
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
+		if(time_get_free()<50) break;
 		if($row["id_aplicacion"]==page2id("correo")) {
 			$decoded=__getmail_getmime($row["id_registro"]);
 			if(!$decoded) show_php_error(array("phperror"=>"Email not found","details"=>sprintr($row)));

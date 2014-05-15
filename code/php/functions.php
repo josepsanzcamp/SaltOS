@@ -1169,4 +1169,28 @@ function usleep_protected($usec) {
 	$time2=microtime(true);
 	return ($time2-$time1)*1000000;
 }
+
+function time_get_usage($secs=false) {
+	return __time_get_helper(__FUNCTION__,$secs);
+}
+
+function time_get_free($secs=false) {
+	return __time_get_helper(__FUNCTION__,$secs);
+}
+
+function __time_get_helper($fn,$secs) {
+	static $ini=null;
+	if($ini===null) $ini=microtime(true);
+	$cur=microtime(true);
+	$max=ini_get("max_execution_time");
+	if(stripos($fn,"usage")!==false) {
+		$diff=$cur-$ini;
+	} elseif(stripos($fn,"free")!==false) {
+		$diff=$max-($cur-$ini);
+	}
+	if(!$secs) {
+		$diff=($diff*100)/$max;
+	}
+	return $diff;
+}
 ?>
