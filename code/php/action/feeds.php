@@ -519,6 +519,7 @@ if(getParam("action")=="feeds") {
 	$datetime_d=current_datetime(-86400*intval(CONFIG("feeds_timeout")));
 	$unixtime_d=strtotime($datetime_d);
 	foreach($result as $row) {
+		if(time_get_free()<10) break;
 		$id_feed=$row["id"];
 		$url=$row["url"];
 		$title=$row["title"];
@@ -554,6 +555,7 @@ if(getParam("action")=="feeds") {
 						$result4=execute_query_array($query);
 						// ITERAR PARA CADA ITEM DEL RSS
 						foreach($array as $item) {
+							if(time_get_free()<10) break;
 							$link=$item["link"];
 							$hash=$item["hash"];
 							if(!in_array($link,array_merge($result2,$result4))) {

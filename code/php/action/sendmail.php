@@ -221,6 +221,7 @@ if(getParam("action")=="sendmail") {
 	$sended=0;
 	$haserror=0;
 	foreach($result as $row) {
+		if(time_get_free()<10) break;
 		$last_id=$row["id"];
 		$messageid=$row["id_cuenta"]."/".$row["uidl"];
 		$file=get_directory("dirs/outboxdir").$messageid.getDefault("exts/objectext",".obj");

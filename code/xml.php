@@ -35,7 +35,8 @@ include("php/xml2array.php");
 include("php/array2xml.php");
 include("php/history.php");
 // SOME IMPORTANT ITEMS
-program_error_handler();
+declare(ticks=10000);
+program_handlers();
 check_system();
 fix_input_vars();
 // NORMAL OPERATION
@@ -43,7 +44,6 @@ $_CONFIG=eval_attr(xml2array("files/config.xml"));
 if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));
 if(getDefault("putenv")) eval_putenv(getDefault("putenv"));
 // EXECUTE SOME ITEMS
-time_get_usage(true);
 force_ssl();
 cache_gc();
 db_connect();

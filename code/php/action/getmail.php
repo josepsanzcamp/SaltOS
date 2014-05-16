@@ -355,6 +355,7 @@ if(getParam("action")=="getmail") {
 	$haserror=0;
 	$voice_ids=array();
 	foreach($result as $row) {
+		if(time_get_free()<10) break;
 		$error="";
 		if($row["pop3_host"]=="") {
 			$temp=$row["email_from"];
@@ -417,6 +418,7 @@ if(getParam("action")=="getmail") {
 			// RETRIEVE ALL NEW MESSAGES
 			$retrieve=array_diff($uidls,$olduidls);
 			foreach($retrieve as $index=>$uidl) {
+				if(time_get_free()<10) break;
 				if($error=="") {
 					$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
 					$file=$prefix."/".$uidls[$index].$fext;

@@ -23,41 +23,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function __unoconv_list() {
-	if(!check_commands(getDefault("commands/unoconv"),60)) return array();
-	$abouts=ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),60);
-	$abouts=explode("\n",$abouts);
-	$exts=array();
-	foreach($abouts as $about) {
-		$pos1=strpos($about,"[");
-		$pos2=strpos($about,"]");
-		if($pos1!==false && $pos2!==false) {
-			$ext=substr($about,$pos1+1,$pos2-$pos1-1);
-			if($ext[0]==".") $ext=substr($ext,1);
-			if(!in_array($ext,$exts)) $exts[]=$ext;
-		}
-	}
-	return $exts;
-}
-
-function __unoconv_pdf2txt($input,$output) {
-	if(!check_commands(getDefault("commands/pdftotext"),60)) return;
-	ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
-}
-
-function __unoconv_all2pdf($input,$output) {
-	if(!check_commands(getDefault("commands/unoconv"),60)) return;
-	ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__unoconv__"))));
-}
-
-function __unoconv_timeout($cmd) {
-	if(check_commands(getDefault("commands/timeout"),60)) {
-		$cmd=getDefault("commands/timeout")." ".str_replace(array("__TIMEOUT__","__COMMAND__"),array(getDefault("commandtimeout",60),$cmd),getDefault("commands/__timeout__"));
-	}
-	return $cmd;
-}
-
 function unoconv2pdf($input) {
+	$input=fix_file($input);
 	$output=get_cache_file($input,getDefault("exts/pdfext",".pdf"));
 	if(!file_exists($output)) {
 		$type=saltos_content_type($input);
@@ -68,11 +35,15 @@ function unoconv2pdf($input) {
 		} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("audio","video"))) || in_array($type0,array("text","message"))) {
 			__unoconv_all2pdf($input,$output);
 		}
+		if(!file_exists($output)) {
+			file_put_contents($output,"");
+		}
 	}
-	return file_exists($output)?file_get_contents($output):"";
+	return file_get_contents($output);
 }
 
 function unoconv2txt($input) {
+	$input=fix_file($input);
 	$output=get_cache_file($input,getDefault("exts/textext",".txt"));
 	if(!file_exists($output)) {
 		$type=saltos_content_type($input);
@@ -97,15 +68,54 @@ function unoconv2txt($input) {
 		} elseif($type0=="image") {
 			file_put_contents($output,__unoconv_img2ocr($input));
 		}
-		if(file_exists($output)) {
+		if(!file_exists($output)) {
+			file_put_contents($output,"");
+		} else {
 			file_put_contents($output,getutf8(file_get_contents($output)));
 		}
 	}
-	return file_exists($output)?file_get_contents($output):"";
+	return file_get_contents($output);
+}
+
+function __unoconv_list() {
+	if(!check_commands(getDefault("commands/unoconv"),60)) return array();
+	$abouts=ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),60);
+	$abouts=explode("\n",$abouts);
+	$exts=array();
+	foreach($abouts as $about) {
+		$pos1=strpos($about,"[");
+		$pos2=strpos($about,"]");
+		if($pos1!==false && $pos2!==false) {
+			$ext=substr($about,$pos1+1,$pos2-$pos1-1);
+			if($ext[0]==".") $ext=substr($ext,1);
+			if(!in_array($ext,$exts)) $exts[]=$ext;
+		}
+	}
+	return $exts;
+}
+
+function __unoconv_pdf2txt($input,$output) {
+	$input=fix_file($input);
+	if(!check_commands(getDefault("commands/pdftotext"),60)) return;
+	ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
+}
+
+function __unoconv_all2pdf($input,$output) {
+	$input=fix_file($input);
+	if(!check_commands(getDefault("commands/unoconv"),60)) return;
+	ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__unoconv__"))));
+}
+
+function __unoconv_timeout($cmd) {
+	if(check_commands(getDefault("commands/timeout"),60)) {
+		$cmd=getDefault("commands/timeout")." ".str_replace(array("__TIMEOUT__","__COMMAND__"),array(getDefault("commandtimeout",60),$cmd),getDefault("commands/__timeout__"));
+	}
+	return $cmd;
 }
 
 function __unoconv_img2ocr($file) {
 	if(!check_commands(array(getDefault("commands/convert"),getDefault("commands/tesseract")),60)) return "";
+	$file=fix_file($file);
 	$type=saltos_content_type($file);
 	if($type!="image/tiff") {
 		$tiff=get_cache_file($file,getDefault("exts/tiffext",".tif"));
@@ -121,21 +131,28 @@ function __unoconv_img2ocr($file) {
 	if(!file_exists($hocr)) {
 		$tmp=str_replace(getDefault("exts/hocrext",".html"),"",$hocr);
 		ob_passthru(__unoconv_timeout(getDefault("commands/tesseract")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tmp),getDefault("commands/__tesseract__"))));
-		if(!file_exists($hocr)) return "";
 	}
-	return __unoconv_hocr2txt($hocr);
+	if(isset($tiff)) unlink($tiff);
+	if(!file_exists($hocr)) return "";
+	$txt=str_replace(getDefault("exts/hocrext",".html"),getDefault("exts/textext",".txt"),$hocr);
+	if(!file_exists($txt)) file_put_contents($txt,__unoconv_hocr2txt($hocr));
+	return file_get_contents($txt);
 }
 
 function __unoconv_pdf2ocr($pdf) {
 	if(!check_commands(getDefault("commands/pdftoppm"),60)) return "";
 	// EXTRACT ALL IMAGES FROM PDF
+	$pdf=fix_file($pdf);
 	$root=get_directory("dirs/cachedir").md5_file($pdf);
 	$files=glob("${root}-*");
 	if(!count($files)) ob_passthru(getDefault("commands/pdftoppm")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($pdf,$root),getDefault("commands/__pdftoppm__")));
 	// EXTRACT ALL TEXT FROM TIFF
 	$files=glob("${root}-*");
 	$result=array();
-	foreach($files as $file) $result[]=__unoconv_img2ocr($file);
+	foreach($files as $file) {
+		$result[]=__unoconv_img2ocr($file);
+		unlink($file);
+	}
 	$result=implode("\n\n",$result);
 	return $result;
 }

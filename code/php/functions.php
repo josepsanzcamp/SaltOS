@@ -1056,13 +1056,34 @@ function __shutdown_handler() {
 	}
 }
 
-function program_error_handler() {
+function __tick_handler() {
+	if(time_get_free()<1) {
+		$cur=time_get_usage(true)*1.05;
+		$max=getDefault("ini_set/max_execution_time");
+		if($max>0) $cur=min($cur,$max*1.50);
+		//~ addlog("max=$max, cur=$cur");
+		capture_next_error();
+		ini_set("max_execution_time",$cur);
+		get_clear_error();
+	}
+	if(time_get_free()<1) {
+		$backtrace=debug_backtrace();
+		show_php_error(array("phperror"=>"max_execution_time reached","backtrace"=>$backtrace));
+	}
+}
+
+function program_handlers() {
 	global $_ERROR_HANDLER;
 	$_ERROR_HANDLER=array("level"=>0,"msg"=>array());
+	// IMPORTANT CHECK
+	if(!ini_get("date.timezone")) ini_set("date.timezone","Europe/Madrid");
+	// CONTINUE
 	error_reporting(0);
 	set_error_handler("__error_handler");
 	set_exception_handler("__exception_handler");
 	register_shutdown_function("__shutdown_handler");
+	time_get_usage(true);
+	register_tick_function("__tick_handler");
 }
 
 function init_random() {
@@ -1082,8 +1103,7 @@ function check_postlimit() {
 }
 
 function check_system() {
-	// GENERAL CHECKS
-	if(!ini_get("date.timezone")) ini_set("date.timezone","Europe/Madrid");
+	// GENERAL CHECK
 	if(headers_sent()) show_php_error(array("phperror"=>"Has been detected previous headers sended"));
 	// PACKAGE CHECKS
 	$array=array(

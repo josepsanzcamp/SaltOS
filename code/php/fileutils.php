@@ -385,4 +385,13 @@ function find_files($dir,$ext="") {
 	}
 	return $result;
 }
+
+function fix_file($file) {
+	if(strpos($file," ")!==false) {
+		$file2=get_cache_file($file);
+		if(!file_exists($file2)) symlink(realpath($file),$file2);
+		$file=$file2;
+	}
+	return $file;
+}
 ?>

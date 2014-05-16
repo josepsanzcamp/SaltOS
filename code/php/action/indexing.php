@@ -39,7 +39,7 @@ if(getParam("action")=="indexing") {
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
-		if(time_get_free()<50) break;
+		if(time_get_free()<10) break;
 		if($row["id_aplicacion"]==page2id("correo")) {
 			$decoded=__getmail_getmime($row["id_registro"]);
 			if(!$decoded) show_php_error(array("phperror"=>"Email not found","details"=>sprintr($row)));
