@@ -59,11 +59,12 @@ function unoconv2txt($input) {
 				file_put_contents($output,__unoconv_pdf2ocr($input));
 			}
 		} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("image","audio","video"))) || in_array($type0,array("text","message"))) {
-			$temp=get_temp_file(getDefault("exts/pdfext",".pdf"));
-			__unoconv_all2pdf($input,$temp);
-			if(file_exists($temp)) {
-				__unoconv_pdf2txt($temp,$output);
-				unlink($temp);
+			$pdf=get_cache_file($input,getDefault("exts/pdfext",".pdf"));
+			if(!file_exists($pdf)) {
+				__unoconv_all2pdf($input,$pdf);
+			}
+			if(file_exists($pdf)) {
+				__unoconv_pdf2txt($pdf,$output);
 			}
 		} elseif($type0=="image") {
 			file_put_contents($output,__unoconv_img2ocr($input));
@@ -132,7 +133,7 @@ function __unoconv_img2ocr($file) {
 		$tmp=str_replace(getDefault("exts/hocrext",".html"),"",$hocr);
 		ob_passthru(__unoconv_timeout(getDefault("commands/tesseract")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tmp),getDefault("commands/__tesseract__"))));
 	}
-	if(isset($tiff)) unlink($tiff);
+	if(isset($tiff)) file_put_contents($tiff,"");
 	if(!file_exists($hocr)) return "";
 	$txt=str_replace(getDefault("exts/hocrext",".html"),getDefault("exts/textext",".txt"),$hocr);
 	if(!file_exists($txt)) file_put_contents($txt,__unoconv_hocr2txt($hocr));
@@ -151,7 +152,7 @@ function __unoconv_pdf2ocr($pdf) {
 	$result=array();
 	foreach($files as $file) {
 		$result[]=__unoconv_img2ocr($file);
-		unlink($file);
+		file_put_contents($file,"");
 	}
 	$result=implode("\n\n",$result);
 	return $result;
