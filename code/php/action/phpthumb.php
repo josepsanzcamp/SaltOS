@@ -64,14 +64,14 @@ if(getParam("action")=="phpthumb") {
 	$type0=saltos_content_type0($type);
 	if($type0!="image") action_denied();
 	// CONTINUE
-	$format_input=strtok("");
+	$format_input=saltos_content_type1($type);
 	$format_output=getParam("f",getParam("amp;f","png"));
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
 	$hash=md5(serialize(array($src,$width,$height)));
 	$cache="${temp}${hash}.${format_output}";
 	// FOR DEBUG PURPOSES
-	//if(file_exists($cache)) unlink($cache);
+	//~ if(file_exists($cache)) unlink($cache);
 	// CREATE IF NOT EXISTS
 	if(!file_exists($cache)) {
 		// LOAD IMAGE
