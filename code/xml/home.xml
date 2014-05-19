@@ -41,17 +41,79 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<name>form</name>
 		<action>xml.php</action>
 		<method>post</method>
-		<hiddens include="xml/common/hiddensform.xml" />
+		<hiddens>
+			<hiddens include="xml/common/hiddensform.xml" replace="true"/>
+			<field>
+				<name>filtro</name>
+				<type>hidden</type>
+			</field>
+		</hiddens>
 		<fields>
 			<default>
-				<temp global="rows" eval="true">$rows=execute_query_array("SELECT * FROM tbl_folders WHERE id_usuario='".current_user()."' ORDER BY name ASC")</temp>
-				<fieldset global="rows,row" foreach="rows" as="row">
-					<title global="row" eval="true">$row["name"]</title>
-					<width>100%</width>
+				<fieldset>
+					<title lang="true">formupdate</title>
 					<row>
 						<field>
 							<type>separator</type>
-							<class global="row" eval="true">"boxs siwrap id_".$row["id"]</class>
+							<class>spacer</class>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>image</type>
+							<image>img/saltos_big.png</image>
+							<width>100px</width>
+							<height>100px</height>
+							<colspan>2</colspan>
+							<class>logo</class>
+							<class3>center</class3>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>text</type>
+							<name>buscar</name>
+							<width>480px</width>
+							<colspan>2</colspan>
+							<onchange>copy_value("filtro","default_0_buscar");</onchange>
+							<onkeypress>if(is_enterkey(event)) { copy_value("filtro","default_0_buscar");buscar2(); }</onkeypress>
+							<focus>true</focus>
+							<speech>true</speech>
+							<class3>shortcut_ctrl_f</class3>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>button</type>
+							<value lang="true">buscar2</value>
+							<class>right nowrap contextmenu</class>
+							<class2>shortcut_ctrl_g</class2>
+							<onclick>copy_value("filtro","default_0_buscar");buscar2()</onclick>
+							<icon>find</icon>
+						</field>
+						<field>
+							<type>button</type>
+							<value lang="true">buscar3</value>
+							<class>nowrap contextmenu</class>
+							<class2>shortcut_ctrl_f</class2>
+							<onclick>copy_value("filtro","default_0_buscar");buscar3()</onclick>
+							<icon>find</icon>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+							<class>spacer</class>
 						</field>
 					</row>
 				</fieldset>
@@ -60,9 +122,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</fields>
 		<javascript>
 			<javascript include="xml/common/jsform.xml" replace="true"/>
+			<function>buscar2() { setParam("page","buscador"); setParam("action","list"); setParam("offset","0"); submit1(); }</function>
+			<function>buscar3() { setParam("page","ficheros"); setParam("action","list"); setParam("offset","0"); submit1(); }</function>
+			<inline>$(function() { $(".spacer").animate({height:$(window).height()/4}); });</inline>
+			<inline>$(function() { $(".logo").bind("click",function() { opencontent("xml.php?page=about"); }); });</inline>
 			<cache>
 				<include>js/home.js</include>
 			</cache>
 		</javascript>
+		<styles>
+			<inline>.logo { cursor:pointer; }</inline>
+		</styles>
 	</form>
 </root>

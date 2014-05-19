@@ -377,6 +377,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasformasdepago>[Toutes les formes de paiement]</todaslasformasdepago>
 		<sinformapago>[Aucun paiement]</sinformapago>
 		<actions translated="false">Options of this register</actions>
+		<msgtotalindexed1 translated="false"> file indexed to the database</msgtotalindexed1>
+		<msgtotalindexed2 translated="false"> files indexed to the database</msgtotalindexed2>
 	</common>
 	<login>
 		<logintitle>Accès application</logintitle>
@@ -984,6 +986,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<feedstimeout>oublier le passé nourrit effacés</feedstimeout>
 		<sessioninterval>Vérifiez alerte journal toutes les</sessioninterval>
 		<sessionwarning>Prévenez déconnexion avant</sessionwarning>
+		<indexinginterval translated="false">Index new files every</indexinginterval>
 		<emailsupport>Courriel pour le soutien technique</emailsupport>
 		<segundos>secondes</segundos>
 		<dias>jour</dias>
@@ -1052,8 +1055,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</support>
 	<home>
 		<formupdate>Accueil </formupdate>
-		<hide>Cacher</hide>
-		<nodata>Vous pouvez ajouter du contenu ici en cliquant sur le bouton [Home Show] dossier sur les listes et les détails de toutes les applications</nodata>
+		<buscar2 translated="false">Search in SaltOS</buscar2>
+		<buscar3 translated="false">Search in files</buscar3>
 	</home>
 	<seguimientos>
 		<list>liste de suivi</list>
@@ -1201,6 +1204,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sensitivitypersonal revised="false">Personnel</sensitivitypersonal>
 		<sensitivityprivate revised="false">Privé</sensitivityprivate>
 		<sensitivityconfidential revised="false">Confidentiel</sensitivityconfidential>
+		<addincidencia translated="false">Add bug</addincidencia>
+		<addincidenciatip translated="false">Create a new bug using this email as initial report</addincidenciatip>
+		<addincidenciamsg translated="false">Do you want to create a new bug using this email as initial report?</addincidenciamsg>
+		<addincidenciaok translated="false">Bug created with the code: </addincidenciaok>
+		<notsupportdefined translated="false">Support email account not defined in SaltOS</notsupportdefined>
+		<notsupportfound translated="false">This email doesn't contain the support email account</notsupportfound>
+		<incidenciaexists translated="false">Bug found with the code: </incidenciaexists>
 	</correo>
 	<cuentas>
 		<list>Liste des comptes</list>
@@ -1374,6 +1384,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ficheros>
 		<list>Liste des pièces jointes</list>
 		<todaslasaplicaciones>[Toutes les demandes]</todaslasaplicaciones>
+		<nosearch revised="false">Vous devez fournir un mot de recherche dans la zone de texte</nosearch>
 	</ficheros>
 	<feeds>
 		<list>Liste  de flux RSS</list>
@@ -1451,6 +1462,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>l'importation  Changement</formupdate>
 		<defaultdata>Importer des données</defaultdata>
 		<sinaplicacion revised="false">[Sans l'application]</sinaplicacion>
+		<importdata translated="false">Contents of the file</importdata>
 	</importaciones>
 	<folders>
 		<notfound>Dossier non trouvé</notfound>

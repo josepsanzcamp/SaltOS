@@ -1055,8 +1055,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</support>
 	<home>
 		<formupdate>Inicio</formupdate>
-		<hide>Ocultar</hide>
-		<nodata>Puede añadir contenidos aquí marcando esta carpeta en la pestaña de carpetas que encontrará en los detalles de todas las aplicaciones</nodata>
+		<buscar2>Buscar en todo SaltOS</buscar2>
+		<buscar3>Buscar sólo en ficheros</buscar3>
 	</home>
 	<seguimientos>
 		<list>Listado de seguimientos</list>
@@ -1384,6 +1384,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ficheros>
 		<list>Listado de ficheros adjuntos</list>
 		<todaslasaplicaciones>[Todas las aplicaciones]</todaslasaplicaciones>
+		<nosearch>Debe proporcionar unas palabras de búsqueda en el cuadro de texto</nosearch>
 	</ficheros>
 	<feeds>
 		<list>Listado de feeds RSS</list>

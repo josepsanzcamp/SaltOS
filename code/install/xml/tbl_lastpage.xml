@@ -27,6 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<row>
 		<id>1</id>
 		<id_usuario>1</id_usuario>
-		<page>feeds</page>
+		<page>home</page>
 	</row>
 </root>

@@ -377,6 +377,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasformasdepago>[All forms of payment]</todaslasformasdepago>
 		<sinformapago>[No payment]</sinformapago>
 		<actions>Options of this register</actions>
+		<msgtotalindexed1> file indexed to the database</msgtotalindexed1>
+		<msgtotalindexed2> files indexed to the database</msgtotalindexed2>
 	</common>
 	<login>
 		<logintitle>Application access</logintitle>
@@ -574,15 +576,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<add>Add Contact</add>
 	</contactos>
 	<incidencias>
-		<list>List of impact</list>
-		<create>New incidence</create>
-		<formview>Detailed effect</formview>
-		<forminsert>Added a new effect</forminsert>
-		<formupdate>Changing incidence</formupdate>
-		<defaultdata>Data in the incidence</defaultdata>
+		<list>List of bugs</list>
+		<create>New bug</create>
+		<formview>Details of the bug</formview>
+		<forminsert>Added a new bug</forminsert>
+		<formupdate>Change bug</formupdate>
+		<defaultdata>Data of the bug</defaultdata>
 		<usersdata>Users assigned</usersdata>
 		<asignadoa>Assigned to</asignadoa>
-		<msgsendemail>has been sent an email to all those involved in the incidence</msgsendemail>
+		<msgsendemail>has been sent an email to all those involved in the bug</msgsendemail>
 	</incidencias>
 	<proyectos>
 		<list>Project list</list>
@@ -984,6 +986,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<feedstimeout>Forget past erased feeds</feedstimeout>
 		<sessioninterval>Check alert log every</sessioninterval>
 		<sessionwarning>Warn logoff before</sessionwarning>
+		<indexinginterval>Index new files every</indexinginterval>
 		<emailsupport>Email for technical support</emailsupport>
 		<segundos>seconds</segundos>
 		<dias>days</dias>
@@ -1052,8 +1055,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</support>
 	<home>
 		<formupdate>Home</formupdate>
-		<hide>Hide</hide>
-		<nodata>You can add content here checking this folder on the folders tab that you can find on the details of all applications</nodata>
+		<buscar2>Search in SaltOS</buscar2>
+		<buscar3>Search in files</buscar3>
 	</home>
 	<seguimientos>
 		<list>Tracking List</list>
@@ -1201,6 +1204,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sensitivitypersonal>Personal</sensitivitypersonal>
 		<sensitivityprivate>Private</sensitivityprivate>
 		<sensitivityconfidential>Confidential</sensitivityconfidential>
+		<addincidencia>Add bug</addincidencia>
+		<addincidenciatip>Create a new bug using this email as initial report</addincidenciatip>
+		<addincidenciamsg>Do you want to create a new bug using this email as initial report?</addincidenciamsg>
+		<addincidenciaok>Bug created with the code: </addincidenciaok>
+		<notsupportdefined>Support email account not defined in SaltOS</notsupportdefined>
+		<notsupportfound>This email doesn't contain the support email account</notsupportfound>
+		<incidenciaexists>Bug found with the code: </incidenciaexists>
 	</correo>
 	<cuentas>
 		<list>List of accounts</list>
@@ -1374,6 +1384,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ficheros>
 		<list>List of attachments</list>
 		<todaslasaplicaciones>[All applications]</todaslasaplicaciones>
+		<nosearch>You must provide a search words in the textbox</nosearch>
 	</ficheros>
 	<feeds>
 		<list>List of RSS feeds</list>
@@ -1451,6 +1462,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Changing import</formupdate>
 		<defaultdata>Import Data</defaultdata>
 		<sinaplicacion>[Without application]</sinaplicacion>
+		<importdata>Contents of the file</importdata>
 	</importaciones>
 	<folders>
 		<notfound>Folder not found</notfound>

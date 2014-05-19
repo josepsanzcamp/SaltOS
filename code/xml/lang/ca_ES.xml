@@ -377,6 +377,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasformasdepago>[Totes les formes de pagament]</todaslasformasdepago>
 		<sinformapago>[Sense forma de pagament]</sinformapago>
 		<actions>Accions d'aquest registre</actions>
+		<msgtotalindexed1> fitxer indexat a la base de dades</msgtotalindexed1>
+		<msgtotalindexed2> fitxers indexats a la base de dades</msgtotalindexed2>
 	</common>
 	<login>
 		<logintitle>Accés a l'aplicació</logintitle>
@@ -984,6 +986,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<feedstimeout>Oblidar feeds esborrats passats</feedstimeout>
 		<sessioninterval>Comprovar avís de tancar sessió cada</sessioninterval>
 		<sessionwarning>Adverteix el tancament de sessió abans de</sessionwarning>
+		<indexinginterval>Indexar arxius nous cada </indexinginterval>
 		<emailsupport>email per al suport tècnic</emailsupport>
 		<segundos>segons</segundos>
 		<dias>dies</dias>
@@ -1052,8 +1055,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</support>
 	<home>
 		<formupdate>Inici</formupdate>
-		<hide>Amaga</hide>
-		<nodata>Podeu afegir continguts aquí marcant aquesta carpeta a la pestanya de carpetes que trobarà als detalls de totes les aplicacions</nodata>
+		<buscar2>Buscar a tot SaltOS</buscar2>
+		<buscar3>Buscar nomès als fitxers</buscar3>
 	</home>
 	<seguimientos>
 		<list>Llistat de seguiment</list>
@@ -1201,6 +1204,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sensitivitypersonal>Personal</sensitivitypersonal>
 		<sensitivityprivate>Privat</sensitivityprivate>
 		<sensitivityconfidential>Confidencial</sensitivityconfidential>
+		<addincidencia>Crear incidencia</addincidencia>
+		<addincidenciatip>Crea una incidencia a partir d'aquest correu</addincidenciatip>
+		<addincidenciamsg>Dessitja crear una incidencia a partir d'aquest correu?</addincidenciamsg>
+		<addincidenciaok>S'ha creat la incidencia amb el códi: </addincidenciaok>
+		<notsupportdefined>No s'ha definit el compte de correu de suport</notsupportdefined>
+		<notsupportfound>Aquest correu no conte el compte de correu de suport</notsupportfound>
+		<incidenciaexists>Aquesta incidencia ja existeix i te el códi: </incidenciaexists>
 	</correo>
 	<cuentas>
 		<list>Llistat de comptes</list>
@@ -1374,6 +1384,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ficheros>
 		<list>Llistat de fitxers adjunts</list>
 		<todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
+		<nosearch>Ha de proporcionar unes paraules de cerca al quadre de text</nosearch>
 	</ficheros>
 	<feeds>
 		<list>Llistat de feeds RSS</list>
@@ -1451,6 +1462,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>Modificació de la importació</formupdate>
 		<defaultdata>Dades de la importació</defaultdata>
 		<sinaplicacion>[Sense aplicació]</sinaplicacion>
+		<importdata>Dades del fitxer</importdata>
 	</importaciones>
 	<folders>
 		<notfound>Carpeta no trobada</notfound>

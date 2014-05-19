@@ -123,22 +123,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
 		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
 		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
-		<temp global="temp" eval="true">$temp="ficheros"</temp>
-		<option include="xml/common/menuoptionslist.xml" replace="true"/>
-		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
-		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
-		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
-		<temp global="temp" eval="true">$temp="buscador"</temp>
-		<option include="xml/common/menuoptionslist.xml" replace="true"/>
-		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
-		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
-		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
-		<temp global="temp" eval="true">$temp="textos"</temp>
-		<option include="xml/common/menuoptionslist.xml" replace="true"/>
-		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
-		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
-		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
-		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
 		<temp global="temp" eval="true">$temp="profile"</temp>
 		<option include="xml/common/menuoptionslist.xml" replace="true"/>
 		<temp global="temp" eval="true">$temp="support"</temp>
@@ -299,7 +283,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
 		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
 	</group>
-	<group ifeval="(check_user('cuentas','menu') || check_user('epigrafes','menu') || check_user('estados','menu') || check_user('formaspago','menu') || check_user('ivas','menu') || check_user('prioridades','menu') || check_user('tiposevento','menu'))">
+	<group ifeval="(check_user('cuentas','menu') || check_user('epigrafes','menu') || check_user('estados','menu') || check_user('formaspago','menu') || check_user('ivas','menu') || check_user('prioridades','menu') || check_user('tiposevento','textos') || check_user('tiposevento','menu'))">
 		<label lang="true">gestiontipos</label>
 		<name>gestiontipos</name>
 		<class>menu</class>
@@ -334,6 +318,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
 		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
 		<temp global="temp" eval="true">$temp="prioridades"</temp>
+		<option include="xml/common/menuoptionslist.xml" replace="true"/>
+		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+		<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+		<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+		<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		<temp global="temp" eval="true">$temp="textos"</temp>
 		<option include="xml/common/menuoptionslist.xml" replace="true"/>
 		<option include="xml/common/menuoptionsquery.xml" replace="true"/>
 		<option include="xml/common/menuoptionscreate.xml" replace="true"/>

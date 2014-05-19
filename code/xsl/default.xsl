@@ -1259,7 +1259,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="form_maker_1">
 	<xsl:for-each select="hiddens/field[type='hidden']">
-		<input type="hidden" name="{name}" value="{value}"/>
+		<input type="hidden" name="{name}" id="{name}" value="{value}"/>
 	</xsl:for-each>
 </xsl:template>
 
@@ -1318,7 +1318,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<xsl:for-each select="$node2/row">
 								<xsl:variable name="node3" select="."/>
 								<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
-								<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
+								<input type="hidden" name="prefix_{$prefix}" id="prefix_{$prefix}" value="{$prefix}"/>
 								<xsl:for-each select="$node1/fieldset">
 									<div id="tab{generate-id(.)}">
 										<xsl:choose>
@@ -1386,7 +1386,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<xsl:for-each select="$node2/*/row">
 											<xsl:variable name="node4" select="."/>
 											<xsl:variable name="prefix"><xsl:value-of select="$name1"/>_<xsl:value-of select="id"/>_</xsl:variable>
-											<input type="hidden" name="prefix_{$prefix}" value="{$prefix}"/>
+											<input type="hidden" name="prefix_{$prefix}" id="prefix_{$prefix}" value="{$prefix}"/>
 											<xsl:for-each select="$node3">
 												<xsl:call-template name="form_by_rows">
 													<xsl:with-param name="form" select="$form"/>

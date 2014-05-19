@@ -377,6 +377,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasformasdepago>[جميع أشكال الدفع]</todaslasformasdepago>
 		<sinformapago>[لايوجد مدفوعات]</sinformapago>
 		<actions translated="false">Options of this register</actions>
+		<msgtotalindexed1 translated="false"> file indexed to the database</msgtotalindexed1>
+		<msgtotalindexed2 translated="false"> files indexed to the database</msgtotalindexed2>
 	</common>
 	<login>
 		<logintitle>الوصول للتطبيق</logintitle>
@@ -984,6 +986,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<feedstimeout>نسيان التغذيات المحذوفة</feedstimeout>
 		<sessioninterval>تحقق من تسجيل الدخول كل</sessioninterval>
 		<sessionwarning>تحذيز الخروج قبل</sessionwarning>
+		<indexinginterval translated="false">Index new files every</indexinginterval>
 		<emailsupport>بريد الدعم الفني</emailsupport>
 		<segundos>ثواني</segundos>
 		<dias>ايام</dias>
@@ -1052,8 +1055,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</support>
 	<home>
 		<formupdate>الرئيسية</formupdate>
-		<hide>اخفاء</hide>
-		<nodata>يمكنك إضافة محتوى هنا فحص هذا المجلد على علامة التبويب المجلدات التي يمكنك العثور على تفاصيل جميع التطبيقات</nodata>
+		<buscar2 translated="false">Search in SaltOS</buscar2>
+		<buscar3 translated="false">Search in files</buscar3>
 	</home>
 	<seguimientos>
 		<list>قائمة المتابعة</list>
@@ -1201,6 +1204,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sensitivitypersonal>شخصي</sensitivitypersonal>
 		<sensitivityprivate>خاص</sensitivityprivate>
 		<sensitivityconfidential>سري</sensitivityconfidential>
+		<addincidencia translated="false">Add bug</addincidencia>
+		<addincidenciatip translated="false">Create a new bug using this email as initial report</addincidenciatip>
+		<addincidenciamsg translated="false">Do you want to create a new bug using this email as initial report?</addincidenciamsg>
+		<addincidenciaok translated="false">Bug created with the code: </addincidenciaok>
+		<notsupportdefined translated="false">Support email account not defined in SaltOS</notsupportdefined>
+		<notsupportfound translated="false">This email doesn't contain the support email account</notsupportfound>
+		<incidenciaexists translated="false">Bug found with the code: </incidenciaexists>
 	</correo>
 	<cuentas>
 		<list>قائمة الحسابات</list>
@@ -1374,6 +1384,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ficheros>
 		<list>قائمة المرفقات</list>
 		<todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>
+		<nosearch>يجب ان تقوم بادخال كلمة في صندوق البحث</nosearch>
 	</ficheros>
 	<feeds>
 		<list>قائمة تغذيات RSS</list>
@@ -1451,6 +1462,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>تغير استيراد</formupdate>
 		<defaultdata>استيراد بيانات</defaultdata>
 		<sinaplicacion>[بدون تطبيق]</sinaplicacion>
+		<importdata translated="false">Contents of the file</importdata>
 	</importaciones>
 	<folders>
 		<notfound>الدليل غير موجود</notfound>
