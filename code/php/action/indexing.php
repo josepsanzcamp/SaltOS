@@ -29,13 +29,13 @@ if(getParam("action")=="indexing") {
 	require_once("php/unoconv.php");
 	require_once("php/getmail.php");
 	// CHECK THE SEMAPHORE
-	$semaphore=get_cache_file(array(getParam("action"),current_user()),getDefault("exts/semext",".sem"));
+	$semaphore=get_cache_file(getParam("action"),getDefault("exts/semext",".sem"));
 	if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) {
-		javascript_error(LANG("msgerrorsemaphore").getParam("action"));
+		//~ javascript_error(LANG("msgerrorsemaphore").getParam("action"));
 		die();
 	}
 	// INDEXING FILES
-	$query="SELECT id,id_aplicacion,id_registro,fichero_file FROM tbl_ficheros WHERE id_usuario='".current_user()."' AND indexed='0'";
+	$query="SELECT id,id_aplicacion,id_registro,fichero_file FROM tbl_ficheros WHERE indexed='0'";
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {

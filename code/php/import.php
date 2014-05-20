@@ -552,7 +552,21 @@ function __import_make_table_row($row,$class,$rowspan,$depth,$last,$edit,$width,
 			$name=$path."/col/".$col;
 			$result.="<input type='text' class='ui-state-default ui-corner-all importsave' name='${name}' value='${field}' style='width:${width}'/>";
 		} else {
-			$result.=$field;
+			if(substr($field,0,4)=="tel:") {
+				$field=explode(":",$field,2);
+				$result.="<a href='javascript:void(0)' onclick='qrcode2(\"${field[1]}\")'>${field[1]}</a>";
+			} elseif(substr($field,0,7)=="mailto:") {
+				$field=explode(":",$field,2);
+				$result.="<a href='javascript:void(0)' onclick='mailto(\"${field[1]}\")'>${field[1]}</a>";
+			} elseif(substr($field,0,5)=="href:") {
+				$field=explode(":",$field,2);
+				$result.="<a href='javascript:void(0)' onclick='openwin(\"${field[1]}\")'>${field[1]}</a>";
+			} elseif(substr($field,0,5)=="link:") {
+				$field=explode(":",$field,3);
+				$result.="<a href='javascript:void(0)' onclick='${field[1]}'>${field[2]}</a>";
+			} else {
+				$result.=$field;
+			}
 		}
 		$result.="</td>\n";
 		$col++;

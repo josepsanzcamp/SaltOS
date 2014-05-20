@@ -386,6 +386,11 @@ function get_filtered_field($field) {
 		$temp=strtok("");
 		$field=$temp;
 	}
+	if(substr($field,0,7)=="href:") {
+		$temp=strtok($field,":");
+		$temp=strtok("");
+		$field=$temp;
+	}
 	if(substr($field,0,5)=="link:") {
 		$temp=strtok($field,":");
 		$temp=strtok(":");

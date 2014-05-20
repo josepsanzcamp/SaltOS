@@ -354,4 +354,36 @@ function __unoconv_hocr2txt($hocr) {
 	$buffer=implode("\n",$buffer);
 	return $buffer;
 }
+
+function __unoconv_substr($string,$start,$length,$reference) {
+	$factor=mb_strlen($string,"UTF-8")/$reference;
+	$start*=$factor;
+	$length*=$factor;
+	//~ echo "factor=$factor, start=$start, length=$length<br/>";
+	return mb_substr($string,$start,$length,"UTF-8");
+}
+
+function __unoconv_remove_margins($page) {
+	$page=explode("\n",$page);
+	$max=0;
+	$min=0;
+	$first=-1;
+	$last=-1;
+	foreach($page as $index=>$line) {
+		$max=max(mb_strlen(rtrim($line),"UTF-8"),$max);
+		if($min==0) $min=$max;
+		$min=min(mb_strlen($line,"UTF-8")-mb_strlen(ltrim($line),"UTF-8"),$min);
+		if(trim($line)!="") {
+			if($first==-1) $first=$index;
+			else $last=$index;
+		}
+	}
+	foreach($page as $index=>$line) {
+		if($index<$first) unset($page[$index]);
+		elseif($index>$last) unset($page[$index]);
+		else $page[$index]=mb_substr($line,$min,$max-$min,"UTF-8");
+	}
+	$page=implode("\n",$page);
+	return $page;
+}
 ?>

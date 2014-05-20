@@ -265,19 +265,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							</xsl:call-template>
 						</a>
 					</xsl:when>
-					<xsl:when test="substring(.,1,4)='fax:'">
-						<a class="faxlink draggable id_{$id}" href="javascript:void(0)" onclick="">
-							<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
-								<xsl:with-param name="find">'</xsl:with-param>
-								<xsl:with-param name="replace"> </xsl:with-param>
-								<xsl:with-param name="string" select="."/>
-							</xsl:call-template>')</xsl:attribute>
-							<xsl:call-template name="print_string_length">
-								<xsl:with-param name="text" select="substring(.,5)"/>
-								<xsl:with-param name="size" select="$size"/>
-							</xsl:call-template>
-						</a>
-					</xsl:when>
 					<xsl:when test="substring(.,1,7)='mailto:'">
 						<a class="maillink draggable id_{$id}" href="javascript:void(0)" onclick="">
 							<xsl:attribute name="onclick">mailto('<xsl:call-template name="replace_string">
@@ -1003,16 +990,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:choose>
 						<xsl:when test="substring(.,1,4)='tel:'">
 							<a class="tellink" href="javascript:void(0)" onclick="">
-								<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
-									<xsl:with-param name="find">'</xsl:with-param>
-									<xsl:with-param name="replace"> </xsl:with-param>
-									<xsl:with-param name="string" select="."/>
-								</xsl:call-template>')</xsl:attribute>
-								<xsl:value-of select="substring(.,5)"/>
-							</a>
-						</xsl:when>
-						<xsl:when test="substring(.,1,4)='fax:'">
-							<a class="faxlink" href="javascript:void(0)" onclick="">
 								<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
 									<xsl:with-param name="find">'</xsl:with-param>
 									<xsl:with-param name="replace"> </xsl:with-param>

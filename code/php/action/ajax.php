@@ -57,6 +57,11 @@ if(getParam("action")=="ajax") {
 	} else {
 		die();
 	}
-	output_buffer($buffer,$format);
+	if(!defined("__CANCEL_HEADER__")) {
+		output_buffer($buffer,$format);
+	} else {
+		echo $buffer;
+	}
+	if(!defined("__CANCEL_DIE__")) die();
 }
 ?>
