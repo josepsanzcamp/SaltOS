@@ -260,7 +260,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.0.079 (LGPL-3.0)</label>
+							<label>TCPDF 6.0.080 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -548,7 +548,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 4.3.3 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 4.4.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>
