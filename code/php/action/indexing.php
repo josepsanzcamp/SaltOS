@@ -30,10 +30,7 @@ if(getParam("action")=="indexing") {
 	require_once("php/getmail.php");
 	// CHECK THE SEMAPHORE
 	$semaphore=get_cache_file(getParam("action"),getDefault("exts/semext",".sem"));
-	if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) {
-		//~ javascript_error(LANG("msgerrorsemaphore").getParam("action"));
-		die();
-	}
+	if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) die();
 	// INDEXING FILES
 	$query="SELECT id,id_aplicacion,id_registro,fichero_file FROM tbl_ficheros WHERE indexed='0'";
 	$result=db_query($query);

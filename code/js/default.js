@@ -66,7 +66,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			} else {
 				$(this).removeClass("ui-state-error");
 			}
-			if(!field && !valor) {
+			if(!valor && !field) {
 				field=this;
 				label=$(this).attr("labeled");
 			}
@@ -1357,7 +1357,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(value) $(".tbody",table).removeClass("ui-state-highlight");
 		});
 		// PROGRAM CHECK ENTER
-		$("input,select",obj).bind("keypress",function(event) {
+		$("input,select",obj).bind("keydown",function(event) {
 			if(is_enterkey(event)) {
 				if(this.form) {
 					for(var i=0,len=this.form.elements.length;i<len;i++) {

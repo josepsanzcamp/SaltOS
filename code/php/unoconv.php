@@ -24,7 +24,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function unoconv2pdf($input) {
-	$input=fix_file($input);
 	$output=get_cache_file($input,getDefault("exts/pdfext",".pdf"));
 	if(!file_exists($output)) {
 		$type=saltos_content_type($input);
@@ -43,7 +42,6 @@ function unoconv2pdf($input) {
 }
 
 function unoconv2txt($input) {
-	$input=fix_file($input);
 	$output=get_cache_file($input,getDefault("exts/textext",".txt"));
 	if(!file_exists($output)) {
 		$type=saltos_content_type($input);
@@ -96,13 +94,11 @@ function __unoconv_list() {
 }
 
 function __unoconv_pdf2txt($input,$output) {
-	$input=fix_file($input);
 	if(!check_commands(getDefault("commands/pdftotext"),60)) return;
 	ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
 }
 
 function __unoconv_all2pdf($input,$output) {
-	$input=fix_file($input);
 	if(!check_commands(getDefault("commands/unoconv"),60)) return;
 	ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__unoconv__"))));
 }
@@ -116,7 +112,6 @@ function __unoconv_timeout($cmd) {
 
 function __unoconv_img2ocr($file) {
 	if(!check_commands(array(getDefault("commands/convert"),getDefault("commands/tesseract")),60)) return "";
-	$file=fix_file($file);
 	$type=saltos_content_type($file);
 	if($type!="image/tiff") {
 		$tiff=get_cache_file($file,getDefault("exts/tiffext",".tif"));
@@ -143,7 +138,6 @@ function __unoconv_img2ocr($file) {
 function __unoconv_pdf2ocr($pdf) {
 	if(!check_commands(getDefault("commands/pdftoppm"),60)) return "";
 	// EXTRACT ALL IMAGES FROM PDF
-	$pdf=fix_file($pdf);
 	$root=get_directory("dirs/cachedir").md5_file($pdf);
 	$files=glob("${root}-*");
 	if(!count($files)) ob_passthru(getDefault("commands/pdftoppm")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($pdf,$root),getDefault("commands/__pdftoppm__")));

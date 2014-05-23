@@ -416,7 +416,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<htmlpage>body { margin:0px;padding:0px; }</htmlpage>
 		<htmlbox>background:#ffffff</htmlbox>
 		<htmltext>font-family:Lucida Grande,Lucida Sans,Arial,sans-serif;font-size:11px;color:#333</htmltext>
-		<plaintext>font-family:monospace;font-size:10px;color:#333</plaintext>
+		<plaintext>font-family:monospace;line-height:1em;font-size:10px;color:#333</plaintext>
 		<separator>border:0px;height:1px;background:#ccc</separator>
 		<blockquote>border-left:#ccc 1px solid;margin:0px 0px 0px 0.8ex;padding-left:1ex</blockquote>
 		<signature>font-family:Lucida Grande,Lucida Sans,Arial,sans-serif;font-size:11px;color:#ccc</signature>

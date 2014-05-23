@@ -66,7 +66,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			} else {
 				$(this).removeClass("ui-state-error");
 			}
-			if(!field && !valor) {
+			if(!valor && !field) {
 				field=this;
 				label=$(this).attr("labeled");
 			}
@@ -889,7 +889,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// ADD THE ACTIONS DEFAULT OPTION LABEL
 		$(".actions").find("option:eq(0)",obj).html(lang_actions());
 		// PROGRAM CHECK ENTER
-		$("input,select",obj).bind("keypress",function(event) {
+		$("input,select",obj).bind("keydown",function(event) {
 			if(is_enterkey(event)) {
 				if(this.form) {
 					for(var i=0,len=this.form.elements.length;i<len;i++) {
