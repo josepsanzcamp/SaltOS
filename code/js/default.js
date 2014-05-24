@@ -1358,6 +1358,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// PROGRAM CHECK ENTER
 		$("input,select",obj).bind("keydown",function(event) {
+			if($(".ui-autocomplete").is(":visible")) {
+				// DETECTED AN OPEN AUTOCOMPLETE WIDGET
+				return;
+			}
 			if(is_enterkey(event)) {
 				if(this.form) {
 					for(var i=0,len=this.form.elements.length;i<len;i++) {
