@@ -125,7 +125,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<width>240px</width>
 					<value global="otros" eval="true">stripslashes($otros=getParam("otros"))</value>
 					<onchange>copy_value("otros","buscar");</onchange>
-					<onkeypress>if(is_enterkey(event)) { copy_value("otros","buscar");buscar(); }</onkeypress>
+					<onkey>if(is_enterkey(event)) { copy_value("otros","buscar");buscar(); }</onkey>
 					<speech>true</speech>
 					<class3>shortcut_ctrl_f</class3>
 				</field>
@@ -543,7 +543,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<required>true</required>
 							<colspan>3</colspan>
 							<speech>true</speech>
-							<onkeypress ifeval="!getParam('id')">var orig=this; var dest=$("textarea[name$=descripcion]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkeypress>
+							<onkey ifeval="!getParam('id')">var orig=this; var dest=$("textarea[name$=descripcion]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkey>
 						</field>
 						<field>
 							<name>id_tipoevento</name>
@@ -585,7 +585,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>5</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<onkeypress ifeval="!getParam('id')">$(this).prop("writed",true)</onkeypress>
+							<onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
 						</field>
 					</row>
 					<row>

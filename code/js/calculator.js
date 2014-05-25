@@ -56,7 +56,7 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 				}
 			}).trigger("accordionactivate");
 			// PROGRAM CALCULATOR BUTTON
-			$("textarea",div).bind("keypress",function(event) {
+			$("textarea",div).bind("keydown",function(event) {
 				if(is_enterkey(event)) {
 					var text=$("textarea",div).val();
 					text=explode("\n",text);

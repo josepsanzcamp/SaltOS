@@ -77,7 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<width>240px</width>
 					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
-					<onkeypress>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkeypress>
+					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
 					<speech>true</speech>
 					<class3>shortcut_ctrl_f</class3>
