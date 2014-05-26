@@ -1083,7 +1083,7 @@ function program_handlers() {
 	// IMPORTANT CHECK
 	if(!ini_get("date.timezone")) ini_set("date.timezone","Europe/Madrid");
 	// CONTINUE
-	error_reporting(0);
+	error_reporting(E_ALL);
 	set_error_handler("__error_handler");
 	set_exception_handler("__exception_handler");
 	register_shutdown_function("__shutdown_handler");
