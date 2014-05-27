@@ -1535,7 +1535,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						$(iframe2).attr("isloaded","false");
 						$(iframe2).load(function() {
 							$(this).attr("isloaded","true");
-						}).each(function() {
+						});
+						$(iframe2).each(function() {
 							var iframe3=this.contentWindow.location;
 							var url=$(this).attr("url");
 							if(url) iframe3.replace(url);

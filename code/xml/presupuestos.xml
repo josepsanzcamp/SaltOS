@@ -757,7 +757,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">objetivos</label>
 							<type>textarea</type>
 							<width>600px</width>
-							<height>300px</height>
+							<height>240px</height>
 							<colspan>4</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
@@ -787,7 +787,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">funcional</label>
 							<type>textarea</type>
 							<width>600px</width>
-							<height>300px</height>
+							<height>240px</height>
 							<colspan>4</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
@@ -817,7 +817,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">tecnica</label>
 							<type>textarea</type>
 							<width>600px</width>
-							<height>300px</height>
+							<height>240px</height>
 							<colspan>4</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
@@ -847,7 +847,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">extras</label>
 							<type>textarea</type>
 							<width>600px</width>
-							<height>300px</height>
+							<height>240px</height>
 							<colspan>4</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
@@ -1416,7 +1416,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">condiciones</label>
 							<type>textarea</type>
 							<width>600px</width>
-							<height>300px</height>
+							<height>240px</height>
 							<colspan>4</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>

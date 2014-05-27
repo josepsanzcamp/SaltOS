@@ -765,8 +765,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>ooformats</name>
 							<type>textarea</type>
 							<value eval="true">ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),60)</value>
-							<width>700px</width>
-							<height>300px</height>
+							<width>800px</width>
+							<height>240px</height>
 							<readonly>true</readonly>
 							<class3>ascii</class3>
 						</field>
@@ -795,8 +795,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name global="row" eval="true">$row</name>
 							<type>textarea</type>
 							<value global="directory,extension,row" eval="true">file_get_contents($directory.$row.$extension)</value>
-							<width>700px</width>
-							<height>300px</height>
+							<width>800px</width>
+							<height>240px</height>
 							<readonly>true</readonly>
 							<class3>ascii</class3>
 						</field>

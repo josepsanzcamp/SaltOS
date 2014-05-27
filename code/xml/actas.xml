@@ -529,7 +529,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<label lang="true">aceptados</label>
 							<type>textarea</type>
 							<width>600px</width>
-							<height>300px</height>
+							<height>240px</height>
 							<colspan>4</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
@@ -559,7 +559,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<label lang="true">cancelados</label>
 							<type>textarea</type>
 							<width>600px</width>
-							<height>300px</height>
+							<height>240px</height>
 							<colspan>4</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
@@ -589,7 +589,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<label lang="true">pendientes</label>
 							<type>textarea</type>
 							<width>600px</width>
-							<height>300px</height>
+							<height>240px</height>
 							<colspan>4</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
@@ -619,7 +619,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<label lang="true">comentarios</label>
 							<type>textarea</type>
 							<width>600px</width>
-							<height>300px</height>
+							<height>240px</height>
 							<colspan>4</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>

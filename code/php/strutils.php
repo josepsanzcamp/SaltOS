@@ -167,13 +167,13 @@ function querystring2array($querystring) {
 	return $result;
 }
 
-function sprintr($array) {
+function sprintr($array,$oneline=false) {
 	ob_start();
 	print_r($array);
 	$buffer=ob_get_clean();
 	$buffer=explode("\n",$buffer);
 	foreach($buffer as $key=>$val) if(in_array(trim($val),array("(",")",""))) unset($buffer[$key]);
-	$buffer=implode("\n",$buffer)."\n";
+	$buffer=implode($oneline?"":"\n",$buffer)."\n";
 	return $buffer;
 }
 

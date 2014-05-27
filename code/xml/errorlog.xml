@@ -69,8 +69,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name global="row" eval="true">$row</name>
 							<type>textarea</type>
 							<value global="directory,row" eval="true">file_get_contents($directory.$row)</value>
-							<width>700px</width>
-							<height>300px</height>
+							<width>800px</width>
+							<height>240px</height>
 							<readonly>true</readonly>
 							<class3>ascii</class3>
 						</field>
@@ -96,8 +96,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>void</name>
 							<type>textarea</type>
 							<value></value>
-							<width>700px</width>
-							<height>300px</height>
+							<width>800px</width>
+							<height>240px</height>
 							<readonly>true</readonly>
 							<class3>ascii</class3>
 						</field>

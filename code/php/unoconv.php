@@ -131,6 +131,7 @@ function __unoconv_img2ocr($file) {
 	if(isset($tiff)) file_put_contents($tiff,"");
 	if(!file_exists($hocr)) return "";
 	$txt=str_replace(getDefault("exts/hocrext",".html"),getDefault("exts/textext",".txt"),$hocr);
+	//~ if(file_exists($txt)) unlink($txt);
 	if(!file_exists($txt)) file_put_contents($txt,__unoconv_hocr2txt($hocr));
 	return file_get_contents($txt);
 }
@@ -140,6 +141,7 @@ function __unoconv_pdf2ocr($pdf) {
 	// EXTRACT ALL IMAGES FROM PDF
 	$root=get_directory("dirs/cachedir").md5_file($pdf);
 	$files=glob("${root}-*");
+	//~ foreach($files as $file) unlink(array_pop($files));
 	if(!count($files)) ob_passthru(getDefault("commands/pdftoppm")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($pdf,$root),getDefault("commands/__pdftoppm__")));
 	// EXTRACT ALL TEXT FROM TIFF
 	$files=glob("${root}-*");
@@ -220,21 +222,23 @@ function __unoconv_lines2matrix($lines,$width,$height) {
 			if(!isset($matrix[$posy])) $matrix[$posy]=array();
 		}
 		if($line[0]=="word") {
-			if($line[5]=="") {
-				// AS MAKEBOX FEATURE
-				$bias=($line[3]-$line[1])/2;
-				$posx=round(($line[1]+$bias)/$width,0);
-				if(!isset($matrix[$posy][$posx])) $matrix[$posy][$posx]="~";
-			} else {
-				// AS DEFAULT FEATURE
-				$len=mb_strlen($line[5],"UTF-8");
-				$bias=($line[3]-$line[1])/($len*2);
-				$posx=round(($line[1]+$bias)/$width,0);
-				for($i=0;$i<$len;$i++) {
-					if(isset($matrix[$posy][$posx])) return $index;
-					$matrix[$posy][$posx]=mb_substr($line[5],$i,1,"UTF-8");
-					$posx++;
+			// AS MAKEBOX FEATURE
+			if($line[5]=="") $line[5]="~";
+			// AS DEFAULT FEATURE
+			$len=mb_strlen($line[5],"UTF-8");
+			$bias=($line[3]-$line[1])/($len*2);
+			$posx=round(($line[1]+$bias)/$width,0);
+			for($i=0;$i<$len;$i++) {
+				$letter=mb_substr($line[5],$i,1,"UTF-8");
+				if(isset($matrix[$posy][$posx])) {
+					if($letter!="_") {
+						if($matrix[$posy][$posx]!="_") return $index;
+						$matrix[$posy][$posx]=$letter;
+					}
+				} else {
+					$matrix[$posy][$posx]=$letter;
 				}
+				$posx++;
 			}
 		}
 	}
@@ -330,7 +334,7 @@ function __unoconv_hocr2txt($hocr) {
 		$matrix=__unoconv_lines2matrix($lines,$width,$height);
 		if(is_array($matrix)) break;
 	}
-	//~ echo "<pre>".sprintr(array($size,$width,$height))."</pre>";
+	//~ echo "<pre>".sprintr(array($size,$width,$height),true)."</pre>";
 	if(!is_array($matrix)) return "";
 	// MAKE OUTPUT
 	$buffer=array();
