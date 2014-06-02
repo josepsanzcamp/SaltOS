@@ -95,7 +95,7 @@ if(!defined("__DEFAULT_PHP__")) {
 		if(!defined("__CLASS_PDF__")) {
 			define("__CLASS_PDF__",1);
 
-			include("lib/tcpdf/tcpdf.php");
+			require_once("lib/tcpdf/tcpdf.php");
 
 			class PDF extends TCPDF {
 				var $arr_header;
@@ -504,7 +504,7 @@ switch($action) {
 		}
 		die();
 	case "list":
-		include("php/listsim.php");
+		require_once("php/listsim.php");
 		$config=getDefault("$page/$action");
 		if(eval_bool(getDefault("debug/actiondebug"))) debug_dump(false);
 		$config=eval_attr($config);

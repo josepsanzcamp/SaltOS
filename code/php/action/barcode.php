@@ -44,7 +44,7 @@ if(getParam("action")=="barcode") {
 		$barcode=new TCPDFBarcode($msg,"C39");
 		$array=$barcode->getBarcodeArray();
 		if(!isset($array["maxw"])) action_denied();
-		$width=($array["maxw"]*$w);
+		$width=$array["maxw"]*$w;
 		$height=$h;
 		$im=imagecreatetruecolor($width+2*$m,$height+2*$m+$s);
 		$bgcol=imagecolorallocate($im,255,255,255);
@@ -71,13 +71,17 @@ if(getParam("action")=="barcode") {
 		imagedestroy($im);
 		chmod_protected($cache,0666);
 	}
-	ob_start_protected(getDefault("obhandler"));
-	header_powered();
-	header_expires(false);
-	$type=saltos_content_type($cache);
-	header("Content-Type: $type");
-	readfile($cache);
-	ob_end_flush();
-	die();
+	if(!defined("__CANCEL_HEADER__")) {
+		ob_start_protected(getDefault("obhandler"));
+		header_powered();
+		header_expires(false);
+		$type=saltos_content_type($cache);
+		header("Content-Type: $type");
+		readfile($cache);
+		ob_end_flush();
+	} else {
+		readfile($cache);
+	}
+	if(!defined("__CANCEL_DIE__")) die();
 }
 ?>

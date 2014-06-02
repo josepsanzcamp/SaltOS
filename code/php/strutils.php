@@ -615,4 +615,16 @@ function remove_script_tag($temp) {
 	$temp=preg_replace("@<script[^>]*?.*?</script>@siu","",$temp);
 	return $temp;
 }
+
+function multi_explode($del,$str) {
+	$del0=substr($del,0,1);
+	$del1=substr($del,1);
+	$ret0=explode($del0,$str);
+	if($del1!="") {
+		$ret2=array();
+		foreach($ret0 as $ret1) $ret2=array_merge($ret2,multi_explode($del1,$ret1));
+		$ret0=$ret2;
+	}
+	return $ret0;
+}
 ?>
