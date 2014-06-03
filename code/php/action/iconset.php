@@ -89,7 +89,7 @@ if(getParam("action")=="iconset") {
 				$data="data:image/png;base64,${data}";
 				$buffer[]=".saltos-icon { background-image: url(${data})!important; }";
 			} else {
-				$buffer[]=".saltos-icon { background-image: url(xml.php?action=iconset&format=png&iconset=${iconset})!important; }";
+				$buffer[]=".saltos-icon { background-image: url(?action=iconset&format=png&iconset=${iconset})!important; }";
 			}
 			$index=0;
 			foreach($iconset_array as $key=>$val) {

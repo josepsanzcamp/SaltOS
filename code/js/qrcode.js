@@ -30,7 +30,7 @@ if(typeof(__qrcode__)=="undefined" && typeof(parent.__qrcode__)=="undefined") {
 	function qrcode2(page,id) {
 		loadingcontent(lang_view2opening());
 		var title=lang_qrcode();
-		var url="xml.php?action=qrcode&page="+page+"&id="+abs(id);
+		var url="?action=qrcode&page="+page+"&id="+abs(id);
 		var html="<img src='"+url+"' />";
 		if(typeof(id)=="undefined") {
 			var temp=explode(":",page);

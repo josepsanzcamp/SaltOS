@@ -74,13 +74,13 @@ if(getParam("action")=="agenda") {
 		if($lugar) $lugar=", ${lugar}";
 		$hash=md5(serialize(array($id,$type,$title,$nombre,$lugar,$descripcion,$fecha)));
 		$msg=intelligence_cut("<b>${nombre}</b> (${fecha}${lugar}) ${descripcion}",90);
-		$urlview="opencontent(\"xml.php?page=agenda&action=form&id=-$id\")";
-		$urledit="opencontent(\"xml.php?page=agenda&action=form&id=$id\")";
-		$urlcopy="opencontent(\"xml.php?page=agenda&action=form&id=0_copy_$id\")";
+		$urlview="opencontent(\"?page=agenda&action=form&id=-$id\")";
+		$urledit="opencontent(\"?page=agenda&action=form&id=$id\")";
+		$urlcopy="opencontent(\"?page=agenda&action=form&id=0_copy_$id\")";
 		$msg.=" [<a href='javascript:void(0)' onclick='$urlview'>".LANG("view")."</a>]";
 		$msg.=" [<a href='javascript:void(0)' onclick='$urledit'>".LANG("edit")."</a>]";
 		$msg.=" [<a href='javascript:void(0)' onclick='$urlcopy'>".LANG("copy")."</a>]";
-		$urlrecv="xml.php?action=ajax&query=agenda&type=$type&id=$id";
+		$urlrecv="?action=ajax&query=agenda&type=$type&id=$id";
 		$cancel=0;
 		foreach($id_hash as $key=>$val) {
 			if($id==$val[0] && $hash==$val[1]) $cancel=1;

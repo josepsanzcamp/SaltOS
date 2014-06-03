@@ -139,7 +139,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</quick>
 		<form>
 			<name>list</name>
-			<action>xml.php</action>
+			<action></action>
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
@@ -259,7 +259,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<feeds_old>
 						<feeds_old global="id" eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title2 ASC"</feeds_old>
 					</feeds_old>
-					<correo_old global="id" eval="true">"SELECT *,CONCAT('xml.php?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
+					<correo_old global="id" eval="true">"SELECT *,CONCAT('?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
@@ -318,7 +318,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					</appsregs>
 					<gcalendar>SELECT '0' id</gcalendar>
 					<feeds_new>SELECT '0' id</feeds_new>
-					<correo_new>SELECT '0' id,'0' pop3_days,'xml.php?action=signature&amp;id=0' email_signature</correo_new>
+					<correo_new>SELECT '0' id,'0' pop3_days,'?action=signature&amp;id=0' email_signature</correo_new>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
@@ -389,8 +389,8 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 						<feeds_old global="id" eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title ASC"</feeds_old>
 					</feeds_old>
 					<feeds_new global="id" eval="true">"SELECT '0' id,'".abs($id)."' id_usuario"</feeds_new>
-					<correo_old global="id" eval="true">"SELECT *,CONCAT('xml.php?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
-					<correo_new global="id" eval="true">"SELECT '0' id,'".abs($id)."' id_usuario,'0' pop3_days,'xml.php?action=signature&amp;id=0' email_signature"</correo_new>
+					<correo_old global="id" eval="true">"SELECT *,CONCAT('?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".abs($id)."' ORDER BY id ASC"</correo_old>
+					<correo_new global="id" eval="true">"SELECT '0' id,'".abs($id)."' id_usuario,'0' pop3_days,'?action=signature&amp;id=0' email_signature"</correo_new>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
 					<help include="xml/common/qhelp.xml" replace="true" />
@@ -398,7 +398,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 			</update>
 		</views>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>
@@ -449,7 +449,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<type>image</type>
 							<width>80px</width>
 							<height>16px</height>
-							<image>xml.php?action=score&amp;format=png</image>
+							<image>?action=score&amp;format=png</image>
 							<phpthumb>false</phpthumb>
 							<class>ui-corner-all score none</class>
 						</field>

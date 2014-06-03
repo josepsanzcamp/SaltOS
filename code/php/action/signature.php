@@ -55,7 +55,7 @@ function __signature_getauto($file) {
 			$data=base64_encode($file["data"]);
 			$file["src"]="data:image/png;base64,${data}";
 		} else {
-			$file["src"]="xml.php?action=signature&id=${file["id"]}";
+			$file["src"]="?action=signature&id=${file["id"]}";
 		}
 		$file["auto"]="<img alt=\"${file["alt"]}\" border=\"0\" src=\"${file["src"]}\" />";
 	} else {

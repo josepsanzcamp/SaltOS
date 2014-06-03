@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</quick>
 		<form>
 			<name>list</name>
-			<action>xml.php</action>
+			<action></action>
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
@@ -184,7 +184,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			SELECT a.*,LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
 			d.id_grupo id_grupo,
 			 CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
-			(SELECT  CONCAT('link:opencontent(\"xml.php?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
+			(SELECT  CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
 			".make_extra_query_with_login("d.")." usuario,
 			CASE e.id_aplicacion
 				WHEN '".page2id("correo")."' THEN (SELECT email_privated FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE e.id_registro=id))

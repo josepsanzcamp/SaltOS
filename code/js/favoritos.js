@@ -30,7 +30,7 @@ if(typeof(__favoritos__)=="undefined" && typeof(parent.__favoritos__)=="undefine
 	function add_bookmark() {
 		var data='action=favoritos&url='+rawurlencode($("[name$=nuevofavorito]").val())+"&refresh=1";
 		$.ajax({
-			url:'xml.php',
+			url:'',
 			data:data,
 			type:"post",
 			success:function(response) {

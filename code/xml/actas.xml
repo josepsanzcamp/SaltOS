@@ -161,7 +161,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</quick>
 		<form>
 			<name>list</name>
-			<action>xml.php</action>
+			<action></action>
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
@@ -351,7 +351,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 			</update>
 		</views>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>

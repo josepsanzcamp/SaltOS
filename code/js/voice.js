@@ -136,7 +136,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 						// NOTHING TO DO
 					} else if(voice_texts.length>0) {
 						var text=voice_texts.shift();
-						var url="xml.php?action=voice&text="+rawurlencode(text);
+						var url="?action=voice&text="+rawurlencode(text);
 						$("#voice").jPlayer("setMedia",{ mp3:url });
 						$("#voice").jPlayer("play");
 						voice_executing=1;

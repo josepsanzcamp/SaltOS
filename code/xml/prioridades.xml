@@ -102,7 +102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</quick>
 		<form>
 			<name>list</name>
-			<action>xml.php</action>
+			<action></action>
 			<method>get</method>
 			<fields>
 				<buttons>true</buttons>
@@ -184,7 +184,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</update>
 		</views>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>

@@ -38,15 +38,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>copy(id) { setParam("action","form"); setParam("id","0_copy_"+id); submit1(); }</function>
 	<function eval="true">"delete1(id) { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','delete'); setParam('id',id); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 	<function>buscar() { setParam("action","list"); setParam("offset","0"); submit1(); }</function>
-	<function>pdf() { var id=getIds(); if(!id) return; openurl("xml.php?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
+	<function>pdf() { var id=getIds(); if(!id) return; openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
 	<function>mail() { var id=getIds(); if(!id) return; addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
-	<function>excel() { openurl("xml.php?page="+getParam("page")+"&amp;action=excel"); }</function>
+	<function>excel() { openurl("?page="+getParam("page")+"&amp;action=excel"); }</function>
 	<function>limpiar() { setParam("action","limpiar"); submit1(); }</function>
-	<function>pdf2(id) { openurl("xml.php?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
+	<function>pdf2(id) { openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
 	<function>mail2(id) { addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
-	<function>vcard(id) { openurl("xml.php?page="+getParam("page")+"&amp;action=vcard&amp;id="+id); }</function>
+	<function>vcard(id) { openurl("?page="+getParam("page")+"&amp;action=vcard&amp;id="+id); }</function>
 	<function>mailto(mail) { setParam("page","correo"); setParam("action","form"); setParam("id","0_mailto_"+mail); submit1(); }</function>
-	<function>download(data) { openurl("xml.php?action=download&amp;"+data); }</function>
+	<function>download(data) { openurl("?action=download&amp;"+data); }</function>
 	<function eval="true">"getIds() { var ids=new Array(); $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
 	<!-- FOR FORM ACCESS -->
 	<function>clientes(id) { setParam("page","clientes"); setParam("action","form"); setParam("id",id); submit1(); }</function>

@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<option global="rows,temp" ifeval="count($rows)>0 &amp;&amp; check_user($temp,'menu')">
 		<label lang="true">limpiar</label>
-		<onclick global="temp" eval="true">"opencontent('xml.php?page=$temp&amp;action=limpiar')"</onclick>
+		<onclick global="temp" eval="true">"opencontent('?page=$temp&amp;action=limpiar')"</onclick>
 		<icon>refresh</icon>
 		<tip lang="true">limpiartip</tip>
 		<class>nowrap submenu</class>

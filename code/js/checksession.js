@@ -40,7 +40,7 @@ if(typeof(__checksession__)=="undefined" && typeof(parent.__checksession__)=="un
 		// NORMAL USAGE
 		var data="action=session"+((typeof(action2)=="undefined")?"":"&action2="+action2);
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

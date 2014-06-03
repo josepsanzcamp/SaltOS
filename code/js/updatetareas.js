@@ -41,7 +41,7 @@ if(typeof(__updatetareas__)=="undefined" && typeof(parent.__updatetareas__)=="un
 		if(tareas_defaults=="") tareas_defaults=$(tarea).html();
 		var data="action=ajax&query=tareas&id_proyecto="+$(proyecto).val();
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

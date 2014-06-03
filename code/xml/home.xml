@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</update>
 		</views>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<hiddens>
 			<hiddens include="xml/common/hiddensform.xml" replace="true"/>
@@ -125,7 +125,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<function>buscar2() { setParam("page","buscador"); setParam("action","list"); setParam("offset","0"); submit1(); }</function>
 			<function>buscar3() { setParam("page","ficheros"); setParam("action","list"); setParam("offset","0"); submit1(); }</function>
 			<inline>$(function() { $(".spacer").animate({height:$(window).height()/4}); });</inline>
-			<inline>$(function() { $(".logo").bind("click",function() { opencontent("xml.php?page=about"); }); });</inline>
+			<inline>$(function() { $(".logo").bind("click",function() { opencontent("?page=about"); }); });</inline>
 			<cache>
 				<include>js/home.js</include>
 			</cache>

@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</default>
 	<form>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<fields>
 			<buttons>true</buttons>

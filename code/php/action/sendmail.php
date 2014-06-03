@@ -81,7 +81,7 @@ if(getParam("action")=="sendmail") {
 							$data="data:image/png;base64,${data}";
 							$body=str_replace($data,"cid:${cid2}",$body);
 						} else {
-							$url="xml.php?action=getmail&id=${id_extra[2]}&cid=${chash2}";
+							$url="?action=getmail&id=${id_extra[2]}&cid=${chash2}";
 							$url=str_replace("&","&amp;",$url); // CKEDITOR CORRECTION
 							$body=str_replace($url,"cid:${cid2}",$body);
 						}
@@ -520,7 +520,7 @@ if(getParam("page")=="correo") {
 									$data="data:image/png;base64,${data}";
 									$temp=str_replace("cid:${cid2}",$data,$temp);
 								} else {
-									$url="xml.php?action=getmail&id=${id_extra[2]}&cid=${chash2}";
+									$url="?action=getmail&id=${id_extra[2]}&cid=${chash2}";
 									$temp=str_replace("cid:${cid2}",$url,$temp);
 								}
 							}

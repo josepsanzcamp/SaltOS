@@ -129,7 +129,7 @@ if(getParam("action")=="getmail") {
 									$data="data:image/png;base64,${data}";
 									$temp=str_replace("cid:${cid2}",$data,$temp);
 								} else {
-									$url="xml.php?action=getmail&id=${id}&cid=${chash2}";
+									$url="?action=getmail&id=${id}&cid=${chash2}";
 									$temp=str_replace("cid:${cid2}",$url,$temp);
 								}
 							}
@@ -239,7 +239,7 @@ if(getParam("action")=="getmail") {
 				} else {
 					$buffer.=" | ";
 				}
-				$buffer.="<a href='xml.php?action=download&page=correo&id=${id}&cid=${chash}'><b>${cname}</b></a> (${hsize})";
+				$buffer.="<a href='?action=download&page=correo&id=${id}&cid=${chash}'><b>${cname}</b></a> (${hsize})";
 				$first=0;
 			}
 			if(!$first) {
@@ -282,7 +282,7 @@ if(getParam("action")=="getmail") {
 									$data="data:image/png;base64,${data}";
 									$temp=str_replace("cid:${cid2}",$data,$temp);
 								} else {
-									$url="xml.php?action=getmail&id=${id}&cid=${chash2}";
+									$url="?action=getmail&id=${id}&cid=${chash2}";
 									$temp=str_replace("cid:${cid2}",$url,$temp);
 								}
 							}

@@ -184,6 +184,7 @@ function get_base() {
 	if(!$servername) $servername=getServer("SERVER_NAME");
 	$added="";
 	$scriptname=getServer("SCRIPT_NAME");
+	if(basename($scriptname)==getDefault("server/dirindex","index.php")) $scriptname=dirname($scriptname)."/";
 	// SOME CHECKS
 	$serverport=getServer("SERVER_PORT");
 	$porthttp=getDefault("server/porthttp",80);

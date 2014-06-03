@@ -34,8 +34,8 @@ if(typeof(__favicon__)=="undefined" && typeof(parent.__favicon__)=="undefined") 
 			var num1=((num>99)?99:num)*2;
 			var num2=num1+1;
 			jQuery.favicon.animate(
-				"xml.php?action=favicon&format=animation",
-				"xml.php?action=favicon&format=alternate",
+				"?action=favicon&format=animation",
+				"?action=favicon&format=alternate",
 				{
 					frames:[num1,num2],
 					interval:1000,

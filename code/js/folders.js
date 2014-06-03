@@ -30,7 +30,7 @@ if(typeof(__folders__)=="undefined" && typeof(parent.__folders__)=="undefined") 
 	function addregfolder(id_folder,page,id_registro) {
 		var data='action=ajax&query=addregfolder&id_folder='+id_folder+'&page='+page+'&id_registro='+id_registro;
 		$.ajax({
-			url:'xml.php',
+			url:'',
 			data:data,
 			type:"get",
 			success:function(response) {
@@ -45,7 +45,7 @@ if(typeof(__folders__)=="undefined" && typeof(parent.__folders__)=="undefined") 
 	function delregfolder(id_folder,page,id_registro) {
 		var data='action=ajax&query=delregfolder&id_folder='+id_folder+'&page='+page+'&id_registro='+id_registro;
 		$.ajax({
-			url:'xml.php',
+			url:'',
 			data:data,
 			type:"get",
 			success:function(response) {
@@ -60,7 +60,7 @@ if(typeof(__folders__)=="undefined" && typeof(parent.__folders__)=="undefined") 
 	function delappfolder(id_folder,page) {
 		var data='action=ajax&query=delappfolder&id_folder='+id_folder+'&page='+page;
 		$.ajax({
-			url:'xml.php',
+			url:'',
 			data:data,
 			type:"get",
 			success:function(response) {

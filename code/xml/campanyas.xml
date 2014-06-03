@@ -170,7 +170,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</quick>
 		<form>
 			<name>list</name>
-			<action>xml.php</action>
+			<action></action>
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
@@ -370,7 +370,7 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view","a.")." ORD
 			</update>
 		</views>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>

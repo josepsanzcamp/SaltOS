@@ -197,7 +197,7 @@ if(typeof(__proyectos__)=="undefined" && typeof(parent.__proyectos__)=="undefine
 			text:lang_buttoncontinue(),
 			click:function() {
 				update2filter_proyectos();
-				openurl("xml.php?page="+getParam("page")+"&action=pdf&id="+abs(id)
+				openurl("?page="+getParam("page")+"&action=pdf&id="+abs(id)
 					+"&contactos="+getParam("contactos")
 					+"&seguimientos="+getParam("seguimientos")
 					+"&incidencias="+getParam("incidencias")

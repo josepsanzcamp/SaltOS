@@ -30,7 +30,7 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 	function load_numbers() {
 		if(!exists_numbers()) return;
 		// DETECT CURRENT NUMBER COLOR SCHEMA
-		var prefix="xml.php?action=number&format=css"
+		var prefix="?action=number&format=css"
 		var last=null;
 		$("link[rel=stylesheet]").each(function() {
 			var href=$(this).attr("href");
@@ -51,7 +51,7 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 		// LOAD AJAX COUNTS
 		var data="action=ajax&query=numbers&page="+getParam("page")+"&action2="+getParam("action")+"&id="+getParam("id");
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

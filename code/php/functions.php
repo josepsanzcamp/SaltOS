@@ -1022,7 +1022,7 @@ function pretty_html_error($msg) {
 	$html.="<div>";
 	$bug=base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)));
 	$html.=__pretty_html_error_helper("http://bugs.saltos.net",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
-	$html.=__pretty_html_error_helper("xml.php",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
+	$html.=__pretty_html_error_helper("",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
 	$html.=$msg;
 	$html.="</div>";
 	$html.="</body>";

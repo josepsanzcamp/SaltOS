@@ -63,7 +63,7 @@ if(typeof(__posiblescli__)=="undefined" && typeof(parent.__posiblescli__)=="unde
 			text:lang_buttoncontinue(),
 			click:function() {
 				update2filter_posiblescli();
-				openurl("xml.php?page="+getParam("page")+"&action=pdf&id="+abs(id)
+				openurl("?page="+getParam("page")+"&action=pdf&id="+abs(id)
 					+"&agenda="+getParam("agenda")
 					+"&presupuestos="+getParam("presupuestos")
 					+"&actas="+getParam("actas"));

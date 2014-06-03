@@ -213,7 +213,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	/* FOR DEBUG PURPOSES */
 	function addlog(msg) {
 		var data="action=addlog&msg="+rawurlencode(msg);
-		$.ajax({ url:"xml.php",data:data,type:"get",async:false });
+		$.ajax({ url:"",data:data,type:"get",async:false });
 	}
 
 	/* FOR SECURITY ISSUES */
@@ -502,7 +502,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(cookies_data[hash].sync) {
 				if(cookies_data[hash].val!=cookies_data[hash].orig) {
 					var data="action=cookies&name="+rawurlencode(cookies_data[hash].key)+"&value="+rawurlencode(cookies_data[hash].val);
-					var value=$.ajax({ url:"xml.php",data:data,type:"get",async:false }).responseText;
+					var value=$.ajax({ url:"",data:data,type:"get",async:false }).responseText;
 					if(value!="") {
 						cookies_data[hash].orig=cookies_data[hash].val;
 						cookies_data[hash].sync=0;
@@ -528,7 +528,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			// REQUEST ALL COOKIES
 			var data="action=ajax&query=cookies";
 			$.ajax({
-				url:"xml.php",
+				url:"",
 				data:data,
 				type:"get",
 				async:false,
@@ -1682,7 +1682,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					var data="action=ajax&format=json&query="+query+"&term="+rawurlencode(term);
 					if(typeof($("#"+prefix+filter).val())!="undefined") data+="&filter="+$("#"+prefix+filter).val();
 					$.ajax({
-						url:"xml.php",
+						url:"",
 						data:data,
 						type:"get",
 						dataType:"json",

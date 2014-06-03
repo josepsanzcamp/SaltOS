@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</update>
 		</views>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>
@@ -87,7 +87,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<type>button</type>
 							<value global="temp" eval="true">LANG($temp)</value>
-							<onclick global="temp" eval="true">"openurl('xml.php?page=datacfg&amp;action=$temp');"</onclick>
+							<onclick global="temp" eval="true">"openurl('?page=datacfg&amp;action=$temp');"</onclick>
 							<class>right</class>
 							<icon>accept</icon>
 						</field>

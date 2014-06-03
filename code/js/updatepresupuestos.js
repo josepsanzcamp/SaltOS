@@ -34,7 +34,7 @@ if(typeof(__updatepresupuestos__)=="undefined" && typeof(parent.__updatepresupue
 		if(presupuestos_defaults=="") presupuestos_defaults=$(presupuesto).html();
 		var data="action=ajax&query=presupuestos&id_cliente="+$(cliente).val()+"&id_posiblecli="+$(posiblecli).val();
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

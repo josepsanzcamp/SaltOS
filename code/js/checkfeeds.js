@@ -51,7 +51,7 @@ if(typeof(__checkfeeds__)=="undefined" && typeof(parent.__checkfeeds__)=="undefi
 		// NORMAL USAGE
 		var data="action=feeds&ajax=1";
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

@@ -56,7 +56,7 @@ if(typeof(__gastos__)=="undefined" && typeof(parent.__gastos__)=="undefined") {
 		if(proveedores_defaults=="") proveedores_defaults=$(proveedor).html();
 		var data="action=ajax&query=proveedores&filtro="+rawurlencode(buscador.val()?buscador.val():"");
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

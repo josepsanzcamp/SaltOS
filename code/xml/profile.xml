@@ -44,14 +44,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<feeds_old eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".current_user()."' ORDER BY title2 ASC,id ASC"</feeds_old>
 					</feeds_old>
 					<feeds_new ifeval="check_user('profile','feeds')">SELECT '0' id</feeds_new>
-					<correo_old ifeval="check_user('profile','correo')" eval="true">"SELECT *,CONCAT('xml.php?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' ORDER BY id ASC"</correo_old>
-					<correo_new ifeval="check_user('profile','correo')" eval="true">"SELECT '0' id,'0' pop3_days,'xml.php?action=signature&amp;id=0' email_signature FROM tbl_usuarios WHERE id='".current_user()."'"</correo_new>
+					<correo_old ifeval="check_user('profile','correo')" eval="true">"SELECT *,CONCAT('?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' ORDER BY id ASC"</correo_old>
+					<correo_new ifeval="check_user('profile','correo')" eval="true">"SELECT '0' id,'0' pop3_days,'?action=signature&amp;id=0' email_signature FROM tbl_usuarios WHERE id='".current_user()."'"</correo_new>
 					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<width>600px</width>
 		<hiddens include="xml/common/hiddensform.xml" />
@@ -136,7 +136,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>image</type>
 							<width>80px</width>
 							<height>16px</height>
-							<image>xml.php?action=score&amp;format=png</image>
+							<image>?action=score&amp;format=png</image>
 							<phpthumb>false</phpthumb>
 							<class>ui-corner-all score none</class>
 						</field>

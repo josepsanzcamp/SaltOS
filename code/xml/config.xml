@@ -86,6 +86,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forcessl>false</forcessl>
 		<porthttp>80</porthttp>
 		<porthttps>443</porthttps>
+		<dirindex>index.php</dirindex>
 	</server>
 	<default>
 		<page>home</page>
@@ -95,10 +96,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<obhandler>ob_gzhandler</obhandler>
 		<lang>es_ES</lang>
 		<style>blue</style>
-		<stylepre>xml.php?action=themeroller&amp;theme=</stylepre>
+		<stylepre>?action=themeroller&amp;theme=</stylepre>
 		<stylepost></stylepost>
 		<iconset>silk</iconset>
-		<iconsetpre>xml.php?action=iconset&amp;iconset=</iconsetpre>
+		<iconsetpre>?action=iconset&amp;iconset=</iconsetpre>
 		<iconsetpost>&amp;format=css</iconsetpost>
 		<forcelang></forcelang>
 		<forcestyle></forcestyle>

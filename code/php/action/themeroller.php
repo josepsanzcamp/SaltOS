@@ -206,7 +206,7 @@ if(getParam("action")=="themeroller") {
 								$data="data:image/png;base64,${data}";
 								$array["icons".substr($key2,$len)]="url(${data})";
 							} else {
-								$array["icons".substr($key2,$len)]="url(xml.php?action=themeroller&mask=icons.png,${val2},${bgcolor})";
+								$array["icons".substr($key2,$len)]="url(?action=themeroller&mask=icons.png,${val2},${bgcolor})";
 							}
 						}
 					}
@@ -236,7 +236,7 @@ if(getParam("action")=="themeroller") {
 								$data="data:image/png;base64,${data}";
 								$array["bgImgUrl".substr($key2,$len)]="url(${data})";
 							} else {
-								$array["bgImgUrl".substr($key2,$len)]="url(xml.php?action=themeroller&over=${bgImage},${bgcolor},${bgimgopacity},${bgalpha})";
+								$array["bgImgUrl".substr($key2,$len)]="url(?action=themeroller&over=${bgImage},${bgcolor},${bgimgopacity},${bgalpha})";
 							}
 							if(!isset($xml[$type]["csstrick"][$val2])) show_php_error(array("phperror"=>"csstrick '${val2}' not found"));
 							$csstrick=explode(",",$xml[$type]["csstrick"][$val2]);

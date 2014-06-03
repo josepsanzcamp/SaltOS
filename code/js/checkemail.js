@@ -51,7 +51,7 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 		// NORMAL USAGE
 		var data="action=getmail&ajax=1";
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {
@@ -88,7 +88,7 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 		// NORMAL USAGE
 		var data="action=sendmail&ajax=1";
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

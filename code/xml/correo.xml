@@ -333,7 +333,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</quick>
 		<form>
 			<name>list</name>
-			<action>xml.php</action>
+			<action></action>
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
@@ -716,7 +716,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</insert>
 		</views>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>
@@ -978,7 +978,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>message</name>
 							<label lang="true">message</label>
 							<type>iframe</type>
-							<value global="id" eval="true">"xml.php?action=getmail&amp;id=".abs($id)."&amp;cid=body"</value>
+							<value global="id" eval="true">"?action=getmail&amp;id=".abs($id)."&amp;cid=body"</value>
 							<width>800px</width>
 							<height>240px</height>
 							<colspan>12</colspan>
@@ -1012,7 +1012,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>full</name>
 							<type>iframe</type>
-							<value global="id" eval="true">"xml.php?action=getmail&amp;id=".abs($id)."&amp;cid=full"</value>
+							<value global="id" eval="true">"?action=getmail&amp;id=".abs($id)."&amp;cid=full"</value>
 							<width>800px</width>
 							<height>240px</height>
 						</field>
@@ -1026,7 +1026,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>source</name>
 							<type>iframe</type>
-							<value global="id" eval="true">"xml.php?action=getmail&amp;id=".abs($id)."&amp;cid=source"</value>
+							<value global="id" eval="true">"?action=getmail&amp;id=".abs($id)."&amp;cid=source"</value>
 							<width>800px</width>
 							<height>240px</height>
 						</field>

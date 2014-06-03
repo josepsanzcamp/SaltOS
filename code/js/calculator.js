@@ -65,7 +65,7 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 						__calculator_disable();
 						var data="action=calculator&text="+rawurlencode(text);
 						$.ajax({
-							url:"xml.php",
+							url:"",
 							data:data,
 							type:"post",
 							success:function(response) {

@@ -33,7 +33,7 @@ if(typeof(__feedstest__)=="undefined" && typeof(parent.__feedstest__)=="undefine
 		loadingcontent();
 		var data="action=feeds&url="+rawurlencode(url);
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

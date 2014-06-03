@@ -120,7 +120,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<javascript>
 			<javascript include="xml/common/jslist.xml" replace="true"/>
 			<function>view3(cid) { cid=explode("_",cid); setParam("page",cid[1]); setParam("action","form"); setParam("id",-cid[2]); submit1(); }</function>
-			<function>pdf4(cid) { cid=explode("_",cid); openurl("xml.php?page="+cid[1]+"&amp;action=pdf&amp;id="+cid[2]); }</function>
+			<function>pdf4(cid) { cid=explode("_",cid); openurl("?page="+cid[1]+"&amp;action=pdf&amp;id="+cid[2]); }</function>
 			<function>view4(cid) { cid=explode("_",cid); viewpdf("page="+cid[1]+"&amp;id="+cid[2]); }</function>
 			<function>edit2(cid) { cid=explode("_",cid); setParam("page",cid[1]); setParam("action","form"); setParam("id",cid[2]); submit1(); }</function>
 			<function>copy2(cid) { cid=explode("_",cid); setParam("page",cid[1]); setParam("action","form"); setParam("id","0_copy_"+cid[2]); submit1(); }</function>
@@ -173,7 +173,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</quick>
 		<form>
 			<name>list</name>
-			<action>xml.php</action>
+			<action></action>
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
@@ -232,7 +232,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) comments,
 			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) files,
 			CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
-			(SELECT CONCAT('link:opencontent(\"xml.php?page=',codigo,'\"):',nombre) FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
+			(SELECT CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre) FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
 			".make_extra_query_with_login("d.")." usuario,
 			CASE a.id_aplicacion
 				WHEN '".page2id("correo")."' THEN (SELECT email_privated FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE e.id_registro=id))

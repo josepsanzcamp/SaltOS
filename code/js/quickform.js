@@ -31,7 +31,7 @@ if(typeof(__quickform__)=="undefined" && typeof(parent.__quickform__)=="undefine
 		if(!$("#selectquick").length) return;
 		var data="action=quickform&page="+getParam("page")+"&id="+getParam("id")+"&id_folder="+getParam("id_folder")+"&is_fichero="+getParam("is_fichero")+"&is_buscador="+getParam("is_buscador");
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function (response) {

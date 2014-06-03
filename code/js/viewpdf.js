@@ -32,7 +32,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 		loadingcontent(lang_view2opening());
 		var data="action=viewpdf&"+data;
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			beforeSend:function(XMLHttpRequest) {

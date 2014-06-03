@@ -28,7 +28,7 @@ if(typeof(__login__)=="undefined" && typeof(parent.__login__)=="undefined") {
 	var __login__=1;
 
 	function update_captcha() {
-		$(".captcha").attr("src","xml.php?action=captcha&amp;_="+time());
+		$(".captcha").attr("src","?action=captcha&amp;_="+time());
 	}
 
 }

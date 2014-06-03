@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<form>
 		<title lang="true">logintitle</title>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<fields>
 			<title lang="true">logintitle</title>
@@ -71,7 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>image</type>
 					<width>90px</width>
 					<height>30px</height>
-					<image eval="true">"xml.php?action=captcha&amp;_=".time()</image>
+					<image eval="true">"?action=captcha&amp;_=".time()</image>
 					<phpthumb>false</phpthumb>
 					<class>ui-state-default ui-corner-all image captcha</class>
 				</field>

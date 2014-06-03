@@ -81,7 +81,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 			// ADD LANGS
 			var data="action=translate&langs=auto";
 			$.ajax({
-				url:"xml.php",
+				url:"",
 				data:data,
 				type:"get",
 				success:function(response) {
@@ -127,7 +127,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 				__translate_disable();
 				var data="action=translate&langs=auto&text="+rawurlencode(text);
 				$.ajax({
-					url:"xml.php",
+					url:"",
 					data:data,
 					type:"post",
 					success:function(response) {
@@ -152,7 +152,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 				__translate_disable();
 				var data="action=translate&langs="+langs+"&text="+rawurlencode(text);
 				$.ajax({
-					url:"xml.php",
+					url:"",
 					data:data,
 					type:"post",
 					success:function(response) {
@@ -174,7 +174,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 				__translate_disable();
 				var data="action=translate&langs="+langs+"&text="+rawurlencode(text);
 				$.ajax({
-					url:"xml.php",
+					url:"",
 					data:data,
 					type:"post",
 					success:function(response) {

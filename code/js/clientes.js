@@ -32,7 +32,7 @@ if(typeof(__clientes__)=="undefined" && typeof(parent.__clientes__)=="undefined"
 		if(id_tipo) {
 			var data="action=ajax&query=tipocliente&id_tipo="+id_tipo;
 			$.ajax({
-				url:"xml.php",
+				url:"",
 				data:data,
 				type:"get",
 				success:function(response) {
@@ -101,7 +101,7 @@ if(typeof(__clientes__)=="undefined" && typeof(parent.__clientes__)=="undefined"
 			text:lang_buttoncontinue(),
 			click:function() {
 				update2filter_clientes();
-				openurl("xml.php?page="+getParam("page")+"&action=pdf&id="+abs(id)
+				openurl("?page="+getParam("page")+"&action=pdf&id="+abs(id)
 					+"&contactos="+getParam("contactos")
 					+"&incidencias="+getParam("incidencias")
 					+"&proyectos="+getParam("proyectos")

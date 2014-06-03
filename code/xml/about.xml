@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</update>
 		</views>
 		<name>form</name>
-		<action>xml.php</action>
+		<action></action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>
@@ -820,7 +820,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>game</name>
 							<type>iframe</type>
-							<value eval="true">"xml.php?action=game&amp;r=".getDefault("info/revision")</value>
+							<value eval="true">"?action=game&amp;r=".getDefault("info/revision")</value>
 							<width>800px</width>
 							<height>240px</height>
 						</field>

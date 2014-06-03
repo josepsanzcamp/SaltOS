@@ -33,7 +33,7 @@ if(typeof(__updatefeeds__)=="undefined" && typeof(parent.__updatefeeds__)=="unde
 		if(feeds_defaults=="") feeds_defaults=$(feed).html();
 		var data="action=ajax&query=feeds&id_usuario="+$(usuario).val();
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

@@ -83,7 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			array("codigo"=>CONFIG("quick_button_f12"),"button"=>"f12"))</temp>
 		<option global="rows,row,temp" foreach="rows" as="row" ifeval="($temp=$row['codigo'])!='' &amp;&amp; check_user($temp,'menu')">
 			<label global="temp" eval="true">$temp?LANG("quick_$temp"):""</label>
-			<onclick global="temp" eval="true">"opencontent('xml.php?page=$temp')"</onclick>
+			<onclick global="temp" eval="true">"opencontent('?page=$temp')"</onclick>
 			<icon global="temp" eval="true">$temp</icon>
 			<tip global="temp,row" eval="true">$temp?LANG("desc_$temp")." [".strtoupper($row["button"])."]":""</tip>
 			<class global="temp,row" eval="true">"nowrap".($temp=="correo"?" number_correo number":"").($temp=="agenda"?" number_agenda number":"").($temp=="feeds"?" number_feeds number":"").(" shortcut_".$row["button"])</class>
@@ -142,7 +142,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<temp global="id_folder" eval="true">$id_folder=getParam("id_folder")</temp>
 		<option global="rows,row" foreach="rows" as="row">
 			<label global="row" eval="true">$row["name"]</label>
-			<onclick global="temp,row" eval="true">"opencontent('xml.php?page=$temp&amp;id_folder=".$row["id"]."')"</onclick>
+			<onclick global="temp,row" eval="true">"opencontent('?page=$temp&amp;id_folder=".$row["id"]."')"</onclick>
 			<icon global="temp" eval="true">$temp</icon>
 			<tip global="row" eval="true">$row["name"]</tip>
 			<class global="row" eval="true">"nowrap droppable id_".$row["id"]." fn_dropregfolder depth_".$row["depth"]</class>

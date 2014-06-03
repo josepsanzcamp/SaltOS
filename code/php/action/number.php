@@ -130,7 +130,7 @@ if(getParam("action")=="number") {
 				$data="data:image/png;base64,${data}";
 				$buffer[]=".number-icon { background-image: url(${data})!important; }";
 			} else {
-				$buffer[]=".number-icon { background-image: url(xml.php?action=number&format=png&bgcolor=${bgcolor}&fgcolor=${fgcolor})!important; }";
+				$buffer[]=".number-icon { background-image: url(?action=number&format=png&bgcolor=${bgcolor}&fgcolor=${fgcolor})!important; }";
 			}
 			$index=0;
 			for($i=0;$i<100;$i++) {

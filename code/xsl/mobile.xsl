@@ -78,7 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:when test="/root/info/usejscache='true'">
 						<xsl:if test="count(include)>0">
 							<script type="text/javascript" src="">
-								<xsl:attribute name="src">xml.php?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/><xsl:if test="not(position()=last())">,</xsl:if></xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
+								<xsl:attribute name="src">?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/><xsl:if test="not(position()=last())">,</xsl:if></xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
 							</script>
 						</xsl:if>
 					</xsl:when>
@@ -115,7 +115,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:when test="/root/info/usecsscache='true'">
 						<xsl:if test="count(include)>0">
 							<link href="" rel="stylesheet" type="text/css">
-								<xsl:attribute name="href">xml.php?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/><xsl:if test="not(position()=last())">,</xsl:if></xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
+								<xsl:attribute name="href">?action=cache&amp;files=<xsl:for-each select="include"><xsl:value-of select="."/><xsl:if test="not(position()=last())">,</xsl:if></xsl:for-each>&amp;r=<xsl:value-of select="/root/info/revision"/></xsl:attribute>
 							</link>
 						</xsl:if>
 					</xsl:when>
@@ -758,9 +758,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							</xsl:for-each>
 						</xsl:when>
 						<xsl:otherwise>
-							<xsl:attribute name="src">xml.php?action=phpthumb&amp;src=<xsl:value-of select="image"/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
+							<xsl:attribute name="src">?action=phpthumb&amp;src=<xsl:value-of select="image"/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
 							<xsl:for-each select="$node/*[name()=$name]">
-								<xsl:attribute name="src">xml.php?action=phpthumb&amp;src=<xsl:value-of select="."/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
+								<xsl:attribute name="src">?action=phpthumb&amp;src=<xsl:value-of select="."/>&amp;w=<xsl:value-of select="$width"/>&amp;h=<xsl:value-of select="$height"/></xsl:attribute>
 							</xsl:for-each>
 						</xsl:otherwise>
 					</xsl:choose>

@@ -40,7 +40,7 @@ if(typeof(__checkindexing__)=="undefined" && typeof(parent.__checkindexing__)=="
 		// NORMAL USAGE
 		var data="action=indexing";
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

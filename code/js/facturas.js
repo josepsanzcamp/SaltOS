@@ -136,7 +136,7 @@ if(typeof(__facturas__)=="undefined" && typeof(parent.__facturas__)=="undefined"
 		$("input[name$=nombre_codpostal]").val("");
 		var data="action=ajax&query=cliente&id_cliente="+$(cliente).val();
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {

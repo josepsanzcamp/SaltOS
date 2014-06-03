@@ -33,7 +33,7 @@ if(typeof(__updateregistros__)=="undefined" && typeof(parent.__updateregistros__
 		if(registros_defaults=="") registros_defaults=$(registro).html();
 		var data="action=ajax&query=registros&id_aplicacion="+$(aplicacion).val();
 		$.ajax({
-			url:"xml.php",
+			url:"",
 			data:data,
 			type:"get",
 			success:function(response) {
