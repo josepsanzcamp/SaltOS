@@ -174,7 +174,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
 		<__pdftotext__>-nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
 		<text2wave>text2wave</text2wave><!-- for voice module -->
-		<__text2wave__>__INPUT__ -o __OUTPUT__</__text2wave__>
+		<__text2wave__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave__>
 		<__text2wave_es__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave_es__>
 		<__text2wave_en__>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</__text2wave_en__>
 		<wavetomp3>lame</wavetomp3><!-- for voice module -->

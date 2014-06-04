@@ -749,6 +749,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var url=current_href();
 		var pos=strrpos(url,"/");
 		if(pos!==false) url=substr(url,pos+1);
+		if(url===false) url="";
 		var pos=strpos(url,"?");
 		if(pos===false) url+="?page="+current_page();
 		history_replaceState(current_href()+"#"+hash_encode(url));
