@@ -36,12 +36,13 @@ if(getParam("action")=="barcode") {
 	$h=intval(getParam("h",30));
 	$m=intval(getParam("m",10));
 	$s=intval(getParam("s",8));
+	$t=getParam("t","C39");
 	// BEGIN THE BARCODE WRAPPER
-	$cache=get_cache_file($msg,getDefault("exts/pngext",".png"));
+	$cache=get_cache_file(array($msg,$w,$h,$m,$s,$t),getDefault("exts/pngext",".png"));
 	//~ if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		require_once("lib/tcpdf/tcpdf_barcodes_1d.php");
-		$barcode=new TCPDFBarcode($msg,"C39");
+		$barcode=new TCPDFBarcode($msg,$t);
 		$array=$barcode->getBarcodeArray();
 		if(!isset($array["maxw"])) action_denied();
 		$width=$array["maxw"]*$w;
