@@ -1104,7 +1104,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		make_tabs(screen2);
 		make_tables(screen2);
 		make_extras(screen2);
-		make_selects(screen2)
+		//~ make_selects(screen2)
 		$(screen).replaceWith(screen2);
 		make_ckeditors(screen2);
 		setTimeout(function() {
@@ -2136,7 +2136,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_tabs(screen);
 			make_tables(screen);
 			make_extras(screen);
-			make_selects(screen);
+			//~ make_selects(screen);
 			make_ckeditors(screen);
 			$("body > *").removeClass("none");
 			setTimeout(function() {

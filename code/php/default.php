@@ -355,7 +355,7 @@ if(!defined("__DEFAULT_PHP__")) {
 		$objPHPExcel->getProperties()->setDescription($title);
 		$objPHPExcel->getProperties()->setKeywords($title);
 		$objPHPExcel->getProperties()->setCategory($title);
-		$objPHPExcel->createSheet();
+		//~ $objPHPExcel->createSheet();
 		$objPHPExcel->setActiveSheetIndex(0);
 		$objPHPExcel->getActiveSheet()->fromArray($matrix,NULL,"A1");
 		$objPHPExcel->getActiveSheet()->setTitle(substr($title,0,31));
