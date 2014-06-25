@@ -408,8 +408,25 @@ function __import_make_table($array) {
 		$head=(isset($array["data"]) && is_array($array["data"]) && count($array["data"]))?__import_getkeys($array["data"]):"";
 		$limit=(isset($array["limit"]) && is_numeric($array["limit"]) && $array["limit"]>0)?$array["limit"]:0;
 		$offset=(isset($array["offset"]) && is_numeric($array["offset"]) && $array["offset"]>0)?$array["offset"]:0;
-		$width=(isset($array["width"]) && is_numeric($array["width"]) && $array["width"]>0)?$array["width"]."px":"";
-		$edit=(isset($array["edit"]) && is_array($array["edit"]) && count($array["edit"]))?__import_name2col($array["edit"]):array();
+		$width="";
+		if(isset($array["width"])) {
+			if(is_numeric($array["width"]) && $array["width"]>0) {
+				$width=$array["width"];
+			}
+			if(is_array($array["width"])) {
+				$width=array();
+				foreach($array["width"] as $key=>$val) {
+					$width[__import_name2col($key)]=$val;
+				}
+			}
+		}
+		$edit=array();
+		if(isset($array["edit"]) && is_array($array["edit"]) && count($array["edit"])) {
+			foreach($array["edit"] as $key=>$val) {
+				if(!is_array($val)) $edit[__import_name2col($val)]="";
+				if(is_array($val)) $edit[__import_name2col($key)]=$val;
+			}
+		}
 		$first=1;
 		foreach($array as $key=>$val) {
 			$key=limpiar_key($key);
@@ -444,7 +461,7 @@ function __import_make_table($array) {
 						$cornertl=($first && $col==0)?"ui-corner-tl":"";
 						$cornertr=($first && $col==$last)?"ui-corner-tr":"";
 						$result.="<td class='tbody ui-widget-content center ${noright} ${notop} ${cornertl} ${cornertr}'>";
-						$result.="<select class='ui-state-default ui-corner-all' name='${name}' style='width:${width}'>\n";
+						$result.="<select class='ui-state-default ui-corner-all' name='${name}' ".__import_make_table_width($col,$width,12).">\n";
 						$result.="<option value=''></option>\n";
 						foreach($val as $index=>$option) {
 							$selected=(isset($head[$index]) && $head[$index]==$option)?"selected":"";
@@ -482,6 +499,14 @@ function __import_make_table($array) {
 	}
 	$result.="</table>\n";
 	return $result;
+}
+
+function __import_make_table_width($col,$width,$extra=0) {
+	if(is_array($width)) {
+		if(!isset($width[$col])) return "";
+		return __import_make_table_width($col,$width[$col],$extra);
+	}
+	return ($width!=""?"style='width:".($width+$extra)."px'":"");
 }
 
 function __import_make_table_rowspan($array) {
@@ -547,10 +572,17 @@ function __import_make_table_row($row,$class,$rowspan,$depth,$last,$edit,$width,
 		$noright=($depth+$col<$last)?"noright":"";
 		$cornerbl=($depth+$col==0)?"ui-corner-bl-disabled":"";
 		$cornerbr=($depth+$col==$last)?"ui-corner-br-disabled":"";
-		$result.="<td class='tbody ${class} ${noright} notop nowrap ${cornerbl} ${cornerbr}' rowspan='${rowspan}' style='min-width:${width}'>";
-		if(in_array($depth+$col,$edit)) {
+		$result.="<td class='tbody ${class} ${noright} notop nowrap ${cornerbl} ${cornerbr}' rowspan='${rowspan}' ".__import_make_table_width($depth+$col,$width).">";
+		if(isset($edit[$depth+$col])) {
 			$name=$path."/col/".$col;
-			$result.="<input type='text' class='ui-state-default ui-corner-all importsave' name='${name}' value='${field}' style='width:${width}'/>";
+			$options=$edit[$depth+$col];
+			if(is_array($options)) {
+				$result.="<select class='ui-state-default ui-corner-all importsave' name='${name}' ".__import_make_table_width($depth+$col,$width,12).">";
+				foreach($options as $value=>$label) $result.="<option value='${value}' ".($value==$field?"selected='true'":"").">${label}</option>";
+				$result.="</select>";
+			} else {
+				$result.="<input type='text' class='ui-state-default ui-corner-all importsave' name='${name}' value='${field}' ".__import_make_table_width($depth+$col,$width)."/>";
+			}
 		} else {
 			if(substr($field,0,4)=="tel:") {
 				$field=explode(":",$field,2);
