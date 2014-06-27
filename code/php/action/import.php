@@ -64,7 +64,6 @@ if($page=="importaciones") {
 	$next=($currentpage<$totalpages)?1:0;
 	$last=($currentpage<$totalpages)?1:0;
 	$buffer.=javascript_template("import_pager('".LANG("paginaspc").$currentpage.LANG("spcdespc").$totalpages." (".LANG("regsfrom",$page)." ".$currentregini.LANG("spcalspc").$currentregend.LANG("spcdespc").$count.")."."',".$currentpage.",".$totalpages.",".$first.",".$previous.",".$next.",".$last.")");
-	$buffer.=javascript_template(javascript_settimeout("make_selects(\$('.importdata'))",100));
 	echo $buffer;
 	ob_end_flush();
 	die();

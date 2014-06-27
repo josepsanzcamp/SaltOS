@@ -98,7 +98,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						if(!height) height=450;
 						$(dialog2).dialog("option","height",height);
 						// END OPEN DIALOG
-						$(dialog2).dialog("option","position","center");
+						$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 						$(dialog2).dialog("open");
 						// PAINT ALL PAGES
 						var numPage=0;

@@ -410,7 +410,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(dialog2).dialog("option","closeOnEscape",true);
 		$(dialog2).dialog("option","modal",true);
 		$(dialog2).dialog("option","autoOpen",false);
-		$(dialog2).dialog("option","position","center");
+		$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 		$(dialog2).dialog("option","resizable",true);
 		$(dialog2).dialog("option","title",title);
 		$(dialog2).dialog("option","buttons",buttons);
@@ -1104,7 +1104,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		make_tabs(screen2);
 		make_tables(screen2);
 		make_extras(screen2);
-		make_selects(screen2)
 		$(screen).replaceWith(screen2);
 		make_ckeditors(screen2);
 		setTimeout(function() {
@@ -1411,29 +1410,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
 		});
 		//~ console.timeEnd("make_extras");
-	}
-
-	function make_selects(obj) {
-		//~ console.time("make_selects");
-		if(typeof(obj)=="undefined") var obj=$("body");
-		// TUNNING THE SELECTS
-		$("select[tunned!=true][multiple!=multiple]",obj).each(function() {
-			$(this).attr("tunned","true");
-			$(this).wrap("<div/>");
-			var div=$(this).parent();
-			$(div).css("display","inline-block");
-			$(div).css("position","relative");
-			var div2=$("<div class='ui-state-default'><span class='ui-icon ui-icon-circle-arrow-s'/></div>");
-			$(div).append(div2);
-			$(div2).css("border","none");
-			$(div2).css("position","absolute");
-			$(div2).css("top","4px");
-			// SUPPORT FOR LTR AND RTL LANGS
-			var dir=$("html").attr("dir");
-			var rtl={"ltr":{"right":"right"},"rtl":{"right":"left"}};
-			$(div2).css(rtl[dir]["right"],"6px");
-		});
-		//~ console.timeEnd("make_selects");
 	}
 
 	function make_draganddrop(obj) {
@@ -2136,7 +2112,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_tabs(screen);
 			make_tables(screen);
 			make_extras(screen);
-			make_selects(screen);
 			make_ckeditors(screen);
 			$("body > *").removeClass("none");
 			setTimeout(function() {

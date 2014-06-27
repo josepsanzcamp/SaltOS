@@ -190,8 +190,6 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 			});
 			// FINISH PLUGUIN INIT
 			make_hovers(div);
-			// TUNNING THE SELECTS
-			make_selects(div);
 		},100);
 	}
 

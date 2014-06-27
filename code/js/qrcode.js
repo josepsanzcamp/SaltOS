@@ -59,7 +59,7 @@ if(typeof(__qrcode__)=="undefined" && typeof(parent.__qrcode__)=="undefined") {
 					dialog(title);
 					$(dialog2).dialog("open");
 					$(dialog2).dialog("option","width",$(this).width()+33);
-					$(dialog2).dialog("option","position","center");
+					$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 				} else {
 					timeout--;
 				}

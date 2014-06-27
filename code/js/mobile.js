@@ -939,10 +939,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		});
 	}
 
-	function make_selects(obj) {
-		// UNUSED
-	}
-
 	function get_class_key_val(obj,param) {
 		var clases=explode(" ",$(obj).attr("class"));
 		var total=clases.length;
