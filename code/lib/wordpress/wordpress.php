@@ -450,15 +450,15 @@ function wp_kses_bad_protocol($string, $allowed_protocols) {
  * $value = apply_filters( 'example_filter', 'filter me', $arg1, $arg2 );
  * </code>
  *
- * @global array $wp_filter         Stores all of the filters
- * @global array $merged_filters    Merges the filter hooks using this function.
- * @global array $wp_current_filter stores the list of current filters with the current one last
- *
  * @since 0.71
  *
- * @param string $tag  The name of the filter hook.
- * @param mixed $value The value on which the filters hooked to <tt>$tag</tt> are applied on.
- * @param mixed $var   Additional variables passed to the functions hooked to <tt>$tag</tt>.
+ * @global array $wp_filter         Stores all of the filters.
+ * @global array $merged_filters    Merges the filter hooks using this function.
+ * @global array $wp_current_filter Stores the list of current filters with the current one last.
+ *
+ * @param string $tag   The name of the filter hook.
+ * @param mixed  $value The value on which the filters hooked to <tt>$tag</tt> are applied on.
+ * @param mixed  $var   Additional variables passed to the functions hooked to <tt>$tag</tt>.
  * @return mixed The filtered value after all hooked functions are applied to it.
  */
 function apply_filters( $tag, $value ) {
@@ -466,7 +466,7 @@ function apply_filters( $tag, $value ) {
 
 	$args = array();
 
-	// Do 'all' actions first
+	// Do 'all' actions first.
 	if ( isset($wp_filter['all']) ) {
 		$wp_current_filter[] = $tag;
 		$args = func_get_args();
@@ -482,7 +482,7 @@ function apply_filters( $tag, $value ) {
 	if ( !isset($wp_filter['all']) )
 		$wp_current_filter[] = $tag;
 
-	// Sort
+	// Sort.
 	if ( !isset( $merged_filters[ $tag ] ) ) {
 		ksort($wp_filter[$tag]);
 		$merged_filters[ $tag ] = true;
