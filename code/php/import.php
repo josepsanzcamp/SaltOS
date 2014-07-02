@@ -68,11 +68,13 @@ function import_file($args) {
 		case "text/xml":
 		case "xml":
 			$array=__import_xml2array($args["file"]);
+			if(!is_array($array)) return $array;
 			break;
 		case "text/plain":
 		case "text/csv":
 		case "csv":
 			$array=__import_csv2array($args["file"],$args["sep"]);
+			if(!is_array($array)) return $array;
 			if($args["prefn"]) $array=$args["prefn"]($array,$args);
 			$array=__import_array2tree($array,$args["nodes"]);
 			break;
@@ -93,7 +95,10 @@ function import_file($args) {
 
 function __import_xml2array($file) {
 	$xml=file_get_contents($file);
+	capture_next_error();
 	$data=xml2struct($xml);
+	$error=get_clear_error();
+	if($error!="") return "Error: XML not well-formed";
 	$data=array_reverse($data);
 	$array=__import_struct2array($data);
 	return $array;
@@ -175,6 +180,7 @@ function __import_xls2array($file,$sheet) {
 	$objReader=PHPExcel_IOFactory::createReaderForFile($file);
 	$objReader->setReadDataOnly(true);
 	// CHECK THE SHEET PARAM
+	if(!method_exists($objReader,"listWorksheetNames")) return "Error: Sheets not found in the file";
 	$sheets=$objReader->listWorksheetNames($file);
 	if(is_numeric($sheet)) {
 		if(!isset($sheets[$sheet])) return "Error: Sheet number '${sheet}' not found";

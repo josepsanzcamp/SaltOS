@@ -258,6 +258,7 @@ function __unoconv_hocr2txt($hocr) {
 	require_once("php/import.php");
 	// LOAD XML
 	$array=__import_xml2array($hocr);
+	if(!is_array($array)) return "";
 	$array=__import_getnode("html/body",$array);
 	// PARTE XML
 	$lines=array();

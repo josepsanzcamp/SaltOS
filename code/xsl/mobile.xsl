@@ -249,10 +249,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:when>
 			<xsl:otherwise>
 				<ul data-role="listview">
-					<li><input type="checkbox" class="master" name="master" id="master" value="1" data-mini="true" data-iconpos="left"/><label for="master"></label></li>
+					<li>
+						<div class="ui-checkbox ui-mini">
+							<label for="master" class="ui-btn ui-btn-inherit ui-btn-icon-left ui-checkbox-off ui-corner-all"></label>
+							<input type="checkbox" class="master" name="master" id="master" value="1" data-enhanced="true"/>
+						</div>
+					</li>
 					<xsl:for-each select="rows/row">
 						<li>
-							<input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1" data-mini="true" data-iconpos="left"/><label for="slave_{id}"></label>
+							<div class="ui-checkbox ui-mini">
+								<label for="slave_{id}" class="ui-btn ui-btn-inherit ui-btn-icon-left ui-checkbox-off ui-corner-all"></label>
+								<input type="checkbox" class="slave id_{id}" name="slave_{id}" id="slave_{id}" value="1" data-enhanced="true"/>
+							</div>
 							<xsl:variable name="id" select="action_id"/>
 							<xsl:variable name="style" select="action_style"/>
 							<xsl:variable name="row" select="*"/>
@@ -610,21 +618,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</div>
 		</xsl:when>
 		<xsl:when test="type='checkbox'">
-			<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" labeled="{label}" data-mini="true" data-iconpos="left">
-				<xsl:if test="checked='true'">
-					<xsl:attribute name="checked">checked</xsl:attribute>
-				</xsl:if>
-				<xsl:variable name="value" select="value"/>
-				<xsl:for-each select="$node/*[name()=$name][.=$value]">
-					<xsl:attribute name="checked">checked</xsl:attribute>
-				</xsl:for-each>
+			<div class="ui-checkbox ui-mini">
 				<xsl:if test="readonly='true'">
-					<xsl:attribute name="disabled">true</xsl:attribute>
+					<xsl:attribute name="class">ui-checkbox ui-mini ui-state-disabled</xsl:attribute>
 				</xsl:if>
-			</input>
-			<xsl:if test="label!=''">
-				<label for="{$prefix}{name}"><xsl:value-of select="label"/></label>
-			</xsl:if>
+				<xsl:if test="label!=''">
+					<label for="{$prefix}{name}" class="ui-btn ui-btn-inherit ui-btn-icon-left ui-checkbox-off ui-corner-all">
+						<xsl:if test="checked='true'">
+							<xsl:attribute name="class">ui-btn ui-btn-inherit ui-btn-icon-left ui-checkbox-on ui-corner-all</xsl:attribute>
+						</xsl:if>
+						<xsl:variable name="value" select="value"/>
+						<xsl:for-each select="$node/*[name()=$name][.=$value]">
+							<xsl:attribute name="class">ui-btn ui-btn-inherit ui-btn-icon-left ui-checkbox-on ui-corner-all</xsl:attribute>
+						</xsl:for-each>
+						<xsl:value-of select="label"/>
+					</label>
+				</xsl:if>
+				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" labeled="{label}" data-enhanced="true">
+					<xsl:if test="checked='true'">
+						<xsl:attribute name="checked">checked</xsl:attribute>
+					</xsl:if>
+					<xsl:variable name="value" select="value"/>
+					<xsl:for-each select="$node/*[name()=$name][.=$value]">
+						<xsl:attribute name="checked">checked</xsl:attribute>
+					</xsl:for-each>
+					<xsl:if test="readonly='true'">
+						<xsl:attribute name="disabled">true</xsl:attribute>
+					</xsl:if>
+				</input>
+			</div>
 		</xsl:when>
 		<xsl:when test="type='button'">
 			<span>

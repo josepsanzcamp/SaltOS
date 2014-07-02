@@ -880,15 +880,15 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// ADD THE SELECT ALL FEATURE TO LIST
 		var master="input.master[type=checkbox]";
 		var slave="input.slave[type=checkbox]";
-		$(master,obj).next().html(lang_selectallcheckbox());
-		$(slave,obj).next().html(lang_selectonecheckbox());
+		$(master,obj).prev().html(lang_selectallcheckbox());
+		$(slave,obj).prev().html(lang_selectonecheckbox());
 		$(master,obj).bind("click",function() {
 			var value=$(this).prop("checked");
 			var ul=$(this).parent().parent().parent().parent();
 			$(slave,ul).prop("checked",value).checkboxradio("refresh");
 		});
 		// ADD THE ACTIONS DEFAULT OPTION LABEL
-		$(".actions").find("option:eq(0)",obj).html(lang_actions());
+		$(".actions",obj).find("option:eq(0)",obj).html(lang_actions());
 		// PROGRAM CHECK ENTER
 		$("input,select",obj).bind("keydown",function(event) {
 			if(is_enterkey(event)) {
@@ -1073,7 +1073,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	$.mobile.linkBindingEnabled=false;
 	$.mobile.hashListeningEnabled=false;
 	$.mobile.pushStateEnabled=false;
-	//~ $.mobile.page.prototype.options.keepNative="*";
+	//~ $.mobile.page.prototype.options.keepNative="input[type=checkbox]";
 
 	// TO DO COMPATIBLE WITH DESKTOP PLUGINS
 	(function($){
