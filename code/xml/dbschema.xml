@@ -1396,6 +1396,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>indexed</name>
 					<type>INT(11)</type>
 				</field>
+				<field>
+					<name>retries</name>
+					<type>INT(11)</type>
+				</field>
 			</fields>
 		</table>
 		<table>

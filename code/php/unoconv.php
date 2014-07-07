@@ -362,6 +362,20 @@ function __unoconv_substr($string,$start,$length,$reference) {
 	return mb_substr($string,$start,$length,"UTF-8");
 }
 
+function __unoconv_substr2d($page,$x1,$x2,$x3,$y1,$y2,$y3) {
+	$factor=count($page)/$y3;
+	$y1*=$factor;
+	$y2*=$factor;
+	$result=array();
+	for($i=$y1;$i<$y2;$i++) {
+		if(isset($page[$i])) {
+			$result[]=__unoconv_substr($page[$i],$x1,$x2,$x3);
+		}
+	}
+	//~ echo "<pre>".sprintr($result)."</pre>";
+	return $result;
+}
+
 function __unoconv_remove_margins($page) {
 	$page=explode("\n",$page);
 	$max=0;

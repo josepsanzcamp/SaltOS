@@ -372,10 +372,11 @@ function wp_kses_normalize_entities($string) {
  * Retrieve a list of protocols to allow in HTML attributes.
  *
  * @since 3.3.0
+ *
  * @see wp_kses()
  * @see esc_url()
  *
- * @return array Array of allowed protocols
+ * @return array Array of allowed protocols.
  */
 function wp_allowed_protocols() {
 	static $protocols;

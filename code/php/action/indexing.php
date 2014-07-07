@@ -32,11 +32,13 @@ if(getParam("action")=="indexing") {
 	$semaphore=get_cache_file(getParam("action"),getDefault("exts/semext",".sem"));
 	if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) die();
 	// INDEXING FILES
-	$query="SELECT id,id_aplicacion,id_registro,fichero_file FROM tbl_ficheros WHERE indexed='0'";
+	$query="SELECT id,id_aplicacion,id_registro,fichero_file,retries FROM tbl_ficheros WHERE indexed=0 AND retries<3 LIMIT 1000";
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
 		if(time_get_free()<10) break;
+		$query="UPDATE tbl_ficheros SET retries=retries+1 WHERE id='${row["id"]}'";
+		db_query($query);
 		if($row["id_aplicacion"]==page2id("correo")) {
 			$decoded=__getmail_getmime($row["id_registro"]);
 			if(!$decoded) show_php_error(array("phperror"=>"Email not found","details"=>sprintr($row)));
@@ -66,8 +68,10 @@ if(getParam("action")=="indexing") {
 		} else {
 			$input=get_directory("dirs/filesdir").$row["fichero_file"];
 		}
-		$search=addslashes(encode_search(unoconv2txt($input)," "));
-		$query="UPDATE tbl_ficheros SET indexed='1',search='${search}' WHERE id='${row["id"]}'";
+		$search=unoconv2txt($input);
+		if(in_array($row["retries"],array(0,1))) $search=encode_search($search," ");
+		$search=addslashes($search);
+		$query="UPDATE tbl_ficheros SET indexed=1,search='${search}' WHERE id='${row["id"]}'";
 		db_query($query);
 		$total++;
 	}
