@@ -178,7 +178,7 @@ function __import_xls2array($file,$sheet) {
 	$cacheSettings=array("memoryCacheSize"=>"8MB");
 	PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);
 	$objReader=PHPExcel_IOFactory::createReaderForFile($file);
-	$objReader->setReadDataOnly(true);
+	//~ $objReader->setReadDataOnly(true);
 	// CHECK THE SHEET PARAM
 	if(!method_exists($objReader,"listWorksheetNames")) return "Error: Sheets not found in the file";
 	$sheets=$objReader->listWorksheetNames($file);
@@ -210,7 +210,7 @@ function __import_xls2array($file,$sheet) {
 	foreach($rows as $row) {
 		$temp=array();
 		foreach($cols as $col) {
-			$temp[]=$objSheet->getCell($col.$row)->getValue();
+			$temp[]=$objSheet->getCell($col.$row)->getFormattedValue();
 		}
 		$array[]=$temp;
 	}
