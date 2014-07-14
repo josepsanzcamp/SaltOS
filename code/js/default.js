@@ -1932,7 +1932,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function make_contextmenu() {
 		//~ console.time("make_contextmenu");
-		$("body").append("<ul id='contextMenu'></ul>");
+		$("body").append("<ul id='contextMenu' class='ui-corner-all'></ul>");
 		$(document).bind("keydown",function(event) {
 			if(is_escapekey(event)) hide_contextmenu();
 		}).bind("click",function(event) {
@@ -1961,11 +1961,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if(!disabled) disabled=$("a",this).hasClass("ui-state-disabled");
 				if(!disabled) disabled=$("span",this).hasClass("ui-state-disabled");
 				var extra2=disabled?"ui-state-disabled":"";
-				var html="<li class='"+extra2+"'><a href='javascript:void(0)'><span class='"+extra1+"'></span>&nbsp;"+texto+"</a></li>";
+				var html="<li class='"+extra2+"'><span class='"+extra1+"'></span>&nbsp;"+texto+"</li>";
 				var hash=md5(html);
 				if(!in_array(hash,hashes)) {
 					$(obj).append(html);
-					$("li:last a",obj).bind("click",function() { eval(onclick); });
+					$("li:last",obj).bind("click",function() { eval(onclick); });
 					hashes.push(hash);
 				}
 			});

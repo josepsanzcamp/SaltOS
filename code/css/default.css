@@ -476,3 +476,12 @@ svg[isplot=true] * {
 .phperror div {
 	width:auto!important;
 }
+
+/* FOR CONTEXT MENU */
+#contextMenu {
+	padding:3px 0;
+}
+
+#contextMenu li {
+	font-weight:normal!important;
+}
