@@ -972,7 +972,7 @@ function show_php_error($array=null) {
 	// REFUSE THE DEPRECATED WARNINGS
 	if(isset($array["phperror"]) && stripos($array["phperror"],"deprecated")!==false) {
 		$hash=md5($msg_text);
-		$file=getDefault("debug/warningfile","warning.log");
+		$file=isset($array["file"])?$array["file"]:getDefault("debug/warningfile","warning.log");
 		if(checklog($hash,$file)) $msg_text="";
 		addlog("${msg_text}***** ${hash} *****",$file);
 		return;
@@ -986,9 +986,12 @@ function show_php_error($array=null) {
 	}
 	// ADD THE MSG_ALT TO THE ERROR LOG FILE
 	$hash=md5($msg_text);
-	$file=getDefault("debug/errorfile","error.log");
+	$file=isset($array["file"])?$array["file"]:getDefault("debug/errorfile","error.log");
 	if(checklog($hash,$file)) $msg_text="";
 	addlog("${msg_text}***** ${hash} *****",$file);
+	// CHECK FOR CANCEL_DIE
+	if(isset($array["cancel"]) && eval_bool($array["cancel"])) return;
+	if(isset($array["die"]) && !eval_bool($array["die"])) return;
 	// PREPARE THE FINAL REPORT (ONLY IN NOT SHELL MODE)
 	if(!getServer("SHELL")) {
 		$msg=pretty_html_error($msg);

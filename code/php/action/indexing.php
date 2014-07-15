@@ -41,10 +41,14 @@ if(getParam("action")=="indexing") {
 		db_query($query);
 		if($row["id_aplicacion"]==page2id("correo")) {
 			$decoded=__getmail_getmime($row["id_registro"]);
-			if(!$decoded) show_php_error(array("phperror"=>"Email not found","details"=>sprintr($row)));
+			if(!$decoded) {
+				show_php_error(array("phperror"=>"Email not found","details"=>sprintr($row),"file"=>getDefault("debug/warningfile","warning.log"),"die"=>false));
+				$query="UPDATE tbl_ficheros SET retries=3 WHERE id='${row["id"]}'";
+				db_query($query);
+				continue;
+			}
 			$file=__getmail_getcid(__getmail_getnode("0",$decoded),$row["fichero_file"]);
 			if(!$file) {
-				$retry=0;
 				$files=__getmail_getfiles(__getmail_getnode("0",$decoded));
 				foreach($files as $key=>$val) {
 					$test1=$row["fichero_file"]==md5(md5($val["body"]).md5($val["cid"]).md5($val["cname"]).md5($val["ctype"]).md5($val["csize"]));
@@ -54,13 +58,16 @@ if(getParam("action")=="indexing") {
 						db_query($query);
 						$row["fichero_file"]=$val["chash"];
 						$file=__getmail_getcid(__getmail_getnode("0",$decoded),$row["fichero_file"]);
-						$retry=1;
 						break;
 					}
 				}
-				if(!$retry) continue;
 			}
-			if(!$file) show_php_error(array("phperror"=>"Attachment not found","details"=>sprintr($row)));
+			if(!$file) {
+				show_php_error(array("phperror"=>"Attachment not found","details"=>sprintr($row),"file"=>getDefault("debug/warningfile","warning.log"),"die"=>false));
+				$query="UPDATE tbl_ficheros SET retries=3 WHERE id='${row["id"]}'";
+				db_query($query);
+				continue;
+			}
 			$ext=strtolower(extension($file["cname"]));
 			if(!$ext) $ext=strtolower(extension2($file["ctype"]));
 			$input=get_cache_file($row["fichero_file"],$ext);
