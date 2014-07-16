@@ -221,6 +221,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</parser>
 	<styles>
 		<cache ifeval="!ismobile()">
+			<include>lib/w2ui/w2ui.min.css</include>
 			<include>lib/jquery/jquery.colorpicker.css</include>
 			<include>lib/jquery/jquery.ptTimeSelect.css</include>
 			<include>lib/jquery/jquery.jgrowl.css</include>
@@ -233,6 +234,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/phpjs/php.saltos.min.js</include>
 			<include ifeval="ismsie(array(6,7,8))">lib/jquery/jquery-1.11.1.min.js</include>
 			<include ifeval="!ismsie(array(6,7,8))">lib/jquery/jquery-2.1.1.min.js</include>
+			<include>lib/w2ui/w2ui.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery-ui-1.11.0.min.js</include>

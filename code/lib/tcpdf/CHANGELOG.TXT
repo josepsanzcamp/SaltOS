@@ -1,3 +1,16 @@
+6.0.089 (2014-07-16)
+	- Bug item #948 "bottom line of rowspan cell not work correctly" was fixed.
+
+6.0.088 (2014-07-09)
+	- Bug item #946 "Case sensitive type check causes broken match for SVG" was fixed.
+	- Bug item #945 "Imagick load doesn't account for passed data string " was fixed.
+
+6.0.087 (2014-06-25)
+	- A bug affecting fitcell option in Multicell was fixed.
+
+6.0.086 (2014-06-20)
+	- Bug item #938 "Hyphenation-dash extends outside of cell" was fixed (collateral effect).
+
 6.0.085 (2014-06-19)
 	- Some example images were replaced.
 	- A race condition bug was fixed.

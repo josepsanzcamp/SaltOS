@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 6.0.085
+// Version     : 6.0.089
 // Begin       : 2002-08-03
-// Last Update : 2014-06-19
+// Last Update : 2014-07-16
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
@@ -104,7 +104,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 6.0.085
+ * @version 6.0.089
  */
 
 // TCPDF configuration
@@ -128,7 +128,7 @@ require_once(dirname(__FILE__).'/include/tcpdf_static.php');
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 6.0.085
+ * @version 6.0.089
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF {
@@ -1291,14 +1291,14 @@ class TCPDF {
 	/**
 	 * Boolean flag to enable document timestamping with TSA.
 	 * @protected
-	 * @since 6.0.085 (2014-06-19)
+	 * @since 6.0.089 (2014-06-19)
 	 */
 	protected $tsa_timestamp = false;
 
 	/**
 	 * Timestamping data.
 	 * @protected
-	 * @since 6.0.085 (2014-06-19)
+	 * @since 6.0.089 (2014-06-19)
 	 */
 	protected $tsa_data = array();
 
@@ -5870,20 +5870,20 @@ class TCPDF {
 			if ($maxh > 0) {
 				// get text height
 				$text_height = $this->getStringHeight($w, $txt, $reseth, $autopadding, $mc_padding, $border);
-				if ($fitcell) {
+				if ($fitcell AND ($text_height > $maxh) AND ($this->FontSizePt > 1)) {
 					// try to reduce font size to fit text on cell (use a quick search algorithm)
 					$fmin = 1;
 					$fmax = $this->FontSizePt;
 					$diff_epsilon = (1 / $this->k); // one point (min resolution)
-					$maxit = (2 * intval($fmax)); // max number of iterations
-					while ($maxit > 0) {
+					$maxit = (2 * min(100, max(10, intval($fmax)))); // max number of iterations
+					while ($maxit >= 0) {
 						$fmid = (($fmax + $fmin) / 2);
 						$this->SetFontSize($fmid, false);
 						$this->resetLastH();
 						$text_height = $this->getStringHeight($w, $txt, $reseth, $autopadding, $mc_padding, $border);
 						$diff = ($maxh - $text_height);
 						if ($diff >= 0) {
-							if ($diff < $diff_epsilon) {
+							if ($diff <= $diff_epsilon) {
 								break;
 							}
 							$fmin = $fmid;
@@ -5892,10 +5892,15 @@ class TCPDF {
 						}
 						--$maxit;
 					}
-					if ($maxit <= 0) {
-						$fmid = $fmin;
+					if ($maxit < 0) {
+						// premature exit, we get the minimum font value to fit the cell
+						$this->SetFontSize($fmin);
+						$this->resetLastH();
+						$text_height = $this->getStringHeight($w, $txt, $reseth, $autopadding, $mc_padding, $border);
+					} else {
+						$this->SetFontSize($fmid);
+						$this->resetLastH();
 					}
-					$this->SetFontSize($fmid);
 				}
 				if ($text_height < $maxh) {
 					if ($valign == 'M') {
@@ -6365,6 +6370,7 @@ class TCPDF {
 		$sep = -1; // position of the last blank space
 		$prevsep = $sep; // previous separator
 		$shy = false; // true if the last blank is a soft hypen (SHY)
+		$prevshy = $shy; // previous shy mode
 		$l = 0; // current string length
 		$nl = 0; //number of lines
 		$linebreak = false;
@@ -6459,6 +6465,7 @@ class TCPDF {
 					$sep = $i;
 					// check if is a SHY
 					if (($c == 173) OR ($c == 45)) {
+						$prevshy = $shy;
 						$shy = true;
 						if ($pc == 45) {
 							$tmp_shy_replacement_width = 0;
@@ -6482,6 +6489,7 @@ class TCPDF {
 				if (($l > $wmax) OR (($c == 173) AND (($l + $tmp_shy_replacement_width) >= $wmax))) {
 					if (($c == 173) AND (($l + $tmp_shy_replacement_width) > $wmax)) {
 						$sep = $prevsep;
+						$shy = $prevshy;
 					}
 					// we have reached the end of column
 					if ($sep == -1) {
@@ -7080,9 +7088,14 @@ class TCPDF {
 				try {
 					// ImageMagick library
 					$img = new Imagick();
-					if ($type == 'SVG') {
-						// get SVG file content
-						$svgimg = TCPDF_STATIC::fileGetContents($file);
+					if ($type == 'svg') {
+						if ($file[0] === '@') {
+							// image from string
+							$svgimg = substr($file, 1);
+						} else {
+							// get SVG file content
+							$svgimg = TCPDF_STATIC::fileGetContents($file);
+						}
 						if ($svgimg !== FALSE) {
 							// get width and height
 							$regs = array();
@@ -13618,7 +13631,7 @@ class TCPDF {
 	 * @param $tsa_cert (string) Specifies the location of TSA certificate for authorization (optional for cURL)
 	 * @public
 	 * @author Richard Stockinger
-	 * @since 6.0.085 (2014-06-16)
+	 * @since 6.0.089 (2014-06-16)
 	 */
 	public function setTimeStamp($tsa_host='', $tsa_username='', $tsa_password='', $tsa_cert='') {
 		$this->tsa_data = array();
@@ -13646,7 +13659,7 @@ class TCPDF {
 	 * @return (string) Timestamped digital signature
 	 * @protected
 	 * @author Richard Stockinger
-	 * @since 6.0.085 (2014-06-16)
+	 * @since 6.0.089 (2014-06-16)
 	 */
 	protected function applyTSA($signature) {
 		if (!$this->tsa_timestamp) {
@@ -19567,7 +19580,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						// update row-spanned cells
 						if (isset($dom[($dom[$key]['parent'])]['rowspans'])) {
 							foreach ($dom[($dom[$key]['parent'])]['rowspans'] as $k => $trwsp) {
-								if (($trwsp['trid'] == $trkey) AND ($trwsp['mrowspan'] > 1) AND ($trwsp['endpage'] == $dom[$prevtrkey]['endpage'])) {
+								if (($trwsp['trid'] == $prevtrkey) AND ($trwsp['mrowspan'] >= 0) AND ($trwsp['endpage'] == $dom[$prevtrkey]['endpage'])) {
 									$dom[($dom[$key]['parent'])]['rowspans'][$k]['endy'] = $pgendy;
 									$dom[($dom[$key]['parent'])]['rowspans'][$k]['mrowspan'] = -1;
 								}
