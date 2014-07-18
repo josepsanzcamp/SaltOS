@@ -225,7 +225,7 @@ function ob_passthru($cmd,$expires=0) {
 		if(file_exists($cache) && !$error && time()-$expires<$mtime) return file_get_contents($cache);
 	}
 	if($disableds_string===null) {
-		$disableds_string=ini_get("disable_functions");
+		$disableds_string=ini_get("disable_functions").",".ini_get("suhosin.executor.func.blacklist");
 		$disableds_array=$disableds_string?explode(",",$disableds_string):array();
 		foreach($disableds_array as $key=>$val) $disableds_array[$key]=strtolower(trim($val));
 	}
