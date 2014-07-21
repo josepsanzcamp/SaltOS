@@ -1067,18 +1067,24 @@ function __shutdown_handler() {
 }
 
 function __tick_handler() {
-	if(time_get_free()<1) {
-		$cur=time_get_usage(true)*1.05;
-		$max=getDefault("ini_set/max_execution_time");
-		if($max>0) $cur=min($cur,$max*1.50);
-		//~ addlog("max=$max, cur=$cur");
-		capture_next_error();
-		ini_set("max_execution_time",$cur);
-		get_clear_error();
-	}
-	if(time_get_free()<1) {
-		$backtrace=debug_backtrace();
-		show_php_error(array("phperror"=>"max_execution_time reached","backtrace"=>$backtrace));
+	//~ addlog("function=".__FUNCTION__);
+	//~ addlog("max_execution_time=".ini_get("max_execution_time"));
+	//~ addlog("time_get_usage=".time_get_usage(true));
+	//~ addlog("time_get_free=".time_get_free());
+	if(time_get_free()<getDefault("server/percenterror")) {
+		$cur=ini_get("max_execution_time");
+		$max=getDefault("server/max_execution_time");
+		if($cur>0 && $max>0) {
+			$cur=min($cur*(1+getDefault("server/percentincr")/100),$max);
+			//~ addlog("max=$max, cur=$cur");
+			capture_next_error();
+			ini_set("max_execution_time",$cur);
+			get_clear_error();
+		}
+		if(time_get_free()<getDefault("server/percenterror")) {
+			$backtrace=debug_backtrace();
+			show_php_error(array("phperror"=>"max_execution_time reached","backtrace"=>$backtrace));
+		}
 	}
 }
 

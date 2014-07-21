@@ -36,7 +36,7 @@ if(getParam("action")=="indexing") {
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
-		if(time_get_free()<10) break;
+		if(time_get_free()<getDefault("server/percentstop")) break;
 		$query="UPDATE tbl_ficheros SET retries=retries+1 WHERE id='${row["id"]}'";
 		db_query($query);
 		if($row["id_aplicacion"]==page2id("correo")) {
