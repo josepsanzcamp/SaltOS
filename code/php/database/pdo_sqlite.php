@@ -150,7 +150,9 @@ function db_query_pdo_sqlite($query,$fetch="query") {
 	// TRICK TO DO THE STRIP SLASHES
 	$pos=strpos($query,"\\");
 	while($pos!==false) {
-		$extra=$query[$pos+1]=="'"?"'":"";
+		$extra="";
+		if($query[$pos+1]=="'") $extra="'";
+		if($query[$pos+1]=="%") $extra="\\";
 		$query=substr_replace($query,$extra,$pos,1);
 		$pos=strpos($query,"\\",$pos+1);
 	}

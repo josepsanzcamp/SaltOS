@@ -423,12 +423,14 @@ function make_like_query($keys,$values) {
 			$value2="";
 		}
 		if(in_array($key2,$keys) && $value2!="") {
-			$query[]="(`$key2` LIKE '%$value2%')";
+			$value2=str_replace(array("%","*"),array("\\%","%"),$value2);
+			$query[]="(`$key2` LIKE '%$value2%' ESCAPE '\\')";
 		} else {
+			$value=str_replace(array("%","*"),array("\\%","%"),$value);
 			$query2=array();
 			foreach($keys as $key) {
 				$key=str_replace(".","`.`",$key);
-				$query2[]="`$key` LIKE '%$value%'";
+				$query2[]="`$key` LIKE '%$value%' ESCAPE '\\\\'";
 			}
 			if(!count($query2)) $query2[]="1=1";
 			$query[]="(".implode(" OR ",$query2).")";

@@ -35,7 +35,7 @@ include("php/xml2array.php");
 include("php/array2xml.php");
 include("php/history.php");
 // SOME IMPORTANT ITEMS
-declare(ticks=10000);
+declare(ticks=1000);
 program_handlers();
 check_system();
 fix_input_vars();

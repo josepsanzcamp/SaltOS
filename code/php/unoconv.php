@@ -100,7 +100,7 @@ function __unoconv_pdf2txt($input,$output) {
 
 function __unoconv_all2pdf($input,$output) {
 	if(!check_commands(getDefault("commands/unoconv"),60)) return;
-	ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__unoconv__"))));
+	ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTPUT__"),array("pdf",$input,$output),getDefault("commands/__unoconv__"))));
 }
 
 function __unoconv_timeout($cmd) {

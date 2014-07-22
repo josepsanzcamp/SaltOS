@@ -173,7 +173,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</cache>
 	<commands>
 		<unoconv>unoconv</unoconv><!-- for unoconv module -->
-		<__unoconv__>-f pdf -o __OUTPUT__ __INPUT__</__unoconv__>
+		<__unoconv__>-f __FORMAT__ -o __OUTPUT__ __INPUT__</__unoconv__>
 		<__unoconv_about__>--show 2&gt;&amp;1</__unoconv_about__>
 		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
 		<__pdftotext__>-nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
