@@ -424,7 +424,7 @@ function make_like_query($keys,$values) {
 		}
 		if(in_array($key2,$keys) && $value2!="") {
 			$value2=str_replace(array("%","*"),array("\\%","%"),$value2);
-			$query[]="(`$key2` LIKE '%$value2%' ESCAPE '\\')";
+			$query[]="(`$key2` LIKE '%$value2%' ESCAPE '\\\\')";
 		} else {
 			$value=str_replace(array("%","*"),array("\\%","%"),$value);
 			$query2=array();

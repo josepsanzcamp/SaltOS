@@ -65,6 +65,7 @@ function load_history($id_usuario,$id_aplicacion) {
 	db_free($result);
 	if($numrows) {
 		$items=querystring2array(base64_decode($row["querystring"]));
+		if(isset($items[""])) unset($items[""]);
 		if(isset($items["id_folder"])) unset($items["id_folder"]);
 		if(isset($items["is_fichero"])) unset($items["is_fichero"]);
 		if(isset($items["is_buscador"])) unset($items["is_buscador"]);
