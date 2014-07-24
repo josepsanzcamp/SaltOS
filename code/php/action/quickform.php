@@ -94,7 +94,7 @@ if(getParam("action")=="quickform") {
 	$_RESULT["next"]=($index<$count-1);
 	$_RESULT["last"]=($index<$count-1);
 	// PREPARE THE OUTPUT
-	$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+	$buffer=__XML_HEADER__;
 	$buffer.=array2xml($_RESULT);
 	// TRICK TO MARK AS READED THE EMAILS AND FEEDS
 	if($page=="correo") {

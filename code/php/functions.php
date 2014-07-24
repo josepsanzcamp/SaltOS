@@ -1120,7 +1120,7 @@ function check_postlimit() {
 
 function check_system() {
 	// GENERAL CHECK
-	if(headers_sent()) show_php_error(array("phperror"=>"Has been detected previous headers sended"));
+	if(headers_sent()) show_php_error(array("phperror"=>"Has been detected previous headers sent"));
 	// PACKAGE CHECKS
 	$array=array(
 		array("class_exists","DomElement","Class","php-xml"),
@@ -1219,6 +1219,8 @@ function __time_get_helper($fn,$secs) {
 	if($ini===null) $ini=microtime(true);
 	$cur=microtime(true);
 	$max=ini_get("max_execution_time");
+	if(!$max) $max=getDefault("server/max_execution_time");
+	if(!$max) $max=600;
 	if(stripos($fn,"usage")!==false) {
 		$diff=$cur-$ini;
 	} elseif(stripos($fn,"free")!==false) {

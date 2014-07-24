@@ -96,12 +96,12 @@ if(getParam("action")=="calendar") {
 	$woy=date("W",$dstart);
 	$unix=$dstart;
 	$orig=array("/01/","/02/","/03/","/04/","/05/","/06/","/07/","/08/","/09/","/10/","/11/","/12/");
-	$dest=array(" ".mb_substr(LANG("enero"),0,3,"UTF-8")." "," ".mb_substr(LANG("febrero"),0,3,"UTF-8")." "," ".mb_substr(LANG("marzo"),0,3,"UTF-8")." ",
-				" ".mb_substr(LANG("abril"),0,3,"UTF-8")." "," ".mb_substr(LANG("mayo"),0,3,"UTF-8")." "," ".mb_substr(LANG("junio"),0,3,"UTF-8")." ",
-				" ".mb_substr(LANG("julio"),0,3,"UTF-8")." "," ".mb_substr(LANG("agosto"),0,3,"UTF-8")." "," ".mb_substr(LANG("setiembre"),0,3,"UTF-8")." ",
-				" ".mb_substr(LANG("octubre"),0,3,"UTF-8")." "," ".mb_substr(LANG("noviembre"),0,3,"UTF-8")." "," ".mb_substr(LANG("diciembre"),0,3,"UTF-8")." ");
-	$dias=array("",mb_substr(LANG("lunes"),0,3,"UTF-8"),mb_substr(LANG("martes"),0,3,"UTF-8"),mb_substr(LANG("miercoles"),0,3,"UTF-8"),
-				mb_substr(LANG("jueves"),0,3,"UTF-8"),mb_substr(LANG("viernes"),0,3,"UTF-8"),mb_substr(LANG("sabado"),0,3,"UTF-8"),mb_substr(LANG("domingo"),0,3,"UTF-8"));
+	$dest=array(" ".mb_substr(LANG("enero"),0,3)." "," ".mb_substr(LANG("febrero"),0,3)." "," ".mb_substr(LANG("marzo"),0,3)." ",
+				" ".mb_substr(LANG("abril"),0,3)." "," ".mb_substr(LANG("mayo"),0,3)." "," ".mb_substr(LANG("junio"),0,3)." ",
+				" ".mb_substr(LANG("julio"),0,3)." "," ".mb_substr(LANG("agosto"),0,3)." "," ".mb_substr(LANG("setiembre"),0,3)." ",
+				" ".mb_substr(LANG("octubre"),0,3)." "," ".mb_substr(LANG("noviembre"),0,3)." "," ".mb_substr(LANG("diciembre"),0,3)." ");
+	$dias=array("",mb_substr(LANG("lunes"),0,3),mb_substr(LANG("martes"),0,3),mb_substr(LANG("miercoles"),0,3),
+				mb_substr(LANG("jueves"),0,3),mb_substr(LANG("viernes"),0,3),mb_substr(LANG("sabado"),0,3),mb_substr(LANG("domingo"),0,3));
 	while($unix<=$dstop) {
 		$current=date("Y-m-d",$unix);
 		$month2=date("m",$unix);
@@ -217,7 +217,7 @@ if(getParam("action")=="calendar") {
 		$unix+=86400+$correccion;
 	}
 	// ENVIAR XML DE SALIDA
-	$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+	$buffer=__XML_HEADER__;
 	$buffer.=array2xml($_RESULT);
 	output_buffer($buffer,"text/xml");
 }

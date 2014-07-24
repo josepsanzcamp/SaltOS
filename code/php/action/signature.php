@@ -120,7 +120,7 @@ if(getParam("action")=="signature") {
 		$row=array("body"=>$body,"cc"=>$cc,"state_crt"=>$state_crt);
 		$_RESULT=array("rows"=>array());
 		set_array($_RESULT["rows"],"row",$row);
-		$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+		$buffer=__XML_HEADER__;
 		$buffer.=array2xml($_RESULT);
 		// FLUSH THE OUTPUT
 		output_buffer($buffer,"text/xml");

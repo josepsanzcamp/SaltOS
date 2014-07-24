@@ -157,7 +157,7 @@ $xsl="default";
 if(file_exists("xsl/${page}.xsl")) $xsl=$page;
 if(getDefault("forcexsl")) $xsl=getDefault("forcexsl");
 $_RESULT["info"]["xslt"]="xsl/${xsl}.xsl";
-$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+$buffer=__XML_HEADER__;
 $href=$_RESULT["info"]["xslt"]."?r=".$_RESULT["info"]["revision"];
 $buffer.="<?xml-stylesheet type='text/xsl' href='${href}' ?>\n";
 $buffer.=array2xml($_RESULT);

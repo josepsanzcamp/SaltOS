@@ -86,7 +86,7 @@ function __translate_aspell($text,$lang) {
 	$aspell=trim($aspell);
 	$aspell=explode("\n",$aspell);
 	$bias=0;
-	while($bias<mb_strlen($text,"UTF-8") && mb_substr($text,$bias,1,"UTF-8")=="\n") $bias++;
+	while($bias<mb_strlen($text) && mb_substr($text,$bias,1)=="\n") $bias++;
 	$offset=0;
 	$suggest="";
 	foreach($aspell as $line) {
@@ -97,13 +97,13 @@ function __translate_aspell($text,$lang) {
 			$number=strtok(" ");
 			$offset=strtok(": ");
 			$suggest=strtok(", ");
-			$text=mb_substr($text,0,$offset+$bias,"UTF-8").$suggest.mb_substr($text,$offset+$bias+mb_strlen($word,"UTF-8"),mb_strlen($text,"UTF-8"),"UTF-8");
-			$bias+=mb_strlen($suggest,"UTF-8")-mb_strlen($word,"UTF-8");
+			$text=mb_substr($text,0,$offset+$bias).$suggest.mb_substr($text,$offset+$bias+mb_strlen($word),mb_strlen($text));
+			$bias+=mb_strlen($suggest)-mb_strlen($word);
 		}
 		if($token=="") {
-			$bias=$offset+$bias+mb_strlen($suggest,"UTF-8");
-			$bias=mb_strpos($text,"\n",$bias,"UTF-8")+1;
-			while($bias<mb_strlen($text,"UTF-8") && mb_substr($text,$bias,1,"UTF-8")=="\n") $bias++;
+			$bias=$offset+$bias+mb_strlen($suggest);
+			$bias=mb_strpos($text,"\n",$bias)+1;
+			while($bias<mb_strlen($text) && mb_substr($text,$bias,1)=="\n") $bias++;
 			$offset=0;
 			$suggest="";
 		}

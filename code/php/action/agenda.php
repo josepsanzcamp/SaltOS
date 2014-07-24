@@ -31,12 +31,12 @@ if(getParam("action")=="agenda") {
 	foreach($id_hash as $key=>$val) $id_hash[$key]=explode("_",$val);
 	// COMMON THINGS
 	$orig=array("/01/","/02/","/03/","/04/","/05/","/06/","/07/","/08/","/09/","/10/","/11/","/12/");
-	$dest=array(" ".mb_substr(LANG("enero"),0,3,"UTF-8")." "," ".mb_substr(LANG("febrero"),0,3,"UTF-8")." "," ".mb_substr(LANG("marzo"),0,3,"UTF-8")." ",
-				" ".mb_substr(LANG("abril"),0,3,"UTF-8")." "," ".mb_substr(LANG("mayo"),0,3,"UTF-8")." "," ".mb_substr(LANG("junio"),0,3,"UTF-8")." ",
-				" ".mb_substr(LANG("julio"),0,3,"UTF-8")." "," ".mb_substr(LANG("agosto"),0,3,"UTF-8")." "," ".mb_substr(LANG("setiembre"),0,3,"UTF-8")." ",
-				" ".mb_substr(LANG("octubre"),0,3,"UTF-8")." "," ".mb_substr(LANG("noviembre"),0,3,"UTF-8")." "," ".mb_substr(LANG("diciembre"),0,3,"UTF-8")." ");
-	$dias=array("",mb_substr(LANG("lunes"),0,3,"UTF-8"),mb_substr(LANG("martes"),0,3,"UTF-8"),mb_substr(LANG("miercoles"),0,3,"UTF-8"),
-				mb_substr(LANG("jueves"),0,3,"UTF-8"),mb_substr(LANG("viernes"),0,3,"UTF-8"),mb_substr(LANG("sabado"),0,3,"UTF-8"),mb_substr(LANG("domingo"),0,3,"UTF-8"));
+	$dest=array(" ".mb_substr(LANG("enero"),0,3)." "," ".mb_substr(LANG("febrero"),0,3)." "," ".mb_substr(LANG("marzo"),0,3)." ",
+				" ".mb_substr(LANG("abril"),0,3)." "," ".mb_substr(LANG("mayo"),0,3)." "," ".mb_substr(LANG("junio"),0,3)." ",
+				" ".mb_substr(LANG("julio"),0,3)." "," ".mb_substr(LANG("agosto"),0,3)." "," ".mb_substr(LANG("setiembre"),0,3)." ",
+				" ".mb_substr(LANG("octubre"),0,3)." "," ".mb_substr(LANG("noviembre"),0,3)." "," ".mb_substr(LANG("diciembre"),0,3)." ");
+	$dias=array("",mb_substr(LANG("lunes"),0,3),mb_substr(LANG("martes"),0,3),mb_substr(LANG("miercoles"),0,3),
+				mb_substr(LANG("jueves"),0,3),mb_substr(LANG("viernes"),0,3),mb_substr(LANG("sabado"),0,3),mb_substr(LANG("domingo"),0,3));
 	$today=current_date();
 	$yesterday=current_date(-86400);
 	$tomorrow=current_date(86400);

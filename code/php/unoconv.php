@@ -225,11 +225,11 @@ function __unoconv_lines2matrix($lines,$width,$height) {
 			// AS MAKEBOX FEATURE
 			if($line[5]=="") $line[5]="~";
 			// AS DEFAULT FEATURE
-			$len=mb_strlen($line[5],"UTF-8");
+			$len=mb_strlen($line[5]);
 			$bias=($line[3]-$line[1])/($len*2);
 			$posx=round(($line[1]+$bias)/$width,0);
 			for($i=0;$i<$len;$i++) {
-				$letter=mb_substr($line[5],$i,1,"UTF-8");
+				$letter=mb_substr($line[5],$i,1);
 				if(isset($matrix[$posy][$posx])) {
 					if($letter!="_") {
 						if($matrix[$posy][$posx]!="_") return $index;
@@ -355,11 +355,11 @@ function __unoconv_hocr2txt($hocr) {
 }
 
 function __unoconv_substr($string,$start,$length,$reference) {
-	$factor=mb_strlen($string,"UTF-8")/$reference;
+	$factor=mb_strlen($string)/$reference;
 	$start*=$factor;
 	$length*=$factor;
 	//~ echo "factor=$factor, start=$start, length=$length<br/>";
-	return mb_substr($string,$start,$length,"UTF-8");
+	return mb_substr($string,$start,$length);
 }
 
 function __unoconv_substr2d($page,$x1,$x2,$x3,$y1,$y2,$y3) {
@@ -383,9 +383,9 @@ function __unoconv_remove_margins($page) {
 	$first=-1;
 	$last=-1;
 	foreach($page as $index=>$line) {
-		$max=max(mb_strlen(rtrim($line),"UTF-8"),$max);
+		$max=max(mb_strlen(rtrim($line)),$max);
 		if($min==0) $min=$max;
-		$min=min(mb_strlen($line,"UTF-8")-mb_strlen(ltrim($line),"UTF-8"),$min);
+		$min=min(mb_strlen($line)-mb_strlen(ltrim($line)),$min);
 		if(trim($line)!="") {
 			if($first==-1) $first=$index;
 			else $last=$index;
@@ -394,7 +394,7 @@ function __unoconv_remove_margins($page) {
 	foreach($page as $index=>$line) {
 		if($index<$first) unset($page[$index]);
 		elseif($index>$last) unset($page[$index]);
-		else $page[$index]=mb_substr($line,$min,$max-$min,"UTF-8");
+		else $page[$index]=mb_substr($line,$min,$max-$min);
 	}
 	$page=implode("\n",$page);
 	return $page;

@@ -411,7 +411,7 @@ if(getParam("action")=="feeds") {
 		$row=array_merge(array("url"=>$url),$array);
 		$_RESULT=array("rows"=>array());
 		set_array($_RESULT["rows"],"row",$row);
-		$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+		$buffer=__XML_HEADER__;
 		$buffer.=array2xml($_RESULT);
 		// FLUSH THE OUTPUT
 		output_buffer($buffer,"text/xml");

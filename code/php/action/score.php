@@ -84,7 +84,7 @@ if(getParam("action")=="score") {
 			$data="data:image/png;base64,${data}";
 			$valid=($score>=$minscore)?1:0;
 			$_RESULT=array("image"=>$data,"score"=>$score."%","valid"=>$valid);
-			$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+			$buffer=__XML_HEADER__;
 			$buffer.=array2xml($_RESULT);
 			file_put_contents($cache,$buffer);
 			chmod_protected($cache,0666);

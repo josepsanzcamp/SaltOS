@@ -42,7 +42,7 @@ if(getParam("action")=="ajax") {
 	db_free($result);
 	$format=strtolower(getParam("format","xml"));
 	if($format=="xml") {
-		$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+		$buffer=__XML_HEADER__;
 		$buffer.=array2xml($_RESULT);
 		$format="text/xml";
 	} elseif($format=="plain") {

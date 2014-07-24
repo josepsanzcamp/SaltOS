@@ -60,7 +60,7 @@ if(getParam("action")=="pagerlist") {
 	// PREPARE LAST STRING
 	$_RESULT["info"]=LANG("paginaspc").$currentpage.LANG("spcdespc").$totalpages." (".LANG("regsfrom")." ".$currentregini.LANG("spcalspc").$currentregend.LANG("spcdespc").$result["count"].").";
 	// PREPARE THE OUTPUT
-	$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+	$buffer=__XML_HEADER__;
 	$buffer.=array2xml($_RESULT);
 	// CONTINUE
 	output_buffer($buffer,"text/xml");

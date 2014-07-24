@@ -206,7 +206,7 @@ if(getParam("action")=="viewpdf") {
 		}
 	}
 	// ENVIAR REPORT
-	$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+	$buffer=__XML_HEADER__;
 	$buffer.=array2xml($_RESULT);
 	output_buffer($buffer,"text/xml");
 }

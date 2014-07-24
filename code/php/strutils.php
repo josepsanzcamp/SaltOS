@@ -23,6 +23,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+// DEFINES
+define("__XML_HEADER__","<?xml version='1.0' encoding='UTF-8' ?>\n");
+
+// FUNCTIONS
 function getString($string) {
 	if(ini_get("magic_quotes_gpc")!=1) $string=addslashes($string);
 	return $string;
@@ -574,7 +578,13 @@ function html2text($html) {
 
 // RETURN THE UTF-8 CONVERTED STRING IF IT'S NEEDED
 function getutf8($temp) {
-	if(!mb_check_encoding($temp,"UTF-8")) $temp=mb_convert_encoding($temp,"UTF-8");
+	foreach(mb_list_encodings() as $encoding) {
+		if(mb_detect_encoding($temp,$encoding,true)==$encoding) {
+			$temp2=mb_convert_encoding($temp,"UTF-8",$encoding);
+			$temp3=mb_convert_encoding($temp2,$encoding,"UTF-8");
+			if(md5($temp)==md5($temp3)) return $temp2;
+		}
+	}
 	return $temp;
 }
 

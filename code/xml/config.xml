@@ -389,6 +389,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<date.timezone>Europe/Madrid</date.timezone>
 		<default_charset>UTF-8</default_charset>
 		<gd.jpeg_ignore_warning>1</gd.jpeg_ignore_warning>
+		<mbstring.internal_encoding>UTF-8</mbstring.internal_encoding>
 	</ini_set>
 	<putenv>
 		<PATH>/bin:/usr/bin:/usr/local/bin</PATH>
