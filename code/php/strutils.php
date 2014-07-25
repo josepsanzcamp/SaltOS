@@ -578,13 +578,7 @@ function html2text($html) {
 
 // RETURN THE UTF-8 CONVERTED STRING IF IT'S NEEDED
 function getutf8($temp) {
-	foreach(mb_list_encodings() as $encoding) {
-		if(mb_detect_encoding($temp,$encoding,true)==$encoding) {
-			$temp2=mb_convert_encoding($temp,"UTF-8",$encoding);
-			$temp3=mb_convert_encoding($temp2,$encoding,"UTF-8");
-			if(md5($temp)==md5($temp3)) return $temp2;
-		}
-	}
+	if(!mb_check_encoding($temp,"UTF-8")) $temp=mb_convert_encoding($temp,"UTF-8",ini_get("mbstring.detect_order"));
 	return $temp;
 }
 

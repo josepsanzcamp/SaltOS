@@ -111,11 +111,11 @@ if(in_array($page,array("profile","usuarios"))) {
 	$temp_key="correo_new_0_email_signature_new";
 	if($correo_new && !getParam($temp_key)) {
 		$outputdir=get_directory("dirs/filesdir");
-		$temp_data=LANG("sentfromsaltos");
-		$temp_name="email_signature".getDefault("exts/textext",".txt");
+		$temp_data=str_replace("SaltOS","<a href='http://www.saltos.net'>SaltOS</a>",LANG("sentfromsaltos"));
+		$temp_name="email_signature".getDefault("exts/htmlext",".htm");
 		$temp_file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($temp_name);
 		$temp_size=strlen($temp_data);
-		$temp_type="text/plain";
+		$temp_type="text/html";
 		file_put_contents($outputdir.$temp_file,$temp_data);
 		setParam($temp_key,$temp_name);
 		setParam($temp_key."_file",$temp_file);
