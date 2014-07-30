@@ -166,12 +166,10 @@ if(getParam("action")=="viewpdf") {
 			// CREAR DEFAULT PDF
 			$action="pdf";
 			setParam("action",$action);
-			$_LANG["default"]="$page,menu,common";
-			$_CONFIG[$page]=xml2array("xml/$page.xml");
 			ob_start();
 			define("__CANCEL_DIE__",1);
 			define("__CANCEL_HEADER__",1);
-			include("php/default.php");
+			include("php/action/pdf.php");
 			$pdf=ob_get_clean();
 			file_put_contents($cache,$pdf);
 		}

@@ -217,14 +217,12 @@ if($page=="correo") {
 		db_query($query);
 		// AÑADIR PDF CON CORREO ORIGINAL
 		$action="pdf";
-		setParam("action","pdf");
-		$_LANG["default"]="$page,menu,common";
-		$_CONFIG[$page]=xml2array("xml/$page.xml");
+		setParam("action",$action);
 		$_GET["id"]=$id_correo;
 		ob_start();
 		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 		if(!defined("__CANCEL_HEADER__")) define("__CANCEL_HEADER__",1);
-		include("php/default.php");
+		include("php/action/pdf.php");
 		$pdf=ob_get_clean();
 		$name=encode_bad_chars_file(LANG("correo","menu")." ".__incidencias_codigo($id_correo)." ".$info["subject"].getDefault("exts/pdfext",".pdf"));
 		$file=time()."_".get_unique_id_md5()."_".$name;

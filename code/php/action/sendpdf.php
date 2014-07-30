@@ -67,13 +67,11 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 		// PDF FACTURA/ACTA/PARTE/PRESUPUESTO
 		$action="pdf";
 		setParam("action",$action);
-		$_LANG["default"]="$page,menu,common";
-		$_CONFIG[$page]=xml2array("xml/$page.xml");
 		$_GET["id"]=$val;
 		ob_start();
 		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 		if(!defined("__CANCEL_HEADER__")) define("__CANCEL_HEADER__",1);
-		include("php/default.php");
+		include("php/action/pdf.php");
 		$pdf=ob_get_clean();
 		$file=get_temp_file(getDefault("exts/pdfext",".pdf"));
 		file_put_contents($file,$pdf);
