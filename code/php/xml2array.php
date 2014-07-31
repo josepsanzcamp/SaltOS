@@ -289,6 +289,12 @@ function xml2array($file,$usecache=true) {
 }
 
 function xml2struct($xml,$file="") {
+	// DETECT IF ENCODING ATTR IS FOUND
+	$pos1=strpos($xml,"<?xml");
+	$pos2=strpos($xml,"encoding=",$pos1);
+	$pos3=strpos($xml,"?>",$pos1);
+	if($pos2===false || $pos2>$pos3) $xml=getutf8($xml);
+	// CONTINUE
 	$parser=xml_parser_create();
 	xml_parser_set_option($parser,XML_OPTION_CASE_FOLDING,0);
 	xml_parser_set_option($parser,XML_OPTION_TARGET_ENCODING,"UTF-8");

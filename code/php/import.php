@@ -98,6 +98,7 @@ function __import_xml2array($file) {
 	capture_next_error();
 	$data=xml2struct($xml);
 	$error=get_clear_error();
+	//~ if($error!="") return $error;
 	if($error!="") return "Error: XML not well-formed";
 	$data=array_reverse($data);
 	$array=__import_struct2array($data);
@@ -222,7 +223,9 @@ function __import_xls2array($file,$sheet) {
 	foreach($rows as $row) {
 		$temp=array();
 		foreach($cols as $col) {
-			$temp[]=$objSheet->getCell($col.$row)->getFormattedValue();
+			$temp2=$objSheet->getCell($col.$row)->getFormattedValue();
+			if(in_array($temp2,array("#REF!","#VALUE!"))) $temp2=$objSheet->getCell($col.$row)->getOldCalculatedValue();
+			$temp[]=$temp2;
 		}
 		$array[]=$temp;
 	}
