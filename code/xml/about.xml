@@ -408,19 +408,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpjs.org/")</onclick>
 						</field>
 						<field>
-							<label>JQuery 1.11.1/2.1.1 (MIT)</label>
+							<label>JQuery 2.1.2-pre (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jquery.com/")</onclick>
 						</field>
 						<field>
-							<label>JQuery UI 1.11.0 (MIT)</label>
+							<label>JQuery UI 1.11.2-pre (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
 						</field>
 						<field>
-							<label>JQuery Mobile 1.4.3 (MIT)</label>
+							<label>JQuery Mobile 1.5.0-pre (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://jquerymobile.com/")</onclick>

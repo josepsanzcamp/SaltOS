@@ -1,8 +1,7 @@
-/*! jQuery UI - v1.11.0 - 2014-06-26
+/*! jQuery UI - v1.11.2-pre - 2014-08-14
 * http://jqueryui.com
-* Includes: core.css, accordion.css, autocomplete.css, button.css, datepicker.css, dialog.css, draggable.css, menu.css, progressbar.css, resizable.css, selectable.css, selectmenu.css, slider.css, sortable.css, spinner.css, tabs.css, tooltip.css, theme.css
+* Includes: core.css, accordion.css, autocomplete.css, button.css, datepicker.css, dialog.css, draggable.css, menu.css, progressbar.css, resizable.css, selectable.css, selectmenu.css, sortable.css, slider.css, spinner.css, tabs.css, tooltip.css, theme.css
 * Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
-
 /* Layout helpers
 ----------------------------------*/
 .ui-helper-hidden {
@@ -47,7 +46,7 @@
 	left: 0;
 	position: absolute;
 	opacity: 0;
-	filter:Alpha(Opacity=0);
+	filter:Alpha(Opacity=0); /* support: IE8 */
 }
 
 .ui-front {
@@ -85,6 +84,7 @@
 	width: 100%;
 	height: 100%;
 }
+
 .ui-accordion .ui-accordion-header {
 	display: block;
 	cursor: pointer;
@@ -111,12 +111,14 @@
 	border-top: 0;
 	overflow: auto;
 }
+
 .ui-autocomplete {
 	position: absolute;
 	top: 0;
 	left: 0;
 	cursor: default;
 }
+
 .ui-button {
 	display: inline-block;
 	position: relative;
@@ -221,6 +223,7 @@ button.ui-button::-moz-focus-inner {
 	border: 0;
 	padding: 0;
 }
+
 .ui-datepicker {
 	width: 17em;
 	padding: .2em .2em 0;
@@ -273,7 +276,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker select.ui-datepicker-month,
 .ui-datepicker select.ui-datepicker-year {
-	width: 49%;
+	width: 45%;
 }
 .ui-datepicker table {
 	width: 100%;
@@ -386,6 +389,7 @@ button.ui-button::-moz-focus-inner {
 	border-right-width: 0;
 	border-left-width: 1px;
 }
+
 .ui-dialog {
 	overflow: hidden;
 	position: absolute;
@@ -446,10 +450,12 @@ button.ui-button::-moz-focus-inner {
 .ui-draggable .ui-dialog-titlebar {
 	cursor: move;
 }
+
 .ui-draggable-handle {
 	-ms-touch-action: none;
 	touch-action: none;
 }
+
 .ui-menu {
 	list-style: none;
 	padding: 0;
@@ -467,7 +473,7 @@ button.ui-button::-moz-focus-inner {
 	cursor: pointer;
 	min-height: 0; /* support: IE7 */
 	/* support: IE10, see #8844 */
-	list-style-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+	list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
 }
 .ui-menu .ui-menu-divider {
 	margin: 5px 0;
@@ -503,6 +509,7 @@ button.ui-button::-moz-focus-inner {
 	left: auto;
 	right: 0;
 }
+
 .ui-progressbar {
 	height: 2em;
 	text-align: left;
@@ -513,14 +520,15 @@ button.ui-button::-moz-focus-inner {
 	height: 100%;
 }
 .ui-progressbar .ui-progressbar-overlay {
-	background: url(images/animated-overlay.gif);
+	background: url("data:image/gif;base64,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");
 	height: 100%;
-	filter: alpha(opacity=25);
+	filter: alpha(opacity=25); /* support: IE8 */
 	opacity: 0.25;
 }
 .ui-progressbar-indeterminate .ui-progressbar-value {
 	background-image: none;
 }
+
 .ui-resizable {
 	position: relative;
 }
@@ -591,6 +599,7 @@ button.ui-button::-moz-focus-inner {
 	right: -5px;
 	top: -5px;
 }
+
 .ui-selectable {
 	-ms-touch-action: none;
 	touch-action: none;
@@ -600,6 +609,7 @@ button.ui-button::-moz-focus-inner {
 	z-index: 100;
 	border: 1px dotted black;
 }
+
 .ui-selectmenu-menu {
 	padding: 0;
 	margin: 0;
@@ -649,6 +659,12 @@ button.ui-button::-moz-focus-inner {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+.ui-sortable-handle {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
 .ui-slider {
 	position: relative;
 	text-align: left;
@@ -671,7 +687,7 @@ button.ui-button::-moz-focus-inner {
 	background-position: 0 0;
 }
 
-/* For IE8 - See #6727 */
+/* support: IE8 - See #6727 */
 .ui-slider.ui-state-disabled .ui-slider-handle,
 .ui-slider.ui-state-disabled .ui-slider-range {
 	filter: inherit;
@@ -714,10 +730,7 @@ button.ui-button::-moz-focus-inner {
 .ui-slider-vertical .ui-slider-range-max {
 	top: 0;
 }
-.ui-sortable-handle {
-	-ms-touch-action: none;
-	touch-action: none;
-}
+
 .ui-spinner {
 	position: relative;
 	display: inline-block;
@@ -773,6 +786,7 @@ button.ui-button::-moz-focus-inner {
 	/* need to fix icons sprite */
 	background-position: -65px -16px;
 }
+
 .ui-tabs {
 	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 	padding: .2em;
@@ -814,6 +828,7 @@ button.ui-button::-moz-focus-inner {
 	padding: 1em 1.4em;
 	background: none;
 }
+
 .ui-tooltip {
 	padding: 8px;
 	position: absolute;
@@ -844,7 +859,7 @@ body .ui-tooltip {
 }
 .ui-widget-content {
 	border: 1px solid #aaaaaa/*{borderColorContent}*/;
-	background: #ffffff/*{bgColorContent}*/ url(images/ui-bg_flat_75_ffffff_40x100.png)/*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/;
+	background: #ffffff/*{bgColorContent}*/ url("images/ui-bg_flat_75_ffffff_40x100.png")/*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/;
 	color: #222222/*{fcContent}*/;
 }
 .ui-widget-content a {
@@ -852,7 +867,7 @@ body .ui-tooltip {
 }
 .ui-widget-header {
 	border: 1px solid #aaaaaa/*{borderColorHeader}*/;
-	background: #cccccc/*{bgColorHeader}*/ url(images/ui-bg_highlight-soft_75_cccccc_1x100.png)/*{bgImgUrlHeader}*/ 50%/*{bgHeaderXPos}*/ 50%/*{bgHeaderYPos}*/ repeat-x/*{bgHeaderRepeat}*/;
+	background: #cccccc/*{bgColorHeader}*/ url("images/ui-bg_highlight-soft_75_cccccc_1x100.png")/*{bgImgUrlHeader}*/ 50%/*{bgHeaderXPos}*/ 50%/*{bgHeaderYPos}*/ repeat-x/*{bgHeaderRepeat}*/;
 	color: #222222/*{fcHeader}*/;
 	font-weight: bold;
 }
@@ -866,7 +881,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
 	border: 1px solid #d3d3d3/*{borderColorDefault}*/;
-	background: #e6e6e6/*{bgColorDefault}*/ url(images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/;
+	background: #e6e6e6/*{bgColorDefault}*/ url("images/ui-bg_glass_75_e6e6e6_1x400.png")/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/;
 	font-weight: normal/*{fwDefault}*/;
 	color: #555555/*{fcDefault}*/;
 }
@@ -883,7 +898,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
 	border: 1px solid #999999/*{borderColorHover}*/;
-	background: #dadada/*{bgColorHover}*/ url(images/ui-bg_glass_75_dadada_1x400.png)/*{bgImgUrlHover}*/ 50%/*{bgHoverXPos}*/ 50%/*{bgHoverYPos}*/ repeat-x/*{bgHoverRepeat}*/;
+	background: #dadada/*{bgColorHover}*/ url("images/ui-bg_glass_75_dadada_1x400.png")/*{bgImgUrlHover}*/ 50%/*{bgHoverXPos}*/ 50%/*{bgHoverYPos}*/ repeat-x/*{bgHoverRepeat}*/;
 	font-weight: normal/*{fwDefault}*/;
 	color: #212121/*{fcHover}*/;
 }
@@ -902,7 +917,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
 	border: 1px solid #aaaaaa/*{borderColorActive}*/;
-	background: #ffffff/*{bgColorActive}*/ url(images/ui-bg_glass_65_ffffff_1x400.png)/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/;
+	background: #ffffff/*{bgColorActive}*/ url("images/ui-bg_glass_65_ffffff_1x400.png")/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/;
 	font-weight: normal/*{fwDefault}*/;
 	color: #212121/*{fcActive}*/;
 }
@@ -919,7 +934,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
 	border: 1px solid #fcefa1/*{borderColorHighlight}*/;
-	background: #fbf9ee/*{bgColorHighlight}*/ url(images/ui-bg_glass_55_fbf9ee_1x400.png)/*{bgImgUrlHighlight}*/ 50%/*{bgHighlightXPos}*/ 50%/*{bgHighlightYPos}*/ repeat-x/*{bgHighlightRepeat}*/;
+	background: #fbf9ee/*{bgColorHighlight}*/ url("images/ui-bg_glass_55_fbf9ee_1x400.png")/*{bgImgUrlHighlight}*/ 50%/*{bgHighlightXPos}*/ 50%/*{bgHighlightYPos}*/ repeat-x/*{bgHighlightRepeat}*/;
 	color: #363636/*{fcHighlight}*/;
 }
 .ui-state-highlight a,
@@ -931,7 +946,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
 	border: 1px solid #cd0a0a/*{borderColorError}*/;
-	background: #fef1ec/*{bgColorError}*/ url(images/ui-bg_glass_95_fef1ec_1x400.png)/*{bgImgUrlError}*/ 50%/*{bgErrorXPos}*/ 50%/*{bgErrorYPos}*/ repeat-x/*{bgErrorRepeat}*/;
+	background: #fef1ec/*{bgColorError}*/ url("images/ui-bg_glass_95_fef1ec_1x400.png")/*{bgImgUrlError}*/ 50%/*{bgErrorXPos}*/ 50%/*{bgErrorYPos}*/ repeat-x/*{bgErrorRepeat}*/;
 	color: #cd0a0a/*{fcError}*/;
 }
 .ui-state-error a,
@@ -953,18 +968,18 @@ body .ui-tooltip {
 .ui-widget-content .ui-priority-secondary,
 .ui-widget-header .ui-priority-secondary {
 	opacity: .7;
-	filter:Alpha(Opacity=70);
+	filter:Alpha(Opacity=70); /* support: IE8 */
 	font-weight: normal;
 }
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
 .ui-widget-header .ui-state-disabled {
 	opacity: .35;
-	filter:Alpha(Opacity=35);
+	filter:Alpha(Opacity=35); /* support: IE8 */
 	background-image: none;
 }
 .ui-state-disabled .ui-icon {
-	filter:Alpha(Opacity=35); /* For IE8 - See #6059 */
+	filter:Alpha(Opacity=35); /* support: IE8 - See #6059 */
 }
 
 /* Icons
@@ -977,27 +992,27 @@ body .ui-tooltip {
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-	background-image: url(images/ui-icons_222222_256x240.png)/*{iconsContent}*/;
+	background-image: url("images/ui-icons_222222_256x240.png")/*{iconsContent}*/;
 }
 .ui-widget-header .ui-icon {
-	background-image: url(images/ui-icons_222222_256x240.png)/*{iconsHeader}*/;
+	background-image: url("images/ui-icons_222222_256x240.png")/*{iconsHeader}*/;
 }
 .ui-state-default .ui-icon {
-	background-image: url(images/ui-icons_888888_256x240.png)/*{iconsDefault}*/;
+	background-image: url("images/ui-icons_888888_256x240.png")/*{iconsDefault}*/;
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon {
-	background-image: url(images/ui-icons_454545_256x240.png)/*{iconsHover}*/;
+	background-image: url("images/ui-icons_454545_256x240.png")/*{iconsHover}*/;
 }
 .ui-state-active .ui-icon {
-	background-image: url(images/ui-icons_454545_256x240.png)/*{iconsActive}*/;
+	background-image: url("images/ui-icons_454545_256x240.png")/*{iconsActive}*/;
 }
 .ui-state-highlight .ui-icon {
-	background-image: url(images/ui-icons_2e83ff_256x240.png)/*{iconsHighlight}*/;
+	background-image: url("images/ui-icons_2e83ff_256x240.png")/*{iconsHighlight}*/;
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-	background-image: url(images/ui-icons_cd0a0a_256x240.png)/*{iconsError}*/;
+	background-image: url("images/ui-icons_cd0a0a_256x240.png")/*{iconsError}*/;
 }
 
 /* positioning */
@@ -1210,15 +1225,15 @@ body .ui-tooltip {
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #aaaaaa/*{bgColorOverlay}*/ url(images/ui-bg_flat_0_aaaaaa_40x100.png)/*{bgImgUrlOverlay}*/ 50%/*{bgOverlayXPos}*/ 50%/*{bgOverlayYPos}*/ repeat-x/*{bgOverlayRepeat}*/;
+	background: #aaaaaa/*{bgColorOverlay}*/ url("images/ui-bg_flat_0_aaaaaa_40x100.png")/*{bgImgUrlOverlay}*/ 50%/*{bgOverlayXPos}*/ 50%/*{bgOverlayYPos}*/ repeat-x/*{bgOverlayRepeat}*/;
 	opacity: .3/*{opacityOverlay}*/;
-	filter: Alpha(Opacity=30)/*{opacityFilterOverlay}*/;
+	filter: Alpha(Opacity=30)/*{opacityFilterOverlay}*/; /* support: IE8 */
 }
 .ui-widget-shadow {
 	margin: -8px/*{offsetTopShadow}*/ 0 0 -8px/*{offsetLeftShadow}*/;
 	padding: 8px/*{thicknessShadow}*/;
-	background: #aaaaaa/*{bgColorShadow}*/ url(images/ui-bg_flat_0_aaaaaa_40x100.png)/*{bgImgUrlShadow}*/ 50%/*{bgShadowXPos}*/ 50%/*{bgShadowYPos}*/ repeat-x/*{bgShadowRepeat}*/;
+	background: #aaaaaa/*{bgColorShadow}*/ url("images/ui-bg_flat_0_aaaaaa_40x100.png")/*{bgImgUrlShadow}*/ 50%/*{bgShadowXPos}*/ 50%/*{bgShadowYPos}*/ repeat-x/*{bgShadowRepeat}*/;
 	opacity: .3/*{opacityShadow}*/;
-	filter: Alpha(Opacity=30)/*{opacityFilterShadow}*/;
+	filter: Alpha(Opacity=30)/*{opacityFilterShadow}*/; /* support: IE8 */
 	border-radius: 8px/*{cornerRadiusShadow}*/;
 }

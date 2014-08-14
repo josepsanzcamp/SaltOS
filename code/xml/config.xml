@@ -118,6 +118,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
 		<regspagemobile>25</regspagemobile>
 		<commandtimeout>60</commandtimeout>
+		<nativesoffice>true</nativesoffice>
 		<enablevoice>true</enablevoice>
 		<enabletranslate>true</enabletranslate>
 		<enableindexing>true</enableindexing>
@@ -157,7 +158,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>
-		<cachegctimeout>604800</cachegctimeout><!-- 86400 (1 day) * 7 = 604800 -->
+		<cachegctimeout>86400</cachegctimeout><!-- 86400 (1 day) -->
 		<cachegcprobability>1</cachegcprobability>
 		<cachegcdivisor>100</cachegcdivisor>
 		<usexml2arraycache>true</usexml2arraycache>
@@ -175,6 +176,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<unoconv>unoconv</unoconv><!-- for unoconv module -->
 		<__unoconv__>-f __FORMAT__ -o __OUTPUT__ __INPUT__</__unoconv__>
 		<__unoconv_about__>--show 2&gt;&amp;1</__unoconv_about__>
+		<soffice>soffice</soffice>
+		<__soffice__>--headless --convert-to __FORMAT__ --outdir __OUTDIR__ __INPUT__</__soffice__>
 		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
 		<__pdftotext__>-nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
 		<text2wave>text2wave</text2wave><!-- for voice module -->
@@ -236,12 +239,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<javascript>
 		<cache ifeval="!ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include ifeval="ismsie(array(6,7,8))">lib/jquery/jquery-1.11.1.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/jquery/jquery-2.1.1.min.js</include>
+			<include>lib/jquery/jquery.min.js</include>
 			<include>lib/w2ui/w2ui.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
-			<include>lib/jquery/jquery-ui-1.11.0.min.js</include>
+			<include>lib/jquery/jquery-ui.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.js</include>
 			<include>lib/jquery/jquery.blockUI.js</include>
 			<include>lib/jquery/jquery.jgrowl.js</include>
@@ -257,23 +259,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cache ifeval="!ismobile()">
 			<include>lib/ckeditor/ckeditor.min.js</include>
 			<include>lib/ckeditor/adapters/jquery.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/pdfjs/compatibility.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/pdfjs/pdf.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/pdfjs/pdf_find_bar.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/pdfjs/pdf_find_controller.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/pdfjs/ui_utils.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/pdfjs/text_layer_builder.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/codemirror/codemirror.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/codemirror/codemirror.mode.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/d3js/d3.min.js</include>
-			<include ifeval="!ismsie(array(6,7,8))">lib/d3js/nv.d3.min.js</include>
+			<include>lib/pdfjs/compatibility.min.js</include>
+			<include>lib/pdfjs/pdf.min.js</include>
+			<include>lib/pdfjs/pdf_find_bar.min.js</include>
+			<include>lib/pdfjs/pdf_find_controller.min.js</include>
+			<include>lib/pdfjs/ui_utils.min.js</include>
+			<include>lib/pdfjs/text_layer_builder.min.js</include>
+			<include>lib/codemirror/codemirror.min.js</include>
+			<include>lib/codemirror/codemirror.mode.min.js</include>
+			<include>lib/d3js/d3.min.js</include>
+			<include>lib/d3js/nv.d3.min.js</include>
 		</cache>
 		<cache ifeval="ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery-2.1.1.min.js</include>
+			<include>lib/jquery/jquery.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
-			<include>lib/jquery/jquery.mobile-1.4.3.min.js</include>
+			<include>lib/jquery/jquery.mobile.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.js</include>
 		</cache>
 	</javascript>

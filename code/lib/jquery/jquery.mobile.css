@@ -1,6 +1,6 @@
 /*!
-* jQuery Mobile 1.4.3
-* Git HEAD hash: b9c6473e3d90af26570e6f14e5a0307897ab385c <> Date: Tue Jul 1 2014 15:37:36 UTC
+* jQuery Mobile 1.5.0-pre
+* Git HEAD hash: 766a03dae49bf3c0fcb9bd0bb6dd155c1821356e <> Date: Thu Aug 14 2014 10:05:55 UTC
 * http://jquerymobile.com
 *
 * Copyright 2010, 2014 jQuery Foundation, Inc. and othercontributors
@@ -369,359 +369,359 @@ html .ui-alt-icon .ui-btn.ui-checkbox-on:after {
 }
 /* PNG icons */
 .ui-nosvg .ui-icon-action:after {
-	background-image: url(images/action-white.png);
+	background-image: url(images/icons-png/action-white.png);
 }
 .ui-nosvg .ui-icon-alert:after {
-	background-image: url(images/alert-white.png);
+	background-image: url(images/icons-png/alert-white.png);
 }
 .ui-nosvg .ui-icon-arrow-d-l:after {
-	background-image: url(images/arrow-d-l-white.png);
+	background-image: url(images/icons-png/arrow-d-l-white.png);
 }
 .ui-nosvg .ui-icon-arrow-d-r:after {
-	background-image: url(images/arrow-d-r-white.png);
+	background-image: url(images/icons-png/arrow-d-r-white.png);
 }
 .ui-nosvg .ui-icon-arrow-d:after {
-	background-image: url(images/arrow-d-white.png);
+	background-image: url(images/icons-png/arrow-d-white.png);
 }
 .ui-nosvg .ui-icon-arrow-l:after {
-	background-image: url(images/arrow-l-white.png);
+	background-image: url(images/icons-png/arrow-l-white.png);
 }
 .ui-nosvg .ui-icon-arrow-r:after {
-	background-image: url(images/arrow-r-white.png);
+	background-image: url(images/icons-png/arrow-r-white.png);
 }
 .ui-nosvg .ui-icon-arrow-u-l:after {
-	background-image: url(images/arrow-u-l-white.png);
+	background-image: url(images/icons-png/arrow-u-l-white.png);
 }
 .ui-nosvg .ui-icon-arrow-u-r:after {
-	background-image: url(images/arrow-u-r-white.png);
+	background-image: url(images/icons-png/arrow-u-r-white.png);
 }
 .ui-nosvg .ui-icon-arrow-u:after {
-	background-image: url(images/arrow-u-white.png);
+	background-image: url(images/icons-png/arrow-u-white.png);
 }
 .ui-nosvg .ui-icon-audio:after {
-	background-image: url(images/audio-white.png);
+	background-image: url(images/icons-png/audio-white.png);
 }
 .ui-nosvg .ui-icon-back:after {
-	background-image: url(images/back-white.png);
+	background-image: url(images/icons-png/back-white.png);
 }
 .ui-nosvg .ui-icon-bars:after {
-	background-image: url(images/bars-white.png);
+	background-image: url(images/icons-png/bars-white.png);
 }
 .ui-nosvg .ui-icon-bullets:after {
-	background-image: url(images/bullets-white.png);
+	background-image: url(images/icons-png/bullets-white.png);
 }
 .ui-nosvg .ui-icon-calendar:after {
-	background-image: url(images/calendar-white.png);
+	background-image: url(images/icons-png/calendar-white.png);
 }
 .ui-nosvg .ui-icon-camera:after {
-	background-image: url(images/camera-white.png);
+	background-image: url(images/icons-png/camera-white.png);
 }
 .ui-nosvg .ui-icon-carat-d:after {
-	background-image: url(images/carat-d-white.png);
+	background-image: url(images/icons-png/carat-d-white.png);
 }
 .ui-nosvg .ui-icon-carat-l:after {
-	background-image: url(images/carat-l-white.png);
+	background-image: url(images/icons-png/carat-l-white.png);
 }
 .ui-nosvg .ui-icon-carat-r:after {
-	background-image: url(images/carat-r-white.png);
+	background-image: url(images/icons-png/carat-r-white.png);
 }
 .ui-nosvg .ui-icon-carat-u:after {
-	background-image: url(images/carat-u-white.png);
+	background-image: url(images/icons-png/carat-u-white.png);
 }
 .ui-nosvg .ui-icon-check:after,
 html.ui-nosvg .ui-btn.ui-checkbox-on:after {
-	background-image: url(images/check-white.png);
+	background-image: url(images/icons-png/check-white.png);
 }
 .ui-nosvg .ui-icon-clock:after {
-	background-image: url(images/clock-white.png);
+	background-image: url(images/icons-png/clock-white.png);
 }
 .ui-nosvg .ui-icon-cloud:after {
-	background-image: url(images/cloud-white.png);
+	background-image: url(images/icons-png/cloud-white.png);
 }
 .ui-nosvg .ui-icon-comment:after {
-	background-image: url(images/comment-white.png);
+	background-image: url(images/icons-png/comment-white.png);
 }
 .ui-nosvg .ui-icon-delete:after {
-	background-image: url(images/delete-white.png);
+	background-image: url(images/icons-png/delete-white.png);
 }
 .ui-nosvg .ui-icon-edit:after {
-	background-image: url(images/edit-white.png);
+	background-image: url(images/icons-png/edit-white.png);
 }
 .ui-nosvg .ui-icon-eye:after {
-	background-image: url(images/eye-white.png);
+	background-image: url(images/icons-png/eye-white.png);
 }
 .ui-nosvg .ui-icon-forbidden:after {
-	background-image: url(images/forbidden-white.png);
+	background-image: url(images/icons-png/forbidden-white.png);
 }
 .ui-nosvg .ui-icon-forward:after {
-	background-image: url(images/forward-white.png);
+	background-image: url(images/icons-png/forward-white.png);
 }
 .ui-nosvg .ui-icon-gear:after {
-	background-image: url(images/gear-white.png);
+	background-image: url(images/icons-png/gear-white.png);
 }
 .ui-nosvg .ui-icon-grid:after {
-	background-image: url(images/grid-white.png);
+	background-image: url(images/icons-png/grid-white.png);
 }
 .ui-nosvg .ui-icon-heart:after {
-	background-image: url(images/heart-white.png);
+	background-image: url(images/icons-png/heart-white.png);
 }
 .ui-nosvg .ui-icon-home:after {
-	background-image: url(images/home-white.png);
+	background-image: url(images/icons-png/home-white.png);
 }
 .ui-nosvg .ui-icon-info:after {
-	background-image: url(images/info-white.png);
+	background-image: url(images/icons-png/info-white.png);
 }
 .ui-nosvg .ui-icon-location:after {
-	background-image: url(images/location-white.png);
+	background-image: url(images/icons-png/location-white.png);
 }
 .ui-nosvg .ui-icon-lock:after {
-	background-image: url(images/lock-white.png);
+	background-image: url(images/icons-png/lock-white.png);
 }
 .ui-nosvg .ui-icon-mail:after {
-	background-image: url(images/mail-white.png);
+	background-image: url(images/icons-png/mail-white.png);
 }
 .ui-nosvg .ui-icon-minus:after {
-	background-image: url(images/minus-white.png);
+	background-image: url(images/icons-png/minus-white.png);
 }
 .ui-nosvg .ui-icon-navigation:after {
-	background-image: url(images/navigation-white.png);
+	background-image: url(images/icons-png/navigation-white.png);
 }
 .ui-nosvg .ui-icon-phone:after {
-	background-image: url(images/phone-white.png);
+	background-image: url(images/icons-png/phone-white.png);
 }
 .ui-nosvg .ui-icon-plus:after {
-	background-image: url(images/plus-white.png);
+	background-image: url(images/icons-png/plus-white.png);
 }
 .ui-nosvg .ui-icon-power:after {
-	background-image: url(images/power-white.png);
+	background-image: url(images/icons-png/power-white.png);
 }
 .ui-nosvg .ui-icon-recycle:after {
-	background-image: url(images/recycle-white.png);
+	background-image: url(images/icons-png/recycle-white.png);
 }
 .ui-nosvg .ui-icon-refresh:after {
-	background-image: url(images/refresh-white.png);
+	background-image: url(images/icons-png/refresh-white.png);
 }
 .ui-nosvg .ui-icon-search:after {
-	background-image: url(images/search-white.png);
+	background-image: url(images/icons-png/search-white.png);
 }
 .ui-nosvg .ui-icon-shop:after {
-	background-image: url(images/shop-white.png);
+	background-image: url(images/icons-png/shop-white.png);
 }
 .ui-nosvg .ui-icon-star:after {
-	background-image: url(images/star-white.png);
+	background-image: url(images/icons-png/star-white.png);
 }
 .ui-nosvg .ui-icon-tag:after {
-	background-image: url(images/tag-white.png);
+	background-image: url(images/icons-png/tag-white.png);
 }
 .ui-nosvg .ui-icon-user:after {
-	background-image: url(images/user-white.png);
+	background-image: url(images/icons-png/user-white.png);
 }
 .ui-nosvg .ui-icon-video:after {
-	background-image: url(images/video-white.png);
+	background-image: url(images/icons-png/video-white.png);
 }
 /* Alt icons */
 .ui-nosvg .ui-alt-icon.ui-icon-action:after,
 .ui-nosvg .ui-alt-icon .ui-icon-action:after {
-	background-image: url(images/action-black.png);
+	background-image: url(images/icons-png/action-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-alert:after,
 .ui-nosvg .ui-alt-icon .ui-icon-alert:after {
-	background-image: url(images/alert-black.png);
+	background-image: url(images/icons-png/alert-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-arrow-d:after,
 .ui-nosvg .ui-alt-icon .ui-icon-arrow-d:after {
-	background-image: url(images/arrow-d-black.png);
+	background-image: url(images/icons-png/arrow-d-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-arrow-d-l:after,
 .ui-nosvg .ui-alt-icon .ui-icon-arrow-d-l:after {
-	background-image: url(images/arrow-d-l-black.png);
+	background-image: url(images/icons-png/arrow-d-l-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-arrow-d-r:after,
 .ui-nosvg .ui-alt-icon .ui-icon-arrow-d-r:after {
-	background-image: url(images/arrow-d-r-black.png);
+	background-image: url(images/icons-png/arrow-d-r-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-arrow-l:after,
 .ui-nosvg .ui-alt-icon .ui-icon-arrow-l:after {
-	background-image: url(images/arrow-l-black.png);
+	background-image: url(images/icons-png/arrow-l-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-arrow-r:after,
 .ui-nosvg .ui-alt-icon .ui-icon-arrow-r:after {
-	background-image: url(images/arrow-r-black.png);
+	background-image: url(images/icons-png/arrow-r-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-arrow-u:after,
 .ui-nosvg .ui-alt-icon .ui-icon-arrow-u:after {
-	background-image: url(images/arrow-u-black.png);
+	background-image: url(images/icons-png/arrow-u-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-arrow-u-l:after,
 .ui-nosvg .ui-alt-icon .ui-icon-arrow-u-l:after {
-	background-image: url(images/arrow-u-l-black.png);
+	background-image: url(images/icons-png/arrow-u-l-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-arrow-u-r:after,
 .ui-nosvg .ui-alt-icon .ui-icon-arrow-u-r:after {
-	background-image: url(images/arrow-u-r-black.png);
+	background-image: url(images/icons-png/arrow-u-r-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-audio:after,
 .ui-nosvg .ui-alt-icon .ui-icon-audio:after {
-	background-image: url(images/audio-black.png);
+	background-image: url(images/icons-png/audio-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-back:after,
 .ui-nosvg .ui-alt-icon .ui-icon-back:after {
-	background-image: url(images/back-black.png);
+	background-image: url(images/icons-png/back-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-bars:after,
 .ui-nosvg .ui-alt-icon .ui-icon-bars:after {
-	background-image: url(images/bars-black.png);
+	background-image: url(images/icons-png/bars-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-bullets:after,
 .ui-nosvg .ui-alt-icon .ui-icon-bullets:after {
-	background-image: url(images/bullets-black.png);
+	background-image: url(images/icons-png/bullets-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-calendar:after,
 .ui-nosvg .ui-alt-icon .ui-icon-calendar:after {
-	background-image: url(images/calendar-black.png);
+	background-image: url(images/icons-png/calendar-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-camera:after,
 .ui-nosvg .ui-alt-icon .ui-icon-camera:after {
-	background-image: url(images/camera-black.png);
+	background-image: url(images/icons-png/camera-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-carat-d:after,
 .ui-nosvg .ui-alt-icon .ui-icon-carat-d:after {
-	background-image: url(images/carat-d-black.png);
+	background-image: url(images/icons-png/carat-d-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-carat-l:after,
 .ui-nosvg .ui-alt-icon .ui-icon-carat-l:after {
-	background-image: url(images/carat-l-black.png);
+	background-image: url(images/icons-png/carat-l-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-carat-r:after,
 .ui-nosvg .ui-alt-icon .ui-icon-carat-r:after {
-	background-image: url(images/carat-r-black.png);
+	background-image: url(images/icons-png/carat-r-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-carat-u:after,
 .ui-nosvg .ui-alt-icon .ui-icon-carat-u:after {
-	background-image: url(images/carat-u-black.png);
+	background-image: url(images/icons-png/carat-u-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-check:after,
 .ui-nosvg .ui-alt-icon .ui-icon-check:after,
 .ui-nosvg .ui-alt-icon.ui-btn.ui-checkbox-on:after,
 .ui-nosvg .ui-alt-icon .ui-btn.ui-checkbox-on:after {
-	background-image: url(images/check-black.png);
+	background-image: url(images/icons-png/check-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-clock:after,
 .ui-nosvg .ui-alt-icon .ui-icon-clock:after {
-	background-image: url(images/clock-black.png);
+	background-image: url(images/icons-png/clock-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-cloud:after,
 .ui-nosvg .ui-alt-icon .ui-icon-cloud:after {
-	background-image: url(images/cloud-black.png);
+	background-image: url(images/icons-png/cloud-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-comment:after,
 .ui-nosvg .ui-alt-icon .ui-icon-comment:after {
-	background-image: url(images/comment-black.png);
+	background-image: url(images/icons-png/comment-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-delete:after,
 .ui-nosvg .ui-alt-icon .ui-icon-delete:after {
-	background-image: url(images/delete-black.png);
+	background-image: url(images/icons-png/delete-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-edit:after,
 .ui-nosvg .ui-alt-icon .ui-icon-edit:after {
-	background-image: url(images/edit-black.png);
+	background-image: url(images/icons-png/edit-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-eye:after,
 .ui-nosvg .ui-alt-icon .ui-icon-eye:after {
-	background-image: url(images/eye-black.png);
+	background-image: url(images/icons-png/eye-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-forbidden:after,
 .ui-nosvg .ui-alt-icon .ui-icon-forbidden:after {
-	background-image: url(images/forbidden-black.png);
+	background-image: url(images/icons-png/forbidden-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-forward:after,
 .ui-nosvg .ui-alt-icon .ui-icon-forward:after {
-	background-image: url(images/forward-black.png);
+	background-image: url(images/icons-png/forward-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-gear:after,
 .ui-nosvg .ui-alt-icon .ui-icon-gear:after {
-	background-image: url(images/gear-black.png);
+	background-image: url(images/icons-png/gear-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-grid:after,
 .ui-nosvg .ui-alt-icon .ui-icon-grid:after {
-	background-image: url(images/grid-black.png);
+	background-image: url(images/icons-png/grid-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-heart:after,
 .ui-nosvg .ui-alt-icon .ui-icon-heart:after {
-	background-image: url(images/heart-black.png);
+	background-image: url(images/icons-png/heart-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-home:after,
 .ui-nosvg .ui-alt-icon .ui-icon-home:after {
-	background-image: url(images/home-black.png);
+	background-image: url(images/icons-png/home-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-info:after,
 .ui-nosvg .ui-alt-icon .ui-icon-info:after {
-	background-image: url(images/info-black.png);
+	background-image: url(images/icons-png/info-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-location:after,
 .ui-nosvg .ui-alt-icon .ui-icon-location:after {
-	background-image: url(images/location-black.png);
+	background-image: url(images/icons-png/location-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-lock:after,
 .ui-nosvg .ui-alt-icon .ui-icon-lock:after {
-	background-image: url(images/lock-black.png);
+	background-image: url(images/icons-png/lock-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-mail:after,
 .ui-nosvg .ui-alt-icon .ui-icon-mail:after {
-	background-image: url(images/mail-black.png);
+	background-image: url(images/icons-png/mail-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-minus:after,
 .ui-nosvg .ui-alt-icon .ui-icon-minus:after {
-	background-image: url(images/minus-black.png);
+	background-image: url(images/icons-png/minus-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-navigation:after,
 .ui-nosvg .ui-alt-icon .ui-icon-navigation:after {
-	background-image: url(images/navigation-black.png);
+	background-image: url(images/icons-png/navigation-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-phone:after,
 .ui-nosvg .ui-alt-icon .ui-icon-phone:after {
-	background-image: url(images/phone-black.png);
+	background-image: url(images/icons-png/phone-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-plus:after,
 .ui-nosvg .ui-alt-icon .ui-icon-plus:after {
-	background-image: url(images/plus-black.png);
+	background-image: url(images/icons-png/plus-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-power:after,
 .ui-nosvg .ui-alt-icon .ui-icon-power:after {
-	background-image: url(images/power-black.png);
+	background-image: url(images/icons-png/power-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-recycle:after,
 .ui-nosvg .ui-alt-icon .ui-icon-recycle:after {
-	background-image: url(images/recycle-black.png);
+	background-image: url(images/icons-png/recycle-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-refresh:after,
 .ui-nosvg .ui-alt-icon .ui-icon-refresh:after {
-	background-image: url(images/refresh-black.png);
+	background-image: url(images/icons-png/refresh-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-search:after,
 .ui-nosvg .ui-alt-icon .ui-icon-search:after,
 .ui-nosvg .ui-input-search:after {
-	background-image: url(images/search-black.png);
+	background-image: url(images/icons-png/search-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-shop:after,
 .ui-nosvg .ui-alt-icon .ui-icon-shop:after {
-	background-image: url(images/shop-black.png);
+	background-image: url(images/icons-png/shop-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-star:after,
 .ui-nosvg .ui-alt-icon .ui-icon-star:after {
-	background-image: url(images/star-black.png);
+	background-image: url(images/icons-png/star-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-tag:after,
 .ui-nosvg .ui-alt-icon .ui-icon-tag:after {
-	background-image: url(images/tag-black.png);
+	background-image: url(images/icons-png/tag-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-user:after,
 .ui-nosvg .ui-alt-icon .ui-icon-user:after {
-	background-image: url(images/user-black.png);
+	background-image: url(images/icons-png/user-black.png);
 }
 .ui-nosvg .ui-alt-icon.ui-icon-video:after,
 .ui-nosvg .ui-alt-icon .ui-icon-video:after {
-	background-image: url(images/video-black.png);
+	background-image: url(images/icons-png/video-black.png);
 }
 /* Globals */
 /* Font
@@ -917,7 +917,7 @@ html .ui-alt-icon .ui-radio-off:after {
 	width: 8px;
 	height: 8px;
 	border-width: 5px;
-	border-style: solid;
+	border-style: solid; 
 }
 .ui-alt-icon.ui-btn.ui-radio-on:after,
 .ui-alt-icon .ui-btn.ui-radio-on:after {
@@ -1559,7 +1559,7 @@ div.ui-mobile-viewport {
 .ui-mini .ui-btn-icon-notext,
 .ui-header .ui-btn-icon-notext,
 .ui-footer .ui-btn-icon-notext {
-	font-size: 16px;
+	font-size: 16px;	
 	padding: 0;
 }
 .ui-btn-inline {
@@ -2255,11 +2255,11 @@ button.ui-btn-icon-notext,
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translateX(0); /* Needed to work around an iOS 3.1 bug that causes listview thumbs to disappear when -webkit-visibility:hidden is used. */
 	-webkit-transform-origin: 0;
-
+	
 	-moz-backface-visibility: hidden;
 	-moz-transform: translateX(0);
 	-moz-transform-origin: 0;
-
+	
 	backface-visibility :hidden;
 	transform: translateX(0);
 	transform-origin: 0;
@@ -2282,7 +2282,7 @@ button.ui-btn-icon-notext,
 	-moz-animation-duration: 250ms;
 	animation-name: flipintoright;
 	animation-duration: 250ms;
-
+	
 }
 .turn.out.reverse {
 	-webkit-transform: rotateY(90deg) scale(.9);
@@ -2349,17 +2349,17 @@ button.ui-btn-icon-notext,
 .flow {
 	-webkit-transform-origin: 50% 30%;
 	-webkit-box-shadow: 0 0 20px rgba(0,0,0,.4);
-	-moz-transform-origin: 50% 30%;
+	-moz-transform-origin: 50% 30%;	
 	-moz-box-shadow: 0 0 20px rgba(0,0,0,.4);
-	transform-origin: 50% 30%;
+	transform-origin: 50% 30%;	
 	box-shadow: 0 0 20px rgba(0,0,0,.4);
 }
 .ui-dialog.flow {
 	-webkit-transform-origin: none;
 	-webkit-box-shadow: none;
-	-moz-transform-origin: none;
+	-moz-transform-origin: none;	
 	-moz-box-shadow: none;
-	transform-origin: none;
+	transform-origin: none;	
 	box-shadow: none;
 }
 .flow.out {
@@ -2616,7 +2616,7 @@ li.ui-block-e {
 }
 .ui-grid-solo > .ui-block-a {
 	width: 100%;
-	float: none;
+	float: none; 
 }
 /* preset breakpoint to switch to stacked grid styles below 35em (560px) */
 @media (max-width: 35em) {
@@ -2625,8 +2625,8 @@ li.ui-block-e {
 	.ui-responsive > .ui-block-c,
 	.ui-responsive > .ui-block-d,
 	.ui-responsive > .ui-block-e {
-		width: 100%;
-		float: none;
+		width: 100%; 
+		float: none; 
 	}
 }
 /* fixed page header & footer configuration */
@@ -2697,7 +2697,7 @@ li.ui-block-e {
 	clip: rect(1px,1px,1px,1px);
 }
 .ui-header-fixed .ui-btn,
-.ui-footer-fixed .ui-btn {
+.ui-footer-fixed .ui-btn { 
 	z-index: 10;
 }
 /* workarounds for other widgets */
@@ -2796,7 +2796,7 @@ li.ui-block-e {
 	border: 0;
 	outline: 0;
 	-webkit-border-radius: inherit;
-	border-radius: inherit;
+	border-radius: inherit;	
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	cursor: pointer;
@@ -2858,7 +2858,7 @@ li.ui-block-e {
 }
 .ui-collapsible-content {
 	display: block;
-	margin: 0;
+	margin: 0;	
 	padding: .5em 1em;
 }
 .ui-collapsible-themed-content .ui-collapsible-content {
@@ -2884,27 +2884,27 @@ li.ui-block-e {
 }
 .ui-collapsible-heading,
 .ui-collapsible-heading > .ui-btn {
-	-webkit-border-radius: inherit;
-	border-radius: inherit;
+	-webkit-border-radius: inherit;	
+	border-radius: inherit;	
 }
 .ui-collapsible-set .ui-collapsible.ui-first-child {
-	-webkit-border-top-right-radius: inherit;
+	-webkit-border-top-right-radius: inherit;	
 	border-top-right-radius: inherit;
-	-webkit-border-top-left-radius: inherit;
-	border-top-left-radius: inherit;
+	-webkit-border-top-left-radius: inherit;	
+	border-top-left-radius: inherit;		
 }
 .ui-collapsible-content,
 .ui-collapsible-set .ui-collapsible.ui-last-child {
-	-webkit-border-bottom-right-radius: inherit;
+	-webkit-border-bottom-right-radius: inherit;	
 	border-bottom-right-radius: inherit;
-	-webkit-border-bottom-left-radius: inherit;
-	border-bottom-left-radius: inherit;
+	-webkit-border-bottom-left-radius: inherit;	
+	border-bottom-left-radius: inherit;		
 }
 .ui-collapsible-themed-content:not(.ui-collapsible-collapsed) > .ui-collapsible-heading {
-	-webkit-border-bottom-right-radius: 0;
+	-webkit-border-bottom-right-radius: 0;	
 	border-bottom-right-radius: 0;
-	-webkit-border-bottom-left-radius: 0;
-	border-bottom-left-radius: 0;
+	-webkit-border-bottom-left-radius: 0;	
+	border-bottom-left-radius: 0;		
 }
 .ui-collapsible-set .ui-collapsible {
 	margin: -1px -1em 0;
@@ -3054,23 +3054,23 @@ fieldset.ui-controlgroup {
 	position: relative;
 	top: -1em;
 }
-.ui-dialog-contain > .ui-header,
-.ui-dialog-contain > .ui-content,
-.ui-dialog-contain > .ui-footer {
+.ui-dialog-contain > .ui-header, 
+.ui-dialog-contain > .ui-content, 
+.ui-dialog-contain > .ui-footer { 
 	display: block;
-	position: relative;
+	position: relative; 
 	width: auto;
 	margin: 0;
 }
 .ui-dialog-contain > .ui-header {
 	overflow: hidden;
-	z-index: 10;
+	z-index: 10; 
 	padding: 0;
 	border-top-width: 0;
 }
 .ui-dialog-contain > .ui-footer {
-	z-index: 10;
-	padding: 0 1em;
+	z-index: 10; 
+	padding: 0 1em; 
 	border-bottom-width: 0;
 }
 .ui-popup-open .ui-header-fixed,
@@ -3192,7 +3192,7 @@ fieldset.ui-controlgroup {
 }
 .ui-popup > .ui-btn-left,
 .ui-popup > .ui-btn-right {
-	position: absolute;
+	position: absolute; 
 	top: -11px;
 	margin: 0;
 	z-index: 1101;
@@ -3269,7 +3269,7 @@ fieldset.ui-controlgroup {
 /**
  * For each side, the arrow is twice the desired size and its corner is aligned
  * with the edge of the container:
- *
+ *                                           
  *           /\         /\                +----+       /\
  *          /  \       /  \               | /\ |top   /  \
  *      +----+  \     /  +----+       +-->|/  \|     /    \
@@ -3318,7 +3318,7 @@ fieldset.ui-controlgroup {
     margin-left: -5.857864376269049px;
     margin-top: -4.142135623730951px;
 }
-
+ 
 .ui-popup-arrow-container.ui-popup-arrow-l.ie .ui-popup-arrow {
     margin-left: -7.0710678118654755px;
     margin-top: -5.857864376269049px;
@@ -3436,7 +3436,7 @@ fieldset.ui-controlgroup {
 	max-height: 100%;
 	outline: 0;
 	-webkit-border-radius: inherit;
-	border-radius: inherit;
+	border-radius: inherit;	
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	cursor: pointer;
@@ -3453,7 +3453,7 @@ fieldset.ui-controlgroup {
 .ui-select .ui-state-disabled select {
 	display: none;
 }
-/* Because we add all classes of the select and option elements to the span... */
+/* Because we add all classes of the select and option elements to the span... */ 
 .ui-select span.ui-state-disabled {
 	filter: Alpha(Opacity=100);
 	opacity: 1;
@@ -3520,7 +3520,7 @@ fieldset.ui-controlgroup {
 .ui-selectmenu .ui-selectmenu-list {
 	margin: 0;
 	-webkit-border-radius: inherit;
-	border-radius: inherit;
+	border-radius: inherit;	
 }
 .ui-header:not(.ui-screen-hidden) + .ui-selectmenu-list {
 	-webkit-border-top-right-radius: 0;
@@ -3606,7 +3606,7 @@ fieldset.ui-controlgroup {
 }
 .ui-listview > li.ui-first-child,
 .ui-listview > li.ui-first-child > a.ui-btn {
-	-webkit-border-top-right-radius: inherit;
+	-webkit-border-top-right-radius: inherit;	
 	border-top-right-radius: inherit;
 	-webkit-border-top-left-radius: inherit;
 	border-top-left-radius: inherit;
@@ -3625,7 +3625,7 @@ fieldset.ui-controlgroup {
 	border-bottom-right-radius: 0;
 }
 .ui-listview > li.ui-first-child > a.ui-btn + a.ui-btn {
-	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-left-radius: 0;	
 	border-top-left-radius: 0;
 	-webkit-border-top-right-radius: inherit;
 	border-top-right-radius: inherit;
@@ -3638,15 +3638,15 @@ fieldset.ui-controlgroup {
 }
 .ui-listview > li.ui-first-child img:first-child:not(.ui-li-icon) {
 	-webkit-border-top-left-radius: inherit;
-	border-top-left-radius: inherit;
+	border-top-left-radius: inherit;	
 }
 .ui-listview > li.ui-last-child img:first-child:not(.ui-li-icon) {
 	-webkit-border-bottom-left-radius: inherit;
-	border-bottom-left-radius: inherit;
+	border-bottom-left-radius: inherit;	
 }
 .ui-collapsible-content > .ui-listview:not(.ui-listview-inset) {
 	-webkit-border-radius: inherit;
-	border-radius: inherit;
+	border-radius: inherit;	
 }
 .ui-listview > .ui-li-static {
 	padding: .7em 1em;
@@ -4402,35 +4402,35 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
  Styles for the table columntoggle mode
 */
 .ui-table-reflow td .ui-table-cell-label,
-.ui-table-reflow th .ui-table-cell-label {
+.ui-table-reflow th .ui-table-cell-label { 
 	display: none;
 }
-/* Mobile first styles: Begin with the stacked presentation at narrow widths */
+/* Mobile first styles: Begin with the stacked presentation at narrow widths */ 
 @media only all {
-	/* Hide the table headers */
-	.ui-table-reflow thead td,
+	/* Hide the table headers */ 
+	.ui-table-reflow thead td, 
 	.ui-table-reflow thead th {
 		display: none;
 	}
-	/* Show the table cells as a block level element */
+	/* Show the table cells as a block level element */ 
 	.ui-table-reflow td,
-	.ui-table-reflow th {
+	.ui-table-reflow th { 
 		text-align: left;
 		display: block;
 	}
-	/* Add a fair amount of top margin to visually separate each row when stacked */
+	/* Add a fair amount of top margin to visually separate each row when stacked */  
 	.ui-table-reflow tbody th {
 		margin-top: 3em;
 	}
-	/* Make the label elements a percentage width */
+	/* Make the label elements a percentage width */ 
 	.ui-table-reflow td .ui-table-cell-label,
-	.ui-table-reflow th .ui-table-cell-label {
-		padding: .4em;
-		min-width: 30%;
+	.ui-table-reflow th .ui-table-cell-label { 
+		padding: .4em; 
+		min-width: 30%; 
 		display: inline-block;
 		margin: -.4em 1em -.4em -.4em;
 	}
-	/* For grouped headers, have a different style to visually separate the levels by classing the first label in each col group */
+	/* For grouped headers, have a different style to visually separate the levels by classing the first label in each col group */ 
 	.ui-table-reflow th .ui-table-cell-label-top,
 	.ui-table-reflow td .ui-table-cell-label-top {
 		display: block;
@@ -4441,9 +4441,9 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
 		font-weight: normal;
 	}
 }
-/* Breakpoint to show as a standard table at 560px (35em x 16px) or wider */
+/* Breakpoint to show as a standard table at 560px (35em x 16px) or wider */ 
 @media ( min-width: 35em ) {
-	/* Show the table header rows */
+	/* Show the table header rows */ 
 	.ui-table-reflow.ui-responsive td,
 	.ui-table-reflow.ui-responsive th,
 	.ui-table-reflow.ui-responsive tbody th,
@@ -4453,14 +4453,14 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
 		display: table-cell;
 		margin: 0;
 	}
-	/* Hide the labels in each cell */
+	/* Hide the labels in each cell */ 
 	.ui-table-reflow.ui-responsive td .ui-table-cell-label,
-	.ui-table-reflow.ui-responsive th .ui-table-cell-label {
+	.ui-table-reflow.ui-responsive th .ui-table-cell-label { 
 		display: none;
 	}
 }
-/* Hack to make IE9 and WP7.5 treat cells like block level elements, scoped to ui-responsive class */
-/* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this*/
+/* Hack to make IE9 and WP7.5 treat cells like block level elements, scoped to ui-responsive class */ 
+/* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this*/ 
 @media ( max-width: 35em ) {
 	.ui-table-reflow.ui-responsive td,
 	.ui-table-reflow.ui-responsive th {
@@ -4690,7 +4690,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
 		margin-left: 17em;
 	}
 	.ui-responsive-panel .ui-panel-page-content-open {
-		width: auto;
+		width: auto;	
 	}
 	.ui-responsive-panel .ui-panel-dismiss-display-push,
 	.ui-responsive-panel.ui-page-active ~ .ui-panel-dismiss-display-push {
