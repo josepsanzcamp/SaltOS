@@ -376,7 +376,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/tedivm/JShrink/")</onclick>
 						</field>
 						<field>
-							<label>HttpClient 1.90 (BSD)</label>
+							<label>HttpClient 1.92 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html")</onclick>
