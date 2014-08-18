@@ -1538,18 +1538,21 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).ckeditor({
 			skin:"kama",
-			extraPlugins:"",
-			removePlugins:"",
+			extraPlugins:"codesnippet,autogrow",
+			removePlugins:"elementspath",
 			enterMode:CKEDITOR.ENTER_BR,
 			shiftEnterMode:CKEDITOR.ENTER_BR,
 			forcePasteAsPlainText:true,
-			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","Syntaxhighlight"],["About"]],
+			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet"],["About"]],
+			codeSnippet_theme:"school_book",
 			language:lang_default(),
 			uiColor:get_colors("ui-state-default","background-color"),
 			autoGrow_onStartup:true,
 			disableNativeSpellChecker:false,
 			dialog_backgroundCoverColor:"#aaa",
-			dialog_backgroundCoverOpacity:0.3
+			dialog_backgroundCoverOpacity:0.3,
+			resize_enabled:false,
+			allowedContent:true
 		},function() {
 			$("#"+$(this).attr("name")).next().addClass("ui-state-default ui-corner-all");
 		});

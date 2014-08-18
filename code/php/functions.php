@@ -214,9 +214,16 @@ function eval_iniset($array) {
 				if($val!=$current) $diff=1;
 			}
 			if($diff) {
-				$result=ini_set($key,$val);
-				if($result===false) {
-					show_php_error(array("phperror"=>"ini_set fails to set '$key' from '$current' to '$val'"));
+				if(ini_set($key,$val)===false) {
+					if($key=="mbstring.internal_encoding") {
+						if(!mb_internal_encoding($val)) {
+							show_php_error(array("phperror"=>"mb_internal_encoding fails to set '$val'"));
+						}
+					} elseif($key=="mbstring.detect_order") {
+						mb_detect_order($val);
+					} else {
+						show_php_error(array("phperror"=>"ini_set fails to set '$key' from '$current' to '$val'"));
+					}
 				}
 			}
 		}
@@ -230,8 +237,7 @@ function eval_putenv($array) {
 			$diff=0;
 			if($val!=$current) $diff=1;
 			if($diff) {
-				$result=putenv($key."=".$val);
-				if($result===false) {
+				if(putenv($key."=".$val)===false) {
 					show_php_error(array("phperror"=>"putenv fails to set '$key' from '$current' to '$val'"));
 				}
 			}
