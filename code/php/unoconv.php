@@ -99,18 +99,22 @@ function __unoconv_pdf2txt($input,$output) {
 }
 
 function __unoconv_all2pdf($input,$output) {
+	__unoconv_convert($input,$output,"pdf");
+}
+
+function __unoconv_convert($input,$output,$format) {
 	if(eval_bool(getDefault("nativesoffice"))) {
 		if(!check_commands(getDefault("commands/soffice"),60)) return;
 		$input2=get_cache_file($input);
 		if(!file_exists($input2)) symlink(realpath($input),$input2);
-		ob_passthru(__unoconv_timeout(getDefault("commands/soffice")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTDIR__"),array("pdf",$input2,dirname($input2)),getDefault("commands/__soffice__"))));
+		ob_passthru(__unoconv_timeout(getDefault("commands/soffice")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTDIR__"),array($format,$input2,dirname($input2)),getDefault("commands/__soffice__"))));
 		unlink($input2);
-		$output2=str_replace(".".extension($input2),".pdf",$input2);
+		$output2=str_replace(".".extension($input2),".".$format,$input2);
 		if(!file_exists($output2)) return;
 		if($output!=$output2) rename($output2,$output);
 	} else {
 		if(!check_commands(getDefault("commands/unoconv"),60)) return;
-		ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTPUT__"),array("pdf",$input,$output),getDefault("commands/__unoconv__"))));
+		ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTPUT__"),array($format,$input,$output),getDefault("commands/__unoconv__"))));
 	}
 }
 

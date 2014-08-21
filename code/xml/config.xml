@@ -87,6 +87,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<porthttp>80</porthttp>
 		<porthttps>443</porthttps>
 		<dirindex>index.php</dirindex>
+		<memory_limit>288M</memory_limit>
 		<max_execution_time>900</max_execution_time>
 		<percentstop>10</percentstop>
 		<percenterror>1</percenterror>

@@ -175,9 +175,6 @@ function __import_csv2array($file,$sep) {
 function __import_xls2array($file,$sheet) {
 	set_include_path("lib/phpexcel:".get_include_path());
 	require_once("PHPExcel.php");
-	$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
-	$cacheSettings=array("memoryCacheSize"=>"8MB");
-	PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);
 	$objReader=PHPExcel_IOFactory::createReaderForFile($file);
 	//~ $objReader->setReadDataOnly(true);
 	// CHECK THE SHEET PARAM
@@ -195,14 +192,15 @@ function __import_xls2array($file,$sheet) {
 		if(!is_numeric($sheet)) return "Error: Sheet named '${sheet}' not found";
 	}
 	// TRICK FOR A BIG FILES
-	if(check_commands(getDefault("commands/unoconv"),60) && count($sheets)==1 && filesize($file)>1048576) { // filesize>1Mb
+	if(count($sheets)==1 && filesize($file)>1048576) { // filesize>1Mb
 		require_once("php/unoconv.php");
 		$temp=get_cache_file(file_get_contents($file),"csv");
-		ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTPUT__"),array("csv",$file,$temp),getDefault("commands/__unoconv__"))));
+		if(!file_exists($temp)) {
+			__unoconv_convert($file,$temp,"csv");
+		}
 		if(file_exists($temp)) {
 			unset($objReader);
 			$array=__import_csv2array($temp,",");
-			unlink($temp);
 			return $array;
 		}
 	}

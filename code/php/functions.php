@@ -1021,7 +1021,7 @@ function pretty_html_error($msg) {
 	$html.=".phperror { background:#eee; color:#000; padding:20px; font-family:Helvetica,Arial,sans-serif; }";
 	$html.=".phperror div { width:80%; margin:0 auto; background:#fff; padding:20px 40px; border:1px solid #aaa; border-radius:5px; text-align:left; }";
 	$favicon=getDefault("info/favicon","img/favicon.png");
-	if(file_exists($favicon) && memory_get_free()>filesize($favicon)*4/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
+	if(file_exists($favicon) && memory_get_free(true)>filesize($favicon)*4/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
 	$html.=".phperror h3 { background:url(${favicon}) top left no-repeat; padding-left: 48px; height:32px; font-size:24px; margin:0; }";
 	$html.=".phperror pre { white-space:pre-wrap; font-size:10px; }";
 	$html.=".phperror form { display:inline; float:right; }";
@@ -1073,16 +1073,12 @@ function __shutdown_handler() {
 }
 
 function __tick_handler() {
-	//~ addlog("function=".__FUNCTION__);
-	//~ addlog("max_execution_time=".ini_get("max_execution_time"));
-	//~ addlog("time_get_usage=".time_get_usage(true));
-	//~ addlog("time_get_free=".time_get_free());
 	if(time_get_free()<getDefault("server/percenterror")) {
 		$cur=ini_get("max_execution_time");
 		$max=getDefault("server/max_execution_time");
 		if($cur>0 && $max>0) {
 			$cur=min($cur*(1+getDefault("server/percentincr")/100),$max);
-			//~ addlog("max=$max, cur=$cur");
+			//~ addlog("max_execution_time, max=$max, cur=$cur");
 			capture_next_error();
 			ini_set("max_execution_time",$cur);
 			get_clear_error();
@@ -1090,6 +1086,21 @@ function __tick_handler() {
 		if(time_get_free()<getDefault("server/percenterror")) {
 			$backtrace=debug_backtrace();
 			show_php_error(array("phperror"=>"max_execution_time reached","backtrace"=>$backtrace));
+		}
+	}
+	if(memory_get_free()<getDefault("server/percenterror")) {
+		$cur=normalize_value(ini_get("memory_limit"));
+		$max=normalize_value(getDefault("server/memory_limit"));
+		if($cur>0 && $max>0) {
+			$cur=min($cur*(1+getDefault("server/percentincr")/100),$max);
+			//~ addlog("memory_limit, max=$max, cur=$cur");
+			capture_next_error();
+			ini_set("memory_limit",$cur);
+			get_clear_error();
+		}
+		if(memory_get_free()<getDefault("server/percenterror")) {
+			$backtrace=debug_backtrace();
+			show_php_error(array("phperror"=>"memory_limit reached","backtrace"=>$backtrace));
 		}
 	}
 }
@@ -1165,15 +1176,12 @@ function fix_input_vars() {
 	}
 }
 
-function memory_get_free() {
-	static $memory_limit=0;
-	if(!$memory_limit) {
-		$memory_limit=ini_get("memory_limit");
-		if(strtoupper(substr($memory_limit,-1,1))=="K") $memory_limit=intval(substr($memory_limit,0,-1))*1024;
-		if(strtoupper(substr($memory_limit,-1,1))=="M") $memory_limit=intval(substr($memory_limit,0,-1))*1024*1024;
-	}
+function memory_get_free($bytes=false) {
+	$memory_limit=normalize_value(ini_get("memory_limit"));
 	$memory_usage=memory_get_usage(true);
-	return $memory_limit-$memory_usage;
+	$diff=$memory_limit-$memory_usage;
+	if(!$bytes) $diff=($diff*100)/$memory_limit;
+	return $diff;
 }
 
 function debug($name,$end=0) {
@@ -1227,14 +1235,9 @@ function __time_get_helper($fn,$secs) {
 	$max=ini_get("max_execution_time");
 	if(!$max) $max=getDefault("server/max_execution_time");
 	if(!$max) $max=600;
-	if(stripos($fn,"usage")!==false) {
-		$diff=$cur-$ini;
-	} elseif(stripos($fn,"free")!==false) {
-		$diff=$max-($cur-$ini);
-	}
-	if(!$secs) {
-		$diff=($diff*100)/$max;
-	}
+	if(stripos($fn,"usage")!==false) $diff=$cur-$ini;
+	elseif(stripos($fn,"free")!==false) $diff=$max-($cur-$ini);
+	if(!$secs) $diff=($diff*100)/$max;
 	return $diff;
 }
 ?>

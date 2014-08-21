@@ -86,7 +86,7 @@ function __addlog_helper($a) {
 
 function checklog($hash,$file="") {
 	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
-	if(file_exists($dir.$file) && memory_get_free()>filesize($dir.$file)) {
+	if(file_exists($dir.$file) && memory_get_free(true)>filesize($dir.$file)) {
 		capture_next_error();
 		$buffer=file_get_contents($dir.$file);
 		$error=get_clear_error();
@@ -99,7 +99,7 @@ function addlog($msg,$file="") {
 	if(!$file) $file=getDefault("debug/logfile","saltos.log");
 	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
 	$maxlines=intval(getDefault("debug/maxlines",1000));
-	if($maxlines>0 && file_exists($dir.$file) && memory_get_free()>filesize($dir.$file)) {
+	if($maxlines>0 && file_exists($dir.$file) && memory_get_free(true)>filesize($dir.$file)) {
 		capture_next_error();
 		$numlines=count(file($dir.$file));
 		$error=get_clear_error();
