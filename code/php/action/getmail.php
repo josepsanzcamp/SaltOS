@@ -97,7 +97,7 @@ if(getParam("action")=="getmail") {
 		if($cid=="body") {
 			$result=__getmail_getfullbody(__getmail_getnode("0",$decoded));
 			$buffer="";
-			$buffer.=__HTML_PAGE_OPEN__;
+			$buffer.=__HTML_PAGE_OPEN_WITH_CK__;
 			$first=1;
 			$useimginline=eval_bool(getDefault("cache/useimginline"));
 			foreach($result as $index=>$node) {
@@ -204,7 +204,7 @@ if(getParam("action")=="getmail") {
 			if(!isset($result["cc"])) unset($lista["cc"]);
 			if(!isset($result["bcc"])) unset($lista["bcc"]);
 			if(!$result["subject"]) $result["subject"]=LANG("sinsubject","correo");
-			$buffer.=__HTML_PAGE_OPEN__;
+			$buffer.=__HTML_PAGE_OPEN_WITH_CK__;
 			$buffer.=__HTML_BOX_OPEN__;
 			$buffer.=__HTML_TABLE_OPEN__;
 			foreach($lista as $key=>$val) {

@@ -37,6 +37,11 @@ if(getParam("action")=="indexing") {
 	$total=0;
 	while($row=db_fetch_row($result)) {
 		if(time_get_free()<getDefault("server/percentstop")) break;
+		// CHECK IF EXISTS
+		$query="SELECT id FROM tbl_ficheros WHERE id='${row["id"]}'";
+		$exists=execute_query($query);
+		if(!$exists) continue;
+		// CONTINUE
 		$query="UPDATE tbl_ficheros SET retries=retries+1 WHERE id='${row["id"]}'";
 		db_query($query);
 		if($row["id_aplicacion"]==page2id("correo")) {

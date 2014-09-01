@@ -1,6 +1,6 @@
 /*!
 * jQuery Mobile 1.5.0-pre
-* Git HEAD hash: 2f974cf3d206c7d309cc14e9f356251471fd236d <> Date: Sat Aug 16 2014 22:27:02 UTC
+* Git HEAD hash: 39cb20fe26969941329347e2f41a222f94c63138 <> Date: Fri Aug 29 2014 12:49:17 UTC
 * http://jquerymobile.com
 *
 * Copyright 2010, 2014 jQuery Foundation, Inc. and othercontributors
@@ -2527,6 +2527,9 @@ button.ui-btn-icon-notext,
 		width: auto;
 		margin-right: .625em;
 	}
+	.ui-field-contain > label ~ .ui-btn-inline.ui-btn-icon-notext {
+		width: 1.75em;
+	}
 }
 /* content configurations. */
 .ui-grid-a,
@@ -2730,6 +2733,11 @@ li.ui-block-e {
 	display: block;
 	margin: 0;
 	border-right-width: 0;
+}
+.ui-header .ui-navbar li button.ui-btn,
+.ui-footer .ui-navbar li button.ui-btn {
+	margin: 0;
+	width: 100%;
 }
 .ui-navbar .ui-btn:focus {
 	z-index: 1;
