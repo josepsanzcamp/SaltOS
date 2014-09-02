@@ -87,7 +87,7 @@ function import_file($args) {
 			$array=__import_array2tree($array,$args["nodes"]);
 			break;
 		default:
-			show_php_error(array("phperror"=>"Unknown type '${array["type"]}' for file '${array["file"]}'"));
+			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
 	}
 	if($args["postfn"])  $array=$args["postfn"]($array,$args);
 	return $array;

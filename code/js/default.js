@@ -1537,14 +1537,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).ckeditor({
+			title:"",
 			skin:"kama",
-			extraPlugins:"codesnippet,autogrow",
+			extraPlugins:"codesnippetgeshi,autogrow",
 			removePlugins:"elementspath",
 			enterMode:CKEDITOR.ENTER_BR,
 			shiftEnterMode:CKEDITOR.ENTER_BR,
 			forcePasteAsPlainText:true,
 			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet"],["About"]],
-			codeSnippet_theme:"default",
 			language:lang_default(),
 			uiColor:get_colors("ui-state-default","background-color"),
 			autoGrow_onStartup:true,
@@ -1552,6 +1552,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			dialog_backgroundCoverColor:"#aaa",
 			dialog_backgroundCoverOpacity:0.3,
 			resize_enabled:false,
+			codeSnippetGeshi_url:"../../?action=geshi",
 			allowedContent:true
 		},function() {
 			$("#"+$(this).attr("name")).next().addClass("ui-state-default ui-corner-all");

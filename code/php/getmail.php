@@ -30,7 +30,6 @@ require_once("lib/phpclasses/pop3.php");
 
 // SOME DEFINES
 define("__HTML_PAGE_OPEN__",'<html><head><style type="text/css">'.getDefault("defines/htmlpage").'</style></head><body>');
-define("__HTML_PAGE_OPEN_WITH_CK__",'<html><head><style type="text/css">'.getDefault("defines/htmlpage").'</style><link href="'.getDefault("defines/ckeditorcss").'" rel="stylesheet"><script src="'.getDefault("defines/ckeditorjs").'"></script><script>hljs.initHighlightingOnLoad();</script></head><body>');
 define("__HTML_PAGE_CLOSE__",'</body></html>');
 define("__HTML_BOX_OPEN__",'<div style="'.getDefault("defines/htmlbox").'">');
 define("__HTML_BOX_CLOSE__",'</div>');

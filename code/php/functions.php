@@ -947,21 +947,21 @@ function do_message_error($array,$format) {
 	if(isset($array["details"])) $msg[]=array("Details",$array["details"]);
 	if(isset($array["query"])) $msg[]=array("Query",$array["query"]);
 	if(isset($array["backtrace"])) {
-		$backtrace=$array["backtrace"];
-		array_walk($backtrace,"__debug_backtrace_helper");
-		$msg[]=array("Backtrace",implode($dict[$format][2],$backtrace));
+		foreach($array["backtrace"] as $key=>$item) {
+			$temp="${key} => ${item["function"]}";
+			if(isset($item["class"])) $temp.=" (in class ${item["class"]})";
+			if(isset($item["file"]) && isset($item["line"])) $temp.=" (in file ${item["file"]} at line ${item["line"]})";
+			$array["backtrace"][$key]=$temp;
+		}
+		$msg[]=array("Backtrace",implode($dict[$format][2],$array["backtrace"]));
 	}
-	array_walk($msg,"__do_message_error_helper",$dict[$format]);
+	if(isset($array["debug"])) {
+		foreach($array["debug"] as $key=>$item) $array["debug"][$key]="${key} => ${item}";
+		$msg[]=array("Debug",implode($dict[$format][2],$array["debug"]));
+	}
+	foreach($msg as $key=>$item) $msg[$key]=$dict[$format][0][0].$item[0].$dict[$format][0][1].$dict[$format][1][0].$item[1].$dict[$format][1][1];
 	$msg=implode($msg);
 	return $msg;
-}
-
-function __debug_backtrace_helper(&$item,$key) {
-	$item="${key} => ".$item["function"].(isset($item["class"])?" (in class ".$item["class"].")":"").((isset($item["file"]) && isset($item["line"]))?" (in file ".$item["file"]." at line ".$item["line"].")":"");
-}
-
-function __do_message_error_helper(&$item,$key,$dict) {
-	$item=$dict[0][0].$item[0].$dict[0][1].$dict[1][0].$item[1].$dict[1][1];
 }
 
 function show_php_error($array=null) {
@@ -971,6 +971,13 @@ function show_php_error($array=null) {
 	if($array===null) return;
 	// ADD BACKTRACE IF NOT FOUND
 	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace();
+	// ADD DEBUG IF NOT FOUND
+	if(!isset($array["debug"])) {
+		$array["debug"]=array();
+		if(useSession("user")) $array["debug"]["user"]=useSession("user");
+		foreach(array("page","action","id") as $item) if(getParam($item)) $array["debug"][$item]=getParam($item);
+		if(!count($array["debug"])) unset($array["debug"]);
+	}
 	// CREATE THE MESSAGE ERROR USING HTML ENTITIES AND PLAIN TEXT
 	$msg_html=do_message_error($array,"html");
 	$msg_text=do_message_error($array,"text");

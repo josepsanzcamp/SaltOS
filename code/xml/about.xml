@@ -260,7 +260,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.0.092 (LGPL-3.0)</label>
+							<label>TCPDF 6.0.093 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -382,9 +382,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html")</onclick>
 						</field>
 						<field>
-							<type>separator</type>
+							<label>GeSHi 1.0.8.11 (GPL)</label>
+							<type>link</type>
 							<class>tbody</class>
-							<colspan>1</colspan>
+							<onclick>openwin("https://github.com/GeSHi/geshi-1.0/")</onclick>
 						</field>
 					</row>
 					<row>
