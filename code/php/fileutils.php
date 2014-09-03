@@ -119,21 +119,23 @@ function addlog($msg,$file="") {
 	if(memory_get_free()>0) chmod_protected($dir.$file,0666);
 }
 
-function semaphore_acquire($file,$timeout=100000) {
-	return __semaphore_helper(__FUNCTION__,$file,$timeout);
+function semaphore_acquire($name="",$timeout=INF) {
+	return __semaphore_helper(__FUNCTION__,$name,$timeout);
 }
 
-function semaphore_release($file) {
-	return __semaphore_helper(__FUNCTION__,$file,null);
+function semaphore_release($name="") {
+	return __semaphore_helper(__FUNCTION__,$name,null);
 }
 
 function semaphore_shutdown() {
 	return __semaphore_helper(__FUNCTION__,null,null);
 }
 
-function __semaphore_helper($fn,$file,$timeout) {
+function __semaphore_helper($fn,$name,$timeout) {
 	static $stack=array();
 	if(stripos($fn,"acquire")!==false) {
+		if($name=="") $name=__FUNCTION__;
+		$file=get_cache_file($name,getDefault("exts/semext",".sem"));
 		$hash=md5($file);
 		if(!isset($stack[$hash])) $stack[$hash]=null;
 		if($stack[$hash]) return false;
@@ -170,6 +172,8 @@ function __semaphore_helper($fn,$file,$timeout) {
 		fwrite($stack[$hash],getmypid());
 		return true;
 	} elseif(stripos($fn,"release")!==false) {
+		if($name=="") $name=__FUNCTION__;
+		$file=get_cache_file($name,getDefault("exts/semext",".sem"));
 		$hash=md5($file);
 		if(!isset($stack[$hash])) $stack[$hash]=null;
 		if(!$stack[$hash]) return false;

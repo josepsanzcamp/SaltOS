@@ -29,8 +29,7 @@ if(getParam("action")=="indexing") {
 	require_once("php/unoconv.php");
 	require_once("php/getmail.php");
 	// CHECK THE SEMAPHORE
-	$semaphore=get_cache_file(getParam("action"),getDefault("exts/semext",".sem"));
-	if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) die();
+	if(!semaphore_acquire(getParam("action"),getDefault("semaphoretimeout",100000))) die();
 	// INDEXING FILES
 	$query="SELECT id,id_aplicacion,id_registro,fichero_file,retries FROM tbl_ficheros WHERE indexed=0 AND retries<3 LIMIT 1000";
 	$result=db_query($query);
@@ -91,7 +90,7 @@ if(getParam("action")=="indexing") {
 	// SEND RESPONSE
 	if($total) javascript_alert($total.LANG("msgtotalindexed".min($total,2)));
 	// RELEASE SEMAPHORE
-	semaphore_release($semaphore);
+	semaphore_release(getParam("action"));
 	javascript_headers();
 	die();
 }

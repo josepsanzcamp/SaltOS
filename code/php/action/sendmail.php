@@ -196,7 +196,7 @@ if(getParam("action")=="sendmail") {
 	}
 	if(eval_bool(getDefault("debug/cancelsendmail"))) die();
 	// CHECK THE SEMAPHORE
-	$semaphore=get_cache_file(array(getParam("action"),current_user()),getDefault("exts/semext",".sem"));
+	$semaphore=array(getParam("action"),current_user());
 	if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) {
 		if(!getParam("ajax")) {
 			session_error(LANG("msgerrorsemaphore").getParam("action"));

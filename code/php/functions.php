@@ -502,15 +502,14 @@ function cache_gc() {
 	if(!eval_bool(getDefault("cache/cachegcenabled"))) return;
 	init_random();
 	if(rand(0,intval(getDefault("cache/cachegcdivisor")))>intval(getDefault("cache/cachegcprobability"))) return;
-	$semaphore=get_cache_file("cache_gc",getDefault("exts/semext",".sem"));
-	if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) return;
+	if(!semaphore_acquire(__FUNCTION__,getDefault("semaphoretimeout",100000))) return;
 	$files=glob_protected(get_directory("dirs/cachedir")."*");
 	$delta=time()-intval(getDefault("cache/cachegctimeout"));
 	foreach($files as $file) {
 		list($mtime,$error)=filemtime_protected($file);
 		if(!$error && $delta>$mtime) unlink_protected($file);
 	}
-	semaphore_release($semaphore);
+	semaphore_release(__FUNCTION__);
 }
 
 function db_schema() {
@@ -521,8 +520,7 @@ function db_schema() {
 	get_clear_error();
 	$hash2=md5(serialize(xml2array($file)));
 	if($hash1!=$hash2) {
-		$semaphore=get_cache_file(array("db_schema","db_static"),getDefault("exts/semext",".sem"));
-		if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) return;
+		if(!semaphore_acquire(array("db_schema","db_static"),getDefault("semaphoretimeout",100000))) return;
 		$oldcache=set_use_cache("false");
 		$dbschema=eval_attr(xml2array($file));
 		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
@@ -600,7 +598,7 @@ function db_schema() {
 		}
 		setConfig($file,$hash2);
 		set_use_cache($oldcache);
-		semaphore_release($semaphore);
+		semaphore_release(array("db_schema","db_static"));
 	}
 }
 
@@ -610,8 +608,7 @@ function db_static() {
 	$hash1=CONFIG($file);
 	$hash2=md5(serialize(xml2array($file)));
 	if($hash1!=$hash2) {
-		$semaphore=get_cache_file(array("db_schema","db_static"),getDefault("exts/semext",".sem"));
-		if(!semaphore_acquire($semaphore,getDefault("semaphoretimeout",100000))) return;
+		if(!semaphore_acquire(array("db_schema","db_static"),getDefault("semaphoretimeout",100000))) return;
 		$oldcache=set_use_cache("false");
 		$dbstatic=eval_attr(xml2array($file));
 		if(is_array($dbstatic)) {
@@ -634,7 +631,7 @@ function db_static() {
 		}
 		setConfig($file,$hash2);
 		set_use_cache($oldcache);
-		semaphore_release($semaphore);
+		semaphore_release(array("db_schema","db_static"));
 	}
 }
 

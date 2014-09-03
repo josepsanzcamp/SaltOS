@@ -157,9 +157,8 @@ function db_query_pdo_sqlite($query,$fetch="query") {
 		$pos=strpos($query,"\\",$pos+1);
 	}
 	// CONTINUE THE NORMAL OPERATION
-	$semaphore=getDefault("db/file").getDefault("exts/semext",".sem");
 	$timeout=getDefault("db/semaphoretimeout",10000000);
-	if(semaphore_acquire($semaphore,$timeout)) {
+	if(semaphore_acquire(__FUNCTION__,$timeout)) {
 		// DO QUERY
 		while(1) {
 			try {
@@ -179,7 +178,7 @@ function db_query_pdo_sqlite($query,$fetch="query") {
 				}
 			}
 		}
-		semaphore_release($semaphore);
+		semaphore_release(__FUNCTION__);
 		// DUMP RESULT TO MATRIX
 		if(isset($stmt) && $stmt && $stmt->columnCount()>0) {
 			if($fetch=="auto") {

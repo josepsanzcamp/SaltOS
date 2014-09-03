@@ -49,12 +49,14 @@ cache_gc();
 db_connect();
 db_schema();
 db_static();
+if(!semaphore_acquire()) die();
 sess_init();
 check_remember();
 check_basicauth();
 pre_datauser();
 sess_close();
 check_security("main");
+semaphore_release();
 // GET THE LANGUAGE
 $lang=getDefault("lang");
 $lang=useCookie("lang","",$lang);
