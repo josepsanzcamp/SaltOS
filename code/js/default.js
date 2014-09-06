@@ -213,7 +213,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	/* FOR DEBUG PURPOSES */
 	function addlog(msg) {
 		var data="action=addlog&msg="+rawurlencode(msg);
-		$.ajax({ url:"",data:data,type:"get",async:false });
+		$.ajax({ url:"index.php",data:data,type:"get",async:false });
 	}
 
 	/* FOR SECURITY ISSUES */
@@ -502,7 +502,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(cookies_data[hash].sync) {
 				if(cookies_data[hash].val!=cookies_data[hash].orig) {
 					var data="action=cookies&name="+rawurlencode(cookies_data[hash].key)+"&value="+rawurlencode(cookies_data[hash].val);
-					var value=$.ajax({ url:"",data:data,type:"get",async:false }).responseText;
+					var value=$.ajax({ url:"index.php",data:data,type:"get",async:false }).responseText;
 					if(value!="") {
 						cookies_data[hash].orig=cookies_data[hash].val;
 						cookies_data[hash].sync=0;
@@ -528,7 +528,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			// REQUEST ALL COOKIES
 			var data="action=ajax&query=cookies";
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"get",
 				async:false,
@@ -877,6 +877,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(strpos(url,"page=logout")!==false) { logout(); return; }
 		// TO FIX ERROR 414: REQUEST URI TOO LONG
 		var temp=explode("?",url,2);
+		if(temp[0]=="") temp[0]="index.php";
 		if(typeof(temp[1])=="undefined") temp[1]="";
 		var type=(strlen(url)>1024)?"post":"get";
 		// NORMAL USAGE
@@ -912,6 +913,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function loadcontent(xml) {
 		//~ console.time("loadcontent");
+		$(".ui-tooltip").remove();
 		loadingcontent();
 		if(xml.firstChild) {
 			var xsl=$("root>info>xslt",xml).text();
@@ -1663,7 +1665,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					var data="action=ajax&format=json&query="+query+"&term="+rawurlencode(term);
 					if(typeof($("#"+prefix+filter).val())!="undefined") data+="&filter="+$("#"+prefix+filter).val();
 					$.ajax({
-						url:"",
+						url:"index.php",
 						data:data,
 						type:"get",
 						dataType:"json",

@@ -32,7 +32,7 @@ if(typeof(__clientes__)=="undefined" && typeof(parent.__clientes__)=="undefined"
 		if(id_tipo) {
 			var data="action=ajax&query=tipocliente&id_tipo="+id_tipo;
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"get",
 				success:function(response) {

@@ -31,7 +31,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		if(!id) return;
 		var data="action=ajax&query=state&id="+id+"&type="+type+"&value="+value;
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function (response) {
@@ -64,7 +64,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		if(!id) return;
 		var data="action=getmail&id="+id+"&cid=files";
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function (response) {
@@ -89,7 +89,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 				var input=this.element;
 				var data="action=ajax&format=json&query=emails&term="+rawurlencode(term);
 				$.ajax({
-					url:"",
+					url:"index.php",
 					data:data,
 					type:"get",
 					dataType:"json",
@@ -152,7 +152,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 			data+="&cc="+rawurlencode($(cc).val());
 			data+="&state_crt="+($(state_crt).prop("checked")?1:0);
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"post",
 				success:function (response) {

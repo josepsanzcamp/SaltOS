@@ -31,7 +31,7 @@ if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefine
 		if(!$("#selectpager").length) return;
 		var data="action=pagerlist&page="+getParam("page");
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function (response) {

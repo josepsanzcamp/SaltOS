@@ -51,7 +51,7 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 		// LOAD AJAX COUNTS
 		var data="action=ajax&query=numbers&page="+getParam("page")+"&action2="+getParam("action")+"&id="+getParam("id");
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function(response) {

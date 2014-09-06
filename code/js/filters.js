@@ -36,7 +36,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 			var id_filter=$(filtro).val();
 			var data="action=ajax&query=loadfilter&page="+getParam("page")+"&id="+id_filter;
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"get",
 				success:function(response) {
@@ -86,7 +86,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 			var querystring=rawurlencode(base64_encode(utf8_encode(querystring_filter())));
 			var data="action=ajax&query=updatefilter&page="+getParam("page")+"&id="+id_filter+"&querystring="+querystring;
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"post",
 				success:function(response) {
@@ -113,7 +113,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 			var id_filter=$(filtro).val();
 			var data="action=ajax&query=deletefilter&page="+getParam("page")+"&id="+id_filter;
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"get",
 				success:function(response) {
@@ -139,7 +139,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 			var querystring=rawurlencode(base64_encode(utf8_encode(querystring_filter())));
 			var data="action=ajax&query=createfilter&page="+getParam("page")+"&nombre="+nombre+"&querystring="+querystring;
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"post",
 				success:function(response) {
@@ -168,7 +168,7 @@ if(typeof(__filters__)=="undefined" && typeof(parent.__filters__)=="undefined") 
 			var nombre=rawurlencode($(filtro2).val());
 			var data="action=ajax&query=renamefilter&page="+getParam("page")+"&id="+id_filter+"&nombre="+nombre;
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"post",
 				success:function(response) {

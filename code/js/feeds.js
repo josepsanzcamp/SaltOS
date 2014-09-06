@@ -31,7 +31,7 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 		if(!id) return;
 		var data="action=ajax&query=state2&id="+id+"&type="+type+"&value="+value;
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function (response) {
@@ -54,7 +54,7 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 		if(!id) return;
 		var data="action=ajax&query=feed2bookmark&id="+id;
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function (response) {

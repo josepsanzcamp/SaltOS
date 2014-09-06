@@ -37,7 +37,7 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 		var data="page=importaciones&action=import&id="+id+"&buscar="+rawurlencode(buscar)+"&limit="+limit+"&offset="+offset;
 		loadingcontent();
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function(response) {

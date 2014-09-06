@@ -38,7 +38,7 @@ if(typeof(__updateproyectos__)=="undefined" && typeof(parent.__updateproyectos__
 			var data="action=ajax&query=proyectos&id_cliente="+$(cliente).val()+"&id_posiblecli="+$(posiblecli).val();
 		}
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function(response) {

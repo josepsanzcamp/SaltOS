@@ -31,7 +31,7 @@ if(typeof(__calendar__)=="undefined" && typeof(parent.__calendar__)=="undefined"
 		if(!$("[id^=cell_]").length) return;
 		var data="action=calendar&offset="+getIntCookie("saltos_calendar_offset");
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function(response) {

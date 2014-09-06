@@ -39,7 +39,7 @@ if(typeof(__contactos__)=="undefined" && typeof(parent.__contactos__)=="undefine
 		if(id_proyecto) data=""; // TODO
 		if(data) {
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"get",
 				success:function(response) {

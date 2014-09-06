@@ -48,7 +48,7 @@ if(typeof(__checkagenda__)=="undefined" && typeof(parent.__checkagenda__)=="unde
 		// AJAX CALL
 		var data="action=agenda&id_hash="+id_hash;
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function(response) {

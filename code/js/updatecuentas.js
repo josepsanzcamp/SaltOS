@@ -33,7 +33,7 @@ if(typeof(__updatecuentas__)=="undefined" && typeof(parent.__updatecuentas__)=="
 		if(cuentas_defaults=="") cuentas_defaults=$(cuenta).html();
 		var data="action=ajax&query=cuentas&id_usuario="+$(usuario).val();
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function(response) {

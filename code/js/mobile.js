@@ -213,7 +213,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	/* FOR DEBUG PURPOSES */
 	function addlog(msg) {
 		var data="action=addlog&msg="+rawurlencode(msg);
-		$.ajax({ url:"",data:data,type:"get",async:false });
+		$.ajax({ url:"index.php",data:data,type:"get",async:false });
 	}
 
 	/* FOR SECURITY ISSUES */
@@ -354,7 +354,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			if(cookies_data[hash].sync) {
 				if(cookies_data[hash].val!=cookies_data[hash].orig) {
 					var data="action=cookies&name="+rawurlencode(cookies_data[hash].key)+"&value="+rawurlencode(cookies_data[hash].val);
-					var value=$.ajax({ url:"",data:data,type:"get",async:false }).responseText;
+					var value=$.ajax({ url:"index.php",data:data,type:"get",async:false }).responseText;
 					if(value!="") {
 						cookies_data[hash].orig=cookies_data[hash].val;
 						cookies_data[hash].sync=0;
@@ -380,7 +380,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			// REQUEST ALL COOKIES
 			var data="action=ajax&query=cookies";
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"get",
 				async:false,

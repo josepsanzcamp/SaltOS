@@ -113,7 +113,7 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 		if($(pass).val()) {
 			var data="action=score&pass="+rawurlencode($(pass).val())+"&format=xml"
 			$.ajax({
-				url:"",
+				url:"index.php",
 				data:data,
 				type:"post",
 				success:function(response) {

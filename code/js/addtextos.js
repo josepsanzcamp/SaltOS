@@ -33,7 +33,7 @@ if(typeof(__addtextos__)=="undefined" && typeof(parent.__addtextos__)=="undefine
 		if(!id) return;
 		var data="action=ajax&query=textos&id="+id;
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function (response) {
@@ -55,7 +55,7 @@ if(typeof(__addtextos__)=="undefined" && typeof(parent.__addtextos__)=="undefine
 		if(!id) return;
 		var data="action=ajax&query=textos&id="+id;
 		$.ajax({
-			url:"",
+			url:"index.php",
 			data:data,
 			type:"get",
 			success:function (response) {
