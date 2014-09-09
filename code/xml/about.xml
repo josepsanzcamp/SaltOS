@@ -588,8 +588,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://nvd3.org/")</onclick>
 						</field>
 						<field>
-							<type>separator</type>
+							<label>dagre-d3 (MIT)</label>
+							<type>link</type>
 							<class>tbody</class>
+							<onclick>openwin("https://github.com/cpettitt/dagre-d3")</onclick>
 						</field>
 					</row>
 					<row>

@@ -1635,7 +1635,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>id_usuario</name>
 					<type>INT(11)</type>
-					<fkey>tbl_usuario</fkey>
+					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
@@ -2806,7 +2806,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>id_tarea</name>
 					<type>INT(11)</type>
-					<fkey>tbl_tareas</fkey>
+					<fkey>tbl_proyectos_t</fkey>
+					<fcheck>false</fcheck>
 				</field>
 			</fields>
 		</table>
