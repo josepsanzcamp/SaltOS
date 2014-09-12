@@ -85,7 +85,7 @@ if(getParam("action")=="getmail") {
 	}
 	// CHECK FOR CID REQUEST
 	if(getParam("id") && getParam("cid")) {
-		$id=abs(intval(getParam("id")));
+		$id=abs(getParam("id"));
 		if(!__getmail_checkperm($id)) action_denied();
 		$decoded=__getmail_getmime($id);
 		if(!$decoded) {
@@ -95,6 +95,10 @@ if(getParam("action")=="getmail") {
 		}
 		$cid=getParam("cid");
 		if($cid=="body") {
+			// MARCAR CORREO COMO LEIDO SI ES EL PROPIETARIO
+			$query="UPDATE tbl_correo SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("correo")."' AND id_registro='${id}' AND id_usuario='".current_user()."')";
+			db_query($query);
+			// CONTINUE
 			$result=__getmail_getfullbody(__getmail_getnode("0",$decoded));
 			$buffer="";
 			$buffer.=__HTML_PAGE_OPEN__;

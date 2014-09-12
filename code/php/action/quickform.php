@@ -96,17 +96,6 @@ if(getParam("action")=="quickform") {
 	// PREPARE THE OUTPUT
 	$buffer=__XML_HEADER__;
 	$buffer.=array2xml($_RESULT);
-	// TRICK TO MARK AS READED THE EMAILS AND FEEDS
-	if($page=="correo") {
-		// MARCAR CORREO COMO LEIDO SI ES EL PROPIETARIO
-		$query="UPDATE tbl_correo SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("correo")."' AND id_registro='$id_abs' AND id_usuario='".current_user()."')";
-		db_query($query);
-	}
-	if($page=="feeds") {
-		// MARCAR FEED COMO LEIDO SI ES EL PROPIETARIO
-		$query="UPDATE tbl_feeds SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='$id_abs' AND id_usuario='".current_user()."')";
-		db_query($query);
-	}
 	// CONTINUE
 	output_buffer($buffer,"text/xml");
 }

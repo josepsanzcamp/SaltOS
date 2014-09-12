@@ -426,6 +426,10 @@ if(getParam("action")=="feeds") {
 		$row["description"]=href_replace($row["description"]);
 		$cid=getParam("cid");
 		if($cid=="body") {
+			// MARCAR FEED COMO LEIDO SI ES EL PROPIETARIO
+			$query="UPDATE tbl_feeds SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='${id}' AND id_usuario='".current_user()."')";
+			db_query($query);
+			// CONTINUE
 			$buffer="";
 			$buffer.=__HTML_PAGE_OPEN__;
 			$buffer.=__HTML_TEXT_OPEN__;
