@@ -340,7 +340,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				CASE (".check_user("correo","create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_mail,
 				CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
 				id_usuario,a.id_estado id_estado,a.id_cliente id_cliente,a.id_posiblecli id_posiblecli,d.id_grupo id_grupo,c.activo activo,a.id_proyecto id_proyecto,
-				(SELECT REPLACE(GROUP_CONCAT(search),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
+				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
 			FROM tbl_presupuestos a
 			LEFT JOIN tbl_clientes b1 ON b1.id=a.id_cliente
 			LEFT JOIN tbl_posiblescli b2 ON b2.id=a.id_posiblecli

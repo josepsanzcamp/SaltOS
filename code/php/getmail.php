@@ -113,7 +113,7 @@ function __getmail_getmime($id) {
 		if(!file_exists($file)) return "";
 		$mime=new mime_parser_class;
 		$decoded="";
-		$mime->Decode(array("File"=>$file),$decoded);
+		$mime->Decode(array("File"=>"compress.zlib://".$file),$decoded);
 		file_put_contents($cache,serialize($decoded));
 		chmod_protected($cache,0666);
 	} else {
@@ -467,7 +467,7 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 	// DECODE THE MESSAGE
 	$mime=new mime_parser_class;
 	$decoded="";
-	$mime->Decode(array("File"=>$file),$decoded);
+	$mime->Decode(array("File"=>"compress.zlib://".$file),$decoded);
 	$info=__getmail_getinfo(__getmail_getnode("0",$decoded));
 	$body=__getmail_gettextbody(__getmail_getnode("0",$decoded));
 	// INSERT THE NEW EMAIL

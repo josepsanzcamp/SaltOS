@@ -296,7 +296,7 @@ class mime_parser_class
 {/metadocument}
 */
 	var $track_lines = 0;
-
+	
 /*
 {metadocument}
 	<variable>
@@ -695,9 +695,14 @@ class mime_parser_class
 							{
 								$value .= $line;
 								$position = $next;
+								$remove_first_char=1;
 							}
 							else
 							{
+								if(isset($remove_first_char)) {
+									$line=substr($line,1);
+									unset($remove_first_char);
+								}
 								$value .= $line;
 								$part=array(
 									'Type'=>'HeaderValue',
@@ -898,7 +903,7 @@ class mime_parser_class
 		}
 		return($return_value);
 	}
-
+	
 	Function ParseBody($data, $end, $offset)
 	{
 		$success = $this->body_parser->Parse($data, $end);
@@ -1369,7 +1374,7 @@ class mime_parser_class
 					$end_of_data = feof($this->file);
 					if($end_of_data)
 						break;
-					$data = @gzread($this->file, $this->message_buffer_length);
+					$data = @fread($this->file, $this->message_buffer_length);
 					if(GetType($data)!='string')
 						return($this->SetPHPError('could not read the message file', $php_errormsg));
 					$end_of_data = feof($this->file);
@@ -1543,7 +1548,7 @@ class mime_parser_class
 										while(file_exists($path.$filename));
 									}
 									$path .= $filename;
-									if(!($this->body_file = gzopen($path, 'wb')))
+									if(!($this->body_file = fopen($path, 'wb')))
 										return($this->SetPHPError('could not create file '.$path.' to save the message body part', $php_errormsg));
 									$decoded['BodyFile'] = $path;
 									$decoded['BodyPart'] = $this->body_part_number;
@@ -1551,10 +1556,10 @@ class mime_parser_class
 									$this->body_part_number++;
 								}
 								if(strlen($part['Data'])
-								&& !gzwrite($this->body_file, $part['Data']))
+								&& !fwrite($this->body_file, $part['Data']))
 								{
 									$this->SetPHPError('could not save the message body part to file '.$decoded['BodyFile'], $php_errormsg);
-									gzclose($this->body_file);
+									fclose($this->body_file);
 									@unlink($decoded['BodyFile']);
 									return(0);
 								}
@@ -1592,7 +1597,7 @@ class mime_parser_class
 							continue 3;
 						case 'MessageEnd':
 							if(IsSet($decoded['BodyFile']))
-								gzclose($this->body_file);
+								fclose($this->body_file);
 							return(1);
 					}
 					break;
@@ -1693,24 +1698,24 @@ class mime_parser_class
 	{
 		if(strlen($this->error))
 			return(0);
-		if(!($stream = @gzopen($file, 'r')))
+		if(!($stream = @fopen($file, 'r')))
 			return($this->SetPHPError('Could not open the file '.$file, $php_errormsg));
 		for($end = 0;!$end;)
 		{
-			if(!($data = @gzread($stream, $this->message_buffer_length)))
+			if(!($data = @fread($stream, $this->message_buffer_length)))
 			{
 				$this->SetPHPError('Could not read the file '.$file, $php_errormsg);
-				gzclose($stream);
+				fclose($stream);
 				return(0);
 			}
 			$end=feof($stream);
 			if(!$this->Parse($data, $end))
 			{
-				gzclose($stream);
+				fclose($stream);
 				return(0);
 			}
 		}
-		gzclose($stream);
+		fclose($stream);
 		return(1);
 	}
 
@@ -1769,7 +1774,7 @@ class mime_parser_class
 					Name of the file from which the message data will be read. It
 					may be the name of a file stream or a remote URL, as long as
 					your PHP installation is configured to allow accessing remote
-					files with the <tt>gzopen()</tt> function.<paragraphbreak />
+					files with the <tt>fopen()</tt> function.<paragraphbreak />
 					<tt>Data</tt><paragraphbreak />
 					String that specifies the message data. This should be used
 					as alternative data source for passing data available in memory,
@@ -1897,7 +1902,7 @@ class mime_parser_class
 	{
 		if(IsSet($parameters['File']))
 		{
-			if(!($this->file = @gzopen($parameters['File'], 'r')))
+			if(!($this->file = @fopen($parameters['File'], 'r')))
 				return($this->SetPHPError('could not open the message file to decode '.$parameters['File'], $php_errormsg));
 		}
 		elseif(IsSet($parameters['Data']))
@@ -1954,7 +1959,7 @@ class mime_parser_class
 			$decoded[$message]=$decoded_message;
 		}
 		if(IsSet($parameters['File']))
-			gzclose($this->file);
+			fclose($this->file);
 		return($success);
 	}
 /*
@@ -2003,20 +2008,20 @@ class mime_parser_class
 		elseif(IsSet($message[$prefix.'File']))
 		{
 			$path = $message[$prefix.'File'];
-			if(!($file = @gzopen($path, 'rb')))
+			if(!($file = @fopen($path, 'rb')))
 				return($this->SetPHPError('could not open the message body file '.$path, $php_errormsg));
 			for($body = '', $end = 0;!$end;)
 			{
-				if(!($data = @gzread($file, $this->message_buffer_length)))
+				if(!($data = @fread($file, $this->message_buffer_length)))
 				{
 					$this->SetPHPError('Could not open the message body file '.$path, $php_errormsg);
-					gzclose($stream);
+					fclose($stream);
 					return(0);
 				}
 				$end=feof($file);
 				$body.=$data;
 			}
-			gzclose($file);
+			fclose($file);
 		}
 		else
 			$body = '';

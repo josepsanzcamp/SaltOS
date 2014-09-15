@@ -275,7 +275,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		FROM (
 			SELECT a.*,e.id_usuario id_usuario,d.id_grupo id_grupo,c.activo activo,
 				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
-				(SELECT REPLACE(GROUP_CONCAT(search),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
+				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
 			FROM tbl_campanyas a
 			LEFT JOIN tbl_estados c ON id_estado=c.id
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id

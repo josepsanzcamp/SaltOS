@@ -354,7 +354,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				id_usuario,a.descripcion descripcion,id_tipoevento,d.id_grupo id_grupo,c.activo activo,
 				a.id_estado id_estado,a.id_cliente id_cliente,a.id_proyecto id_proyecto,
 				a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya,
-				(SELECT REPLACE(GROUP_CONCAT(search),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=id) search
+				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=id) search
 			FROM (SELECT a2.*,b1.nombre b1_nombre,b2.nombre b2_nombre,p.nombre p_nombre FROM tbl_agenda a2
 			LEFT JOIN tbl_clientes b1 ON b1.id=a2.id_cliente
 			LEFT JOIN tbl_posiblescli b2 ON b2.id=a2.id_posiblecli
