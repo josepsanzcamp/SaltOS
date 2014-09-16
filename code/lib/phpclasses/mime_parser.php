@@ -296,7 +296,7 @@ class mime_parser_class
 {/metadocument}
 */
 	var $track_lines = 0;
-	
+
 /*
 {metadocument}
 	<variable>
@@ -695,14 +695,9 @@ class mime_parser_class
 							{
 								$value .= $line;
 								$position = $next;
-								$remove_first_char=1;
 							}
 							else
 							{
-								if(isset($remove_first_char)) {
-									$line=substr($line,1);
-									unset($remove_first_char);
-								}
 								$value .= $line;
 								$part=array(
 									'Type'=>'HeaderValue',
@@ -903,7 +898,7 @@ class mime_parser_class
 		}
 		return($return_value);
 	}
-	
+
 	Function ParseBody($data, $end, $offset)
 	{
 		$success = $this->body_parser->Parse($data, $end);
@@ -981,7 +976,7 @@ class mime_parser_class
 						if($encoded > $position)
 						{
 							if(count($decoded_header))
-								$decoded_header[count($decoded_header)-1]['Value'].=substr($value, $position, $encoded - $position);
+								$decoded_header[count($decoded_header)-1]['Value'].=substr($value, $position, $encoded - $position - 1);
 							else
 							{
 								$decoded_header[]=array(

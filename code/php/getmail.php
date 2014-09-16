@@ -133,10 +133,8 @@ function __getmail_getnode($path,$array) {
 
 // RETURN INTERNAL CONTENT TYPE
 function __getmail_gettype($array) {
-	$ctype=__getmail_getnode("Headers/content-type:",$array);
+	$ctype=strtoupper(__getmail_fixstring(__getmail_getnode("Headers/content-type:",$array)));
 	if(!$ctype) $ctype="TEXT/PLAIN";
-	if(is_array($ctype)) $ctype=$ctype[0]; // TO PREVENT ERRORS WHEN THE HEADER IS MALFORMED
-	$ctype=strtoupper($ctype);
 	if(strpos($ctype,"TEXT/HTML")!==false) $type="html";
 	elseif(strpos($ctype,"TEXT/PLAIN")!==false) $type="plain";
 	elseif(strpos($ctype,"MESSAGE/RFC822")!==false) $type="message";
@@ -148,10 +146,8 @@ function __getmail_gettype($array) {
 
 // RETURN INTERNAL DISPOSITION
 function __getmail_getdisposition($array) {
-	$cdisp=__getmail_getnode("Headers/content-disposition:",$array);
+	$cdisp=strtoupper(__getmail_fixstring(__getmail_getnode("Headers/content-disposition:",$array)));
 	if(!$cdisp) $cdisp="INLINE";
-	if(is_array($cdisp)) $cdisp=$cdisp[0]; // TO PREVENT ERRORS WHEN THE HEADER IS MALFORMED
-	$cdisp=strtoupper($cdisp);
 	if(strpos($cdisp,"ATTACHMENT")!==false) $disp="attachment";
 	elseif(strpos($cdisp,"INLINE")!==false) $disp="inline";
 	else $disp="other";
@@ -257,32 +253,23 @@ function __getmail_getinfo($array) {
 		}
 	}
 	// CREATE THE DATETIME STRING
-	$datetime=__getmail_getnode("Headers/date:",$array);
-	if(is_array($datetime)) $datetime=$datetime[0]; // TO PREVENT ERRORS WHEN THE HEADER IS MALFORMED
+	$datetime=__getmail_fixstring(__getmail_getnode("Headers/date:",$array));
 	if($datetime && strpos($datetime,"(")!==false) $datetime=strtok($datetime,"(");
 	if($datetime) $result["datetime"]=date("Y-m-d H:i:s",strtotime($datetime));
 	if(!$datetime) $result["datetime"]=current_datetime();
 	// CREATE THE SUBJECT STRING
-	$subject=__getmail_getnode("DecodedHeaders/subject:/0/0/Value",$array);
-	if(!$subject) {
-		$subject=__getmail_getnode("Headers/subject:",$array);
-	}
-	if($subject) {
-		if(is_array($subject)) $subject=$subject[0]; // TO PREVENT ERRORS WHEN THE HEADER IS MALFORMED
-		$subject=getutf8($subject);
-		$result["subject"]=$subject;
-	}
+	$subject=encode_words(str_replace("\t"," ",getutf8(__getmail_fixstring(__getmail_getnode("DecodedHeaders/subject:/0/0/Value",$array)))));
+	if(!$subject) $subject=encode_words(str_replace("\t"," ",getutf8(__getmail_fixstring(__getmail_getnode("Headers/subject:",$array)))));
+	$result["subject"]=$subject;
 	// CHECK X-SPAM-STATUS HEADER
-	$spam=__getmail_getnode("Headers/x-spam-status:",$array);
-	if(is_array($spam)) $spam=$spam[0]; // TO PREVENT ERRORS WHEN THE HEADER IS MALFORMED
-	$spam=strtoupper(trim($spam));
+	$spam=strtoupper(trim(__getmail_fixstring(__getmail_getnode("Headers/x-spam-status:",$array))));
 	$result["spam"]=(substr($spam,0,3)=="YES" || substr($spam,-3,3)=="YES")?"1":"0";
 	// GET THE NUMBER OF ATTACHMENTS
 	$result["files"]=__getmail_getfiles($array);
 	// GET THE CRT IF EXISTS
 	foreach($result["emails"] as $email) if($email["id_tipo"]==7) $result["crt"]=1;
 	// GET THE PRIORITY IF EXISTS
-	$priority=strtolower(__getmail_getnode("Headers/x-priority:",$array));
+	$priority=strtolower(__getmail_fixstring(__getmail_getnode("Headers/x-priority:",$array)));
 	$priorities=array("low"=>5,"high"=>1);
 	if(isset($priorities[$priority])) $priority=$priorities[$priority];
 	$priority=intval($priority);
@@ -297,6 +284,11 @@ function __getmail_getinfo($array) {
 	if(eval_bool(getDefault("debug/getmaildebug"))) echo "<pre>".sprintr($result)."</pre>";
 	if(eval_bool(getDefault("debug/getmaildebug"))) die();
 	return $result;
+}
+
+function __getmail_fixstring($arg) {
+	while(is_array($arg)) $arg=array_shift($arg);
+	return $arg;
 }
 
 // RETURN ALL TEXT BODY CONCATENATED
