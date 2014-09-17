@@ -118,6 +118,7 @@ if(getParam("action")=="getmail") {
 					}
 					if($type=="html") {
 						$temp=remove_script_tag($temp);
+						$temp=remove_style_tag($temp);
 						$temp=saltos_make_clickable($temp);
 						$temp=href_replace($temp);
 					}
@@ -271,6 +272,7 @@ if(getParam("action")=="getmail") {
 					}
 					if($type=="html") {
 						$temp=remove_script_tag($temp);
+						$temp=remove_style_tag($temp);
 						$temp=saltos_make_clickable($temp);
 						$temp=href_replace($temp);
 					}

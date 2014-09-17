@@ -509,6 +509,7 @@ if(getParam("page")=="correo") {
 					}
 					if($type=="html") {
 						$temp=remove_script_tag($temp);
+						$temp=remove_style_tag($temp);
 					}
 					foreach($result2 as $index2=>$node2) {
 						$disp2=$node2["disp"];

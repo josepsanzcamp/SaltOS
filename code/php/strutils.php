@@ -624,6 +624,11 @@ function remove_script_tag($temp) {
 	return $temp;
 }
 
+function remove_style_tag($temp) {
+	$temp=preg_replace("@<style[^>]*?.*?</style>@siu","",$temp);
+	return $temp;
+}
+
 function multi_explode($del,$str) {
 	$del0=substr($del,0,1);
 	$del1=substr($del,1);
