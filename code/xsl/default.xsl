@@ -512,6 +512,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:attribute name="class">notabs</xsl:attribute>
+							<xsl:attribute name="id"></xsl:attribute>
 							<xsl:call-template name="brtag"/>
 						</xsl:otherwise>
 					</xsl:choose>
@@ -1254,6 +1255,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:attribute name="class">notabs</xsl:attribute>
+							<xsl:attribute name="id"></xsl:attribute>
 							<xsl:call-template name="brtag"/>
 						</xsl:otherwise>
 					</xsl:choose>
@@ -1304,6 +1306,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 											</xsl:when>
 											<xsl:otherwise>
 												<xsl:attribute name="class">notabs</xsl:attribute>
+												<xsl:attribute name="id"></xsl:attribute>
 												<xsl:call-template name="brtag"/>
 											</xsl:otherwise>
 										</xsl:choose>
@@ -1342,6 +1345,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										</xsl:when>
 										<xsl:otherwise>
 											<xsl:attribute name="class">notabs</xsl:attribute>
+											<xsl:attribute name="id"></xsl:attribute>
 											<xsl:call-template name="brtag"/>
 										</xsl:otherwise>
 									</xsl:choose>

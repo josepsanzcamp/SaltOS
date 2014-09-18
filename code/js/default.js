@@ -1185,28 +1185,32 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			}
 		});
 		// FIX A BUG ON THE XSLT THAT REPEAT THE TABID
-		var lista=new Array();
+		var hrefs=new Array();
 		var count=0;
 		$(".tabs > ul > li > a",obj).each(function() {
 			var href=$(this).attr("href");
-			if(!in_array(href,lista)) {
-				lista.push(href);
+			if(!in_array(href,hrefs)) {
+				hrefs.push(href);
+				console.debug(href);
 			} else {
 				count++;
-				href=substr(href,0,6)+sprintf("%06d",intval(substr(href,6))+count);
+				href=substr(href,0,7)+sprintf("%09d",intval(substr(href,7))+count);
 				$(this).attr("href",href);
+				console.debug(href);
 			}
 		});
-		var lista=new Array();
+		var ids=new Array();
 		var count=0;
 		$(".tabs div[id^=tabid]",obj).each(function() {
 			var id=$(this).attr("id");
-			if(!in_array(id,lista)) {
-				lista.push(id);
-			} else {
+			if(!in_array(id,ids)) {
+				ids.push(id);
+				console.debug(id);
+			} else if(in_array("#"+id,hrefs)) {
 				count++;
-				id=substr(id,0,5)+sprintf("%06d",intval(substr(id,5))+count);
+				id=substr(id,0,6)+sprintf("%09d",intval(substr(id,6))+count);
 				$(this).attr("id",id);
+				console.debug(id);
 			}
 		});
 		// THIS CODE ADD THE ACCESSKEY FEATURE FOR EACH TAB
