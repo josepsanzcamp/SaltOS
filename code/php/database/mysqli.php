@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function db_connect_mysqli() {
 	global $_CONFIG;
-	if(!function_exists("mysqli_connect")) { db_error_mysqli(array("phperror"=>"mysqli_connect not found","details"=>"Try to install php-mysqlnd package")); return; }
-	$_CONFIG["db"]["link"]=mysqli_connect(getDefault("db/host"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name"),getDefault("db/port")) or db_error_mysqli(array("dberror"=>mysqli_error(getDefault("db/link"))));
+	if(!function_exists("mysqli_connect")) { show_php_error(array("phperror"=>"mysqli_connect not found","details"=>"Try to install php-mysql package")); return; }
+	$_CONFIG["db"]["link"]=mysqli_connect(getDefault("db/host"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name"),getDefault("db/port"));
 	if(getDefault("db/link")) {
 		db_query_mysqli("SET NAMES 'UTF8'");
 		db_query_mysqli("SET FOREIGN_KEY_CHECKS=0");
@@ -39,7 +39,8 @@ function db_query_mysqli($query,$fetch="query") {
 	$result=array("total"=>0,"header"=>array(),"rows"=>array());
 	if(!$query) return $result;
 	// DO QUERY
-	$stmt=mysqli_query(getDefault("db/link"),$query) or db_error_mysqli(array("dberror"=>mysqli_error(getDefault("db/link")),"query"=>$query));
+	$stmt=mysqli_query(getDefault("db/link"),$query);
+	if($stmt===false) show_php_error(array("dberror"=>mysqli_error(getDefault("db/link")),"query"=>$query));
 	// DUMP RESULT TO MATRIX
 	if(!is_bool($stmt) && mysqli_num_fields($stmt)>0) {
 		if($fetch=="auto") {
@@ -65,10 +66,5 @@ function db_disconnect_mysqli() {
 	global $_CONFIG;
 	mysqli_close(getDefault("db/link"));
 	$_CONFIG["db"]["link"]=null;
-}
-
-function db_error_mysqli($array) {
-	foreach($array as $key=>$val) $array[$key]=str_replace(array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),"...",$val);
-	show_php_error($array);
 }
 ?>

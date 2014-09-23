@@ -25,13 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function db_connect_sqlite3() {
 	global $_CONFIG;
-	if(!class_exists("SQLite3")) { db_error_sqlite3(array("phperror"=>"Class SQLite3 not found","details"=>"Try to install php-pdo package")); return; }
-	if(!file_exists(getDefault("db/file"))) { db_error_sqlite3(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
-	if(!is_writable(getDefault("db/file"))) { db_error_sqlite3(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
+	if(!class_exists("SQLite3")) { show_php_error(array("phperror"=>"Class SQLite3 not found","details"=>"Try to install php-pdo package")); return; }
+	if(!file_exists(getDefault("db/file"))) { show_php_error(array("phperror"=>"File '".getDefault("db/file")."' not found")); return; }
+	if(!is_writable(getDefault("db/file"))) { show_php_error(array("phperror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	capture_next_error();
 	$_CONFIG["db"]["link"]=new SQLite3(getDefault("db/file"));
 	$error=get_clear_error();
-	if($error) db_error_sqlite3(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg()));
+	if($error) show_php_error(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg()));
 	if(getDefault("db/link")) {
 		getDefault("db/link")->busyTimeout(0);
 		db_query_sqlite3("PRAGMA cache_size=2000");
@@ -164,14 +164,14 @@ function db_query_sqlite3($query,$fetch="query") {
 			$error=get_clear_error();
 			if(!$error) break;
 			if($timeout<=0) {
-				db_error_sqlite3(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg(),"query"=>$query));
+				show_php_error(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg(),"query"=>$query));
 				break;
 			} elseif(stripos($error,"database is locked")!==false) {
 				$timeout-=usleep_protected(rand(0,1000));
 			} elseif(stripos($error,"database schema has changed")!==false) {
 				$timeout-=usleep_protected(rand(0,1000));
 			} else {
-				db_error_sqlite3(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg(),"query"=>$query));
+				show_php_error(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg(),"query"=>$query));
 				break;
 			}
 		}
@@ -204,7 +204,7 @@ function db_query_sqlite3($query,$fetch="query") {
 			}
 		}
 	} else {
-		db_error_sqlite3(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
+		show_php_error(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
 	}
 	return $result;
 }
@@ -213,9 +213,5 @@ function db_disconnect_sqlite3() {
 	global $_CONFIG;
 	getDefault("db/link")->close();
 	$_CONFIG["db"]["link"]=null;
-}
-
-function db_error_sqlite3($array) {
-	show_php_error($array);
 }
 ?>

@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // abstract functions
 function db_connect() {
 	$php="php/database/".getDefault("db/type").".php";
-	if(!file_exists($php)) show_php_error(array("phperror"=>"Type '".getDefault("db/type")."' not found"));
+	if(!file_exists($php)) show_php_error(array("phperror"=>"Database type '".getDefault("db/type")."' not found"));
 	require_once($php);
 	$func=__FUNCTION__."_".getDefault("db/type");
 	return $func();
@@ -50,11 +50,6 @@ function db_query($query,$fetch="query") {
 function db_disconnect() {
 	$func=__FUNCTION__."_".getDefault("db/type");
 	return $func();
-}
-
-function db_error($array) {
-	$func=__FUNCTION__."_".getDefault("db/type");
-	return $func($array);
 }
 
 // shared functions
@@ -83,7 +78,7 @@ function db_num_fields($result) {
 }
 
 function db_field_name($result,$index) {
-	if(!isset($result["header"][$index])) db_error(array("phperror"=>"Unknown field name at position ${index}"));
+	if(!isset($result["header"][$index])) show_php_error(array("phperror"=>"Unknown field name at position ${index}"));
 	return $result["header"][$index];
 }
 ?>

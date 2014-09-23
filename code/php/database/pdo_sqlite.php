@@ -25,13 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function db_connect_pdo_sqlite() {
 	global $_CONFIG;
-	if(!class_exists("PDO")) { db_error_pdo_sqlite(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
-	if(!file_exists(getDefault("db/file"))) { db_error_pdo_sqlite(array("dberror"=>"File '".getDefault("db/file")."' not found")); return; }
-	if(!is_writable(getDefault("db/file"))) { db_error_pdo_sqlite(array("dberror"=>"File '".getDefault("db/file")."' not writable")); return; }
+	if(!class_exists("PDO")) { show_php_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
+	if(!file_exists(getDefault("db/file"))) { show_php_error(array("phperror"=>"File '".getDefault("db/file")."' not found")); return; }
+	if(!is_writable(getDefault("db/file"))) { show_php_error(array("phperror"=>"File '".getDefault("db/file")."' not writable")); return; }
 	try {
 		$_CONFIG["db"]["link"]=new PDO("sqlite:".getDefault("db/file"));
 	} catch(PDOException $e) {
-		db_error_pdo_sqlite(array("dberror"=>$e->getMessage()));
+		show_php_error(array("dberror"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
 		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -166,14 +166,14 @@ function db_query_pdo_sqlite($query,$fetch="query") {
 				break;
 			} catch(PDOException $e) {
 				if($timeout<=0) {
-					db_error_pdo_sqlite(array("dberror"=>$e->getMessage(),"query"=>$query));
+					show_php_error(array("dberror"=>$e->getMessage(),"query"=>$query));
 					break;
 				} elseif(stripos($e->getMessage(),"database is locked")!==false) {
 					$timeout-=usleep_protected(rand(0,1000));
 				} elseif(stripos($e->getMessage(),"database schema has changed")!==false) {
 					$timeout-=usleep_protected(rand(0,1000));
 				} else {
-					db_error_pdo_sqlite(array("dberror"=>$e->getMessage(),"query"=>$query));
+					show_php_error(array("dberror"=>$e->getMessage(),"query"=>$query));
 					break;
 				}
 			}
@@ -207,7 +207,7 @@ function db_query_pdo_sqlite($query,$fetch="query") {
 			}
 		}
 	} else {
-		db_error_pdo_sqlite(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
+		show_php_error(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
 	}
 	return $result;
 }
@@ -215,9 +215,5 @@ function db_query_pdo_sqlite($query,$fetch="query") {
 function db_disconnect_pdo_sqlite() {
 	global $_CONFIG;
 	$_CONFIG["db"]["link"]=null;
-}
-
-function db_error_pdo_sqlite($array) {
-	show_php_error($array);
 }
 ?>

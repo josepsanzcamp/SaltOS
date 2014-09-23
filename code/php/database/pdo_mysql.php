@@ -25,11 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function db_connect_pdo_mysql() {
 	global $_CONFIG;
-	if(!class_exists("PDO")) { db_error_pdo_mysql(array("phperror"=>"Class PDO not found","details"=>"Try to install php-mysqlnd package")); return; }
+	if(!class_exists("PDO")) { show_php_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-mysql package")); return; }
 	try {
 		$_CONFIG["db"]["link"]=new PDO("mysql:host=".getDefault("db/host").";port=".getDefault("db/port").";dbname=".getDefault("db/name"),getDefault("db/user"),getDefault("db/pass"));
 	} catch(PDOException $e) {
-		db_error_pdo_mysql(array("dberror"=>$e->getMessage()));
+		show_php_error(array("dberror"=>$e->getMessage()));
 	}
 	if(getDefault("db/link")) {
 		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -47,7 +47,7 @@ function db_query_pdo_mysql($query,$fetch="query") {
 	try {
 		$stmt=getDefault("db/link")->query($query);
 	} catch(PDOException $e) {
-		db_error_pdo_mysql(array("dberror"=>$e->getMessage(),"query"=>$query));
+		show_php_error(array("dberror"=>$e->getMessage(),"query"=>$query));
 	}
 	// DUMP RESULT TO MATRIX
 	if(isset($stmt) && $stmt && $stmt->columnCount()>0) {
@@ -71,10 +71,5 @@ function db_query_pdo_mysql($query,$fetch="query") {
 function db_disconnect_pdo_mysql() {
 	global $_CONFIG;
 	$_CONFIG["db"]["link"]=null;
-}
-
-function db_error_pdo_mysql($array) {
-	foreach($array as $key=>$val) $array[$key]=str_replace(array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),"...",$val);
-	show_php_error($array);
 }
 ?>

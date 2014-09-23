@@ -975,6 +975,8 @@ function show_php_error($array=null) {
 		foreach(array("page","action","id") as $item) if(getParam($item)) $array["debug"][$item]=getParam($item);
 		if(!count($array["debug"])) unset($array["debug"]);
 	}
+	// PROTECTION OF SENSITIVE DATA
+	foreach($array as $key=>$val) $array[$key]=str_replace(array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),"...",$val);
 	// CREATE THE MESSAGE ERROR USING HTML ENTITIES AND PLAIN TEXT
 	$msg_html=do_message_error($array,"html");
 	$msg_text=do_message_error($array,"text");
