@@ -23,13 +23,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// abstract functions
-function db_connect() {
-	$php="php/database/".getDefault("db/type").".php";
-	if(!file_exists($php)) show_php_error(array("phperror"=>"Database type '".getDefault("db/type")."' not found"));
+function db_connect($args=null) {
+	global $_CONFIG;
+	if($args===null) $config=getDefault("db");
+	if($args!==null) $config=$args;
+	$php="php/database/".$config["type"].".php";
+	if(!file_exists($php)) show_php_error(array("phperror"=>"Database type '".$config["type"]."' not found"));
 	require_once($php);
-	$func=__FUNCTION__."_".getDefault("db/type");
-	return $func();
+	$driver="database_".$config["type"];
+	$obj=new $driver($config);
+	if($args===null) $_CONFIG["db"]["obj"]=$obj;
+	if($args!==null) return $obj;
 }
 
 function db_query($query,$fetch="query") {
@@ -40,16 +44,14 @@ function db_query($query,$fetch="query") {
 	$usecache=eval_bool(get_use_cache($query));
 	if($usecache && isset($stack[$hash])) return $stack[$hash];
 	// DO QUERY
-	$func=__FUNCTION__."_".getDefault("db/type");
-	$result=$func($query,$fetch);
+	$result=getDefault("db/obj")->db_query($query,$fetch);
 	// AND RETURN
 	if($usecache) $stack[$hash]=$result;
 	return $result;
 }
 
 function db_disconnect() {
-	$func=__FUNCTION__."_".getDefault("db/type");
-	return $func();
+	getDefault("db/obj")->db_disconnect();
 }
 
 // shared functions

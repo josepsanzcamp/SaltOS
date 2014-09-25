@@ -23,195 +23,122 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function db_connect_sqlite3() {
-	global $_CONFIG;
-	if(!class_exists("SQLite3")) { show_php_error(array("phperror"=>"Class SQLite3 not found","details"=>"Try to install php-pdo package")); return; }
-	if(!file_exists(getDefault("db/file"))) { show_php_error(array("phperror"=>"File '".getDefault("db/file")."' not found")); return; }
-	if(!is_writable(getDefault("db/file"))) { show_php_error(array("phperror"=>"File '".getDefault("db/file")."' not writable")); return; }
-	capture_next_error();
-	$_CONFIG["db"]["link"]=new SQLite3(getDefault("db/file"));
-	$error=get_clear_error();
-	if($error) show_php_error(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg()));
-	if(getDefault("db/link")) {
-		getDefault("db/link")->busyTimeout(0);
-		db_query_sqlite3("PRAGMA cache_size=2000");
-		db_query_sqlite3("PRAGMA synchronous=OFF");
-		db_query_sqlite3("PRAGMA foreign_keys=OFF");
-		if(!__sqlite3_check("SELECT GROUP_CONCAT(1)")) getDefault("db/link")->createAggregate("GROUP_CONCAT","__sqlite3_group_concat_step","__sqlite3_group_concat_finalize");
-		if(!__sqlite3_check("SELECT REPLACE(1,2,3)")) getDefault("db/link")->createFunction("REPLACE","__sqlite3_replace");
-		getDefault("db/link")->createFunction("LPAD","__sqlite3_lpad");
-		getDefault("db/link")->createFunction("CONCAT","__sqlite3_concat");
-		getDefault("db/link")->createFunction("UNIX_TIMESTAMP","__sqlite3_unix_timestamp");
-		getDefault("db/link")->createFunction("YEAR","__sqlite3_year");
-		getDefault("db/link")->createFunction("MONTH","__sqlite3_month");
-		getDefault("db/link")->createFunction("WEEK","__sqlite3_week");
-		getDefault("db/link")->createFunction("TRUNCATE","__sqlite3_truncate");
-		getDefault("db/link")->createFunction("DAY","__sqlite3_day");
-		getDefault("db/link")->createFunction("DAYOFYEAR","__sqlite3_dayofyear");
-		getDefault("db/link")->createFunction("DAYOFWEEK","__sqlite3_dayofweek");
-		getDefault("db/link")->createFunction("HOUR","__sqlite3_hour");
-		getDefault("db/link")->createFunction("MINUTE","__sqlite3_minute");
-		getDefault("db/link")->createFunction("SECOND","__sqlite3_second");
-		getDefault("db/link")->createFunction("MD5","__sqlite3_md5");
-		getDefault("db/link")->createFunction("REPEAT","__sqlite3_repeat");
-	}
-}
+require_once("php/database/libsqlite.php");
 
-function __sqlite3_check($query) {
-	capture_next_error();
-	db_query_sqlite3($query);
-	$error=get_clear_error();
-	return !$error?true:false;
-}
+class database_sqlite3 {
+	private $link=null;
 
-function __sqlite3_group_concat_step($context,$rows,$string,$separator=",") {
-	if($context!="") $context.=$separator;
-	$context.=$string;
-	return $context;
-}
-
-function __sqlite3_group_concat_finalize($context,$rows) {
-	return $context;
-}
-
-function __sqlite3_replace($subject,$search,$replace) {
-	return str_replace($search,$replace,$subject);
-}
-
-function __sqlite3_lpad($input,$length,$char) {
-	return str_pad($input,$length,$char,STR_PAD_LEFT);
-}
-
-function __sqlite3_concat() {
-	$array=func_get_args();
-	return implode("",$array);
-}
-
-function __sqlite3_unix_timestamp($date) {
-	return strtotime($date);
-}
-
-function __sqlite3_year($date) {
-	return date("Y",strtotime($date));
-}
-
-function __sqlite3_month($date) {
-	return date("m",strtotime($date));
-}
-
-function __sqlite3_week($date,$mode) {
-	$mode=$mode*86400;
-	return date("W",strtotime($date)+$mode);
-}
-
-function __sqlite3_truncate($n,$d) {
-	$d=pow(10,$d);
-	return intval($n*$d)/$d;
-}
-
-function __sqlite3_day($date) {
-	return intval(date("d",strtotime($date)));
-}
-
-function __sqlite3_dayofyear($date) {
-	return date("z",strtotime($date))+1;
-}
-
-function __sqlite3_dayofweek($date) {
-	return date("w",strtotime($date))+1;
-}
-
-function __sqlite3_hour($date) {
-	return intval(date("H",strtotime($date)));
-}
-
-function __sqlite3_minute($date) {
-	return intval(date("i",strtotime($date)));
-}
-
-function __sqlite3_second($date) {
-	return intval(date("s",strtotime($date)));
-}
-
-function __sqlite3_md5($temp) {
-	return md5($temp);
-}
-
-function __sqlite3_repeat($str,$count) {
-	return str_repeat($str,$count);
-}
-
-function db_query_sqlite3($query,$fetch="query") {
-	$query=parse_query($query,"SQLITE");
-	$result=array("total"=>0,"header"=>array(),"rows"=>array());
-	if(!$query) return $result;
-	// TRICK TO DO THE STRIP SLASHES
-	$pos=strpos($query,"\\");
-	while($pos!==false) {
-		$extra="";
-		if($query[$pos+1]=="'") $extra="'";
-		if($query[$pos+1]=="%") $extra="\\";
-		$query=substr_replace($query,$extra,$pos,1);
-		$pos=strpos($query,"\\",$pos+1);
-	}
-	// CONTINUE THE NORMAL OPERATION
-	$timeout=getDefault("db/semaphoretimeout",10000000);
-	if(semaphore_acquire(__FUNCTION__,$timeout)) {
-		// DO QUERY
-		while(1) {
-			capture_next_error();
-			$stmt=getDefault("db/link")->query($query);
-			$error=get_clear_error();
-			if(!$error) break;
-			if($timeout<=0) {
-				show_php_error(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg(),"query"=>$query));
-				break;
-			} elseif(stripos($error,"database is locked")!==false) {
-				$timeout-=usleep_protected(rand(0,1000));
-			} elseif(stripos($error,"database schema has changed")!==false) {
-				$timeout-=usleep_protected(rand(0,1000));
-			} else {
-				show_php_error(array("dberror"=>"Error ".getDefault("db/link")->lastErrorCode().": ".getDefault("db/link")->lastErrorMsg(),"query"=>$query));
-				break;
-			}
+	function database_sqlite3($args) {
+		if(!class_exists("SQLite3")) { show_php_error(array("phperror"=>"Class SQLite3 not found","details"=>"Try to install php-pdo package")); return; }
+		if(!file_exists($args["file"])) { show_php_error(array("phperror"=>"File '".$args["file"]."' not found")); return; }
+		if(!is_writable($args["file"])) { show_php_error(array("phperror"=>"File '".$args["file"]."' not writable")); return; }
+		capture_next_error();
+		$this->link=new SQLite3($args["file"]);
+		$error=get_clear_error();
+		if($error) show_php_error(array("dberror"=>"Error ".$this->link->lastErrorCode().": ".$this->link->lastErrorMsg()));
+		if($this->link) {
+			$this->link->busyTimeout(0);
+			$this->db_query("PRAGMA cache_size=2000");
+			$this->db_query("PRAGMA synchronous=OFF");
+			$this->db_query("PRAGMA foreign_keys=OFF");
+			if(!$this->__check("SELECT GROUP_CONCAT(1)")) $this->link->createAggregate("GROUP_CONCAT","__libsqlite_group_concat_step","__libsqlite_group_concat_finalize");
+			if(!$this->__check("SELECT REPLACE(1,2,3)")) $this->link->createFunction("REPLACE","__libsqlite_replace");
+			$this->link->createFunction("LPAD","__libsqlite_lpad");
+			$this->link->createFunction("CONCAT","__libsqlite_concat");
+			$this->link->createFunction("UNIX_TIMESTAMP","__libsqlite_unix_timestamp");
+			$this->link->createFunction("YEAR","__libsqlite_year");
+			$this->link->createFunction("MONTH","__libsqlite_month");
+			$this->link->createFunction("WEEK","__libsqlite_week");
+			$this->link->createFunction("TRUNCATE","__libsqlite_truncate");
+			$this->link->createFunction("DAY","__libsqlite_day");
+			$this->link->createFunction("DAYOFYEAR","__libsqlite_dayofyear");
+			$this->link->createFunction("DAYOFWEEK","__libsqlite_dayofweek");
+			$this->link->createFunction("HOUR","__libsqlite_hour");
+			$this->link->createFunction("MINUTE","__libsqlite_minute");
+			$this->link->createFunction("SECOND","__libsqlite_second");
+			$this->link->createFunction("MD5","__libsqlite_md5");
+			$this->link->createFunction("REPEAT","__libsqlite_repeat");
 		}
-		semaphore_release(__FUNCTION__);
-		// DUMP RESULT TO MATRIX
-		if($stmt && $stmt->numColumns()) {
-			if($fetch=="auto") {
-				$fetch=$stmt->numColumns()>1?"query":"column";
-			}
-			if($fetch=="query") {
-				while($row=$stmt->fetchArray(SQLITE3_ASSOC)) $result["rows"][]=$row;
-				$continue=false;
-				foreach($result["rows"] as $key=>$val) {
-					foreach($val as $key2=>$val2) {
-						if($key2[0]=="`" && substr($key2,-1,1)=="`") {
-							unset($result["rows"][$key][$key2]);
-							$result["rows"][$key][substr($key2,1,-1)]=$val2;
-							$continue=true;
-						}
-					}
-					if(!$continue) break;
+	}
+
+	function __check($query) {
+		capture_next_error();
+		$this->db_query($query);
+		$error=get_clear_error();
+		return !$error?true:false;
+	}
+
+	function db_query($query,$fetch="query") {
+		$query=parse_query($query,"SQLITE");
+		$result=array("total"=>0,"header"=>array(),"rows"=>array());
+		if(!$query) return $result;
+		// TRICK TO DO THE STRIP SLASHES
+		$pos=strpos($query,"\\");
+		while($pos!==false) {
+			$extra="";
+			if($query[$pos+1]=="'") $extra="'";
+			if($query[$pos+1]=="%") $extra="\\";
+			$query=substr_replace($query,$extra,$pos,1);
+			$pos=strpos($query,"\\",$pos+1);
+		}
+		// CONTINUE THE NORMAL OPERATION
+		$timeout=getDefault("db/semaphoretimeout",10000000);
+		if(semaphore_acquire(__FUNCTION__,$timeout)) {
+			// DO QUERY
+			while(1) {
+				capture_next_error();
+				$stmt=$this->link->query($query);
+				$error=get_clear_error();
+				if(!$error) break;
+				if($timeout<=0) {
+					show_php_error(array("dberror"=>"Error ".$this->link->lastErrorCode().": ".$this->link->lastErrorMsg(),"query"=>$query));
+					break;
+				} elseif(stripos($error,"database is locked")!==false) {
+					$timeout-=usleep_protected(rand(0,1000));
+				} elseif(stripos($error,"database schema has changed")!==false) {
+					$timeout-=usleep_protected(rand(0,1000));
+				} else {
+					show_php_error(array("dberror"=>"Error ".$this->link->lastErrorCode().": ".$this->link->lastErrorMsg(),"query"=>$query));
+					break;
 				}
-				$result["total"]=count($result["rows"]);
-				if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
 			}
-			if($fetch=="column") {
-				while($row=$stmt->fetchArray(SQLITE3_NUM)) $result["rows"][]=$row[0];
-				$result["total"]=count($result["rows"]);
-				$result["header"]=array("__a__");
+			semaphore_release(__FUNCTION__);
+			// DUMP RESULT TO MATRIX
+			if($stmt && $stmt->numColumns()) {
+				if($fetch=="auto") {
+					$fetch=$stmt->numColumns()>1?"query":"column";
+				}
+				if($fetch=="query") {
+					while($row=$stmt->fetchArray(SQLITE3_ASSOC)) $result["rows"][]=$row;
+					$continue=false;
+					foreach($result["rows"] as $key=>$val) {
+						foreach($val as $key2=>$val2) {
+							if($key2[0]=="`" && substr($key2,-1,1)=="`") {
+								unset($result["rows"][$key][$key2]);
+								$result["rows"][$key][substr($key2,1,-1)]=$val2;
+								$continue=true;
+							}
+						}
+						if(!$continue) break;
+					}
+					$result["total"]=count($result["rows"]);
+					if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
+				}
+				if($fetch=="column") {
+					while($row=$stmt->fetchArray(SQLITE3_NUM)) $result["rows"][]=$row[0];
+					$result["total"]=count($result["rows"]);
+					$result["header"]=array("__a__");
+				}
 			}
+		} else {
+			show_php_error(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
 		}
-	} else {
-		show_php_error(array("phperror"=>"Could not acquire the semaphore","query"=>$query));
+		return $result;
 	}
-	return $result;
-}
 
-function db_disconnect_sqlite3() {
-	global $_CONFIG;
-	getDefault("db/link")->close();
-	$_CONFIG["db"]["link"]=null;
+	function db_disconnect() {
+		$this->link->close();
+		$this->link=null;
+	}
 }
 ?>

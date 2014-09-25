@@ -23,50 +23,52 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function db_connect_mssql() {
-	global $_CONFIG;
-	if(!function_exists("mssql_connect")) { show_php_error(array("phperror"=>"mssql_connect not found","details"=>"Try to install php-mssql package")); return; }
-	$_CONFIG["db"]["link"]=mssql_connect(getDefault("db/host").":".getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"));
-	if($_CONFIG["db"]["link"]===false) show_php_error(array("dberror"=>mssql_get_last_message()));
-	if(!mssql_select_db(getDefault("db/name"),getDefault("db/link"))) show_php_error(array("dberror"=>mssql_get_last_message()));
-	if(getDefault("db/link")) {
-		db_query_mssql("SET NAMES 'UTF8'");
-		db_query_mssql("SET FOREIGN_KEY_CHECKS=0");
-		db_query_mssql("SET GROUP_CONCAT_MAX_LEN:=@@MAX_ALLOWED_PACKET");
-	}
-}
+class database_mssql {
+	private $link=null;
 
-function db_query_mssql($query,$fetch="query") {
-	$query=parse_query($query,"MSSQL");
-	$result=array("total"=>0,"header"=>array(),"rows"=>array());
-	if(!$query) return $result;
-	// DO QUERY
-	$stmt=mssql_query($query,getDefault("db/link"));
-	if($stmt===false) show_php_error(array("dberror"=>mssql_get_last_message(),"query"=>$query));
-	// DUMP RESULT TO MATRIX
-	if(!is_bool($stmt) && mssql_num_fields($stmt)) {
-		if($fetch=="auto") {
-			$fetch=mssql_num_fields($stmt)>1?"query":"column";
-		}
-		if($fetch=="query") {
-			while($row=mssql_fetch_assoc($stmt)) $result["rows"][]=$row;
-			$result["total"]=count($result["rows"]);
-			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
-			mssql_free_result($stmt);
-		}
-		if($fetch=="column") {
-			while($row=mssql_fetch_row($stmt)) $result["rows"][]=$row[0];
-			$result["total"]=count($result["rows"]);
-			$result["header"]=array("__a__");
-			mssql_free_result($stmt);
+	function database_mssql($args) {
+		if(!function_exists("mssql_connect")) { show_php_error(array("phperror"=>"mssql_connect not found","details"=>"Try to install php-mssql package")); return; }
+		$this->link=mssql_connect($args["host"].":".$args["port"],$args["user"],$args["pass"]);
+		if($this->link===false) show_php_error(array("dberror"=>mssql_get_last_message()));
+		if(!mssql_select_db($args["name"],$this->link)) show_php_error(array("dberror"=>mssql_get_last_message()));
+		if($this->link) {
+			//~ $this->db_query("SET NAMES 'UTF8'");
+			//~ $this->db_query("SET FOREIGN_KEY_CHECKS=0");
+			//~ $this->db_query("SET GROUP_CONCAT_MAX_LEN:=@@MAX_ALLOWED_PACKET");
 		}
 	}
-	return $result;
-}
 
-function db_disconnect_mssql() {
-	global $_CONFIG;
-	mssql_close(getDefault("db/link"));
-	$_CONFIG["db"]["link"]=null;
+	function db_query($query,$fetch="query") {
+		$query=parse_query($query,"MYSQL");
+		$result=array("total"=>0,"header"=>array(),"rows"=>array());
+		if(!$query) return $result;
+		// DO QUERY
+		$stmt=mssql_query($query,$this->link);
+		if($stmt===false) show_php_error(array("dberror"=>mssql_get_last_message(),"query"=>$query));
+		// DUMP RESULT TO MATRIX
+		if(!is_bool($stmt) && mssql_num_fields($stmt)) {
+			if($fetch=="auto") {
+				$fetch=mssql_num_fields($stmt)>1?"query":"column";
+			}
+			if($fetch=="query") {
+				while($row=mssql_fetch_assoc($stmt)) $result["rows"][]=$row;
+				$result["total"]=count($result["rows"]);
+				if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
+				mssql_free_result($stmt);
+			}
+			if($fetch=="column") {
+				while($row=mssql_fetch_row($stmt)) $result["rows"][]=$row[0];
+				$result["total"]=count($result["rows"]);
+				$result["header"]=array("__a__");
+				mssql_free_result($stmt);
+			}
+		}
+		return $result;
+	}
+
+	function db_disconnect() {
+		mssql_close($this->link);
+		$this->link=null;
+	}
 }
 ?>

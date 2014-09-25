@@ -23,53 +23,55 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function db_connect_pdo_mysql() {
-	global $_CONFIG;
-	if(!class_exists("PDO")) { show_php_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-mysql package")); return; }
-	try {
-		$_CONFIG["db"]["link"]=new PDO("mysql:host=".getDefault("db/host").";port=".getDefault("db/port").";dbname=".getDefault("db/name"),getDefault("db/user"),getDefault("db/pass"));
-	} catch(PDOException $e) {
-		show_php_error(array("dberror"=>$e->getMessage()));
-	}
-	if(getDefault("db/link")) {
-		getDefault("db/link")->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		db_query_pdo_mysql("SET NAMES 'UTF8'");
-		db_query_pdo_mysql("SET FOREIGN_KEY_CHECKS=0");
-		db_query_pdo_mysql("SET GROUP_CONCAT_MAX_LEN:=@@MAX_ALLOWED_PACKET");
-	}
-}
+class database_pdo_mysql {
+	private $link=null;
 
-function db_query_pdo_mysql($query,$fetch="query") {
-	$query=parse_query($query,"MYSQL");
-	$result=array("total"=>0,"header"=>array(),"rows"=>array());
-	if(!$query) return $result;
-	// DO QUERY
-	try {
-		$stmt=getDefault("db/link")->query($query);
-	} catch(PDOException $e) {
-		show_php_error(array("dberror"=>$e->getMessage(),"query"=>$query));
-	}
-	// DUMP RESULT TO MATRIX
-	if(isset($stmt) && $stmt && $stmt->columnCount()>0) {
-		if($fetch=="auto") {
-			$fetch=$stmt->columnCount()>1?"query":"column";
+	function database_pdo_mysql($args) {
+		if(!class_exists("PDO")) { show_php_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-mysql package")); return; }
+		try {
+			$this->link=new PDO("mysql:host=".$args["host"].";port=".$args["port"].";dbname=".$args["name"],$args["user"],$args["pass"]);
+		} catch(PDOException $e) {
+			show_php_error(array("dberror"=>$e->getMessage()));
 		}
-		if($fetch=="query") {
-			$result["rows"]=$stmt->fetchAll(PDO::FETCH_ASSOC);
-			$result["total"]=count($result["rows"]);
-			if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
-		}
-		if($fetch=="column") {
-			$result["rows"]=$stmt->fetchAll(PDO::FETCH_COLUMN);
-			$result["total"]=count($result["rows"]);
-			$result["header"]=array("__a__");
+		if($this->link) {
+			$this->link->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+			$this->db_query("SET NAMES 'UTF8'");
+			$this->db_query("SET FOREIGN_KEY_CHECKS=0");
+			$this->db_query("SET GROUP_CONCAT_MAX_LEN:=@@MAX_ALLOWED_PACKET");
 		}
 	}
-	return $result;
-}
 
-function db_disconnect_pdo_mysql() {
-	global $_CONFIG;
-	$_CONFIG["db"]["link"]=null;
+	function db_query($query,$fetch="query") {
+		$query=parse_query($query,"MYSQL");
+		$result=array("total"=>0,"header"=>array(),"rows"=>array());
+		if(!$query) return $result;
+		// DO QUERY
+		try {
+			$stmt=$this->link->query($query);
+		} catch(PDOException $e) {
+			show_php_error(array("dberror"=>$e->getMessage(),"query"=>$query));
+		}
+		// DUMP RESULT TO MATRIX
+		if(isset($stmt) && $stmt && $stmt->columnCount()>0) {
+			if($fetch=="auto") {
+				$fetch=$stmt->columnCount()>1?"query":"column";
+			}
+			if($fetch=="query") {
+				$result["rows"]=$stmt->fetchAll(PDO::FETCH_ASSOC);
+				$result["total"]=count($result["rows"]);
+				if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
+			}
+			if($fetch=="column") {
+				$result["rows"]=$stmt->fetchAll(PDO::FETCH_COLUMN);
+				$result["total"]=count($result["rows"]);
+				$result["header"]=array("__a__");
+			}
+		}
+		return $result;
+	}
+
+	function db_disconnect() {
+		$this->link=null;
+	}
 }
 ?>
