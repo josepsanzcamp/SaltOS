@@ -122,16 +122,14 @@ function __import_struct2array(&$data) {
 		} elseif($type=="close") {
 			// caso 2 </algo>
 			return $array;
-		} elseif($type=="complete") {
-			if($value=="") {
-				// caso 3 <algo/>
-				if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
-				set_array($array,$name,$value);
-			} else {
-				// caso 4 <algo>algo</algo>
-				if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
-				set_array($array,$name,$value);
-			}
+		} elseif($type=="complete" && $value=="") {
+			// caso 3 <algo/>
+			if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
+			set_array($array,$name,$value);
+		} elseif($type=="complete" && $value!="") {
+			// caso 4 <algo>algo</algo>
+			if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
+			set_array($array,$name,$value);
 		} elseif($type=="cdata") {
 			// NOTHING TO DO
 		} else {
