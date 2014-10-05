@@ -31,11 +31,6 @@ class database_mssql {
 		$this->link=mssql_connect($args["host"].":".$args["port"],$args["user"],$args["pass"]);
 		if($this->link===false) show_php_error(array("dberror"=>mssql_get_last_message()));
 		if(!mssql_select_db($args["name"],$this->link)) show_php_error(array("dberror"=>mssql_get_last_message()));
-		if($this->link) {
-			//~ $this->db_query("SET NAMES 'UTF8'");
-			//~ $this->db_query("SET FOREIGN_KEY_CHECKS=0");
-			//~ $this->db_query("SET GROUP_CONCAT_MAX_LEN:=@@MAX_ALLOWED_PACKET");
-		}
 	}
 
 	function db_query($query,$fetch="query") {
@@ -51,13 +46,16 @@ class database_mssql {
 				$fetch=mssql_num_fields($stmt)>1?"query":"column";
 			}
 			if($fetch=="query") {
-				while($row=mssql_fetch_assoc($stmt)) $result["rows"][]=$row;
+				while($row=mssql_fetch_assoc($stmt)) {
+					foreach($row as $key=>$val) $row[$key]=utf8_encode($val);
+					$result["rows"][]=$row;
+				}
 				$result["total"]=count($result["rows"]);
 				if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
 				mssql_free_result($stmt);
 			}
 			if($fetch=="column") {
-				while($row=mssql_fetch_row($stmt)) $result["rows"][]=$row[0];
+				while($row=mssql_fetch_row($stmt)) $result["rows"][]=utf8_encode($row[0]);
 				$result["total"]=count($result["rows"]);
 				$result["header"]=array("__a__");
 				mssql_free_result($stmt);
