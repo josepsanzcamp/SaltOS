@@ -27,15 +27,6 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 	"use strict";
 	var __usuarios__=1;
 
-	function update_usuarios(obj) {
-		var empleado=$("select[name$=id_empleado]");
-		var cliente=$("select[name$=id_cliente]");
-		var proveedor=$("select[name$=id_proveedor]");
-		if(obj!=empleado[0]) $(empleado).val("0");
-		if(obj!=cliente[0]) $(cliente).val("0");
-		if(obj!=proveedor[0]) $(proveedor).val("0");
-	}
-
 	function check_activado(obj) {
 		var padre=$(obj).parent().parent();
 		var id_registro=$("input[name$=id_registro]",padre).val();
