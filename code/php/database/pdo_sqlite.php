@@ -60,6 +60,7 @@ class database_pdo_sqlite {
 			$this->link->sqliteCreateFunction("SECOND","__libsqlite_second");
 			$this->link->sqliteCreateFunction("MD5","__libsqlite_md5");
 			$this->link->sqliteCreateFunction("REPEAT","__libsqlite_repeat");
+			$this->link->sqliteCreateFunction("FIND_IN_SET","__libsqlite_find_in_set");
 		}
 	}
 

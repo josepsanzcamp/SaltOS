@@ -99,4 +99,8 @@ function __libsqlite_md5($temp) {
 function __libsqlite_repeat($str,$count) {
 	return str_repeat($str,$count);
 }
+
+function __libsqlite_find_in_set($str,$strlist) {
+	return in_array($str,explode(",",$strlist))?1:0;
+}
 ?>
