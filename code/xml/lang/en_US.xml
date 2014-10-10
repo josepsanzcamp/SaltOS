@@ -1125,8 +1125,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<stateforward>Forward</stateforward>
 		<statewait>Pending</statewait>
 		<statespam>SPAM</statespam>
-		<statesent>Sended</statesent>
-		<statenotsent>Not sended</statenotsent>
+		<statesent>Sent</statesent>
+		<statenotsent>Unsent</statenotsent>
 		<stateerror>Error</stateerror>
 		<stateall>All</stateall>
 		<todaslascuentas>[All Accounts]</todaslascuentas>

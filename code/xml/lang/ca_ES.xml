@@ -1126,7 +1126,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<statewait>Pendent</statewait>
 		<statespam>SPAM</statespam>
 		<statesent>Enviat</statesent>
-		<statenotsent>Sin enviar</statenotsent>
+		<statenotsent>No.enviat</statenotsent>
 		<stateerror>Error</stateerror>
 		<stateall>Tot</stateall>
 		<todaslascuentas>[Tots els comptes]</todaslascuentas>
