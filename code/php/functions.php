@@ -503,7 +503,11 @@ function cache_gc() {
 	init_random();
 	if(rand(0,intval(getDefault("cache/cachegcdivisor")))>intval(getDefault("cache/cachegcprobability"))) return;
 	if(!semaphore_acquire(__FUNCTION__,getDefault("semaphoretimeout",100000))) return;
-	$files=glob_protected(get_directory("dirs/cachedir")."*");
+	$cachedir=get_directory("dirs/cachedir");
+	$files=array();
+	$files=array_merge($files,glob_protected($cachedir."*"));
+	$files=array_merge($files,glob_protected($cachedir.".*"));
+	$files=array_diff($files,array($cachedir.".",$cachedir."..",$cachedir.".htaccess"));
 	$delta=time()-intval(getDefault("cache/cachegctimeout"));
 	foreach($files as $file) {
 		list($mtime,$error)=filemtime_protected($file);
