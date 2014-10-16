@@ -143,6 +143,8 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 										context.scale(outputScale.sx,outputScale.sy);
 									}
 									$(dialog2).append($div);
+									// FIX FOR FIRST PAGE POSITION
+									if(numPage==1) $(dialog2).scrollTop(0);
 									// RENDER PAGE
 									page.getTextContent().then(function(textContent) {
 										var textLayer=new TextLayerBuilder({

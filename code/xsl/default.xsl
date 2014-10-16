@@ -1080,37 +1080,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class3}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width};height:{height}">
-				<svg style="width:{width};height:{height}" class="{class}" isplot="true" id="{$prefix}{name}">
-					<xsl:attribute name="ititle"><xsl:value-of select="title"/></xsl:attribute>
+				<map name="{generate-id(.)}" id="{generate-id(.)}"></map>
+				<img style="width:{width};height:{height}" class="{class}" src="" isplot="true" id="{$prefix}{name}" usemap="#{generate-id(.)}">
+					<xsl:attribute name="title3"><xsl:value-of select="title"/></xsl:attribute>
 					<xsl:attribute name="legend"><xsl:value-of select="legend"/></xsl:attribute>
 					<xsl:attribute name="vars"><xsl:value-of select="vars"/></xsl:attribute>
 					<xsl:attribute name="colors"><xsl:value-of select="colors"/></xsl:attribute>
 					<xsl:attribute name="graph"><xsl:value-of select="graph"/></xsl:attribute>
 					<xsl:attribute name="ticks"><xsl:for-each select="rows/row"><xsl:value-of select="y0"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="posx"><xsl:for-each select="rows/row"><xsl:value-of select="x0"/>|</xsl:for-each></xsl:attribute>
+					<xsl:if test="count(rows/row/x0)>0"><xsl:attribute name="posx"><xsl:for-each select="rows/row"><xsl:value-of select="x0"/>|</xsl:for-each></xsl:attribute></xsl:if>
 					<xsl:attribute name="data1"><xsl:for-each select="rows/row"><xsl:value-of select="y1"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data2"><xsl:for-each select="rows/row"><xsl:value-of select="y2"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data3"><xsl:for-each select="rows/row"><xsl:value-of select="y3"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data4"><xsl:for-each select="rows/row"><xsl:value-of select="y4"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data5"><xsl:for-each select="rows/row"><xsl:value-of select="y5"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data6"><xsl:for-each select="rows/row"><xsl:value-of select="y6"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data7"><xsl:for-each select="rows/row"><xsl:value-of select="y7"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data8"><xsl:for-each select="rows/row"><xsl:value-of select="y8"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data9"><xsl:for-each select="rows/row"><xsl:value-of select="y9"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data10"><xsl:for-each select="rows/row"><xsl:value-of select="y10"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data11"><xsl:for-each select="rows/row"><xsl:value-of select="y11"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data12"><xsl:for-each select="rows/row"><xsl:value-of select="y12"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data13"><xsl:for-each select="rows/row"><xsl:value-of select="y13"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data14"><xsl:for-each select="rows/row"><xsl:value-of select="y14"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data15"><xsl:for-each select="rows/row"><xsl:value-of select="y15"/>|</xsl:for-each></xsl:attribute>
-					<xsl:attribute name="data16"><xsl:for-each select="rows/row"><xsl:value-of select="y16"/>|</xsl:for-each></xsl:attribute>
+					<xsl:if test="count(rows/row/y2)>0"><xsl:attribute name="data2"><xsl:for-each select="rows/row"><xsl:value-of select="y2"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y3)>0"><xsl:attribute name="data3"><xsl:for-each select="rows/row"><xsl:value-of select="y3"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y4)>0"><xsl:attribute name="data4"><xsl:for-each select="rows/row"><xsl:value-of select="y4"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y5)>0"><xsl:attribute name="data5"><xsl:for-each select="rows/row"><xsl:value-of select="y5"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y6)>0"><xsl:attribute name="data6"><xsl:for-each select="rows/row"><xsl:value-of select="y6"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y7)>0"><xsl:attribute name="data7"><xsl:for-each select="rows/row"><xsl:value-of select="y7"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y8)>0"><xsl:attribute name="data8"><xsl:for-each select="rows/row"><xsl:value-of select="y8"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y9)>0"><xsl:attribute name="data9"><xsl:for-each select="rows/row"><xsl:value-of select="y9"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y10)>0"><xsl:attribute name="data10"><xsl:for-each select="rows/row"><xsl:value-of select="y10"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y11)>0"><xsl:attribute name="data11"><xsl:for-each select="rows/row"><xsl:value-of select="y11"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y12)>0"><xsl:attribute name="data12"><xsl:for-each select="rows/row"><xsl:value-of select="y12"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y13)>0"><xsl:attribute name="data13"><xsl:for-each select="rows/row"><xsl:value-of select="y13"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y14)>0"><xsl:attribute name="data14"><xsl:for-each select="rows/row"><xsl:value-of select="y14"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y15)>0"><xsl:attribute name="data15"><xsl:for-each select="rows/row"><xsl:value-of select="y15"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y16)>0"><xsl:attribute name="data16"><xsl:for-each select="rows/row"><xsl:value-of select="y16"/>|</xsl:for-each></xsl:attribute></xsl:if>
 					<xsl:choose>
 						<xsl:when test="class!=''"/>
 						<xsl:otherwise>
-							<xsl:attribute name="class">ui-state-default ui-corner-all image</xsl:attribute>
+							<xsl:attribute name="class">ui-state-default ui-corner-all image phplot</xsl:attribute>
 						</xsl:otherwise>
 					</xsl:choose>
-				</svg>
+				</img>
 			</td>
 		</xsl:when>
 		<xsl:when test="type='columnizer'">

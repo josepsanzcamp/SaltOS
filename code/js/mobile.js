@@ -1015,6 +1015,50 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		$("textarea[ckeditor=true]",obj).autogrow();
 		// CREATE THE CODE MIRROR
 		$("textarea[codemirror=true]",obj).autogrow();
+		// REQUEST THE PLOTS
+		var attrs=new Array("legend","vars","colors","graph","ticks","posx",
+			"data1","data2","data3","data4","data5","data6","data7","data8","data9","data10",
+			"data11","data12","data13","data14","data15","data16");
+		$("img[isplot=true]",obj).each(function() {
+			var map="#"+$(this).prev().attr("id");
+			var interval=setInterval(function() {
+				var map2=$(map,obj);
+				var img=$(map2).next().get(0);
+				if(!$(map2).length) {
+					clearInterval(interval);
+				} else if($(img).is(":visible")) {
+					clearInterval(interval);
+					var querystring="action=phplot";
+					querystring+="&width="+$(img).width();
+					querystring+="&height="+$(img).height();
+					var data=$(img).attr("title3");
+					if(typeof(data)!="undefined") querystring+="&title="+rawurlencode(data);
+					for(var i=0,len=attrs.length;i<len;i++) {
+						var data=$(img).attr(attrs[i]);
+						if(typeof(data)!="undefined") querystring+="&"+attrs[i]+"="+rawurlencode(data);
+					};
+					$.ajax({
+						url:"index.php",
+						data:querystring,
+						type:"post",
+						success:function(response) {
+							$(img).attr("src",$("root>img",response).text());
+							var map=$(img).attr("usemap");
+							$("root>map>area",response).each(function() {
+								var shape=$("shape",this).text();
+								var coords=$("coords",this).text();
+								var value=$("value",this).text();
+								var area="<area shape='"+shape+"' coords='"+coords+"' title='"+value+"'>";
+								$(map,obj).append(area);
+							});
+						},
+						error:function(XMLHttpRequest,textStatus,errorThrown) {
+							errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+						}
+					});
+				}
+			},100);
+		});
 	}
 
 	var make_focus_obj=null;

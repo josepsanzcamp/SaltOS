@@ -1,7 +1,6 @@
 Note about the php.saltos.min.js file
 - This file only contains the php.js functions used by SaltOS
   - abs
-  - array_pop
   - base64_decode
   - base64_encode
   - chr

@@ -24,7 +24,65 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
-if(getParam("action")=="pdf") {
+
+if(!defined("__CLASS_PDF__")) {
+	define("__CLASS_PDF__",1);
+
+	require_once("lib/tcpdf/tcpdf.php");
+
+	class PDF extends TCPDF {
+		var $arr_header;
+		var $row_header;
+		var $arr_footer;
+		var $row_footer;
+		var $check_y_enabled;
+
+		function Init() {
+			$this->Set_Header(array(),array());
+			$this->Set_Footer(array(),array());
+			$this->check_y_enable(true);
+		}
+
+		function Set_Header($arr,$row) {
+			$this->arr_header=$arr;
+			$this->row_header=$row;
+		}
+
+		function Set_Footer($arr,$row) {
+			$this->arr_footer=$arr;
+			$this->row_footer=$row;
+		}
+
+		function Header() {
+			$oldenable=$this->check_y_enable(false);
+			__eval_pdftag($this->arr_header,$this->row_header);
+			$this->check_y_enable($oldenable);
+		}
+
+		function Footer() {
+			$oldenable=$this->check_y_enable(false);
+			__eval_pdftag($this->arr_footer,$this->row_footer);
+			$this->check_y_enable($oldenable);
+		}
+
+		function check_y($offset=0) {
+			if($this->check_y_enabled) {
+				if($this->y+$offset>($this->hPt/$this->k)-$this->bMargin) {
+					$oldx=$this->GetX();
+					$this->AddPage();
+					$this->SetY($this->tMargin);
+					$this->SetX($oldx);
+				}
+			}
+		}
+
+		function check_y_enable($enable) {
+			$retval=$this->check_y_enabled;
+			$this->check_y_enabled=$enable;
+			return $retval;
+		}
+	}
+
 	// FUNCTIONS
 	function __eval_value($input,$row) {
 		return eval_protected($input,array("row"=>$row));
@@ -73,65 +131,6 @@ if(getParam("action")=="pdf") {
 
 	function __eval_pdftag($array,$row=array()) {
 		static $pdf;
-
-		if(!defined("__CLASS_PDF__")) {
-			define("__CLASS_PDF__",1);
-
-			require_once("lib/tcpdf/tcpdf.php");
-
-			class PDF extends TCPDF {
-				var $arr_header;
-				var $row_header;
-				var $arr_footer;
-				var $row_footer;
-				var $check_y_enabled;
-
-				function Init() {
-					$this->Set_Header(array(),array());
-					$this->Set_Footer(array(),array());
-					$this->check_y_enable(true);
-				}
-
-				function Set_Header($arr,$row) {
-					$this->arr_header=$arr;
-					$this->row_header=$row;
-				}
-
-				function Set_Footer($arr,$row) {
-					$this->arr_footer=$arr;
-					$this->row_footer=$row;
-				}
-
-				function Header() {
-					$oldenable=$this->check_y_enable(false);
-					__eval_pdftag($this->arr_header,$this->row_header);
-					$this->check_y_enable($oldenable);
-				}
-
-				function Footer() {
-					$oldenable=$this->check_y_enable(false);
-					__eval_pdftag($this->arr_footer,$this->row_footer);
-					$this->check_y_enable($oldenable);
-				}
-
-				function check_y($offset=0) {
-					if($this->check_y_enabled) {
-						if($this->y+$offset>($this->hPt/$this->k)-$this->bMargin) {
-							$oldx=$this->GetX();
-							$this->AddPage();
-							$this->SetY($this->tMargin);
-							$this->SetX($oldx);
-						}
-					}
-				}
-
-				function check_y_enable($enable) {
-					$retval=$this->check_y_enabled;
-					$this->check_y_enabled=$enable;
-					return $retval;
-				}
-			}
-		}
 
 		// SUPPORT FOR LTR AND RTL LANGS
 		global $_LANG;
@@ -312,7 +311,10 @@ if(getParam("action")=="pdf") {
 			}
 		}
 	}
-	// CONTINUE
+
+}
+
+if(getParam("action")=="pdf") {
 	$_LANG["default"]="$page,menu,common";
 	if(!file_exists("xml/${page}.xml")) action_denied();
 	$config=xml2array("xml/${page}.xml");

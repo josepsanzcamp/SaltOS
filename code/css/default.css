@@ -451,18 +451,8 @@ span.number {
 	margin-right:15px;
 }
 /* FOR PLOTS */
-svg[isplot=true] {
+img[isplot=true] {
 	margin:2px;
-}
-svg[isplot=true] * {
-	font-size:11px!important;
-}
-.nvtooltip {
-	background:none!important;
-	border:none!important;
-}
-.nvtooltip span {
-  padding:1px 3px;
 }
 /* FOR TOOLTIPS */
 .ui-tooltip {

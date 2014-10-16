@@ -1240,13 +1240,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// TRUE, CREATE THE TABS
 		$(".tabs",obj).tabs({
-			active:active,
-			activate:function(event,ui) {
-				$("svg[isplot=true]",ui.newPanel).each(function() {
-					var chart=$(this).data("chart");
-					chart.update();
-				});
-			}
+			active:active
 		});
 		//~ console.timeEnd("make_tabs");
 	}
@@ -1574,123 +1568,49 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				cm.save();
 			});
 		});
-		// CREATE THE PLOTS
-		$("svg[isplot=true]",obj).each(function() {
-			var obj=this;
-			// GET DATA
-			var width=intval($(this).width());
-			var height=intval($(this).height());
-			var title=$(this).attr("ititle");
-			var legend=explode("|",$(this).attr("legend"));
-			var vars=intval($(this).attr("vars"));
-			var colors=explode("|",$(this).attr("colors"));
-			var graph=$(this).attr("graph");
-			var ticks=explode("|",$(this).attr("ticks"));
-			var posx=explode("|",$(this).attr("posx"));
-			var datas=[];
-			for(var i=1;i<=16;i++) datas[i]=explode("|",$(this).attr("data"+i));
-			// REPAIR DATA
-			if(legend[count(legend)-1]=="") array_pop(legend);
-			if(colors[count(colors)-1]=="") array_pop(colors);
-			if(ticks[count(ticks)-1]=="") array_pop(ticks);
-			if(posx[count(posx)-1]=="") array_pop(posx);
-			for(var i=1;i<=16;i++) if(datas[i][count(datas[i])-1]=="") array_pop(datas[i]);
-			// PREPARE DATA
-			var data=[];
-			for(var i=1;i<=vars;i++) {
-				var j=i-1;
-				data[j]=[];
-				data[j]["key"]=title;
-				if(vars>1) data[j]["key"]=legend[j];
-				data[j]["values"]=[];
-				for(var k=0;k<count(ticks);k++) {
-					data[j]["values"][k]=[];
-					data[j]["values"][k]["x"]=ticks[k];
-					data[j]["values"][k]["y"]=datas[i][k];
-				}
-			}
-			// DO THE PLOT
-			nv.addGraph(function() {
-				var chart;
-				// FOR EACH SUPPORTED GRAPH AND VARS
-				if(graph=="bars" && vars==1) {
-					chart=nv.models.discreteBarChart()
-						.noData(lang_withoutinfo())
-						.tooltipContent(function(key,x,y,e,graph) { return "<span class='ui-state-highlight ui-corner-all'>"+x+": "+y+"</span>";})
-						.color(d3.scale.category20().range())
-						.showValues(true);
-				}
-				if(graph=="pie" && vars==1) {
-					chart=nv.models.pieChart()
-						.noData(lang_withoutinfo())
-						.tooltipContent(function(key,x,y,e,graph) { return "<span class='ui-state-highlight ui-corner-all'>"+key+": "+x+"</span>";})
-						.color(d3.scale.category20().range());
-					data=data[0]["values"];
-				}
-				if(graph=="bars" && vars>=2) {
-					chart=nv.models.multiBarChart()
-						.noData(lang_withoutinfo())
-						.tooltipContent(function(key,x,y,e,graph) { return "<span class='ui-state-highlight ui-corner-all'>"+x+": "+y+"</span>";})
-						.color(d3.scale.category20().range())
-						.margin({bottom:75})
-						.rotateLabels(45)
-						.groupSpacing(0.1)
-						.showControls(false);
-				}
-				// CONTINUE
-				d3.select(obj)
-					.datum(data)
-					.call(chart);
-				$(obj).data("chart",chart);
-				//~ nv.utils.windowResize(chart.update);
-				return chart;
-			});
-		});
-		// PROGRAM AUTOCOMPLETE FIELDS
-		$("input[isautocomplete=true]",obj).each(function() {
-			var key=$(this).attr("name");
-			var prefix="";
-			$("input[name^=prefix_]").each(function() {
-				var val=$(this).val();
-				if(key.substr(0,val.length)==val) prefix=val;
-			});
-			var query=$(this).attr("querycomplete");
-			var filter=$(this).attr("filtercomplete");
-			var fn=$(this).attr("oncomplete");
-			$(this).autocomplete({
-				delay:300,
-				source:function(request,response) {
-					var term=request.term;
-					var input=this.element;
-					var data="action=ajax&format=json&query="+query+"&term="+rawurlencode(term);
-					if(typeof($("#"+prefix+filter).val())!="undefined") data+="&filter="+$("#"+prefix+filter).val();
+		// REQUEST THE PLOTS
+		var attrs=new Array("legend","vars","colors","graph","ticks","posx",
+			"data1","data2","data3","data4","data5","data6","data7","data8","data9","data10",
+			"data11","data12","data13","data14","data15","data16");
+		$("img[isplot=true]",obj).each(function() {
+			var map="#"+$(this).prev().attr("id");
+			var interval=setInterval(function() {
+				var map2=$(map,obj);
+				var img=$(map2).next().get(0);
+				if(!$(map2).length) {
+					clearInterval(interval);
+				} else if($(img).is(":visible")) {
+					clearInterval(interval);
+					var querystring="action=phplot";
+					querystring+="&width="+$(img).width();
+					querystring+="&height="+$(img).height();
+					var data=$(img).attr("title3");
+					if(typeof(data)!="undefined") querystring+="&title="+rawurlencode(data);
+					for(var i=0,len=attrs.length;i<len;i++) {
+						var data=$(img).attr(attrs[i]);
+						if(typeof(data)!="undefined") querystring+="&"+attrs[i]+"="+rawurlencode(data);
+					};
 					$.ajax({
 						url:"index.php",
-						data:data,
-						type:"get",
-						dataType:"json",
-						success:function(data) {
-							// TO CANCEL OLD REQUESTS
-							var term2=$(input).val();
-							if(term==term2) response(data);
+						data:querystring,
+						type:"post",
+						success:function(response) {
+							$(img).attr("src",$("root>img",response).text());
+							var map=$(img).attr("usemap");
+							$("root>map>area",response).each(function() {
+								var shape=$("shape",this).text();
+								var coords=$("coords",this).text();
+								var value=$("value",this).text();
+								var area="<area shape='"+shape+"' coords='"+coords+"' title='"+value+"'>";
+								$(map,obj).append(area);
+							});
 						},
 						error:function(XMLHttpRequest,textStatus,errorThrown) {
 							errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 						}
 					});
-				},
-				search:function() {
-					return this.value.length>0;
-				},
-				focus:function() {
-					return false;
-				},
-				select:function(event,ui) {
-					this.value=ui.item.label;
-					if(typeof(fn)!="undefined") eval(fn);
-					return false;
 				}
-			});
+			},100);
 		});
 		//~ console.timeEnd("make_ckeditors");
 	}
@@ -1703,11 +1623,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var name=$(this).attr("name");
 			if(CKEDITOR.instances[name]) CKEDITOR.instances[name].destroy();
 		});
-		// REMOVE THE PLOTS (IMPORTANT THING!!!)
-		$("svg[isplot=true]",obj).each(function() {
-			d3.select(this).remove();
-		});
-		while(nv.graphs.length>0) nv.graphs.pop();
 		//~ console.timeEnd("unmake_ckeditors");
 	}
 
