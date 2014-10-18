@@ -418,12 +418,12 @@ function minify_css($buffer) {
 }
 
 function minify_js($buffer) {
-	if(isphp53()) require_once("lib/minify/Minifier.php");
-	if(!isphp53()) require_once("lib/minify/jsmin-1.1.2.php");
+	if(isphp(5.3)) require_once("lib/minify/Minifier.php");
+	if(!isphp(5.3)) require_once("lib/minify/jsmin-1.1.2.php");
 	capture_next_error();
 	try {
-		if(isphp53()) $buffer2=Minifier::minify($buffer);
-		if(!isphp53()) $buffer2=JSMin::minify($buffer);
+		if(isphp(5.3)) $buffer2=Minifier::minify($buffer);
+		if(!isphp(5.3)) $buffer2=JSMin::minify($buffer);
 	} catch(Exception $e) {
 		__exception_handler($e);
 	}
@@ -546,12 +546,8 @@ function ob_start_protected($param="") {
 	if($error) ob_start();
 }
 
-function isphp53() {
-	return version_compare(PHP_VERSION,"5.3",">=");
-}
-
-function isphp54() {
-	return version_compare(PHP_VERSION,"5.4",">=");
+function isphp($version) {
+	return version_compare(PHP_VERSION,$version,">=");
 }
 
 function ismsie($version=null) {
