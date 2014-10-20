@@ -443,7 +443,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				f.id_usuario id_usuario,g.id_grupo id_grupo,f.`datetime` `datetime`,
 				".make_extra_query_with_login("g.")." usuario,
 				CASE a.id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE j.nombre END cuenta,
-				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
+				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id AND ".str_replace(" AND "," OR ",make_like_query("fichero,fichero_file,fichero_size,fichero_type,search",$filtro)).") search
 			FROM tbl_gastos a
 				LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id
 				LEFT JOIN tbl_usuarios b ON a.id_pagador=b.id

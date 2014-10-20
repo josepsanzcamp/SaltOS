@@ -286,7 +286,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE id_prioridad WHEN '0' THEN '".LANG_ESCAPE("sinprioridad")."' ELSE f_nombre END prioridad,
 			a.id_prioridad id_prioridad,
 			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_incidencias_u iu WHERE iu.id_incidencia=a.id)) asignadoa,
-			(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
+			(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id AND ".str_replace(" AND "," OR ",make_like_query("fichero,fichero_file,fichero_size,fichero_type,search",$comentarios)).") search
 		FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre FROM tbl_incidencias a2
 		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
 		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto

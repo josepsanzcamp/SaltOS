@@ -370,7 +370,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				a.descripcion descripcion,a.id_campanya id_campanya,
 				a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
 				id_usuario,id_estado,a.id_cliente id_cliente,d.id_grupo id_grupo,c.activo activo,
-				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
+				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id AND ".str_replace(" AND "," OR ",make_like_query("fichero,fichero_file,fichero_size,fichero_type,search",$comentarios)).") search
 			FROM tbl_proyectos a
 			LEFT JOIN tbl_clientes b ON b.id=a.id_cliente
 			LEFT JOIN tbl_estados c ON id_estado=c.id

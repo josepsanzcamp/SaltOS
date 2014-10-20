@@ -237,7 +237,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 		CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
 		a.id_cliente id_cliente,e.id_usuario id_usuario,d.id_grupo id_grupo,id_proyecto,a.descripcion descripcion,
-		(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) search
+		(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id AND ".str_replace(" AND "," OR ",make_like_query("fichero,fichero_file,fichero_size,fichero_type,search",$comentarios)).") search
 	FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre FROM tbl_documentos a2
 		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
 		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto) a

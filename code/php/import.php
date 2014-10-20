@@ -61,7 +61,7 @@ function import_file($args) {
 	if(!isset($args["nodes"])) $args["nodes"]=array();
 	if(!isset($args["prefn"])) $args["prefn"]="";
 	if(!isset($args["postfn"])) $args["postfn"]="";
-	if(!file_exists($args["file"])) return "Error: File '$file' not found";
+	if(!file_exists($args["file"])) return "Error: File '${args["file"]}' not found";
 	// CONTINUE
 	switch($args["type"]) {
 		case "application/xml":
