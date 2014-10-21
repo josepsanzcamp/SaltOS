@@ -2043,6 +2043,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				//~ console.timeEnd("document_ready fase 2 center");
 			},100);
 			unloadingcontent();
+			$().UItoTop({ easingType:"easeOutQuart" });
 			//~ console.timeEnd("document_ready fase 1");
 		},100);
 		//~ console.timeEnd("document_ready fase 0");

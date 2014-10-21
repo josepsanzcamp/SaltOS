@@ -260,7 +260,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.0.096 (LGPL-3.0)</label>
+							<label>TCPDF 6.0.097 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -304,7 +304,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.rcdtokyo.com/etc/gdataapis/")</onclick>
 						</field>
 						<field>
-							<label>PHP Mobile Detect 2.8.3 (MIT)</label>
+							<label>PHP Mobile Detect 2.8.5 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
@@ -483,7 +483,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>Auto-Growing Textarea (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://onehackoranother.com/projects/jquery/jquery-grab-bag/autogrow-textarea.html")</onclick>
+							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag/blob/master/javascripts/jquery.autogrow-textarea.js")</onclick>
 						</field>
 						<field>
 							<label>ptTimeSelect (Modified by Sanz) (MIT &amp; GPL*)</label>
@@ -532,10 +532,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
 						</field>
 						<field>
-							<label>Auto-growing textarea (MIT)</label>
+							<label>UItoTop (GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag/blob/master/javascripts/jquery.autogrow-textarea.js")</onclick>
+							<onclick>openwin("https://github.com/sksmatt/UItoTop-jQuery-Plugin/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
