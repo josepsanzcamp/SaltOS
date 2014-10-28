@@ -470,6 +470,7 @@ img[isplot=true] {
 /* FOR CONTEXT MENU */
 #contextMenu {
 	padding:3px 0;
+	display:none;
 }
 
 #contextMenu li {

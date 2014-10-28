@@ -94,6 +94,7 @@ if(getParam("action")=="themeroller") {
 	}
 	// CREATE IF NOT EXISTS
 	$allbase=array_merge(array($xml[$type]["cssbase"]),glob_protected($xml[$type]["imgbase"]."*.png"));
+	//if(file_exists($cache)) unlink($cache);
 	if(!cache_exists($cache,$allbase)) {
 		if($mask) {
 			$mask=explode(",",$mask);
@@ -246,6 +247,27 @@ if(getParam("action")=="themeroller") {
 						}
 					}
 				}
+				// FOR THE JQUERY.UI.TOTOP PLUGIN
+				$buffer.=file_get_contents($xml[$type]["csstotop"]);
+				$bgcolor=$array["bgColorHeader"];
+				$bgImage=$xml[$type]["imgtotop"];
+				if(eval_bool(getDefault("cache/useimginline"))) {
+					if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
+					require_once("php/listsim.php");
+					saltos_context($page,$action);
+					setParam("mask","${bgImage},ffffff,${bgcolor}");
+					ob_start();
+					$oldcache=$cache;
+					include(__FILE__);
+					$cache=$oldcache;
+					$data=base64_encode(ob_get_clean());
+					saltos_context();
+					$data="data:image/png;base64,${data}";
+					$array["UItoTop"]="url(${data})";
+				} else {
+					$array["UItoTop"]="url(?action=themeroller&mask=${bgImage},ffffff,${bgcolor})";
+				}
+				// CONTINUE
 				foreach(array("bgColor","borderColor","fc") as $val) {
 					$len=strlen($val);
 					foreach($array as $key2=>$val2) {

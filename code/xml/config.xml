@@ -232,7 +232,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.colorpicker.css</include>
 			<include>lib/jquery/jquery.ptTimeSelect.css</include>
 			<include>lib/jquery/jquery.jgrowl.css</include>
-			<include>lib/jquery/jquery.ui.totop.css</include>
 			<include>lib/codemirror/codemirror.min.css</include>
 			<!--<include>lib/w2ui/w2ui.min.css</include>-->
 			<!--<include>lib/d3js/nv.d3.min.css</include>-->
