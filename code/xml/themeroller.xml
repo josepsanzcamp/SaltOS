@@ -55,7 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fine_grain>50%,50%,repeat</fine_grain>
 		</csstrick>
 		<csstotop>lib/jquery/jquery.ui.totop.css</csstotop>
-		<imgtotop>../jquery.ui.totop.png</imgtotop>
+		<imgtotop>lib/jquery/jquery.ui.totop.png</imgtotop>
 	</desktop>
 	<mobile>
 		<cssbase>lib/jquery/jquery.mobile.css</cssbase>

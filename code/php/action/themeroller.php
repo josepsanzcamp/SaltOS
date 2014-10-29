@@ -94,15 +94,16 @@ if(getParam("action")=="themeroller") {
 	}
 	// CREATE IF NOT EXISTS
 	$allbase=array_merge(array($xml[$type]["cssbase"]),glob_protected($xml[$type]["imgbase"]."*.png"));
-	//if(file_exists($cache)) unlink($cache);
 	if(!cache_exists($cache,$allbase)) {
 		if($mask) {
 			$mask=explode(",",$mask);
 			if(count($mask)!=3) action_denied();
-			if(!file_exists($xml[$type]["imgbase"].$mask[0])) show_php_error(array("phperror"=>"Mask '${mask[0]}' not found"));
+			if(substr($mask[0],0,1)=="/") action_denied();
+			if(strpos($mask[0],"..")!==false) action_denied();
+			if(!file_exists($mask[0])) show_php_error(array("phperror"=>"Mask '${mask[0]}' not found"));
 			if(!in_array(strlen($mask[1]),array(6,3))) action_denied();
 			if(!in_array(strlen($mask[2]),array(6,3))) action_denied();
-			$im=imagecreatefrompng($xml[$type]["imgbase"].$mask[0]);
+			$im=imagecreatefrompng($mask[0]);
 			$sx=imagesx($im);
 			$sy=imagesy($im);
 			$im2=imagecreatetruecolor($sx,$sy);
@@ -132,11 +133,13 @@ if(getParam("action")=="themeroller") {
 		if($over) {
 			$over=explode(",",$over);
 			if(count($over)!=4) action_denied();
-			if(!file_exists($xml[$type]["imgbase"].$over[0])) show_php_error(array("phperror"=>"Over '${over[0]}' not found"));
+			if(substr($over[0],0,1)=="/") action_denied();
+			if(strpos($over[0],"..")!==false) action_denied();
+			if(!file_exists($over[0])) show_php_error(array("phperror"=>"Over '${over[0]}' not found"));
 			if(!in_array(strlen($over[1]),array(6,3))) action_denied();
 			if(!is_numeric($over[2])) action_denied();
 			if(!in_array(strlen($over[3]),array(6,3))) action_denied();
-			$im=imagecreatefrompng($xml[$type]["imgbase"].$over[0]);
+			$im=imagecreatefrompng($over[0]);
 			$sx=imagesx($im);
 			$sy=imagesy($im);
 			$im2=imagecreatetruecolor($sx,$sy);
@@ -193,11 +196,12 @@ if(getParam("action")=="themeroller") {
 					foreach($array as $key2=>$val2) {
 						if(substr($key2,0,$len)==$val) {
 							$bgcolor=$array["bgColor".substr($key2,$len)];
+							$bgImage=$xml[$type]["imgbase"]."icons.png";
 							if(eval_bool(getDefault("cache/useimginline"))) {
 								if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 								require_once("php/listsim.php");
 								saltos_context($page,$action);
-								setParam("mask","icons.png,${val2},${bgcolor}");
+								setParam("mask","${bgImage},${val2},${bgcolor}");
 								ob_start();
 								$oldcache=$cache;
 								include(__FILE__);
@@ -207,7 +211,7 @@ if(getParam("action")=="themeroller") {
 								$data="data:image/png;base64,${data}";
 								$array["icons".substr($key2,$len)]="url(${data})";
 							} else {
-								$array["icons".substr($key2,$len)]="url(?action=themeroller&mask=icons.png,${val2},${bgcolor})";
+								$array["icons".substr($key2,$len)]="url(?action=themeroller&mask=${bgImage},${val2},${bgcolor})";
 							}
 						}
 					}
@@ -222,7 +226,7 @@ if(getParam("action")=="themeroller") {
 							$bgImage=glob_protected($xml[$type]["imgbase"]."*${val2}.png");
 							if(!isset($bgImage[0])) show_php_error(array("phperror"=>"bgImage '${val2}' not found"));
 							if(!file_exists($bgImage[0])) show_php_error(array("phperror"=>"bgImage '${bgImage[0]}' not found"));
-							$bgImage=basename($bgImage[0]);
+							$bgImage=$bgImage[0];
 							if(eval_bool(getDefault("cache/useimginline"))) {
 								if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 								require_once("php/listsim.php");
@@ -249,8 +253,8 @@ if(getParam("action")=="themeroller") {
 				}
 				// FOR THE JQUERY.UI.TOTOP PLUGIN
 				$buffer.=file_get_contents($xml[$type]["csstotop"]);
-				$bgcolor=$array["bgColorHeader"];
 				$bgImage=$xml[$type]["imgtotop"];
+				$bgcolor=$array["bgColorHeader"];
 				if(eval_bool(getDefault("cache/useimginline"))) {
 					if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 					require_once("php/listsim.php");
