@@ -214,7 +214,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://httpd.apache.org")</onclick>
 						</field>
 						<field>
-							<label>PHP 5.2-5.5 (PHP-3.01)</label>
+							<label>PHP 5.2-5.6 (PHP-3.01)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.php.net")</onclick>
@@ -240,9 +240,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.sqlite.org")</onclick>
 						</field>
 						<field>
+							<label>HHVM (PHP-3.01 &amp; ZEND-2.0)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://github.com/facebook/hhvm")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>3</colspan>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>

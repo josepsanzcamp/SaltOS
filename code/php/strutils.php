@@ -186,8 +186,9 @@ function get_base() {
 	$protocol="http://";
 	$servername=getDefault("server/hostname");
 	if(!$servername) $servername=getServer("SERVER_NAME");
-	$added="";
+	$addedport="";
 	$scriptname=getServer("SCRIPT_NAME");
+	// SOME CHECKS
 	if(basename($scriptname)==getDefault("server/dirindex","index.php")) {
 		$scriptname=dirname($scriptname);
 		if(substr($scriptname,-1,1)!="/") $scriptname.="/";
@@ -198,14 +199,14 @@ function get_base() {
 	$porthttps=getDefault("server/porthttps",443);
 	if($serverport==$porthttp) {
 		$protocol="http://";
-		if($porthttp!=80) $added=":$serverport";
+		if($porthttp!=80) $addedport=":$serverport";
 	}
 	if($serverport==$porthttps) {
 		$protocol="https://";
-		if($porthttp!=443) $added=":$serverport";
+		if($porthttp!=443) $addedport=":$serverport";
 	}
 	// CONTINUE
-	$url=$protocol.$servername.$added.$scriptname;
+	$url=$protocol.$servername.$addedport.$scriptname;
 	return $url;
 }
 
@@ -550,6 +551,10 @@ function isphp($version) {
 	return version_compare(PHP_VERSION,$version,">=");
 }
 
+function ishhvm() {
+	return strpos(PHP_VERSION,"hhvm")!==false;
+}
+
 function ismsie($version=null) {
 	$useragent=getServer("HTTP_USER_AGENT");
 	if($version===null) {
@@ -573,9 +578,13 @@ function html2text($html) {
 }
 
 // RETURN THE UTF-8 CONVERTED STRING IF IT'S NEEDED
-function getutf8($temp) {
-	if(!mb_check_encoding($temp,"UTF-8")) $temp=mb_convert_encoding($temp,"UTF-8",ini_get("mbstring.detect_order"));
-	return $temp;
+function getutf8($str) {
+	if(!mb_check_encoding($str,"UTF-8")) {
+		ob_start();
+		$str=mb_convert_encoding($str,"UTF-8",implode(",",mb_detect_order()));
+		ob_get_clean();
+	}
+	return $str;
 }
 
 // USING WORDPRESS FEATURES

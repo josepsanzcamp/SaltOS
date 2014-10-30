@@ -214,16 +214,16 @@ function eval_iniset($array) {
 				if($val!=$current) $diff=1;
 			}
 			if($diff) {
-				if(ini_set($key,$val)===false) {
-					if($key=="mbstring.internal_encoding") {
-						if(!mb_internal_encoding($val)) {
-							show_php_error(array("phperror"=>"mb_internal_encoding fails to set '$val'"));
-						}
-					} elseif($key=="mbstring.detect_order") {
-						mb_detect_order($val);
-					} else {
-						show_php_error(array("phperror"=>"ini_set fails to set '$key' from '$current' to '$val'"));
+				if($key=="mbstring.internal_encoding") {
+					if(mb_internal_encoding($val)===false) {
+						show_php_error(array("phperror"=>"mb_internal_encoding fails to set '$val'"));
 					}
+				} elseif($key=="mbstring.detect_order") {
+					if(mb_detect_order($val)===false) {
+						show_php_error(array("phperror"=>"mb_detect_order fails to set '$val'"));
+					}
+				} elseif(ini_set($key,$val)===false) {
+					show_php_error(array("phperror"=>"ini_set fails to set '$key' from '$current' to '$val'"));
 				}
 			}
 		}
@@ -1126,7 +1126,7 @@ function program_handlers() {
 	set_exception_handler("__exception_handler");
 	register_shutdown_function("__shutdown_handler");
 	time_get_usage(true);
-	register_tick_function("__tick_handler");
+	if(isphp(5.3) && !ishhvm()) register_tick_function("__tick_handler");
 }
 
 function init_random() {

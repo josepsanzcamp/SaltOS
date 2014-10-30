@@ -291,9 +291,26 @@ function xml2array($file,$usecache=true) {
 function xml2struct($xml,$file="") {
 	// DETECT IF ENCODING ATTR IS FOUND
 	$pos1=strpos($xml,"<?xml");
-	$pos2=strpos($xml,"encoding=",$pos1);
-	$pos3=strpos($xml,"?>",$pos1);
-	if($pos2===false || $pos2>$pos3) $xml=getutf8($xml);
+	$pos2=strpos($xml,"?>",$pos1);
+	if($pos1!==false && $pos2!==false) {
+		$tag=substr($xml,$pos1,$pos2+2-$pos1);
+		$pos3=strpos($tag,"encoding=");
+		if($pos3!==false) {
+			$pos4=$pos3+9;
+			if($tag[$pos4]=='"') {
+				$pos4++;
+				$pos5=strpos($tag,'"',$pos4);
+			} elseif($tag[$pos4]=="'") {
+				$pos4++;
+				$pos5=strpos($tag,"'",$pos4);
+			} else {
+				$pos5=strpos($tag," ",$pos4);
+				if($pos5>$pos2) $pos5=$pos2;
+			}
+			$xml=substr_replace($xml,"UTF-8",$pos1+$pos4,$pos5-$pos4);
+		}
+	}
+	$xml=getutf8($xml);
 	// CONTINUE
 	$parser=xml_parser_create();
 	xml_parser_set_option($parser,XML_OPTION_CASE_FOLDING,0);
@@ -494,7 +511,8 @@ function eval_attr($array) {
 								if($global) $attr=array_merge(array("global"=>$global),$attr);
 								$old_value=$value;
 								$value=array();
-								foreach($stack["foreach_rows"] as $$stack["foreach_as"]) {
+								foreach($stack["foreach_rows"] as $row) {
+									$$stack["foreach_as"]=$row; // TRICK FOR HHVM!!!
 									$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
 									if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 								}
