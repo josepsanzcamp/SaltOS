@@ -552,7 +552,7 @@ function isphp($version) {
 }
 
 function ishhvm() {
-	return strpos(PHP_VERSION,"hhvm")!==false;
+	return defined("HHVM_VERSION");
 }
 
 function ismsie($version=null) {

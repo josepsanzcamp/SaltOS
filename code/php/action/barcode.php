@@ -62,7 +62,7 @@ if(getParam("action")=="barcode") {
 			$x+=$bw;
 		}
 		// ADD MSG TO THE IMAGE FOOTER
-		$font="lib/fonts/DejaVuSans.ttf";
+		$font=getcwd()."/lib/fonts/DejaVuSans.ttf";
 		$bbox=imagettfbbox($s,0,$font,$msg);
 		$px=($width+2*$m)/2-($bbox[4]-$bbox[0])/2;
 		$py=$m+$h+$s+$w;

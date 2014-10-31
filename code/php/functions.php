@@ -923,7 +923,9 @@ function get_clear_error() {
 	if(is_array($error) && isset($error["type"]) && $error["type"]!=E_USER_NOTICE) {
 		set_error_handler("var_dump",0);
 		ob_start();
+		$olderror=error_reporting(0);
 		trigger_error("");
+		error_reporting($olderror);
 		ob_end_clean();
 		restore_error_handler();
 	}

@@ -59,7 +59,7 @@ if(getParam("action")=="score") {
 				imageline($im,$posx,0,$posx,$height,$color);
 				$posx++;
 			}
-			$font="lib/fonts/DejaVuSans.ttf";
+			$font=getcwd()."/lib/fonts/DejaVuSans.ttf";
 			$bbox=imagettfbbox($size,0,$font,$score."%");
 			$sx=$bbox[4]-$bbox[0];
 			$sy=$bbox[5]-$bbox[1];
