@@ -117,7 +117,8 @@ if(getParam("action")=="captcha") {
 	$fgcolor2=imagecolorallocate($im,__captcha_color2dec($fgcolor,"R"),__captcha_color2dec($fgcolor,"G"),__captcha_color2dec($fgcolor,"B"));
 	imagefill($im,0,0,$bgcolor2);
 	$letters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	$font=getcwd()."/lib/fonts/GorriSans.ttf"; // GETCWD NEEDED BY HHVM
+	$font="lib/fonts/GorriSans.ttf";
+	$font=realpath($font); // REALPATH NEEDED BY HHVM
 	$bbox=imagettfbbox($letter,0,$font,$letters[0]);
 	$heightline=abs($bbox[7]-$bbox[1]);
 	$numlines=intval($height/$heightline)+1;

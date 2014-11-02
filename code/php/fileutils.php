@@ -227,6 +227,7 @@ function ob_passthru($cmd,$expires=0) {
 		$cache=get_cache_file($cmd,getDefault("exts/outputext",".out"));
 		list($mtime,$error)=filemtime_protected($cache);
 		if(file_exists($cache) && !$error && time()-$expires<$mtime) return file_get_contents($cache);
+		if(!semaphore_acquire(array(__FUNCTION__,$cmd))) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 	}
 	if($disableds_string===null) {
 		$disableds_string=ini_get("disable_functions").",".ini_get("suhosin.executor.func.blacklist");
@@ -256,6 +257,7 @@ function ob_passthru($cmd,$expires=0) {
 	if($expires) {
 		file_put_contents($cache,$buffer);
 		chmod_protected($cache,0666);
+		semaphore_release(array(__FUNCTION__,$cmd));
 	}
 	return $buffer;
 }

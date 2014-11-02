@@ -263,8 +263,6 @@ function _make_email_clickable_cb($matches) {
  * is applied to the returned cleaned URL.
  *
  * @since 2.8.0
- * @uses wp_kses_bad_protocol() To only permit protocols in the URL set
- *		via $protocols or the common ones set in the function.
  *
  * @param string $url The URL to be cleaned.
  * @param array $protocols Optional. An array of acceptable protocols.

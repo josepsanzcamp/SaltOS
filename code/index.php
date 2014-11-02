@@ -49,7 +49,7 @@ cache_gc();
 db_connect();
 db_schema();
 db_static();
-if(!semaphore_acquire()) die();
+if(!semaphore_acquire()) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 sess_init();
 check_remember();
 check_basicauth();

@@ -468,7 +468,7 @@ function eval_attr($array) {
 									break;
 								case "foreach":
 									if(!is_array($$val2)) xml_error("The 'foreach' attr requires a rows array");
-									$stack["foreach_rows"]=$$val2;
+									$stack["foreach_rows"]=$val2;
 									break;
 								case "as":
 									if(!$val2) xml_error("The 'as' attr requires a row array");
@@ -511,8 +511,7 @@ function eval_attr($array) {
 								if($global) $attr=array_merge(array("global"=>$global),$attr);
 								$old_value=$value;
 								$value=array();
-								foreach($stack["foreach_rows"] as $row) {
-									$$stack["foreach_as"]=$row; // TRICK FOR HHVM!!!
+								foreach($$stack["foreach_rows"] as ${$stack["foreach_as"]}) { // ${$stack["foreach_as"]} FOR HHVM
 									$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
 									if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 								}
