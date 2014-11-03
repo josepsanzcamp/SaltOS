@@ -1612,6 +1612,52 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 			},100);
 		});
+		// PROGRAM AUTOCOMPLETE FIELDS
+		$("input[isautocomplete=true]",obj).each(function() {
+			var key=$(this).attr("name");
+			var prefix="";
+			$("input[name^=prefix_]").each(function() {
+				var val=$(this).val();
+				if(key.substr(0,val.length)==val) prefix=val;
+			});
+			var query=$(this).attr("querycomplete");
+			var filter=$(this).attr("filtercomplete");
+			var fn=$(this).attr("oncomplete");
+			$(this).autocomplete({
+				delay:300,
+				source:function(request,response) {
+					var term=request.term;
+					var input=this.element;
+					var data="action=ajax&format=json&query="+query+"&term="+rawurlencode(term);
+					if(typeof($("#"+prefix+filter).val())!="undefined") data+="&filter="+$("#"+prefix+filter).val();
+					$.ajax({
+						url:"index.php",
+						data:data,
+						type:"get",
+						dataType:"json",
+						success:function(data) {
+							// TO CANCEL OLD REQUESTS
+							var term2=$(input).val();
+							if(term==term2) response(data);
+						},
+						error:function(XMLHttpRequest,textStatus,errorThrown) {
+							errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+						}
+					});
+				},
+				search:function() {
+					return this.value.length>0;
+				},
+				focus:function() {
+					return false;
+				},
+				select:function(event,ui) {
+					this.value=ui.item.label;
+					if(typeof(fn)!="undefined") eval(fn);
+					return false;
+				}
+			});
+		});
 		//~ console.timeEnd("make_ckeditors");
 	}
 

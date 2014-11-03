@@ -155,7 +155,9 @@ if(!file_exists($cache)) {
 	capture_next_error();
 	$plot->SetDataValues($values);
 	$graph=get_clear_error()?"error":$graph;
-	$plot->SetDefaultTTFont("lib/fonts/DejaVuSans.ttf");
+	$font="lib/fonts/DejaVuSans.ttf";
+	$font=realpath($font); // NEEDED BY HHVM
+	$plot->SetDefaultTTFont($font);
 	$plot->SetBgImage("img/defplot.png","centeredtile");
 	$plot->SetFailureImage(false);
 	// SET THE SIZES OF ALL FONTS
@@ -207,14 +209,14 @@ if(!file_exists($cache)) {
 			$plot->SetMarginsPixels(NULL,$width2+10,NULL,NULL);
 			$plot->SetLegendPosition(0,0.5,"plot",1,0.5,5,0);
 		}
-		$plot->SetPlotAreaWorld(NULL,$minvalue,NULL,$maxvalue);
+		if($minvalue<$maxvalue) $plot->SetPlotAreaWorld(NULL,$minvalue,NULL,$maxvalue);
 		$plot->SetYLabelType("data");
 		$plot->SetPrecisionY($precision);
 		$plot->SetYDataLabelPos("plotin");
 		$plot->SetXTickLabelPos("none");
 		$plot->SetXTickPos("none");
 		$plot->SetXDataLabelAngle(45);
-		$plot->SetLineWidths(1);
+		$plot->SetLineWidths(2);
 		$plot->SetLineStyles("solid");
 	}
 	// FOR PIE PLOT
@@ -239,14 +241,14 @@ if(!file_exists($cache)) {
 			$plot->SetMarginsPixels(NULL,$width2+10,NULL,NULL);
 			$plot->SetLegendPosition(0,0.5,"plot",1,0.5,5,0);
 		}
-		$plot->SetPlotAreaWorld(NULL,$minvalue,NULL,$maxvalue);
+		if($minvalue<$maxvalue) $plot->SetPlotAreaWorld(NULL,$minvalue,NULL,$maxvalue);
 		$plot->SetYLabelType("data");
 		$plot->SetPrecisionY($precision);
 		$plot->SetYDataLabelPos("none");
 		$plot->SetXTickLabelPos("none");
 		$plot->SetXTickPos("none");
 		$plot->SetXDataLabelAngle(45);
-		$plot->SetLineWidths(1);
+		$plot->SetLineWidths(2);
 		$plot->SetLineStyles("solid");
 	}
 	// FOR FINANCIAL PLOT
@@ -261,7 +263,7 @@ if(!file_exists($cache)) {
 			$plot->SetLegendPosition(0,0.5,"plot",1,0.5,5,0);
 		}
 		$plot->SetDataColors(array("red","DarkGreen","red","DarkGreen"));
-		$plot->SetPlotAreaWorld(NULL,$minvalue,NULL,$maxvalue);
+		if($minvalue<$maxvalue) $plot->SetPlotAreaWorld(NULL,$minvalue,NULL,$maxvalue);
 		$plot->SetYLabelType("data");
 		$plot->SetPrecisionY($precision);
 		$plot->SetYDataLabelPos("plotin");
