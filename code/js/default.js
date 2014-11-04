@@ -1613,7 +1613,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			},100);
 		});
 		// PROGRAM AUTOCOMPLETE FIELDS
-		$("input[isautocomplete=true]",obj).each(function() {
+		$("input[isautocomplete=true],textarea[isautocomplete=true]",obj).each(function() {
 			var key=$(this).attr("name");
 			var prefix="";
 			$("input[name^=prefix_]").each(function() {
