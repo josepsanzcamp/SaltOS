@@ -36,9 +36,12 @@ $ticks=explode("|",getParam("ticks"));
 $posx=explode("|",getParam("posx"));
 $data=array();
 for($i=1;$i<=$vars;$i++) $data[$i]=explode("|",getParam("data$i"));
+// LOADING CONTROL
+$format=getParam("format","xml");
+if(!in_array($format,array("png","xml"))) action_denied();
+$loading=getParam("loading");
 // CACHE CONTROL
-$params=serialize(array($width,$height,$title,$legend,$vars,$colors,$graph,$ticks,$posx,$data));
-$cache=get_cache_file($params,getDefault("exts/xmlext",".xml"));
+$cache=get_cache_file(array($width,$height,$title,$legend,$vars,$colors,$graph,$ticks,$posx,$data,$format,$loading),$format);
 //if(file_exists($cache)) unlink($cache); // ONLY FOR TESTS PURPOSES AND TODO REMOVED
 if(!file_exists($cache)) {
 	// BEGIN THE PHPLOT WRAPPER
@@ -281,13 +284,20 @@ if(!file_exists($cache)) {
 	if($graph=="error") {
 		$plot->SetFont("generic","",10);
 		$options=array("draw_background"=>true,"draw_border"=>true,"force_print"=>false,"reset_font"=>false);
-		$plot->DrawMessage(LANG("withoutinfo"),$options);
+		$plot->DrawMessage(LANG($loading?"loading":"withoutinfo"),$options);
 	}
-	// MAKE XML
-	$_RESULT["img"]=$plot->EncodeImage();
-	//$plot->PrintImage(); die();
-	$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
-	$buffer.=array2xml($_RESULT);
+	if($format=="png") {
+		ob_start();
+		$plot->PrintImage();
+		$buffer=ob_get_clean();
+	}
+	if($format=="xml") {
+		// MAKE XML
+		$_RESULT["img"]=$plot->EncodeImage();
+		//$plot->PrintImage(); die();
+		$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
+		$buffer.=array2xml($_RESULT);
+	}
 	file_put_contents($cache,$buffer);
 	chmod_protected($cache,0666);
 }

@@ -1081,7 +1081,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:if>
 			<td class="left {class3}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width};height:{height}">
 				<map name="{generate-id(.)}" id="{generate-id(.)}"></map>
-				<img style="width:{width};height:{height}" class="{class}" src="" isplot="true" id="{$prefix}{name}" usemap="#{generate-id(.)}">
+				<img style="width:{width};height:{height}" class="{class}" src="?action=phplot&amp;width={width}&amp;height={height}&amp;format=png&amp;loading=1" isplot="true" id="{$prefix}{name}" usemap="#{generate-id(.)}">
 					<xsl:attribute name="title3"><xsl:value-of select="title"/></xsl:attribute>
 					<xsl:attribute name="legend"><xsl:value-of select="legend"/></xsl:attribute>
 					<xsl:attribute name="vars"><xsl:value-of select="vars"/></xsl:attribute>

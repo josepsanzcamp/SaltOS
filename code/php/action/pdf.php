@@ -131,6 +131,7 @@ if(!defined("__CLASS_PDF__")) {
 
 	function __eval_pdftag($array,$row=array()) {
 		static $pdf;
+		static $debug=false;
 
 		// SUPPORT FOR LTR AND RTL LANGS
 		global $_LANG;
@@ -233,6 +234,12 @@ if(!defined("__CLASS_PDF__")) {
 						$temp=__eval_array(__eval_explode(",",$val,7),$row);
 						if(isset($temp[6])) $pdf->StartTransform();
 						if(isset($temp[6])) $pdf->Rotate($temp[6],$temp[0],$temp[1]);
+						if($debug) {
+							$pdf->SetDrawColor(100,100,100);
+							$pdf->SetFillColor(200,200,200);
+							$pdf->Rect($temp[0],$temp[1],$temp[2],$temp[3],"DF");
+							$pdf->SetTextColor(50,50,50);
+						}
 						$pdf->SetXY($temp[0],$temp[1]);
 						if(!isset($temp[6])) $pdf->check_y($temp[3]);
 						$pdf->MultiCell($temp[2],$temp[3],$temp[5],0,$rtl[$dir][$temp[4]]);
@@ -303,6 +310,10 @@ if(!defined("__CLASS_PDF__")) {
 						$temp=__eval_array(__eval_explode(",",$val,4),$row);
 						$pdf->SetXY($temp[0],$temp[1]);
 						$pdf->Cell(0,0,$temp[2],0,0,"",false,$temp[3]);
+						break;
+					case "debug":
+						if(!$booleval) break;
+						$debug=eval_bool($val);
 						break;
 					default:
 						show_php_error(array("phperror"=>"Eval PDF Tag error: $key"));
