@@ -511,7 +511,7 @@ function eval_attr($array) {
 								if($global) $attr=array_merge(array("global"=>$global),$attr);
 								$old_value=$value;
 								$value=array();
-								foreach($$stack["foreach_rows"] as ${$stack["foreach_as"]}) { // ${$stack["foreach_as"]} FOR HHVM
+								foreach($$stack["foreach_rows"] as ${$stack["foreach_as"]}) { // ${...} FOR HHVM
 									$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
 									if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 								}

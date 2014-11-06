@@ -29,12 +29,8 @@ if(getParam("action")=="excel") {
 	function __xls_dump($query,$page) {
 		$result=db_query($query);
 		$matrix=array(array());
-		for($i=0;$i<db_num_fields($result);$i++) {
-			$matrix[0][]=db_field_name($result,$i);
-		}
-		while($row=db_fetch_row($result)) {
-			$matrix[]=array_values($row);
-		}
+		for($i=0;$i<db_num_fields($result);$i++) $matrix[0][]=db_field_name($result,$i);
+		while($row=db_fetch_row($result)) $matrix[]=array_values($row);
 		db_free($result);
 		set_include_path("lib/phpexcel:".get_include_path());
 		require_once("PHPExcel.php");
@@ -53,6 +49,8 @@ if(getParam("action")=="excel") {
 		//~ $objPHPExcel->createSheet();
 		$objPHPExcel->setActiveSheetIndex(0);
 		$objPHPExcel->getActiveSheet()->fromArray($matrix,NULL,"A1");
+		require_once("php/import.php");
+		for($i=0;$i<count($matrix[0]);$i++) $objPHPExcel->getActiveSheet()->getColumnDimension(__import_col2name($i))->setAutoSize(true);
 		$objPHPExcel->getActiveSheet()->setTitle(substr($title,0,31));
 		if(!defined("__CANCEL_HEADER__")) {
 			header_powered();

@@ -396,7 +396,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>GeSHi 1.0.8.11 (GPL)</label>
+							<label>GeSHi 1.0.8.12 (GPL)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/GeSHi/geshi-1.0/")</onclick>
