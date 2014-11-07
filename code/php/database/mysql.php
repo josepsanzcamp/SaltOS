@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class database_mysql {
 	private $link=null;
 
-	function database_mysql($args) {
+	function __construct($args) {
 		if(!function_exists("mysql_connect")) { show_php_error(array("phperror"=>"mysql_connect not found","details"=>"Try to install php-mysql package")); return; }
 		$this->link=mysql_connect($args["host"].":".$args["port"],$args["user"],$args["pass"]);
 		if($this->link===false) show_php_error(array("dberror"=>mysql_error()));

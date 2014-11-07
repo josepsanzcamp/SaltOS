@@ -26,8 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class database_pdo_mysql {
 	private $link=null;
 
-	function database_pdo_mysql($args) {
-		if(!class_exists("PDO")) { show_php_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-mysql package")); return; }
+	function __construct($args) {
+		if(!class_exists("PDO")) { show_php_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
 		try {
 			$this->link=new PDO("mysql:host=".$args["host"].";port=".$args["port"].";dbname=".$args["name"],$args["user"],$args["pass"]);
 		} catch(PDOException $e) {

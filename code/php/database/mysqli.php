@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class database_mysqli {
 	private $link=null;
 
-	function database_mysqli($args) {
+	function __construct($args) {
 		if(!function_exists("mysqli_connect")) { show_php_error(array("phperror"=>"mysqli_connect not found","details"=>"Try to install php-mysql package")); return; }
 		$this->link=mysqli_connect($args["host"],$args["user"],$args["pass"],$args["name"],$args["port"]);
 		if($this->link) {

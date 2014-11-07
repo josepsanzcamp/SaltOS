@@ -28,8 +28,8 @@ require_once("php/database/libsqlite.php");
 class database_sqlite3 {
 	private $link=null;
 
-	function database_sqlite3($args) {
-		if(!class_exists("SQLite3")) { show_php_error(array("phperror"=>"Class SQLite3 not found","details"=>"Try to install php-pdo package")); return; }
+	function __construct($args) {
+		if(!class_exists("SQLite3")) { show_php_error(array("phperror"=>"Class SQLite3 not found","details"=>"Try to install php-sqlite package")); return; }
 		if(!file_exists($args["file"])) { show_php_error(array("phperror"=>"File '".$args["file"]."' not found")); return; }
 		if(!is_writable($args["file"])) { show_php_error(array("phperror"=>"File '".$args["file"]."' not writable")); return; }
 		capture_next_error();

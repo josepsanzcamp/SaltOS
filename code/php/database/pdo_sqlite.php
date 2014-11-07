@@ -28,7 +28,7 @@ require_once("php/database/libsqlite.php");
 class database_pdo_sqlite {
 	private $link=null;
 
-	function database_pdo_sqlite($args) {
+	function __construct($args) {
 		if(!class_exists("PDO")) { show_php_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
 		if(!file_exists($args["file"])) { show_php_error(array("phperror"=>"File '".$args["file"]."' not found")); return; }
 		if(!is_writable($args["file"])) { show_php_error(array("phperror"=>"File '".$args["file"]."' not writable")); return; }
