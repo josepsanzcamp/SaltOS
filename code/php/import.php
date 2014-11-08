@@ -290,6 +290,13 @@ function __import_array2tree($array,$nodes) {
 			$head2=array_intersect_key($head,$node2);
 			if(count($head2)) {
 				$line2=array_intersect_key($line,$node2);
+				if(count($head2)>count($line2)) {
+					$temp=array();
+					foreach($head2 as $key=>$val) {
+						$temp[$key]=isset($line2[$key])?$line2[$key]:"";
+					}
+					$line2=$temp;
+				}
 				$line3=array_combine($head2,$line2);
 				$hash=md5(serialize($line3));
 				$parts[$hash]=$line3;
