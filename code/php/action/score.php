@@ -60,7 +60,7 @@ if(getParam("action")=="score") {
 				$posx++;
 			}
 			$font="lib/fonts/DejaVuSans.ttf";
-			$font=realpath($font); // REALPATH NEEDED BY HHVM
+			if(ishhvm()) $font=realpath($font);
 			$bbox=imagettfbbox($size,0,$font,$score."%");
 			$sx=$bbox[4]-$bbox[0];
 			$sy=$bbox[5]-$bbox[1];

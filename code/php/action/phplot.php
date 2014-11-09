@@ -159,7 +159,7 @@ if(!file_exists($cache)) {
 	$plot->SetDataValues($values);
 	$graph=get_clear_error()?"error":$graph;
 	$font="lib/fonts/DejaVuSans.ttf";
-	$font=realpath($font); // NEEDED BY HHVM
+	if(ishhvm()) $font=realpath($font);
 	$plot->SetDefaultTTFont($font);
 	$plot->SetBgImage("img/defplot.png","centeredtile");
 	$plot->SetFailureImage(false);

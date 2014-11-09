@@ -314,7 +314,7 @@ function xml2struct($xml,$file="") {
 	// CONTINUE
 	$parser=xml_parser_create();
 	xml_parser_set_option($parser,XML_OPTION_CASE_FOLDING,0);
-	xml_parser_set_option($parser,XML_OPTION_SKIP_WHITE,0); // NEEDED BY HHVM
+	xml_parser_set_option($parser,XML_OPTION_SKIP_WHITE,1);
 	xml_parser_set_option($parser,XML_OPTION_TARGET_ENCODING,"UTF-8");
 	$array=array();
 	$index=array();
@@ -511,7 +511,7 @@ function eval_attr($array) {
 								if($global) $attr=array_merge(array("global"=>$global),$attr);
 								$old_value=$value;
 								$value=array();
-								foreach($$stack["foreach_rows"] as ${$stack["foreach_as"]}) { // ${...} FOR HHVM
+								foreach($$stack["foreach_rows"] as $$stack["foreach_as"]) {
 									$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
 									if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 								}
