@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<default>
 				<fieldset>
 					<title lang="true">about</title>
-					<width>800px</width>
+					<width>900px</width>
 					<class>tabla</class>
 					<row>
 						<field>
@@ -130,25 +130,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Español (España) (Josep Sanz)</label>
+							<label>Español-España (Josep Sanz)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("josep.sanz@saltos.net")</onclick>
 						</field>
 						<field>
-							<label>Català (Espanya) (Josep Sanz)</label>
+							<label>Català-Espanya (Josep Sanz)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("josep.sanz@saltos.net")</onclick>
 						</field>
 						<field>
-							<label>English (USA) (Josep Sanz)</label>
+							<label>English-USA (Josep Sanz)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("josep.sanz@saltos.net")</onclick>
 						</field>
 						<field>
-							<label>Deutsch (Deutschland) (Alex Muller)</label>
+							<label>Deutsch-Deutschland (Alex Muller)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("alex.muller@ws3.es")</onclick>
@@ -156,25 +156,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Português (Portugal) (Nuno Lopes)</label>
+							<label>Português-Portugal (Nuno Lopes)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("nunolopes@nearu.info")</onclick>
 						</field>
 						<field>
-							<label>Português (Brasil) (Benedito Fulvio)</label>
+							<label>Português-Brasil (Benedito Fulvio)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("f.manfredini@hotmail.com")</onclick>
 						</field>
 						<field>
-							<label>French (France) (Francis Dionne)</label>
+							<label>French-France (Francis Dionne)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("agencewebtictacto@gmail.com")</onclick>
 						</field>
 						<field>
-							<label>Arabic (Saudi Arabia) (Mohammed Mubarak)</label>
+							<label>Arabic-Saudi Arabia (Mohammed Mubarak)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("mawedElkareem@gmail.com")</onclick>
@@ -220,20 +220,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.php.net")</onclick>
 						</field>
 						<field>
-							<label>MariaDB 5.5 (GPL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://mariadb.org")</onclick>
-						</field>
-						<field>
-							<label>MySQL 5.1-5.5 (GPL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://dev.mysql.com/")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
 							<label>SQLite 3 (Public domain)</label>
 							<type>link</type>
 							<class>tbody</class>
@@ -244,6 +230,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/facebook/hhvm")</onclick>
+						</field>
+					</row>
+					<row>
+						<field>
+							<label>MariaDB 5.5 (GPL-2.0)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://mariadb.org")</onclick>
+						</field>
+						<field>
+							<label>MySQL 5.1-5.5 (GPL-2.0)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://dev.mysql.com/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
