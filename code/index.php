@@ -164,7 +164,6 @@ $href=$_RESULT["info"]["xslt"]."?r=".$_RESULT["info"]["revision"];
 $buffer.="<?xml-stylesheet type='text/xsl' href='${href}' ?>\n";
 $buffer.=array2xml($_RESULT);
 $format=strtolower(getDefault("format","xml"));
-if(defined("__FORCE_FORMAT__")) $format=strtolower(__FORCE_FORMAT__);
 if(!in_array($format,array("xml","html"))) show_php_error(array("phperror"=>"Unknown format '$format'"));
 if($format=="html") $buffer=xml2html($buffer);
 // FLUSH THE OUTPUT NOW
