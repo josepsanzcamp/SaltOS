@@ -56,7 +56,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	function check_required() {
 		var field=null;
 		var label="";
-		$("[isrequired=true]").each(function() {
+		$("[isrequired=true]:visible").each(function() {
 			var valor=$(this).val();
 			if(substr(this.type,0,6)=="select") {
 				if(valor=="0") valor="";

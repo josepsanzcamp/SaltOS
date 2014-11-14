@@ -74,8 +74,7 @@ if(getParam("action")=="favicon") {
 				imagefilledrectangle($im2,0,0,160,160,$trcolor);
 				if($i>0) {
 					imagefilledarc($im2,100,100,120,120,0,0,$bgcolor2,null);
-					$font="lib/fonts/DejaVuSans-Bold.ttf";
-					if(ishhvm()) $font=realpath($font);
+					$font=getcwd()."/lib/fonts/DejaVuSans-Bold.ttf";
 					$sf=60;
 					while(1) {
 						$bbox=imagettfbbox($sf,0,$font,$i);

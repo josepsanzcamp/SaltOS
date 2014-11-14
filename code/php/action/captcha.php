@@ -98,12 +98,16 @@ if(getParam("action")=="captcha") {
 	} elseif($type=="math") {
 		$max=pow(10,round($length/2))-1;
 		do {
-			$num1=rand(0,$max);
+			do {
+				$num1=rand(0,$max);
+			} while(!__captcha_isprime($num1));
 			$oper=rand(0,1)?"+":"-";
-			$num2=rand(0,$max);
-			$code=$num1.$oper.$num2;
-			$real=eval("return $code;");
-		} while(strlen($code)!=$length || $real<0 || !__captcha_isprime($num1) || !__captcha_isprime($num2) || substr($num2,0,1)=="7");
+			do {
+				$num2=rand(0,$max);
+				$code=$num1.$oper.$num2;
+			} while(!__captcha_isprime($num2) || substr($num2,0,1)=="7" || strlen($code)!=$length);
+		} while($oper=="-" && $num1<$num2);
+		$real=eval("return $code;");
 		sess_init();
 		useSession($id,$real);
 		sess_close();
@@ -117,8 +121,7 @@ if(getParam("action")=="captcha") {
 	$fgcolor2=imagecolorallocate($im,__captcha_color2dec($fgcolor,"R"),__captcha_color2dec($fgcolor,"G"),__captcha_color2dec($fgcolor,"B"));
 	imagefill($im,0,0,$bgcolor2);
 	$letters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	$font="lib/fonts/GorriSans.ttf";
-	if(ishhvm()) $font=realpath($font);
+	$font=getcwd()."/lib/fonts/GorriSans.ttf";
 	$bbox=imagettfbbox($letter,0,$font,$letters[0]);
 	$heightline=abs($bbox[7]-$bbox[1]);
 	$numlines=intval($height/$heightline)+1;

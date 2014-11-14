@@ -89,8 +89,7 @@ if(getParam("action")=="number") {
 				if($i>0) {
 					imagefilledarc($im2,80,80,120,120,180,0,$bgcolor2,null);
 					imagefilledarc($im2,80,80,120,120,0,180,$bgcolor3,null);
-					$font="lib/fonts/DejaVuSans-Bold.ttf";
-					if(ishhvm()) $font=realpath($font);
+					$font=getcwd()."/lib/fonts/DejaVuSans-Bold.ttf";
 					$sf=60;
 					while(1) {
 						$bbox=imagettfbbox($sf,0,$font,$i);

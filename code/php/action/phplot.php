@@ -158,8 +158,7 @@ if(!file_exists($cache)) {
 	capture_next_error();
 	$plot->SetDataValues($values);
 	$graph=get_clear_error()?"error":$graph;
-	$font="lib/fonts/DejaVuSans.ttf";
-	if(ishhvm()) $font=realpath($font);
+	$font=getcwd()."/lib/fonts/DejaVuSans.ttf";
 	$plot->SetDefaultTTFont($font);
 	$plot->SetBgImage("img/defplot.png","centeredtile");
 	$plot->SetFailureImage(false);
