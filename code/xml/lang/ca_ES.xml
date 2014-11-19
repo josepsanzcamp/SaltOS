@@ -1122,7 +1122,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<statenew>Nou</statenew>
 		<stateread>Llegit</stateread>
 		<statereply>Respost</statereply>
-		<stateforward>reenviat</stateforward>
+		<stateforward>Reenviat</stateforward>
 		<statewait>Pendent</statewait>
 		<statespam>SPAM</statespam>
 		<statesent>Enviat</statesent>
