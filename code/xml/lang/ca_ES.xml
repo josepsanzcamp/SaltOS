@@ -1189,9 +1189,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<message2> missatges</message2>
 		<campos>Camps</campos>
 		<allcampos>[Tots els camps]</allcampos>
-		<onlyemail>Només en les direccions</onlyemail>
-		<onlysubject>Només en l'assumpte</onlysubject>
-		<onlybody>Només en el missatge</onlybody>
+		<onlyemail>Només a les adreçes</onlyemail>
+		<onlysubject>Només a l'assumpte</onlysubject>
+		<onlybody>Només al missatge</onlybody>
 		<onlyfiles>Només als fitxers</onlyfiles>
 		<restocampos>A la resta de camps</restocampos>
 		<filtrarcorreos>Filtrar per</filtrarcorreos>

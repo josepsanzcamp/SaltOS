@@ -10,6 +10,7 @@ New Features:
 Fixed Issues:
 
 * [#12506](http://dev.ckeditor.com/ticket/12506): [Safari] Fixed: Can't paste into inline editor if page has `user-select: none` style. Thanks to [shaohua](https://github.com/shaohua)!
+* [#12683](http://dev.ckeditor.com/ticket/12683): Fixed: [Filter](http://docs.ckeditor.com/#!/guide/dev_acf) fails to remove custom tags. Thanks to [timselier](https://github.com/timselier)!
 * [#12489](http://dev.ckeditor.com/ticket/12423) and [#12491](http://dev.ckeditor.com/ticket/12423): Fixed: Various issues related to restoring selection after making operations on filler char. See the [fixed cases](http://dev.ckeditor.com/ticket/12491#comment:4).
 * [#12621](http://dev.ckeditor.com/ticket/12621): Fixed: Cannot remove inline styles (bold, italic, etc.) in empty lines.
 * [#12630](http://dev.ckeditor.com/ticket/12630): [Chrome] Fixed: Selection is placed outside paragraph when clicked the New Page button. This patch significantly simplified the way how the initial selection (a selection after contents of the editable is overwritten) is being fixed. That might have fixed many related scenarios on all browsers.
@@ -19,6 +20,9 @@ Fixed Issues:
 * [#12300](http://dev.ckeditor.com/ticket/12300): Fixed: The [`editor.change`](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-event-change) event fired on first navigation key press after typing.
 * [#12141](http://dev.ckeditor.com/ticket/12141): Fixed: List items are lost when indenting a list item with a content wrapped with a block element.
 * [#12515](http://dev.ckeditor.com/ticket/12515): Fixed: Cursor is in the wrong position when undoing after adding image and typing some text.
+* [#12484](http://dev.ckeditor.com/ticket/12484): [Blink/Webkit] Fixed: DOM is changed outside the editor area in certain case.
+* [#12688](http://dev.ckeditor.com/ticket/12688): Improved the tests of the [styles system](http://docs.ckeditor.com/#!/api/CKEDITOR.style) and fixed two minor issues.
+* [#12403](http://dev.ckeditor.com/ticket/12403): Fixed: Changing the font style should not lead to nesting it in the previous style element.
 
 Other Changes:
 

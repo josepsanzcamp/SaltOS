@@ -7,16 +7,12 @@
  * http://opensource.org/licenses/MIT
  *
  * Author: Mark J Panaghiston
- * Version: 2.7.1
- * Date: 19th September 2014
+ * Version: 2.8.3
+ * Date: 20th November 2014
  */
 
-/* Code verified using http://www.jshint.com/ */
-/*jshint asi:false, bitwise:false, boss:false, browser:true, curly:true, debug:false, eqeqeq:true, eqnull:false, evil:false, forin:false, immed:false, jquery:true, laxbreak:false, newcap:true, noarg:true, noempty:true, nonew:true, onevar:false, passfail:false, plusplus:false, regexp:false, undef:true, sub:false, strict:false, white:false, smarttabs:true */
-/*global define:false, ActiveXObject:false, alert:false */
-
 /* Support for Zepto 1.0 compiled with optional data module.
- * For AMD support, you will need to manually switch the 2 lines in the code below.
+ * For AMD or NODE/CommonJS support, you will need to manually switch the related 2 lines in the code below.
  * Search terms: "jQuery Switch" and "Zepto Switch"
  */
 
@@ -25,6 +21,10 @@
 		// AMD. Register as an anonymous module.
 		define(['jquery'], factory); // jQuery Switch
 		// define(['zepto'], factory); // Zepto Switch
+	} else if (typeof exports === 'object') {
+		// Node/CommonJS
+		factory(require('jquery')); // jQuery Switch
+		//factory(require('zepto')); // Zepto Switch
 	} else {
 		// Browser globals
 		if(root.jQuery) { // Use jQuery if available
@@ -423,38 +423,33 @@
 	// The current jPlayer instance in focus.
 	$.jPlayer.focus = null;
 
-	// (fallback) The list of element node names to ignore with key controls.
+	// The list of element node names to ignore with key controls.
 	$.jPlayer.keyIgnoreElementNames = "A INPUT TEXTAREA SELECT BUTTON";
 
 	// The function that deals with key presses.
 	var keyBindings = function(event) {
-
 		var f = $.jPlayer.focus,
-			pageFocus = document.activeElement,
 			ignoreKey;
 
 		// A jPlayer instance must be in focus. ie., keyEnabled and the last one played.
 		if(f) {
 			// What generated the key press?
-			if(typeof pageFocus !== 'undefined') {
-				if(pageFocus !== null && pageFocus.nodeName.toUpperCase() !== "BODY") {
+			$.each( $.jPlayer.keyIgnoreElementNames.split(/\s+/g), function(i, name) {
+				// The strings should already be uppercase.
+				if(event.target.nodeName.toUpperCase() === name.toUpperCase()) {
 					ignoreKey = true;
+					return false; // exit each.
 				}
-			} else {
-				// Fallback for no document.activeElement support.
-				$.each( $.jPlayer.keyIgnoreElementNames.split(/\s+/g), function(i, name) {
-					// The strings should already be uppercase.
-					if(event.target.nodeName.toUpperCase() === name.toUpperCase()) {
-						ignoreKey = true;
-						return false; // exit each.
-					}
-				});
-			}
+			});
 			if(!ignoreKey) {
 				// See if the key pressed matches any of the bindings.
 				$.each(f.options.keyBindings, function(action, binding) {
 					// The binding could be a null when the default has been disabled. ie., 1st clause in if()
-					if(binding && event.which === binding.key && $.isFunction(binding.fn)) {
+					if(
+						(binding && $.isFunction(binding.fn)) &&
+						((typeof binding.key === 'number' && event.which === binding.key) ||
+						(typeof binding.key === 'string' && event.key === binding.key))
+					) {
 						event.preventDefault(); // Key being used by jPlayer, so prevent default operation.
 						binding.fn(f);
 						return false; // exit each.
@@ -479,12 +474,12 @@
 	$.jPlayer.prototype = {
 		count: 0, // Static Variable: Change it via prototype.
 		version: { // Static Object
-			script: "2.7.1",
-			needFlash: "2.7.0",
+			script: "2.8.3",
+			needFlash: "2.8.3",
 			flash: "unknown"
 		},
 		options: { // Instanced in $.jPlayer() constructor
-			swfPath: "js", // Path to Jplayer.swf. Can be relative, absolute or server root relative.
+			swfPath: "js", // Path to jquery.jplayer.swf. Can be relative, absolute or server root relative.
 			solution: "html, flash", // Valid solutions: html, flash. Order defines priority. 1st is highest,
 			supplied: "mp3", // Defines which formats jPlayer will try and support and the priority by the order. 1st is highest,
 			preload: 'metadata',  // HTML5 Spec values: none, metadata, auto.
@@ -529,7 +524,8 @@
 				seeking: "jp-state-seeking",
 				muted: "jp-state-muted",
 				looped: "jp-state-looped",
-				fullScreen: "jp-state-full-screen"
+				fullScreen: "jp-state-full-screen",
+				noVolume: "jp-state-no-volume"
 			},
 			useStateClassSkin: false, // A state class skin relies on the state classes to change the visual appearance. The single control toggles the effect, for example: play then pause, mute then unmute.
 			autoBlur: true, // GUI control handlers will drop focus after clicks.
@@ -591,7 +587,7 @@
 				// The parameter, f = $.jPlayer.focus, will be checked truethy before attempting to call any of these functions.
 				// Properties may be added to this object, in key/fn pairs, to enable other key controls. EG, for the playlist add-on.
 				play: {
-					key: 32, // space
+					key: 80, // p
 					fn: function(f) {
 						if(f.status.paused) {
 							f.play();
@@ -601,7 +597,7 @@
 					}
 				},
 				fullScreen: {
-					key: 13, // enter
+					key: 70, // f
 					fn: function(f) {
 						if(f.status.video || f.options.audioFullScreen) {
 							f._setOption("fullScreen", !f.options.fullScreen);
@@ -609,21 +605,27 @@
 					}
 				},
 				muted: {
-					key: 8, // backspace
+					key: 77, // m
 					fn: function(f) {
 						f._muted(!f.options.muted);
 					}
 				},
 				volumeUp: {
-					key: 38, // UP
+					key: 190, // .
 					fn: function(f) {
 						f.volume(f.options.volume + 0.1);
 					}
 				},
 				volumeDown: {
-					key: 40, // DOWN
+					key: 188, // ,
 					fn: function(f) {
 						f.volume(f.options.volume - 0.1);
+					}
+				},
+				loop: {
+					key: 76, // l
+					fn: function(f) {
+						f._loop(!f.options.loop);
 					}
 				}
 			},
@@ -702,6 +704,7 @@
 			// domNode: undefined
 			// htmlDlyCmdId: undefined
 			// autohideId: undefined
+			// mouse: undefined
 			// cmdsIgnored
 		},
 		solution: { // Static Object: Defines the solutions built in jPlayer.
@@ -903,7 +906,7 @@
 			this.internal.flash = $.extend({}, {
 				id: this.options.idPrefix + "_flash_" + this.count,
 				jq: undefined,
-				swf: this.options.swfPath + (this.options.swfPath.toLowerCase().slice(-4) !== ".swf" ? (this.options.swfPath && this.options.swfPath.slice(-1) !== "/" ? "/" : "") + "Jplayer.swf" : "")
+				swf: this.options.swfPath + (this.options.swfPath.toLowerCase().slice(-4) !== ".swf" ? (this.options.swfPath && this.options.swfPath.slice(-1) !== "/" ? "/" : "") + "jquery.jplayer.swf" : "")
 			});
 			this.internal.poster = $.extend({}, {
 				id: this.options.idPrefix + "_poster_" + this.count,
@@ -1761,7 +1764,7 @@
 		_absoluteMediaUrls: function(media) {
 			var self = this;
 			$.each(media, function(type, url) {
-				if(url && self.format[type]) {
+				if(url && self.format[type] && url.substr(0, 5) !== "data:") {
 					media[type] = self._qualifyURL(url);
 				}
 			});
@@ -1864,15 +1867,15 @@
 						}
 					}
 				}
-				if(this.css.jq.title.length) {
-					if(typeof media.title === 'string') {
+				if(typeof media.title === 'string') {
+					if(this.css.jq.title.length) {
 						this.css.jq.title.html(media.title);
-						if(this.htmlElement.audio) {
-							this.htmlElement.audio.setAttribute('title', media.title);
-						}
-						if(this.htmlElement.video) {
-							this.htmlElement.video.setAttribute('title', media.title);
-						}
+					}
+					if(this.htmlElement.audio) {
+						this.htmlElement.audio.setAttribute('title', media.title);
+					}
+					if(this.htmlElement.video) {
+						this.htmlElement.video.setAttribute('title', media.title);
 					}
 				}
 				this.status.srcSet = true;
@@ -2128,6 +2131,7 @@
 			v = this.options.muted ? 0 : v;
 
 			if(this.status.noVolume) {
+				this.addStateClass('noVolume');
 				if(this.css.jq.volumeBar.length) {
 					this.css.jq.volumeBar.hide();
 				}
@@ -2138,6 +2142,7 @@
 					this.css.jq.volumeMax.hide();
 				}
 			} else {
+				this.removeStateClass('noVolume');
 				if(this.css.jq.volumeBar.length) {
 					this.css.jq.volumeBar.show();
 				}
@@ -2203,6 +2208,8 @@
 							self[fn](e);
 							if(self.options.autoBlur) {
 								$(this).blur();
+							} else {
+								$(this).focus(); // Force focus for ARIA.
 							}
 						};
 						this.css.jq[fn].bind("click.jPlayer", handler); // Using jPlayer namespace
@@ -2577,13 +2584,31 @@
 				event = "mousemove.jPlayer",
 				namespace = ".jPlayerAutohide",
 				eventType = event + namespace,
-				handler = function() {
-					self.css.jq.gui.fadeIn(self.options.autohide.fadeIn, function() {
-						clearTimeout(self.internal.autohideId);
-						self.internal.autohideId = setTimeout( function() {
-							self.css.jq.gui.fadeOut(self.options.autohide.fadeOut);
-						}, self.options.autohide.hold);
-					});
+				handler = function(event) {
+					var moved = false,
+						deltaX, deltaY;
+					if(typeof self.internal.mouse !== "undefined") {
+						//get the change from last position to this position
+						deltaX = self.internal.mouse.x - event.pageX;
+						deltaY = self.internal.mouse.y - event.pageY;
+						moved = (Math.floor(deltaX) > 0) || (Math.floor(deltaY)>0); 
+					} else {
+						moved = true;
+					}
+					// store current position for next method execution
+					self.internal.mouse = {
+							x : event.pageX,
+							y : event.pageY
+					};
+					// if mouse has been actually moved, do the gui fadeIn/fadeOut
+					if (moved) {
+						self.css.jq.gui.fadeIn(self.options.autohide.fadeIn, function() {
+							clearTimeout(self.internal.autohideId);
+							self.internal.autohideId = setTimeout( function() {
+								self.css.jq.gui.fadeOut(self.options.autohide.fadeOut);
+							}, self.options.autohide.hold);
+						});
+					}
 				};
 
 			if(this.css.jq.gui.length) {
@@ -2594,6 +2619,8 @@
 
 				// Removes the fadeOut operation from the fadeIn callback.
 				clearTimeout(this.internal.autohideId);
+				// undefine mouse
+				delete this.internal.mouse;
 
 				this.element.unbind(namespace);
 				this.css.jq.gui.unbind(namespace);
