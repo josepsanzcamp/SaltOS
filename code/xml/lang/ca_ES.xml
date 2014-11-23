@@ -56,7 +56,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<buscar>Cercar</buscar>
 		<buscartip>Realitza la cerca amb els filtres seleccionats</buscartip>
 		<limpiar>Reset</limpiar>
-		<limpiartip>Neteja el filtre i mostra totes les dades</limpiartip>
+		<limpiartip>Netejar el filtre i mostrar totes les dades</limpiartip>
 		<username>Usuari</username>
 		<datetime>Data i hora</datetime>
 		<direccion>Direcció</direccion>
@@ -276,7 +276,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<addconcept>Afegir concepte</addconcept>
 		<addvencimiento>Afegir venciment</addvencimiento>
 		<addtarea>Afegir tasca</addtarea>
-		<send>Envia</send>
+		<send>Enviar</send>
 		<notas>Notes</notas>
 		<sincampanya>[Sense campanya associada]</sincampanya>
 		<campanya>Campanya</campanya>
@@ -331,7 +331,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<loadfiltertip>Premi aquí per carregar el criteri seleccionat</loadfiltertip>
 		<updatefilter>Actualitzar</updatefilter>
 		<updatefiltertip>Premi aquí per actualitzar el criteri seleccionat</updatefiltertip>
-		<deletefilter>Neteja</deletefilter>
+		<deletefilter>Esborrar</deletefilter>
 		<deletefiltertip>Premi aquí per esborrar el criteri seleccionat</deletefiltertip>
 		<createfilter>Crea</createfilter>
 		<createfiltertip>Premi aquí per crear un nou filtre</createfiltertip>
@@ -685,7 +685,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<emailprivated>Aquest compte és privada (només jo tinc accés)</emailprivated>
 		<emaildefault>Compte per defecte (la que més ús)</emaildefault>
 		<emaildisabled>Desactivar aquest compte de correu</emaildisabled>
-		<emaildelete>Neteja aquest compte de correu (es perdran les dades per sempre)</emaildelete>
+		<emaildelete>Esborrar aquest compte de correu (es perdran les dades per sempre)</emaildelete>
 		<emailsignatureold>Signatura actual</emailsignatureold>
 		<emailsignaturenew>Nova signatura</emailsignaturenew>
 		<correonew>Nou correu</correonew>
@@ -842,7 +842,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<notifyprev>Notificació prèvia a l'esdeveniment</notifyprev>
 		<notifypost>Notificació d'esdeveniment finalitzat</notifypost>
 		<notifyclear>Notificacions</notifyclear>
-		<notifytip>Neteja les notificacions</notifytip>
+		<notifytip>Netejar les notificacions</notifytip>
 		<notifyclearok>Esdeveniments reiniciats:</notifyclearok>
 		<notifyclearko>No s'han trobat esdeveniments pendents per reiniciar</notifyclearko>
 		<calendar>Calendari d'esdeveniments</calendar>
@@ -924,7 +924,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<emailprivated>Aquest compte és privada (només jo tinc accés)</emailprivated>
 		<emaildefault>Compte per defecte (la que més ús)</emaildefault>
 		<emaildisabled>Desactivar aquest compte de correu</emaildisabled>
-		<emaildelete>Neteja aquest compte de correu ( es perdran les dades per sempre)</emaildelete>
+		<emaildelete>Esborrar aquest compte de correu (es perdran les dades per sempre)</emaildelete>
 		<emailsignatureold>Signatura actual</emailsignatureold>
 		<emailsignaturenew>Nova signatura</emailsignaturenew>
 		<correonew>Nou correu</correonew>
@@ -1098,7 +1098,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<message>Missatge</message>
 		<recibir>Rebre</recibir>
 		<recibirtip>Premi aquí per rebre nous correus</recibirtip>
-		<enviar>Envia</enviar>
+		<enviar>Enviar</enviar>
 		<enviartip>Premi aquí per enviar els correus de la safata de sortida</enviartip>
 		<msgnotpop3email>No hi ha cap compte de correu configurat o activada</msgnotpop3email>
 		<msgnotpop3host>No s'ha configurat el servidor POP3</msgnotpop3host>
@@ -1149,8 +1149,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<leidos>Llegits</leidos>
 		<wait>Pendent</wait>
 		<spam>SPAM</spam>
-		<borrar>Neteja</borrar>
-		<borrartip>Neteja tots els correus seleccionats</borrartip>
+		<borrar>Esborrar</borrar>
+		<borrartip>Esborrar tots els correus seleccionats</borrartip>
 		<msgleidos>Voleu marcar com llegits / no llegits tots els correus seleccionats?</msgleidos>
 		<msgwait>Voleu marcar com pendents / no pendents tots els correus seleccionats?</msgwait>
 		<msgspam>Voleu marcar com SPAM / no SPAM tots els correus seleccionats?</msgspam>
@@ -1423,8 +1423,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<marcarfeeds>Marca com a</marcarfeeds>
 		<leidos>Llegits</leidos>
 		<wait>Pendent</wait>
-		<borrar>Neteja</borrar>
-		<borrartip>Esborra tots els post seleccionats</borrartip>
+		<borrar>Esborrar</borrar>
+		<borrartip>Esborrar tots els post seleccionats</borrartip>
 		<noleidos>No llegits</noleidos>
 		<nowait>No pendents</nowait>
 		<msgleidos>Voleu marcar com a llegits / no llegits tots els posts seleccionats?</msgleidos>
