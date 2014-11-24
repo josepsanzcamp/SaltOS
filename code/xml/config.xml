@@ -41,9 +41,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<name>saltos</name><!-- for MySQL -->
 		<file eval="true">getcwd()."/files/saltos.db"</file><!-- for SQLite -->
 		<datatypes>
-			<int>INTEGER,INT</int>
+			<int>TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT,INTEGER</int>
 			<string>TINYTEXT,TEXT,MEDIUMTEXT,LONGTEXT,VARCHAR</string>
-			<float>DECIMAL,FLOAT,DOUBLE</float>
+			<float>DECIMAL,NUMERIC,FLOAT,REAL,DOUBLE</float>
 			<date>DATE</date>
 			<time>TIME</time>
 			<datetime>DATETIME</datetime>

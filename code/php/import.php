@@ -262,9 +262,12 @@ function __import_removevoid($array) {
 function __import_array2tree($array,$nodes) {
 	if(!count($array)) return $array;
 	$head=array_shift($array);
-	// FIX FOR DUPLICATES
+	// FIX FOR DUPLICATES AND SPACES
 	$temp=array();
-	foreach($head as $temp2) set_array($temp,$temp2,"");
+	foreach($head as $temp2) {
+		$temp2=trim($temp2);
+		set_array($temp,$temp2,"");
+	}
 	$head=array_keys($temp);
 	// CONTINUE
 	if(!is_array($nodes) || !count($nodes)) {

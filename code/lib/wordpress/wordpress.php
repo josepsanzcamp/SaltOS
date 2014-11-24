@@ -125,19 +125,17 @@ function make_clickable( $text ) {
  *
  * Input string must have no null characters (or eventual transformations on output chunks must not care about null characters)
  *
- * <code>
- * _split_str_by_whitespace( "1234 67890 1234 67890a cd 1234   890 123456789 1234567890a    45678   1 3 5 7 90 ", 10 ) ==
- * array (
- *   0 => '1234 67890 ',  // 11 characters: Perfect split
- *   1 => '1234 ',        //  5 characters: '1234 67890a' was too long
- *   2 => '67890a cd ',   // 10 characters: '67890a cd 1234' was too long
- *   3 => '1234   890 ',  // 11 characters: Perfect split
- *   4 => '123456789 ',   // 10 characters: '123456789 1234567890a' was too long
- *   5 => '1234567890a ', // 12 characters: Too long, but no inner whitespace on which to split
- *   6 => '   45678   ',  // 11 characters: Perfect split
- *   7 => '1 3 5 7 9',    //  9 characters: End of $string
- * );
- * </code>
+ *     _split_str_by_whitespace( "1234 67890 1234 67890a cd 1234   890 123456789 1234567890a    45678   1 3 5 7 90 ", 10 ) ==
+ *     array (
+ *         0 => '1234 67890 ',  // 11 characters: Perfect split
+ *         1 => '1234 ',        //  5 characters: '1234 67890a' was too long
+ *         2 => '67890a cd ',   // 10 characters: '67890a cd 1234' was too long
+ *         3 => '1234   890 ',  // 11 characters: Perfect split
+ *         4 => '123456789 ',   // 10 characters: '123456789 1234567890a' was too long
+ *         5 => '1234567890a ', // 12 characters: Too long, but no inner whitespace on which to split
+ *         6 => '   45678   ',  // 11 characters: Perfect split
+ *         7 => '1 3 5 7 9',    //  9 characters: End of $string
+ *     );
  *
  * @since 3.4.0
  * @access private
@@ -433,21 +431,21 @@ function wp_kses_bad_protocol($string, $allowed_protocols) {
  * the $tag parameter.
  *
  * The function allows for additional arguments to be added and passed to hooks.
- * <code>
- * // Our filter callback function
- * function example_callback( $string, $arg1, $arg2 ) {
- *	// (maybe) modify $string
- *	return $string;
- * }
- * add_filter( 'example_filter', 'example_callback', 10, 3 );
  *
- * // Apply the filters by calling the 'example_callback' function we
- * // "hooked" to 'example_filter' using the add_filter() function above.
- * // - 'example_filter' is the filter hook $tag
- * // - 'filter me' is the value being filtered
- * // - $arg1 and $arg2 are the additional arguments passed to the callback.
- * $value = apply_filters( 'example_filter', 'filter me', $arg1, $arg2 );
- * </code>
+ *     // Our filter callback function
+ *     function example_callback( $string, $arg1, $arg2 ) {
+ *         // (maybe) modify $string
+ *         return $string;
+ *     }
+ *     add_filter( 'example_filter', 'example_callback', 10, 3 );
+ *
+ *     /*
+ *      * Apply the filters by calling the 'example_callback' function we
+ *      * "hooked" to 'example_filter' using the add_filter() function above.
+ *      * - 'example_filter' is the filter hook $tag
+ *      * - 'filter me' is the value being filtered
+ *      * - $arg1 and $arg2 are the additional arguments passed to the callback.
+ *     $value = apply_filters( 'example_filter', 'filter me', $arg1, $arg2 );
  *
  * @since 0.71
  *
@@ -456,8 +454,8 @@ function wp_kses_bad_protocol($string, $allowed_protocols) {
  * @global array $wp_current_filter Stores the list of current filters with the current one last.
  *
  * @param string $tag   The name of the filter hook.
- * @param mixed  $value The value on which the filters hooked to <tt>$tag</tt> are applied on.
- * @param mixed  $var   Additional variables passed to the functions hooked to <tt>$tag</tt>.
+ * @param mixed  $value The value on which the filters hooked to `$tag` are applied on.
+ * @param mixed  $var   Additional variables passed to the functions hooked to `$tag`.
  * @return mixed The filtered value after all hooked functions are applied to it.
  */
 function apply_filters( $tag, $value ) {
