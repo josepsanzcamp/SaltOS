@@ -508,7 +508,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_incidencias_u(id_incidencia,id_usuario) VALUES((SELECT MAX(id) FROM tbl_incidencias),'".intval(getParam("id_usuario"))."')":""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
@@ -517,7 +517,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</insert>
 	<update>
 		<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT (TRIM(IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0))='".current_user()."')"</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
 		<query global="page" match="default" prefix="true" eval="true">"DELETE FROM tbl_incidencias_u WHERE id_incidencia='".getParam("id")."'"</query>
 		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_incidencias_u(id_incidencia,id_usuario) VALUES('".intval(getParam("id_incidencia"))."','".intval(getParam("id_usuario"))."')":""</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>

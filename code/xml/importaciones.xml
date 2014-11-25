@@ -473,14 +473,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
 		<query match="default" prefix="true" global="page" eval="true">"INSERT INTO tbl_ficheros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`fichero`,`fichero_file`,`fichero_size`,`fichero_type`,`search`) VALUES(NULL,'".page2id($page)."',(SELECT MAX(id) FROM ".page2table($page)."),'".current_user()."','".current_datetime()."','".getParam("fichero")."','".getParam("fichero_file")."','".getParam("fichero_size")."','".getParam("fichero_type")."','')"</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>

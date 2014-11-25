@@ -378,14 +378,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query(page2table($page))</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
  		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query(page2table($page))</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query include="xml/common/qfilesdelete.xml" replace="true" />
 		<query include="xml/common/qfilesupdate.xml" replace="true"/>

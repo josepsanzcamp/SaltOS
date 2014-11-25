@@ -716,7 +716,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query include="xml/common/autonombre.xml" replace="true"/>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_insert_query("tbl_agenda")</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query("tbl_agenda")</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_agenda_u(id_agenda,id_usuario) VALUES((SELECT MAX(id) FROM tbl_agenda),'".intval(getParam("id_usuario"))."')":""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
@@ -726,7 +726,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/qpermupdate.xml" replace="true" />
 		<query match="default" prefix="true" eval="true">setParam("notify_dstart",(execute_query("SELECT dstart FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstart") || execute_query("SELECT dstop FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstop"))?"0":getParam("notify_dstart"))</query>
 		<query match="default" prefix="true" eval="true">setParam("notify_dstop",(execute_query("SELECT dstart FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstart") || execute_query("SELECT dstop FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstop"))?"0":getParam("notify_dstop"))</query>
-		<query match="default" prefix="true" global="page" preeval="true" eval="true">make_update_query("tbl_agenda")</query>
+		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query("tbl_agenda")</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query global="page" match="default" prefix="true" eval="true">"DELETE FROM tbl_agenda_u WHERE id_agenda='".getParam("id")."'"</query>
 		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_agenda_u(id_agenda,id_usuario) VALUES('".intval(getParam("id_agenda"))."','".intval(getParam("id_usuario"))."')":""</query>

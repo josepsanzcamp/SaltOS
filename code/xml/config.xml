@@ -221,10 +221,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</debug>
 	<parser>
 		<preevals>
-			<preeval>make_insert_query</preeval>
-			<preeval>make_update_query</preeval>
-			<preeval>make_update_config</preeval>
-			<preeval>make_dependencies_query</preeval>
+			<preeval>preeval_insert_query</preeval>
+			<preeval>preeval_update_query</preeval>
+			<preeval>preeval_update_config</preeval>
+			<preeval>preeval_dependencies_query</preeval>
 		</preevals>
 	</parser>
 	<styles>

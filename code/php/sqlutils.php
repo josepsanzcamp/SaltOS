@@ -105,12 +105,12 @@ function make_select_config($keys) {
 	return $query;
 }
 
-function make_update_config($clave) {
+function preeval_update_config($clave) {
 	$query="\"UPDATE tbl_configuracion SET valor='\".getParam(\"$clave\").\"' WHERE clave='$clave'\"";
 	return $query;
 }
 
-function make_insert_query($table) {
+function preeval_insert_query($table) {
 	$fields=get_fields_from_dbschema($table);
 	$list1=array();
 	$list2=array();
@@ -125,7 +125,7 @@ function make_insert_query($table) {
 		elseif($type2=="time") $list2[]="'\".timeval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="datetime") $list2[]="'\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="string") $list2[]="'\".getParam(\"".$field["name"]."\").\"'";
-		else show_php_error(array("phperror"=>"Unknown type '${type}' in make_insert_query"));
+		else show_php_error(array("phperror"=>"Unknown type '${type}' in preeval_insert_query"));
 	}
 	$list1=implode(",",$list1);
 	$list2=implode(",",$list2);
@@ -133,7 +133,7 @@ function make_insert_query($table) {
 	return $query;
 }
 
-function make_update_query($table) {
+function preeval_update_query($table) {
 	$fields=get_fields_from_dbschema($table);
 	$list=array();
 	foreach($fields as $field) {
@@ -146,14 +146,14 @@ function make_update_query($table) {
 		elseif($type2=="time") $list[]="`${field["name"]}`='\".timeval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="datetime") $list[]="`${field["name"]}`='\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="string") $list[]="`${field["name"]}`='\".getParam(\"".$field["name"]."\").\"'";
-		else show_php_error(array("phperror"=>"Unknown type '${type}' in make_update_query"));
+		else show_php_error(array("phperror"=>"Unknown type '${type}' in preeval_update_query"));
 	}
 	$list=implode(",",$list);
 	$query="\"UPDATE $table SET $list WHERE `id`='\".intval(getParam(\"id\")).\"'\"";
 	return $query;
 }
 
-function make_dependencies_query($table,$label) {
+function preeval_dependencies_query($table,$label) {
 	$dbschema=xml2array("xml/dbschema.xml");
 	if(isset($dbschema["tables"])) {
 		$deps=array();
@@ -547,5 +547,33 @@ function __dbschema_helper($fn,$table) {
 		if(isset($tables[$table])) return $tables[$table];
 	}
 	return array();
+}
+
+function make_insert_query($table,$array) {
+	$list1=array();
+	$list2=array();
+	foreach($array as $key=>$val) {
+		$list1[]="`".$key."`";
+		$list2[]="'".addslashes($val)."'";
+	}
+	$list1=implode(",",$list1);
+	$list2=implode(",",$list2);
+	$query="INSERT INTO $table($list1) VALUES($list2)";
+	return $query;
+}
+
+function make_update_query($table,$array,$where="1=1") {
+	$list1=array();
+	foreach($array as $key=>$val) {
+		$list1[]="`".$key."`='".addslashes($val)."'";
+	}
+	$list1=implode(",",$list1);
+	$query="UPDATE $table SET $list1 WHERE $where";
+	return $query;
+}
+
+function make_delete_query($table,$where="1=1") {
+	$query="DELETE FROM $table WHERE $where";
+	return $query;
 }
 ?>

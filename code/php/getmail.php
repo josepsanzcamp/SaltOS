@@ -463,11 +463,31 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 	$info=__getmail_getinfo(__getmail_getnode("0",$decoded));
 	$body=__getmail_gettextbody(__getmail_getnode("0",$decoded));
 	// INSERT THE NEW EMAIL
-	$lista=array("from","to","cc","bcc","subject");
-	foreach($lista as $key=>$val) $info[$val]=addslashes($info[$val]);
-	$body=addslashes($body);
-	$files=count($info["files"]);
-	$query="INSERT INTO tbl_correo(`id`,`id_cuenta`,`uidl`,`size`,`datetime`,`subject`,`body`,`state_new`,`state_reply`,`state_forward`,`state_wait`,`state_spam`,`id_correo`,`is_outbox`,`state_sent`,`state_error`,`state_crt`,`priority`,`sensitivity`,`from`,`to`,`cc`,`bcc`,`files`) VALUES(NULL,'${id_cuenta}','${uidl}','${size}','${info["datetime"]}','${info["subject"]}','${body}','${state_new}','${state_reply}','${state_forward}','${state_wait}','${info["spam"]}','${id_correo}','${is_outbox}','${state_sent}','${state_error}','${info["crt"]}','${info["priority"]}','${info["sensitivity"]}','${info["from"]}','${info["to"]}','${info["cc"]}','${info["bcc"]}','${files}')";
+	$query=make_insert_query("tbl_correo",array(
+		"id_cuenta"=>$id_cuenta,
+		"uidl"=>$uidl,
+		"size"=>$size,
+		"datetime"=>$info["datetime"],
+		"subject"=>$info["subject"],
+		"body"=>$body,
+		"state_new"=>$state_new,
+		"state_reply"=>$state_reply,
+		"state_forward"=>$state_forward,
+		"state_wait"=>$state_wait,
+		"state_spam"=>$info["spam"],
+		"id_correo"=>$id_correo,
+		"is_outbox"=>$is_outbox,
+		"state_sent"=>$state_sent,
+		"state_error"=>$state_error,
+		"state_crt"=>$info["crt"],
+		"priority"=>$info["priority"],
+		"sensitivity"=>$info["sensitivity"],
+		"from"=>$info["from"],
+		"to"=>$info["to"],
+		"cc"=>$info["cc"],
+		"bcc"=>$info["bcc"],
+		"files"=>count($info["files"])
+	));
 	db_query($query);
 	// GET LAST_ID
 	$query="SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND is_outbox='${is_outbox}'";
@@ -476,29 +496,41 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 	set_use_cache($oldcache);
 	// INSERT ALL ADDRESS
 	foreach($info["emails"] as $email) {
-		$email["nombre"]=addslashes($email["nombre"]);
-		$email["valor"]=addslashes($email["valor"]);
-		$query="INSERT INTO tbl_correo_a(`id`,`id_correo`,`id_tipo`,`nombre`,`valor`) VALUES(NULL,'${last_id}','${email["id_tipo"]}','${email["nombre"]}','${email["valor"]}')";
+		$query=make_insert_query("tbl_correo_a",array(
+			"id_correo"=>$last_id,
+			"id_tipo"=>$email["id_tipo"],
+			"nombre"=>$email["nombre"],
+			"valor"=>$email["valor"]
+		));
 		db_query($query);
 	}
 	// INSERT ALL ATTACHMENTS
 	foreach($info["files"] as $file) {
-		$fichero=addslashes($file["cname"]);
-		$fichero_file=$file["chash"];
-		$fichero_size=$file["csize"];
-		$fichero_type=$file["ctype"];
-		$query="INSERT INTO tbl_ficheros(id,id_aplicacion,id_registro,id_usuario,`datetime`,`fichero`,`fichero_file`,`fichero_size`,`fichero_type`,`search`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}','${fichero}','${fichero_file}','${fichero_size}','${fichero_type}','')";
+		$query=make_insert_query("tbl_ficheros",array(
+			"id_aplicacion"=>$id_aplicacion,
+			"id_registro"=>$last_id,
+			"id_usuario"=>$id_usuario,
+			"datetime"=>$datetime,
+			"fichero"=>$file["cname"],
+			"fichero_file"=>$file["chash"],
+			"fichero_size"=>$file["csize"],
+			"fichero_type"=>$file["ctype"]
+		));
 		db_query($query);
 	}
 	// INSERT THE CONTROL REGISTER
-	$query="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}')";
+	$query=make_insert_query("tbl_registros_i",array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$last_id,
+		"id_usuario"=>$id_usuario,
+		"datetime"=>$datetime
+	));
 	db_query($query);
 	return $last_id;
 }
 
 function __getmail_update($campo,$valor,$id) {
-	$valor=addslashes($valor);
-	$query="UPDATE tbl_correo SET `${campo}`='${valor}' WHERE id='${id}'";
+	$query=make_update_query("tbl_correo",array($campo=>$valor),"id='${id}'");
 	db_query($query);
 }
 
@@ -511,15 +543,16 @@ function __getmail_rawurldecode($temp) {
 function __getmail_add_bcc($id,$bcc) {
 	foreach($bcc as $addr) {
 		list($valor,$nombre)=__sendmail_parser($addr);
-		$id_tipo=4; // DEFINED IN __getmail_getinfo FUNCTION
-		$nombre=addslashes($nombre);
-		$valor=addslashes($valor);
-		$query="INSERT INTO tbl_correo_a(`id`,`id_correo`,`id_tipo`,`nombre`,`valor`) VALUES(NULL,'${id}','${id_tipo}','${nombre}','${valor}')";
+		$query=make_insert_query("tbl_correo_a",array(
+			"id_correo"=>$id,
+			"id_tipo"=>4, // DEFINED IN __getmail_getinfo FUNCTION
+			"nombre"=>$nombre,
+			"valor"=>$valor
+		));
 		db_query($query);
 	}
 	$bcc=implode("; ",$bcc);
-	$bcc=addslashes($bcc);
-	$query="UPDATE tbl_correo SET `bcc`='${bcc}' WHERE id='${id}'";
+	$query=make_update_query("tbl_correo",array("bcc"=>$bcc),"id='${id}'");
 	db_query($query);
 }
 ?>
