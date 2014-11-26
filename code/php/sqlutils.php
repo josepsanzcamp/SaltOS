@@ -550,6 +550,10 @@ function __dbschema_helper($fn,$table) {
 }
 
 function make_insert_query($table,$array) {
+	if(is_string($array)) {
+		$query="INSERT INTO $table $array";
+		return $query;
+	}
 	$list1=array();
 	$list2=array();
 	foreach($array as $key=>$val) {

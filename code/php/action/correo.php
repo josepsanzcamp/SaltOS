@@ -39,7 +39,9 @@ if($page=="correo") {
 				$query="SELECT COUNT(*) FROM tbl_correo WHERE id IN ($ids) AND state_new!='${action2[1]}' AND is_outbox='0'";
 				$numids=execute_query($query);
 				// PONER STATE_NEW=0 EN LOS CORREOS SELECCIONADOS
-				$query="UPDATE tbl_correo SET state_new='${action2[1]}' WHERE id IN ($ids) AND state_new!='${action2[1]}' AND is_outbox='0'";
+				$query=make_update_query("tbl_correo",array(
+					"state_new"=>$action2[1]
+				),"id IN (${ids}) AND state_new!='${action2[1]}' AND is_outbox='0'");
 				db_query($query);
 				// MOSTRAR RESULTADO
 				session_alert(LANG($action2[1]?"msgnumnoleidos":"msgnumsileidos","correo").$numids.LANG("message".min($numids,2),"correo"));
@@ -48,7 +50,10 @@ if($page=="correo") {
 				$query="SELECT COUNT(*) FROM tbl_correo WHERE id IN ($ids) AND state_wait!='${action2[1]}'";
 				$numids=execute_query($query);
 				// PONER STATE_WAIT=1 EN LOS CORREOS SELECCIONADOS
-				$query="UPDATE tbl_correo SET state_new='0',state_wait='${action2[1]}' WHERE id IN ($ids) AND state_wait!='${action2[1]}'";
+				$query=make_update_query("tbl_correo",array(
+					"state_new"=>"0",
+					"state_wait"=>$action2[1]
+				),"id IN (${ids}) AND state_wait!='${action2[1]}'");
 				db_query($query);
 				// MOSTRAR RESULTADO
 				session_alert(LANG($action2[1]?"msgnumsiwait":"msgnumnowait","correo").$numids.LANG("message".min($numids,2),"correo"));
@@ -57,13 +62,16 @@ if($page=="correo") {
 				$query="SELECT COUNT(*) FROM tbl_correo WHERE id IN ($ids) AND state_spam!='${action2[1]}' AND is_outbox='0'";
 				$numids=execute_query($query);
 				// PONER STATE_SPAM=1 EN LOS CORREOS SELECCIONADOS
-				$query="UPDATE tbl_correo SET state_new='0',state_spam='${action2[1]}' WHERE id IN ($ids) AND state_spam!='${action2[1]}' AND is_outbox='0'";
+				$query=make_update_query("tbl_correo",array(
+					"state_new"=>"0",
+					"state_spam"=>$action2[1]
+				),"id IN (${ids}) AND state_spam!='${action2[1]}' AND is_outbox='0'");
 				db_query($query);
 				// MOSTRAR RESULTADO
 				session_alert(LANG($action2[1]?"msgnumsispam":"msgnumnospam","correo").$numids.LANG("message".min($numids,2),"correo"));
 			} elseif($action2[0]=="delete") {
 				// CREAR DATOS EN TABLA DE CORREOS BORRADOS (SOLO LOS DEL INBOX)
-				$query="INSERT INTO tbl_correo_d SELECT NULL id,id_cuenta,uidl,`datetime` FROM tbl_correo WHERE id IN ($ids) AND is_outbox='0'";
+				$query=make_insert_query("tbl_correo_d","SELECT NULL id,id_cuenta,uidl,`datetime` FROM tbl_correo WHERE id IN (${ids}) AND is_outbox='0'");
 				db_query($query);
 				// BORRAR FICHEROS .EML.GZ DEL INBOX
 				$query="SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='0'";
@@ -78,21 +86,21 @@ if($page=="correo") {
 				$result=execute_query_array($query);
 				foreach($result as $delete) if(file_exists($delete)) unlink($delete);
 				// BORRAR CORREOS
-				$query="DELETE FROM tbl_correo WHERE id IN ($ids)";
+				$query=make_delete_query("tbl_correo","id IN (${ids})");
 				db_query($query);
 				// BORRAR DIRECCIONES DE LOS CORREOS
-				$query="DELETE FROM tbl_correo_a WHERE id_correo IN ($ids)";
+				$query=make_delete_query("tbl_correo_a","id_correo IN (${ids})");
 				db_query($query);
 				// BORRAR FICHEROS ADJUNTOS DE LOS CORREOS
-				$query="DELETE FROM tbl_ficheros WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
+				$query=make_delete_query("tbl_ficheros","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
 				db_query($query);
 				// BORRAR REGISTRO DE LOS CORREOS
-				$query="DELETE FROM tbl_registros_i WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
+				$query=make_delete_query("tbl_registros_i","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
 				db_query($query);
-				$query="DELETE FROM tbl_registros_u WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
+				$query=make_delete_query("tbl_registros_u","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
 				db_query($query);
 				// BORRAR FOLDERS RELACIONADOS
-				$query="DELETE FROM tbl_folders_a WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
+				$query=make_delete_query("tbl_folders_a","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
 				db_query($query);
 				// MOSTRAR RESULTADO
 				session_alert(LANG("msgnumdelete","correo").$numids.LANG("message".min($numids,2),"correo"));

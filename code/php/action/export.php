@@ -48,20 +48,9 @@ if($page=="datacfg") {
 			$query="SELECT * FROM $table LIMIT $offset,$limit";
 			$offset=$offset+$limit;
 			$result=db_query($query);
-			$num=db_num_fields($result);
-			$fields=array();
-			for($i=0;$i<$num;$i++) {
-				$fields[]="`".db_field_name($result,$i)."`";
-			}
-			$fields=implode(",",$fields);
 			while($row=db_fetch_row($result)) {
-				$values=array();
-				foreach($row as $value) {
-					$value=addslashes($value);
-					$values[]="'".$value."'";
-				}
-				$values=implode(",",$values);
-				gzwrite($fp,"INSERT INTO `$table`($fields) VALUES($values);\n");
+				$query=make_insert_query($table,$row).";\n";
+				gzwrite($fp,$query);
 			}
 			db_free($result);
 		}

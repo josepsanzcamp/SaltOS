@@ -43,7 +43,7 @@ function sess_read_handler($id) {
 	set_use_cache($oldcache);
 	$numrows=db_num_rows($result);
 	if($numrows>1) {
-		$query="DELETE FROM tbl_sessions WHERE sess_file='${sess_file}'";
+		$query=make_delete_query("tbl_sessions","sess_file='${sess_file}'");
 		db_query($query);
 		$numrows=0;
 	}
@@ -71,16 +71,27 @@ function sess_write_handler($id,$sess_data) {
 	$numrows=db_num_rows($result);
 	db_free($result);
 	if($numrows>1) {
-		$query="DELETE FROM tbl_sessions WHERE sess_file='${sess_file}'";
+		$query=make_delete_query("tbl_sessions","sess_file='${sess_file}'");
 		db_query($query);
 		$numrows=0;
 	}
 	if($numrows==1) {
-		$query="UPDATE tbl_sessions SET sess_data='${sess_data}', sess_time='${sess_time}' WHERE sess_file='${sess_file}'";
-		if(getDefault("sess/hash")==$sess_hash) $query="UPDATE tbl_sessions SET sess_time='${sess_time}' WHERE sess_file='${sess_file}'";
+		$query=make_update_query("tbl_sessions",array(
+			"sess_data"=>$sess_data,
+			"sess_time"=>$sess_time
+		),"sess_file='${sess_file}'");
+		if(getDefault("sess/hash")==$sess_hash) {
+			$query=make_update_query("tbl_sessions",array(
+				"sess_time"=>$sess_time
+			),"sess_file='${sess_file}'");
+		}
 		db_query($query);
 	} else {
-		$query="INSERT INTO tbl_sessions(id,sess_file,sess_data,sess_time) VALUES(NULL,'${sess_file}','${sess_data}','${sess_time}')";
+		$query=make_insert_query("tbl_sessions",array(
+			"sess_file"=>$sess_file,
+			"sess_data"=>$sess_data,
+			"sess_time"=>$sess_time
+		));
 		db_query($query);
 	}
 	return true;
@@ -88,14 +99,14 @@ function sess_write_handler($id,$sess_data) {
 
 function sess_destroy_handler($id) {
 	$sess_file=getDefault("sess/save_path")."/".$id;
-	$query="DELETE FROM tbl_sessions WHERE sess_file='${sess_file}'";
+	$query=make_delete_query("tbl_sessions","sess_file='${sess_file}'");
 	db_query($query);
 	return true ;
 }
 
 function sess_gc_handler($maxlifetime) {
 	$sess_time=time()-$maxlifetime;
-	$query="DELETE FROM tbl_sessions WHERE sess_time<${sess_time}";
+	$query=make_delete_query("tbl_sessions","sess_time<${sess_time}");
 	db_query($query);
 	return true;
 }
@@ -124,7 +135,11 @@ function current_session() {
 	set_use_cache($oldcache);
 	if(!$id) {
 		$sess_time=time();
-		$query="INSERT INTO tbl_sessions(id,sess_file,sess_data,sess_time) VALUES(NULL,'${sess_file}','','${sess_time}')";
+		$query=make_insert_query("tbl_sessions",array(
+			"sess_file"=>$sess_file,
+			"sess_data"=>"",
+			"sess_time"=>$sess_time
+		));
 		db_query($query);
 		$oldcache=set_use_cache("false");
 		$query="SELECT MAX(id) maximo FROM tbl_sessions";
