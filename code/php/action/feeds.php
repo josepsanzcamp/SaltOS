@@ -30,52 +30,60 @@ if(getParam("action")=="feeds") {
 		$ids=check_ids(getParam("id"));
 		if($ids) {
 			$numids=count(explode(",",$ids));
-			$query="SELECT id FROM tbl_feeds a WHERE id IN ($ids) AND id IN (SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro=a.id AND id_usuario='".current_user()."')";
+			$query="SELECT id FROM tbl_feeds a WHERE id IN (${ids}) AND id IN (SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro=a.id AND id_usuario='".current_user()."')";
 			$result=execute_query_array($query);
 			$numresult=count($result);
 			if($numresult==$numids) {
 				$action2=explode("=",getParam("action2"));
 				if($action2[0]=="leidos") {
 					// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_new!='${action2[1]}'";
+					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN (${ids}) AND state_new!='${action2[1]}'";
 					$numids=execute_query($query);
 					// PONER STATE_NEW=0 EN LOS POSTS SELECCIONADOS
-					$query="UPDATE tbl_feeds SET state_new='${action2[1]}' WHERE id IN ($ids) AND state_new!='${action2[1]}'";
+					$query=make_update_query("tbl_feeds",array(
+						"state_new"=>$action2[1]
+					),"id IN (${ids}) AND state_new!='${action2[1]}'");
 					db_query($query);
 					// MOSTRAR RESULTADO
 					session_alert(LANG($action2[1]?"msgnumnoleidos":"msgnumsileidos","feeds").$numids.LANG("message".min($numids,2),"feeds"));
 				} elseif($action2[0]=="wait") {
 					// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_wait!='${action2[1]}'";
+					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN (${ids}) AND state_wait!='${action2[1]}'";
 					$numids=execute_query($query);
 					// PONER STATE_WAIT=1 EN LOS POSTS SELECCIONADOS
-					$query="UPDATE tbl_feeds SET state_new='0',state_wait='${action2[1]}' WHERE id IN ($ids) AND state_wait!='${action2[1]}'";
+					$query=make_update_query("tbl_feeds",array(
+						"state_new"=>"0",
+						"state_wait"=>$action2[1]
+					),"id IN (${ids}) AND state_wait!='${action2[1]}'");
 					db_query($query);
 					// MOSTRAR RESULTADO
 					session_alert(LANG($action2[1]?"msgnumsiwait":"msgnumnowait","feeds").$numids.LANG("message".min($numids,2),"feeds"));
 				} elseif($action2[0]=="cool") {
 					// BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
-					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN ($ids) AND state_cool!='${action2[1]}'";
+					$query="SELECT COUNT(*) FROM tbl_feeds WHERE id IN (${ids}) AND state_cool!='${action2[1]}'";
 					$numids=execute_query($query);
 					// PONER STATE_cool=1 EN LOS POSTS SELECCIONADOS
-					$query="UPDATE tbl_feeds SET state_new='0',state_cool='${action2[1]}' WHERE id IN ($ids) AND state_cool!='${action2[1]}'";
+					$query=make_update_query("tbl_feeds",array(
+						"state_new"=>"0",
+						"state_cool"=>$action2[1]
+					),"id IN (${ids}) AND state_cool!='${action2[1]}'");
 					db_query($query);
 					// MOSTRAR RESULTADO
 					session_alert(LANG($action2[1]?"msgnumsicool":"msgnumnocool","feeds").$numids.LANG("message".min($numids,2),"feeds"));
 				} elseif($action2[0]=="delete") {
 					// CREAR DATOS EN TABLA DE POSTS BORRADOS
-					$query="INSERT INTO tbl_feeds_d SELECT NULL id,id_feed,link,'".current_datetime()."' FROM tbl_feeds WHERE id IN ($ids)";
+					$query=make_insert_query("tbl_feeds_d","SELECT NULL id,id_feed,link,'".current_datetime()."' FROM tbl_feeds WHERE id IN (${ids})");
 					db_query($query);
 					// BORRAR POSTS
-					$query="DELETE FROM tbl_feeds WHERE id IN ($ids)";
+					$query=make_delete_query("tbl_feeds","id IN (${ids})");
 					db_query($query);
 					// BORRAR REGISTRO DE LOS POSTS
-					$query="DELETE FROM tbl_registros_i WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("feeds")."'";
+					$query=make_delete_query("tbl_registros_i","id_registro IN (${ids}) AND id_aplicacion='".page2id("feeds")."'");
 					db_query($query);
-					$query="DELETE FROM tbl_registros_u WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("feeds")."'";
+					$query=make_delete_query("tbl_registros_u","id_registro IN (${ids}) AND id_aplicacion='".page2id("feeds")."'");
 					db_query($query);
 					// BORRAR FOLDERS RELACIONADOS
-					$query="DELETE FROM tbl_folders_a WHERE id_registro IN ($ids) AND id_aplicacion='".page2id("correo")."'";
+					$query=make_delete_query("tbl_folders_a","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
 					db_query($query);
 					// MOSTRAR RESULTADO
 					session_alert(LANG("msgnumdelete","feeds").$numids.LANG("message".min($numids,2),"feeds"));
@@ -427,7 +435,9 @@ if(getParam("action")=="feeds") {
 		$cid=getParam("cid");
 		if($cid=="body") {
 			// MARCAR FEED COMO LEIDO SI ES EL PROPIETARIO
-			$query="UPDATE tbl_feeds SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='${id}' AND id_usuario='".current_user()."')";
+			$query=make_update_query("tbl_feeds",array(
+				"state_new"=>"0"
+			),"id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='${id}' AND id_usuario='".current_user()."')");
 			db_query($query);
 			// CONTINUE
 			$buffer="";
@@ -564,17 +574,29 @@ if(getParam("action")=="feeds") {
 							$hash=$item["hash"];
 							if(!in_array($link,array_merge($result2,$result4))) {
 								// SI NO ESTA EL LINK DESCARGADO EN LOS LINKS EXISTENTES NI EN LOS MARCADOS COMO BORRADOS
-								$link=addslashes($link);
-								$title=addslashes($item["title"]);
-								$pubdate=addslashes($item["pubdate"]);
-								$description=addslashes($item["description"]);
-								$query="INSERT INTO tbl_feeds(id,id_feed,title,pubdate,description,link,hash,state_new,state_modified,state_wait,state_cool) VALUES(NULL,'${id_feed}','${title}','${pubdate}','${description}','${link}','${hash}','1','0','0','0')";
+								$query=make_insert_query("tbl_feeds",array(
+									"id_feed"=>$id_feed,
+									"title"=>$item["title"],
+									"pubdate"=>$item["pubdate"],
+									"description"=>$item["description"],
+									"link"=>$link,
+									"hash"=>$hash,
+									"state_new"=>1,
+									"state_modified"=>0,
+									"state_wait"=>0,
+									"state_cool"=>0
+								));
 								db_query($query);
 								$query="SELECT MAX(id) FROM tbl_feeds WHERE id_feed='${id_feed}'";
 								$oldcache=set_use_cache("false");
 								$last_id=execute_query($query);
 								set_use_cache($oldcache);
-								$query="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}')";
+								$query=make_insert_query("tbl_registros_i",array(
+									"id_aplicacion"=>$id_aplicacion,
+									"id_registro"=>$last_id,
+									"id_usuario"=>$id_usuario,
+									"datetime"=>$datetime
+								));
 								db_query($query);
 								$newfeeds++;
 								$voice_ids[]=$last_id;
@@ -586,22 +608,31 @@ if(getParam("action")=="feeds") {
 								// TO PREVENT SOME SPURIOUS BUG
 								if(is_array($last_id)) {
 									$last_id=array_pop($last_id);
-									$query="DELETE FROM tbl_feeds WHERE id_feed='${id_feed}' AND link='${link}' AND id!=${last_id}";
+									$query=make_delete_query("tbl_feeds","id_feed='${id_feed}' AND link='${link}' AND id!=${last_id}");
 									db_query($query);
 								}
 								// CONTINUE
-								$title=addslashes($item["title"]);
-								$pubdate=addslashes($item["pubdate"]);
-								$description=addslashes($item["description"]);
-								$query="UPDATE tbl_feeds SET title='${title}',pubdate='${pubdate}',description='${description}',hash='${hash}',state_new='1',state_modified='1' WHERE id='${last_id}'";
+								$query=make_update_query("tbl_feeds",array(
+									"title"=>$item["title"],
+									"pubdate"=>$item["pubdate"],
+									"description"=>$item["description"],
+									"hash"=>$hash,
+									"state_new"=>1,
+									"state_modified"=>1
+								),"id='${last_id}'");
 								db_query($query);
-								$query="INSERT INTO tbl_registros_u(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'${id_aplicacion}','${last_id}','${id_usuario}','${datetime}')";
+								$query=make_insert_query("tbl_registros_u",array(
+									"id_aplicacion"=>$id_aplicacion,
+									"id_registro"=>$last_id,
+									"id_usuario"=>$id_usuario,
+									"datetime"=>$datetime
+								));
 								db_query($query);
 								$modifiedfeeds++;
 							}
 						}
 						// BORRAR REGISTROS DE LA TABLA DE FEEDS BORRADOS QUE NO EXISTEN YA
-						$query="DELETE FROM tbl_feeds_d WHERE id_feed='${id_feed}' AND NOT link IN (${links}) AND UNIX_TIMESTAMP(`datetime`)<='${unixtime_d}'";
+						$query=make_delete_query("tbl_feeds_d","id_feed='${id_feed}' AND NOT link IN (${links}) AND UNIX_TIMESTAMP(`datetime`)<='${unixtime_d}'");
 						db_query($query);
 					}
 				}

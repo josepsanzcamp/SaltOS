@@ -39,7 +39,8 @@ if($page=="datacfg") {
 	$file=get_temp_file($fext);
 	$fp=gzopen($file,"w");
 	foreach($tables as $table) {
-		gzwrite($fp,"DELETE FROM `$table`;\n");
+		$query=make_delete_query($table).";\n";
+		gzwrite($fp,$query);
 		$query="SELECT COUNT(*) count FROM $table";
 		$count=execute_query($query);
 		$limit=1000;

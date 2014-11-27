@@ -30,7 +30,11 @@ if($page=="profile") {
 			$query="SELECT id FROM tbl_folders WHERE id_usuario='${id_usuario}' AND id_parent='${id_parent}' ORDER BY name ASC";
 			$result=db_query($query);
 			while($row=db_fetch_row($result)) {
-				$query="UPDATE tbl_folders SET pos=${pos},depth=${depth} WHERE id_usuario='${id_usuario}' AND id=${row["id"]}";
+				$id=$row["id"];
+				$query=make_update_query("tbl_folders",array(
+					"pos"=>$pos,
+					"depth"=>$depth
+				),"id_usuario='${id_usuario}' AND id=${id}");
 				db_query($query);
 				$pos++;
 				update_folders_tree($id_usuario,$row["id"],$pos,$depth+1);

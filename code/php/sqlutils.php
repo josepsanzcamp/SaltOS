@@ -96,7 +96,10 @@ function make_select_config($keys) {
 		$config=execute_query($query);
 		if($config===null) {
 			$val=CONFIG($key);
-			$query="INSERT INTO tbl_configuracion(`id`,`clave`,`valor`) VALUES(NULL,'$key','$val')";
+			$query=make_insert_query("tbl_configuracion",array(
+				"clave"=>$key,
+				"valor"=>$val
+			));
 			db_query($query);
 		}
 	}
@@ -567,6 +570,10 @@ function make_insert_query($table,$array) {
 }
 
 function make_update_query($table,$array,$where="1=1") {
+	if(is_string($array)) {
+		$query="UPDATE $table SET $array WHERE $where";
+		return $query;
+	}
 	$list1=array();
 	foreach($array as $key=>$val) {
 		$list1[]="`".$key."`='".addslashes($val)."'";

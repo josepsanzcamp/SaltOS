@@ -31,7 +31,9 @@ if($page=="agenda") {
 	$result=db_query($query);
 	while($row=db_fetch_row($result)) {
 		$id=$row["id"];
-		$query="UPDATE tbl_agenda SET notify_dstart='0' WHERE id='$id'";
+		$query=make_update_query("tbl_agenda",array(
+			"notify_dstart"=>0
+		),"id='${id}'");
 		db_query($query);
 		$restarted++;
 	}
@@ -41,7 +43,9 @@ if($page=="agenda") {
 	$result=db_query($query);
 	while($row=db_fetch_row($result)) {
 		$id=$row["id"];
-		$query="UPDATE tbl_agenda SET notify_dstop='0' WHERE id='$id'";
+		$query=make_update_query("tbl_agenda",array(
+			"notify_dstop"=>0
+		),"id='${id}'");
 		db_query($query);
 		$restarted++;
 	}

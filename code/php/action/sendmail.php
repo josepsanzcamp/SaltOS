@@ -179,7 +179,11 @@ if(getParam("action")=="sendmail") {
 			$result=execute_query_array($query);
 			foreach($result as $id_folder) {
 				if(getParam("folders_${id_folder}_activado")) {
-					$query="INSERT INTO tbl_folders_a(`id`,`id_folder`,`id_aplicacion`,`id_registro`) VALUES(NULL,'${id_folder}','".page2id("correo")."','${last_id}')";
+					$query=make_insert_query("tbl_folders_a",array(
+						"id_folder"=>$id_folder,
+						"id_aplicacion"=>page2id("correo"),
+						"id_registro"=>$last_id
+					));
 					db_query($query);
 				}
 			}

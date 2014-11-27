@@ -29,7 +29,9 @@ if(getParam("action")=="session") {
 	if($action2=="update") {
 		$id_session=current_session();
 		$sess_time=time();
-		$query="UPDATE tbl_sessions SET sess_time='${sess_time}' WHERE id='${id_session}'";
+		$query=make_update_query("tbl_sessions",array(
+			"sess_time"=>$sess_time
+		),"id='${id_session}'");
 		db_query($query);
 		javascript_alert(LANG("sessionupdated"));
 	} else {
@@ -38,7 +40,7 @@ if(getParam("action")=="session") {
 		$time=execute_query($query);
 		$remain=max(getDefault("sess/timeout")-(time()-$time),0);
 		if($remain<=0) {
-			$query="DELETE FROM tbl_sessions WHERE id='${id_session}'";
+			$query=make_delete_query("tbl_sessions","id='${id_session}'");
 			db_query($query);
 		}
 		if(useCookie("remember")) $remain=max(useCookie("__remember__")-time(),$remain);

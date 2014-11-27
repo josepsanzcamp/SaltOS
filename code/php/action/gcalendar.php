@@ -82,7 +82,9 @@ if(getParam("action")=="gcalendar") {
 						__gcalendar_update($service,$gevent["edit"],$sevent["title"],$sevent["content"],$sevent["where"],$sevent["dstart"],$sevent["dstop"]);
 						$count_update_gcalendar++;
 					}
-					$query2="UPDATE tbl_agenda SET sync_gcalendar='1' WHERE id='${sevent["id"]}'";
+					$query2=make_update_query("tbl_agenda",array(
+						"sync_gcalendar"=>"1"
+					),"id='${sevent["id"]}'");
 					db_query($query2);
 					unset($sevents[$skey]);
 					unset($gevents[$gkey]);
@@ -93,7 +95,10 @@ if(getParam("action")=="gcalendar") {
 		if(!$finded) {
 			$id_gcalendar=__gcalendar_insert($service,$sevent["title"],$sevent["content"],$sevent["where"],$sevent["dstart"],$sevent["dstop"]);
 			$count_insert_gcalendar++;
-			$query2="UPDATE tbl_agenda SET id_gcalendar='$id_gcalendar',sync_gcalendar='1' WHERE id='${sevent["id"]}'";
+			$query2=make_update_query("tbl_agenda",array(
+				"id_gcalendar"=>$id_gcalendar,
+				"sync_gcalendar"=>1
+			),"id='${sevent["id"]}'");
 			db_query($query2);
 			unset($sevents[$skey]);
 		}
@@ -112,10 +117,20 @@ if(getParam("action")=="gcalendar") {
 		foreach($sevents as $skey=>$sevent) {
 			if($sevent["id_gcalendar"]==$gevent["id"]) {
 				if($sevent["hash"]!=$gevent["hash"]) {
-					foreach($gevent as $key=>$val) $gevent[$key]=str_replace("'","\\'",$val);
-					$query2="UPDATE tbl_agenda SET nombre='${gevent["title"]}',descripcion='${gevent["content"]}',lugar='${gevent["where"]}',dstart='${gevent["dstart"]}',dstop='${gevent["dstop"]}' WHERE id='${sevent["id"]}'";
+					$query2=make_update_query("tbl_agenda",array(
+						"nombre"=>$gevent["title"],
+						"descripcion"=>$gevent["content"],
+						"lugar"=>$gevent["where"],
+						"dstart"=>$gevent["dstart"],
+						"dstop"=>$gevent["dstop"]
+					),"id='${sevent["id"]}'");
 					db_query($query2);
-					$query2="INSERT INTO tbl_registros_u(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'".page2id("agenda")."','${sevent["id"]}','".current_user()."','".current_datetime()."')";
+					$query2=make_insert_query("tbl_registros_u",array(
+						"id_aplicacion"=>page2id("agenda"),
+						"id_registro"=>$sevent["id"],
+						"id_usuario"=>current_user(),
+						"datetime"=>current_datetime()
+					));
 					db_query($query2);
 					$count_update_saltos++;
 					unset($gevents[$gkey]);
@@ -125,12 +140,27 @@ if(getParam("action")=="gcalendar") {
 			}
 		}
 		if(!$finded) {
-			foreach($gevent as $key=>$val) $gevent[$key]=str_replace("'","\\'",$val);
-			$query2="INSERT INTO tbl_agenda(id,id_campanya,id_posiblecli,id_cliente,id_presupuesto,id_proyecto,dstart,dstop,nombre,lugar,id_tipoevento,id_estado,descripcion, notify_delay,notify_sign,notify_dstart,notify_dstop,id_gcalendar,sync_gcalendar) VALUES(NULL,'0','0','0','0','0','${gevent["dstart"]}','${gevent["dstop"]}','${gevent["title"]}','${gevent["where"]}','0','0','${gevent["content"]}','0','0','0','0','${gevent["id"]}','1')";
+			$query2=make_insert_query("tbl_agenda",array(
+				"dstart"=>$gevent["dstart"],
+				"dstop"=>$gevent["dstop"],
+				"nombre"=>$gevent["title"],
+				"lugar"=>$gevent["where"],
+				"descripcion"=>$gevent["content"],
+				"id_gcalendar"=>$gevent["id"],
+				"sync_gcalendar"=>1
+			));
 			db_query($query2);
-			$query2="INSERT INTO tbl_agenda_u(`id`,`id_agenda`,`id_usuario`) VALUES(NULL,(SELECT MAX(id) FROM tbl_agenda),'".current_user()."')";
+			$query2=make_insert_query("tbl_agenda_u",array(
+				"id_agenda"=>execute_query("SELECT MAX(id) FROM tbl_agenda"),
+				"id_usuario"=>current_user()
+			));
 			db_query($query2);
-			$query2="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'".page2id("agenda")."',(SELECT MAX(id) FROM tbl_agenda),'".current_user()."','".current_datetime()."')";
+			$query2=make_insert_query("tbl_registros_i",array(
+				"id_aplicacion"=>page2id("agenda"),
+				"id_registro"=>execute_query("SELECT MAX(id) FROM tbl_agenda"),
+				"id_usuario"=>current_user(),
+				"datetime"=>current_datetime()
+			));
 			db_query($query2);
 			$count_insert_saltos++;
 			unset($gevents[$gkey]);

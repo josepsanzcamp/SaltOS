@@ -96,7 +96,9 @@ if(getParam("action")=="getmail") {
 		$cid=getParam("cid");
 		if($cid=="body") {
 			// MARCAR CORREO COMO LEIDO SI ES EL PROPIETARIO
-			$query="UPDATE tbl_correo SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("correo")."' AND id_registro='${id}' AND id_usuario='".current_user()."')";
+			$query=make_update_query("tbl_correo",array(
+				"state_new"=>0
+			),"id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("correo")."' AND id_registro='${id}' AND id_usuario='".current_user()."')");
 			db_query($query);
 			// CONTINUE
 			$result=__getmail_getfullbody(__getmail_getnode("0",$decoded));
@@ -481,7 +483,7 @@ if(getParam("action")=="getmail") {
 			// REMOVE ALL UNUSED UIDLS
 			$delete=array_diff($olduidls_d,$uidls);
 			$delete="'".implode("','",$delete)."'";
-			$query="DELETE FROM tbl_correo_d WHERE uidl IN (${delete})";
+			$query=make_delete_query("tbl_correo_d","uidl IN (${delete})");
 			db_query($query);
 		}
 		if($error!="") {
@@ -587,7 +589,9 @@ if(getParam("page")=="correo") {
 	}
 	if(isset($id_extra[1]) && isset($id_extra[2]) && $id_extra[1]=="feed") {
 		// MARCAR FEED COMO LEIDO SI ES EL PROPIETARIO
-		$query="UPDATE tbl_feeds SET state_new='0' WHERE id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='${id_extra[2]}' AND id_usuario='".current_user()."')";
+		$query=make_update_query("tbl_feeds",array(
+			"state_new"=>0
+		),"id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='${id_extra[2]}' AND id_usuario='".current_user()."')");
 		db_query($query);
 	}
 }

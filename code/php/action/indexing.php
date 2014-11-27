@@ -35,19 +35,22 @@ if(getParam("action")=="indexing") {
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
+		$id=$row["id"];
 		if(time_get_free()<getDefault("server/percentstop")) break;
 		// CHECK IF EXISTS
-		$query="SELECT id FROM tbl_ficheros WHERE id='${row["id"]}'";
+		$query="SELECT id FROM tbl_ficheros WHERE id='${id}'";
 		$exists=execute_query($query);
 		if(!$exists) continue;
 		// CONTINUE
-		$query="UPDATE tbl_ficheros SET retries=retries+1 WHERE id='${row["id"]}'";
+		$query=make_update_query("tbl_ficheros","retries=retries+1","id='${id}'");
 		db_query($query);
 		if($row["id_aplicacion"]==page2id("correo")) {
 			$decoded=__getmail_getmime($row["id_registro"]);
 			if(!$decoded) {
 				show_php_error(array("phperror"=>"Email not found","details"=>sprintr($row),"file"=>getDefault("debug/warningfile","warning.log"),"die"=>false));
-				$query="UPDATE tbl_ficheros SET retries=3 WHERE id='${row["id"]}'";
+				$query=make_update_query("tbl_ficheros",array(
+					"retries"=>"3"
+				),"id='${id}'");
 				db_query($query);
 				continue;
 			}
@@ -58,7 +61,9 @@ if(getParam("action")=="indexing") {
 					$test1=$row["fichero_file"]==md5(md5($val["body"]).md5($val["cid"]).md5($val["cname"]).md5($val["ctype"]).md5($val["csize"]));
 					$test2=$row["fichero_file"]==md5(serialize(array($val["body"],$val["cid"],$val["cname"],$val["ctype"],$val["csize"])));
 					if($test1 || $test2) {
-						$query="UPDATE tbl_ficheros SET fichero_file='${val["chash"]}' WHERE id='${row["id"]}'";
+						make_update_query("tbl_ficheros",array(
+							"fichero_file"=>$val["chash"]
+						),"id='${id}'");
 						db_query($query);
 						$row["fichero_file"]=$val["chash"];
 						$file=__getmail_getcid(__getmail_getnode("0",$decoded),$row["fichero_file"]);
@@ -68,7 +73,9 @@ if(getParam("action")=="indexing") {
 			}
 			if(!$file) {
 				show_php_error(array("phperror"=>"Attachment not found","details"=>sprintr($row),"file"=>getDefault("debug/warningfile","warning.log"),"die"=>false));
-				$query="UPDATE tbl_ficheros SET retries=3 WHERE id='${row["id"]}'";
+				$QUERY=make_update_query("tbl_ficheros",array(
+					"retries"=>"3"
+				),"id='${id}'");
 				db_query($query);
 				continue;
 			}
@@ -81,8 +88,10 @@ if(getParam("action")=="indexing") {
 		}
 		$search=unoconv2txt($input);
 		if(in_array($row["retries"],array(0,1))) $search=encode_search($search," ");
-		$search=addslashes($search);
-		$query="UPDATE tbl_ficheros SET indexed=1,search='${search}' WHERE id='${row["id"]}'";
+		$query=make_update_query("tbl_ficheros",array(
+			"indexed"=>1,
+			"search"=>$search
+		),"id='${id}'");
 		db_query($query);
 		$total++;
 	}

@@ -44,15 +44,21 @@ function save_history($id_usuario,$id_aplicacion) {
 	db_free($result);
 	$querystring=base64_encode(str_replace("+","%20",getServer("QUERY_STRING")));
 	if($numrows>1) {
-		$query="DELETE FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
+		$query=make_delete_query("tbl_history","id_usuario='${id_usuario}' AND id_aplicacion='${id_aplicacion}'");
 		db_query($query);
 		$numrows=0;
 	}
 	if(!$numrows) {
-		$query="INSERT INTO tbl_history(`id`,`id_usuario`,`id_aplicacion`,`querystring`) VALUES(NULL,'$id_usuario','$id_aplicacion','$querystring')";
+		$query=make_insert_query("tbl_history",array(
+			"id_usuario"=>$id_usuario,
+			"id_aplicacion"=>$id_aplicacion,
+			"querystring"=>$querystring
+		));
 		db_query($query);
 	} else {
-		$query="UPDATE tbl_history SET `querystring`='$querystring' WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
+		$query=make_update_query("tbl_history",array(
+			"querystring"=>$querystring
+		),"id_usuario='${id_usuario}' AND id_aplicacion='${id_aplicacion}'");
 		db_query($query);
 	}
 }
@@ -83,10 +89,15 @@ function lastpage($page) {
 	} else {
 		if($page!=$lastpage) {
 			if(!$lastpage) {
-				$query="INSERT INTO tbl_lastpage(`id`,`id_usuario`,`page`) VALUES(NULL,'$id_usuario','$page')";
+				$query=make_insert_query("tbl_lastpage",array(
+					"id_usuario"=>$id_usuario,
+					"page"=>$page
+				));
 				db_query($query);
 			} else {
-				$query="UPDATE tbl_lastpage SET `page`='$page' WHERE `id_usuario`='$id_usuario'";
+				$query=make_update_query("tbl_lastpage",array(
+					"page"=>$page
+				),"id_usuario='${id_usuario}'");
 				db_query($query);
 			}
 		}
@@ -105,10 +116,15 @@ function lastfolder($id_folder) {
 	} else {
 		if($id_folder!=$lastfolder) {
 			if(!$lastfolder) {
-				$query="INSERT INTO tbl_lastfolder(`id`,`id_usuario`,`id_folder`) VALUES(NULL,'$id_usuario','$id_folder')";
+				$query=make_insert_query("tbl_lastfolder",array(
+					"id_usuario"=>$id_usuario,
+					"id_folder"=>$id_folder
+				));
 				db_query($query);
 			} else {
-				$query="UPDATE tbl_lastfolder SET `id_folder`='$id_folder' WHERE `id_usuario`='$id_usuario'";
+				$query=make_update_query("tbl_lastfolder",array(
+					"id_folder"=>$id_folder
+				),"id_usuario='${id_usuario}'");
 				db_query($query);
 			}
 		}

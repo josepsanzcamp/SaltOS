@@ -313,10 +313,15 @@ function setConfig($key,$val) {
 	$query="SELECT valor FROM tbl_configuracion WHERE clave='$key'";
 	$config=execute_query($query);
 	if($config===null) {
-		$query="INSERT INTO tbl_configuracion(`id`,`clave`,`valor`) VALUES(NULL,'$key','$val')";
+		$query=make_insert_query("tbl_configuracion",array(
+			"clave"=>$key,
+			"valor"=>$val
+		));
 		db_query($query);
 	} else {
-		$query="UPDATE tbl_configuracion SET valor='$val' WHERE clave='$key'";
+		$query=make_update_query("tbl_configuracion",array(
+			"valor"=>$val
+		),"clave='${key}'");
 		db_query($query);
 	}
 }
@@ -617,18 +622,11 @@ function db_static() {
 		$dbstatic=eval_attr(xml2array($file));
 		if(is_array($dbstatic)) {
 			foreach($dbstatic as $table=>$rows) {
-				$query="DELETE FROM `$table`";
+				$query=make_delete_query($table);
 				db_query($query);
 				foreach($rows as $row) {
-					$keys=array();
-					$vals=array();
-					foreach($row as $key=>$val) {
-						$keys[]="`${key}`";
-						$vals[]=($val=="NULL")?$val:"'${val}'";
-					}
-					$keys=implode(",",$keys);
-					$vals=implode(",",$vals);
-					$query="INSERT INTO `$table`($keys) VALUES($vals)";
+					foreach($row as $key=>$val) if($val=="NULL") $row[$key]="";
+					$query=make_insert_query($table,$row);
 					db_query($query);
 				}
 			}
@@ -720,7 +718,9 @@ function remake_password($user,$pass) {
 			} elseif(in_array($row["password"],array(md5($pass),sha1($pass)))) {
 				// CONVERT FROM MD5/SHA1 TO CRYPT FORMAT
 				$pass=hash_password($pass);
-				$query="UPDATE tbl_usuarios SET password='${pass}' WHERE activo='1' AND login='${user}'";
+				$query=make_update_query("tbl_usuarios",array(
+					"password"=>$pass
+				),"activo='1' AND login='${user}'");
 				db_query($query);
 			}
 		}
@@ -758,12 +758,16 @@ function check_security($action="") {
 	$id_security=execute_query($query);
 	set_use_cache($oldcache);
 	if(is_array($id_security)) {
-		$query="DELETE FROM tbl_security WHERE id_session='${id_session}'";
+		$query=make_delete_query("tbl_security","id_session='${id_session}'");
 		db_query($query);
 		$id_security=0;
 	}
 	if(!$id_security) {
-		$query="INSERT INTO tbl_security(id,id_session,id_usuario,logout) VALUES(NULL,'${id_session}','0','0')";
+		$query=make_insert_query("tbl_security",array(
+			"id_session"=>$id_session,
+			"id_usuario"=>0,
+			"logout"=>0
+		));
 		db_query($query);
 		$query="SELECT MAX(id) maximo FROM tbl_security";
 		$id_security=execute_query($query);
@@ -774,41 +778,55 @@ function check_security($action="") {
 	$id_security_ip=execute_query($query);
 	set_use_cache($oldcache);
 	if(is_array($id_security_ip)) {
-		$query="DELETE FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
+		$query=make_delete_query("tbl_security_ip","id_session='${id_session}' AND remote_addr='${remote_addr}'");
 		db_query($query);
 		$id_security_ip=0;
 	}
 	if(!$id_security_ip) {
-		$query="INSERT INTO tbl_security_ip(id,id_session,remote_addr,retries) VALUES(NULL,'${id_session}','${remote_addr}','0')";
+		$query=make_insert_query("tbl_security_ip",array(
+			"id_session"=>$id_session,
+			"remote_addr"=>$remote_addr,
+			"retries"=>0
+		));
 		db_query($query);
 		$query="SELECT MAX(id) maximo FROM tbl_security_ip";
 		$id_security_ip=execute_query($query);
 	}
 	// BORRAR REGISTROS CADUCADOS
-	$query="DELETE FROM tbl_security WHERE NOT id_session IN (SELECT id FROM tbl_sessions)";
+	$query=make_delete_query("tbl_security","NOT id_session IN (SELECT id FROM tbl_sessions)");
 	db_query($query);
-	$query="DELETE FROM tbl_security_ip WHERE NOT id_session IN (SELECT id FROM tbl_sessions)";
+	$querty=make_delete_query("tbl_security_ip","NOT id_session IN (SELECT id FROM tbl_sessions)");
 	db_query($query);
 	// NORMAL CODE
 	if($action=="login") {
 		if($id_usuario) {
 			// MARCAR REGISTROS DEL ID_USUARIO PARA LOGOUT
-			$query="UPDATE tbl_security SET logout='1' WHERE id_usuario='${id_usuario}'";
+			$query=make_update_query("tbl_security",array(
+				"logout"=>"1"
+			),"id_usuario='${id_usuario}'");
 			db_query($query);
 			// LIMPIAR RETRIES DEL MISMO REMOTE_ADDR
-			$query="UPDATE tbl_security_ip SET retries='0' WHERE id_session='${id_session}' OR remote_addr='${remote_addr}'";
+			$query=make_update_query("tbl_security_ip",array(
+				"retries"=>"0"
+			),"id_session='${id_session}' OR remote_addr='${remote_addr}'");
 			db_query($query);
 			// PONER ID_USUARIO Y RESETEAR LOGOUT EN EL REGISTRO ACTUAL
-			$query="UPDATE tbl_security SET id_usuario='${id_usuario}',logout='0' WHERE id='${id_security}'";
+			$query=make_update_query("tbl_security",array(
+				"id_usuario"=>$id_usuario,
+				"logout"=>0
+			),"id='${id_security}'");
 			db_query($query);
 		} else {
 			// INCREMENTAR RETRIES EN EL REGISTRO ACTUAL
-			$query="UPDATE tbl_security_ip SET retries=retries+1 WHERE id='${id_security_ip}'";
+			$query=make_update_table("tbl_security_ip","retries=retries+1","id='${id_security_ip}'");
 			db_query($query);
 		}
 	} elseif($action=="logout") {
 		// RESETEAR ID_USUARIO Y LOGOUT EN EL REGISTRO ACTUAL
-		$query="UPDATE tbl_security SET id_usuario='0',logout='0' WHERE id='${id_security}'";
+		$query=make_update_query("tbl_security",array(
+			"id_usuario"=>0,
+			"logout"=>0
+		),"id='${id_security}'");
 		db_query($query);
 	} elseif($action=="main") {
 		if($id_usuario) {
@@ -835,7 +853,9 @@ function check_security($action="") {
 		$logout=execute_query($query);
 		return !$logout;
 	} elseif($action=="captcha") {
-		$query="UPDATE tbl_security_ip SET retries=0 WHERE id='${id_security_ip}'";
+		$query=make_update_query("tbl_security_ip",array(
+			"retries"=>0
+		),"id='${id_security_ip}'");
 		db_query($query);
 	} else {
 		show_php_error(array("phperror"=>"Unknown action='$action' in check_security"));
@@ -866,15 +886,21 @@ function use_table_cookies($name,$value="",$default="") {
 			$query="SELECT COUNT(*) FROM tbl_cookies WHERE id_usuario='$uid' AND clave='$name'";
 			$count=execute_query($query);
 			if($count>1) {
-				$query="DELETE FROM tbl_cookies WHERE id_usuario='$uid' AND clave='$name'";
+				$query=make_delete_query("tbl_cookies","id_usuario='${uid}' AND clave='${name}'");
 				db_query($query);
 				$count=0;
 			}
 			if($count==0) {
-				$query="INSERT INTO tbl_cookies(id,id_usuario,clave,valor) VALUES(NULL,'$uid','$name','$value')";
+				$query=make_insert_query("tbl_cookies",array(
+					"id_usuario"=>$uid,
+					"clave"=>$name,
+					"valor"=>$value
+				));
 				db_query($query);
 			} else {
-				$query="UPDATE tbl_cookies SET valor='$value' WHERE id_usuario='$uid' AND clave='$name'";
+				$query=make_update_query("tbl_cookies",array(
+					"valor"=>$value
+				),"id_usuario='${uid}' AND clave='${name}'");
 				db_query($query);
 			}
 		} else {
