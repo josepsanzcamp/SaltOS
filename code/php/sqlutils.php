@@ -552,16 +552,17 @@ function __dbschema_helper($fn,$table) {
 	return array();
 }
 
-function make_insert_query($table,$array) {
+function make_insert_query($table,$array,$queries=array()) {
 	if(is_string($array)) {
 		$query="INSERT INTO $table $array";
 		return $query;
 	}
 	$list1=array();
 	$list2=array();
-	foreach($array as $key=>$val) {
+	foreach(array_merge($array,$queries) as $key=>$val) {
 		$list1[]="`".$key."`";
-		$list2[]="'".addslashes($val)."'";
+		if(isset($queries[$key])) $list2[]=$val;
+		else $list2[]="'".addslashes($val)."'";
 	}
 	$list1=implode(",",$list1);
 	$list2=implode(",",$list2);
@@ -569,14 +570,15 @@ function make_insert_query($table,$array) {
 	return $query;
 }
 
-function make_update_query($table,$array,$where="1=1") {
+function make_update_query($table,$array,$where="1=1",$queries=array()) {
 	if(is_string($array)) {
 		$query="UPDATE $table SET $array WHERE $where";
 		return $query;
 	}
 	$list1=array();
-	foreach($array as $key=>$val) {
-		$list1[]="`".$key."`='".addslashes($val)."'";
+	foreach(array_merge($array,$queries) as $key=>$val) {
+		if(isset($queries[$key])) $list1[]="`".$key."`=".$val;
+		else $list1[]="`".$key."`='".addslashes($val)."'";
 	}
 	$list1=implode(",",$list1);
 	$query="UPDATE $table SET $list1 WHERE $where";

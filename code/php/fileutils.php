@@ -400,4 +400,10 @@ function fix_file($file) {
 	}
 	return $file;
 }
+
+function readfile_protected($file) {
+	$fp=fopen($file,"rb");
+	while(!feof($fp)) echo fread($fp,1048576);
+	fclose($fp);
+}
 ?>

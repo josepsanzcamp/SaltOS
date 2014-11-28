@@ -41,6 +41,7 @@ if(!defined("__CLASS_PDF__")) {
 			$this->Set_Header(array(),array());
 			$this->Set_Footer(array(),array());
 			$this->check_y_enable(true);
+			if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));
 		}
 
 		function Set_Header($arr,$row) {

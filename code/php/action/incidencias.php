@@ -203,9 +203,11 @@ if($page=="correo") {
 			die();
 		}
 		// HACER INSERT INCIDENCIA
-		$subject2=addslashes($info["subject"]);
-		$body2=addslashes($body);
-		$query="INSERT INTO tbl_incidencias(id_cliente,nombre,id_estado,descripcion,id_proyecto,id_prioridad,id_correo) VALUES('0','${subject2}','0','${body2}','0','0','${id_correo}')";
+		$query=make_insert_query("tbl_incidencias",array(
+			"nombre"=>$info["subject"],
+			"descripcion"=>$body,
+			"id_correo"=>$id_correo
+		));
 		db_query($query);
 		$query="SELECT MAX(id) FROM tbl_incidencias";
 		$id_incidencia=execute_query($query);
@@ -213,7 +215,12 @@ if($page=="correo") {
 		$id_aplicacion=page2id("incidencias");
 		$id_usuario=current_user();
 		$datetime=current_datetime();
-		$query="INSERT INTO tbl_registros_i(`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}')";
+		$query=make_insert_query("tbl_registros_i",array(
+			"id_aplicacion"=>$id_aplicacion,
+			"id_registro"=>$id_incidencia,
+			"id_usuario"=>$id_usuario,
+			"datetime"=>$datetime
+		));
 		db_query($query);
 		// AÑADIR PDF CON CORREO ORIGINAL
 		$action="pdf";
@@ -229,7 +236,16 @@ if($page=="correo") {
 		$size=strlen($pdf);
 		$type="application/pdf";
 		file_put_contents(get_directory("dirs/filesdir").$file,$pdf);
-		$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','')";
+		$query=make_insert_query("tbl_ficheros",array(
+			"id_aplicacion"=>$id_aplicacion,
+			"id_registro"=>$id_incidencia,
+			"id_usuario"=>$id_usuario,
+			"datetime"=>$datetime,
+			"fichero"=>$name,
+			"fichero_file"=>$file,
+			"fichero_size"=>$size,
+			"fichero_type"=>$type
+		));
 		db_query($query);
 		// AÑADIR IMAGENES INLINE
 		foreach($result as $index=>$node) {
@@ -238,24 +254,42 @@ if($page=="correo") {
 			if(!__getmail_processplainhtml($disp,$type) && !__getmail_processmessage($disp,$type)) {
 				$cid=$node["cid"];
 				if($cid!="") {
-					$name=addslashes($node["cname"]);
+					$name=$node["cname"];
 					$file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($node["cname"]);
 					file_put_contents(get_directory("dirs/filesdir").$file,$node["body"]);
 					$size=$node["csize"];
 					$type=$node["ctype"];
-					$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','')";
+					$query=make_insert_query("tbl_ficheros",array(
+						"id_aplicacion"=>$id_aplicacion,
+						"id_registro"=>$id_incidencia,
+						"id_usuario"=>$id_usuario,
+						"datetime"=>$datetime,
+						"fichero"=>$name,
+						"fichero_file"=>$file,
+						"fichero_size"=>$size,
+						"fichero_type"=>$type
+					));
 					db_query($query);
 				}
 			}
 		}
 		// AÑADIR ADJUNTOS
 		foreach($files as $node) {
-			$name=addslashes($node["cname"]);
+			$name=$node["cname"];
 			$file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($node["cname"]);
 			file_put_contents(get_directory("dirs/filesdir").$file,$node["body"]);
 			$size=$node["csize"];
 			$type=$node["ctype"];
-			$query="INSERT INTO tbl_ficheros(id_aplicacion,id_registro,id_usuario,datetime,fichero,fichero_file,fichero_size,fichero_type,search) VALUES('${id_aplicacion}','${id_incidencia}','${id_usuario}','${datetime}','${name}','${file}','${size}','${type}','')";
+			$query=make_insert_query("tbl_ficheros",array(
+				"id_aplicacion"=>$id_aplicacion,
+				"id_registro"=>$id_incidencia,
+				"id_usuario"=>$id_usuario,
+				"datetime"=>$datetime,
+				"fichero"=>$name,
+				"fichero_file"=>$file,
+				"fichero_size"=>$size,
+				"fichero_type"=>$type
+			));
 			db_query($query);
 		}
 		// REBOTAR AL FORMULARIO PARA CONTESTAR

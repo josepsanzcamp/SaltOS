@@ -540,11 +540,13 @@ function password_strength($pass) {
 }
 
 function ob_start_protected($param="") {
-	capture_next_error();
-	if($param=="") ob_start();
-	if($param!="") ob_start($param);
-	$error=get_clear_error();
-	if($error) ob_start();
+	if($param!="") {
+		capture_next_error();
+		ob_start($param);
+		$error=get_clear_error();
+		if($error=="") return;
+	}
+	ob_start();
 }
 
 function isphp($version) {

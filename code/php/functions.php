@@ -625,7 +625,6 @@ function db_static() {
 				$query=make_delete_query($table);
 				db_query($query);
 				foreach($rows as $row) {
-					foreach($row as $key=>$val) if($val=="NULL") $row[$key]="";
 					$query=make_insert_query($table,$row);
 					db_query($query);
 				}
@@ -785,8 +784,7 @@ function check_security($action="") {
 	if(!$id_security_ip) {
 		$query=make_insert_query("tbl_security_ip",array(
 			"id_session"=>$id_session,
-			"remote_addr"=>$remote_addr,
-			"retries"=>0
+			"remote_addr"=>$remote_addr
 		));
 		db_query($query);
 		$query="SELECT MAX(id) maximo FROM tbl_security_ip";
@@ -818,7 +816,9 @@ function check_security($action="") {
 			db_query($query);
 		} else {
 			// INCREMENTAR RETRIES EN EL REGISTRO ACTUAL
-			$query=make_update_table("tbl_security_ip","retries=retries+1","id='${id_security_ip}'");
+			$query=make_update_query("tbl_security_ip",array(),"id='${id_security_ip}'",array(
+				"retries"=>"retries+1"
+			));
 			db_query($query);
 		}
 	} elseif($action=="logout") {

@@ -42,7 +42,7 @@ if(getParam("action")=="indexing") {
 		$exists=execute_query($query);
 		if(!$exists) continue;
 		// CONTINUE
-		$query=make_update_query("tbl_ficheros","retries=retries+1","id='${id}'");
+		$query=make_update_query("tbl_ficheros",array(),"id='${id}'",array("retries"=>"retries+1"));
 		db_query($query);
 		if($row["id_aplicacion"]==page2id("correo")) {
 			$decoded=__getmail_getmime($row["id_registro"]);

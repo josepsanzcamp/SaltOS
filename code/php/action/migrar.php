@@ -46,8 +46,12 @@ if($page=="presupuestos") {
 	$id_campanya=$row["id_campanya"];
 	$nombre=$row["nombre"];
 	$descripcion=$row["descripcion"];
-	$query="INSERT INTO tbl_proyectos(`id`,`id_campanya`,`id_cliente`,`nombre`,`id_estado`,`descripcion`)
-		VALUES(NULL,'$id_campanya','$id_cliente','$nombre','0','$descripcion')";
+	$query=make_insert_query("tbl_proyectos",array(
+		"id_campanya"=>$id_campanya,
+		"id_cliente"=>$id_cliente,
+		"nombre"=>$nombre,
+		"descripcion"=>$descripcion
+	));
 	db_query($query);
 	// OBTENER ID DEL NUEVO PROYECTO
 	$query="SELECT MAX(id) FROM tbl_proyectos";
@@ -56,8 +60,12 @@ if($page=="presupuestos") {
 	$id_aplicacion=page2id("proyectos");
 	$id_usuario=current_user();
 	$datetime=current_datetime();
-	$query="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
-		VALUES(NULL,'$id_aplicacion','$id_proyecto','$id_usuario','$datetime')";
+	$query=make_insert_query("tbl_registros_i",array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_proyecto,
+		"id_usuario"=>$id_usuario,
+		"datetime"=>$datetime
+	));
 	db_query($query);
 	// COPIAR LAS TAREAS DEL PRESUPUESTO AL PROYECTO
 	$query="SELECT * FROM tbl_presupuestos_t WHERE id_presupuesto='$id_presupuesto' ORDER BY id ASC";
@@ -67,8 +75,13 @@ if($page=="presupuestos") {
 		$horas=$row["horas"];
 		$precio=$row["precio"];
 		$descuento=$row["descuento"];
-		$query="INSERT INTO tbl_proyectos_t(`id`,`id_proyecto`,`tarea`,`horas`,`precio`,`descuento`)
-			VALUES(NULL,'$id_proyecto','$tarea','$horas','$precio','$descuento')";
+		$query=make_insert_query("tbl_proyectos_t",array(
+			"id_proyecto"=>$id_proyecto,
+			"tarea"=>$tarea,
+			"horas"=>$horas,
+			"precio"=>$precio,
+			"descuento"=>$descuento
+		));
 		db_query($query);
 	}
 	// COPIAR LOS PRODUCTOS DEL PRESUPUESTO AL PROYECTO
@@ -76,16 +89,24 @@ if($page=="presupuestos") {
 	$result=execute_query_array($query);
 	foreach($result as $row) {
 		$id_producto=$row["id_producto"];
-		$concepto=addslashes($row["concepto"]);
+		$concepto=$row["concepto"];
 		$unidades=$row["unidades"];
 		$precio=$row["precio"];
 		$descuento=$row["descuento"];
-		$query="INSERT INTO tbl_proyectos_p(`id`,`id_proyecto`,`id_producto`,`concepto`,`unidades`,`precio`,`descuento`)
-			VALUES(NULL,'$id_proyecto','$id_producto','$concepto','$unidades','$precio','$descuento')";
+		$query=make_insert_query("tbl_proyectos_p",array(
+			"id_proyecto"=>$id_proyecto,
+			"id_producto"=>$id_producto,
+			"concepto"=>$concepto,
+			"unidades"=>$unidades,
+			"precio"=>$precio,
+			"descuento"=>$descuento
+		));
 		db_query($query);
 	}
 	// RELACIONAR PRESUPUESTO CON EL PROYECTO
-	$query="UPDATE tbl_presupuestos SET `id_proyecto`='$id_proyecto' WHERE id='$id_presupuesto'";
+	$query=make_update_query("tbl_presupuestos",array(
+		"id_proyecto"=>$id_proyecto
+	),"id='${id_presupuesto}'");
 	db_query($query);
 	// VOLVER
 	session_alert(LANG("projectcreatedok","presupuestos"));
@@ -117,8 +138,29 @@ if($page=="posiblescli") {
 	$tel_fijo=$row["tel_fijo"];
 	$tel_movil=$row["tel_movil"];
 	$fax=$row["fax"];
-	$query="INSERT INTO tbl_clientes(`id`,`id_campanya`,`id_tipo`,`nombre`,`nombre1`,`nombre2`,`cif`,`comentarios`,`corriente`,`contable`,`diapago`,`direccion`,`id_pais`,`id_provincia`,`id_poblacion`,`id_codpostal`,`nombre_pais`,`nombre_provincia`,`nombre_poblacion`,`nombre_codpostal`,`email`,`web`,`tel_fijo`,`tel_movil`,`fax`)
-		VALUES(NULL,'$id_campanya','1','$nombre','$nombre','$nombre','$cif','$comentarios','','','0','$direccion','$id_pais','$id_provincia','$id_poblacion','$id_codpostal','$nombre_pais','$nombre_provincia','$nombre_poblacion','$nombre_codpostal','$email','$web','$tel_fijo','$tel_movil','$fax')";
+	$query=make_insert_query("tbl_clientes",array(
+		"id_campanya"=>$id_campanya,
+		"id_tipo"=>1,
+		"nombre"=>$nombre,
+		"nombre1"=>$nombre,
+		"nombre2"=>$nombre,
+		"cif"=>$cif,
+		"comentarios"=>$comentarios,
+		"direccion"=>$direccion,
+		"id_pais"=>$id_pais,
+		"id_provincia"=>$id_provincia,
+		"id_poblacion"=>$id_poblacion,
+		"id_codpostal"=>$id_codpostal,
+		"nombre_pais"=>$nombre_pais,
+		"nombre_provincia"=>$nombre_provincia,
+		"nombre_poblacion"=>$nombre_poblacion,
+		"nombre_codpostal"=>$nombre_codpostal,
+		"email"=>$email,
+		"web"=>$web,
+		"tel_fijo"=>$tel_fijo,
+		"tel_movil"=>$tel_movil,
+		"fax"=>$fax
+	));
 	db_query($query);
 	// OBTENER ID DEL NUEVO CLIENTE
 	$query="SELECT MAX(id) FROM tbl_clientes";
@@ -127,46 +169,96 @@ if($page=="posiblescli") {
 	$id_aplicacion=page2id("clientes");
 	$id_usuario=current_user();
 	$datetime=current_datetime();
-	$query="INSERT INTO tbl_registros_u(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
-		VALUES(NULL,'$id_aplicacion','$id_cliente','$id_usuario','$datetime')";
+	$query=make_insert_query("tbl_registros_u",array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_cliente,
+		"id_usuario"=>$id_usuario,
+		"datetime"=>$datetime
+	));
 	db_query($query);
 	// CREAR CONTACTO
 	$contacto=$row["contacto"];
 	$cargo=$row["cargo"];
-	$query="INSERT INTO tbl_contactos(`id`,`id_registro`,`id_aplicacion`,`nombre`,`nombre1`,`nombre2`,`cargo`,`comentarios`,`direccion`,`id_pais`,`id_provincia`,`id_poblacion`,`id_codpostal`,`nombre_pais`,`nombre_provincia`,`nombre_poblacion`,`nombre_codpostal`,`email`,`web`,`tel_fijo`,`tel_movil`,`fax`)
-		VALUES(NULL,'$id_cliente','$id_aplicacion','$contacto','$contacto','$contacto','$cargo','$comentarios','$direccion','$id_pais','$id_provincia','$id_poblacion','$id_codpostal','$nombre_pais','$nombre_provincia','$nombre_poblacion','$nombre_codpostal','$email','$web','$tel_fijo','$tel_movil','$fax')";
+	$query=make_insert_query("tbl_contactos",array(
+		"id_registro"=>$id_cliente,
+		"id_aplicacion"=>$id_aplicacion,
+		"nombre"=>$contacto,
+		"nombre1"=>$contacto,
+		"nombre2"=>$contacto,
+		"cargo"=>$cargo,
+		"comentarios"=>$comentarios,
+		"direccion"=>$direccion,
+		"id_pais"=>$id_pais,
+		"id_provincia"=>$id_provincia,
+		"id_poblacion"=>$id_poblacion,
+		"id_codpostal"=>$id_codpostal,
+		"nombre_pais"=>$nombre_pais,
+		"nombre_provincia"=>$nombre_provincia,
+		"nombre_poblacion"=>$nombre_poblacion,
+		"nombre_codpostal"=>$nombre_codpostal,
+		"email"=>$email,
+		"web"=>$web,
+		"tel_fijo"=>$tel_fijo,
+		"tel_movil"=>$tel_movil,
+		"fax"=>$fax
+	));
 	db_query($query);
 	// OBTENER ID DEL NUEVO CONTACTO
 	$query="SELECT MAX(id) FROM tbl_contactos";
 	$id_contacto=execute_query($query);
 	// AÑADIR CONTROL DEL REGISTRO
 	$id_aplicacion2=page2id("contactos");
-	$query="INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`)
-		VALUES(NULL,'$id_aplicacion2','$id_contacto','$id_usuario','$datetime')";
+	$query=make_insert_query("tbl_registros_i",array(
+		"id_aplicacion"=>$id_aplicacion2,
+		"id_registro"=>$id_contacto,
+		"id_usuario"=>$id_usuario,
+		"datetime"=>$datetime
+	));
 	db_query($query);
 	// RELACIONAR AGENDAS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
-	$query="UPDATE tbl_agenda SET `id_posiblecli`='0',id_cliente='$id_cliente' WHERE `id_posiblecli`='$id_posiblecli'";
+	$query=make_update_query("tbl_agenda",array(
+		"id_posiblecli"=>0,
+		"id_cliente"=>$id_cliente
+	),"id_posiblecli='${id_posiblecli}'");
 	db_query($query);
 	// RELACIONAR PRESUPUESTOS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
-	$query="UPDATE tbl_presupuestos SET `id_posiblecli`='0',id_cliente='$id_cliente' WHERE `id_posiblecli`='$id_posiblecli'";
+	$query=make_update_query("tbl_presupuestos",array(
+		"id_posiblecli"=>0,
+		"id_cliente"=>$id_cliente
+	),"id_posiblecli='${id_posiblecli}'");
 	db_query($query);
 	// RELACIONAR ACTAS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
-	$query="UPDATE tbl_actas SET `id_posiblecli`='0',id_cliente='$id_cliente' WHERE `id_posiblecli`='$id_posiblecli'";
+	$query=make_update_query("tbl_actas",array(
+		"id_posiblecli"=>0,
+		"id_cliente"=>$id_cliente
+	),"id_posiblecli='${id_posiblecli}'");
 	db_query($query);
 	// RELACIONAR FICHEROS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
 	$id_aplicacion3=page2id("posiblescli");
-	$query="UPDATE tbl_ficheros SET `id_aplicacion`='$id_aplicacion',`id_registro`='$id_cliente' WHERE `id_aplicacion`='$id_aplicacion3' AND `id_registro`='$id_posiblecli'";
+	$query=make_update_query("tbl_ficheros",array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_cliente
+	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
 	db_query($query);
 	// RELACIONAR COMENTARIOS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
-	$query="UPDATE tbl_comentarios SET `id_aplicacion`='$id_aplicacion',`id_registro`='$id_cliente' WHERE `id_aplicacion`='$id_aplicacion3' AND `id_registro`='$id_posiblecli'";
+	$query=make_update_query("tbl_comentarios",array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_cliente
+	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
 	db_query($query);
 	// MOVER CONTROL DEL REGISTRO DE POSIBLES CLIENTES A CLIENTES
-	$query="UPDATE tbl_registros_i SET `id_aplicacion`='$id_aplicacion',`id_registro`='$id_cliente' WHERE `id_aplicacion`='$id_aplicacion3' AND `id_registro`='$id_posiblecli'";
+	$query=make_update_query("tbl_registros_i",array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_cliente
+	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
 	db_query($query);
-	$query="UPDATE tbl_registros_u SET `id_aplicacion`='$id_aplicacion',`id_registro`='$id_cliente' WHERE `id_aplicacion`='$id_aplicacion3' AND `id_registro`='$id_posiblecli'";
+	$query=make_update_query("tbl_registros_u",array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_cliente
+	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
 	db_query($query);
 	// BORRAR EL POSIBLE CLIENTE
-	$query="DELETE FROM tbl_posiblescli WHERE `id`='$id_posiblecli'";
+	$query=make_delete_query("tbl_posiblescli","id='${id_posiblecli}'");
 	db_query($query);
 	// VOLVER
 	session_alert(LANG("clientcreatedok","posiblescli"));

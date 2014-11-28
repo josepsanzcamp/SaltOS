@@ -151,15 +151,17 @@ if(getParam("action")=="gcalendar") {
 			));
 			db_query($query2);
 			$query2=make_insert_query("tbl_agenda_u",array(
-				"id_agenda"=>execute_query("SELECT MAX(id) FROM tbl_agenda"),
 				"id_usuario"=>current_user()
+			),array(
+				"id_agenda"=>"SELECT MAX(id) FROM tbl_agenda"
 			));
 			db_query($query2);
 			$query2=make_insert_query("tbl_registros_i",array(
 				"id_aplicacion"=>page2id("agenda"),
-				"id_registro"=>execute_query("SELECT MAX(id) FROM tbl_agenda"),
 				"id_usuario"=>current_user(),
 				"datetime"=>current_datetime()
+			),array(
+				"id_registro"=>"SELECT MAX(id) FROM tbl_agenda"
 			));
 			db_query($query2);
 			$count_insert_saltos++;
