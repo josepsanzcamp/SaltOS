@@ -62,6 +62,7 @@ class database_pdo_mssql {
 			}
 			if($fetch=="column") {
 				$result["rows"]=$stmt->fetchAll(PDO::FETCH_COLUMN);
+				foreach($result["rows"] as $key=>$val) $result["rows"][$key]=utf8_encode($val);
 				$result["total"]=count($result["rows"]);
 				$result["header"]=array("__a__");
 			}
