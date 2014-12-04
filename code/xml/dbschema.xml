@@ -1646,6 +1646,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>password</name>
 					<type>VARCHAR(255)</type>
 				</field>
+				<field>
+					<name>token2</name>
+					<type>TEXT</type>
+				</field>
 			</fields>
 		</table>
 		<table>

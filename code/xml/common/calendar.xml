@@ -60,7 +60,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<width>1px</width>
 				<class>label</class>
 			</field>
-			<!--<field>
+			<field>
 				<type>button</type>
 				<value lang="true">gcalendar</value>
 				<onclick>google_calendar()</onclick>
@@ -68,7 +68,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<tip lang="true">gcalendartip</tip>
 				<class>nowrap contextmenu</class>
 				<width>1px</width>
-			</field>-->
+			</field>
 			<field>
 				<type>button</type>
 				<value lang="true">notifyclear</value>

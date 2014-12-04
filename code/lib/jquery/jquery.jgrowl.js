@@ -142,7 +142,7 @@
 	$.jGrowl = function( m , o ) {
 		// To maintain compatibility with older version that only supported one instance we'll create the base container.
 		if ( $('#jGrowl').length === 0 )
-			$('<div id="jGrowl"></div>').addClass( (o && o.position) ? o.position : $.jGrowl.defaults.position ).appendTo('body');
+			$('<div id="jGrowl"></div>').addClass( (o && o.position) ? o.position : $.jGrowl.defaults.position ).appendTo( (o && o.appendTo) ? o.appendTo : $.jGrowl.defaults.appendTo );
 
 		// Create a notification on the container.
 		$('#jGrowl').jGrowl(m,o);
@@ -186,6 +186,7 @@
 			group:				'',
 			sticky:				false,
 			position:			'top-right',
+			appendTo:			'body',
 			glue:				'after',
 			theme:				'default',
 			themeState:			'highlight',
@@ -278,7 +279,7 @@
 						if ($.support.opacity === false)
 							this.style.removeAttribute('filter');
 
-						if ( $(this).data("jGrowl") !== null ) // Happens when a notification is closing before it's open.
+						if ( $(this).data("jGrowl") !== null && typeof $(this).data("jGrowl") !== 'undefined') // Happens when a notification is closing before it's open.
 							$(this).data("jGrowl").created = new Date();
 
 						$(this).trigger('jGrowl.afterOpen');

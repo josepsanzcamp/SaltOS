@@ -89,7 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<include>js/calendar.js</include>
 			</cache>
 			<function>notify_clear() { setParam("page","agenda"); setParam("action","clear"); submit1(); }</function>
-			<!--<function>google_calendar() { setParam("page","agenda"); setParam("action","gcalendar"); submit1(); }</function>-->
+			<function>google_calendar() { setParam("page","agenda"); setParam("action","gcalendar"); submit1(); }</function>
 		</javascript>
 		<styles>
 			<cache>

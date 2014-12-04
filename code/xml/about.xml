@@ -396,6 +396,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
+							<label>Google APIv3 Client (ASL-2.0)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://developers.google.com/api-client-library/php/")</onclick>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>tbody</class>
+							<colspan>3</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
 							<type>separator</type>
 						</field>
 					</row>
