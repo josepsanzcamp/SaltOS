@@ -486,7 +486,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_home>Home</quick_home>
 		<quick_correo>Email</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
-		<quick_profile>My Profile</quick_profile>
+		<quick_profile>Profile</quick_profile>
 		<quick_support>Support</quick_support>
 		<quick_about>About</quick_about>
 		<quick_logout>Close</quick_logout>
@@ -509,7 +509,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_actas>Papers</quick_actas>
 		<quick_maincfg>Settings</quick_maincfg>
 		<quick_seguimientos>Trackings</quick_seguimientos>
-		<quick_datacfg>Database</quick_datacfg>
+		<quick_datacfg>DDBB</quick_datacfg>
 		<quick_cuentas>Accounts</quick_cuentas>
 		<quick_periodicas>Periodic</quick_periodicas>
 		<quick_empleados>Employees</quick_empleados>
@@ -520,7 +520,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_tiposevento>T.events</quick_tiposevento>
 		<quick_textos>Texts</quick_textos>
 		<quick_ficheros>Attachments</quick_ficheros>
-		<quick_feeds>RSS Feeds</quick_feeds>
+		<quick_feeds>RSS</quick_feeds>
 		<quick_favoritos>Bookmarks</quick_favoritos>
 		<quick_importaciones>Imports</quick_importaciones>
 		<quick_buscador>Search</quick_buscador>

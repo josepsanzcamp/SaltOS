@@ -483,12 +483,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_importaciones>Importer des données pour les applications majeurs d'ici</desc_importaciones>
 		<desc_buscador revised="false">Pour chercher dans tous les contenus de la base de données</desc_buscador>
 		<desc_errorlog revised="false">Pour voir les journaux d'erreurs de Saltos</desc_errorlog>
-		<quick_home>Retour acceuil rapide</quick_home>
+		<quick_home translated="false">Home</quick_home>
 		<quick_correo>Courriel</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
-		<quick_profile>mon profil</quick_profile>
+		<quick_profile>Profil</quick_profile>
 		<quick_support>Soutien</quick_support>
-		<quick_about>A propos</quick_about>
+		<quick_about>Propos</quick_about>
 		<quick_logout>Fermer</quick_logout>
 		<quick_clientes>Clients</quick_clientes>
 		<quick_contactos>Contacts</quick_contactos>
@@ -509,7 +509,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_actas>Documents</quick_actas>
 		<quick_maincfg>Paramètres</quick_maincfg>
 		<quick_seguimientos>traques</quick_seguimientos>
-		<quick_datacfg>Base de données</quick_datacfg>
+		<quick_datacfg>BBDD</quick_datacfg>
 		<quick_cuentas>Comptes</quick_cuentas>
 		<quick_periodicas>périodique</quick_periodicas>
 		<quick_empleados>employés</quick_empleados>
@@ -520,7 +520,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_tiposevento>T.événements</quick_tiposevento>
 		<quick_textos>Textes</quick_textos>
 		<quick_ficheros>Attachements</quick_ficheros>
-		<quick_feeds>Flux RSS</quick_feeds>
+		<quick_feeds>RSS</quick_feeds>
 		<quick_favoritos translated="false">Favoritos</quick_favoritos>
 		<quick_importaciones>Importations</quick_importaciones>
 		<quick_buscador>Recherche</quick_buscador>

@@ -486,9 +486,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_home>Inicio</quick_home>
 		<quick_correo>Correo</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
-		<quick_profile>Mi perfil</quick_profile>
+		<quick_profile>Perfil</quick_profile>
 		<quick_support>Soporte</quick_support>
-		<quick_about>Acerca de</quick_about>
+		<quick_about>Acerca</quick_about>
 		<quick_logout>Cerrar</quick_logout>
 		<quick_clientes>Clientes</quick_clientes>
 		<quick_contactos>Contactos</quick_contactos>
@@ -509,7 +509,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_actas>Actas</quick_actas>
 		<quick_maincfg>Configuración</quick_maincfg>
 		<quick_seguimientos>Seguimientos</quick_seguimientos>
-		<quick_datacfg>Base datos</quick_datacfg>
+		<quick_datacfg>BBDD</quick_datacfg>
 		<quick_cuentas>Cuentas</quick_cuentas>
 		<quick_periodicas>Periódicas</quick_periodicas>
 		<quick_empleados>Empleados</quick_empleados>
@@ -520,7 +520,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_tiposevento>T.eventos</quick_tiposevento>
 		<quick_textos>Textos</quick_textos>
 		<quick_ficheros>Ficheros</quick_ficheros>
-		<quick_feeds>Feeds RSS</quick_feeds>
+		<quick_feeds>RSS</quick_feeds>
 		<quick_favoritos>Favoritos</quick_favoritos>
 		<quick_importaciones>Importaciones</quick_importaciones>
 		<quick_buscador>Buscador</quick_buscador>

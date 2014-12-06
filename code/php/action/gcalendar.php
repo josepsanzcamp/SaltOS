@@ -35,9 +35,10 @@ if(getParam("action")=="gcalendar") {
 		javascript_history(-1);
 		die();
 	}
+
 	// EXTERNAL LIBRARIES
 	require_once("lib/google/autoload.php");
-	require_once("lib/phpclasses/http.php");
+
 	// FUNCTIONS FOR THE NEW API V3
 	function __gcalendar_getattr($html,$attr) {
 		$pos1=stripos($html,$attr);
@@ -162,6 +163,7 @@ if(getParam("action")=="gcalendar") {
 		db_query($query);
 		return $client;
 	}
+
 	// MODIFIED FUNCTIONS
 	function __gcalendar_format($datetime) {
 		return date("Y-m-d\TH:i:sP",strtotime($datetime));
@@ -172,43 +174,34 @@ if(getParam("action")=="gcalendar") {
 	}
 
 	function __gcalendar_insert($client,$title,$content,$where,$dstart,$dstop) {
-		// CHECK FOR A VALID SERVICE
 		if($client===null) return false;
-		// PREPARE DATETIME STRINGS
-		$dstart=__gcalendar_format($dstart);
-		$dstop=__gcalendar_format($dstop);
 		$service=new Google_Service_Calendar($client);
 		$event=new Google_Service_Calendar_Event();
 		$event->setSummary($title);
 		$event->setDescription($content);
 		$event->setLocation($where);
 		$start=new Google_Service_Calendar_EventDateTime();
-		$start->setDateTime($dstart);
+		$start->setDateTime(__gcalendar_format($dstart));
 		$event->setStart($start);
 		$end=new Google_Service_Calendar_EventDateTime();
-		$end->setDateTime($dstop);
+		$end->setDateTime(__gcalendar_format($dstop));
 		$event->setEnd($end);
 		$createdEvent=$service->events->insert("primary",$event);
 		return $createdEvent->getId();
 	}
 
 	function __gcalendar_update($client,$id,$title,$content,$where,$dstart,$dstop) {
-		// CHECK FOR A VALID SERVICE
 		if($client===null) return false;
-		// PREPARE DATETIME STRINGS
-		$dstart=__gcalendar_format($dstart);
-		$dstop=__gcalendar_format($dstop);
-		// First retrieve the event from the API.
 		$service=new Google_Service_Calendar($client);
 		$event=$service->events->get("primary",$id);
 		$event->setSummary($title);
 		$event->setDescription($content);
 		$event->setLocation($where);
 		$start = new Google_Service_Calendar_EventDateTime();
-		$start->setDateTime($dstart);
+		$start->setDateTime(__gcalendar_format($dstart));
 		$event->setStart($start);
 		$end = new Google_Service_Calendar_EventDateTime();
-		$end->setDateTime($dstop);
+		$end->setDateTime(__gcalendar_format($dstop));
 		$event->setEnd($end);
 		$updatedEvent=$service->events->update("primary",$id,$event);
 		return true;
@@ -245,6 +238,7 @@ if(getParam("action")=="gcalendar") {
 		}
 		return $result;
 	}
+
 	// GET A VALID SERVICE
 	capture_next_error();
 	$client=__gcalendar_connect($login,$password);
@@ -259,11 +253,13 @@ if(getParam("action")=="gcalendar") {
 		javascript_history(-1);
 		die();
 	}
+
 	// FOR COMPATIBILITY WITH GDATA AND APIV3
 	$oldid="http://www.google.com/calendar/feeds/default/private/full/";
 	$oldidlen=strlen($oldid)+1;
 	$query="UPDATE tbl_agenda SET id_gcalendar=SUBSTR(id_gcalendar,${oldidlen}) WHERE id_gcalendar LIKE '${oldid}%'";
 	db_query($query);
+
 	// GET DATAS FROM GOOGLE CALENDAR AND SALTOS
 	$gevents=__gcalendar_feed($client);
 	$query="SELECT a.* FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id WHERE f.id_usuario='".current_user()."'";
@@ -284,6 +280,7 @@ if(getParam("action")=="gcalendar") {
 		);
 	}
 	db_free($result);
+
 	// BEGIN THE SYNCHRONIZATION FROM SALTOS TO GOOGLE CALENDAR
 	$count_insert_gcalendar=0;
 	$count_update_gcalendar=0;
@@ -323,6 +320,7 @@ if(getParam("action")=="gcalendar") {
 	if($count_update_gcalendar) {
 		session_alert(LANG("updategcalendar",$page)." ".$count_update_gcalendar);
 	}
+
 	// BEGIN THE SYNCHRONIZATION FROM GOOGLE CALENDAR TO SALTOS
 	$count_insert_saltos=0;
 	$count_update_saltos=0;
@@ -391,6 +389,7 @@ if(getParam("action")=="gcalendar") {
 	if($count_insert_gcalendar+$count_update_gcalendar+$count_insert_saltos+$count_update_saltos==0) {
 		session_alert(LANG("notinsertupdate",$page));
 	}
+
 	// GO BACK
 	javascript_history(-1);
 	die();

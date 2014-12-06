@@ -486,9 +486,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_home>Startseite</quick_home>
 		<quick_correo>Mail</quick_correo>
 		<quick_agenda>Terminkalender</quick_agenda>
-		<quick_profile>Mein Profil</quick_profile>
+		<quick_profile>Profil</quick_profile>
 		<quick_support>Support</quick_support>
-		<quick_about>Über SaltOS</quick_about>
+		<quick_about>Über</quick_about>
 		<quick_logout>Logout</quick_logout>
 		<quick_clientes>Kunden</quick_clientes>
 		<quick_contactos>Kontakte</quick_contactos>
@@ -515,12 +515,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_empleados>Mitarbeiter</quick_empleados>
 		<quick_productos>Produkte</quick_productos>
 		<quick_presupuestos>Kostenvoranschläge</quick_presupuestos>
-		<quick_posiblescli>P. Kunden</quick_posiblescli>
+		<quick_posiblescli>P.Kunden</quick_posiblescli>
 		<quick_campanyas>Kampagnen</quick_campanyas>
 		<quick_tiposevento>Veranstaltungstypen</quick_tiposevento>
 		<quick_textos>Texte</quick_textos>
 		<quick_ficheros>Dateien</quick_ficheros>
-		<quick_feeds>RSS-Feeds</quick_feeds>
+		<quick_feeds>RSS</quick_feeds>
 		<quick_favoritos translated="false">Favoritos</quick_favoritos>
 		<quick_importaciones>Importe</quick_importaciones>
 		<quick_buscador>Suche</quick_buscador>

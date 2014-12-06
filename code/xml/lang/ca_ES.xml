@@ -204,7 +204,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sinestado>[Sense estat]</sinestado>
 		<dstart>Inici</dstart>
 		<dstop>Fi</dstop>
-		<evento>Esdeveniment</evento>
+		<evento>Event</evento>
 		<sincuenta>[Sense compte]</sincuenta>
 		<cuenta>Compte</cuenta>
 		<sindia>[Sense dia]</sindia>
@@ -286,13 +286,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<numcl>NCL</numcl>
 		<numcltip>Número de clients</numcltip>
 		<numag>NAG</numag>
-		<numagtip>Nombre d'esdeveniments de l'agenda</numagtip>
+		<numagtip>Número d'events de l'agenda</numagtip>
 		<numpr>NPR</numpr>
 		<numprtip>Número de pressupostos</numprtip>
 		<numpy>NPY</numpy>
 		<numpytip>Número de projectes</numpytip>
-		<tipoevento>Tipus d'esdeveniment</tipoevento>
-		<sintipoevento>[Sense tipus d'esdeveniment]</sintipoevento>
+		<tipoevento>Tipus d'event</tipoevento>
+		<sintipoevento>[Sense tipus d'event]</sintipoevento>
 		<fileuploaderror>S'ha produït un error en enviar el fitxer: </fileuploaderror>
 		<postlimiterror>S'ha produït un error en enviar les dades al servidor</postlimiterror>
 		<resumeneconomico>Resum econòmic</resumeneconomico>
@@ -424,7 +424,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<presupuestos>Pressupostos</presupuestos>
 		<posiblescli>Possibles clients</posiblescli>
 		<campanyas>Campanyes comercials</campanyas>
-		<tiposevento>Tipus d'esdeveniments</tiposevento>
+		<tiposevento>Tipus d'events</tiposevento>
 		<textos>Textos predefinits</textos>
 		<ficheros>Fitxers adjunts</ficheros>
 		<feeds>Lector de feeds RSS</feeds>
@@ -474,7 +474,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_home>Accediu a la pantalla principal de l'aplicació</desc_home>
 		<desc_support>Contacta amb el suport tècnic</desc_support>
 		<desc_campanyas>Feu campanyes comercials amb seguiments</desc_campanyas>
-		<desc_tiposevento>Definiu els tipus d'esdeveniment que necessiti</desc_tiposevento>
+		<desc_tiposevento>Definiu els tipus d'event que necessiti</desc_tiposevento>
 		<desc_textos>Creeu textos predefinits per usar-los en altres aplicacions</desc_textos>
 		<desc_ficheros>Accedeixi a tots els fitxers de tota l'aplicació</desc_ficheros>
 		<desc_feeds>Seguiu els seus feeds RSS i Atom des d'aquesta aplicació</desc_feeds>
@@ -486,7 +486,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_home>Inici</quick_home>
 		<quick_correo>Correu</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
-		<quick_profile>El meu perfil</quick_profile>
+		<quick_profile>Perfil</quick_profile>
 		<quick_support>Suport</quick_support>
 		<quick_about>Credits</quick_about>
 		<quick_logout>Tancar</quick_logout>
@@ -509,7 +509,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_actas>Actes</quick_actas>
 		<quick_maincfg>Configuració</quick_maincfg>
 		<quick_seguimientos>Seguiments</quick_seguimientos>
-		<quick_datacfg>Base dades</quick_datacfg>
+		<quick_datacfg>BBDD</quick_datacfg>
 		<quick_cuentas>Comptes</quick_cuentas>
 		<quick_periodicas>Periòdiques</quick_periodicas>
 		<quick_empleados>Empleats</quick_empleados>
@@ -520,7 +520,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_tiposevento>T.events</quick_tiposevento>
 		<quick_textos>Textos</quick_textos>
 		<quick_ficheros>Fitxers</quick_ficheros>
-		<quick_feeds>Feeds RSS</quick_feeds>
+		<quick_feeds>RSS</quick_feeds>
 		<quick_favoritos>Favorits</quick_favoritos>
 		<quick_importaciones>Importacions</quick_importaciones>
 		<quick_buscador>Cercador</quick_buscador>
@@ -550,7 +550,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<facturaclose>Factures cobrades</facturaclose>
 		<gastosdata>Despeses associades al client</gastosdata>
 		<documentdata>Documents del client</documentdata>
-		<agendadata>Esdeveniments del client</agendadata>
+		<agendadata>Events del client</agendadata>
 		<actasdata>Actes del client</actasdata>
 		<actionliquidar>Liquidar parts seleccionats</actionliquidar>
 		<msgliquidar>Voleu liquidar els parts seleccionats?</msgliquidar>
@@ -608,7 +608,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<relatedincidencias>Incidències relacionats</relatedincidencias>
 		<actionliquidar>Liquidar parts seleccionats</actionliquidar>
 		<msgliquidar>Voleu liquidar els parts seleccionats?</msgliquidar>
-		<agendadata>Esdeveniments relacionats</agendadata>
+		<agendadata>Events relacionats</agendadata>
 		<actasdata>Actes relacionades</actasdata>
 		<contactdata>Contactes del client</contactdata>
 		<incidentopen>Incidències actives</incidentopen>
@@ -628,7 +628,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<addseguimientos>Seguiment</addseguimientos>
 		<addactas>Acta</addactas>
 		<addcontactos>Contacte</addcontactos>
-		<addagenda>Esdeveniment</addagenda>
+		<addagenda>Event</addagenda>
 		<resumentareasproductos>Resum de tasques i productes</resumentareasproductos>
 		<presupuestosdata>Pressupostos del projecte</presupuestosdata>
 	</proyectos>
@@ -817,20 +817,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<defaultdata>Dades del prioritat</defaultdata>
 	</prioridades>
 	<agenda>
-		<list>Llistat d'esdeveniments</list>
-		<create>Esdeveniment nou</create>
-		<formview>Detall de l'esdeveniment</formview>
-		<forminsert>Alta d'un nou esdeveniment</forminsert>
-		<formupdate>Modificació de l'esdeveniment</formupdate>
-		<defaultdata>Dades de l'esdeveniment</defaultdata>
-		<otrasfechas>Altres dades d'</otrasfechas>
-		<todoseventos>[Tots els esdeveniments]</todoseventos>
-		<todoayer>Esdeveniments d'ahir</todoayer>
-		<todohoy>Esdeveniments d'avui</todohoy>
-		<todomanana>Esdeveniments de demà</todomanana>
-		<todosemana>Esdeveniments de la setmana</todosemana>
-		<todomes>Esdeveniments del mes</todomes>
-		<todoano>Esdeveniments de l'any</todoano>
+		<list>Llistat d'events</list>
+		<create>Event nou</create>
+		<formview>Detall de l'event</formview>
+		<forminsert>Alta d'un nou event</forminsert>
+		<formupdate>Modificació de l'event</formupdate>
+		<defaultdata>Dades de l'event</defaultdata>
+		<otrasfechas>Altres dates</otrasfechas>
+		<todoseventos>[Tots els events]</todoseventos>
+		<todoayer>Events d'ahir</todoayer>
+		<todohoy>Events d'avui</todohoy>
+		<todomanana>Events de demà</todomanana>
+		<todosemana>Events de la setmana</todosemana>
+		<todomes>Events del mes</todomes>
+		<todoano>Events de l'any</todoano>
 		<usersdata>Usuaris assignats</usersdata>
 		<asignadoa>Assignat a</asignadoa>
 		<notifydelay>Notificar</notifydelay>
@@ -839,13 +839,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<notifydstop>Notificació final rebuda</notifydstop>
 		<notifyantes>Abans</notifyantes>
 		<notifydespues>Després</notifydespues>
-		<notifyprev>Notificació prèvia a l'esdeveniment</notifyprev>
-		<notifypost>Notificació d'esdeveniment finalitzat</notifypost>
+		<notifyprev>Notificació prèvia a l'event</notifyprev>
+		<notifypost>Notificació d'event finalitzat</notifypost>
 		<notifyclear>Notificacions</notifyclear>
 		<notifytip>Netejar les notificacions</notifytip>
-		<notifyclearok>Esdeveniments reiniciats:</notifyclearok>
-		<notifyclearko>No s'han trobat esdeveniments pendents per reiniciar</notifyclearko>
-		<calendar>Calendari d'esdeveniments</calendar>
+		<notifyclearok>Events reiniciats:</notifyclearok>
+		<notifyclearko>No s'han trobat events pendents per reiniciar</notifyclearko>
+		<calendar>Calendari d'events</calendar>
 		<prevmonth>Mes anterior</prevmonth>
 		<currentmonth>Mes actual</currentmonth>
 		<nextmonth>Mes següent</nextmonth>
@@ -855,21 +855,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<continue>Cont...</continue>
 		<by>per</by>
 		<calendarinfo>Mostrant informació en data:</calendarinfo>
-		<add>Afegir esdeveniment</add>
+		<add>Afegir event</add>
 		<gcalendar>Google Calendar</gcalendar>
-		<gcalendartip>Sincronitzar esdeveniments entre SaltOS i Google Calendar</gcalendartip>
-		<notgcalendarpassword>No ha configurat vostre compte de Google Calendar en les preferències</notgcalendarpassword>
+		<gcalendartip>Sincronitzar events entre SaltOS i Google Calendar</gcalendartip>
+		<notgcalendarpassword>No ha configurat el seu compte de Google Calendar a les preferències</notgcalendarpassword>
 		<invalidgcalendarpassword>Les dades d'accés al vostre compte de Google Calendar són incorrectes</invalidgcalendarpassword>
-		<insertgcalendar>Esdeveniments de SaltOS creats a Google Calendar:</insertgcalendar>
-		<updategcalendar>Esdeveniments de SaltOS com a Google Calendar :</updategcalendar>
-		<insertsaltos>Esdeveniments de Google Calendar creats a SaltOS:</insertsaltos>
-		<updatesaltos>Esdeveniments de Google Calendar com a SaltOS:</updatesaltos>
-		<notinsertupdate>No hi ha esdeveniments a actualitzar</notinsertupdate>
+		<insertgcalendar>Events de SaltOS creats a Google Calendar:</insertgcalendar>
+		<updategcalendar>Events de SaltOS actualitzats a Google Calendar :</updategcalendar>
+		<insertsaltos>Events de Google Calendar creats a SaltOS:</insertsaltos>
+		<updatesaltos>Events de Google Calendar actualitzats a SaltOS:</updatesaltos>
+		<notinsertupdate>No hi ha events a actualitzar</notinsertupdate>
 		<gcalendarerror>No es pot contactar amb el servidor de Google Calendar</gcalendarerror>
 		<expand>Expandir</expand>
-		<expandtip>Expandir per mostrar el detall de tots els esdeveniments del calendari</expandtip>
+		<expandtip>Expandir per mostrar el detall de tots els events del calendari</expandtip>
 		<collapse>Contraure</collapse>
-		<collapsetip>Contraure per ocultar el detall de tots els esdeveniments del calendari</collapsetip>
+		<collapsetip>Contraure per ocultar el detall de tots els events del calendari</collapsetip>
 		<loadingsmall>Carregant...</loadingsmall>
 	</agenda>
 	<proveedores>
@@ -1283,14 +1283,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<crearcliente>Crear client</crearcliente>
 		<clientcreatedok>S'ha creat el nou client correctament</clientcreatedok>
 		<msgcrear>Voleu convertir el possible client en un client?</msgcrear>
-		<agendadata>Esdeveniments del possible client</agendadata>
+		<agendadata>Events del possible client</agendadata>
 		<actasdata>Actes del possible client</actasdata>
 		<presupuestosdata>Pressupostos del possible client</presupuestosdata>
 		<facturacion>Facturació</facturacion>
 		<iaedesc>Descripció IAE</iaedesc>
 		<iaecod>Cod IAE</iaecod>
 		<activo>Actiu</activo>
-		<activo_desc>Actiu (per poder fer pressupostos, actes i esdeveniments)</activo_desc>
+		<activo_desc>Actiu (per poder fer pressupostos, actes i events)</activo_desc>
 		<contacto>Pers contacte</contacto>
 		<changedenied>No es pot desactivar un possible client que té actes, agenda i/o pressupostos</changedenied>
 	</posiblescli>
@@ -1334,7 +1334,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<clientnotexists>S'ha de relacionar amb un client (si està relacionat amb un possible client, convertiu-la en client primer)</clientnotexists>
 		<projectcreatedok>S'ha creat el nou projecte correctament</projectcreatedok>
 		<msgcrear>Voleu crear un projecte d'aquest pressupost?</msgcrear>
-		<agendadata>Esdeveniments del pressupost</agendadata>
+		<agendadata>Events del pressupost</agendadata>
 		<actasdata>Actes del pressupost</actasdata>
 		<plotseguimientoestados>Agrupació de pressupostos per estat</plotseguimientoestados>
 		<resumentareasproductos>Resum de tasques i productes</resumentareasproductos>
@@ -1355,7 +1355,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Alta d'una nova campanya</forminsert>
 		<formupdate>Modificació de la campanya</formupdate>
 		<defaultdata>Dades de la campanya</defaultdata>
-		<agendadata>Esdeveniments de la campanya</agendadata>
+		<agendadata>Events de la campanya</agendadata>
 		<presupuestosdata>Pressupostos de la campanya</presupuestosdata>
 		<projectopen>Projectes actius</projectopen>
 		<projectclose>Projectes tancats</projectclose>
@@ -1363,12 +1363,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<posiblesclidata>Possibles clients</posiblesclidata>
 	</campanyas>
 	<tiposevento>
-		<list>Llistat de tipus d'esdeveniments</list>
-		<create>Nou tipus d'esdeveniment</create>
-		<formview>Detall del tipus d'esdeveniment</formview>
-		<forminsert>Alta de un nou tipus d'esdeveniment</forminsert>
-		<formupdate>Modificació del tipus d'esdeveniment</formupdate>
-		<defaultdata>Dades del tipus d'esdeveniment</defaultdata>
+		<list>Llistat de tipus d'events</list>
+		<create>Nou tipus d'event</create>
+		<formview>Detall del tipus d'event</formview>
+		<forminsert>Alta de un nou tipus d'event</forminsert>
+		<formupdate>Modificació del tipus d'event</formupdate>
+		<defaultdata>Dades del tipus d'event</defaultdata>
 	</tiposevento>
 	<textos>
 		<list>Llistat de textos predefinits</list>
