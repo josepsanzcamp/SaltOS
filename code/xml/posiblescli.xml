@@ -121,7 +121,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -168,7 +168,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">campanya</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
 					</field>
 				</row>
@@ -178,7 +178,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">estado</label>
 						<type>select</type>
 						<width>240px</width>
-						<query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' `value`,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' `value`,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
 					</field>
 					<field>
@@ -190,7 +190,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">activo</label>
 						<type>select</type>
 						<width>90px</width>
-					    <query global="page" eval="true">"SELECT '1' `value`,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' `value`,'".LANG_ESCAPE("no")."' label UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label"</query>
+					    <query global="page" eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' value,'".LANG_ESCAPE("no")."' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label"</query>
 						<value global="activo" eval="true">$activo=getParam("activo")</value>
 					</field>
 				</row>
@@ -200,7 +200,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
 					</field>
@@ -279,7 +279,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:agenda(',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_posiblecli=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
 					</agenda>
 					<presupuestos>
-						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,CONCAT('link:presupuestos(',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_posiblecli=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.`datetime` DESC"</presupuestos>
+						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:presupuestos(',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_posiblecli=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
 					</presupuestos>
 					<actas>
 						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:actas(',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('viewacta(',id,')') link_view2,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_posiblecli=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
@@ -346,7 +346,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">campanya</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>campanyas(-abs(ID))</link>
@@ -359,7 +359,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">estado</label>
 							<type>select</type>
 							<width>240px</width>
-							<query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -653,7 +653,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
 		<query match="default" prefix="true" global="id" eval="true">"SELECT '".LANG_ESCAPE("changedenied")."' action_error FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='$id')+(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='$id')+(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='$id')>0 AND '".intval(getParam("activo"))."'='0'"</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
-		<query match="default" prefix="true" global="id" eval="true">"UPDATE tbl_posiblescli SET activo='1' WHERE (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='$id')+(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='$id')+(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='$id')>0 AND '".intval(getParam("activo"))."'='0' AND id='$id'"</query>
+		<query match="default" prefix="true" global="id" eval="true">make_update_query("tbl_posiblescli",array(
+			"activo"=>1
+		),make_where_query(array(
+			"id"=>$id
+		),"AND",array(
+			"(".make_select_query("tbl_actas","COUNT(*)",make_where_query(array("id_posiblecli"=>$id))).")+(".
+				make_select_query("tbl_agenda","COUNT(*)",make_where_query(array("id_posiblecli"=>$id))).")+(".
+				make_select_query("tbl_presupuestos","COUNT(*)",make_where_query(array("id_posiblecli"=>$id))).")>0",
+			intval(getParam("activo"))."=0"
+		)))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query include="xml/common/qfilesdelete.xml" replace="true" />
 		<query include="xml/common/qfilesupdate.xml" replace="true"/>

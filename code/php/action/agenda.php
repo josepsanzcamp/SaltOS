@@ -49,9 +49,9 @@ if(getParam("action")=="agenda") {
 	$notify_texts=array();
 	$reader_texts=array();
 	// BUSCAR NOTIFICACIONES
-	$query="SELECT 'dstart' `type`,'".LANG_ESCAPE("notifyprev","agenda")."' title,a.id id,a.nombre nombre,a.lugar lugar,SUBSTR(a.descripcion,1,255) descripcion,dstart,dstop FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND notify_dstart='0' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstart)+notify_delay*3600*notify_sign
+	$query="SELECT 'dstart' type,'".LANG_ESCAPE("notifyprev","agenda")."' title,a.id id,a.nombre nombre,a.lugar lugar,SUBSTR(a.descripcion,1,255) descripcion,dstart,dstop FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND notify_dstart='0' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstart)+notify_delay*3600*notify_sign
 	UNION
-	SELECT 'dstop' `type`,'".LANG_ESCAPE("notifypost","agenda")."' title,a.id id,a.nombre nombre,a.lugar lugar,SUBSTR(a.descripcion,1,255) descripcion,dstart,dstop FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_dstop='0' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop)
+	SELECT 'dstop' type,'".LANG_ESCAPE("notifypost","agenda")."' title,a.id id,a.nombre nombre,a.lugar lugar,SUBSTR(a.descripcion,1,255) descripcion,dstart,dstop FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_dstop='0' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop)
 	ORDER BY dstart ASC";
 	$result=db_query($query);
 	while($row=db_fetch_row($result)) {

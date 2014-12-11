@@ -24,5 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page" match="default" prefix="true" eval="true">"INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'".page2id($page)."',(SELECT MAX(id) FROM ".page2table($page)."),'".current_user()."','".current_datetime()."')"</query>
+	<query global="page" match="default" prefix="true" eval="true">make_insert_query("tbl_registros_i",array(
+		"id_aplicacion"=>page2id($page),
+		"id_usuario"=>current_user(),
+		"datetime"=>current_datetime()
+	),array(
+		"id_registro"=>"SELECT MAX(id) FROM ".page2table($page)
+	))</query>
 </root>

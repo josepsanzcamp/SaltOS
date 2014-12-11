@@ -29,75 +29,53 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>1</id>
 			<codigo>clientes</codigo>
 			<nombre>Clientes</nombre>
-			<table>tbl_clientes</table>
+			<tabla>tbl_clientes</tabla>
 			<field>nombre</field>
 			<filter1>id_cliente</filter1>
 			<filter2>id_cliente</filter2>
 			<node0>id_tipo,nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax</node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>2</id>
 			<codigo>contactos</codigo>
 			<nombre>Contactos</nombre>
-			<table>tbl_contactos</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_contactos</tabla>
 		</row>
 		<row>
 			<id>3</id>
 			<codigo>incidencias</codigo>
 			<nombre>Incidencias</nombre>
-			<table>tbl_incidencias</table>
-			<field></field>
-			<filter1></filter1>
+			<tabla>tbl_incidencias</tabla>
 			<filter2>id_cliente,id_proyecto</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>4</id>
 			<codigo>proyectos</codigo>
 			<nombre>Proyectos</nombre>
-			<table>tbl_proyectos</table>
+			<tabla>tbl_proyectos</tabla>
 			<field>nombre</field>
 			<filter1>id_proyecto</filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>5</id>
 			<codigo>partes</codigo>
 			<nombre>Partes</nombre>
-			<table>tbl_partes</table>
-			<field></field>
-			<filter1></filter1>
+			<tabla>tbl_partes</tabla>
 			<filter2>id_cliente,id_proyecto</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>6</id>
 			<codigo>documentos</codigo>
 			<nombre>Documentos</nombre>
-			<table>tbl_documentos</table>
-			<field></field>
-			<filter1></filter1>
+			<tabla>tbl_documentos</tabla>
 			<filter2>id_cliente,id_proyecto</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>7</id>
 			<codigo>facturas</codigo>
 			<nombre>Facturas</nombre>
-			<table>tbl_facturas</table>
-			<field></field>
-			<filter1></filter1>
+			<tabla>tbl_facturas</tabla>
 			<filter2>id_cliente,id_proyecto</filter2>
 			<node0>nombre,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,cif,num,fecha,iva,irpf</node0>
 			<node1>concepto,unidades,descuento,precio</node1>
@@ -106,397 +84,222 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>8</id>
 			<codigo>gastos</codigo>
 			<nombre>Gastos</nombre>
-			<table>tbl_gastos</table>
-			<field></field>
-			<filter1></filter1>
+			<tabla>tbl_gastos</tabla>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
 			<node0>num,fecha,descripcion,base,iva,irpf,total</node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>9</id>
 			<codigo>epigrafes</codigo>
 			<nombre>Epigrafes</nombre>
-			<table>tbl_epigrafes</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_epigrafes</tabla>
 		</row>
 		<row>
 			<id>10</id>
 			<codigo>home</codigo>
 			<nombre>Inicio</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>11</id>
 			<codigo>usuarios</codigo>
 			<nombre>Usuarios</nombre>
-			<table>tbl_usuarios</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_usuarios</tabla>
 		</row>
 		<row>
 			<id>12</id>
 			<codigo>estados</codigo>
 			<nombre>Estados</nombre>
-			<table>tbl_estados</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_estados</tabla>
 		</row>
 		<row>
 			<id>13</id>
 			<codigo>support</codigo>
 			<nombre>Soporte técnico</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>14</id>
 			<codigo>grupos</codigo>
 			<nombre>Grupos</nombre>
-			<table>tbl_grupos</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_grupos</tabla>
 		</row>
 		<row>
 			<id>15</id>
 			<codigo>formaspago</codigo>
 			<nombre>Formas de pago</nombre>
-			<table>tbl_formaspago</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_formaspago</tabla>
 		</row>
 		<row>
 			<id>16</id>
 			<codigo>prioridades</codigo>
 			<nombre>Prioridades</nombre>
-			<table>tbl_prioridades</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_prioridades</tabla>
 		</row>
 		<row>
 			<id>17</id>
 			<codigo>agenda</codigo>
 			<nombre>Agenda</nombre>
-			<table>tbl_agenda</table>
-			<field></field>
-			<filter1></filter1>
+			<tabla>tbl_agenda</tabla>
 			<filter2>id_cliente,id_proyecto</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>18</id>
 			<codigo>about</codigo>
 			<nombre>Acerca de SaltOS</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>19</id>
 			<codigo>logout</codigo>
 			<nombre>Cerrar sesión</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>20</id>
 			<codigo>folders</codigo>
 			<nombre>Carpetas</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>21</id>
 			<codigo>proveedores</codigo>
 			<nombre>Proveedores</nombre>
-			<table>tbl_proveedores</table>
+			<tabla>tbl_proveedores</tabla>
 			<field>nombre</field>
 			<filter1>id_proveedor</filter1>
 			<filter2>id_proveedor</filter2>
 			<node0>nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax</node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>22</id>
 			<codigo>actas</codigo>
 			<nombre>Actas</nombre>
-			<table>tbl_actas</table>
-			<field></field>
-			<filter1></filter1>
+			<tabla>tbl_actas</tabla>
 			<filter2>id_cliente,id_proyecto</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>23</id>
 			<codigo>profile</codigo>
 			<nombre>Mi perfil</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>24</id>
 			<codigo>maincfg</codigo>
 			<nombre>Configuración</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>25</id>
 			<codigo>seguimientos</codigo>
 			<nombre>Seguimientos</nombre>
-			<table>tbl_seguimientos</table>
-			<field></field>
-			<filter1></filter1>
+			<tabla>tbl_seguimientos</tabla>
 			<filter2>id_cliente,id_proyecto</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>26</id>
 			<codigo>datacfg</codigo>
 			<nombre>Base de datos</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>27</id>
 			<codigo>correo</codigo>
 			<nombre>Correo</nombre>
-			<table>tbl_correo</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_correo</tabla>
 		</row>
 		<row>
 			<id>28</id>
 			<codigo>cuentas</codigo>
 			<nombre>Cuentas</nombre>
-			<table>tbl_cuentas</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_cuentas</tabla>
 		</row>
 		<row>
 			<id>29</id>
 			<codigo>periodicas</codigo>
 			<nombre>Periodicas</nombre>
-			<table>tbl_periodicas</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_periodicas</tabla>
 		</row>
 		<row>
 			<id>30</id>
 			<codigo>buscador</codigo>
 			<nombre>Buscador</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>31</id>
 			<codigo>empleados</codigo>
 			<nombre>Empleados</nombre>
-			<table>tbl_empleados</table>
+			<tabla>tbl_empleados</tabla>
 			<field>nombre</field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>32</id>
 			<codigo>posiblescli</codigo>
 			<nombre>Posibles clientes</nombre>
-			<table>tbl_posiblescli</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
+			<tabla>tbl_posiblescli</tabla>
 			<node0>activo,nombre,cif,contacto,cargo,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax,facturacion,iae_cod,iae_desc,comentarios</node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>33</id>
 			<codigo>productos</codigo>
 			<nombre>Productos</nombre>
-			<table>tbl_productos</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
+			<tabla>tbl_productos</tabla>
 			<node0>nombre,ref,descripcion,precio,descuento,id_iva,peso,volumen,dimensiones,web</node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>34</id>
 			<codigo>presupuestos</codigo>
 			<nombre>Presupuestos</nombre>
-			<table>tbl_presupuestos</table>
-			<field></field>
-			<filter1></filter1>
+			<tabla>tbl_presupuestos</tabla>
 			<filter2>id_cliente,id_proyecto</filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>35</id>
 			<codigo>campanyas</codigo>
 			<nombre>Campañas comerciales</nombre>
-			<table>tbl_campanyas</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_campanyas</tabla>
 		</row>
 		<row>
 			<id>36</id>
 			<codigo>tiposevento</codigo>
 			<nombre>Tipos de evento</nombre>
-			<table>tbl_tiposevento</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_tiposevento</tabla>
 		</row>
 		<row>
 			<id>37</id>
 			<codigo>textos</codigo>
 			<nombre>Textos predefinidos</nombre>
-			<table>tbl_textos</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_textos</tabla>
 		</row>
 		<row>
 			<id>38</id>
 			<codigo>ficheros</codigo>
 			<nombre>Ficheros adjuntos</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>39</id>
 			<codigo>feeds</codigo>
 			<nombre>Feeds</nombre>
-			<table>tbl_feeds</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_feeds</tabla>
 		</row>
 		<row>
 			<id>40</id>
 			<codigo>importaciones</codigo>
 			<nombre>Importaciones</nombre>
-			<table>tbl_importaciones</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_importaciones</tabla>
 		</row>
 		<row>
 			<id>41</id>
 			<codigo>errorlog</codigo>
 			<nombre>Logs de error</nombre>
-			<table></table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
 		</row>
 		<row>
 			<id>42</id>
 			<codigo>favoritos</codigo>
 			<nombre>Favoritos</nombre>
-			<table>tbl_favoritos</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_favoritos</tabla>
 		</row>
 		<row>
 			<id>43</id>
 			<codigo>ivas</codigo>
 			<nombre>I.V.A.</nombre>
-			<table>tbl_ivas</table>
-			<field></field>
-			<filter1></filter1>
-			<filter2></filter2>
-			<node0></node0>
-			<node1></node1>
+			<tabla>tbl_ivas</tabla>
 		</row>
 	</tbl_aplicaciones>
 	<tbl_aplicaciones_i>

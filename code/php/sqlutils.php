@@ -109,7 +109,7 @@ function make_select_config($keys) {
 }
 
 function preeval_update_config($clave) {
-	$query="\"UPDATE tbl_configuracion SET valor='\".getParam(\"$clave\").\"' WHERE clave='$clave'\"";
+	$query="\"UPDATE tbl_configuracion SET valor='\".addslashes(getParam(\"$clave\")).\"' WHERE clave='$clave'\"";
 	return $query;
 }
 
@@ -118,7 +118,7 @@ function preeval_insert_query($table) {
 	$list1=array();
 	$list2=array();
 	foreach($fields as $field) {
-		$list1[]="`${field["name"]}`";
+		$list1[]=$field["name"];
 		$type=$field["type"];
 		$type2=get_field_type($type);
 		if($field["name"]=="id") $list2[]="NULL";
@@ -127,7 +127,7 @@ function preeval_insert_query($table) {
 		elseif($type2=="date") $list2[]="'\".dateval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="time") $list2[]="'\".timeval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="datetime") $list2[]="'\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
-		elseif($type2=="string") $list2[]="'\".getParam(\"".$field["name"]."\").\"'";
+		elseif($type2=="string") $list2[]="'\".addslashes(getParam(\"".$field["name"]."\")).\"'";
 		else show_php_error(array("phperror"=>"Unknown type '${type}' in preeval_insert_query"));
 	}
 	$list1=implode(",",$list1);
@@ -143,16 +143,16 @@ function preeval_update_query($table) {
 		$type=$field["type"];
 		$type2=get_field_type($type);
 		if($field["name"]=="id") continue;
-		elseif($type2=="int") $list[]="`${field["name"]}`='\".intval(getParam(\"".$field["name"]."\")).\"'";
-		elseif($type2=="float") $list[]="`${field["name"]}`='\".floatval(getParam(\"".$field["name"]."\")).\"'";
-		elseif($type2=="date") $list[]="`${field["name"]}`='\".dateval(getParam(\"".$field["name"]."\")).\"'";
-		elseif($type2=="time") $list[]="`${field["name"]}`='\".timeval(getParam(\"".$field["name"]."\")).\"'";
-		elseif($type2=="datetime") $list[]="`${field["name"]}`='\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
-		elseif($type2=="string") $list[]="`${field["name"]}`='\".getParam(\"".$field["name"]."\").\"'";
+		elseif($type2=="int") $list[]=$field["name"]."='\".intval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type2=="float") $list[]=$field["name"]."='\".floatval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type2=="date") $list[]=$field["name"]."='\".dateval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type2=="time") $list[]=$field["name"]."='\".timeval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type2=="datetime") $list[]=$field["name"]."='\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
+		elseif($type2=="string") $list[]=$field["name"]."='\".addslashes(getParam(\"".$field["name"]."\")).\"'";
 		else show_php_error(array("phperror"=>"Unknown type '${type}' in preeval_update_query"));
 	}
 	$list=implode(",",$list);
-	$query="\"UPDATE $table SET $list WHERE `id`='\".intval(getParam(\"id\")).\"'\"";
+	$query="\"UPDATE $table SET $list WHERE id='\".intval(getParam(\"id\")).\"'\"";
 	return $query;
 }
 
@@ -300,14 +300,14 @@ function sql_create_table($tablespec) {
 		else show_php_error(array("phperror"=>"Unknown type '${type}' in sql_create_table"));
 		$extra="NOT NULL DEFAULT '$def'";
 		if(isset($field["pkey"]) && eval_bool($field["pkey"])) $extra="PRIMARY KEY /*MYSQL AUTO_INCREMENT *//*SQLITE AUTOINCREMENT */";
-		$fields[]="`$name` $type $extra";
+		$fields[]="$name $type $extra";
 	}
 	foreach($tablespec["fields"] as $field) {
 		if(isset($field["fkey"])) {
 			$fkey=$field["fkey"];
 			if($fkey!="") {
 				$name=$field["name"];
-				$fields[]="FOREIGN KEY (`$name`) REFERENCES `$fkey`(`id`)";
+				$fields[]="FOREIGN KEY ($name) REFERENCES $fkey(id)";
 			}
 		}
 	}
@@ -344,8 +344,8 @@ function sql_insert_from_select($dest,$orig) {
 	$vals=array();
 	foreach($ldest as $key=>$l) {
 		$def=$defs[$key];
-		$keys[]="`${l}`";
-		$vals[]=in_array($l,$lorig)?"`${l}`":"'${def}'";
+		$keys[]="${l}";
+		$vals[]=in_array($l,$lorig)?"${l}":"'${def}'";
 	}
 	$keys=implode(",",$keys);
 	$vals=implode(",",$vals);
@@ -366,12 +366,12 @@ function sql_create_index($indexspec) {
 		$subname=$field["name"];
 		$array=explode(" ",$subname);
 		$count=count($array);
-		if($count==1) $fields[]="`${array[0]}`";
-		elseif($count==2) $fields[]="`${array[0]}` ${array[1]}";
+		if($count==1) $fields[]="${array[0]}";
+		elseif($count==2) $fields[]="${array[0]} ${array[1]}";
 		else show_php_error(array("phperror"=>"Unknown index '${subname}' in sql_create_index"));
 	}
 	$fields=implode(",",$fields);
-	$query="CREATE INDEX `$name` ON `$table` ($fields)";
+	$query="CREATE INDEX $name ON $table ($fields)";
 	return $query;
 }
 
@@ -402,6 +402,7 @@ function __make_like_query_explode($separator,$str) {
 }
 
 function make_like_query($keys,$values) {
+	$values=addslashes($values);
 	$keys=explode(",",$keys);
 	foreach($keys as $key=>$val) {
 		$val=trim($val);
@@ -427,13 +428,12 @@ function make_like_query($keys,$values) {
 		}
 		if(in_array($key2,$keys) && $value2!="") {
 			$value2=str_replace(array("%","*"),array("\\%","%"),$value2);
-			$query[]="(`$key2` LIKE '%$value2%' ESCAPE '\\\\')";
+			$query[]="($key2 LIKE '%$value2%' ESCAPE '\\\\')";
 		} else {
 			$value=str_replace(array("%","*"),array("\\%","%"),$value);
 			$query2=array();
 			foreach($keys as $key) {
-				$key=str_replace(".","`.`",$key);
-				$query2[]="`$key` LIKE '%$value%' ESCAPE '\\\\'";
+				$query2[]="$key LIKE '%$value%' ESCAPE '\\\\'";
 			}
 			if(!count($query2)) $query2[]="1=1";
 			$query[]="(".implode(" OR ",$query2).")";
@@ -453,11 +453,11 @@ function make_extra_query($prefix="") {
 	static $stack=array();
 	$hash=md5($prefix);
 	if(!isset($stack[$hash])) {
-		$query="SELECT * FROM tbl_aplicaciones WHERE `table`!='' AND `field`!=''";
+		$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND field!=''";
 		$result=db_query($query);
 		$cases=array("CASE ${prefix}id_aplicacion");
 		while($row=db_fetch_row($result)) {
-			$cases[]="WHEN '${row["id"]}' THEN (SELECT ${row["field"]} FROM ${row["table"]} WHERE id=${prefix}id_registro)";
+			$cases[]="WHEN '${row["id"]}' THEN (SELECT ${row["field"]} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
 		}
 		db_free($result);
 		$cases[]="END";
@@ -470,13 +470,13 @@ function make_extra_query_with_field($field,$prefix="") {
 	static $stack=array();
 	$hash=md5(serialize(array($field,$prefix)));
 	if(!isset($stack[$hash])) {
-		$query="SELECT * FROM tbl_aplicaciones WHERE `table`!='' AND `field`!=''";
+		$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND field!=''";
 		$result=db_query($query);
 		$cases=array("CASE ${prefix}id_aplicacion");
 		while($row=db_fetch_row($result)) {
-			$fields=get_fields_from_dbschema($row["table"]);
+			$fields=get_fields_from_dbschema($row["tabla"]);
 			foreach($fields as $key=>$val) $fields[$key]=$val["name"];
-			if(in_array($field,$fields)) $cases[]="WHEN '${row["id"]}' THEN (SELECT ${field} FROM ${row["table"]} WHERE id=${prefix}id_registro)";
+			if(in_array($field,$fields)) $cases[]="WHEN '${row["id"]}' THEN (SELECT ${field} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
 		}
 		db_free($result);
 		$cases[]="END";
@@ -486,20 +486,20 @@ function make_extra_query_with_field($field,$prefix="") {
 }
 
 function make_select_appsregs($id=0) {
-	$query="SELECT * FROM tbl_aplicaciones WHERE `table`!='' AND `field`!=''";
+	$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND field!=''";
 	$result=db_query($query);
 	$subquery=array();
 	while($row=db_fetch_row($result)) {
-		$subquery[]="SELECT CONCAT('${row["id"]}','_','-2') id,'${row["id"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
-		$subquery[]="SELECT CONCAT('${row["id"]}','_','-1') id,'${row["id"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
-		$subquery[]="SELECT CONCAT('${row["id"]}','_',a.id) id,'${row["id"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["table"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["table"]})>0";
+		$subquery[]="SELECT CONCAT('${row["id"]}','_','-2') id,'${row["id"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
+		$subquery[]="SELECT CONCAT('${row["id"]}','_','-1') id,'${row["id"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
+		$subquery[]="SELECT CONCAT('${row["id"]}','_',a.id) id,'${row["id"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["tabla"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
 	}
 	db_free($result);
 	$query=implode(" UNION ",$subquery);
 	return $query." ORDER BY aplicacion,pos,registro";
 }
 
-function make_select_query($page,$table,$field,$arg1=null,$arg2=null) {
+function make_extra_query_with_perms($page,$table,$field,$arg1=null,$arg2=null) {
 	// CHECKS FOR OPTIONAL ARGUMENTS
 	$filter="";
 	$haspos=false;
@@ -514,7 +514,7 @@ function make_select_query($page,$table,$field,$arg1=null,$arg2=null) {
 	}
 	$temp=implode(",",$temp);
 	// NORMAL CODE
-	$query="SELECT id `value`,".(is_array($field)?$field[0]:$field)." label,".($haspos?"pos":"'0' pos")." FROM (
+	$query="SELECT id value,".(is_array($field)?$field[0]:$field)." label,".($haspos?"pos":"'0' pos")." FROM (
 		SELECT a2.id id,".($haspos?"a2.pos pos,":"").check_sql($page).",".$temp.",e.id_usuario id_usuario,d.id_grupo id_grupo
 		FROM $table a2
 		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a2.id
@@ -554,39 +554,96 @@ function __dbschema_helper($fn,$table) {
 
 function make_insert_query($table,$array,$queries=array()) {
 	if(is_string($array)) {
-		$query="INSERT INTO $table $array";
+		$query="INSERT INTO ${table}";
+		if(count($queries)>0) {
+			$queries=implode(",",$queries);
+			$query.="(${queries})";
+		}
+		$query.=" ${array}";
 		return $query;
 	}
 	$list1=array();
 	$list2=array();
-	foreach(array_merge($array,$queries) as $key=>$val) {
-		$list1[]="`".$key."`";
-		if(isset($queries[$key])) $list2[]=$val;
-		else $list2[]="'".addslashes($val)."'";
+	foreach($array as $key=>$val) {
+		$list1[]=$key;
+		$list2[]="'".addslashes($val)."'";
+	}
+	foreach($queries as $key=>$val) {
+		$list1[]=$key;
+		$list2[]="(".$val.")";
 	}
 	$list1=implode(",",$list1);
 	$list2=implode(",",$list2);
-	$query="INSERT INTO $table($list1) VALUES($list2)";
+	$query="INSERT INTO ${table}(${list1}) VALUES(${list2})";
 	return $query;
 }
 
-function make_update_query($table,$array,$where="1=1",$queries=array()) {
+function make_update_query($table,$array,$where="",$queries=array()) {
 	if(is_string($array)) {
-		$query="UPDATE $table SET $array WHERE $where";
+		$query="UPDATE ${table} SET ${array}";
+		if($where!="") $query.=" WHERE ${where}";
 		return $query;
 	}
 	$list1=array();
-	foreach(array_merge($array,$queries) as $key=>$val) {
-		if(isset($queries[$key])) $list1[]="`".$key."`=".$val;
-		else $list1[]="`".$key."`='".addslashes($val)."'";
-	}
+	foreach($array as $key=>$val) $list1[]=$key."='".addslashes($val)."'";
+	foreach($queries as $key=>$val) $list1[]=$key."=(".$val.")";
 	$list1=implode(",",$list1);
-	$query="UPDATE $table SET $list1 WHERE $where";
+	$query="UPDATE ${table} SET ${list1}";
+	if($where!="") $query.=" WHERE ${where}";
 	return $query;
 }
 
-function make_delete_query($table,$where="1=1") {
-	$query="DELETE FROM $table WHERE $where";
+function make_delete_query($table,$where="") {
+	$query="DELETE FROM ${table}";
+	if($where!="") $query.=" WHERE ${where}";
+	return $query;
+}
+
+function make_select_query($table,$array="*",$where="",$extra=array()) {
+	static $count=1;
+	if(is_array($array)) {
+		if(is_array_key_val($array)) {
+			foreach($array as $key=>$val) $array[$key]="${key} AS ${val}";
+		}
+		$array=implode(",",$array);
+	}
+	$query="SELECT ${array}";
+	if(substr_count($table," ")>1) {
+		$table="(${table}) a${count}";
+		$count++;
+	}
+	if($table=="" && $where!="") {
+		$table="(SELECT 1) a${count}";
+		$count++;
+	}
+	if($table!="") $query.=" FROM ${table}";
+	if($where!="") $query.=" WHERE ${where}";
+	if(isset($extra["order"])) {
+		$order=$extra["order"];
+		if(is_array($order)) {
+			if(is_array_key_val($order)) foreach($order as $key=>$val) $order[$key]=$key." ".$val;
+			$order=implode(",",$order);
+		}
+		$query.=" ORDER BY ${order}";
+	}
+	if(isset($extra["limit"])) {
+		if(!isset($extra["offset"])) $extra["offset"]=0;
+		$limit=intval($extra["limit"]);
+		$offset=intval($extra["offset"]);
+		$query.=" LIMIT ${offset},${limit}";
+	}
+	return $query;
+}
+
+function make_where_query($array,$union="AND",$queries=array()) {
+	$list1=array();
+	foreach($array as $key=>$val) {
+		$op="=";
+		if(is_array($val)) list($op,$val)=array($val[0],$val[1]);
+		$list1[]=$key.$op."'".addslashes($val)."'";
+	}
+	foreach($queries as $key=>$val) $list1[]="(".$val.")";
+	$query="(".implode(" ".$union." ",$list1).")";
 	return $query;
 }
 ?>

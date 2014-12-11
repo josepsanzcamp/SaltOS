@@ -39,9 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<factura_iva_bool>1</factura_iva_bool>
 		<factura_iva_value>21</factura_iva_value>
 		<factura_irpf_bool>0</factura_irpf_bool>
-		<factura_irpf_value>15</factura_irpf_value>
-		<factura_pie1/>
-		<factura_pie2/>
+		<factura_irpf_value>19</factura_irpf_value>
 	</row>
 	<row>
 		<id>2</id>
@@ -59,7 +57,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<factura_iva_value>0</factura_iva_value>
 		<factura_irpf_bool>0</factura_irpf_bool>
 		<factura_irpf_value>0</factura_irpf_value>
-		<factura_pie1/>
-		<factura_pie2/>
 	</row>
 </root>

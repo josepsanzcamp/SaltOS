@@ -146,7 +146,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -185,7 +185,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">username</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1 AND id IN (SELECT DISTINCT id_usuario FROM tbl_folders WHERE id_usuario='".current_user()."')")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1 AND id IN (SELECT DISTINCT id_usuario FROM tbl_folders WHERE id_usuario='".current_user()."')")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
 						<colspan>3</colspan>
 					</field>
@@ -198,7 +198,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">aplicacion</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("","tbl_aplicaciones","nombre","SELECT DISTINCT id_aplicacion FROM tbl_folders_a WHERE id_folder IN (SELECT DISTINCT id FROM tbl_folders WHERE id_usuario='".current_user()."')")." UNION SELECT '' `value`,'".LANG_ESCAPE("todaslasaplicaciones")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT DISTINCT id_aplicacion FROM tbl_folders_a WHERE id_folder IN (SELECT DISTINCT id FROM tbl_folders WHERE id_usuario='".current_user()."')")." UNION SELECT '' value,'".LANG_ESCAPE("todaslasaplicaciones")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_aplicacion" eval="true">$id_aplicacion=getParam("id_aplicacion")</value>
 					</field>
 				</row>
@@ -208,7 +208,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<onchange>copy_value("buscar","filtro");</onchange>
 						<colspan>3</colspan>
 						<speech>true</speech>
@@ -228,7 +228,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			a.id_folder id_folder,
 			e.id_usuario id_usuario,
 			d.id_grupo id_grupo,
-			e.`datetime` `datetime`,
+			e.datetime datetime,
 			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) comments,
 			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) files,
 			CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
@@ -244,7 +244,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				WHEN '".page2id("campanyas")."' THEN (SELECT  CONCAT('link:campanyas(',-id,'):',nombre)  FROM tbl_campanyas WHERE id=a.id_registro)
 				WHEN '".page2id("clientes")."' THEN (SELECT  CONCAT('link:clientes(',-id,'):',nombre)  FROM tbl_clientes WHERE id=a.id_registro)
 				WHEN '".page2id("contactos")."' THEN (SELECT  CONCAT('link:contactos(',-id,'):',nombre)  FROM tbl_contactos WHERE id=a.id_registro)
-				WHEN '".page2id("correo")."' THEN (SELECT  CONCAT('link:correo(',-id,'):',`from`,' - ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END,' (',
+				WHEN '".page2id("correo")."' THEN (SELECT  CONCAT('link:correo(',-id,'):',de,' - ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END,' (',
 				TRIM( CONCAT(
 				CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent","correo")." ' ELSE '' END,
 				CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror","correo")." ' END,
@@ -299,7 +299,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				WHEN '".page2id("campanyas")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_campanyas WHERE id=a.id_registro)
 				WHEN '".page2id("clientes")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_clientes WHERE id=a.id_registro)
 				WHEN '".page2id("contactos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_contactos WHERE id=a.id_registro)
-				WHEN '".page2id("correo")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',`from`,' - ',(CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END),
+				WHEN '".page2id("correo")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',de,' - ',(CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END),
 				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END,
 				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END,
 				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END,
@@ -417,6 +417,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<delete>
 		<query global="id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_folders_a WHERE id='".abs($id)."' AND NOT id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')"</query>
 		<query global="id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM tbl_folders_a WHERE id='".abs($id)."')=0"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_folders_a WHERE `id`='$id'"</query>
+		<query global="id" eval="true">make_delete_query("tbl_folders_a",make_where_query(array("id"=>$id)))</query>
 	</delete>
 </root>

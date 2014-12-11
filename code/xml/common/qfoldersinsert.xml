@@ -24,5 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page" match="folders" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_folders_a(`id`,`id_folder`,`id_aplicacion`,`id_registro`) VALUES(NULL,'".intval(getParam("id"))."','".page2id($page)."',(SELECT MAX(id) FROM ".page2table($page)."))":""</query>
+	<query global="page" match="folders" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_folders_a",array(
+		"id_folder"=>intval(getParam("id")),
+		"id_aplicacion"=>page2id($page)
+	),array(
+		"id_registro"=>"SELECT MAX(id) FROM ".page2table($page)
+	)):""</query>
 </root>

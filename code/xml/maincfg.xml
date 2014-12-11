@@ -903,8 +903,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_top")!=""?preeval_update_config("logo_top"):""</query>
 		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_width")!=""?preeval_update_config("logo_width"):""</query>
 		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_height")!=""?preeval_update_config("logo_height"):""</query>
-		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?"SELECT valor action_delete FROM tbl_configuracion WHERE clave='logo_file' AND SUBSTR(valor,1,7)!='../img/'":""</query>
-		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?"UPDATE tbl_configuracion SET valor='".getParam("logo_file_new_file")."' WHERE clave='logo_file'":""</query>
+		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?make_select_query("tbl_configuracion",array(
+			"valor"=>"action_delete"
+		),make_where_query(array(
+			"clave"=>"logo_file",
+			"SUBSTR(valor,1,7)",array("!=","../img/")
+		))):""</query>
+		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?make_update_query("tbl_configuracion",array(
+			"valor"=>getParam("logo_file_new_file")
+		),make_where_query(array(
+			"clave"=>"logo_file"
+		))):""</query>
 		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_line")?preeval_update_config("color_line"):""</query>
 		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_text1")?preeval_update_config("color_text1"):""</query>
 		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_text2")?preeval_update_config("color_text2"):""</query>

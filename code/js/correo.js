@@ -80,7 +80,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		if(getParam("action")!="form") return;
 		var id=abs(getParam("id"));
 		if(id) return;
-		var pattern="input[name$=_to],input[name$=_cc],input[name$=_bcc]";
+		var pattern="input[name$=_para],input[name$=_cc],input[name$=_bcc]";
 		$(pattern).autocomplete({
 			delay:300,
 			source:function(request,response) {

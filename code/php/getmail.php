@@ -482,8 +482,8 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 		"state_crt"=>$info["crt"],
 		"priority"=>$info["priority"],
 		"sensitivity"=>$info["sensitivity"],
-		"from"=>$info["from"],
-		"to"=>$info["to"],
+		"de"=>$info["from"],
+		"para"=>$info["to"],
 		"cc"=>$info["cc"],
 		"bcc"=>$info["bcc"],
 		"files"=>count($info["files"])
@@ -530,7 +530,11 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 }
 
 function __getmail_update($campo,$valor,$id) {
-	$query=make_update_query("tbl_correo",array($campo=>$valor),"id='${id}'");
+	$query=make_update_query("tbl_correo",array(
+		$campo=>$valor
+	),make_where_query(array(
+		"id"=>$id
+	)));
 	db_query($query);
 }
 
@@ -552,7 +556,11 @@ function __getmail_add_bcc($id,$bcc) {
 		db_query($query);
 	}
 	$bcc=implode("; ",$bcc);
-	$query=make_update_query("tbl_correo",array("bcc"=>$bcc),"id='${id}'");
+	$query=make_update_query("tbl_correo",array(
+		"bcc"=>$bcc
+	),make_where_query(array(
+		"id"=>$id
+	)));
 	db_query($query);
 }
 ?>

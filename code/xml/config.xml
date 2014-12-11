@@ -379,9 +379,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_button_f12>logout</quick_button_f12>
 		<accounting_currency>€</accounting_currency>
 		<accounting_iva_name>I.V.A.</accounting_iva_name>
-		<accounting_iva_value>18.00</accounting_iva_value>
+		<accounting_iva_value>21.00</accounting_iva_value>
 		<accounting_irpf_name>I.R.P.F.</accounting_irpf_name>
-		<accounting_irpf_value>15.00</accounting_irpf_value>
+		<accounting_irpf_value>19.00</accounting_irpf_value>
 		<zero_padding_digits>5</zero_padding_digits>
 		<invoice_count_size>3</invoice_count_size>
 		<invoice_date_size>2</invoice_date_size>
@@ -396,6 +396,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gd.jpeg_ignore_warning ifeval="!ishhvm()">1</gd.jpeg_ignore_warning>
 		<mbstring.internal_encoding>UTF-8</mbstring.internal_encoding>
 		<mbstring.detect_order eval="true">implode(",",array_intersect(explode(",","UTF-16,ASCII,Windows-1250,Windows-1251,Windows-1252,Windows-1253,Windows-1254,Windows-1255,Windows-1256,Windows-1257,Windows-1258,ISO-8859-1,ISO-8859-2,ISO-8859-3,ISO-8859-4,ISO-8859-5,ISO-8859-6,ISO-8859-7,ISO-8859-8,ISO-8859-9,ISO-8859-10,ISO-8859-11,ISO-8859-12,ISO-8859-13,ISO-8859-14,ISO-8859-15,ISO-8859-16,CP1256,CP1250,CP1252,CP437,CP737,CP850,CP852,CP855,CP857,CP858,CP860,CP861,CP862,CP863,CP865,CP866,CP869,CP37,CP930,CP1047,MIK,ISCII,TSCII,VISCII,JIS X 0208,EUC-JP,GB 2312,GBK,Big5,HKSCS,KS X 1001,EUC-KR,ISO-2022-KR,Mac OS Roman,KOI7,KOI8-U,KOI8-R,GB18030,GB2312 80"),mb_list_encodings()))</mbstring.detect_order>
+		<magic_quotes_gpc>Off</magic_quotes_gpc>
 	</ini_set>
 	<putenv>
 		<PATH>/bin:/usr/bin:/usr/local/bin</PATH>

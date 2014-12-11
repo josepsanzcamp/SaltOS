@@ -24,5 +24,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="id,page" match="comments_new" prefix="true" eval="true">getParam("comentarios")?"INSERT INTO tbl_comentarios(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`comentarios`) VALUES(NULL,'".page2id($page)."','".abs($id)."','".current_user()."','".current_datetime()."','".getParam("comentarios")."')":""</query>
+	<query global="id,page" match="comments_new" prefix="true" eval="true">getParam("comentarios")?make_insert_query("tbl_comentarios",array(
+		"id_aplicacion"=>page2id($page),
+		"id_registro"=>abs($id),
+		"id_usuario"=>current_user(),
+		"datetime"=>current_datetime(),
+		"comentarios"=>getParam("comentarios")
+	)):""</query>
 </root>

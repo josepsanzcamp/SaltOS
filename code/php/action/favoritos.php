@@ -63,7 +63,7 @@ if(getParam("action")=="favoritos") {
 	$scheme=parse_url($url,PHP_URL_SCHEME);
 	if(!$scheme) $url="http://".$url;
 	if(substr($url,-1,1)=="/") $url=substr($url,0,-1);
-	$query="SELECT id FROM tbl_favoritos WHERE url='${url}'";
+	$query=make_select_query("tbl_favoritos","id",make_where_query(array("url"=>$url)));
 	$existe=execute_query($query);
 	if($existe===null) {
 		capture_next_error();
@@ -85,25 +85,19 @@ if(getParam("action")=="favoritos") {
 				if(isset($meta["property"]) && $meta["property"]=="og:title" && isset($meta["content"])) $nombre=$meta["content"];
 			}
 			// INSERT EN TBL_FAVORITOS
-			$nombre=html_entity_decode(getutf8($nombre),ENT_COMPAT,"UTF-8");
-			$descripcion=html_entity_decode(getutf8($descripcion),ENT_COMPAT,"UTF-8");
 			$query=make_insert_query("tbl_favoritos",array(
 				"url"=>$url,
-				"nombre"=>$nombre,
-				"descripcion"=>$descripcion
+				"nombre"=>html_entity_decode(getutf8($nombre),ENT_COMPAT,"UTF-8"),
+				"descripcion"=>html_entity_decode(getutf8($descripcion),ENT_COMPAT,"UTF-8")
 			));
 			db_query($query);
 			// INSERT EN TBL_REGISTROS_I
-			$id_aplicacion=page2id("favoritos");
-			$query="SELECT MAX(id) FROM tbl_favoritos";
-			$last_id=execute_query($query);
-			$id_usuario=current_user();
-			$datetime=current_datetime();
 			$query=make_insert_query("tbl_registros_i",array(
-				"id_aplicacion"=>$id_aplicacion,
-				"id_registro"=>$last_id,
-				"id_usuario"=>$id_usuario,
-				"datetime"=>$datetime
+				"id_aplicacion"=>page2id("favoritos"),
+				"id_usuario"=>current_user(),
+				"datetime"=>current_datetime()
+			),array(
+				"id_registro"=>"SELECT MAX(id) FROM tbl_favoritos"
 			));
 			db_query($query);
 			javascript_alert(LANG("bookmarkadded","favoritos"));

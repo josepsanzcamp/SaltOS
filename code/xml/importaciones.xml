@@ -95,7 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -134,7 +134,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
 						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
@@ -260,7 +260,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">aplicacion</label>
 							<type>select</type>
 							<width>120px</width>
-							<query eval="true">make_select_query("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE node0!=''")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE node0!=''")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -474,7 +474,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query include="xml/common/autonombre.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query match="default" prefix="true" global="page" eval="true">"INSERT INTO tbl_ficheros(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`,`fichero`,`fichero_file`,`fichero_size`,`fichero_type`,`search`) VALUES(NULL,'".page2id($page)."',(SELECT MAX(id) FROM ".page2table($page)."),'".current_user()."','".current_datetime()."','".getParam("fichero")."','".getParam("fichero_file")."','".getParam("fichero_size")."','".getParam("fichero_type")."','')"</query>
+		<query match="default" prefix="true" global="page" eval="true">make_insert_query("tbl_ficheros",array(
+			"id_aplicacion"=>page2id($page),
+			"id_usuario"=>current_user(),
+			"datetime"=>current_datetime(),
+			"fichero"=>getParam("fichero"),
+			"fichero_file"=>getParam("fichero_file"),
+			"fichero_size"=>getParam("fichero_size"),
+			"fichero_type"=>getParam("fichero_type")
+		),array(
+			"id_registro"=>"SELECT MAX(id) FROM ".page2table($page)
+		))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>

@@ -90,7 +90,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -129,7 +129,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
 						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
@@ -158,7 +158,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		FROM (
 			SELECT a.*,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
 				".make_extra_query_with_login("b.")." usuario,
-				e.`datetime` `datetime`,e.id_usuario id_usuario,b.id_grupo id_grupo
+				e.datetime datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
 			FROM tbl_proveedores a
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id

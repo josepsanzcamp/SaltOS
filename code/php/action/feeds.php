@@ -72,7 +72,15 @@ if(getParam("action")=="feeds") {
 					session_alert(LANG($action2[1]?"msgnumsicool":"msgnumnocool","feeds").$numids.LANG("message".min($numids,2),"feeds"));
 				} elseif($action2[0]=="delete") {
 					// CREAR DATOS EN TABLA DE POSTS BORRADOS
-					$query=make_insert_query("tbl_feeds_d","SELECT NULL id,id_feed,link,'".current_datetime()."' FROM tbl_feeds WHERE id IN (${ids})");
+					$query=make_insert_query("tbl_feeds_d",make_select_query("tbl_feeds",array(
+						"id_feed",
+						"link",
+						"'".current_datetime()."'"
+					),"id IN (${ids})"),array(
+						"id_feed",
+						"link",
+						"datetime"
+					));
 					db_query($query);
 					// BORRAR POSTS
 					$query=make_delete_query("tbl_feeds","id IN (${ids})");
@@ -632,7 +640,7 @@ if(getParam("action")=="feeds") {
 							}
 						}
 						// BORRAR REGISTROS DE LA TABLA DE FEEDS BORRADOS QUE NO EXISTEN YA
-						$query=make_delete_query("tbl_feeds_d","id_feed='${id_feed}' AND NOT link IN (${links}) AND UNIX_TIMESTAMP(`datetime`)<='${unixtime_d}'");
+						$query=make_delete_query("tbl_feeds_d","id_feed='${id_feed}' AND NOT link IN (${links}) AND UNIX_TIMESTAMP(datetime)<='${unixtime_d}'");
 						db_query($query);
 					}
 				}

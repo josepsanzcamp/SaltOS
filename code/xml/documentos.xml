@@ -111,7 +111,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+					<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
 					<onchange>copy_value("comentarios","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("comentarios","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -150,7 +150,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">username</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
 						<colspan>3</colspan>
 					</field>
@@ -163,7 +163,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cliente</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_documentos")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_documentos")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
 						<onchange>update_proyectos()</onchange>
 					</field>
@@ -196,7 +196,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">proyecto</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
 					</field>
 				</row>
@@ -206,7 +206,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">comentarios</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+						<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
 						<colspan>3</colspan>
 						<onchange>copy_value("buscar","comentarios");</onchange>
 						<speech>true</speech>
@@ -221,7 +221,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query global="page,id_cliente,id_usuario,fecha1,fecha2,comentarios,id_proyecto" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,action_id,action_title,action_view,action_edit,action_delete,id_cliente,id_usuario,id_grupo,id_proyecto,descripcion FROM (
 	SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 		".make_extra_query_with_login("d.")." usuario,
-		e.`datetime` `datetime`,
+		e.datetime datetime,
 		CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
 			CONCAT('link:clientes(',-a.id_cliente,'):',b_nombre) END cliente,
 		CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
@@ -243,7 +243,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto) a
 		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
-	WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".make_like_query("nombre2,descripcion,cliente2,proyecto2,usuario,datetime,search",$comentarios)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE(`datetime`)>=DATE('$fecha2'))":"(1=1)")." AND ".check_sql($page,"list")</query>
+	WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".make_like_query("nombre2,descripcion,cliente2,proyecto2,usuario,datetime,search",$comentarios)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE(datetime)>=DATE('$fecha2'))":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -307,7 +307,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">cliente</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>update_proyectos()</onchange>
@@ -321,7 +321,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">proyecto</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>proyectos(-abs(ID))</link>

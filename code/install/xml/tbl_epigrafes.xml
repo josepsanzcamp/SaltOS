@@ -28,6 +28,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<id>1</id>
 		<codigo>default</codigo>
 		<nombre>Epígrafe por defecto</nombre>
-		<descripcion/>
 	</row>
 </root>

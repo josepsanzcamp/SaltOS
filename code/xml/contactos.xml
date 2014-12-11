@@ -104,7 +104,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -143,7 +143,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cliente</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("clientes","tbl_clientes","nombre","SELECT id_registro FROM tbl_contactos WHERE id_aplicacion='".page2id("clientes")."'")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_registro FROM tbl_contactos WHERE id_aplicacion='".page2id("clientes")."'")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
 						<colspan>2</colspan>
 						<onchange>update_proyectos()</onchange>
@@ -155,7 +155,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">proyecto</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
 						<colspan>2</colspan>
 					</field>
@@ -166,7 +166,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">proveedor</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("proveedores","tbl_proveedores","nombre","SELECT id_registro FROM tbl_contactos WHERE id_aplicacion='".page2id("proveedores")."'")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosproveedores")."' label,-1 pos UNION SELECT '0' `value`,'".LANG_ESCAPE("sinproveedor")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("proveedores","tbl_proveedores","nombre","SELECT id_registro FROM tbl_contactos WHERE id_aplicacion='".page2id("proveedores")."'")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosproveedores")."' label,-1 pos UNION SELECT '0' value,'".LANG_ESCAPE("sinproveedor")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_proveedor" eval="true">$id_proveedor=getParam("id_proveedor")</value>
 						<colspan>4</colspan>
 					</field>
@@ -177,7 +177,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
 						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
@@ -222,7 +222,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN a.id_registro ELSE '0' END id_proyecto,
 				CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor,
 				CASE a.id_aplicacion WHEN '".page2id("empleados")."' THEN a.id_registro ELSE '0' END id_empleado,
-				e.`datetime`,e.id_usuario id_usuario,b.id_grupo id_grupo
+				e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
 				FROM tbl_contactos a
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
@@ -318,7 +318,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<label lang="true">proveedor</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("proveedores","tbl_proveedores","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproveedor")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("proveedores","tbl_proveedores","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproveedor")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>proveedores(-abs(ID))</link>
@@ -339,7 +339,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<label lang="true">proyecto</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>proyectos(-abs(ID))</link>
 							<icon>view</icon>
@@ -349,7 +349,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<label lang="true">empleado</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("empleados","tbl_empleados","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinempleado")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("empleados","tbl_empleados","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinempleado")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>empleados(-abs(ID))</link>

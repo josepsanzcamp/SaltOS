@@ -25,49 +25,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<row>
-		<id>NULL</id>
 		<id_usuario>1</id_usuario>
 		<clave>saltos_ui_menu_gestiongeneral</clave>
 		<valor>1</valor>
 	</row>
 	<row>
-		<id>NULL</id>
 		<id_usuario>1</id_usuario>
 		<clave>saltos_ui_menu_folders</clave>
 		<valor>1</valor>
 	</row>
 	<row>
-		<id>NULL</id>
 		<id_usuario>1</id_usuario>
 		<clave>saltos_ui_menu_calculator</clave>
 		<valor>1</valor>
 	</row>
 	<row>
-		<id>NULL</id>
 		<id_usuario>1</id_usuario>
 		<clave>saltos_ui_menu_translate</clave>
 		<valor>1</valor>
 	</row>
 	<row>
-		<id>NULL</id>
 		<id_usuario>1</id_usuario>
 		<clave>saltos_agenda_tab</clave>
 		<valor>2</valor>
 	</row>
 	<row>
-		<id>NULL</id>
 		<id_usuario>1</id_usuario>
 		<clave>saltos_voice</clave>
 		<valor>1</valor>
 	</row>
 	<row>
-		<id>NULL</id>
 		<id_usuario>1</id_usuario>
 		<clave>saltos_desktop</clave>
 		<valor>1</valor>
 	</row>
 	<row>
-		<id>NULL</id>
 		<id_usuario>1</id_usuario>
 		<clave>saltos_ui_menu_closed</clave>
 		<valor>0</valor>

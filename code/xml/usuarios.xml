@@ -112,7 +112,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -151,7 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
 						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
@@ -430,7 +430,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<label lang="true">grupo</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("grupos","tbl_grupos","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("singrupo")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("grupos","tbl_grupos","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("singrupo")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -458,7 +458,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<label lang="true">aplicacion</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE `table`!='' AND `field`!=''")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE tabla!='' AND field!=''")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<onchange>update_registros()</onchange>
@@ -479,7 +479,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<label lang="true">registro</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinregistro")."' label"</query>
+							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sinregistro")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -805,14 +805,81 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query match="default" prefix="true" eval="true">setParam("password",hash_password(getParam("password_new")))</query>
 		<query match="default" prefix="true" eval="true">setParam("dias_sem",intval(getParam("lunes")).intval(getParam("martes")).intval(getParam("miercoles")).intval(getParam("jueves")).intval(getParam("viernes")).intval(getParam("sabado")).intval(getParam("domingo")))</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
-		<query match="permisos" prefix="true" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?"INSERT INTO tbl_usuarios_p(id_usuario,id_aplicacion,id_permiso,allow,deny) VALUES((SELECT MAX(id) FROM tbl_usuarios),'".intval(getParam("id_aplicacion"))."','".intval(getParam("id_permiso"))."','".intval(getParam("allow"))."','".intval(getParam("deny"))."')":""</query>
-		<query match="grupos" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_usuarios_g(id_usuario,id_grupo) VALUES((SELECT MAX(id) FROM tbl_usuarios),'".intval(getParam("id_grupo"))."')":""</query>
-		<query match="appsregs" prefix="true" eval="true">(getParam("activado") &amp;&amp; getParam("id_registro")>0)?"INSERT INTO tbl_usuarios_r(id_usuario,id_aplicacion,id_registro) VALUES((SELECT MAX(id) FROM tbl_usuarios),'".intval(getParam("id_aplicacion"))."','".intval(getParam("id_registro"))."')":""</query>
-		<query match="gcalendar" prefix="true" eval="true">getParam("login")||getParam("password")?"INSERT INTO tbl_gcalendar(id,id_usuario,login,password) VALUES(NULL,(SELECT MAX(id) FROM tbl_usuarios),'".getParam("login")."','".getParam("password")."')":""</query>
-		<query match="feeds_new" prefix="true" eval="true">getParam("url") &amp;&amp; getParam("title")?"INSERT INTO tbl_usuarios_f(id,id_usuario,url,title,description,image,link) VALUES(NULL,(SELECT MAX(id) FROM tbl_usuarios),'".getParam("url")."','".getParam("title")."','".getParam("description")."','".getParam("image")."','".getParam("link")."')":""</query>
-		<query match="correo_new" prefix="true" eval="true">getParam("email_name")||getParam("email_from")||getParam("email_signature_new")||getParam("pop3_host")||getParam("pop3_port")||getParam("pop3_extra")||getParam("pop3_user")||getParam("pop3_pass")||getParam("pop3_delete")||intval(getParam("pop3_days"))||getParam("smtp_host")||getParam("smtp_port")||getParam("smtp_extra")||getParam("smtp_user")||getParam("smtp_pass")||intval(getParam("email_disabled"))||intval(getParam("email_privated"))||intval(getParam("email_default"))||intval(getParam("email_addmetocc"))||intval(getParam("email_crt"))?"INSERT INTO tbl_usuarios_c(`id`,`id_usuario`,`email_name`,`email_from`,`email_signature`,`email_signature_file`,`email_signature_type`,`email_signature_size`,`pop3_host`,`pop3_port`,`pop3_extra`,`pop3_user`,`pop3_pass`,`pop3_delete`,`pop3_days`,`smtp_host`,`smtp_port`,`smtp_extra`,`smtp_user`,`smtp_pass`,`email_disabled`,`email_privated`,`email_default`,`email_addmetocc`,`email_crt`) VALUES(NULL,(SELECT MAX(id) FROM tbl_usuarios),'".getParam("email_name")."','".getParam("email_from")."','".getParam("email_signature_new")."','".getParam("email_signature_new_file")."','".getParam("email_signature_new_type")."','".getParam("email_signature_new_size")."','".getParam("pop3_host")."','".getParam("pop3_port")."','".getParam("pop3_extra")."','".getParam("pop3_user")."','".getParam("pop3_pass")."','".getParam("pop3_delete")."','".intval(getParam("pop3_days"))."','".getParam("smtp_host")."','".getParam("smtp_port")."','".getParam("smtp_extra")."','".getParam("smtp_user")."','".getParam("smtp_pass")."','".intval(getParam("email_disabled"))."','".intval(getParam("email_privated"))."','".intval(getParam("email_default"))."','".intval(getParam("email_addmetocc"))."','".intval(getParam("email_crt"))."')":""</query>
-		<query global="page" match="default" prefix="true" eval="true">"INSERT INTO tbl_registros_i(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'".page2id($page)."',(SELECT MAX(id) FROM ".page2table($page)."),(SELECT MAX(id) FROM ".page2table($page)."),'".current_datetime()."')"</query>
-		<query global="page" match="default" prefix="true" eval="true">"INSERT INTO tbl_registros_u(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'".page2id($page)."',(SELECT MAX(id) FROM ".page2table($page)."),'".current_user()."','".current_datetime()."')"</query>
+		<query match="permisos" prefix="true" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?make_insert_query("tbl_usuarios_p",array(
+			"id_aplicacion"=>intval(getParam("id_aplicacion")),
+			"id_permiso"=>intval(getParam("id_permiso")),
+			"allow"=>intval(getParam("allow")),
+			"deny"=>intval(getParam("deny"))
+		),array(
+			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+		)):""</query>
+		<query match="grupos" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_usuarios_g",array(
+			"id_grupo"=>intval(getParam("id_grupo"))
+		),array(
+			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+		)):""</query>
+		<query match="appsregs" prefix="true" eval="true">(getParam("activado") &amp;&amp; getParam("id_registro")>0)?make_insert_query("tbl_usuarios_r",array(
+			"id_aplicacion"=>intval(getParam("id_aplicacion")),
+			"id_registro"=>intval(getParam("id_registro"))
+		),array(
+			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+		)):""</query>
+		<query match="gcalendar" prefix="true" eval="true">getParam("login")||getParam("password")?make_insert_query("tbl_gcalendar",array(
+			"login"=>getParam("login"),
+			"password"=>getParam("password")
+		),array(
+			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+		)):""</query>
+		<query match="feeds_new" prefix="true" eval="true">getParam("url") &amp;&amp; getParam("title")?make_insert_query("tbl_usuarios_f",array(
+			"url"=>getParam("url"),
+			"title"=>getParam("title"),
+			"description"=>getParam("description"),
+			"image"=>getParam("image"),
+			"link"=>getParam("link")
+		),array(
+			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+		)):""</query>
+		<query match="correo_new" prefix="true" eval="true">getParam("email_name")||getParam("email_from")||getParam("email_signature_new")||getParam("pop3_host")||getParam("pop3_port")||getParam("pop3_extra")||getParam("pop3_user")||getParam("pop3_pass")||getParam("pop3_delete")||intval(getParam("pop3_days"))||getParam("smtp_host")||getParam("smtp_port")||getParam("smtp_extra")||getParam("smtp_user")||getParam("smtp_pass")||intval(getParam("email_disabled"))||intval(getParam("email_privated"))||intval(getParam("email_default"))||intval(getParam("email_addmetocc"))||intval(getParam("email_crt"))?make_insert_query("tbl_usuarios_c",array(
+			"email_name"=>getParam("email_name"),
+			"email_from"=>getParam("email_from"),
+			"email_signature"=>getParam("email_signature_new"),
+			"email_signature_file"=>getParam("email_signature_new_file"),
+			"email_signature_type"=>getParam("email_signature_new_type"),
+			"email_signature_size"=>getParam("email_signature_new_size"),
+			"pop3_host"=>getParam("pop3_host"),
+			"pop3_port"=>getParam("pop3_port"),
+			"pop3_extra"=>getParam("pop3_extra"),
+			"pop3_user"=>getParam("pop3_user"),
+			"pop3_pass"=>getParam("pop3_pass"),
+			"pop3_delete"=>getParam("pop3_delete"),
+			"pop3_days"=>intval(getParam("pop3_days")),
+			"smtp_host"=>getParam("smtp_host"),
+			"smtp_port"=>getParam("smtp_port"),
+			"smtp_extra"=>getParam("smtp_extra"),
+			"smtp_user"=>getParam("smtp_user"),
+			"smtp_pass"=>getParam("smtp_pass"),
+			"email_disabled"=>intval(getParam("email_disabled")),
+			"email_privated"=>intval(getParam("email_privated")),
+			"email_default"=>intval(getParam("email_default")),
+			"email_addmetocc"=>intval(getParam("email_addmetocc")),
+			"email_crt"=>intval(getParam("email_crt"))
+		),array(
+			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+		)):""</query>
+		<query global="page" match="default" prefix="true" eval="true">make_insert_query("tbl_registros_i",array(
+			"id_aplicacion"=>page2id($page),
+			"datetime"=>current_datetime()
+		),array(
+			"id_registro"=>"SELECT MAX(id) FROM ".page2table($page),
+			"id_usuario"=>"SELECT MAX(id) FROM ".page2table($page)
+		))</query>
+		<query global="page" match="default" prefix="true" eval="true">make_insert_query("tbl_registros_u",array(
+			"id_aplicacion"=>page2id($page),
+			"id_usuario"=>current_user(),
+			"datetime"=>current_datetime()
+		),array(
+			"id_registro"=>"SELECT MAX(id) FROM ".page2table($page).""
+		))</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
@@ -820,71 +887,166 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query match="default" prefix="true" eval="true">getParam("password_new")?"SELECT '".LANG_ESCAPE("errorpassword")."' action_error,'0' action_commit FROM (SELECT 1) t WHERE '".getParam("password_new")."'!='".getParam("password_new2")."'":""</query>
 		<query match="default" prefix="true" eval="true">setParam("dias_sem",intval(getParam("lunes")).intval(getParam("martes")).intval(getParam("miercoles")).intval(getParam("jueves")).intval(getParam("viernes")).intval(getParam("sabado")).intval(getParam("domingo")))</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
-		<query match="default" prefix="true" global="id" eval="true">getParam("password_new")?"UPDATE tbl_usuarios SET `password`='".hash_password(getParam("password_new"))."' WHERE `id`='".abs($id)."'":""</query>
-		<query match="default" prefix="true" global="id" eval="true">"DELETE FROM tbl_usuarios_p WHERE id_usuario='".abs($id)."'"</query>
-		<query match="permisos" prefix="true" global="id" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?"INSERT INTO tbl_usuarios_p(id_usuario,id_aplicacion,id_permiso,allow,deny) VALUES('".abs($id)."','".intval(getParam("id_aplicacion"))."','".intval(getParam("id_permiso"))."','".intval(getParam("allow"))."','".intval(getParam("deny"))."')":""</query>
-		<query match="default" prefix="true"  global="id" eval="true">"DELETE FROM tbl_usuarios_g WHERE id_usuario='".abs($id)."'"</query>
-		<query match="grupos" prefix="true" global="id" eval="true">getParam("activado")?"INSERT INTO tbl_usuarios_g(id_usuario,id_grupo) VALUES('".abs($id)."','".intval(getParam("id_grupo"))."')":""</query>
-		<query match="default" prefix="true" global="id" eval="true">"DELETE FROM tbl_usuarios_r WHERE id_usuario='".abs($id)."'"</query>
-		<query match="appsregs" prefix="true" global="id" eval="true">(getParam("activado") &amp;&amp; getParam("id_registro")>0)?"INSERT INTO tbl_usuarios_r(id_usuario,id_aplicacion,id_registro) VALUES('".abs($id)."','".intval(getParam("id_aplicacion"))."','".intval(getParam("id_registro"))."')":""</query>
-        <query match="gcalendar" prefix="true" global="id" eval="true">execute_query("SELECT COUNT(*) FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'")?"UPDATE tbl_gcalendar SET `login`='".getParam("login")."',`password`='".getParam("password")."' WHERE id_usuario='".abs($id)."'":(getParam("login")||getParam("password")?"INSERT INTO tbl_gcalendar(id,id_usuario,login,password) VALUES(NULL,'".abs($id)."','".getParam("login")."','".getParam("password")."')":"")</query>
-		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?"DELETE FROM tbl_registros_i WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".abs($id)."') AND id_aplicacion='".page2id("feeds")."'":""</query>
-		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?"DELETE FROM tbl_registros_u WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".abs($id)."') AND id_aplicacion='".page2id("feeds")."'":""</query>
-		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?"DELETE FROM tbl_feeds WHERE id_feed='".abs($id)."'":""</query>
-		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?"DELETE FROM tbl_feeds_d WHERE id_feed='".abs($id)."'":""</query>
-		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?"DELETE FROM tbl_usuarios_f WHERE id='".abs($id)."'":"UPDATE tbl_usuarios_f SET disabled='".intval(getParam("disabled"))."' WHERE id='".abs($id)."'"</query>
-		<query match="feeds_new" prefix="true" global="id" eval="true">getParam("url") &amp;&amp; getParam("title") &amp;&amp; !execute_query("SELECT COUNT(*) FROM tbl_usuarios_f WHERE url='".getParam("url")."' AND id_usuario='".abs($id)."'")?"INSERT INTO tbl_usuarios_f(id,id_usuario,url,title,description,image,link) VALUES(NULL,'".abs($id)."','".getParam("url")."','".getParam("title")."','".getParam("description")."','".getParam("image")."','".getParam("link")."')":""</query>
-		<query match="correo_old" prefix="true" eval="true">getParam("email_signature_new")?"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE `id`='".getParam("id")."' AND email_signature_file!=''":""</query>
-		<query match="correo_old" prefix="true" eval="true">getParam("email_signature_new")?"UPDATE tbl_usuarios_c SET email_signature='".getParam("email_signature_new")."',email_signature_file='".getParam("email_signature_new_file")."',email_signature_type='".getParam("email_signature_new_type")."',email_signature_size='".getParam("email_signature_new_size")."' WHERE `id`='".getParam("id")."'":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_registros_i WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."') AND id_aplicacion='".page2id("correo")."'":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_registros_u WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."') AND id_aplicacion='".page2id("correo")."'":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."')":""</query>
+		<query match="default" prefix="true" global="id" eval="true">getParam("password_new")?make_update_query("tbl_usuarios",array(
+			"password"=>hash_password(getParam("password_new"))
+		),make_where_query(array(
+			"id"=>abs($id)
+		))):""</query>
+		<query match="default" prefix="true" global="id" eval="true">make_delete_query("tbl_usuarios_p",make_where_query(array("id_usuario"=>abs($id))))</query>
+		<query match="permisos" prefix="true" global="id" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?make_insert_query("tbl_usuarios_p",array(
+			"id_usuario"=>abs($id),
+			"id_aplicacion"=>intval(getParam("id_aplicacion")),
+			"id_permiso"=>intval(getParam("id_permiso")),
+			"allow"=>intval(getParam("allow")),
+			"deny"=>intval(getParam("deny"))
+		)):""</query>
+		<query match="default" prefix="true"  global="id" eval="true">make_delete_query("tbl_usuarios_g",make_where_query(array("id_usuario"=>abs($id))))</query>
+		<query match="grupos" prefix="true" global="id" eval="true">getParam("activado")?make_insert_query("tbl_usuarios_g",array(
+			"id_usuario"=>abs($id),
+			"id_grupo"=>intval(getParam("id_grupo"))
+		)):""</query>
+		<query match="default" prefix="true" global="id" eval="true">make_delete_query("tbl_usuarios_r",make_where_query(array("id_usuario"=>abs($id))))</query>
+		<query match="appsregs" prefix="true" global="id" eval="true">(getParam("activado") &amp;&amp; getParam("id_registro")>0)?make_insert_query("tbl_usuarios_r",array(
+			"id_usuario"=>abs($id),
+			"id_aplicacion"=>intval(getParam("id_aplicacion")),
+			"id_registro"=>intval(getParam("id_registro"))
+		)):""</query>
+        <query match="gcalendar" prefix="true" global="id" eval="true">execute_query("SELECT COUNT(*) FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'")?make_update_query("tbl_gcalendar",array(
+			"login"=>getParam("login"),
+			"password"=>getParam("password")
+		),make_where_query(array(
+			"id_usuario"=>abs($id)
+		))):(getParam("login")||getParam("password")?make_insert_query("tbl_gcalendar",array(
+			"id_usuario"=>abs($id),
+			"login"=>getParam("login"),
+			"password"=>getParam("password")
+		)):"")</query>
+		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".abs($id)."') AND id_aplicacion='".page2id("feeds")."'"):""</query>
+		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".abs($id)."') AND id_aplicacion='".page2id("feeds")."'"):""</query>
+		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_feeds",make_where_query(array("id_feed"=>abs($id)))):""</query>
+		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_feeds_d",make_where_query(array("id_feed"=>abs($id)))):""</query>
+		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_usuarios_f",make_where_query(array(
+			"id"=>abs($id)
+		))):make_update_query("tbl_usuarios_f",array(
+			"disabled"=>intval(getParam("disabled"))
+		),make_where_query(array(
+			"id"=>abs($id)
+		)))</query>
+		<query match="feeds_new" prefix="true" global="id" eval="true">getParam("url") &amp;&amp; getParam("title") &amp;&amp; !execute_query("SELECT COUNT(*) FROM tbl_usuarios_f WHERE url='".getParam("url")."' AND id_usuario='".abs($id)."'")?make_insert_query("tbl_usuarios_f",array(
+			"id_usuario"=>abs($id),
+			"url"=>getParam("url"),
+			"title"=>getParam("title"),
+			"description"=>getParam("description"),
+			"image"=>getParam("image"),
+			"link"=>getParam("link")
+		)):""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("email_signature_new")?"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE id='".getParam("id")."' AND email_signature_file!=''":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("email_signature_new")?make_update_query("tbl_usuarios_c",array(
+			"email_signature"=>getParam("email_signature_new"),
+			"email_signature_file"=>getParam("email_signature_new_file"),
+			"email_signature_type"=>getParam("email_signature_new_type"),
+			"email_signature_size"=>getParam("email_signature_new_size")
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		))):""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."') AND id_aplicacion='".page2id("correo")."'"):""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."') AND id_aplicacion='".page2id("correo")."'"):""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?make_delete_query("tbl_correo_a","id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."')"):""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='0'":""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='0'":""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_correo WHERE id_cuenta='".abs($id)."'":""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"DELETE FROM tbl_correo_d WHERE id_cuenta='".abs($id)."'":""</query>
-		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE `id`='".getParam("id")."' AND email_signature_file!=''":""</query>
-		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_usuarios_c WHERE `id`='".getParam("id")."'":"UPDATE tbl_usuarios_c SET email_name='".getParam("email_name")."',email_from='".getParam("email_from")."',pop3_host='".getParam("pop3_host")."',pop3_port='".getParam("pop3_port")."',pop3_extra='".getParam("pop3_extra")."',pop3_user='".getParam("pop3_user")."',pop3_pass='".getParam("pop3_pass")."',pop3_delete='".getParam("pop3_delete")."',pop3_days='".intval(getParam("pop3_days"))."',smtp_host='".getParam("smtp_host")."',smtp_port='".getParam("smtp_port")."',smtp_extra='".getParam("smtp_extra")."',smtp_user='".getParam("smtp_user")."',smtp_pass='".getParam("smtp_pass")."',email_disabled='".intval(getParam("email_disabled"))."',email_privated='".intval(getParam("email_privated"))."',email_default='".intval(getParam("email_default"))."',email_addmetocc='".intval(getParam("email_addmetocc"))."',email_crt='".intval(getParam("email_crt"))."' WHERE id='".getParam("id")."'"</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?make_delete_query("tbl_correo",make_where_query(array("id_cuenta"=>abs($id)))):""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?make_delete_query("tbl_correo_d",make_where_query(array("id_cuenta"=>abs($id)))):""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE id='".getParam("id")."' AND email_signature_file!=''":""</query>
+		<query match="correo_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_usuarios_c",make_where_query(array(
+			"id"=>intval(getParam("id"))
+		))):make_update_query("tbl_usuarios_c",array(
+			"email_name"=>getParam("email_name"),
+			"email_from"=>getParam("email_from"),
+			"pop3_host"=>getParam("pop3_host"),
+			"pop3_port"=>getParam("pop3_port"),
+			"pop3_extra"=>getParam("pop3_extra"),
+			"pop3_user"=>getParam("pop3_user"),
+			"pop3_pass"=>getParam("pop3_pass"),
+			"pop3_delete"=>getParam("pop3_delete"),
+			"pop3_days"=>intval(getParam("pop3_days")),
+			"smtp_host"=>getParam("smtp_host"),
+			"smtp_port"=>getParam("smtp_port"),
+			"smtp_extra"=>getParam("smtp_extra"),
+			"smtp_user"=>getParam("smtp_user"),
+			"smtp_pass"=>getParam("smtp_pass"),
+			"email_disabled"=>intval(getParam("email_disabled")),
+			"email_privated"=>intval(getParam("email_privated")),
+			"email_default"=>intval(getParam("email_default")),
+			"email_addmetocc"=>intval(getParam("email_addmetocc")),
+			"email_crt"=>intval(getParam("email_crt"))
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
 		<query match="correo_new" prefix="true" global="correo_new" eval="true">($correo_new=getParam("email_name")||getParam("email_from")||getParam("email_signature_new")||getParam("pop3_host")||getParam("pop3_port")||getParam("pop3_extra")||getParam("pop3_user")||getParam("pop3_pass")||getParam("pop3_delete")||intval(getParam("pop3_days"))||getParam("smtp_host")||getParam("smtp_port")||getParam("smtp_extra")||getParam("smtp_user")||getParam("smtp_pass")||intval(getParam("email_disabled"))||intval(getParam("email_privated"))||intval(getParam("email_default"))||intval(getParam("email_addmetocc"))||intval(getParam("email_crt")))?"":""</query>
 		<query match="correo_new" prefix="true" global="correo_new" eval="true">$correo_new?"SELECT 'php/action/correo.php' action_include":""</query>
-		<query match="correo_new" prefix="true" global="correo_new,id" eval="true">$correo_new?"INSERT INTO tbl_usuarios_c(`id`,`id_usuario`,`email_name`,`email_from`,`email_signature`,`email_signature_file`,`email_signature_type`,`email_signature_size`,`pop3_host`,`pop3_port`,`pop3_extra`,`pop3_user`,`pop3_pass`,`pop3_delete`,`pop3_days`,`smtp_host`,`smtp_port`,`smtp_extra`,`smtp_user`,`smtp_pass`,`email_disabled`,`email_privated`,`email_default`,`email_addmetocc`,`email_crt`) VALUES(NULL,'".abs($id)."','".getParam("email_name")."','".getParam("email_from")."','".getParam("email_signature_new")."','".getParam("email_signature_new_file")."','".getParam("email_signature_new_type")."','".getParam("email_signature_new_size")."','".getParam("pop3_host")."','".getParam("pop3_port")."','".getParam("pop3_extra")."','".getParam("pop3_user")."','".getParam("pop3_pass")."','".getParam("pop3_delete")."','".intval(getParam("pop3_days"))."','".getParam("smtp_host")."','".getParam("smtp_port")."','".getParam("smtp_extra")."','".getParam("smtp_user")."','".getParam("smtp_pass")."','".intval(getParam("email_disabled"))."','".intval(getParam("email_privated"))."','".intval(getParam("email_default"))."','".intval(getParam("email_addmetocc"))."','".intval(getParam("email_crt"))."')":""</query>
+		<query match="correo_new" prefix="true" global="correo_new,id" eval="true">$correo_new?make_insert_query("tbl_usuarios_c",array(
+			"id_usuario"=>abs($id),
+			"email_name"=>getParam("email_name"),
+			"email_from"=>getParam("email_from"),
+			"email_signature"=>getParam("email_signature_new"),
+			"email_signature_file"=>getParam("email_signature_new_file"),
+			"email_signature_type"=>getParam("email_signature_new_type"),
+			"email_signature_size"=>getParam("email_signature_new_size"),
+			"pop3_host"=>getParam("pop3_host"),
+			"pop3_port"=>getParam("pop3_port"),
+			"pop3_extra"=>getParam("pop3_extra"),
+			"pop3_user"=>getParam("pop3_user"),
+			"pop3_pass"=>getParam("pop3_pass"),
+			"pop3_delete"=>getParam("pop3_delete"),
+			"pop3_days"=>intval(getParam("pop3_days")),
+			"smtp_host"=>getParam("smtp_host"),
+			"smtp_port"=>getParam("smtp_port"),
+			"smtp_extra"=>getParam("smtp_extra"),
+			"smtp_user"=>getParam("smtp_user"),
+			"smtp_pass"=>getParam("smtp_pass"),
+			"email_disabled"=>intval(getParam("email_disabled")),
+			"email_privated"=>intval(getParam("email_privated")),
+			"email_default"=>intval(getParam("email_default")),
+			"email_addmetocc"=>intval(getParam("email_addmetocc")),
+			"email_crt"=>intval(getParam("email_crt"))
+		)):""</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="id" eval="true">"DELETE FROM tbl_usuarios_p WHERE id_usuario='".intval($id)."'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_usuarios_g WHERE id_usuario='".intval($id)."'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_registros_i WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_registros_u WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id'))"</query>
+		<query global="id" eval="true">make_delete_query("tbl_usuarios_p",make_where_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_usuarios_g",make_where_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'")</query>
+		<query global="id" eval="true">make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'")</query>
+		<query global="id" eval="true">make_delete_query("tbl_correo_a","id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id'))")</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='0'"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='0'"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_correo_d WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')"</query>
-		<query global="id" eval="true">"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE `id_usuario`='$id' AND email_signature_file!=''"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_usuarios_c WHERE id_usuario='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_registros_i WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_registros_u WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_feeds_d WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_usuarios_f WHERE id_usuario='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_gcalendar WHERE id_usuario='$id'"</query>
+		<query global="id" eval="true">make_delete_query("tbl_correo","id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')")</query>
+		<query global="id" eval="true">make_delete_query("tbl_correo_d","id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')")</query>
+		<query global="id" eval="true">"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE id_usuario='$id' AND email_signature_file!=''"</query>
+		<query global="id" eval="true">make_delete_query("tbl_usuarios_c",make_array_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'")</query>
+		<query global="id" eval="true">make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'")</query>
+		<query global="id" eval="true">make_delete_query("tbl_feeds","id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')")</query>
+		<query global="id" eval="true">make_delete_query("tbl_feeds_d","id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')")</query>
+		<query global="id" eval="true">make_delete_query("tbl_usuarios_f",make_where_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_gcalendar",make_where_query(array("id_usuario"=>intval($id))))</query>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
-		<query global="id" eval="true">"DELETE FROM tbl_cookies WHERE `id_usuario`='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_filters WHERE `id_usuario`='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_folders WHERE `id_usuario`='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_history WHERE `id_usuario`='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_lastfolder WHERE `id_usuario`='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_lastpage WHERE `id_usuario`='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_quick WHERE `id_usuario`='$id'"</query>
+		<query global="id" eval="true">make_delete_query("tbl_cookies",make_where_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_filters",make_where_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_folders",make_where_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_history",make_where_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_lastfolder",make_where_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_lastpage",make_where_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_quick",make_where_query(array("id_usuario"=>intval($id))))</query>
 	</delete>
 </root>

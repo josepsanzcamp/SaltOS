@@ -73,7 +73,7 @@ if($page=="incidencias") {
 				CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE c.nombre END proyecto,
 				d.nombre estado,
 				".make_extra_query_with_login("f.")." username,
-				e.`datetime` `datetime`,
+				e.datetime datetime,
 				g.nombre prioridad
 			FROM tbl_incidencias a
 			LEFT JOIN tbl_clientes b ON a.id_cliente=b.id
@@ -94,7 +94,7 @@ if($page=="incidencias") {
 			$tipos=array("text","text","text","text","text","text","text","textarea");
 			$body.=__incidencias_packreport($campos,$tipos,$row2);
 			// DATOS COMENTARIOS
-			$query="SELECT comentarios,`datetime`,
+			$query="SELECT comentarios,datetime,
 					".make_extra_query_with_login("b.")." username
 				FROM tbl_comentarios a
 				LEFT JOIN tbl_usuarios b ON a.id_usuario=b.id

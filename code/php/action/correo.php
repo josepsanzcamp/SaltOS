@@ -71,7 +71,19 @@ if($page=="correo") {
 				session_alert(LANG($action2[1]?"msgnumsispam":"msgnumnospam","correo").$numids.LANG("message".min($numids,2),"correo"));
 			} elseif($action2[0]=="delete") {
 				// CREAR DATOS EN TABLA DE CORREOS BORRADOS (SOLO LOS DEL INBOX)
-				$query=make_insert_query("tbl_correo_d","SELECT NULL id,id_cuenta,uidl,`datetime` FROM tbl_correo WHERE id IN (${ids}) AND is_outbox='0'");
+				$query=make_insert_query("tbl_correo_d",make_select_query("tbl_correo",array(
+					"id_cuenta",
+					"uidl",
+					"datetime"
+				),make_where_query(array(
+					"is_outbox"=>0
+				),"AND",array(
+					"id IN (${ids})"
+				))),array(
+					"id_cuenta",
+					"uidl",
+					"datetime"
+				));
 				db_query($query);
 				// BORRAR FICHEROS .EML.GZ DEL INBOX
 				$query="SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='0'";

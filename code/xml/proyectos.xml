@@ -168,7 +168,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+					<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
 					<onchange>copy_value("comentarios","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("comentarios","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -207,7 +207,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cliente</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_proyectos")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_proyectos")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
 					</field>
 					<field>
@@ -240,7 +240,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">campanya</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
 					</field>
 					<field>
@@ -251,7 +251,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">estado</label>
 						<type>select</type>
 						<width>240px</width>
-					    <query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' `value`,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' `value`,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+					    <query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
 						<colspan>3</colspan>
 					</field>
@@ -262,7 +262,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">comentarios</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+						<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
 						<onchange>copy_value("buscar","comentarios");</onchange>
 						<speech>true</speech>
 					</field>
@@ -352,7 +352,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		FROM (
 			SELECT
 				LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
-				e.`datetime` `datetime`,
+				e.datetime datetime,
 				CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE CONCAT('link:clientes(',-a.id_cliente,'):',b.nombre) END cliente,
 				CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b.nombre END cliente2,
 				CONCAT('link:proyectos(',-a.id,'):',a.nombre) nombre,
@@ -377,7 +377,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) z
-		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".make_like_query("nombre2,descripcion,cliente2,estado,search",$comentarios)." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(`datetime`))":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".check_sql($page,"list")</query>
+		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".make_like_query("nombre2,descripcion,cliente2,estado,search",$comentarios)." AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -408,19 +408,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
 					<seguimientos>
-						<seguimientos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,a.fecha fecha,CONCAT('link:seguimientos(',-a.id,'):',tarea) tarea,a.horas horas,precio,descuento,CONCAT('seguimientos(',-a.id,')') link_view FROM (SELECT a2.id id,a2.id_cliente id_cliente,a2.fecha fecha,a2.comentarios comentarios,a2.id_proyecto id_proyecto,a2.id_tarea id_tarea,t.tarea tarea,a2.horas horas,t.precio precio,t.descuento descuento FROM tbl_seguimientos a2 LEFT JOIN tbl_proyectos_t t ON a2.id_tarea=t.id) a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("seguimientos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE id_proyecto=".abs($id)." AND (".check_sql("seguimientos","view").") ORDER BY e.`datetime` DESC"</seguimientos>
+						<seguimientos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,a.fecha fecha,CONCAT('link:seguimientos(',-a.id,'):',tarea) tarea,a.horas horas,precio,descuento,CONCAT('seguimientos(',-a.id,')') link_view FROM (SELECT a2.id id,a2.id_cliente id_cliente,a2.fecha fecha,a2.comentarios comentarios,a2.id_proyecto id_proyecto,a2.id_tarea id_tarea,t.tarea tarea,a2.horas horas,t.precio precio,t.descuento descuento FROM tbl_seguimientos a2 LEFT JOIN tbl_proyectos_t t ON a2.id_tarea=t.id) a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("seguimientos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE id_proyecto=".abs($id)." AND (".check_sql("seguimientos","view").") ORDER BY e.datetime DESC"</seguimientos>
 					</seguimientos>
 					<incidenciasopen>
-						<incidenciasopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,CONCAT('link:incidencias(',-a.id,'):',a.nombre) incidencia,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('incidencias(',-a.id,')') link_view FROM tbl_incidencias a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("incidencias")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_proyecto=".abs($id)." AND c.activo='1' AND (".check_sql("incidencias","view").") ORDER BY e.`datetime` DESC"</incidenciasopen>
+						<incidenciasopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:incidencias(',-a.id,'):',a.nombre) incidencia,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('incidencias(',-a.id,')') link_view FROM tbl_incidencias a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("incidencias")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_proyecto=".abs($id)." AND c.activo='1' AND (".check_sql("incidencias","view").") ORDER BY e.datetime DESC"</incidenciasopen>
 					</incidenciasopen>
 					<incidenciasclose>
-						<incidenciasclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,CONCAT('link:incidencias(',-a.id,'):',a.nombre) incidencia,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('incidencias(',-a.id,')') link_view FROM tbl_incidencias a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("incidencias")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_proyecto=".abs($id)." AND c.activo='0' AND (".check_sql("incidencias","view").") ORDER BY e.`datetime` DESC"</incidenciasclose>
+						<incidenciasclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:incidencias(',-a.id,'):',a.nombre) incidencia,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('incidencias(',-a.id,')') link_view FROM tbl_incidencias a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("incidencias")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_proyecto=".abs($id)." AND c.activo='0' AND (".check_sql("incidencias","view").") ORDER BY e.datetime DESC"</incidenciasclose>
 					</incidenciasclose>
 					<partesopen>
-						<partesopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,fecha,CONCAT('link:partes(',-a.id,'):',tarea) tarea,comentarios,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,CONCAT('partes(',-a.id,')') link_view,CONCAT('pdfparte(',a.id,')') link_pdf,CONCAT('viewparte(',a.id,')') link_view2,CONCAT('mailparte(',a.id,')') link_mail FROM tbl_partes a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE a.id_proyecto=".abs($id)." AND liquidado='0' AND (".check_sql("partes","view").") ORDER BY e.`datetime` DESC"</partesopen>
+						<partesopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,fecha,CONCAT('link:partes(',-a.id,'):',tarea) tarea,comentarios,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,CONCAT('partes(',-a.id,')') link_view,CONCAT('pdfparte(',a.id,')') link_pdf,CONCAT('viewparte(',a.id,')') link_view2,CONCAT('mailparte(',a.id,')') link_mail FROM tbl_partes a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE a.id_proyecto=".abs($id)." AND liquidado='0' AND (".check_sql("partes","view").") ORDER BY e.datetime DESC"</partesopen>
 					</partesopen>
 					<partesclose>
-						<partesclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,fecha,CONCAT('link:partes(',-a.id,'):',tarea) tarea,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,CONCAT('partes(',-a.id,')') link_view,CONCAT('pdfparte(',a.id,')') link_pdf,CONCAT('viewparte(',a.id,')') link_view2,CONCAT('mailparte(',a.id,')') link_mail FROM tbl_partes a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE a.id_proyecto=".abs($id)." AND liquidado='1' AND (".check_sql("partes","view").") ORDER BY e.`datetime` DESC"</partesclose>
+						<partesclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,fecha,CONCAT('link:partes(',-a.id,'):',tarea) tarea,horas,precio,total,(CASE liquidado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) liquidado,CONCAT('partes(',-a.id,')') link_view,CONCAT('pdfparte(',a.id,')') link_pdf,CONCAT('viewparte(',a.id,')') link_view2,CONCAT('mailparte(',a.id,')') link_mail FROM tbl_partes a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE a.id_proyecto=".abs($id)." AND liquidado='1' AND (".check_sql("partes","view").") ORDER BY e.datetime DESC"</partesclose>
 					</partesclose>
 					<contactos>
 						<contactos global="id" eval="true">"
@@ -438,7 +438,7 @@ FROM tbl_contactos a
 WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos")."') AND (".check_sql("contactos","view").") ORDER BY a.nombre ASC"</contactos>
 					</contactos>
 					<documentos>
-						<documentos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,CONCAT('link:documentos(',-a.id,'):',a.nombre) nombre,(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id("documentos")."' AND id_registro=a.id) ficheros,CONCAT('documentos(',-a.id,')') link_view FROM tbl_documentos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("documentos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE a.id_proyecto=".abs($id)." AND (".check_sql("documentos","view").") ORDER BY e.`datetime` DESC"</documentos>
+						<documentos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:documentos(',-a.id,'):',a.nombre) nombre,(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id("documentos")."' AND id_registro=a.id) ficheros,CONCAT('documentos(',-a.id,')') link_view FROM tbl_documentos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("documentos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id WHERE a.id_proyecto=".abs($id)." AND (".check_sql("documentos","view").") ORDER BY e.datetime DESC"</documentos>
 					</documentos>
 					<albaranes>
 						<albaranes global="id" eval="true">"SELECT id_usuario2 id_usuario,id_grupo2 id_grupo,id,(SELECT nombre FROM tbl_cuentas c WHERE c.id=id_cuenta) cuenta,CONCAT('link:facturas(',-id,'):',num2) num,fecha,base,ROUND(base+iva2-irpf2,2) total,(CASE cerrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cerrado,(CASE cobrado WHEN 1 THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END) cobrado,CONCAT('facturas(',-id,')') link_view,CONCAT('pdffactura(',id,')') link_pdf,CONCAT('viewfactura(',id,')') link_view2,CONCAT('mailfactura(',id,')') link_mail FROM (SELECT id_usuario id_usuario2,id_grupo id_grupo2,c.*,ROUND(base*iva/100.0,2) iva2,ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT id_usuario,id_grupo,CONCAT('".LANG_ESCAPE("albaran")." ',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) num2,a.*,ROUND(SUM(precio*unidades*(100.0-descuento)/100.0),2) base FROM tbl_facturas a LEFT JOIN tbl_facturas_c b ON a.id=b.id_factura LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("facturas")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b2 ON e.id_usuario=b2.id GROUP BY a.id) c) d WHERE id_proyecto='".abs($id)."' AND cerrado=0 AND (".check_sql("facturas","view").") ORDER BY id DESC"</albaranes>
@@ -456,7 +456,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:agenda(',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_proyecto=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
 					</agenda>
 					<presupuestos>
-						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.`datetime`,CONCAT('link:presupuestos(',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_proyecto=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.`datetime` DESC"</presupuestos>
+						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:presupuestos(',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_proyecto=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
 					</presupuestos>
 					<actas>
 						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:actas(',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('viewacta(',id,')') link_view2,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_proyecto=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
@@ -616,7 +616,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<label lang="true">cliente</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>clientes(-abs(ID))</link>
@@ -627,7 +627,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<label lang="true">campanya</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>campanyas(-abs(ID))</link>
@@ -649,7 +649,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<label lang="true">estado</label>
 							<type>select</type>
 							<width>240px</width>
-							<query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
@@ -1642,8 +1642,23 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		<query include="xml/common/autonombre.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_proyectos_t(id,id_proyecto,tarea,horas,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_proyectos),'".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_proyectos_p(id,id_proyecto,id_producto,concepto,unidades,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_proyectos),'".getParam("id_producto")."','".getParam("concepto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?make_insert_query("tbl_proyectos_t",array(
+			"tarea"=>getParam("tarea"),
+			"horas"=>getParam("horas"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		),array(
+			"id_proyecto"=>"SELECT MAX(id) FROM tbl_proyectos"
+		)):""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_proyectos_p",array(
+			"id_producto"=>getParam("id_producto"),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>getParam("unidades"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		),array(
+			"id_proyecto"=>"SELECT MAX(id) FROM tbl_proyectos"
+		)):""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
@@ -1651,12 +1666,40 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query match="tareas_old" prefix="true" eval="true">"UPDATE tbl_proyectos_t SET `tarea`='".getParam("tarea")."',`horas`='".getParam("horas")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
-		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_t WHERE `id`='".getParam("id")."'":""</query>
-		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_proyectos_t(id,id_proyecto,tarea,horas,precio,descuento) VALUES(NULL,'".intval(getParam("id_proyecto"))."','".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
-		<query match="products_old" prefix="true" eval="true">"UPDATE tbl_proyectos_p SET `id_producto`='".getParam("id_producto")."',`concepto`='".getParam("concepto")."',`unidades`='".getParam("unidades")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
-		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_p WHERE `id`='".getParam("id")."'":""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_proyectos_p(id,id_proyecto,id_producto,concepto,unidades,precio,descuento) VALUES(NULL,'".intval(getParam("id_proyecto"))."','".getParam("id_producto")."','".getParam("concepto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query match="tareas_old" prefix="true" eval="true">make_update_query("tbl_proyectos_t",array(
+			"tarea"=>getParam("tarea"),
+			"horas"=>getParam("horas"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		),make_where_query(array(
+			"id"=>getParam("id")
+		)))</query>
+		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_proyectos_t",make_where_query(array("id"=>getParam("id")))):""</query>
+		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?make_insert_query("tbl_proyectos_t",array(
+			"id_proyecto"=>intval(getParam("id_proyecto")),
+			"tarea"=>getParam("tarea"),
+			"horas"=>getParam("horas"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		)):""</query>
+		<query match="products_old" prefix="true" eval="true">make_update_query("tbl_proyectos_p",array(
+			"id_producto"=>getParam("id_producto"),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>getParam("unidades"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		),make_where_query(array(
+			"id"=>getParam("id")
+		)))</query>
+		<query match="products_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_proyectos_p",make_where_query(array("id"=>getParam("id")))):""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_proyectos_p",array(
+			"id_proyecto"=>intval(getParam("id_proyecto")),
+			"id_producto"=>getParam("id_producto"),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>getParam("unidades"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		)):""</query>
 		<query include="xml/common/qfilesdelete.xml" replace="true" />
 		<query include="xml/common/qfilesupdate.xml" replace="true"/>
 		<query include="xml/common/qcommentsdelete.xml" replace="true" />
@@ -1666,8 +1709,8 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="page,id" eval="true">"DELETE FROM tbl_proyectos_t WHERE `id_proyecto`='$id'"</query>
-		<query global="page,id" eval="true">"DELETE FROM tbl_proyectos_p WHERE `id_proyecto`='$id'"</query>
+		<query global="page,id" eval="true">make_delete_query("tbl_proyectos_t",make_where_query(array("id_proyecto"=>$id)))</query>
+		<query global="page,id" eval="true">make_delete_query("tbl_proyectos_p",make_where_query(array("id_proyecto"=>$id)))</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>

@@ -75,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -114,7 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
 						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
@@ -414,21 +414,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query match="permisos" prefix="true" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?"INSERT INTO tbl_grupos_p(id_grupo,id_aplicacion,id_permiso,allow,deny) VALUES((SELECT MAX(id) FROM tbl_grupos),'".intval(getParam("id_aplicacion"))."','".intval(getParam("id_permiso"))."','".intval(getParam("allow"))."','".intval(getParam("deny"))."')":""</query>
+		<query match="permisos" prefix="true" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?make_insert_query("tbl_grupos_p",array(
+			"id_aplicacion"=>intval(getParam("id_aplicacion")),
+			"id_permiso"=>intval(getParam("id_permiso")),
+			"allow"=>intval(getParam("allow")),
+			"deny"=>intval(getParam("deny"))
+		),array(
+			"id_grupo"=>"SELECT MAX(id) FROM tbl_grupos"
+		)):""</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
-		<query match="default" prefix="true" global="id" eval="true">"DELETE FROM tbl_grupos_p WHERE id_grupo='".abs($id)."'"</query>
-		<query match="permisos" prefix="true" global="id" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?"INSERT INTO tbl_grupos_p(id_grupo,id_aplicacion,id_permiso,allow,deny) VALUES('".abs($id)."','".intval(getParam("id_aplicacion"))."','".intval(getParam("id_permiso"))."','".intval(getParam("allow"))."','".intval(getParam("deny"))."')":""</query>
+		<query match="default" prefix="true" global="id" eval="true">make_delete_query("tbl_grupos_p",make_where_query(array("id_grupo"=>abs($id))))</query>
+		<query match="permisos" prefix="true" global="id" eval="true">((getParam("allow") || getParam("deny")) &amp;&amp; getParam("id_permiso")>0)?make_insert_query("tbl_grupos_p",array(
+			"id_grupo"=>abs($id),
+			"id_aplicacion"=>intval(getParam("id_aplicacion")),
+			"id_permiso"=>intval(getParam("id_permiso")),
+			"allow"=>intval(getParam("allow")),
+			"deny"=>intval(getParam("deny"))
+		)):""</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="id" eval="true">"DELETE FROM tbl_grupos_p WHERE id_grupo='".intval($id)."'"</query>
+		<query global="id" eval="true">make_delete_query("tbl_grupos_p",make_where_query(array("id_grupo"=>abs($id))))</query>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>

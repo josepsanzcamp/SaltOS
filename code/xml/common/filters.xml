@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<label lang="true">savedfilters</label>
 				<type>select</type>
 				<width>240px</width>
-				<query global="page" eval="true">"SELECT '1' pos,'' `value`,'".LANG_ESCAPE("optionfilter")."' label UNION SELECT '2' pos,id `value`,nombre label FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' ORDER BY pos ASC,label ASC"</query>
+				<query global="page" eval="true">"SELECT '1' pos,'' value,'".LANG_ESCAPE("optionfilter")."' label UNION SELECT '2' pos,id value,nombre label FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' ORDER BY pos ASC,label ASC"</query>
 				<value></value>
 				<class3>nofilter</class3>
 			</field>

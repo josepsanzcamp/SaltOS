@@ -25,6 +25,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<files_new>
-		<files_new>SELECT 'a' id UNION SELECT 'b' id UNION SELECT 'c' id UNION SELECT 'd' id UNION SELECT 'e' id UNION SELECT 'f' id UNION SELECT 'g' id UNION SELECT 'h' id UNION SELECT 'i' id UNION SELECT 'j' id</files_new>
+		<files_new eval="true">implode(" UNION ",array(
+			make_select_query("",array("'a'"=>"id")),
+			make_select_query("",array("'b'"=>"id")),
+			make_select_query("",array("'c'"=>"id")),
+			make_select_query("",array("'d'"=>"id")),
+			make_select_query("",array("'e'"=>"id")),
+			make_select_query("",array("'f'"=>"id")),
+			make_select_query("",array("'g'"=>"id")),
+			make_select_query("",array("'h'"=>"id")),
+			make_select_query("",array("'i'"=>"id")),
+			make_select_query("",array("'j'"=>"id"))
+		))</files_new>
 	</files_new>
 </root>

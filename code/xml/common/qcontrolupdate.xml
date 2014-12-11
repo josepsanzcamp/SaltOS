@@ -24,5 +24,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page" match="default" prefix="true" eval="true">"INSERT INTO tbl_registros_u(`id`,`id_aplicacion`,`id_registro`,`id_usuario`,`datetime`) VALUES(NULL,'".page2id($page)."','".intval(getParam("id"))."','".current_user()."','".current_datetime()."')"</query>
+	<query global="page" match="default" prefix="true" eval="true">make_insert_query("tbl_registros_u",array(
+		"id_aplicacion"=>page2id($page),
+		"id_registro"=>intval(getParam("id")),
+		"id_usuario"=>current_user(),
+		"datetime"=>current_datetime()
+	))</query>
 </root>

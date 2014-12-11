@@ -24,5 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page,id" eval="true">"DELETE FROM tbl_folders_a WHERE `id_aplicacion`='".page2id($page)."' AND `id_registro`='".intval($id)."'"</query>
+	<query global="page,id" eval="true">make_delete_query("tbl_folders_a",make_where_query(array(
+		"id_aplicacion"=>page2id($page),
+		"id_registro"=>intval($id)
+	)))</query>
 </root>

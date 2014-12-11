@@ -27,10 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<row>
 		<id>1</id>
 		<nombre>Administrador</nombre>
-		<nombre1/>
-		<nombre2/>
 		<cargo>Administrador</cargo>
-		<comentarios/>
 		<email eval="true">getParam("email")</email>
 	</row>
 </root>

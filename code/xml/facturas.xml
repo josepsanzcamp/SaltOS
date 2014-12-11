@@ -124,7 +124,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -195,7 +195,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cliente</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_facturas")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_facturas")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
 						<colspan>4</colspan>
 						<onchange>update_proyectos()</onchange>
@@ -205,7 +205,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">trimestre</label>
 						<type>select</type>
 						<width>90px</width>
-						<query eval="true">"SELECT DISTINCT YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0) `value`,CONCAT(YEAR(fecha),' (',TRUNCATE((MONTH(fecha)-1)/3,0)+1,')') label from tbl_facturas UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY `value` DESC"</query>
+						<query eval="true">"SELECT DISTINCT YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0) value,CONCAT(YEAR(fecha),' (',TRUNCATE((MONTH(fecha)-1)/3,0)+1,')') label from tbl_facturas UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY value DESC"</query>
 						<value global="trimestre" eval="true">$trimestre=getParam("trimestre")</value>
 						<colspan>2</colspan>
 					</field>
@@ -216,7 +216,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">proyecto</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
 						<colspan>4</colspan>
 					</field>
@@ -225,7 +225,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cerrado</label>
 						<type>select</type>
 						<width>90px</width>
-						<query eval="true">"SELECT '1' `value`,'".LANG_ESCAPE("yes")." (".mb_strtolower(LANG_ESCAPE("factura"),"UTF-8").")' label UNION SELECT '0' `value`,'".LANG_ESCAPE("no")." (".mb_strtolower(LANG_ESCAPE("albaran"),"UTF-8").")' label UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
+						<query eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")." (".mb_strtolower(LANG_ESCAPE("factura"),"UTF-8").")' label UNION SELECT '0' value,'".LANG_ESCAPE("no")." (".mb_strtolower(LANG_ESCAPE("albaran"),"UTF-8").")' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
 						<value global="cerrado" eval="true">$cerrado=getParam("cerrado")</value>
 						<colspan>2</colspan>
 					</field>
@@ -258,7 +258,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cobrado</label>
 						<type>select</type>
 						<width>90px</width>
-						<query eval="true">"SELECT '1' `value`,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' `value`,'".LANG_ESCAPE("no")."' label UNION SELECT '' `value`,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
+						<query eval="true">"SELECT '1' value,'".LANG_ESCAPE("yes")."' label UNION SELECT '0' value,'".LANG_ESCAPE("no")."' label UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY label"</query>
 						<value global="cobrado" eval="true">$cobrado=getParam("cobrado")</value>
 						<colspan>2</colspan>
 					</field>
@@ -269,7 +269,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">otroscampos</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>4</colspan>
 						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
@@ -279,7 +279,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cuenta</label>
 						<type>select</type>
 						<width>90px</width>
-						<query eval="true">make_select_query("cuentas","tbl_cuentas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todaslascuentas")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("cuentas","tbl_cuentas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todaslascuentas")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_cuenta" eval="true">$id_cuenta=getParam("id_cuenta")</value>
 						<colspan>4</colspan>
 					</field>
@@ -565,7 +565,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">cuenta</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) `value`,nombre label FROM tbl_cuentas ORDER BY label"</query>
+							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sincuenta")."' label UNION SELECT CONCAT(id,'_',factura_iva_bool,'_',factura_iva_value,'_',factura_irpf_bool,'_',factura_irpf_value) value,nombre label FROM tbl_cuentas ORDER BY label"</query>
 							<focus>true</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>update_iva_irpf(true)</onchange>
@@ -576,7 +576,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">epigrafe</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '0' `value`,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id `value`,SUBSTR(CONCAT('(',codigo,') ',nombre),1,255) label FROM tbl_epigrafes ORDER BY label"</query>
+							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id value,SUBSTR(CONCAT('(',codigo,') ',nombre),1,255) label FROM tbl_epigrafes ORDER BY label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -587,7 +587,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">formapago</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("formaspago","tbl_formaspago","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinformapago")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("formaspago","tbl_formaspago","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinformapago")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -636,7 +636,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">proyecto</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>proyectos(-abs(ID))</link>
 							<icon>view</icon>
@@ -1597,46 +1597,205 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 	</form>
 	<insert>
 		<query include="xml/common/qpermcreate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">"INSERT INTO tbl_facturas(`id`,`id_cliente`,`id_epigrafe`,`nombre`,`direccion`,`nombre_codpostal`,`nombre_poblacion`,`nombre_provincia`,`nombre_pais`,`id_codpostal`,`id_poblacion`,`id_provincia`,`id_pais`,`cif`,`num`,`fecha`,`iva`,`irpf`,`cerrado`,`cobrado`,`id_cuenta`,`fecha2`,`id_proyecto`,`id_periodica`,`mes_periodica`,`notas`,`id_formapago`,`id_presupuesto`) VALUES(NULL,'".intval(getParam("id_cliente"))."','".intval(getParam("id_epigrafe"))."','".getParam("nombre")."','".getParam("direccion")."','".getParam("nombre_codpostal")."','".getParam("nombre_poblacion")."','".getParam("nombre_provincia")."','".getParam("nombre_pais")."','".getParam("id_codpostal")."','".getParam("id_poblacion")."','".getParam("id_provincia")."','".getParam("id_pais")."','".getParam("cif")."','','".dateval(getParam("fecha"))."','0.00','0.00','0','0','".intval(getParam("id_cuenta"))."','".dateval(getParam("fecha2"))."','".intval(getParam("id_proyecto"))."','0','0','".getParam("notas")."','".intval(getParam("id_formapago"))."','0')"</query>
+		<query match="default" prefix="true" eval="true">make_insert_query("tbl_facturas",array(
+			"id_cliente"=>intval(getParam("id_cliente")),
+			"id_epigrafe"=>intval(getParam("id_epigrafe")),
+			"nombre"=>getParam("nombre"),
+			"direccion"=>getParam("direccion"),
+			"nombre_codpostal"=>getParam("nombre_codpostal"),
+			"nombre_poblacion"=>getParam("nombre_poblacion"),
+			"nombre_provincia"=>getParam("nombre_provincia"),
+			"nombre_pais"=>getParam("nombre_pais"),
+			"id_codpostal"=>getParam("id_codpostal"),
+			"id_poblacion"=>getParam("id_poblacion"),
+			"id_provincia"=>getParam("id_provincia"),
+			"id_pais"=>getParam("id_pais"),
+			"cif"=>getParam("cif"),
+			"fecha"=>dateval(getParam("fecha")),
+			"id_cuenta"=>intval(getParam("id_cuenta")),
+			"fecha2"=>dateval(getParam("fecha2")),
+			"id_proyecto"=>intval(getParam("id_proyecto")),
+			"notas"=>getParam("notas"),
+			"id_formapago"=>intval(getParam("id_formapago"))
+		))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query match="resumen" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_facturas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`='".getParam("id")."'"</query>
+		<query match="resumen" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+			"iva"=>floatval(getParam("iva")),
+			"irpf"=>floatval(getParam("irpf"))
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
 		<query match="concepts_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".getParam("id")."','0','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
+		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_facturas_c",array(
+			"id_factura"=>getParam("id"),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>floatval(getParam("unidades")),
+			"descuento"=>floatval(getParam("descuento")),
+			"precio"=>floatval(getParam("precio"))
+		)):""</query>
 		<query match="products_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".getParam("id")."','".intval(getParam("id_producto"))."','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_facturas_c",array(
+			"id_factura"=>getParam("id"),
+			"id_producto"=>intval(getParam("id_producto")),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>floatval(getParam("unidades")),
+			"descuento"=>floatval(getParam("descuento")),
+			"precio"=>floatval(getParam("precio"))
+		)):""</query>
 		<query match="vencimientos_new" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_facturas_v(id,id_factura,fecha,percent,importe,cobrado,fecha2) VALUES(NULL,'".getParam("id")."','".dateval(getParam("fecha"))."','".floatval(getParam("percent"))."','".floatval(getParam("importe"))."','".intval(getParam("cobrado"))."','".dateval(getParam("fecha2"))."')":""</query>
+		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_facturas_v",array(
+			"id_factura"=>getParam("id"),
+			"fecha"=>dateval(getParam("fecha")),
+			"percent"=>floatval(getParam("percent")),
+			"importe"=>floatval(getParam("importe")),
+			"cobrado"=>intval(getParam("cobrado")),
+			"fecha2"=>dateval(getParam("fecha2"))
+		)):""</query>
 		<query match="default" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
 		<query match="default" prefix="true" eval="true">getParam("cerrado")?setParam("new_num_factura",execute_query("SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,".intval(CONFIG("invoice_count_size")).",0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."))) FROM tbl_facturas WHERE SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")=(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")) AND id_cuenta='".intval(getParam("id_cuenta"))."'")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?"UPDATE tbl_facturas SET cerrado=1,num='".getParam("new_num_factura")."',fecha='".current_date()."' WHERE id='".getParam("id")."'":""</query>
-		<query match="default" prefix="true" eval="true">getParam("cobrado")?"UPDATE tbl_facturas SET cobrado=1 WHERE id='".getParam("id")."'":""</query>
-		<query match="default" prefix="true" eval="true">"UPDATE tbl_facturas SET cobrado=(SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".getParam("id")."') WHERE id='".getParam("id")."'"</query>
+		<query match="default" prefix="true" eval="true">getParam("cerrado")?make_update_query("tbl_facturas",array(
+			"cerrado"=>1,
+			"num"=>getParam("new_num_factura"),
+			"fecha"=>current_date()
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		))):""</query>
+		<query match="default" prefix="true" eval="true">getParam("cobrado")?make_update_query("tbl_facturas",array(
+			"cobrado"=>1
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		))):""</query>
+		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)),array(
+			"cobrado"=>"SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'"
+		))</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" eval="true">"UPDATE tbl_facturas SET `id_cliente`='".intval(getParam("id_cliente"))."',`id_epigrafe`='".intval(getParam("id_epigrafe"))."',`nombre`='".getParam("nombre")."',`direccion`='".getParam("direccion")."',`nombre_codpostal`='".getParam("nombre_codpostal")."',`nombre_poblacion`='".getParam("nombre_poblacion")."',`nombre_provincia`='".getParam("nombre_provincia")."',`nombre_pais`='".getParam("nombre_pais")."',`id_codpostal`='".getParam("id_codpostal")."',`id_poblacion`='".getParam("id_poblacion")."',`id_provincia`='".getParam("id_provincia")."',`id_pais`='".getParam("id_pais")."',`cif`='".getParam("cif")."',`id_cuenta`='".intval(getParam("id_cuenta"))."',`fecha2`='".dateval(getParam("fecha2"))."',`id_proyecto`='".intval(getParam("id_proyecto"))."',`notas`='".getParam("notas")."',`id_formapago`='".intval(getParam("id_formapago"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
+		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+			"id_cliente"=>intval(getParam("id_cliente")),
+			"id_epigrafe"=>intval(getParam("id_epigrafe")),
+			"nombre"=>getParam("nombre"),
+			"direccion"=>getParam("direccion"),
+			"nombre_codpostal"=>getParam("nombre_codpostal"),
+			"nombre_poblacion"=>getParam("nombre_poblacion"),
+			"nombre_provincia"=>getParam("nombre_provincia"),
+			"nombre_pais"=>getParam("nombre_pais"),
+			"id_codpostal"=>getParam("id_codpostal"),
+			"id_poblacion"=>getParam("id_poblacion"),
+			"id_provincia"=>getParam("id_provincia"),
+			"id_pais"=>getParam("id_pais"),
+			"cif"=>getParam("cif"),
+			"id_cuenta"=>intval(getParam("id_cuenta")),
+			"fecha2"=>dateval(getParam("fecha2")),
+			"id_proyecto"=>intval(getParam("id_proyecto")),
+			"notas"=>getParam("notas"),
+			"id_formapago"=>intval(getParam("id_formapago"))
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query match="resumen" prefix="true" eval="true">"UPDATE tbl_facturas SET `iva`='".floatval(getParam("iva"))."',`irpf`='".floatval(getParam("irpf"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
-		<query match="concepts_old" prefix="true" eval="true">"UPDATE tbl_facturas_c SET `concepto`='".getParam("concepto")."',`unidades`='".floatval(getParam("unidades"))."',`descuento`='".getParam("descuento")."',`precio`='".floatval(getParam("precio"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
-		<query match="concepts_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE `id`='".intval(getParam("id"))."'":""</query>
-		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".intval(getParam("id_factura"))."','0','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
-		<query match="products_old" prefix="true" eval="true">"UPDATE tbl_facturas_c SET `id_producto`='".intval(getParam("id_producto"))."',`concepto`='".getParam("concepto")."',`unidades`='".floatval(getParam("unidades"))."',`descuento`='".getParam("descuento")."',`precio`='".floatval(getParam("precio"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
-		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE `id`='".intval(getParam("id"))."'":""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_facturas_c(id,id_factura,id_producto,concepto,unidades,descuento,precio) VALUES(NULL,'".intval(getParam("id_factura"))."','".intval(getParam("id_producto"))."','".getParam("concepto")."','".floatval(getParam("unidades"))."','".floatval(getParam("descuento"))."','".floatval(getParam("precio"))."')":""</query>
-		<query match="vencimientos_old" prefix="true" eval="true">"UPDATE tbl_facturas_v SET `fecha`='".dateval(getParam("fecha"))."',`percent`='".getParam("percent")."',`importe`='".floatval(getParam("importe"))."',`cobrado`='".intval(getParam("cobrado"))."',`fecha2`='".dateval(getParam("fecha2"))."' WHERE `id`='".intval(getParam("id"))."'"</query>
-		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_v WHERE `id`='".intval(getParam("id"))."'":""</query>
-		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?"INSERT INTO tbl_facturas_v(id,id_factura,fecha,percent,importe,cobrado,fecha2) VALUES(NULL,'".intval(getParam("id_factura"))."','".dateval(getParam("fecha"))."','".floatval(getParam("percent"))."','".floatval(getParam("importe"))."','".intval(getParam("cobrado"))."','".dateval(getParam("fecha2"))."')":""</query>
+		<query match="resumen" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+			"iva"=>floatval(getParam("iva")),
+			"irpf"=>floatval(getParam("irpf"))
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
+		<query match="concepts_old" prefix="true" eval="true">make_update_query("tbl_facturas_c",array(
+			"concepto"=>getParam("concepto"),
+			"unidades"=>floatval(getParam("unidades")),
+			"descuento"=>getParam("descuento"),
+			"precio"=>floatval(getParam("precio"))
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
+		<query match="concepts_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_facturas_c",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_facturas_c",array(
+			"id_factura"=>intval(getParam("id_factura")),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>floatval(getParam("unidades")),
+			"descuento"=>floatval(getParam("descuento")),
+			"precio"=>floatval(getParam("precio"))
+		)):""</query>
+		<query match="products_old" prefix="true" eval="true">make_update_query("tbl_facturas_c",array(
+			"id_producto"=>intval(getParam("id_producto")),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>floatval(getParam("unidades")),
+			"descuento"=>getParam("descuento"),
+			"precio"=>floatval(getParam("precio"))
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
+		<query match="products_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_facturas_c",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_facturas_c",array(
+			"id_factura"=>intval(getParam("id_factura")),
+			"id_producto"=>intval(getParam("id_producto")),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>floatval(getParam("unidades")),
+			"descuento"=>floatval(getParam("descuento")),
+			"precio"=>floatval(getParam("precio"))
+		)):""</query>
+		<query match="vencimientos_old" prefix="true" eval="true">make_update_query("tbl_facturas_v",array(
+			"fecha"=>dateval(getParam("fecha")),
+			"percent"=>getParam("percent"),
+			"importe"=>floatval(getParam("importe")),
+			"cobrado"=>intval(getParam("cobrado")),
+			"fecha2"=>dateval(getParam("fecha2"))
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
+		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_facturas_v",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_facturas_v",array(
+			"id_factura"=>intval(getParam("id_factura")),
+			"fecha"=>dateval(getParam("fecha")),
+			"percent"=>floatval(getParam("percent")),
+			"importe"=>floatval(getParam("importe")),
+			"cobrado"=>intval(getParam("cobrado")),
+			"fecha2"=>dateval(getParam("fecha2"))
+		)):""</query>
 		<query match="default" prefix="true" eval="true">!getParam("cerrado")?setParam("old_num_factura",execute_query("SELECT CONCAT(SUBSTR(num,-".intval(CONFIG("invoice_count_size")).",".intval(CONFIG("invoice_count_size"))."),'/',SUBSTR(num,1,".intval(CONFIG("invoice_date_size")).")) FROM (SELECT MAX(CONCAT(SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."),SUBSTR(num,1,".intval(CONFIG("invoice_count_size"))."))) num FROM tbl_facturas WHERE id_cuenta='".intval(getParam("id_cuenta"))."') a")):""</query>
 		<query match="default" prefix="true" eval="true">!getParam("cerrado")?"SELECT '".LANG_ESCAPE("errorfac101")."' action_error,'0' action_commit FROM tbl_facturas WHERE id='".intval(getParam("id"))."' AND cerrado='1' AND num!='".getParam("old_num_factura")."'":""</query>
 		<query match="default" prefix="true" eval="true">getParam("cerrado")?setParam("new_num_factura",execute_query("SELECT CONCAT(LPAD(IFNULL(MAX(num),0)+1,".intval(CONFIG("invoice_count_size")).",0),'/',(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size"))."))) FROM tbl_facturas WHERE SUBSTR(num,-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")=(SELECT SUBSTR(YEAR('".current_date()."'),-".intval(CONFIG("invoice_date_size")).",".intval(CONFIG("invoice_date_size")).")) AND id_cuenta='".intval(getParam("id_cuenta"))."'")):""</query>
-		<query match="default" prefix="true" eval="true">getParam("cerrado")?"UPDATE tbl_facturas SET cerrado='1',num='".getParam("new_num_factura")."',fecha='".current_date()."' WHERE id='".intval(getParam("id"))."' AND cerrado='0'":""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cerrado")?"UPDATE tbl_facturas SET cerrado='0',num='' WHERE id='".intval(getParam("id"))."' AND cerrado='1'":""</query>
-		<query match="default" prefix="true" eval="true">getParam("cobrado")?"UPDATE tbl_facturas SET cobrado='1' WHERE id='".intval(getParam("id"))."' AND cobrado='0'":""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cobrado")?"UPDATE tbl_facturas SET cobrado='0' WHERE id='".intval(getParam("id"))."' AND cobrado='1'":""</query>
-		<query match="default" prefix="true" eval="true">!getParam("cerrado")?"UPDATE tbl_facturas SET fecha='".current_date()."' WHERE id='".intval(getParam("id"))."'":""</query>
-		<query match="default" prefix="true" eval="true">"UPDATE tbl_facturas SET cobrado=(SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."') WHERE id='".intval(getParam("id"))."'"</query>
+		<query match="default" prefix="true" eval="true">getParam("cerrado")?make_update_query("tbl_facturas",array(
+			"cerrado"=>1,
+			"num"=>getParam("new_num_factura"),
+			"fecha"=>current_date()
+		),make_where_query(array(
+			"id"=>intval(getParam("id")),
+			"cerrado"=>0
+		))):""</query>
+		<query match="default" prefix="true" eval="true">!getParam("cerrado")?make_update_query("tbl_facturas",array(
+			"cerrado"=>0,
+			"num"=>""
+		),make_where_query(array(
+			"id"=>intval(getParam("id")),
+			"cerrado"=>1
+		))):""</query>
+		<query match="default" prefix="true" eval="true">getParam("cobrado")?make_update_query("tbl_facturas",array(
+			"cobrado"=>1
+		),make_where_query(array(
+			"id"=>intval(getParam("id")),
+			"cobrado"=>0
+		))):""</query>
+		<query match="default" prefix="true" eval="true">!getParam("cobrado")?make_update_query("tbl_facturas",array(
+			"cobrado"=>0
+		),make_where_query(array(
+			"id"=>intval(getParam("id")),
+			"cobrado"=>1
+		))):""</query>
+		<query match="default" prefix="true" eval="true">!getParam("cerrado")?make_update_query("tbl_facturas",array(
+			"fecha"=>current_date()
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		))):""</query>
+		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)),array(
+			"cobrado"=>"SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'"
+		))</query>
 		<query match="default" prefix="true" eval="true">"SELECT '".LANG_ESCAPE("vencimientoscobrado")."' action_alert FROM tbl_facturas WHERE cobrado!='".intval(getParam("cobrado"))."' AND id='".intval(getParam("id"))."'"</query>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>
@@ -1644,8 +1803,8 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query global="id" eval="true">"SELECT '".LANG_ESCAPE("errorfac103")."' action_error,'0' action_commit FROM tbl_facturas WHERE id=$id AND cerrado=1"</query>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="id" eval="true">"DELETE FROM tbl_facturas_c WHERE `id_factura`='$id'"</query>
-		<query global="id" eval="true">"DELETE FROM tbl_facturas_v WHERE `id_factura`='$id'"</query>
+		<query global="id" eval="true">make_delete_query("tbl_facturas_c",make_where_query(array("id_factura"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_facturas_v",make_where_query(array("id_factura"=>intval($id))))</query>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>

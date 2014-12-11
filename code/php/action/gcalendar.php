@@ -26,7 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user()) action_denied();
 if(getParam("action")=="gcalendar") {
 	// GET GOOGLE CALENDAR USER ACCOUNT
-	$query="SELECT login,password FROM tbl_gcalendar WHERE id_usuario='".current_user()."'";
+	$query=make_select_query("tbl_gcalendar",array(
+		"login",
+		"password"
+	),make_where_query(array(
+		"id_usuario"=>current_user()
+	)));
 	$result=execute_query($query);
 	$login=$result["login"];
 	$password=$result["password"];
@@ -147,7 +152,9 @@ if(getParam("action")=="gcalendar") {
 		$client->setRedirectUri("urn:ietf:wg:oauth:2.0:oob");
 		$client->addScope("https://www.googleapis.com/auth/calendar");
 		$client->setAccessType("offline");
-		$token2=execute_query("SELECT token2 FROM tbl_gcalendar WHERE id_usuario='".current_user()."'");
+		$token2=execute_query(make_select_query("tbl_gcalendar","token2",make_where_query(array(
+			"id_usuario"=>current_user()
+		))));
 		if($token2!="") {
 			$client->setAccessToken(base64_decode($token2));
 			if($client->getAccessToken()) return $client;
@@ -257,7 +264,11 @@ if(getParam("action")=="gcalendar") {
 	// FOR COMPATIBILITY WITH GDATA AND APIV3
 	$oldid="http://www.google.com/calendar/feeds/default/private/full/";
 	$oldidlen=strlen($oldid)+1;
-	$query="UPDATE tbl_agenda SET id_gcalendar=SUBSTR(id_gcalendar,${oldidlen}) WHERE id_gcalendar LIKE '${oldid}%'";
+	$query=make_update_query("tbl_agenda",array(),make_where_query(array(
+		"id_gcalendar"=>array(" LIKE ","${oldid}%")
+	)),array(
+		"id_gcalendar"=>"SUBSTR(id_gcalendar,${oldidlen})"
+	));
 	db_query($query);
 
 	// GET DATAS FROM GOOGLE CALENDAR AND SALTOS

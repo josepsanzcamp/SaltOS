@@ -70,10 +70,10 @@ if(getParam("action")=="signature") {
 	// DETECT IF IS A REQUEST FOR REPLACE BODY, CC AND STATE_CRT
 	if(getParam("old") && getParam("new")) {
 		require_once("php/sendmail.php");
-		$old=stripslashes(getParam("old"));
-		$new=stripslashes(getParam("new"));
-		$body=stripslashes(getParam("body"));
-		$cc=stripslashes(getParam("cc"));
+		$old=getParam("old");
+		$new=getParam("new");
+		$body=getParam("body");
+		$cc=getParam("cc");
 		$state_crt=intval(getParam("state_crt"));
 		// REPLACE THE SIGNATURE BODY
 		$file=__signature_getauto(__signature_getfile($new));

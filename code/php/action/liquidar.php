@@ -30,14 +30,39 @@ if($page=="clientes") {
 	foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,13)=="prefix_partes") if(getParam($val."liquidar")) $prefix[]=$val;
 	if(count($prefix)) {
 		if($id_cliente) {
-			$query=make_insert_query("tbl_facturas","
-				SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
-					direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
-					cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
-					'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'0' id_presupuesto
-				FROM tbl_clientes a
-				WHERE a.id='$id_cliente'
-			");
+			$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
+				"'".$id_cliente."'",
+				"nombre",
+				"direccion",
+				"id_pais",
+				"id_provincia",
+				"id_poblacion",
+				"id_codpostal",
+				"nombre_pais",
+				"nombre_provincia",
+				"nombre_poblacion",
+				"nombre_codpostal",
+				"cif",
+				"'".current_date()."'",
+				"'".current_date()."'"
+			),make_where_query(array(
+				"id"=>$id_cliente
+			))),array(
+				"id_cliente",
+				"nombre",
+				"direccion",
+				"id_pais",
+				"id_provincia",
+				"id_poblacion",
+				"id_codpostal",
+				"nombre_pais",
+				"nombre_provincia",
+				"nombre_poblacion",
+				"nombre_codpostal",
+				"cif",
+				"fecha",
+				"fecha2"
+			));
 		} else {
 			$query=make_insert_query("tbl_facturas",array(
 				"fecha"=>current_date(),
@@ -100,7 +125,7 @@ if($page=="partes") {
 						(SELECT nombre FROM tbl_proyectos WHERE id=id_proyecto) proyecto
 				FROM (SELECT a.*,
 					".make_extra_query_with_login("b.")." usuario,
-					c.nombre cliente,e.`datetime`,e.id_usuario id_usuario,b.id_grupo id_grupo
+					c.nombre cliente,e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
 					FROM tbl_partes a
 					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id
 					LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_clientes c ON a.id_cliente=c.id) d
@@ -108,13 +133,39 @@ if($page=="partes") {
 			$result=db_query($query2);
 			if(db_num_rows($result)) {
 				if($id_cliente) {
-					$query=make_insert_query("tbl_facturas","
-						SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
-							direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
-							cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
-							'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'0' id_presupuesto
-						FROM tbl_clientes a
-						WHERE a.id='$id_cliente'");
+					$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
+						"'".$id_cliente."'",
+						"nombre",
+						"direccion",
+						"id_pais",
+						"id_provincia",
+						"id_poblacion",
+						"id_codpostal",
+						"nombre_pais",
+						"nombre_provincia",
+						"nombre_poblacion",
+						"nombre_codpostal",
+						"cif",
+						"'".current_date()."'",
+						"'".current_date()."'"
+					),make_where_query(array(
+						"id"=>$id_cliente
+					))),array(
+						"id_cliente",
+						"nombre",
+						"direccion",
+						"id_pais",
+						"id_provincia",
+						"id_poblacion",
+						"id_codpostal",
+						"nombre_pais",
+						"nombre_provincia",
+						"nombre_poblacion",
+						"nombre_codpostal",
+						"cif",
+						"fecha",
+						"fecha2"
+					));
 				} else {
 					$query=make_insert_query("tbl_facturas",array(
 						"fecha"=>current_date(),
@@ -201,13 +252,41 @@ if($page=="proyectos" && getParam("extra")=="partes") {
 	foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,13)=="prefix_partes") if(getParam($val."liquidar")) $prefix[]=$val;
 	if(count($prefix)) {
 		if($id_cliente) {
-			$query=make_insert_query("tbl_facturas","
-				SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
-					direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
-					cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
-					'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'$id_proyecto' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'0' id_presupuesto
-				FROM tbl_clientes a
-				WHERE a.id='$id_cliente'");
+			$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
+				"'".$id_cliente."'",
+				"nombre",
+				"direccion",
+				"id_pais",
+				"id_provincia",
+				"id_poblacion",
+				"id_codpostal",
+				"nombre_pais",
+				"nombre_provincia",
+				"nombre_poblacion",
+				"nombre_codpostal",
+				"cif",
+				"'".current_date()."'",
+				"'".current_date()."'",
+				"'".$id_proyecto."'"
+			),make_where_query(array(
+				"id"=>$id_cliente
+			))),array(
+				"id_cliente",
+				"nombre",
+				"direccion",
+				"id_pais",
+				"id_provincia",
+				"id_poblacion",
+				"id_codpostal",
+				"nombre_pais",
+				"nombre_provincia",
+				"nombre_poblacion",
+				"nombre_codpostal",
+				"cif",
+				"fecha",
+				"fecha2",
+				"id_proyecto"
+			));
 		} else {
 			$query=make_insert_query("tbl_facturas",array(
 				"id_cliente"=>$id_cliente,
@@ -299,13 +378,41 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 		$result=execute_query_array($query2);
 		if(count($result)) {
 			if($id_cliente) {
-				$query=make_insert_query("tbl_facturas","
-					SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
-						direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
-						cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
-						'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'$id_proyecto' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'0' id_presupuesto
-					FROM tbl_clientes a
-					WHERE a.id='$id_cliente'");
+				$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
+					"'".$id_cliente."'",
+					"nombre",
+					"direccion",
+					"id_pais",
+					"id_provincia",
+					"id_poblacion",
+					"id_codpostal",
+					"nombre_pais",
+					"nombre_provincia",
+					"nombre_poblacion",
+					"nombre_codpostal",
+					"cif",
+					"'".current_date()."'",
+					"'".current_date()."'",
+					"'".$id_proyecto."'"
+				),make_where_query(array(
+					"id"=>$id_cliente
+				))),array(
+					"id_cliente",
+					"nombre",
+					"direccion",
+					"id_pais",
+					"id_provincia",
+					"id_poblacion",
+					"id_codpostal",
+					"nombre_pais",
+					"nombre_provincia",
+					"nombre_poblacion",
+					"nombre_codpostal",
+					"cif",
+					"fecha",
+					"fecha2",
+					"id_proyecto"
+				));
 			} else {
 				$query=make_insert_query("tbl_facturas",array(
 					"id_cliente"=>$id_cliente,
@@ -376,14 +483,53 @@ if($page=="periodicas") {
 			$result2=db_query($query2);
 			if(db_num_rows($result2)) {
 				if($id_cliente) {
-					$query=make_insert_query("tbl_facturas","
-						SELECT NULL id,'$id_cliente' id_cliente,'$id_epigrafe' id_epigrafe,a.nombre,
-							direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
-							cif,'' num,'".current_date()."' fecha,'$iva' iva,'$irpf' irpf,
-							'0' cerrado,'0' cobrado,'$id_cuenta' id_cuenta,'".current_date()."' fecha2,
-							'0' id_proyecto,'$id_periodica' id_periodica,'$meses' mes_periodica,'' notas,'$id_formapago' id_formapago,'0' id_presupuesto
-						FROM tbl_clientes a
-						WHERE a.id='$id_cliente'");
+					$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
+						"'".$id_cliente."'",
+						"'".$id_epigrafe."'",
+						"nombre",
+						"direccion",
+						"id_pais",
+						"id_provincia",
+						"id_poblacion",
+						"id_codpostal",
+						"nombre_pais",
+						"nombre_provincia",
+						"nombre_poblacion",
+						"nombre_codpostal",
+						"cif",
+						"'".current_date()."'",
+						"'".$iva."'",
+						"'".$irpf."'",
+						"'".$id_cuenta."'",
+						"'".current_date()."'",
+						"'".$id_periodica."'",
+						"'".$meses."'",
+						"'".$id_formapago."'"
+					),make_where_query(array(
+						"id"=>$id_cliente
+					))),array(
+						"id_cliente",
+						"id_epigrafe",
+						"nombre",
+						"direccion",
+						"id_pais",
+						"id_provincia",
+						"id_poblacion",
+						"id_codpostal",
+						"nombre_pais",
+						"nombre_provincia",
+						"nombre_poblacion",
+						"nombre_codpostal",
+						"cif",
+						"fecha",
+						"iva",
+						"irpf",
+						"id_cuenta",
+						"fecha2",
+						"id_periodica",
+						"meses",
+						"id_formapago"
+					));
 				} else {
 					$query=make_insert_query("tbl_facturas",array(
 						"id_cliente"=>$id_cliente,
@@ -410,9 +556,23 @@ if($page=="periodicas") {
 			}
 			while($row2=db_fetch_row($result2)) {
 				$id_concepto=$row2["id"];
-				$query=make_insert_query("tbl_facturas_c","
-					SELECT NULL id,(SELECT MAX(id) FROM tbl_facturas) id_factura,id_producto,concepto,unidades,descuento,precio
-					FROM tbl_periodicas_c WHERE id='$id_concepto'");
+				$query=make_insert_query("tbl_facturas_c",make_select_query("tbl_periodicas_c",array(
+					"(SELECT MAX(id) FROM tbl_facturas)",
+					"id_producto",
+					"concepto",
+					"unidades",
+					"descuento",
+					"precio"
+				),make_where_query(array(
+					"id"=>$id_concepto
+				))),array(
+					"id_factura",
+					"id_producto",
+					"concepto",
+					"unidades",
+					"descuento",
+					"precio"
+				));
 				db_query($query);
 			}
 			db_free($result2);
@@ -464,13 +624,42 @@ if($page=="presupuestos") {
 		$result=execute_query_array($query2);
 		if(count($result)) {
 			if($id_cliente) {
-				$query=make_insert_query("tbl_facturas","
-					SELECT NULL id,'$id_cliente' id_cliente,'0' id_epigrafe,a.nombre,
-						direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,
-						cif,'' num,'".current_date()."' fecha,'0.00' iva,'0.00' irpf,
-						'0' cerrado,'0' cobrado,'0' id_cuenta,'".current_date()."' fecha2,'0' id_proyecto,'0' id_periodica,'0' mes_periodica,'' notas,'0' id_formapago,'$id_presupuesto' id_presupuesto
-					FROM tbl_clientes a
-					WHERE a.id='$id_cliente'");
+
+				$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
+					"'".$id_cliente."'",
+					"nombre",
+					"direccion",
+					"id_pais",
+					"id_provincia",
+					"id_poblacion",
+					"id_codpostal",
+					"nombre_pais",
+					"nombre_provincia",
+					"nombre_poblacion",
+					"nombre_codpostal",
+					"cif",
+					"'".current_date()."'",
+					"'".current_date()."'",
+					"'".$id_periodica."'"
+				),make_where_query(array(
+					"id"=>$id_cliente
+				))),array(
+					"id_cliente",
+					"nombre",
+					"direccion",
+					"id_pais",
+					"id_provincia",
+					"id_poblacion",
+					"id_codpostal",
+					"nombre_pais",
+					"nombre_provincia",
+					"nombre_poblacion",
+					"nombre_codpostal",
+					"cif",
+					"fecha",
+					"fecha2",
+					"id_periodica"
+				));
 			} else {
 				$query=make_insert_query("tbl_facturas",array(
 					"id_cliente"=>$id_cliente,

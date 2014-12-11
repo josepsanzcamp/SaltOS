@@ -32,18 +32,18 @@ if(getParam("action")=="sendmail") {
 		$prefix="default_0_";
 		$id_extra=explode("_",getParam($prefix."id_extra"),3);
 		$id_cuenta=intval(getParam($prefix."id_cuenta"));
-		$to=stripslashes(getParam($prefix."to"));
-		$cc=stripslashes(getParam($prefix."cc"));
-		$bcc=stripslashes(getParam($prefix."bcc"));
-		$subject=stripslashes(getParam($prefix."subject"));
-		$body=stripslashes(getParam($prefix."body"));
+		$para=getParam($prefix."para");
+		$cc=getParam($prefix."cc");
+		$bcc=getParam($prefix."bcc");
+		$subject=getParam($prefix."subject");
+		$body=getParam($prefix."body");
 		$state_crt=intval(getParam($prefix."state_crt"));
 		$priority=intval(getParam($prefix."priority"));
 		$sensitivity=intval(getParam($prefix."sensitivity"));
 		// SEARCH FROM
 		$query="SELECT SUBSTR(CONCAT(email_name,' <',email_from,'>'),1,255) email FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND id='${id_cuenta}'";
-		$from=execute_query($query);
-		if(!$from) {
+		$de=execute_query($query);
+		if(!$de) {
 			javascript_error(LANG("msgfromkosendmail","correo"));
 			javascript_unloading();
 			die();
@@ -117,8 +117,8 @@ if(getParam("action")=="sendmail") {
 		}
 		// PREPARE THE RECIPIENTS
 		$recipients=array();
-		$to=explode(";",$to);
-		foreach($to as $addr) {
+		$para=explode(";",$para);
+		foreach($para as $addr) {
 			$addr=trim($addr);
 			if($addr!="") $recipients[]="to:".$addr;
 		}
@@ -133,7 +133,7 @@ if(getParam("action")=="sendmail") {
 			if($addr!="") $recipients[]="bcc:".$addr;
 		}
 		// ADD EXTRAS IN THE RECIPIENTS
-		if($state_crt) $recipients[]="crt:".$from;
+		if($state_crt) $recipients[]="crt:".$de;
 		$priorities=array(-1=>"5 (Low)",0=>"3 (Normal)",1=>"1 (High)");
 		if(isset($priorities[$priority])) $recipients[]="priority:".$priorities[$priority];
 		$sensitivities=array(1=>"Personal",2=>"Private",3=>"Company-Confidential");
@@ -558,7 +558,7 @@ if(getParam("page")=="correo") {
 			if(isset($temp[1])) $_GET[$temp[0]]=$temp[1];
 			foreach($_GET as $key2=>$val2) {
 				$key2=strtolower($key2);
-				if($key2=="subject") $subject_extra=__getmail_rawurldecode(getString($val2));
+				if($key2=="subject") $subject_extra=__getmail_rawurldecode($val2);
 			}
 		} else {
 			$to_extra=__getmail_rawurldecode($id_extra[2])."; ";
@@ -611,7 +611,7 @@ if(getParam("page")=="correo") {
 		}
 	}
 	set_array($rows[$key],"row",array("id"=>0,"id_extra"=>implode("_",$id_extra),
-		"id_cuenta"=>$id_cuenta,"to"=>$to_extra,"cc"=>$cc_extra,"bcc"=>$bcc_extra,
+		"id_cuenta"=>$id_cuenta,"para"=>$to_extra,"cc"=>$cc_extra,"bcc"=>$bcc_extra,
 		"subject"=>$subject_extra,"body"=>$body_extra,
 		"state_crt"=>$state_crt,"priority"=>0,"sensitivity"=>0));
 }

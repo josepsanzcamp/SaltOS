@@ -37,13 +37,17 @@ function sess_close_handler() {
 function sess_read_handler($id) {
 	global $_CONFIG;
 	$sess_file=getDefault("sess/save_path")."/".$id;
-	$query="SELECT sess_data FROM tbl_sessions WHERE sess_file='${sess_file}'";
+	$query=make_select_query("tbl_sessions","sess_data",make_where_query(array(
+		"sess_file"=>$sess_file
+	)));
 	$oldcache=set_use_cache("false");
 	$result=db_query($query);
 	set_use_cache($oldcache);
 	$numrows=db_num_rows($result);
 	if($numrows>1) {
-		$query=make_delete_query("tbl_sessions","sess_file='${sess_file}'");
+		$query=make_delete_query("tbl_sessions",make_where_query(array(
+			"sess_file"=>$sess_file
+		)));
 		db_query($query);
 		$numrows=0;
 	}
@@ -64,14 +68,18 @@ function sess_write_handler($id,$sess_data) {
 	$sess_time=time();
 	$sess_hash=md5($sess_data);
 	$sess_data=base64_encode($sess_data);
-	$query="SELECT id FROM tbl_sessions WHERE sess_file='${sess_file}'";
+	$query=make_select_query("tbl_sessions","id",make_where_query(array(
+		"sess_file"=>$sess_file
+	)));
 	$oldcache=set_use_cache("false");
 	$result=db_query($query);
 	set_use_cache($oldcache);
 	$numrows=db_num_rows($result);
 	db_free($result);
 	if($numrows>1) {
-		$query=make_delete_query("tbl_sessions","sess_file='${sess_file}'");
+		$query=make_delete_query("tbl_sessions",make_where_query(array(
+			"sess_file"=>$sess_file
+		)));
 		db_query($query);
 		$numrows=0;
 	}
@@ -79,11 +87,15 @@ function sess_write_handler($id,$sess_data) {
 		$query=make_update_query("tbl_sessions",array(
 			"sess_data"=>$sess_data,
 			"sess_time"=>$sess_time
-		),"sess_file='${sess_file}'");
+		),make_where_query(array(
+			"sess_file"=>$sess_file
+		)));
 		if(getDefault("sess/hash")==$sess_hash) {
 			$query=make_update_query("tbl_sessions",array(
 				"sess_time"=>$sess_time
-			),"sess_file='${sess_file}'");
+			),make_where_query(array(
+				"sess_file"=>$sess_file
+			)));
 		}
 		db_query($query);
 	} else {
@@ -99,14 +111,18 @@ function sess_write_handler($id,$sess_data) {
 
 function sess_destroy_handler($id) {
 	$sess_file=getDefault("sess/save_path")."/".$id;
-	$query=make_delete_query("tbl_sessions","sess_file='${sess_file}'");
+	$query=make_delete_query("tbl_sessions",make_where_query(array(
+		"sess_file"=>$sess_file
+	)));
 	db_query($query);
 	return true ;
 }
 
 function sess_gc_handler($maxlifetime) {
 	$sess_time=time()-$maxlifetime;
-	$query=make_delete_query("tbl_sessions","sess_time<${sess_time}");
+	$query=make_delete_query("tbl_sessions",make_where_query(array(
+		"sess_time"=>array("<",$sess_time)
+	)));
 	db_query($query);
 	return true;
 }

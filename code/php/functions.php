@@ -29,7 +29,11 @@ function pre_datauser() {
 	$pass=useSession("pass");
 	if($user!="" && $pass!="") {
 		reset_datauser();
-		$query="SELECT * FROM tbl_usuarios WHERE activo='1' AND login='${user}' AND password='${pass}'";
+		$query=make_select_query("tbl_usuarios","*",make_where_query(array(
+			"activo"=>1,
+			"login"=>$user,
+			"password"=>$pass
+		)));
 		$result=db_query($query);
 		if(db_num_rows($result)==1) {
 			$row=db_fetch_row($result);
@@ -50,7 +54,7 @@ function post_datauser() {
 	global $_USER;
 	global $_ERROR;
 	if(isset($_USER["id"])) {
-		$query="SELECT * FROM tbl_usuarios WHERE id='${_USER["id"]}'";
+		$query=make_select_query("tbl_usuarios","*",make_where_query(array("id"=>$_USER["id"])));
 		$result=db_query($query);
 		if(db_num_rows($result)==1) {
 			$row=db_fetch_row($result);
@@ -140,11 +144,9 @@ function check_sql($aplicacion="",$permiso="",$prefix="") {
 			// CHECK FOR USER/GROUP/ALL PERMISSIONS
 			$queries=array();
 			$queries["all"]="(1=1)";
-			$queries["group"]="(id_grupo='${_USER["id_grupo"]}' OR id_grupo IN (".check_ids(execute_query("SELECT id_grupo FROM tbl_usuarios_g WHERE id_usuario='${_USER["id"]}'"))."))";
-			$queries["user"]="(id_usuario='${_USER["id"]}')";
-			foreach($queries as $key=>$val) {
-				if(check_user($aplicacion,"${key}_${permiso}")) $subquery[]=$val;
-			}
+			$queries["user"]=make_where_query(array("id_usuario"=>$_USER["id"]));
+			$queries["group"]="id_grupo IN (".check_ids($_USER["id_grupo"],execute_query_array(make_select_query("tbl_usuarios_g","id_grupo",$queries["user"]))).")";
+			foreach($queries as $key=>$val) if(check_user($aplicacion,"${key}_${permiso}")) $subquery[]=$val;
 		}
 		// CHECK FOR APLICATION/REGISTER FILTERS
 		$query="SELECT a.id_aplicacion id_aplicacion,a.id_registro id_registro,b.filter1 filter FROM (
@@ -296,7 +298,7 @@ function CONFIG_LOADED() {
 
 function CONFIG($key) {
 	$row=array();
-	$query="SELECT valor FROM tbl_configuracion WHERE clave='$key'";
+	$query=make_select_query("tbl_configuracion","valor",make_where_query(array("clave"=>$key)));
 	$result=db_query($query);
 	if(db_num_rows($result)==1) {
 		$row=db_fetch_row($result);
@@ -310,7 +312,7 @@ function CONFIG($key) {
 }
 
 function setConfig($key,$val) {
-	$query="SELECT valor FROM tbl_configuracion WHERE clave='$key'";
+	$query=make_select_query("tbl_configuracion","valor",make_where_query(array("clave"=>$key)));
 	$config=execute_query($query);
 	if($config===null) {
 		$query=make_insert_query("tbl_configuracion",array(
@@ -321,7 +323,9 @@ function setConfig($key,$val) {
 	} else {
 		$query=make_update_query("tbl_configuracion",array(
 			"valor"=>$val
-		),"clave='${key}'");
+		),make_where_query(array(
+			"clave"=>$key
+		)));
 		db_query($query);
 	}
 }
@@ -341,7 +345,7 @@ function current_group() {
 function __aplicaciones($tipo,$dato) {
 	static $diccionario=array();
 	if(!count($diccionario)) {
-		$query="SELECT `id`,`codigo`,`table` FROM tbl_aplicaciones";
+		$query=make_select_query("tbl_aplicaciones",array("id","codigo","tabla"));
 		$result=db_query($query);
 		$diccionario["page2id"]=array();
 		$diccionario["id2page"]=array();
@@ -350,10 +354,10 @@ function __aplicaciones($tipo,$dato) {
 		while($row=db_fetch_row($result)) {
 			$diccionario["page2id"][$row["codigo"]]=$row["id"];
 			$diccionario["id2page"][$row["id"]]=$row["codigo"];
-			$diccionario["page2table"][$row["codigo"]]=$row["table"];
-			$diccionario["table2page"][$row["table"]]=$row["codigo"];
-			$diccionario["id2table"][$row["id"]]=$row["table"];
-			$diccionario["table2id"][$row["table"]]=$row["id"];
+			$diccionario["page2table"][$row["codigo"]]=$row["tabla"];
+			$diccionario["table2page"][$row["tabla"]]=$row["codigo"];
+			$diccionario["id2table"][$row["id"]]=$row["tabla"];
+			$diccionario["table2id"][$row["tabla"]]=$row["id"];
 		}
 		db_free($result);
 	}
@@ -654,8 +658,12 @@ function session_alert($alert) {
 	sess_close();
 }
 
-function check_ids($value) {
-	$value=is_array($value)?$value:explode(",",$value);
+function check_ids() {
+	$value=array();
+	foreach(func_get_args() as $arg) {
+		$arg=is_array($arg)?$arg:explode(",",$arg);
+		$value=array_merge($value,$arg);
+	}
 	foreach($value as $key=>$val) {
 		if(substr_count($val,"_")==2) {
 			if($val[0]=="'" && substr($val,-1,1)=="'") $val=substr($val,1,-1);
@@ -752,12 +760,12 @@ function check_security($action="") {
 	$id_usuario=current_user();
 	$remote_addr=getServer("REMOTE_ADDR");
 	// BUSCAR ID_SECURITY
-	$query="SELECT id FROM tbl_security WHERE id_session='${id_session}'";
+	$query=make_select_query("tbl_security","id",make_where_query(array("id_session"=>$id_session)));
 	$oldcache=set_use_cache("false");
 	$id_security=execute_query($query);
 	set_use_cache($oldcache);
 	if(is_array($id_security)) {
-		$query=make_delete_query("tbl_security","id_session='${id_session}'");
+		$query=make_delete_query("tbl_security",make_where_query(array("id_session"=>$id_session)));
 		db_query($query);
 		$id_security=0;
 	}
@@ -768,7 +776,7 @@ function check_security($action="") {
 			"logout"=>0
 		));
 		db_query($query);
-		$query="SELECT MAX(id) maximo FROM tbl_security";
+		$query=make_select_query("tbl_security",array("MAX(id)"=>"maximo"));
 		$id_security=execute_query($query);
 	}
 	// BUSCAR ID_SECURITY_IP

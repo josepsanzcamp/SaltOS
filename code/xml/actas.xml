@@ -110,7 +110,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="otros" eval="true">stripslashes($otros=getParam("otros"))</value>
+					<value global="otros" eval="true">$otros=getParam("otros")</value>
 					<onchange>copy_value("otros","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("otros","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -173,7 +173,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">username</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
 					</field>
 					<field>
@@ -206,7 +206,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">posiblecli</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("posiblescli","tbl_posiblescli","nombre","SELECT id_posiblecli FROM tbl_actas")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinposiblecli")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosposiblescli")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id_posiblecli FROM tbl_actas")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosposiblescli")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_posiblecli" eval="true">$id_posiblecli=getParam("id_posiblecli")</value>
 						<onchange>update_proyectos();update_presupuestos()</onchange>
 					</field>
@@ -218,7 +218,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">campanya</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
 						<colspan>3</colspan>
 					</field>
@@ -229,7 +229,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cliente</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_actas")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_actas")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
 						<onchange>update_proyectos();update_presupuestos()</onchange>
 					</field>
@@ -241,7 +241,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">proyecto</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
 						<colspan>3</colspan>
 					</field>
@@ -252,7 +252,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">otroscampos</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="otros" eval="true">stripslashes($otros=getParam("otros"))</value>
+						<value global="otros" eval="true">$otros=getParam("otros")</value>
 						<onchange>copy_value("buscar","otros");</onchange>
 						<speech>true</speech>
 					</field>
@@ -264,7 +264,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">presupuesto</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("todoslospresupuestos")."' label UNION SELECT '0' `value`,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslospresupuestos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
 						<value global="id_presupuesto" eval="true">$id_presupuesto=getParam("id_presupuesto")</value>
 						<colspan>3</colspan>
 					</field>
@@ -370,7 +370,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<label lang="true">campanya</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>campanyas(-abs(ID))</link>
@@ -383,7 +383,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<label lang="true">posiblecli</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>posiblescli(-abs(ID))</link>
@@ -395,7 +395,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<label lang="true">presupuesto</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
+							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>presupuestos(-abs(ID))</link>
 							<icon>view</icon>
@@ -407,7 +407,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<label lang="true">cliente</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
@@ -419,7 +419,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<label lang="true">proyecto</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>proyectos(-abs(ID))</link>
 							<icon>view</icon>

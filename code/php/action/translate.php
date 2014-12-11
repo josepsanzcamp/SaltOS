@@ -69,7 +69,6 @@ if(getParam("action")=="translate") {
 		$cache=get_cache_file(array("translate","auto",$text,__translate_get_apertium_langs(),__translate_get_aspell_langs()),getDefault("exts/textext",".txt"));
 		//if(file_exists($cache)) unlink($cache);
 		if(!file_exists($cache)) {
-			$text=stripslashes($text);
 			$langs=__translate_detect_aspell_langs($text);
 			$options=__translate_get_options($langs);
 			file_put_contents($cache,$options);
@@ -95,7 +94,6 @@ if(getParam("action")=="translate") {
 	$cache=get_cache_file(array("translate",$langs,$text,__translate_get_apertium_langs(),__translate_get_aspell_langs()),getDefault("exts/textext",".txt"));
 	//if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
-		$text=stripslashes($text);
 		$text=__translate_aspell($text,$langs_array[0]);
 		if($langs_array[0]!=$langs_array[1]) $text=__translate_apertium($text,$langs);
 		file_put_contents($cache,$text);

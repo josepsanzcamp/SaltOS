@@ -126,7 +126,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+					<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
 					<onchange>copy_value("comentarios","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("comentarios","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -165,7 +165,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">username</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
 					</field>
 					<field>
@@ -198,7 +198,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cliente</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_incidencias")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_incidencias")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
 						<onchange>update_proyectos()</onchange>
 					</field>
@@ -210,7 +210,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">proyecto</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosproyectos")."' label UNION SELECT '0' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 						<value global="id_proyecto" eval="true">$id_proyecto=getParam("id_proyecto")</value>
 						<colspan>3</colspan>
 					</field>
@@ -221,7 +221,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">asignadoa</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_asignado" eval="true">$id_asignado=getParam("id_asignado")</value>
 					</field>
 					<field>
@@ -232,7 +232,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">estado</label>
 						<type>select</type>
 						<width>240px</width>
-						<query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' `value`,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' `value`,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
 						<colspan>3</colspan>
 					</field>
@@ -243,7 +243,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">comentarios</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+						<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
 						<onchange>copy_value("buscar","comentarios");</onchange>
 						<speech>true</speech>
 					</field>
@@ -255,7 +255,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">prioridad</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("prioridades","tbl_prioridades","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinprioridad")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("prioridades","tbl_prioridades","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinprioridad")."' label,'-1' pos UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_prioridad" eval="true">$id_prioridad=getParam("id_prioridad")</value>
 						<colspan>3</colspan>
 					</field>
@@ -269,7 +269,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query global="page,id_cliente,id_estado,id_usuario,fecha1,fecha2,comentarios,id_prioridad,id_proyecto,id_asignado" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,estado,action_id,action_title,action_view,action_edit,action_delete,id_usuario,id_estado,id_cliente,id_proyecto,id_grupo,activo,prioridad,id_prioridad,asignadoa FROM (
 		SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 			".make_extra_query_with_login("d.")." usuario,
-			e.`datetime` `datetime`,
+			e.datetime datetime,
 			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE CONCAT('link:clientes(',-a.id_cliente,'):',b_nombre) END cliente,
 			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE CONCAT('link:proyectos(',-id_proyecto,'):',p_nombre) END proyecto,
 			CONCAT('link:incidencias(',-a.id,'):',a.nombre) nombre,CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
@@ -294,7 +294,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		LEFT JOIN tbl_estados c ON a.id_estado=c.id) z
-		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".make_like_query("nombre2,comentarios,cliente2,proyecto2,estado,prioridad,usuario,asignadoa,search",$comentarios)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(`datetime`))":"(1=1)")." AND (id_prioridad='$id_prioridad' OR ''='$id_prioridad') AND (((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".intval(getParam("id_asignado"))."')='".intval(getParam("id_asignado"))."' OR ''='".getParam("id_asignado")."')) AND (".check_sql($page,"list")." OR ((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".current_user()."')='".current_user()."'))"</query>
+		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".make_like_query("nombre2,comentarios,cliente2,proyecto2,estado,prioridad,usuario,asignadoa,search",$comentarios)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")." AND (id_prioridad='$id_prioridad' OR ''='$id_prioridad') AND (((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".intval(getParam("id_asignado"))."')='".intval(getParam("id_asignado"))."' OR ''='".getParam("id_asignado")."')) AND (".check_sql($page,"list")." OR ((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".current_user()."')='".current_user()."'))"</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -367,7 +367,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">cliente</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>update_proyectos()</onchange>
@@ -381,7 +381,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">proyecto</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>proyectos(-abs(ID))</link>
 							<icon>view</icon>
@@ -391,7 +391,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">prioridad</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("prioridades","tbl_prioridades","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinprioridad")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("prioridades","tbl_prioridades","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinprioridad")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -411,7 +411,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">estado</label>
 							<type>select</type>
 							<width>240px</width>
-							<query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -510,7 +510,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/autonombre.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_incidencias_u(id_incidencia,id_usuario) VALUES((SELECT MAX(id) FROM tbl_incidencias),'".intval(getParam("id_usuario"))."')":""</query>
+		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_incidencias_u",array(
+			"id_usuario"=>intval(getParam("id_usuario"))
+		),array(
+			"id_incidencia"=>"SELECT MAX(id) FROM tbl_incidencias"
+		)):""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
 		<query>SELECT 'php/action/incidencias.php' action_include</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
@@ -518,8 +522,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<update>
 		<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_incidencias a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT (TRIM(IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0))='".current_user()."')"</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
-		<query global="page" match="default" prefix="true" eval="true">"DELETE FROM tbl_incidencias_u WHERE id_incidencia='".getParam("id")."'"</query>
-		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?"INSERT INTO tbl_incidencias_u(id_incidencia,id_usuario) VALUES('".intval(getParam("id_incidencia"))."','".intval(getParam("id_usuario"))."')":""</query>
+		<query global="page" match="default" prefix="true" eval="true">make_delete_query("tbl_incidencias_u",make_where_query(array("id_incidencia"=>getParam("id"))))</query>
+		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_incidencias_u",array(
+			"id_incidencia"=>intval(getParam("id_incidencia")),
+			"id_usuario"=>intval(getParam("id_usuario"))
+		)):""</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query include="xml/common/qfilesdelete.xml" replace="true" />
 		<query include="xml/common/qfilesupdate.xml" replace="true"/>
@@ -531,7 +538,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="id" eval="true">"DELETE FROM tbl_incidencias_u WHERE id_incidencia='$id'"</query>
+		<query global="id" eval="true">make_delete_query("tbl_incidencias_u",make_where_query(array("id_incidencia"=>$id)))</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>

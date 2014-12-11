@@ -227,7 +227,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>VARCHAR(255)</type>
 				</field>
 				<field>
-					<name>table</name>
+					<name>tabla</name>
 					<type>VARCHAR(255)</type>
 				</field>
 				<field>
@@ -716,11 +716,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>INT(11)</type>
 				</field>
 				<field>
-					<name>from</name>
+					<name>de</name>
 					<type>TEXT</type>
 				</field>
 				<field>
-					<name>to</name>
+					<name>para</name>
 					<type>TEXT</type>
 				</field>
 				<field>

@@ -27,11 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 define("__XML_HEADER__","<?xml version='1.0' encoding='UTF-8' ?>\n");
 
 // FUNCTIONS
-function getString($string) {
-	if(ini_get("magic_quotes_gpc")!=1) $string=addslashes($string);
-	return $string;
-}
-
 function getParam($index,$default="") {
 	if(substr($index,-5,5)=="_file") {
 		$prefix=substr($index,0,-5);
@@ -43,8 +38,8 @@ function getParam($index,$default="") {
 }
 
 function __getParam_helper($index,$default="") {
-	if(isset($_POST[$index])) return getString($_POST[$index]);
-	if(isset($_GET[$index])) return getString($_GET[$index]);
+	if(isset($_POST[$index])) return $_POST[$index];
+	if(isset($_GET[$index])) return $_GET[$index];
 	return $default;
 }
 
@@ -677,5 +672,15 @@ function highlight_geshi($html,$lang="") {
 		$html=$geshi->parse_code();
 	}
 	return $html;
+}
+
+function is_array_key_val($array) {
+	$count=0;
+	foreach($array as $key=>$val) {
+		if(!is_numeric($key)) return true;
+		if($key!=$count) return true;
+		$count++;
+	}
+	return false;
 }
 ?>

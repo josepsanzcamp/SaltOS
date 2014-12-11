@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<files_old global="page,id" eval="true">"SELECT a.*,
 ".make_extra_query_with_login("d.")." usuario,
 c.nombre grupo,
-a.`datetime`,
+a.datetime,
 CONCAT('download2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') download,
 CONCAT('viewpdf2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') viewpdf,
 CASE WHEN fichero_size>1073741824 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')

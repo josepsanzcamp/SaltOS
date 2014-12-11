@@ -75,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					<onchange>copy_value("filtro","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -114,7 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">stripslashes($filtro=getParam("filtro"))</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
 						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
@@ -334,20 +334,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query match="default" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-        <query match="default" prefix="true" eval="true">getParam("logo_file_new")?"UPDATE tbl_cuentas SET logo_file='".getParam("logo_file_new_file")."' WHERE `id`='".getParam("id")."'":""</query>
+        <query match="default" prefix="true" eval="true">getParam("logo_file_new")?make_update_query("tbl_cuentas",array(
+			"logo_file"=>getParam("logo_file_new_file")
+		),make_where_query(array(
+			"id"=>getParam("id")
+		))):""</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-        <query match="default" prefix="true" eval="true">getParam("logo_file_new")?"SELECT logo_file action_delete FROM tbl_cuentas WHERE `id`='".getParam("id")."' AND SUBSTR(logo_file,1,7)!='../img/'":""</query>
-		<query match="default" prefix="true" eval="true">getParam("logo_file_new")?"UPDATE tbl_cuentas SET logo_file='".getParam("logo_file_new_file")."' WHERE `id`='".getParam("id")."'":""</query>
+        <query match="default" prefix="true" eval="true">getParam("logo_file_new")?"SELECT logo_file action_delete FROM tbl_cuentas WHERE id='".getParam("id")."' AND SUBSTR(logo_file,1,7)!='../img/'":""</query>
+		<query match="default" prefix="true" eval="true">getParam("logo_file_new")?make_update_query("tbl_cuentas",array(
+			"logo_file"=>getParam("logo_file_new_file")
+		),make_where_query(array(
+			"id"=>getParam("id")
+		))):""</query>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query eval="true">"SELECT logo_file action_delete FROM tbl_cuentas WHERE `id`='".getParam("id")."' AND SUBSTR(logo_file,1,7)!='../img/'"</query>
+		<query eval="true">"SELECT logo_file action_delete FROM tbl_cuentas WHERE id='".getParam("id")."' AND SUBSTR(logo_file,1,7)!='../img/'"</query>
 		<query include="xml/common/qdelete.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>

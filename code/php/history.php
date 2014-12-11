@@ -38,13 +38,16 @@ function history($page) {
 }
 
 function save_history($id_usuario,$id_aplicacion) {
-	$query="SELECT * FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
+	$query="SELECT * FROM tbl_history WHERE id_usuario='$id_usuario' AND id_aplicacion='$id_aplicacion'";
 	$result=db_query($query);
 	$numrows=db_num_rows($result);
 	db_free($result);
 	$querystring=base64_encode(str_replace("+","%20",getServer("QUERY_STRING")));
 	if($numrows>1) {
-		$query=make_delete_query("tbl_history","id_usuario='${id_usuario}' AND id_aplicacion='${id_aplicacion}'");
+		$query=make_delete_query("tbl_history",make_where_query(array(
+			"id_usuario"=>$id_usuario,
+			"id_aplicacion"=>$id_aplicacion
+		)));
 		db_query($query);
 		$numrows=0;
 	}
@@ -58,13 +61,16 @@ function save_history($id_usuario,$id_aplicacion) {
 	} else {
 		$query=make_update_query("tbl_history",array(
 			"querystring"=>$querystring
-		),"id_usuario='${id_usuario}' AND id_aplicacion='${id_aplicacion}'");
+		),make_where_query(array(
+			"id_usuario"=>$id_usuario,
+			"id_aplicacion"=>$id_aplicacion
+		)));
 		db_query($query);
 	}
 }
 
 function load_history($id_usuario,$id_aplicacion) {
-	$query="SELECT querystring FROM tbl_history WHERE `id_usuario`='$id_usuario' AND `id_aplicacion`='$id_aplicacion'";
+	$query="SELECT querystring FROM tbl_history WHERE id_usuario='$id_usuario' AND id_aplicacion='$id_aplicacion'";
 	$result=db_query($query);
 	$numrows=db_num_rows($result);
 	$row=db_fetch_row($result);
@@ -97,7 +103,9 @@ function lastpage($page) {
 			} else {
 				$query=make_update_query("tbl_lastpage",array(
 					"page"=>$page
-				),"id_usuario='${id_usuario}'");
+				),make_where_query(array(
+					"id_usuario"=>$id_usuario
+				)));
 				db_query($query);
 			}
 		}
@@ -124,7 +132,9 @@ function lastfolder($id_folder) {
 			} else {
 				$query=make_update_query("tbl_lastfolder",array(
 					"id_folder"=>$id_folder
-				),"id_usuario='${id_usuario}'");
+				),make_where_query(array(
+					"id_usuario"=>$id_usuario
+				)));
 				db_query($query);
 			}
 		}

@@ -463,7 +463,7 @@ if(getParam("action")=="getmail") {
 		if($error=="" && $row["pop3_delete"]) {
 			// REMOVE ALL EXPIRED MESSAGES (IF CHECKED THE DELETE OPTION)
 			$delete="'".implode("','",$uidls)."'";
-			$query="SELECT uidl,`datetime` FROM (SELECT uidl,`datetime` FROM tbl_correo WHERE uidl IN ($delete) UNION SELECT uidl,`datetime` FROM tbl_correo_d WHERE uidl IN ($delete)) a";
+			$query="SELECT uidl,datetime FROM (SELECT uidl,datetime FROM tbl_correo WHERE uidl IN ($delete) UNION SELECT uidl,datetime FROM tbl_correo_d WHERE uidl IN ($delete)) a";
 			$result2=execute_query_array($query);
 			$time1=strtotime(current_datetime());
 			foreach($result2 as $row2) {
@@ -521,7 +521,7 @@ if(getParam("action")=="getmail") {
 		javascript_template("notify_voice('".$newemail.LANG("msgnewokpop3email".min($newemail,2),"correo")."')","saltos_voice()");
 	}
 	if(count($voice_ids)) {
-		$query="SELECT SUBSTR(CONCAT(`from`,'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)),1,255) reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
+		$query="SELECT SUBSTR(CONCAT(de,'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)),1,255) reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
 		$result=execute_query_array($query);
 		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","saltos_voice()");
 	}
@@ -545,7 +545,7 @@ if(getParam("page")=="correo") {
 		$query="SELECT nombre FROM tbl_grupos WHERE id=(SELECT id_grupo FROM tbl_usuarios WHERE id=(SELECT id_usuario FROM tbl_registros_i WHERE id_registro='${id_correo}' AND id_aplicacion='".page2id("correo")."'))";
 		$grupo=execute_query($query);
 		// BUSCAR DATETIME DEL CORREO
-		$query="SELECT `datetime` FROM tbl_correo WHERE id='${id_correo}'";
+		$query="SELECT datetime FROM tbl_correo WHERE id='${id_correo}'";
 		$datetime=execute_query($query);
 		// PROCESAR CORREO
 		require_once("php/getmail.php");

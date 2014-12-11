@@ -138,7 +138,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+					<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
 					<onchange>copy_value("comentarios","buscar");</onchange>
 					<onkey>if(is_enterkey(event)) { copy_value("comentarios","buscar");buscar(); }</onkey>
 					<focus>true</focus>
@@ -201,7 +201,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">cliente</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_presupuestos")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("clientes","tbl_clientes","nombre","SELECT id_cliente FROM tbl_presupuestos")." UNION SELECT '0' value,'".LANG_ESCAPE("sincliente")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosclientes")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_cliente" eval="true">$id_cliente=getParam("id_cliente")</value>
 						<colspan>3</colspan>
 					</field>
@@ -235,7 +235,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">posiblecli</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("posiblescli","tbl_posiblescli","nombre","SELECT id_posiblecli FROM tbl_presupuestos")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinposiblecli")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("todoslosposiblescli")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id_posiblecli FROM tbl_presupuestos")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("todoslosposiblescli")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_posiblecli" eval="true">$id_posiblecli=getParam("id_posiblecli")</value>
 						<colspan>3</colspan>
 					</field>
@@ -247,7 +247,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">campanya</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
 						<colspan>3</colspan>
 					</field>
@@ -258,7 +258,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">comentarios</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="comentarios" eval="true">stripslashes($comentarios=getParam("comentarios"))</value>
+						<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
 						<onchange>copy_value("buscar","comentarios");</onchange>
 						<colspan>3</colspan>
 						<speech>true</speech>
@@ -271,7 +271,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">estado</label>
 						<type>select</type>
 						<width>240px</width>
-						<query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' `value`,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' `value`,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' `value`,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+						<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allstates")."' label,-1 pos UNION SELECT 'allenabled' value,'".LANG_ESCAPE("allenabled")."' label,-1 pos UNION SELECT 'alldisabled' value,'".LANG_ESCAPE("alldisabled")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_estado" eval="true">$id_estado=getParam("id_estado")</value>
 						<colspan>3</colspan>
 					</field>
@@ -308,7 +308,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query global="page,id_cliente,id_estado,fecha1,fecha2,comentarios,id_posiblecli,id_campanya" eval="true">"SELECT id2,id,usuario,datetime,cliente,cliente2,nombre,nombre2,fecha,total1,total2,total3,estado,comentarios,ficheros,tareas,productos,descripcion,id_campanya,action_id,action_title,action_view,action_edit,action_copy,action_pdf2,action_view2,action_mail,action_delete,id_usuario,id_estado,id_cliente,id_posiblecli,id_grupo,activo,id_proyecto FROM (
 			SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 				".make_extra_query_with_login("d.")." usuario,
-				e.`datetime` `datetime`,
+				e.datetime datetime,
 				CASE
 					WHEN a.id_cliente!='0' THEN CONCAT('link:clientes(',-a.id_cliente,'):',b1.nombre)
 					WHEN a.id_posiblecli!='0' THEN CONCAT('link:posiblescli(',-a.id_posiblecli,'):',b2.nombre)
@@ -347,7 +347,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LEFT JOIN tbl_estados c ON a.id_estado=c.id
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
-			WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".make_like_query("nombre2,descripcion,cliente2,estado,search",$comentarios)." AND ".($fecha1?"(DATE(`datetime`)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(`datetime`))":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".check_sql($page,"list")</query>
+			WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".make_like_query("nombre2,descripcion,cliente2,estado,search",$comentarios)." AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -526,7 +526,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">posiblecli</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>posiblescli(-abs(ID))</link>
@@ -538,7 +538,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">campanya</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_select_query("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>campanyas(-abs(ID))</link>
 							<icon>view</icon>
@@ -570,7 +570,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">proyecto</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '' `value`,'".LANG_ESCAPE("sinproyecto")."' label"</query>
+							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>proyectos(-abs(ID))</link>
 							<icon>view</icon>
@@ -610,7 +610,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">estado</label>
 							<type>select</type>
 							<width>240px</width>
-							<query global="page" eval="true">make_select_query("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' `value`,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY `pos` ASC,`label` ASC,`value` ASC"</query>
+							<query global="page" eval="true">make_extra_query_with_perms("estados","tbl_estados","nombre","SELECT id FROM tbl_estados WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sinestado")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
@@ -1487,11 +1487,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query match="detalle" prefix="true" global="page" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table($page)))</query>
-		<query match="detalle" prefix="true" eval="true">"UPDATE tbl_presupuestos SET objetivos='".getParam("objetivos")."',funcional='".getParam("funcional")."',tecnica='".getParam("tecnica")."',extras='".getParam("extras")."' WHERE id='".getParam("id")."'"</query>
+		<query match="detalle" prefix="true" eval="true">make_update_query("tbl_presupuestos",array(
+			"objetivos"=>getParam("objetivos"),
+			"funcional"=>getParam("funcional"),
+			"tecnica"=>getParam("tecnica"),
+			"extras"=>getParam("extras")
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
 		<query match="condiciones" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="condiciones" prefix="true" eval="true">"UPDATE tbl_presupuestos SET condiciones='".getParam("condiciones")."' WHERE id='".getParam("id")."'"</query>
-		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_presupuestos_t(id,id_presupuesto,tarea,horas,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_presupuestos),'".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_presupuestos_p(id,id_presupuesto,id_producto,concepto,unidades,precio,descuento) VALUES(NULL,(SELECT MAX(id) FROM tbl_presupuestos),'".getParam("id_producto")."','".getParam("concepto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query match="condiciones" prefix="true" eval="true">make_update_query("tbl_presupuestos",array(
+			"condiciones"=>getParam("condiciones")
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
+		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?make_insert_query("tbl_presupuestos_t",array(
+			"tarea"=>getParam("tarea"),
+			"horas"=>getParam("horas"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		),array(
+			"id_presupuesto"=>"SELECT MAX(id) FROM tbl_presupuestos"
+		)):""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_presupuestos_p",array(
+			"id_producto"=>getParam("id_producto"),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>getParam("unidades"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		),array(
+			"id_presupuesto"=>"SELECT MAX(id) FROM tbl_presupuestos"
+		)):""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
@@ -1499,14 +1525,53 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query match="detalle" prefix="true" eval="true">"UPDATE tbl_presupuestos SET objetivos='".getParam("objetivos")."',funcional='".getParam("funcional")."',tecnica='".getParam("tecnica")."',extras='".getParam("extras")."' WHERE id='".getParam("id")."'"</query>
-		<query match="condiciones" prefix="true" eval="true">"UPDATE tbl_presupuestos SET condiciones='".getParam("condiciones")."' WHERE id='".getParam("id")."'"</query>
-		<query match="tareas_old" prefix="true" eval="true">"UPDATE tbl_presupuestos_t SET `tarea`='".getParam("tarea")."',`horas`='".getParam("horas")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
-		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_presupuestos_t WHERE `id`='".getParam("id")."'":""</query>
-		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?"INSERT INTO tbl_presupuestos_t(id,id_presupuesto,tarea,horas,precio,descuento) VALUES(NULL,'".intval(getParam("id_presupuesto"))."','".getParam("tarea")."','".getParam("horas")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
-		<query match="products_old" prefix="true" eval="true">"UPDATE tbl_presupuestos_p SET `id_producto`='".getParam("id_producto")."',`concepto`='".getParam("concepto")."',`unidades`='".getParam("unidades")."',`precio`='".getParam("precio")."',`descuento`='".getParam("descuento")."' WHERE `id`='".getParam("id")."'"</query>
-		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_presupuestos_p WHERE `id`='".getParam("id")."'":""</query>
-		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?"INSERT INTO tbl_presupuestos_p(id,id_presupuesto,id_producto,concepto,unidades,precio,descuento) VALUES(NULL,'".intval(getParam("id_presupuesto"))."','".getParam("id_producto")."','".getParam("concepto")."','".getParam("unidades")."','".getParam("precio")."','".getParam("descuento")."')":""</query>
+		<query match="detalle" prefix="true" eval="true">make_update_query("tbl_presupuestos",array(
+			"objetivos"=>getParam("objetivos"),
+			"funcional"=>getParam("funcional"),
+			"tecnica"=>getParam("tecnica"),
+			"extras"=>getParam("extras")
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
+		<query match="condiciones" prefix="true" eval="true">make_update_query("tbl_presupuestos",array(
+			"condiciones"=>getParam("condiciones")
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
+		<query match="tareas_old" prefix="true" eval="true">make_update_query("tbl_presupuestos_t",array(
+			"tarea"=>getParam("tarea"),
+			"horas"=>getParam("horas"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
+		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_presupuestos_t",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?make_insert_query("tbl_presupuestos_t",array(
+			"id_presupuesto"=>intval(getParam("id_presupuesto")),
+			"tarea"=>getParam("tarea"),
+			"horas"=>getParam("horas"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		)):""</query>
+		<query match="products_old" prefix="true" eval="true">make_update_query("tbl_presupuestos_p",array(
+			"id_producto"=>getParam("id_producto"),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>getParam("unidades"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		),make_where_query(array(
+			"id"=>intval(getParam("id"))
+		)))</query>
+		<query match="products_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_presupuestos_p",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_presupuestos_p",array(
+			"id_presupuesto"=>intval(getParam("id_presupuesto")),
+			"id_producto"=>getParam("id_producto"),
+			"concepto"=>getParam("concepto"),
+			"unidades"=>getParam("unidades"),
+			"precio"=>getParam("precio"),
+			"descuento"=>getParam("descuento")
+		)):""</query>
 		<query include="xml/common/qfilesdelete.xml" replace="true" />
 		<query include="xml/common/qfilesupdate.xml" replace="true"/>
 		<query include="xml/common/qcommentsdelete.xml" replace="true" />
@@ -1516,8 +1581,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query eval="true">"DELETE FROM tbl_presupuestos_t WHERE `id_presupuesto`='".abs(getParam("id"))."'"</query>
-		<query eval="true">"DELETE FROM tbl_presupuestos_p WHERE `id_presupuesto`='".abs(getParam("id"))."'"</query>
+		<query eval="true">make_delete_query("tbl_presupuestos_t",make_where_query(array("id_presupuesto"=>abs(getParam("id")))))</query>
+		<query eval="true">make_delete_query("tbl_presupuestos_p",make_where_query(array("id_presupuesto"=>abs(getParam("id")))))</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
@@ -1529,7 +1594,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query>"SELECT * FROM (
 			SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
 				".make_extra_query_with_login("d.")." usuario,
-				e.`datetime` `datetime`,
+				e.datetime datetime,
 				CASE
 					WHEN a.id_cliente!='0' THEN b1.nombre
 					WHEN a.id_posiblecli!='0' THEN b2.nombre
