@@ -118,11 +118,11 @@ function preeval_insert_query($table) {
 	$list1=array();
 	$list2=array();
 	foreach($fields as $field) {
+		if($field["name"]=="id") continue;
 		$list1[]=$field["name"];
 		$type=$field["type"];
 		$type2=get_field_type($type);
-		if($field["name"]=="id") $list2[]="NULL";
-		elseif($type2=="int") $list2[]="'\".intval(getParam(\"".$field["name"]."\")).\"'";
+		if($type2=="int") $list2[]="'\".intval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="float") $list2[]="'\".floatval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="date") $list2[]="'\".dateval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="time") $list2[]="'\".timeval(getParam(\"".$field["name"]."\")).\"'";
@@ -140,10 +140,10 @@ function preeval_update_query($table) {
 	$fields=get_fields_from_dbschema($table);
 	$list=array();
 	foreach($fields as $field) {
+		if($field["name"]=="id") continue;
 		$type=$field["type"];
 		$type2=get_field_type($type);
-		if($field["name"]=="id") continue;
-		elseif($type2=="int") $list[]=$field["name"]."='\".intval(getParam(\"".$field["name"]."\")).\"'";
+		if($type2=="int") $list[]=$field["name"]."='\".intval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="float") $list[]=$field["name"]."='\".floatval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="date") $list[]=$field["name"]."='\".dateval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="time") $list[]=$field["name"]."='\".timeval(getParam(\"".$field["name"]."\")).\"'";
@@ -453,11 +453,11 @@ function make_extra_query($prefix="") {
 	static $stack=array();
 	$hash=md5($prefix);
 	if(!isset($stack[$hash])) {
-		$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND field!=''";
+		$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''";
 		$result=db_query($query);
 		$cases=array("CASE ${prefix}id_aplicacion");
 		while($row=db_fetch_row($result)) {
-			$cases[]="WHEN '${row["id"]}' THEN (SELECT ${row["field"]} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
+			$cases[]="WHEN '${row["id"]}' THEN (SELECT ${row["campo"]} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
 		}
 		db_free($result);
 		$cases[]="END";
@@ -470,7 +470,7 @@ function make_extra_query_with_field($field,$prefix="") {
 	static $stack=array();
 	$hash=md5(serialize(array($field,$prefix)));
 	if(!isset($stack[$hash])) {
-		$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND field!=''";
+		$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''";
 		$result=db_query($query);
 		$cases=array("CASE ${prefix}id_aplicacion");
 		while($row=db_fetch_row($result)) {
@@ -486,7 +486,7 @@ function make_extra_query_with_field($field,$prefix="") {
 }
 
 function make_select_appsregs($id=0) {
-	$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND field!=''";
+	$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''";
 	$result=db_query($query);
 	$subquery=array();
 	while($row=db_fetch_row($result)) {

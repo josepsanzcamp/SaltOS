@@ -458,7 +458,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<label lang="true">aplicacion</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE tabla!='' AND field!=''")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<onchange>update_registros()</onchange>

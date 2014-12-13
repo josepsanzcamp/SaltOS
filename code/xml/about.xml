@@ -266,7 +266,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.0.099 (LGPL-3.0)</label>
+							<label>TCPDF 6.2.0 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -532,7 +532,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
 						<field>
-							<label>jPlayer 2.8.3 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.9.1 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
@@ -581,7 +581,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 4.4.6 DEV (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 4.4.7 DEV (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>

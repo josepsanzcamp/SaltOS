@@ -231,7 +231,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>VARCHAR(255)</type>
 				</field>
 				<field>
-					<name>field</name>
+					<name>subtablas</name>
+					<type>VARCHAR(255)</type>
+				</field>
+				<field>
+					<name>campo</name>
 					<type>VARCHAR(255)</type>
 				</field>
 				<field>
@@ -1818,6 +1822,63 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
+			<name>tbl_indexing</name>
+			<fields>
+				<field>
+					<name>id</name>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>id_aplicacion</name>
+					<type>INT(11)</type>
+					<fkey>tbl_aplicaciones</fkey>
+				</field>
+				<field>
+					<name>id_registro</name>
+					<type>INT(11)</type>
+				</field>
+			</fields>
+		</table>
+		<table>
+			<name>tbl_indexing_r</name>
+			<fields>
+				<field>
+					<name>id</name>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>id_indexing</name>
+					<type>INT(11)</type>
+					<fkey>tbl_indexing</fkey>
+				</field>
+				<field>
+					<name>id_word</name>
+					<type>INT(11)</type>
+					<fkey>tbl_indexing_w</fkey>
+				</field>
+				<field>
+					<name>frequency</name>
+					<type>INT(11)</type>
+				</field>
+			</fields>
+		</table>
+		<table>
+			<name>tbl_indexing_w</name>
+			<fields>
+				<field>
+					<name>id</name>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>word</name>
+					<type>VARCHAR(255)</type>
+				</field>
+			</fields>
+		</table>
+		<table>
 			<name>tbl_ivas</name>
 			<fields>
 				<field>
@@ -3334,6 +3395,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>state_new</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>indexing</name>
+			<table>tbl_indexing</table>
+			<fields>
+				<field>
+					<name>id_aplicacion</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>indexing_r</name>
+			<table>tbl_indexing_r</table>
+			<fields>
+				<field>
+					<name>id_indexing</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>indexing_r2</name>
+			<table>tbl_indexing_r</table>
+			<fields>
+				<field>
+					<name>id_word</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>indexing_w</name>
+			<table>tbl_indexing_w</table>
+			<fields>
+				<field>
+					<name>word</name>
 				</field>
 			</fields>
 		</index>

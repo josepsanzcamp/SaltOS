@@ -1,3 +1,20 @@
+6.2.0 (2014-12-10)
+	- Bug #1005 "Security Report, LFI posting internal files externally abusing default parameter" was fixed.
+	- Static methods serializeTCPDFtagParameters() and unserializeTCPDFtagParameters() were moved as non static to the main TCPDF class (see changes in example n. 49).
+	- Deprecated methods were removed, please use the equivalents defined in other classes (i.e. TCPDF_STATIC and TCPDF_FONTS).
+	- The constant K_TCPDF_CALLS_IN_HTML is now set by default to FALSE.
+	- DLE, DLX and DLP page format was added.
+	- Page format are now defined as a public property in TCPDF_STATIC.
+
+6.1.1 (2014-12-09)
+	- Fixed bug with the register_shutdown_function().
+
+6.1.0 (2014-12-07)
+	- The method TCPDF_STATIC::getRandomSeed() was improved.
+	- The disk caching feature was removed.
+	- Bug #1003 "Backslashes become duplicated in table, using WriteHTML" was fixed.
+	- Bug #1002 "SVG radialGradient within non-square Rect" was fixed.
+
 6.0.099 (2014-11-15)
 	- Added basic support for nested SVG images (adapted PR from SamMousa).
 	- A bug related to setGDImageTransparency() was fixed (thanks to Maarten Boerema).

@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>clientes</codigo>
 			<nombre>Clientes</nombre>
 			<tabla>tbl_clientes</tabla>
-			<field>nombre</field>
+			<campo>nombre</campo>
 			<filter1>id_cliente</filter1>
 			<filter2>id_cliente</filter2>
 			<node0>id_tipo,nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax</node0>
@@ -53,7 +53,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>proyectos</codigo>
 			<nombre>Proyectos</nombre>
 			<tabla>tbl_proyectos</tabla>
-			<field>nombre</field>
+			<subtablas>tbl_proyectos_p,tbl_proyectos_t</subtablas>
+			<campo>nombre</campo>
 			<filter1>id_proyecto</filter1>
 			<filter2>id_cliente,id_proyecto</filter2>
 		</row>
@@ -76,6 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>facturas</codigo>
 			<nombre>Facturas</nombre>
 			<tabla>tbl_facturas</tabla>
+			<subtablas>tbl_facturas_c,tbl_facturas_v</subtablas>
 			<filter2>id_cliente,id_proyecto</filter2>
 			<node0>nombre,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,cif,num,fecha,iva,irpf</node0>
 			<node1>concepto,unidades,descuento,precio</node1>
@@ -85,6 +87,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>gastos</codigo>
 			<nombre>Gastos</nombre>
 			<tabla>tbl_gastos</tabla>
+			<subtablas>tbl_gastos_v</subtablas>
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
 			<node0>num,fecha,descripcion,base,iva,irpf,total</node0>
 		</row>
@@ -98,13 +101,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>10</id>
 			<codigo>home</codigo>
 			<nombre>Inicio</nombre>
+<!--
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
+-->
 		</row>
 		<row>
 			<id>11</id>
 			<codigo>usuarios</codigo>
 			<nombre>Usuarios</nombre>
 			<tabla>tbl_usuarios</tabla>
+			<subtablas>tbl_usuarios_c,tbl_usuarios_f</subtablas>
 		</row>
 		<row>
 			<id>12</id>
@@ -156,14 +162,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>20</id>
 			<codigo>folders</codigo>
 			<nombre>Carpetas</nombre>
+<!--
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
+-->
 		</row>
 		<row>
 			<id>21</id>
 			<codigo>proveedores</codigo>
 			<nombre>Proveedores</nombre>
 			<tabla>tbl_proveedores</tabla>
-			<field>nombre</field>
+			<campo>nombre</campo>
 			<filter1>id_proveedor</filter1>
 			<filter2>id_proveedor</filter2>
 			<node0>nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax</node0>
@@ -202,6 +210,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>correo</codigo>
 			<nombre>Correo</nombre>
 			<tabla>tbl_correo</tabla>
+			<subtablas>tbl_correo_a,tbl_correo_d</subtablas>
 		</row>
 		<row>
 			<id>28</id>
@@ -214,19 +223,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>periodicas</codigo>
 			<nombre>Periodicas</nombre>
 			<tabla>tbl_periodicas</tabla>
+			<subtablas>tbl_periodicas_c,tbl_periodicas_v</subtablas>
 		</row>
 		<row>
 			<id>30</id>
 			<codigo>buscador</codigo>
 			<nombre>Buscador</nombre>
+<!--
 			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
+-->
 		</row>
 		<row>
 			<id>31</id>
 			<codigo>empleados</codigo>
 			<nombre>Empleados</nombre>
 			<tabla>tbl_empleados</tabla>
-			<field>nombre</field>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>32</id>
@@ -247,6 +259,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>presupuestos</codigo>
 			<nombre>Presupuestos</nombre>
 			<tabla>tbl_presupuestos</tabla>
+			<subtablas>tbl_presupuestos_p,tbl_presupuestos_t</subtablas>
 			<filter2>id_cliente,id_proyecto</filter2>
 		</row>
 		<row>
@@ -277,6 +290,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>feeds</codigo>
 			<nombre>Feeds</nombre>
 			<tabla>tbl_feeds</tabla>
+			<subtablas>tbl_feeds_d</subtablas>
 		</row>
 		<row>
 			<id>40</id>
