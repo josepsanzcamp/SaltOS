@@ -624,7 +624,6 @@ if($page=="presupuestos") {
 		$result=execute_query_array($query2);
 		if(count($result)) {
 			if($id_cliente) {
-
 				$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
 					"'".$id_cliente."'",
 					"nombre",
@@ -640,7 +639,7 @@ if($page=="presupuestos") {
 					"cif",
 					"'".current_date()."'",
 					"'".current_date()."'",
-					"'".$id_periodica."'"
+					"'".$id_presupuesto."'"
 				),make_where_query(array(
 					"id"=>$id_cliente
 				))),array(
@@ -658,7 +657,7 @@ if($page=="presupuestos") {
 					"cif",
 					"fecha",
 					"fecha2",
-					"id_periodica"
+					"id_presupuesto"
 				));
 			} else {
 				$query=make_insert_query("tbl_facturas",array(
