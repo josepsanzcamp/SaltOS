@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -120,16 +120,38 @@ function encode_bad_chars($cad,$pad="_") {
 		if($letter>="0" && $letter<="9") $replace=0;
 		if($replace) $cad[$i]=" ";
 	}
-	$cad=encode_words($cad,$pad);
+	$cad=prepare_words($cad,$pad);
 	return $cad;
 }
 
-function encode_words($cad,$pad=" ") {
+function prepare_words($cad,$pad=" ") {
 	$cad=trim($cad);
 	$count=1;
 	while($count) $cad=str_replace("  "," ",$cad,$count);
 	$cad=str_replace(" ",$pad,$cad);
 	return $cad;
+}
+
+function array_unique_protected($array) {
+	return array_flip(array_flip($array));
+}
+
+function explode_unique($delimiter,$string) {
+	static $limit=10000;
+	$result=array();
+	while($string!="") {
+		$string=explode($delimiter,$string,$limit);
+		if(count($string)==$limit) {
+			$temp=array_pop($string);
+			$result=array_merge($result,$string);
+			$string=$temp;
+		} else {
+			$result=array_merge($result,$string);
+			$string="";
+		}
+		$result=array_unique_protected($result);
+	}
+	return $result;
 }
 
 function encode_search($cad,$pad=" ") {
@@ -141,15 +163,14 @@ function encode_search($cad,$pad=" ") {
 		"a","a","a","e","e","e","i","i","i","o","o","o","u","u","u","n","c");
 	static $bad_chars=null;
 	if($bad_chars===null) {
-		$bad_chars=array(",",".",";",":","'",'"',"`","´");
+		$bad_chars=array();
 		for($i=0;$i<32;$i++) $bad_chars[]=chr($i);
 	}
 	$cad=str_replace($orig,$dest,$cad);
 	$cad=str_replace($bad_chars,$pad,$cad);
 	$cad=strtolower($cad);
-	$cad=encode_words($cad,$pad);
-	$cad=explode($pad,$cad);
-	$cad=array_flip(array_flip($cad));
+	$cad=prepare_words($cad,$pad);
+	$cad=explode_unique($pad,$cad);
 	$cad=implode($pad,$cad);
 	return $cad;
 }
@@ -218,7 +239,7 @@ function color2dec($color,$component) {
 function dateval($value) {
 	static $expr=array("-",":",",",".","/");
 	$value=str_replace($expr," ",$value);
-	$value=encode_words($value," ");
+	$value=prepare_words($value);
 	$temp=explode(" ",$value);
 	foreach($temp as $key=>$val) $temp[$key]=intval($val);
 	for($i=0;$i<3;$i++) if(!isset($temp[$i])) $temp[$i]=0;
@@ -233,7 +254,7 @@ function dateval($value) {
 function timeval($value) {
 	static $expr=array("-",":",",",".","/");
 	$value=str_replace($expr," ",$value);
-	$value=encode_words($value," ");
+	$value=prepare_words($value);
 	$temp=explode(" ",$value);
 	foreach($temp as $key=>$val) $temp[$key]=intval($val);
 	for($i=0;$i<3;$i++) if(!isset($temp[$i])) $temp[$i]=0;
@@ -244,7 +265,7 @@ function timeval($value) {
 function datetimeval($value) {
 	static $expr=array("-",":",",",".","/");
 	$value=str_replace($expr," ",$value);
-	$value=encode_words($value," ");
+	$value=prepare_words($value);
 	$temp=explode(" ",$value);
 	foreach($temp as $key=>$val) $temp[$key]=intval($val);
 	for($i=0;$i<6;$i++) if(!isset($temp[$i])) $temp[$i]=0;
@@ -363,7 +384,14 @@ function normalize_value($value) {
 }
 
 function get_name_version_revision($copyright=false) {
-	return getDefault("info/name","SaltOS")." v".getDefault("info/version","3.1")." r".getDefault("info/revision",svnversion("../code")).($copyright?", ".getDefault("info/copyright","Copyright (C) 2007-2014 by Josep Sanz Campderrós"):"");
+	$result=getDefault("info/name","SaltOS");
+	$result.=" v".getDefault("info/version","3.1");
+	capture_next_error();
+	$revision=svnversion("../code");
+	get_clear_error();
+	$result.=" r".getDefault("info/revision",$revision);
+	if($copyright) $result.=", ".getDefault("info/copyright");
+	return $result;
 }
 
 function getServer($index,$default="") {
@@ -447,52 +475,54 @@ function inline_images($buffer) {
 }
 
 function svnversion($dir=".") {
-	// USING SVNVERSION
-	if(check_commands("svnversion",60)) {
-		return intval(ob_passthru("cd ${dir}; svnversion",60));
-	}
-	// ALTERNATIVE METHOD
 	static $rev=null;
 	if($rev===null) {
 		$rev=0;
-		$dir=realpath($dir);
-		if(!$dir) $dir=getcwd_protected();
-		for(;;) {
-			// FOR SUBVERSION <= 11
-			$file="$dir/.svn/entries";
-			if(file_exists($file)) {
-				$data=file($file);
-				if(isset($data[3])) $rev=intval($data[3]);
-				break;
-			}
-			// FOR SUBVERSION >= 12
-			$file="$dir/.svn/wc.db";
-			if(file_exists($file)) {
-				$query="SELECT MAX(revision) FROM NODES";
-				if(class_exists("PDO")) {
-					capture_next_error();
-					$link=new PDO("sqlite:${file}");
-					$stmt=$link->query($query);
-					if($stmt) $rev=intval($stmt->fetchColumn());
-					$link=null;
-					get_clear_error();
-				} elseif(class_exists("SQLite3")) {
-					capture_next_error();
-					$link=new SQLite3($file);
-					$rev=intval($link->querySingle($query));
-					$link->close();
-					get_clear_error();
-				} elseif(check_commands("sqlite3",60)) {
-					$rev=intval(ob_passthru("sqlite3 '${file}' '${query}'",60));
+		// USING SVNVERSION
+		if(check_commands("svnversion",60)) {
+			$rev=intval(ob_passthru("cd ${dir}; svnversion",60));
+		}
+		// ALTERNATIVE METHOD
+		if(!$rev) {
+			$dir=realpath($dir);
+			if(!$dir) $dir=getcwd_protected();
+			for(;;) {
+				// FOR SUBVERSION <= 11
+				$file="$dir/.svn/entries";
+				if(file_exists($file)) {
+					$data=file($file);
+					if(isset($data[3])) $rev=intval($data[3]);
+					break;
 				}
-				break;
+				// FOR SUBVERSION >= 12
+				$file="$dir/.svn/wc.db";
+				if(file_exists($file)) {
+					$query="SELECT MAX(revision) FROM NODES";
+					if(class_exists("PDO")) {
+						capture_next_error();
+						$link=new PDO("sqlite:${file}");
+						$stmt=$link->query($query);
+						if($stmt) $rev=intval($stmt->fetchColumn());
+						$link=null;
+						get_clear_error();
+					} elseif(class_exists("SQLite3")) {
+						capture_next_error();
+						$link=new SQLite3($file);
+						$rev=intval($link->querySingle($query));
+						$link->close();
+						get_clear_error();
+					} elseif(check_commands("sqlite3",60)) {
+						$rev=intval(ob_passthru("sqlite3 '${file}' '${query}'",60));
+					}
+					break;
+				}
+				// CONTINUE
+				capture_next_error();
+				$temp=realpath($dir."/..");
+				$error=get_clear_error();
+				if($error || $dir==$temp) break;
+				$dir=$temp;
 			}
-			// CONTINUE
-			capture_next_error();
-			$temp=realpath($dir."/..");
-			$error=get_clear_error();
-			if($error || $dir==$temp) break;
-			$dir=$temp;
 		}
 	}
 	// NOTHING TO DO
@@ -682,5 +712,11 @@ function is_array_key_val($array) {
 		$count++;
 	}
 	return false;
+}
+
+function words_exists($words,$buffer) {
+	if(!is_array($words)) $words=explode(" ",$words);
+	foreach($words as $word) if(stripos($buffer,$word)===false) return false;
+	return true;
 }
 ?>

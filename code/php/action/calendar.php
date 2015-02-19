@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -216,9 +216,11 @@ if(getParam("action")=="calendar") {
 		$correccion=(date("I",$unix)-date("I",$unix+86400))*3600;
 		$unix+=86400+$correccion;
 	}
-	// ENVIAR XML DE SALIDA
-	$buffer=__XML_HEADER__;
-	$buffer.=array2xml($_RESULT);
-	output_buffer($buffer,"text/xml");
+	// PREPARE THE OUTPUT
+	$_RESULT["options"]=array_values($_RESULT["options"]);
+	$_RESULT["rows"]=array_values($_RESULT["rows"]);
+	$buffer=json_encode($_RESULT);
+	// CONTINUE
+	output_buffer($buffer,"application/json");
 }
 ?>

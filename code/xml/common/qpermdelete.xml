@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM (SELECT a.id,".check_sql(getParam("page")).",e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".page2table(getParam("page"))." a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs(getParam("id"))."') z WHERE NOT ".check_sql(getParam("page"),"delete")</query>
+	<query eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM (SELECT a.id,e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".page2table(getParam("page"))." a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id(getParam("page"))."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs(getParam("id"))."') z WHERE NOT ".check_sql(getParam("page"),"delete")</query>
 	<query eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ".page2table(getParam("page"))." WHERE id='".abs(getParam("id"))."')=0"</query>
 	<query preeval="true" eval="true">preeval_dependencies_query(page2table(getParam("page")),LANG("deldenied"))</query>
 </root>

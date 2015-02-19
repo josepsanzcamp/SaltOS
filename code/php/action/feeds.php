@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -86,10 +86,8 @@ if(getParam("action")=="feeds") {
 					$query=make_delete_query("tbl_feeds","id IN (${ids})");
 					db_query($query);
 					// BORRAR REGISTRO DE LOS POSTS
-					$query=make_delete_query("tbl_registros_i","id_registro IN (${ids}) AND id_aplicacion='".page2id("feeds")."'");
-					db_query($query);
-					$query=make_delete_query("tbl_registros_u","id_registro IN (${ids}) AND id_aplicacion='".page2id("feeds")."'");
-					db_query($query);
+					make_control(page2id("feeds"),$ids);
+					make_indexing(page2id("feeds"),$ids);
 					// BORRAR FOLDERS RELACIONADOS
 					$query=make_delete_query("tbl_folders_a","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
 					db_query($query);
@@ -105,244 +103,8 @@ if(getParam("action")=="feeds") {
 		javascript_history(-1);
 		die();
 	}
-	// FUNCTIONS
-	function __feeds_getnode($path,$array) {
-		if(!is_array($path)) $path=explode("/",$path);
-		$elem=array_shift($path);
-		if(!is_array($array) || !isset($array[$elem])) return null;
-		if(count($path)==0) return $array[$elem];
-		return __feeds_getnode($path,__feeds_getvalue($array[$elem]));
-	}
-
-	function __feeds_getvalue($array) {
-		return (is_array($array) && isset($array["value"]) && isset($array["#attr"]))?$array["value"]:$array;
-	}
-
-	function __feeds_xml2array_helper($xml) {
-		require_once("php/import.php");
-		$data=xml2struct($xml);
-		$data=array_reverse($data);
-		$array=__import_struct2array($data);
-		return $array;
-	}
-
-	function __feeds_xml2array($xml) {
-		capture_next_error();
-		$array=__feeds_xml2array_helper($xml);
-		$error=get_clear_error();
-		if(strpos($error,"Reserved XML Name")!==false) {
-			$xml=trim($xml);
-			capture_next_error();
-			$array=__feeds_xml2array_helper($xml);
-			$error=get_clear_error();
-		}
-		if(strpos($error,"Invalid document")!==false) {
-			$xml=remove_script_tag($xml);
-			capture_next_error();
-			$array=__feeds_xml2array_helper($xml);
-			$error=get_clear_error();
-		}
-		if(strpos($error,"XML_ERR_NAME_REQUIRED")!==false) {
-			$xml=str_replace("&","&amp;",$xml);
-			capture_next_error();
-			$array=__feeds_xml2array_helper($xml);
-			$error=get_clear_error();
-		}
-		if(strpos($error,"EntityRef")!==false) {
-			$xml=str_replace("&","&amp;",$xml);
-			capture_next_error();
-			$array=__feeds_xml2array_helper($xml);
-			$error=get_clear_error();
-		}
-		if(strpos($error,"Invalid character")!==false) {
-			$xml=remove_bad_chars($xml);
-			capture_next_error();
-			$array=__feeds_xml2array_helper($xml);
-			$error=get_clear_error();
-		}
-		if(strpos($error,"Invalid document end")!==false) {
-			$error=""; // KNOWN ISSUE
-		}
-		return array($array,$error);
-	}
-
-	function __feeds_detect($array) {
-		$keys=array_keys($array);
-		if(isset($keys[0])) {
-			if($keys[0]=="rdf:RDF") return "rdf";
-			if($keys[0]=="rss") return "rss2";
-			if($keys[0]=="feed") return "atom";
-		}
-		return "unknown";
-	}
-
-	function __feeds_fetchmain($array) {
-		$type=__feeds_detect($array);
-		$title="";
-		$link="";
-		$description="";
-		$image="img/deffeed.png";
-		if($type=="rdf") {
-			$title=getutf8(__feeds_getnode("rdf:RDF/channel/title",$array));
-			$link=__feeds_getnode("rdf:RDF/channel/link",$array);
-			$description=getutf8(__feeds_getnode("rdf:RDF/channel/description",$array));
-			$image=__feeds_getnode("rdf:RDF/image/url",$array);
-		} elseif($type=="rss2") {
-			$title=getutf8(__feeds_getnode("rss/channel/title",$array));
-			$link=__feeds_getnode("rss/channel/link",$array);
-			$description=getutf8(__feeds_getnode("rss/channel/description",$array));
-			$image=__feeds_getnode("rss/channel/image/url",$array);
-		} elseif($type=="atom") {
-			$title=getutf8(__feeds_getvalue(__feeds_getnode("feed/title",$array)));
-			$link=__feeds_getnode("feed/link",$array);
-			$count=0;
-			while($link!==null) {
-				$rel=__feeds_getnode("#attr/rel",$link);
-				$type=__feeds_getnode("#attr/type",$link);
-				if($rel=="alternate" && $type=="text/html") {
-					$link=__feeds_getnode("#attr/href",$link);
-					break;
-				}
-				if($rel=="alternate" && !isset($alternate)) {
-					$alternate=__feeds_getnode("#attr/href",$link);
-				}
-				$count++;
-				$link=__feeds_getnode("feed/link#${count}",$array);
-			}
-			if(!$link && isset($alternate)) $link=$alternate;
-			// FIX FOR GOOGLE GROUPS
-			if(!$link) $link=__feeds_getnode("feed/id",$array);
-			$description=getutf8(__feeds_getvalue(__feeds_getnode("feed/subtitle",$array)));
-		}
-		$array=array("title"=>$title,"link"=>$link,"description"=>$description,"image"=>$image);
-		foreach($array as $key=>$val) $array[$key]=trim($val);
-		return $array;
-	}
-
-	function __feeds_fetchitems($array) {
-		require_once("php/getmail.php");
-		$type=__feeds_detect($array);
-		$items=array();
-		if($type=="rdf") {
-			$item=__feeds_getvalue(__feeds_getnode("rdf:RDF/item",$array));
-			$count=0;
-			while($item!==null) {
-				$title=__feeds_getnode("title",$item);
-				if(is_array($title)) {
-					$title=__array2xml_write_nodes($title);
-					$title=getutf8($title);
-					$title=html2text($title);
-				} else {
-					$title=getutf8($title);
-				}
-				$link=__feeds_getnode("link",$item);
-				if(is_array($link)) $link=array_shift($link);
-				$description=__feeds_getnode("description",$item);
-				if(is_array($description)) $description=__array2xml_write_nodes($description);
-				$description=getutf8($description);
-				$pubdate=__feeds_getnode("dc:date",$item);
-				if(is_array($pubdate)) $pubdate=array_shift($pubdate);
-				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
-				$hash=md5(serialize(array($title,$pubdate,$description,$link)));
-				if(!$pubdate) $pubdate=current_datetime();
-				if($title!="" && $link!="") $items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
-				$count++;
-				$item=__feeds_getvalue(__feeds_getnode("rdf:RDF/item#${count}",$array));
-			}
-		} elseif($type=="rss2") {
-			$item=__feeds_getvalue(__feeds_getnode("rss/channel/item",$array));
-			$count=0;
-			while($item!==null) {
-				$title=__feeds_getnode("title",$item);
-				if(is_array($title)) {
-					$title=__array2xml_write_nodes($title);
-					$title=getutf8($title);
-					$title=html2text($title);
-				} else {
-					$title=getutf8($title);
-				}
-				$link=__feeds_getnode("link",$item);
-				if(is_array($link)) $link=array_shift($link);
-				$description=__feeds_getnode("description",$item);
-				if(is_array($description)) $description=__array2xml_write_nodes($description);
-				$description=getutf8($description);
-				$pubdate=__feeds_getnode("pubDate",$item);
-				if(is_array($pubdate)) $pubdate=array_shift($pubdate);
-				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
-				$hash=md5(serialize(array($title,$pubdate,$description,$link)));
-				if(!$pubdate) $pubdate=current_datetime();
-				if($title!="" && $link!="") $items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
-				$count++;
-				$item=__feeds_getvalue(__feeds_getnode("rss/channel/item#${count}",$array));
-			}
-		} elseif($type=="atom") {
-			$item=__feeds_getvalue(__feeds_getnode("feed/entry",$array));
-			$count=0;
-			while($item!==null) {
-				$title=__feeds_getvalue(__feeds_getnode("title",$item));
-				if(is_array($title)) {
-					$title=__array2xml_write_nodes($title);
-					$title=getutf8($title);
-					$title=html2text($title);
-				} else {
-					$title=getutf8($title);
-				}
-				$link=__feeds_getnode("link",$item);
-				$count2=0;
-				while($link!==null) {
-					$rel=__feeds_getnode("#attr/rel",$link);
-					$type=__feeds_getnode("#attr/type",$link);
-					if($rel=="alternate" && $type=="text/html") {
-						$link=__feeds_getnode("#attr/href",$link);
-						break;
-					}
-					if($rel=="alternate" && !isset($alternate)) {
-						$alternate=__feeds_getnode("#attr/href",$link);
-					}
-					$count2++;
-					$link=__feeds_getnode("link#${count2}",$item);
-				}
-				if(!$link && isset($alternate)) $link=$alternate;
-				// FIX FOR GOOGLE GROUPS
-				if(!$link) $link=__feeds_getnode("#attr/href",__feeds_getnode("link",$item));
-				if(is_array($link)) $link=array_shift($link);
-				// GET CONTENT (AND SUMMARY IS OPTIONAL IN SOME FEEDS)
-				$summary=__feeds_getvalue(__feeds_getnode("summary",$item));
-				if(is_array($summary)) $summary=__array2xml_write_nodes($summary);
-				$summary=trim(getutf8($summary));
-				$content=__feeds_getvalue(__feeds_getnode("content",$item));
-				if(is_array($content)) $content=__array2xml_write_nodes($content);
-				$content=trim(getutf8($content));
-				// FIX SOME ISSUES ABOUT SOME HTML WITH NO TEXT CONTENT
-				$summary_plain=trim(strip_tags($summary));
-				if(!$summary_plain) $summary="";
-				$content_plain=trim(strip_tags($content));
-				if(!$content_plain) $content="";
-				// IF THE SUMMARY IS A PREVIEW OF THE CONTENT, REMOVE IT
-				if($summary_plain && $content_plain && strncmp($summary_plain,$content_plain,min(strlen($summary_plain),strlen($content_plain)))==0) {
-					if(strlen($summary_plain)<strlen($content_plain)) $summary="";
-					else $content="";
-				}
-				// TRUE, PREPARE THE DESCRIPTION TO USE IN APPLICATION
-				$description="";
-				if($summary && $content) $description=$summary.__HTML_SEPARATOR__.$content;
-				if($summary && !$content) $description=$summary;
-				if(!$summary && $content) $description=$content;
-				// CONTINUE
-				$pubdate=__feeds_getnode("updated",$item);
-				if(is_array($pubdate)) $pubdate=array_shift($pubdate);
-				if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
-				$hash=md5(serialize(array($title,$pubdate,$description,$link)));
-				if(!$pubdate) $pubdate=current_datetime();
-				if($title!="" && $link!="") $items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
-				$count++;
-				$item=__feeds_getvalue(__feeds_getnode("feed/entry#${count}",$array));
-			}
-		}
-		foreach($items as $key=>$val) foreach($val as $key2=>$val2) $items[$key][$key2]=trim($val2);
-		return $items;
-	}
 	// NORMAL CODE
+	require_once("php/libaction.php");
 	if(getParam("url")) {
 		$url=getParam("url");
 		if($url=="null") $url="";
@@ -427,10 +189,11 @@ if(getParam("action")=="feeds") {
 		$row=array_merge(array("url"=>$url),$array);
 		$_RESULT=array("rows"=>array());
 		set_array($_RESULT["rows"],"row",$row);
-		$buffer=__XML_HEADER__;
-		$buffer.=array2xml($_RESULT);
-		// FLUSH THE OUTPUT
-		output_buffer($buffer,"text/xml");
+		// PREPARE THE OUTPUT
+		$_RESULT["rows"]=array_values($_RESULT["rows"]);
+		$buffer=json_encode($_RESULT);
+		// CONTINUE
+		output_buffer($buffer,"application/json");
 	}
 	if(getParam("id")) {
 		require_once("php/getmail.php");
@@ -532,9 +295,7 @@ if(getParam("action")=="feeds") {
 		die();
 	}
 	// BEGIN THE LOOP
-	$id_usuario=current_user();
 	$id_aplicacion=page2id("feeds");
-	$datetime=current_datetime();
 	$newfeeds=0;
 	$modifiedfeeds=0;
 	$voice_ids=array();
@@ -599,13 +360,8 @@ if(getParam("action")=="feeds") {
 								$oldcache=set_use_cache("false");
 								$last_id=execute_query($query);
 								set_use_cache($oldcache);
-								$query=make_insert_query("tbl_registros_i",array(
-									"id_aplicacion"=>$id_aplicacion,
-									"id_registro"=>$last_id,
-									"id_usuario"=>$id_usuario,
-									"datetime"=>$datetime
-								));
-								db_query($query);
+								make_control($id_aplicacion,$last_id);
+								make_indexing($id_aplicacion,$last_id);
 								$newfeeds++;
 								$voice_ids[]=$last_id;
 							} elseif(in_array($link,$result2) && !in_array($hash,$result3)) {
@@ -629,13 +385,8 @@ if(getParam("action")=="feeds") {
 									"state_modified"=>1
 								),"id='${last_id}'");
 								db_query($query);
-								$query=make_insert_query("tbl_registros_u",array(
-									"id_aplicacion"=>$id_aplicacion,
-									"id_registro"=>$last_id,
-									"id_usuario"=>$id_usuario,
-									"datetime"=>$datetime
-								));
-								db_query($query);
+								make_control($id_aplicacion,$last_id);
+								make_indexing($id_aplicacion,$last_id);
 								$modifiedfeeds++;
 							}
 						}
@@ -684,7 +435,7 @@ if(getParam("action")=="feeds") {
 	// VOICE FEATURES
 	if($newfeeds+$modifiedfeeds>0) {
 		if($newfeeds>0) javascript_template("notify_voice('".$newfeeds.LANG_ESCAPE("msgnewfeedsok".min($newfeeds,2),"feeds")."')","saltos_voice()");
-		if($modifiedfeeds>0) javascript_template("notify_voice('".$modifiedfeeds.LANG("msgmodifiedfeedsok".min($modifiedfeeds,2),"feeds")."')","saltos_voice()");
+		if($modifiedfeeds>0) javascript_template("notify_voice('".$modifiedfeeds.LANG_ESCAPE("msgmodifiedfeedsok".min($modifiedfeeds,2),"feeds")."')","saltos_voice()");
 	}
 	if(count($voice_ids)) {
 		$query="SELECT CONCAT((SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed),'. ',title) reader FROM tbl_feeds WHERE id IN (".implode(",",$voice_ids).") ORDER BY id DESC";

@@ -1,0 +1,52 @@
+
+
+
+=Agenda=
+
+La agenda de SaltOS le permitirá gestionar fácilmente sus reuniones y eventos. Puede relacionar las entradas en la agenda con un cliente, proyecto, presupuesto, etc. además de asignarlas a varios usuarios.
+
+SaltOS le recordará automáticamente los próximos eventos y, si esto no es suficiente, podrá sincronizar la agenda de SaltOS con //Google Calendar//.
+
+==Las dos vistas de la agenda==
+
+La agenda de SaltOS puede consultarse de dos maneras: en forma de listado o en forma de Calendario.
+
+La primera se asemeja a cualquier listado de SaltOS, mostrando el o los usuarios asignados, inicio y fin del evento, cliente o proyecto relacionado, el nombre del evento así como su tipo y estado.
+
+En esta vista puede crear un nuevo evento haciendo clic en el botón correspondiente en la esquina inferior izquierda, navegar por el listado con los controles en la esquina inferior derecha así como buscar un evento mediante el buscador simple.
+
+La vista //Calendario// le mostrará el mes actual en forma de parrilla, con un día por columna. Puede crear un nuevo evento haciendo clic en //Nuevo evento// en las casilla de la fecha correspondiente. Para visualizar otro mes del calendario, selecciónelo en el desplegable //Mostrando información a fecha//. Si quieres navegar al mes anterior o posterior, haga clic en las flechas situadas en la esquina superior derecha. Si desea volver al mes actual, haga clic en el icono situada entre ambas flechas.
+
+Para expandir o contraer el detalle de todos los eventos mostrados, haga clic en el botón correspondiente en la esquina superior derecha. También puede reiniciar las notificaciones haciendo clic en el botón //Notificaciones//.
+
+Para sincronizar la agenda con //Google Calendar//, haga clic en el botón correspondiente en la parte superior. Tenga en cuenta que debe haber configurado previamente su cuenta de Google en la aplicación //Mi Perfil//. El proceso de sincronización puede tardar unos instantes, dependiendo de la velocidad de conexión, el estado del servicio de Google y la cantidad de eventos a sincronizar.
+
+=Creación=
+
+Para crear un nuevo evento introduzca la fecha y hora de inicio, el nombre (lo que se mostrará en los listados), descripción, el tipo de evento y el estado. Tenga en cuenta que el evento se considera pendiente cuando tiene el estado "Confirmado" o "Por confirmar", en cualquier otro se considerará como no pendiente o cerrado.
+
+Para facilitar la introducción de la fecha, haga clic en los iconos situados al lado de las cajas correspondiente. Se abrirá un diálogo que le permitirá elegir la fecha navegando por el calendario. Haga clic en el día correspondiente para seleccionar la fecha.
+
+También puede introducir la hora a través de un diálogo de ayuda, haciendo clic en el icono situado al lado de la caja de texto correspondiente. Seleccione la hora y minutos a través de los botones, si desea cambiar entre //AM// y //PM// haga clic en el botón correspondiente.
+
+Para recibir una notificación a modo de recordatorio, introduzca en la caja de texto //Notificar// con cuanta antelación quiere recibir el aviso (en horas). Si quiere recibir un aviso después del inicio del evento, elija "Después" en el desplegable correspondiente. Si no desea recibir ningún aviso, marque los controles //Notificación inicio recibida// y //Notificación final recibida//.
+
+Para asignar el evento a más usuarios, selecciónelos en la pestaña //Usuarios asignados//. El evento aparecerá automáticamente en el calendario de los usuarios asignados.
+
+Puede relacionar el evento con una campaña, un posible cliente, un cliente existente, un presupuesto o proyecto a través de los desplegables correspondientes. A la hora de relacionar un evento con cualquiera de estas aplicaciones, aparecerá el en detalle del contenido correspondiente. De esta manera podrá llevar un control efectivo de todas las reuniones mantenidas con un cliente o en un proyecto.
+
+Si desea adjuntar ficheros, puede hacerlo en la pestaña //Nuevos fichero adjuntos//.
+
+Una vez finalizado pulse //Crear// o //Crear y volver aquí//.
+
+=Modificación=
+
+A la hora de editar un evento, podrá introducir o modificar los mismos datos que durante la creación. Adicionalmente puede añadir un comentario, por ejemplo, para comentar los temas tratados durante la reunión, el motivo de cancelación, etc.
+
+Para que un evento deje de aparecer como pendiente, cambie su estado a //Acabado//, //Cancelado// o //Error//.
+
+=Consulta=
+
+En el modo consulta, puede consultar los diferentes parámetros del evento, así como los usuarios asignados y descargar los ficheros adjuntos, si los hubiera. También puede ver si ya se ha mostrado la notificación de inicio o finalización.
+
+Puede editar el evento haciendo clic en el botón //Editar//.

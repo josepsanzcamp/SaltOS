@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 class database_pdo_mssql {
 	private $link=null;
 
@@ -41,7 +42,7 @@ class database_pdo_mssql {
 	function db_query($query,$fetch="query") {
 		$query=parse_query($query,"MSSQL");
 		$result=array("total"=>0,"header"=>array(),"rows"=>array());
-		if(!$query) return $result;
+		if(!strlen(trim($query))) return $result;
 		// DO QUERY
 		$query=utf8_decode($query);
 		try {
@@ -49,6 +50,7 @@ class database_pdo_mssql {
 		} catch(PDOException $e) {
 			show_php_error(array("dberror"=>$e->getMessage(),"query"=>$query));
 		}
+		unset($query); // TRICK TO RELEASE MEMORY
 		// DUMP RESULT TO MATRIX
 		if(isset($stmt) && $stmt && $stmt->columnCount()>0) {
 			if($fetch=="auto") {

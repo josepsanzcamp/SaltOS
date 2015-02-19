@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,49 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
-// FUNCTION DEFINITIONS
-function __signature_getfile($id) {
-	if(!$id) return null;
-	$query="SELECT * FROM tbl_usuarios_c WHERE id='$id'";
-	$row=execute_query($query);
-	if(!$row) return null;
-	if(!$row["email_signature_file"]) return null;
-	$id=$row["id"];
-	$name=$row["email_signature"];
-	$file=$row["email_signature_file"];
-	$type=$row["email_signature_type"];
-	$size=$row["email_signature_size"];
-	$data=file_get_contents(get_directory("dirs/filesdir").$file);
-	$alt=$row["email_name"]." (".$row["email_from"].")";
-	return array("id"=>$id,"name"=>$name,"file"=>$file,"type"=>$type,"size"=>$size,"data"=>$data,"alt"=>$alt);
-}
-
-function __signature_getauto($file) {
-	if(!$file) return null;
-	if(!$file["file"]) return null;
-	if($file["type"]=="text/plain") {
-		$file["auto"]=trim($file["data"]);
-		$file["auto"]=htmlentities($file["auto"],ENT_COMPAT,"UTF-8");
-		$file["auto"]=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$file["auto"]);
-	} elseif($file["type"]=="text/html") {
-		$file["auto"]=trim($file["data"]);
-	} elseif(substr($file["type"],0,6)=="image/") {
-		if(eval_bool(getDefault("cache/useimginline"))) {
-			$data=base64_encode($file["data"]);
-			$file["src"]="data:image/png;base64,${data}";
-		} else {
-			$file["src"]="?action=signature&id=${file["id"]}";
-		}
-		$file["auto"]="<img alt=\"${file["alt"]}\" border=\"0\" src=\"${file["src"]}\" />";
-	} else {
-		$file["auto"]="Name: ${file["name"]}"."<br/>"."Type: ${file["type"]}"."<br/>"."Size: ${file["size"]}";
-	}
-	require_once("php/getmail.php");
-	$file["auto"]=__SIGNATURE_OPEN__."--".__HTML_NEWLINE__.$file["auto"].__SIGNATURE_CLOSE__;
-	return $file;
-}
-// NORMAL ACTION CODE
 if(getParam("action")=="signature") {
+	require_once("php/libaction.php");
 	// DETECT IF IS A REQUEST FOR REPLACE BODY, CC AND STATE_CRT
 	if(getParam("old") && getParam("new")) {
 		require_once("php/sendmail.php");
@@ -120,10 +79,11 @@ if(getParam("action")=="signature") {
 		$row=array("body"=>$body,"cc"=>$cc,"state_crt"=>$state_crt);
 		$_RESULT=array("rows"=>array());
 		set_array($_RESULT["rows"],"row",$row);
-		$buffer=__XML_HEADER__;
-		$buffer.=array2xml($_RESULT);
-		// FLUSH THE OUTPUT
-		output_buffer($buffer,"text/xml");
+		// PREPARE THE OUTPUT
+		$_RESULT["rows"]=array_values($_RESULT["rows"]);
+		$buffer=json_encode($_RESULT);
+		// CONTINUE
+		output_buffer($buffer,"application/json");
 	}
 	// NORMAL REQUEST SIGNATURE CODE
 	$file=__signature_getfile(getParam("id"));

@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -55,10 +55,8 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 			data:data,
 			type:"get",
 			success:function(response) {
-				$("root>rows>row",response).each(function() {
-					var query=$("query",this).text();
-					var total=$("total",this).text();
-					eval(query+"("+total+")");
+				$(response["rows"]).each(function() {
+					eval(this["query"]+"("+this["total"]+")");
 				});
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {

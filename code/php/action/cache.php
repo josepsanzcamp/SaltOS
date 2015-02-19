@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,26 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(getParam("action")=="cache") {
-	// FUNCTIONS
-	function __cache_resolve_path($buffer,$file) {
-		// RESOLVE FULL PATH FOR ALL BACKGROUNDS IMAGES
-		$dirname_file=dirname($file)."/";
-		$pos=strpos($buffer,"url(");
-		while($pos!==false) {
-			$pos2=strpos($buffer,")",$pos+4);
-			$img=substr($buffer,$pos+4,$pos2-$pos-4);
-			if(in_array(substr($img,0,1),array("'",'"'))) $img=substr($img,1);
-			if(in_array(substr($img,-1,1),array("'",'"'))) $img=substr($img,0,-1);
-			$newimg=semi_realpath($dirname_file.$img);
-			if(file_exists($newimg)) {
-				$buffer=substr_replace($buffer,$newimg,$pos+4,$pos2-$pos-4);
-				$pos2=$pos2-strlen($img)+strlen($newimg);
-			}
-			$pos=strpos($buffer,"url(",$pos2+1);
-		}
-		return $buffer;
-	}
-	// CONTINUE
+	require_once("php/libaction.php");
 	$files=trim(getParam("files",getParam("amp;files")));
 	if(substr($files,-1,1)==",") $files=substr($files,0,-1);
 	$usecssminify=eval_bool(getDefault("cache/usecssminify"));

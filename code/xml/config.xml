@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<name>SaltOS</name>
 		<version>3.1</version>
 		<revision eval="true">svnversion("../code")</revision>
-		<copyright>Copyright (C) 2007-2014 by Josep Sanz Campderrós</copyright>
+		<copyright>Copyright (C) 2007-2015 by Josep Sanz Campderrós</copyright>
 		<title config="true">application_title</title>
 		<favicon>img/favicon.png</favicon>
 	</info>
@@ -76,7 +76,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</db>
 	<sess>
 		<save_path>saltos</save_path>
-		<session_name></session_name>
 		<timeout>3600</timeout>
 		<probability>1</probability>
 		<divisor>100</divisor>
@@ -112,12 +111,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forcecss eval="true">ismobile()?"mobile":""</forcecss>
 		<forcejs eval="true">ismobile()?"mobile":""</forcejs>
 		<forcexsl eval="true">ismobile()?"mobile":""</forcexsl>
-		<regspagermin>25</regspagermin>
-		<regspagerincr>25</regspagerincr>
-		<regspagermax>200</regspagermax>
-		<regspagerdef>50</regspagerdef>
+		<regspagerlist>25,50,100,200,500,1000</regspagerlist>
+		<regspagerdef eval="true">ismobile()?25:50</regspagerdef>
 		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
-		<regspagemobile>25</regspagemobile>
 		<commandtimeout>60</commandtimeout>
 		<nativesoffice>true</nativesoffice>
 		<enablevoice>true</enablevoice>
@@ -232,6 +228,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.colorpicker.css</include>
 			<include>lib/jquery/jquery.ptTimeSelect.css</include>
 			<include>lib/jquery/jquery.jgrowl.css</include>
+			<include>lib/pdfjs/pdf_viewer.min.css</include>
 			<include>lib/codemirror/codemirror.min.css</include>
 			<!--<include>lib/w2ui/w2ui.min.css</include>-->
 			<!--<include>lib/d3js/nv.d3.min.css</include>-->
@@ -252,7 +249,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.ptTimeSelect.js</include>
 			<include>lib/jquery/jquery.favicon.js</include>
 			<include>lib/jquery/jquery.jplayer.js</include>
-			<include>lib/jquery/jquery.columnizer.js</include>
 			<include>lib/jquery/jquery.ui.totop.js</include>
 			<include>lib/jquery/jquery.easing.js</include>
 		</cache>
@@ -262,10 +258,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/ckeditor/adapters/jquery.min.js</include>
 			<include>lib/pdfjs/compatibility.min.js</include>
 			<include>lib/pdfjs/pdf.min.js</include>
-			<include>lib/pdfjs/pdf_find_bar.min.js</include>
-			<include>lib/pdfjs/pdf_find_controller.min.js</include>
-			<include>lib/pdfjs/ui_utils.min.js</include>
-			<include>lib/pdfjs/text_layer_builder.min.js</include>
+			<include>lib/pdfjs/pdf_viewer.min.js</include>
 			<include>lib/codemirror/codemirror.min.js</include>
 			<include>lib/codemirror/codemirror.mode.min.js</include>
 			<!--<include>lib/w2ui/w2ui.min.js</include>-->

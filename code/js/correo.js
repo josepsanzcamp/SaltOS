@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -87,17 +87,16 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 				var emails=explode(";",request.term);
 				var term=trim(emails.pop());
 				var input=this.element;
-				var data="action=ajax&format=json&query=emails&term="+rawurlencode(term);
+				var data="action=ajax&query=emails&term="+rawurlencode(term);
 				$.ajax({
 					url:"index.php",
 					data:data,
 					type:"get",
-					dataType:"json",
 					success:function(data) {
 						// TO CANCEL OLD REQUESTS
 						var emails=explode(";",$(input).val());
 						var term2=trim(emails.pop());
-						if(term==term2) response(data);
+						if(term==term2) response(data["rows"]);
 					},
 					error:function(XMLHttpRequest,textStatus,errorThrown) {
 						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
@@ -156,10 +155,10 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 				data:data,
 				type:"post",
 				success:function (response) {
-					$("root>rows>row",response).each(function() {
-						$(body).val($("body",this).text());
-						$(cc).val($("cc",this).text());
-						$(state_crt).prop("checked",intval($("state_crt",this).text())?true:false);
+					$(response["rows"]).each(function() {
+						$(body).val(this["body"]);
+						$(cc).val(this["cc"]);
+						$(state_crt).prop("checked",intval(this["state_crt"])?true:false);
 					});
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown) {

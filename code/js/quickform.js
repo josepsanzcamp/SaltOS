@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,20 +34,20 @@ if(typeof(__quickform__)=="undefined" && typeof(parent.__quickform__)=="undefine
 			url:"index.php",
 			data:data,
 			type:"get",
-			success:function (response) {
-				var value2=$("root>value",response).text();
+			success:function(response) {
+				var value2=response["value"];
 				var options="";
-				$("root>rows>row",response).each(function() {
-					var label=str_replace(new Array("<",">"),new Array("&lt;","&gt;"),$("label",this).text());
-					var value=$("value",this).text();
+				$(response["rows"]).each(function() {
+					var label=str_replace(["<",">"],["&lt;","&gt;"],this["label"]);
+					var value=this["value"];
 					var selected=(value==value2)?"selected='selected'":"";
 					options+="<option value='"+value+"' "+selected+">"+label+"</option>";
 				});
 				$("#selectquick").html(options);
-				if($("root>first",response).text()) $("#firstquick").removeClass("ui-state-disabled");
-				if($("root>previous",response).text()) $("#previousquick").removeClass("ui-state-disabled");
-				if($("root>next",response).text()) $("#nextquick").removeClass("ui-state-disabled");
-				if($("root>last",response).text()) $("#lastquick").removeClass("ui-state-disabled");
+				if(response["first"]) $("#firstquick").removeClass("ui-state-disabled");
+				if(response["previous"]) $("#previousquick").removeClass("ui-state-disabled");
+				if(response["next"]) $("#nextquick").removeClass("ui-state-disabled");
+				if(response["last"]) $("#lastquick").removeClass("ui-state-disabled");
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

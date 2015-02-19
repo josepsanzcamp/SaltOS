@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -216,7 +216,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
@@ -238,108 +237,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				WHEN '".page2id("correo")."' THEN (SELECT email_privated FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE e.id_registro=id))
 				ELSE 0
 			END email_privated,
-			CASE a.id_aplicacion
-				WHEN '".page2id("actas")."' THEN (SELECT  CONCAT('link:actas(',-id,'):',nombre)  FROM tbl_actas WHERE id=a.id_registro)
-				WHEN '".page2id("agenda")."' THEN (SELECT  CONCAT('link:agenda(',-id,'):',nombre)  FROM tbl_agenda WHERE id=a.id_registro)
-				WHEN '".page2id("campanyas")."' THEN (SELECT  CONCAT('link:campanyas(',-id,'):',nombre)  FROM tbl_campanyas WHERE id=a.id_registro)
-				WHEN '".page2id("clientes")."' THEN (SELECT  CONCAT('link:clientes(',-id,'):',nombre)  FROM tbl_clientes WHERE id=a.id_registro)
-				WHEN '".page2id("contactos")."' THEN (SELECT  CONCAT('link:contactos(',-id,'):',nombre)  FROM tbl_contactos WHERE id=a.id_registro)
-				WHEN '".page2id("correo")."' THEN (SELECT  CONCAT('link:correo(',-id,'):',de,' - ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END,' (',
-				TRIM( CONCAT(
-				CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent","correo")." ' ELSE '' END,
-				CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror","correo")." ' END,
-				CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").") ' ELSE '' END,
-				CASE state_new WHEN 1 THEN '".LANG_ESCAPE("statenew","correo")." ' ELSE '' END,
-				CASE state_reply WHEN 1 THEN '".LANG_ESCAPE("statereply","correo")." ' ELSE '' END,
-				CASE state_forward WHEN 1 THEN '".LANG_ESCAPE("stateforward","correo")." ' ELSE '' END,
-				CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","correo")." ' ELSE '' END,
-				CASE state_spam WHEN 1 THEN '".LANG_ESCAPE("statespam","correo")." ' ELSE '' END,
-				CASE priority WHEN -1 THEN '".LANG_ESCAPE("prioritylow","correo")." ' WHEN 1 THEN '".LANG_ESCAPE("priorityhigh","correo")." ' ELSE '' END,
-				CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal","correo")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate","correo")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential","correo")." ' ELSE '' END,
-				CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread","correo")." ' ELSE '' END)
-				)
-				 ,')')  FROM tbl_correo WHERE id=a.id_registro)
-				WHEN '".page2id("cuentas")."' THEN (SELECT  CONCAT('link:cuentas(',-id,'):',nombre)  FROM tbl_cuentas WHERE id=a.id_registro)
-				WHEN '".page2id("documentos")."' THEN (SELECT  CONCAT('link:documentos(',-id,'):',nombre)  FROM tbl_documentos WHERE id=a.id_registro)
-				WHEN '".page2id("empleados")."' THEN (SELECT  CONCAT('link:empleados(',-id,'):',nombre)  FROM tbl_empleados WHERE id=a.id_registro)
-				WHEN '".page2id("epigrafes")."' THEN (SELECT  CONCAT('link:epigrafes(',-id,'):',nombre)  FROM tbl_epigrafes WHERE id=a.id_registro)
-				WHEN '".page2id("estados")."' THEN (SELECT  CONCAT('link:estados(',-id,'):',nombre)  FROM tbl_estados WHERE id=a.id_registro)
-				WHEN '".page2id("facturas")."' THEN (SELECT CASE num WHEN '' THEN  CONCAT('link:facturas(',-id,'):','".LANG_ESCAPE("albaran")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre)  ELSE  CONCAT('link:facturas(',-id,'):','".LANG_ESCAPE("factura")."',' ',num,' ',nombre,CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '&lt;strike&gt;".LANG_ESCAPE("cobrado","facturas")."&lt;/strike&gt;' END)  END FROM tbl_facturas WHERE id=a.id_registro)
-				WHEN '".page2id("feeds")."' THEN (SELECT  CONCAT('link:feeds(',-id,'):',(SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed),' - ',title,' (',
-				TRIM( CONCAT(
-				CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew","feeds")." ' ELSE '' END,
-				CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified","feeds")." ' ELSE '' END,
-				CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","feeds")." ' ELSE '' END,
-				CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool","feeds")." ' ELSE '' END,
-				CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread","feeds")." ' ELSE '' END)
-				)
-				 ,')')  FROM tbl_feeds WHERE id=a.id_registro)
-				WHEN '".page2id("formaspago")."' THEN (SELECT  CONCAT('link:formaspago(',-id,'):',nombre)  FROM tbl_formaspago WHERE id=a.id_registro)
-				WHEN '".page2id("gastos")."' THEN (SELECT  CONCAT('link:gastos(',-id,'):',descripcion)  FROM tbl_gastos WHERE id=a.id_registro)
-				WHEN '".page2id("grupos")."' THEN (SELECT  CONCAT('link:grupos(',-id,'):',nombre)  FROM tbl_grupos WHERE id=a.id_registro)
-				WHEN '".page2id("importaciones")."' THEN (SELECT  CONCAT('link:importaciones(',-id,'):',nombre)  FROM tbl_importaciones WHERE id=a.id_registro)
-				WHEN '".page2id("incidencias")."' THEN (SELECT  CONCAT('link:incidencias(',-id,'):',nombre)  FROM tbl_incidencias WHERE id=a.id_registro)
-				WHEN '".page2id("partes")."' THEN (SELECT  CONCAT('link:partes(',-id,'):',tarea)  FROM tbl_partes WHERE id=a.id_registro)
-				WHEN '".page2id("periodicas")."' THEN (SELECT (SELECT  CONCAT('link:periodicas(',-id,'):',nombre)  FROM tbl_clientes WHERE id=id_cliente) FROM tbl_periodicas WHERE id=a.id_registro)
-				WHEN '".page2id("posiblescli")."' THEN (SELECT  CONCAT('link:posiblescli(',-id,'):',nombre)  FROM tbl_posiblescli WHERE id=a.id_registro)
-				WHEN '".page2id("presupuestos")."' THEN (SELECT  CONCAT('link:presupuestos(',-id,'):',nombre)  FROM tbl_presupuestos WHERE id=a.id_registro)
-				WHEN '".page2id("prioridades")."' THEN (SELECT  CONCAT('link:prioridades(',-id,'):',nombre)  FROM tbl_prioridades WHERE id=a.id_registro)
-				WHEN '".page2id("productos")."' THEN (SELECT  CONCAT('link:productos(',-id,'):',nombre)  FROM tbl_productos WHERE id=a.id_registro)
-				WHEN '".page2id("proveedores")."' THEN (SELECT  CONCAT('link:proveedores(',-id,'):',nombre)  FROM tbl_proveedores WHERE id=a.id_registro)
-				WHEN '".page2id("proyectos")."' THEN (SELECT  CONCAT('link:proyectos(',-id,'):',nombre)  FROM tbl_proyectos WHERE id=a.id_registro)
-				WHEN '".page2id("seguimientos")."' THEN (SELECT  CONCAT('link:seguimientos(',-id,'):',comentarios)  FROM tbl_seguimientos WHERE id=a.id_registro)
-				WHEN '".page2id("textos")."' THEN (SELECT  CONCAT('link:textos(',-id,'):',nombre)  FROM tbl_textos WHERE id=a.id_registro)
-				WHEN '".page2id("tiposevento")."' THEN (SELECT  CONCAT('link:tiposevento(',-id,'):',nombre)  FROM tbl_tiposevento WHERE id=a.id_registro)
-				WHEN '".page2id("usuarios")."' THEN (SELECT  CONCAT('link:usuarios(',-id,'):',login)  FROM tbl_usuarios WHERE id=a.id_registro)
-				WHEN '".page2id("favoritos")."' THEN (SELECT  CONCAT('link:openwin(\"',REPLACE(url,':','%3A'),'\"):',nombre)  FROM tbl_favoritos WHERE id=a.id_registro)
-			END nombre,
-			CASE a.id_aplicacion
-				WHEN '".page2id("actas")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_actas WHERE id=a.id_registro)
-				WHEN '".page2id("agenda")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_agenda WHERE id=a.id_registro)
-				WHEN '".page2id("campanyas")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_campanyas WHERE id=a.id_registro)
-				WHEN '".page2id("clientes")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_clientes WHERE id=a.id_registro)
-				WHEN '".page2id("contactos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_contactos WHERE id=a.id_registro)
-				WHEN '".page2id("correo")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',de,' - ',(CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END),
-				CASE state_sent WHEN 1 THEN ' (".LANG_ESCAPE("statesent","correo").")' ELSE '' END,
-				CASE state_error WHEN '' THEN '' ELSE ' (".LANG_ESCAPE("stateerror","correo").")' END,
-				CASE is_outbox WHEN 1 THEN CASE WHEN state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").")' ELSE '' END ELSE '' END,
-				CASE state_new WHEN 1 THEN ' (".LANG_ESCAPE("statenew","correo").")' ELSE '' END,
-				CASE state_reply WHEN 1 THEN ' (".LANG_ESCAPE("statereply","correo").")' ELSE '' END,
-				CASE state_forward WHEN 1 THEN ' (".LANG_ESCAPE("stateforward","correo").")' ELSE '' END,
-				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","correo").")' ELSE '' END,
-				CASE state_spam WHEN 1 THEN ' (".LANG_ESCAPE("statespam","correo").")' ELSE '' END,
-				CASE is_outbox WHEN 0 THEN CASE state_new+state_reply+state_forward+state_wait+state_spam WHEN 0 THEN ' (".LANG_ESCAPE("stateread","correo").")' ELSE '' END ELSE '' END)  FROM tbl_correo WHERE id=a.id_registro)
-				WHEN '".page2id("cuentas")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_cuentas WHERE id=a.id_registro)
-				WHEN '".page2id("documentos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_documentos WHERE id=a.id_registro)
-				WHEN '".page2id("empleados")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_empleados WHERE id=a.id_registro)
-				WHEN '".page2id("epigrafes")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_epigrafes WHERE id=a.id_registro)
-				WHEN '".page2id("estados")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_estados WHERE id=a.id_registro)
-				WHEN '".page2id("facturas")."' THEN (SELECT CASE num WHEN '' THEN  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ','".LANG_ESCAPE("albaran")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre)  ELSE  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ','".LANG_ESCAPE("factura")."',' ',num,' ',nombre,CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '&lt;strike&gt;".LANG_ESCAPE("cobrado","facturas")."&lt;/strike&gt;' END)  END FROM tbl_facturas WHERE id=a.id_registro)
-				WHEN '".page2id("feeds")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',(SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed),' - ',title,
-				CASE WHEN state_new=1 AND state_modified=0 THEN ' (".LANG_ESCAPE("statenew","feeds").")' ELSE '' END,
-				CASE state_modified WHEN 1 THEN ' (".LANG_ESCAPE("statemodified","feeds").")' ELSE '' END,
-				CASE state_wait WHEN 1 THEN ' (".LANG_ESCAPE("statewait","feeds").")' ELSE '' END,
-				CASE state_cool WHEN 1 THEN ' (".LANG_ESCAPE("statecool","feeds").")' ELSE '' END,
-				CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN ' (".LANG_ESCAPE("stateread","feeds").")' ELSE '' END)  FROM tbl_feeds WHERE id=a.id_registro)
-				WHEN '".page2id("formaspago")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_formaspago WHERE id=a.id_registro)
-				WHEN '".page2id("gastos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',descripcion)  FROM tbl_gastos WHERE id=a.id_registro)
-				WHEN '".page2id("grupos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_grupos WHERE id=a.id_registro)
-				WHEN '".page2id("importaciones")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_importaciones WHERE id=a.id_registro)
-				WHEN '".page2id("incidencias")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_incidencias WHERE id=a.id_registro)
-				WHEN '".page2id("partes")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',tarea)  FROM tbl_partes WHERE id=a.id_registro)
-				WHEN '".page2id("periodicas")."' THEN (SELECT (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_clientes WHERE id=id_cliente) FROM tbl_periodicas WHERE id=a.id_registro)
-				WHEN '".page2id("posiblescli")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_posiblescli WHERE id=a.id_registro)
-				WHEN '".page2id("presupuestos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_presupuestos WHERE id=a.id_registro)
-				WHEN '".page2id("prioridades")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_prioridades WHERE id=a.id_registro)
-				WHEN '".page2id("productos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_productos WHERE id=a.id_registro)
-				WHEN '".page2id("proveedores")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_proveedores WHERE id=a.id_registro)
-				WHEN '".page2id("proyectos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_proyectos WHERE id=a.id_registro)
-				WHEN '".page2id("seguimientos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',comentarios)  FROM tbl_seguimientos WHERE id=a.id_registro)
-				WHEN '".page2id("textos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_textos WHERE id=a.id_registro)
-				WHEN '".page2id("tiposevento")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_tiposevento WHERE id=a.id_registro)
-				WHEN '".page2id("usuarios")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',login)  FROM tbl_usuarios WHERE id=a.id_registro)
-				WHEN '".page2id("favoritos")."' THEN (SELECT  CONCAT(LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0),' - ',nombre)  FROM tbl_favoritos WHERE id=a.id_registro)
-			END action_title,
+			".make_linktitle_query("a.")." nombre,
+			".make_actiontitle_query("a.")."  action_title,
 			CASE a.id_aplicacion
 				WHEN '".page2id("favoritos")."' THEN 'false'
 				ELSE 'true'
@@ -404,12 +303,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			'true' action_delete2,
 			CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN a.id_registro WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=a.id_registro) ELSE '0' END id_cliente,
 			CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN a.id_registro ELSE '0' END id_proyecto,
-			CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor,
-			(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro AND ".str_replace(" AND "," OR ",make_like_query("fichero,fichero_file,fichero_size,fichero_type,search",$filtro)).") search
+			CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor
 			FROM tbl_folders_a a
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro
-			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
-			WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion') AND ".make_like_query("usuario,aplicacion,id2,nombre,datetime,search",$filtro)." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND (TRIM(IFNULL(email_privated,0))='0' OR (TRIM(IFNULL(email_privated,0))='1' AND id_usuario='".current_user()."')) AND (id_folder='$id_folder') AND (id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')) AND ".check_sql($page,"list")</query>
+			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+			WHERE CONCAT('r',a.id_registro,'a',a.id_aplicacion) IN (
+				SELECT CONCAT('r',id_registro,'a',id_aplicacion) FROM tbl_indexing WHERE ".make_fulltext_query("search",$filtro,"tbl_indexing")."
+			)
+		) z
+		WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion') AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND (TRIM(IFNULL(email_privated,0))='0' OR (TRIM(IFNULL(email_privated,0))='1' AND id_usuario='".current_user()."')) AND (id_folder='$id_folder') AND (id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')) AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,11 +35,16 @@ if($page=="importaciones") {
 	$query="SELECT * FROM tbl_aplicaciones WHERE id=(SELECT id_aplicacion FROM tbl_importaciones WHERE id='${id_importacion}')";
 	$row2=execute_query($query);
 	if($row2===null) show_php_error(array("phperror"=>"Unknown aplicacion (id_importacion='${id_importacion}')"));
+	// CREATE THE NODE0 AND NODE1 LIST
+	$node0=get_fields_from_dbschema($row2["tabla"]);
+	foreach($node0 as $key=>$val) $node0[$key]=$val["name"];
+	$node1=get_fields_from_dbschema(strtok($row2["subtablas"],"("));
+	foreach($node1 as $key=>$val) $node1[$key]=$val["name"];
 	// CALL IMPORT FILE
 	$array=import_file(array(
 		"file"=>get_directory("dirs/filesdir").$row["fichero_file"],
 		"type"=>$row["fichero_type"],
-		"nodes"=>array($row2["node0"],$row2["node1"])
+		"nodes"=>array($node0,$node1)
 	));
 	// DISPLAY OUTPUT
 	ob_start_protected(getDefault("obhandler"));
@@ -53,7 +58,7 @@ if($page=="importaciones") {
 	$offset=getParam("offset",0);
 	$limit=getParam("limit",getDefault("regspagerdef"));
 	$count=is_array($array)?count($array):0;
-	$select=explode(",",implode(",",array($row2["node0"],$row2["node1"])));
+	$select=explode(",",implode(",",array_merge($node0,$node1)));
 	$buffer=__import_make_table(array("auto"=>true,"select"=>$select,"head"=>true,"data"=>$array,"limit"=>$limit,"offset"=>$offset,"width"=>120));
 	$currentpage=intval($offset/$limit)+1;
 	$totalpages=intval(($count-1)/$limit)+1;

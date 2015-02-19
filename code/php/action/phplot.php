@@ -8,7 +8,7 @@
 
 SaltOS: Framework to develop Rich Internet Applications
 Copyright (C) 2013 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,8 +37,8 @@ $posx=explode("|",getParam("posx"));
 $data=array();
 for($i=1;$i<=$vars;$i++) $data[$i]=explode("|",getParam("data$i"));
 // LOADING CONTROL
-$format=getParam("format","xml");
-if(!in_array($format,array("png","xml"))) action_denied();
+$format=getParam("format","json");
+if(!in_array($format,array("png","json"))) action_denied();
 $loading=getParam("loading");
 // CACHE CONTROL
 $cache=get_cache_file(array($width,$height,$title,$legend,$vars,$colors,$graph,$ticks,$posx,$data,$format,$loading),$format);
@@ -118,39 +118,8 @@ if(!file_exists($cache)) {
 		$minvalue2=$minvalue-$diff*0.1;
 		$minvalue=($minvalue>=0 && $minvalue2<=0)?0:$minvalue2;
 	}
-	// DEFINE CALLBACKS
-	function __phplot_callback_for_bars($im,$data,$shape,$row,$column,$x1,$y1,$x2,$y2){
-		global $_RESULT;
-		$value=$data[$row][$column+1];
-		$coords=sprintf("%d,%d,%d,%d",$x1,$y1-5,$x2+5,$y2);
-		set_array($_RESULT["map"],"area",array("shape"=>"rect","coords"=>$coords,"value"=>$value));
-	}
-	function __phplot_callback_for_points($im,$data,$shape,$row,$column,$xc,$yc){
-		global $_RESULT;
-		$value=$data[$row][$column+1];
-		$coords=sprintf("%d,%d,%d",$xc,$yc,5);
-		set_array($_RESULT["map"],"area",array("shape"=>"circle","coords"=>$coords,"value"=>$value));
-	}
-	function __phplot_callback_for_pie($im,$data,$shape,$segment,$unused,$xc,$yc,$wd,$ht,$start_angle,$end_angle){
-		global $_RESULT;
-		$arc_angle=$start_angle-$end_angle;
-		$n_steps=(int)ceil($arc_angle/20);
-		$step_angle=$arc_angle/$n_steps;
-		$rx=$wd/2+2;
-		$ry=$ht/2+2;
-		$points=array($xc,$yc);
-		$done_angle=deg2rad($start_angle);
-		for($i=0;;$i++){
-			$theta=min($done_angle,deg2rad($end_angle+$i*$step_angle));
-			$points[]=(int)($xc+$rx*cos($theta));
-			$points[]=(int)($yc+$ry*sin($theta));
-			if($theta>=$done_angle)break;
-		}
-		$value=$data[$segment][1];
-		$coords=implode(",",$points);
-		set_array($_RESULT["map"],"area",array("shape"=>"poly","coords"=>$coords,"value"=>$value));
-	}
 	// MAKE PLOT
+	require_once("php/libaction.php");
 	$plot=new PHPlot_truecolor($width,$height);
 	$plot->SetFailureImage(false);
 	$plot->SetPrintImage(false);
@@ -290,12 +259,11 @@ if(!file_exists($cache)) {
 		$plot->PrintImage();
 		$buffer=ob_get_clean();
 	}
-	if($format=="xml") {
-		// MAKE XML
+	if($format=="json") {
 		$_RESULT["img"]=$plot->EncodeImage();
 		//$plot->PrintImage(); die();
-		$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
-		$buffer.=array2xml($_RESULT);
+		$_RESULT["map"]=array_values($_RESULT["map"]);
+		$buffer=json_encode($_RESULT);
 	}
 	file_put_contents($cache,$buffer);
 	chmod_protected($cache,0666);

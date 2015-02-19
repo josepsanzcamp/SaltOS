@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -137,13 +137,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"
 		SELECT id2,id,
-			CONCAT('link:empleados(',-id,'):',nombre) nombre,
+			CONCAT('link:openapp(\'empleados\',',-id,'):',nombre) nombre,
 			nombre nombre2,
 			cargo,
 			CONCAT('tel:',tel_fijo) tel_fijo,
@@ -160,8 +159,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			FROM tbl_empleados a
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+			WHERE
+				a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
 		) b
-		WHERE ".make_like_query("id2,nombre,cargo,comentarios,direccion,nombre_codpostal,nombre_poblacion,nombre_provincia,nombre_pais,tel_fijo,tel_movil,email",$filtro)." AND ".check_sql($page,"list")</query>
+		WHERE ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -176,7 +177,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<contactos>
 						<contactos global="id,page" eval="true">"
 SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
-	 CONCAT('link:contactos(',-a.id,'):',a.nombre)  nombre,
+	 CONCAT('link:openapp(\'contactos\',',-a.id,'):',a.nombre)  nombre,
 	 CONCAT('tel:',tel_fijo) tel_fijo,
 	 CONCAT('tel:',tel_movil) tel_movil,
 	 CONCAT('mailto:',email) email,
@@ -438,7 +439,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
 			<contactos include="xml/common/relatedcontacts.xml" replace="true" />
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />

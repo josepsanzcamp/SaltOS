@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -329,20 +329,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</field>
 				</row>
 			</fields>
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="cerrado,cobrado,page,id_cliente,fecha1,fecha2,trimestre,filtro,id_cuenta,id_proyecto" eval="true">"
 		SELECT
-			CONCAT('link:facturas(',-id,'):',num2) num,id,
+			CONCAT('link:openapp(\'facturas\',',-id,'):',num2) num,id,
 			num3,num4,
 			fecha,
 			CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE
-				CONCAT('link:clientes(',-id_cliente,'):',nombre) END nombre,
+				CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',nombre) END nombre,
 			CASE id_cliente WHEN '0' THEN CASE nombre WHEN '' THEN '".LANG_ESCAPE("sincliente")."' ELSE nombre END ELSE nombre END nombre2,
 			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-				CONCAT('link:proyectos(',-id_proyecto,'):',proyecto) END proyecto,
+				CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
 			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
 			base,iva2,irpf2,ROUND(base+iva2-irpf2,2) total,conceptos,
 			(SELECT COUNT(*) FROM tbl_facturas_v v WHERE v.id_factura=d.id) vencimientos,
@@ -379,9 +378,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 					LEFT JOIN tbl_proyectos p ON p.id=a.id_proyecto
+				WHERE
+					a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
 				GROUP BY a.id) c
 		) d
-		WHERE ".make_like_query("id,num,cif,nombre,proyecto",$filtro)." AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$trimestre' OR '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)) AND (''='$cerrado' OR '$cerrado'=cerrado) AND (''='$cobrado' OR '$cobrado'=cobrado) AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
+		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$trimestre' OR '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)) AND (''='$cerrado' OR '$cerrado'=cerrado) AND (''='$cobrado' OR '$cobrado'=cobrado) AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -1583,7 +1584,6 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 			</vencimientos_new>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />

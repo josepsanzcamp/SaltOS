@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -102,15 +102,15 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 	function update_score() {
 		var pass=$("input[name$=password_new]");
 		if($(pass).val()) {
-			var data="action=score&pass="+rawurlencode($(pass).val())+"&format=xml"
+			var data="action=score&pass="+rawurlencode($(pass).val())+"&format=json"
 			$.ajax({
 				url:"index.php",
 				data:data,
 				type:"post",
 				success:function(response) {
 					$(".score").removeClass("none");
-					$(".score").attr("src",$("root>image",response).text());
-					if(intval($("root>valid",response).text())) {
+					$(".score").attr("src",response["image"]);
+					if(intval(response["valid"])) {
 						$(pass).removeClass("ui-state-error");
 					} else {
 						$(pass).addClass("ui-state-error");

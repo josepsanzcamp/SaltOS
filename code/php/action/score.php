@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ if(getParam("action")=="score") {
 	// GET PARAMETERS
 	$pass=getParam("pass");
 	$format=getParam("format");
-	if(!in_array($format,array("png","xml"))) action_denied();
+	if(!in_array($format,array("png","json"))) action_denied();
 	$width=intval(getParam("width",60));
 	$height=intval(getParam("width",16));
 	$size=intval(getParam("font",8));
@@ -73,7 +73,7 @@ if(getParam("action")=="score") {
 			if(defined("__CANCEL_DIE__")) readfile($cache);
 			if(!defined("__CANCEL_DIE__")) output_file($cache);
 		}
-		if($format=="xml") {
+		if($format=="json") {
 			define("__CANCEL_DIE__",1);
 			setParam("format","png");
 			ob_start();
@@ -84,8 +84,7 @@ if(getParam("action")=="score") {
 			$data="data:image/png;base64,${data}";
 			$valid=($score>=$minscore)?1:0;
 			$_RESULT=array("image"=>$data,"score"=>$score."%","valid"=>$valid);
-			$buffer=__XML_HEADER__;
-			$buffer.=array2xml($_RESULT);
+			$buffer=json_encode($_RESULT);
 			file_put_contents($cache,$buffer);
 			chmod_protected($cache,0666);
 			// DUMP THE DATA

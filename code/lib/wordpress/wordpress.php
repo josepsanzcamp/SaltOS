@@ -351,11 +351,11 @@ function _deep_replace( $search, $subject ) {
  * @return string Content with normalized entities
  */
 function wp_kses_normalize_entities($string) {
-	# Disarm all entities by converting & to &amp;
+	// Disarm all entities by converting & to &amp;
 
 	$string = str_replace('&', '&amp;', $string);
 
-	# Change back the allowed entities in our entity whitelist
+	// Change back the allowed entities in our entity whitelist
 
 	$string = preg_replace_callback('/&amp;([A-Za-z]{2,8}[0-9]{0,2});/', 'wp_kses_named_entities', $string);
 	$string = preg_replace_callback('/&amp;#(0*[0-9]{1,7});/', 'wp_kses_normalize_entities2', $string);

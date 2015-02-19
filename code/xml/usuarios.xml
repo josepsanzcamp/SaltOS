@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -159,15 +159,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"SELECT * FROM (SELECT
 		LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
-		CONCAT('link:usuarios(',-a.id,'):',a.login) login,a.login login2,
-		CONCAT('link:grupos(',-a.id_grupo,'):',b.nombre) grupo,b.nombre grupo2,
-		CONCAT('link:',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'(',-a.id_registro,'):',a_nombre) nombre,a_nombre nombre2,
+		CONCAT('link:openapp(\'usuarios\',',-a.id,'):',a.login) login,a.login login2,
+		CONCAT('link:openapp(\'grupos\',',-a.id_grupo,'):',b.nombre) grupo,b.nombre grupo2,
+		CONCAT('link:openapp(\'',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'\',',-a.id_registro,'):',a_nombre) nombre,a_nombre nombre2,
 		CONCAT('mailto:',email) email,
 		CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
 		hora_ini,hora_fin,
@@ -188,8 +187,11 @@ CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit
 CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
 e.id_usuario id_usuario,id_grupo id_grupo FROM (
 SELECT id,login,id_grupo,id_aplicacion,id_registro,".make_extra_query("d.")." a_nombre,".make_extra_query_with_field("email","d.")." email,activo,hora_ini,hora_fin,dias_sem FROM tbl_usuarios d
-) a LEFT JOIN tbl_grupos b ON a.id_grupo=b.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id) z
-WHERE ".make_like_query("id2,login,grupo,nombre,email,logged",$filtro)." AND ".check_sql($page,"list")</query>
+) a LEFT JOIN tbl_grupos b ON a.id_grupo=b.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
+WHERE
+	a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
+) z
+WHERE ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -458,7 +460,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<label lang="true">aplicacion</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE islink=1")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<onchange>update_registros()</onchange>
@@ -786,7 +788,6 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 			</correo_new>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
@@ -873,13 +874,8 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 			"id_registro"=>"SELECT MAX(id) FROM ".page2table($page),
 			"id_usuario"=>"SELECT MAX(id) FROM ".page2table($page)
 		))</query>
-		<query global="page" match="default" prefix="true" eval="true">make_insert_query("tbl_registros_u",array(
-			"id_aplicacion"=>page2id($page),
-			"id_usuario"=>current_user(),
-			"datetime"=>current_datetime()
-		),array(
-			"id_registro"=>"SELECT MAX(id) FROM ".page2table($page).""
-		))</query>
+		<query global="page" match="default" prefix="true" eval="true">make_control(page2id($page))?"":""</query>
+		<query global="page" match="default" prefix="true" eval="true">make_indexing(page2id($page))?"":""</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>

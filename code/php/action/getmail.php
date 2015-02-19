@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -518,7 +518,7 @@ if(getParam("action")=="getmail") {
 	}
 	// VOICE FEATURES
 	if($newemail>0) {
-		javascript_template("notify_voice('".$newemail.LANG("msgnewokpop3email".min($newemail,2),"correo")."')","saltos_voice()");
+		javascript_template("notify_voice('".$newemail.LANG_ESCAPE("msgnewokpop3email".min($newemail,2),"correo")."')","saltos_voice()");
 	}
 	if(count($voice_ids)) {
 		$query="SELECT SUBSTR(CONCAT(de,'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)),1,255) reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
@@ -531,9 +531,6 @@ if(getParam("action")=="getmail") {
 	die();
 }
 if(getParam("page")=="correo") {
-	$id_correo=abs(getParam("id"));
-	$id_extra=explode("_",getParam("id"),3);
-	if(isset($id_extra[1]) && isset($id_extra[2]) && in_array($id_extra[1],array("reply","replyall","forward"))) $id_correo=$id_extra[2];
 	$id_correo=abs(getParam("id"));
 	$id_extra=explode("_",getParam("id"),3);
 	if(isset($id_extra[1]) && isset($id_extra[2]) && $id_extra[1]=="forward") $id_correo=$id_extra[2];
@@ -557,17 +554,14 @@ if(getParam("page")=="correo") {
 			die();
 		}
 		$result2=__getmail_getfiles(__getmail_getnode("0",$decoded));
-		$rows2=array();
 		foreach($result2 as $file) {
 			$fichero=$file["cname"];
 			$size=$file["hsize"];
 			$chash=$file["chash"];
 			$download="download2('correo','${id_correo}','${chash}')";
 			$viewpdf="viewpdf2('correo','${id_correo}','${chash}')";
-			$rows2[]=array("id"=>$chash,"usuario"=>$usuario,"grupo"=>$grupo,"datetime"=>$datetime,"fichero"=>$fichero,"fichero_size"=>$size,"download"=>$download,"viewpdf"=>$viewpdf);
+			set_array($rows[$key],"row",array("id"=>$chash,"usuario"=>$usuario,"grupo"=>$grupo,"datetime"=>$datetime,"fichero"=>$fichero,"fichero_size"=>$size,"download"=>$download,"viewpdf"=>$viewpdf));
 		}
-		// DEJAR ROWS EN LA ESTRUCTURA DE DATOS DEL XML
-		foreach($rows2 as $row2) set_array($rows[$key],"row",$row2);
 	}
 	if(isset($id_extra[1]) && $id_extra[1]=="session") {
 		sess_init();

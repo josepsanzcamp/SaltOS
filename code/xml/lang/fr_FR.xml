@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1211,6 +1211,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<notsupportdefined translated="false">Support email account not defined in SaltOS</notsupportdefined>
 		<notsupportfound translated="false">This email doesn't contain the support email account</notsupportfound>
 		<incidenciaexists translated="false">Bug found with the code: </incidenciaexists>
+		<interrorsendmail translated="false">This email was not sent by an internal error</interrorsendmail>
 	</correo>
 	<cuentas>
 		<list>Liste des comptes</list>
@@ -1384,7 +1385,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ficheros>
 		<list>Liste des pièces jointes</list>
 		<todaslasaplicaciones>[Toutes les demandes]</todaslasaplicaciones>
-		<nosearch revised="false">Vous devez fournir un mot de recherche dans la zone de texte</nosearch>
 	</ficheros>
 	<feeds>
 		<list>Liste  de flux RSS</list>
@@ -1485,7 +1485,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<buscador>
 		<list revised="false">Rechercher</list>
 		<todaslasaplicaciones>[Toutes les demandes]</todaslasaplicaciones>
-		<nosearch revised="false">Vous devez fournir un mot de recherche dans la zone de texte</nosearch>
 	</buscador>
 	<errorlog>
 		<formupdate revised="false">Les journaux d'erreurs</formupdate>

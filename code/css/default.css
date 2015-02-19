@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -378,35 +378,6 @@ img.image {
 div.jGrowl div a {
 	text-decoration:none;
 }
-/* FOR VIEWPDF */
-#dialog {
-	overflow-x:hidden;
-}
-#dialog canvas {
-	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
-	margin:10px 0;
-	background:#ffffff;
-}
-/* COPIED FROM pdf.js/examples/text-selection/css */
-.textLayer {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    color: #000;
-    font-family: sans-serif;
-    overflow: hidden;
-}
-.textLayer > div {
-    color: transparent;
-    position: absolute;
-    line-height: 1;
-    white-space: pre;
-    cursor: text;
-}
 /* FOR QRCODE */
 #dialog h1.tel {
 	margin-bottom:0;
@@ -446,10 +417,6 @@ span.number {
 	top:4px;
 	margin-top:-8px;
 }
-/* FOR COLUMNIZER */
-.columnizer .column > * {
-	margin-right:15px;
-}
 /* FOR PLOTS */
 img[isplot=true] {
 	margin:2px;
@@ -472,7 +439,10 @@ img[isplot=true] {
 	padding:3px 0;
 	display:none;
 }
-
 #contextMenu li {
 	font-weight:normal!important;
+}
+/* FOR VIEWPDF */
+.pdfViewer .page {
+	margin-bottom:1px;
 }

@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,20 +40,20 @@ if(getParam("action")=="ajax") {
 		set_array($_RESULT["rows"],"row",$row);
 	}
 	db_free($result);
-	$format=strtolower(getParam("format","xml"));
-	if($format=="xml") {
+	$format=strtolower(getParam("format","json"));
+	if($format=="json") {
+		$_RESULT["rows"]=array_values($_RESULT["rows"]);
+		$buffer=json_encode($_RESULT);
+		$format="application/json";
+	} elseif($format=="xml") {
 		$buffer=__XML_HEADER__;
 		$buffer.=array2xml($_RESULT);
 		$format="text/xml";
 	} elseif($format=="plain") {
-		$buffer="";
-		foreach($_RESULT["rows"] as $row) $buffer.=implode("|",$row)."\n";
-		$format="text/plain";
-	} elseif($format=="json") {
 		$buffer=array();
-		foreach($_RESULT["rows"] as $row) $buffer[]=json_encode($row);
-		$buffer="[".implode(",",$buffer)."]";
-		$format="application/json";
+		foreach($_RESULT["rows"] as $row) $buffer[]=implode("|",$row);
+		$buffer=implode("\n",$buffer);
+		$format="text/plain";
 	} else {
 		die();
 	}

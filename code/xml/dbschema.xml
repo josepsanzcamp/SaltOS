@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -231,28 +231,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>VARCHAR(255)</type>
 				</field>
 				<field>
+					<name>campo</name>
+					<type>TEXT</type>
+				</field>
+				<field>
 					<name>subtablas</name>
 					<type>VARCHAR(255)</type>
 				</field>
 				<field>
-					<name>campo</name>
-					<type>VARCHAR(255)</type>
-				</field>
-				<field>
-					<name>filter1</name>
-					<type>VARCHAR(255)</type>
-				</field>
-				<field>
-					<name>filter2</name>
-					<type>VARCHAR(255)</type>
-				</field>
-				<field>
-					<name>node0</name>
-					<type>VARCHAR(255)</type>
-				</field>
-				<field>
-					<name>node1</name>
-					<type>VARCHAR(255)</type>
+					<name>islink</name>
+					<type>INT(11)</type>
 				</field>
 			</fields>
 		</table>
@@ -1838,43 +1826,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>id_registro</name>
 					<type>INT(11)</type>
 				</field>
-			</fields>
-		</table>
-		<table>
-			<name>tbl_indexing_r</name>
-			<fields>
 				<field>
-					<name>id</name>
-					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>id_indexing</name>
-					<type>INT(11)</type>
-					<fkey>tbl_indexing</fkey>
-				</field>
-				<field>
-					<name>id_word</name>
-					<type>INT(11)</type>
-					<fkey>tbl_indexing_w</fkey>
-				</field>
-				<field>
-					<name>frequency</name>
-					<type>INT(11)</type>
-				</field>
-			</fields>
-		</table>
-		<table>
-			<name>tbl_indexing_w</name>
-			<fields>
-				<field>
-					<name>id</name>
-					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>word</name>
-					<type>VARCHAR(255)</type>
+					<name>search</name>
+					<type>MEDIUMTEXT</type>
 				</field>
 			</fields>
 		</table>
@@ -3258,7 +3212,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>registros_i</name>
+			<name>registros</name>
 			<table>tbl_registros_i</table>
 			<fields>
 				<field>
@@ -3270,7 +3224,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>registros_u</name>
+			<name>registros2</name>
 			<table>tbl_registros_u</table>
 			<fields>
 				<field>
@@ -3294,7 +3248,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>aplicaciones_i</name>
+			<name>aplicaciones</name>
 			<table>tbl_aplicaciones_i</table>
 			<fields>
 				<field>
@@ -3306,7 +3260,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>aplicaciones_p</name>
+			<name>aplicaciones2</name>
 			<table>tbl_aplicaciones_p</table>
 			<fields>
 				<field>
@@ -3318,7 +3272,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>grupos_p</name>
+			<name>grupos</name>
 			<table>tbl_grupos_p</table>
 			<fields>
 				<field>
@@ -3330,7 +3284,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos_a</name>
+			<name>correos</name>
 			<table>tbl_correo_a</table>
 			<fields>
 				<field>
@@ -3342,7 +3296,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos_nospam</name>
+			<name>correos2</name>
 			<table>tbl_correo</table>
 			<fields>
 				<field>
@@ -3354,7 +3308,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos_count</name>
+			<name>correos3</name>
 			<table>tbl_correo</table>
 			<fields>
 				<field>
@@ -3366,7 +3320,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos_sendmail</name>
+			<name>correos4</name>
 			<table>tbl_correo</table>
 			<fields>
 				<field>
@@ -3378,7 +3332,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos_cuenta</name>
+			<name>correos5</name>
 			<table>tbl_correo</table>
 			<fields>
 				<field>
@@ -3387,7 +3341,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>feeds_count</name>
+			<name>feeds</name>
 			<table>tbl_feeds</table>
 			<fields>
 				<field>
@@ -3401,6 +3355,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<index>
 			<name>indexing</name>
 			<table>tbl_indexing</table>
+			<fulltext>true</fulltext>
+			<fields>
+				<field>
+					<name>search</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>indexing2</name>
+			<table>tbl_indexing</table>
 			<fields>
 				<field>
 					<name>id_aplicacion</name>
@@ -3408,29 +3372,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>indexing_r</name>
-			<table>tbl_indexing_r</table>
+			<name>indexing3</name>
+			<table>tbl_indexing</table>
 			<fields>
 				<field>
-					<name>id_indexing</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<name>indexing_r2</name>
-			<table>tbl_indexing_r</table>
-			<fields>
-				<field>
-					<name>id_word</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<name>indexing_w</name>
-			<table>tbl_indexing_w</table>
-			<fields>
-				<field>
-					<name>word</name>
+					<name>id_registro</name>
 				</field>
 			</fields>
 		</index>

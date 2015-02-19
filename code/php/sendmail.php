@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -108,10 +108,12 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	if(!$current) return $mail->ErrorInfo;
 	$messageid=__sendmail_messageid($id_cuenta,$mail->From);
 	$file=__sendmail_emlsaver($mail->GetSentMIMEMessage(),$messageid);
-	$last_id=__getmail_insert($file,$messageid,0,0,0,0,0,1,0,"");
+	$last_id=__getmail_insert($file,$messageid,0,0,0,0,0,1,1,"");
 	if(count($bcc)) __getmail_add_bcc($last_id,$bcc); // BCC DOESN'T APPEAR IN THE RFC822 SOMETIMES
 	if(CONFIG("email_async")) {
 		__sendmail_objsaver($mail,$messageid);
+		__getmail_update("state_sent",0,$last_id);
+		__getmail_update("state_error","",$last_id);
 		return "";
 	}
 	capture_next_error();
@@ -123,6 +125,7 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 		return $mail->ErrorInfo;
 	}
 	__getmail_update("state_sent",1,$last_id);
+	__getmail_update("state_error","",$last_id);
 	return "";
 }
 

@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -301,7 +301,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</field>
 				</row>
 			</fields>
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
@@ -310,8 +309,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				".make_extra_query_with_login("d.")." usuario,
 				e.datetime datetime,
 				CASE
-					WHEN a.id_cliente!='0' THEN CONCAT('link:clientes(',-a.id_cliente,'):',b1.nombre)
-					WHEN a.id_posiblecli!='0' THEN CONCAT('link:posiblescli(',-a.id_posiblecli,'):',b2.nombre)
+					WHEN a.id_cliente!='0' THEN CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',b1.nombre)
+					WHEN a.id_posiblecli!='0' THEN CONCAT('link:openapp(\'posiblescli\',',-a.id_posiblecli,'):',b2.nombre)
 					ELSE '".LANG_ESCAPE("sincliente")."'
 				END cliente,
 				CASE
@@ -319,7 +318,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					WHEN a.id_posiblecli!='0' THEN b2.nombre
 					ELSE '".LANG_ESCAPE("sincliente")."'
 				END cliente2,
-				CONCAT('link:presupuestos(',-a.id,'):',a.nombre) nombre,
+				CONCAT('link:openapp(\'presupuestos\',',-a.id,'):',a.nombre) nombre,
 				a.nombre nombre2,
 				a.fecha fecha,
 				IFNULL((SELECT ROUND(SUM(precio*horas*(100.0-descuento)/100.0),2) FROM tbl_presupuestos_t WHERE id_presupuesto=a.id),0.0) total1,
@@ -339,15 +338,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
 				CASE (".check_user("correo","create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_mail,
 				CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
-				id_usuario,a.id_estado id_estado,a.id_cliente id_cliente,a.id_posiblecli id_posiblecli,d.id_grupo id_grupo,c.activo activo,a.id_proyecto id_proyecto,
-				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id AND ".str_replace(" AND "," OR ",make_like_query("fichero,fichero_file,fichero_size,fichero_type,search",$comentarios)).") search
+				id_usuario,a.id_estado id_estado,a.id_cliente id_cliente,a.id_posiblecli id_posiblecli,d.id_grupo id_grupo,c.activo activo,a.id_proyecto id_proyecto
 			FROM tbl_presupuestos a
 			LEFT JOIN tbl_clientes b1 ON b1.id=a.id_cliente
 			LEFT JOIN tbl_posiblescli b2 ON b2.id=a.id_posiblecli
 			LEFT JOIN tbl_estados c ON a.id_estado=c.id
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
-			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
-			WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".make_like_query("nombre2,descripcion,cliente2,estado,search",$comentarios)." AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".check_sql($page,"list")</query>
+			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+			WHERE
+				a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$comentarios,"tbl_indexing").")
+			) z
+			WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -379,10 +380,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
 					<agenda>
-						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:agenda(',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
+						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'agenda\',',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
 					</agenda>
 					<actas>
-						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:actas(',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
+						<actas global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'actas\',',-id,'):',nombre) nombre,CONCAT('actas(',-id,')') link_view,CONCAT('pdfacta(',id,')') link_pdf,CONCAT('mailacta(',id,')') link_mail FROM (SELECT id_usuario,id_grupo,a.* FROM tbl_actas a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("actas")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_presupuesto=".abs($id)." AND (".check_sql("actas","view").") ORDER BY id DESC"</actas>
 					</actas>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
@@ -1447,7 +1448,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<actas include="xml/common/relatedactas.xml" replace="true" />
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />

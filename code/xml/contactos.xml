@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -185,17 +185,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_cliente,filtro,id_proyecto,id_proveedor" eval="true">"
 		SELECT id2,id,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-				CONCAT('link:clientes(',-id_cliente,'):',cliente) END cliente,
+				CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
 			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-				CONCAT('link:proyectos(',-id_proyecto,'):',proyecto) END proyecto,
-			CONCAT('link:contactos(',-id,'):',nombre) nombre,
+				CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',proyecto) END proyecto,
+			CONCAT('link:openapp(\'contactos\',',-id,'):',nombre) nombre,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
 			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE proyecto END proyecto2,
 			nombre nombre2,
@@ -226,8 +225,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				FROM tbl_contactos a
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+				WHERE
+					a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
 		) d
-		WHERE ".make_like_query("id2,usuario,cliente,proyecto,nombre,direccion,nombre_codpostal,nombre_poblacion,nombre_provincia,nombre_pais,tel_fijo,tel_movil,email,comentarios",$filtro)." AND (id_cliente=ROUND('$id_cliente') OR ''='$id_cliente') AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND ".check_sql($page,"list")</query>
+		WHERE (id_cliente=ROUND('$id_cliente') OR ''='$id_cliente') AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -569,7 +570,6 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 			</default>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />

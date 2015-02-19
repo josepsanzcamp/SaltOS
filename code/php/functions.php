@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -130,78 +130,19 @@ function check_user($aplicacion="",$permiso="") {
 	return $_USER[$aplicacion][$permiso];
 }
 
-function check_sql($aplicacion="",$permiso="",$prefix="") {
+function check_sql($aplicacion,$permiso) {
 	// INITIAL CHECK
 	global $_ERROR;
-	if(isset($_ERROR)) return 0;
+	if(isset($_ERROR)) return "(1=0)";
 	// BEGIN NORMAL CODE
 	global $_USER;
-	static $stack=array();
-	$hash=md5(serialize(array($aplicacion,$permiso)));
-	if(!isset($stack[$hash])) {
-		if($permiso!="") {
-			$subquery=array();
-			// CHECK FOR USER/GROUP/ALL PERMISSIONS
-			$queries=array();
-			$queries["all"]="(1=1)";
-			$queries["user"]=make_where_query(array("id_usuario"=>$_USER["id"]));
-			$queries["group"]="id_grupo IN (".check_ids($_USER["id_grupo"],execute_query_array(make_select_query("tbl_usuarios_g","id_grupo",$queries["user"]))).")";
-			foreach($queries as $key=>$val) if(check_user($aplicacion,"${key}_${permiso}")) $subquery[]=$val;
-		}
-		// CHECK FOR APLICATION/REGISTER FILTERS
-		$query="SELECT a.id_aplicacion id_aplicacion,a.id_registro id_registro,b.filter1 filter FROM (
-			SELECT id_aplicacion,id_registro
-			FROM tbl_usuarios
-			WHERE id='${_USER["id"]}'
-			UNION
-			SELECT id_aplicacion,id_registro
-			FROM tbl_usuarios_r
-			WHERE id_usuario='${_USER["id"]}'
-		) a
-		LEFT JOIN tbl_aplicaciones b ON a.id_aplicacion=b.id
-		WHERE a.id_aplicacion IN (
-			SELECT id
-			FROM tbl_aplicaciones
-			WHERE (SELECT CONCAT(',',filter2,',')
-				FROM tbl_aplicaciones
-				WHERE codigo='$aplicacion' AND filter2!=''
-			) LIKE (
-				CONCAT('%,',filter1,',%')
-			) AND filter1!=''
-		)";
-		$result=db_query($query);
-		$id_aplicacion=page2id($aplicacion);
-		if($permiso!="") {
-			$filters=array();
-			while($row=db_fetch_row($result)) {
-				if(check_user($aplicacion,"user_${permiso}")) {
-					$filter=($id_aplicacion==$row["id_aplicacion"])?"${prefix}id":$row["filter"];
-					if(!isset($filters[$filter])) $filters[$filter]=array();
-					$filters[$filter][]=$row["id_registro"];
-				}
-			}
-			db_free($result);
-			foreach($filters as $key=>$val) {
-				$subquery[]="(".$key." IN (".implode(",",$val)."))";
-			}
-			$filters=implode(" OR ",$subquery);
-			if(!$filters) $filters="1=0";
-			$filters="($filters)";
-		}
-		if($permiso=="") {
-			$filters=array();
-			while($row=db_fetch_row($result)) {
-				if(!in_array($row["filter"],$filters) && $id_aplicacion!=$row["id_aplicacion"]) $filters[]=$row["filter"];
-			}
-			db_free($result);
-			$filters=implode(",",$filters);
-			if(!$filters) $filters="'0' __check_sql_${aplicacion}__";
-		}
-		// STORE RESULT
-		$stack[$hash]=$filters;
-	}
-	// RETURN RESULT
-	return $stack[$hash];
+	// CHECK FOR USER/GROUP/ALL PERMISSIONS
+	$sql=array();
+	$sql["all"]="(1=1)";
+	$sql["group"]="id_grupo IN (".check_ids($_USER["id_grupo"],execute_query_array(make_select_query("tbl_usuarios_g","id_grupo",make_where_query(array("id_usuario"=>$_USER["id"]))))).")";
+	$sql["user"]=make_where_query(array("id_usuario"=>$_USER["id"]));
+	foreach($sql as $key=>$val) if(check_user($aplicacion,"${key}_${permiso}")) return $val;
+	return "(1=0)";
 }
 
 function eval_iniset($array) {
@@ -345,12 +286,17 @@ function current_group() {
 function __aplicaciones($tipo,$dato) {
 	static $diccionario=array();
 	if(!count($diccionario)) {
-		$query=make_select_query("tbl_aplicaciones",array("id","codigo","tabla"));
+		$query=make_select_query("tbl_aplicaciones",array("id","codigo","tabla","subtablas"));
 		$result=db_query($query);
 		$diccionario["page2id"]=array();
 		$diccionario["id2page"]=array();
 		$diccionario["page2table"]=array();
+		$diccionario["table2page"]=array();
 		$diccionario["id2table"]=array();
+		$diccionario["table2id"]=array();
+		$diccionario["id2subtables"]=array();
+		$diccionario["page2subtables"]=array();
+		$diccionario["table2subtables"]=array();
 		while($row=db_fetch_row($result)) {
 			$diccionario["page2id"][$row["codigo"]]=$row["id"];
 			$diccionario["id2page"][$row["id"]]=$row["codigo"];
@@ -358,6 +304,9 @@ function __aplicaciones($tipo,$dato) {
 			$diccionario["table2page"][$row["tabla"]]=$row["codigo"];
 			$diccionario["id2table"][$row["id"]]=$row["tabla"];
 			$diccionario["table2id"][$row["tabla"]]=$row["id"];
+			$diccionario["id2subtables"][$row["id"]]=$row["subtablas"];
+			$diccionario["page2subtables"][$row["codigo"]]=$row["subtablas"];
+			$diccionario["table2subtables"][$row["tabla"]]=$row["subtablas"];
 		}
 		db_free($result);
 	}
@@ -378,16 +327,28 @@ function page2table($page) {
 	return __aplicaciones(__FUNCTION__,$page);
 }
 
-function table2page($page) {
-	return __aplicaciones(__FUNCTION__,$page);
+function table2page($table) {
+	return __aplicaciones(__FUNCTION__,$table);
 }
 
 function id2table($id) {
 	return __aplicaciones(__FUNCTION__,$id);
 }
 
-function table2id($id) {
+function table2id($table) {
+	return __aplicaciones(__FUNCTION__,$table);
+}
+
+function id2subtables($id) {
 	return __aplicaciones(__FUNCTION__,$id);
+}
+
+function page2subtables($page) {
+	return __aplicaciones(__FUNCTION__,$page);
+}
+
+function table2subtables($table) {
+	return __aplicaciones(__FUNCTION__,$table);
 }
 
 function get_filtered_field($field) {
@@ -776,7 +737,7 @@ function check_security($action="") {
 			"logout"=>0
 		));
 		db_query($query);
-		$query=make_select_query("tbl_security",array("MAX(id)"=>"maximo"));
+		$query=make_select_query("tbl_security","MAX(id)");
 		$id_security=execute_query($query);
 	}
 	// BUSCAR ID_SECURITY_IP
@@ -795,7 +756,7 @@ function check_security($action="") {
 			"remote_addr"=>$remote_addr
 		));
 		db_query($query);
-		$query="SELECT MAX(id) maximo FROM tbl_security_ip";
+		$query=make_select_query("tbl_security_ip","MAX(id)");
 		$id_security_ip=execute_query($query);
 	}
 	// BORRAR REGISTROS CADUCADOS
@@ -953,16 +914,16 @@ function get_clear_error() {
 	if($_ERROR_HANDLER["level"]<=0) show_php_error(array("phperror"=>"error_handler without levels availables"));
 	$_ERROR_HANDLER["level"]--;
 	// TRICK TO PREVENT THAT SHUTDOWN_HANDLER CAPTURES THE ERROR
-	$error=error_get_last();
-	if(is_array($error) && isset($error["type"]) && $error["type"]!=E_USER_NOTICE) {
-		set_error_handler("var_dump",0);
-		ob_start();
-		$olderror=error_reporting(0);
-		trigger_error("");
-		error_reporting($olderror);
-		ob_end_clean();
-		restore_error_handler();
-	}
+	//~ $error=error_get_last();
+	//~ if(is_array($error) && isset($error["type"]) && $error["type"]!=E_USER_NOTICE) {
+		//~ set_error_handler("var_dump",0);
+		//~ ob_start();
+		//~ $olderror=error_reporting(0);
+		//~ trigger_error("");
+		//~ error_reporting($olderror);
+		//~ ob_end_clean();
+		//~ restore_error_handler();
+	//~ }
 	// CONTINUE
 	return array_pop($_ERROR_HANDLER["msg"]);
 }
@@ -977,8 +938,7 @@ function do_message_error($array,$format) {
 	if(isset($array["phperror"])) $msg[]=array("PHP Error",$array["phperror"]);
 	if(isset($array["xmlerror"])) $msg[]=array("XML Error",$array["xmlerror"]);
 	if(isset($array["dberror"])) $msg[]=array("DB Error",$array["dberror"]);
-	if(isset($array["emailerror"])) $msg[]=array("EMAIL Error",$array["emailerror"]);
-	if(isset($array["fileerror"])) $msg[]=array("FILE Error",$array["fileerror"]);
+	if(isset($array["jserror"])) $msg[]=array("JS Error",$array["jserror"]);
 	if(isset($array["source"])) $msg[]=array("XML Source",$array["source"]);
 	if(isset($array["exception"])) $msg[]=array("Exception",$array["exception"]);
 	if(isset($array["details"])) $msg[]=array("Details",$array["details"]);
@@ -1004,8 +964,10 @@ function do_message_error($array,$format) {
 function show_php_error($array=null) {
 	global $_ERROR_HANDLER;
 	static $backup=null;
-	if($array===null) $array=$backup;
-	if($array===null) return;
+	if($array===null && $backup!==null) {
+		while($_ERROR_HANDLER["level"]>0) get_clear_error();
+		show_php_error($backup);
+	}
 	// ADD BACKTRACE IF NOT FOUND
 	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace();
 	// ADD DEBUG IF NOT FOUND
@@ -1024,9 +986,12 @@ function show_php_error($array=null) {
 	// REFUSE THE DEPRECATED WARNINGS
 	if(isset($array["phperror"]) && stripos($array["phperror"],"deprecated")!==false) {
 		$hash=md5($msg_text);
-		$file=isset($array["file"])?$array["file"]:getDefault("debug/warningfile","warning.log");
-		if(checklog($hash,$file)) $msg_text="";
-		addlog("${msg_text}***** ${hash} *****",$file);
+		$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
+		if(is_writable($dir)) {
+			$file=isset($array["file"])?$array["file"]:getDefault("debug/warningfile","warning.log");
+			if(checklog($hash,$file)) $msg_text="";
+			addlog("${msg_text}***** ${hash} *****",$file);
+		}
 		return;
 	}
 	// CHECK IF CAPTURE ERROR WAS ACTIVE
@@ -1038,9 +1003,12 @@ function show_php_error($array=null) {
 	}
 	// ADD THE MSG_ALT TO THE ERROR LOG FILE
 	$hash=md5($msg_text);
-	$file=isset($array["file"])?$array["file"]:getDefault("debug/errorfile","error.log");
-	if(checklog($hash,$file)) $msg_text="";
-	addlog("${msg_text}***** ${hash} *****",$file);
+	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
+	if(is_writable($dir)) {
+		$file=isset($array["file"])?$array["file"]:getDefault("debug/errorfile","error.log");
+		if(checklog($hash,$file)) $msg_text="";
+		addlog("${msg_text}***** ${hash} *****",$file);
+	}
 	// CHECK FOR CANCEL_DIE
 	if(isset($array["cancel"]) && eval_bool($array["cancel"])) return;
 	if(isset($array["die"]) && !eval_bool($array["die"])) return;
@@ -1078,7 +1046,7 @@ function pretty_html_error($msg) {
 	$html.="<body class='phperror'>";
 	$html.="<div>";
 	$bug=base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)));
-	$html.=__pretty_html_error_helper("http://bugs.saltos.net",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
+	$html.=__pretty_html_error_helper("http://bugs.saltos.org",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
 	$html.=__pretty_html_error_helper("",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
 	$html.=$msg;
 	$html.="</div>";
@@ -1119,7 +1087,7 @@ function __shutdown_handler() {
 }
 
 function __tick_handler() {
-	if(time_get_free()<getDefault("server/percenterror")) {
+	if(ini_get("max_execution_time")>0 && time_get_free()<getDefault("server/percenterror")) {
 		$cur=ini_get("max_execution_time");
 		$max=getDefault("server/max_execution_time");
 		if($cur>0 && $max>0) {
@@ -1134,7 +1102,7 @@ function __tick_handler() {
 			show_php_error(array("phperror"=>"max_execution_time reached","backtrace"=>$backtrace));
 		}
 	}
-	if(memory_get_free()<getDefault("server/percenterror")) {
+	if(normalize_value(ini_get("memory_limit"))>0 && memory_get_free()<getDefault("server/percenterror")) {
 		$cur=normalize_value(ini_get("memory_limit"));
 		$max=normalize_value(getDefault("server/memory_limit"));
 		if($cur>0 && $max>0) {
@@ -1157,7 +1125,7 @@ function program_handlers() {
 	// IMPORTANT CHECK
 	if(!ini_get("date.timezone")) ini_set("date.timezone","Europe/Madrid");
 	// CONTINUE
-	error_reporting(E_ALL);
+	error_reporting(0);
 	set_error_handler("__error_handler");
 	set_exception_handler("__exception_handler");
 	register_shutdown_function("__shutdown_handler");
@@ -1285,5 +1253,202 @@ function __time_get_helper($fn,$secs) {
 	elseif(stripos($fn,"free")!==false) $diff=$max-($cur-$ini);
 	if(!$secs) $diff=($diff*100)/$max;
 	return $diff;
+}
+
+function make_indexing($id_aplicacion=null,$id_registro=null) {
+	// CHECK PARAMETERS
+	if($id_aplicacion===null) $id_aplicacion=page2id(getParam("page"));
+	$tabla=id2table($id_aplicacion);
+	if($tabla=="") return -1;
+	$subtablas=id2subtables($id_aplicacion);
+	if($id_registro===null) $id_registro=execute_query("SELECT MAX(id) FROM ${tabla}");
+	if(is_string($id_registro) && strpos($id_registro,",")!==false) $id_registro=explode(",",$id_registro);
+	if(is_array($id_registro)) {
+		$last_result=0;
+		foreach($id_registro as $id) $last_result=make_indexing($id_aplicacion,$id);
+		return $last_result;
+	}
+	// BUSCAR SI EXISTE INDEXACION
+	$query=make_select_query("tbl_indexing","id",make_where_query(array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_registro
+	)));
+	$id_indexing=execute_query($query);
+	// OBTENER DATOS DE LA TABLA PRINCIPAL
+	$query=make_select_query($tabla,__make_indexing_helper($tabla),make_where_query(array(
+		"id"=>$id_registro
+	)));
+	$result=db_query($query);
+	if(!db_num_rows($result)) {
+		if($id_indexing) {
+			$query=make_delete_query("tbl_indexing",make_where_query(array(
+				"id"=>$id_indexing
+			)));
+			db_query($query);
+			return 3;
+		} else {
+			return -2;
+		}
+	}
+	$row=db_fetch_row($result);
+	db_free($result);
+	$search=$row;
+	// OBTENER DATOS DE LAS SUBTABLAS
+	if($subtablas!="") {
+		foreach(explode(",",$subtablas) as $subtabla) {
+			$tabla=strtok($subtabla,"(");
+			$campo=strtok(")");
+			$query=make_select_query($tabla,__make_indexing_helper($tabla),make_where_query(array(
+				$campo=>$id_registro
+			)));
+			$result=db_query($query);
+			while($row=db_fetch_row($result)) {
+				unset($row["id"]);
+				unset($row[$campo]);
+				foreach($row as $key=>$val) set_array($search,$key,$val);
+			}
+			db_free($result);
+		}
+	}
+	// OBTENER DATOS DE LAS TABLAS GENERICAS
+	$tablas=array("tbl_ficheros","tbl_comentarios");
+	$nosearch=array("id","id_aplicacion","id_registro","fichero_file","fichero_size","fichero_type","indexed","retries");
+	foreach($tablas as $tabla) {
+		$query=make_select_query($tabla,__make_indexing_helper($tabla),make_where_query(array(
+			"id_aplicacion"=>$id_aplicacion,
+			"id_registro"=>$id_registro
+		)));
+		$result=db_query($query);
+		while($row=db_fetch_row($result)) {
+			foreach($nosearch as $key) if(isset($row[$key])) unset($row[$key]);
+			foreach($row as $key=>$val) set_array($search,$key,$val);
+		}
+		db_free($result);
+	}
+	// AÑADIR A LA TABLA INDEXING
+	$search=encode_search(implode(" ",$search));
+	if($id_indexing) {
+		$query=make_update_query("tbl_indexing",array(
+			"search"=>$search
+		),make_where_query(array(
+			"id"=>$id_indexing
+		)));
+		db_query($query);
+		return 2;
+	} else {
+		$query=make_insert_query("tbl_indexing",array(
+			"id_aplicacion"=>$id_aplicacion,
+			"id_registro"=>$id_registro,
+			"search"=>$search
+		));
+		db_query($query);
+		return 1;
+	}
+}
+
+function __make_indexing_helper($tabla) {
+	static $tables=null;
+	static $campos=null;
+	if($tables===null) {
+		$file="xml/dbschema.xml";
+		$dbschema=eval_attr(xml2array($file));
+		$tables=array();
+		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
+			foreach($dbschema["tables"] as $tablespec) {
+				$tables[$tablespec["name"]]=array();
+				foreach($tablespec["fields"] as $fieldspec) if(isset($fieldspec["fkey"])) $tables[$tablespec["name"]][$fieldspec["name"]]=$fieldspec["fkey"];
+			}
+		}
+	}
+	if($campos===null) {
+		$file="xml/dbstatic.xml";
+		$dbstatic=eval_attr(xml2array($file));
+		$campos=array();
+		if(is_array($dbstatic) && isset($dbstatic["tbl_aplicaciones"]) && is_array($dbstatic["tbl_aplicaciones"])) {
+			foreach($dbstatic["tbl_aplicaciones"] as $row) {
+				if(isset($row["tabla"]) && isset($row["campo"])) {
+					if(substr($row["campo"],0,1)=='"' && substr($row["campo"],-1,1)=='"') $row["campo"]=eval_protected($row["campo"]);
+					$campos[$row["tabla"]]=$row["campo"];
+				}
+			}
+		}
+	}
+	$result=array();
+	$result[]="*";
+	$result[]="LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id";
+	if(isset($campos[$tabla])) $result[]=$campos[$tabla];
+	if(isset($tables[$tabla])) {
+		foreach($tables[$tabla] as $key=>$val) {
+			if(isset($campos[$val])) {
+				$result[]="(".make_select_query($val,$campos[$val],make_where_query(array(),"AND",array("${val}.id=${key}"))).") ${key}";
+			} else {
+				$result[]="'' ${key}";
+			}
+		}
+	}
+	return $result;
+}
+
+function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$datetime=null) {
+	// CHECK PARAMETERS
+	if($id_aplicacion===null) $id_aplicacion=page2id(getParam("page"));
+	$tabla=id2table($id_aplicacion);
+	if($tabla=="") return -1;
+	if($id_registro===null) $id_registro=execute_query("SELECT MAX(id) FROM ${tabla}");
+	if($id_usuario===null) $id_usuario=current_user();
+	if($datetime===null) $datetime=current_datetime();
+	if(is_string($id_registro) && strpos($id_registro,",")!==false) $id_registro=explode(",",$id_registro);
+	if(is_array($id_registro)) {
+		$last_result=0;
+		foreach($id_registro as $id) $last_result=make_control($id_aplicacion,$id);
+		return $last_result;
+	}
+	// BUSCAR SI EXISTE REGISTRO DE CONTROL
+	$query=make_select_query("tbl_registros_i","id",make_where_query(array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_registro
+	)));
+	$id_control=execute_query($query);
+	// BUSCAR SI EXISTEN DATOS DE LA TABLA PRINCIPAL
+	$query=make_select_query($tabla,"id",make_where_query(array(
+		"id"=>$id_registro
+	)));
+	$id_data=execute_query($query);
+	if(!$id_data) {
+		if($id_control) {
+			$query=make_delete_query("tbl_registros_i",make_where_query(array(
+				"id_aplicacion"=>$id_aplicacion,
+				"id_registro"=>$id_registro
+			)));
+			db_query($query);
+			$query=make_delete_query("tbl_registros_u",make_where_query(array(
+				"id_aplicacion"=>$id_aplicacion,
+				"id_registro"=>$id_registro
+			)));
+			db_query($query);
+			return 3;
+		} else {
+			return -2;
+		}
+	}
+	if($id_control) {
+		$query=make_insert_query("tbl_registros_u",array(
+			"id_aplicacion"=>$id_aplicacion,
+			"id_registro"=>$id_registro,
+			"id_usuario"=>$id_usuario,
+			"datetime"=>$datetime
+		));
+		db_query($query);
+		return 2;
+	} else {
+		$query=make_insert_query("tbl_registros_i",array(
+			"id_aplicacion"=>$id_aplicacion,
+			"id_registro"=>$id_registro,
+			"id_usuario"=>$id_usuario,
+			"datetime"=>$datetime
+		));
+		db_query($query);
+		return 1;
+	}
 }
 ?>

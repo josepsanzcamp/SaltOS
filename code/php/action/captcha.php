@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,50 +30,7 @@ if(getParam("action")=="captcha") {
 	Tambien aparece en otros posts buscando en google:
 	- http://www.google.es/search?q=captcha+alto_linea
 	*/
-	// FUNCTIONS
-	function __captcha_color2dec($color,$component) {
-		$offset=array("R"=>0,"G"=>2,"B"=>4);
-		if(!isset($offset[$component])) show_php_error(array("phperror"=>"Unknown component"));
-		return hexdec(substr($color,$offset[$component],2));
-	}
-	function __captcha_isprime($num) {
-		// SEE www.polprimos.com FOR UNDERSTAND IT
-		if($num<2) return false;
-		if($num%2==0 && $num!=2) return false;
-		if($num%3==0 && $num!=3) return false;
-		if($num%5==0 && $num!=5) return false;
-		// PRIMER NUMBERS ARE DISTRIBUTED IN 8 COLUMNS
-		$div=7;
-		$max=intval(sqrt($num));
-		while(1) {
-			if($num%$div==0 && $num!=$div) return false;
-			if($div>=$max) break;
-			$div+=4;
-			if($num%$div==0 && $num!=$div) return false;
-			if($div>=$max) break;
-			$div+=2;
-			if($num%$div==0 && $num!=$div) return false;
-			if($div>=$max) break;
-			$div+=4;
-			if($num%$div==0 && $num!=$div) return false;
-			if($div>=$max) break;
-			$div+=2;
-			if($num%$div==0 && $num!=$div) return false;
-			if($div>=$max) break;
-			$div+=4;
-			if($num%$div==0 && $num!=$div) return false;
-			if($div>=$max) break;
-			$div+=6;
-			if($num%$div==0 && $num!=$div) return false;
-			if($div>=$max) break;
-			$div+=2;
-			if($num%$div==0 && $num!=$div) return false;
-			if($div>=$max) break;
-			$div+=6;
-		}
-		return true;
-	}
-	// NORMAL CODE
+	require_once("php/libaction.php");
 	$id=getDefault("captcha/id","captcha");
 	$width=getDefault("captcha/width",90);
 	$height=getDefault("captcha/height",45);

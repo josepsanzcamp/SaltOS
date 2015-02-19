@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -95,13 +95,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>Josep Sanz (Main developer)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.net")</onclick>
+							<onclick>mailto("josep.sanz@saltos.org")</onclick>
 						</field>
 						<field>
 							<label>Jordi Company (Beta tester)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>mailto("jcompany@saltos.net")</onclick>
+							<onclick>mailto("jcompany@saltos.org")</onclick>
 						</field>
 						<field>
 							<label>Andrés Diaz (Beta tester)</label>
@@ -133,19 +133,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>Español-España (Josep Sanz)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.net")</onclick>
+							<onclick>mailto("josep.sanz@saltos.org")</onclick>
 						</field>
 						<field>
 							<label>Català-Espanya (Josep Sanz)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.net")</onclick>
+							<onclick>mailto("josep.sanz@saltos.org")</onclick>
 						</field>
 						<field>
 							<label>English-USA (Josep Sanz)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.net")</onclick>
+							<onclick>mailto("josep.sanz@saltos.org")</onclick>
 						</field>
 						<field>
 							<label>Deutsch-Deutschland (Alex Muller)</label>
@@ -208,7 +208,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Apache 2.2 (ASL-2.0)</label>
+							<label>Apache 2.2/2.4 (ASL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://httpd.apache.org")</onclick>
@@ -234,7 +234,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>MariaDB 5.5 (GPL-2.0)</label>
+							<label>MariaDB 5.5/10.0 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://mariadb.org")</onclick>
@@ -266,7 +266,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.2.0 (LGPL-3.0)</label>
+							<label>TCPDF 6.2.6 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
@@ -434,7 +434,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jquery.com/")</onclick>
 						</field>
 						<field>
-							<label>JQuery UI 1.11.2-pre (MIT)</label>
+							<label>JQuery UI 1.12.0-pre (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jqueryui.com/")</onclick>
@@ -512,27 +512,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
 						</field>
 						<field>
-							<label>jGrowl 1.4.0 (MIT &amp; GPL*)</label>
+							<label>jGrowl 1.4.2 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://stanlemon.net/projects/jgrowl.html")</onclick>
 						</field>
-						<field>
-							<label>Columnizer 1.6.0 (CC-BY-3.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://welcome.totheinter.net/columnizer-jquery-plugin/")</onclick>
-						</field>
-					</row>
-					<row>
 						<field>
 							<label>Favicon 0.2.1 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://hellowebapps.com/products/jquery-favicon/")</onclick>
 						</field>
+					</row>
+					<row>
 						<field>
-							<label>jPlayer 2.9.1 (MIT &amp; GPL-3.0)</label>
+							<label>jPlayer 2.9.2 (MIT &amp; GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
@@ -546,6 +540,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -756,8 +751,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://poppler.freedesktop.org/")</onclick>
 						</field>
 						<field>
-							<type>separator</type>
+							<label>Mroonga 4.06 (LGPL-2.1)</label>
+							<type>link</type>
 							<class>tbody</class>
+							<onclick>openwin("http://mroonga.org/")</onclick>
 						</field>
 					</row>
 					<row>

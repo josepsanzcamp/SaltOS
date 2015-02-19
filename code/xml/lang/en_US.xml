@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1211,6 +1211,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<notsupportdefined>Support email account not defined in SaltOS</notsupportdefined>
 		<notsupportfound>This email doesn't contain the support email account</notsupportfound>
 		<incidenciaexists>Bug found with the code: </incidenciaexists>
+		<interrorsendmail>This email was not sent by an internal error</interrorsendmail>
 	</correo>
 	<cuentas>
 		<list>List of accounts</list>
@@ -1384,7 +1385,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ficheros>
 		<list>List of attachments</list>
 		<todaslasaplicaciones>[All applications]</todaslasaplicaciones>
-		<nosearch>You must provide a search words in the textbox</nosearch>
 	</ficheros>
 	<feeds>
 		<list>List of RSS feeds</list>
@@ -1485,7 +1485,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<buscador>
 		<list>Search</list>
 		<todaslasaplicaciones>[All applications]</todaslasaplicaciones>
-		<nosearch>You must provide a search words in the textbox</nosearch>
 	</buscador>
 	<errorlog>
 		<formupdate>Error logs</formupdate>

@@ -1,0 +1,26 @@
+
+
+
+=Textos predefinidos=
+
+La aplicación de //Textos predefinidos// le permite guardar textos que utilice habitualmente, por ejemplo, condiciones de un presupuesto o el contenido de un correo electrónico comercial.
+
+Estos texto podrán recuperarse durante la creación o modificación en diversas aplicaciones.
+
+==Listado==
+
+Este listado le muestra las entradas ya definidas, con su identificador o nombre y el tipo de acceso (público/privado).
+
+=Creación=
+
+A la hora de crear un texto predefinido, elija un nombre único que le permita identificador fácilmente el contenido del texto.
+
+Si desea que el texto pueda ser utilizado por todos los usuarios, como una forma de despedida corporativa en los correos electrónicos, marque la casilla de verficación //Todos pueden usar este texto predefinido//.
+
+=Modificación=
+
+El modo de edición o modificación, le permite establecer los mismos parámetros que durante la creación. Tenga en cuenta que el nombre o identificador del texto debe ser único.
+
+=Consulta=
+
+El modo consulta de un texto predefinido le permite consultar el identificador así como su contenido.

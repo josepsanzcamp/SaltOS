@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -43,208 +43,7 @@ if(getParam("action")=="gcalendar") {
 
 	// EXTERNAL LIBRARIES
 	require_once("lib/google/autoload.php");
-
-	// FUNCTIONS FOR THE NEW API V3
-	function __gcalendar_getattr($html,$attr) {
-		$pos1=stripos($html,$attr);
-		if($pos1===false) return "";
-		$len=strlen($attr);
-		$pos2=$pos1+$len;
-		$max=strlen($html);
-		while($pos2<$max && $html[$pos2]!='=') $pos2++;
-		if($pos2==$max) return "";
-		while($pos2<$max && $html[$pos2]!='"' && $html[$pos2]!="'") $pos2++;
-		if($pos2==$max) return "";
-		$pos3=$pos2+1;
-		while($pos3<$max && $html[$pos3]!='"' && $html[$pos3]!="'") $pos3++;
-		if($pos3==$max) return "";
-		return substr($html,$pos2+1,$pos3-$pos2-1);
-	}
-
-	function __gcalendar_getnode($html,$name) {
-		$pos1=stripos($html,"<${name}");
-		if($pos1===false) return "";
-		$len=strlen($name);
-		$pos2=strpos($html,">",$pos1);
-		if($pos2===false || $pos2<$pos1) return "";
-		$pos3=stripos($html,"</${name}>",$pos2);
-		if($pos3!==false) {
-			if($pos3<$pos2) return "";
-			$node=substr($html,$pos1,$pos3+$len+3-$pos1);
-		} else {
-			$node=substr($html,$pos1,$pos2+1-$pos1);
-		}
-		return $node;
-	}
-
-	function __gcalendar_parse($html) {
-		$html=remove_script_tag($html);
-		$html=remove_style_tag($html);
-		$html=__gcalendar_getnode($html,"form");
-		$method=__gcalendar_getattr($html,"method");
-		$action=__gcalendar_getattr($html,"action");
-		$inputs=array();
-		for(;;) {
-			$input=__gcalendar_getnode($html,"input");
-			if($input=="") break;
-			$html=str_replace($input,"",$html);
-			$inputs[__gcalendar_getattr($input,"name")]=__gcalendar_getattr($input,"value");
-		}
-		return array("method"=>$method,"action"=>$action,"inputs"=>$inputs);
-	}
-
-	function __gcalendar_request($url,$method="",$values=array(),$cookies=array(),$referer="") {
-		require_once("lib/phpclasses/http.php");
-		$http=new http_class;
-		$http->user_agent=get_name_version_revision();
-		$http->follow_redirect=1;
-		if(count($cookies)) $http->RestoreCookies($cookies);
-		$arguments=array();
-		$error=$http->GetRequestArguments($url,$arguments);
-		if($error!="") show_php_error(array("phperror"=>$error));
-		$error=$http->Open($arguments);
-		if($error!="") show_php_error(array("phperror"=>$error));
-		if($method!="") $arguments["RequestMethod"]=strtoupper($method);
-		if(count($values)) $arguments["PostValues"]=$values;
-		if($referer!="") $arguments["Referer"]=$referer;
-		$error=$http->SendRequest($arguments);
-		if($error!="") show_php_error(array("phperror"=>$error));
-		$headers=array();
-		$error=$http->ReadReplyHeaders($headers);
-		if($error!="") show_php_error(array("phperror"=>$error));
-		$body="";
-		$error=$http->ReadWholeReplyBody($body);
-		if($error!="") show_php_error(array("phperror"=>$error));
-		$http->Close();
-		//~ echo $body;die();
-		//~ echo "<pre>".sprintr($headers)."</pre>";die();
-		$cookies=array();
-		$http->SaveCookies($cookies);
-		return array($body,$headers,$cookies);
-	}
-
-	function __gcalendar_token1($client,$login,$password) {
-		$url=$client->createAuthUrl();
-		list($body,$header,$cookies)=__gcalendar_request($url);
-		// PROCESS LOGIN PAGE
-		$parsed=__gcalendar_parse($body);
-		$parsed["inputs"]["Email"]=$login;
-		$parsed["inputs"]["Passwd"]=$password;
-		$parsed["inputs"]["continue"]=str_replace("&amp;","&",$parsed["inputs"]["continue"]);
-		//~ echo "<pre>".sprintr($parsed)."</pre>";die();
-		list($body,$header,$cookies)=__gcalendar_request($parsed["action"],$parsed["method"],$parsed["inputs"],$cookies,$url);
-		// PROCESS ACCEPT PAGE
-		$url=$parsed["action"];
-		$parsed=__gcalendar_parse($body);
-		$parsed["action"]=str_replace("&amp;","&",$parsed["action"]);
-		$parsed["inputs"]["submit_access"]="true";
-		//~ echo "<pre>".sprintr($parsed)."</pre>";die();
-		list($body,$header,$cookies)=__gcalendar_request($parsed["action"],$parsed["method"],$parsed["inputs"],$cookies,$url);
-		// PROCESS TOKEN PAGE
-		$html=__gcalendar_getnode($body,"input");
-		$token1=__gcalendar_getattr($html,"value");
-		return $token1;
-	}
-
-	function __gcalendar_connect($login,$password) {
-		$client=new Google_Client();
-		$client->setAuthConfigFile("lib/google/saltos.json");
-		$client->setRedirectUri("urn:ietf:wg:oauth:2.0:oob");
-		$client->addScope("https://www.googleapis.com/auth/calendar");
-		$client->setAccessType("offline");
-		$token2=execute_query(make_select_query("tbl_gcalendar","token2",make_where_query(array(
-			"id_usuario"=>current_user()
-		))));
-		if($token2!="") {
-			$client->setAccessToken(base64_decode($token2));
-			if($client->getAccessToken()) return $client;
-		}
-		$token1=__gcalendar_token1($client,$login,$password);
-		if($token1=="") return null;
-		$client->authenticate($token1);
-		$token2=$client->getAccessToken();
-		if(!$token2) return null;
-		$query=make_update_query("tbl_gcalendar",array(
-			"token2"=>base64_encode($token2)
-		),"id_usuario='".current_user()."'");
-		db_query($query);
-		return $client;
-	}
-
-	// MODIFIED FUNCTIONS
-	function __gcalendar_format($datetime) {
-		return date("Y-m-d\TH:i:sP",strtotime($datetime));
-	}
-
-	function __gcalendar_unformat($datetime) {
-		return date("Y-m-d H:i:s",strtotime($datetime));
-	}
-
-	function __gcalendar_insert($client,$title,$content,$where,$dstart,$dstop) {
-		if($client===null) return false;
-		$service=new Google_Service_Calendar($client);
-		$event=new Google_Service_Calendar_Event();
-		$event->setSummary($title);
-		$event->setDescription($content);
-		$event->setLocation($where);
-		$start=new Google_Service_Calendar_EventDateTime();
-		$start->setDateTime(__gcalendar_format($dstart));
-		$event->setStart($start);
-		$end=new Google_Service_Calendar_EventDateTime();
-		$end->setDateTime(__gcalendar_format($dstop));
-		$event->setEnd($end);
-		$createdEvent=$service->events->insert("primary",$event);
-		return $createdEvent->getId();
-	}
-
-	function __gcalendar_update($client,$id,$title,$content,$where,$dstart,$dstop) {
-		if($client===null) return false;
-		$service=new Google_Service_Calendar($client);
-		$event=$service->events->get("primary",$id);
-		$event->setSummary($title);
-		$event->setDescription($content);
-		$event->setLocation($where);
-		$start = new Google_Service_Calendar_EventDateTime();
-		$start->setDateTime(__gcalendar_format($dstart));
-		$event->setStart($start);
-		$end = new Google_Service_Calendar_EventDateTime();
-		$end->setDateTime(__gcalendar_format($dstop));
-		$event->setEnd($end);
-		$updatedEvent=$service->events->update("primary",$id,$event);
-		return true;
-	}
-
-	function __gcalendar_feed($client) {
-		// CHECK FOR A VALID SERVICE
-		if($client===null) return false;
-		// CONTINUE
-		$service=new Google_Service_Calendar($client);
-		$events=$service->events->listEvents("primary");
-		$result=array();
-		while(true) {
-			foreach($events->getItems() as $event) {
-				$temp=array(
-					"id"=>$event->getId(),
-					"title"=>$event->getSummary(),
-					"content"=>$event->getDescription(),
-					"where"=>$event->getLocation(),
-					"dstart"=>__gcalendar_unformat($event->getStart()->getDateTime()),
-					"dstop"=>__gcalendar_unformat($event->getEnd()->getDateTime())
-				);
-				foreach($temp as $key=>$val) $temp[$key]=str_replace("\r","",trim($val));
-				$temp["hash"]=md5(serialize(array($temp["title"],$temp["content"],$temp["where"],$temp["dstart"],$temp["dstop"])));
-				$result[]=$temp;
-			}
-			$pageToken=$events->getNextPageToken();
-			if($pageToken) {
-				$optParams=array("pageToken"=>$pageToken);
-				$events=$service->events->listEvents("primary",$optParams);
-			} else {
-				break;
-			}
-		}
-		return $result;
-	}
+	require_once("php/libaction.php");
 
 	// GET A VALID SERVICE
 	capture_next_error();
@@ -348,13 +147,8 @@ if(getParam("action")=="gcalendar") {
 						"dstop"=>$gevent["dstop"]
 					),"id='${sevent["id"]}'");
 					db_query($query2);
-					$query2=make_insert_query("tbl_registros_u",array(
-						"id_aplicacion"=>page2id("agenda"),
-						"id_registro"=>$sevent["id"],
-						"id_usuario"=>current_user(),
-						"datetime"=>current_datetime()
-					));
-					db_query($query2);
+					make_control(page2id("agenda"),$sevent["id"]);
+					make_indexing(page2id("agenda"),$sevent["id"]);
 					$count_update_saltos++;
 					unset($gevents[$gkey]);
 					unset($sevents[$skey]);
@@ -379,14 +173,8 @@ if(getParam("action")=="gcalendar") {
 				"id_agenda"=>"SELECT MAX(id) FROM tbl_agenda"
 			));
 			db_query($query2);
-			$query2=make_insert_query("tbl_registros_i",array(
-				"id_aplicacion"=>page2id("agenda"),
-				"id_usuario"=>current_user(),
-				"datetime"=>current_datetime()
-			),array(
-				"id_registro"=>"SELECT MAX(id) FROM tbl_agenda"
-			));
-			db_query($query2);
+			make_control(page2id("agenda"));
+			make_indexing(page2id("agenda"));
 			$count_insert_saltos++;
 			unset($gevents[$gkey]);
 		}

@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,22 +27,7 @@ if(!check_user()) action_denied();
 if($page=="incidencias") {
 	require_once("php/report.php");
 	require_once("php/sendmail.php");
-	// FUNCIONES
-	function __incidencias_packreport($campos,$tipos,$row) {
-		$body="";
-		$count=count($campos);
-		for($i=0;$i<$count;$i++) {
-			$campo=$campos[$i];
-			$tipo=$tipos[$i];
-			$label=LANG($campo);
-			$value=$row[$campo];
-			switch($tipo) {
-				case "text": $body.=__report_text($label,$value); break;
-				case "textarea": $body.=__report_textarea($label,$value); break;
-			}
-		}
-		return $body;
-	}
+	require_once("php/libaction.php");
 	// DATOS SMPT
 	if(!CONFIG("email_host") || !CONFIG("email_user") || !CONFIG("email_pass")) {
 		session_error(LANG("msgnotsmtpemail"));
@@ -160,10 +145,7 @@ if($page=="correo") {
 	}
 	if($action=="incidencias") {
 		require_once("php/getmail.php");
-		// FUNCIONES
-		function __incidencias_codigo($id) {
-			return substr(str_repeat("0",CONFIG("zero_padding_digits")).$id,-CONFIG("zero_padding_digits"),CONFIG("zero_padding_digits"));
-		}
+		require_once("php/libaction.php");
 		// DATOS CORREO
 		$id_correo=abs($id);
 		if(!__getmail_checkperm($id_correo)) action_denied();
@@ -215,13 +197,8 @@ if($page=="correo") {
 		$id_aplicacion=page2id("incidencias");
 		$id_usuario=current_user();
 		$datetime=current_datetime();
-		$query=make_insert_query("tbl_registros_i",array(
-			"id_aplicacion"=>$id_aplicacion,
-			"id_registro"=>$id_incidencia,
-			"id_usuario"=>$id_usuario,
-			"datetime"=>$datetime
-		));
-		db_query($query);
+		make_control($id_aplicacion,$id_incidencia);
+		make_indexing($id_aplicacion,$id_incidencia);
 		// AÑADIR PDF CON CORREO ORIGINAL
 		$action="pdf";
 		setParam("action",$action);

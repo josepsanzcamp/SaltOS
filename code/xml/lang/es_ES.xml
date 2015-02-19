@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -1211,6 +1211,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<notsupportdefined>No se ha definido la cuenta de correo de soporte</notsupportdefined>
 		<notsupportfound>Este correo no contiene la cuenta de correo de soporte</notsupportfound>
 		<incidenciaexists>Esta incidencia ya existe y tiene el código: </incidenciaexists>
+		<interrorsendmail>Este email no se ha enviado por un error interno</interrorsendmail>
 	</correo>
 	<cuentas>
 		<list>Listado de cuentas</list>
@@ -1384,7 +1385,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ficheros>
 		<list>Listado de ficheros adjuntos</list>
 		<todaslasaplicaciones>[Todas las aplicaciones]</todaslasaplicaciones>
-		<nosearch>Debe proporcionar unas palabras de búsqueda en el cuadro de texto</nosearch>
 	</ficheros>
 	<feeds>
 		<list>Listado de feeds RSS</list>
@@ -1485,7 +1485,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<buscador>
 		<list>Buscador</list>
 		<todaslasaplicaciones>[Todas las aplicaciones]</todaslasaplicaciones>
-		<nosearch>Debe proporcionar unas palabras de búsqueda en el cuadro de texto</nosearch>
 	</buscador>
 	<errorlog>
 		<formupdate>Logs de error</formupdate>

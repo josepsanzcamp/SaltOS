@@ -1,0 +1,110 @@
+
+
+
+=Posibles clientes=
+
+Esta aplicación le permite llevar un control de todos sus posibles clientes.
+
+==Listado de posibles clientes==
+
+En el listado de posibles clientes podrá encontrar las columnas mas importantes de cada registro:
+
+- **Cód.:** Código numérico que identifica al posible cliente.
+- **Nombre:** Nombre del posible cliente
+- **Activo:** Si esta activo o no para realizar tareas comerciales, presupuestos actas, etc..
+- **Estado:** Estado en que se encuentra el posible cliente.
+- **Teléfono fijo:** Teléfono fijo principal para ponernos en contacto.
+- **Teléfono móvil:** Teléfono móvil principal para ponernos en contacto.
+- **Cuenta de correo:** Cuenta de correo principal para ponernos en contacto.
+- **NC:** Número de comentarios introducidos sobre este posible cliente.
+- **NF:** Número de ficheros vinculados con este posible cliente.
+
+
+%[Aquí imagen del listado de posibles clientes]
+
+==Opciones del listado==
+
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [Iconos-Botones]: Consultar/Editar/Borrar registro.
+- [Icono-Boton]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+- [Icono-Boton]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [Icono-Boton]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [Icono-Boton]: Mostrar datos a través del Visor-PDF.
+
+
+Este listado dispone ademas de las siguientes acciones:
+
+- [Icono-Boton] Exportar listado de todos los datos de los posibles clientes a un archivo con formato Excel.
+
+
+==Opciones de filtro==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+=Formulario posibles clientes=
+
+Esta es la aplicación de posibles clientes, con ella podrá añadir, modificar y visionar todos los datos del posible cliente clasificados en diferentes pestañas: datos principales, comentarios, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+==Pestaña Datos del posible cliente==
+
+En esta pestaña podrá visualizar y modificar los principales datos del posible cliente. A continuación le relacionamos todos los campos de información.
+
+%[Aquí imagen del formulario de contactos]
+
+- **Campaña (*):** Campaña comercial con la que se ha conseguido este contacto comercial.
+- **Estado (*):** Estado en el que se encuentran las relaciones comerciales con este posible cliente.
+- **Activo:** Es un campo que sirve a la aplicación para indicar si esta activo para realizar presupuesto, actos y eventos dentro de SaltOS
+- **Empresa (*):** Nombre comercial de la entidad.
+- **N.I.F:** Numero de identificación fiscal proporcionado por la hacienda publica.
+- **Pers. Contacto (*):** Nombre de la persona de contacto con la que se están realizando las labores comerciales.
+- **Cargo (*):** Cargo de la persona de contacto.
+- **Dirección:** Dirección de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **País:** País de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Provincia:** Provincia de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Población:** Población de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Código postal:** Código postal de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Email:** Cuenta de correo principal de contacto es la que se visualizara en todos listados.
+- **Web:** Web principal de contacto es el que se visualizara en todos listados.
+- **Número Fijo:** Fijo principal de contacto es el que se visualizara en todos listados.
+- **Número Móvil:** Móvil principal de contacto es el que se visualizara en todos listados.
+- **Numero Fax:** Fax principal de contacto es el que se visualizara en todos listados.
+- **Facturación:** Rango de facturación del posible cliente
+- **Descripción IAE:** Pequeña descripción de la actividad económica a la que se dedica el posible cliente.
+- **Cód. IAE:** Código de actividad económica [Enlace target='_blank' a http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas].
+- **Comentarios:** Comentarios sobre el contacto.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un contacto.**
+
+Ademas, en la primera pestaña tiene unos **botones de acción.** para facilitarle las principales tareas relacionadas con los contactos comerciales.
+
+- **[Icono]Añadir evento:** Le llevara al formulario de nuevo evento para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
+- **[Icono]Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
+- **[Icono]Crear cliente:** Le llevara al formulario de creación de cliente con todos los datos incluidos en la ficha del posible cliente.
+
+
+==Pestaña Comentarios==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Ficheros adjuntos==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Nuevos comentarios==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Nuevos ficheros==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Datos del registro==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Carpetas==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+

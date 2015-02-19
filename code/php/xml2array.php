@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -242,7 +242,7 @@ function eval_files() {
 			if(!isset($val["type"])) $val["type"]=saltos_content_type($val["tmp_name"]);
 			// SECURITY ISSUE
 			$ext=strtolower(extension($val["file"]));
-			if(!$ext) $ext=strtolower(extension2($val["mime"]));
+			if(!$ext) $ext=strtolower(extension2($val["type"]));
 			if(in_array($ext,array("php","x-php"))) $val["file"]=str_replace(".php",getDefault("exts/defaultext",".dat"),$val["file"]);
 			// CONTINUE
 			setParam($key,$val["name"]);
@@ -280,7 +280,7 @@ function xml2array($file,$usecache=true) {
 	$array=struct2array($data,$file);
 	if($usecache) {
 		$array["source"]=$file;
-		$array["depend"]=array_flip(array_flip($depend));
+		$array["depend"]=array_unique_protected($depend);
 		if(file_exists($cache)) unlink_protected($cache);
 		file_put_contents($cache,serialize($array));
 		chmod_protected($cache,0666);
@@ -467,6 +467,7 @@ function eval_attr($array) {
 									$stack["for_to"]=$val2;
 									break;
 								case "foreach":
+									if(!isset($$val2)) xml_error("Foreach variable '${val2}' not found");
 									if(!is_array($$val2)) xml_error("The 'foreach' attr requires a rows array");
 									$stack["foreach_rows"]=$val2;
 									break;

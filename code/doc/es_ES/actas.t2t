@@ -1,0 +1,91 @@
+
+
+
+=Actas=
+
+Esta aplicación le permite llevar un control de todas las actas realizadas en la empresa.
+
+==Listado de actas==
+
+En el listado de actas podrá encontrar las columnas mas importantes de cada registro:
+
+- **Cód.:** Código numérico que identifica el acta.
+- **Usuario:** Usuario que ha creado el acta.
+- **Inicio:** Fecha y hora de inicio de la reunión.
+- **Fin:** Fecha y hora de fin de la reunión.
+- **Cliente:** Cliente vinculado en el acta.
+- **Proyecto:** Proyecto vinculado en el acta.
+- **Nombre:** Nombre descriptivo del motivo de la reunión.
+- **Lugar (€):** Lugar en el que se ha realizado la reunión.
+
+
+%[Aquí imagen del listado de actas]
+
+==Opciones del listado==
+
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [Iconos-Botones]: Consultar/Editar/Borrar registro.
+- [Icono-Boton]: Con esta acción podrá crear un nuevo registro copiando los datos de este.
+- [Icono-Boton]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [Icono-Boton]: Mostrar datos a través del Visor-PDF.
+- [Icono-Boton]: Preparara un correo con el registro seleccionado adjuntado como archivo. PDF.
+
+
+Este listado dispone ademas de las siguientes acciones seleccionando varios registros simultáneamente:
+
+- [Icono-Boton] Descargar los registros seleccionados a un archivo en formato PDF.
+- [Icono-Boton] Visualizar los registros seleccionados en formato PDF en pantalla.
+- [Icono-Boton] Preparara un correo con los registros seleccionados adjuntados como archivos PDF.
+
+
+==Opciones de filtro==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Formularios de actas==
+
+Esta es la aplicación de contactos, con ella podrá añadir, modificar y visionar todos los datos del contacto clasificados en diferentes pestañas. Datos principales, comentarios, fichero adjuntos, gráficas y estadísticas sobre las compras realizadas, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+==Pestaña Datos del acta==
+
+En esta pestaña podrá visualizar y modificar los principales datos de contacto. A continuación le relacionamos todos los campos de información.
+
+%[Aquí imagen del formulario de actas]
+
+- **Campañas:** Para vincular el acta con una campaña comercial concreta.
+- **Posible cliente:** Para vincular el acta con un posible cliente concreto.
+- **Presupuesto:** Para vincular el acta con un posible presupuesto concreto.
+- **Cliente:** Para vincular el acta con un cliente concreto.
+- **Proyecto:** Para vincular el acta con un proyecto concreto.
+- **Inicio (*):** Hora de inicio de la reunión.
+- **Fin (*):** Hora de finalización de la reunión.
+- **Nombre (*):** Nombre que se quiera dar al acta
+- **Lugar (*):** Lugar donde se realiza la reunión.
+- **Asistentes (*):** Asistentes a la reunión
+- **Temas (*):** Temas a tratar en la reunión
+- **Textos predefinidos:** Posibilidad de añadir textos predefinidos en la caja de texto de temas.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un contacto.**
+
+==Pestaña Temas aceptados==
+
+En esta pestaña podrá indicar los temas aceptados durante la reunión.
+
+==Pestaña Temas cancelados==
+
+En esta pestaña podrá indicar los temas cancelados durante la reunión.
+
+==Pestaña Temas pendientes==
+
+En esta pestaña podrá indicar los temas que quedan pendientes de tratar, por falta de tiempo u otro motivo.
+
+==Pestaña Datos del registro==
+
+%[Enviar a home ayuda genérica]
+
+==Pestaña Carpetas==
+
+%[Enviar a home ayuda genérica]
+

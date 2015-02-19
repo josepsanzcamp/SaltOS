@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -385,6 +385,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<label lang="true">onlybody</label>
 								<value>body</value>
 							</row>
+<!--
 							<row>
 								<label lang="true">onlyfiles</label>
 								<value>files</value>
@@ -393,6 +394,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<label lang="true">restocampos</label>
 								<value>resto</value>
 							</row>
+-->
 						</rows>
 						<width>240px</width>
 						<value global="campos" eval="true">$campos=getParam("campos")</value>
@@ -569,11 +571,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
-		<temp global="campos_array" eval="true">$campos_array=array(""=>"id2,de,para,cc,bcc,datetime,subject,body,estado,msgid,search","email"=>"de,para,cc,bcc","subject"=>"subject","body"=>"body","files"=>"search","resto"=>"id2,datetime,estado,msgid")</temp>
+		<temp global="campos_array" eval="true">$campos_array=array(""=>"","email"=>"de,para,cc,bcc","subject"=>"subject","body"=>"body")</temp>
 		<temp global="campos,campos_array" eval="true">$campos=isset($campos_array[$campos])?$campos:""</temp>
 		<temp global="fecha3_array" eval="true">$fecha3_array=array(""=>"1=1","today"=>"DATE(datetime)=DATE('".current_date()."')","yesterday"=>"DATE(datetime)=DATE('".current_date(-86400)."')","week"=>"DATE(datetime)>=DATE('".current_date(-86400*7)."')","month"=>"DATE(datetime)>=DATE('".current_date(-86400*30)."')")</temp>
 		<temp global="fecha3,fecha3_array" eval="true">$fecha3=isset($fecha3_array[$fecha3])?$fecha3:""</temp>
@@ -590,7 +591,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				ELSE CONCAT('mailto:',email_name,' &lt;',email_from,'&gt;')
 				END
 			END para2,
-			CONCAT('link:correo(',-id,'):',subject) subject,
+			CONCAT('link:openapp(\'correo\',',-id,'):',subject) subject,
 			datetime,
 			size,
 			CASE
@@ -614,36 +615,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"view")." WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_spam,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
-		SELECT a.id id,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
-			de,para,cc,bcc,
-			uc.email_name email_name,uc.email_from email_from,
-			a.datetime datetime,a.size size,body,
-			files,
-			e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_cuenta id_cuenta,
-			uc.id_usuario id_usuario2,
-			state_new,state_wait,state_spam,is_outbox,
-			uc.email_privated email_privated,
-			CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END subject,
-			CONCAT(id_cuenta,'/',uidl) msgid,
-			TRIM(CONCAT(
-			CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent")." ' ELSE '' END,
-			CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror")." ' END,
-			CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' ".LANG_ESCAPE("statenotsent")."' ELSE '' END,
-			CASE state_new WHEN 1 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END,
-			CASE state_reply WHEN 1 THEN '".LANG_ESCAPE("statereply")." ' ELSE '' END,
-			CASE state_forward WHEN 1 THEN '".LANG_ESCAPE("stateforward")." ' ELSE '' END,
-			CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END,
-			CASE state_spam WHEN 1 THEN '".LANG_ESCAPE("statespam")." ' ELSE '' END,
-			CASE priority WHEN -1 THEN '".LANG_ESCAPE("prioritylow")." ' WHEN 1 THEN '".LANG_ESCAPE("priorityhigh")." ' ELSE '' END,
-			CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential")." ' ELSE '' END,
-			CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
-			)) estado,
-			CASE WHEN state_error!='' THEN 'state_error' WHEN state_spam=1 THEN 'state_spam' WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE '' END action_style,
-			(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id AND ".str_replace(" AND "," OR ",make_like_query("fichero,fichero_file,fichero_size,fichero_type,search",$filtro)).") search
-		FROM tbl_correo a
-		LEFT JOIN tbl_usuarios_c uc ON a.id_cuenta=uc.id
-		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
-		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
+			SELECT a.id id,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
+				de,para,cc,bcc,
+				uc.email_name email_name,uc.email_from email_from,
+				a.datetime datetime,a.size size,
+				files,body,
+				e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_cuenta id_cuenta,
+				uc.id_usuario id_usuario2,
+				state_new,state_wait,state_spam,is_outbox,
+				uc.email_privated email_privated,
+				CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END subject,
+				CONCAT(id_cuenta,'/',uidl) msgid,
+				TRIM(CONCAT(
+				CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent")." ' ELSE '' END,
+				CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror")." ' END,
+				CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' ".LANG_ESCAPE("statenotsent")."' ELSE '' END,
+				CASE state_new WHEN 1 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END,
+				CASE state_reply WHEN 1 THEN '".LANG_ESCAPE("statereply")." ' ELSE '' END,
+				CASE state_forward WHEN 1 THEN '".LANG_ESCAPE("stateforward")." ' ELSE '' END,
+				CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END,
+				CASE state_spam WHEN 1 THEN '".LANG_ESCAPE("statespam")." ' ELSE '' END,
+				CASE priority WHEN -1 THEN '".LANG_ESCAPE("prioritylow")." ' WHEN 1 THEN '".LANG_ESCAPE("priorityhigh")." ' ELSE '' END,
+				CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential")." ' ELSE '' END,
+				CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
+				)) estado,
+				CASE WHEN state_error!='' THEN 'state_error' WHEN state_spam=1 THEN 'state_spam' WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE '' END action_style
+			FROM tbl_correo a
+				LEFT JOIN tbl_usuarios_c uc ON a.id_cuenta=uc.id
+				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
+				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+			WHERE
+				a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
+		) z
 		WHERE ".make_like_query($campos_array[$campos],$filtro)."
 		AND ".($id_usuario?"TRIM(IFNULL(id_usuario2,0))='$id_usuario'":"(1=1)")."
 		AND ".($id_cuenta!=""?"id_cuenta='$id_cuenta'":"(1=1)")."
@@ -668,7 +671,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">formview</title>
 				<query>
 					<query include="xml/common/qpermview.xml" replace="true" />
-					<default global="id" eval="true">"SELECT a.*,
+					<default global="id" eval="true">"SELECT a.id,a.id_cuenta,a.uidl,a.datetime,a.size,
+					a.state_new,a.state_reply,a.state_forward,a.state_wait,a.state_spam,a.is_outbox,a.state_sent,a.state_error,a.state_crt,a.priority,a.sensitivity,
+					a.de,a.cc,a.bcc,
 					CASE WHEN para!='' THEN para
 					ELSE
 						CASE WHEN uc.email_name=''
@@ -749,7 +754,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>800px</width>
 							<colspan>12</colspan>
 							<query eval="true">"SELECT
-							SUBSTR(CONCAT(email_name,' &lt;',email_from,'&gt;'),1,255) label,id value,email_default,(SELECT COUNT(*) FROM tbl_correo_a WHERE valor=email_from AND id_tipo IN (1,2,3,4)) contador FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC, contador DESC"</query>
+							SUBSTR(CONCAT(email_name,' &lt;',email_from,'&gt;'),1,255) label,id value,email_default,(SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta=a.id AND is_outbox=1) AND id_tipo IN (1,2,3,4)) contador FROM tbl_usuarios_c a WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC, contador DESC"</query>
 							<focus>true</focus>
 							<required>true</required>
 							<onchange>update_signature(1)</onchange>
@@ -945,10 +950,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<speech>true</speech>
 						</field>
 					</row>
+					<temp global="id_extra" eval="true">$id_extra=explode("_",getParam("id"),3);</temp>
+					<temp global="id_extra" eval="true">$id_extra[1]=isset($id_extra[1])?$id_extra[1]:""</temp>
+					<temp global="id_extra" eval="true">$id_extra[2]=isset($id_extra[2])?$id_extra[2]:""</temp>
 					<row global="id,id_extra" ifeval="execute_query('SELECT files FROM tbl_correo WHERE id='.abs($id)) || ($id_extra[1]=='forward' &amp;&amp; execute_query('SELECT files FROM tbl_correo WHERE id='.$id_extra[2])) || $id_extra[1]=='session'">
-						<temp global="id_extra" eval="true">$id_extra=explode("_",getParam("id"),3);</temp>
-						<temp global="id_extra" eval="true">$id_extra[1]=isset($id_extra[1])?$id_extra[1]:""</temp>
-						<temp global="id_extra" eval="true">$id_extra[2]=isset($id_extra[2])?$id_extra[2]:""</temp>
 						<field>
 							<label lang="true">attachments</label>
 							<type>label</type>
@@ -1035,7 +1040,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</source>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons>

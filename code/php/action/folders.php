@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,23 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if($page=="profile") {
-	if(!function_exists("update_folders_tree")) {
-		function update_folders_tree($id_usuario,$id_parent=0,&$pos=0,$depth=0) {
-			$query="SELECT id FROM tbl_folders WHERE id_usuario='${id_usuario}' AND id_parent='${id_parent}' ORDER BY name ASC";
-			$result=db_query($query);
-			while($row=db_fetch_row($result)) {
-				$id=$row["id"];
-				$query=make_update_query("tbl_folders",array(
-					"pos"=>$pos,
-					"depth"=>$depth
-				),"id_usuario='${id_usuario}' AND id=${id}");
-				db_query($query);
-				$pos++;
-				update_folders_tree($id_usuario,$row["id"],$pos,$depth+1);
-			}
-			db_free($result);
-		}
-	}
-	update_folders_tree(current_user());
+	require_once("php/libaction.php");
+	__folders_update_tree(current_user());
 }
 ?>

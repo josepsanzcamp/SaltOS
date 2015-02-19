@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,10 +37,10 @@ if(typeof(__calendar__)=="undefined" && typeof(parent.__calendar__)=="undefined"
 			success:function(response) {
 				// PUT SELECT OPTIONS
 				var options="";
-				$("root>options>option",response).each(function() {
-					var label=$("label",this).text();
-					var value=$("value",this).text();
-					var selected=($("selected",this).text()=="1")?"selected='selected'":"";
+				$(response["options"]).each(function() {
+					var label=this["label"];
+					var value=this["value"];
+					var selected=(this["selected"]=="1")?"selected='selected'":"";
 					options+="<option value='"+value+"' "+selected+">"+label+"</option>";
 				});
 				$("#mesano").html(options);
@@ -48,13 +48,13 @@ if(typeof(__calendar__)=="undefined" && typeof(parent.__calendar__)=="undefined"
 				$("[id^=cell_]").each(function() {
 					$(this).html("");
 				});
-				var extra=new Array();
+				var extra=[];
 				for(var i=1;i<=6;i++) extra[i]="";
-				$("root>rows>row",response).each(function() {
-					var cell=$("cell",this).text();
-					var data=$("data",this).text();
-					var clase=$("class",this).text();
-					var estilo=$("style",this).text();
+				$(response["rows"]).each(function() {
+					var cell=this["cell"];
+					var data=this["data"];
+					var clase=this["class"];
+					var estilo=this["style"];
 					var div="<div class='"+clase+"' style='"+estilo+"'>"+data+"</div>";
 					if(substr(cell,0,1)=="g") {
 						extra[substr(cell,1,1)]+=div;

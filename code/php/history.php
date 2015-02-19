@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,20 +38,10 @@ function history($page) {
 }
 
 function save_history($id_usuario,$id_aplicacion) {
-	$query="SELECT * FROM tbl_history WHERE id_usuario='$id_usuario' AND id_aplicacion='$id_aplicacion'";
-	$result=db_query($query);
-	$numrows=db_num_rows($result);
-	db_free($result);
+	$query="SELECT id FROM tbl_history WHERE id_usuario='$id_usuario' AND id_aplicacion='$id_aplicacion'";
+	$exists=execute_query($query);
 	$querystring=base64_encode(str_replace("+","%20",getServer("QUERY_STRING")));
-	if($numrows>1) {
-		$query=make_delete_query("tbl_history",make_where_query(array(
-			"id_usuario"=>$id_usuario,
-			"id_aplicacion"=>$id_aplicacion
-		)));
-		db_query($query);
-		$numrows=0;
-	}
-	if(!$numrows) {
+	if(!$exists) {
 		$query=make_insert_query("tbl_history",array(
 			"id_usuario"=>$id_usuario,
 			"id_aplicacion"=>$id_aplicacion,
@@ -88,7 +78,7 @@ function load_history($id_usuario,$id_aplicacion) {
 function lastpage($page) {
 	$id_usuario=current_user();
 	if(!$id_usuario) return "";
-	$query="SELECT page FROM tbl_lastpage WHERE id_usuario='$id_usuario' LIMIT 1";
+	$query="SELECT page FROM tbl_lastpage WHERE id_usuario='$id_usuario'";
 	$lastpage=execute_query($query);
 	if(!$page) {
 		$page=$lastpage;
@@ -117,7 +107,7 @@ function lastpage($page) {
 function lastfolder($id_folder) {
 	$id_usuario=current_user();
 	if(!$id_usuario) return "";
-	$query="SELECT id_folder FROM tbl_lastfolder WHERE id_usuario='$id_usuario' LIMIT 1";
+	$query="SELECT id_folder FROM tbl_lastfolder WHERE id_usuario='$id_usuario'";
 	$lastfolder=execute_query($query);
 	if(!$id_folder) {
 		$id_folder=$lastfolder;

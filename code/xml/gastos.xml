@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -410,7 +410,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</field>
 				</row>
 			</fields>
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
@@ -433,17 +432,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 			SELECT a.*,
-				CONCAT('link:gastos(',-a.id,'):',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) id2,
+				CONCAT('link:openapp(\'gastos\',',-a.id,'):',LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0)) id2,
 				CASE a.id_pagador WHEN '0' THEN '".LANG_ESCAPE("sinpagador")."' ELSE ".make_extra_query_with_login("b.")." END pagador,
 				CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE
-					CONCAT('link:proveedores(',-a.id_proveedor,'):',c.nombre) END empresa,
+					CONCAT('link:openapp(\'proveedores\',',-a.id_proveedor,'):',c.nombre) END empresa,
 				CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE c.nombre END empresa2,
 				c.cif cif,
 				CASE id_formapago WHEN '0' THEN '".LANG_ESCAPE("sinformapago")."' ELSE d.nombre END formapago,
 				f.id_usuario id_usuario,g.id_grupo id_grupo,f.datetime datetime,
 				".make_extra_query_with_login("g.")." usuario,
-				CASE a.id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE j.nombre END cuenta,
-				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id AND ".str_replace(" AND "," OR ",make_like_query("fichero,fichero_file,fichero_size,fichero_type,search",$filtro)).") search
+				CASE a.id_cuenta WHEN '0' THEN '".LANG_ESCAPE("sincuenta")."' ELSE j.nombre END cuenta
 			FROM tbl_gastos a
 				LEFT JOIN tbl_cuentas j ON a.id_cuenta=j.id
 				LEFT JOIN tbl_usuarios b ON a.id_pagador=b.id
@@ -451,8 +449,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_formaspago d ON a.id_formapago=d.id
 				LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
 				LEFT JOIN tbl_usuarios g ON f.id_usuario=g.id
+				WHERE
+					a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
 		) e
-		WHERE ".make_like_query("id2,num,cif,empresa,descripcion,fecha,fecha2,datetime,search",$filtro)." AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$fecha1reg' OR DATE(datetime)>=DATE('$fecha1reg')) AND (''='$fecha2reg' OR DATE('$fecha2reg')>=DATE(datetime)) AND (''='$fecha1liq' OR fecha2>=DATE('$fecha1liq')) AND (''='$fecha2liq' OR DATE('$fecha2liq')>=fecha2) AND (''='$trimestre' OR '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)) AND (''='$trimestrereg' OR '$trimestrereg'=YEAR(datetime)*4+TRUNCATE((MONTH(datetime)-1)/3,0)) AND (''='$trimestreliq' OR '$trimestreliq'=YEAR(fecha2)*4+TRUNCATE((MONTH(fecha2)-1)/3,0)) AND (liquidado='$liquidado' OR ''='$liquidado') AND (id_pagador='$id_pagador' OR ''='$id_pagador') AND (id_formapago='$id_formapago' OR ''='$id_formapago') AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
+		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND (''='$fecha1reg' OR DATE(datetime)>=DATE('$fecha1reg')) AND (''='$fecha2reg' OR DATE('$fecha2reg')>=DATE(datetime)) AND (''='$fecha1liq' OR fecha2>=DATE('$fecha1liq')) AND (''='$fecha2liq' OR DATE('$fecha2liq')>=fecha2) AND (''='$trimestre' OR '$trimestre'=YEAR(fecha)*4+TRUNCATE((MONTH(fecha)-1)/3,0)) AND (''='$trimestrereg' OR '$trimestrereg'=YEAR(datetime)*4+TRUNCATE((MONTH(datetime)-1)/3,0)) AND (''='$trimestreliq' OR '$trimestreliq'=YEAR(fecha2)*4+TRUNCATE((MONTH(fecha2)-1)/3,0)) AND (liquidado='$liquidado' OR ''='$liquidado') AND (id_pagador='$id_pagador' OR ''='$id_pagador') AND (id_formapago='$id_formapago' OR ''='$id_formapago') AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -970,7 +970,6 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 			</vencimientos_new>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />

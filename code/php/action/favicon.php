@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,24 +34,9 @@ if(getParam("action")=="favicon") {
 	$temp=get_directory("dirs/cachedir");
 	$hash=md5(serialize(array($bgcolor,$fgcolor,$format)));
 	$cache="$temp$hash.png";
-	//if(file_exists($cache)) unlink($cache);
-	// FUNCTIONS
-	function __number_color2dec($color,$component) {
-		$offset=array("R"=>0,"G"=>2,"B"=>4);
-		if(!isset($offset[$component])) show_php_error(array("phperror"=>"Unknown component"));
-		return hexdec(substr($color,$offset[$component],2));
-	}
-	function __number_color2aprox($fgcolor,$bgcolor) {
-		$fgcolor=intval($fgcolor/85);
-		$bgcolor=intval($bgcolor/85);
-		$color=3;
-		if($fgcolor==$color) $color--;
-		if($bgcolor==$color) $color--;
-		if($fgcolor==$color) $color--;
-		$color=$color*85;
-		return $color;
-	}
+	require_once("php/libaction.php");
 	// CREATE IF NOT EXISTS
+	//if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		// LOAD DEFAULT FAVICON
 		$im3=imagecreatefrompng("img/favicon.png");
@@ -62,14 +47,14 @@ if(getParam("action")=="favicon") {
 		if($format=="animation") {
 			// CREATE A BIG IMAGE
 			$im=imagecreatetruecolor(6400,32);
-			$trcolor=imagecolorallocate($im,__number_color2aprox(__number_color2dec($fgcolor,"R"),__number_color2dec($bgcolor,"R")),__number_color2aprox(__number_color2dec($fgcolor,"G"),__number_color2dec($bgcolor,"G")),__number_color2aprox(__number_color2dec($fgcolor,"B"),__number_color2dec($bgcolor,"B")));
+			$trcolor=imagecolorallocate($im,__favicon_color2aprox(__favicon_color2dec($fgcolor,"R"),__favicon_color2dec($bgcolor,"R")),__favicon_color2aprox(__favicon_color2dec($fgcolor,"G"),__favicon_color2dec($bgcolor,"G")),__favicon_color2aprox(__favicon_color2dec($fgcolor,"B"),__favicon_color2dec($bgcolor,"B")));
 			imagecolortransparent($im,$trcolor);
 			imagefilledrectangle($im,0,0,6400,32,$trcolor);
 			for($i=0;$i<100;$i++) {
 				$im2=imagecreatetruecolor(160,160);
-				$bgcolor2=imagecolorallocate($im2,__number_color2dec($bgcolor,"R"),__number_color2dec($bgcolor,"G"),__number_color2dec($bgcolor,"B"));
-				$fgcolor2=imagecolorallocate($im2,__number_color2dec($fgcolor,"R"),__number_color2dec($fgcolor,"G"),__number_color2dec($fgcolor,"B"));
-				$trcolor=imagecolorallocate($im2,__number_color2aprox(__number_color2dec($fgcolor,"R"),__number_color2dec($bgcolor,"R")),__number_color2aprox(__number_color2dec($fgcolor,"G"),__number_color2dec($bgcolor,"G")),__number_color2aprox(__number_color2dec($fgcolor,"B"),__number_color2dec($bgcolor,"B")));
+				$bgcolor2=imagecolorallocate($im2,__favicon_color2dec($bgcolor,"R"),__favicon_color2dec($bgcolor,"G"),__favicon_color2dec($bgcolor,"B"));
+				$fgcolor2=imagecolorallocate($im2,__favicon_color2dec($fgcolor,"R"),__favicon_color2dec($fgcolor,"G"),__favicon_color2dec($fgcolor,"B"));
+				$trcolor=imagecolorallocate($im2,__favicon_color2aprox(__favicon_color2dec($fgcolor,"R"),__favicon_color2dec($bgcolor,"R")),__favicon_color2aprox(__favicon_color2dec($fgcolor,"G"),__favicon_color2dec($bgcolor,"G")),__favicon_color2aprox(__favicon_color2dec($fgcolor,"B"),__favicon_color2dec($bgcolor,"B")));
 				imagecolortransparent($im2,$trcolor);
 				imagefilledrectangle($im2,0,0,160,160,$trcolor);
 				if($i>0) {

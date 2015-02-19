@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,43 +27,12 @@ if(!check_user()) action_denied();
 if(getParam("action")=="translate") {
 	if(!eval_bool(getDefault("enabletranslate"))) return;
 	require_once("php/translate.php");
+	require_once("php/libaction.php");
 	// CHECK COMMANDS
 	if(!check_commands(array(getDefault("commands/apertium"),getDefault("commands/aspell")),60)) action_denied();
 	// GET PARAMETERS
 	$text=getParam("text");
 	$langs=getParam("langs");
-	// SOME FUNCTIONS
-	function __translate_get_options($filter="") {
-		if(!is_array($filter)) $filter=explode(",",$filter);
-		if($filter[0]=="") unset($filter[0]);
-		$options=array();
-		$langs=__translate_get_apertium_langs();
-		if(count($langs)>0) {
-			$options[]="<option value='' reverse=''>".LANG("translate","translate")."</option>";
-			foreach($langs as $key=>$val) {
-				$temp=explode("-",$val);
-				if(!count($filter) || in_array($temp[0],$filter)) {
-					$val2=implode("-",array(LANG($temp[0],"translate"),LANG($temp[1],"translate")));
-					$val3=implode("-",array($temp[1],$temp[0]));
-					$val3=in_array($val3,$langs)?$val3:"";
-					$options[]="<option value='$val' reverse='$val3'>- $val2</option>";
-				}
-			}
-		}
-		$langs=__translate_get_aspell_langs();
-		if(count($langs)>0) {
-			$options[]="<option value='' reverse=''>".LANG("corrector","translate")."</option>";
-			foreach($langs as $key=>$val) {
-				if(!count($filter) || in_array($val,$filter)) {
-					$val3=implode("-",array($val,$val));
-					$val2=LANG($val,"translate");
-					$options[]="<option value='$val3' reverse='$val3'>- $val2</option>";
-				}
-			}
-		}
-		$options=implode("\n",$options);
-		return $options;
-	}
 	// CHECK FOR THE OPTIONS REQUEST
 	if($langs=="auto") {
 		$cache=get_cache_file(array("translate","auto",$text,__translate_get_apertium_langs(),__translate_get_aspell_langs()),getDefault("exts/textext",".txt"));

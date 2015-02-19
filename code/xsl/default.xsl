@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -475,6 +475,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:for-each>
 		</xsl:otherwise>
 	</xsl:choose>
+	<li taborder=""><a href="#help"></a></li>
 </xsl:template>
 
 <xsl:template name="brtag">
@@ -1112,11 +1113,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</xsl:otherwise>
 					</xsl:choose>
 				</img>
-			</td>
-		</xsl:when>
-		<xsl:when test="type='columnizer'">
-			<td class="{class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width};height:{height}">
-				<div class="columnizer {class2}"><xsl:value-of disable-output-escaping="yes" select="label"/></div>
 			</td>
 		</xsl:when>
 		<xsl:when test="type='menu'">

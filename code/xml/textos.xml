@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -127,14 +127,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"
 		SELECT
 			LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
-			CONCAT('link:textos(',-id,'):',nombre) nombre,
+			CONCAT('link:openapp(\'textos\',',-id,'):',nombre) nombre,
 			nombre nombre2,
 			aplicacion,
 			descripcion,
@@ -154,8 +153,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_aplicaciones c ON c.id=a.id_aplicacion
 				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+			WHERE
+				a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
 		) b
-		WHERE ".make_like_query("id,nombre,descripcion",$filtro)." AND ".check_sql($page,"list")</query>
+		WHERE ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -252,7 +253,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</default>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />

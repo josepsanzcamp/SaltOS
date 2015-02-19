@@ -1,0 +1,22 @@
+
+
+
+=Lector Feeds RSS y Atom=
+
+El lector de feeds le ofrece la posibilidad de seguir cómodamente sus canales RSS y Atom desde SaltOS.
+
+Para configurar un nuevo canal RSS, consulte el capítulo 2.
+
+==Listado==
+
+El listado de entradas le muestra los últimos //posts// descargados.
+
+El funcionamiento de esta aplicación es muy parecida al del lector de correo electrónico.
+
+El color de letra de cada entrada indica el estado y las opciones de búsqueda, filtrado y exportación funcionan de la misma manera. Puede marcar un post como pendiente, o volver a marcarlo como no leído si ya lo ha consultado.
+
+=Consulta=
+
+El modo //Consulta// de un post le permite acceder a la fuente original, haciendo clic en el enlace de la cabecera. También puede enviar el contenido del post, por ejemplo, para recomendarlo a otra persona.
+
+Para ver el contenido del post con más detalle, haga clic en //Zoom del post//.

@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ if(typeof(__gastos__)=="undefined" && typeof(parent.__gastos__)=="undefined") {
 	}
 
 	function search_proveedor() {
-		var buscador=$("input[name$=buscador]");
+		var buscador=$("input[type=text][name$=buscador]");
 		var proveedor=$("select[name$=id_proveedor]");
 		if(proveedores_defaults=="") proveedores_defaults=$(proveedor).html();
 		var data="action=ajax&query=proveedores&filtro="+rawurlencode(buscador.val()?buscador.val():"");
@@ -62,13 +62,10 @@ if(typeof(__gastos__)=="undefined" && typeof(parent.__gastos__)=="undefined") {
 			success:function(response) {
 				var options=proveedores_defaults;
 				var original=$(proveedor).attr("original");
-				var contador=0;
-				$("root>rows>row",response).each(function() { contador++; });
-				$("root>rows>row",response).each(function() {
-					var id=$("id",this).text();
-					var nombre=$("nombre",this).text();
-					var selected=(id==original || contador==1)?"selected='selected'":"";
-					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
+				var contador=response["rows"].length;
+				$(response["rows"]).each(function() {
+					var selected=(this["id"]==original || contador==1)?"selected='selected'":"";
+					options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
 				});
 				$(proveedor).html(options);
 			},

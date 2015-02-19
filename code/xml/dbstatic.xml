@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,92 +31,87 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<nombre>Clientes</nombre>
 			<tabla>tbl_clientes</tabla>
 			<campo>nombre</campo>
-			<filter1>id_cliente</filter1>
-			<filter2>id_cliente</filter2>
-			<node0>id_tipo,nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax</node0>
+			<islink>1</islink>
 		</row>
 		<row>
 			<id>2</id>
 			<codigo>contactos</codigo>
 			<nombre>Contactos</nombre>
 			<tabla>tbl_contactos</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>3</id>
 			<codigo>incidencias</codigo>
 			<nombre>Incidencias</nombre>
 			<tabla>tbl_incidencias</tabla>
-			<filter2>id_cliente,id_proyecto</filter2>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>4</id>
 			<codigo>proyectos</codigo>
 			<nombre>Proyectos</nombre>
 			<tabla>tbl_proyectos</tabla>
-			<subtablas>tbl_proyectos_p,tbl_proyectos_t</subtablas>
 			<campo>nombre</campo>
-			<filter1>id_proyecto</filter1>
-			<filter2>id_cliente,id_proyecto</filter2>
+			<subtablas>tbl_proyectos_p(id_proyecto),tbl_proyectos_t(id_proyecto)</subtablas>
+			<islink>1</islink>
 		</row>
 		<row>
 			<id>5</id>
 			<codigo>partes</codigo>
 			<nombre>Partes</nombre>
 			<tabla>tbl_partes</tabla>
-			<filter2>id_cliente,id_proyecto</filter2>
+			<campo>tarea</campo>
 		</row>
 		<row>
 			<id>6</id>
 			<codigo>documentos</codigo>
 			<nombre>Documentos</nombre>
 			<tabla>tbl_documentos</tabla>
-			<filter2>id_cliente,id_proyecto</filter2>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>7</id>
 			<codigo>facturas</codigo>
 			<nombre>Facturas</nombre>
 			<tabla>tbl_facturas</tabla>
-			<subtablas>tbl_facturas_c,tbl_facturas_v</subtablas>
-			<filter2>id_cliente,id_proyecto</filter2>
-			<node0>nombre,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,cif,num,fecha,iva,irpf</node0>
-			<node1>concepto,unidades,descuento,precio</node1>
+			<campo>"CASE num WHEN '' THEN CONCAT('".LANG_ESCAPE("albaran")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) ELSE CONCAT('".LANG_ESCAPE("factura")."',' ',num,' ',nombre,CASE cobrado WHEN '1' THEN '".LANG_ESCAPE("cobrado","facturas")."' ELSE '&lt;strike&gt;".LANG_ESCAPE("cobrado","facturas")."&lt;/strike&gt;' END) END"</campo>
+			<subtablas>tbl_facturas_c(id_factura),tbl_facturas_v(id_factura)</subtablas>
 		</row>
 		<row>
 			<id>8</id>
 			<codigo>gastos</codigo>
 			<nombre>Gastos</nombre>
 			<tabla>tbl_gastos</tabla>
-			<subtablas>tbl_gastos_v</subtablas>
-			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
-			<node0>num,fecha,descripcion,base,iva,irpf,total</node0>
+			<campo>descripcion</campo>
+			<subtablas>tbl_gastos_v(id_gasto)</subtablas>
 		</row>
 		<row>
 			<id>9</id>
 			<codigo>epigrafes</codigo>
 			<nombre>Epigrafes</nombre>
 			<tabla>tbl_epigrafes</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>10</id>
 			<codigo>home</codigo>
 			<nombre>Inicio</nombre>
-<!--
-			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
--->
 		</row>
 		<row>
 			<id>11</id>
 			<codigo>usuarios</codigo>
 			<nombre>Usuarios</nombre>
 			<tabla>tbl_usuarios</tabla>
-			<subtablas>tbl_usuarios_c,tbl_usuarios_f</subtablas>
+			<campo>login</campo>
+			<subtablas>tbl_usuarios_c(id_usuario),tbl_usuarios_f(id_usuario)</subtablas>
 		</row>
 		<row>
 			<id>12</id>
 			<codigo>estados</codigo>
 			<nombre>Estados</nombre>
 			<tabla>tbl_estados</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>13</id>
@@ -128,25 +123,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>grupos</codigo>
 			<nombre>Grupos</nombre>
 			<tabla>tbl_grupos</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>15</id>
 			<codigo>formaspago</codigo>
 			<nombre>Formas de pago</nombre>
 			<tabla>tbl_formaspago</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>16</id>
 			<codigo>prioridades</codigo>
 			<nombre>Prioridades</nombre>
 			<tabla>tbl_prioridades</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>17</id>
 			<codigo>agenda</codigo>
 			<nombre>Agenda</nombre>
 			<tabla>tbl_agenda</tabla>
-			<filter2>id_cliente,id_proyecto</filter2>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>18</id>
@@ -162,9 +160,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id>20</id>
 			<codigo>folders</codigo>
 			<nombre>Carpetas</nombre>
-<!--
-			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
--->
 		</row>
 		<row>
 			<id>21</id>
@@ -172,16 +167,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<nombre>Proveedores</nombre>
 			<tabla>tbl_proveedores</tabla>
 			<campo>nombre</campo>
-			<filter1>id_proveedor</filter1>
-			<filter2>id_proveedor</filter2>
-			<node0>nombre,nombre1,nombre2,cif,comentarios,corriente,contable,diapago,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax</node0>
+			<islink>1</islink>
 		</row>
 		<row>
 			<id>22</id>
 			<codigo>actas</codigo>
 			<nombre>Actas</nombre>
 			<tabla>tbl_actas</tabla>
-			<filter2>id_cliente,id_proyecto</filter2>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>23</id>
@@ -198,7 +191,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>seguimientos</codigo>
 			<nombre>Seguimientos</nombre>
 			<tabla>tbl_seguimientos</tabla>
-			<filter2>id_cliente,id_proyecto</filter2>
+			<campo>comentarios</campo>
 		</row>
 		<row>
 			<id>26</id>
@@ -210,28 +203,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>correo</codigo>
 			<nombre>Correo</nombre>
 			<tabla>tbl_correo</tabla>
-			<subtablas>tbl_correo_a,tbl_correo_d</subtablas>
+			<campo>"CONCAT(de,' - ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject","correo")."' ELSE subject END,' (',TRIM(CONCAT(CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent","correo")." ' ELSE '' END,CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror","correo")." ' END,CASE WHEN is_outbox=1 AND state_sent=0 AND state_error='' THEN ' (".LANG_ESCAPE("statenotsent","correo").") ' ELSE '' END,CASE state_new WHEN 1 THEN '".LANG_ESCAPE("statenew","correo")." ' ELSE '' END,CASE state_reply WHEN 1 THEN '".LANG_ESCAPE("statereply","correo")." ' ELSE '' END,CASE state_forward WHEN 1 THEN '".LANG_ESCAPE("stateforward","correo")." ' ELSE '' END,CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","correo")." ' ELSE '' END,CASE state_spam WHEN 1 THEN '".LANG_ESCAPE("statespam","correo")." ' ELSE '' END,CASE priority WHEN -1 THEN '".LANG_ESCAPE("prioritylow","correo")." ' WHEN 1 THEN '".LANG_ESCAPE("priorityhigh","correo")." ' ELSE '' END,CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal","correo")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate","correo")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential","correo")." ' ELSE '' END,CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread","correo")." ' ELSE '' END)),')')"</campo>
+			<subtablas>tbl_correo_a(id_correo)</subtablas>
 		</row>
 		<row>
 			<id>28</id>
 			<codigo>cuentas</codigo>
 			<nombre>Cuentas</nombre>
 			<tabla>tbl_cuentas</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>29</id>
 			<codigo>periodicas</codigo>
 			<nombre>Periodicas</nombre>
 			<tabla>tbl_periodicas</tabla>
-			<subtablas>tbl_periodicas_c,tbl_periodicas_v</subtablas>
+			<campo>(SELECT nombre FROM tbl_clientes WHERE tbl_clientes.id=id_cliente)</campo>
+			<subtablas>tbl_periodicas_c(id_periodica),tbl_periodicas_v(id_periodica)</subtablas>
 		</row>
 		<row>
 			<id>30</id>
 			<codigo>buscador</codigo>
 			<nombre>Buscador</nombre>
-<!--
-			<filter2>id_cliente,id_proyecto,id_proveedor</filter2>
--->
 		</row>
 		<row>
 			<id>31</id>
@@ -239,46 +232,50 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<nombre>Empleados</nombre>
 			<tabla>tbl_empleados</tabla>
 			<campo>nombre</campo>
+			<islink>1</islink>
 		</row>
 		<row>
 			<id>32</id>
 			<codigo>posiblescli</codigo>
 			<nombre>Posibles clientes</nombre>
 			<tabla>tbl_posiblescli</tabla>
-			<node0>activo,nombre,cif,contacto,cargo,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax,facturacion,iae_cod,iae_desc,comentarios</node0>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>33</id>
 			<codigo>productos</codigo>
 			<nombre>Productos</nombre>
 			<tabla>tbl_productos</tabla>
-			<node0>nombre,ref,descripcion,precio,descuento,id_iva,peso,volumen,dimensiones,web</node0>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>34</id>
 			<codigo>presupuestos</codigo>
 			<nombre>Presupuestos</nombre>
 			<tabla>tbl_presupuestos</tabla>
-			<subtablas>tbl_presupuestos_p,tbl_presupuestos_t</subtablas>
-			<filter2>id_cliente,id_proyecto</filter2>
+			<campo>nombre</campo>
+			<subtablas>tbl_presupuestos_p(id_presupuesto),tbl_presupuestos_t(id_presupuesto)</subtablas>
 		</row>
 		<row>
 			<id>35</id>
 			<codigo>campanyas</codigo>
 			<nombre>Campañas comerciales</nombre>
 			<tabla>tbl_campanyas</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>36</id>
 			<codigo>tiposevento</codigo>
 			<nombre>Tipos de evento</nombre>
 			<tabla>tbl_tiposevento</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>37</id>
 			<codigo>textos</codigo>
 			<nombre>Textos predefinidos</nombre>
 			<tabla>tbl_textos</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>38</id>
@@ -290,13 +287,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>feeds</codigo>
 			<nombre>Feeds</nombre>
 			<tabla>tbl_feeds</tabla>
-			<subtablas>tbl_feeds_d</subtablas>
+			<campo>"CONCAT((SELECT title FROM tbl_usuarios_f WHERE tbl_usuarios_f.id=id_feed),' - ',title,' (',TRIM(CONCAT(CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew","feeds")." ' ELSE '' END,CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified","feeds")." ' ELSE '' END,CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait","feeds")." ' ELSE '' END,CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool","feeds")." ' ELSE '' END,CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread","feeds")." ' ELSE '' END)),')')"</campo>
 		</row>
 		<row>
 			<id>40</id>
 			<codigo>importaciones</codigo>
 			<nombre>Importaciones</nombre>
 			<tabla>tbl_importaciones</tabla>
+			<campo>nombre</campo>
 		</row>
 		<row>
 			<id>41</id>
@@ -308,12 +306,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<codigo>favoritos</codigo>
 			<nombre>Favoritos</nombre>
 			<tabla>tbl_favoritos</tabla>
+			<campo>CONCAT(nombre,' - ',url)</campo>
 		</row>
 		<row>
 			<id>43</id>
 			<codigo>ivas</codigo>
 			<nombre>I.V.A.</nombre>
 			<tabla>tbl_ivas</tabla>
+			<campo>nombre</campo>
 		</row>
 	</tbl_aplicaciones>
 	<tbl_aplicaciones_i>

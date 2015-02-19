@@ -1,0 +1,69 @@
+
+
+
+=Correo electrónico=
+
+Con el cliente de correo electrónico de SaltOS podrá trabajar como en cualquier otro cliente, ya sea de tipo //webmail// o una aplicación de escritorio.
+
+Saltos realiza el envío y la recepción de los correos periódicamente en segundo plano.
+
+==Listado de correos==
+
+En el listado de sus correos electrónicos encontrará tanto los enviados por usted como los recibidos.
+
+Encima del listado encontrará un espacio con opciones para buscar, exportar, filtrar, marcar y borrar los correos. Estas opciones están agrupadas en tres grupos. Para ir de un grupo a otro haga clic en //Opciones// o seleccione directamente el número del grupo.
+
+En el primer grupo encontrará una caja de texto para realizar una búsqueda por la cadena de texto introducida. Desde este grupo también forzar el envío y la recepción de correo. También puede ordenar el correo en el siguiente orden haciendo clic en el botón //Ordenar//: nuevo, pendiente y resto.
+
+En el segundo grupo podrá filtrar el correo en función de su estado (nuevo, pendiente o spam), su fecha (hoy, ayer, semana actual, mes actual) y si es un correo enviado o recibido.
+
+El tercer y último grupo le permite marcar el correo como leído o no leído, pendiente o no pendiente o como SPAM. También podrá borrar desde aquí los correos seleccionados.
+
+Para aplicar cualquier cualquier acción sobre uno o varios correos, seleccione el o los correos y haga clic en el botón correspondiente.
+
+==Significado de los colores==
+
+- **Verde:** correo **nuevo**
+- **Azul** oscuro: correo marcado como **pendiente**
+- **Rojo:** correo basura **//(SPAM)//**
+
+
+==Opciones del listado==
+
+Las opciones del listado en este mismo orden son:
+
+- Consultar el correo
+- Exportar en formato PDF
+- Consultar en el visor PDF interno
+- Responder
+- Responder a todos
+- Reenviar el correo
+- Marcarlo como pendiente
+- Marcarlo como SPAM
+- Agregarlo a la página de inicio
+- Borrarlo
+
+
+Para enviar un correo nuevo al remitente del correo puede hacer clic en la dirección de correo electrónico del mismo. Si desea enviar un nuevo correo desde la cuenta del destinatario (probablemente la suya), haga clic encima de la misma. También consultar el correo haciendo clic en el asunto.
+
+=Enviar nuevo correo=
+
+A la hora de enviar un nuevo correo, puede seleccionar desde qué cuenta desea realizar el envío (en caso de tener más de una cuenta configurada).
+
+Para agregar los destinatarios, comienza a escribir en la caja de texto //(*) Para//. A medida que va escribiendo el nombre o la dirección del destinatario, SaltOS le propondrá varios resultados que coincidan con el texto introducido. Si encuentra al destinatario en la lista, selecciónelo para agregarlo a lista. En caso contrario, escriba la dirección completa del mismo.
+
+Para enviar una //copia carbón// o una //copia carbón oculta//, agregue los destinatarios a los campos //CC// o //BCC// respectivamente.
+
+Si desea recibir una confirmación de recepción del destinatario, marque la casilla //Solicitar confirmación de recepción//. Tenga en cuenta que este mecanismo no es automático, sino que el destinatario puede decidir no contestar a la solicitud habiendo recibido y consultado el correo.
+
+Para agregar un texto predefinido al correo, seleccione el nombre de la plantilla en el desplegable de //Textos predefinidos// y haga clic en //Añadir//.
+
+Para enviar uno o varios fichero, seleccione la pestaña //Nuevos ficheros adjuntos//. Si desea añadir más de un fichero haga clic en //Añadir fichero//. Para seleccionar el fichero a enviar, haga clic en //Seleccionar archivo// e indíquelo a través del diálogo.
+
+=Consulta de un correo=
+
+En el modo consulta del correo puede realizar las misma funciones que en listado: responder al remitente, responder a todos y agregarlo a la página de inicio. También puede marcar como //pendiente// o //SPAM// marcando la casilla de verificación correspondiente y haciendo clic en //Volver//.
+
+Puede ver el correo entero en la pestaña //Zoom del correo//.
+
+Si el correo tuviera ficheros adjuntos, podrá ver y descargarlos en la pestaña //Adjuntos//. Para realizar una descarga de varios ficheros a la vez, selecciónelos y haga clic en //Descargar ficheros seleccionados//.

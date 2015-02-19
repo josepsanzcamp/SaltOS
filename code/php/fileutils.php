@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,8 +29,10 @@ function saltos_content_type($file) {
 		"js"=>"text/javascript",
 		"xml"=>"text/xml",
 		"htm"=>"text/html",
+		"html"=>"text/html",
 		"png"=>"image/png",
-		"bmp"=>"image/bmp"
+		"bmp"=>"image/bmp",
+		"json"=>"application/json"
 	);
 	$ext=strtolower(extension($file));
 	if(isset($mimes[$ext])) return $mimes[$ext];
@@ -136,6 +138,7 @@ function __semaphore_helper($fn,$name,$timeout) {
 	if(stripos($fn,"acquire")!==false) {
 		if($name=="") $name=__FUNCTION__;
 		$file=get_cache_file($name,getDefault("exts/semext",".sem"));
+		if(!is_writable(dirname($file))) return false;
 		$hash=md5($file);
 		if(!isset($stack[$hash])) $stack[$hash]=null;
 		if($stack[$hash]) return false;
@@ -227,8 +230,8 @@ function ob_passthru($cmd,$expires=0) {
 		$cache=get_cache_file($cmd,getDefault("exts/outputext",".out"));
 		list($mtime,$error)=filemtime_protected($cache);
 		if(file_exists($cache) && !$error && time()-$expires<$mtime) return file_get_contents($cache);
-		if(!semaphore_acquire(array(__FUNCTION__,$cmd))) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 	}
+	if(!semaphore_acquire(array(__FUNCTION__,$cmd))) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 	if($disableds_string===null) {
 		$disableds_string=ini_get("disable_functions").",".ini_get("suhosin.executor.func.blacklist");
 		$disableds_array=$disableds_string?explode(",",$disableds_string):array();
@@ -257,8 +260,8 @@ function ob_passthru($cmd,$expires=0) {
 	if($expires) {
 		file_put_contents($cache,$buffer);
 		chmod_protected($cache,0666);
-		semaphore_release(array(__FUNCTION__,$cmd));
 	}
+	semaphore_release(array(__FUNCTION__,$cmd));
 	return $buffer;
 }
 

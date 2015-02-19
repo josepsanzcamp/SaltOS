@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,22 +35,19 @@ if(getParam("action")=="indexing") {
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
-		$id=$row["id"];
 		if(time_get_free()<getDefault("server/percentstop")) break;
 		// CHECK IF EXISTS
-		$query="SELECT id FROM tbl_ficheros WHERE id='${id}'";
+		$query=make_select_query("tbl_ficheros","id",make_where_query(array("id"=>$row["id"])));
 		$exists=execute_query($query);
 		if(!$exists) continue;
 		// CONTINUE
-		$query=make_update_query("tbl_ficheros",array(),"id='${id}'",array("retries"=>"retries+1"));
+		$query=make_update_query("tbl_ficheros",array(),make_where_query(array("id"=>$row["id"])),array("retries"=>"retries+1"));
 		db_query($query);
 		if($row["id_aplicacion"]==page2id("correo")) {
 			$decoded=__getmail_getmime($row["id_registro"]);
 			if(!$decoded) {
 				show_php_error(array("phperror"=>"Email not found","details"=>sprintr($row),"file"=>getDefault("debug/warningfile","warning.log"),"die"=>false));
-				$query=make_update_query("tbl_ficheros",array(
-					"retries"=>"3"
-				),"id='${id}'");
+				$query=make_update_query("tbl_ficheros",array("retries"=>"3"),make_where_query(array("id"=>$row["id"])));
 				db_query($query);
 				continue;
 			}
@@ -61,9 +58,7 @@ if(getParam("action")=="indexing") {
 					$test1=$row["fichero_file"]==md5(md5($val["body"]).md5($val["cid"]).md5($val["cname"]).md5($val["ctype"]).md5($val["csize"]));
 					$test2=$row["fichero_file"]==md5(serialize(array($val["body"],$val["cid"],$val["cname"],$val["ctype"],$val["csize"])));
 					if($test1 || $test2) {
-						make_update_query("tbl_ficheros",array(
-							"fichero_file"=>$val["chash"]
-						),"id='${id}'");
+						make_update_query("tbl_ficheros",array("fichero_file"=>$val["chash"]),make_where_query(array("id"=>$row["id"])));
 						db_query($query);
 						$row["fichero_file"]=$val["chash"];
 						$file=__getmail_getcid(__getmail_getnode("0",$decoded),$row["fichero_file"]);
@@ -73,9 +68,7 @@ if(getParam("action")=="indexing") {
 			}
 			if(!$file) {
 				show_php_error(array("phperror"=>"Attachment not found","details"=>sprintr($row),"file"=>getDefault("debug/warningfile","warning.log"),"die"=>false));
-				$QUERY=make_update_query("tbl_ficheros",array(
-					"retries"=>"3"
-				),"id='${id}'");
+				$QUERY=make_update_query("tbl_ficheros",array("retries"=>"3"),make_where_query(array("id"=>$row["id"])));
 				db_query($query);
 				continue;
 			}
@@ -88,11 +81,9 @@ if(getParam("action")=="indexing") {
 		}
 		$search=unoconv2txt($input);
 		if(in_array($row["retries"],array(0,1))) $search=encode_search($search," ");
-		$query=make_update_query("tbl_ficheros",array(
-			"indexed"=>1,
-			"search"=>$search
-		),"id='${id}'");
+		$query=make_update_query("tbl_ficheros",array("indexed"=>1,"search"=>$search),make_where_query(array("id"=>$row["id"])));
 		db_query($query);
+		make_indexing($row["id_aplicacion"],$row["id_registro"]);
 		$total++;
 	}
 	db_free($result);

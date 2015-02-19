@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,6 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	"use strict";
 	var __mobile__=1;
+
+	/* ERROR HANDLER */
+	window.onerror=function(msg,file,line) {
+		var data={"jserror":msg,"details":"Error on file "+file+" at line "+line};
+		data="array="+rawurlencode(base64_encode(serialize(data)));
+		$.ajax({ url:"index.php?action=adderror",data:data,type:"post" });
+	};
 
 	/* GENERIC FUNCTIONS */
 	function floatval2(obj) {
@@ -87,7 +94,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		if(len>max) {
 			while(max>0 && substr(txt,max,1)!=" ") max--;
 			if(max==0) while(max<len && substr(txt,max,1)!=" ") max++;
-			if(max>0) if(in_array(substr(txt,max-1,1),new Array(",",".","-","("))) max--;
+			if(max>0) if(in_array(substr(txt,max-1,1),[",",".","-","("])) max--;
 			var preview=(max==len)?txt:substr(txt,0,max)+"...";
 		} else {
 			var preview=txt;
@@ -212,8 +219,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 
 	/* FOR DEBUG PURPOSES */
 	function addlog(msg) {
-		var data="action=addlog&msg="+rawurlencode(msg);
-		$.ajax({ url:"index.php",data:data,type:"get",async:false });
+		var data="msg="+rawurlencode(base64_encode(utf8_encode(msg)));
+		$.ajax({ url:"index.php?action=addlog",data:data,type:"post",async:false });
 	}
 
 	/* FOR SECURITY ISSUES */
@@ -345,7 +352,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	/* FOR COOKIE MANAGEMENT */
-	var cookies_data=new Object();
+	var cookies_data={};
 	var cookies_interval=null;
 	var cookies_counter=0;
 
@@ -385,12 +392,12 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				type:"get",
 				async:false,
 				success:function(response) {
-					$("root>rows>row",response).each(function() {
-						var hash=md5($("clave",this).text());
+					$(response["rows"]).each(function() {
+						var hash=md5(this["clave"]);
 						cookies_data[hash]={
-							"key":$("clave",this).text(),
-							"val":$("valor",this).text(),
-							"orig":$("valor",this).text(),
+							"key":this["clave"],
+							"val":this["valor"],
+							"orig":this["valor"],
 							"sync":0
 						};
 					});
@@ -488,7 +495,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	/* HELPERS FOR HISTORY MANAGEMENT */
-	var history_data=new Object();
+	var history_data={};
 
 	function hash_encode(url) {
 		var hash=md5(url);
@@ -631,7 +638,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 					var total_input_vars=$("input,select,textarea",jqForm).length;
 					if(total_input_vars>max_input_vars) {
 						setTimeout(function() {
-							var fix_input_vars=new Array();
+							var fix_input_vars=[];
 							$("input[type=checkbox]:not(:checked):not(:visible)",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
 									$(this).remove();
@@ -1016,9 +1023,9 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// CREATE THE CODE MIRROR
 		$("textarea[codemirror=true]",obj).autogrow();
 		// REQUEST THE PLOTS
-		var attrs=new Array("legend","vars","colors","graph","ticks","posx",
+		var attrs=["legend","vars","colors","graph","ticks","posx",
 			"data1","data2","data3","data4","data5","data6","data7","data8","data9","data10",
-			"data11","data12","data13","data14","data15","data16");
+			"data11","data12","data13","data14","data15","data16"];
 		$("img[isplot=true]",obj).each(function() {
 			var map="#"+$(this).prev().attr("id");
 			var interval=setInterval(function() {
@@ -1042,13 +1049,10 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 						data:querystring,
 						type:"post",
 						success:function(response) {
-							$(img).attr("src",$("root>img",response).text());
+							$(img).attr("src",response["img"]);
 							var map=$(img).attr("usemap");
-							$("root>map>area",response).each(function() {
-								var shape=$("shape",this).text();
-								var coords=$("coords",this).text();
-								var value=$("value",this).text();
-								var area="<area shape='"+shape+"' coords='"+coords+"' title='"+value+"'>";
+							$(response["map"]).each(function() {
+								var area="<area shape='"+this["shape"]+"' coords='"+this["coords"]+"' title='"+this["value"]+"'>";
 								$(map,obj).append(area);
 							});
 						},
@@ -1071,14 +1075,14 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// UNUSED
 	}
 
-	var cache_colors=new Object();
+	var cache_colors={};
 
 	function get_colors(clase,param) {
 		if(typeof(clase)=="undefined" && typeof(param)=="undefined") {
 			for(var hash in cache_colors) delete cache_colors[hash];
 			return;
 		}
-		hash=md5(serialize(new Array(clase,param)));
+		hash=md5(serialize([clase,param]));
 		if(typeof(cache_colors[hash])=="undefined") {
 			// GET THE COLORS USING THIS TRICK
 			if($("#ui-color-trick").length==0) {

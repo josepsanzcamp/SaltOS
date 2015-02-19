@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,20 +35,18 @@ if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefine
 			data:data,
 			type:"get",
 			success:function (response) {
-				var value2=$("root>value",response).text();
+				var value2=response["value"];
 				var options="";
-				$("root>rows>row",response).each(function() {
-					var label=$("label",this).text();
-					var value=$("value",this).text();
-					var selected=(value==value2)?"selected='selected'":"";
-					options+="<option value='"+value+"' "+selected+">"+label+"</option>";
+				$(response["rows"]).each(function() {
+					var selected=(this["value"]==value2)?"selected='selected'":"";
+					options+="<option value='"+this["value"]+"' "+selected+">"+this["label"]+"</option>";
 				});
 				$("#selectpager").html(options);
-				if($("root>first",response).text()) $("#firstpager").removeClass("ui-state-disabled");
-				if($("root>previous",response).text()) $("#previouspager").removeClass("ui-state-disabled");
-				if($("root>next",response).text()) $("#nextpager").removeClass("ui-state-disabled");
-				if($("root>last",response).text()) $("#lastpager").removeClass("ui-state-disabled");
-				$(".infopager").html($("root>info",response).text());
+				if(response["first"]) $("#firstpager").removeClass("ui-state-disabled");
+				if(response["previous"]) $("#previouspager").removeClass("ui-state-disabled");
+				if(response["next"]) $("#nextpager").removeClass("ui-state-disabled");
+				if(response["last"]) $("#lastpager").removeClass("ui-state-disabled");
+				$(".infopager").html(response["info"]);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

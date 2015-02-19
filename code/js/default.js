@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,6 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") {
 	"use strict";
 	var __default__=1;
+
+	/* ERROR HANDLER */
+	window.onerror=function(msg,file,line) {
+		var data={"jserror":msg,"details":"Error on file "+file+" at line "+line};
+		data="array="+rawurlencode(base64_encode(serialize(data)));
+		$.ajax({ url:"index.php?action=adderror",data:data,type:"post" });
+	};
 
 	/* GENERIC FUNCTIONS */
 	function floatval2(obj) {
@@ -87,7 +94,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(len>max) {
 			while(max>0 && substr(txt,max,1)!=" ") max--;
 			if(max==0) while(max<len && substr(txt,max,1)!=" ") max++;
-			if(max>0) if(in_array(substr(txt,max-1,1),new Array(",",".","-","("))) max--;
+			if(max>0) if(in_array(substr(txt,max-1,1),[",",".","-","("])) max--;
 			var preview=(max==len)?txt:substr(txt,0,max)+"...";
 		} else {
 			var preview=txt;
@@ -212,8 +219,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	/* FOR DEBUG PURPOSES */
 	function addlog(msg) {
-		var data="action=addlog&msg="+rawurlencode(msg);
-		$.ajax({ url:"index.php",data:data,type:"get",async:false });
+		var data="msg="+rawurlencode(base64_encode(utf8_encode(msg)));
+		$.ajax({ url:"index.php?action=addlog",data:data,type:"post",async:false });
 	}
 
 	/* FOR SECURITY ISSUES */
@@ -493,7 +500,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	/* FOR COOKIE MANAGEMENT */
-	var cookies_data=new Object();
+	var cookies_data={};
 	var cookies_interval=null;
 	var cookies_counter=0;
 
@@ -533,12 +540,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				type:"get",
 				async:false,
 				success:function(response) {
-					$("root>rows>row",response).each(function() {
-						var hash=md5($("clave",this).text());
+					$(response["rows"]).each(function() {
+						var hash=md5(this["clave"]);
 						cookies_data[hash]={
-							"key":$("clave",this).text(),
-							"val":$("valor",this).text(),
-							"orig":$("valor",this).text(),
+							"key":this["clave"],
+							"val":this["valor"],
+							"orig":this["valor"],
 							"sync":0
 						};
 					});
@@ -666,7 +673,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	/* FOR HISTORY MANAGEMENT */
-	var history_data=new Object();
+	var history_data={};
 
 	function hash_encode(url) {
 		var hash=md5(url);
@@ -813,7 +820,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						//~ console.debug("total="+total_input_vars);
 						//~ console.time("fix_input_vars");
 						setTimeout(function() {
-							var fix_input_vars=new Array();
+							var fix_input_vars=[];
 							$("input[type=checkbox]:not(:checked):not(:visible)",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
 									$(this).remove();
@@ -853,6 +860,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				var action=$(jqForm).attr("action");
 				var query=$.param(formData);
 				addcontent(action+"?"+query);
+				// TO FIX ERROR 414: REQUEST URI TOO LONG
+				if(options.type=="get" && strlen(query)>1024) options.type="post";
 			},
 			beforeSend:function(XMLHttpRequest) {
 				make_abort_obj=XMLHttpRequest;
@@ -876,10 +885,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// LOGOUT EXCEPTION
 		if(strpos(url,"page=logout")!==false) { logout(); return; }
 		// TO FIX ERROR 414: REQUEST URI TOO LONG
+		var type=(strlen(url)>1024)?"post":"get";
+		// CONTINUE
 		var temp=explode("?",url,2);
 		if(temp[0]=="") temp[0]="index.php";
 		if(typeof(temp[1])=="undefined") temp[1]="";
-		var type=(strlen(url)>1024)?"post":"get";
 		// NORMAL USAGE
 		if(typeof(callback)=="undefined") var callback=function() {};
 		loadingcontent();
@@ -1185,7 +1195,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			}
 		});
 		// FIX A BUG ON THE XSLT THAT REPEAT THE TABID
-		var hrefs=new Array();
+		var hrefs=[];
 		var count=0;
 		$(".tabs > ul > li > a",obj).each(function() {
 			var href=$(this).attr("href");
@@ -1197,7 +1207,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				$(this).attr("href",href);
 			}
 		});
-		var ids=new Array();
+		var ids=[];
 		var count=0;
 		$(".tabs div[id^=tabid]",obj).each(function() {
 			var id=$(this).attr("id");
@@ -1212,10 +1222,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// THIS CODE ADD THE ACCESSKEY FEATURE FOR EACH TAB
 		var accesskeys="1234567890";
 		var accesskey=0;
-		$(".tabs > ul > li > a",obj).each(function() {
-			if(accesskey<accesskeys.length) {
-				$(this).attr("title","[CTRL] + ["+substr(accesskeys,accesskey,1)+"]");
-				$(this).addClass("shortcut_ctrl_"+substr(accesskeys,accesskey,1));
+		var tabs=$(".tabs > ul > li",obj);
+		$(tabs).each(function() {
+			if($("a",this).attr("href")=="#help") {
+				$("a",this).attr("title","[CTRL] + [H]");
+				$("a",this).addClass("shortcut_ctrl_h");
+			} else if(accesskey<accesskeys.length) {
+				$("a",this).attr("title","[CTRL] + ["+substr(accesskeys,accesskey,1)+"]");
+				$("a",this).addClass("shortcut_ctrl_"+substr(accesskeys,accesskey,1));
 				accesskey++;
 			}
 		});
@@ -1240,8 +1254,24 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// TRUE, CREATE THE TABS
 		$(".tabs",obj).tabs({
-			active:active
+			active:active,
+			beforeActivate:function(event,ui) {
+				if($("a",ui.newTab).attr("href")=="#help") {
+					viewpdf("page="+getParam("page"));
+					return false;
+				}
+			}
 		});
+		// TUNNING THE HELP TAB
+		var tabs=$(".tabs ul li",obj);
+		var help=$(tabs).get($(tabs).length-1);
+		if(saltos_islogin()) {
+			$("a",help).html("<span class='saltos-icon saltos-icon-help'></span> "+lang_help());
+			$(help).css("float","right");
+			$("a",help).css("padding","0.5em");
+		} else {
+			$(help).remove();
+		}
 		//~ console.timeEnd("make_tabs");
 	}
 
@@ -1382,16 +1412,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		}).bind("mouseout",function() {
 			$(this).toggleClass($(this).attr("toggle"));
 		});
-		// ADD STYLES TO COLUMNIZER BOXES
-		$(".tabs",obj).bind("tabsactivate",function(event,ui) {
-			if($(".columnizer",this).is(":visible")) {
-				if($(".columnizer .column",this).length==0) {
-					$(".columnizer",this).columnize();
-				} else {
-					$(".columnizer",this).trigger("resize");
-				}
-			}
-		});
 		// TO CLEAR AMBIGUOUS THINGS
 		$(".nowrap.siwrap",obj).removeClass("nowrap siwrap");
 		// TRICK FOR STYLING THE INFO NOTIFY
@@ -1423,14 +1443,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			delay:500,
 			helper:function(event) {
 				var row=$("<div class='nowrap'></div>");
-				var text=new Array();
+				var text=[];
 				var padre=$(this).parent().parent();
 				$("td",padre).each(function() {
 					var temp=$(this).text();
 					if(temp!="") text.push(temp);
 				});
 				text=implode(" | ",text);
-				text=str_replace(new Array("<",">"),new Array("&lt;","&gt;"),text);
+				text=str_replace(["<",">"],["&lt;","&gt;"],text);
 				$(row).append(text);
 				$(row).addClass("ui-state-highlight");
 				$(row).addClass("ui-corner-all");
@@ -1569,9 +1589,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			});
 		});
 		// REQUEST THE PLOTS
-		var attrs=new Array("legend","vars","colors","graph","ticks","posx",
+		var attrs=["legend","vars","colors","graph","ticks","posx",
 			"data1","data2","data3","data4","data5","data6","data7","data8","data9","data10",
-			"data11","data12","data13","data14","data15","data16");
+			"data11","data12","data13","data14","data15","data16"];
 		$("img[isplot=true]",obj).each(function() {
 			var map="#"+$(this).prev().attr("id");
 			var interval=setInterval(function() {
@@ -1595,13 +1615,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						data:querystring,
 						type:"post",
 						success:function(response) {
-							$(img).attr("src",$("root>img",response).text());
+							$(img).attr("src",response["img"]);
 							var map=$(img).attr("usemap");
-							$("root>map>area",response).each(function() {
-								var shape=$("shape",this).text();
-								var coords=$("coords",this).text();
-								var value=$("value",this).text();
-								var area="<area shape='"+shape+"' coords='"+coords+"' title='"+value+"'>";
+							$(response["map"]).each(function() {
+								var area="<area shape='"+this["shape"]+"' coords='"+this["coords"]+"' title='"+this["value"]+"'>";
 								$(map,obj).append(area);
 							});
 						},
@@ -1628,17 +1645,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				source:function(request,response) {
 					var term=request.term;
 					var input=this.element;
-					var data="action=ajax&format=json&query="+query+"&term="+rawurlencode(term);
+					var data="action=ajax&query="+query+"&term="+rawurlencode(term);
 					if(typeof($("#"+prefix+filter).val())!="undefined") data+="&filter="+$("#"+prefix+filter).val();
 					$.ajax({
 						url:"index.php",
 						data:data,
 						type:"get",
-						dataType:"json",
 						success:function(data) {
 							// TO CANCEL OLD REQUESTS
 							var term2=$(input).val();
-							if(term==term2) response(data);
+							if(term==term2) response(data["rows"]);
 						},
 						error:function(XMLHttpRequest,textStatus,errorThrown) {
 							errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
@@ -1693,7 +1709,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					}
 					// FIX SOME ISSUES
 					if(strpos(title,"<")!==false || strpos(title,">")!==false) {
-						title=str_replace(new Array("<",">"),new Array("&lt;","&gt;"),title);
+						title=str_replace(["<",">"],["&lt;","&gt;"],title);
 					}
 					// MOVE DATA FROM TITLE TO TITLE2
 					$(this).attr("title","");
@@ -1872,7 +1888,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				$("td",last).each(function() {
 					var index=$(this).index();
 					var value=$(this).text();
-					if(in_array(value,new Array("=sum()","=count()","=avg()"))) {
+					if(in_array(value,["=sum()","=count()","=avg()"])) {
 						var sum=0;
 						var count=0;
 						$("td:eq("+index+")",trs).each(function() {
@@ -1911,7 +1927,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var trs=$("tr",parent);
 			var tds=$("td.actions",parent);
 			if($(trs).length || !$(tds).length) tds=$(".contextmenu");
-			var hashes=new Array();
+			var hashes=[];
 			$(tds).each(function() {
 				var onclick=$(this).attr("onclick");
 				if(!onclick) onclick=$("a",this).attr("onclick");
@@ -1954,14 +1970,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$("#contextMenu").hide();
 	}
 
-	var cache_colors=new Object();
+	var cache_colors={};
 
 	function get_colors(clase,param) {
 		if(typeof(clase)=="undefined" && typeof(param)=="undefined") {
 			for(var hash in cache_colors) delete cache_colors[hash];
 			return;
 		}
-		hash=md5(serialize(new Array(clase,param)));
+		hash=md5(serialize([clase,param]));
 		if(typeof(cache_colors[hash])=="undefined") {
 			// GET THE COLORS USING THIS TRICK
 			if($("#ui-color-trick").length==0) {
@@ -2010,7 +2026,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					if(!useCtrl && !event.ctrlKey) count++;
 					if(useShift && event.shiftKey) count++;
 					if(!useShift && !event.shiftKey) count++;
-					if(key==event.keyCode) count++;
+					if(key==get_keycode(event)) count++;
 					if(count==4) {
 						if($(this).is("a,tr,td")) $(this).trigger("click");
 						if($(this).is("input,select,textarea")) $(this).focus();

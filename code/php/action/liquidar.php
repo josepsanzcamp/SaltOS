@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -70,14 +70,8 @@ if($page=="clientes") {
 			));
 		}
 		db_query($query);
-		$query=make_insert_query("tbl_registros_i",array(
-			"id_aplicacion"=>page2id("facturas"),
-			"id_usuario"=>current_user(),
-			"datetime"=>current_datetime()
-		),array(
-			"id_registro"=>"SELECT MAX(id) FROM tbl_facturas"
-		));
-		db_query($query);
+		make_control(page2id("facturas"));
+		make_indexing(page2id("facturas"));
 	}
 	foreach($prefix as $p) {
 		$id=intval(getParam($p."id"));
@@ -173,14 +167,8 @@ if($page=="partes") {
 					));
 				}
 				db_query($query);
-				$query=make_insert_query("tbl_registros_i",array(
-					"id_aplicacion"=>page2id("facturas"),
-					"id_usuario"=>current_user(),
-					"datetime"=>current_datetime()
-				),array(
-					"id_registro"=>"SELECT MAX(id) FROM tbl_facturas"
-				));
-				db_query($query);
+				make_control(page2id("facturas"));
+				make_indexing(page2id("facturas"));
 			}
 			while($row=db_fetch_row($result)) {
 				$id=$row["id"];
@@ -296,14 +284,8 @@ if($page=="proyectos" && getParam("extra")=="partes") {
 			));
 		}
 		db_query($query);
-		$query=make_insert_query("tbl_registros_i",array(
-			"id_aplicacion"=>page2id("facturas"),
-			"id_usuario"=>current_user(),
-			"datetime"=>current_datetime()
-		),array(
-			"id_registro"=>"SELECT MAX(id) FROM tbl_facturas"
-		));
-		db_query($query);
+		make_control(page2id("facturas"));
+		make_indexing(page2id("facturas"));
 	}
 	foreach($prefix as $p) {
 		$id=intval(getParam($p."id"));
@@ -422,14 +404,8 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 				));
 			}
 			db_query($query);
-			$query=make_insert_query("tbl_registros_i",array(
-				"id_aplicacion"=>page2id("facturas"),
-				"id_usuario"=>current_user(),
-				"datetime"=>current_datetime()
-			),array(
-				"id_registro"=>"SELECT MAX(id) FROM tbl_facturas"
-			));
-			db_query($query);
+			make_control(page2id("facturas"));
+			make_indexing(page2id("facturas"));
 		}
 		foreach($result as $row) {
 			$id_producto=$row["id_producto"];
@@ -545,14 +521,8 @@ if($page=="periodicas") {
 					));
 				}
 				db_query($query);
-				$query=make_insert_query("tbl_registros_i",array(
-					"id_aplicacion"=>page2id("facturas"),
-					"id_usuario"=>current_user(),
-					"datetime"=>current_datetime()
-				),array(
-					"id_registro"=>"SELECT MAX(id) FROM tbl_facturas"
-				));
-				db_query($query);
+				make_control(page2id("facturas"));
+				make_indexing(page2id("facturas"));
 			}
 			while($row2=db_fetch_row($result2)) {
 				$id_concepto=$row2["id"];
@@ -668,14 +638,8 @@ if($page=="presupuestos") {
 				));
 			}
 			db_query($query);
-			$query=make_insert_query("tbl_registros_i",array(
-				"id_aplicacion"=>page2id("facturas"),
-				"id_usuario"=>current_user(),
-				"datetime"=>current_datetime()
-			),array(
-				"id_registro"=>"SELECT MAX(id) FROM tbl_facturas"
-			));
-			db_query($query);
+			make_control(page2id("facturas"));
+			make_indexing(page2id("facturas"));
 		}
 		foreach($result as $row) {
 			$id_producto=$row["id_producto"];

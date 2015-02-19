@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -258,8 +258,8 @@ function __getmail_getinfo($array) {
 	if($datetime) $result["datetime"]=date("Y-m-d H:i:s",strtotime($datetime));
 	if(!$datetime) $result["datetime"]=current_datetime();
 	// CREATE THE SUBJECT STRING
-	$subject=encode_words(str_replace("\t"," ",getutf8(__getmail_fixstring(__getmail_getnode("DecodedHeaders/subject:/0/0/Value",$array)))));
-	if(!$subject) $subject=encode_words(str_replace("\t"," ",getutf8(__getmail_fixstring(__getmail_getnode("Headers/subject:",$array)))));
+	$subject=prepare_words(str_replace("\t"," ",getutf8(__getmail_fixstring(__getmail_getnode("DecodedHeaders/subject:/0/0/Value",$array)))));
+	if(!$subject) $subject=prepare_words(str_replace("\t"," ",getutf8(__getmail_fixstring(__getmail_getnode("Headers/subject:",$array)))));
 	$result["subject"]=$subject;
 	// CHECK X-SPAM-STATUS HEADER
 	$spam=strtoupper(trim(__getmail_fixstring(__getmail_getnode("Headers/x-spam-status:",$array))));
@@ -462,6 +462,7 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 	$mime->Decode(array("File"=>"compress.zlib://".$file),$decoded);
 	$info=__getmail_getinfo(__getmail_getnode("0",$decoded));
 	$body=__getmail_gettextbody(__getmail_getnode("0",$decoded));
+	unset($decoded); // TRICK TO RELEASE MEMORY
 	// INSERT THE NEW EMAIL
 	$query=make_insert_query("tbl_correo",array(
 		"id_cuenta"=>$id_cuenta,
@@ -488,6 +489,7 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 		"bcc"=>$info["bcc"],
 		"files"=>count($info["files"])
 	));
+	unset($body); // TRICK TO RELEASE MEMORY
 	db_query($query);
 	// GET LAST_ID
 	$query="SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND is_outbox='${is_outbox}'";
@@ -519,13 +521,8 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 		db_query($query);
 	}
 	// INSERT THE CONTROL REGISTER
-	$query=make_insert_query("tbl_registros_i",array(
-		"id_aplicacion"=>$id_aplicacion,
-		"id_registro"=>$last_id,
-		"id_usuario"=>$id_usuario,
-		"datetime"=>$datetime
-	));
-	db_query($query);
+	make_control($id_aplicacion,$last_id);
+	make_indexing($id_aplicacion,$last_id);
 	return $last_id;
 }
 

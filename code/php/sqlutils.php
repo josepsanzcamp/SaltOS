@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -234,11 +234,11 @@ function get_fields($table) {
 function get_indexes($table) {
 	$indexes=array();
 	// FOR SQLITE
-	$query="/*SQLITE PRAGMA INDEX_LIST($table) */";
+	$query="/*SQLITE PRAGMA INDEX_LIST(${table}) */";
 	$result=db_query($query);
 	while($row=db_fetch_row($result)) {
 		$index=$row["name"];
-		$query2="/*SQLITE PRAGMA INDEX_INFO($index) */";
+		$query2="/*SQLITE PRAGMA INDEX_INFO(${index}) */";
 		$result2=db_query($query2);
 		$fields=array();
 		while($row2=db_fetch_row($result2)) $fields[]=$row2["name"];
@@ -247,7 +247,7 @@ function get_indexes($table) {
 	}
 	db_free($result);
 	// FOR MYSQL
-	$query="/*MYSQL SHOW INDEXES FROM $table */";
+	$query="/*MYSQL SHOW INDEXES FROM ${table} */";
 	$result=db_query($query);
 	while($row=db_fetch_row($result)) {
 		$index=$row["Key_name"];
@@ -281,7 +281,7 @@ function get_field_type($type) {
 	$type=strtoupper($type);
 	$datatypes=getDefault("db/datatypes");
 	foreach($datatypes as $key=>$val) if(in_array($type,explode(",",$val))) return $key;
-	show_php_error(array("phperror"=>"Unknown type '$type' in get_field_type"));
+	show_php_error(array("phperror"=>"Unknown type '${type}' in get_field_type"));
 }
 
 function sql_create_table($tablespec) {
@@ -298,26 +298,75 @@ function sql_create_table($tablespec) {
 		elseif($type2=="datetime") $def=datetimeval(0);
 		elseif($type2=="string") $def="";
 		else show_php_error(array("phperror"=>"Unknown type '${type}' in sql_create_table"));
-		$extra="NOT NULL DEFAULT '$def'";
+		$extra="NOT NULL DEFAULT '${def}'";
 		if(isset($field["pkey"]) && eval_bool($field["pkey"])) $extra="PRIMARY KEY /*MYSQL AUTO_INCREMENT *//*SQLITE AUTOINCREMENT */";
-		$fields[]="$name $type $extra";
+		$fields[]="${name} ${type} ${extra}";
 	}
-	foreach($tablespec["fields"] as $field) {
-		if(isset($field["fkey"])) {
-			$fkey=$field["fkey"];
-			if($fkey!="") {
-				$name=$field["name"];
-				$fields[]="FOREIGN KEY ($name) REFERENCES $fkey(id)";
-			}
-		}
-	}
+	//~ foreach($tablespec["fields"] as $field) {
+		//~ if(isset($field["fkey"])) {
+			//~ $fkey=$field["fkey"];
+			//~ if($fkey!="") {
+				//~ $name=$field["name"];
+				//~ $fields[]="FOREIGN KEY (${name}) REFERENCES ${fkey} (id)";
+			//~ }
+		//~ }
+	//~ }
 	$fields=implode(",",$fields);
-	$query="CREATE TABLE $table ($fields) /*MYSQL ENGINE=MyISAM CHARSET=utf8 */";
+	if(__has_fulltext_index($table) && __has_mroonga_engine()) {
+		$post="/*MYSQL ENGINE=Mroonga CHARSET=utf8 */";
+	} else {
+		$post="/*MYSQL ENGINE=MyISAM CHARSET=utf8 */";
+	}
+	$query="CREATE TABLE ${table} (${fields}) ${post}";
 	return $query;
 }
 
+function __has_fulltext_index($table) {
+	static $fulltext=null;
+	if($fulltext===null) {
+		$file="xml/dbschema.xml";
+		$dbschema=eval_attr(xml2array($file));
+		$fulltext=array();
+		if(is_array($dbschema) && isset($dbschema["indexes"]) && is_array($dbschema["indexes"])) {
+			foreach($dbschema["indexes"] as $indexspec) {
+				if(isset($indexspec["fulltext"]) && eval_bool($indexspec["fulltext"])) $fulltext[$indexspec["table"]]=1;
+			}
+		}
+	}
+	return isset($fulltext[$table]);
+}
+
+function __has_mroonga_engine() {
+	static $mroonga=null;
+	if($mroonga===null) {
+		if(getDefault("db/obj")) {
+			$query="/*MYSQL SHOW ENGINES */";
+			$result=db_query($query);
+			$mroonga=false;
+			while($row=db_fetch_row($result)) {
+				$row=array_values($row);
+				$engine=$row[0];
+				if(strtolower($engine)=="mroonga") $mroonga=true;
+			}
+			db_free($result);
+		} else {
+			$mroonga=false;
+		}
+	}
+	return $mroonga;
+}
+
+function get_engine($table) {
+    $query="/*MYSQL SHOW TABLE STATUS WHERE Name='${table}' */";
+    $result=db_query($query);
+    $engine="";
+    while($row=db_fetch_row($result)) $engine=$row["Engine"];
+	db_free($result);
+	return $engine;
+}
+
 function sql_alter_table($orig,$dest) {
-	$query="ALTER TABLE $orig RENAME TO $dest";
+	$query="ALTER TABLE ${orig} RENAME TO ${dest}";
 	return $query;
 }
 
@@ -349,12 +398,12 @@ function sql_insert_from_select($dest,$orig) {
 	}
 	$keys=implode(",",$keys);
 	$vals=implode(",",$vals);
-	$query="INSERT INTO $dest($keys) SELECT $vals FROM $orig";
+	$query="INSERT INTO ${dest}(${keys}) SELECT ${vals} FROM ${orig}";
 	return $query;
 }
 
 function sql_drop_table($table) {
-	$query="DROP TABLE $table";
+	$query="DROP TABLE ${table}";
 	return $query;
 }
 
@@ -371,12 +420,22 @@ function sql_create_index($indexspec) {
 		else show_php_error(array("phperror"=>"Unknown index '${subname}' in sql_create_index"));
 	}
 	$fields=implode(",",$fields);
-	$query="CREATE INDEX $name ON $table ($fields)";
+	if(isset($indexspec["fulltext"]) && eval_bool($indexspec["fulltext"])) {
+		$pre="/*MYSQL FULLTEXT */";
+	} else {
+		$pre="";
+	}
+	if(isset($indexspec["fulltext"]) && eval_bool($indexspec["fulltext"]) && __has_mroonga_engine()) {
+		$post="/*MYSQL COMMENT 'parser \"TokenBigramSplitSymbolAlphaDigit\"' */";
+	} else {
+		$post="";
+	}
+	$query="CREATE ${pre} INDEX ${name} ON $table (${fields}) ${post}";
 	return $query;
 }
 
 function sql_drop_index($index,$table) {
-	$query="/*MYSQL DROP INDEX $index ON $table *//*SQLITE DROP INDEX $index */";
+	$query="/*MYSQL DROP INDEX ${index} ON ${table} *//*SQLITE DROP INDEX ${index} */";
 	return $query;
 }
 
@@ -402,44 +461,34 @@ function __make_like_query_explode($separator,$str) {
 }
 
 function make_like_query($keys,$values) {
-	$values=addslashes($values);
 	$keys=explode(",",$keys);
 	foreach($keys as $key=>$val) {
 		$val=trim($val);
 		if($val=="") unset($keys[$key]);
 		if($val!="") $keys[$key]=$val;
 	}
+	if(!count($keys)) return "1=1";
 	$values=__make_like_query_explode(" ",$values);
 	foreach($values as $key=>$val) {
 		$val=trim($val);
+		$val=str_replace(array("'",'"',"@","%","*","_","?"),array("","","@@","@%","%","@_","_"),$val);
 		if($val=="") unset($values[$key]);
 		if($val!="") $values[$key]=$val;
 	}
+	if(!count($values)) return "1=1";
 	$query=array();
 	foreach($values as $value) {
-		$value=str_replace(array("\'",'\"'),"",$value);
-		$pos=strpos($value,":");
-		if($pos!==false) {
-			$key2=substr($value,0,$pos);
-			$value2=substr($value,$pos+1);
+		$query2=array();
+		if($value[0]=="-") {
+			$value=substr($value,1);
+			foreach($keys as $key) $query2[]="$key NOT LIKE '%$value%' ESCAPE '@'";
+			if($value!="") $query[]="(".implode(" AND ",$query2).")";
 		} else {
-			$key2="";
-			$value2="";
-		}
-		if(in_array($key2,$keys) && $value2!="") {
-			$value2=str_replace(array("%","*"),array("\\%","%"),$value2);
-			$query[]="($key2 LIKE '%$value2%' ESCAPE '\\\\')";
-		} else {
-			$value=str_replace(array("%","*"),array("\\%","%"),$value);
-			$query2=array();
-			foreach($keys as $key) {
-				$query2[]="$key LIKE '%$value%' ESCAPE '\\\\'";
-			}
-			if(!count($query2)) $query2[]="1=1";
+			foreach($keys as $key) $query2[]="$key LIKE '%$value%' ESCAPE '@'";
 			$query[]="(".implode(" OR ",$query2).")";
 		}
 	}
-	if(!count($query)) $query[]="1=1";
+	if(!count($query)) return "1=1";
 	$query="(".implode(" AND ",$query).")";
 	return $query;
 }
@@ -453,7 +502,7 @@ function make_extra_query($prefix="") {
 	static $stack=array();
 	$hash=md5($prefix);
 	if(!isset($stack[$hash])) {
-		$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''";
+		$query="SELECT * FROM tbl_aplicaciones WHERE islink=1";
 		$result=db_query($query);
 		$cases=array("CASE ${prefix}id_aplicacion");
 		while($row=db_fetch_row($result)) {
@@ -470,7 +519,7 @@ function make_extra_query_with_field($field,$prefix="") {
 	static $stack=array();
 	$hash=md5(serialize(array($field,$prefix)));
 	if(!isset($stack[$hash])) {
-		$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''";
+		$query="SELECT * FROM tbl_aplicaciones WHERE islink=1";
 		$result=db_query($query);
 		$cases=array("CASE ${prefix}id_aplicacion");
 		while($row=db_fetch_row($result)) {
@@ -486,7 +535,7 @@ function make_extra_query_with_field($field,$prefix="") {
 }
 
 function make_select_appsregs($id=0) {
-	$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''";
+	$query="SELECT * FROM tbl_aplicaciones WHERE islink=1";
 	$result=db_query($query);
 	$subquery=array();
 	while($row=db_fetch_row($result)) {
@@ -515,7 +564,7 @@ function make_extra_query_with_perms($page,$table,$field,$arg1=null,$arg2=null) 
 	$temp=implode(",",$temp);
 	// NORMAL CODE
 	$query="SELECT id value,".(is_array($field)?$field[0]:$field)." label,".($haspos?"pos":"'0' pos")." FROM (
-		SELECT a2.id id,".($haspos?"a2.pos pos,":"").check_sql($page).",".$temp.",e.id_usuario id_usuario,d.id_grupo id_grupo
+		SELECT a2.id id,".($haspos?"a2.pos pos,":"").$temp.",e.id_usuario id_usuario,d.id_grupo id_grupo
 		FROM $table a2
 		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a2.id
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
@@ -645,5 +694,66 @@ function make_where_query($array,$union="AND",$queries=array()) {
 	foreach($queries as $key=>$val) $list1[]="(".$val.")";
 	$query="(".implode(" ".$union." ",$list1).")";
 	return $query;
+}
+
+function make_fulltext_query($keys,$values,$table) {
+	$values=encode_search($values);
+	$engine=strtolower(get_engine($table));
+	if($engine=="mroonga") {
+		$keys=explode(",",$keys);
+		foreach($keys as $key=>$val) {
+			$val=trim($val);
+			if($val=="") unset($keys[$key]);
+			if($val!="") $keys[$key]=$val;
+		}
+		if(!count($keys)) return "1=1";
+		$keys=implode(",",$keys);
+		$values=explode(" ",$values);
+		foreach($values as $key=>$val) {
+			$val=trim($val);
+			$val=str_replace(array("'",'"',"\\","(",")"),"",$val);
+			if($val=="") unset($values[$key]);
+			if($val!="") $values[$key]=$val;
+		}
+		if(!count($values)) return "1=1";
+		$query=array();
+		foreach($values as $value) {
+			if($value[0]=="-") {
+				$value=substr($value,1);
+				if($value!="") $query[]="-".$value;
+			} else {
+				$query[]="+".$value;
+			}
+		}
+		if(!count($query)) return "1=1";
+		$query=implode(" ",$query);
+		$query="MATCH($keys) AGAINST('${query}' IN BOOLEAN MODE)";
+	} else {
+		$query=make_like_query($keys,$values);
+	}
+	return $query;
+}
+
+function make_linktitle_query($prefix) {
+	return __make_helper_query(__FUNCTION__,$prefix);
+}
+
+function make_actiontitle_query($prefix) {
+	return __make_helper_query(__FUNCTION__,$prefix);
+}
+
+function __make_helper_query($fn,$prefix) {
+	$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''";
+	$result=db_query($query);
+	$cases=array("CASE ${prefix}id_aplicacion");
+	while($row=db_fetch_row($result)) {
+		if(substr($row["campo"],0,1)=='"' && substr($row["campo"],-1,1)=='"') $row["campo"]=eval_protected($row["campo"]);
+		if(stripos($fn,"linktitle")!==false) $cases[]="WHEN '${row["id"]}' THEN (SELECT CONCAT('link:openapp(\'${row["codigo"]}\',',-${prefix}id_registro,'):',${row["campo"]}) FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
+		if(stripos($fn,"actiontitle")!==false) $cases[]="WHEN '${row["id"]}' THEN (SELECT CONCAT(LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' - ',${row["campo"]}) FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
+	}
+	db_free($result);
+	$cases[]="END";
+	$cases=implode(" ",$cases);
+	return $cases;
 }
 ?>

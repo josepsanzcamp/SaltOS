@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,7 +27,25 @@ if(!check_user()) action_denied();
 if(getParam("action")=="viewpdf") {
 	// CREATE REPORT FROM DATABASE
 	$_RESULT=array("rows"=>array());
-	if(getParam("page") && getParam("id") && !getParam("cid")) {
+	if(getParam("page") && !getParam("id") && !getParam("cid")) {
+		$file="doc/${lang}/${page}.pdf";
+		if(!file_exists($file)) {
+			$files=glob("doc/*/${page}.pdf");
+			if(isset($files[0])) $file=$files[0];
+		}
+		if(!file_exists($file)) {
+			$files=glob("doc/${lang}/*.pdf");
+			if(isset($files[0])) $file=$files[0];
+		}
+		if(!file_exists($file)) {
+			$files=glob("doc/*/*.pdf");
+			if(isset($files[0])) $file=$files[0];
+		}
+		$data=file_get_contents($file);
+		$hash=md5($data);
+		$data=base64_encode($data);
+		set_array($_RESULT["rows"],"row",array("title"=>LANG("help"),"hash"=>$hash,"data"=>$data));
+	} elseif(getParam("page") && getParam("id") && !getParam("cid")) {
 		// DATOS FACTURA/ACTA/PARTE/PRESUPUESTO
 		$where="WHERE id IN (".check_ids(getParam("id")).")";
 		// CALCULAR EL HASH
@@ -203,9 +221,10 @@ if(getParam("action")=="viewpdf") {
 			set_array($_RESULT["rows"],"row",array("title"=>$name,"hash"=>$hash,"data"=>$data));
 		}
 	}
-	// ENVIAR REPORT
-	$buffer=__XML_HEADER__;
-	$buffer.=array2xml($_RESULT);
-	output_buffer($buffer,"text/xml");
+	// PREPARE THE OUTPUT
+	$_RESULT["rows"]=array_values($_RESULT["rows"]);
+	$buffer=json_encode($_RESULT);
+	// CONTINUE
+	output_buffer($buffer,"application/json");
 }
 ?>

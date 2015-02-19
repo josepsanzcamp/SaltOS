@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ if(getParam("action")=="sendmail") {
 		$body=str_replace(array("<signature>","</signature>"),"",$body);
 		// REPLACE SIGNATURE IF NEEDED AND ADD THE INLINE IMAGE
 		$inlines=array();
-		require_once("php/action/signature.php");
+		require_once("php/libaction.php");
 		$file=__signature_getauto(__signature_getfile($id_cuenta));
 		if($file && isset($file["src"])) {
 			$cid=md5($file["data"]);
@@ -236,69 +236,80 @@ if(getParam("action")=="sendmail") {
 			capture_next_error();
 			$current=$mail->PostSend();
 			$error=get_clear_error();
-			if($current!==true) {
-				$host=$mail->Host;
-				$port=$mail->Port;
-				$extra=$mail->SMTPSecure;
-				$user=$mail->Username;
-				$pass=$mail->Password;
-				if($row["id_cuenta"]) {
-					$query="SELECT * FROM tbl_usuarios_c WHERE id='".$row["id_cuenta"]."'";
-					$result2=execute_query($query);
-					$current_host=$result2["smtp_host"];
-					$current_port=$result2["smtp_port"]?$result2["smtp_port"]:25;
-					$current_extra=$result2["smtp_extra"];
-					$current_user=$result2["smtp_user"];
-					$current_pass=$result2["smtp_pass"];
-				} else {
-					$current_host=CONFIG("email_host");
-					$current_port=CONFIG("email_port")?CONFIG("email_port"):25;
-					$current_extra=CONFIG("email_extra");
-					$current_user=CONFIG("email_user");
-					$current_pass=CONFIG("email_pass");
-				}
-				$idem=1;
-				if($current_host!=$host) $idem=0;
-				if($current_port!=$port) $idem=0;
-				if($current_extra!=$extra) $idem=0;
-				if($current_user!=$user) $idem=0;
-				if($current_pass!=$pass) $idem=0;
-				if(!$idem) {
-					$mail->Host=$current_host;
-					$mail->Port=$current_port;
-					$mail->SMTPSecure=$current_extra;
-					$mail->Username=$current_user;
-					$mail->Password=$current_pass;
-					$mail->SMTPAuth=($current_user!="" || $current_pass!="");
-					capture_next_error();
-					$current=$mail->PostSend();
-					$error=get_clear_error();
-				}
-			}
-			if($current!==true) {
-				if(stripos($error,"connection refused")!==false) {
-					$error=LANG("msgconnrefusedpop3email","correo");
-				} elseif(stripos($error,"unable to connect to")!==false) {
-					$error=LANG("msgconnerrorpop3email","correo");
-				} else {
-					$orig=array("\n","\r","'","\"");
-					$dest=array(" ","","","");
-					$error=str_replace($orig,$dest,$mail->ErrorInfo);
-				}
-				__getmail_update("state_sent",0,$last_id);
-				__getmail_update("state_error",$error,$last_id);
-				if(!getParam("ajax")) {
-					session_error(LANG("msgerrorsendmail","correo").$error);
-				} else {
-					javascript_error(LANG("msgerrorsendmail","correo").$error);
-				}
+			if(words_exists("PostSend non-object",$error)) {
+				__getmail_update("state_sent",1,$last_id);
+				__getmail_update("state_error",LANG("interrorsendmail","correo"),$last_id);
+				unlink($file);
 				$haserror=1;
 			} else {
-				__getmail_update("state_sent",1,$last_id);
-				__getmail_update("state_error","",$last_id);
-				unlink($file);
-				$sended++;
+				if($current!==true) {
+					$host=$mail->Host;
+					$port=$mail->Port;
+					$extra=$mail->SMTPSecure;
+					$user=$mail->Username;
+					$pass=$mail->Password;
+					if($row["id_cuenta"]) {
+						$query="SELECT * FROM tbl_usuarios_c WHERE id='".$row["id_cuenta"]."'";
+						$result2=execute_query($query);
+						$current_host=$result2["smtp_host"];
+						$current_port=$result2["smtp_port"]?$result2["smtp_port"]:25;
+						$current_extra=$result2["smtp_extra"];
+						$current_user=$result2["smtp_user"];
+						$current_pass=$result2["smtp_pass"];
+					} else {
+						$current_host=CONFIG("email_host");
+						$current_port=CONFIG("email_port")?CONFIG("email_port"):25;
+						$current_extra=CONFIG("email_extra");
+						$current_user=CONFIG("email_user");
+						$current_pass=CONFIG("email_pass");
+					}
+					$idem=1;
+					if($current_host!=$host) $idem=0;
+					if($current_port!=$port) $idem=0;
+					if($current_extra!=$extra) $idem=0;
+					if($current_user!=$user) $idem=0;
+					if($current_pass!=$pass) $idem=0;
+					if(!$idem) {
+						$mail->Host=$current_host;
+						$mail->Port=$current_port;
+						$mail->SMTPSecure=$current_extra;
+						$mail->Username=$current_user;
+						$mail->Password=$current_pass;
+						$mail->SMTPAuth=($current_user!="" || $current_pass!="");
+						capture_next_error();
+						$current=$mail->PostSend();
+						$error=get_clear_error();
+					}
+				}
+				if($current!==true) {
+					if(words_exists("connection refused",$error)) {
+						$error=LANG("msgconnrefusedpop3email","correo");
+					} elseif(words_exists("unable to connect",$error)) {
+						$error=LANG("msgconnerrorpop3email","correo");
+					} else {
+						$orig=array("\n","\r","'","\"");
+						$dest=array(" ","","","");
+						$error=str_replace($orig,$dest,$mail->ErrorInfo);
+					}
+					__getmail_update("state_sent",0,$last_id);
+					__getmail_update("state_error",$error,$last_id);
+					if(!getParam("ajax")) {
+						session_error(LANG("msgerrorsendmail","correo").$error);
+					} else {
+						javascript_error(LANG("msgerrorsendmail","correo").$error);
+					}
+					$haserror=1;
+				} else {
+					__getmail_update("state_sent",1,$last_id);
+					__getmail_update("state_error","",$last_id);
+					unlink($file);
+					$sended++;
+				}
 			}
+		} else {
+			__getmail_update("state_sent",1,$last_id);
+			__getmail_update("state_error",LANG("interrorsendmail","correo"),$last_id);
+			$haserror=1;
 		}
 	}
 	if(!getParam("ajax")) {
@@ -322,7 +333,15 @@ if(getParam("action")=="sendmail") {
 	die();
 }
 if(getParam("page")=="correo") {
-	$id_cuenta=getParam("id_cuenta")?intval(getParam("id_cuenta")):execute_query("SELECT id FROM (SELECT id,(SELECT COUNT(*) FROM tbl_correo_a WHERE valor=email_from AND id_tipo IN (1,2,3,4)) contador,email_default FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC,contador DESC LIMIT 1) z");
+	$id_cuenta=intval(getParam("id_cuenta"));
+	if(!$id_cuenta) {
+		$query="SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' AND email_default='1' LIMIT 1";
+		$id_cuenta=execute_query($query);
+	}
+	if(!$id_cuenta) {
+		$query="SELECT id FROM (SELECT id,(SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta=a.id AND is_outbox=1) AND id_tipo IN (1,2,3,4)) contador,email_default FROM tbl_usuarios_c a WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC,contador DESC LIMIT 1) z";
+		$id_cuenta=execute_query($query);
+	}
 	$id_extra=explode("_",getParam("id"),3);
 	$to_extra="";
 	$cc_extra="";
@@ -346,7 +365,7 @@ if(getParam("page")=="correo") {
 		if($result2) $state_crt=$result2["email_crt"];
 	}
 	if(1) { // GET THE DEFAULT SIGNATURE
-		require_once("php/action/signature.php");
+		require_once("php/libaction.php");
 		$file=__signature_getauto(__signature_getfile($id_cuenta));
 		$body_extra="<br/><br/><signature>".($file?$file["auto"]:"")."</signature>";
 	}

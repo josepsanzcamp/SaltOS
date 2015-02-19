@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -75,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<date>Data</date>
 		<incidencia>Incidència</incidencia>
 		<estado>Estat</estado>
-		<parte>Part</parte>
+		<parte>Feina</parte>
 		<tarea>Tasca</tarea>
 		<tareas>Tasques</tareas>
 		<liquidado>Liquidat</liquidado>
@@ -84,7 +84,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cerrado>Tancat</cerrado>
 		<cobrado>Cobrat</cobrado>
 		<empresa>Empresa</empresa>
-		<msgdelete>Voleu eliminar aquest registre?</msgdelete>
+		<msgdelete>Vol esborrar aquest registre?</msgdelete>
 		<permdenied>No tens autorització per realitzar aquesta acció</permdenied>
 		<sinnombre>Sense Nom</sinnombre>
 		<deldenied>No es pot esborrar perquè està sent usat en una altra aplicació</deldenied>
@@ -212,7 +212,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<mes>Mes</mes>
 		<factura>Factura</factura>
 		<albaran>Albarà</albaran>
-		<msglogout>Voleu sortir de l'aplicació?</msglogout>
+		<msglogout>Vol sortir de l'aplicació?</msglogout>
 		<mostrarcomo>Mostra com</mostrarcomo>
 		<nif>NIF</nif>
 		<vcard>Targeta de presentació electrònica</vcard>
@@ -297,9 +297,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<postlimiterror>S'ha produït un error en enviar les dades al servidor</postlimiterror>
 		<resumeneconomico>Resum econòmic</resumeneconomico>
 		<pdf2filter_title>Filtre d'exportació PDF</pdf2filter_title>
-		<pdf2filter_message>Seleccioneu les dades que voleu incloure en el PDF:</pdf2filter_message>
+		<pdf2filter_message>Seleccioni les dades que vol incloure al PDF:</pdf2filter_message>
 		<view2filter_title>Filtre del visualitzador PDF</view2filter_title>
-		<view2filter_message>Seleccioneu les dades que voleu veure a el PDF:</view2filter_message>
+		<view2filter_message>Seleccioni les dades que vol veure al PDF:</view2filter_message>
 		<msgerrorsemaphore>S'ha produït un error de concurrència, es cancel.la l'accés a l'acció </msgerrorsemaphore>
 		<msgnotcheckbox>Heu de seleccionar algun registre de la llista per utilitzar aquesta opció</msgnotcheckbox>
 		<gotohome>Tornar a carregar</gotohome>
@@ -347,7 +347,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<renamefiltertip>Premi aquí per reanomenar un filtre existent</renamefiltertip>
 		<renamefilterok>S'ha reanomenat correctament el filtre existent</renamefilterok>
 		<renamefilterko1>Heu de seleccionar un filtre per poder reanomenar-lo</renamefilterko1>
-		<renamefilterko2>Falta definir el nou nom del filtre que voleu reanomenar</renamefilterko2>
+		<renamefilterko2>Falta definir el nou nom del filtre que vol reanomenar</renamefilterko2>
 		<showmenu>Mostrar menú</showmenu>
 		<hidemenu>Amagar menú</hidemenu>
 		<showtools>Mostrar eines</showtools>
@@ -395,7 +395,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<contactos>Contactes</contactos>
 		<incidencias>Incidències</incidencias>
 		<proyectos>Projectes</proyectos>
-		<partes>Parts de treball</partes>
+		<partes>Fulls de feina</partes>
 		<documentos>Documents</documentos>
 		<facturas>Factures</facturas>
 		<proveedores>Proveïdors</proveedores>
@@ -445,7 +445,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_contactos>Per accedir als contactes d'un client</desc_contactos>
 		<desc_incidencias>Gestioni des d'aquí les incidències dels seus clients</desc_incidencias>
 		<desc_proyectos>Seguiu els seus projectes amb aquesta aplicació</desc_proyectos>
-		<desc_partes>Doneu d'alta tots els treballs que realitza utilitzant parts d'hora</desc_partes>
+		<desc_partes>Doneu d'alta tots els treballs que realitza utilitzant fulls de feina</desc_partes>
 		<desc_facturas>Gestioni totes les factures (albarans, cobrades, etc...)</desc_facturas>
 		<desc_proveedores>Gestioni els proveïdors de la seva empresa</desc_proveedores>
 		<desc_gastos>Controli les despeses i sàpiga si estan liquidats</desc_gastos>
@@ -494,7 +494,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_contactos>Contactes</quick_contactos>
 		<quick_incidencias>Incidències</quick_incidencias>
 		<quick_proyectos>Projectes</quick_proyectos>
-		<quick_partes>Parts</quick_partes>
+		<quick_partes>Feines</quick_partes>
 		<quick_documentos>Documents</quick_documentos>
 		<quick_facturas>Factures</quick_facturas>
 		<quick_proveedores>Proveïdors</quick_proveedores>
@@ -543,8 +543,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<projectclose>Projectes tancats</projectclose>
 		<incidentopen>Incidències actives</incidentopen>
 		<incidentclose>Incidències tancades</incidentclose>
-		<partesopen>Parts sense liquidar</partesopen>
-		<partesclose>Parts liquidats</partesclose>
+		<partesopen>Fulls de feina sense liquidar</partesopen>
+		<partesclose>Fulls de feina liquidats</partesclose>
 		<albaranes>Albarans</albaranes>
 		<facturaopen>Factures no cobrades</facturaopen>
 		<facturaclose>Factures cobrades</facturaclose>
@@ -552,13 +552,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<documentdata>Documents del client</documentdata>
 		<agendadata>Events del client</agendadata>
 		<actasdata>Actes del client</actasdata>
-		<actionliquidar>Liquidar parts seleccionats</actionliquidar>
-		<msgliquidar>Voleu liquidar els parts seleccionats?</msgliquidar>
+		<actionliquidar>Liquidar fulls de feina seleccionats</actionliquidar>
+		<msgliquidar>Vol liquidar els fulls de feina seleccionats?</msgliquidar>
 		<plotseguimiento12meses>Facturació de l'últim any del client</plotseguimiento12meses>
 		<cuentacorriente>Compte corrent</cuentacorriente>
 		<diapago>Dia de pagament</diapago>
 		<cuentacontable>Compte comptable</cuentacontable>
-		<nombrecomercial>Nom menjar.</nombrecomercial>
+		<nombrecomercial>Nom comer.</nombrecomercial>
 		<nombrefiscal>Nom fiscal</nombrefiscal>
 		<tipocliente>Tipus de client</tipocliente>
 		<clientefiscal>Fiscal</clientefiscal>
@@ -602,12 +602,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<legendseguimientotareas>Hores pressupostades|Hores emprades</legendseguimientotareas>
 		<real>Real</real>
 		<diferencia>Diferència</diferencia>
-		<partesopen>Parts sense liquidar</partesopen>
-		<partesclose>Parts liquidats</partesclose>
+		<partesopen>Fulls de feina sense liquidar</partesopen>
+		<partesclose>Fulls de feina liquidats</partesclose>
 		<relatedseguimientos>Seguiments relacionats</relatedseguimientos>
 		<relatedincidencias>Incidències relacionats</relatedincidencias>
-		<actionliquidar>Liquidar parts seleccionats</actionliquidar>
-		<msgliquidar>Voleu liquidar els parts seleccionats?</msgliquidar>
+		<actionliquidar>Liquidar fulls de feina seleccionats</actionliquidar>
+		<msgliquidar>Vol liquidar els fulls de feina seleccionats?</msgliquidar>
 		<agendadata>Events relacionats</agendadata>
 		<actasdata>Actes relacionades</actasdata>
 		<contactdata>Contactes del client</contactdata>
@@ -622,7 +622,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<productosproyecto>Productes del projecte</productosproyecto>
 		<descproductos>Descripció dels productes</descproductos>
 		<actionfacturar>Facturar</actionfacturar>
-		<msgfacturar>Voleu facturar el projecte?</msgfacturar>
+		<msgfacturar>Vol facturar el projecte?</msgfacturar>
 		<errorfacturar>Ja hi ha una factura d'aquest projecte</errorfacturar>
 		<okfacturar>S'ha facturat correctament el projecte</okfacturar>
 		<addseguimientos>Seguiment</addseguimientos>
@@ -641,21 +641,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<defaultdata>Dades del document</defaultdata>
 	</documentos>
 	<partes>
-		<list>Llistat de parts</list>
-		<create>Nou part</create>
-		<formview>Detall del comunicat</formview>
-		<forminsert>Alta d'un nou part</forminsert>
-		<formupdate>Modificació del part</formupdate>
-		<defaultdata>Dades del comunicat</defaultdata>
+		<list>Llistat de fulls de feina</list>
+		<create>Nou full de feina</create>
+		<formview>Detall del full de feina</formview>
+		<forminsert>Alta d'un nou full de feina</forminsert>
+		<formupdate>Modificació del full de feina</formupdate>
+		<defaultdata>Dades del full de feina</defaultdata>
 		<horasfact>Hores a facturar</horasfact>
-		<preciohora>Preu / hora</preciohora>
+		<preciohora>Preu/hora</preciohora>
 		<liquidar>Liquidar</liquidar>
 		<dateliq>Data liq.</dateliq>
-		<msgliquidar>Voleu liquidar els parts seleccionats?</msgliquidar>
-		<msgerror>Heu de seleccionar els parts que voleu liquidar en el llistat</msgerror>
+		<msgliquidar>Vol liquidar els fulls de feina seleccionats?</msgliquidar>
+		<msgerror>Ha de seleccionar els fulls de feina que vol liquidar al llistat</msgerror>
 		<fechainiliq>Data liquidat</fechainiliq>
-		<plotseguimientotop10>Els 10 clients amb més parts de l'últim any</plotseguimientotop10>
-		<plotseguimiento12meses>Facturació en parts de l'últim any</plotseguimiento12meses>
+		<plotseguimientotop10>Els 10 clients amb més fulls de feina de l'últim any</plotseguimientotop10>
+		<plotseguimiento12meses>Facturació en fulls de feina de l'últim any</plotseguimiento12meses>
 	</partes>
 	<usuarios>
 		<list>Llistat d'usuaris</list>
@@ -695,7 +695,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<prefgcalendar>Sincronització de l'agenda amb el servei de Google Calendar</prefgcalendar>
 		<prefgcalendar2>Amb aquesta opció, vostè pot utilitzar l'agenda des de SaltOS i des de Google Calendar, mantenint les dades actualitzades de forma automàtica i sense preocupar d'haver de replicar les dades d'una agenda a l'altra</prefgcalendar2>
 		<logingcalendar>Compte de correu de gmail</logingcalendar>
-		<feedstitle>Configureu els feeds que voleu llegir des SaltOS ( RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>
+		<feedstitle>Configuri els feeds que vol llegir des de SaltOS ( RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>Títol</title>
 		<description>Descripció</description>
@@ -762,15 +762,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pagadopor>pagador</pagadopor>
 		<liquidar>Liquidar</liquidar>
 		<dateliq>Data liq.</dateliq>
-		<msgliquidar>Voleu liquidar les despeses seleccionats?</msgliquidar>
-		<msgerror>Heu de seleccionar les despeses que voleu liquidar en el llistat</msgerror>
+		<msgliquidar>Vol liquidar les despeses seleccionades?</msgliquidar>
+		<msgerror>Ha de seleccionar les despeses que vol liquidar al llistat</msgerror>
 		<trimestrereg>Trim. entrada</trimestrereg>
 		<fechainireg>Data entrada</fechainireg>
 		<trimestreliq>Trim. liquidat</trimestreliq>
 		<fechainiliq>Data liquidat</fechainiliq>
-		<totalliquidar>Les despeses liquidats sumen un total de: </totalliquidar>
-		<plotseguimientotop10>Els 10 proveïdors amb més facturació de l'últim any</plotseguimientotop10>
-		<plotseguimiento12meses>Despeses de l'últim any</plotseguimiento12meses>
+		<totalliquidar>Les despeses liquidades sumen un total de: </totalliquidar>
+		<plotseguimientotop10>Els 10 proveïdors amb més facturació del darrer any</plotseguimientotop10>
+		<plotseguimiento12meses>Despeses del darrer any</plotseguimiento12meses>
 		<sinpagador>[Sense pagador]</sinpagador>
 		<vencimientos_old>Venciments</vencimientos_old>
 		<vencimientos_new>Nous venciments</vencimientos_new>
@@ -935,7 +935,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logingcalendar>Compte de correu de gmail</logingcalendar>
 		<addmetocc>Afegir a la meva com CC en tots els emails que enviï</addmetocc>
 		<defaultcrt>Activar per defecte la sol licitud de confirmació de recepció</defaultcrt>
-		<feedstitle>Configureu els feeds que voleu llegir des SaltOS (RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>
+		<feedstitle>Configuri els feeds que vol llegir des de SaltOS (RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>Títol</title>
 		<description>Descripció</description>
@@ -1006,7 +1006,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<water>Marques d'aigua</water>
 		<title_water>Definiu les marques d'aigua que es faran servir en els pdf's</title_water>
 		<wateractas>Actes: Text</wateractas>
-		<waterpartes>Parts: Text</waterpartes>
+		<waterpartes>Feines: Text</waterpartes>
 		<waterfacturas>Factures: Text</waterfacturas>
 		<wateralbaranes>Albarans: Text</wateralbaranes>
 		<waterpresupuestos>Pressupostos: Text</waterpresupuestos>
@@ -1055,8 +1055,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</support>
 	<home>
 		<formupdate>Inici</formupdate>
-		<buscar2>Buscar a tot SaltOS</buscar2>
-		<buscar3>Buscar nomès als fitxers</buscar3>
+		<buscar2>Cercar a tot SaltOS</buscar2>
+		<buscar3>Cercar nomès als fitxers</buscar3>
 	</home>
 	<seguimientos>
 		<list>Llistat de seguiment</list>
@@ -1151,10 +1151,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<spam>SPAM</spam>
 		<borrar>Esborrar</borrar>
 		<borrartip>Esborrar tots els correus seleccionats</borrartip>
-		<msgleidos>Voleu marcar com llegits / no llegits tots els correus seleccionats?</msgleidos>
-		<msgwait>Voleu marcar com pendents / no pendents tots els correus seleccionats?</msgwait>
-		<msgspam>Voleu marcar com SPAM / no SPAM tots els correus seleccionats?</msgspam>
-		<msgdelete2>Voleu eliminar tots els correus seleccionats?</msgdelete2>
+		<msgleidos>Vol marcar com llegits / no llegits tots els correus seleccionats?</msgleidos>
+		<msgwait>Vol marcar com pendents / no pendents tots els correus seleccionats?</msgwait>
+		<msgspam>Vol marcar com SPAM / no SPAM tots els correus seleccionats?</msgspam>
+		<msgdelete2>Vol esborrar tots els correus seleccionats?</msgdelete2>
 		<msgnotsendfound>No hi ha missatges pendents d'enviar</msgnotsendfound>
 		<msgerrorsendmail>S'ha produït el següent error: </msgerrorsendmail>
 		<msgtotalsendmail1> correu enviat de la safata de sortida</msgtotalsendmail1>
@@ -1211,6 +1211,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<notsupportdefined>No s'ha definit el compte de correu de suport</notsupportdefined>
 		<notsupportfound>Aquest correu no conte el compte de correu de suport</notsupportfound>
 		<incidenciaexists>Aquesta incidencia ja existeix i te el códi: </incidenciaexists>
+		<interrorsendmail>Aquest email no s'ha pogut enviar per un error intern</interrorsendmail>
 	</correo>
 	<cuentas>
 		<list>Llistat de comptes</list>
@@ -1257,7 +1258,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<liquidar>Generar</liquidar>
 		<totalliquidar>Nombre de factures generades en total: </totalliquidar>
 		<msgerror>Heu de seleccionar les factures que desitgi generar en el llistat i el mes a utilitzar</msgerror>
-		<msgliquidar>Voleu generar les factures seleccionades?</msgliquidar>
+		<msgliquidar>Vol generar les factures seleccionades?</msgliquidar>
 	</periodicas>
 	<empleados>
 		<list>Llistat d'empleats</list>
@@ -1282,7 +1283,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<defaultdata>Dades del possible client</defaultdata>
 		<crearcliente>Crear client</crearcliente>
 		<clientcreatedok>S'ha creat el nou client correctament</clientcreatedok>
-		<msgcrear>Voleu convertir el possible client en un client?</msgcrear>
+		<msgcrear>Vol convertir el possible client en un client?</msgcrear>
 		<agendadata>Events del possible client</agendadata>
 		<actasdata>Actes del possible client</actasdata>
 		<presupuestosdata>Pressupostos del possible client</presupuestosdata>
@@ -1333,7 +1334,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<projectexists>Aquest pressupost ja està relacionat amb un projecte</projectexists>
 		<clientnotexists>S'ha de relacionar amb un client (si està relacionat amb un possible client, convertiu-la en client primer)</clientnotexists>
 		<projectcreatedok>S'ha creat el nou projecte correctament</projectcreatedok>
-		<msgcrear>Voleu crear un projecte d'aquest pressupost?</msgcrear>
+		<msgcrear>Vol crear un projecte d'aquest pressupost?</msgcrear>
 		<agendadata>Events del pressupost</agendadata>
 		<actasdata>Actes del pressupost</actasdata>
 		<plotseguimientoestados>Agrupació de pressupostos per estat</plotseguimientoestados>
@@ -1344,7 +1345,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<extraspdf>Informació</extraspdf>
 		<condicionespdf>Condicions</condicionespdf>
 		<actionfacturar>Facturar</actionfacturar>
-		<msgfacturar>Voleu facturar el pressupost?</msgfacturar>
+		<msgfacturar>Vol facturar el pressupost?</msgfacturar>
 		<errorfacturar>Ja hi ha una factura d'aquest pressupost</errorfacturar>
 		<okfacturar>S'ha facturat correctament el pressupost</okfacturar>
 	</presupuestos>
@@ -1384,7 +1385,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ficheros>
 		<list>Llistat de fitxers adjunts</list>
 		<todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
-		<nosearch>Ha de proporcionar unes paraules de cerca al quadre de text</nosearch>
 	</ficheros>
 	<feeds>
 		<list>Llistat de feeds RSS</list>
@@ -1427,9 +1427,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<borrartip>Esborrar tots els post seleccionats</borrartip>
 		<noleidos>No llegits</noleidos>
 		<nowait>No pendents</nowait>
-		<msgleidos>Voleu marcar com a llegits / no llegits tots els posts seleccionats?</msgleidos>
-		<msgwait>Voleu marcar com pendents / no pendents tots els posts seleccionats?</msgwait>
-		<msgdelete2>Voleu eliminar tots els posts seleccionats?</msgdelete2>
+		<msgleidos>Vol marcar com a llegits / no llegits tots els posts seleccionats?</msgleidos>
+		<msgwait>Vol marcar com pendents / no pendents tots els posts seleccionats?</msgwait>
+		<msgdelete2>Vol esborrar tots els posts seleccionats?</msgdelete2>
 		<msgpropietario>Només el propietari dels posts pot usar aquestes prestacions</msgpropietario>
 		<msgnotfound>No s'han trobat posts seleccionats, modifiqui el filtre</msgnotfound>
 		<msgnumsileidos>S'han marcat com a llegits: </msgnumsileidos>
@@ -1449,7 +1449,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlycool>Només interesants</onlycool>
 		<cool>Interesant</cool>
 		<nocool>No interesant</nocool>
-		<msgcool>Voleu marcar com interesants / no interesants tots els posts seleccionats?</msgcool>
+		<msgcool>Vol marcar com interesants / no interesants tots els posts seleccionats?</msgcool>
 		<msgnumsicool>S'han marcat com interesants: </msgnumsicool>
 		<msgnumnocool>S'han marcat com no interesants: </msgnumnocool>
 		<actionfavoritos>Afegir als favorits</actionfavoritos>
@@ -1485,7 +1485,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<buscador>
 		<list>Cercador</list>
 		<todaslasaplicaciones>[Totes les aplicacions]</todaslasaplicaciones>
-		<nosearch>Ha de proporcionar unes paraules de cerca al quadre de text</nosearch>
 	</buscador>
 	<errorlog>
 		<formupdate>Logs d'error</formupdate>

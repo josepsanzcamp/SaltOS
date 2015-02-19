@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,41 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
-// FUNCTION THAT RETURNS THE META ATTRIBUTES
-function __explode_meta($html) {
-	$result=array();
-	$len=strlen($html);
-	$pos1=strpos($html,"=");
-	while($pos1!==false) {
-		for($i=$pos1-1;$i>=0;$i--) if($html[$i]!=" ") break;
-		for($j=$i;$j>=0;$j--) if($html[$j]==" ") break;
-		$pos2=$j;
-		for($i=$pos1+1;$i<$len;$i++) if($html[$i]!=" ") break;
-		for($j=$i;$j<$len;$j++) if($html[$j]=='"' || $html[$j]=="'") break;
-		$pos3=$j;
-		for($k=$j+1;$k<$len;$k++) if($html[$j]==$html[$k]) break;
-		$pos4=$k;
-		$key=substr($html,$pos2+1,$pos1-$pos2-1);
-		$val=substr($html,$pos3+1,$pos4-$pos3-1);
-		$result[$key]=$val;
-		$pos1=strpos($html,"=",$pos1+1);
-	}
-	return $result;
-}
-// FUNCTION THAT RETURNS ALL META TAGS
-function __get_metas($html) {
-	$result=array();
-	$pos1=stripos($html,"<meta");
-	while($pos1!==false) {
-		$pos2=stripos($html,">",$pos1);
-		if($pos2===false) break;
-		$result[]=__explode_meta(substr($html,$pos1,$pos2-$pos1+1));
-		$pos1=stripos($html,"<meta",$pos2);
-	}
-	return $result;
-}
-// CONTINUE
 if(getParam("action")=="favoritos") {
+	require_once("php/libaction.php");
 	$url=getParam("url");
 	$scheme=parse_url($url,PHP_URL_SCHEME);
 	if(!$scheme) $url="http://".$url;
@@ -78,7 +45,7 @@ if(getParam("action")=="favoritos") {
 			if($pos1!==false && $pos2!==false) $nombre=substr($html,$pos1+1,$pos2-$pos1-1);
 			// NOMBRE Y DESCRIPCION EN TAGS META
 			$descripcion=$url;
-			$metas=__get_metas($html);
+			$metas=__favoritos_get_metas($html);
 			foreach($metas as $meta) {
 				if(isset($meta["name"]) && $meta["name"]=="description" && isset($meta["content"])) $descripcion=$meta["content"];
 				if(isset($meta["property"]) && $meta["property"]=="og:description" && isset($meta["content"])) $descripcion=$meta["content"];
@@ -91,15 +58,9 @@ if(getParam("action")=="favoritos") {
 				"descripcion"=>html_entity_decode(getutf8($descripcion),ENT_COMPAT,"UTF-8")
 			));
 			db_query($query);
-			// INSERT EN TBL_REGISTROS_I
-			$query=make_insert_query("tbl_registros_i",array(
-				"id_aplicacion"=>page2id("favoritos"),
-				"id_usuario"=>current_user(),
-				"datetime"=>current_datetime()
-			),array(
-				"id_registro"=>"SELECT MAX(id) FROM tbl_favoritos"
-			));
-			db_query($query);
+			// CONTINUE
+			make_control(page2id("favoritos"));
+			make_indexing(page2id("favoritos"));
 			javascript_alert(LANG("bookmarkadded","favoritos"));
 			if(getParam("refresh")) javascript_history(0);
 		} else {

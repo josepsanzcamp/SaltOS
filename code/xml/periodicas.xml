@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -106,7 +106,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>separator</type>
 					<width>100%</width>
 				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_cliente'=>'','id_cuenta'=>'','dia1'=>'','dia2'=>'','meses'=>'',))">
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_cliente'=>'','id_cuenta'=>'','dia1'=>'','dia2'=>'','meses'=>'','filtro'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>
@@ -117,9 +117,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="filter" eval="true">$filter=getParam("filter")</value>
-					<onchange>copy_value("filter","buscar");</onchange>
-					<onkey>if(is_enterkey(event)) { copy_value("filter","buscar");buscar(); }</onkey>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+					<onchange>copy_value("filtro","buscar");</onchange>
+					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
 					<speech>true</speech>
 					<class3>shortcut_ctrl_f</class3>
@@ -210,22 +210,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<value global="meses" eval="true">$meses=getParam("meses")</value>
 					</field>
 					<field>
-						<name>filter</name>
+						<name>filtro</name>
 						<type>hidden</type>
-						<value global="filter" eval="true">$filter=getParam("filter")</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 					</field>
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,filter,id_cuenta,dia1,dia2,meses" eval="true">"
+		<query global="page,id_cliente,filtro,id_cuenta,dia1,dia2,meses" eval="true">"
 		SELECT
-			CONCAT('link:periodicas(',-id,'):',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) id2,id,
+			CONCAT('link:openapp(\'periodicas\',',-id,'):',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) id2,id,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-				CONCAT('link:clientes(',-id_cliente,'):',cliente) END cliente,
+				CONCAT('link:openapp(\'clientes\',',-id_cliente,'):',cliente) END cliente,
 			CASE id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE cliente END cliente2,
 			dia,
 			CONCAT(
@@ -265,9 +264,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					LEFT JOIN tbl_periodicas_c b ON a.id=b.id_periodica
 					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+				WHERE
+					a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
 				GROUP BY a.id) c
 		) d
-		WHERE ".make_like_query("cliente,meses",$filter)." AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND (SUBSTR(meses,".intval($meses).",1)='1' OR ''='$meses') AND (dia>='$dia1' OR ''='$dia1') AND ('$dia2'>=dia OR ''='$dia2') AND ".check_sql($page,"list")</query>
+		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND (SUBSTR(meses,".intval($meses).",1)='1' OR ''='$meses') AND (dia>='$dia1' OR ''='$dia1') AND ('$dia2'>=dia OR ''='$dia2') AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -1346,7 +1347,6 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 			</vencimientos_new>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />

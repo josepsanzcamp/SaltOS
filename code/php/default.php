@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,78 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if(!defined("__DEFAULT_PHP__")) {
-	define("__DEFAULT_PHP__",1);
-
-	function __eval_querytag($array) {
-		foreach($array as $key=>$val) {
-			if(is_array($val)) {
-				$array[$key]=__eval_querytag($val);
-			} elseif($key=="query") {
-				$result=db_query($val);
-				$count=0;
-				while($row=db_fetch_row($result)) {
-					$row["__ROW_NUMBER__"]=++$count;
-					set_array($array["rows"],"row",$row);
-				}
-				db_free($result);
-				unset($array[$key]);
-			}
-		}
-		return $array;
-	}
-
-	function __process_data_rec($query,&$go,&$commit) {
-		$rows=array();
-		foreach($query as $key=>$val) {
-			if(is_array($val)) {
-				set_array($rows,$key,__process_data_rec($val,$go,$commit));
-			} else {
-				$val=trim($val);
-				if($commit) {
-					$result=db_query($val);
-					$count=0;
-					while($row=db_fetch_row($result)) {
-						$row["__ROW_NUMBER__"]=++$count;
-						$is_action=0;
-						if(isset($row["action_error"])) {
-							$error=$row["action_error"];
-							session_error($error);
-							$is_action=1;
-						}
-						if(isset($row["action_alert"])) {
-							$alert=$row["action_alert"];
-							session_alert($alert);
-							$is_action=1;
-						}
-						if(isset($row["action_commit"])) {
-							$commit=$row["action_commit"];
-							$is_action=1;
-						}
-						if(isset($row["action_go"])) {
-							$go=$row["action_go"];
-							$is_action=1;
-						}
-						if(isset($row["action_include"])) {
-							$include=$row["action_include"];
-							$include=explode(",",$include);
-							foreach($include as $file) {
-								if(!file_exists($file)) show_php_error(array("xmlerror"=>"Include '$file' not found"));
-								include($file);
-							}
-							$is_action=1;
-						}
-						if(!$is_action) {
-							set_array($rows[$key],"row",$row);
-						}
-					}
-					db_free($result);
-				}
-			}
-		}
-		return $rows;
-	}
-}
+require_once("php/libaction.php");
 
 if(!getDefault("$page/$action")) {
 	$_LANG["default"]="denied,menu,common";
@@ -212,7 +141,7 @@ switch($action) {
 		}
 		db_free($result);
 		// CONTINUE WITH NORMAL OPERATION
-		$_RESULT[$action]=__eval_querytag($_RESULT[$action]);
+		$_RESULT[$action]=__default_eval_querytag($_RESULT[$action]);
 		break;
 	case "form":
 		$config=getDefault("$page/$action");
@@ -239,7 +168,7 @@ switch($action) {
 			$go=0;
 			$commit=1;
 			if($fixquery) $query=array("default"=>$query);
-			$rows=__process_data_rec($query,$go,$commit);
+			$rows=__default_process_querytag($query,$go,$commit);
 			if($fixquery) $rows=$rows["default"];
 			set_array($_RESULT[$action],"rows",$rows);
 			if($go) {
@@ -258,7 +187,7 @@ switch($action) {
 			add_css_js_page($_RESULT["form"],"denied");
 			set_array($_ERROR,"error","Unknown action '$action'");
 		}
-		$_RESULT[$action]=__eval_querytag($_RESULT[$action]);
+		$_RESULT[$action]=__default_eval_querytag($_RESULT[$action]);
 		break;
 	default:
 		if(!$action) break;

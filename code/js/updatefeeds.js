@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ if(typeof(__updatefeeds__)=="undefined" && typeof(parent.__updatefeeds__)=="unde
 	function update_feeds() {
 		var usuario=$("select[name$=id_usuario]");
 		var feed=$("select[name$=id_feed]");
+		var feed2=$("select[name$=id_feed2]");
 		if(feeds_defaults=="") feeds_defaults=$(feed).html();
 		var data="action=ajax&query=feeds&id_usuario="+$(usuario).val();
 		$.ajax({
@@ -39,13 +40,12 @@ if(typeof(__updatefeeds__)=="undefined" && typeof(parent.__updatefeeds__)=="unde
 			success:function(response) {
 				var options=feeds_defaults;
 				var original=$(feed).attr("original");
-				$("root>rows>row",response).each(function() {
-					var id=$("id",this).text();
-					var nombre=$("nombre",this).text();
-					var selected=(id==original)?"selected='selected'":"";
-					options+="<option value='"+id+"' "+selected+">"+nombre+"</option>";
+				$(response["rows"]).each(function() {
+					var selected=(this["id"]==original)?"selected='selected'":"";
+					options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
 				});
 				$(feed).html(options);
+				$(feed2).html(options);
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

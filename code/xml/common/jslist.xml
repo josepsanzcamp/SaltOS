@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,41 +47,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>vcard(id) { openurl("?page="+getParam("page")+"&amp;action=vcard&amp;id="+id); }</function>
 	<function>mailto(mail) { setParam("page","correo"); setParam("action","form"); setParam("id","0_mailto_"+mail); submit1(); }</function>
 	<function>download(data) { openurl("?action=download&amp;"+data); }</function>
-	<function eval="true">"getIds() { var ids=new Array(); $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
+	<function eval="true">"getIds() { var ids=[]; $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
 	<!-- FOR FORM ACCESS -->
-	<function>clientes(id) { setParam("page","clientes"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>proyectos(id) { setParam("page","proyectos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>proveedores(id) { setParam("page","proveedores"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>agenda(id) { setParam("page","agenda"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>actas(id) { setParam("page","actas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>contactos(id) { setParam("page","contactos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>documentos(id) { setParam("page","documentos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>incidencias(id) { setParam("page","incidencias"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>partes(id) { setParam("page","partes"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>seguimientos(id) { setParam("page","seguimientos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>facturas(id) { setParam("page","facturas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>gastos(id) { setParam("page","gastos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>aplicaciones(id) { setParam("page","aplicaciones"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>epigrafes(id) { setParam("page","epigrafes"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>estados(id) { setParam("page","estados"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>formaspago(id) { setParam("page","formaspago"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>grupos(id) { setParam("page","grupos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>permisos(id) { setParam("page","permisos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>prioridades(id) { setParam("page","prioridades"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>usuarios(id) { setParam("page","usuarios"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>periodicas(id) { setParam("page","periodicas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>empleados(id) { setParam("page","empleados"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>cuentas(id) { setParam("page","cuentas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>posiblescli(id) { setParam("page","posiblescli"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>productos(id) { setParam("page","productos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>presupuestos(id) { setParam("page","presupuestos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>campanyas(id) { setParam("page","campanyas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>tiposevento(id) { setParam("page","tiposevento"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>textos(id) { setParam("page","textos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>correo(id) { setParam("page","correo"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>feeds(id) { setParam("page","feeds"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>importaciones(id) { setParam("page","importaciones"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>ivas(id) { setParam("page","ivas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>openapp(page,id) { setParam("page",page); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<!-- FOR PAGERLIST MODULE -->
 	<function>first() { page1($("#selectpager").prop("selectedIndex",0).val()); }</function>
 	<function>previous() { page1($("#selectpager").prop("selectedIndex",$("#selectpager").prop("selectedIndex")-1).val()); }</function>

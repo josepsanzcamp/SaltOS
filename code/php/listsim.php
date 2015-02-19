@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -125,7 +125,7 @@ function list_check_order($order,$fields2) {
 	// PREPARE THE ORDER ARRAY
 	$array=explode(",",$order);
 	foreach($array as $key=>$val) {
-		$val=encode_words($val," ");
+		$val=prepare_words($val);
 		$val=explode(" ",$val,2);
 		if(!in_array($val[0],$fields)) $val[0]="id";
 		if(!isset($val[1])) $val[1]="desc";

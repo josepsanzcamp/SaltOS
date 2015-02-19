@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -42,27 +42,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>viewpdf2(page,id,cid) { viewpdf("page="+page+"&amp;id="+id+"&amp;cid="+cid); }</function>
 	<function>edit() { setParam("action","form"); setParam("id",intval(getParam("id"))*-1); submit1(); }</function>
 	<function>mailto(mail) { setParam("page","correo"); setParam("action","form"); setParam("id","0_mailto_"+mail); submit1(); }</function>
-	<function eval="true">"getIds() { var ids=new Array(); $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
+	<function eval="true">"getIds() { var ids=[]; $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
 	<inline>$(function() { $('input.slave[type=checkbox]').each(function() { var id=$(this).attr("id"); id=str_replace("files_old_","",id); id=str_replace("_zip","",id); $(this).addClass("id_"+id); }); })</inline>
 	<function>compress(format) { var cid=getIds(); if(!cid) return; openurl("?page="+getParam("page")+"&amp;action=compress&amp;format="+format+"&amp;id="+getParam("id")+"&amp;cid="+cid); }</function>
 	<!-- FOR FORM ACCESS -->
-	<function>contactos(id) { setParam("page","contactos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>incidencias(id) { setParam("page","incidencias"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>proyectos(id) { setParam("page","proyectos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>partes(id) { setParam("page","partes"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>documentos(id) { setParam("page","documentos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>facturas(id) { setParam("page","facturas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>gastos(id) { setParam("page","gastos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>agenda(id) { setParam("page","agenda"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>clientes(id) { setParam("page","clientes"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>proveedores(id) { setParam("page","proveedores"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>seguimientos(id) { setParam("page","seguimientos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>actas(id) { setParam("page","actas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>empleados(id) { setParam("page","empleados"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>posiblescli(id) { setParam("page","posiblescli"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>presupuestos(id) { setParam("page","presupuestos"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>campanyas(id) { setParam("page","campanyas"); setParam("action","form"); setParam("id",id); submit1(); }</function>
-	<function>importaciones(id) { setParam("page","importaciones"); setParam("action","form"); setParam("id",id); submit1(); }</function>
+	<function>openapp(page,id) { setParam("page",page); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<!-- FOR QUICKFORM MODULE -->
 	<function>first() { page1($("#selectquick").prop("selectedIndex",0).val()); }</function>
 	<function>previous() { page1($("#selectquick").prop("selectedIndex",$("#selectquick").prop("selectedIndex")-1).val()); }</function>

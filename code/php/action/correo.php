@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -107,10 +107,8 @@ if($page=="correo") {
 				$query=make_delete_query("tbl_ficheros","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
 				db_query($query);
 				// BORRAR REGISTRO DE LOS CORREOS
-				$query=make_delete_query("tbl_registros_i","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
-				db_query($query);
-				$query=make_delete_query("tbl_registros_u","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
-				db_query($query);
+				make_control(page2id("correo"),$ids);
+				make_indexing(page2id("correo"),$ids);
 				// BORRAR FOLDERS RELACIONADOS
 				$query=make_delete_query("tbl_folders_a","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
 				db_query($query);
@@ -131,7 +129,7 @@ if(in_array($page,array("profile","usuarios"))) {
 	$temp_key="correo_new_0_email_signature_new";
 	if($correo_new && !getParam($temp_key)) {
 		$outputdir=get_directory("dirs/filesdir");
-		$temp_data=str_replace("SaltOS","<a href='http://www.saltos.net'>SaltOS</a>",LANG("sentfromsaltos"));
+		$temp_data=str_replace("SaltOS","<a href='http://www.saltos.org'>SaltOS</a>",LANG("sentfromsaltos"));
 		$temp_name="email_signature".getDefault("exts/htmlext",".htm");
 		$temp_file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($temp_name);
 		$temp_size=strlen($temp_data);

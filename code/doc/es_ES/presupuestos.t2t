@@ -1,0 +1,134 @@
+
+
+
+=Presupuestos=
+
+Esta aplicación le permite llevar un control de todos los presupuesto realizados en la empresa.
+
+==Listado de presupuestos==
+
+En el listado de presupuestos podrá encontrar las columnas mas importantes de cada registro:
+
+- **Cód.:** Código numérico que identifica al presupuesto.
+- **Cliente:** Para que cliente se ha realizado el presupuesto.
+- **Presupuesto:** Nombre que se le ha dado al presupuesto.
+- **Fecha:** Fecha de realización del presupuesto.
+- **Tareas (€):** Importe del total de tareas planeadas en el presupuesto.
+- **Prod. (€):** Importe total de todos los productos incluidos en el presupuesto.
+- **Total (€):** Importe total del presupuesto.
+- **Estado:** Estado actual del presupuesto (Sin enviar, enviado, aceptado, cancelado, parado).
+- **NT:** Número de tareas planeadas en el presupuesto.
+- **NP:** Número de productos incluidos en el presupuesto.
+- **NC:** Número de comentarios introducidos sobre este presupuesto.
+- **NF:** Número de ficheros vinculados con este presupuesto.
+
+
+%[Aquí imagen del listado de presupuestos]
+
+==Opciones del listado==
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [Iconos-Botones]: Consultar/Editar/Borrar registro.
+- [Icono-Boton]: Con esta acción podrá crear un nuevo registro copiando los datos de este.
+- [Icono-Boton]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [Icono-Boton]: Mostrar datos a través del Visor-PDF.
+- [Icono-Boton]: Preparara un correo con el presupuesto seleccionado adjuntado como archivo. PDF.
+
+
+Este listado dispone ademas de las siguientes acciones seleccionando varios presupuesto simultáneamente:
+
+- [Icono-Boton]: Descargar los presupuesto seleccionados a un archivo en formato. PDF.
+- [Icono-Boton]: Visualizar los presupuesto seleccionados en formato. PDF en pantalla.
+- [Icono-Boton]: Preparara un correo con los presupuestos seleccionados adjuntados como archivos PDF.
+
+
+==Opciones de filtro==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Gráficas y estadísticas==
+
+En esta pestaña podrá ver las estadisticas sobre cuantos presupuesto tiene en cada estado, pudiendo detectar picos y bajadas de faena antes de que sucedan y asi poder tomar medidas para mitigar estos momentos criticos.
+
+==Formulario de presupuestos==
+
+Esta es la aplicación de presupuesto, con ella podrá añadir, modificar y visionar todos los datos del presupuesto clasificados en diferentes pestañas: datos principales, objetivos del presupuesto, propuesta funcional, propuesta técnica, información adicional, tareas del presupuesto, productos del presupuesto, condiciones del presupuesto, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+==Pestaña Datos del presupuesto==
+
+En esta pestaña podrá visualizar y modificar los principales datos del presupuesto. A continuación le relacionamos todos los campos de información.
+
+- **Posible cliente:** Para poder vincular el presupuesto con un posible cliente.
+- **Campaña:** Para vincular en caso que el presupuesto haya sido. Pedido gracias a una campaña comercial concreta.
+- **Cliente:** Para poder vincular el presupuesto con un cliente.
+- **Proyecto:** Para poder vincular el presupuesto con el proyecto a realizar y después poder ver desviaciones.
+- **Nombre (*):** Nombre que se le quiera dar al presupuesto.
+- **Fecha:** Fecha de realización del presupuesto.
+- **Estado (*):** Estado en el que se encuentra el presupuesto (Sin enviar, enviado, aceptado, cancelado, parado).
+- **Descripción:** Descripción general del presupuesto.
+- **Tabla resumen:** En esta tabla podrá encontrar el total de horas de tareas, unidades de productos, y el importe total del presupuesto.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un contacto.**
+
+Ademas, en la primera pestaña tiene unos **botones de acción.**
+
+- **[Icono]Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[Icono]Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[Icono]Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+
+
+==Pestaña de Objetivos==
+
+En esta pestaña podrá describir los objetivos del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+%[Imagen]
+
+==Pestaña de Propuesta funcional==
+
+En esta pestaña podrá describir propuesta funcional del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+%[Imagen]
+
+==Pestaña de Propuesta técnica==
+
+En esta pestaña podrá describir la propuesta técnica del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+%[Imagen]
+
+==Pestaña de Información adicional==
+
+En esta pestaña podrá describir información adicional que no se haya especificado en otros apartados del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+%[Imagen]
+
+==Pestaña de Tareas==
+
+- **Tabla Resumen:** En esta tabla podrá ver diferente información sobre las tareas incluidas en el presupuesto, total de horas, precio medio, importe total de horas.
+- **Lista de tareas:** En esta lista podrá ir añadiendo tantas tareas como sean necesarias, los campos que incluye son: ** descripción de la tarea, horas necesarias, precio unitario, descuento, total tarea.
+
+
+==Pestaña de Productos==
+
+- **Tabla Resumen:** En esta tabla podrá ver diferente información sobre los productos incluidos en el presupuesto, total de unidades, importe total de productos.
+- **Lista de productos:** En esta lista podrá ir añadiendo tantos productos sean necesarios, los campos que incluye son: ** descripción del producto, unidades, precio unitario, descuento, total productos.
+
+
+==Pestaña de condiciones==
+
+En esta pestaña podrá describir las condiciones a las que esta sujeto el presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+%[Imagen]
+
+==Pestaña Nuevos ficheros==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Datos del registro==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Carpetas==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]

@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,10 +36,10 @@ if(typeof(__addtextos__)=="undefined" && typeof(parent.__addtextos__)=="undefine
 			url:"index.php",
 			data:data,
 			type:"get",
-			success:function (response) {
+			success:function(response) {
 				var objto=$("textarea[name$="+to+"]");
 				var extra=$(objto).val().length>0?"\n\n":"";
-				var texto=$("root>rows>row>texto",response).text();
+				var texto=response["rows"][0]["texto"];
 				$(objto).val($(objto).val()+extra+texto);
 				$(objfrom).val("");
 			},
@@ -58,9 +58,9 @@ if(typeof(__addtextos__)=="undefined" && typeof(parent.__addtextos__)=="undefine
 			url:"index.php",
 			data:data,
 			type:"get",
-			success:function (response) {
+			success:function(response) {
 				var objto=$("textarea[name$="+to+"]");
-				var texto=$("root>rows>row>texto",response).text();
+				var texto=response["rows"][0]["texto"];
 				objto.ckeditorGet().insertHtml(nl2br(texto));
 				$(objfrom).val("");
 			},

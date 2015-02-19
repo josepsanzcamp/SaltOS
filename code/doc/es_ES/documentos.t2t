@@ -1,0 +1,38 @@
+
+
+
+=Documentos=
+
+El gestor documental de SaltOS, le permitirá organizar y compartir sus documentos y archivos.
+
+Podrá relacionar los documentos subidos con un cliente o proyecto para mantener una perfecta organización de su documentación.
+
+Los documentos no se subirán sueltos, sino que puede agruparlos, como si se tratara de carpetas. De esta manera puede guardar varias versiones de un mismo documento o varios documentos con la misma finalidad.
+
+==Listado==
+
+El listado le mostrará los parámetros más importante de las distintas  carpetas o contenedores de ficheros. Las dos últimas columnas, //NC// y //NF//, le muestran el número de comentarios y el número de ficheros de la carpeta respectivamente.
+
+=Creación=
+
+A la hora de crear un nuevo contenedor o carpeta, indique el nombre y la descripción del mismo. Recuerde introducir nombres significativos ya que éstos le facilitarán las búsquedas posteriores. Puede relacionar opcionalmente el contenedor o carpeta con un cliente y/o proyecto.
+
+Para añadir nuevos ficheros, haga clic en la pestaña //Nuevos ficheros adjuntos// e indique el fichero haciendo clic en el botón //Seleccionar archivo// (el texto del botón puede variar en función del navegador o sistema operativo). Si desea añadir más ficheros, haga clic en //Añadir fichero// y repita el proceso anterior.
+
+Tenga en cuenta que la cantidad y tamaño de los ficheros puede quedar limitado por las características del servidor en el cual se hospeda SaltOS. Si experimentase problemas a la hora de subir ficheros, intente subirlos de uno en uno y verifique que el tamaño de los mismo no exceda las capacidades del servidor.
+
+=Modificación=
+
+La modificación de una carpeta o contenedor de archivos, le permitirá modificar los mismos parámetros que en el proceso de creación. Adicionalmente puede añadir un comentario.
+
+Si desea añadir más ficheros, haga clic en //Nuevos ficheros adjuntos//.
+
+=Consulta=
+
+El modo de consulta le permite consultar los datos de la carpeta así como descargar los ficheros adjuntos.
+
+Para acceder directamente al detalle del cliente o proyecto relacionado, haga clic en el botón situado al lado del desplegable correspondiente.
+
+Para descargar individualmente los ficheros adjuntos, haga clic en el botón //Descargar// del listado, dentra la pestaña //Ficheros adjuntos//. Si desea descargar varios ficheros, marque el //checkbox// correspondiente y haga clic en //Descargar ficheros seleccionados//. Se abrirá un fichero comprimido en formato //ZIP// que contendrá los ficheros seleccionados.
+
+Si desea consultar en fichero con el visor interno de SaltOS, haga clic en //Visor PDF//. Tenga cuenta que el formato del fichero debe ser un documento o una imagen.

@@ -1,0 +1,111 @@
+
+
+
+=Clientes=
+
+Esta aplicación le permite llevar un control de todos sus clientes.
+
+==Listado de clientes==
+
+En el listado de clientes podrá encontrar las columnas mas importantes de cada registro:
+
+- **Cód.:** Código numérico que identifica al cliente.
+- **N.I.F:** Número de identificación fiscal facilitado por la hacienda publica.
+- **Nombre:** Nombre del cliente.
+- **Teléfono fijo:** Teléfono fijo principal para ponernos en contacto.
+- **Teléfono móvil:** Teléfono móvil principal para ponernos en contacto.
+- **Cuenta de correo:** Cuenta de correo principal para ponernos en contacto.
+- **NC:** Número de comentarios introducidos sobre este cliente.
+- **NF:** Número de ficheros vinculados con este cliente.
+
+
+%[Aquí imagen del listado de clientes]
+
+==Opciones del listado==
+
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [Iconos-Botones]: Consultar/Editar/Borrar registro.
+- [Icono-Boton]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+- [Icono-Boton]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [Icono-Boton]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [Icono-Boton]: Mostrar datos a través del Visor-PDF.
+
+
+==Opciones de filtro==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Formulario de clientes==
+
+Esta es la aplicación de clientes con ella podrá añadir, modificar y visionar todos los datos del cliente clasificados en diferentes pestañas. Datos principales, comentarios, fichero adjuntos, gráficas y estadísticas sobre las compras realizadas, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+==Pestaña Datos del cliente==
+
+En esta pestaña podrá visualizar y modificar los principales datos de cliente. A continuación le relacionamos todos los campos de información.
+
+%[Aquí imagen del formulario de clientes]
+
+- **Código de cliente:** Código numérico con el que se identifica al cliente
+- **Campanya comercial:** Campaña comercial
+- **Tipo de entidad:** Con este campo podrá designar si el cliente es una persona física o una entidad jurídica.
+- **Mostrar como (*):** Este el es nombre que se utilizara en los listado y selectores, en caso de ser una persona podria dedicarse para incluir el apodo.
+- **Nombre comercial:** Nombre comercial del cliente.
+- **Nombre Fiscal:** Nombre fiscal que se utiliza en los documentos legales como facturas, contratos, etc..
+- **N.I.F:** Número de Identificación fiscal, número proporcionado por la hacienda publica con el que se identifica a la entidad.
+- **Comentarios:** Comentarios sobre el cliente.
+- **Corriente:** Cuenta corriente que se utiliza para realizar los cargos de las compras realizadas por este cliente.
+- **Contable:** Cuenta contable que se utilizara en el sistema contable de la empresa.
+- **Día de pago:** Día en el cual se han de realizar los cargos de las compras realizadas durante todo el mes.
+- **Dirección:** Dirección de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **País:** País de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Provincia:** Provincia de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Población:** Población de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Código postal:** Código postal de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Email:** Cuenta de correo principal de contacto es la que se visualizara en todos listados.
+- **Web:** Web principal de contacto es el que se visualizara en todos listados.
+- **Número Fijo:** Fijo principal de contacto es el que se visualizara en todos listados.
+- **Número Móvil:** Móvil principal de contacto es el que se visualizara en todos listados.
+- **Numero Fax:** Fax principal de contacto es el que se visualizara en todos listados.
+- **Comentario:** Para poder indicar comentarios sobre este cliente.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un cliente.**
+
+Ademas, en la primera pestaña tiene unos **botones de acción.**
+
+- **[Icono]Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[Icono]Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[Icono]Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+
+
+==Pestaña Comentarios==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Ficheros adjuntos==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Nuevos comentarios==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Nuevos ficheros==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Gráficas y estadísticas==
+
+En esta pestaña podrá ver las gráficas y estadísticas de compras realizadas por este cliente.
+
+%[Aquí imagen ejemplo de gráficas y estadísticas]
+
+==Pestaña Datos del registro==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Pestaña Carpetas==
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+

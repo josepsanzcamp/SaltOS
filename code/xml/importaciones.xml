@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -142,14 +142,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"
 		SELECT * FROM (
 			SELECT id,id2,
-				CONCAT('link:importaciones(',-id,'):',nombre) nombre,
+				CONCAT('link:openapp(\'importaciones\',',-id,'):',nombre) nombre,
 				nombre nombre2,
 				datetime,
 				(SELECT nombre FROM tbl_aplicaciones WHERE id=id_aplicacion) aplicacion,
@@ -176,9 +175,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					LEFT JOIN tbl_ficheros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
 					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+				WHERE
+					a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
 			) b
 		) c
-		WHERE ".make_like_query("id2,nombre2,descripcion,fichero2,aplicacion,datetime",$filtro)." AND ".check_sql($page,"list")</query>
+		WHERE ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -225,7 +226,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>limit</name>
 				<type>hidden</type>
-				<value global="limit" eval="true">$limit=ismobile()?intval(getDefault("regspagemobile")):min(max(intval(getParam("limit",getDefault("regspagerdef"))),intval(getDefault("regspagermin"))),intval(getDefault("regspagermax")))</value>
+				<temp global="limit" eval="true">$limit=intval(getParam("limit",getDefault("regspagerdef")))</temp>
+				<value global="limit" eval="true">$limit=in_array($limit,explode(",",getDefault("regspagerlist")))?$limit:intval(getDefault("regspagerdef"))</value>
 				<class>nofilter</class>
 			</field>
 			<field>
@@ -260,7 +262,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">aplicacion</label>
 							<type>select</type>
 							<width>120px</width>
-							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE node0!=''")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","SELECT id FROM tbl_aplicaciones WHERE tabla!='' OR subtablas!=''")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
@@ -393,9 +395,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<name>selectlimit</name>
 										<label lang="true">regspage</label>
 										<rows>
-											<row global="var_i" for="var_i" from="intval(getDefault('regspagermin'))" step="intval(getDefault('regspagerincr'))" to="intval(getDefault('regspagermax'))">
-												<label global="var_i" eval="true">$var_i</label>
-												<value global="var_i" eval="true">$var_i</value>
+											<temp global="rows" eval="true">$rows=explode(',',getDefault('regspagerlist'))</temp>
+											<row global="rows,row" foreach="rows" as="row">
+												<label global="row" eval="true">$row</label>
+												<value global="row" eval="true">$row</value>
 											</row>
 										</rows>
 										<value global="limit" eval="true">$limit</value>
@@ -464,7 +467,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</importdata>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />

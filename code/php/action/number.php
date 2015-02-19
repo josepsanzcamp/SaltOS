@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,23 +34,7 @@ if(getParam("action")=="number") {
 	$temp=get_directory("dirs/cachedir");
 	$hash=md5(serialize(array($bgcolor,$fgcolor,getDefault("cache/usecssminify"),getDefault("cache/useimginline"))));
 	$cache="$temp$hash.$format";
-	// FUNCTIONS
-	if(!defined("__NUMBER_PHP__")) {
-		define("__NUMBER_PHP__",1);
-		function __number_color2dec($color,$component) {
-			$offset=array("R"=>0,"G"=>2,"B"=>4);
-			if(!isset($offset[$component])) show_php_error(array("phperror"=>"Unknown component"));
-			return hexdec(substr($color,$offset[$component],2));
-		}
-		function __number_color2incr($color,$incr) {
-			return min(max($color*$incr,0),255);
-		}
-		function __number_color2aprox($fgcolor,$bgcolor1,$bgcolor2) {
-			$color=255;
-			while($color==$fgcolor || $color==$bgcolor1 || $color==$bgcolor2) $color--;
-			return $color;
-		}
-	}
+	require_once("php/libaction.php");
 	// FOR DEBUG PURPOSES
 	//if(file_exists($cache)) unlink($cache);
 	// CREATE IF NOT EXISTS

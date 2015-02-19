@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -196,11 +196,11 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 								<input type="hidden" name="step" value="<?php echo intval(getParam("step")); ?>"/>
 								<?php echo LANG("select_dbtype"); ?>:
 								<select name="dbtype" <?php echo __UI__; ?>>
-									<option value="pdo_sqlite">SQLite3 (PDO)<?php echo LANG("select_prefered"); ?></option>
-									<option value="sqlite3">SQLite3 (extension)</option>
-									<option value="pdo_mysql">MariaDB &amp; MySQL (PDO)</option>
-									<option value="mysql">MariaDB &amp; MySQL (extension)</option>
+									<option value="pdo_mysql">MariaDB &amp; MySQL (PDO)<?php echo LANG("select_prefered"); ?></option>
 									<option value="mysqli">MariaDB &amp; MySQL (improved extension)</option>
+									<option value="mysql">MariaDB &amp; MySQL (obsolete extension)</option>
+									<option value="pdo_sqlite">SQLite3 (PDO)</option>
+									<option value="sqlite3">SQLite3 (extension)</option>
 								</select>
 							<?php } elseif(in_array(getParam("dbtype"),array("pdo_sqlite","sqlite3"))) { ?>
 								<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1; ?>"/>
@@ -215,6 +215,11 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 								<?php if(stripos($error,"try to install")!==false) show_php_error(); ?>
 								<?php $cancontinue&=($error==""); ?>
 								<?php echo LANG("dbtest"); ?>: <?php echo $error==""?__YES__:__NO__; ?><?php echo __BR__; ?>
+								<?php if($error=="") { ?>
+								<?php $count=count(get_tables()); ?>
+								<?php $cancontinue&=($count==0); ?>
+								<?php echo LANG("dbvoid"); ?>: <?php echo $count==0?__YES__:__NO__; ?><?php echo __BR__; ?>
+								<?php } ?>
 							<?php } elseif(in_array(getParam("dbtype"),array("pdo_mysql","mysql","mysqli"))) { ?>
 								<?php $dbtypes=array("pdo_mysql"=>"MariaDB &amp; MySQL (PDO)","mysql"=>"MariaDB &amp; MySQL (extension)","mysqli"=>"MariaDB &amp; MySQL (improved extension)"); ?>
 								<?php echo LANG("selected_dbtype"); ?>: <?php echo __GREEN__.$dbtypes[getParam("dbtype")].__COLOR__; ?><?php echo __BR__; ?>
@@ -243,6 +248,11 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 									<?php if(stripos($error,"try to install")!==false) show_php_error(); ?>
 									<?php $cancontinue&=($error==""); ?>
 									<?php echo LANG("dbtest"); ?>: <?php echo $error==""?__YES__:__NO__; ?><?php echo __BR__; ?>
+									<?php if($error=="") { ?>
+									<?php $count=count(get_tables()); ?>
+									<?php $cancontinue&=($count==0); ?>
+									<?php echo LANG("dbvoid"); ?>: <?php echo $count==0?__YES__:__NO__; ?><?php echo __BR__; ?>
+									<?php } ?>
 								<?php } ?>
 							<?php } ?>
 						</div>
@@ -591,21 +601,12 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 										if(!$numrows) {
 											$rows=eval_attr(xml2array($file));
 											$id_aplicacion=table2id($table);
-											$datetime=current_datetime();
 											foreach($rows as $row) {
-												$keys=array();
-												$vals=array();
-												foreach($row as $key=>$val) {
-													$keys[]="`${key}`";
-													$vals[]=($val=="NULL")?$val:"'${val}'";
-												}
-												$keys=implode(",",$keys);
-												$vals=implode(",",$vals);
-												$query="INSERT INTO `$table`($keys) VALUES($vals)";
+												$query=make_insert_query($table,$row);
 												db_query($query);
 												if($id_aplicacion) {
-													$query="INSERT INTO tbl_registros_i(id,id_aplicacion,id_registro,id_usuario,datetime) VALUES(NULL,'${id_aplicacion}','${row["id"]}','1','${datetime}')";
-													db_query($query);
+													make_control($id_aplicacion,$row["id"],1);
+													make_indexing($id_aplicacion,$row["id"]);
 												}
 											}
 											echo __YES__.__BR__;
@@ -633,8 +634,19 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 										}
 									}
 									$apps=implode(",",$apps);
-									$query="INSERT INTO tbl_grupos_p SELECT NULL id,a.id id_grupo,b.id_aplicacion id_aplicacion,b.id_permiso id_permiso,'1' allow,'0' deny FROM tbl_grupos a,tbl_aplicaciones_p b WHERE b.id_aplicacion IN ($apps)";
-									db_query($query);
+									$query=make_select_query("tbl_aplicaciones_p",array("id_aplicacion","id_permiso"),"id_aplicacion IN ($apps)");
+									$result=db_query($query);
+									while($row=db_fetch_row($result)) {
+										$query=make_insert_query("tbl_grupos_p",array(
+											"id_grupo"=>1,
+											"id_aplicacion"=>$row["id_aplicacion"],
+											"id_permiso"=>$row["id_permiso"],
+											"allow"=>1,
+											"deny"=>0
+										));
+										db_query($query);
+									}
+									db_free($result);
 									echo __YES__.__BR__;
 								} else {
 									echo __NO__.__BR__;
@@ -655,20 +667,17 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 												$keys=array_shift($rows);
 												$keys=trim($keys);
 												$keys=explode("|",$keys);
-												$keys="`".implode("`,`",$keys)."`";
 												$id_aplicacion=table2id($table);
-												$datetime=current_datetime();
 												foreach($rows as $row) {
 													$row=trim($row);
 													if($row!="") {
 														$row=explode("|",$row);
-														$id_registro=$row[0];
-														$row="'".implode("','",$row)."'";
-														$query="INSERT INTO `$table`($keys) VALUES($row)";
+														$row=array_combine($keys,$row);
+														$query=make_insert_query($table,$row);
 														db_query($query);
 														if($id_aplicacion) {
-															$query="INSERT INTO tbl_registros_i(id,id_aplicacion,id_registro,id_usuario,datetime) VALUES(NULL,'${id_aplicacion}','${id_registro}','1','${datetime}')";
-															db_query($query);
+															make_control($id_aplicacion,$row["id"],1);
+															make_indexing($id_aplicacion,$row["id"]);
 														}
 													}
 												}

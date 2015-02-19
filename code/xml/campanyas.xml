@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -247,14 +247,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro,fecha1,fecha2,id_estado" eval="true">"
 		SELECT
 			LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id2,id,
-			CONCAT('link:campanyas(',-id,'):',nombre) nombre,
+			CONCAT('link:openapp(\'campanyas\',',-id,'):',nombre) nombre,
 			nombre nombre2,
 			dstart,dstop,estado,
 			descripcion,
@@ -274,14 +273,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
 			SELECT a.*,e.id_usuario id_usuario,d.id_grupo id_grupo,c.activo activo,
-				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
-				(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' ',fichero_file,' ',fichero_size,' ',fichero_type,' ',search)),',',' ') FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id AND ".str_replace(" AND "," OR ",make_like_query("fichero,fichero_file,fichero_size,fichero_type,search",$filtro)).") search
+				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado
 			FROM tbl_campanyas a
 			LEFT JOIN tbl_estados c ON id_estado=c.id
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+			WHERE
+				a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
 		) b
-		WHERE ".make_like_query("id,nombre,descripcion,estado,dstart,dstop,search",$filtro)." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".check_sql($page,"list")</query>
+		WHERE ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -298,7 +298,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<posiblescli>
 						<posiblescli global="id" eval="true">"
 SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
-	 CONCAT('link:posiblescli(',-a.id,'):',a.nombre)  nombre,
+	 CONCAT('link:openapp(\'posiblescli\',',-a.id,'):',a.nombre)  nombre,
 	 CONCAT('tel:',tel_fijo)  tel_fijo,
 	 CONCAT('tel:',tel_movil)  tel_movil,
 	 CONCAT('mailto:',email)  email,
@@ -314,7 +314,7 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("posiblescli","view")." ORDER
 					<clientes>
 						<clientes global="id" eval="true">"
 SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
-	 CONCAT('link:clientes(',-a.id,'):',a.nombre)  nombre,
+	 CONCAT('link:openapp(\'clientes\',',-a.id,'):',a.nombre)  nombre,
 	 CONCAT('tel:',tel_fijo) tel_fijo,
 	 CONCAT('tel:',tel_movil) tel_movil,
 	 CONCAT('mailto:',email) email,
@@ -328,16 +328,16 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view","a.")." ORD
 						"</clientes>
 					</clientes>
 					<agenda>
-						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:agenda(',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_campanya=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
+						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'agenda\',',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_campanya=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
 					</agenda>
 					<presupuestos>
-						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:presupuestos(',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
+						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'presupuestos\',',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
 					</presupuestos>
 					<proyectosopen>
-						<proyectosopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:proyectos(',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='1' AND (".check_sql("proyectos","view","a.").") ORDER BY e.datetime DESC"</proyectosopen>
+						<proyectosopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='1' AND (".check_sql("proyectos","view","a.").") ORDER BY e.datetime DESC"</proyectosopen>
 					</proyectosopen>
 					<proyectosclose>
-						<proyectosclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:proyectos(',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='0' AND (".check_sql("proyectos","view","a.").") ORDER BY e.datetime DESC"</proyectosclose>
+						<proyectosclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='0' AND (".check_sql("proyectos","view","a.").") ORDER BY e.datetime DESC"</proyectosclose>
 					</proyectosclose>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
@@ -458,7 +458,6 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view","a.")." ORD
 			<files_new include="xml/common/filesnew.xml"/>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />

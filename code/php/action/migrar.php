@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -60,13 +60,8 @@ if($page=="presupuestos") {
 	$id_aplicacion=page2id("proyectos");
 	$id_usuario=current_user();
 	$datetime=current_datetime();
-	$query=make_insert_query("tbl_registros_i",array(
-		"id_aplicacion"=>$id_aplicacion,
-		"id_registro"=>$id_proyecto,
-		"id_usuario"=>$id_usuario,
-		"datetime"=>$datetime
-	));
-	db_query($query);
+	make_control($id_aplicacion,$id_proyecto);
+	make_indexing($id_aplicacion,$id_proyecto);
 	// COPIAR LAS TAREAS DEL PRESUPUESTO AL PROYECTO
 	$query="SELECT * FROM tbl_presupuestos_t WHERE id_presupuesto='$id_presupuesto' ORDER BY id ASC";
 	$result=execute_query_array($query);
@@ -169,13 +164,8 @@ if($page=="posiblescli") {
 	$id_aplicacion=page2id("clientes");
 	$id_usuario=current_user();
 	$datetime=current_datetime();
-	$query=make_insert_query("tbl_registros_u",array(
-		"id_aplicacion"=>$id_aplicacion,
-		"id_registro"=>$id_cliente,
-		"id_usuario"=>$id_usuario,
-		"datetime"=>$datetime
-	));
-	db_query($query);
+	make_control($id_aplicacion,$id_cliente);
+	make_indexing($id_aplicacion,$id_cliente);
 	// CREAR CONTACTO
 	$contacto=$row["contacto"];
 	$cargo=$row["cargo"];
@@ -208,13 +198,8 @@ if($page=="posiblescli") {
 	$id_contacto=execute_query($query);
 	// AÑADIR CONTROL DEL REGISTRO
 	$id_aplicacion2=page2id("contactos");
-	$query=make_insert_query("tbl_registros_i",array(
-		"id_aplicacion"=>$id_aplicacion2,
-		"id_registro"=>$id_contacto,
-		"id_usuario"=>$id_usuario,
-		"datetime"=>$datetime
-	));
-	db_query($query);
+	make_control($id_aplicacion2,$id_contacto);
+	make_indexing($id_aplicacion2,$id_contacto);
 	// RELACIONAR AGENDAS DEL POSIBLE CLIENTE CON EL NUEVO CLIENTE
 	$query=make_update_query("tbl_agenda",array(
 		"id_posiblecli"=>0,

@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -140,19 +140,19 @@ if(typeof(__facturas__)=="undefined" && typeof(parent.__facturas__)=="undefined"
 			data:data,
 			type:"get",
 			success:function(response) {
-				$("root>rows>row",response).each(function() {
-					if($("id_tipo",this).text()=="1") $("input[name$=nombre]").val($("nombre2",this).text());
-					if($("id_tipo",this).text()=="2") $("input[name$=nombre]").val($("nombre1",this).text()+" "+$("nombre2",this).text());
-					$("input[name$=cif]").val($("cif",this).text());
-					$("input[name$=direccion]").val($("direccion",this).text());
-					$("input[name$=id_pais]").val($("id_pais",this).text());
-					$("input[name$=id_provincia]").val($("id_provincia",this).text());
-					$("input[name$=id_poblacion]").val($("id_poblacion",this).text());
-					$("input[name$=id_codpostal]").val($("id_codpostal",this).text());
-					$("input[name$=nombre_pais]").val($("nombre_pais",this).text());
-					$("input[name$=nombre_provincia]").val($("nombre_provincia",this).text());
-					$("input[name$=nombre_poblacion]").val($("nombre_poblacion",this).text());
-					$("input[name$=nombre_codpostal]").val($("nombre_codpostal",this).text());
+				$(response["rows"]).each(function() {
+					if(this["id_tipo"]=="1") $("input[name$=nombre]").val(this["nombre2"]);
+					if(this["id_tipo"]=="2") $("input[name$=nombre]").val(this["nombre1"]+" "+this["nombre2"]);
+					$("input[name$=cif]").val(this["cif"]);
+					$("input[name$=direccion]").val(this["direccion"]);
+					$("input[name$=id_pais]").val(this["id_pais"]);
+					$("input[name$=id_provincia]").val(this["id_provincia"]);
+					$("input[name$=id_poblacion]").val(this["id_poblacion"]);
+					$("input[name$=id_codpostal]").val(this["id_codpostal"]);
+					$("input[name$=nombre_pais]").val(this["nombre_pais"]);
+					$("input[name$=nombre_provincia]").val(this["nombre_provincia"]);
+					$("input[name$=nombre_poblacion]").val(this["nombre_poblacion"]);
+					$("input[name$=nombre_codpostal]").val(this["nombre_codpostal"]);
 				});
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {

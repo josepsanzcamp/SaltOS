@@ -1,0 +1,68 @@
+
+
+
+=Mi perfil=
+
+SaltOS le permitirá personalizar y configurar varios aspectos de la aplicación:
+
+- Preferencias Generales (idioma, aspecto, contraseña, etc.)
+- Carpetas de usuario
+- Menú rápido
+- Google Calendar
+- Feeds RSS
+- Cuentas de correo electrónico
+
+
+Para acceder a la configuración general haga clic en //Mi Perfil// en el apartado **General** del menú vertical.
+
+== Preferencias Generales ==
+
+En la primera solapa podrá elegir el idioma de la aplicación, el tema o esquema de colores así como el juego de iconos de la aplicación.
+
+Para cambiar la contraseña de acceso a la aplicación, introduzca su clave actual en la caja de texto 'Clave Antigua' y a continuación la nueva en las dos cajas de texto 'Clave nueva' y 'Repita clave'.
+
+Después de realizar cualquier cambio en esta pestaña haga clic en 'Actualizar'.
+
+== Menú rápido ==
+
+En este apartado podrá añadir y quitar botones de acceso rápido a la barra superior de SaltOS.
+
+Para añadir un nuevo botón, seleccione la aplicación a la quiere acceder de manera directa en el desplegable correspondiente al botón.
+
+== Carpetas de usuario ==
+
+Desde esta solapa, podrá renombrar las carpetas según lo desee, crear nuevas carpetas o borrar carpetas que no use. Estas opciones permitirán que disponga de las carpetas necesarias para que pueda organizar su información de la mejor manera.
+
+== Google Calendar ==
+
+Para sincronizar su agenda personal con su cuenta de Google, introduzca aquí su nombre de usuario de Google (normalmente su cuenta de Gmail) y la contraseña de la misma.
+
+== Feeds RSS ==
+
+Aquí podrá añadir las cuenta RSS y Atom preferidos para consultar en el lector de Feeds de SaltOS.
+
+Para añadir un feed nuevo, haga clic en la pestaña 'Nuevo Feed' e introduzca la dirección del mismo en la caja de texto 'URL'. Si desconoce la dirección, introduzca únicamente la dirección de la página web y haga clic en 'Probar'. SaltOS intentará encontrar automáticamente la dirección del feed correspondiente y le mostrará la información adicional del Feed. Para añadirlo al lector de Feeds de SaltOS haga clic en 'Añadir'.
+
+En la pestaña **Feeds configurados** encontrará los Feeds ya añadidos a SaltOS. Para descativar o borrar un Feed haga clic en 'Borrar' o 'Desactivado' o marque el checkbox correspondiente. A continuación haga clic en 'Actualizar'.
+
+== Cuenta de correo electrónico ==
+
+En la pestaña 'Nuevo correo' podrá configurar su cuenta de correo POP3 externa para gestionarla cómodamente desde SaltOS.
+
+Rellene los datos 'Nombre' y 'Email' y añada, opcionalmente, una imagen para la firma de los correos. A continuación indique los datos de su proveedor de correo:
+
+- Servidor POP3: por ejemplo, mail.su-dominio.com
+- Puertos: normalmente 110
+- Seguridad: TLS o sin seguridad
+- Usuario: normalmente su dirección de correo
+- Clave de su cuenta de correo
+
+
+Haga lo mismo en el apartado del servidor de salida SMTP.
+
+Si desea que se borren los correos periódicamente, marque la casilla correspondiente. Para responder automáticamente a las solicitudes de confirmación de recepción marque la casilla **Activar por defecto la solicitud de confirmación de recepción**. Si quieres recibir en copia los correos que envie marque **Añadirme a mi como CC en todos los emails que envie**. Para desactivar temporalmente la cuenta marque la casilla **Desactivar esta cuenta de correo**. Puede establecer la cuenta por defecto desde la cual se enviarán los correos, marcando la casilla **Cuenta por defecto (la que más uso)**.
+
+En SaltOS puede compartir el correo con el resto de usuarios, que podrán consultar sus correos recibidos y enviados. Para desactivar esta prestación, por ejemplo, para una cuenta privada, marque **Esta cuenta es privada (sólo yo tengo acceso)**.
+
+Una vez configurada su cuenta haga clic en 'Actualizar'. Las cuentas creadas aparecerán en pestañas nuevas para que pueda cambiar la configuración o borrarlas cuando desee.
+

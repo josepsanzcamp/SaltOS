@@ -6,8 +6,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 			url:"index.php",
 			data:data,
 			type:"get",
-			success:function (response) {
+			success:function(response) {
 				if(type=="wait") {
 					if(value==1) notice(lang_alert(),lang_msgnumsiwait());
 					if(value==0) notice(lang_alert(),lang_msgnumnowait());
@@ -57,21 +57,18 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 			url:"index.php",
 			data:data,
 			type:"get",
-			success:function (response) {
-				$("root>rows>row",response).each(function() {
-					var link=$("link",this).text();
-					var data='action=favoritos&url='+rawurlencode(link);
-					$.ajax({
-						url:'',
-						data:data,
-						type:"post",
-						success:function(response) {
-							$(".ui-layout-center").append(response);
-						},
-						error:function(XMLHttpRequest,textStatus,errorThrown) {
-							errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-						}
-					});
+			success:function(response) {
+				var data='action=favoritos&url='+rawurlencode(response["rows"][0]["link"]);
+				$.ajax({
+					url:'',
+					data:data,
+					type:"post",
+					success:function(response) {
+						$(".ui-layout-center").append(response);
+					},
+					error:function(XMLHttpRequest,textStatus,errorThrown) {
+						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+					}
 				});
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {

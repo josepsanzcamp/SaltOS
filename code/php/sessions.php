@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,9 +24,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function sess_open_handler($save_path,$session_name) {
-	global $_CONFIG;
-	$_CONFIG["sess"]["save_path"]=$save_path;
-	$_CONFIG["sess"]["session_name"]=$session_name;
 	return true;
 }
 
@@ -36,35 +33,24 @@ function sess_close_handler() {
 
 function sess_read_handler($id) {
 	global $_CONFIG;
-	$sess_file=getDefault("sess/save_path")."/".$id;
+	$sess_file=session_save_path()."/".$id;
 	$query=make_select_query("tbl_sessions","sess_data",make_where_query(array(
 		"sess_file"=>$sess_file
 	)));
 	$oldcache=set_use_cache("false");
-	$result=db_query($query);
+	$sess_data=execute_query($query);
 	set_use_cache($oldcache);
-	$numrows=db_num_rows($result);
-	if($numrows>1) {
-		$query=make_delete_query("tbl_sessions",make_where_query(array(
-			"sess_file"=>$sess_file
-		)));
-		db_query($query);
-		$numrows=0;
-	}
-	if($numrows==1) {
-		$row=db_fetch_row($result);
-		$sess_data=$row["sess_data"];
+	if($sess_data!==null) {
 		$sess_data=base64_decode($sess_data);
 	} else {
 		$sess_data="";
 	}
 	$_CONFIG["sess"]["hash"]=md5($sess_data);
-	db_free($result);
 	return($sess_data);
 }
 
 function sess_write_handler($id,$sess_data) {
-	$sess_file=getDefault("sess/save_path")."/".$id;
+	$sess_file=session_save_path()."/".$id;
 	$sess_time=time();
 	$sess_hash=md5($sess_data);
 	$sess_data=base64_encode($sess_data);
@@ -72,18 +58,9 @@ function sess_write_handler($id,$sess_data) {
 		"sess_file"=>$sess_file
 	)));
 	$oldcache=set_use_cache("false");
-	$result=db_query($query);
+	$exists=execute_query($query);
 	set_use_cache($oldcache);
-	$numrows=db_num_rows($result);
-	db_free($result);
-	if($numrows>1) {
-		$query=make_delete_query("tbl_sessions",make_where_query(array(
-			"sess_file"=>$sess_file
-		)));
-		db_query($query);
-		$numrows=0;
-	}
-	if($numrows==1) {
+	if($exists) {
 		$query=make_update_query("tbl_sessions",array(
 			"sess_data"=>$sess_data,
 			"sess_time"=>$sess_time
@@ -110,7 +87,7 @@ function sess_write_handler($id,$sess_data) {
 }
 
 function sess_destroy_handler($id) {
-	$sess_file=getDefault("sess/save_path")."/".$id;
+	$sess_file=session_save_path()."/".$id;
 	$query=make_delete_query("tbl_sessions",make_where_query(array(
 		"sess_file"=>$sess_file
 	)));
@@ -128,11 +105,14 @@ function sess_gc_handler($maxlifetime) {
 }
 
 function sess_init() {
-	ini_set("session.gc_maxlifetime",getDefault("sess/timeout"));
-	ini_set("session.gc_probability",getDefault("sess/probability"));
-	ini_set("session.gc_divisor",getDefault("sess/divisor"));
-	ini_set("session.use_trans_sid",0);
-	ini_set("session.use_only_cookie",1);
+	$ini_set=array(
+		"session.gc_maxlifetime"=>getDefault("sess/timeout"),
+		"session.gc_probability"=>getDefault("sess/probability"),
+		"session.gc_divisor"=>getDefault("sess/divisor"),
+		"session.use_trans_sid"=>0,
+		"session.use_only_cookie"=>1
+	);
+	foreach($ini_set as $varname=>$newvalue) ini_set($varname,$newvalue);
 	session_set_save_handler("sess_open_handler","sess_close_handler","sess_read_handler","sess_write_handler","sess_destroy_handler","sess_gc_handler");
 	session_save_path(getDefault("sess/save_path"));
 	session_set_cookie_params(0,dirname(getServer("SCRIPT_NAME")),"",eval_bool(getDefault("server/forcessl")),false);

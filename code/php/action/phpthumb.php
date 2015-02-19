@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,23 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(getParam("action")=="phpthumb") {
 	// INCLUDE HELPER LIBRARIES
 	require_once("lib/bmpphp/BMP.php");
-	// DEFINE FUNCTIONS
-	function imagecreatefromtiff($src) {
-		if(extension_loaded('imagick')) {
-			$im2=new Imagick();
-			$im2->readImage($src);
-			$im2->setImageFormat('png');
-			$im=imagecreatefromstring($im2->getImageBlob());
-			$im2->destroy();
-		} else {
-			$file=get_temp_file(getDefault("exts/pngext",".png"));
-			ob_passthru("convert ${src} ${file}");
-			if(!file_exists($file)) show_php_error(array("phperror"=>"ImageMagick failed using convert command line"));
-			$im=imagecreatefrompng($file);
-			unlink($file);
-		}
-		return $im;
-	}
+	require_once("php/libaction.php");
 	// FIND THE REAL FILE
 	$src=getParam("src",getParam("amp;src"));
 	if(!file_exists($src)) $src=getcwd()."/".getParam("src",getParam("amp;src"));
@@ -80,7 +64,7 @@ if(getParam("action")=="phpthumb") {
 			case "jpeg": $im=imagecreatefromjpeg($src); break;
 			case "gif": $im=imagecreatefromgif($src); break;
 			case "bmp": $im=imagecreatefrombmp($src); break;
-			case "tiff": $im=imagecreatefromtiff($src); break;
+			case "tiff": $im=__phpthumb_imagecreatefromtiff($src); break;
 			default: show_php_error(array("phperror"=>"Unsupported input format: ${format_input}"));
 		}
 		// CALCULATE SIZE

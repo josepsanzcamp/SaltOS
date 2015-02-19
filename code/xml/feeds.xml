@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -114,6 +114,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</javascript>
 		<quick>
 			<row>
+				<field>
+					<name>id_feed2</name>
+					<label lang="true">feed</label>
+					<type>select</type>
+					<width>240px</width>
+					<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosfeeds")."' label"</query>
+					<onchange>copy_value("id_feed","id_feed2");buscar();</onchange>
+					<value global="id_feed" eval="true">$id_feed2=getParam("id_feed2")</value>
+				</field>
 				<field>
 					<type>separator</type>
 					<width>100%</width>
@@ -286,7 +295,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
-						<onchange>update_feeds()</onchange>
+						<onchange>update_feeds();</onchange>
 						<colspan>3</colspan>
 					</field>
 					<field>
@@ -299,6 +308,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>select</type>
 						<width>240px</width>
 						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosfeeds")."' label"</query>
+						<onchange>copy_value("id_feed2","id_feed");</onchange>
 						<value global="id_feed" eval="true">$id_feed=getParam("id_feed")</value>
 						<colspan>5</colspan>
 					</field>
@@ -377,7 +387,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-			<fields include="xml/common/helplist.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<pager include="xml/common/pagerlist.xml"/>
@@ -390,7 +399,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			id,id2,
 			CONCAT('link:openwin(\"',REPLACE(link2,':','%3A'),'\"):',feed) feed,
 			usuario,
-			CONCAT('link:feeds(',-id,'):',title) title,
+			CONCAT('link:openapp(\'feeds\',',-id,'):',title) title,
 			pubdate,
 			link,
 			state_new,
@@ -410,28 +419,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_favoritos,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
-		SELECT a.id id,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
-			uf.title feed,
-			uf.link link2,
-			".make_extra_query_with_login("d.")." usuario,
-			CASE WHEN a.title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE a.title END title,
-			pubdate,a.description,a.link link,state_new,state_wait,state_cool,
-			CASE WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' WHEN state_cool=1 THEN 'state_cool' ELSE '' END action_style,
-			TRIM(CONCAT(
-			CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END,
-			CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified")." ' ELSE '' END,
-			CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END,
-			CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool")." ' ELSE '' END,
-			CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
-			)) estado,
-			e.datetime datetime,
-			e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_feed id_feed,uf.id_usuario id_usuario2
-		FROM tbl_feeds a
-		LEFT JOIN tbl_usuarios_f uf ON a.id_feed=uf.id
-		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
-		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) z
-		WHERE ".make_like_query("title,pubdate,description,link,usuario,feed,id2,estado",$filtro)."
-		AND ".($id_usuario?"id_usuario2='$id_usuario'":"(1=1)")."
+			SELECT a.id id,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
+				uf.title feed,
+				uf.link link2,
+				".make_extra_query_with_login("d.")." usuario,
+				CASE WHEN a.title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE a.title END title,
+				pubdate,a.description,a.link link,state_new,state_wait,state_cool,
+				CASE WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' WHEN state_cool=1 THEN 'state_cool' ELSE '' END action_style,
+				TRIM(CONCAT(
+				CASE WHEN state_new=1 AND state_modified=0 THEN '".LANG_ESCAPE("statenew")." ' ELSE '' END,
+				CASE state_modified WHEN 1 THEN '".LANG_ESCAPE("statemodified")." ' ELSE '' END,
+				CASE state_wait WHEN 1 THEN '".LANG_ESCAPE("statewait")." ' ELSE '' END,
+				CASE state_cool WHEN 1 THEN '".LANG_ESCAPE("statecool")." ' ELSE '' END,
+				CASE state_new+state_modified+state_wait+state_cool WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
+				)) estado,
+				e.datetime datetime,
+				e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_feed id_feed,uf.id_usuario id_usuario2
+			FROM tbl_feeds a
+				LEFT JOIN tbl_usuarios_f uf ON a.id_feed=uf.id
+				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
+				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+			WHERE
+				a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
+		) z
+		WHERE ".($id_usuario?"id_usuario2='$id_usuario'":"(1=1)")."
 		AND ".($id_feed!=""?"id_feed='$id_feed'":"(1=1)")."
 		AND ".$only_array[$only]."
 		AND ".($fecha1?"(DATE(pubdate)>=DATE('$fecha1'))":"(1=1)")."
@@ -580,7 +591,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</full>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
-			<help include="xml/common/helpform.xml" />
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons>

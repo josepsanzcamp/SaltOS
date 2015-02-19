@@ -7,8 +7,8 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2014 by Josep Sanz Campderrós
-More information in http://www.saltos.net or info@saltos.net
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -38,7 +38,6 @@ function db_connect($args=null) {
 
 function db_query($query,$fetch="query") {
 	static $stack=array();
-	$query=trim($query);
 	// CHECK CACHE
 	$hash=md5(serialize(array($query,$fetch)));
 	$usecache=eval_bool(get_use_cache($query));

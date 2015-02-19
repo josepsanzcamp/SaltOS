@@ -1,9 +1,9 @@
 /*!
 * jQuery Mobile 1.5.0-pre
-* Git HEAD hash: 02d25034abbd5c8914c6ff8c18962b38b77dab36 <> Date: Fri Dec 12 2014 08:40:32 UTC
+* Git HEAD hash: ab24dd41c0d835be3d10bb700cb3767d79d1a766 <> Date: Wed Feb 11 2015 12:38:41 UTC
 * http://jquerymobile.com
 *
-* Copyright 2010, 2014 jQuery Foundation, Inc. and other contributors
+* Copyright 2010, 2015 jQuery Foundation, Inc. and other contributors
 * Released under the MIT license.
 * http://jquery.org/license
 *
@@ -1295,6 +1295,8 @@ button[disabled],
 .ui-mobile,
 .ui-mobile body {
 	height: 99.9%;
+    margin: 0;
+    padding: 0;
 }
 .ui-mobile fieldset,
 .ui-page {
@@ -4453,7 +4455,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
 	}
 }
 /* Breakpoint to show as a standard table at 560px (35em x 16px) or wider */ 
-@media ( min-width: 35em ) {
+@media screen and ( min-width: 35em ), print {
 	/* Show the table header rows */ 
 	.ui-table-reflow.ui-responsive td,
 	.ui-table-reflow.ui-responsive th,
@@ -4472,7 +4474,7 @@ html .ui-popup .ui-field-contain > label + .ui-flipswitch {
 }
 /* Hack to make IE9 and WP7.5 treat cells like block level elements, scoped to ui-responsive class */ 
 /* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this*/ 
-@media ( max-width: 35em ) {
+@media screen and ( max-width: 35em ) {
 	.ui-table-reflow.ui-responsive td,
 	.ui-table-reflow.ui-responsive th {
 		width: 100%;
