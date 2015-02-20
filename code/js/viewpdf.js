@@ -103,6 +103,9 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						container.addEventListener("pagesinit",function() {
 							pdfViewer.currentScaleValue="page-width";
 						});
+						container.addEventListener("textlayerrendered",function() {
+							$("a:not(target)",container).attr("target","_blank");
+						});
 						pdfViewer.setDocument(pdfDocument).then(function() {
 							$(dialog2).scrollTop(0);
 						});

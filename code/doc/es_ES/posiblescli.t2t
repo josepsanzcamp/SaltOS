@@ -3,7 +3,9 @@
 
 =Posibles clientes=
 
-Esta aplicación le permite llevar un control de todos sus posibles clientes.
+Esta aplicación le permite llevar un control de todos sus posibles clientes.a
+
+[../img/posiblescli-listado.png]
 
 ==Listado de posibles clientes==
 
@@ -19,8 +21,6 @@ En el listado de posibles clientes podrá encontrar las columnas mas importantes
 - **NC:** Número de comentarios introducidos sobre este posible cliente.
 - **NF:** Número de ficheros vinculados con este posible cliente.
 
-
-%[Aquí imagen del listado de posibles clientes]
 
 ==Opciones del listado==
 
@@ -50,7 +50,7 @@ Esta es la aplicación de posibles clientes, con ella podrá añadir, modificar 
 
 En esta pestaña podrá visualizar y modificar los principales datos del posible cliente. A continuación le relacionamos todos los campos de información.
 
-%[Aquí imagen del formulario de contactos]
+[../img/posiblescli-formulario.png]
 
 - **Campaña (*):** Campaña comercial con la que se ha conseguido este contacto comercial.
 - **Estado (*):** Estado en el que se encuentran las relaciones comerciales con este posible cliente.
@@ -71,7 +71,7 @@ En esta pestaña podrá visualizar y modificar los principales datos del posible
 - **Numero Fax:** Fax principal de contacto es el que se visualizara en todos listados.
 - **Facturación:** Rango de facturación del posible cliente
 - **Descripción IAE:** Pequeña descripción de la actividad económica a la que se dedica el posible cliente.
-- **Cód. IAE:** Código de actividad económica [Enlace target='_blank' a http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas].
+- **Cód. IAE:** Código de actividad económica [+ info http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas].
 - **Comentarios:** Comentarios sobre el contacto.
 
 

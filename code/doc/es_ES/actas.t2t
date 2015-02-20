@@ -3,7 +3,9 @@
 
 =Actas=
 
-Esta aplicación le permite llevar un control de todas las actas realizadas en la empresa.
+Esta aplicación le permite llevar un control de todas las actas realizadas en la empresa.a
+
+[../img/actas-listado.png]
 
 ==Listado de actas==
 
@@ -18,8 +20,6 @@ En el listado de actas podrá encontrar las columnas mas importantes de cada reg
 - **Nombre:** Nombre descriptivo del motivo de la reunión.
 - **Lugar (€):** Lugar en el que se ha realizado la reunión.
 
-
-%[Aquí imagen del listado de actas]
 
 ==Opciones del listado==
 
@@ -51,7 +51,7 @@ Esta es la aplicación de contactos, con ella podrá añadir, modificar y vision
 
 En esta pestaña podrá visualizar y modificar los principales datos de contacto. A continuación le relacionamos todos los campos de información.
 
-%[Aquí imagen del formulario de actas]
+[../img/actas-formulario.png]
 
 - **Campañas:** Para vincular el acta con una campaña comercial concreta.
 - **Posible cliente:** Para vincular el acta con un posible cliente concreto.

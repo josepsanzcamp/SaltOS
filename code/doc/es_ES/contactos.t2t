@@ -3,7 +3,9 @@
 
 =Contactos=
 
-Esta aplicación le permite llevar un control de todos sus contactos.
+Esta aplicación le permite llevar un control de todos sus contactos.a
+
+[../img/contactos-listado.png]
 
 ==Listado de contactos==
 
@@ -17,8 +19,6 @@ En el listado de contactos podrá encontrar las columnas mas importantes de cada
 - **Teléfono móvil:** Teléfono móvil principal para ponernos en contacto.
 - **Cuenta de correo:** Cuenta de correo principal para ponernos en contacto.
 
-
-%[Aquí imagen del listado de contactos]
 
 ==Opciones del listado==
 
@@ -40,7 +40,7 @@ Esta es la aplicación de contactos, con ella podrá añadir, modificar y vision
 
 En esta pestaña podrá visualizar y modificar los principales datos de contacto. A continuación le relacionamos todos los campos de información.
 
-%[Aquí imagen del formulario de contactos]
+[../img/contactos-formulario.png]
 
 - **Cliente:** Para poder vincular el contacto con un cliente.
 - **Proveedor:** Para poder vincular el contacto con un proveedor.

@@ -5,6 +5,8 @@
 
 Esta aplicación le permite llevar un control de todos los presupuesto realizados en la empresa.
 
+[../img/presupuestos-listado.png]
+
 ==Listado de presupuestos==
 
 En el listado de presupuestos podrá encontrar las columnas mas importantes de cada registro:
@@ -13,9 +15,9 @@ En el listado de presupuestos podrá encontrar las columnas mas importantes de c
 - **Cliente:** Para que cliente se ha realizado el presupuesto.
 - **Presupuesto:** Nombre que se le ha dado al presupuesto.
 - **Fecha:** Fecha de realización del presupuesto.
-- **Tareas (€):** Importe del total de tareas planeadas en el presupuesto.
-- **Prod. (€):** Importe total de todos los productos incluidos en el presupuesto.
-- **Total (€):** Importe total del presupuesto.
+- **Tareas (€) (*):** Importe del total de tareas planeadas en el presupuesto.
+- **Prod. (€) (*):** Importe total de todos los productos incluidos en el presupuesto.
+- **Total (€) (*):** Importe total del presupuesto.
 - **Estado:** Estado actual del presupuesto (Sin enviar, enviado, aceptado, cancelado, parado).
 - **NT:** Número de tareas planeadas en el presupuesto.
 - **NP:** Número de productos incluidos en el presupuesto.
@@ -23,7 +25,7 @@ En el listado de presupuestos podrá encontrar las columnas mas importantes de c
 - **NF:** Número de ficheros vinculados con este presupuesto.
 
 
-%[Aquí imagen del listado de presupuestos]
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
 
 ==Opciones del listado==
 
@@ -55,6 +57,8 @@ En esta pestaña podrá ver las estadisticas sobre cuantos presupuesto tiene en 
 
 Esta es la aplicación de presupuesto, con ella podrá añadir, modificar y visionar todos los datos del presupuesto clasificados en diferentes pestañas: datos principales, objetivos del presupuesto, propuesta funcional, propuesta técnica, información adicional, tareas del presupuesto, productos del presupuesto, condiciones del presupuesto, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
 
+[../img/presupuestos-formulario.png]
+
 ==Pestaña Datos del presupuesto==
 
 En esta pestaña podrá visualizar y modificar los principales datos del presupuesto. A continuación le relacionamos todos los campos de información.
@@ -83,33 +87,29 @@ Ademas, en la primera pestaña tiene unos **botones de acción.**
 
 En esta pestaña podrá describir los objetivos del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
 
-%[Imagen]
-
 ==Pestaña de Propuesta funcional==
 
 En esta pestaña podrá describir propuesta funcional del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
-
-%[Imagen]
 
 ==Pestaña de Propuesta técnica==
 
 En esta pestaña podrá describir la propuesta técnica del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
 
-%[Imagen]
-
 ==Pestaña de Información adicional==
 
 En esta pestaña podrá describir información adicional que no se haya especificado en otros apartados del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
 
-%[Imagen]
-
 ==Pestaña de Tareas==
+
+%[Imagen] + Explicacion
 
 - **Tabla Resumen:** En esta tabla podrá ver diferente información sobre las tareas incluidas en el presupuesto, total de horas, precio medio, importe total de horas.
 - **Lista de tareas:** En esta lista podrá ir añadiendo tantas tareas como sean necesarias, los campos que incluye son: ** descripción de la tarea, horas necesarias, precio unitario, descuento, total tarea.
 
 
 ==Pestaña de Productos==
+
+%[Imagen] + Explicacion
 
 - **Tabla Resumen:** En esta tabla podrá ver diferente información sobre los productos incluidos en el presupuesto, total de unidades, importe total de productos.
 - **Lista de productos:** En esta lista podrá ir añadiendo tantos productos sean necesarios, los campos que incluye son: ** descripción del producto, unidades, precio unitario, descuento, total productos.
@@ -118,8 +118,6 @@ En esta pestaña podrá describir información adicional que no se haya especifi
 ==Pestaña de condiciones==
 
 En esta pestaña podrá describir las condiciones a las que esta sujeto el presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
-
-%[Imagen]
 
 ==Pestaña Nuevos ficheros==
 

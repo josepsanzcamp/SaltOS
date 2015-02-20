@@ -3,7 +3,9 @@
 
 =Clientes=
 
-Esta aplicación le permite llevar un control de todos sus clientes.
+Esta aplicación le permite llevar un control de todos sus clientes.a
+
+[../img/clientes-listado.png]
 
 ==Listado de clientes==
 
@@ -18,8 +20,6 @@ En el listado de clientes podrá encontrar las columnas mas importantes de cada 
 - **NC:** Número de comentarios introducidos sobre este cliente.
 - **NF:** Número de ficheros vinculados con este cliente.
 
-
-%[Aquí imagen del listado de clientes]
 
 ==Opciones del listado==
 
@@ -44,7 +44,7 @@ Esta es la aplicación de clientes con ella podrá añadir, modificar y visionar
 
 En esta pestaña podrá visualizar y modificar los principales datos de cliente. A continuación le relacionamos todos los campos de información.
 
-%[Aquí imagen del formulario de clientes]
+[../img/clientes-formulario.png]
 
 - **Código de cliente:** Código numérico con el que se identifica al cliente
 - **Campanya comercial:** Campaña comercial

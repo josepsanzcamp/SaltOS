@@ -34,11 +34,11 @@ if(getParam("action")=="viewpdf") {
 			if(isset($files[0])) $file=$files[0];
 		}
 		if(!file_exists($file)) {
-			$files=glob("doc/${lang}/*.pdf");
+			$files=glob("doc/${lang}/404.pdf");
 			if(isset($files[0])) $file=$files[0];
 		}
 		if(!file_exists($file)) {
-			$files=glob("doc/*/*.pdf");
+			$files=glob("doc/*/404.pdf");
 			if(isset($files[0])) $file=$files[0];
 		}
 		$data=file_get_contents($file);

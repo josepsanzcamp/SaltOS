@@ -3,7 +3,9 @@
 
 =Campañas comerciales=
 
-Esta aplicación le permite llevar un control de todas sus campañas comerciales.
+Esta aplicación le permite llevar un control de todas sus campañas comerciales.a
+
+[../img/campanyas-listado.png]
 
 ==Listado de campañas comerciales.==
 
@@ -22,8 +24,6 @@ En el listado de campañas comerciales. podrá encontrar las columnas mas import
 - **NC:** Número de comentarios introducidos sobre esta campaña.
 - **NF:** Número de ficheros vinculados con esta campaña.
 
-
-[../img/listado-campanyas.png]
 
 ==Opciones del listado==
 
@@ -46,7 +46,7 @@ Esta es la aplicación de campañas comerciales, con ella podrá añadir, modifi
 
 En esta pestaña podrá visualizar y modificar los principales datos sobre la campaña. A continuación le relacionamos todos los campos de información.
 
-%[Aquí imagen del formulario de campañas]
+[../img/campanyas-formulario.png]
 
 - **Nombre (*):** Nombre comercial de la campaña comercial.
 - **Estado (*):** Estado en el que se encuentra la campaña comercial.
