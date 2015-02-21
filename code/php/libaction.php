@@ -676,11 +676,6 @@ class PDF extends TCPDF {
 	var $row_footer;
 	var $check_y_enabled;
 
-	/**
-	 * \brief TODO
-	 *
-	 * TODO
-	 */
 	function Init() {
 		$this->Set_Header(array(),array());
 		$this->Set_Footer(array(),array());
@@ -688,53 +683,28 @@ class PDF extends TCPDF {
 		if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));
 	}
 
-	/**
-	 * \brief TODO
-	 *
-	 * TODO
-	 */
 	function Set_Header($arr,$row) {
 		$this->arr_header=$arr;
 		$this->row_header=$row;
 	}
 
-	/**
-	 * \brief TODO
-	 *
-	 * TODO
-	 */
 	function Set_Footer($arr,$row) {
 		$this->arr_footer=$arr;
 		$this->row_footer=$row;
 	}
 
-	/**
-	 * \brief TODO
-	 *
-	 * TODO
-	 */
 	function Header() {
 		$oldenable=$this->check_y_enable(false);
 		__pdf_eval_pdftag($this->arr_header,$this->row_header);
 		$this->check_y_enable($oldenable);
 	}
 
-	/**
-	 * \brief TODO
-	 *
-	 * TODO
-	 */
 	function Footer() {
 		$oldenable=$this->check_y_enable(false);
 		__pdf_eval_pdftag($this->arr_footer,$this->row_footer);
 		$this->check_y_enable($oldenable);
 	}
 
-	/**
-	 * \brief TODO
-	 *
-	 * TODO
-	 */
 	function check_y($offset=0) {
 		if($this->check_y_enabled) {
 			if($this->y+$offset>($this->hPt/$this->k)-$this->bMargin) {
@@ -746,11 +716,6 @@ class PDF extends TCPDF {
 		}
 	}
 
-	/**
-	 * \brief TODO
-	 *
-	 * TODO
-	 */
 	function check_y_enable($enable) {
 		$retval=$this->check_y_enabled;
 		$this->check_y_enabled=$enable;
