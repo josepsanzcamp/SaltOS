@@ -25,7 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<header ifeval="!ismobile()">
-		<class>left</class>
 		<option>
 			<label lang="true">menu</label>
 			<onclick>toggle_menu()</onclick>
@@ -35,40 +34,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</option>
 	</header>
 	<header ifeval="!ismobile() &amp;&amp; check_commands(array(getDefault('commands/text2wave'),getDefault('commands/wavetomp3')),60)">
-		<class>left</class>
 		<option>
 			<label lang="true">playvoice</label>
 			<onclick>play_voice()</onclick>
 			<icon>playvoice</icon>
 			<tip lang="true">playvoicetip</tip>
-			<class>playvoice none</class>
+			<class>playvoice</class>
+			<class2>none</class2>
 		</option>
 		<option>
 			<label lang="true">stopvoice</label>
 			<onclick>stop_voice()</onclick>
 			<icon>stopvoice</icon>
 			<tip lang="true">stopvoicetip</tip>
-			<class>stopvoice none</class>
+			<class>stopvoice</class>
+			<class2>none</class2>
 		</option>
 		<option>
 			<label lang="true">nextvoice</label>
 			<onclick>next_voice()</onclick>
 			<icon>nextvoice</icon>
 			<tip lang="true">nextvoicetip</tip>
-			<class>nextvoice none</class>
+			<class>nextvoice</class>
+			<class2>none</class2>
 		</option>
 		<option>
 			<label lang="true">cancelvoice</label>
 			<onclick>cancel_voice()</onclick>
 			<icon>cancelvoice</icon>
 			<tip lang="true">cancelvoicetip</tip>
-			<class>cancelvoice none</class>
+			<class>cancelvoice</class>
+			<class2>none</class2>
 		</option>
 	</header>
 	<header ifeval="!ismobile()">
-		<class>right</class>
-		<temp global="rows" eval="true">$rows=execute_query_array("SELECT * FROM tbl_quick WHERE id_usuario='".current_user()."' ORDER BY id ASC")</temp>
-		<temp global="rows" ifeval="!count($rows)" eval="true">$rows=array(
+		<temp global="rows" eval="true">$rows=execute_query_array("SELECT * FROM tbl_quick WHERE id_usuario='".current_user()."' ORDER BY id DESC")</temp>
+		<temp global="rows" ifeval="!count($rows)" eval="true">$rows=array_reverse(array(
 			array("codigo"=>CONFIG("quick_button_f1"),"button"=>"f1"),
 			array("codigo"=>CONFIG("quick_button_f2"),"button"=>"f2"),
 			array("codigo"=>CONFIG("quick_button_f3"),"button"=>"f3"),
@@ -80,13 +81,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			array("codigo"=>CONFIG("quick_button_f9"),"button"=>"f9"),
 			array("codigo"=>CONFIG("quick_button_f10"),"button"=>"f10"),
 			array("codigo"=>CONFIG("quick_button_f11"),"button"=>"f11"),
-			array("codigo"=>CONFIG("quick_button_f12"),"button"=>"f12"))</temp>
+			array("codigo"=>CONFIG("quick_button_f12"),"button"=>"f12")))</temp>
 		<option global="rows,row,temp" foreach="rows" as="row" ifeval="($temp=$row['codigo'])!='' &amp;&amp; check_user($temp,'menu')">
 			<label global="temp" eval="true">$temp?LANG("quick_$temp"):""</label>
 			<onclick global="temp" eval="true">"opencontent('?page=$temp')"</onclick>
 			<icon global="temp" eval="true">$temp</icon>
 			<tip global="temp,row" eval="true">$temp?LANG("desc_$temp")." [".strtoupper($row["button"])."]":""</tip>
 			<class global="temp,row" eval="true">"nowrap".($temp=="correo"?" number_correo number":"").($temp=="agenda"?" number_agenda number":"").($temp=="feeds"?" number_feeds number":"").(" shortcut_".$row["button"])</class>
+			<class2>right</class2>
 		</option>
 	</header>
 	<group>

@@ -25,18 +25,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 td.top {
 	vertical-align:top!important;
 }
+
 span.float {
 	float:right;
 }
+
 span.red {
 	color: #aa0000;
 }
+
 span.green {
 	color: #007700;
 }
+
 span.blue {
 	color: #0000aa;
 }
+
 td.tbody div.ui-state-highlight {
 	margin:2px 0px;
 	padding:0px 2px;

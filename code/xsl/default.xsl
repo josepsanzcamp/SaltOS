@@ -45,25 +45,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="title">
 	<xsl:for-each select="/root">
-		<div class="ui-widget">
-			<div class="ui-widget-header ui-corner-bottom">
-				<xsl:for-each select="menu/header">
-					<div class="{class}">
-						<xsl:for-each select="option">
-							<a href="javascript:void(0)" class="ui-state-default ui-corner-bottom {class}" onclick="{onclick}" title="{tip}">
-								<xsl:if test="icon!=''">
-									<span class="saltos-icon saltos-icon-{icon}"/>
-									<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
-								</xsl:if>
-								<xsl:value-of select="label"/>
-							</a>
-						</xsl:for-each>
-					</div>
+		<div class="tabs2">
+			<ul>
+				<xsl:for-each select="menu/header/option">
+					<li taborder="{taborder}" class="{class2}"><a href="javascript:void(0)" onclick="{onclick}" title="{tip}" class="{class}">
+						<xsl:if test="icon!=''">
+							<span class="saltos-icon saltos-icon-{icon}"/>
+							<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
+						</xsl:if>
+						<xsl:value-of select="label"/>
+					</a></li>
 				</xsl:for-each>
-				<div class="texto">
-					<xsl:call-template name="title_2"/>
-				</div>
-			</div>
+				<li class="texto"><a href="javascript:void(0)"><xsl:call-template name="title_2"/></a></li>
+			</ul>
 		</div>
 	</xsl:for-each>
 </xsl:template>
@@ -475,7 +469,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:for-each>
 		</xsl:otherwise>
 	</xsl:choose>
-	<li taborder=""><a href="#help"></a></li>
+	<li class="help" taborder=""><a href="javascript:void(0)"></a></li>
 </xsl:template>
 
 <xsl:template name="brtag">

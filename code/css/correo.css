@@ -32,22 +32,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	color:#ffffff;
 }
+
 .estado.state_new {
 	background-color: #33aa33;
 }
+
 .estado.state_wait {
 	background-color: #114477;
 }
+
 .estado.state_spam {
 	background-color: #aa3333;
 }
+
 .estado.state_error {
 	background-color: #aa3333;
 }
+
 /* SET TO RED THE LABEL OF THE INPUT BOX IN THE EMAIL FORM */
 input.state_error {
 	color:#aa0000;
 }
+
 /* FOR MOBILE DEVICES */
 label a {
 	color:inherit!important;

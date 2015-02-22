@@ -31,12 +31,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	color:#ffffff;
 }
+
 .cerrado.style_opened {
 	background-color: #114477;
 }
+
 .cobrado.style_closed {
 	background-color: #114477;
 }
+
 .cobrado.style_alarm {
 	background-color: #aa3333;
 }

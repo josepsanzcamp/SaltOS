@@ -1077,6 +1077,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
 		if($(header).text()!=$(header2).text()) {
+			make_tabs2(header2);
 			$(header).replaceWith(header2);
 			setTimeout(function() {
 				//~ console.time("updatecontent north fase 1");
@@ -1224,7 +1225,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var accesskey=0;
 		var tabs=$(".tabs > ul > li",obj);
 		$(tabs).each(function() {
-			if($("a",this).attr("href")=="#help") {
+			if($(this).hasClass("help")) {
 				$("a",this).attr("title","[CTRL] + [H]");
 				$("a",this).addClass("shortcut_ctrl_h");
 			} else if(accesskey<accesskeys.length) {
@@ -1256,22 +1257,46 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabs",obj).tabs({
 			active:active,
 			beforeActivate:function(event,ui) {
-				if($("a",ui.newTab).attr("href")=="#help") {
+				if($(ui.newTab).hasClass("help")) {
 					viewpdf("page="+getParam("page"));
 					return false;
 				}
+			},
+			beforeLoad:function(event,ui) {
+				return false;
 			}
 		});
 		// TUNNING THE HELP TAB
-		var tabs=$(".tabs ul li",obj);
-		var help=$(tabs).get($(tabs).length-1);
+		var help=$(".tabs ul li.help",obj);
 		if(saltos_islogin()) {
 			$("a",help).html("<span class='saltos-icon saltos-icon-help'></span> "+lang_help());
-			$(help).css("float","right");
-			$("a",help).css("padding","0.5em");
 		} else {
 			$(help).remove();
 		}
+		//~ console.timeEnd("make_tabs");
+	}
+
+	function make_tabs2(obj) {
+		//~ console.time("make_tabs2");
+		if(typeof(obj)=="undefined") var obj=$("body");
+		// MAKE THE TABS
+		$(".tabs2",obj).tabs({
+			beforeActivate:function(event,ui) {
+				return false;
+			},
+			beforeLoad:function(event,ui) {
+				return false;
+			}
+		});
+		// FIX FOR A VOID TABS
+		$(".tabs2 div",obj).remove();
+		// CHANGE TABS FROM TOP TO BOTTOM
+		$(".tabs2 ul",obj).removeClass("ui-corner-all").addClass("ui-corner-bottom");
+		$(".tabs2 li",obj).removeClass("ui-corner-top ui-tabs-active ui-state-active").addClass("ui-corner-bottom");
+		var padding=$(".tabs2 ul",obj).css("padding-top");
+		$(".tabs2 ul",obj).css("padding-top","0").css("padding-bottom",padding);
+		var margin=$(".tabs2 li",obj).css("margin-top");
+		$(".tabs2 li",obj).css("margin-top","0").css("margin-bottom",margin);
 		//~ console.timeEnd("make_tabs");
 	}
 
@@ -2076,6 +2101,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_abort();
 			make_tooltips();
 			var header=$(".ui-layout-north");
+			make_tabs2(header);
 			setTimeout(function() {
 				//~ console.time("document_ready fase 2 north");
 				make_hovers(header);

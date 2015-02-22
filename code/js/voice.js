@@ -86,7 +86,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 		if(!exists_voice()) return;
 		// NORMAL TOOLBAR
 		if(!saltos_voice() || !voice_executing) {
-			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").addClass("none");
+			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").parent().addClass("none");
 		} else {
 			if(voice_executing) {
 				if(voice_playing) {
@@ -104,7 +104,7 @@ if(typeof(__voice__)=="undefined" && typeof(parent.__voice__)=="undefined") {
 			} else {
 				$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").addClass("ui-state-disabled");
 			}
-			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").removeClass("none");
+			$(".playvoice,.stopvoice,.nextvoice,.cancelvoice").parent().removeClass("none");
 		}
 	}
 

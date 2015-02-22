@@ -30,9 +30,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	color:#ffffff;
 }
+
 .estado.style_pending {
 	background-color: #114477;
 }
+
 .estado.style_alarm {
 	background-color: #aa3333;
 }

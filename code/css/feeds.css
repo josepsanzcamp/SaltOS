@@ -31,15 +31,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	color:#ffffff;
 }
+
 .estado.state_new {
 	background-color: #33aa33;
 }
+
 .estado.state_wait {
 	background-color: #114477;
 }
+
 .estado.state_cool {
 	background-color: #ee9933;
 }
+
 .enlace {
 	display:block;
 	overflow:hidden;
