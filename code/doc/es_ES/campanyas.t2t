@@ -3,13 +3,13 @@
 
 =Campañas comerciales=
 
-Esta aplicación le permite llevar un control de todas sus campañas comerciales.a
+Esta aplicación le permite llevar un control de todas sus campañas comerciales.
 
 [../img/campanyas-listado.png]
 
 ==Listado de campañas comerciales.==
 
-En el listado de campañas comerciales. podrá encontrar las columnas mas importantes de cada registro:
+En el listado de campañas comerciales. podrá encontrar las columnas mas importantes del registro:
 
 - **Cód.:** Código numérico que identifica la campaña comercial.
 - **Inicio:** Fecha de inicio de la campaña comercial.
@@ -25,7 +25,7 @@ En el listado de campañas comerciales. podrá encontrar las columnas mas import
 - **NF:** Número de ficheros vinculados con esta campaña.
 
 
-==Opciones del listado==
+===Opciones del listado===
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
@@ -34,15 +34,15 @@ Sobre cada registro podrá realizar una serie de acciones que están representad
 - [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
 
 
-==Opciones de filtro==
+===Opciones de filtro===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-=Formulario de campañas comerciales=
+==Formulario de campañas comerciales==
 
 Esta es la aplicación de campañas comerciales, con ella podrá añadir, modificar y visionar todos los datos de las diferentes campañas comerciales que se realicen en la entidad, la información esta clasificada en diferentes pestañas: datos principales, comentarios, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
 
-==Pestaña Datos de la campaña==
+===Pestaña Datos de la campaña===
 
 En esta pestaña podrá visualizar y modificar los principales datos sobre la campaña. A continuación le relacionamos todos los campos de información.
 
@@ -57,27 +57,27 @@ En esta pestaña podrá visualizar y modificar los principales datos sobre la ca
 
 (*) **Campos obligatorios a la hora de crear o modificar una campaña.**
 
-==Pestaña Nuevos comentarios==
+===Pestaña Nuevos comentarios===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Comentarios==
+===Pestaña Comentarios===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Nuevos archivos adjuntos==
+===Pestaña Nuevos archivos adjuntos===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Archivos adjuntos==
+===Pestaña Archivos adjuntos===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Datos del registro==
+===Pestaña Datos del registro===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Carpetas==
+===Pestaña Carpetas===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 

@@ -1,0 +1,68 @@
+
+
+
+=Seguimientos=
+
+Esta aplicación le permite llevar un control de todos seguimientos de las tareas realizadas en la empresa.
+
+[../img/seguimientos-listado.png]
+
+==Listado de Seguimientos==
+
+En el listado de seguimientos podrá encontrar las columnas mas importantes de cada registro:
+
+- **Cód.:** Código numérico que identifica al proyecto.
+- **Usuario:** Usuario que ha creado el seguimiento.
+- **Cliente:** Para que cliente se ha realizado el proyecto.
+- **proyecto:** Nombre que se le ha dado al proyecto.
+- **Tarea:** Nombre de la tarea de la que se esta realizando el seguimiento.
+- **Fecha:** Fecha en que se realizo el seguimiento.
+- **Horas (*):** Horas necesitadas para el seguimiento de la tarea.
+
+
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+
+
+Este listado dispone ademas de las siguientes acciones:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar el listado de todos los datos de seguimiento de tareas a un archivo con formato Excel.
+
+
+===Opciones de filtro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Formulario de seguimientos==
+
+Esta es la aplicación de seguimiento de tareas, con ella podrá añadir, modificar y visionar todos los datos del seguimiento clasificados en diferentes pestañas: datos principales, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del seguimiento===
+
+En esta pestaña podrá visualizar y modificar los principales datos del seguimiento. A continuación le relacionamos todos los campos de información.
+
+[../img/seguimientos-formulario.png]
+
+- **Cliente (*):** Para vincular el cliente para el que se realiza la tarea.
+- **Proyecto (*):** Para vincular en el proyecto en el que esta incluida la tarea.
+- **Nombre (*):** Selector de la tarea sobre la que se realiza el seguimiento.
+- **Fecha (*):** Fecha de realización del seguimiento.
+- **Comentarios (*):** Para indicar datos relevantes sobre el seguimiento.
+- **Horas (*):** Horas que se han utilizado para realizar el seguimiento de la tarea.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un seguimiento.**
+
+===Pestaña Datos del registro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Carpetas===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]

@@ -1,0 +1,76 @@
+
+
+
+=Incidencias=
+
+Esta aplicación le permite llevar un control de todas las incidencias ocurridas en la empresa.
+
+[../img/incidencias-listado.png]
+
+==Listado de incidencias==
+
+En el listado de incidencias podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica el trabajo.
+- **Usuario:** Usuario que abre la incidencia.
+- **Fecha:** Fecha y hora de la incidencia.
+- **Cliente:** Cliente en el cual se ha generado la incidencia.
+- **Proyecto:** Nombre del proyecto en el cual se ha generado la incidencia.
+- **Incidencia:** Nombre descriptivo del motivo de la incidencia.
+- **Estado:** Estado en el que se encuentra la incidencia (Nueva, empezada, asignada, resuelta, revisada, cerrada, rechazada, duplicada, reabierta).
+- **Prioridad:** Prioridad de la incidencia (Alta, normal, baja).
+- **Asignado a:** Usuarios involucrados en la incidencia.
+- **NC:** Número de comentarios introducidos sobre esta incidencia.
+- **NF:** Número de ficheros vinculados sobre esta incidencia.
+
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+
+
+===Opciones de filtro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+==Formulario de incidencias==
+
+Esta es la aplicación de incidencias, con ella podrá añadir, modificar y visionar todos los datos de las diferentes incidencias clasificados en diferentes pestañas: datos principales, usuarios asignados, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos de la incidencia===
+
+En esta pestaña podrá visualizar y modificar los principales datos de la incidencia. A continuación le relacionamos todos los campos de información.
+
+[../img/incidencias-formulario.png]
+
+- **Cliente:** Para vincular el cliente donde ha ocurrido la incidencia.
+- **Proyecto:** Para vincular el proyecto en el que ha ocurrido la incidencia.
+- **Prioridad (*):** Prioridad de la incidencia (Alta, normal, baja).
+- **Nombre (*):** Nombre descriptivo de la incidencia ocurrida.
+- **Estado (*):** Estado en el que se encuentra la incidencia (Nueva, empezada, asignada, resuelta, revisada, cerrada, rechazada, duplicada, reabierta).
+- **Descripción (*):** Descripción mas detallada de la incidencia ocurrida.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar una incidencia.**
+
+===Pestaña Usuario asignado===
+
+En esta pestaña podrá incluir todos los usuarios que están involucrado con la incidencia.
+
+===Pestaña Ficheros adjuntos===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Nuevos ficheros===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Datos del registro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Carpetas===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]

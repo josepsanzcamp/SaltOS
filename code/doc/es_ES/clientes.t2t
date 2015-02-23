@@ -3,13 +3,13 @@
 
 =Clientes=
 
-Esta aplicación le permite llevar un control de todos sus clientes.a
+Esta aplicación le permite llevar un control de todos sus clientes.
 
 [../img/clientes-listado.png]
 
 ==Listado de clientes==
 
-En el listado de clientes podrá encontrar las columnas mas importantes de cada registro:
+En el listado de clientes podrá encontrar las columnas mas importantes del registro:
 
 - **Cód.:** Código numérico que identifica al cliente.
 - **N.I.F:** Número de identificación fiscal facilitado por la hacienda publica.
@@ -21,18 +21,18 @@ En el listado de clientes podrá encontrar las columnas mas importantes de cada 
 - **NF:** Número de ficheros vinculados con este cliente.
 
 
-==Opciones del listado==
+===Opciones del listado===
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [Iconos-Botones]: Consultar/Editar/Borrar registro.
-- [Icono-Boton]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-- [Icono-Boton]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-- [Icono-Boton]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [Icono-Boton]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
 
 
-==Opciones de filtro==
+===Opciones de filtro===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
@@ -40,16 +40,16 @@ Sobre cada registro podrá realizar una serie de acciones que están representad
 
 Esta es la aplicación de clientes con ella podrá añadir, modificar y visionar todos los datos del cliente clasificados en diferentes pestañas. Datos principales, comentarios, fichero adjuntos, gráficas y estadísticas sobre las compras realizadas, datos sobre las modificaciones del registro y asignaciones a carpetas.
 
-==Pestaña Datos del cliente==
+===Pestaña Datos del cliente===
 
 En esta pestaña podrá visualizar y modificar los principales datos de cliente. A continuación le relacionamos todos los campos de información.
 
 [../img/clientes-formulario.png]
 
 - **Código de cliente:** Código numérico con el que se identifica al cliente
-- **Campanya comercial:** Campaña comercial
+- **Campana comercial:** Campaña comercial
 - **Tipo de entidad:** Con este campo podrá designar si el cliente es una persona física o una entidad jurídica.
-- **Mostrar como (*):** Este el es nombre que se utilizara en los listado y selectores, en caso de ser una persona podria dedicarse para incluir el apodo.
+- **Mostrar como (*):** Este el es nombre que se utilizara en los listado y selectores, en caso de ser una persona podría dedicarse para incluir el apodo.
 - **Nombre comercial:** Nombre comercial del cliente.
 - **Nombre Fiscal:** Nombre fiscal que se utiliza en los documentos legales como facturas, contratos, etc..
 - **N.I.F:** Número de Identificación fiscal, número proporcionado por la hacienda publica con el que se identifica a la entidad.
@@ -74,38 +74,37 @@ En esta pestaña podrá visualizar y modificar los principales datos de cliente.
 
 Ademas, en la primera pestaña tiene unos **botones de acción.**
 
-- **[Icono]Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
-- **[Icono]Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
-- **[Icono]Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
 
 
-==Pestaña Comentarios==
-
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
-
-==Pestaña Ficheros adjuntos==
+===Pestaña Comentarios===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Nuevos comentarios==
+===Pestaña Ficheros adjuntos===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Nuevos ficheros==
+===Pestaña Nuevos comentarios===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Gráficas y estadísticas==
+===Pestaña Nuevos ficheros===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Gráficas y estadísticas===
 
 En esta pestaña podrá ver las gráficas y estadísticas de compras realizadas por este cliente.
 
 %[Aquí imagen ejemplo de gráficas y estadísticas]
 
-==Pestaña Datos del registro==
+===Pestaña Datos del registro===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Carpetas==
+===Pestaña Carpetas===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
-

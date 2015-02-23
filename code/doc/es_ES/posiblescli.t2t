@@ -3,13 +3,13 @@
 
 =Posibles clientes=
 
-Esta aplicación le permite llevar un control de todos sus posibles clientes.a
+Esta aplicación le permite llevar un control de todos sus posibles clientes.
 
 [../img/posiblescli-listado.png]
 
 ==Listado de posibles clientes==
 
-En el listado de posibles clientes podrá encontrar las columnas mas importantes de cada registro:
+En el listado de posibles clientes podrá encontrar las columnas mas importantes del registro:
 
 - **Cód.:** Código numérico que identifica al posible cliente.
 - **Nombre:** Nombre del posible cliente
@@ -22,31 +22,31 @@ En el listado de posibles clientes podrá encontrar las columnas mas importantes
 - **NF:** Número de ficheros vinculados con este posible cliente.
 
 
-==Opciones del listado==
+===Opciones del listado===
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [Iconos-Botones]: Consultar/Editar/Borrar registro.
-- [Icono-Boton]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-- [Icono-Boton]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-- [Icono-Boton]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [Icono-Boton]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
 
 
 Este listado dispone ademas de las siguientes acciones:
 
-- [Icono-Boton] Exportar listado de todos los datos de los posibles clientes a un archivo con formato Excel.
+- [../../lib/silk/icons/page_white_excel.png]: Exportar listado de todos los datos de los posibles clientes a un archivo con formato Excel.
 
 
-==Opciones de filtro==
+===Opciones de filtro===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-=Formulario posibles clientes=
+==Formulario posibles clientes==
 
 Esta es la aplicación de posibles clientes, con ella podrá añadir, modificar y visionar todos los datos del posible cliente clasificados en diferentes pestañas: datos principales, comentarios, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
 
-==Pestaña Datos del posible cliente==
+===Pestaña Datos del posible cliente===
 
 En esta pestaña podrá visualizar y modificar los principales datos del posible cliente. A continuación le relacionamos todos los campos de información.
 
@@ -75,36 +75,36 @@ En esta pestaña podrá visualizar y modificar los principales datos del posible
 - **Comentarios:** Comentarios sobre el contacto.
 
 
-(*) **Campos obligatorios a la hora de crear o modificar un contacto.**
+(*) **Campos obligatorios a la hora de crear o modificar un posible cliente.**
 
 Ademas, en la primera pestaña tiene unos **botones de acción.** para facilitarle las principales tareas relacionadas con los contactos comerciales.
 
-- **[Icono]Añadir evento:** Le llevara al formulario de nuevo evento para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
-- **[Icono]Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
-- **[Icono]Crear cliente:** Le llevara al formulario de creación de cliente con todos los datos incluidos en la ficha del posible cliente.
+- **[../../lib/silk/icons/add.png] Añadir evento:** Le llevara al formulario de nuevo evento para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
+- **[../../lib/silk/icons/add.png] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
+- **[../../lib/silk/icons/add.png] Crear cliente:** Le llevara al formulario de creación de cliente con todos los datos incluidos en la ficha del posible cliente.
 
 
-==Pestaña Comentarios==
-
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
-
-==Pestaña Ficheros adjuntos==
+===Pestaña Comentarios===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Nuevos comentarios==
+===Pestaña Ficheros adjuntos===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Nuevos ficheros==
+===Pestaña Nuevos comentarios===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Datos del registro==
+===Pestaña Nuevos ficheros===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Carpetas==
+===Pestaña Datos del registro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Carpetas===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 

@@ -28,31 +28,31 @@ En el listado de proyectos podrá encontrar las columnas mas importantes de cada
 
 (*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
 
-==Opciones del listado==
+===Opciones del listado===
 
 Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [Iconos-Botones]: Consultar/Editar/Borrar registro.
-- [Icono-Boton]: Con esta acción podrá crear un nuevo proyecto copiando los datos de este.
-- [Icono-Boton]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [Icono-Boton]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción podrá crear un nuevo proyecto copiando los datos de este.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
 
 
-==Opciones de filtro==
+===Opciones de filtro===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Gráficas y estadísticas==
+===Gráficas y estadísticas===
 
-En esta pestaña podrá ver las estadisticas sobre cuantos proyectos tiene en cada estado, pudiendo detectar picos y bajadas de faena antes de que sucedan y asi poder tomar medidas para mitigar estos momentos criticos.
+En esta pestaña podrá ver las estadísticas sobre cuantos proyectos tiene en cada estado, pudiendo detectar picos y bajadas de faena antes de que sucedan y así poder tomar medidas para mitigar estos momentos críticos.
 
 [../img/proyectos-estadisticas.png]
 
-=Formulario de proyectos=
+==Formulario de proyectos==
 
 Esta es la aplicación de proyecto, con ella podrá añadir, modificar y visionar todos los datos del proyecto clasificados en diferentes pestañas: datos principales, objetivos del proyecto, tareas del proyecto, productos del proyecto, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
 
-==Pestaña Datos del proyecto==
+===Pestaña Datos del proyecto===
 
 En esta pestaña podrá visualizar y modificar los principales datos del proyecto. A continuación le relacionamos todos los campos de información.
 
@@ -67,42 +67,50 @@ En esta pestaña podrá visualizar y modificar los principales datos del proyect
 - **Tabla resumen:** En esta tabla podrá encontrar el total de horas de tareas, unidades de productos, y el importe total del proyecto.
 
 
-(*) **Campos obligatorios a la hora de crear o modificar un contacto.**
+(*) **Campos obligatorios a la hora de crear o modificar un proyecto.**
 
 Ademas, en la primera pestaña tiene unos **botones de acción.**
 
-- **[Icono]Añadir seguimiento:** Le llevara al formulario de nuevo seguimiento para que pueda rellenar la información pertinente y lo relacionara directamente con este proyecto.
-- **[Icono]Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
-- **[Icono]Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
-- **[Icono]Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
-- **[Icono]Facturar:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir seguimiento:** Le llevara al formulario de nuevo seguimiento para que pueda rellenar la información pertinente y lo relacionara directamente con este proyecto.
+- **[../../lib/silk/icons/add.png] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Facturar:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
 
 
-==Pestaña de Tareas==
+===Pestaña de Tareas===
 
-%[Imagen] + Explicacion
+En esta pestaña podrá incluir, modificar o eliminar todas las tareas a realizar vinculadas a este proyecto.
+
+[../img/proyectos-formulario-listado-tareas.png]
 
 - **Tabla Resumen:** En esta tabla podrá ver diferente información sobre las tareas incluidas en el proyecto: **total de horas, precio medio, importe total de horas.**
-- **Lista de tareas:** En esta lista podrá ir añadiendo tantas tareas como sean necesarias, los campos que incluye son: **descripción de la tarea, horas necesarias, precio unitario, descuento, total tarea.**
+- **Lista de tareas:** En esta lista podrá incluir, modificar o eliminar tantas tareas como sean necesarias, los campos que incluye son: **descripción de la tarea, horas necesarias, precio unitario, descuento, total tarea.**
 
 
-==Pestaña de Productos==
+===Pestaña de Productos===
 
-%[Imagen] + Explicacion
+En esta pestaña podrá incluir, modificar o eliminar todas los productos vinculados a este proyecto.
+
+[../img/proyectos-formulario-listado-productos.png]
 
 - **Tabla Resumen:** En esta tabla podrá ver diferente información sobre los productos incluidos en el proyecto: **total de unidades, importe total de productos.**
-- **Lista de productos:** En esta lista podrá ir añadiendo tantos productos sean necesarios, los campos que incluye son: **descripción del producto, unidades, precio unitario, descuento, total productos.**
+- **Lista de productos:** En esta lista podrá incluir, modificar o eliminar tantos productos sean necesarios, los campos que incluye son: **descripción del producto, unidades, precio unitario, descuento, total productos.**
 
+===Pestaña de Gráficas y estadísticas===
 
-==Pestaña Nuevos ficheros==
+En esta pestaña podrá ver las desviaciones del proyecto respecto al presupuesto tanto en cantidad como en porcentaje.
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[../img/proyectos-formulario-graficas.png]
 
-==Pestaña Datos del registro==
-
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
-
-==Pestaña Carpetas==
+===Pestaña Nuevos ficheros===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
+===Pestaña Datos del registro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Carpetas===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]

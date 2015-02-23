@@ -3,13 +3,13 @@
 
 =Contactos=
 
-Esta aplicación le permite llevar un control de todos sus contactos.a
+Esta aplicación le permite llevar un control de todos sus contactos.
 
 [../img/contactos-listado.png]
 
 ==Listado de contactos==
 
-En el listado de contactos podrá encontrar las columnas mas importantes de cada registro:
+En el listado de contactos podrá encontrar las columnas mas importantes del registro:
 
 - **Cód.:** Código numérico que identifica al contactos.
 - **Cliente:** Nombre del cliente vinculado con el contacto.
@@ -20,15 +20,15 @@ En el listado de contactos podrá encontrar las columnas mas importantes de cada
 - **Cuenta de correo:** Cuenta de correo principal para ponernos en contacto.
 
 
-==Opciones del listado==
+===Opciones del listado===
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [Iconos-Botones]: Consultar/Editar/Borrar registro.
-- [Icono-Boton]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-- [Icono-Boton]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
 
-==Opciones de filtro==
+===Opciones de filtro===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
@@ -36,7 +36,7 @@ Sobre cada registro podrá realizar una serie de acciones que están representad
 
 Esta es la aplicación de contactos, con ella podrá añadir, modificar y visionar todos los datos del contacto clasificados en diferentes pestañas. Datos principales, comentarios, fichero adjuntos, gráficas y estadísticas sobre las compras realizadas, datos sobre las modificaciones del registro y asignaciones a carpetas.
 
-==Pestaña Datos del contacto==
+===Pestaña Datos del contacto===
 
 En esta pestaña podrá visualizar y modificar los principales datos de contacto. A continuación le relacionamos todos los campos de información.
 
@@ -66,11 +66,11 @@ En esta pestaña podrá visualizar y modificar los principales datos de contacto
 
 (*) **Campos obligatorios a la hora de crear o modificar un contacto.**
 
-==Pestaña Datos del registro==
+===Pestaña Datos del registro===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 
-==Pestaña Carpetas==
+===Pestaña Carpetas===
 
 %[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
 

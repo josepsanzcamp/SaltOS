@@ -15,7 +15,7 @@ El funcionamiento de esta aplicación es muy parecida al del lector de correo el
 
 El color de letra de cada entrada indica el estado y las opciones de búsqueda, filtrado y exportación funcionan de la misma manera. Puede marcar un post como pendiente, o volver a marcarlo como no leído si ya lo ha consultado.
 
-=Consulta=
+==Consulta==
 
 El modo //Consulta// de un post le permite acceder a la fuente original, haciendo clic en el enlace de la cabecera. También puede enviar el contenido del post, por ejemplo, para recomendarlo a otra persona.
 

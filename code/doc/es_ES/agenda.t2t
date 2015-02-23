@@ -21,7 +21,7 @@ Para expandir o contraer el detalle de todos los eventos mostrados, haga clic en
 
 Para sincronizar la agenda con //Google Calendar//, haga clic en el botón correspondiente en la parte superior. Tenga en cuenta que debe haber configurado previamente su cuenta de Google en la aplicación //Mi Perfil//. El proceso de sincronización puede tardar unos instantes, dependiendo de la velocidad de conexión, el estado del servicio de Google y la cantidad de eventos a sincronizar.
 
-=Creación=
+==Creación==
 
 Para crear un nuevo evento introduzca la fecha y hora de inicio, el nombre (lo que se mostrará en los listados), descripción, el tipo de evento y el estado. Tenga en cuenta que el evento se considera pendiente cuando tiene el estado "Confirmado" o "Por confirmar", en cualquier otro se considerará como no pendiente o cerrado.
 
@@ -39,13 +39,13 @@ Si desea adjuntar ficheros, puede hacerlo en la pestaña //Nuevos fichero adjunt
 
 Una vez finalizado pulse //Crear// o //Crear y volver aquí//.
 
-=Modificación=
+==Modificación==
 
 A la hora de editar un evento, podrá introducir o modificar los mismos datos que durante la creación. Adicionalmente puede añadir un comentario, por ejemplo, para comentar los temas tratados durante la reunión, el motivo de cancelación, etc.
 
 Para que un evento deje de aparecer como pendiente, cambie su estado a //Acabado//, //Cancelado// o //Error//.
 
-=Consulta=
+==Consulta==
 
 En el modo consulta, puede consultar los diferentes parámetros del evento, así como los usuarios asignados y descargar los ficheros adjuntos, si los hubiera. También puede ver si ya se ha mostrado la notificación de inicio o finalización.
 

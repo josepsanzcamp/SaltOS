@@ -1,0 +1,1401 @@
+SaltOS v3.1 r7598
+.
+.
+
+
++Actas+
+
+Esta aplicación le permite llevar un control de todas las actas realizadas en la empresa.
+
+[../img/actas-listado.png]
+
+++Listado de actas++
+
+En el listado de actas podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica el acta.
+- **Usuario:** Usuario que ha creado el acta.
+- **Inicio:** Fecha y hora de inicio de la reunión.
+- **Fin:** Fecha y hora de fin de la reunión.
+- **Cliente:** Cliente vinculado en el acta.
+- **Proyecto:** Proyecto vinculado en el acta.
+- **Nombre:** Nombre descriptivo del motivo de la reunión.
+- **Lugar (€):** Lugar en el que se ha realizado la reunión.
+
+
++++Opciones del listado+++
+
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con el registro seleccionado adjuntado como archivo. PDF.
+
+
+Este listado dispone ademas de las siguientes acciones seleccionando varios registros simultáneamente:
+
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar los registros seleccionados a un archivo en formato PDF.
+- [../../lib/silk/icons/monitor.png]: Visualizar los registros seleccionados en formato PDF en pantalla.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con los registros seleccionados adjuntados como archivos PDF.
+
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+++Formularios de actas++
+
+Esta es la aplicación de contactos, con ella podrá añadir, modificar y visionar todos los datos del contacto clasificados en diferentes pestañas. Datos principales, comentarios, fichero adjuntos, gráficas y estadísticas sobre las compras realizadas, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
++++Pestaña Datos del acta+++
+
+En esta pestaña podrá visualizar y modificar los principales datos de contacto. A continuación le relacionamos todos los campos de información.
+
+[../img/actas-formulario.png]
+
+- **Campañas:** Para vincular el acta con una campaña comercial concreta.
+- **Posible cliente:** Para vincular el acta con un posible cliente concreto.
+- **Presupuesto:** Para vincular el acta con un posible presupuesto concreto.
+- **Cliente:** Para vincular el acta con un cliente concreto.
+- **Proyecto:** Para vincular el acta con un proyecto concreto.
+- **Inicio (*):** Hora de inicio de la reunión.
+- **Fin (*):** Hora de finalización de la reunión.
+- **Nombre (*):** Nombre que se quiera dar al acta
+- **Lugar (*):** Lugar donde se realiza la reunión.
+- **Asistentes (*):** Asistentes a la reunión
+- **Temas (*):** Temas a tratar en la reunión
+- **Textos predefinidos:** Posibilidad de añadir textos predefinidos en la caja de texto de temas.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un acta.**
+
++++Pestaña Temas aceptados+++
+
+En esta pestaña podrá indicar los temas aceptados durante la reunión.
+
++++Pestaña Temas cancelados+++
+
+En esta pestaña podrá indicar los temas cancelados durante la reunión.
+
++++Pestaña Temas pendientes+++
+
+En esta pestaña podrá indicar los temas que quedan pendientes de tratar, por falta de tiempo u otro motivo.
+
++++Pestaña Datos del registro+++
+
+%[Enviar a home ayuda genérica]
+
++++Pestaña Carpetas+++
+
+%[Enviar a home ayuda genérica]
+
+
+
+
++Agenda+
+
+La agenda de SaltOS le permitirá gestionar fácilmente sus reuniones y eventos. Puede relacionar las entradas en la agenda con un cliente, proyecto, presupuesto, etc. además de asignarlas a varios usuarios.
+
+SaltOS le recordará automáticamente los próximos eventos y, si esto no es suficiente, podrá sincronizar la agenda de SaltOS con //Google Calendar//.
+
+++Las dos vistas de la agenda++
+
+La agenda de SaltOS puede consultarse de dos maneras: en forma de listado o en forma de Calendario.
+
+La primera se asemeja a cualquier listado de SaltOS, mostrando el o los usuarios asignados, inicio y fin del evento, cliente o proyecto relacionado, el nombre del evento así como su tipo y estado.
+
+En esta vista puede crear un nuevo evento haciendo clic en el botón correspondiente en la esquina inferior izquierda, navegar por el listado con los controles en la esquina inferior derecha así como buscar un evento mediante el buscador simple.
+
+La vista //Calendario// le mostrará el mes actual en forma de parrilla, con un día por columna. Puede crear un nuevo evento haciendo clic en //Nuevo evento// en las casilla de la fecha correspondiente. Para visualizar otro mes del calendario, selecciónelo en el desplegable //Mostrando información a fecha//. Si quieres navegar al mes anterior o posterior, haga clic en las flechas situadas en la esquina superior derecha. Si desea volver al mes actual, haga clic en el icono situada entre ambas flechas.
+
+Para expandir o contraer el detalle de todos los eventos mostrados, haga clic en el botón correspondiente en la esquina superior derecha. También puede reiniciar las notificaciones haciendo clic en el botón //Notificaciones//.
+
+Para sincronizar la agenda con //Google Calendar//, haga clic en el botón correspondiente en la parte superior. Tenga en cuenta que debe haber configurado previamente su cuenta de Google en la aplicación //Mi Perfil//. El proceso de sincronización puede tardar unos instantes, dependiendo de la velocidad de conexión, el estado del servicio de Google y la cantidad de eventos a sincronizar.
+
+++Creación++
+
+Para crear un nuevo evento introduzca la fecha y hora de inicio, el nombre (lo que se mostrará en los listados), descripción, el tipo de evento y el estado. Tenga en cuenta que el evento se considera pendiente cuando tiene el estado "Confirmado" o "Por confirmar", en cualquier otro se considerará como no pendiente o cerrado.
+
+Para facilitar la introducción de la fecha, haga clic en los iconos situados al lado de las cajas correspondiente. Se abrirá un diálogo que le permitirá elegir la fecha navegando por el calendario. Haga clic en el día correspondiente para seleccionar la fecha.
+
+También puede introducir la hora a través de un diálogo de ayuda, haciendo clic en el icono situado al lado de la caja de texto correspondiente. Seleccione la hora y minutos a través de los botones, si desea cambiar entre //AM// y //PM// haga clic en el botón correspondiente.
+
+Para recibir una notificación a modo de recordatorio, introduzca en la caja de texto //Notificar// con cuanta antelación quiere recibir el aviso (en horas). Si quiere recibir un aviso después del inicio del evento, elija "Después" en el desplegable correspondiente. Si no desea recibir ningún aviso, marque los controles //Notificación inicio recibida// y //Notificación final recibida//.
+
+Para asignar el evento a más usuarios, selecciónelos en la pestaña //Usuarios asignados//. El evento aparecerá automáticamente en el calendario de los usuarios asignados.
+
+Puede relacionar el evento con una campaña, un posible cliente, un cliente existente, un presupuesto o proyecto a través de los desplegables correspondientes. A la hora de relacionar un evento con cualquiera de estas aplicaciones, aparecerá el en detalle del contenido correspondiente. De esta manera podrá llevar un control efectivo de todas las reuniones mantenidas con un cliente o en un proyecto.
+
+Si desea adjuntar ficheros, puede hacerlo en la pestaña //Nuevos fichero adjuntos//.
+
+Una vez finalizado pulse //Crear// o //Crear y volver aquí//.
+
+++Modificación++
+
+A la hora de editar un evento, podrá introducir o modificar los mismos datos que durante la creación. Adicionalmente puede añadir un comentario, por ejemplo, para comentar los temas tratados durante la reunión, el motivo de cancelación, etc.
+
+Para que un evento deje de aparecer como pendiente, cambie su estado a //Acabado//, //Cancelado// o //Error//.
+
+++Consulta++
+
+En el modo consulta, puede consultar los diferentes parámetros del evento, así como los usuarios asignados y descargar los ficheros adjuntos, si los hubiera. También puede ver si ya se ha mostrado la notificación de inicio o finalización.
+
+Puede editar el evento haciendo clic en el botón //Editar//.
+
+
+
++Campañas comerciales+
+
+Esta aplicación le permite llevar un control de todas sus campañas comerciales.
+
+[../img/campanyas-listado.png]
+
+++Listado de campañas comerciales.++
+
+En el listado de campañas comerciales. podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica la campaña comercial.
+- **Inicio:** Fecha de inicio de la campaña comercial.
+- **Fin:** Fecha de fin de la campaña comercial.
+- **Nombre:** Nombre de la campaña comercial.
+- **Estado:** Estado en el que se encuentra la campaña comercial. (Planificada, Empezada, Cancelada, Acabada).
+- **NPC:** Número de posibles clientes incluidos en la campaña comercial.
+- **NCL:** Número de clientes incluidos en la campaña comercial.
+- **NAG:** Número de eventos realizados en la campaña comercial.
+- **NPR:** Número de presupuestos realizados gracias a la campaña comercial.
+- **NPY:** Número de proyectos realizados gracias a la campaña comercial.
+- **NC:** Número de comentarios introducidos sobre esta campaña.
+- **NF:** Número de ficheros vinculados con esta campaña.
+
+
++++Opciones del listado+++
+
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+++Formulario de campañas comerciales++
+
+Esta es la aplicación de campañas comerciales, con ella podrá añadir, modificar y visionar todos los datos de las diferentes campañas comerciales que se realicen en la entidad, la información esta clasificada en diferentes pestañas: datos principales, comentarios, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
++++Pestaña Datos de la campaña+++
+
+En esta pestaña podrá visualizar y modificar los principales datos sobre la campaña. A continuación le relacionamos todos los campos de información.
+
+[../img/campanyas-formulario.png]
+
+- **Nombre (*):** Nombre comercial de la campaña comercial.
+- **Estado (*):** Estado en el que se encuentra la campaña comercial.
+- **Inicio (*):** Fecha de inicio de la campaña comercial.
+- **Fin (*):** Fecha de fin de la campaña comercial.
+- **Descripción:** Breve descripción de la campaña comercial.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar una campaña.**
+
++++Pestaña Nuevos comentarios+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Comentarios+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Nuevos archivos adjuntos+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Archivos adjuntos+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Datos del registro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Carpetas+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+
+
+
++Clientes+
+
+Esta aplicación le permite llevar un control de todos sus clientes.
+
+[../img/clientes-listado.png]
+
+++Listado de clientes++
+
+En el listado de clientes podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica al cliente.
+- **N.I.F:** Número de identificación fiscal facilitado por la hacienda publica.
+- **Nombre:** Nombre del cliente.
+- **Teléfono fijo:** Teléfono fijo principal para ponernos en contacto.
+- **Teléfono móvil:** Teléfono móvil principal para ponernos en contacto.
+- **Cuenta de correo:** Cuenta de correo principal para ponernos en contacto.
+- **NC:** Número de comentarios introducidos sobre este cliente.
+- **NF:** Número de ficheros vinculados con este cliente.
+
+
++++Opciones del listado+++
+
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+++Formulario de clientes++
+
+Esta es la aplicación de clientes con ella podrá añadir, modificar y visionar todos los datos del cliente clasificados en diferentes pestañas. Datos principales, comentarios, fichero adjuntos, gráficas y estadísticas sobre las compras realizadas, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
++++Pestaña Datos del cliente+++
+
+En esta pestaña podrá visualizar y modificar los principales datos de cliente. A continuación le relacionamos todos los campos de información.
+
+[../img/clientes-formulario.png]
+
+- **Código de cliente:** Código numérico con el que se identifica al cliente
+- **Campana comercial:** Campaña comercial
+- **Tipo de entidad:** Con este campo podrá designar si el cliente es una persona física o una entidad jurídica.
+- **Mostrar como (*):** Este el es nombre que se utilizara en los listado y selectores, en caso de ser una persona podría dedicarse para incluir el apodo.
+- **Nombre comercial:** Nombre comercial del cliente.
+- **Nombre Fiscal:** Nombre fiscal que se utiliza en los documentos legales como facturas, contratos, etc..
+- **N.I.F:** Número de Identificación fiscal, número proporcionado por la hacienda publica con el que se identifica a la entidad.
+- **Comentarios:** Comentarios sobre el cliente.
+- **Corriente:** Cuenta corriente que se utiliza para realizar los cargos de las compras realizadas por este cliente.
+- **Contable:** Cuenta contable que se utilizara en el sistema contable de la empresa.
+- **Día de pago:** Día en el cual se han de realizar los cargos de las compras realizadas durante todo el mes.
+- **Dirección:** Dirección de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **País:** País de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Provincia:** Provincia de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Población:** Población de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Código postal:** Código postal de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Email:** Cuenta de correo principal de contacto es la que se visualizara en todos listados.
+- **Web:** Web principal de contacto es el que se visualizara en todos listados.
+- **Número Fijo:** Fijo principal de contacto es el que se visualizara en todos listados.
+- **Número Móvil:** Móvil principal de contacto es el que se visualizara en todos listados.
+- **Numero Fax:** Fax principal de contacto es el que se visualizara en todos listados.
+- **Comentario:** Para poder indicar comentarios sobre este cliente.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un cliente.**
+
+Ademas, en la primera pestaña tiene unos **botones de acción.**
+
+- **[../../lib/silk/icons/add.png] Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+
+
++++Pestaña Comentarios+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Ficheros adjuntos+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Nuevos comentarios+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Nuevos ficheros+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Gráficas y estadísticas+++
+
+En esta pestaña podrá ver las gráficas y estadísticas de compras realizadas por este cliente.
+
+%[Aquí imagen ejemplo de gráficas y estadísticas]
+
++++Pestaña Datos del registro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Carpetas+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+
+
++Contactos+
+
+Esta aplicación le permite llevar un control de todos sus contactos.
+
+[../img/contactos-listado.png]
+
+++Listado de contactos++
+
+En el listado de contactos podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica al contactos.
+- **Cliente:** Nombre del cliente vinculado con el contacto.
+- **Nombre:** Nombre del contacto.
+- **Proyecto:** Nombre del proyecto vinculado con el contacto.
+- **Teléfono fijo:** Teléfono fijo principal para ponernos en contacto.
+- **Teléfono móvil:** Teléfono móvil principal para ponernos en contacto.
+- **Cuenta de correo:** Cuenta de correo principal para ponernos en contacto.
+
+
++++Opciones del listado+++
+
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+++Formulario de contactos++
+
+Esta es la aplicación de contactos, con ella podrá añadir, modificar y visionar todos los datos del contacto clasificados en diferentes pestañas. Datos principales, comentarios, fichero adjuntos, gráficas y estadísticas sobre las compras realizadas, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
++++Pestaña Datos del contacto+++
+
+En esta pestaña podrá visualizar y modificar los principales datos de contacto. A continuación le relacionamos todos los campos de información.
+
+[../img/contactos-formulario.png]
+
+- **Cliente:** Para poder vincular el contacto con un cliente.
+- **Proveedor:** Para poder vincular el contacto con un proveedor.
+- **Proyecto:** Para poder vincular el contacto con un proyecto en concreto.
+- **Empleado:** Para poder vincular el contacto con un empleado nuestro.
+- **Nombre (*):** Nombre comercial del contacto.
+- **Apellidos:** Apellidos del contacto.
+- **Cargo:** Cargo que desempeña en su lugar de trabajo.
+- **Mostrar como (*):** Este el es nombre que se utilizara en los listado y selectores, se puede utilizar para referirse al apodo o nick.
+- **Comentarios:** Comentarios sobre el contacto.
+- **Dirección:** Dirección del contacto, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **País:** País del contacto, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Provincia:** Provincia del contacto, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Población:** Población del contacto, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Código postal:** Código postal del contacto, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Email:** Cuenta de correo principal de contacto es la que se visualizara en todos listados.
+- **Web:** Web principal de contacto es el que se visualizara en todos listados.
+- **Número Fijo:** Fijo principal de contacto es el que se visualizara en todos listados.
+- **Número Móvil:** Móvil principal de contacto es el que se visualizara en todos listados.
+- **Numero Fax:** Fax principal de contacto es el que se visualizara en todos listados.
+- **Comentario:** Para poder indicar comentarios sobre este contacto.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un contacto.**
+
++++Pestaña Datos del registro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Carpetas+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+
+
+
++Correo electrónico+
+
+Con el cliente de correo electrónico de SaltOS podrá trabajar como en cualquier otro cliente, ya sea de tipo //webmail// o una aplicación de escritorio.
+
+Saltos realiza el envío y la recepción de los correos periódicamente en segundo plano.
+
+++Listado de correos++
+
+En el listado de sus correos electrónicos encontrará tanto los enviados por usted como los recibidos.
+
+Encima del listado encontrará un espacio con opciones para buscar, exportar, filtrar, marcar y borrar los correos. Estas opciones están agrupadas en tres grupos. Para ir de un grupo a otro haga clic en //Opciones// o seleccione directamente el número del grupo.
+
+En el primer grupo encontrará una caja de texto para realizar una búsqueda por la cadena de texto introducida. Desde este grupo también forzar el envío y la recepción de correo. También puede ordenar el correo en el siguiente orden haciendo clic en el botón //Ordenar//: nuevo, pendiente y resto.
+
+En el segundo grupo podrá filtrar el correo en función de su estado (nuevo, pendiente o spam), su fecha (hoy, ayer, semana actual, mes actual) y si es un correo enviado o recibido.
+
+El tercer y último grupo le permite marcar el correo como leído o no leído, pendiente o no pendiente o como SPAM. También podrá borrar desde aquí los correos seleccionados.
+
+Para aplicar cualquier cualquier acción sobre uno o varios correos, seleccione el o los correos y haga clic en el botón correspondiente.
+
++++Significado de los colores+++
+
+- **Verde:** correo **nuevo**
+- **Azul** oscuro: correo marcado como **pendiente**
+- **Rojo:** correo basura **//(SPAM)//**
+
+
++++Opciones del listado+++
+
+Las opciones del listado en este mismo orden son:
+
+- Consultar el correo
+- Exportar en formato PDF
+- Consultar en el visor PDF interno
+- Responder
+- Responder a todos
+- Reenviar el correo
+- Marcarlo como pendiente
+- Marcarlo como SPAM
+- Agregarlo a la página de inicio
+- Borrarlo
+
+
+Para enviar un correo nuevo al remitente del correo puede hacer clic en la dirección de correo electrónico del mismo. Si desea enviar un nuevo correo desde la cuenta del destinatario (probablemente la suya), haga clic encima de la misma. También consultar el correo haciendo clic en el asunto.
+
+++Enviar nuevo correo++
+
+A la hora de enviar un nuevo correo, puede seleccionar desde qué cuenta desea realizar el envío (en caso de tener más de una cuenta configurada).
+
+Para agregar los destinatarios, comienza a escribir en la caja de texto //(*) Para//. A medida que va escribiendo el nombre o la dirección del destinatario, SaltOS le propondrá varios resultados que coincidan con el texto introducido. Si encuentra al destinatario en la lista, selecciónelo para agregarlo a lista. En caso contrario, escriba la dirección completa del mismo.
+
+Para enviar una //copia carbón// o una //copia carbón oculta//, agregue los destinatarios a los campos //CC// o //BCC// respectivamente.
+
+Si desea recibir una confirmación de recepción del destinatario, marque la casilla //Solicitar confirmación de recepción//. Tenga en cuenta que este mecanismo no es automático, sino que el destinatario puede decidir no contestar a la solicitud habiendo recibido y consultado el correo.
+
+Para agregar un texto predefinido al correo, seleccione el nombre de la plantilla en el desplegable de //Textos predefinidos// y haga clic en //Añadir//.
+
+Para enviar uno o varios fichero, seleccione la pestaña //Nuevos ficheros adjuntos//. Si desea añadir más de un fichero haga clic en //Añadir fichero//. Para seleccionar el fichero a enviar, haga clic en //Seleccionar archivo// e indíquelo a través del diálogo.
+
+++Consulta de un correo++
+
+En el modo consulta del correo puede realizar las misma funciones que en listado: responder al remitente, responder a todos y agregarlo a la página de inicio. También puede marcar como //pendiente// o //SPAM// marcando la casilla de verificación correspondiente y haciendo clic en //Volver//.
+
+Puede ver el correo entero en la pestaña //Zoom del correo//.
+
+Si el correo tuviera ficheros adjuntos, podrá ver y descargarlos en la pestaña //Adjuntos//. Para realizar una descarga de varios ficheros a la vez, selecciónelos y haga clic en //Descargar ficheros seleccionados//.
+
+
+
++Documentos+
+
+El gestor documental de SaltOS, le permitirá organizar y compartir sus documentos y archivos.
+
+Podrá relacionar los documentos subidos con un cliente o proyecto para mantener una perfecta organización de su documentación.
+
+Los documentos no se subirán sueltos, sino que puede agruparlos, como si se tratara de carpetas. De esta manera puede guardar varias versiones de un mismo documento o varios documentos con la misma finalidad.
+
+++Listado++
+
+El listado le mostrará los parámetros más importante de las distintas  carpetas o contenedores de ficheros. Las dos últimas columnas, //NC// y //NF//, le muestran el número de comentarios y el número de ficheros de la carpeta respectivamente.
+
+++Creación++
+
+A la hora de crear un nuevo contenedor o carpeta, indique el nombre y la descripción del mismo. Recuerde introducir nombres significativos ya que éstos le facilitarán las búsquedas posteriores. Puede relacionar opcionalmente el contenedor o carpeta con un cliente y/o proyecto.
+
+Para añadir nuevos ficheros, haga clic en la pestaña //Nuevos ficheros adjuntos// e indique el fichero haciendo clic en el botón //Seleccionar archivo// (el texto del botón puede variar en función del navegador o sistema operativo). Si desea añadir más ficheros, haga clic en //Añadir fichero// y repita el proceso anterior.
+
+Tenga en cuenta que la cantidad y tamaño de los ficheros puede quedar limitado por las características del servidor en el cual se hospeda SaltOS. Si experimentase problemas a la hora de subir ficheros, intente subirlos de uno en uno y verifique que el tamaño de los mismo no exceda las capacidades del servidor.
+
+++Modificación++
+
+La modificación de una carpeta o contenedor de archivos, le permitirá modificar los mismos parámetros que en el proceso de creación. Adicionalmente puede añadir un comentario.
+
+Si desea añadir más ficheros, haga clic en //Nuevos ficheros adjuntos//.
+
+++Consulta++
+
+El modo de consulta le permite consultar los datos de la carpeta así como descargar los ficheros adjuntos.
+
+Para acceder directamente al detalle del cliente o proyecto relacionado, haga clic en el botón situado al lado del desplegable correspondiente.
+
+Para descargar individualmente los ficheros adjuntos, haga clic en el botón //Descargar// del listado, dentra la pestaña //Ficheros adjuntos//. Si desea descargar varios ficheros, marque el //checkbox// correspondiente y haga clic en //Descargar ficheros seleccionados//. Se abrirá un fichero comprimido en formato //ZIP// que contendrá los ficheros seleccionados.
+
+Si desea consultar en fichero con el visor interno de SaltOS, haga clic en //Visor PDF//. Tenga cuenta que el formato del fichero debe ser un documento o una imagen.
+
+
+
++Lector Feeds RSS y Atom+
+
+El lector de feeds le ofrece la posibilidad de seguir cómodamente sus canales RSS y Atom desde SaltOS.
+
+Para configurar un nuevo canal RSS, consulte el capítulo 2.
+
+++Listado++
+
+El listado de entradas le muestra los últimos //posts// descargados.
+
+El funcionamiento de esta aplicación es muy parecida al del lector de correo electrónico.
+
+El color de letra de cada entrada indica el estado y las opciones de búsqueda, filtrado y exportación funcionan de la misma manera. Puede marcar un post como pendiente, o volver a marcarlo como no leído si ya lo ha consultado.
+
+++Consulta++
+
+El modo //Consulta// de un post le permite acceder a la fuente original, haciendo clic en el enlace de la cabecera. También puede enviar el contenido del post, por ejemplo, para recomendarlo a otra persona.
+
+Para ver el contenido del post con más detalle, haga clic en //Zoom del post//.
+
+
+
++Ficheros adjuntos+
+
+SaltOS le permite añadir uno o varios ficheros a la gran mayoría de aplicaciones, por ejemplo, en clientes, proyectos, eventos, presupuestos, correos electrónicos, etc. La aplicación //Ficheros adjuntos// le permite buscar y acceder rápidamente a los ficheros subidos. De esta manera tiene la posibilidad de obtener un fichero si no recuerdo dónde lo ha guardado.
+
+++Listado de ficheros adjuntos++
+
+El listado de ficheros adjuntos le muestra el nombre de la aplicación, el código y el nombre del elemento (factura, presupuesto, correo) que contiene el fichero en cuestión. También podrá ver el nombre del propietario de ese elemento, la fecha y hora de creación del elemento así como el nombre y el tamaño del fichero.
+
+Para descargar o ver el fichero, haga clic en el icono correspondiente en las últimas columnas de listado.
+
+Si desea acceder directamente al elemento que contiene el fichero, haga clic en su nombre (tercera columna).
+
+
+
++Introducción+
+
+Bienvenido a SaltOS, su solución libre de Gestión Empresarial que integra las funcionalidades de CRM (administración de la relación con los clientes) y ERP (Planificación de recursos empresariales).
+
+SaltOS le permitirá organizar y mantener toda la información relativa a la gestión de su empresa, como clientes, contactos, proyectos, presupuestos, facturas y mucho más. También ofrece la posibilidad de gestionar su correo, agenda y Feeds RSS preferidos.
+
+Verá que la interfaz de SaltOS es intuitiva y fácil de usar, lo cual le permitirá trabajar de forma eficiente y cómoda.
+
+**//¡Bienvenido a la Comunidad de SaltOS!//**
+
+++Visión general++
+
+SaltOS está compuesto por una serie de aplicaciones o módulos. Cada aplicación ofrece un funcionalidad concreta dentro de las siguientes categorías:
+  - Funcionalidades Generales
+    - Página de inicio o //Dashboard//
+    - Correo electrónico
+    - Agenda de eventos
+    - Gestor de documentos
+    - Ficheros adjuntos
+    - Lector de //feeds RSS//
+    - Textos predefinidos
+    - //Mi perfil//
+    - Soporte técnico
+    - Acerda de SaltOS
+  - Carpetas del usuario
+  - Gestión Comercial
+    - Campañas comerciales
+    - Posibles clientes
+    - Presupuestos
+    - Actas de reuniones
+    - Clientes
+    - Contactos
+  - Gestión de Proyectos
+    - Proyectos
+    - Seguimiento de tareas
+    - Partes de trabajo
+    - Actas de reuniones
+    - Incidencias
+  - Contabilidad
+    - Facturas
+    - Facturas periódicas
+    - Proveedores
+    - Gastos
+
+
+Para gestionar la configuración del propio SaltOS existen varias aplicaciones:
+- Administración
+  - Productos
+  - Empleados
+  - Usuarios
+  - Grupos
+- Tipos
+  - Cuentas
+  - Epígrafes
+  - Estados
+  - Formas de pago
+  - Prioridades
+  - Tipos de comunicación
+  - Tipos de eventos
+- Sistema
+  - Importaciones
+  - Configuración
+  - Base de datos
+
+
+++Interfaz++
+
+El interfaz gráfico de SaltOS está divido en 5 secciones:
+  - **Barra superior:** en ella se situarán los botones de acceso rápido
+  - **Menú zona izquierda:** desde aquí podrá acceder a las distintas aplicaciones de SaltOS. Puede ocultar este menú para ampliar el espacio disponible en la pantalla.
+  - **Herramientas zona derecha:** desde aquí podrá usar las diferentes herramientas que SaltOS pone a su disposición para mejorar su trabajo.
+  - **Barra inferior:** espacio reservado con información de la versión actual de SaltOS y el control del lector por voz (si está habilitado).
+  - **Espacio central:** en él encontrará la aplicación seleccionada
+
+
++++Espacio central+++
+
+En el **espacio central** se mostrarán los listados y formularios de las distintas aplicaciones. Para facilitar la visión, la información se encuentra agrupada en **solapas** o //tabs//, por ejemplo, 'Listado de clientes', 'Opciones de filtro', 'Gráficas y Estadísticas', etc. Puede acceder a las distintas solapas haciendo clic en el nombre de cada una en la parte superior del espacio central.
+
+++++Listados++++
+
+En la primera se muestra un listado con los datos de cada aplicación. En la parte superior del listado encontrará el significado de cada columna así como la posibilidad de ordenador el listado en función del valor de ésta. La ordenación puede realizarse en sentido ascendente o descente haciendo clic en las flechas disponibles en cada columna.
+
+En la primera columna de cada listado encontrará un elemento de tipo //checkbox// con el fin de poder seleccionar todos los registros en un único clic. También encontrará este elemento en cada registro del listado para poder seleccionarlos de forma individual. Estos controles servirán para poder aplicar funciones de manera masiva en el o los registros seleccionados, por ejemplo borrar registros o liquidar partes de trabajo.
+
+En las últimas columnas de cada registro se encuentran los botones para realizar acciones sobre el registro en cuestión:
+  - Ver o consultar
+  - Editar
+  - Copiar
+  - Exportar en formato PDF
+  - Mostrar registro en el visor interno
+  - Borrar
+
+
+En función de cada aplicación podrá encontrar más funcionalidades como:
+  - Exportar en formato VCard
+  - Enviar registro por correo electrónico
+
+
+En determinadas aplicaciones encontrará **información adicional** en la parte inferior del listado, por ejemplo, en la aplicación de facturas encontrará el sumario de los importes de las factura mostradas.
+
+Encima del listado se encuentra el **buscador rápido** en forma de caja de texto. Introduzca aquí el término buscado y haga clic en el botón 'Buscar' para iniciar la búsqueda. Una vez filtrado el contenido del listado actual podrá volver a obtener todos los registros haciendo clic en el botón 'Reset'.
+
+En función de la aplicación encontrará otros botones:
+  - Exportar en formato Excel
+  - Exportar en formato PDF
+  - Enviar PDF
+  - Liquidar
+  - etc.
+
+
+Para **crear un nuevo registro** en la aplicación actual, por ejemplo una factura, un cliente, etc; debe hacer clic en el botón que se sitúa a la izquierda debajo de listado. En esta zona también se encuentra un selector para seleccionar la cantidad de registros mostrados en la misma pantalla (50, 100, 150, etc.).
+
+En el lado derecho se encuentran los controles para **navegar** a la siguiente página de listado así como un selector para **acceder directamente a una página determinada**.
+
+++++Opciones de filtro++++
+
+La mayoría de aplicaciones disponen de un buscador para filtrar el listado de registro según los criterios del usuario. Encontrará un  buscador simple encima de listado de la aplicación, tal y como se ha descrito en el apartado anterior. En la pestañana 'Opciones de filtro' se encuentra un **buscador avanzado** que le permitirá afinar la búsqueda en función de los campos de información de la aplicación.
+
+En la parte inferior de la pestaña del buscador existe la posibilidad de **guardar sus parámetros de la de búsqueda** para recuperarlos cómodamente en futuras búsquedas.
+
+Para **crear un filtro**, seleccione e introduzca los criterios de búsqueda en el apartado superior, asígnele un nombre en la caja de texto 'Nombre del nuevo filtro' y haga clic en el botón 'Crear'.
+
+Para **recuperar un filtro** definido, selecciónelo en el desplegable y haga clic en 'Cargar'. Verá que el formulario de la búsqueda recuperará las opciones definidas, para realizar la búsqueda haga clic en 'Buscar'. Si desea **actualizar un filtro**, cárgelo y modifique los parámetros definidos. Cuando haya terminado haga clic en 'Actualizar'. Si desea **borrar** un filtro definido haga clic en 'Borrar'.
+
+
+
++Incidencias+
+
+Esta aplicación le permite llevar un control de todas las incidencias ocurridas en la empresa.
+
+[../img/incidencias-listado.png]
+
+++Listado de incidencias++
+
+En el listado de incidencias podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica el trabajo.
+- **Usuario:** Usuario que abre la incidencia.
+- **Fecha:** Fecha y hora de la incidencia.
+- **Cliente:** Cliente en el cual se ha generado la incidencia.
+- **Proyecto:** Nombre del proyecto en el cual se ha generado la incidencia.
+- **Incidencia:** Nombre descriptivo del motivo de la incidencia.
+- **Estado:** Estado en el que se encuentra la incidencia (Nueva, empezada, asignada, resuelta, revisada, cerrada, rechazada, duplicada, reabierta).
+- **Prioridad:** Prioridad de la incidencia (Alta, normal, baja).
+- **Asignado a:** Usuarios involucrados en la incidencia.
+- **NC:** Número de comentarios introducidos sobre esta incidencia.
+- **NF:** Número de ficheros vinculados sobre esta incidencia.
+
+
++++Opciones del listado+++
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+++Formulario de incidencias++
+
+Esta es la aplicación de incidencias, con ella podrá añadir, modificar y visionar todos los datos de las diferentes incidencias clasificados en diferentes pestañas: datos principales, usuarios asignados, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
++++Pestaña Datos de la incidencia+++
+
+En esta pestaña podrá visualizar y modificar los principales datos de la incidencia. A continuación le relacionamos todos los campos de información.
+
+[../img/incidencias-formulario.png]
+
+- **Cliente:** Para vincular el cliente donde ha ocurrido la incidencia.
+- **Proyecto:** Para vincular el proyecto en el que ha ocurrido la incidencia.
+- **Prioridad (*):** Prioridad de la incidencia (Alta, normal, baja).
+- **Nombre (*):** Nombre descriptivo de la incidencia ocurrida.
+- **Estado (*):** Estado en el que se encuentra la incidencia (Nueva, empezada, asignada, resuelta, revisada, cerrada, rechazada, duplicada, reabierta).
+- **Descripción (*):** Descripción mas detallada de la incidencia ocurrida.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar una incidencia.**
+
++++Pestaña Usuario asignado+++
+
+En esta pestaña podrá incluir todos los usuarios que están involucrado con la incidencia.
+
++++Pestaña Ficheros adjuntos+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Nuevos ficheros+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Datos del registro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Carpetas+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+
+
++Partes de trabajo+
+
+Esta aplicación le permite llevar un control de todos partes de trabajo que realicen los trabajadores en la empresa.
+
+[../img/partes-listado.png]
+
+++Listado de partes de trabajo++
+
+En el listado de partes de trabajo podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica el trabajo.
+- **Cliente:** Para que cliente se ha realizado el trabajo.
+- **Proyecto:** Nombre del proyecto sobre el que se cargara el trabajo realizado
+- **Tarea:** Nombre descriptivo del trabajo realizado.
+- **Fecha:** Fecha en que se realizo el trabajo.
+- **Horas (*):** Horas que se han empleado para finalizar la trabajo.
+- **Precio (*):** Precio hora en función de la categoría laboral.
+- **Total (*):** Importe total del trabajo realizado.
+- **Liq.:** Determina si el parte esta liquidado. **Los partes no liquidados se marcan con fondo rojo.**
+- **Fecha liq.:** Fecha de liquidación del parte.
+- **NC:** Número de comentarios introducidos sobre este posible cliente.
+- **NF:** Número de ficheros vinculados con este posible cliente.
+
+
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
++++Opciones del listado+++
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del seleccionado.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con el registro seleccionado adjuntado como archivo PDF.
+
+
+Este listado dispone ademas de las siguientes acciones:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar el listado de todos los partes de trabajo a un archivo con formato Excel.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar los partes seleccionados a un archivo en formato. PDF.
+- [../../lib/silk/icons/monitor.png]: Visualizar los partes seleccionados en formato. PDF en pantalla.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con los partes seleccionados adjuntados como archivos PDF.
+- [../../lib/silk/icons/disk.png]: Liquida los partes seleccionados indicando la fecha de hoy.
+
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Opciones de gráficas y estadísticas+++
+
+En esta pestaña podrá ver estadísticas sobre los partes realizados el último año y el top 10 de clientes mas activos.
+
+[../img/partes-listado-graficas.png]
+
+++Formulario de partes de trabajo++
+
+Esta es la aplicación de seguimiento de tareas, con ella podrá añadir, modificar y visionar todos los datos del seguimiento clasificados en diferentes pestañas: datos principales, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
++++Pestaña Datos del parte de trabajo+++
+
+En esta pestaña podrá visualizar y modificar los principales datos del parte. A continuación le relacionamos todos los campos de información.
+
+[../img/partes-formulario.png]
+
+- **Cliente:** Para vincular el cliente para el que se realiza el trabajo.
+- **Proyecto:** Para vincular el proyecto en el que esta incluido este trabajo.
+- **Nombre (*):** Nombre descriptivo del trabajo a realizar.
+- **Fecha (*):** Fecha del trabajo.
+- **Comentarios (*):** Para añadir datos o notas importantes relacionadas con el trabajo realizado.
+- **Horas (*):** Horas que se han utilizado para realizar el trabajo.
+- **Precio (*):** Precio unitario.
+- **Total (*):** Importe total del trabajo realizado, campo calculado por la aplicación.
+- **Liquidado:** Selector para determinar si el parte esta liquidado.
+- **Fecha Liq.:** Fecha de liquidación del parte.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un parte.**
+
++++Pestaña Comentarios+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Ficheros adjuntos+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Nuevos comentarios+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Nuevos ficheros+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Datos del registro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Carpetas+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+
+
++Posibles clientes+
+
+Esta aplicación le permite llevar un control de todos sus posibles clientes.
+
+[../img/posiblescli-listado.png]
+
+++Listado de posibles clientes++
+
+En el listado de posibles clientes podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica al posible cliente.
+- **Nombre:** Nombre del posible cliente
+- **Activo:** Si esta activo o no para realizar tareas comerciales, presupuestos actas, etc..
+- **Estado:** Estado en que se encuentra el posible cliente.
+- **Teléfono fijo:** Teléfono fijo principal para ponernos en contacto.
+- **Teléfono móvil:** Teléfono móvil principal para ponernos en contacto.
+- **Cuenta de correo:** Cuenta de correo principal para ponernos en contacto.
+- **NC:** Número de comentarios introducidos sobre este posible cliente.
+- **NF:** Número de ficheros vinculados con este posible cliente.
+
+
++++Opciones del listado+++
+
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+
+
+Este listado dispone ademas de las siguientes acciones:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar listado de todos los datos de los posibles clientes a un archivo con formato Excel.
+
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+++Formulario posibles clientes++
+
+Esta es la aplicación de posibles clientes, con ella podrá añadir, modificar y visionar todos los datos del posible cliente clasificados en diferentes pestañas: datos principales, comentarios, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
++++Pestaña Datos del posible cliente+++
+
+En esta pestaña podrá visualizar y modificar los principales datos del posible cliente. A continuación le relacionamos todos los campos de información.
+
+[../img/posiblescli-formulario.png]
+
+- **Campaña (*):** Campaña comercial con la que se ha conseguido este contacto comercial.
+- **Estado (*):** Estado en el que se encuentran las relaciones comerciales con este posible cliente.
+- **Activo:** Es un campo que sirve a la aplicación para indicar si esta activo para realizar presupuesto, actos y eventos dentro de SaltOS
+- **Empresa (*):** Nombre comercial de la entidad.
+- **N.I.F:** Numero de identificación fiscal proporcionado por la hacienda publica.
+- **Pers. Contacto (*):** Nombre de la persona de contacto con la que se están realizando las labores comerciales.
+- **Cargo (*):** Cargo de la persona de contacto.
+- **Dirección:** Dirección de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **País:** País de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Provincia:** Provincia de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Población:** Población de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Código postal:** Código postal de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Email:** Cuenta de correo principal de contacto es la que se visualizara en todos listados.
+- **Web:** Web principal de contacto es el que se visualizara en todos listados.
+- **Número Fijo:** Fijo principal de contacto es el que se visualizara en todos listados.
+- **Número Móvil:** Móvil principal de contacto es el que se visualizara en todos listados.
+- **Numero Fax:** Fax principal de contacto es el que se visualizara en todos listados.
+- **Facturación:** Rango de facturación del posible cliente
+- **Descripción IAE:** Pequeña descripción de la actividad económica a la que se dedica el posible cliente.
+- **Cód. IAE:** Código de actividad económica [+ info http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas].
+- **Comentarios:** Comentarios sobre el contacto.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un posible cliente.**
+
+Ademas, en la primera pestaña tiene unos **botones de acción.** para facilitarle las principales tareas relacionadas con los contactos comerciales.
+
+- **[../../lib/silk/icons/add.png] Añadir evento:** Le llevara al formulario de nuevo evento para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
+- **[../../lib/silk/icons/add.png] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
+- **[../../lib/silk/icons/add.png] Crear cliente:** Le llevara al formulario de creación de cliente con todos los datos incluidos en la ficha del posible cliente.
+
+
++++Pestaña Comentarios+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Ficheros adjuntos+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Nuevos comentarios+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Nuevos ficheros+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Datos del registro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Carpetas+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+
+
+
++Presupuestos+
+
+Esta aplicación le permite llevar un control de todos los presupuesto realizados en la empresa.
+
+[../img/presupuestos-listado.png]
+
+++Listado de presupuestos++
+
+En el listado de presupuestos podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica al presupuesto.
+- **Cliente:** Para que cliente se ha realizado el presupuesto.
+- **Presupuesto:** Nombre que se le ha dado al presupuesto.
+- **Fecha:** Fecha de realización del presupuesto.
+- **Tareas (€) (*):** Importe del total de tareas planeadas en el presupuesto.
+- **Prod. (€) (*):** Importe total de todos los productos incluidos en el presupuesto.
+- **Total (€) (*):** Importe total del presupuesto.
+- **Estado:** Estado actual del presupuesto (Sin enviar, enviado, aceptado, cancelado, parado).
+- **NT:** Número de tareas planeadas en el presupuesto.
+- **NP:** Número de productos incluidos en el presupuesto.
+- **NC:** Número de comentarios introducidos sobre este presupuesto.
+- **NF:** Número de ficheros vinculados con este presupuesto.
+
+
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
++++Opciones del listado+++
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con el presupuesto seleccionado adjuntado como archivo PDF.
+
+
+Este listado dispone ademas de las siguientes acciones seleccionando varios presupuesto simultáneamente:
+
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar los presupuesto seleccionados a un archivo en formato. PDF.
+- [../../lib/silk/icons/monitor.png]: Visualizar los presupuesto seleccionados en formato. PDF en pantalla.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con los presupuestos seleccionados adjuntados como archivos PDF.
+
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Gráficas y estadísticas+++
+
+En esta pestaña podrá ver las estadísticas sobre cuantos presupuesto tiene en cada estado, pudiendo detectar picos y bajadas de faena antes de que sucedan y así poder tomar medidas para mitigar estos momentos críticos.
+
+++Formulario de presupuestos++
+
+Esta es la aplicación de presupuesto, con ella podrá añadir, modificar y visionar todos los datos del presupuesto clasificados en diferentes pestañas: datos principales, objetivos del presupuesto, propuesta funcional, propuesta técnica, información adicional, tareas del presupuesto, productos del presupuesto, condiciones del presupuesto, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+[../img/presupuestos-formulario.png]
+
++++Pestaña Datos del presupuesto+++
+
+En esta pestaña podrá visualizar y modificar los principales datos del presupuesto. A continuación le relacionamos todos los campos de información.
+
+- **Posible cliente:** Para poder vincular el presupuesto con un posible cliente.
+- **Campaña:** Para vincular en caso que el presupuesto haya sido. Pedido gracias a una campaña comercial concreta.
+- **Cliente:** Para poder vincular el presupuesto con un cliente.
+- **Proyecto:** Para poder vincular el presupuesto con el proyecto a realizar y después poder ver desviaciones.
+- **Nombre (*):** Nombre que se le quiera dar al presupuesto.
+- **Fecha:** Fecha de realización del presupuesto.
+- **Estado (*):** Estado en el que se encuentra el presupuesto (Sin enviar, enviado, aceptado, cancelado, parado).
+- **Descripción:** Descripción general del presupuesto.
+- **Tabla resumen:** En esta tabla podrá encontrar el total de horas de tareas, unidades de productos, y el importe total del presupuesto.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un presupuesto.**
+
+Ademas, en la primera pestaña tiene unos **botones de acción.**
+
+- **[../../lib/silk/icons/add.png] Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+
+
++++Pestaña de Objetivos+++
+
+En esta pestaña podrá describir los objetivos del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+[../img/presupuestos-formulario-objetivos.png]
+
++++Pestaña de Propuesta funcional+++
+
+En esta pestaña podrá describir propuesta funcional del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+[../img/presupuestos-formulario-propuesta-funcional.png]
+
++++Pestaña de Propuesta técnica+++
+
+En esta pestaña podrá describir la propuesta técnica del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+[../img/presupuestos-formulario-propuesta-tecnica.png]
+
++++Pestaña de Información adicional+++
+
+En esta pestaña podrá describir información adicional que no se haya especificado en otros apartados del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+[../img/presupuestos-formulario-informacion-adicional.png]
+
++++Pestaña de Tareas+++
+
+En esta pestaña podrá incluir, modificar o eliminar  todas las tareas a realizar vinculadas en este presupuesto.
+
+[../img/presupuestos-formulario-listado-tareas.png]
+
+- **Tabla Resumen:** En esta tabla podrá ver diferente información sobre las tareas incluidas en el presupuesto, total de horas, precio medio, importe total de horas.
+- **Lista de tareas:** En esta lista podrá ir añadiendo, modificando o eliminando tantas tareas como sean necesarias, los campos que incluye son: **descripción de la tarea, horas necesarias, precio unitario, descuento, total tarea**.
+
+
++++Pestaña de Productos+++
+
+En esta pestaña podrá incluir, modificar o eliminar todas los productos vinculadas en este presupuesto.
+
+[../img/presupuestos-formulario-listado-productos.png]
+
+- **Tabla Resumen:** En esta tabla podrá ver diferente información sobre los productos incluidos en el presupuesto, total de unidades, importe total de productos.
+- **Lista de productos:** En esta lista podrá ir añadiendo, modificando o eliminando tantos productos como sean necesarios, los campos que incluye son: **descripción del producto, unidades, precio unitario, descuento, total productos**.
+
+
++++Pestaña de condiciones+++
+
+En esta pestaña podrá describir las condiciones a las que esta sujeto el presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
+
+[../img/presupuestos-formulario-condiciones.png]
+
++++Pestaña Nuevos ficheros+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Datos del registro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Carpetas+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+
+
+
++Mi perfil+
+
+SaltOS le permitirá personalizar y configurar varios aspectos de la aplicación:
+
+- Preferencias Generales (idioma, aspecto, contraseña, etc.)
+- Carpetas de usuario
+- Menú rápido
+- Google Calendar
+- Feeds RSS
+- Cuentas de correo electrónico
+
+
+Para acceder a la configuración general haga clic en //Mi Perfil// en el apartado **General** del menú vertical.
+
+++ Preferencias Generales ++
+
+En la primera solapa podrá elegir el idioma de la aplicación, el tema o esquema de colores así como el juego de iconos de la aplicación.
+
+Para cambiar la contraseña de acceso a la aplicación, introduzca su clave actual en la caja de texto 'Clave Antigua' y a continuación la nueva en las dos cajas de texto 'Clave nueva' y 'Repita clave'.
+
+Después de realizar cualquier cambio en esta pestaña haga clic en 'Actualizar'.
+
+++ Menú rápido ++
+
+En este apartado podrá añadir y quitar botones de acceso rápido a la barra superior de SaltOS.
+
+Para añadir un nuevo botón, seleccione la aplicación a la quiere acceder de manera directa en el desplegable correspondiente al botón.
+
+++ Carpetas de usuario ++
+
+Desde esta solapa, podrá renombrar las carpetas según lo desee, crear nuevas carpetas o borrar carpetas que no use. Estas opciones permitirán que disponga de las carpetas necesarias para que pueda organizar su información de la mejor manera.
+
+++ Google Calendar ++
+
+Para sincronizar su agenda personal con su cuenta de Google, introduzca aquí su nombre de usuario de Google (normalmente su cuenta de Gmail) y la contraseña de la misma.
+
+++ Feeds RSS ++
+
+Aquí podrá añadir las cuenta RSS y Atom preferidos para consultar en el lector de Feeds de SaltOS.
+
+Para añadir un feed nuevo, haga clic en la pestaña 'Nuevo Feed' e introduzca la dirección del mismo en la caja de texto 'URL'. Si desconoce la dirección, introduzca únicamente la dirección de la página web y haga clic en 'Probar'. SaltOS intentará encontrar automáticamente la dirección del feed correspondiente y le mostrará la información adicional del Feed. Para añadirlo al lector de Feeds de SaltOS haga clic en 'Añadir'.
+
+En la pestaña **Feeds configurados** encontrará los Feeds ya añadidos a SaltOS. Para descativar o borrar un Feed haga clic en 'Borrar' o 'Desactivado' o marque el checkbox correspondiente. A continuación haga clic en 'Actualizar'.
+
+++ Cuenta de correo electrónico ++
+
+En la pestaña 'Nuevo correo' podrá configurar su cuenta de correo POP3 externa para gestionarla cómodamente desde SaltOS.
+
+Rellene los datos 'Nombre' y 'Email' y añada, opcionalmente, una imagen para la firma de los correos. A continuación indique los datos de su proveedor de correo:
+
+- Servidor POP3: por ejemplo, mail.su-dominio.com
+- Puertos: normalmente 110
+- Seguridad: TLS o sin seguridad
+- Usuario: normalmente su dirección de correo
+- Clave de su cuenta de correo
+
+
+Haga lo mismo en el apartado del servidor de salida SMTP.
+
+Si desea que se borren los correos periódicamente, marque la casilla correspondiente. Para responder automáticamente a las solicitudes de confirmación de recepción marque la casilla **Activar por defecto la solicitud de confirmación de recepción**. Si quieres recibir en copia los correos que envie marque **Añadirme a mi como CC en todos los emails que envie**. Para desactivar temporalmente la cuenta marque la casilla **Desactivar esta cuenta de correo**. Puede establecer la cuenta por defecto desde la cual se enviarán los correos, marcando la casilla **Cuenta por defecto (la que más uso)**.
+
+En SaltOS puede compartir el correo con el resto de usuarios, que podrán consultar sus correos recibidos y enviados. Para desactivar esta prestación, por ejemplo, para una cuenta privada, marque **Esta cuenta es privada (sólo yo tengo acceso)**.
+
+Una vez configurada su cuenta haga clic en 'Actualizar'. Las cuentas creadas aparecerán en pestañas nuevas para que pueda cambiar la configuración o borrarlas cuando desee.
+
+
+
+
++Proyectos+
+
+Esta aplicación le permite llevar un control de todos los proyecto realizados en la empresa.
+
+[../img/proyectos-listado.png]
+
+++Listado de Proyectos++
+
+En el listado de proyectos podrá encontrar las columnas mas importantes de cada registro:
+
+- **Cód.:** Código numérico que identifica al proyecto.
+- **Cliente:** Para que cliente se ha realizado el proyecto.
+- **proyecto:** Nombre que se le ha dado al proyecto.
+- **Tareas (€) (*):** Importe del total de tareas planeadas en el proyecto.
+- **Prod. (€) (*):** Importe total de todos los productos incluidos en el proyecto.
+- **Total (€) (*):** Importe total del proyecto.
+- **Real (€) (*):** Importe total real del proyecto.
+- **Estado:** Estado actual del proyecto (Sin empezar, presupuestado, aceptado, empezado, cancelado, parado, acabando, acabado).
+- **NT:** Número de tareas planeadas en el proyecto.
+- **NP:** Número de productos incluidos en el proyecto.
+- **NP:** Número de seguimientos vinculados con el proyecto.
+- **NC:** Número de comentarios introducidos sobre este proyecto.
+- **NF:** Número de ficheros vinculados con este proyecto.
+
+
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
++++Opciones del listado+++
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción podrá crear un nuevo proyecto copiando los datos de este.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Gráficas y estadísticas+++
+
+En esta pestaña podrá ver las estadísticas sobre cuantos proyectos tiene en cada estado, pudiendo detectar picos y bajadas de faena antes de que sucedan y así poder tomar medidas para mitigar estos momentos críticos.
+
+[../img/proyectos-estadisticas.png]
+
+++Formulario de proyectos++
+
+Esta es la aplicación de proyecto, con ella podrá añadir, modificar y visionar todos los datos del proyecto clasificados en diferentes pestañas: datos principales, objetivos del proyecto, tareas del proyecto, productos del proyecto, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
++++Pestaña Datos del proyecto+++
+
+En esta pestaña podrá visualizar y modificar los principales datos del proyecto. A continuación le relacionamos todos los campos de información.
+
+[../img/proyectos-formulario.png]
+
+- **Cliente:** Para poder vincular el proyecto con un cliente.
+- **Campaña:** Para vincular en caso que el proyecto haya sido. Pedido gracias a una campaña comercial concreta.
+- **Nombre (*):** Nombre que se le quiera dar al proyecto.
+- **Fecha:** Fecha de realización del proyecto.
+- **Estado (*):** Estado en el que se encuentra el proyecto (Sin empezar, presupuestado, aceptado, empezado, cancelado, parado, acabando, acabado).
+- **Descripción:** Descripción general del proyecto.
+- **Tabla resumen:** En esta tabla podrá encontrar el total de horas de tareas, unidades de productos, y el importe total del proyecto.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un proyecto.**
+
+Ademas, en la primera pestaña tiene unos **botones de acción.**
+
+- **[../../lib/silk/icons/add.png] Añadir seguimiento:** Le llevara al formulario de nuevo seguimiento para que pueda rellenar la información pertinente y lo relacionara directamente con este proyecto.
+- **[../../lib/silk/icons/add.png] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[../../lib/silk/icons/add.png] Facturar:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+
+
++++Pestaña de Tareas+++
+
+En esta pestaña podrá incluir, modificar o eliminar todas las tareas a realizar vinculadas a este proyecto.
+
+[../img/proyectos-formulario-listado-tareas.png]
+
+- **Tabla Resumen:** En esta tabla podrá ver diferente información sobre las tareas incluidas en el proyecto: **total de horas, precio medio, importe total de horas.**
+- **Lista de tareas:** En esta lista podrá incluir, modificar o eliminar tantas tareas como sean necesarias, los campos que incluye son: **descripción de la tarea, horas necesarias, precio unitario, descuento, total tarea.**
+
+
++++Pestaña de Productos+++
+
+En esta pestaña podrá incluir, modificar o eliminar todas los productos vinculados a este proyecto.
+
+[../img/proyectos-formulario-listado-productos.png]
+
+- **Tabla Resumen:** En esta tabla podrá ver diferente información sobre los productos incluidos en el proyecto: **total de unidades, importe total de productos.**
+- **Lista de productos:** En esta lista podrá incluir, modificar o eliminar tantos productos sean necesarios, los campos que incluye son: **descripción del producto, unidades, precio unitario, descuento, total productos.**
+
++++Pestaña de Gráficas y estadísticas+++
+
+En esta pestaña podrá ver las desviaciones del proyecto respecto al presupuesto tanto en cantidad como en porcentaje.
+
+[../img/proyectos-formulario-graficas.png]
+
++++Pestaña Nuevos ficheros+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Datos del registro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Carpetas+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+
+
++Seguimientos+
+
+Esta aplicación le permite llevar un control de todos seguimientos de las tareas realizadas en la empresa.
+
+[../img/seguimientos-listado.png]
+
+++Listado de Seguimientos++
+
+En el listado de seguimientos podrá encontrar las columnas mas importantes de cada registro:
+
+- **Cód.:** Código numérico que identifica al proyecto.
+- **Usuario:** Usuario que ha creado el seguimiento.
+- **Cliente:** Para que cliente se ha realizado el proyecto.
+- **proyecto:** Nombre que se le ha dado al proyecto.
+- **Tarea:** Nombre de la tarea de la que se esta realizando el seguimiento.
+- **Fecha:** Fecha en que se realizo el seguimiento.
+- **Horas (*):** Horas necesitadas para el seguimiento de la tarea.
+
+
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
++++Opciones del listado+++
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+
+
+Este listado dispone ademas de las siguientes acciones:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar el listado de todos los datos de seguimiento de tareas a un archivo con formato Excel.
+
+
++++Opciones de filtro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+++Formulario de seguimientos++
+
+Esta es la aplicación de seguimiento de tareas, con ella podrá añadir, modificar y visionar todos los datos del seguimiento clasificados en diferentes pestañas: datos principales, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
++++Pestaña Datos del seguimiento+++
+
+En esta pestaña podrá visualizar y modificar los principales datos del seguimiento. A continuación le relacionamos todos los campos de información.
+
+[../img/seguimientos-formulario.png]
+
+- **Cliente (*):** Para vincular el cliente para el que se realiza la tarea.
+- **Proyecto (*):** Para vincular en el proyecto en el que esta incluida la tarea.
+- **Nombre (*):** Selector de la tarea sobre la que se realiza el seguimiento.
+- **Fecha (*):** Fecha de realización del seguimiento.
+- **Comentarios (*):** Para indicar datos relevantes sobre el seguimiento.
+- **Horas (*):** Horas que se han utilizado para realizar el seguimiento de la tarea.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un seguimiento.**
+
++++Pestaña Datos del registro+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
++++Pestaña Carpetas+++
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+
+
++Textos predefinidos+
+
+La aplicación de //Textos predefinidos// le permite guardar textos que utilice habitualmente, por ejemplo, condiciones de un presupuesto o el contenido de un correo electrónico comercial.
+
+Estos texto podrán recuperarse durante la creación o modificación en diversas aplicaciones.
+
+++Listado++
+
+Este listado le muestra las entradas ya definidas, con su identificador o nombre y el tipo de acceso (público/privado).
+
+++Creación++
+
+A la hora de crear un texto predefinido, elija un nombre único que le permita identificador fácilmente el contenido del texto.
+
+Si desea que el texto pueda ser utilizado por todos los usuarios, como una forma de despedida corporativa en los correos electrónicos, marque la casilla de verficación //Todos pueden usar este texto predefinido//.
+
+++Modificación++
+
+El modo de edición o modificación, le permite establecer los mismos parámetros que durante la creación. Tenga en cuenta que el nombre o identificador del texto debe ser único.
+
+++Consulta++
+
+El modo consulta de un texto predefinido le permite consultar el identificador así como su contenido.

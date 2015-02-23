@@ -21,14 +21,14 @@ El tercer y último grupo le permite marcar el correo como leído o no leído, p
 
 Para aplicar cualquier cualquier acción sobre uno o varios correos, seleccione el o los correos y haga clic en el botón correspondiente.
 
-==Significado de los colores==
+===Significado de los colores===
 
 - **Verde:** correo **nuevo**
 - **Azul** oscuro: correo marcado como **pendiente**
 - **Rojo:** correo basura **//(SPAM)//**
 
 
-==Opciones del listado==
+===Opciones del listado===
 
 Las opciones del listado en este mismo orden son:
 
@@ -46,7 +46,7 @@ Las opciones del listado en este mismo orden son:
 
 Para enviar un correo nuevo al remitente del correo puede hacer clic en la dirección de correo electrónico del mismo. Si desea enviar un nuevo correo desde la cuenta del destinatario (probablemente la suya), haga clic encima de la misma. También consultar el correo haciendo clic en el asunto.
 
-=Enviar nuevo correo=
+==Enviar nuevo correo==
 
 A la hora de enviar un nuevo correo, puede seleccionar desde qué cuenta desea realizar el envío (en caso de tener más de una cuenta configurada).
 
@@ -60,7 +60,7 @@ Para agregar un texto predefinido al correo, seleccione el nombre de la plantill
 
 Para enviar uno o varios fichero, seleccione la pestaña //Nuevos ficheros adjuntos//. Si desea añadir más de un fichero haga clic en //Añadir fichero//. Para seleccionar el fichero a enviar, haga clic en //Seleccionar archivo// e indíquelo a través del diálogo.
 
-=Consulta de un correo=
+==Consulta de un correo==
 
 En el modo consulta del correo puede realizar las misma funciones que en listado: responder al remitente, responder a todos y agregarlo a la página de inicio. También puede marcar como //pendiente// o //SPAM// marcando la casilla de verificación correspondiente y haciendo clic en //Volver//.
 

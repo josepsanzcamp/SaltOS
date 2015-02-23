@@ -1,0 +1,106 @@
+
+
+
+=Partes de trabajo=
+
+Esta aplicación le permite llevar un control de todos partes de trabajo que realicen los trabajadores en la empresa.
+
+[../img/partes-listado.png]
+
+==Listado de partes de trabajo==
+
+En el listado de partes de trabajo podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica el trabajo.
+- **Cliente:** Para que cliente se ha realizado el trabajo.
+- **Proyecto:** Nombre del proyecto sobre el que se cargara el trabajo realizado
+- **Tarea:** Nombre descriptivo del trabajo realizado.
+- **Fecha:** Fecha en que se realizo el trabajo.
+- **Horas (*):** Horas que se han empleado para finalizar la trabajo.
+- **Precio (*):** Precio hora en función de la categoría laboral.
+- **Total (*):** Importe total del trabajo realizado.
+- **Liq.:** Determina si el parte esta liquidado. **Los partes no liquidados se marcan con fondo rojo.**
+- **Fecha liq.:** Fecha de liquidación del parte.
+- **NC:** Número de comentarios introducidos sobre este posible cliente.
+- **NF:** Número de ficheros vinculados con este posible cliente.
+
+
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del seleccionado.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con el registro seleccionado adjuntado como archivo PDF.
+
+
+Este listado dispone ademas de las siguientes acciones:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar el listado de todos los partes de trabajo a un archivo con formato Excel.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar los partes seleccionados a un archivo en formato. PDF.
+- [../../lib/silk/icons/monitor.png]: Visualizar los partes seleccionados en formato. PDF en pantalla.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con los partes seleccionados adjuntados como archivos PDF.
+- [../../lib/silk/icons/disk.png]: Liquida los partes seleccionados indicando la fecha de hoy.
+
+
+===Opciones de filtro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Opciones de gráficas y estadísticas===
+
+En esta pestaña podrá ver estadísticas sobre los partes realizados el último año y el top 10 de clientes mas activos.
+
+[../img/partes-listado-graficas.png]
+
+==Formulario de partes de trabajo==
+
+Esta es la aplicación de seguimiento de tareas, con ella podrá añadir, modificar y visionar todos los datos del seguimiento clasificados en diferentes pestañas: datos principales, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del parte de trabajo===
+
+En esta pestaña podrá visualizar y modificar los principales datos del parte. A continuación le relacionamos todos los campos de información.
+
+[../img/partes-formulario.png]
+
+- **Cliente:** Para vincular el cliente para el que se realiza el trabajo.
+- **Proyecto:** Para vincular el proyecto en el que esta incluido este trabajo.
+- **Nombre (*):** Nombre descriptivo del trabajo a realizar.
+- **Fecha (*):** Fecha del trabajo.
+- **Comentarios (*):** Para añadir datos o notas importantes relacionadas con el trabajo realizado.
+- **Horas (*):** Horas que se han utilizado para realizar el trabajo.
+- **Precio (*):** Precio unitario.
+- **Total (*):** Importe total del trabajo realizado, campo calculado por la aplicación.
+- **Liquidado:** Selector para determinar si el parte esta liquidado.
+- **Fecha Liq.:** Fecha de liquidación del parte.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un parte.**
+
+===Pestaña Comentarios===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Ficheros adjuntos===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Nuevos comentarios===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Nuevos ficheros===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Datos del registro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Carpetas===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]

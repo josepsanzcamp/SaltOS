@@ -1297,7 +1297,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabs2 ul",obj).css("padding-top","0").css("padding-bottom",padding);
 		var margin=$(".tabs2 li",obj).css("margin-top");
 		$(".tabs2 li",obj).css("margin-top","0").css("margin-bottom",margin);
-		//~ console.timeEnd("make_tabs");
+		//~ console.timeEnd("make_tabs2");
 	}
 
 	function make_extras(obj) {

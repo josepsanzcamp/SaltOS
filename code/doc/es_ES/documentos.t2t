@@ -13,7 +13,7 @@ Los documentos no se subirán sueltos, sino que puede agruparlos, como si se tra
 
 El listado le mostrará los parámetros más importante de las distintas  carpetas o contenedores de ficheros. Las dos últimas columnas, //NC// y //NF//, le muestran el número de comentarios y el número de ficheros de la carpeta respectivamente.
 
-=Creación=
+==Creación==
 
 A la hora de crear un nuevo contenedor o carpeta, indique el nombre y la descripción del mismo. Recuerde introducir nombres significativos ya que éstos le facilitarán las búsquedas posteriores. Puede relacionar opcionalmente el contenedor o carpeta con un cliente y/o proyecto.
 
@@ -21,13 +21,13 @@ Para añadir nuevos ficheros, haga clic en la pestaña //Nuevos ficheros adjunto
 
 Tenga en cuenta que la cantidad y tamaño de los ficheros puede quedar limitado por las características del servidor en el cual se hospeda SaltOS. Si experimentase problemas a la hora de subir ficheros, intente subirlos de uno en uno y verifique que el tamaño de los mismo no exceda las capacidades del servidor.
 
-=Modificación=
+==Modificación==
 
 La modificación de una carpeta o contenedor de archivos, le permitirá modificar los mismos parámetros que en el proceso de creación. Adicionalmente puede añadir un comentario.
 
 Si desea añadir más ficheros, haga clic en //Nuevos ficheros adjuntos//.
 
-=Consulta=
+==Consulta==
 
 El modo de consulta le permite consultar los datos de la carpeta así como descargar los ficheros adjuntos.
 
