@@ -27,8 +27,11 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 	"use strict";
 	var __viewpdf__=1;
 
+	var viewpdf_history=[];
+
 	// ORIGINAL IDEA FROM pdf.js/examples/components/simpleviewer.html
 	function viewpdf(data) {
+		viewpdf_history.push(data);
 		loadingcontent(lang_view2opening());
 		var data="action=viewpdf&"+data;
 		$.ajax({
@@ -84,6 +87,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 							$(dialog2).dialog("option","resizeStop",function() {});
 							$(dialog2).dialog("option","close",function() {});
 							$("*",dialog2).each(function() { $(this).remove(); });
+							while(viewpdf_history.length>0) viewpdf_history.shift();
 						});
 						// UPDATE SIZE AND POSITION
 						var width=getIntCookie("saltos_viewpdf_width");
@@ -95,6 +99,16 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						// END OPEN DIALOG
 						$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 						$(dialog2).dialog("open");
+						// FOR THE HISTORY BUTTON
+						var titlebar=$(".ui-dialog-titlebar");
+						while($("button",titlebar).length>1) $("button:last",titlebar).remove();
+						if(viewpdf_history.length>1) {
+							$(titlebar).append("<button role='button' class='ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close' type='button'><span class='ui-button-icon-primary ui-icon ui-icon-triangle-1-w'></span><span class='ui-button-text'>Back</span></button>");
+							$("button:last",titlebar).css("margin-right","22px").bind("click",function() {
+								viewpdf_history.pop();
+								viewpdf(viewpdf_history.pop());
+							});
+						}
 						// PAINT ALL PAGES
 						var container=document.getElementById("viewerContainer");
 						var pdfViewer=new PDFJS.PDFViewer({
@@ -104,7 +118,17 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 							pdfViewer.currentScaleValue="page-width";
 						});
 						container.addEventListener("textlayerrendered",function() {
-							$("a:not(target)",container).attr("target","_blank");
+							$("a",container).each(function() {
+								if(substr($(this).attr("href"),0,15)=="http://viewpdf/") {
+									if(typeof($(this).attr("onclick"))=="undefined") {
+										$(this).attr("onclick","viewpdf('"+substr($(this).attr("href"),15)+"');return false");
+									}
+								} else {
+									if(typeof($(this).attr("target"))=="undefined") {
+										$(this).attr("target","_blank");
+									}
+								}
+							});
 						});
 						pdfViewer.setDocument(pdfDocument).then(function() {
 							$(dialog2).scrollTop(0);

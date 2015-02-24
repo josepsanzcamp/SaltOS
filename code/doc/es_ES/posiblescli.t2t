@@ -27,9 +27,9 @@ En el listado de posibles clientes podrá encontrar las columnas mas importantes
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
 - [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
-- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
 - [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
 
 
@@ -71,7 +71,7 @@ En esta pestaña podrá visualizar y modificar los principales datos del posible
 - **Numero Fax:** Fax principal de contacto es el que se visualizara en todos listados.
 - **Facturación:** Rango de facturación del posible cliente
 - **Descripción IAE:** Pequeña descripción de la actividad económica a la que se dedica el posible cliente.
-- **Cód. IAE:** Código de actividad económica [+ info http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas].
+- **Cód. IAE:** Código de actividad económica [(más info sobre IAE) http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas].
 - **Comentarios:** Comentarios sobre el contacto.
 
 

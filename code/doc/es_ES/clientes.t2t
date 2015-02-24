@@ -26,9 +26,9 @@ En el listado de clientes podrá encontrar las columnas mas importantes del regi
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
 - [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
-- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [+ info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [+ info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
 - [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
 
 
@@ -46,17 +46,12 @@ En esta pestaña podrá visualizar y modificar los principales datos de cliente.
 
 [../img/clientes-formulario.png]
 
-- **Código de cliente:** Código numérico con el que se identifica al cliente
-- **Campana comercial:** Campaña comercial
+- **Campaña comercial:** Campaña comercial
 - **Tipo de entidad:** Con este campo podrá designar si el cliente es una persona física o una entidad jurídica.
-- **Mostrar como (*):** Este el es nombre que se utilizara en los listado y selectores, en caso de ser una persona podría dedicarse para incluir el apodo.
 - **Nombre comercial:** Nombre comercial del cliente.
 - **Nombre Fiscal:** Nombre fiscal que se utiliza en los documentos legales como facturas, contratos, etc..
 - **N.I.F:** Número de Identificación fiscal, número proporcionado por la hacienda publica con el que se identifica a la entidad.
-- **Comentarios:** Comentarios sobre el cliente.
-- **Corriente:** Cuenta corriente que se utiliza para realizar los cargos de las compras realizadas por este cliente.
-- **Contable:** Cuenta contable que se utilizara en el sistema contable de la empresa.
-- **Día de pago:** Día en el cual se han de realizar los cargos de las compras realizadas durante todo el mes.
+- **Mostrar como (*):** Este el es nombre que se utilizara en los listado y selectores, en caso de ser una persona podría dedicarse para incluir el apodo.
 - **Dirección:** Dirección de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
 - **País:** País de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
 - **Provincia:** Provincia de la entidad, se utilizara en documentos legales tales como facturas, contratos, etc..
@@ -67,6 +62,9 @@ En esta pestaña podrá visualizar y modificar los principales datos de cliente.
 - **Número Fijo:** Fijo principal de contacto es el que se visualizara en todos listados.
 - **Número Móvil:** Móvil principal de contacto es el que se visualizara en todos listados.
 - **Numero Fax:** Fax principal de contacto es el que se visualizara en todos listados.
+- **Corriente:** Cuenta corriente que se utiliza para realizar los cargos de las compras realizadas por este cliente.
+- **Contable:** Cuenta contable que se utilizara en el sistema contable de la empresa.
+- **Día de pago:** Día en el cual se han de realizar los cargos de las compras realizadas durante todo el mes.
 - **Comentario:** Para poder indicar comentarios sobre este cliente.
 
 

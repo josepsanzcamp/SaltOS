@@ -1,0 +1,117 @@
+
+
+
+=Facturas=
+
+Esta aplicación le permite llevar un control de todas los albaranes y facturas generadas en la empresa.
+
+[../img/facturas-listado.png]
+
+==Listado de facturas==
+
+En el listado de facturas podrá encontrar las columnas mas importantes del registro:
+
+- **N.Fac.:** Código numérico que identifica el albarán o la factura.
+- **Usuario:** Fecha del albarán o de la factura.
+- **Fecha:** Fecha y hora de la incidencia.
+- **Cliente:** Cliente para el cual se ha generado el albarán o factura.
+- **Proyecto:** Nombre del proyecto por el que se ha generado el albarán o factura.
+- **Base (*):** Importe del albarán o factura antes de impuesto.
+- **Total (*):** Importe del albarán o factura una vez aplicados los impuestos pertinentes.
+- **Cerrado:** Cuando el albarán se cierra, se convierte en factura.
+- **Cobrada:** Si se ha realizado el cobro del albarán o factura.
+- **Cuenta:** Cuenta donde asignar el ingreso.
+
+
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con el presupuesto seleccionado adjuntado como archivo PDF.
+
+
+Este listado dispone ademas de las siguientes acciones seleccionando varios registros simultáneamente:
+
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar los registros seleccionados a un archivo en formato. PDF.
+- [../../lib/silk/icons/monitor.png]: Visualizar los registros seleccionados en formato. PDF en pantalla.
+- [../../lib/silk/icons/email_go.png]: Preparara un correo con los registros seleccionados adjuntados como archivos PDF.
+
+
+===Opciones de filtro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Gráficas y estadísticas===
+
+En esta pestaña encontrar las estadísticas de facturación del último año y del top 10 de clientes activos.
+
+[../img/facturas-listado-graficas.png]
+
+=Formulario de facturas=
+
+Esta es la aplicación de facturación, con ella podrá añadir, modificar y visionar todos los datos de los diferentes albaranes y facturas clasificados en diferentes pestañas: datos principales, conceptos, productos, vencimientos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del albarán o factura===
+
+En esta pestaña podrá visualizar y modificar los principales datos del albarán o factura. A continuación le relacionamos todos los campos de información.
+
+[../img/facturas-formulario.png]
+
+- **Cuenta (*):** Cuenta donde se contabilizara el ingreso.
+- **Epígrafe (*):** Actividad económica.
+- **Forma de pago (*):** Forma de pago a utilizar para cobrar el ingreso.
+- **Cliente:** Cliente al cual se le cargara el importe.
+- **Proyecto:** Proyecto que se esta facturando.
+- **Nombre (*):** Nombre del cliente. Este campo se rellena automáticamente cuando seleccionemos el cliente.
+- **Dirección:** Dirección del cliente. Este campo se rellena automáticamente cuando seleccionemos el cliente.
+- **País:** País del cliente. Este campo se rellena automáticamente cuando seleccionemos el cliente.
+- **Provincia:** Provincia del cliente. Este campo se rellena automáticamente cuando seleccionemos el cliente.
+- **Población:** Población del cliente. Este campo se rellena automáticamente cuando seleccionemos el cliente.
+- **Código postal:** Código postal del cliente. Este campo se rellena automáticamente cuando seleccionemos el cliente.
+- **Notas:** Notas aclaratorias que quiera incluir.
+- **Cerrado:** Determina si es un albarán o una factura.
+- **Fecha emisión:** Fecha que se genera la factura cuando cierras el albarán.
+- **N. Fac.:** Número de factura.
+- **Cobrado:** Si ya se ha cobrado.
+- **Fecha cobro:** Fecha de cobro.
+- **IVA (%):** Porcentaje de IVA. [(más info sobre IVA) http://es.wikipedia.org/wiki/Impuesto_al_valor_agregado]
+- **IRPF (%):** Porcentaje de IRPF. [(más info sobre IRPF) http://es.wikipedia.org/wiki/Impuesto_sobre_la_renta_de_las_personas_f%C3%ADsicas_%28Espa%C3%B1a%29]
+- **Base (€):** Base imponible, total importe económico antes de aplicar impuestos.
+- **IVA (€):** Importe económico de IVA.
+- **IRPF (€):** Importe económico de IRPF
+- **Total (€):** Total a cobrar impuestos incluidos.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un albarán o factura.**
+
+===Pestaña Conceptos===
+
+En esta pestaña podrá incluir todos los conceptos necesarios para crear el albarán o factura
+
+[../img/facturas-formulario-conceptos.png]
+
+===Pestaña Productos===
+
+En esta pestaña podrá incluir todos los productos necesarios para crear el albarán o factura
+
+[../img/facturas-formulario-productos.png]
+
+===Pestaña Vencimientos===
+
+En esta pestaña podrá crear diferentes vencimientos para la factura.
+
+[../img/facturas-formulario-vencimientos.png]
+
+===Pestaña Datos del registro===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestaña Carpetas===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]

@@ -34,7 +34,7 @@ Sobre cada registro. Podrá realizar una serie de acciones que están representa
 
 - [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
 - [../../lib/silk/icons/page_paste.png]: Con esta acción podrá crear un nuevo proyecto copiando los datos de este.
-- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
 - [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
 
 
@@ -96,6 +96,7 @@ En esta pestaña podrá incluir, modificar o eliminar todas los productos vincul
 
 - **Tabla Resumen:** En esta tabla podrá ver diferente información sobre los productos incluidos en el proyecto: **total de unidades, importe total de productos.**
 - **Lista de productos:** En esta lista podrá incluir, modificar o eliminar tantos productos sean necesarios, los campos que incluye son: **descripción del producto, unidades, precio unitario, descuento, total productos.**
+
 
 ===Pestaña de Gráficas y estadísticas===
 
