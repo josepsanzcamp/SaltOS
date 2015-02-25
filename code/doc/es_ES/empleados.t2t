@@ -1,0 +1,78 @@
+
+
+
+=Empleados=
+
+Esta aplicación le permite llevar un control de todos empleados que tenga la empresa en su catálogo.
+
+[../img/empleados-listado.png]
+
+==Listado de empleados==
+
+En el listado de empleados podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica al empleado.
+- **Nombre:** Nombre del empleado.
+- **Cargo:** Cargo que ocupa el empleado
+- **Fijo:** Teléfono fijo de contacto del empleado.
+- **Móvil:** Teléfono móvil de contacto del empleado.
+- **Email:** Cuenta de correo de contacto del empleado.
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+
+
+===Opciones de filtro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+==Formulario de empleados==
+
+Esta es la aplicación de empleados, con ella podrá añadir, modificar y visionar todos los datos del empleado clasificados en diferentes pestañas: datos principales, ficheros adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del empleado===
+
+En esta pestaña podrá visualizar y modificar los principales datos del empleado. A continuación le relacionamos todos los campos de información.
+
+[../img/empleados-formulario.png]
+
+- **Nombre (*):** Nombre del empleado.
+- **Apellidos (*):** Apellidos del empleado
+- **Cargo:** Cargo que ocupa.
+- **Mostrar como (*):** Este el es nombre que se utilizara en los listado y selectores, en caso de ser una persona podría dedicarse para incluir el apodo.
+- **Dirección:** Dirección del empleado se utilizara en documentos legales tales como facturas, contratos, etc..
+- **País:** País del empleado se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Provincia:** Provincia del empleado se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Población:** Población del empleado se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Código postal:** Código postal del empleado se utilizara en documentos legales tales como facturas, contratos, etc..
+- **Email:** Cuenta de correo principal del empleado es la que se visualizara en todos listados.
+- **Web:** Web principal del empleado es el que se visualizara en todos listados.
+- **Número Fijo:** Fijo principal del empleado es el que se visualizara en todos listados.
+- **Número Móvil:** Móvil principal del empleado es el que se visualizara en todos listados.
+- **Numero Fax:** Fax principal del empleado es el que se visualizara en todos listados.
+- **Comentario:** Para poder indicar comentarios sobre el empleado.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un empleado.**
+
+Ademas, en la primera pestaña tiene unos **botones de acción.**
+
+- **[../../lib/silk/icons/add.png] Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este empleado.
+
+
+===Pestaña contactos del empleado===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Datos del registro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Carpetas===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]

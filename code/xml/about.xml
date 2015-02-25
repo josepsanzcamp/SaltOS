@@ -454,9 +454,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://w2ui.com/")</onclick>
 						</field>
 						<field>
+							<label>Bootstrap v3.3.2 (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://getbootstrap.com/")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>3</colspan>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>

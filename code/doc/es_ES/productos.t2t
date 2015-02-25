@@ -1,0 +1,76 @@
+
+
+
+=Productos=
+
+Esta aplicación le permite llevar un control de todos productos que tenga la empresa en su catálogo.
+
+[../img/productos-listado.png]
+
+==Listado de productos==
+
+En el listado de productos podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica el producto.
+- **Nombre:** Nombre del producto.
+- **Ref.:** Referencia interna del producto.
+- **Precio (€):** Importe económico antes de impuestos del producto.
+- **Dto. (%):** Descuento que se realiza en la venta de este producto.
+- **IVA (%):** Porcentaje de IVA que hay que aplicar a la venta del producto.
+- **Total (€):** Total importe aplicando descuentos e impuesto.
+- **Web:** Pagina web de información del producto.
+- **MF:** Número de ficheros vinculados a este producto.
+
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+
+
+===Opciones de filtro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+==Formulario de productos==
+
+Esta es la aplicación de productos, con ella podrá añadir, modificar y visionar todos los datos del producto clasificados en diferentes pestañas: datos principales, ficheros adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del producto===
+
+En esta pestaña podrá visualizar y modificar los principales datos del producto. A continuación le relacionamos todos los campos de información.
+
+[../img/productos-formulario.png]
+
+- **Nombre (*):** Nombre que se le da al producto.
+- **Ref.:** Referencia interna del producto
+- **Descrición:** Descripción del producto.
+- **Precio (€)(*):** Precio del producto antes de aplicar impuesto.
+- **Dto. (%):** Descuento que se realiza en este producto.
+- **IVA (%):** IVA que hay que aplicar en la compra del producto.
+- **Dimensiones:** Dimensiones fisicas del producto.
+- **Peso:** Peso total del producto.
+- **Web:** Ficha web del producto.
+- **Volumen:** Volumen total del producto.
+- **Foto actual:** Imagen actual del producto.
+- **Nueva foto:** Para cambiar la imagen del producto.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un producto.**
+
+===Pestaña Ficheros adjuntos===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Nuevos ficheros===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Datos del registro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Carpetas===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]

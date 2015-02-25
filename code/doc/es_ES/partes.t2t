@@ -21,8 +21,8 @@ En el listado de partes de trabajo podrá encontrar las columnas mas importantes
 - **Total (*):** Importe total del trabajo realizado.
 - **Liq.:** Determina si el parte esta liquidado. **Los partes no liquidados se marcan con fondo rojo.**
 - **Fecha liq.:** Fecha de liquidación del parte.
-- **NC:** Número de comentarios introducidos sobre este posible cliente.
-- **NF:** Número de ficheros vinculados con este posible cliente.
+- **NC:** Número de comentarios introducidos sobre este parte.
+- **NF:** Número de ficheros vinculados este parte.
 
 
 (*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
@@ -49,7 +49,7 @@ Este listado dispone ademas de las siguientes acciones:
 
 ===Opciones de filtro===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]
 
 ===Opciones de gráficas y estadísticas===
 
@@ -59,7 +59,7 @@ En esta pestaña podrá ver estadísticas sobre los partes realizados el último
 
 ==Formulario de partes de trabajo==
 
-Esta es la aplicación de seguimiento de tareas, con ella podrá añadir, modificar y visionar todos los datos del seguimiento clasificados en diferentes pestañas: datos principales, datos sobre las modificaciones del registro y asignaciones a carpetas.
+Esta es la aplicación de partes de trabajo, con ella podrá añadir, modificar y visionar todos los datos de los gastos clasificados en diferentes pestañas: datos principales, ficheros adjuntos, vencimientos, datos sobre las modificaciones del registro y asignaciones a carpetas.
 
 ===Pestaña Datos del parte de trabajo===
 
@@ -83,24 +83,24 @@ En esta pestaña podrá visualizar y modificar los principales datos del parte. 
 
 ===Pestaña Comentarios===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]
 
 ===Pestaña Ficheros adjuntos===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]
 
 ===Pestaña Nuevos comentarios===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]
 
 ===Pestaña Nuevos ficheros===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]
 
 ===Pestaña Datos del registro===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]
 
 ===Pestaña Carpetas===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]

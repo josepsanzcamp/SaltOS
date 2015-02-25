@@ -1,0 +1,103 @@
+
+
+
+=Usuarios=
+
+Esta aplicación le permite llevar un control de todos usuarios con acceso a la aplicación.
+
+[../img/usuarios-listado.png]
+
+==Listado de usuarios==
+
+En el listado de usuarios podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica al usuario.
+- **Usuario:** Nombre de acceso a la aplicación.
+- **Grupo:** Grupo al que pertenece al usuario.
+- **Nombre:** Nombre real del usuario.
+- **Email:** Cuenta de correo de contacto del usuario.
+- **Activo:** Determina la cuenta esta bloqueada.
+- **Entrada:** Determina el inicio del horario permitido para acceder a la aplicación.
+- **Salida:** Determina el final del horario permitido para acceder a la aplicación.
+- **Días:** Determina los días que el usuario tiene permitido entrar en la aplicación.
+- **Conectado:** Determina si el usuario esta conectado en este momento.
+
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+
+
+===Opciones de filtro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+==Formulario de usuarios==
+
+Esta es la aplicación de usuarios, con ella podrá añadir, modificar y visionar todos los datos de los usuarios clasificados en diferentes pestañas: datos principales, permisos por aplicación, grupo del usuario, permisos por registro, Google calendar, feeds suscritos, cuentas de correo, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del usuario===
+
+En esta pestaña podrá visualizar y modificar los principales datos del usuario. A continuación le relacionamos todos los campos de información.
+
+[../img/usuarios-formulario.png]
+
+- **Usuario (*):** Nombre del usuario.
+- **Grupo (*):** Grupo al que pertenece el usuario.
+- **Clave:** Clave de acceso.
+- **Repita clave:** Repetición de la clave de acceso para descartar errores de escritura.
+- **Aplicación (*):** A que tipo de contacto pertenece este usuario.
+- **Registro (*):** A que contacto especifico pertener este usuario.
+- **Activo:** Sirve para bloquear la cuenta momentaneamente.
+- **Entrada (*):** Hora de inicio de permiso de acceso a la aplicación.
+- **Salida (*):** Hora final de permiso de acceso a la aplicación.
+- **Acceso semanal:** Días de la semana que se permite el acceso a la aplicación.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un usuario.**
+
+===Pestaña permisos por aplicación===
+
+En esta pestaña podrá aplicar permisos específicos por usuario.
+
+[../img/usuarios-formulario-permisos-aplicacion.png]
+
+===Pestaña Grupos del usuario===
+
+En esta pestaña podrá asignar a grupos a usuarios específicos.
+
+[../img/usuarios-formulario-grupos.png]
+
+===Pestaña Permisos por registro===
+
+En esta pestaña podrá bloquear registros específicos en relevancia con la confidencialidad.
+
+[../img/usuarios-formulario-permisos-registro.png]
+
+===Pestaña Google calendar===
+
+En esta pestaña podrá configurar la sincronización con sus calendarios de Google
+
+[../img/usuarios-formulario-google-calendar.png]
+
+===Pestaña Feeds configurados===
+
+En esta pestaña podrá configurar todos los feeds necesarios para ese usuario.
+
+[../img/usuarios-formulario-feeds-configurados.png]
+
+===Pestaña Cuentas de correo===
+
+Con esta pestaña podrá añadir todas las cuentas de correo que tenga que gestionar el usuario.
+
+[../img/usuarios-formulario-cuenta-correo.png]
+
+===Pestaña Datos del registro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Carpetas===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]

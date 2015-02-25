@@ -1126,7 +1126,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<statewait>Doch</statewait>
 		<statespam>SPAM</statespam>
 		<statesent>Eingereicht</statesent>
-		<statenotsent translated="false">No.enviado</statenotsent>
+		<statenotsent translated="false">No-enviado</statenotsent>
 		<stateerror>Fehler</stateerror>
 		<stateall>Alle</stateall>
 		<todaslascuentas>[Alle Konto]</todaslascuentas>

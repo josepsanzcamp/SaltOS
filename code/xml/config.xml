@@ -233,6 +233,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<!--<include>lib/w2ui/w2ui.min.css</include>-->
 			<!--<include>lib/d3js/nv.d3.min.css</include>-->
 			<!--<include>lib/d3js/dagre-d3.css</include>-->
+			<!--<include>lib/bootstrap/bootstrap.min.css</include>-->
+			<!--<include>lib/bootstrap/bootstrap-theme.min.css</include>-->
 		</cache>
 	</styles>
 	<javascript>
@@ -265,6 +267,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<!--<include>lib/d3js/d3.min.js</include>-->
 			<!--<include>lib/d3js/nv.d3.min.js</include>-->
 			<!--<include>lib/d3js/dagre-d3.min.js</include>-->
+			<!--<include>lib/bootstrap/bootstrap.min.js</include>-->
 		</cache>
 		<cache ifeval="ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>

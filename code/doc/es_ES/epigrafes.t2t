@@ -1,0 +1,55 @@
+
+
+
+=Epígrafes=
+
+Esta aplicación le permite llevar un control de todos epígrafes (actividades económicas) que realice la entidad. [Más información sobre actividades económicas http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas]
+
+[../img/epigrafes-listado.png]
+
+==Listado de epígrafes==
+
+En el listado de epígrafes podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica al epígrafe. 
+- **Nombre:** Nombre del epígrafe.
+- **Descripción:** Descripción del epígrafe, en que casos se utilizan, etc...
+
+
+Más información para entidades españolas: [Agencia Tributaria https://www2.agenciatributaria.gob.es/ADUA/internet/es/aeat/dit/adu/adws/certificados/Tabla_de_epigrafes_IAE.pdf]
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+
+
+===Opciones de filtro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+==Formulario de epígrafes==
+
+Esta es la aplicación de epígrafes, con ella podrá añadir, modificar y visionar todos los datos de los epígrafes clasificados en diferentes pestañas: datos principales, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del epígrafe===
+
+En esta pestaña podrá visualizar y modificar los principales datos del epígrafe. A continuación le relacionamos todos los campos de información.
+
+[../img/epigrafes-formulario.png]
+
+- **Código (*):** Código del epígrafe. 
+- **Nombre (*):** Nombre del epígrafe.
+- **Descripción:** Descripción del epígrafe.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un epígrafe.**
+
+===Pestaña Datos del registro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Carpetas===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]

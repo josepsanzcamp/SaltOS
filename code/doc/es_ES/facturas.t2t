@@ -45,7 +45,7 @@ Este listado dispone ademas de las siguientes acciones seleccionando varios regi
 
 ===Opciones de filtro===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]
 
 ===Gráficas y estadísticas===
 
@@ -53,7 +53,7 @@ En esta pestaña encontrar las estadísticas de facturación del último año y 
 
 [../img/facturas-listado-graficas.png]
 
-=Formulario de facturas=
+==Formulario de facturas==
 
 Esta es la aplicación de facturación, con ella podrá añadir, modificar y visionar todos los datos de los diferentes albaranes y facturas clasificados en diferentes pestañas: datos principales, conceptos, productos, vencimientos, datos sobre las modificaciones del registro y asignaciones a carpetas.
 
@@ -110,8 +110,9 @@ En esta pestaña podrá crear diferentes vencimientos para la factura.
 
 ===Pestaña Datos del registro===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]
 
 ===Pestaña Carpetas===
 
-%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+

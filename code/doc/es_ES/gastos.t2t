@@ -1,0 +1,102 @@
+
+
+
+=Gastos=
+
+Esta aplicación le permite llevar un control de todos gastos que se realicen en la empresa.
+
+[../img/gastos-listado.png]
+
+==Listado de gastos==
+
+En el listado de gastos podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica el gasto.
+- **Empresa:** Empresa donde se ha realizado el gasto
+- **Fecha:** Fecha en la que se realizo el gasto
+- **Base (*):** Importe económico antes de impuestos.
+- **Total (*):** Importe total del gasto.
+- **Liq.:** Determina si el gasto esta liquidado. **Los gastos no liquidados se marcan con fondo rojo.**
+- **Fecha liq.:** Fecha de liquidación del gasto.
+- **NV:** Número de vencimientos introducidos sobre este gasto.
+- **Cuenta:** Cuenta donde se contabilizara este gasto.
+
+
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del seleccionado.
+
+
+Este listado dispone ademas de las siguientes acciones:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar el listado de todos los gastos a un archivo con formato Excel.
+- [../../lib/silk/icons/disk.png]: Liquida los gastos seleccionados indicando la fecha de hoy.
+
+
+===Opciones de filtro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Opciones de gráficas y estadísticas===
+
+En esta pestaña podrá ver estadísticas sobre los gastos realizados el último año.
+
+[../img/gastos-listado-graficas.png]
+
+==Formulario de gastos==
+
+Esta es la aplicación de gastos, con ella podrá añadir, modificar y visionar todos los datos del seguimiento clasificados en diferentes pestañas: datos principales, ficheros adjuntos, vencimientos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del gasto===
+
+En esta pestaña podrá visualizar y modificar los principales datos del gasto. A continuación le relacionamos todos los campos de información.
+
+[../img/gastos-formulario.png]
+
+- **Cuenta (*):** Cuenta donde se contabilizara el gasto.
+- **Epígrafe (*):** Actividad económica a la cual se vinculara el gasto.
+- **Buscador:** Buscador de proveedores.
+- **Cliente:** Para indicar el cliente al cual vincular el gasto.
+- **Proveedor:** Nombre del proveedor donde se ha realizado el gasto.
+- **Proyecto:** Para vincular el proyecto en el que se ha realizado el gasto.
+- **N. Fac.:** Número de factura del gasto.
+- **Fecha (*):** Fecha del gasto.
+- **Descripción (*):** Descripción del gasto realizado.
+- **Base (*):** Importe del gastos antes de aplicar los impuestos pertinentes, campo calculado por la aplicación.
+- **IVA (%)(*):** Porcentaje IVA.
+- **Total (*):** Importe total del gasto realizado.
+- **IRPF (%)(*):** Porcentaje de IRPF que se aplica.
+- **Pagador (*):** Selector para indicar quien ha realizado el pago
+- **Liquidado:** Selector para determinar si el gasto esta liquidado.
+- **Forma de pago (*):** Selector para determinar la forma de pago utilizada.
+- **Fecha Liq.:** Fecha de liquidación del gasto.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un gasto.**
+
+===Pestaña Ficheros adjuntos===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Nuevos ficheros===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Vencimientos===
+
+En esta pestaña podrá crear diferentes vencimientos para liquidar el gasto.
+
+[../img/gastos-formulario-vencimientos.png]
+
+===Pestaña Datos del registro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Carpetas===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
