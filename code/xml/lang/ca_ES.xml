@@ -1392,7 +1392,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnewfeedsok2> nous posts descarregats</msgnewfeedsok2>
 		<msgnewfeedsko>No s'han trobat nous posts</msgnewfeedsko>
 		<msgmodifiedfeedsok1> post actualitzat</msgmodifiedfeedsok1>
-		<msgmodifiedfeedsok2> posts com</msgmodifiedfeedsok2>
+		<msgmodifiedfeedsok2> posts actualitzats</msgmodifiedfeedsok2>
 		<msgnotfeeds>No hi ha cap feed RSS configurat o activat</msgnotfeeds>
 		<feed>Feed RSS</feed>
 		<title>Títol</title>

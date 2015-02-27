@@ -58,8 +58,8 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		if(getParam("action")!="form") return;
 		var id=abs(getParam("id"));
 		var id_extra=explode("_",$("input[name$=id_extra]").val(),3);
-		if(typeof(id_extra[1])!="undefined" && typeof(id_extra[2])!="undefined" && id_extra[1]=="forward") id=id_extra[2];
-		if(typeof(id_extra[1])!="undefined" && typeof(id_extra[2])!="undefined" && id_extra[1]=="session") id=id_extra[1];
+		if(id_extra.length==3 && id_extra[1]=="forward") id=id_extra[2];
+		if(id_extra.length==3 && id_extra[1]=="session") id=id_extra[1];
 		if(!$("td[id$=files],label[id$=files]").length) id=0;
 		if(!id) return;
 		var data="action=getmail&id="+id+"&cid=files";
