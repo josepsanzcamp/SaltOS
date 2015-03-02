@@ -375,7 +375,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>campanyas(-abs(ID))</link>
+							<link>openapp('campanyas',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 					</row>
@@ -388,7 +388,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>posiblescli(-abs(ID))</link>
+							<link>openapp('posiblescli',-abs(ID))</link>
 							<icon>view</icon>
 							<onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
 						</field>
@@ -399,7 +399,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<width>240px</width>
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>presupuestos(-abs(ID))</link>
+							<link>openapp('presupuestos',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 					</row>
@@ -413,7 +413,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
-							<link>clientes(-abs(ID))</link>
+							<link>openapp('clientes',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 						<field>
@@ -423,7 +423,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<width>240px</width>
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>proyectos(-abs(ID))</link>
+							<link>openapp('proyectos',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 					</row>

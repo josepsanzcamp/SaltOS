@@ -530,7 +530,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>posiblescli(-abs(ID))</link>
+							<link>openapp('posiblescli',-abs(ID))</link>
 							<icon>view</icon>
 							<onchange>$("input[name$=id_cliente]").val(0);$("input[name$=nombre_cliente]").val("");update_proyectos()</onchange>
 						</field>
@@ -541,7 +541,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>campanyas(-abs(ID))</link>
+							<link>openapp('campanyas',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 					</row>
@@ -563,7 +563,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								$("select[name$=id_posiblecli]").val(0);
 								update_proyectos();
 							</oncomplete>
-							<link>clientes(-abs(ID))</link>
+							<link>openapp('clientes',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 						<field>
@@ -573,7 +573,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>proyectos(-abs(ID))</link>
+							<link>openapp('proyectos',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 					</row>

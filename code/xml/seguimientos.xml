@@ -318,7 +318,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<onchange>update_proyectos();update_tareas()</onchange>
-							<link>clientes(-abs(ID))</link>
+							<link>openapp('clientes',-abs(ID))</link>
 							<icon>view</icon>
 							<required>true</required>
 						</field>
@@ -333,7 +333,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<onchange>update_tareas()</onchange>
-							<link>proyectos(-abs(ID))</link>
+							<link>openapp('proyectos',-abs(ID))</link>
 							<icon>view</icon>
 							<required>true</required>
 						</field>

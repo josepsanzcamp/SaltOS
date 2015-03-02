@@ -311,7 +311,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 								update_proyectos();
 								update_contacto();
 							</oncomplete>
-							<link>clientes(-abs(ID))</link>
+							<link>openapp('clientes',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 						<field>
@@ -322,7 +322,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<query eval="true">make_extra_query_with_perms("proveedores","tbl_proveedores","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinproveedor")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
-							<link>proveedores(-abs(ID))</link>
+							<link>openapp('proveedores',-abs(ID))</link>
 							<icon>view</icon>
 							<onchange>
 								$("input[name$=id_cliente]").val(0);
@@ -342,7 +342,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<width>240px</width>
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>proyectos(-abs(ID))</link>
+							<link>openapp('proyectos',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 						<field>
@@ -353,7 +353,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<query eval="true">make_extra_query_with_perms("empleados","tbl_empleados","nombre")." UNION SELECT '0' value,'".LANG_ESCAPE("sinempleado")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
-							<link>empleados(-abs(ID))</link>
+							<link>openapp('empleados',-abs(ID))</link>
 							<icon>view</icon>
 							<onchange>
 								$("input[name$=id_cliente]").val(0);

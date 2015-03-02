@@ -372,7 +372,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>update_proyectos()</onchange>
-							<link>clientes(-abs(ID))</link>
+							<link>openapp('clientes',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 					</row>
@@ -384,7 +384,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<link>proyectos(-abs(ID))</link>
+							<link>openapp('proyectos',-abs(ID))</link>
 							<icon>view</icon>
 						</field>
 						<field>
