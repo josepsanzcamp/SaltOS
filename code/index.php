@@ -143,9 +143,6 @@ if(isset($_SESSION["errors"])) {
 	unset($_SESSION["errors"]);
 }
 sess_close();
-// SOME DEBUG ISSUES
-if(eval_bool(getDefault("debug/alertdebug"))) set_array($_ALERT,"alert","Alert debug ON");
-if(eval_bool(getDefault("debug/errordebug"))) set_array($_ERROR,"error","Error debug ON");
 // MORE TO PREPARE THE OUTPUT
 if(isset($_ALERT)) $_RESULT["alerts"]=$_ALERT;
 if(isset($_ERROR)) $_RESULT["errors"]=$_ERROR;

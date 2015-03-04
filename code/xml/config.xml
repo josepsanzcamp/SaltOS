@@ -203,8 +203,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<debug>
 		<actiondebug>false</actiondebug>
 		<langdebug>false</langdebug>
-		<alertdebug>false</alertdebug>
-		<errordebug>false</errordebug>
 		<cancelgetmail>false</cancelgetmail>
 		<cancelsendmail>false</cancelsendmail>
 		<cancelfeeds>false</cancelfeeds>
