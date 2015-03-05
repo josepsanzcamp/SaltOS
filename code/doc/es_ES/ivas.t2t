@@ -1,0 +1,54 @@
+
+
+
+=IVA's=
+
+Esta aplicación le permite llevar un control de todos los IVA's que utilice la entidad. 
+
+[../img/ivas-listado.png]
+
+==Listado de IVA's==
+
+En el listado de IVA's podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica al IVA. 
+- **Nombre:** Nombre de IVA.
+- **Descripción:** Descripción de IVA.
+- **IVA (%):** Porcentaje de IVA.
+
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+
+
+===Opciones de filtro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+==Formulario de IVA==
+
+Esta es la aplicación de IVA, con ella podrá añadir, modificar y visionar todos los datos de los IVA clasificados en diferentes pestañas: datos principales, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del IVA===
+
+En esta pestaña podrá visualizar y modificar los principales datos del IVA. A continuación le relacionamos todos los campos de información.
+
+[../img/ivas-formulario.png]
+
+- **Nombre (*):** Nombre de IVA.
+- **IVA (%):** Porcentaje de IVA.
+- **Descripción:** Descripción de IVA.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un IVA.**
+
+===Pestaña Datos del registro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Carpetas===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
