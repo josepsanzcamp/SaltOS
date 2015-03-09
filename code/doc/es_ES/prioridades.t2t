@@ -1,0 +1,52 @@
+
+
+
+=Prioridades=
+
+Esta aplicación le permite llevar un control de todas prioridades que se utilizan en las diferentes aplicaciones como eventos, tareas, etc...
+
+[../img/prioridades-listado.png]
+
+==Listado de prioridades==
+
+En el listado de prioridades podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica la prioridad. 
+- **Nombre:** Nombre de la prioridad.
+- **Descripción:** Descripción de la prioridad.
+
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+
+
+===Opciones de filtro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+==Formulario de prioridades==
+
+Esta es la aplicación de prioridades, con ella podrá añadir, modificar y visionar todos los datos de las prioridades clasificados en diferentes pestañas: datos principales, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos de la prioridad===
+
+En esta pestaña podrá visualizar y modificar los principales datos de la prioridad. A continuación le relacionamos todos los campos de información.
+
+[../img/prioridades-formulario.png]
+
+- **Nombre (*):** Nombre de la prioridad.
+- **Descripción:** Descripción de la prioridad.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un forma de pago.**
+
+===Pestaña Datos del registro===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
+
+===Pestaña Carpetas===
+
+[En la ayuda general encontrara más información http://viewpdf/page=home]
