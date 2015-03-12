@@ -1013,7 +1013,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<waterclientes>Les clients: Texte</waterclientes>
 		<waterproyectos>Projets: texte</waterproyectos>
 		<waterposiblescli>clients potentiels: Texte</waterposiblescli>
-		<watercorreo>Mail:Texte</watercorreo>
+		<watercorreo>Mail: Texte</watercorreo>
+		<waterfeeds translated="false">Feeds: Texte</waterfeeds>
 		<emailasync>Utilisation de la synchrones envoyés (plus rapide)</emailasync>
 		<accounting>comptabilité</accounting>
 		<title_accounting>Configurez ici les données comptables mondiales</title_accounting>
@@ -1126,7 +1127,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<statewait>attente</statewait>
 		<statespam>SPAM</statespam>
 		<statesent>Posté</statesent>
-		<statenotsent>Sin envoyer</statenotsent>
+		<statenotsent>Sin-envoyer</statenotsent>
 		<stateerror>Erreur</stateerror>
 		<stateall>Un</stateall>
 		<todaslascuentas> [Tous Comptes]</todaslascuentas>

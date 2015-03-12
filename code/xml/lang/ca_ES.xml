@@ -1014,6 +1014,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<waterproyectos>Projectes: Text</waterproyectos>
 		<waterposiblescli>Possibles clients: Text</waterposiblescli>
 		<watercorreo>Correu: Text</watercorreo>
+		<waterfeeds>Feeds: Text</waterfeeds>
 		<emailasync>Utilitza el va enviar asíncron (més ràpid)</emailasync>
 		<accounting>Contabilitat</accounting>
 		<title_accounting>Configuri aquí les dades globals de contabilitat</title_accounting>
@@ -1126,7 +1127,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<statewait>Pendent</statewait>
 		<statespam>SPAM</statespam>
 		<statesent>Enviat</statesent>
-		<statenotsent>No enviat</statenotsent>
+		<statenotsent>No-enviat</statenotsent>
 		<stateerror>Error</stateerror>
 		<stateall>Tot</stateall>
 		<todaslascuentas>[Tots els comptes]</todaslascuentas>

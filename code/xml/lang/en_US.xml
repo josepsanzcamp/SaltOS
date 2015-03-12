@@ -1005,15 +1005,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<emailhost>Server SMTP</emailhost>
 		<water>Watermarks</water>
 		<title_water>Set the watermarks to be used in the pdf's</title_water>
-		<wateractas>Minutes</wateractas>
-		<waterpartes>Parts</waterpartes>
-		<waterfacturas>Billing</waterfacturas>
-		<wateralbaranes>Delivery Notes</wateralbaranes>
-		<waterpresupuestos>Budget</waterpresupuestos>
-		<waterclientes>Clients</waterclientes>
-		<waterproyectos>Projects</waterproyectos>
-		<waterposiblescli>Potential customers</waterposiblescli>
-		<watercorreo>Email</watercorreo>
+		<wateractas>Minutes: Text</wateractas>
+		<waterpartes>Parts: Text</waterpartes>
+		<waterfacturas>Billing: Text</waterfacturas>
+		<wateralbaranes>Delivery Notes: Text</wateralbaranes>
+		<waterpresupuestos>Budget: Text</waterpresupuestos>
+		<waterclientes>Clients: Text</waterclientes>
+		<waterproyectos>Projects: Text</waterproyectos>
+		<waterposiblescli>Potential customers: Text</waterposiblescli>
+		<watercorreo>Email: Text</watercorreo>
+		<waterfeeds>Feeds: Text</waterfeeds>
 		<emailasync>Using the asynchronous sent (faster)</emailasync>
 		<accounting>Accounting</accounting>
 		<title_accounting>Configure here the accounting global data</title_accounting>

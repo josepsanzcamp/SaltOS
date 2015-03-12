@@ -1014,6 +1014,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<waterproyectos>Projekt: Text</waterproyectos>
 		<waterposiblescli>Potentielle Kunden: Text</waterposiblescli>
 		<watercorreo>E-Mail: Text</watercorreo>
+		<waterfeeds translated="false">Feeds: Text</waterfeeds>
 		<emailasync>Gesendet über asynchrone (schneller)</emailasync>
 		<accounting>Rechnungswesen</accounting>
 		<title_accounting>Geben Sie hier die globale Accounting-Daten</title_accounting>

@@ -1014,6 +1014,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<waterproyectos>المشاريع</waterproyectos>
 		<waterposiblescli>الزبائن المحتملين</waterposiblescli>
 		<watercorreo>البريد</watercorreo>
+		<waterfeeds translated="false">Feeds: Texto</waterfeeds>
 		<emailasync>استخدام الارسال المتزامن (سريع)</emailasync>
 		<accounting>الحسابات</accounting>
 		<title_accounting>قم بتهيئة البيانات المحاسبية العامة</title_accounting>
