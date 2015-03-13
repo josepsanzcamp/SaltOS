@@ -231,7 +231,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<suma>Suma</suma>
 		<average>Mitjana</average>
 		<posx>Posició X</posx>
-		<posy>Posició I</posy>
+		<posy>Posició Y</posy>
 		<angle>Angle</angle>
 		<withoutinfo>Sense informació per representar</withoutinfo>
 		<sinproducto>[Sense producte associat]</sinproducto>
@@ -982,7 +982,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<agendainterval>Cercar notificacions de l'agenda cada</agendainterval>
 		<inboxinterval>Cercar correus nous cada</inboxinterval>
 		<outboxinterval>Comprovar la safata de sortida cada</outboxinterval>
-		<feedsinterval>Cercar missatges nous cada</feedsinterval>
+		<feedsinterval>Cercar feeds nous cada</feedsinterval>
 		<feedstimeout>Oblidar feeds esborrats passats</feedstimeout>
 		<sessioninterval>Comprovar avís de tancar sessió cada</sessioninterval>
 		<sessionwarning>Adverteix el tancament de sessió abans de</sessionwarning>
