@@ -98,7 +98,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>mailto("josep.sanz@saltos.org")</onclick>
 						</field>
 						<field>
-							<label>Jordi Company (Beta tester)</label>
+							<label>Jordi Company (Devel &amp; docs)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("jcompany@saltos.org")</onclick>

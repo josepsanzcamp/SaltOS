@@ -3,20 +3,69 @@
 
 =Lector Feeds RSS y Atom=
 
-El lector de feeds le ofrece la posibilidad de seguir cómodamente sus canales RSS y Atom desde SaltOS.
-
-Para configurar un nuevo canal RSS, consulte el capítulo 2.
+El lector de feeds le ofrece la posibilidad de seguir cómodamente sus canales RSS y Atom desde SaltOS. Para configurar un nuevo canal RSS, consulte el **[Mi perfil http://viewpdf/page=profile]**.
 
 ==Listado==
 
 El listado de entradas le muestra los últimos //posts// descargados.
 
-El funcionamiento de esta aplicación es muy parecida al del lector de correo electrónico.
+- **Cód.:** Código numérico que identifica el post.
+- **Feed RSS:** Enlace a la Web del publicador del RSS.
+- **Post RSS:** Enlace al post en la web.
+- **Título:** Titulo del post.
+- **Fecha publicación:** Día y hora de publicación.
+- **Estado:** Estado en el que se encuentra el post el color de fondo indentifica cada estado:
+  - //Nuevo//: verde.
+  - //Leido//: transparente.
+  - //Modificado//: transparente.
+  - //Pendiente//: azul.
+  - //Interesante//: naranja.
 
-El color de letra de cada entrada indica el estado y las opciones de búsqueda, filtrado y exportación funcionan de la misma manera. Puede marcar un post como pendiente, o volver a marcarlo como no leído si ya lo ha consultado.
+[../img/feeds-listado.png]
 
-==Consulta==
 
-El modo //Consulta// de un post le permite acceder a la fuente original, haciendo clic en el enlace de la cabecera. También puede enviar el contenido del post, por ejemplo, para recomendarlo a otra persona.
+===Opciones del listado===
 
-Para ver el contenido del post con más detalle, haga clic en //Zoom del post//.
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar(*) registro.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Compartir feed vía correo.
+- [../../lib/silk/icons/tag_blue.png]: Marcar feed como pendiente.
+- [../../lib/silk/icons/tag_gold.png]: Marcar feed como interesante.
+- [../../lib/silk/icons/star.png]: Añadir feed a favoritos.
+
+
+Sobre el listado ademas de la opción normal de busqueda, encontrará las siguientes funciones:
+
+- Selector de canal RSS: le permite filtrar rapidamente el canal RSS.
+- [../../lib/silk/icons/email_open.png]: Con este botón fuerza a que se verifique si hay post nuevos que descargar de todas las suscripciones RSS (Según la cantidad de RSS suscrito esta acción puede tardar).
+- Selector de **acciones para multiples feeds**:
+ - //Opciones//: Descarga y visualización en formato PDF.
+ - //Marcar como//: Leidos, No leidos, Pendientes, No pendientes, Interesantes, No interesantes.
+ - //Filtrar por estado//: Todos, Leidos, Pendientes, Interesantes.
+ - //Filtrar por fecha publicación//: Todos, Hoy, Ayer, Semana, Mes.
+- [../../lib/silk/icons/delete.png] Borrar los Feeds RSS seleccionados (*).
+
+
+**(*)** Más información sobre la configuración de borrado de feeds en la [configuración general http://viewpdf/page=maincfg]
+
+===Opciones de filtro===
+
+Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulario de feeds==
+
+[../img/feeds-formulario.png]
+
+El modo //Consulta// de un post le permite acceder a la fuente original, haciendo clic en el enlace de la cabecera. Puede marcar como pendiente e interesante el articulo. Con el botón de la parte inferior del post puede compartirlo, por ejemplo, para recomendarlo a otra persona. Para ver el contenido del post con más detalle, haga clic en //Zoom del post//.
+
+===Pestaña Datos del registro===
+
+Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestaña Carpetas===
+
+Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+
