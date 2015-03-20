@@ -16,14 +16,14 @@ Verá que la interfaz de SaltOS es intuitiva y fácil de usar, lo cual le permit
 SaltOS está compuesto por una serie de aplicaciones o módulos. Cada aplicación ofrece un funcionalidad concreta dentro de las siguientes categorías:
 
   [../img/home-inicio.png]
-  
+
   - Funcionalidades Generales
     - **Página de inicio o Dashboard**, acceda a la pantalla principal de la aplicación.
     - **[Correo electrónico http://viewpdf/page=correo]**, lea y envíe correos desde aquí a sus clientes y proveedores.
     - **[Agenda de eventos http://viewpdf/page=agenda]**, anote en la agenda todas las visitas y reuniones.
     - **[Gestor de documentos http://viewpdf/page=documentos]**, tenga agrupada toda la documentación de su empresa.
 %    - **[Ficheros adjuntos http://viewpdf/page=productos]**, acceda a todos los ficheros de toda la aplicación
-    - **[Lector de //feeds RSS// http://viewpdf/page=feeds]**, siga sus feeds RSS y Atom desde esta aplicación.
+    - **[Lector de feeds RSS http://viewpdf/page=feeds]**, siga sus feeds RSS y Atom desde esta aplicación.
     - **[Favoritos http://viewpdf/page=favoritos]**, gestione sus favoritos desde aquí.
     - **[Textos predefinidos http://viewpdf/page=textos]**, cree textos predefinidos para usarlos en otras aplicaciones.
     - **[Mi perfil http://viewpdf/page=profile]**, cambie sus preferencias de su usuario.
@@ -77,7 +77,7 @@ El interfaz gráfico de SaltOS está divido en 3 secciones:
   - **Barra superior:** en ella podrá encontrar el botón para esconder el menú, el enlace al about y la versión actual de SaltOS, el control del lector por voz (si está habilitado) y los botones de acceso rápido a las diferentes aplicaciones.
   [../img/home-zona-superior.png]
   - **Menú zona izquierda:** desde aquí podrá acceder a las distintas aplicaciones de SaltOS. Puede ocultar este menú para ampliar el espacio disponible en la pantalla.
-  
+
   [../img/home-zona-izquierda.png]
 
 
@@ -120,7 +120,7 @@ En función de la aplicación encontrará otros botones:
   - etc.
 
 
-Para **crear un nuevo registro** en la aplicación actual, por ejemplo una factura, un cliente, etc; debe hacer clic en el botón que se sitúa a la izquierda sobre el listado. 
+Para **crear un nuevo registro** en la aplicación actual, por ejemplo una factura, un cliente, etc; debe hacer clic en el botón que se sitúa a la izquierda sobre el listado.
 
 En zona inferior derecha se encuentra un selector para configurar la cantidad de registros mostrados en la misma pantalla (50, 100, 150, etc.). En el lado derecho se encuentran los controles para **navegar** a la siguiente página de listado así como un selector para **acceder directamente a una página determinada**.
 

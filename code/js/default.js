@@ -2081,7 +2081,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
-	jQuery.ajaxSetup({ cache:true });
+	$.ajaxSetup({ cache:true });
 
 	// DEFINE SOME DEFAULTS THAT CAN NOT BE DEFINED IN RUNTIME
 	$.jGrowl.defaults.closer=false;
