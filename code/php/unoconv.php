@@ -90,6 +90,9 @@ function __unoconv_list() {
 		if($pos1!==false && $pos2!==false) {
 			$ext=substr($about,$pos1+1,$pos2-$pos1-1);
 			if($ext[0]==".") $ext=substr($ext,1);
+			// TRICK TO DETECT XLSX
+			if(stripos($about,"ooxml")!==false && stripos($about,"microsoft")!==false && stripos($about,"excel")!==false) $ext="xlsx";
+			// CONTINUE
 			if(!in_array($ext,$exts)) $exts[]=$ext;
 		}
 	}

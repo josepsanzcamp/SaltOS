@@ -22,13 +22,14 @@ To get started, check out <http://getbootstrap.com>!
 
 ## Quick start
 
-Five quick start options are available:
+Several quick start options are available:
 
 - [Download the latest release](https://github.com/twbs/bootstrap/archive/v3.3.4.zip).
 - Clone the repo: `git clone https://github.com/twbs/bootstrap.git`.
 - Install with [Bower](http://bower.io): `bower install bootstrap`.
 - Install with [npm](https://www.npmjs.com): `npm install bootstrap`.
-- Install with [Meteor](https://www.meteor.com/): `meteor add twbs:bootstrap`.
+- Install with [Meteor](https://www.meteor.com): `meteor add twbs:bootstrap`.
+- Install with [Composer](https://getcomposer.org): `composer require twbs/bootstrap`.
 
 Read the [Getting started page](http://getbootstrap.com/getting-started/) for information on the framework contents, templates and examples, and more.
 
