@@ -17,13 +17,25 @@ Para acceder a la configuración general haga clic en //Mi Perfil// en el aparta
 
 == Preferencias Generales ==
 
+[profile-general.png]
+
 En la primera solapa podrá elegir el idioma de la aplicación, el tema o esquema de colores así como el juego de iconos de la aplicación.
 
 Para cambiar la contraseña de acceso a la aplicación, introduzca su clave actual en la caja de texto 'Clave Antigua' y a continuación la nueva en las dos cajas de texto 'Clave nueva' y 'Repita clave'.
 
+Habilitar lectura y notificaciones con voz (emails, feeds y agenda), marcando esta casilla habilitara la lectura por voz, cada vez que le llegue un nuevo emails, feeds y agenda, SaltOS le leerá el contenido. Esta funcionalidad requiere una libreria en el servidor.
+
+Libreria:  Festival. Más información [+ http://www.cstr.ed.ac.uk/projects/festival]
+
+Habilitar notificaciones integradas con el escritorio, marcando esta casilla habilitara las notificaciones de escritorio del navegador. Esta funcionalidad requiere un add-on en ciertos navegadores.
+
+FireFox: HTML5 desktop notifications [+ http://code.google.com/p/ff-html5notifications/] (En breve esta funcionaldad vendra incluida en el navegador)
+
 Después de realizar cualquier cambio en esta pestaña haga clic en 'Actualizar'.
 
 == Menú rápido ==
+
+[profile-general.png]
 
 En este apartado podrá añadir y quitar botones de acceso rápido a la barra superior de SaltOS.
 
@@ -31,21 +43,31 @@ Para añadir un nuevo botón, seleccione la aplicación a la quiere acceder de m
 
 == Carpetas de usuario ==
 
+[profile-carpetas.png]
+
 Desde esta solapa, podrá renombrar las carpetas según lo desee, crear nuevas carpetas o borrar carpetas que no use. Estas opciones permitirán que disponga de las carpetas necesarias para que pueda organizar su información de la mejor manera.
 
 == Google Calendar ==
+
+[profile-google-calendar.png]
 
 Para sincronizar su agenda personal con su cuenta de Google, introduzca aquí su nombre de usuario de Google (normalmente su cuenta de Gmail) y la contraseña de la misma.
 
 == Feeds RSS ==
 
+[profile-nuevos-feeds.png]
+
 Aquí podrá añadir las cuenta RSS y Atom preferidos para consultar en el lector de Feeds de SaltOS.
 
 Para añadir un feed nuevo, haga clic en la pestaña 'Nuevo Feed' e introduzca la dirección del mismo en la caja de texto 'URL'. Si desconoce la dirección, introduzca únicamente la dirección de la página web y haga clic en 'Probar'. SaltOS intentará encontrar automáticamente la dirección del feed correspondiente y le mostrará la información adicional del Feed. Para añadirlo al lector de Feeds de SaltOS haga clic en 'Añadir'.
 
-En la pestaña **Feeds configurados** encontrará los Feeds ya añadidos a SaltOS. Para descativar o borrar un Feed haga clic en 'Borrar' o 'Desactivado' o marque el checkbox correspondiente. A continuación haga clic en 'Actualizar'.
+En la pestaña **Feeds configurados** encontrará los Feeds ya añadidos a SaltOS. Para desactivar o borrar un Feed haga clic en 'Borrar' o 'Desactivado' o marque el checkbox correspondiente. A continuación haga clic en 'Actualizar'.
+
+[profile-feeds-configurados.png]
 
 == Cuenta de correo electrónico ==
+
+[profile-nuevo-correo.png]
 
 En la pestaña 'Nuevo correo' podrá configurar su cuenta de correo POP3 externa para gestionarla cómodamente desde SaltOS.
 
@@ -60,9 +82,8 @@ Rellene los datos 'Nombre' y 'Email' y añada, opcionalmente, una imagen para la
 
 Haga lo mismo en el apartado del servidor de salida SMTP.
 
-Si desea que se borren los correos periódicamente, marque la casilla correspondiente. Para responder automáticamente a las solicitudes de confirmación de recepción marque la casilla **Activar por defecto la solicitud de confirmación de recepción**. Si quieres recibir en copia los correos que envie marque **Añadirme a mi como CC en todos los emails que envie**. Para desactivar temporalmente la cuenta marque la casilla **Desactivar esta cuenta de correo**. Puede establecer la cuenta por defecto desde la cual se enviarán los correos, marcando la casilla **Cuenta por defecto (la que más uso)**.
+Si desea que se borren los correos periódicamente, marque la casilla correspondiente. Para responder automáticamente a las solicitudes de confirmación de recepción marque la casilla **Activar por defecto la solicitud de confirmación de recepción**. Si quieres recibir en copia los correos que envíe marque **Añadirme a mi como CC en todos los emails que envíe**. Para desactivar temporalmente la cuenta marque la casilla **Desactivar esta cuenta de correo**. Puede establecer la cuenta por defecto desde la cual se enviarán los correos, marcando la casilla **Cuenta por defecto (la que más uso)**.
 
 En SaltOS puede compartir el correo con el resto de usuarios, que podrán consultar sus correos recibidos y enviados. Para desactivar esta prestación, por ejemplo, para una cuenta privada, marque **Esta cuenta es privada (sólo yo tengo acceso)**.
 
 Una vez configurada su cuenta haga clic en 'Actualizar'. Las cuentas creadas aparecerán en pestañas nuevas para que pueda cambiar la configuración o borrarlas cuando desee.
-

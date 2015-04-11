@@ -5,13 +5,13 @@
 
 Esta aplicación le permite llevar un control de todos epígrafes (actividades económicas) que realice la entidad. [Más información sobre actividades económicas http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas]
 
-[../img/epigrafes-listado.png]
+[epigrafes-listado.png]
 
 ==Listado de epígrafes==
 
 En el listado de epígrafes podrá encontrar las columnas mas importantes del registro:
 
-- **Cód.:** Código numérico que identifica al epígrafe. 
+- **Cód.:** Código numérico que identifica al epígrafe.
 - **Nombre:** Nombre del epígrafe.
 - **Descripción:** Descripción del epígrafe, en que casos se utilizan, etc...
 
@@ -37,9 +37,9 @@ Esta es la aplicación de epígrafes, con ella podrá añadir, modificar y visio
 
 En esta pestaña podrá visualizar y modificar los principales datos del epígrafe. A continuación le relacionamos todos los campos de información.
 
-[../img/epigrafes-formulario.png]
+[epigrafes-formulario.png]
 
-- **Código (*):** Código del epígrafe. 
+- **Código (*):** Código del epígrafe.
 - **Nombre (*):** Nombre del epígrafe.
 - **Descripción:** Descripción del epígrafe.
 
@@ -52,4 +52,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

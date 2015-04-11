@@ -13,7 +13,7 @@ Esta es la aplicación de configuración, le permite cambiar o ajustar diferente
 
 En esta pestaña podrá visualizar y modificar la configuración general.
 
-[../img/maincfg-formulario.png]
+[maincfg-formulario.png]
 
 - **Título de la aplicación:** Es el título que aparece en la parte superior junto a la versión de SaltOS que se utiliza.
 - **Tamaño de los gráficos en los listados:** Tamaño que se utilizara en los gráficos de los diferenes listados.
@@ -32,7 +32,7 @@ En esta pestaña podrá visualizar y modificar la configuración general.
 
 En esta pestaña podrá visualizar y modificar la configuración del logotipo de la entidad.
 
-[../img/maincfg-formulario-logo.png]
+[maincfg-formulario-logo.png]
 
 - **Posicion y medidas del logotipo:**
   - **X:** Eje horizontal, distancia de la colocación del logo desde la coordenada 0,0, valor expresado en milimetros.
@@ -56,7 +56,7 @@ En esta pestaña podrá visualizar y modificar la configuración del logotipo de
 
 En esta pestaña podrá visualizar y modificar la configuración de las marcas de agua en los diferentes documentos tipos que permite generar SaltOS **(*)**.
 
-[../img/maincfg-formulario-marcas-agua.png]
+[maincfg-formulario-marcas-agua.png]
 
 - **Texto:** Texto a imprimir como marca de agua.
 - **Posición X:** Eje horizontal, distancia de la colocación del logo desde la coordenada 0,0, valor expresado en milimetros.
@@ -71,7 +71,7 @@ En esta pestaña podrá visualizar y modificar la configuración de las marcas d
 
 En esta pestaña podrá visualizar y modificar la configuración de la cuenta de correo generica que se utilizará en SaltOS para enviar mails generados automáticamente.
 
-[../img/maincfg-formulario-cuenta-correo.png]
+[maincfg-formulario-cuenta-correo.png]
 
 - **Nombre:** Nombre de la cuenta de correo.
 - **Mail:** Cuenta de correo.
@@ -88,7 +88,7 @@ En esta pestaña podrá visualizar y modificar la configuración de la cuenta de
 
 En esta pestaña podrá visualizar y modificar la configuración general
 
-[../img/maincfg-formulario-contabilidad.png]
+[maincfg-formulario-contabilidad.png]
 
 - **Moneda:** Moneda a utilizar en la suite.
 - **Nombre del impuesto (se suma):** Nombre del impuesto a utilizar, impuestos que se han de sumar en facturas.
@@ -103,4 +103,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

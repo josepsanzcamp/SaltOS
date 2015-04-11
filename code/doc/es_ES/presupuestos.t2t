@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todos los presupuesto realizados en la empresa.
 
-[../img/presupuestos-listado.png]
+[presupuestos-listado.png]
 
 ==Listado de presupuestos==
 
@@ -26,6 +26,8 @@ En el listado de presupuestos podrá encontrar las columnas mas importantes del 
 
 
 (*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
+**Recuerde**: Los eventos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
 
 ===Opciones del listado===
 
@@ -57,7 +59,7 @@ En esta pestaña podrá ver las estadísticas sobre cuantos presupuesto tiene en
 
 Esta es la aplicación de presupuesto, con ella podrá añadir, modificar y visionar todos los datos del presupuesto clasificados en diferentes pestañas: datos principales, objetivos del presupuesto, propuesta funcional, propuesta técnica, información adicional, tareas del presupuesto, productos del presupuesto, condiciones del presupuesto, fichero adjuntos, datos sobre las modificaciones del registro y asignaciones a carpetas.
 
-[../img/presupuestos-formulario.png]
+[presupuestos-formulario.png]
 
 ===Pestaña Datos del presupuesto===
 
@@ -87,31 +89,31 @@ Ademas, en la primera pestaña tiene unos **botones de acción.**
 
 En esta pestaña podrá describir los objetivos del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
 
-[../img/presupuestos-formulario-objetivos.png]
+[presupuestos-formulario-objetivos.png]
 
 ===Pestaña de Propuesta funcional===
 
 En esta pestaña podrá describir propuesta funcional del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
 
-[../img/presupuestos-formulario-propuesta-funcional.png]
+[presupuestos-formulario-propuesta-funcional.png]
 
 ===Pestaña de Propuesta técnica===
 
 En esta pestaña podrá describir la propuesta técnica del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
 
-[../img/presupuestos-formulario-propuesta-tecnica.png]
+[presupuestos-formulario-propuesta-tecnica.png]
 
 ===Pestaña de Información adicional===
 
 En esta pestaña podrá describir información adicional que no se haya especificado en otros apartados del presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
 
-[../img/presupuestos-formulario-informacion-adicional.png]
+[presupuestos-formulario-informacion-adicional.png]
 
 ===Pestaña de Tareas===
 
 En esta pestaña podrá incluir, modificar o eliminar  todas las tareas a realizar vinculadas en este presupuesto.
 
-[../img/presupuestos-formulario-listado-tareas.png]
+[presupuestos-formulario-listado-tareas.png]
 
 - **Tabla Resumen:** En esta tabla podrá ver diferente información sobre las tareas incluidas en el presupuesto, total de horas, precio medio, importe total de horas.
 - **Lista de tareas:** En esta lista podrá ir añadiendo, modificando o eliminando tantas tareas como sean necesarias, los campos que incluye son: **descripción de la tarea, horas necesarias, precio unitario, descuento, total tarea**.
@@ -121,7 +123,7 @@ En esta pestaña podrá incluir, modificar o eliminar  todas las tareas a realiz
 
 En esta pestaña podrá incluir, modificar o eliminar todas los productos vinculadas en este presupuesto.
 
-[../img/presupuestos-formulario-listado-productos.png]
+[presupuestos-formulario-listado-productos.png]
 
 - **Tabla Resumen:** En esta tabla podrá ver diferente información sobre los productos incluidos en el presupuesto, total de unidades, importe total de productos.
 - **Lista de productos:** En esta lista podrá ir añadiendo, modificando o eliminando tantos productos como sean necesarios, los campos que incluye son: **descripción del producto, unidades, precio unitario, descuento, total productos**.
@@ -131,7 +133,7 @@ En esta pestaña podrá incluir, modificar o eliminar todas los productos vincul
 
 En esta pestaña podrá describir las condiciones a las que esta sujeto el presupuesto. Puede escribir directamente en la caja de texto, e ir añadiendo textos predefinidos con el selector que esta debajo de la caja de texto.
 
-[../img/presupuestos-formulario-condiciones.png]
+[presupuestos-formulario-condiciones.png]
 
 ===Pestaña Nuevos ficheros===
 

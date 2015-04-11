@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todos partes de trabajo que realicen los trabajadores en la empresa.
 
-[../img/partes-listado.png]
+[partes-listado.png]
 
 ==Listado de partes de trabajo==
 
@@ -26,6 +26,8 @@ En el listado de partes de trabajo podrá encontrar las columnas mas importantes
 
 
 (*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
+**Recuerde**: Los eventos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
 
 ===Opciones del listado===
 
@@ -55,7 +57,7 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 En esta pestaña podrá ver estadísticas sobre los partes realizados el último año y el top 10 de clientes mas activos.
 
-[../img/partes-listado-graficas.png]
+[partes-listado-graficas.png]
 
 ==Formulario de partes de trabajo==
 
@@ -65,7 +67,7 @@ Esta es la aplicación de partes de trabajo, con ella podrá añadir, modificar 
 
 En esta pestaña podrá visualizar y modificar los principales datos del parte. A continuación le relacionamos todos los campos de información.
 
-[../img/partes-formulario.png]
+[partes-formulario.png]
 
 - **Cliente:** Para vincular el cliente para el que se realiza el trabajo.
 - **Proyecto:** Para vincular el proyecto en el que esta incluido este trabajo.
@@ -103,4 +105,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

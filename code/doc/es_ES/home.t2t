@@ -15,7 +15,7 @@ Verá que la interfaz de SaltOS es intuitiva y fácil de usar, lo cual le permit
 
 SaltOS está compuesto por una serie de aplicaciones o módulos. Cada aplicación ofrece un funcionalidad concreta dentro de las siguientes categorías:
 
-  [../img/home-inicio.png]
+  [home-inicio.png]
 
   - Funcionalidades Generales
     - **Página de inicio o Dashboard**, acceda a la pantalla principal de la aplicación.
@@ -73,12 +73,12 @@ Para gestionar la configuración del propio SaltOS existen varias aplicaciones:
 
 El interfaz gráfico de SaltOS está divido en 3 secciones:
   - **Espacio central:** en él encontrará la aplicación seleccionada con su pestaña de ayuda.
-  [../img/home-zona-central.png]
+  [home-zona-central.png]
   - **Barra superior:** en ella podrá encontrar el botón para esconder el menú, el enlace al about y la versión actual de SaltOS, el control del lector por voz (si está habilitado) y los botones de acceso rápido a las diferentes aplicaciones.
-  [../img/home-zona-superior.png]
+  [home-zona-superior.png]
   - **Menú zona izquierda:** desde aquí podrá acceder a las distintas aplicaciones de SaltOS. Puede ocultar este menú para ampliar el espacio disponible en la pantalla.
 
-  [../img/home-zona-izquierda.png]
+  [home-zona-izquierda.png]
 
 
 ===Espacio central===
@@ -87,7 +87,7 @@ En el **espacio central** se mostrarán los listados y formularios de las distin
 
 ====Listados====
 
-[../img/clientes-listado.png]
+[clientes-listado.png]
 
 En la primera se muestra un listado con los datos de cada aplicación. En la parte superior del listado encontrará el significado de cada columna así como la posibilidad de ordenador el listado en función del valor de ésta. La ordenación puede realizarse en sentido ascendente o descendente haciendo clic en las flechas disponibles en cada columna.
 
@@ -126,7 +126,7 @@ En zona inferior derecha se encuentra un selector para configurar la cantidad de
 
 ====Opciones de filtro====
 
-[../img/home-opciones-filtro.png]
+[home-opciones-filtro.png]
 
 La mayoría de aplicaciones disponen de un buscador para filtrar el listado de registro según los criterios del usuario. Encontrará un  buscador simple encima de listado de la aplicación, tal y como se ha descrito en el apartado anterior. En la pestaña 'Opciones de filtro' se encuentra un **buscador avanzado** que le permitirá afinar la búsqueda en función de los campos de información de la aplicación.
 

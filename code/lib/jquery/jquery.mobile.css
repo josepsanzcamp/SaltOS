@@ -1,6 +1,6 @@
 /*!
 * jQuery Mobile 1.5.0-pre
-* Git HEAD hash: 5c067f7684f6359c7e4582664366cee18a842951 <> Date: Thu Mar 19 2015 07:53:12 UTC
+* Git HEAD hash: 7069e219afd237fb0ccd64f49157ad52c7c28947 <> Date: Fri Apr 10 2015 20:49:55 UTC
 * http://jquerymobile.com
 *
 * Copyright 2010, 2015 jQuery Foundation, Inc. and other contributors
@@ -2534,12 +2534,25 @@ button.ui-btn-icon-notext,
 	}
 }
 /* content configurations. */
-.ui-grid-a,
-.ui-grid-b,
-.ui-grid-c,
-.ui-grid-d,
-.ui-grid-solo {
-	overflow: hidden;
+.ui-grid-a:before,
+.ui-grid-b:before,
+.ui-grid-c:before,
+.ui-grid-d:before,
+.ui-grid-solo:before,
+.ui-grid-a:after,
+.ui-grid-b:after,
+.ui-grid-c:after,
+.ui-grid-d:after,
+.ui-grid-solo:after {
+	content: "";
+	display: table;
+}
+.ui-grid-a:after,
+.ui-grid-b:after,
+.ui-grid-c:after,
+.ui-grid-d:after,
+.ui-grid-solo:after {
+	clear: both;
 }
 .ui-block-a,
 .ui-block-b,
@@ -4089,9 +4102,6 @@ div.ui-rangeslider label {
 	margin: .5em 0;
 	border-width: 1px;
 	border-style: solid;
-}
-.ui-mini {
-	margin: .446em;
 }
 .ui-input-text input,
 .ui-input-search input,

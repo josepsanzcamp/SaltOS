@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todos estados que se utilizan en las diferentes aplicaciones.
 
-[../img/estados-listado.png]
+[estados-listado.png]
 
 ==Listado de estados==
 
@@ -38,7 +38,7 @@ Esta es la aplicación de estados, con ella podrá añadir, modificar y visionar
 
 En esta pestaña podrá visualizar y modificar los principales datos del estado. A continuación le relacionamos todos los campos de información.
 
-[../img/estados-formulario.png]
+[estados-formulario.png]
 
 - **Nombre (*):** Nombre del estado.
 - **Aplicación (*):** Aplicación a la que esta vinculada el estado.
@@ -55,4 +55,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

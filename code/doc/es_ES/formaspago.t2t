@@ -3,15 +3,15 @@
 
 =Formas de pago=
 
-Esta aplicación le permite llevar un control de todas formas de pago que utilice la entidad. 
+Esta aplicación le permite llevar un control de todas formas de pago que utilice la entidad.
 
-[../img/formaspago-listado.png]
+[formaspago-listado.png]
 
 ==Listado de formas de pago==
 
 En el listado de formas de pago podrá encontrar las columnas mas importantes del registro:
 
-- **Cód.:** Código numérico que identifica la forma de pago. 
+- **Cód.:** Código numérico que identifica la forma de pago.
 - **Nombre:** Nombre de la forma de pago.
 - **Descripción:** Descripción del forma de pago.
 
@@ -35,7 +35,7 @@ Esta es la aplicación de formas de pago, con ella podrá añadir, modificar y v
 
 En esta pestaña podrá visualizar y modificar los principales datos de la forma de pago. A continuación le relacionamos todos los campos de información.
 
-[../img/formaspago-formulario.png]
+[formaspago-formulario.png]
 
 - **Nombre (*):** Nombre del forma de pago.
 - **Descripción:** Descripción del forma de pago.
@@ -49,4 +49,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

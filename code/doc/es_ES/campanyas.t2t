@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todas sus campañas comerciales.
 
-[../img/campanyas-listado.png]
+[campanyas-listado.png]
 
 ==Listado de campañas comerciales.==
 
@@ -24,6 +24,8 @@ En el listado de campañas comerciales. podrá encontrar las columnas mas import
 - **NC:** Número de comentarios introducidos sobre esta campaña.
 - **NF:** Número de ficheros vinculados con esta campaña.
 
+
+**Recuerde**: Los eventos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
 
 ===Opciones del listado===
 
@@ -46,7 +48,7 @@ Esta es la aplicación de campañas comerciales, con ella podrá añadir, modifi
 
 En esta pestaña podrá visualizar y modificar los principales datos sobre la campaña. A continuación le relacionamos todos los campos de información.
 
-[../img/campanyas-formulario.png]
+[campanyas-formulario.png]
 
 - **Nombre (*):** Nombre comercial de la campaña comercial.
 - **Estado (*):** Estado en el que se encuentra la campaña comercial.
@@ -79,5 +81,5 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.
 

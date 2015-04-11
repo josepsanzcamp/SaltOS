@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todos usuarios con acceso a la aplicación.
 
-[../img/usuarios-listado.png]
+[usuarios-listado.png]
 
 ==Listado de usuarios==
 
@@ -42,7 +42,7 @@ Esta es la aplicación de usuarios, con ella podrá añadir, modificar y visiona
 
 En esta pestaña podrá visualizar y modificar los principales datos del usuario. A continuación le relacionamos todos los campos de información.
 
-[../img/usuarios-formulario.png]
+[usuarios-formulario.png]
 
 - **Usuario (*):** Nombre del usuario.
 - **Grupo (*):** Grupo al que pertenece el usuario.
@@ -62,37 +62,37 @@ En esta pestaña podrá visualizar y modificar los principales datos del usuario
 
 En esta pestaña podrá aplicar permisos específicos por usuario.
 
-[../img/usuarios-formulario-permisos-aplicacion.png]
+[usuarios-formulario-permisos-aplicacion.png]
 
 ===Pestaña Grupos del usuario===
 
 En esta pestaña podrá asignar a grupos a usuarios específicos.
 
-[../img/usuarios-formulario-grupos.png]
+[usuarios-formulario-grupos.png]
 
 ===Pestaña Permisos por registro===
 
 En esta pestaña podrá bloquear registros específicos en relevancia con la confidencialidad.
 
-[../img/usuarios-formulario-permisos-registro.png]
+[usuarios-formulario-permisos-registro.png]
 
 ===Pestaña Google calendar===
 
 En esta pestaña podrá configurar la sincronización con sus calendarios de Google
 
-[../img/usuarios-formulario-google-calendar.png]
+[usuarios-formulario-google-calendar.png]
 
 ===Pestaña Feeds configurados===
 
 En esta pestaña podrá configurar todos los feeds necesarios para ese usuario.
 
-[../img/usuarios-formulario-feeds-configurados.png]
+[usuarios-formulario-feeds-configurados.png]
 
 ===Pestaña Cuentas de correo===
 
 Con esta pestaña podrá añadir todas las cuentas de correo que tenga que gestionar el usuario.
 
-[../img/usuarios-formulario-cuenta-correo.png]
+[usuarios-formulario-cuenta-correo.png]
 
 ===Pestaña Datos del registro===
 
@@ -100,4 +100,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

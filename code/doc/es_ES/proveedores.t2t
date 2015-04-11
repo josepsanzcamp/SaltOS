@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todos sus proveedores.
 
-[../img/proveedores-listado.png]
+[proveedores-listado.png]
 
 ==Listado de proveedores==
 
@@ -18,6 +18,8 @@ En el listado de proveedores podrá encontrar las columnas mas importantes del r
 - **Teléfono móvil:** Teléfono móvil principal para ponernos en contacto.
 - **Cuenta de correo:** Cuenta de correo principal para ponernos en contacto.
 
+
+**Recuerde**: Los eventos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
 
 ===Opciones del listado===
 
@@ -40,7 +42,7 @@ Esta es la aplicación de proveedores con ella podrá añadir, modificar y visio
 
 En esta pestaña podrá visualizar y modificar los principales datos de proveedor. A continuación le relacionamos todos los campos de información.
 
-[../img/proveedores-formulario.png]
+[proveedores-formulario.png]
 
 - **Nombre comercial (*):** Nombre comercial del proveedor.
 - **Nombre Fiscal (*):** Nombre fiscal que se utiliza en los documentos legales como facturas, contratos, etc..
@@ -73,7 +75,7 @@ Ademas, en la primera pestaña tiene unos **botones de acción.**
 
 En esta pestaña podrá ver las gráficas y estadísticas de gastos realizados en el último año a este proveedor.
 
-[../img/proveedores-formulario-graficas.png]
+[proveedores-formulario-graficas.png]
 
 ===Pestaña Datos del registro===
 
@@ -81,4 +83,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

@@ -454,15 +454,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://w2ui.com/")</onclick>
 						</field>
 						<field>
-							<label>Bootstrap v3.3.2 (MIT)</label>
+							<label>Bootstrap v3.3.4 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://getbootstrap.com/")</onclick>
 						</field>
 						<field>
+							<label>Bootswatch v3.3.4+1 (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://bootswatch.com/")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>
@@ -582,7 +588,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 4.4.7 DEV (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 4.4.8 DEV (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>

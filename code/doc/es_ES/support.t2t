@@ -1,0 +1,14 @@
+
+
+
+=Soporte técnico=
+
+La aplicación le permite enviar un mensaje al equipo de //soporte técnico//. Si en la configuración general se ha configurado una le llegrán a su equipo de soporte, en caso contrario este formulario no tendrá ninguna utilidad.
+
+==Formulario de soporte==
+
+[support-formulario.png]
+
+- **Nombre (*):** Nombre de usuario que esta enviando el soporte.
+- **Asunto (*):** Breve descripción del error o la incidencia ocurrida.
+- **Comentarios (*):** Explicación completa y detalla del problema ocurrido.

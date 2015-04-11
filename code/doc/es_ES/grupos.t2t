@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todos grupos de la aplicación.
 
-[../img/grupos-listado.png]
+[grupos-listado.png]
 
 ==Listado de grupos==
 
@@ -35,7 +35,7 @@ Esta es la aplicación de grupos, con ella podrá añadir, modificar y visionar 
 
 En esta pestaña podrá visualizar y modificar los principales datos del grupo. A continuación le relacionamos todos los campos de información.
 
-[../img/grupos-formulario.png]
+[grupos-formulario.png]
 
 - **Usuario (*):** Nombre del grupo.
 - **Descripción :** Descrpción del grupo.
@@ -47,7 +47,7 @@ En esta pestaña podrá visualizar y modificar los principales datos del grupo. 
 
 En esta pestaña podrá aplicar los permisos al grupo.
 
-[../img/grupos-formulario-permisos-aplicacion.png]
+[grupos-formulario-permisos-aplicacion.png]
 
 ===Pestaña Datos del registro===
 
@@ -55,4 +55,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

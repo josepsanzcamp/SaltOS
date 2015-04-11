@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todos gastos que se realicen en la empresa.
 
-[../img/gastos-listado.png]
+[gastos-listado.png]
 
 ==Listado de gastos==
 
@@ -23,6 +23,8 @@ En el listado de gastos podrá encontrar las columnas mas importantes del regist
 
 
 (*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
+**Recuerde**: Los eventos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
 
 ===Opciones del listado===
 
@@ -46,7 +48,7 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 En esta pestaña podrá ver estadísticas sobre los gastos realizados el último año.
 
-[../img/gastos-listado-graficas.png]
+[gastos-listado-graficas.png]
 
 ==Formulario de gastos==
 
@@ -56,7 +58,7 @@ Esta es la aplicación de gastos, con ella podrá añadir, modificar y visionar 
 
 En esta pestaña podrá visualizar y modificar los principales datos del gasto. A continuación le relacionamos todos los campos de información.
 
-[../img/gastos-formulario.png]
+[gastos-formulario.png]
 
 - **Cuenta (*):** Cuenta donde se contabilizara el gasto.
 - **Epígrafe (*):** Actividad económica a la cual se vinculara el gasto.
@@ -91,7 +93,7 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 En esta pestaña podrá crear diferentes vencimientos para liquidar el gasto.
 
-[../img/gastos-formulario-vencimientos.png]
+[gastos-formulario-vencimientos.png]
 
 ===Pestaña Datos del registro===
 
@@ -99,4 +101,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

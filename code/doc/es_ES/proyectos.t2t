@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todos los proyecto realizados en la empresa.
 
-[../img/proyectos-listado.png]
+[proyectos-listado.png]
 
 ==Listado de Proyectos==
 
@@ -28,6 +28,8 @@ En el listado de proyectos podrá encontrar las columnas mas importantes de cada
 
 (*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
 
+**Recuerde**: Los eventos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
+
 ===Opciones del listado===
 
 Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
@@ -46,7 +48,7 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 En esta pestaña podrá ver las estadísticas sobre cuantos proyectos tiene en cada estado, pudiendo detectar picos y bajadas de faena antes de que sucedan y así poder tomar medidas para mitigar estos momentos críticos.
 
-[../img/proyectos-estadisticas.png]
+[proyectos-estadisticas.png]
 
 ==Formulario de proyectos==
 
@@ -56,7 +58,7 @@ Esta es la aplicación de proyecto, con ella podrá añadir, modificar y visiona
 
 En esta pestaña podrá visualizar y modificar los principales datos del proyecto. A continuación le relacionamos todos los campos de información.
 
-[../img/proyectos-formulario.png]
+[proyectos-formulario.png]
 
 - **Cliente:** Para poder vincular el proyecto con un cliente.
 - **Campaña:** Para vincular en caso que el proyecto haya sido. Pedido gracias a una campaña comercial concreta.
@@ -82,7 +84,7 @@ Ademas, en la primera pestaña tiene unos **botones de acción.**
 
 En esta pestaña podrá incluir, modificar o eliminar todas las tareas a realizar vinculadas a este proyecto.
 
-[../img/proyectos-formulario-listado-tareas.png]
+[proyectos-formulario-listado-tareas.png]
 
 - **Tabla Resumen:** En esta tabla podrá ver diferente información sobre las tareas incluidas en el proyecto: **total de horas, precio medio, importe total de horas.**
 - **Lista de tareas:** En esta lista podrá incluir, modificar o eliminar tantas tareas como sean necesarias, los campos que incluye son: **descripción de la tarea, horas necesarias, precio unitario, descuento, total tarea.**
@@ -92,7 +94,7 @@ En esta pestaña podrá incluir, modificar o eliminar todas las tareas a realiza
 
 En esta pestaña podrá incluir, modificar o eliminar todas los productos vinculados a este proyecto.
 
-[../img/proyectos-formulario-listado-productos.png]
+[proyectos-formulario-listado-productos.png]
 
 - **Tabla Resumen:** En esta tabla podrá ver diferente información sobre los productos incluidos en el proyecto: **total de unidades, importe total de productos.**
 - **Lista de productos:** En esta lista podrá incluir, modificar o eliminar tantos productos sean necesarios, los campos que incluye son: **descripción del producto, unidades, precio unitario, descuento, total productos.**
@@ -102,7 +104,7 @@ En esta pestaña podrá incluir, modificar o eliminar todas los productos vincul
 
 En esta pestaña podrá ver las desviaciones del proyecto respecto al presupuesto tanto en cantidad como en porcentaje.
 
-[../img/proyectos-formulario-graficas.png]
+[proyectos-formulario-graficas.png]
 
 ===Pestaña Nuevos ficheros===
 
@@ -114,4 +116,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

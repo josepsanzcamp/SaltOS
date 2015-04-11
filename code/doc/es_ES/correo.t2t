@@ -3,50 +3,87 @@
 
 =Correo electrónico=
 
-Con el cliente de correo electrónico de SaltOS podrá trabajar como en cualquier otro cliente, ya sea de tipo //webmail// o una aplicación de escritorio.
-
-Saltos realiza el envío y la recepción de los correos periódicamente en segundo plano.
+Con el cliente de correo electrónico de SaltOS podrá trabajar como en cualquier otro cliente, ya sea de tipo //webmail// o una aplicación de escritorio. Saltos realiza el envío y la recepción de los correos periódicamente en segundo plano.
 
 ==Listado de correos==
 
 En el listado de sus correos electrónicos encontrará tanto los enviados por usted como los recibidos.
 
-Encima del listado encontrará un espacio con opciones para buscar, exportar, filtrar, marcar y borrar los correos. Estas opciones están agrupadas en tres grupos. Para ir de un grupo a otro haga clic en //Opciones// o seleccione directamente el número del grupo.
+[correo-listado.png]
 
-En el primer grupo encontrará una caja de texto para realizar una búsqueda por la cadena de texto introducida. Desde este grupo también forzar el envío y la recepción de correo. También puede ordenar el correo en el siguiente orden haciendo clic en el botón //Ordenar//: nuevo, pendiente y resto.
+- **Cód.:** Código numérico que identifica el correo.
+- **De:** Remitente del correo. (Al hacer clic en el enlace creara un nuevo correo con este destinatario)
+- **Para:** Destinatario del correo. (Al hacer clic en el enlace creara un nuevo correo con este destinatario)
+- **Asunto:** Asunto del correo.
+- **Fecha y hora:** Día y hora de envío.
+- **Tamaño:** Tamaño de espacio en disco.
+- **NF:** Número de ficheros adjuntos.
+- **Estado:** Estado en el que se encuentra el correo el color de fondo identifica cada estado:
+  - //Nuevo//: verde.
+  - //Leído//: transparente.
+  - //Modificado//: transparente.
+  - //Pendiente//: azul.
+  - //Spam//: Rojo.
 
-En el segundo grupo podrá filtrar el correo en función de su estado (nuevo, pendiente o spam), su fecha (hoy, ayer, semana actual, mes actual) y si es un correo enviado o recibido.
 
-El tercer y último grupo le permite marcar el correo como leído o no leído, pendiente o no pendiente o como SPAM. También podrá borrar desde aquí los correos seleccionados.
-
-Para aplicar cualquier cualquier acción sobre uno o varios correos, seleccione el o los correos y haga clic en el botón correspondiente.
-
-===Significado de los colores===
-
-- **Verde:** correo **nuevo**
-- **Azul** oscuro: correo marcado como **pendiente**
-- **Rojo:** correo basura **//(SPAM)//**
-
+**Recuerde**: Los correos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
 
 ===Opciones del listado===
 
-Las opciones del listado en este mismo orden son:
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- Consultar el correo
-- Exportar en formato PDF
-- Consultar en el visor PDF interno
-- Responder
-- Responder a todos
-- Reenviar el correo
-- Marcarlo como pendiente
-- Marcarlo como SPAM
-- Agregarlo a la página de inicio
-- Borrarlo
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar(*) registro.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/email_reply.png]: Responder correo al remitente.
+- [../../lib/silk/icons/email_replyall.png]: Responder correo a todos.
+- [../../lib/silk/icons/email_go.png]: Reenviar correo.
+- [../../lib/silk/icons/tag_blue.png]: Marcar correo como pendiente.
+- [../../lib/silk/icons/tag_red.png]: Marcar correo como SPAM.
+
+
+Sobre el listado ademas de la opción normal de búsqueda, encontrará las siguientes funciones:
+
+- [../../lib/silk/icons/email_open.png]: Fuerza la comprobación de correos nuevos en el servidor.
+- [../../lib/silk/icons/email_go.png]: Fuerza el envío de los correos pendientes de enviar.
+- Selector de **acciones para múltiples correos**:
+ - //Opciones//: Descarga y visualización en formato PDF.
+ - //Marcar como//: Leídos, No leídos, Pendientes, No pendientes, SPAM, No SPAM.
+ - //Filtrar por tipo//: Todos, Entrada, Salida.
+ - //Filtrar por estado//: Todos, Leídos, Pendientes, Interesantes.
+ - //Filtrar por fecha publicación//: Todos, Hoy, Ayer, Semana, Mes.
+- [../../lib/silk/icons/delete.png] Borrar los correos seleccionados (*).
 
 
 Para enviar un correo nuevo al remitente del correo puede hacer clic en la dirección de correo electrónico del mismo. Si desea enviar un nuevo correo desde la cuenta del destinatario (probablemente la suya), haga clic encima de la misma. También consultar el correo haciendo clic en el asunto.
 
-==Enviar nuevo correo==
+===Opciones de filtro===
+
+Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulario de correo==
+
+Esta es la aplicación de correo, con ella podrá leer y enviar correos, los datos están clasificados en diferentes pestañas. Datos principales, fichero adjuntos y asignaciones a carpetas.
+
+[correo-formulario.png]
+
+- **De (*):** Remitente del correo.
+- **Para (*):** Destinatario del correo.
+- **CC:** Enviar copia.
+- **BCC:** Enviar copia oculta.
+- **Solicitar confirmación:** Solicitar confirmación de recepción.
+- **Prioridad:** Importancia del correo (Alta, Media, Baja).
+- **Sensibilidad:** Indica la privacidad del contenido del mensaje.
+- **Mensaje (*):** Editor para mensaje del correo (``**``).
+- **Textos predefinidos:** Posibilidad de añadir textos predefinidos en la caja de texto de temas.
+
+
+(*) **Campos obligatorios a la hora de enviar un correo.**
+
+
+(``**``) **Podrá encontrar más información sobre la funcionalidad de los editores de SaltOS en [ayuda general http://viewpdf/page=home]**
+
+===Enviar nuevo correo===
 
 A la hora de enviar un nuevo correo, puede seleccionar desde qué cuenta desea realizar el envío (en caso de tener más de una cuenta configurada).
 
@@ -60,10 +97,16 @@ Para agregar un texto predefinido al correo, seleccione el nombre de la plantill
 
 Para enviar uno o varios fichero, seleccione la pestaña //Nuevos ficheros adjuntos//. Si desea añadir más de un fichero haga clic en //Añadir fichero//. Para seleccionar el fichero a enviar, haga clic en //Seleccionar archivo// e indíquelo a través del diálogo.
 
-==Consulta de un correo==
+
+===Consulta de un correo===
 
 En el modo consulta del correo puede realizar las misma funciones que en listado: responder al remitente, responder a todos y agregarlo a la página de inicio. También puede marcar como //pendiente// o //SPAM// marcando la casilla de verificación correspondiente y haciendo clic en //Volver//.
 
 Puede ver el correo entero en la pestaña //Zoom del correo//.
 
 Si el correo tuviera ficheros adjuntos, podrá ver y descargarlos en la pestaña //Adjuntos//. Para realizar una descarga de varios ficheros a la vez, selecciónelos y haga clic en //Descargar ficheros seleccionados//.
+
+
+===Pestaña Carpetas===
+
+Encontrará más información sobre carpetas en la **[ayuda general http://viewpdf/page=home]**.

@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todas las actas realizadas en la empresa.
 
-[../img/actas-listado.png]
+[actas-listado.png]
 
 ==Listado de actas==
 
@@ -20,6 +20,8 @@ En el listado de actas podrá encontrar las columnas mas importantes del registr
 - **Nombre:** Nombre descriptivo del motivo de la reunión.
 - **Lugar (€):** Lugar en el que se ha realizado la reunión.
 
+
+**Recuerde**: Los eventos se pueden organizar arrastrandolos a la carpeta de usuario que desee.
 
 ===Opciones del listado===
 
@@ -51,7 +53,7 @@ Esta es la aplicación de contactos, con ella podrá añadir, modificar y vision
 
 En esta pestaña podrá visualizar y modificar los principales datos de contacto. A continuación le relacionamos todos los campos de información.
 
-[../img/actas-formulario.png]
+[actas-formulario.png]
 
 - **Campañas:** Para vincular el acta con una campaña comercial concreta.
 - **Posible cliente:** Para vincular el acta con un posible cliente concreto.
@@ -68,6 +70,8 @@ En esta pestaña podrá visualizar y modificar los principales datos de contacto
 
 
 (*) **Campos obligatorios a la hora de crear o modificar un acta.**
+
+**Recuerde**: Las actas se pueden organizar arrastrandolos a la carpeta de usuario que desee.
 
 ===Pestaña Temas aceptados===
 
@@ -87,5 +91,5 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-[En la ayuda general encontrar más información. http://viewpdf/page=home]
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.
 

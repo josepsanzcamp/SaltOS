@@ -5,7 +5,7 @@
 
 Esta aplicación le permite llevar un control de todos seguimientos de las tareas realizadas en la empresa.
 
-[../img/seguimientos-listado.png]
+[seguimientos-listado.png]
 
 ==Listado de Seguimientos==
 
@@ -47,7 +47,7 @@ Esta es la aplicación de seguimiento de tareas, con ella podrá añadir, modifi
 
 En esta pestaña podrá visualizar y modificar los principales datos del seguimiento. A continuación le relacionamos todos los campos de información.
 
-[../img/seguimientos-formulario.png]
+[seguimientos-formulario.png]
 
 - **Cliente (*):** Para vincular el cliente para el que se realiza la tarea.
 - **Proyecto (*):** Para vincular en el proyecto en el que esta incluida la tarea.
@@ -65,4 +65,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

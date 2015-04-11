@@ -5,13 +5,13 @@
 
 Esta aplicación le permite llevar un control de todos tipos de evento que se utilizan en la aplicación eventos.
 
-[../img/tiposevento-listado.png]
+[tiposevento-listado.png]
 
 ==Listado de tipos de evento==
 
 En el listado de tipos de evento podrá encontrar las columnas mas importantes del registro:
 
-- **Cód.:** Código numérico que identifica del tipo de evento. 
+- **Cód.:** Código numérico que identifica del tipo de evento.
 - **Nombre:** Nombre del tipo de evento.
 - **Descripción:** Descripción del tipo de evento.
 
@@ -35,7 +35,7 @@ Esta es la aplicación de tipos de evento, con ella podrá añadir, modificar y 
 
 En esta pestaña podrá visualizar y modificar los principales datos del tipo de evento. A continuación le relacionamos todos los campos de información.
 
-[../img/tiposevento-formulario.png]
+[tiposevento-formulario.png]
 
 - **Nombre (*):** Nombre del tipo de evento.
 - **Descripción:** Descripción del tipo de evento.
@@ -49,4 +49,4 @@ Encontrará más información sobre opciones de filtro de los listados en la **[
 
 ===Pestaña Carpetas===
 
-Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.
