@@ -89,7 +89,7 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 		<div class="ui-layout-north" style="margin-left:auto;margin-right:auto;width:800px">
 			<div class="ui-widget">
 				<div class="ui-widget-header ui-corner-bottom">
-					<div class="texto"><?php echo LANG("title")." - ".get_name_version_revision(); ?></div>
+					<div style="text-align:center;padding:5px;font-size:1.1em;"><?php echo LANG("title")." - ".get_name_version_revision(); ?></div>
 				</div>
 			</div>
 		</div>
