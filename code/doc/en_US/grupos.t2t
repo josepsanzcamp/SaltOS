@@ -1,0 +1,58 @@
+
+
+
+=Groups=
+
+This application lets you keep track of all application groups.
+
+[grupos-listado.png]
+
+==List of groups==
+
+In the list of groups you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the group.
+- **Name:**  Group name.
+- **Description:**  Group Description.
+
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Groups form==
+
+This is the application of groups, it may add, modify and view all data of the groups classified in different tabs: main data, application permissions, data on the registry modifications and assignments to folders.
+
+===Data Tab Group===
+
+In this tab you can view and modify the main details of the group. Here we relate all information fields.
+
+[grupos-formulario.png]
+
+- **User (*):**  Group name.
+- **Description:**  Descrpcion group.
+
+
+(*) **Required when creating or modifying a group fields.**
+
+===Application permissions tab===
+
+In this tab you can apply the permissions to the group.
+
+[grupos-formulario-permisos-aplicacion.png]
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

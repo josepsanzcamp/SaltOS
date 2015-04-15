@@ -1,0 +1,29 @@
+
+
+
+=Predefined texts=
+
+The application of //Predefined texts//  allows you to save texts commonly used, for example, conditions of a budget or the content of a commercial email. This text can be recovered during the creation or modification in various applications.
+
+==Listing==
+
+This list shows the already defined entries, with its identifier or name and type (public / private) access.
+
+[textos-listado.png]
+
+
+==Creation==
+
+When creating a predefined text, choose a unique name so you can easily handle the text content.
+
+If you want the text to be used by all users, as a form of corporate farewell emails, check the box about verification //Everyone can use this predefined text//.
+
+[textos-formulario.png]
+
+==Modification==
+
+Edit mode or modification, allows you to set the same parameters during creation. Note that the name or ID of the text must be unique.
+
+==Consultation==
+
+The way a predefined text query allows you to query the identifier and its content.

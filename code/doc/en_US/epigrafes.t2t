@@ -1,0 +1,55 @@
+
+
+
+=Phrases=
+
+This application lets you keep track of all sections (economic activities) to conduct the entity. [Más información sobre actividades económicas http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas]
+
+[epigrafes-listado.png]
+
+==List of headings==
+
+In the list of headings you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the item.
+- **Name:**  Name heading.
+- **Description:**  Description section, in which cases are used, etc ...
+
+
+More Info for Spanish entities: [Agencia Tributaria https://www2.agenciatributaria.gob.es/ADUA/internet/es/aeat/dit/adu/adws/certificados/Tabla_de_epigrafes_IAE.pdf]
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form headings==
+
+This is the application of sections, with it you can add, modify and view all data on the headings classified in different tabs: main data, data on the registry modifications and assignments to folders.
+
+===Data Tab title===
+
+In this tab you can view and modify the main data item. Here we relate all information fields.
+
+[epigrafes-formulario.png]
+
+- **Code (*):**  Code section.
+- **Name (*):**  Name heading.
+- **Description:**  Description section.
+
+
+(*) **Required when creating or modifying a caption fields.**
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

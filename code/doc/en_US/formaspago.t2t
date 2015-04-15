@@ -1,0 +1,52 @@
+
+
+
+=Payment Methods=
+
+This application lets you keep track of all forms of payment that use the entity.
+
+[formaspago-listado.png]
+
+==List of payment==
+
+In the list of payment you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the payment.
+- **Name:**  Name payment.
+- **Description:**  Description of the method of payment.
+
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form of payment==
+
+This is the application for payment, with it you can add, modify and view all data of payment classified into different tabs: main data, data on the registry modifications and assignments to folders.
+
+===Data tab of payment===
+
+In this tab you can view and modify the main details of the payment. Here we relate all information fields.
+
+[formaspago-formulario.png]
+
+- **Name (*):**  Name payment.
+- **Description:**  Description of the method of payment.
+
+
+(*) **Required when creating or modifying a form of payment Campos.**
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

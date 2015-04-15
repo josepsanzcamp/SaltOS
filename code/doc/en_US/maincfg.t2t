@@ -1,0 +1,106 @@
+
+
+
+=Configuration=
+
+This application allows you to configure parameters and options management suite.
+
+==Configuration form==
+
+This is the setup application allows you to change or set different options management suite (logos, watermarks, etc ..).
+
+===General Tab===
+
+In this tab you can view and edit the general settings.
+
+[maincfg-formulario.png]
+
+- **Title of application:**  It is the title that appears at the top next to the version of SaltOS used.
+- **Size charts in the listings:**  Size to be used in graphics diferenes listings.
+- **Size charts in the forms:**  Size to be used in graphics diferenes forms.
+- **Search notices on the agenda:**  How often will verify if there are any outstanding entry in the agenda.
+- **Find new post:**  How often will check for incoming E-download server.
+- **Check the output tray:**  How often will verify if there are new mails sent.
+- **View new posts:**  How often will verify whether new post to download.
+- **Forget feeds deleted:**  Determines the time it happened until completely erase the feed application helps not download feeds and deleted.
+- **Check alert log:**  Failure to check "remember password on this computer" to login. This parameter determines each story has to buy if he has to sign off due to inactivity.
+- **Tell logoff:**  How long before it is to warn you when you go to logout.
+- **Indexing new files:**  How often will verify if new files indexed.
+
+
+===Tab Logo===
+
+In this tab you can view and modify the settings of the logo of the entity.
+
+[maincfg-formulario-logo.png]
+
+- **Position and measures the logo:**
+  - **X:**  Horizontal axis, away from the placement of the logo from 0,0 expressed in millimeters value.
+  - **Y:**  Vertical axis, away from the placement of the logo from 0,0 expressed in millimeters value.
+  - **Width:**  Logo paper width, expressed in millimeters.
+  - **Height:**  Logo Alto paper, expressed in millimeters.
+
+
+- **Files logo:**
+  - **Current logo file:**  Viewing the current logo.
+  - **New file (JPEG only):**  If you want to change the logo, select here the new file, only formats (JPEG).
+
+
+- **Colors in the PDF documents generated:**
+  - **Lines:**  Color of the lines that utlizan to draw boxes, lines of columns and rows, etc ...
+  - **Titles:**  Color of the titles used in the generated documents.
+  - **Texts:**  Color of normal text that is used in the generated documents.
+
+
+===Watermark tab===
+
+In this tab you can view and modify the configuration of watermarks in different documents types that can generate SaltOS **(*)**.
+
+[maincfg-formulario-marcas-agua.png]
+
+- **Text:**  Text printed as a watermark.
+- **Position X:**  Horizontal axis, away from the placement of the logo from 0,0 expressed in millimeters value.
+- **Position Y:**  Vertical axis, away from the placement of the logo from 0,0 expressed in millimeters value.
+- **Size:**  Font Size.
+- **Angle:**  Angle offset printing of the text, contanto central anchor point, the center of the printing on the horizontal axis of the page.
+
+
+**(*) Currently SaltOS can generate the following document type: Proceedings, parts, invoices, budget, clients, projects, prospects, email, feeds.**
+
+===Mail Account tab===
+
+In this tab you can view and modify the configuration of generic email account to be used in SaltOS to send mails automatically generated.
+
+[maincfg-formulario-cuenta-correo.png]
+
+- **Name:**  Name of the email account.
+- **Mail:**  Mail account.
+- **SMTP Server:**  URL outgoing mail server.
+- **Port:**  Server port.
+- **Security:**  Type of security when connecting to the mail server.
+- **User:**  User access to the server for this email account.
+- **Key:**  Password to access the server.
+- **Using asynchronous sent:**  Determines whether the asynchronous sending mail is used.
+- **Email for technical support:**  Failure to include a mail in this paragraph, all reported bugs will be sent directly to SaltOS project.
+
+
+===Accounting Tab===
+
+In this tab you can view and edit the general settings
+
+[maincfg-formulario-contabilidad.png]
+
+- **Currency:**  Currency used in the suite.
+- **Name tax (added):**  Name use tax, taxes to be added to invoices.
+- **Default (only if used):**  Tax value.
+- **Name tax (subtracted):**  Name use tax, a tax that must subtract bills.
+- **Default (only if used):**  Tax value.
+
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

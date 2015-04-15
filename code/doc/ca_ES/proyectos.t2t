@@ -1,0 +1,119 @@
+
+
+
+=Projectes=
+
+Aquesta aplicació li permet portar un control de tots els projecte realitzats a l'empresa.
+
+[proyectos-listado.png]
+
+==Llistat de Projectes==
+
+En el llistat de projectes podrà trobar les columnes més importants de cada registre:
+
+- **Codi .:**  Codi numèric que identifica el projecte.
+- **Client:**  Perquè client s'ha realitzat el projecte.
+- **projecte:**  Nom que se li ha donat al projecte.
+- **Tasques (€) (*):**  Import del total de tasques planejades en el projecte.
+- **Prod. (€) (*):**  Import total de tots els productes inclosos en el projecte.
+- **Total (€) (*):**  Import total del projecte.
+- **Real (€) (*):**  Import total real del projecte.
+- **Estat:**  Estat actual del projecte (Sense començar, pressupostat, acceptat, començat, cancel·lat, aturat, acabant, acabat).
+- **NT:**  Nombre de tasques planejades en el projecte.
+- **NP:**  Nombre de productes inclosos en el projecte.
+- **NP:**  Nombre de seguiments vinculats amb el projecte.
+- **NC:**  Nombre de comentaris introduïts sobre aquest projecte.
+- **NF:**  Nombre de fitxers vinculats amb aquest projecte.
+
+
+(*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció es pot crear un nou projecte copiant les dades d'aquest.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Gràfiques i estadístiques===
+
+En aquesta pestanya podreu veure les estadístiques sobre quants projectes té en cada estat, podent detectar pics i baixades de feina abans que succeeixin i així poder prendre mesures per mitigar aquests moments crítics.
+
+[proyectos-estadisticas.png]
+
+==Formulari de projectes==
+
+Aquesta és l'aplicació de projecte, amb ella podrà afegir, modificar i visionar totes les dades del projecte classificats en diferents pestanyes: dades principals, objectius del projecte, tasques del projecte, productes del projecte, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades del projecte===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades del projecte. A continuació li relacionem tots els camps d'informació.
+
+[proyectos-formulario.png]
+
+- **Client:**  Per poder vincular el projecte amb un client.
+- **Campanya:**  Per enllaçar en cas que el projecte hagi estat. Comanda gràcies a una campanya comercial concreta.
+- **Nom (*):**  Nom que se li vulgui donar al projecte.
+- **Data:**  Data de realització del projecte.
+- **Estat (*):**  Estat en què es troba el projecte (Sense començar, pressupostat, acceptat, començat, cancel·lat, aturat, acabant, acabat).
+- **Descripció:**  Descripció general del projecte.
+- **Taula resum:**  En aquesta taula es pot trobar el total d'hores de tasques, unitats de productes, i l'import total del projecte.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un projecte.**
+
+A més, a la primera pestanya té uns **botons d'acció.**
+
+- **[../../lib/silk/icons/add.png]  Afegir seguiment:**  El portés al formulari de nou seguiment perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest projecte.
+- **[../../lib/silk/icons/add.png]  Afegir acta:**  El portés al formulari de nova acta perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[../../lib/silk/icons/add.png]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[../../lib/silk/icons/add.png]  Afegir esdeveniment:**  El portés al formulari de nou esdeveniments perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[../../lib/silk/icons/add.png]  Facturar:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+
+
+===Pestanya de Tasques===
+
+En aquesta pestanya pot incloure, modificar o eliminar totes les tasques a realitzar vinculades a aquest projecte.
+
+[proyectos-formulario-listado-tareas.png]
+
+- **Taula Resum:**  En aquesta taula podrà veure diferent informació sobre les tasques incloses en el projecte: **total d'hores, preu mitjà, import total d'hores.**
+- **Llista de tasques:**  En aquesta llista podrà incloure, modificar o eliminar tantes tasques com siguin necessàries, els camps que inclou són: **descripció de la tasca, hores necessàries, preu unitari, descompte, total tasca.**
+
+
+===Pestanya de Productes===
+
+En aquesta pestanya pot incloure, modificar o eliminar totes els productes vinculats a aquest projecte.
+
+[proyectos-formulario-listado-productos.png]
+
+- **Taula Resum:**  En aquesta taula podrà veure diferent informació sobre els productes inclosos en el projecte: **total d'unitats, import total de productes.**
+- **Llista de productes:**  En aquesta llista podrà incloure, modificar o eliminar tants productes siguin necessaris, els camps que inclou són: **descripció del producte, unitats, preu unitari, descompte, totalment productes.**
+
+
+===Pestanya de Gràfiques i estadístiques===
+
+En aquesta pestanya podreu veure les desviacions del projecte respecte al pressupost tant en quantitat com en percentatge.
+
+[proyectos-formulario-graficas.png]
+
+===Pestanya Nous fitxers===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

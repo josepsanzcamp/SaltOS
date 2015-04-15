@@ -1,0 +1,103 @@
+
+
+
+=Usuaris=
+
+Aquesta aplicació li permet portar un control de tots usuaris amb accés a l'aplicació.
+
+[usuarios-listado.png]
+
+==Llistat d'usuaris==
+
+En el llistat d'usuaris podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica l'usuari.
+- **Usuari:**  Nom d'accés a l'aplicació.
+- **Grup:**  Grup al que pertany l'usuari.
+- **Nom:**  Nom real de l'usuari.
+- **Email:**  Compte de correu de contacte de l'usuari.
+- **Actiu:**  Determina el compte aquesta bloquejada.
+- **Entrada:**  Determina l'inici de l'horari permès per a accedir a l'aplicació.
+- **Sortida:**  Determina el final de l'horari permès per a accedir a l'aplicació.
+- **Dies:**  Determina els dies que l'usuari té permès entrar a l'aplicació.
+- **Connectat:**  Determina si l'usuari està connectat en aquest moment.
+
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari d'usuaris==
+
+Aquesta és l'aplicació d'usuaris, amb ella podrà afegir, modificar i visionar totes les dades dels usuaris classificats en diferents pestanyes: dades principals, permisos per aplicació, grup del usuari, permisos per registre, Google calendar, informació subscrits, comptes de correu, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de l'usuari===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de l'usuari. A continuació li relacionem tots els camps d'informació.
+
+[usuarios-formulario.png]
+
+- **Usuari (*):**  Nom de l'usuari.
+- **Grup (*):**  Grup al que pertany l'usuari.
+- **Clau:**  Clau d'accés.
+- **Repetiu clau:**  Repetició de la clau d'accés per descartar errors d'escriptura.
+- **Aplicació (*):**  A quin tipus de contacte pertany aquest usuari.
+- **Registre (*):**  Que contacte específic pertànyer aquest usuari.
+- **Actiu:**  Serveix per bloquejar el compte momentàniament.
+- **Entrada (*):**  Hora d'inici de permís d'accés a l'aplicació.
+- **Sortida (*):**  Hora final de permís d'accés a l'aplicació.
+- **Accés setmanal:**  Dies de la setmana que es permet l'accés a l'aplicació.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un usuari.**
+
+===Pestanya permisos per aplicació===
+
+En aquesta pestanya podrà aplicar permisos específics per usuari.
+
+[usuarios-formulario-permisos-aplicacion.png]
+
+===Pestanya Grups de l'usuari===
+
+En aquesta pestanya es pot assignar a grups a usuaris específics.
+
+[usuarios-formulario-grupos.png]
+
+===Pestanya Permisos per registre===
+
+En aquesta pestanya podrà bloquejar registres específics en rellevància amb la confidencialitat.
+
+[usuarios-formulario-permisos-registro.png]
+
+===Pestanya Google calendar===
+
+En aquesta pestanya podreu configurar la sincronització amb els seus calendaris de Google
+
+[usuarios-formulario-google-calendar.png]
+
+===Pestanya Feeds configurats===
+
+En aquesta pestanya podreu configurar tots els feeds necessaris per a aquest usuari.
+
+[usuarios-formulario-feeds-configurados.png]
+
+===Pestanya Comptes de correu===
+
+Amb aquesta pestanya podrà afegir tots els comptes de correu que hagi de gestionar l'usuari.
+
+[usuarios-formulario-cuenta-correo.png]
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

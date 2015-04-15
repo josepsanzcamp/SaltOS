@@ -1,0 +1,76 @@
+
+
+
+=Productes=
+
+Aquesta aplicació li permet portar un control de tots productes que tingui l'empresa en el seu catàleg.
+
+[productos-listado.png]
+
+==Llistat de productes==
+
+En el llistat de productes podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica el producte.
+- **Nom:**  Nom del producte.
+- **Ref.:**  Referència interna del producte.
+- **Preu (€):**  Import econòmic abans d'impostos del producte.
+- **Dte. (%):**  Descompte que es realitza a la venda d'aquest producte.
+- **IVA (%):**  Percentatge d'IVA que cal aplicar a la venda del producte.
+- **Total (€):**  Total import aplicant descomptes i impost.
+- **Web:**  Pàgina web d'informació del producte.
+- **MF:**  Nombre de fitxers vinculats a aquest producte.
+
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari de productes==
+
+Aquesta és l'aplicació de productes, amb ella podrà afegir, modificar i visionar totes les dades del producte classificats en diferents pestanyes: dades principals, fitxers adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades del producte===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades del producte. A continuació li relacionem tots els camps d'informació.
+
+[productos-formulario.png]
+
+- **Nom (*):**  Nom que se li dóna al producte.
+- **Ref.:**  Referència interna del producte
+- **Descricion:**  Descripció del producte.
+- **Preu (€) (*):**  Preu del producte abans d'aplicar impost.
+- **Dte. (%):**  Descompte que es realitza en aquest producte.
+- **IVA (%):**  IVA que cal aplicar en la compra del producte.
+- **Dimensions:**  Dimensions físiques del producte.
+- **Pes:**  Pes total del producte.
+- **Web:**  Fitxa web del producte.
+- **Volum:**  Volum total del producte.
+- **Foto actual:**  Imatge actual del producte.
+- **Nova foto:**  Per canviar la imatge del producte.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un producte.**
+
+===Pestanya Fitxers adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous fitxers===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

@@ -1,0 +1,54 @@
+
+
+
+=Buscador=
+
+Esta aplicación le permite buscar en todo SaltOS o solo ficheros. Cuando realice la busqueda le saldra un listado con los resultado obtenidos.
+
+[buscador.png]
+
+==Listado resultante "Buscar en todo SaltOS==
+
+En este listado podrá encontrar todo tipo de datos, clientes, proveedores, correos, etc.. El listado tiene las siguiente columnas:
+
+[buscador-listado-todo-saltos.png]
+
+- **Cód.:** Código numérico que identifica el registro.
+- **Aplicación:** Aplicación donde se encuentra la información (clientes, proveedores, correos, etc..).
+- **Nombre:** Nombre o titulo del registro.
+- **Usuario:** Usuario que creo este registro.
+- **Fecha y hora:** Fecha y hora de creación del registro.
+- **NC:** Número de comentarios introducidos sobre este registro.
+- **NF:** Número de ficheros vinculados con este registro.
+
+
+===Opciones del listado===
+
+Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png]: Consultar/Editar registro.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [../../lib/silk/icons/email_reply.png]: Responder correo al remitente.
+- [../../lib/silk/icons/email_replyall.png]: Responder correo a todos.
+- [../../lib/silk/icons/email_go.png]: Reenviar correo.
+
+
+===Opciones de filtro===
+
+Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+
+==Listado resultante "Buscar solo en Ficheros"==
+
+En este listado solo incluira ficheros de las diferentes aplicaciones que admitan adjuntar ficheros. El listado tiene las siguiente columnas:
+
+[buscador-listado-solo-ficheros.png]
+
+- **Cód.:** Código numérico que identifica el fichero.
+- **Aplicación:** Aplicación donde se encuentra el fichero (correos, acta, etc..).
+- **Nombre:** Nombre o titulo del fichero.
+- **Usuario:** Usuario que creo este fichero.
+- **Fecha y hora:** Fecha y hora de creación del fichero.
+- **Fichero:** Nombre real del fichero (nombre en disco).
+- **Tamaño:** Tamaño del fichero (varia la unidad (bytes, kbytes, Mbytes, etc..-) en función del tamaño del mismo).

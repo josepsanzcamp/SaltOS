@@ -1,0 +1,108 @@
+
+
+
+=Parts de treball=
+
+Aquesta aplicació li permet portar un control de tots parts de treball que realitzin els treballadors a l'empresa.
+
+[partes-listado.png]
+
+==Llistat de parts de treball==
+
+En el llistat de parts de treball podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica el treball.
+- **Client:**  Perquè client s'ha realitzat el treball.
+- **Projecte:**  Nom del projecte sobre el qual es carregués el treball realitzat
+- **Tasca:**  Nom descriptiu del treball realitzat.
+- **Data:**  Data en què es va realitzar el treball.
+- **Hores (*):**  Hores que s'han emprat per finalitzar la feina.
+- **Preu (*):**  Preu hora en funció de la categoria laboral.
+- **Total (*):**  Import total del treball realitzat.
+- **Liq.:**  Determina si el comunicat aquesta liquidat. **Els parts no liquidats es marquen amb fons vermell.**
+- **Data liq .:**  Data de liquidació del part.
+- **NC:**  Nombre de comentaris introduïts sobre aquest lloc.
+- **NF:**  Nombre de fitxers vinculats aquest part.
+
+
+(*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Preparés un correu amb el registre seleccionat adjuntat com arxiu PDF.
+
+
+Aquest llistat disposa a més de les següents accions:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar el llistat de tots els parts de treball a un fitxer amb format Excel.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar els parts seleccionats a un fitxer en format. PDF.
+- [../../lib/silk/icons/monitor.png]: Visualitzar els parts seleccionats en format. PDF en pantalla.
+- [../../lib/silk/icons/email_go.png]: Preparés un correu amb les parts seleccionats adjuntats com arxius PDF.
+- [../../lib/silk/icons/disk.png]: Liquida els parts seleccionats indicant la data d'avui.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Opcions de gràfiques i estadístiques===
+
+En aquesta pestanya podreu veure estadístiques sobre els parts realitzats l'últim any i el top 10 de clients més actius.
+
+[partes-listado-graficas.png]
+
+==Formulari de parts de treball==
+
+Aquesta és l'aplicació de parts de treball, amb ella podrà afegir, modificar i visionar totes les dades de les despeses classificats en diferents pestanyes: dades principals, fitxers adjunts, venciments, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de l'informe de treball===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades del part. A continuació li relacionem tots els camps d'informació.
+
+[partes-formulario.png]
+
+- **Client:**  Per enllaçar el client per al qual es realitza el treball.
+- **Projecte:**  Per enllaçar el projecte en el qual aquesta inclòs aquest treball.
+- **Nom (*):**  Nom descriptiu del treball a realitzar.
+- **Data (*):**  Data del treball.
+- **Comentaris (*):**  Per afegir dades o notes importants relacionades amb el treball realitzat.
+- **Hores (*):**  Hores que s'han utilitzat per realitzar el treball.
+- **Preu (*):**  Preu unitari.
+- **Total (*):**  Import total del treball realitzat, camp calculat per l'aplicació.
+- **Liquidat:**  Selector per determinar si el part aquesta liquidat.
+- **Data Liq .:**  Data de liquidació del part.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un part.**
+
+===Pestanya Comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Fitxers adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous fitxers===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

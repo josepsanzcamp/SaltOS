@@ -1,0 +1,19 @@
+
+
+
+=Base de datos=
+
+Esta aplicación le permite realizar copias de seguridad y restaurar una copia anterior.
+
+
+==Formulario Exportar (Realizar Copia de seguridad)==
+
+Este formulario le permite realizar copias de seguridad, solo tiene hacer clic en el botón y indicar donde desea guardar la copia.
+
+[datacfg-formulario-exportar.png]
+
+==Formulario Importar (Restaurar Copia de seguridad)==
+
+Este formulario le permite restaurar copias de seguridad anteriores, solo tiene seleccionar el archivo que desea restaurar y hacer clic en el botón.
+
+[datacfg-formulario-importar.png]

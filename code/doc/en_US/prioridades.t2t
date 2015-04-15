@@ -1,0 +1,52 @@
+
+
+
+=Priorities=
+
+This application lets you keep track of all priorities that are used in various applications such as events, tasks, etc ...
+
+[prioridades-listado.png]
+
+==List of priorities==
+
+In the list of priorities you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the priority.
+- **Name:**  Name of priority.
+- **Description:**  Description of priority.
+
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Priorities form==
+
+This is the application of priorities, she can add, modify and view all data of the priorities classified in different tabs: main data, data on the registry modifications and assignments to folders.
+
+===Data Tab priority===
+
+In this tab you can view and modify the main details of priority. Here we relate all information fields.
+
+[prioridades-formulario.png]
+
+- **Name (*):**  Name of priority.
+- **Description:**  Description of priority.
+
+
+(*) **Required when creating or modifying a form of payment Campos.**
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

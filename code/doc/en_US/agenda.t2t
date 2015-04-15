@@ -1,0 +1,140 @@
+
+
+
+=Diary=
+
+The agenda of SaltOS allows you to easily manage your meetings and events. You can relate the phonebook entries with a client, project, budget, etc. well as assign them to multiple users.
+
+SaltOS will automatically remind the upcoming events and if this is not enough, synchronize the calendar with SaltOS //Google Calendar//.
+
+==The two calendar views==
+
+The agenda of SaltOS can be found in two ways: as a list or as a calendar.
+
+===Listing===
+
+The first looks like any list of SaltOS, showing or users assigned, start and end of the event, client or related project, event name and its type and condition.
+
+In this view you can create a new event by clicking the corresponding button in the lower left corner, browse the list of controls in the lower right corner and search for an event by simply searching.
+
+[agenda-listado.png]
+
+- **Ref .:**  Numeric code that identifies the event.
+- **User:**  User who created the event.
+- **Home:**  Date and time of start of the event.
+- **End:**  Date and time of end of event.
+- **Customer:**  Customer linked to this event.
+- **Project:**  Project linked to this event.
+- **Event:**  Title or subject of the event.
+- **Event type:**  Event type (calls, meetings, visits, emails, events).
+- **State:**  State where you will find the event (Scheduled, TBC, Finished, Cancelled).
+
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data from the current.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+
+===Calendar===
+
+The view //Calendar//  will display the current month as a grid, with one day per column. You can create a new event by clicking //New event//  box on the relevant date. To display another calendar month, select it from the drop //Showing information to date//. If you want to navigate to the previous or next month, click the arrows at the top right corner. To return to the current month, click the icon located between the two arrows.
+
+[agenda-calendario.png]
+
+To expand or collapse the detail of all the events listed, click the corresponding button in the upper right corner. You can also restart notifications by clicking the button //Notifications//.
+
+To synchronize the calendar with //Google Calendar//Click the appropriate button at the top. Note that you must have previously set up your Google account in the application //My Profile//. The synchronization process may take a while, depending on the connection speed, the service status of Google and the number of events to be synchronized.
+
+==Event Form==
+
+This is the application of events, with it you can add, modify and view all data from the various events held in the state, the information is classified in different tabs: main data, assigned users, comments, file attachments, data on the registry modifications and assignments to folders.
+
+===Event Info tab===
+
+In this tab you can view and modify the main data events. Here we relate all information fields.
+
+[agenda-formulario.png]
+
+- **Campaigns:**  To link the event to a particular marketing campaign.
+- **Prospect:**  To link the event with a possible specific customer.
+- **Budget:**  To link the event with a possible specific budget.
+- **Customer:**  To link the event with a particular customer.
+- **Project:**  To link the event with a specific project.
+- **Home (*):**  Start time of the event.
+- **Fin (*):**  End time of the event.
+- **Event type:**  Event type (calls, meetings, visits, emails, events).
+- **Location:**  Venue of the event.
+- **State:**  Current Status of the event (Default, TBC, Finishing, canceled).
+- **Description (*):**  Brief description of the event.
+- **Report:**  To indicate when we have to notify the notice.
+- **I start notification received:**  Checking this box will make the announcement event start disappearing.
+- **Final report received:**  Checking this box will notice event to disappear.
+
+
+(*) **Required when creating or modifying an event fields.**
+
+
+===Creation===
+
+To create a new event enter the date and start time, the name (which is displayed in the listings), description, type of event and state. Note that the event is considered pending when has the status "Confirmed" or "To be confirmed" in any other shall be deemed not pending or closed.
+
+To facilitate the introduction of the date, click the icons next to the corresponding boxes. A dialog that allows you to choose the date browsing the calendar opens. Click on the corresponding day to select the date.
+
+You can also enter the time through a help dialog by clicking on the icon next to the text box. Select the hour and minute via buttons, to change between //AM//  and //PM//  click the appropriate button.
+
+To receive notification as a reminder, enter in the box //Notify//  how far in advance you want to receive the notice (in hours). If you want to be notified after the start of the event, choose "After" in the corresponding drop-down. If you do not wish to receive any notice, dial controls //Start Notification received//  and //Final notification received//.
+
+To assign the event to more users, select the tab //Assigned Users//. The event will automatically appear in the calendar of users assigned.
+
+You can associate the event with a campaign, a potential client, an existing customer, a budget or project through the corresponding pop. When linking an event with any of these applications will appear in detail the respective content. This way you can take effective control of all meetings with a client or a project.
+
+To attach files, you can do it on the tab //New file attachments//.
+
+Once completed press //Create//  or //Create and return here//.
+
+===Modification===
+
+When editing an event, you can enter or modify the same data during creation. Additionally you can add a comment, for example, to discuss the topics discussed during the meeting, the reason for cancellation, etc.
+
+For an event to stop appearing as pending, change its status to //Finished//, //Canceled//  or //Error//.
+
+===Consultation===
+
+In the query mode, you can view the different parameters of the event, as well as assigned users and download attachments, if any. You can also see if it has already shown the notice of initiation or termination.
+
+You can edit the event by clicking on the button //Edit//.
+
+
+===New comments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Comments Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New Tab attachments===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Attachments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

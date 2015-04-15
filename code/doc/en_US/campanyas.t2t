@@ -1,0 +1,85 @@
+
+
+
+=Business Campaigns=
+
+This application lets you keep track of all your marketing campaigns.
+
+[campanyas-listado.png]
+
+==List of commercial campaigns.==
+
+The list of commercial campaigns. you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the marketing year.
+- **Home:**  Date of commencement of commercial campaign.
+- **End:**  Daylight commercial campaign.
+- **Name:**  Name of the marketing year.
+- **State:**  State in which is the marketing year. (Planned, Begun, Cancelled, Finished).
+- **NPC:**  Number of possible customers included in the marketing year.
+- **NCL:**  Number of clients including in marketing year.
+- **NAG:**  Number of events in the marketing year.
+- **NPR:**  Number of estimates made by the commercial campaign.
+- **NPY:**  Number of projects carried out by the commercial campaign.
+- **NC:**  Number of comments entered this campaign.
+- **NF:**  Number of files associated with this campaign.
+
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form marketing campaigns==
+
+This is the application of marketing campaigns, with it you can add, modify and view all data of different marketing campaigns carried out in the state, the information is classified in different tabs: main data, comments, file attachments, data on the registry modifications and assignments to folders.
+
+===Data Tab campaign===
+
+In this tab you can view and modify the main details about the campaign. Here we relate all information fields.
+
+[campanyas-formulario.png]
+
+- **Name (*):**  Trade name of the marketing year.
+- **State (*):**  State in which is the marketing year.
+- **Home (*):**  Date of commencement of commercial campaign.
+- **Fin (*):**  Daylight commercial campaign.
+- **Description:**  Brief description of the marketing year.
+
+
+(*) **Required when creating or modifying a campaign Campos.**
+
+===New comments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Comments Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New Tab attachments===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Attachments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.
+

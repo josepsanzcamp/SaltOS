@@ -1,0 +1,55 @@
+
+
+
+=Epígrafs=
+
+Aquesta aplicació li permet portar un control de tots epígrafs (activitats econòmiques) que realitzi l'entitat. [Más información sobre actividades económicas http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas]
+
+[epigrafes-listado.png]
+
+==Llistat d'epígrafs==
+
+En el llistat d'epígrafs podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica a l'epígraf.
+- **Nom:**  Nom de l'epígraf.
+- **Descripció:**  Descripció de l'epígraf, en quins casos s'utilitzen, etc ...
+
+
+Més informació per a entitats espanyoles: [Agencia Tributaria https://www2.agenciatributaria.gob.es/ADUA/internet/es/aeat/dit/adu/adws/certificados/Tabla_de_epigrafes_IAE.pdf]
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari d'epígrafs==
+
+Aquesta és l'aplicació d'epígrafs, amb ella podrà afegir, modificar i visionar totes les dades dels epígrafs classificats en diferents pestanyes: dades principals, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de l'epígraf===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de l'epígraf. A continuació li relacionem tots els camps d'informació.
+
+[epigrafes-formulario.png]
+
+- **Codi (*):**  Codi de l'epígraf.
+- **Nom (*):**  Nom de l'epígraf.
+- **Descripció:**  Descripció de l'epígraf.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un epígraf.**
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

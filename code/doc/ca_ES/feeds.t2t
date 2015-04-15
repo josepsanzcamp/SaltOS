@@ -1,0 +1,73 @@
+
+
+
+=Lector Feeds RSS i Atom=
+
+El lector de feeds li ofereix la possibilitat de seguir còmodament els seus canals RSS i Atom des SaltOS. Per configurar un nou canal RSS, consulteu el **[Mi perfil http://viewpdf/page=profile]**.
+
+==Llistat de feeds==
+
+El llistat d'entrades li mostra els últims //posts//  descarregats.
+
+[feeds-listado.png]
+
+- **Codi .:**  Codi numèric que identifica el post.
+- **Feed RSS:**  Enllaç a la Web del publicador de l'RSS.
+- **Post RSS:**  Enllaç al post a la web.
+- **Títol:**  Títol del post.
+- **Data publicació:**  Dia i hora de publicació.
+- **Estat:**  Estat en què es troba el post el color de fons identifica cada estat:
+  - //Nou//: verd.
+  - //Llegit//: transparent.
+  - //Modificat//: transparent.
+  - //Pendent//: blau.
+  - //Interessant//: taronja.
+
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix (*) registre.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Compartir feed via correu.
+- [../../lib/silk/icons/tag_blue.png]: Marca feed com a pendent.
+- [../../lib/silk/icons/tag_gold.png]: Marca feed com interessant.
+- [../../lib/silk/icons/star.png]: Afegir feed a favorits.
+
+
+Sobre el llistat a més de l'opció normal de cerca, trobareu les següents funcions:
+
+- Selector de canal RSS: li permet filtrar ràpidament al canal RSS.
+- [../../lib/silk/icons/email_open.png]: Amb aquest botó força a que es verifiqui si hi ha post nous que descarregar de totes les subscripcions RSS (Segons la quantitat de RSS subscrit aquesta acció pot trigar).
+- Selector de **accions per múltiples feeds**:
+ - //Opcions//: Descàrrega i visualització en format PDF.
+ - //Marca com//: Llegits, No llegits, Pendents, No pendents, Interessants, No interessants.
+ - //Filtrar per estat//: Tots, llegits, Pendents, Interessants.
+ - //Filtrar per data publicació//: Tots, Avui, Ahir, Setmana, Mes.
+- [../../lib/silk/icons/delete.png]  Esborrar els Feeds RSS seleccionats (*).
+
+
+**(*)**  Més informació sobre la configuració d'esborrat de feeds a la [configuración general http://viewpdf/page=maincfg]
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari de feeds==
+
+[feeds-formulario.png]
+
+La manera //Consulta//  d'un post li permet accedir a la font original, fent clic a l'enllaç de la capçalera. Podeu marcar com a pendent i interessant l'article. Amb el botó de la part inferior del post pot compartir, per exemple, per recomanar a una altra persona. Per veure el contingut del post amb més detall, feu clic a //Zoom del post//.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.
+

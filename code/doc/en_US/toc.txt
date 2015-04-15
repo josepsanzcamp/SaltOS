@@ -1,5 +1,5 @@
 
-Manual de usuario
+User manual
 
 General
 
@@ -14,7 +14,7 @@ support.t2t
 buscador.t2t
 ficheros.t2t
 
-Comercial
+Commercial
 
 campanyas.t2t
 posiblescli.t2t
@@ -23,27 +23,27 @@ actas.t2t
 clientes.t2t
 contactos.t2t
 
-Proyectos
+Projects
 
 proyectos.t2t
 seguimientos.t2t
 partes.t2t
 incidencias.t2t
 
-Contabilidad
+Accounting
 
 facturas.t2t
 proveedores.t2t
 gastos.t2t
 
-Administración
+Administration
 
 productos.t2t
 empleados.t2t
 usuarios.t2t
 grupos.t2t
 
-Tipos
+Type
 
 cuentas.t2t
 epigrafes.t2t
@@ -54,7 +54,7 @@ prioridades.t2t
 textos.t2t
 tiposevento.t2t
 
-Sistema
+System
 
 datacfg.t2t
 maincfg.t2t

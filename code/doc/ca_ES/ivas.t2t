@@ -1,0 +1,54 @@
+
+
+
+=IVA s=
+
+Aquesta aplicació li permet portar un control de tots els IVA s que utilitzi l'entitat.
+
+[ivas-listado.png]
+
+==Llistat d'IVA s==
+
+En el llistat d'IVA s podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica a l'IVA.
+- **Nom:**  Nom d'IVA.
+- **Descripció:**  Descripció d'IVA.
+- **IVA (%):**  Percentatge d'IVA.
+
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari d'IVA==
+
+Aquesta és l'aplicació d'IVA, amb ella podrà afegir, modificar i visionar totes les dades dels IVA classificats en diferents pestanyes: dades principals, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de l'IVA===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de l'IVA. A continuació li relacionem tots els camps d'informació.
+
+[ivas-formulario.png]
+
+- **Nom (*):**  Nom d'IVA.
+- **IVA (%):**  Percentatge d'IVA.
+- **Descripció:**  Descripció d'IVA.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un IVA.**
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

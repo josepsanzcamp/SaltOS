@@ -1,0 +1,105 @@
+
+
+
+=Documents=
+
+The documentary SaltOS manager, allows you to organize and share your documents and files.
+
+You can relate the documents uploaded with a client or project to maintain a perfect organization of your documentation.
+
+The documents will not be uploaded loose, but can group them as if they were folders. This way you can save multiple versions of a document or multiple documents for the same purpose.
+
+==Listing==
+
+The list will show the most important parameters of the different file folders or containers. The last two columns, //NC//  and //NF//, We show the number of comments and the number of files in the folder respectively.
+
+[favoritos-listado.png]
+
+- **Ref .:**  Numeric code that identifies the document.
+- **Date and Time:**  Time when the document is uploaded for the first time.
+- **Customer:**  Client that is attached to the document.
+- **Project:**  Project that is linked document.
+- **Name:**  Document name.
+- **NC:**  Number of comments added.
+- **NF:**  File number added.
+
+
+**Remember**: The documents can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form documents==
+
+This is the application documents with it can add, modify, view and download documents. The document data are classified in different tabs. Main data, comments, file attachments, data on the registry modifications and assignments to folders.
+
+===Document Info Tab===
+
+In this tab you can view and modify the main customer data. Here we relate all information fields.
+
+[clientes-formulario.png]
+
+- **Customer:**  To link the document to a particular customer.
+- **Project:**  To link the document to a particular project.
+- **Name (*):**  File name.
+- **Description (*):**  Description of the file contents.
+
+
+(*) **Required when creating or modifying a document fields.**
+
+==Creation==
+
+When creating a new container or folder, enter the name and description. Remember to enter meaningful names as these will facilitate subsequent searches. You can optionally connect the container or folder with a client and / or project.
+
+To add new files, click the tab //New files attachments//  and specify the file by clicking the button //Select File//  (The button text may vary depending on the browser or operating system). To add more files, click //Upload file//  and repeat the above process.
+
+Note that the number and size of files can be limited by the characteristics of the server on which SaltOS is staying. If you experience problems when uploading files, try uploading them one at a time and verify that the size of the same does not exceed the capabilities of the server.
+
+==Modification==
+
+Modifying a folder or file container, allows you to modify the same parameters as in the process of creation. Additionally you can add a comment.
+
+To add more files, click //New files attachments//.
+
+==Consultation==
+
+Query mode allows you to query data from the folder as well as download attachments.
+
+For direct access to detailed customer or related project, click the button next to the corresponding drop-down.
+
+To individually download attachments, click the button //Download//  listing, dentra tab //Attachments//. To download multiple files, mark the //checkbox//  relevant and click //Download selected files//. Opens a compressed file format //ZIP//  that contain the selected files.
+
+To consult on file with the internal viewer SaltOS click //PDF Viewer//. Please note that the file format must be a document or image.
+
+
+===Comments Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Attachments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New comments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New Files Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

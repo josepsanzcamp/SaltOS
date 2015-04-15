@@ -1,0 +1,54 @@
+
+
+
+=IVA's=
+
+This application lets you keep track of all IVA's that use the entity.
+
+[ivas-listado.png]
+
+==List of IVA's==
+
+In the list of IVA's, you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the VAT.
+- **Name:**  Name VAT.
+- **Description:**  Description VAT.
+- **VAT rate (%):**  VAT rate.
+
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form VAT==
+
+This is the application of VAT, with it you can add, modify and view all data from the VAT classified in different tabs: main data, data on the registry modifications and assignments to folders.
+
+===Data Tab VAT===
+
+In this tab you can view and modify the main elements of VAT. Here we relate all information fields.
+
+[ivas-formulario.png]
+
+- **Name (*):**  Name VAT.
+- **VAT rate (%):**  VAT rate.
+- **Description:**  Description VAT.
+
+
+(*) **Required when creating or modifying a VAT Campos.**
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

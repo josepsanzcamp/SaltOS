@@ -1,0 +1,78 @@
+
+
+
+=Incidències=
+
+Aquesta aplicació li permet portar un control de totes les incidències ocorregudes a l'empresa.
+
+[incidencias-listado.png]
+
+==Llistat d'incidències==
+
+En el llistat d'incidències podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica el treball.
+- **Usuari:**  Usuari que obre la incidència.
+- **Data:**  Data i hora de la incidència.
+- **Client:**  Client en el qual s'ha generat la incidència.
+- **Projecte:**  Nom del projecte en el qual s'ha generat la incidència.
+- **Incidència:**  Nom descriptiu del motiu de la incidència.
+- **Estat:**  Estat en què es troba la incidència (Nova, començada, assignada, resolta, revisada, tancada, rebutjada, duplicada, reoberta).
+- **Prioritat:**  Prioritat de la incidència (Alta, normal, baixa).
+- **Assignat a:**  Usuaris involucrats en la incidència.
+- **NC:**  Nombre de comentaris introduïts sobre aquesta incidència.
+- **NF:**  Nombre de fitxers vinculats sobre aquesta incidència.
+
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari d'incidències==
+
+Aquesta és l'aplicació d'incidències, amb ella podrà afegir, modificar i visionar totes les dades de les diferents incidències classificats en diferents pestanyes: dades principals, usuaris assignats, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de la incidència===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de la incidència. A continuació li relacionem tots els camps d'informació.
+
+[incidencias-formulario.png]
+
+- **Client:**  Per enllaçar el client on ha ocorregut la incidència.
+- **Projecte:**  Per enllaçar el projecte en què ha ocorregut la incidència.
+- **Prioritat (*):**  Prioritat de la incidència (Alta, normal, baixa).
+- **Nom (*):**  Nom descriptiu de la incidència ocorreguda.
+- **Estat (*):**  Estat en què es troba la incidència (Nova, començada, assignada, resolta, revisada, tancada, rebutjada, duplicada, reoberta).
+- **Descripció (*):**  Descripció més detallada de la incidència ocorreguda.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar una incidència.**
+
+===Pestanya Usuari assignat===
+
+En aquesta pestanya pot incloure tots els usuaris que estan involucrat amb la incidència.
+
+===Pestanya Fitxers adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous fitxers===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

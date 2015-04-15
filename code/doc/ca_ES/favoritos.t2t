@@ -1,0 +1,38 @@
+
+
+
+=Favorits=
+
+L'aplicació li permetré emmagatzemar catalogar tots els enllaços favorits que vagi recopilant.
+
+==Llistat de favorits==
+
+El llistat d'entrades li mostra els darrers favorits agregats.
+
+[favoritos-listado.png]
+
+- **Codi .:**  Codi numèric que identifica l'enllaç.
+- **URL:**  URL de l'enllaç.
+- **Nom:**  Nom detectat en les capçaleres de la pàgina web.
+- **Descripció:**  Descipción detectada en les capçaleres de la pàgina web.
+- **Data:**  Dia i hora que guardo l'enllaç.
+
+
+**Recordeu**: Els favorits es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+[../../lib/silk/icons/delete.png]: Esborrar registre.
+
+
+Sobre el llistat a més de l'opció normal de cerca, trobareu les següents funcions:
+
+- Guardat l'enllaç, introduïu l'URL a la caixa de text, després de fer clic al botó de nou favorit, SaltOS detectés les capçaleres de la pàgina per detectar la resta d'informació ..
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+

@@ -1,0 +1,79 @@
+
+
+
+=Contacts=
+
+This application lets you keep track of all your contacts.
+
+[contactos-listado.png]
+
+==List of contacts==
+
+In the contact list you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the contact.
+- **Customer:**  Customer name associated with the contact.
+- **Name:**  Name of contact.
+- **Project:**  Project name associated with the contact.
+- **Landline:**  Main fixed telephone to contact.
+- **Mobile phone:**  Principal to contact mobile phone.
+- **Mail account:**  Primary email account to contact.
+
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/vcard.png]: Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form contacts==
+
+This is the contacts application, with it you can add, modify and view all contact details classified in different tabs. Main, comments, file attachments, graphs and statistics on purchases, data on the registry modifications and assignments to folders data.
+
+===Contact information tab===
+
+In this tab you can view and modify the main contact details. Here we relate all information fields.
+
+[contactos-formulario.png]
+
+- **Customer:**  To link the contact with a client.
+- **Supplier:**  To link the contact with a supplier.
+- **Project:**  To link the contact with a particular project.
+- **Employee:**  To link the contact with our employee.
+- **Name (*):**  Trade name of the contact.
+- **Surname:**  Last name of the contact.
+- **Cargo:**  Position held in their workplace.
+- **Show as (*):**  This is the name that is used in the list and selectors can be used to refer to the nickname, or nick.
+- **Comment:**  Comments on contact.
+- **Address:**  Contact address is used in legal documents such as invoices, contracts, etc ..
+- **Country:**  Country of contact, be used in legal documents such as invoices, contracts, etc ..
+- **County:**  Contact Province, was used in legal documents such as invoices, contracts, etc ..
+- **Population:**  Contact population, was used in legal documents such as invoices, contracts, etc ..
+- **Postal Code:**  Zip code of contact, be used in legal documents such as invoices, contracts, etc ..
+- **Email:**  Contact primary email account is what will be displayed on all listings.
+- **Web:**  Contact Web master is that which will be displayed on all listings.
+- **Fixed Number:**  Fixed main contact is what will be displayed on all listings.
+- **Phone Number:**  Contact mainspring is what will be displayed on all listings.
+- **Fax Number:**  Main fax number is the one that will be displayed on all listings.
+- **Comment:**  To indicate comments on this contact.
+
+
+(*) **Required when creating or editing a contact fields.**
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.
+

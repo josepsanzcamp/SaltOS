@@ -1,0 +1,54 @@
+
+
+
+=Searcher=
+
+This application allows you to search all SaltOS or single files. When performing the search'll beat a list with the results obtained.
+
+[buscador.png]
+
+==Resulting list "Search in SaltOS==
+
+In this list you can find all kinds of data, customers, suppliers, couriers, etc .. The list has the following columns:
+
+[buscador-listado-todo-saltos.png]
+
+- **Ref .:**  Numeric code that identifies the record.
+- **Application:**  Application where the information (customers, suppliers, couriers, etc ..).
+- **Name:**  Name or title of the record.
+- **User:**  User who created this record.
+- **Date and Time:**  Date and time of record creation.
+- **NC:**  Number of comments entered on this register.
+- **NF:**  Number of files associated with this record.
+
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png]: Check / Edit record.
+- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data from the current.
+- [../../lib/silk/icons/email_reply.png]: Reply mail to the sender.
+- [../../lib/silk/icons/email_replyall.png]: Reply Mail to all.
+- [../../lib/silk/icons/email_go.png]: Forward mail.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Resulting list "Search Only Files"==
+
+This list will include only files of different applications that support attach files. The list has the following columns:
+
+[buscador-listado-solo-ficheros.png]
+
+- **Ref .:**  Numeric code that identifies the file.
+- **Application:**  Application where the file is (e, act, etc ..).
+- **Name:**  Name or title of the file.
+- **User:**  User who created this file.
+- **Date and Time:**  Date and time of file creation.
+- **File:**  Real name of the file (name on disk).
+- **Size:**  File size (unit varies (bytes, kilobytes, Mbytes, etc ..-) depending on the size thereof).

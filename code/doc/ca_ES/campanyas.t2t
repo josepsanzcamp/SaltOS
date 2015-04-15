@@ -1,0 +1,85 @@
+
+
+
+=Campanyes comercials=
+
+Aquesta aplicació li permet portar un control de totes les seves campanyes comercials.
+
+[campanyas-listado.png]
+
+==Llistat de campanyes comercials.==
+
+En el llistat de campanyes comercials. podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica la campanya comercial.
+- **Inici:**  Data d'inici de la campanya comercial.
+- **Fi:**  Data de fi de la campanya comercial.
+- **Nom:**  Nom de la campanya comercial.
+- **Estat:**  Estat en què es troba la campanya comercial. (Planificada, Començada, Cancel·lada, Acabada).
+- **NPC:**  Nombre de possibles clients inclosos en la campanya comercial.
+- **NCL:**  Nombre de clients inclosos en la campanya comercial.
+- **NAG:**  Nombre d'esdeveniments realitzats en la campanya comercial.
+- **NPR:**  Nombre de pressupostos realitzats gràcies a la campanya comercial.
+- **NPY:**  Nombre de projectes realitzats gràcies a la campanya comercial.
+- **NC:**  Nombre de comentaris introduïts sobre aquesta campanya.
+- **NF:**  Nombre de fitxers vinculats amb aquesta campanya.
+
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari de campanyes comercials==
+
+Aquesta és l'aplicació de campanyes comercials, amb ella podrà afegir, modificar i visionar totes les dades de les diferents campanyes comercials que es realitzen a l'entitat, la informació està classificada en diferents pestanyes: dades principals, comentaris, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de la campanya===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades sobre la campanya. A continuació li relacionem tots els camps d'informació.
+
+[campanyas-formulario.png]
+
+- **Nom (*):**  Nom comercial de la campanya comercial.
+- **Estat (*):**  Estat en què es troba la campanya comercial.
+- **Inici (*):**  Data d'inici de la campanya comercial.
+- **Fi (*):**  Data de fi de la campanya comercial.
+- **Descripció:**  Breu descripció de la campanya comercial.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar una campanya.**
+
+===Pestanya Nous comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous arxius adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Arxius adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.
+

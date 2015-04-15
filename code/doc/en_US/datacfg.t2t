@@ -1,0 +1,19 @@
+
+
+
+=Database=
+
+This application lets you back up and restore a previous backup.
+
+
+==Export Form (Perform Backup)==
+
+This form allows you to backup, just click the button and specify where to save the copy.
+
+[datacfg-formulario-exportar.png]
+
+==Form Import (Restore Backup)==
+
+This form allows you to restore previous backups, simply select the file you want to restore and click the button.
+
+[datacfg-formulario-importar.png]

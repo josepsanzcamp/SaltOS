@@ -1,0 +1,79 @@
+
+
+
+=Staff=
+
+This application lets you keep track of all company employees have in their catalog.
+
+[empleados-listado.png]
+
+==List of employees==
+
+In the list of employees you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the employee.
+- **Name:**  Employee Name.
+- **Cargo:**  Job Title employee
+- **Fixed:**  Landline employee contact.
+- **Phone:**  Contact mobile employee.
+- **Email:**  Mail account employee contact.
+
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/vcard.png]: Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form employees==
+
+This is the application of employees, it may add, modify and view all employee data classified in different tabs: main data, attachments, data on the registry modifications and assignments to folders.
+
+===Employee Information tab===
+
+In this tab you can view and modify the main details of the employee. Here we relate all information fields.
+
+[empleados-formulario.png]
+
+- **Name (*):**  Employee Name.
+- **Surname (*):**  Surnames employee
+- **Cargo:**  Position held.
+- **Show as (*):**  This is the name that is used in the list and selectors, should be a person could devote to include the nickname.
+- **Address:**  Employee Address is used in legal documents such as invoices, contracts, etc ..
+- **Country:**  Country employee be used in legal documents such as invoices, contracts, etc ..
+- **County:**  Province of employee be used in legal documents such as invoices, contracts, etc ..
+- **Population:**  Population employee be used in legal documents such as invoices, contracts, etc ..
+- **Postal Code:**  ZIP employee be used in legal documents such as invoices, contracts, etc ..
+- **Email:**  Employee primary email account is what will be displayed on all listings.
+- **Web:**  Web principal employee is the one visualized in all lists.
+- **Fixed Number:**  Fixed the employee's principal which will be displayed on all listings.
+- **Phone Number:**  Mainspring of employee is the one visualized in all lists.
+- **Fax Number:**  Main Fax employee is what will be displayed on all listings.
+- **Comment:**  To indicate comments on the employee.
+
+
+(*) **Required when creating or modifying an employee Campos.**
+
+Furthermore, in the first tab has a **action buttons.**
+
+- **[../../lib/silk/icons/add.png]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly to this employee.
+
+
+===Employee tab contacts===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

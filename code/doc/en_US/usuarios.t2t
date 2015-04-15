@@ -1,0 +1,103 @@
+
+
+
+=Users=
+
+This application lets you keep track of all users accessing the application.
+
+[usuarios-listado.png]
+
+==User List==
+
+In the list of users you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the user.
+- **User:**  Name of access to the application.
+- **Group:**  Group to which the user belongs.
+- **Name:**  Actual username.
+- **Email:**  Mail account user contact.
+- **Active:**  Determines the account is locked.
+- **Check-in:**  Determines the start of permitted hours to access the application.
+- **Check out:**  Determines the end of permitted hours to access the application.
+- **Days:**  Determines the days that the user is allowed to enter the application.
+- **Online:**  Determines whether the user is currently connected.
+
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Users Form==
+
+This is the application of users, it may add, modify and view all user data classified in different tabs: main data, application permissions, group user permissions record, Google calendar, subscribed feeds, email accounts, data on the registry modifications and assignments to folders.
+
+===Data Tab User===
+
+In this tab you can view and modify the main user data. Here we relate all information fields.
+
+[usuarios-formulario.png]
+
+- **User (*):**  Username.
+- **Group (*):**  Group to which the user belongs.
+- **Key:**  Access key.
+- **Repeat password:**  Repeat the password to rule out typing errors.
+- **Application (*):**  A type of contact that this user belongs.
+- **Log (*):**  A specific contact that pertener this user.
+- **Active:**  Serves to block the account momentarily.
+- **Input (*):**  Start Time permission to access the application.
+- **Output (*):**  End time of permit application access.
+- **Weekly Access:**  Weekdays access to the application is allowed.
+
+
+(*) **Required when creating or modifying a user Campos.**
+
+===Application permissions tab===
+
+In this tab you can apply specific permissions per user.
+
+[usuarios-formulario-permisos-aplicacion.png]
+
+===User Groups tab===
+
+In this tab you can assign specific user groups.
+
+[usuarios-formulario-grupos.png]
+
+===Permissions tab for registration===
+
+In this tab you can block specific records relevant to confidentiality.
+
+[usuarios-formulario-permisos-registro.png]
+
+===Google calendar tab===
+
+In this tab you can set up synchronization with your Google calendars
+
+[usuarios-formulario-google-calendar.png]
+
+===Feeds tab configured===
+
+In this tab you can configure all the feeds needed for that user.
+
+[usuarios-formulario-feeds-configurados.png]
+
+===Mail Accounts tab===
+
+With this tab you can add all email accounts have to manage the user.
+
+[usuarios-formulario-cuenta-correo.png]
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

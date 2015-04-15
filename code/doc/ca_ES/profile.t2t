@@ -1,0 +1,89 @@
+
+
+
+=El meu perfil=
+
+SaltOS li permetrà personalitzar i configurar diversos aspectes de l'aplicació:
+
+- Preferències generals (idioma, aspecte, contrasenya, etc.)
+- Carpetes d'usuari
+- Menú ràpid
+- Google Calendar
+- Feeds RSS
+- Comptes de correu electrònic
+
+
+Per accedir a la configuració general feu clic a //El meu perfil//  en l'apartat **General**  del menú vertical.
+
+==  Preferències generals ==
+
+[profile-general.png]
+
+A la primera pestanya podrà triar l'idioma de l'aplicació, el tema o esquema de colors així com el joc d'icones de l'aplicació.
+
+Per canviar la contrasenya d'accés a l'aplicació, introdueixi la seva clau actual a la caixa de text 'Clau Antiga' ia continuació la nova a les dues caixes de text 'Clau nova' i 'Repetiu clau'.
+
+Habilitar lectura i notificacions amb veu (emails, informació i agenda), marcant aquesta casella ha habilitat aquesta lectura per veu, cada vegada que li arribi un nou emails, informació i agenda, SaltOS li llegirà el contingut. Aquesta funcionalitat requereix una llibreria al servidor.
+
+Llibreria:   Festival. Més informació [+ http://www.cstr.ed.ac.uk/projects/festival]
+
+Habilita notificacions integrades amb l'escriptori, marcant aquesta casella habilités les notificacions d'escriptori del navegador. Aquesta funcionalitat requereix un add-on en certs navegadors.
+
+FireFox: HTML5 desktop notifications [+ http://code.google.com/p/ff-html5notifications/]  (En breu aquesta funcionaldad vindrà inclosa en el navegador)
+
+Després de realitzar qualsevol canvi en aquesta pestanya feu clic a 'Actualització'.
+
+==  Menú ràpid ==
+
+[profile-general.png]
+
+En aquest apartat podrà afegir i treure botons d'accés ràpid a la barra superior de SaltOS.
+
+Per afegir un nou botó, seleccioneu l'aplicació a la vol accedir de manera directa en el desplegable corresponent al botó.
+
+==  Carpetes d'usuari ==
+
+[profile-carpetas.png]
+
+Des d'aquesta pestanya, podrà canviar les carpetes segons ho desitgi, crear noves carpetes o esborrar carpetes que no faci servir. Aquestes opcions permetran que disposi de les carpetes necessàries perquè pugui organitzar la seva informació de la millor manera.
+
+==  Google Calendar ==
+
+[profile-google-calendar.png]
+
+Per sincronitzar la seva agenda personal amb el seu compte de Google, introduïu aquí el seu nom d'usuari de Google (normalment el seu compte de Gmail) i la contrasenya de la mateixa.
+
+==  Feeds RSS ==
+
+[profile-nuevos-feeds.png]
+
+Aquí podreu afegir els comptes RSS i Atom preferits per consultar en el lector de Feeds de SaltOS.
+
+Per afegir un feed nou, feu clic a la pestanya 'Nou Feed' i introduïu la direcció del mateix en la caixa de text 'URL'. Si no sabeu l'adreça, introduïu únicament la direcció de la pàgina web i feu clic a 'Provar'. SaltOS intentarà trobar automàticament l'adreça del feed corresponent i li mostrarà la informació addicional del Feed. Per afegir-lo al lector de Feeds de SaltOS feu clic a 'Afegir'.
+
+A la pestanya **Feeds configurats**  trobarà els Feeds ja afegits a SaltOS. Per desactivar o esborrar un Feed feu clic a 'Esborrar' o 'Desactivat' o marqui el checkbox corresponent. A continuació feu clic a 'Actualització'.
+
+[profile-feeds-configurados.png]
+
+==  Compte de correu electrònic ==
+
+[profile-nuevo-correo.png]
+
+A la pestanya 'Nou correu' podrà configurar el seu compte de correu POP3 externa per gestionar còmodament des SaltOS.
+
+Ompli les dades 'Nom' i 'E-mail' i afegiu, opcionalment, una imatge per a la signatura dels correus. A continuació indiqueu les dades del proveïdor de correu:
+
+- Servidor POP3: per exemple, mail.su-dominio.com
+- Ports: normalment 110
+- Seguretat: TLS o sense seguretat
+- Usuari: normalment la seva adreça de correu
+- Clau del seu compte de correu
+
+
+Feu el mateix en l'apartat del servidor de sortida SMTP.
+
+Si voleu que s'esborrin els correus periòdicament, marqui la casella corresponent. Per respondre automàticament a les sol·licituds de confirmació de recepció marqui la casella **Activar per defecte la sol·licitud de confirmació de recepció**. Si vols rebre en còpia els correus que enviï marqui **Afegir-me a mi com CC en tots els correus electrònics que enviï**. Per desactivar temporalment el compte marqui la casella **Desactivar aquest compte de correu**. Podeu establir el compte per defecte des de la qual s'enviaran els correus, marcant la casella **Compte per defecte (la que més ús)**.
+
+En SaltOS pot compartir el correu amb la resta d'usuaris, que podran consultar els seus correus rebuts i enviats. Per desactivar aquesta prestació, per exemple, per a una compte privat, marqui **Aquest compte és privada (només jo tinc accés)**.
+
+Un cop configurada el compte feu clic a 'Actualització'. Els comptes creades apareixeran en pestanyes noves perquè pugui canviar la configuració o esborrar quan vulgui.

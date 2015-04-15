@@ -1,0 +1,104 @@
+
+
+
+=Expenses=
+
+This application lets you keep track of all expenditure incurred within the company.
+
+[gastos-listado.png]
+
+==List of expenses==
+
+In the list of expenses you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies spending.
+- **Company:**  Where there has been company spending
+- **Date:**  Date on which the expenditure was performed
+- **Base (*):**  Monetary amount before taxes.
+- **Total (*):**  Total amount of expenditure.
+- **Liq.:**  Determines whether the expense is paid. **The unsettled expenses are marked with red background.**
+- **Date liq .:**  Settlement date of expenditure.
+- **NV:**  Number of maturities introduced for this expenditure.
+- **Account:**  Account where this expenditure is counted.
+
+
+(*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data selected.
+
+
+This list also features the following:
+
+- [../../lib/silk/icons/page_white_excel.png]: Export the list of all expenses to a file in Excel format.
+- [../../lib/silk/icons/disk.png]: Liquid selected expenses indicating the date hereof.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Options graphs and statistics===
+
+In this tab you can view statistics on expenditures last year.
+
+[gastos-listado-graficas.png]
+
+==Expense Form==
+
+This is the application of expenses, it may add, modify and view all monitoring data classified in different tabs: main data, attachments, maturity, data on the registry modifications and assignments to folders.
+
+===Data Tab spending===
+
+In this tab you can view and modify the main elements of expenditure. Here we relate all information fields.
+
+[gastos-formulario.png]
+
+- **Count (*):**  Account where spending is counted.
+- **Heading (*):**  Economic activity to which the expenditure was linking.
+- **Search:**  Search providers.
+- **Customer:**  To tell the client that link spending.
+- **Supplier:**  Supplier name where there has been spending.
+- **Project:**  To link the project that has been done spending.
+- **N. Fac .:**  Number spending bill.
+- **Date (*):**  Date of expenditure.
+- **Description (*):**  Description expenditure.
+- **Base (*):**  Amount of expenses before applying applicable taxes, calculated by the application field.
+- **VAT rate (%) (*):**  Percentage VAT.
+- **Total (*):**  Total amount of expenditure.
+- **Income tax (%) (*):**  Percentage of personal income imposed.
+- **Payer (*):**  Selector to indicate who has paid
+- **Liquidated:**  Selector to determine whether the expense is paid.
+- **Payment (*):**  Selector to determine the form of payment used.
+- **Date Liq .:**  Settlement date of expenditure.
+
+
+(*) **Required when creating or modifying an expense Campos.**
+
+===Attachments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New Files Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Maturities tab===
+
+In this tab you can create different maturities to settle spending.
+
+[gastos-formulario-vencimientos.png]
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

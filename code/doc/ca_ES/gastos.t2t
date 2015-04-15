@@ -1,0 +1,104 @@
+
+
+
+=Despeses=
+
+Aquesta aplicació li permet portar un control de tots despeses que es realitzin a l'empresa.
+
+[gastos-listado.png]
+
+==Llistat de despeses==
+
+En el llistat de despeses podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica la despesa.
+- **Empresa:**  Empresa on s'ha realitzat la despesa
+- **Data:**  Data en què es va realitzar la despesa
+- **Base (*):**  Import econòmic abans d'impostos.
+- **Total (*):**  Import total de la despesa.
+- **Liq.:**  Determina si la despesa aquesta liquidat. **Les despeses no liquidats es marquen amb fons vermell.**
+- **Data liq .:**  Data de liquidació de la despesa.
+- **NV:**  Nombre de venciments introduïts sobre aquesta despesa.
+- **Compte:**  Compte on es comptabilitzés aquesta despesa.
+
+
+(*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
+
+
+Aquest llistat disposa a més de les següents accions:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar el llistat de totes les despeses a un arxiu amb format Excel.
+- [../../lib/silk/icons/disk.png]: Liquida les despeses seleccionats indicant la data d'avui.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Opcions de gràfiques i estadístiques===
+
+En aquesta pestanya podreu veure estadístiques sobre les despeses realitzades l'últim any.
+
+[gastos-listado-graficas.png]
+
+==Formulari de despeses==
+
+Aquesta és l'aplicació de despeses, amb ella podrà afegir, modificar i visionar totes les dades del seguiment classificats en diferents pestanyes: dades principals, fitxers adjunts, venciments, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de la despesa===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de la despesa. A continuació li relacionem tots els camps d'informació.
+
+[gastos-formulario.png]
+
+- **Compte (*):**  Compte on es comptabilitzés la despesa.
+- **Epígraf (*):**  Activitat econòmica a la qual es vinculés la despesa.
+- **Cercador:**  Cercador de proveïdors.
+- **Client:**  Per indicar el client al qual vincular la despesa.
+- **Proveïdor:**  Nom del proveïdor on s'ha realitzat la despesa.
+- **Projecte:**  Per enllaçar el projecte en el qual s'ha realitzat la despesa.
+- **N. Fac .:**  Nombre de factura de la despesa.
+- **Data (*):**  Data de la despesa.
+- **Descripció (*):**  Descripció de la despesa realitzada.
+- **Base (*):**  Import del despeses abans d'aplicar els impostos pertinents, camp calculat per l'aplicació.
+- **IVA (%) (*):**  Percentatge IVA.
+- **Total (*):**  Import total de la despesa realitzada.
+- **IRPF (%) (*):**  Percentatge d'IRPF que s'aplica.
+- **Pagador (*):**  Selector per indicar qui ha realitzat el pagament
+- **Liquidat:**  Selector per determinar si la despesa aquesta liquidat.
+- **Forma de pagament (*):**  Selector per determinar la forma de pagament utilitzada.
+- **Data Liq .:**  Data de liquidació de la despesa.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar una despesa.**
+
+===Pestanya Fitxers adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous fitxers===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Venciments===
+
+En aquesta pestanya podrà crear diferents venciments per liquidar la despesa.
+
+[gastos-formulario-vencimientos.png]
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

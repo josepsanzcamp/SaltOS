@@ -1,0 +1,149 @@
+
+
+
+=Pressupostos=
+
+Aquesta aplicació li permet portar un control de tots els pressupost realitzats a l'empresa.
+
+[presupuestos-listado.png]
+
+==Llistat de pressupostos==
+
+En el llistat de pressupostos podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica el pressupost.
+- **Client:**  Perquè client s'ha realitzat el pressupost.
+- **Pressupost:**  Nom que se li ha donat al pressupost.
+- **Data:**  Data de realització del pressupost.
+- **Tasques (€) (*):**  Import del total de tasques planejades en el pressupost.
+- **Prod. (€) (*):**  Import total de tots els productes inclosos en el pressupost.
+- **Total (€) (*):**  Import total del pressupost.
+- **Estat:**  Estat actual del pressupost (Sense enviar, enviat, acceptat, cancel·lat, parat).
+- **NT:**  Nombre de tasques planejades en el pressupost.
+- **NP:**  Nombre de productes inclosos en el pressupost.
+- **NC:**  Nombre de comentaris introduïts sobre aquest pressupost.
+- **NF:**  Nombre de fitxers vinculats amb aquest pressupost.
+
+
+(*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Preparés un correu amb el pressupost seleccionat adjuntat com arxiu PDF.
+
+
+Aquest llistat disposa a més de les següents accions seleccionant diversos pressupost simultàniament:
+
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar els pressupost seleccionats a un fitxer en format. PDF.
+- [../../lib/silk/icons/monitor.png]: Visualitzar els pressupost seleccionats en format. PDF en pantalla.
+- [../../lib/silk/icons/email_go.png]: Preparés un correu amb els pressupostos seleccionats adjuntats com arxius PDF.
+
+
+===Opcions de filtre===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Gràfiques i estadístiques===
+
+En aquesta pestanya podreu veure les estadístiques sobre quants pressupost té en cada estat, podent detectar pics i baixades de feina abans que succeeixin i així poder prendre mesures per mitigar aquests moments crítics.
+
+==Formulari de pressupostos==
+
+Aquesta és l'aplicació de pressupost, amb ella podrà afegir, modificar i visionar totes les dades del pressupost classificats en diferents pestanyes: dades principals, objectius del pressupost, proposta funcional, proposta tècnica, informació addicional, tasques del pressupost, productes del pressupost, condicions del pressupost, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+
+[presupuestos-formulario.png]
+
+===Pestanya Dades del pressupost===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades del pressupost. A continuació li relacionem tots els camps d'informació.
+
+- **Possible client:**  Per poder vincular el pressupost amb un possible client.
+- **Campanya:**  Per enllaçar en cas que el pressupost hagi estat. Comanda gràcies a una campanya comercial concreta.
+- **Client:**  Per poder vincular el pressupost amb un client.
+- **Projecte:**  Per poder vincular el pressupost amb el projecte a realitzar i després poder veure desviacions.
+- **Nom (*):**  Nom que se li vulgui donar al pressupost.
+- **Data:**  Data de realització del pressupost.
+- **Estat (*):**  Estat en què es troba el pressupost (Sense enviar, enviat, acceptat, cancel·lat, parat).
+- **Descripció:**  Descripció general del pressupost.
+- **Taula resum:**  En aquesta taula es pot trobar el total d'hores de tasques, unitats de productes, i l'import total del pressupost.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un pressupost.**
+
+A més, a la primera pestanya té uns **botons d'acció.**
+
+- **[../../lib/silk/icons/add.png]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[../../lib/silk/icons/add.png]  Afegir acta:**  El portés al formulari de nova acta perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[../../lib/silk/icons/add.png]  Afegir esdeveniment:**  El portés al formulari de nou esdeveniments perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+
+
+===Pestanya d'Objectius===
+
+En aquesta pestanya podrà descriure els objectius del pressupost. Podeu escriure directament en la caixa de text, i anar afegint textos predefinits amb el selector que aquesta sota de la caixa de text.
+
+[presupuestos-formulario-objetivos.png]
+
+===Pestanya de Proposta funcional===
+
+En aquesta pestanya podrà descriure proposta funcional del pressupost. Podeu escriure directament en la caixa de text, i anar afegint textos predefinits amb el selector que aquesta sota de la caixa de text.
+
+[presupuestos-formulario-propuesta-funcional.png]
+
+===Pestanya de Proposta tècnica===
+
+En aquesta pestanya podrà descriure la proposta tècnica del pressupost. Podeu escriure directament en la caixa de text, i anar afegint textos predefinits amb el selector que aquesta sota de la caixa de text.
+
+[presupuestos-formulario-propuesta-tecnica.png]
+
+===Pestanya d'Informació addicional===
+
+En aquesta pestanya podrà descriure informació addicional que no s'hagi especificat en altres apartats del pressupost. Podeu escriure directament en la caixa de text, i anar afegint textos predefinits amb el selector que aquesta sota de la caixa de text.
+
+[presupuestos-formulario-informacion-adicional.png]
+
+===Pestanya de Tasques===
+
+En aquesta pestanya pot incloure, modificar o eliminar totes les tasques a realitzar vinculades en aquest pressupost.
+
+[presupuestos-formulario-listado-tareas.png]
+
+- **Taula Resum:**  En aquesta taula podrà veure diferent informació sobre les tasques incloses en el pressupost, total d'hores, preu mitjà, import total d'hores.
+- **Llista de tasques:**  En aquesta llista podrà anar afegint, modificant o eliminant tantes tasques com siguin necessàries, els camps que inclou són: **descripció de la tasca, hores necessàries, preu unitari, descompte, total tasca**.
+
+
+===Pestanya de Productes===
+
+En aquesta pestanya pot incloure, modificar o eliminar totes els productes vinculades a aquest pressupost.
+
+[presupuestos-formulario-listado-productos.png]
+
+- **Taula Resum:**  En aquesta taula podrà veure diferent informació sobre els productes inclosos en el pressupost, total d'unitats, import total de productes.
+- **Llista de productes:**  En aquesta llista podrà anar afegint, modificant o eliminant tants productes com siguin necessaris, els camps que inclou són: **descripció del producte, unitats, preu unitari, descompte, totalment productes**.
+
+
+===Pestanya de condicions===
+
+En aquesta pestanya podrà descriure les condicions a què està subjecte el pressupost. Podeu escriure directament en la caixa de text, i anar afegint textos predefinits amb el selector que aquesta sota de la caixa de text.
+
+[presupuestos-formulario-condiciones.png]
+
+===Pestanya Nous fitxers===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestanya Dades del registre===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Pestanya Carpetes===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+

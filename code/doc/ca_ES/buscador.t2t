@@ -1,0 +1,54 @@
+
+
+
+=Cercador=
+
+Aquesta aplicació li permet buscar a tot SaltOS o sol fitxers. Quan realitzi la recerca li sortirà un llistat amb els resultat obtinguts.
+
+[buscador.png]
+
+==Llistat resultant "Cercar en tot SaltOS==
+
+En aquest llistat podrà trobar tot tipus de dades, clients, proveïdors, correus, etc .. El llistat té les següents columnes:
+
+[buscador-listado-todo-saltos.png]
+
+- **Codi .:**  Codi numèric que identifica el registre.
+- **Aplicació:**  Aplicació on es troba la informació (clients, proveïdors, correus, etc ..).
+- **Nom:**  Nom o títol del registre.
+- **Usuari:**  Usuari que crec aquest registre.
+- **Data i hora:**  Data i hora de creació del registre.
+- **NC:**  Nombre de comentaris introduïts sobre aquest registre.
+- **NF:**  Nombre de fitxers vinculats amb aquest registre.
+
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png]: Consultar / Edita registre.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+- [../../lib/silk/icons/email_reply.png]: Respondre correu al remitent.
+- [../../lib/silk/icons/email_replyall.png]: Respondre correu a tots.
+- [../../lib/silk/icons/email_go.png]: Reenviar correu.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Llistat resultant "Cerca només a Fitxers"==
+
+En aquest llistat només inclourà fitxers de les diferents aplicacions que admetin adjuntar fitxers. El llistat té les següents columnes:
+
+[buscador-listado-solo-ficheros.png]
+
+- **Codi .:**  Codi numèric que identifica el fitxer.
+- **Aplicació:**  Aplicació on es troba el fitxer (correus, acta, etc ..).
+- **Nom:**  Nom o títol del fitxer.
+- **Usuari:**  Usuari que crec aquest fitxer.
+- **Data i hora:**  Data i hora de creació del fitxer.
+- **Fitxer:**  Nom real del fitxer (nom en disc).
+- **Mida:**  Mida del fitxer (varia la unitat (bytes, kbytes, Mbytes, etc ..-) en funció de la mida del mateix).

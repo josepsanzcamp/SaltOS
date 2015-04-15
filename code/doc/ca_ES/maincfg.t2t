@@ -1,0 +1,106 @@
+
+
+
+=Configuració=
+
+Aquesta aplicació li permet configurar paràmetres i opcions de la suite de gestió.
+
+==Formulari de configuració==
+
+Aquesta és l'aplicació de configuració, permet canviar o ajustar diferents opcions de la suite de gestió (logos, marques d'aigua, etc ..).
+
+===Pestanya General===
+
+En aquesta pestanya podreu visualitzar i modificar la configuració general.
+
+[maincfg-formulario.png]
+
+- **Títol de l'aplicació:**  És el títol que apareix a la part superior al costat de la versió de SaltOS que s'utilitza.
+- **Mida dels gràfics en els llistats:**  Grandària que s'utilitzés en els gràfics dels diferenes llistats.
+- **Mida dels gràfics en els formularis:**  Grandària que s'utilitzés en els gràfics dels diferenes formularis.
+- **Cerca notificacions de l'agenda:**  Cada quant de temps es verificarà si hi ha alguna anotació pendent a l'agenda.
+- **Cerca correus nous:**  Cada quant de temps es verificarà si hi ha correus nous a descarregar del servidor.
+- **Comprovar la safata de sortida:**  Cada quant de temps es verificarà si hi ha nous correus a enviar.
+- **Cerca posts nous:**  Cada quant de temps es verificarà si hi ha nous post a descarregar.
+- **Oblidar feeds esborrats:**  Determina el temps que passés fins que s'esborri totalment el feed de l'aplicació, ajuda a no descarregar informació ja esborrats.
+- **Comprovar avís de tancament de sessió:**  En cas de no marcar "recordar contrasenya en aquest ordinador" a l'inici de sessió. Aquest paràmetre determina cada conte s'ha de comprar si s'ha de tancar la sessió per inactivitat.
+- **Avisar el tancament de sessió:**  Quant de temps abans s'ha d'avisar quan es vagi a tancar la sessió.
+- **Indexar fitxers nous:**  Cada quant de temps es verifiqués si hi ha nou arxius que indexar.
+
+
+===Pestanya Logotip===
+
+En aquesta pestanya podreu visualitzar i modificar la configuració del logotip de l'entitat.
+
+[maincfg-formulario-logo.png]
+
+- **Posició i mesures del logotip:**
+  - **X:**  Eix horitzontal, distància de la col·locació del logo des de la coordenada 0,0, valor expressat en mil·límetres.
+  - **I:**  Eix vertical, distància de la col·locació del logo des de la coordenada 0,0, valor expressat en mil·límetres.
+  - **Ample:**  Ample del logotip en paper, expressat en mil·límetres.
+  - **Alt:**  Alt del logotip en paper, expressat en mil·límetres.
+
+
+- **Fitxers logotip:**
+  - **Fitxer del logo actual:**  Visualització del logo actual.
+  - **Nou fitxer (només JPEG):**  En cas que vulgui canviar el logotip, seleccioneu aquí el nou arxiu, només formats (JPEG).
+
+
+- **Colors en els documents PDF generats:**
+  - **Línies:**  Color de les línies que s'utlizan per dibuixar caixes, línies de columnes i de files, etc ...
+  - **Títols:**  Color dels títols utilitzats en els documents generats.
+  - **Textos:**  Color del text normal que s'utilitzés en els documents generats.
+
+
+===Pestanya Marques d'aigua===
+
+En aquesta pestanya podreu visualitzar i modificar la configuració de les marques d'aigua en els diferents documents tipus que permet generar SaltOS **(*)**.
+
+[maincfg-formulario-marcas-agua.png]
+
+- **Text:**  Text a imprimir com marca d'aigua.
+- **Posició X:**  Eix horitzontal, distància de la col·locació del logo des de la coordenada 0,0, valor expressat en mil·límetres.
+- **Posició Y:**  Eix vertical, distància de la col·locació del logo des de la coordenada 0,0, valor expressat en mil·límetres.
+- **Mida:**  Mida de la lletra.
+- **Angle:**  Angle de desplaçament d'impressió del text, comptant com a punt central d'àncora, el centre del text imprès respecte a l'eix horitzontal de la pàgina.
+
+
+**(*) Actualment SaltOS permet generar els següents documents tipus: Actes, parts, factures, albarans, pressupost, clients, projectes, possibles clients, correu, feeds.**
+
+===Pestanya Compte de correu===
+
+En aquesta pestanya podreu visualitzar i modificar la configuració del compte de correu generica que s'utilitzarà en SaltOS per enviar mails generats automàticament.
+
+[maincfg-formulario-cuenta-correo.png]
+
+- **Nom:**  Nom del compte de correu.
+- **Mail:**  Compte de correu.
+- **Servidor SMTP:**  URL del servidor de sortida de correu.
+- **Port:**  Port del servidor.
+- **Seguretat:**  Tipus de seguretat a l'hora de connectar-se al servidor de correu.
+- **Usuari:**  Usuari d'accés al servidor per aquest compte de correu.
+- **Clau:**  Contrasenya d'usuari d'accés al servidor.
+- **Utilitza el va enviar asíncron:**  Determina si s'utilitzarà l'enviament asíncron de correu.
+- **Email per al suport tècnic:**  En cas de no incloure un mail a aquest apartat, tots els bugs reportats s'enviaran directament al projecte SaltOS.
+
+
+===Pestanya Comptabilitat===
+
+En aquesta pestanya podreu visualitzar i modificar la configuració general
+
+[maincfg-formulario-contabilidad.png]
+
+- **Moneda:**  Moneda a utilitzar en la suite.
+- **Nom de l'impost (es suma):**  Nom de l'impost a utilitzar, impostos que s'han de sumar a factures.
+- **Valor per defecte (només si es fa servir):**  Valor de l'impost.
+- **Nom de l'impost (es resta):**  Nom de l'impost a utilitzar, impost que s'han de restar en factures.
+- **Valor per defecte (només si es fa servir):**  Valor de l'impost.
+
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

@@ -1,0 +1,140 @@
+
+
+
+=Agenda=
+
+L'agenda de SaltOS li permetrà gestionar fàcilment les seves reunions i esdeveniments. Pot relacionar les entrades a l'agenda amb un client, projecte, pressupost, etc. a més de assignar a diversos usuaris.
+
+SaltOS li recordarà automàticament els propers esdeveniments i, si això no és suficient, podrà sincronitzar l'agenda de SaltOS amb //Google Calendar//.
+
+==Les dues vistes de l'agenda==
+
+L'agenda de SaltOS pot consultar de dues maneres: en forma de llistat o en forma de Calendari.
+
+===Llistat===
+
+La primera s'assembla a qualsevol llistat de SaltOS, mostrant el o els usuaris assignats, inici i fi de l'esdeveniment, client o projecte relacionat, el nom de l'esdeveniment així com el seu tipus i estat.
+
+En aquesta vista pot crear un nou esdeveniment fent clic al botó corresponent a la cantonada inferior esquerra, navegar pel llistat amb els controls a la cantonada inferior dreta i buscar un esdeveniment mitjançant el cercador simple.
+
+[agenda-listado.png]
+
+- **Codi .:**  Codi numèric que identifica l'esdeveniment.
+- **Usuari:**  Usuari que ha creat l'esdeveniment.
+- **Inici:**  Data i hora d'inici de l'esdeveniment.
+- **Fi:**  Data i hora de fi de l'esdeveniment.
+- **Client:**  Client vinculat amb aquest esdeveniment.
+- **Projecte:**  Projecte vinculat amb aquest esdeveniment.
+- **Esdeveniment:**  Títol o assumpte de l'esdeveniment.
+- **Tipus d'esdeveniment:**  Tipus d'esdeveniment (Trucades, reunions, visites, emails, esdeveniments).
+- **Estat:**  Estat en què es troba l'esdeveniment (Programada, Pendent de confirmar, Acabada, Cancel·lat).
+
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+
+===Calendari===
+
+La vista //Calendari//  li mostrarà el mes actual en forma de graella, amb un dia per columna. Podeu crear un nou esdeveniment fent clic a //Nou esdeveniment//  en les casella de la data corresponent. Per visualitzar un altre mes del calendari, seleccioneu-lo en el desplegable //Mostrant informació a data//. Si vols navegar al mes anterior o posterior, feu clic a les fletxes situades a la cantonada superior dreta. Si voleu tornar al mes actual, feu clic a la icona situada entre les dues fletxes.
+
+[agenda-calendario.png]
+
+Per expandir o contraure el detall de tots els esdeveniments mostrats, feu clic al botó corresponent a la cantonada superior dreta. També pot reiniciar les notificacions fent clic al botó //Notificacions//.
+
+Per sincronitzar l'agenda amb //Google Calendar//, Feu clic al botó corresponent a la part superior. Tingueu en compte que heu d'haver definit prèviament el seu compte de Google a l'aplicació //El meu perfil//. El procés de sincronització pot trigar uns instants, depenent de la velocitat de connexió, l'estat del servei de Google i la quantitat d'esdeveniments a sincronitzar.
+
+==Formulari de l'esdeveniment==
+
+Aquesta és l'aplicació d'esdeveniments, amb ella podrà afegir, modificar i visionar totes les dades dels diferents esdeveniments que es realitzen a l'entitat, la informació està classificada en diferents pestanyes: dades principals, usuaris assignats, comentaris, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de l'esdeveniment===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades sobre el esdeveniments. A continuació li relacionem tots els camps d'informació.
+
+[agenda-formulario.png]
+
+- **Campanyes:**  Per enllaçar l'esdeveniment amb una campanya comercial concreta.
+- **Possible client:**  Per enllaçar a l'esdeveniment amb un possible client concret.
+- **Pressupost:**  Per enllaçar a l'esdeveniment amb un possible pressupost concret.
+- **Client:**  Per enllaçar a l'esdeveniment amb un client concret.
+- **Projecte:**  Per enllaçar a l'esdeveniment amb un projecte concret.
+- **Inici (*):**  Hora d'inici de l'esdeveniment.
+- **Fi (*):**  Hora de finalització de l'esdeveniment.
+- **Tipus d'esdeveniment:**  Tipus d'esdeveniment (Trucades, reunions, visites, emails, esdeveniments).
+- **Lloc:**  Lloc de celebració de l'esdeveniment.
+- **Estat:**  Estat actual de l'esdeveniment (Programat, Pendent de confirmar, Acabat, Cancel·lat).
+- **Descripció (*):**  Breu descripció de l'esdeveniment.
+- **Notificar:**  Per indicar quan ens ha de notificar l'avís.
+- **Notificació inicio rebuda:**  Marca aquesta casella farà desaparèixer l'avís d'inici d'esdeveniment.
+- **Notificació final rebuda:**  Marca aquesta casella farà desaparèixer l'avís de fi d'esdeveniment.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un esdeveniment.**
+
+
+===Creació===
+
+Per crear un nou esdeveniment introdueixi la data i hora d'inici, el nom (el que es mostrarà en els llistats), descripció, el tipus d'esdeveniment i l'estat. Tingueu en compte que l'esdeveniment es considera pendent quan té l'estat "Confirmat" o "Per confirmar", en qualsevol altre es considerarà com a no pendent o tancat.
+
+Per facilitar la introducció de la data, feu clic a les icones situades al costat de les caixes corresponent. S'obrirà un diàleg que us permetrà triar la data navegant pel calendari. Feu clic en el dia corresponent per seleccionar la data.
+
+També pot introduir l'hora a través d'un diàleg d'ajuda, fent clic a la icona situat al costat de la caixa de text corresponent. Seleccioneu l'hora i minuts a través dels botons, si desitja canviar entre //AM//  i //PM//  feu clic al botó corresponent.
+
+Per rebre una notificació a manera de recordatori, introdueixi en la caixa de text //Notificar//  amb quanta antelació vol rebre l'avís (en hores). Si voleu rebre un avís després de l'inici de l'esdeveniment, seleccioneu "Després" en el desplegable corresponent. Si no desitja rebre cap avís, marqueu els controls //Notificació inicio rebuda//  i //Notificació final rebuda//.
+
+Per assignar l'esdeveniment a més usuaris, seleccioneu a la pestanya //Usuaris assignats//. L'esdeveniment apareixerà automàticament en el calendari dels usuaris assignats.
+
+Pot relacionar l'esdeveniment amb una campanya, un possible client, un client existent, un pressupost o projecte a través dels desplegables corresponents. A l'hora de relacionar un esdeveniment amb qualsevol d'aquestes aplicacions, apareixerà el detalladament del contingut corresponent. D'aquesta manera podrà portar un control efectiu de totes les reunions mantingudes amb un client o en un projecte.
+
+Si voleu adjuntar fitxers, pot fer-ho a la pestanya //Nous fitxer adjunts//.
+
+Un cop finalitzat premi //Crear//  o //Crear i tornar aquí//.
+
+===Modificació===
+
+A l'hora d'editar un esdeveniment, podrà introduir o modificar les mateixes dades que durant la creació. Addicionalment pot afegir un comentari, per exemple, per comentar els temes tractats durant la reunió, el motiu de cancel·lació, etc.
+
+Perquè un esdeveniment deixi d'aparèixer com a pendent, canviï el seu estat a //Acabat//, //Cancel·lat//  o //Error//.
+
+===Consulta===
+
+Al mode consulta, podeu consultar els diferents paràmetres de l'esdeveniment, així com els usuaris assignats i descarregar els fitxers adjunts, si n'hi ha. També pot veure si ja s'ha mostrat la notificació d'inici o finalització.
+
+Podeu editar l'esdeveniment fent clic al botó //Edita//.
+
+
+===Pestanya Nous comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous arxius adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Arxius adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

@@ -1,0 +1,68 @@
+
+
+
+=Seguiments=
+
+Aquesta aplicació li permet portar un control de tots seguiments de les tasques realitzades a l'empresa.
+
+[seguimientos-listado.png]
+
+==Llistat de Seguiments==
+
+En el llistat de seguiments podrà trobar les columnes més importants de cada registre:
+
+- **Codi .:**  Codi numèric que identifica el projecte.
+- **Usuari:**  Usuari que ha creat el seguiment.
+- **Client:**  Perquè client s'ha realitzat el projecte.
+- **projecte:**  Nom que se li ha donat al projecte.
+- **Tasca:**  Nom de la tasca de la qual està realitzant el seguiment.
+- **Data:**  Data en què es va realitzar el seguiment.
+- **Hores (*):**  Hores necessitades per al seguiment de la tasca.
+
+
+(*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+
+
+Aquest llistat disposa a més de les següents accions:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar el llistat de totes les dades de seguiment de tasques a un arxiu amb format Excel.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari de seguiments==
+
+Aquesta és l'aplicació de seguiment de tasques, amb ella podrà afegir, modificar i visionar totes les dades del seguiment classificats en diferents pestanyes: dades principals, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades del seguiment===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades del seguiment. A continuació li relacionem tots els camps d'informació.
+
+[seguimientos-formulario.png]
+
+- **Client (*):**  Per enllaçar el client per al qual es realitza la tasca.
+- **Projecte (*):**  Per enllaçar en el projecte en el qual està inclosa la tasca.
+- **Nom (*):**  Selector de la tasca sobre la qual es realitza el seguiment.
+- **Data (*):**  Data de realització del seguiment.
+- **Comentaris (*):**  Per indicar dades rellevants sobre el seguiment.
+- **Hores (*):**  Hores que s'han utilitzat per fer el seguiment de la tasca.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un seguiment.**
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

@@ -1,0 +1,58 @@
+
+
+
+=Grups=
+
+Aquesta aplicació li permet portar un control de tots grups de l'aplicació.
+
+[grupos-listado.png]
+
+==Llistat de grups==
+
+En el llistat de grups podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica el grup.
+- **Nom:**  Nom del grup.
+- **Descripció:**  Descripció del grup.
+
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari de grups==
+
+Aquesta és l'aplicació de grups, amb ella podrà afegir, modificar i visionar totes les dades dels grups classificats en diferents pestanyes: dades principals, permisos per aplicació, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades del grup===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades del grup. A continuació li relacionem tots els camps d'informació.
+
+[grupos-formulario.png]
+
+- **Usuari (*):**  Nom del grup.
+- **Descripció:**  Descrpció del grup.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un grup.**
+
+===Pestanya permisos per aplicació===
+
+En aquesta pestanya podrà aplicar els permisos al grup.
+
+[grupos-formulario-permisos-aplicacion.png]
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

@@ -1,0 +1,38 @@
+
+
+
+=Favorites=
+
+The app allow you to store catalog all favorite links that you collect.
+
+==List of favorites==
+
+The list of entries shows you the last added favorites.
+
+[favoritos-listado.png]
+
+- **Ref .:**  Numeric code that identifies the link.
+- **URL:**  URL of the link.
+- **Name:**  Name detected in the headwaters of the website.
+- **Description:**  Descipción detected in the header of the website.
+- **Date:**  Date and time that the link was saved.
+
+
+**Remember**: Favourite can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+[../../lib/silk/icons/delete.png]: Clear log.
+
+
+On the list besides normal search option, you will find the following functions:
+
+- Saving the link, enter the URL in the box, after you click the button new favorite, SaltOS detected header page for detecting other information ..
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+

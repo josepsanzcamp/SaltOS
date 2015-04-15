@@ -1,0 +1,120 @@
+
+
+
+=Factures=
+
+Aquesta aplicació li permet portar un control de totes els albarans i factures generades a l'empresa.
+
+[facturas-listado.png]
+
+==Llistat de factures==
+
+En el llistat de factures podrà trobar les columnes més importants del registre:
+
+- **N.Fac.:**  Codi numèric que identifica l'albarà o la factura.
+- **Usuari:**  Data de l'albarà o de la factura.
+- **Data:**  Data i hora de la incidència.
+- **Client:**  Client per al qual s'ha generat l'albarà o factura.
+- **Projecte:**  Nom del projecte pel qual s'ha generat l'albarà o factura.
+- **Base (*):**  Import de l'albarà o factura abans d'impost.
+- **Total (*):**  Import de l'albarà o factura un cop aplicats els impostos pertinents.
+- **Tancat:**  Quan l'albarà es tanca, es converteix en factura.
+- **Cobrada:**  Si s'ha realitzat el cobrament de l'albarà o factura.
+- **Compte:**  Compte on assignar l'ingrés.
+
+
+(*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Preparés un correu amb el pressupost seleccionat adjuntat com arxiu PDF.
+
+
+Aquest llistat disposa a més de les següents accions seleccionant diversos registres simultàniament:
+
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar els registres seleccionats a un fitxer en format. PDF.
+- [../../lib/silk/icons/monitor.png]: Visualitzar els registres seleccionats en format. PDF en pantalla.
+- [../../lib/silk/icons/email_go.png]: Preparés un correu amb els registres seleccionats adjuntats com arxius PDF.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Gràfiques i estadístiques===
+
+En aquesta pestanya trobar les estadístiques de facturació de l'últim any i del top 10 de clients actius.
+
+[facturas-listado-graficas.png]
+
+==Formulari de factures==
+
+Aquesta és l'aplicació de facturació, amb ella podrà afegir, modificar i visionar totes les dades dels diferents albarans i factures classificats en diferents pestanyes: dades principals, conceptes, productes, venciments, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de l'albarà o factura===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de l'albarà o factura. A continuació li relacionem tots els camps d'informació.
+
+[facturas-formulario.png]
+
+- **Compte (*):**  Compte on es comptabilitzés l'ingrés.
+- **Epígraf (*):**  Activitat econòmica.
+- **Forma de pagament (*):**  Forma de pagament a utilitzar per cobrar l'ingrés.
+- **Client:**  Client al qual se li carregués l'import.
+- **Projecte:**  Projecte que aquesta facturant.
+- **Nom (*):**  Nom del client. Aquest camp s'omple automàticament quan seleccionem el client.
+- **Direcció:**  Direcció del client. Aquest camp s'omple automàticament quan seleccionem el client.
+- **País:**  País del client. Aquest camp s'omple automàticament quan seleccionem el client.
+- **Província:**  Província del client. Aquest camp s'omple automàticament quan seleccionem el client.
+- **Població:**  Població del client. Aquest camp s'omple automàticament quan seleccionem el client.
+- **Codi postal:**  Codi postal del client. Aquest camp s'omple automàticament quan seleccionem el client.
+- **Notes:**  Notes aclaridores que vulgui incloure.
+- **Tancat:**  Determina si és un albarà o una factura.
+- **Data emissió:**  Data que es genera la factura quan tanques l'albarà.
+- **N. Fac .:**  Nombre de factura.
+- **Cobrat:**  Si ja s'ha cobrat.
+- **Data cobrament:**  Data de cobrament.
+- **IVA (%):**  Percentatge d'IVA. [(más info sobre IVA) http://es.wikipedia.org/wiki/Impuesto_al_valor_agregado]
+- **IRPF (%):**  Percentatge d'IRPF. [(más info sobre IRPF) http://es.wikipedia.org/wiki/Impuesto_sobre_la_renta_de_las_personas_f%C3%ADsicas_%28Espa%C3%B1a%29]
+- **Base (€):**  Base imposable, totalment import econòmic abans d'aplicar impostos.
+- **IVA (€):**  Import econòmic d'IVA.
+- **IRPF (€):**  Import econòmic d'IRPF
+- **Total (€):**  Total a cobrar impostos inclosos.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un albarà o factura.**
+
+===Pestanya Conceptes===
+
+En aquesta pestanya pot incloure tots els conceptes necessaris per crear l'albarà o factura
+
+[facturas-formulario-conceptos.png]
+
+===Pestanya Productes===
+
+En aquesta pestanya pot incloure tots els productes necessaris per crear l'albarà o factura
+
+[facturas-formulario-productos.png]
+
+===Pestanya Venciments===
+
+En aquesta pestanya podrà crear diferents venciments per a la factura.
+
+[facturas-formulario-vencimientos.png]
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.
+

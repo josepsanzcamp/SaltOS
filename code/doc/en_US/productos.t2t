@@ -1,0 +1,76 @@
+
+
+
+=Produce=
+
+This application lets you keep track of all company products have in their catalog.
+
+[productos-listado.png]
+
+==Product List==
+
+In the list of products you can find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the product.
+- **Name:**  Product name.
+- **Ref.:**  Internal reference product.
+- **Price (€):**  Pre-tax economic product.
+- **Extra. (%):**  Discount performing at the sale of this product.
+- **VAT rate (%):**  VAT rate to be applied to the sale of the product.
+- **Total (€):**  Total amount applying discounts and tax.
+- **Web:**  Product Information web page.
+- **MF:**  Number of files linked to this product.
+
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Product form==
+
+This is the application of products, it can add, modify and view all product data classified in different tabs: main data, attachments, data on the registry modifications and assignments to folders.
+
+===Product Details Tab===
+
+In this tab you can view and modify the main product data. Here we relate all information fields.
+
+[productos-formulario.png]
+
+- **Name (*):**  Name given to the product.
+- **Ref.:**  Internal reference product
+- **Description:**  Description of the product.
+- **Price (€) (*):**  Product price before applying tax.
+- **Extra. (%):**  Discount carried out in this product.
+- **VAT rate (%):**  VAT to be applied to the purchase.
+- **Dimensions:**  Physical Dimensions of the product.
+- **Weight:**  Total weight of the product.
+- **Web:**  Product web tab.
+- **Volume:**  Total volume of the product.
+- **Current photo:**  Current image of the product.
+- **New photo:**  To change the image of the product.
+
+
+(*) **Required when creating or modifying a product fields.**
+
+===Attachments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New Files Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

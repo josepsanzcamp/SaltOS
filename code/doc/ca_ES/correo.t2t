@@ -1,0 +1,112 @@
+
+
+
+=Correu electrònic=
+
+Amb el client de correu electrònic de SaltOS podrà treballar com a qualsevol altre client, ja sigui de tipus //webmail//  o una aplicació d'escriptori. Salts realitza l'enviament i la recepció dels correus periòdicament en segon pla.
+
+==Llistat de correus==
+
+En el llistat dels seus correus electrònics trobarà tant els enviats per vostè com els rebuts.
+
+[correo-listado.png]
+
+- **Codi .:**  Codi numèric que identifica el correu.
+- **De:**  Remitent del correu. (En fer clic a l'enllaç creés un nou correu amb aquest destinatari)
+- **Per:**  Destinatari del correu. (En fer clic a l'enllaç creés un nou correu amb aquest destinatari)
+- **Assumpte:**  Assumpte del correu.
+- **Data i hora:**  Dia i hora d'enviament.
+- **Mida:**  Mida d'espai en disc.
+- **NF:**  Nombre de fitxers adjunts.
+- **Estat:**  Estat en què es troba el correu el color de fons identifica cada estat:
+  - //Nou//: verd.
+  - //Llegit//: transparent.
+  - //Modificat//: transparent.
+  - //Pendent//: blau.
+  - //Spam//: Vermell.
+
+
+**Recordeu**: Els correus es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix (*) registre.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+- [../../lib/silk/icons/email_reply.png]: Respondre correu al remitent.
+- [../../lib/silk/icons/email_replyall.png]: Respondre correu a tots.
+- [../../lib/silk/icons/email_go.png]: Reenviar correu.
+- [../../lib/silk/icons/tag_blue.png]: Marcar correu com a pendent.
+- [../../lib/silk/icons/tag_red.png]: Marcar correu com SPAM.
+
+
+Sobre el llistat a més de l'opció normal de cerca, trobareu les següents funcions:
+
+- [../../lib/silk/icons/email_open.png]: Força la comprovació de correus nous al servidor.
+- [../../lib/silk/icons/email_go.png]: Força l'enviament dels correus pendents d'enviar.
+- Selector de **accions per a múltiples correus**:
+ - //Opcions//: Descàrrega i visualització en format PDF.
+ - //Marca com//: Llegits, No llegits, Pendents, No pendents, SPAM, No SPAM.
+ - //Filtrar per tipus//: Tots, Entrada, Sortida.
+ - //Filtrar per estat//: Tots, llegits, Pendents, Interessants.
+ - //Filtrar per data publicació//: Tots, Avui, Ahir, Setmana, Mes.
+- [../../lib/silk/icons/delete.png]  Esborrar els correus seleccionats (*).
+
+
+Per enviar un correu a l'emissor del correu pot fer clic a l'adreça de correu electrònic del mateix. Si voleu enviar un nou correu des del compte del destinatari (probablement la seva), feu clic a sobre de la mateixa. També consultar el correu fent clic en l'assumpte.
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari de correu==
+
+Aquesta és l'aplicació de correu, amb ella podrà llegir i enviar correus, les dades estan classificats en diferents pestanyes. Dades principals, fitxer adjunts i assignacions a carpetes.
+
+[correo-formulario.png]
+
+- **De (*):**  Remitent del correu.
+- **Per (*):**  Destinatari del correu.
+- **CC:**  Enviar còpia.
+- **BCC:**  Envia còpia oculta.
+- **Sol·licitar confirmació:**  Sol·licitar confirmació de recepció.
+- **Prioritat:**  Importància del correu (Alta, Mitjana, Baixa).
+- **Sensibilitat:**  Indica la privacitat del contingut del missatge.
+- **Missatge (*):**  Editor per missatge del correu (``**``).
+- **Textos predefinits:**  Possibilitat d'afegir textos predefinits a la caixa de text de temes.
+
+
+(*) **Camps obligatoris a l'hora d'enviar un correu.**
+
+
+(``**``) **Podrà trobar més informació sobre la funcionalitat dels editors de SaltOS a [ayuda general http://viewpdf/page=home]**
+
+===Enviar nou correu===
+
+A l'hora d'enviar un nou correu, podeu seleccionar des de quin compte vol fer l'enviament (en cas de tenir més d'un compte configurada).
+
+Per afegir els destinataris, comença a escriure a la caixa de text //(*) Per//. A mesura que va escrivint el nom o l'adreça del destinatari, SaltOS li proposarà diversos resultats que coincideixin amb el text introduït. Si troba al destinatari a la llista, seleccioneu-lo per afegir-lo a llista. En cas contrari, escriviu l'adreça completa.
+
+Per enviar una //còpia carbó//  o un //còpia carbó oculta//, Afegiu els destinataris als camps //CC//  o //BCC//  respectivament.
+
+Si desitja rebre una confirmació de recepció del destinatari, marqueu la casella //Sol·licitar confirmació de recepció//. Tingueu en compte que aquest mecanisme no és automàtic, sinó que el destinatari pot decidir no contestar a la sol·licitud havent rebut i consultat el correu.
+
+Per afegir un text predefinit al correu, seleccioneu el nom de la plantilla en el desplegable de //Textos predefinits//  i feu clic a //Afegir//.
+
+Per enviar un o diversos fitxer, seleccioneu la pestanya //Nous fitxers adjunts//. Si voleu afegir més d'un fitxer feu clic a //Afegir fitxer//. Per seleccionar el fitxer a enviar, feu clic a //Seleccionar arxiu//  i indiqui-ho a través del diàleg.
+
+
+===Consulta d'un correu===
+
+En la manera consulta del correu pot fer les mateixes funcions que en llistat: respondre a l'emissor, respondre a tots i afegir-lo a la pàgina d'inici. També pot marcar com //pendent//  o //SPAM//  marcant la casella de verificació corresponent i fent clic a //Tornar//.
+
+Podeu veure el correu sencer a la pestanya //Zoom del correu//.
+
+Si el correu tingués fitxers adjunts, podrà veure i descarregar-los en la pestanya //Adjunts//. Per realitzar una descàrrega de diversos fitxers alhora, seleccioneu i feu clic a //Descarregar fitxers seleccionats//.
+
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre carpetes a la **[ayuda general http://viewpdf/page=home]**.

@@ -1,0 +1,108 @@
+
+
+
+=Working Parties=
+
+This application lets you keep track of all parts of work performed by employees in the company.
+
+[partes-listado.png]
+
+==List of working parts==
+
+In the working parts list you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the job.
+- **Customer:**  For customer has done the job.
+- **Project:**  Name of the project on which it will load the work
+- **Task:**  Descriptive name of the work performed.
+- **Date:**  The date the work was performed.
+- **Hours (*):**  Hours were taken to complete the work.
+- **Price (*):**  Price hour depending on the job category.
+- **Total (*):**  Total amount of work done.
+- **Liq.:**  Determines whether the part is liquidated. **The unsettled parts are marked with a red background.**
+- **Date liq .:**  Settlement date of the party.
+- **NC:**  Number of comments entered on this part.
+- **NF:**  Number of files linked this part.
+
+
+(*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data selected.
+- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+- [../../lib/silk/icons/email_go.png]: Prepare an email with the selected record attached as PDF file.
+
+
+This list also features the following:
+
+- [../../lib/silk/icons/page_white_excel.png]: Export the list of all the working parts to a file with Excel format.
+- [../../lib/silk/icons/page_white_acrobat.png]: Download the selected file format parts. PDF.
+- [../../lib/silk/icons/monitor.png]: Display the selected format parts. PDF on screen.
+- [../../lib/silk/icons/email_go.png]: Prepare a mail with the selected parts attached as PDF files.
+- [../../lib/silk/icons/disk.png]: Liquid selected parts indicating the date hereof.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Options graphs and statistics===
+
+In this tab you can see statistics about parties performed the last year and the top 10 most active customers.
+
+[partes-listado-graficas.png]
+
+==Form working parts==
+
+This is the application of parties working with it can add, modify and view all data on expenditures classified in different tabs: main data, attachments, maturity, data on the registry modifications and assignments to folders.
+
+===Tab Details of work===
+
+In this tab you can view and modify the main data part. Here we relate all information fields.
+
+[partes-formulario.png]
+
+- **Customer:**  To link the client for whom the work is done.
+- **Project:**  To link the project that included this work.
+- **Name (*):**  Descriptive name of the research.
+- **Date (*):**  Date of work.
+- **Comments (*):**  To add data or important notes related work.
+- **Hours (*):**  Hours have been used to perform the work.
+- **Price (*):**  Unit price.
+- **Total (*):**  Total amount of work performed, calculated by the application field.
+- **Liquidated:**  Selector to determine if the part is liquidated.
+- **Date Liq .:**  Settlement date of the party.
+
+
+(*) **Required when creating or modifying a part Campos.**
+
+===Comments Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Attachments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New comments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New Files Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

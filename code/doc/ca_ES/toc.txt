@@ -1,5 +1,5 @@
 
-Manual de usuario
+Manual d'usuari
 
 General
 
@@ -23,27 +23,27 @@ actas.t2t
 clientes.t2t
 contactos.t2t
 
-Proyectos
+Projectes
 
 proyectos.t2t
 seguimientos.t2t
 partes.t2t
 incidencias.t2t
 
-Contabilidad
+Comptabilitat
 
 facturas.t2t
 proveedores.t2t
 gastos.t2t
 
-Administración
+Administració
 
 productos.t2t
 empleados.t2t
 usuarios.t2t
 grupos.t2t
 
-Tipos
+Tipus
 
 cuentas.t2t
 epigrafes.t2t

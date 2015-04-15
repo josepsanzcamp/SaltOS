@@ -1,0 +1,105 @@
+
+
+
+=Documents=
+
+El gestor documental de SaltOS, li permetrà organitzar i compartir els seus documents i arxius.
+
+Podrà relacionar els documents pujats amb un client o projecte per mantenir una perfecta organització de la seva documentació.
+
+Els documents no pujaran solts, sinó que pot agrupar-los, com si es tractés de carpetes. D'aquesta manera pot guardar diverses versions d'un mateix document o diversos documents amb la mateixa finalitat.
+
+==Llistat==
+
+El llistat mostrarà els paràmetres més important de les diferents carpetes o contenidors de fitxers. Les dues últimes columnes, //NC//  i //NF//, Li mostren el nombre de comentaris i el nombre de fitxers de la carpeta respectivament.
+
+[favoritos-listado.png]
+
+- **Codi .:**  Codi numèric que identifica el document.
+- **Data i hora:**  Moment en què es puja el document per primera vegada.
+- **Client:**  Client amb el qual aquesta vinculat el document.
+- **Projecte:**  Projecte amb el qual aquesta vinculat el document.
+- **Nom:**  Nom del document.
+- **NC:**  Nombre de comentaris afegits.
+- **NF:**  Nombre de fitxers afegits.
+
+
+**Recordeu**: Els documents es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari de documents==
+
+Aquesta és l'aplicació de documents amb ella podrà afegir, modificar, visionar i descarregar els documents. Les dades del document estan classificats en diferents pestanyes. Dades principals, comentaris, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades del document===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de client. A continuació li relacionem tots els camps d'informació.
+
+[clientes-formulario.png]
+
+- **Client:**  Per enllaçar el document amb un client concret.
+- **Projecte:**  Per enllaçar el document amb un projecte concret.
+- **Nom (*):**  Nom del fitxer.
+- **Descripció (*):**  Descripció del contingut de l'arxiu.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un document.**
+
+==Creació==
+
+A l'hora de crear un nou contenidor o carpeta, indiqueu el nom i la descripció del mateix. Recordeu introduir noms significatius ja que aquests li facilitaran les recerques posteriors. Pot relacionar opcionalment el contenidor o carpeta amb un client i / o projecte.
+
+Per afegir nous fitxers, feu clic a la pestanya //Nous fitxers adjunts//  i indiqui el fitxer fent clic al botó //Seleccionar arxiu//  (El text del botó pot variar en funció del navegador o sistema operatiu). Si voleu afegir més fitxers, feu clic a //Afegir fitxer//  i repetiu el procés anterior.
+
+Recordeu que la quantitat i grandària dels fitxers pot quedar limitat per les característiques del servidor en el qual s'allotja SaltOS. Si experimentés problemes a l'hora de pujar fitxers, intenti pujar-los d'un en un i verifiqui que la mida dels mateix no excedeixi les capacitats del servidor.
+
+==Modificació==
+
+La modificació d'una carpeta o contenidor d'arxius, us permetrà modificar els mateixos paràmetres que en el procés de creació. Addicionalment pot afegir un comentari.
+
+Si voleu afegir més fitxers, feu clic a //Nous fitxers adjunts//.
+
+==Consulta==
+
+La manera de consulta li permet consultar les dades de la carpeta així com descarregar els fitxers adjunts.
+
+Per accedir directament al detall del client o projecte relacionat, feu clic al botó situat al costat del desplegable corresponent.
+
+Per descarregar individualment els fitxers adjunts, feu clic al botó //Descarregar//  del llistat, dentra la pestanya //Fitxers adjunts//. Si voleu descarregar diversos fitxers, marqui el //checkbox//  corresponent i feu clic a //Descarregar fitxers seleccionats//. S'obrirà un fitxer comprimit en format //ZIP//  que contindrà els fitxers seleccionats.
+
+Si desitja consultar en fitxer amb el visor intern de SaltOS, feu clic a //Visor PDF//. Tingueu compte que el format del fitxer ha de ser un document o una imatge.
+
+
+===Pestanya Comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Fitxers adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous fitxers===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

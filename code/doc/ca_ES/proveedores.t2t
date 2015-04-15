@@ -1,0 +1,86 @@
+
+
+
+=Proveïdors=
+
+Aquesta aplicació li permet portar un control de tots els seus proveïdors.
+
+[proveedores-listado.png]
+
+==Llistat de proveïdors==
+
+En el llistat de proveïdors podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica al proveïdor.
+- **N.I.F:**  Número d'identificació fiscal facilitat per la hisenda pública.
+- **Nom:**  Nom del proveïdor.
+- **Telèfon fix:**  Telèfon fix principal per posar-nos en contacte.
+- **Telèfon mòbil:**  Telèfon mòbil principal per posar-nos en contacte.
+- **Compte de correu:**  Compte de correu principal per posar-nos en contacte.
+
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/vcard.png]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari de proveïdors==
+
+Aquesta és l'aplicació de proveïdors amb ella podrà afegir, modificar i visionar totes les dades del proveïdor classificats en diferents pestanyes. Dades principals, comentaris, fitxer adjunts, gràfiques i estadístiques sobre les compres realitzades, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades del proveïdor===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de proveïdor. A continuació li relacionem tots els camps d'informació.
+
+[proveedores-formulario.png]
+
+- **Nom comercial (*):**  Nom comercial del proveïdor.
+- **Nom fiscal (*):**  Nom fiscal que s'utilitza en els documents legals com factures, contractes, etc ..
+- **N.I.F:**  Nombre d'Identificació fiscal, nombre proporcionat per la hisenda publica amb el qual s'identifica a l'entitat.
+- **Mostrar com (*):**  Aquest el és nom que s'utilitzés en els llistat i selectors, en cas de ser una persona podria dedicar-se per incloure el sobrenom.
+- **Direcció:**  Adreça de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **País:**  País de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Província:**  Província de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Població:**  Població de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Codi postal:**  Codi postal de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Email:**  Compte de correu principal de contacte és la que es visualitzés en tots llistats.
+- **Web:**  Web principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Fix:**  Fix principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Mòbil:**  Mòbil principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Fax:**  Fax principal de contacte és el que es visualitzés en tots llistats.
+- **Corrent:**  Compte corrent que s'utilitza per fer els càrrecs de les compres realitzades per aquest proveïdor.
+- **Comptable:**  Compte comptable que s'utilitzés en el sistema comptable de l'empresa.
+- **Dia de pagament:**  Dia en el qual s'han de realitzar els càrrecs de les compres realitzades durant tot el mes.
+- **Comentari:**  Per poder indicar comentaris sobre aquest proveïdor.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un proveïdor.**
+
+A més, a la primera pestanya té uns **botons d'acció.**
+
+- **[../../lib/silk/icons/add.png]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest proveïdor.
+
+
+===Pestanya Gràfiques i estadístiques===
+
+En aquesta pestanya podreu veure les gràfiques i estadístiques de despeses realitzades en l'últim any a aquest proveïdor.
+
+[proveedores-formulario-graficas.png]
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

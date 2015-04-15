@@ -1,0 +1,112 @@
+
+
+
+=E-mail=
+
+With the email client SaltOS can work like any other customer, either type //webmail//  or a desktop application. Jumping the sending and receiving emails periodically in the background.
+
+==List of postal==
+
+In the list of emails find both submitted by you as received.
+
+[correo-listado.png]
+
+- **Ref .:**  Numeric code that identifies the mail.
+- **In:**  Mail sender. (Clicking on the link will create a new mail to this recipient)
+- **To:**  Recipient email. (Clicking on the link will create a new mail to this recipient)
+- **Subject:**  Email Subject.
+- **Date and Time:**  Date and time of shipment.
+- **Size:**  Size of disk space.
+- **NF:**  Number of attachments.
+- **State:**  State in which the mail is the background color identifies each state:
+  - //New//: green.
+  - //Read//: transparent.
+  - //Modified//: transparent.
+  - //Slope//: blue.
+  - //Spam//: Red.
+
+
+**Remember**: The emails can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete (*) record.
+- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+- [../../lib/silk/icons/email_reply.png]: Reply mail to the sender.
+- [../../lib/silk/icons/email_replyall.png]: Reply Mail to all.
+- [../../lib/silk/icons/email_go.png]: Forward mail.
+- [../../lib/silk/icons/tag_blue.png]: Mark email as pending.
+- [../../lib/silk/icons/tag_red.png]: Mark email as SPAM.
+
+
+On the list besides normal search option, you will find the following functions:
+
+- [../../lib/silk/icons/email_open.png]: Force checking new mails on the server.
+- [../../lib/silk/icons/email_go.png]: Force sending emails send earrings.
+- Selector **actions to multiple mailings**:
+ - //Options//: Downloading and viewing PDF format.
+ - //Mark as//: Read, Unread, Earrings, earrings No, SPAM, SPAM No.
+ - //Filter by type//: All, Inbox, Outbox.
+ - //Filter by State//: All, Read, Earrings, Interesting.
+ - //Filter by publication date//: All, Today, Yesterday, Week, Month.
+- [../../lib/silk/icons/delete.png]  Delete selected emails (*).
+
+
+To send a new email to the sender of the mail you can click on the email address it. To send a new email from the recipient's account (probably yours), click above it. Also check email by clicking the matter.
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form E==
+
+This is the mail application, with it you can read and send mail, the data are classified in different tabs. Main data, file attachments and assignments to folders.
+
+[correo-formulario.png]
+
+- **Of (*):**  Mail sender.
+- **For (*):**  Recipient email.
+- **CC:**  Send copy.
+- **BCC:**  Send blind copy.
+- **Prompt:**  Order acknowledgment.
+- **Priority:**  Importance of mail (High, Medium, Low).
+- **Sensitivity:**  Indicates the privacy of the message content.
+- **Message (*):**  Editor for mail message (``**``).
+- **Predefined texts:**  Ability to add predefined text box themes texts.
+
+
+(*) **Required when sending an e Campos.**
+
+
+(``**``) **You can find more information about the functionality of the editors of SaltOS in [ayuda general http://viewpdf/page=home]**
+
+===Send new mail===
+
+When sending a new email, you can select which account you want to send (in case you have more than one account set).
+
+To add recipients, start typing in the text box //(*) For//. As you type the name or address of the recipient, SaltOS will propose several results that match the entered text. If the recipient is listed, select it to add it to list. Otherwise, type the full address of the same.
+
+To submit a //carbon copy//  or //blind carbon copy//Add recipients to the fields //CC//  or //BCC//  respectively.
+
+To receive an acknowledgment of the recipient, check the box //Order acknowledgment//. Note that this mechanism is not automatic, but the recipient may choose not to answer the request having received and consulted mail.
+
+To add a predefined text mail, select the template name in the dropdown //Predefined texts//  and click //Add//.
+
+To send one or more files, select the tab //New files attachments//. To add more than one file click //Upload file//. To select the file to send, click //Select File//  and indicate this through dialogue.
+
+
+===Viewing a mail===
+
+In query mode mail you can perform the same functions as in list: reply to the sender, reply all and add it to the homepage. You can also mark as //slope//  or //SPAM//  checking the corresponding check box and clicking //Return//.
+
+You can see the entire mail tab //Zoom mail//.
+
+If mail has attachments, you can view and download the tab //Attachments//. To perform a download multiple files at once, select them and click //Download selected files//.
+
+
+===Tab Folders===
+
+For more information about folders in the **[ayuda general http://viewpdf/page=home]**.

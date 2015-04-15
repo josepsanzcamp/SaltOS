@@ -1,0 +1,89 @@
+
+
+
+=My profile=
+
+SaltOS allows you to customize and configure various aspects of the application:
+
+- General Preferences (language, appearance, password, etc.)
+- User Boxes
+- Quick Menu
+- Google Calendar
+- RSS Feeds
+- Email Accounts
+
+
+To access the general settings click //My Profile//  in section **General**  the vertical menu.
+
+==  General Preferences ==
+
+[profile-general.png]
+
+On the first tab you can select the application language, theme or color scheme and the game application icons.
+
+To change the password to access the application, enter your current password in the box 'Key Antigua' and then the new one in the two text boxes 'New Password' and 'Repeat password'.
+
+Enable reading and voice notifications (emails, feeds and calendar), marking enabled this voice reading this box, every time you get a new email, feeds and calendar, SaltOS will read the content. This functionality requires a library on the server.
+
+Libreria:   Festival. More information [+ http://www.cstr.ed.ac.uk/projects/festival]
+
+Enable integrated with desktop notifications, marking this box enabled this desktop notifications browser. This feature requires an add-on in certain browsers.
+
+FireFox: HTML5 desktop notifications [+ http://code.google.com/p/ff-html5notifications/]  (Soon this funcionaldad will come included in the browser)
+
+After making any changes on this tab click 'Update'.
+
+==  Quick Menu ==
+
+[profile-general.png]
+
+In this section you can add and remove buttons from fast to the top bar of SaltOS access.
+
+To add a new button, select the application you want to access directly to the corresponding dropdown button.
+
+==  User Boxes ==
+
+[profile-carpetas.png]
+
+From this tab, you can rename the folders as desired, create new folders or delete folders that do not use. These options allow you to have the necessary folders so you can organize your information in the best way.
+
+==  Google Calendar ==
+
+[profile-google-calendar.png]
+
+To synchronize your personal calendar with your Google account, enter your Google username (usually your Gmail account) and password of it here.
+
+==  RSS Feeds ==
+
+[profile-nuevos-feeds.png]
+
+Here you can add the RSS and preferred to refer to SaltOS feed reader Atom account.
+
+To add a new feed, click the 'New Feed' tab and enter the address into the box 'URL'. If you know the address, enter only the address of the website and click on 'Test'. SaltOS attempt to automatically find the address of the feed and show the additional information of Feed. To add the feed reader of SaltOS click 'Add'.
+
+In the tab **Feeds configured**  find the Feeds and added to SaltOS. To disable or delete a Feed click 'Delete' or 'Off' or tick the corresponding checkbox. Then click 'Update'.
+
+[profile-feeds-configurados.png]
+
+==  Email account ==
+
+[profile-nuevo-correo.png]
+
+In the tab 'New Mail', configure your external POP3 mail account to manage it comfortably from SaltOS.
+
+Fill in the details 'Name' and 'Email' and add, optionally, an image to sign emails. Then indicate the name of your mail provider:
+
+- POP3 Server: eg mail.su-dominio.com
+- Ports: normally 110
+- Security: TLS or without security
+- User: usually your email
+- Key to your email
+
+
+Do the same in paragraph outgoing SMTP server.
+
+If you want the emails are deleted periodically check the appropriate box. To automatically respond to requests for confirmation of receipt check the box **Activate default request acknowledgment**. If you would like to copy the emails you send check **Add me to me like CC on all emails you send**. To temporarily deactivate the account check the box **Disable this email account**. You can set the default account from which mail is sent by checking the box **Default account (the most use)**.
+
+In SaltOS can share mail with other users, who can check their emails received and sent. To disable this feature, for example, to a private account, check **This account is private (only I have access)**.
+
+Once configured your account click 'Update'. Accounts created will appear in new tabs so you can change settings or delete them whenever you want.

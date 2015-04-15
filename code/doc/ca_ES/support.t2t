@@ -1,0 +1,14 @@
+
+
+
+=Suport tècnic=
+
+L'aplicació li permet enviar un missatge a l'equip de //suport tècnic//. Si en la configuració general s'ha configurat una li llegrán al seu equip de suport, en cas contrari aquest formulari no tindrà cap utilitat.
+
+==Formulari de suport==
+
+[support-formulario.png]
+
+- **Nom (*):**  Nom d'usuari que aquesta enviant el suport.
+- **Assumpte (*):**  Breu descripció de l'error o la incidència ocorreguda.
+- **Comentaris (*):**  Explicació completa i detalla del problema ocorregut.

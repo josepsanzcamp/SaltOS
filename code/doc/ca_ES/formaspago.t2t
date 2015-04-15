@@ -1,0 +1,52 @@
+
+
+
+=Formes de pagament=
+
+Aquesta aplicació li permet portar un control de totes formes de pagament que utilitzi l'entitat.
+
+[formaspago-listado.png]
+
+==Llistat de formes de pagament==
+
+En el llistat de formes de pagament podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica la forma de pagament.
+- **Nom:**  Nom de la forma de pagament.
+- **Descripció:**  Descripció del mètode de pagament.
+
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari de formes de pagament==
+
+Aquesta és l'aplicació de formes de pagament, amb la qual podrà afegir, modificar i visionar totes les dades dels formes de pagament classificats en diferents pestanyes: dades principals, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades del forma de pagament===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de la forma de pagament. A continuació li relacionem tots els camps d'informació.
+
+[formaspago-formulario.png]
+
+- **Nom (*):**  Nom del mètode de pagament.
+- **Descripció:**  Descripció del mètode de pagament.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un forma de pagament.**
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

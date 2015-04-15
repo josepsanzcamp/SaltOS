@@ -1,0 +1,14 @@
+
+
+
+=Support=
+
+The application allows you to send a message to the team //Support//. If the general configuration has been configured llegrán you support your team, otherwise this form of no use.
+
+==Support form==
+
+[support-formulario.png]
+
+- **Name (*):**  Username that is sending the support.
+- **Subject (*):**  Short description of error or incident occurred.
+- **Comments (*):**  Complete and detailed explanation of the problem occurred.

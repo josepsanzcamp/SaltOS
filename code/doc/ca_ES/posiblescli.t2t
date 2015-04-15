@@ -1,0 +1,112 @@
+
+
+
+=Possibles clients=
+
+Aquesta aplicació li permet portar un control de tots els seus possibles clients.
+
+[posiblescli-listado.png]
+
+==Llistat de possibles clients==
+
+En el llistat de possibles clients podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica el possible client.
+- **Nom:**  Nom del possible client
+- **Actiu:**  Si està actiu o no per realitzar tasques comercials, pressupostos actes, etc ..
+- **Estat:**  Estat en què es troba el possible client.
+- **Telèfon fix:**  Telèfon fix principal per posar-nos en contacte.
+- **Telèfon mòbil:**  Telèfon mòbil principal per posar-nos en contacte.
+- **Compte de correu:**  Compte de correu principal per posar-nos en contacte.
+- **NC:**  Nombre de comentaris introduïts sobre aquest possible client.
+- **NF:**  Nombre de fitxers vinculats amb aquest possible client.
+
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/vcard.png]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+
+
+Aquest llistat disposa a més de les següents accions:
+
+- [../../lib/silk/icons/page_white_excel.png]: Exportar llistat de totes les dades dels possibles clients a un fitxer amb format Excel.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari possibles clients==
+
+Aquesta és l'aplicació de possibles clients, amb ella podrà afegir, modificar i visionar totes les dades del possible client classificats en diferents pestanyes: dades principals, comentaris, fitxer adjunts, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades del possible client===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades del possible client. A continuació li relacionem tots els camps d'informació.
+
+[posiblescli-formulario.png]
+
+- **Campanya (*):**  Campanya comercial amb la qual s'ha aconseguit aquest contacte comercial.
+- **Estat (*):**  Estat en què es troben les relacions comercials amb aquest possible client.
+- **Actiu:**  És un camp que serveix a l'aplicació per indicar si està actiu per a realitzar pressupost, actes i esdeveniments dins de SaltOS
+- **Empresa (*):**  Nom comercial de l'entitat.
+- **N.I.F:**  Nombre d'identificació fiscal proporcionat per la hisenda pública.
+- **Pers. Contacte (*):**  Nom de la persona de contacte amb la qual s'estan realitzant les tasques comercials.
+- **Càrrec (*):**  Càrrec de la persona de contacte.
+- **Direcció:**  Adreça de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **País:**  País de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Província:**  Província de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Població:**  Població de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Codi postal:**  Codi postal de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Email:**  Compte de correu principal de contacte és la que es visualitzés en tots llistats.
+- **Web:**  Web principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Fix:**  Fix principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Mòbil:**  Mòbil principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Fax:**  Fax principal de contacte és el que es visualitzés en tots llistats.
+- **Facturació:**  Rang de facturació del possible client
+- **Descripció IAE:**  Petita descripció de l'activitat econòmica a la qual es dedica el possible client.
+- **Codi. IAE:**  Codi d'activitat econòmica [(más info sobre IAE) http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas].
+- **Comentaris:**  Comentaris sobre el contacte.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un possible client.**
+
+A més, a la primera pestanya té uns **botons d'acció.**  per facilitar-li les principals tasques relacionades amb els contactes comercials.
+
+- **[../../lib/silk/icons/add.png]  Afegir esdeveniment:**  El portés al formulari de nou esdeveniment perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest possible client.
+- **[../../lib/silk/icons/add.png]  Afegir acta:**  El portés al formulari de nova acta perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest possible client.
+- **[../../lib/silk/icons/add.png]  Crear client:**  El portés al formulari de creació de client amb totes les dades incloses en la fitxa del possible client.
+
+
+===Pestanya Comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Fitxers adjunts===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous comentaris===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Nous fitxers===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.
+

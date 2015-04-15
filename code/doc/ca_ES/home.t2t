@@ -1,0 +1,137 @@
+
+
+
+=Introducció=
+
+Benvingut a SaltOS, la seva solució lliure de Gestió Empresarial que integra les funcionalitats de CRM (administració de la relació amb els clients) i ERP (Planificació de recursos empresarials).
+
+SaltOS li permetrà organitzar i mantenir tota la informació relativa a la gestió de la seva empresa, com a clients, contactes, projectes, pressupostos, factures i molt més. També ofereix la possibilitat de gestionar el seu correu, agenda i Feeds RSS preferits.
+
+Veureu que la interfície de SaltOS és intuïtiva i fàcil d'usar, la qual cosa li permetrà treballar de forma eficient i còmoda.
+
+**//Benvingut a la Comunitat de SaltOS!//**
+
+==Visió general==
+
+SaltOS està compost per una sèrie d'aplicacions o mòduls. Cada aplicació ofereix un funcionalitat concreta dins de les següents categories:
+
+  [home-inicio.png]
+
+  - Funcionalitats Generals
+    - **Pàgina d'inici o Dashboard**, Accedeixi a la pantalla principal de l'aplicació.
+    - **[Correo electrónico http://viewpdf/page=correo]**, Llegeixi i envieu correus des d'aquí als seus clients i proveïdors.
+    - **[Agenda de eventos http://viewpdf/page=agenda]**, Anoteu a l'agenda totes les visites i reunions.
+    - **[Gestor de documentos http://viewpdf/page=documentos]**, Tingui agrupada tota la documentació de la seva empresa.
+%    - **[Ficheros adjuntos http://viewpdf/page=productos]**, Accedeixi a tots els fitxers de tota l'aplicació
+    - **[Lector de feeds RSS http://viewpdf/page=feeds]**, Segueixi els seus feeds RSS i Atom des d'aquesta aplicació.
+    - **[Favoritos http://viewpdf/page=favoritos]**, Gestioni els seus favorits des d'aquí.
+    - **[Textos predefinidos http://viewpdf/page=textos]**, Creu textos predefinits per usar-los en altres aplicacions.
+    - **[Mi perfil http://viewpdf/page=profile]**, Canviar les preferències del seu usuari.
+    - **[Soporte técnico http://viewpdf/page=soporte]**, Contacti amb el suport tècnic.
+    - **[Acerca del proyecto SaltOS http://viewpdf/page=about]**, Conegui els crèdits, formats suportat pel visor intern, les llicències i altres projectes inclosos en SaltOS. A més pot jugar a Legend of The Bouncing Behold [+ http://marijnhaverbeke.nl/js1k/], Guanyador del 2010 de la competició JS1k [+ http://js1k.com/]  (The JavaScript code Golfing competition).
+  - Carpetes de l'usuari
+  - Gestió Comercial
+    - **[Campañas comerciales http://viewpdf/page=campanyas]**, Feu campanyes comercials amb seguiments.
+    - **[Posibles clientes http://viewpdf/page=posiblescli]**, Controli els possibles clients que pot tenir.
+    - **[Presupuestos http://viewpdf/page=presupuestos]**, Feu pressupostos de forma ràpida i fàcil.
+    - **[Actas de reuniones http://viewpdf/page=actas]**, Guardi una acta quan faci reunions per major control.
+    - **[Clientes http://viewpdf/page=clientes]**, Gestioni els clients de la seva empresa.
+    - **[Contactos http://viewpdf/page=contactos]**, Accedeixi als contactes d'un client.
+  - Gestió de Projectes
+    - **[Proyectos http://viewpdf/page=proyectos]**, Segueixi els seus projectes amb aquesta aplicació.
+    - **[Seguimiento de tareas http://viewpdf/page=seguimientos]**, Controli les tasques d'un projecte amb els seguiments.
+    - **[Partes de trabajo http://viewpdf/page=partes]**, De d'alta tots els treballs que realitza usant parts d'hora.
+    - **[Actas de reuniones http://viewpdf/page=actas]**, Guardi una acta quan faci reunions per major control.
+    - **[Incidencias http://viewpdf/page=incidencias]**, Gestioni des d'aquí les incidències dels seus clients
+  - Comptabilitat
+    - **[Facturas http://viewpdf/page=facturas]**, Gestioni totes les factures (albarans, cobrades, etc ...)
+    - **[Facturas periódicas http://viewpdf/page=facturas]**, Programi factures periòdiques amb dates de venciment.
+    - **[Proveedores http://viewpdf/page=proveedores]**, Gestioni els proveïdors de la seva empresa.
+    - **[Gastos http://viewpdf/page=gastos]**, Controli les despeses i sàpiga si estan liquidats.
+
+
+Per gestionar la configuració del propi SaltOS existeixen diverses aplicacions:
+- Administració
+  - **[Productos http://viewpdf/page=productos]**, Defineixi aquí els seus productes per poder vendre'ls
+  - **[Empleados http://viewpdf/page=empleados]**, De d'alta, de baixa o modifiqui empleats.
+  - **[Usuarios http://viewpdf/page=usuarios]**, De d'alta, de baixa o modifiqui usuaris.
+  - **[Grupos http://viewpdf/page=grupos]**, Creu grups de treball per als usuaris.
+- Tipus
+  - **[Cuentas http://viewpdf/page=cuentas]**
+  - **[Epígrafes http://viewpdf/page=epigrafes]**, Defineixi els epígrafs per a les factures i despeses.
+  - **[Estados http://viewpdf/page=estados]**, Defineixi els estats possibles d'una incidència, projecte, etc ...
+  - **[Formas de pago http://viewpdf/page=formaspago]**, Defineixi formes de pagament per gestionar les despeses.
+  - **[Prioridades http://viewpdf/page=prioridades]**, Defineixi les prioritats per a les entrades a l'agenda.
+  - **[Tipos de eventos http://viewpdf/page=tiposevento]**, Defineixi els tipus d'esdeveniment que necessiti.
+- Sistema
+  - **[Importaciones http://viewpdf/page=importaciones]**
+  - **[Configuración http://viewpdf/page=maincfg]**, Canvieu les preferències globals de l'aplicació
+  - **[Base de datos http://viewpdf/page=datacfg]**, Faci còpies de seguretat i restaurelas fàcilment.
+
+
+==Interfície==
+
+La interfície gràfica de SaltOS està dividit en 3 seccions:
+  - **Espai central:**  en ell trobareu l'aplicació seleccionada amb la seva pestanya d'ajuda.
+  [home-zona-central.png]
+  - **Barra superior:**  en ella podrà trobar el botó per amagar el menú, l'enllaç al about i la versió actual de SaltOS, el control del lector per veu (si està habilitat) i els botons d'accés ràpid a les diferents aplicacions.
+  [home-zona-superior.png]
+  - **Menú zona esquerra:**  des d'aquí podrà accedir a les diferents aplicacions de SaltOS. Podeu ocultar aquest menú per ampliar l'espai disponible a la pantalla.
+
+  [home-zona-izquierda.png]
+
+
+===Espai central===
+
+Al **espai central**  es mostraran els llistats i formularis de les diferents aplicacions. Per facilitar la visió, la informació es troba agrupada en **solapes**  o //tabs//, Per exemple, 'Llistat de clients', 'Opcions de filtre', 'Gràfiques i Estadístiques', a la dreta es troba la solapa d'ajuda. Podeu accedir a les diferents solapes fent clic al nom de cadascuna en la part superior de l'espai central.
+
+====Llistats====
+
+[clientes-listado.png]
+
+En la primera es mostra un llistat amb les dades de cada aplicació. A la part superior del llistat trobarà el significat de cada columna així com la possibilitat d'ordinador el llistat en funció del valor d'aquesta. L'ordenació pot realitzar en sentit ascendent o descendent fent clic a les fletxes disponibles a cada columna.
+
+A la primera columna de cada llistat trobarà un element de tipus //checkbox//  per tal de poder seleccionar tots els registres en un únic clic. També podeu trobar aquest element en cada registre del llistat per poder seleccionar de forma individual. Aquests controls serviran per poder aplicar funcions de manera massiva en el o els registres seleccionats, per exemple esborrar registres o liquidar parts de treball.
+
+En les últimes columnes de cada registre es troben els botons per realitzar accions sobre el registre en qüestió:
+  - [../../lib/silk/icons/magnifier.png]Veure o consultar
+  - [../../lib/silk/icons/pencil.png]  Edita.
+  - [../../lib/silk/icons/delete.png]  Copia.
+  - [../../lib/silk/icons/page_white_acrobat.png]  Exportar en format PDF. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+  - [../../lib/silk/icons/monitor.png]  Mostra registre en el visor intern.
+  - [../../lib/silk/icons/delete.png]  Esborrar.
+
+
+En funció de cada aplicació podrà trobar més funcionalitats com:
+  - [../../lib/silk/icons/vcard.png]: Exportar en format VCard. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+  - [../../lib/silk/icons/layout_sidebar.png]: Visualitzar QRCode amb les dades del registre. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+  - [../../lib/silk/icons/email_go.png]: Envia registre per correu electrònic.
+
+
+En determinades aplicacions trobarà **informació addicional**  a la part inferior del llistat, per exemple, en l'aplicació de factures trobarà el sumari dels imports de les factura mostrades.
+
+A sobre del llistat es troba el **cercador ràpid**  en forma de caixa de text. Introduïu aquí el terme buscat i feu clic al botó 'Cerca' per iniciar la cerca. Un cop filtrat el contingut del llistat actual podrà tornar a obtenir tots els registres fent clic al botó 'Reset'.
+
+En funció de l'aplicació trobareu altres botons:
+  - [../../lib/silk/icons/page_white_excel.png]  Exportar en format Excel
+  - [../../lib/silk/icons/page_white_acrobat.png]  Exportar en format PDF
+  - [../../lib/silk/icons/email_go.png]  Enviar PDF
+  - [../../lib/silk/icons/disk.png]  Liquidar
+  - etc.
+
+
+Per **crear un nou registre**  en l'aplicació actual, per exemple una factura, un client, etc; ha de fer clic al botó que se situa a l'esquerra sobre el llistat.
+
+En zona inferior dreta es troba un selector per configurar la quantitat de registres mostrats en la mateixa pantalla (50, 100, 150, etc.). Al costat dret hi ha els controls per **navegar**  a la següent pàgina de llistat així com un selector per **accedir directament a una pàgina determinada**.
+
+====Opcions de filtre====
+
+[home-opciones-filtro.png]
+
+La majoria d'aplicacions disposen d'un cercador per filtrar el llistat de registre segons els criteris de l'usuari. Trobareu un cercador simple sobre de llistat de l'aplicació, tal com s'ha descrit en l'apartat anterior. A la pestanya 'Opcions de filtre' es troba un **cercador avançat**  que li permetrà afinar la recerca en funció dels camps d'informació de l'aplicació.
+
+A la part inferior de la pestanya del cercador ha la possibilitat de **guardar les seves paràmetres de la de recerca**  per recuperar còmodament a futures recerques.
+
+Per **crear un filtre**, Seleccioneu i introduïu els criteris de cerca a l'apartat superior, assigneu-li un nom a la caixa de text 'Nom del nou filtre' i feu clic al botó 'Crear'.
+
+Per **recuperar un filtre**  definit, seleccioneu en el desplegable i feu clic a 'Carregar'. Veureu que el formulari de la recerca recuperarà les opcions definides, per fer la cerca feu clic a 'Cerca'. Si voleu **actualitzar un filtre**, Cárgelo i modifiqui els paràmetres definits. En acabar feu clic a 'Actualització'. Si voleu **esborrar**  un filtre definit feu clic a 'Esborrar'.

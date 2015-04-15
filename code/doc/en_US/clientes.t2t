@@ -1,0 +1,110 @@
+
+
+
+=Customers=
+
+This application lets you keep track of all your customers.
+
+[clientes-listado.png]
+
+==List of clients==
+
+In the list of customers you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the client.
+- **N.I.F:**  Tax identification number provided by the public finances.
+- **Name:**  Customer name.
+- **Landline:**  Main fixed telephone to contact.
+- **Mobile phone:**  Principal to contact mobile phone.
+- **Mail account:**  Primary email account to contact.
+- **NC:**  Number of comments entered on this client.
+- **NF:**  Number of files associated with this client.
+
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/vcard.png]: Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Customers form==
+
+This is applying her customers can add, modify and view all customer data classified into different tabs. Main, comments, file attachments, graphs and statistics on purchases, data on the registry modifications and assignments to folders data.
+
+===Customer Data Tab===
+
+In this tab you can view and modify the main customer data. Here we relate all information fields.
+
+[clientes-formulario.png]
+
+- **Marketing year:**  Marketing year
+- **Type of entity:**  In this field you can designate whether the customer is a natural person or legal entity.
+- **Tradename:**  Trade name of the client.
+- **Fiscal Name:**  Fiscal name used in legal documents such as invoices, contracts, etc ..
+- **N.I.F:**  Tax ID number, number provided by public finance team which identifies the entity.
+- **Show as (*):**  This is the name that is used in the list and selectors, should be a person could devote to include the nickname.
+- **Address:**  Address of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Country:**  Country of the entity are used in legal documents such as invoices, contracts, etc ..
+- **County:**  Province of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Population:**  Population of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Postal Code:**  Postal code of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Email:**  Contact primary email account is what will be displayed on all listings.
+- **Web:**  Contact Web master is that which will be displayed on all listings.
+- **Fixed Number:**  Fixed main contact is what will be displayed on all listings.
+- **Phone Number:**  Contact mainspring is what will be displayed on all listings.
+- **Fax Number:**  Main fax number is the one that will be displayed on all listings.
+- **Current:**  Current account used to make charges for purchases made by this client.
+- **Accountant:**  Ledger account that was used in the accounting system of the company.
+- **Payment date:**  Day in which be performed charges for purchases made during the month.
+- **Comment:**  To indicate comments on this client.
+
+
+(*) **Required when creating or modifying a client Campos.**
+
+Furthermore, in the first tab has a **action buttons.**
+
+- **[../../lib/silk/icons/add.png]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
+- **[../../lib/silk/icons/add.png]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly to the customer.
+- **[../../lib/silk/icons/add.png]  Add event:**  Will take the form of new events so you can fill in relevant information and relate directly to the customer.
+
+
+===Comments Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Attachments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New comments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New Files Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Charts tab and statistics===
+
+In this tab you can view graphs and statistics of purchases made by this client.
+
+%[Aquí imagen ejemplo de gráficas y estadísticas]
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

@@ -1,0 +1,112 @@
+
+
+
+=Potential customers=
+
+This application lets you keep track of all your prospects.
+
+[posiblescli-listado.png]
+
+==List of prospects==
+
+In the list of potential customers can find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the potential client.
+- **Name:**  Name prospect
+- **Active:**  If enabled or not for commercial tasks, budgets, records, etc ..
+- **State:**  State in which there is the prospect.
+- **Landline:**  Main fixed telephone to contact.
+- **Mobile phone:**  Principal to contact mobile phone.
+- **Mail account:**  Primary email account to contact.
+- **NC:**  Number of comments entered on this prospect.
+- **NF:**  Number of files associated with this prospect.
+
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/vcard.png]: Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [../../lib/silk/icons/layout_sidebar.png]: Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+
+
+This list also features the following:
+
+- [../../lib/silk/icons/page_white_excel.png]: Export list of all potential customers data to a file in Excel format.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form potential customers==
+
+This is the application of potential customers, it can add, modify and view all data from the prospect classified in different tabs: main data, comments, file attachments, data on the registry modifications and assignments to folders.
+
+===Data Tab prospect===
+
+In this tab you can view and modify the main elements of prospect. Here we relate all information fields.
+
+[posiblescli-formulario.png]
+
+- **Campaign (*):**  Commercial campaign that has earned this business contact.
+- **State (*):**  State where they are trade relations with this prospect.
+- **Active:**  It is a field that serves to indicate whether the application is active for budget acts and events within SaltOS
+- **Company (*):**  Trade name of the entity.
+- **N.I.F:**  Tax identification number provided by the public finances.
+- **Contact Persons (*).:**  Name of contact person with which you are doing commercial work.
+- **Position (*):**  Position of the contact person.
+- **Address:**  Address of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Country:**  Country of the entity are used in legal documents such as invoices, contracts, etc ..
+- **County:**  Province of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Population:**  Population of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Postal Code:**  Postal code of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Email:**  Contact primary email account is what will be displayed on all listings.
+- **Web:**  Contact Web master is that which will be displayed on all listings.
+- **Fixed Number:**  Fixed main contact is what will be displayed on all listings.
+- **Phone Number:**  Contact mainspring is what will be displayed on all listings.
+- **Fax Number:**  Main fax number is the one that will be displayed on all listings.
+- **Turnover:**  Range billing prospect
+- **Description IAE:**  Brief description of economic activity that the prospect is dedicated.
+- **Cod. IAE:**  Code of economic activity [(más info sobre IAE) http://es.wikipedia.org/wiki/Impuesto_sobre_Actividades_Econ%C3%B3micas].
+- **Comment:**  Comments on contact.
+
+
+(*) **Required when creating or modifying a prospect Campos.**
+
+Furthermore, in the first tab has a **action buttons.**  to facilitate major tasks related to business contacts.
+
+- **[../../lib/silk/icons/add.png]  Add event:**  Will take the form of new event for you to fill in the relevant information and relate directly with this prospect.
+- **[../../lib/silk/icons/add.png]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly with this prospect.
+- **[../../lib/silk/icons/add.png]  Create Customer:**  Will take the form of creating client with all data included in the record of the prospect.
+
+
+===Comments Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Attachments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New comments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New Files Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.
+

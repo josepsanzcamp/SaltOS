@@ -1,0 +1,68 @@
+
+
+
+=Follow=
+
+This application lets you keep track of all traces of the tasks performed in the company.
+
+[seguimientos-listado.png]
+
+==List of Reporting==
+
+In the list of pursuits you will find the most important columns of each record:
+
+- **Ref .:**  Numeric code that identifies the project.
+- **User:**  User who created the track.
+- **Customer:**  For customer has been the project.
+- **project:**  Name that has been given to the project.
+- **Task:**  Name of the task that is being tracked.
+- **Date:**  Date monitoring was performed.
+- **Hours (*):**  Hours needed to track the task.
+
+
+(*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data from the current.
+
+
+This list also features the following:
+
+- [../../lib/silk/icons/page_white_excel.png]: Export the list of all tasks tracking data to a file in Excel format.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Tracking form==
+
+This is the tracking application tasks, it may add, modify and view all monitoring data classified in different tabs: main data, data on the registry modifications and assignments to folders.
+
+===Data tracking tab===
+
+In this tab you can view and modify the main monitoring data. Here we relate all information fields.
+
+[seguimientos-formulario.png]
+
+- **Customer (*):**  To link the client for whom the task is performed.
+- **Project (*):**  To link the project in which is included the task.
+- **Name (*):**  Selector of the task on which the tracked.
+- **Date (*):**  Recorded monitoring.
+- **Comments (*):**  To indicate relevant monitoring data.
+- **Hours (*):**  Hours have been used to track the task.
+
+
+(*) **Required when creating or modifying a monitoring fields.**
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

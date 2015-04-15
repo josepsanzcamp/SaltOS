@@ -1,0 +1,95 @@
+
+
+
+=Proceedings=
+
+This application lets you keep track of all acts performed in the company.
+
+[actas-listado.png]
+
+==List of records==
+
+In the list of records you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the record.
+- **User:**  User who created the record.
+- **Home:**  Date and time of beginning of the meeting.
+- **End:**  Date and time of end of the meeting.
+- **Customer:**  Customer linked in the minutes.
+- **Project:**  Project linked in the minutes.
+- **Name:**  Descriptive name of the reason for the meeting.
+- **Location (€):**  Place that has been conducted the meeting.
+
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data from the current.
+- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+- [../../lib/silk/icons/email_go.png]: Prepare an email with the selected record as a file attached. PDF.
+
+
+This list also provides the following actions by selecting multiple records simultaneously:
+
+- [../../lib/silk/icons/page_white_acrobat.png]: Download the selected records to a file in PDF format.
+- [../../lib/silk/icons/monitor.png]: Display selected records in PDF format on the screen.
+- [../../lib/silk/icons/email_go.png]: Prepare an email with the selected records attached as PDF files.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Forms records==
+
+This is the contacts application, with it you can add, modify and view all contact details classified in different tabs. Main, comments, file attachments, graphs and statistics on purchases, data on the registry modifications and assignments to folders data.
+
+===Data tab of the minutes===
+
+In this tab you can view and modify the main contact details. Here we relate all information fields.
+
+[actas-formulario.png]
+
+- **Campaigns:**  To link the record to a particular marketing campaign.
+- **Prospect:**  To link the record to a possible individual customer.
+- **Budget:**  To link the record with a possible specific budget.
+- **Customer:**  To link the record with a particular customer.
+- **Project:**  To link the record to a particular project.
+- **Home (*):**  Start time of the meeting.
+- **Fin (*):**  End time of the meeting.
+- **Name (*):**  Name you want to give the minutes
+- **Location (*):**  Where the meeting is held.
+- **Assistants (*):**  Attending the meeting
+- **Topics (*):**  Topics to be discussed at the meeting
+- **Predefined texts:**  Ability to add predefined text box themes texts.
+
+
+(*) **Required when creating or modifying a record fields.**
+
+**Remember**: The minutes can be arranged by dragging them to the user folder you want.
+
+===Themes tab accepted===
+
+In this tab you can specify topics accepted during the meeting.
+
+===Themes tab canceled===
+
+In this tab you can specify topics canceled during the meeting.
+
+===Themes tab earrings===
+
+In this tab you can specify the issues that remain to be, for lack of time or otherwise.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.
+

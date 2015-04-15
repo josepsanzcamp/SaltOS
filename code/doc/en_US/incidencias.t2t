@@ -1,0 +1,78 @@
+
+
+
+=Trouble=
+
+This application lets you keep track of all the events in the company.
+
+[incidencias-listado.png]
+
+==List of incidents==
+
+The list of incidents you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the job.
+- **User:**  User opening incidence.
+- **Date:**  Date and time of occurrence.
+- **Customer:**  Customer which has generated the incident.
+- **Project:**  Name of project that has generated the incident.
+- **Incidence:**  Descriptive name of the reason for the incident.
+- **State:**  State in which is the incidence (New, begun, assigned, resolved, revised, closed, rejected, duplicated, reopened).
+- **Priority:**  Priority incidence (high, normal, low).
+- **Assigned to:**  Users involved in the incident.
+- **NC:**  Number of comments entered on this issue.
+- **NF:**  Number of linked files on this issue.
+
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Incident Form==
+
+This is the application of incidents, with it you can add, modify and view all of the data from the various incidents classified in different tabs: main data, assigned user data on the registry modifications and assignments to folders.
+
+===Data Tab incidence===
+
+In this tab you can view and modify the main details of the incident. Here we relate all information fields.
+
+[incidencias-formulario.png]
+
+- **Customer:**  To link the client where the incidence has occurred.
+- **Project:**  To link the project in which the incidence has occurred.
+- **Priority (*):**  Priority incidence (high, normal, low).
+- **Name (*):**  Descriptive name of incidence occurred.
+- **State (*):**  State in which is the incidence (New, begun, assigned, resolved, revised, closed, rejected, duplicated, reopened).
+- **Description (*):**  More detailed description of the incident occurred.
+
+
+(*) **Required when creating or modifying an incidence Campos.**
+
+===User tab assigned===
+
+In this tab you can include all users who are involved with the incident.
+
+===Attachments tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===New Files Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.

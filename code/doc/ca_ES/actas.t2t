@@ -1,0 +1,95 @@
+
+
+
+=Actes=
+
+Aquesta aplicació li permet portar un control de totes les actes realitzades a l'empresa.
+
+[actas-listado.png]
+
+==Llistat d'actes==
+
+En el llistat d'actes podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica l'acta.
+- **Usuari:**  Usuari que ha creat l'acta.
+- **Inici:**  Data i hora d'inici de la reunió.
+- **Fi:**  Data i hora de fi de la reunió.
+- **Client:**  Client vinculat a l'acta.
+- **Projecte:**  Projecte vinculat a l'acta.
+- **Nom:**  Nom descriptiu del motiu de la reunió.
+- **Lloc (€):**  Lloc on s'ha realitzat la reunió.
+
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+- [../../lib/silk/icons/email_go.png]: Preparés un correu amb el registre seleccionat adjuntat com arxiu. PDF.
+
+
+Aquest llistat disposa a més de les següents accions seleccionant diversos registres simultàniament:
+
+- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar els registres seleccionats a un arxiu en format PDF.
+- [../../lib/silk/icons/monitor.png]: Visualitzar els registres seleccionats en format PDF a la pantalla.
+- [../../lib/silk/icons/email_go.png]: Preparés un correu amb els registres seleccionats adjuntats com arxius PDF.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formularis d'actes==
+
+Aquesta és l'aplicació de contactes, amb ella podrà afegir, modificar i visionar totes les dades del contacte classificats en diferents pestanyes. Dades principals, comentaris, fitxer adjunts, gràfiques i estadístiques sobre les compres realitzades, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de l'acta===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de contacte. A continuació li relacionem tots els camps d'informació.
+
+[actas-formulario.png]
+
+- **Campanyes:**  Per enllaçar l'acta amb una campanya comercial concreta.
+- **Possible client:**  Per enllaçar l'acta amb un possible client concret.
+- **Pressupost:**  Per enllaçar l'acta amb un possible pressupost concret.
+- **Client:**  Per enllaçar l'acta amb un client concret.
+- **Projecte:**  Per enllaçar l'acta amb un projecte concret.
+- **Inici (*):**  Hora d'inici de la reunió.
+- **Fi (*):**  Hora de finalització de la reunió.
+- **Nom (*):**  Nom que es vulgui donar a l'acta
+- **Lloc (*):**  Lloc on es realitza la reunió.
+- **Assistents (*):**  Assistents a la reunió
+- **Temes (*):**  Temes a tractar en la reunió
+- **Textos predefinits:**  Possibilitat d'afegir textos predefinits a la caixa de text de temes.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar una acta.**
+
+**Recordeu**: Les actes es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Pestanya Temes acceptats===
+
+En aquesta pestanya podrà indicar els temes acceptats durant la reunió.
+
+===Pestanya Temes cancel·lats===
+
+En aquesta pestanya podrà indicar els temes cancel·lats durant la reunió.
+
+===Pestanya Temes pendents===
+
+En aquesta pestanya podrà indicar els temes que queden pendents de tractar, per falta de temps o un altre motiu.
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.
+

@@ -1,0 +1,73 @@
+
+
+
+=RSS and Atom Feeds Reader=
+
+The feed reader offers you the possibility to follow comfortably your RSS and Atom feeds from SaltOS. To configure a new RSS feed, see **[Mi perfil http://viewpdf/page=profile]**.
+
+==List of feeds==
+
+The list shows recent entries //posts//  downloaded.
+
+[feeds-listado.png]
+
+- **Ref .:**  Numeric code that identifies the post.
+- **RSS Feed:**  Link to the website of the publisher of RSS.
+- **RSS Post:**  Link to post on the web.
+- **Title:**  Title of the post.
+- **Date Posted:**  Date and time of publication.
+- **State:**  State in which is the post background color identifies each state:
+  - //New//: green.
+  - //Read//: transparent.
+  - //Modified//: transparent.
+  - //Slope//: blue.
+  - //Interesting//: orange.
+
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record you can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete (*) record.
+- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+- [../../lib/silk/icons/email_go.png]: Share feed via email.
+- [../../lib/silk/icons/tag_blue.png]: Mark feed as pending.
+- [../../lib/silk/icons/tag_gold.png]: Mark as interesting feed.
+- [../../lib/silk/icons/star.png]: Add feed to favorites.
+
+
+On the list besides normal search option, you will find the following functions:
+
+- Selector RSS feed: allows you to quickly filter the RSS feed.
+- [../../lib/silk/icons/email_open.png]: This button is hard to check for new post download all RSS feeds (RSS Depending on the amount of subscribed this action may take).
+- Selector **actions to multiple feeds**:
+ - //Options//: Downloading and viewing PDF format.
+ - //Mark as//: Read, unread, Earrings, earrings No, Interesting, not interesting.
+ - //Filter by State//: Everyone read, Earrings, Interesting.
+ - //Filter by publication date//: All, Today, Yesterday, Week, Month.
+- [../../lib/silk/icons/delete.png]  RSS Feeds Delete selected (*).
+
+
+**(*)**  More information about setting erase feeds on [configuración general http://viewpdf/page=maincfg]
+
+===Filter Options===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+==Form feeds==
+
+[feeds-formulario.png]
+
+The mode //Consultation//  a post gives you access to the original source, by clicking the link in the header. You can mark as outstanding and interesting article. With the button on the bottom of the post you can share, for example, to recommend to another person. To view the contents of the post in more detail, click //Zoom post//.
+
+===Registry Data Tab===
+
+For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
+
+===Tab Folders===
+
+For more information on Folder Options **[ayuda general http://viewpdf/page=home]**.
+

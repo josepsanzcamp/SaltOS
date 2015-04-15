@@ -1,0 +1,149 @@
+
+
+
+=Budgets=
+
+This application lets you keep track of all budget made in the company.
+
+[presupuestos-listado.png]
+
+==List of budgets==
+
+In the list of budgets you will find the most important pillars of registration:
+
+- **Ref .:**  Numeric code that identifies the budget.
+- **Customer:**  So that the customer has been budget.
+- **Budget:**  Name that has been given to the budget.
+- **Date:**  Recorded budget.
+- **Tasks (€) (*):**  Total amount of the budget planned tasks.
+- **Prod (€) (*).:**  Total amount of all products included in the budget.
+- **Total (€) (*):**  Total budget.
+- **State:**  Current state budget (Unsent, sent, accepted, canceled, stopped).
+- **NT:**  Number of tasks planned in the budget.
+- **NP:**  Number of products included in the budget.
+- **NC:**  Number of comments entered on this budget.
+- **NF:**  Number of files linked to this budget.
+
+
+(*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
+
+**Remember**: The events can be arranged by dragging them to the user folder you want.
+
+===Listing Options===
+
+On each record. You can perform a series of actions that are represented by the following icons:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data from the current.
+- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+- [../../lib/silk/icons/email_go.png]: Prepare an email with the selected budget attached as PDF file.
+
+
+This list also features the following quote by selecting multiple simultaneously:
+
+- [../../lib/silk/icons/page_white_acrobat.png]: Download the selected file format is budget. PDF.
+- [../../lib/silk/icons/monitor.png]: Display the selected format budget. PDF on screen.
+- [../../lib/silk/icons/email_go.png]: Prepare a mail with the selected budget attached as PDF files.
+
+
+===Filter Options===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Graphs and statistics===
+
+In this tab you can view statistics about how many budget is in every state, can detect peaks and downs slaughter before they happen so we can take steps to mitigate these critical times.
+
+==Form budgets==
+
+This is the implementation of budget, it may add, modify and view all budget data classified in different tabs: main data, budget objectives, functional proposal, technical proposal, additional information, tasks, budget, budget items, budget conditions, file attachments, data on the registry modifications and assignments to folders.
+
+[presupuestos-formulario.png]
+
+===Data Tab budget===
+
+In this tab you can view and modify the main details of the budget. Here we relate all information fields.
+
+- **Prospect:**  To link the budget with a potential client.
+- **Campaign:**  To link if the budget has been. Order thanks to a particular marketing campaign.
+- **Customer:**  To link the budget with a client.
+- **Project:**  To link the budget to the project at hand and then to see deviations.
+- **Name (*):**  Name you want to give the budget.
+- **Date:**  Recorded budget.
+- **State (*):**  State in which is the budget (Unsent, sent, accepted, canceled, stopped).
+- **Description:**  Overview of the budget.
+- **Summary table:**  In this table you can find the total hours of work, product units, and the total amount of the budget.
+
+
+(*) **Required when creating or modifying a budget Campos.**
+
+Furthermore, in the first tab has a **action buttons.**
+
+- **[../../lib/silk/icons/add.png]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
+- **[../../lib/silk/icons/add.png]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly to the customer.
+- **[../../lib/silk/icons/add.png]  Add event:**  Will take the form of new events so you can fill in relevant information and relate directly to the customer.
+
+
+===Objectives tab===
+
+This tab will describe the objectives of the budget. You can write directly on the box, and adding predefined selector that is below the text box.
+
+[presupuestos-formulario-objetivos.png]
+
+===Tab functional Proposal===
+
+In this tab you can describe functional budget proposal. You can write directly on the box, and adding predefined selector that is below the text box.
+
+[presupuestos-formulario-propuesta-funcional.png]
+
+===Technical Proposal tab===
+
+In this tab you can describe the technique proposed budget. You can write directly on the box, and adding predefined selector that is below the text box.
+
+[presupuestos-formulario-propuesta-tecnica.png]
+
+===Additional Information Tab===
+
+In this tab you can describe additional information that is not specified in other sections of the budget. You can write directly on the box, and adding predefined selector that is below the text box.
+
+[presupuestos-formulario-informacion-adicional.png]
+
+===Tasks tab===
+
+This tab may include, modify or delete all the tasks linked in this budget.
+
+[presupuestos-formulario-listado-tareas.png]
+
+- **Summary Table:**  In this table you can see different information about the tasks included in the budget, total hours, average price, total amount of hours.
+- **Task list:**  This list may be adding, modifying or deleting many tasks as may be necessary, including the fields are: **job description, hours required, unit price, discount, whole task**.
+
+
+===Tab Products===
+
+This tab may include, modify or delete all the related products in this budget.
+
+[presupuestos-formulario-listado-productos.png]
+
+- **Summary Table:**  In this table you can see different information on the products included in the budget, total units, total product.
+- **Product list:**  This list may be adding, modifying or deleting as many products as needed, including the fields are: **product description, units, unit price, discount, all goods**.
+
+
+===Conditions tab===
+
+In this tab you can describe the conditions subject to which this budget. You can write directly on the box, and adding predefined selector that is below the text box.
+
+[presupuestos-formulario-condiciones.png]
+
+===New Files Tab===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Registry Data Tab===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+
+===Tab Folders===
+
+%[Abrir ayuda genérica la que esta en home, creo que debería salir como div flotante]
+

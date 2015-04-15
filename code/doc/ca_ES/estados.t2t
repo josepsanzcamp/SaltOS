@@ -1,0 +1,58 @@
+
+
+
+=Estats=
+
+Aquesta aplicació li permet portar un control de tots estats que s'utilitzen en les diferents aplicacions.
+
+[estados-listado.png]
+
+==Llistat d'estats==
+
+En el llistat d'estats podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica l'estat.
+- **Nom:**  Nom de l'estat.
+- **Aplicació:**  Aplicació a la qual està vinculada l'estat.
+- **Posició:**  Posició de l'estat respecte a la resta d'estats vinculats amb la seva aplicació.
+- **Descripció:**  Descripció de l'estat, en quins casos s'utilitzen, etc ...
+- **Actiu:**  Si l'estat es pot utilitzar en l'aplicació vinculada.
+
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulari d'estats==
+
+Aquesta és l'aplicació d'estats, amb ella podrà afegir, modificar i visionar totes les dades dels estats classificats en diferents pestanyes: dades principals, permisos per aplicació, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de l'estat===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de l'estat. A continuació li relacionem tots els camps d'informació.
+
+[estados-formulario.png]
+
+- **Nom (*):**  Nom de l'estat.
+- **Aplicació (*):**  Aplicació a la qual està vinculada l'estat.
+- **Posició (*):**  Posició de l'estat respecte a la resta d'estats vinculats amb la seva aplicació.
+- **Actiu:**  Si l'estat es pot utilitzar en l'aplicació vinculada.
+- **Descripció:**  Descripció de l'estat, en quins casos s'utilitzen, etc ...
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un estat.**
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

@@ -1,0 +1,90 @@
+
+
+
+=Cuentas=
+
+Esta aplicación le permite llevar un control de las diferentes contabilidades.
+
+[cuentas-listado.png]
+
+==Listado de cuentas==
+
+En el listado de cuentas podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica la cuenta.
+- **Nombre:** Nombre de la cuenta.
+- **Descripción:** Descripción de la cuenta.
+
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+
+
+===Opciones de filtro===
+
+Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+
+==Formulario de cuentas==
+
+Esta es la aplicación de cuentas, con ella podrá añadir, modificar y visionar todos los datos de las diferentes cuentas clasificados en diferentes pestañas: datos principales, logotipo, facturas, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos de la cuenta===
+
+En esta pestaña podrá visualizar y modificar los principales datos de la cuenta. A continuación le relacionamos todos los campos de información.
+
+[cuentas-formulario.png]
+
+- **Nombre (*):** Nombre de la cuenta.
+- **Descripción:** Descripción de la cuenta.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un forma de pago.**
+
+===Pestaña Logotipo===
+
+En esta pestaña podrá visualizar y modificar la configuración del logotipo de la cuenta.
+
+[cuentas-formulario-logo.png]
+
+- **Posicion y medidas del logotipo:**
+  - **X:** Eje horizontal, distancia de la colocación del logo desde la coordenada 0,0, valor expresado en milimetros.
+  - **Y:** Eje vertical, distancia de la colocación del logo desde la coordenada 0,0, valor expresado en milimetros.
+  - **Ancho:** Ancho del logotipo en papel, expresado en milimetros.
+  - **Alto:** Alto del logotipo en papel, expresado en milimetros.
+
+
+- **Ficheros logotipo:**
+  - **Fichero del logo actual:** Visualización del logo actual.
+  - **Nuevo fichero (sólo JPEG):** En caso que quiera cambiar el logotipo, seleccione aquí el nuevo archivo, solo formatos (JPEG).
+
+
+- **Colores en los documentos PDF generados:**
+  - **Lineas:** Color de las lineas que se utlizan para dibujar cajas, lineas de columnas y de filas, etc...
+  - **Titulos:** Color de los títulos utilizados en los documentos generados.
+  - **Textos:** Color del texto normal que se utilizara en los documentos generados.
+  
+
+===Pestaña configuración facturas===
+
+En esta pestaña podrá visualizar y modificar la configuración de las facturas de esta cuenta.
+
+[cuentas-formulario-factura.png]
+
+- **Nombre del impuesto (se suma):** Nombre del impuesto a utilizar, impuestos que se han de sumar en facturas.
+- **Valor por defecto (sólo si se usa):** Valor del impuesto.
+- **Nombre del impuesto (se resta):** Nombre del impuesto a utilizar, impuesto que se han de restar en facturas.
+- **Valor por defecto (sólo si se usa):** Valor del impuesto.
+- **Primera linea de pie:** Texto que ira al pie de la factura.
+- **Segunda linea de pie:** Texto que ira al pie de la factura.
+
+
+===Pestaña Datos del registro===
+
+Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestaña Carpetas===
+
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

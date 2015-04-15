@@ -1,0 +1,29 @@
+
+
+
+=Textos predefinits=
+
+L'aplicació de //Textos predefinits//  li permet guardar textos que utilitzi habitualment, per exemple, condicions d'un pressupost o el contingut d'un correu electrònic comercial. Aquests text podran recuperar-se durant la creació o modificació en diverses aplicacions.
+
+==Llistat==
+
+Aquest llistat li mostra les entrades ja definides, amb el seu identificador o nom i el tipus d'accés (públic / privat).
+
+[textos-listado.png]
+
+
+==Creació==
+
+A l'hora de crear un text predefinit, escolliu un nom únic que li permeti identificador fàcilment el contingut del text.
+
+Si voleu que el text pugui ser utilitzat per tots els usuaris, com una forma de comiat corporativa en els correus electrònics, marqueu la casella de verficación //Tots poden usar aquest text predefinit//.
+
+[textos-formulario.png]
+
+==Modificació==
+
+La manera d'edició o modificació, li permet establir els mateixos paràmetres que durant la creació. Tingueu en compte que el nom o identificador del text ha de ser únic.
+
+==Consulta==
+
+La manera consulta d'un text predefinit li permet consultar l'identificador així com el seu contingut.
