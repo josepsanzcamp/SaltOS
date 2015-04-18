@@ -7,7 +7,7 @@ This application allows you to search all SaltOS or single files. When performin
 
 [buscador.png]
 
-==Resulting list "Search in SaltOS==
+==Resulting list: Search in SaltOS==
 
 In this list you can find all kinds of data, customers, suppliers, couriers, etc .. The list has the following columns:
 
@@ -39,7 +39,7 @@ On each record you can perform a series of actions that are represented by the f
 
 For more information about the filter options listed in the **[ayuda general http://viewpdf/page=home]**.
 
-==Resulting list "Search Only Files"==
+==Resulting list: Search Only Files==
 
 This list will include only files of different applications that support attach files. The list has the following columns:
 

@@ -1,0 +1,98 @@
+
+
+
+=Facturas periódicas=
+
+Esta aplicación le permite llevar un control de todas las facturas periódicas generadas en la empresa.
+
+[periodicas-listado.png]
+
+==Listado de facturas==
+
+En el listado de facturas podrá encontrar las columnas mas importantes del registro:
+
+- **Cód.:** Código numérico que identifica la factura periódica.
+- **Cliente:** Cliente para el cual se ha generado la factura periódica.
+- **Día:** Día que se generará la factura.
+- **Mes:** Meses en los cuales se ha de generar la factura.
+- **Base (*):** Importe antes de impuestos de la factura de la factura que se generará.
+- **Total (*):** Importe  una vez aplicados los impuestos pertinentes de la factura que se generará.
+- **Cuenta:** Cuenta donde asignar la factura cuando se genere.
+- **NC:** Numero de conceptos incluidos en esta factura periódica.
+- **NP:** Numero de productos incluidos en esta factura periódica.
+- **NV:** Numero de vencimientos asignados a esta factura periódica.
+
+
+(*) **Al final de listado se incluye el sumatorio de estas columnas, tenga en cuenta que el resultado solo incluye las columnas visibles por pagina.**
+
+**Recuerde**: Los eventos se pueden organizar arrastrándolos a la carpeta de usuario que desee.
+
+===Opciones del listado===
+
+Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+
+
+Este listado dispone ademas de las siguientes acciones seleccionando varios registros simultáneamente:
+
+- [../../lib/silk/icons/disk.png]: Utilice este botón para generar las facturas seleccionadas. Previamente tiene que filtrar por el mes que quiera generar.
+
+
+===Opciones de filtro===
+
+Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+
+
+==Formulario de facturas==
+
+Esta es la aplicación de facturación, con ella podrá añadir, modificar y visionar todos los datos de los diferentes albaranes y facturas clasificados en diferentes pestañas: datos principales, conceptos, productos, vencimientos, datos sobre las modificaciones del registro y asignaciones a carpetas.
+
+===Pestaña Datos del albarán o factura===
+
+En esta pestaña podrá visualizar y modificar los principales datos del albarán o factura. A continuación le relacionamos todos los campos de información.
+
+[periodicas-formulario.png]
+
+- **Cuenta (*):** Cuenta donde se contabilizara el ingreso.
+- **Epígrafe (*):** Actividad económica.
+- **Forma de pago (*):** Forma de pago a utilizar para cobrar el ingreso.
+- **Cliente:** Cliente al cual se le cargara el importe.
+- **Día:** Día que se generará la factura.
+- **Mes:** Meses en los cuales se ha de generar la factura.
+- **IVA (%):** Porcentaje de IVA. más info sobre[ IVA http://es.wikipedia.org/wiki/Impuesto_al_valor_agregado]
+- **IRPF (%):** Porcentaje de IRPF. más info sobre [IRPF http://es.wikipedia.org/wiki/Impuesto_sobre_la_renta_de_las_personas_f%C3%ADsicas_%28Espa%C3%B1a%29]
+- **Base (€):** Base imponible, total importe económico antes de aplicar impuestos.
+- **IVA (€):** Importe económico de IVA.
+- **IRPF (€):** Importe económico de IRPF
+- **Total (€):** Total a cobrar impuestos incluidos.
+
+
+(*) **Campos obligatorios a la hora de crear o modificar un albarán o factura.**
+
+===Pestaña Conceptos===
+
+En esta pestaña podrá incluir todos los conceptos necesarios para crear la factura.
+
+[periodicas-formulario-conceptos.png]
+
+===Pestaña Productos===
+
+En esta pestaña podrá incluir todos los productos necesarios para crear la factura.
+
+[periodicas-formulario-productos.png]
+
+===Pestaña Vencimientos===
+
+En esta pestaña podrá crear diferentes vencimientos para la factura.
+
+[periodicas-formulario-vencimientos.png]
+
+===Pestaña Datos del registro===
+
+Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestaña Carpetas===
+
+Encontrará más información sobre opciones de carpetas en la **[ayuda general http://viewpdf/page=home]**.

@@ -7,7 +7,7 @@ Aquesta aplicació li permet buscar a tot SaltOS o sol fitxers. Quan realitzi la
 
 [buscador.png]
 
-==Llistat resultant "Cercar en tot SaltOS==
+==Llistat resultant: Cercar en tot SaltOS==
 
 En aquest llistat podrà trobar tot tipus de dades, clients, proveïdors, correus, etc .. El llistat té les següents columnes:
 
@@ -39,7 +39,7 @@ Sobre cada registre podrà realitzar una sèrie d'accions que estan representade
 
 Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
 
-==Llistat resultant "Cerca només a Fitxers"==
+==Llistat resultant: Cerca només a Fitxers==
 
 En aquest llistat només inclourà fitxers de les diferents aplicacions que admetin adjuntar fitxers. El llistat té les següents columnes:
 

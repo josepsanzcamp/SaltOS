@@ -33,6 +33,7 @@ incidencias.t2t
 Contabilidad
 
 facturas.t2t
+periodicas.t2t
 proveedores.t2t
 gastos.t2t
 

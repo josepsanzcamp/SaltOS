@@ -1,0 +1,98 @@
+
+
+
+=Factures periòdiques=
+
+Aquesta aplicació li permet portar un control de totes les factures periòdiques generades a l'empresa.
+
+[periodicas-listado.png]
+
+==Llistat de factures==
+
+En el llistat de factures podrà trobar les columnes més importants del registre:
+
+- **Codi .:**  Codi numèric que identifica la factura periòdica.
+- **Client:**  Client per al qual s'ha generat la factura periòdica.
+- **Dia:**  Dia que es generarà la factura.
+- **Mes:**  Mesos en els quals s'ha de generar la factura.
+- **Base (*):**  Import abans d'impostos de la factura de la factura que es generarà.
+- **Total (*):**  Import un cop aplicats els impostos pertinents de la factura que es generarà.
+- **Compte:**  Compte on assignar la factura quan es generi.
+- **NC:**  Nombre de conceptes inclosos en aquesta factura periòdica.
+- **NP:**  Nombre de productes inclosos en aquesta factura periòdica.
+- **NV:**  Nombre de venciments assignats a aquesta factura periòdica.
+
+
+(*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
+
+**Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
+
+===Opcions del llistat===
+
+Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
+
+- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+
+
+Aquest llistat disposa a més de les següents accions seleccionant diversos registres simultàniament:
+
+- [../../lib/silk/icons/disk.png]: Utilitzeu aquest botó per generar les factures seleccionades. Prèviament ha de filtrar pel mes que vulgui generar.
+
+
+===Opcions de filtre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+
+==Formulari de factures==
+
+Aquesta és l'aplicació de facturació, amb ella podrà afegir, modificar i visionar totes les dades dels diferents albarans i factures classificats en diferents pestanyes: dades principals, conceptes, productes, venciments, dades sobre les modificacions del registre i assignacions a carpetes.
+
+===Pestanya Dades de l'albarà o factura===
+
+En aquesta pestanya podrà visualitzar i modificar les principals dades de l'albarà o factura. A continuació li relacionem tots els camps d'informació.
+
+[periodicas-formulario.png]
+
+- **Compte (*):**  Compte on es comptabilitzés l'ingrés.
+- **Epígraf (*):**  Activitat econòmica.
+- **Forma de pagament (*):**  Forma de pagament a utilitzar per cobrar l'ingrés.
+- **Client:**  Client al qual se li carregués l'import.
+- **Dia:**  Dia que es generarà la factura.
+- **Mes:**  Mesos en els quals s'ha de generar la factura.
+- **IVA (%):**  Percentatge d'IVA. més info sobre[ IVA http://es.wikipedia.org/wiki/Impuesto_al_valor_agregado]
+- **IRPF (%):**  Percentatge d'IRPF. més info sobre [IRPF http://es.wikipedia.org/wiki/Impuesto_sobre_la_renta_de_las_personas_f%C3%ADsicas_%28Espa%C3%B1a%29]
+- **Base (€):**  Base imposable, totalment import econòmic abans d'aplicar impostos.
+- **IVA (€):**  Import econòmic d'IVA.
+- **IRPF (€):**  Import econòmic d'IRPF
+- **Total (€):**  Total a cobrar impostos inclosos.
+
+
+(*) **Camps obligatoris a l'hora de crear o modificar un albarà o factura.**
+
+===Pestanya Conceptes===
+
+En aquesta pestanya pot incloure tots els conceptes necessaris per crear la factura.
+
+[periodicas-formulario-conceptos.png]
+
+===Pestanya Productes===
+
+En aquesta pestanya pot incloure tots els productes necessaris per crear la factura.
+
+[periodicas-formulario-productos.png]
+
+===Pestanya Venciments===
+
+En aquesta pestanya podrà crear diferents venciments per a la factura.
+
+[periodicas-formulario-vencimientos.png]
+
+===Pestanya Dades del registre===
+
+Trobareu més informació sobre opcions de filtre dels llistats a la **[ayuda general http://viewpdf/page=home]**.
+
+===Pestanya Carpetes===
+
+Trobareu més informació sobre opcions de carpetes en la **[ayuda general http://viewpdf/page=home]**.

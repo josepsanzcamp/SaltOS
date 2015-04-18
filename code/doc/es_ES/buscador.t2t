@@ -7,7 +7,7 @@ Esta aplicación le permite buscar en todo SaltOS o solo ficheros. Cuando realic
 
 [buscador.png]
 
-==Listado resultante "Buscar en todo SaltOS==
+==Listado resultante: Buscar en todo SaltOS==
 
 En este listado podrá encontrar todo tipo de datos, clientes, proveedores, correos, etc.. El listado tiene las siguiente columnas:
 
@@ -39,7 +39,7 @@ Sobre cada registro podrá realizar una serie de acciones que están representad
 
 Encontrará más información sobre opciones de filtro de los listados en la **[ayuda general http://viewpdf/page=home]**.
 
-==Listado resultante "Buscar solo en Ficheros"==
+==Listado resultante: Buscar solo en Ficheros==
 
 En este listado solo incluira ficheros de las diferentes aplicaciones que admitan adjuntar ficheros. El listado tiene las siguiente columnas:
 
