@@ -134,7 +134,7 @@ if(getParam("action")=="sendmail") {
 		}
 		// ADD EXTRAS IN THE RECIPIENTS
 		if($state_crt) $recipients[]="crt:".$de;
-		$priorities=array(-1=>"5 (Low)",0=>"3 (Normal)",1=>"1 (High)");
+		$priorities=array(-1=>"5 (Low)",1=>"1 (High)");
 		if(isset($priorities[$priority])) $recipients[]="priority:".$priorities[$priority];
 		$sensitivities=array(1=>"Personal",2=>"Private",3=>"Company-Confidential");
 		if(isset($sensitivities[$sensitivity])) $recipients[]="sensitivity:".$sensitivities[$sensitivity];
