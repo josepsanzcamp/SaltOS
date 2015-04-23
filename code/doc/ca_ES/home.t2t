@@ -27,8 +27,8 @@ SaltOS està compost per una sèrie d'aplicacions o mòduls. Cada aplicació ofe
     - **[Favoritos http://viewpdf/page=favoritos]**, Gestioni els seus favorits des d'aquí.
     - **[Textos predefinidos http://viewpdf/page=textos]**, Creu textos predefinits per usar-los en altres aplicacions.
     - **[Mi perfil http://viewpdf/page=profile]**, Canviar les preferències del seu usuari.
-    - **[Soporte técnico http://viewpdf/page=soporte]**, Contacti amb el suport tècnic.
-    - **[Acerca del proyecto SaltOS http://viewpdf/page=about]**, Conegui els crèdits, formats suportat pel visor intern, les llicències i altres projectes inclosos en SaltOS. A més pot jugar a Legend of The Bouncing Behold [+ http://marijnhaverbeke.nl/js1k/], Guanyador del 2010 de la competició JS1k [+ http://js1k.com/]  (The JavaScript code Golfing competition).
+    - **[Soporte técnico http://viewpdf/page=support]**, Contacti amb el suport tècnic.
+    - **Acerca del proyecto SaltOS**, Conegui els crèdits, formats suportat pel visor intern, les llicències i altres projectes inclosos en SaltOS. A més pot jugar a Legend of The Bouncing Behold [+ http://marijnhaverbeke.nl/js1k/], Guanyador del 2010 de la competició JS1k [+ http://js1k.com/]  (The JavaScript code Golfing competition).
   - Carpetes de l'usuari
   - Gestió Comercial
     - **[Campañas comerciales http://viewpdf/page=campanyas]**, Feu campanyes comercials amb seguiments.
@@ -64,7 +64,7 @@ Per gestionar la configuració del propi SaltOS existeixen diverses aplicacions:
   - **[Prioridades http://viewpdf/page=prioridades]**, Defineixi les prioritats per a les entrades a l'agenda.
   - **[Tipos de eventos http://viewpdf/page=tiposevento]**, Defineixi els tipus d'esdeveniment que necessiti.
 - Sistema
-  - **[Importaciones http://viewpdf/page=importaciones]**
+  - **Importaciones**
   - **[Configuración http://viewpdf/page=maincfg]**, Canvieu les preferències globals de l'aplicació
   - **[Base de datos http://viewpdf/page=datacfg]**, Faci còpies de seguretat i restaurelas fàcilment.
 

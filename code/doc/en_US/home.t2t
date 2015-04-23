@@ -27,8 +27,8 @@ SaltOS consists of a series of applications or modules. Each application provide
     - **[Favoritos http://viewpdf/page=favoritos]**, Manage your favorites from here.
     - **[Textos predefinidos http://viewpdf/page=textos]**Create presets for use in other applications texts.
     - **[Mi perfil http://viewpdf/page=profile]**, Change your user preferences.
-    - **[Soporte técnico http://viewpdf/page=soporte]**Contact technical support.
-    - **[Acerca del proyecto SaltOS http://viewpdf/page=about]**, Know the credits formats supported by the internal viewer, licensing and other projects included in SaltOS. Also you can play Legend of The Bouncing Beholder [+ http://marijnhaverbeke.nl/js1k/], Winner of the 2010 competition JS1k [+ http://js1k.com/]  (The JavaScript code golfing competition).
+    - **[Soporte técnico http://viewpdf/page=support]**Contact technical support.
+    - **Acerca del proyecto SaltOS**, Know the credits formats supported by the internal viewer, licensing and other projects included in SaltOS. Also you can play Legend of The Bouncing Beholder [+ http://marijnhaverbeke.nl/js1k/], Winner of the 2010 competition JS1k [+ http://js1k.com/]  (The JavaScript code golfing competition).
   - User folders
   - Business Management
     - **[Campañas comerciales http://viewpdf/page=campanyas]**, Click marketing campaigns with follow.
@@ -64,7 +64,7 @@ To manage the configuration of SaltOS itself there are several applications:
   - **[Prioridades http://viewpdf/page=prioridades]**, Define priorities for phonebook entries.
   - **[Tipos de eventos http://viewpdf/page=tiposevento]**, Define the event types you need.
 - System
-  - **[Importaciones http://viewpdf/page=importaciones]**
+  - **Importaciones**
   - **[Configuración http://viewpdf/page=maincfg]**, Change global application preferences
   - **[Base de datos http://viewpdf/page=datacfg]**Perform backups and restore them easily.
 

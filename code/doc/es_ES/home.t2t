@@ -27,8 +27,8 @@ SaltOS está compuesto por una serie de aplicaciones o módulos. Cada aplicació
     - **[Favoritos http://viewpdf/page=favoritos]**, gestione sus favoritos desde aquí.
     - **[Textos predefinidos http://viewpdf/page=textos]**, cree textos predefinidos para usarlos en otras aplicaciones.
     - **[Mi perfil http://viewpdf/page=profile]**, cambie sus preferencias de su usuario.
-    - **[Soporte técnico http://viewpdf/page=soporte]**, contacte con el soporte técnico.
-    - **[Acerca del proyecto SaltOS http://viewpdf/page=about]**, conozca los créditos, formatos soportado por el visor interno, las licencias y otros proyectos incluidos en SaltOS. Ademas puede jugar al Legend of The Bouncing Beholder [+ http://marijnhaverbeke.nl/js1k/], ganador del 2010 de la competición JS1k [+ http://js1k.com/] (The JavaScript code golfing competition).
+    - **[Soporte técnico http://viewpdf/page=support]**, contacte con el soporte técnico.
+    - **Acerca del proyecto SaltOS**, conozca los créditos, formatos soportado por el visor interno, las licencias y otros proyectos incluidos en SaltOS. Ademas puede jugar al Legend of The Bouncing Beholder [+ http://marijnhaverbeke.nl/js1k/], ganador del 2010 de la competición JS1k [+ http://js1k.com/] (The JavaScript code golfing competition).
   - Carpetas del usuario
   - Gestión Comercial
     - **[Campañas comerciales http://viewpdf/page=campanyas]**, haga campañas comerciales con seguimientos.
@@ -64,7 +64,7 @@ Para gestionar la configuración del propio SaltOS existen varias aplicaciones:
   - **[Prioridades http://viewpdf/page=prioridades]**, defina las prioridades para las entradas en la agenda.
   - **[Tipos de eventos http://viewpdf/page=tiposevento]**, defina los tipos de evento que necesite.
 - Sistema
-  - **[Importaciones http://viewpdf/page=importaciones]**
+  - **Importaciones**
   - **[Configuración http://viewpdf/page=maincfg]**, cambie las preferencias globales de la aplicación
   - **[Base de datos http://viewpdf/page=datacfg]**, realice copias de seguridad y restaurelas fácilmente.
 
