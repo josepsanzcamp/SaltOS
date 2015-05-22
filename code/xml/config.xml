@@ -142,7 +142,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<excelext>.xls</excelext>
 		<wavext>.wav</wavext>
 		<mp3ext>.mp3</mp3ext>
-		<htmlext>.htm</htmlext>
+		<htmext>.htm</htmext>
+		<htmlext>.html</htmlext>
 		<sqlext>.sql</sqlext>
 		<csvext>.csv</csvext>
 		<xmlext>.xml</xmlext>
@@ -151,7 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<targzipext>.tgz</targzipext>
 		<tarbzipext>.tbz</tarbzipext>
 		<tiffext>.tif</tiffext>
-		<hocrext>.html</hocrext>
+		<hocrext>.hocr</hocrext>
 	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>

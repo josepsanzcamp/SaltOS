@@ -342,7 +342,7 @@ function xml2html($buffer,$usecache=true) {
 	$usecache=$usecache && eval_bool(getDefault("cache/usexml2htmlcache",true));
 	$usehtmlminify=eval_bool(getDefault("cache/usehtmlminify",true));
 	if($usecache) {
-		$cache=get_cache_file(array($buffer,$usehtmlminify),getDefault("exts/htmlext",".htm"));
+		$cache=get_cache_file(array($buffer,$usehtmlminify),getDefault("exts/htmext",".htm"));
 		if(cache_exists($cache,$xslfile)) return file_get_contents($cache);
 	}
 	// BEGIN THE TRANSFORMATION

@@ -130,7 +130,7 @@ if(in_array($page,array("profile","usuarios"))) {
 	if($correo_new && !getParam($temp_key)) {
 		$outputdir=get_directory("dirs/filesdir");
 		$temp_data=str_replace("SaltOS","<a href='http://www.saltos.org'>SaltOS</a>",LANG("sentfromsaltos"));
-		$temp_name="email_signature".getDefault("exts/htmlext",".htm");
+		$temp_name="email_signature".getDefault("exts/htmext",".htm");
 		$temp_file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($temp_name);
 		$temp_size=strlen($temp_data);
 		$temp_type="text/html";

@@ -368,6 +368,7 @@ function wp_kses_normalize_entities($string) {
  * Retrieve a list of protocols to allow in HTML attributes.
  *
  * @since 3.3.0
+ * @since 4.3.0 Added 'webcal' to the protocols array.
  *
  * @see wp_kses()
  * @see esc_url()
@@ -378,7 +379,7 @@ function wp_allowed_protocols() {
 	static $protocols;
 
 	if ( empty( $protocols ) ) {
-		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp' );
+		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal' );
 
 		/**
 		 * Filter the list of protocols allowed in HTML attributes.

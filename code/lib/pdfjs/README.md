@@ -11,9 +11,9 @@ rendering PDFs.
 PDF.js is an open source project and always looking for more contributors. To
 get involved checkout:
 
-+ [Workflow](https://github.com/mozilla/pdf.js/wiki/Contributing)
-+ [Style Guide](https://github.com/mozilla/pdf.js/wiki/Style-Guide)
-+ [FAQ](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions)
++ [Issue Reporting Guide](https://github.com/mozilla/pdf.js/blob/master/CONTRIBUTING.md)
++ [Code Contribution Guide](https://github.com/mozilla/pdf.js/wiki/Contributing)
++ [Frequently Asked Questions](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions)
 + [Good Beginner Bugs](https://github.com/mozilla/pdf.js/issues?direction=desc&labels=5-good-beginner-bug&page=1&sort=created&state=open)
 + [Priorities](https://github.com/mozilla/pdf.js/milestones)
 + [Attend a Public Meeting](https://github.com/mozilla/pdf.js/wiki/Weekly-Public-Meetings)
@@ -51,21 +51,26 @@ The version of the extension for the Opera browser can be found at the [Opera ad
 
 To get a local copy of the current code, clone it using git:
 
-    $ git clone git://github.com/mozilla/pdf.js.git pdfjs
-    $ cd pdfjs
+    $ git clone git://github.com/mozilla/pdf.js.git
+    $ cd pdf.js
 
-Next, you need to start a local web server as some browsers don't allow opening
-PDF files for a file:// url:
+Next, install Node.js via the [official package](http://nodejs.org) or via
+[nvm](https://github.com/creationix/nvm). If everything worked out, run
+
+    $ npm install
+
+to install all dependencies for PDF.js.
+
+Finally you need to start a local web server as some browsers do not allow opening
+PDF files using a file:// URL. Run
 
     $ node make server
 
-You can install Node via [nvm](https://github.com/creationix/nvm) or the
-[official package](http://nodejs.org). If everything worked out, you can now
-serve
+and then you can open
 
 + http://localhost:8888/web/viewer.html
 
-You can also view all the test pdf files on the right side serving
+It is also possible to view all test PDF files on the right side by opening
 
 + http://localhost:8888/test/pdfs/?frame
 

@@ -5,20 +5,28 @@ CKEditor 4 Changelog
 
 Fixed Issues:
 
-* [#12899](http://dev.ckeditor.com/ticket/12899): Fixed: Corrected wrong tag ending for horizontal box definition in [dialogui](http://ckeditor.com/addon/dialogui) plugin. Thanks to [mizafish](https://github.com/mizafish)!
-* [#12796](http://dev.ckeditor.com/ticket/12796): Fixed: [Indent List](http://ckeditor.com/addon/indentlist) plugin unwraps parent li elements.
-* [#12885](http://dev.ckeditor.com/ticket/12885): Added missing getData parameter documentation.
-* [#11982](http://dev.ckeditor.com/ticket/11982): Bullet added in wrong position after *enter* key pressed in nested list.
-* [#13027](http://dev.ckeditor.com/ticket/13027): Fixed: Keyboard Navigation in dialogs with multiple tabs not following CI 162 instructions or [ARIA Authoring practices](http://www.w3.org/TR/2013/WD-wai-aria-practices-20130307/#tabpanel).
-* [#12256](http://dev.ckeditor.com/ticket/12256): Fixed: Basic styles' classes are lost when pasting from MS Word if [basics styles](http://docs.ckeditor.com/#!/api/CKEDITOR.config-cfg-coreStyles_bold) were configured to use classes.
-* [#12729](http://dev.ckeditor.com/ticket/12729): Incorrect structure created when merging block into list item on *Backspace* and *Delete*.
+* [#13232](http://dev.ckeditor.com/ticket/13232): [Safari] Fixed: Method [`element.appendText()`](http://docs.ckeditor.com/#!/api/CKEDITOR.dom.element-method-appendText) work properly for empty elements.
+* [#13233](http://dev.ckeditor.com/ticket/13233): Fixed: HTMLDataProcessor can process `foo:href` attributes.
+* [#12899](http://dev.ckeditor.com/ticket/12899): Fixed: Corrected wrong tag ending for horizontal box definition in the [Dialog User Interface](http://ckeditor.com/addon/dialogui) plugin. Thanks to [mizafish](https://github.com/mizafish)!
+* [#13254](http://dev.ckeditor.com/ticket/13254): Fixed: Cannot outdent block after indent when using [Divarea](http://ckeditor.com/addon/divarea) plugin. Thanks to [Jonathan Cottrill](https://github.com/jcttrll)!
+* [#13268](http://dev.ckeditor.com/ticket/13268): Fixed: Documentation for `CKEDITOR.dom.text` is incorrect. Thanks to [Ben Kiefer](https://github.com/benkiefer)!
+* [#12796](http://dev.ckeditor.com/ticket/12796): Fixed: The [Indent List](http://ckeditor.com/addon/indentlist) plugin unwraps parent `<li>` elements.
+* [#12885](http://dev.ckeditor.com/ticket/12885): Added missing [`editor.getData()`](http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-getData) parameter documentation.
+* [#11982](http://dev.ckeditor.com/ticket/11982): Bullet added in wrong position after the *Enter* key is pressed in a nested list.
+* [#13027](http://dev.ckeditor.com/ticket/13027): Fixed: Keyboard navigation in dialogs with multiple tabs not following IBM CI 162 instructions or [ARIA Authoring practices](http://www.w3.org/TR/2013/WD-wai-aria-practices-20130307/#tabpanel).
+* [#12256](http://dev.ckeditor.com/ticket/12256): Fixed: Basic styles' classes are lost when pasting from Microsoft Word if [basic styles](http://ckeditor.com/addon/basicstyles) were configured to use classes.
+* [#12729](http://dev.ckeditor.com/ticket/12729): Incorrect structure created when merging a block into a list item on *Backspace* and *Delete*.
 * [#13031](http://dev.ckeditor.com/ticket/13031): [Firefox] Fixed: No more line breaks in source view since Firefox 36.
-* [#13131](http://dev.ckeditor.com/ticket/13131): Fixed: The [Code Snippet](http://ckeditor.com/addon/codesnippet) plugin cannot be used without the `wysiwygarea` plugin.
+* [#13131](http://dev.ckeditor.com/ticket/13131): Fixed: The [Code Snippet](http://ckeditor.com/addon/codesnippet) plugin cannot be used without the [IFrame Editing Area](http://ckeditor.com/addon/wysiwygarea) plugin.
+* [#9086](http://dev.ckeditor.com/ticket/9086): Fixed: Invalid ARIA property used on paste iframe.
+* [#13164](http://dev.ckeditor.com/ticket/13164): Fixed: Error when inserting a hidden field.
 
 Other Changes:
 
-* [#12844](http://dev.ckeditor.com/ticket/12844): Upgraded the [testing environment](http://docs.ckeditor.com/#!/guide/dev_tests) to [Bender.js](https://github.com/benderjs/benderjs) `0.2.*`.
+* [#12844](http://dev.ckeditor.com/ticket/12844) and [#13103](http://dev.ckeditor.com/ticket/13103): Upgraded the [testing environment](http://docs.ckeditor.com/#!/guide/dev_tests) to [Bender.js](https://github.com/benderjs/benderjs) `0.2.3`.
 * [#12930](http://dev.ckeditor.com/ticket/12930): Because of licenses, removed `truncated-mathjax/` from the `tests/` directory. Now `bender.config.mathJaxLibPath` must be configured manually in order to run MathJax plugin's tests.
+* [#13266](http://dev.ckeditor.com/ticket/13266): Added more shades of gray.
+
 
 ## CKEditor 4.4.7
 
