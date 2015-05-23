@@ -112,7 +112,7 @@ class pop3_class
 			return($this->SetError("2 it was not specified a valid hostname"));
 		if($this->debug)
 			$this->OutputDebug("Connecting to ".$this->hostname." ...");
-		if(($this->connection=@fsockopen(($this->tls ? "tls://" : "").$this->hostname, $this->port, $error, $error_message))==0)
+		if(($this->connection=@fsockopen_protected(($this->tls ? "tls://" : "").$this->hostname, $this->port, $error, $error_message))==0)
 		{
 			switch($error)
 			{

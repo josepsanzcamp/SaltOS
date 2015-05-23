@@ -409,4 +409,24 @@ function readfile_protected($file) {
 	while(!feof($fp)) echo fread($fp,1048576);
 	fclose($fp);
 }
+
+function fsockopen_protected($hostname,$port,&$errno,&$errstr,$timeout=null) {
+	if($timeout==null) $timeout=ini_get("default_socket_timeout");
+	return stream_socket_client(
+		$hostname.":".$port,
+		$errno,
+		$errstr,
+		$timeout,
+		STREAM_CLIENT_CONNECT,
+		stream_context_create(
+			array(
+				"ssl"=>array(
+					"verify_peer"=>false,
+					"verify_peer_name"=>false,
+					"allow_self_signed"=>true
+				)
+			)
+		)
+	);
+}
 ?>
