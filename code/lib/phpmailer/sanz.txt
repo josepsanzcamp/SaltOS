@@ -1,0 +1,2 @@
+Some changes:
+- lib/phpmailer/class.smtp.php: replaced the fsockopen by fsockopen_protected

@@ -1720,7 +1720,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			show:{ effect:"none" },
 			hide:{ effect:"none" },
 			tooltipClass:"ui-state-highlight",
-			track:true,
+			//~ track:true,
 			open:function(event,ui) {
 				ui.tooltip.css("max-width",$(window).width()/2);
 			},

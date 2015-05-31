@@ -111,8 +111,7 @@ function make_clickable( $text ) {
 	}
 
 	// Cleanup of accidental links within links
-	$r = preg_replace( '#(<a([ \r\n\t]+[^>]+?>|>))<a [^>]+?>([^>]+?)</a></a>#i', "$1$3</a>", $r );
-	return $r;
+	return preg_replace( '#(<a([ \r\n\t]+[^>]+?>|>))<a [^>]+?>([^>]+?)</a></a>#i', "$1$3</a>", $r );
 }
 
 /**
@@ -141,7 +140,7 @@ function make_clickable( $text ) {
  * @access private
  *
  * @param string $string The string to split.
- * @param int $goal The desired chunk length.
+ * @param int    $goal   The desired chunk length.
  * @return array Numeric array of chunks.
  */
 function _split_str_by_whitespace( $string, $goal ) {
@@ -183,7 +182,7 @@ function _split_str_by_whitespace( $string, $goal ) {
  * @param array $matches Single Regex Match.
  * @return string HTML A element with URI address.
  */
-function _make_url_clickable_cb($matches) {
+function _make_url_clickable_cb( $matches ) {
 	$url = $matches[2];
 
 	if ( ')' == $matches[3] && strpos( $url, '(' ) ) {
@@ -220,7 +219,7 @@ function _make_url_clickable_cb($matches) {
  * @param array $matches Single Regex Match.
  * @return string HTML A element with URL address.
  */
-function _make_web_ftp_clickable_cb($matches) {
+function _make_web_ftp_clickable_cb( $matches ) {
 	$ret = '';
 	$dest = $matches[2];
 	$dest = 'http://' . $dest;
@@ -248,7 +247,7 @@ function _make_web_ftp_clickable_cb($matches) {
  * @param array $matches Single Regex Match.
  * @return string HTML A element with email address.
  */
-function _make_email_clickable_cb($matches) {
+function _make_email_clickable_cb( $matches ) {
 	$email = $matches[2] . '@' . $matches[3];
 	return $matches[1] . "<a href=\"mailto:$email\">$email</a>";
 }
@@ -262,10 +261,12 @@ function _make_email_clickable_cb($matches) {
  *
  * @since 2.8.0
  *
- * @param string $url The URL to be cleaned.
- * @param array $protocols Optional. An array of acceptable protocols.
- *		Defaults to 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn' if not set.
- * @param string $_context Private. Use esc_url_raw() for database usage.
+ * @param string $url       The URL to be cleaned.
+ * @param array  $protocols Optional. An array of acceptable protocols.
+ *		                    Defaults to 'http', 'https', 'ftp', 'ftps', 'mailto',
+ *                          'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms',
+ *                          'rtsp', 'svn' if not set.
+ * @param string $_context  Private. Use esc_url_raw() for database usage.
  * @return string The cleaned $url after the 'clean_url' filter is applied.
  */
 function esc_url( $url, $protocols = null, $_context = 'display' ) {
@@ -324,8 +325,9 @@ function esc_url( $url, $protocols = null, $_context = 'display' ) {
  * @since 2.8.1
  * @access private
  *
- * @param string|array $search The value being searched for, otherwise known as the needle. An array may be used to designate multiple needles.
- * @param string $subject The string being searched and replaced on, otherwise known as the haystack.
+ * @param string|array $search  The value being searched for, otherwise known as the needle.
+ *                              An array may be used to designate multiple needles.
+ * @param string       $subject The string being searched and replaced on, otherwise known as the haystack.
  * @return string The string with the replaced svalues.
  */
 function _deep_replace( $search, $subject ) {
@@ -352,11 +354,9 @@ function _deep_replace( $search, $subject ) {
  */
 function wp_kses_normalize_entities($string) {
 	// Disarm all entities by converting & to &amp;
-
 	$string = str_replace('&', '&amp;', $string);
 
 	// Change back the allowed entities in our entity whitelist
-
 	$string = preg_replace_callback('/&amp;([A-Za-z]{2,8}[0-9]{0,2});/', 'wp_kses_named_entities', $string);
 	$string = preg_replace_callback('/&amp;#(0*[0-9]{1,7});/', 'wp_kses_normalize_entities2', $string);
 	$string = preg_replace_callback('/&amp;#[Xx](0*[0-9A-Fa-f]{1,6});/', 'wp_kses_normalize_entities3', $string);
@@ -373,10 +373,12 @@ function wp_kses_normalize_entities($string) {
  * @see wp_kses()
  * @see esc_url()
  *
+ * @staticvar array $protocols
+ *
  * @return array Array of allowed protocols.
  */
 function wp_allowed_protocols() {
-	static $protocols;
+	static $protocols = array();
 
 	if ( empty( $protocols ) ) {
 		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal' );
@@ -404,8 +406,8 @@ function wp_allowed_protocols() {
  *
  * @since 1.0.0
  *
- * @param string $string Content to filter bad protocols from
- * @param array $allowed_protocols Allowed protocols to keep
+ * @param string $string            Content to filter bad protocols from
+ * @param array  $allowed_protocols Allowed protocols to keep
  * @return string Filtered content
  */
 function wp_kses_bad_protocol($string, $allowed_protocols) {
@@ -513,6 +515,8 @@ function apply_filters( $tag, $value ) {
  *
  * @since 3.0.0
  *
+ * @global array $allowedentitynames
+ *
  * @param array $matches preg_replace_callback() matches array
  * @return string Correctly encoded entity
  */
@@ -523,7 +527,7 @@ function wp_kses_named_entities($matches) {
 		return '';
 
 	$i = $matches[1];
-	return ( ( ! in_array($i, $allowedentitynames) ) ? "&amp;$i;" : "&$i;" );
+	return ( ! in_array( $i, $allowedentitynames ) ) ? "&amp;$i;" : "&$i;";
 }
 
 /**
@@ -569,7 +573,7 @@ function wp_kses_normalize_entities3($matches) {
 		return '';
 
 	$hexchars = $matches[1];
-	return ( ( ! valid_unicode(hexdec($hexchars)) ) ? "&amp;#x$hexchars;" : '&#x'.ltrim($hexchars,'0').';' );
+	return ( ! valid_unicode( hexdec( $hexchars ) ) ) ? "&amp;#x$hexchars;" : '&#x'.ltrim($hexchars,'0').';';
 }
 
 /**
@@ -597,7 +601,7 @@ function wp_kses_no_null($string) {
  *
  * @since 1.0.0
  *
- * @param string $string Content to check for bad protocols
+ * @param string $string            Content to check for bad protocols
  * @param string $allowed_protocols Allowed protocols
  * @return string Sanitized content
  */
@@ -641,7 +645,7 @@ function valid_unicode($i) {
  * @access private
  * @since 1.0.0
  *
- * @param string $string URI scheme to check against the whitelist
+ * @param string $string            URI scheme to check against the whitelist
  * @param string $allowed_protocols Allowed protocols
  * @return string Sanitized content
  */
