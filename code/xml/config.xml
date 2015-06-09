@@ -195,7 +195,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pdftoppm>pdftoppm</pdftoppm><!-- for ocr module included in unoconv -->
 		<__pdftoppm__>-r 300 -l 1000 __INPUT__ __OUTPUT__</__pdftoppm__>
 		<convert>convert</convert><!-- for ocr module included in unoconv -->
-		<__convert__>__INPUT__ __OUTPUT__</__convert__>
+		<__convert__>__INPUT__ -quality 100 __OUTPUT__</__convert__>
 		<tesseract>tesseract</tesseract><!-- for ocr module included in unoconv -->
 		<__tesseract__>__INPUT__ __OUTPUT__ -psm 1 hocr</__tesseract__>
 		<timeout>timeout</timeout>
