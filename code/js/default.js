@@ -1547,20 +1547,24 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var interval=setInterval(function() {
 				var iframe2=$(iframe);
 				if(!$(iframe2).length) {
+					//~ console.debug("iframe "+iframe+" destroyed");
 					clearInterval(interval);
 				} else if($(iframe2).is(":visible")) {
+					//~ console.debug("iframe "+iframe+" visible");
 					if(typeof($(iframe2).prop("isloaded"))=="undefined") {
-						$(iframe2).prop("isloaded","false");
-						$(iframe2).load(function() {
-							$(this).prop("isloaded","true");
-						});
+						//~ console.debug("iframe "+iframe+" init");
 						$(iframe2).each(function() {
+							$(this).prop("isloaded","false");
+							$(this).load(function() {
+								$(this).prop("isloaded","true");
+							});
 							var iframe3=this.contentWindow.location;
 							var url=$(this).attr("url");
 							if(url) iframe3.replace(url);
 							if(!url) clearInterval(interval);
 						});
 					} else if($(iframe2).prop("isloaded")=="true") {
+						//~ console.debug("iframe "+iframe+" loaded");
 						clearInterval(interval);
 						if(security_iframe(iframe2)) {
 							var minheight=$(iframe2).height();
