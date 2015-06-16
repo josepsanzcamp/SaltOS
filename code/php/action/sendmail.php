@@ -145,8 +145,9 @@ if(getParam("action")=="sendmail") {
 				if(!isset($file["name"])) $file["name"]=basename($file["tmp_name"]);
 				if(!isset($file["type"])) $file["type"]=saltos_content_type($file["tmp_name"]);
 				$files[]=array("file"=>$file["tmp_name"],"name"=>$file["name"],"mime"=>$file["type"]);
-			} elseif(isset($file["name"]) && $file["name"]!="") {
-				javascript_error(LANG("fileuploaderror").$file["name"]);
+			} else {
+				if(isset($file["name"]) && $file["name"]!="") javascript_error(LANG("fileuploaderror").$file["name"]);
+				if(isset($file["error"]) && $file["error"]!="") javascript_error(LANG("fileuploaderror").upload_error2string($file["error"])." (code ".$file["error"].")");
 				javascript_unloading();
 				die();
 			}

@@ -719,4 +719,19 @@ function words_exists($words,$buffer) {
 	foreach($words as $word) if(stripos($buffer,$word)===false) return false;
 	return true;
 }
+
+function upload_error2string($error) {
+	static $errors=array(
+		UPLOAD_ERR_OK=>"UPLOAD_ERR_OK",					// 0
+		UPLOAD_ERR_INI_SIZE=>"UPLOAD_ERR_INI_SIZE",		// 1
+		UPLOAD_ERR_FORM_SIZE=>"UPLOAD_ERR_FORM_SIZE",	// 2
+		UPLOAD_ERR_PARTIAL=>"UPLOAD_ERR_PARTIAL",		// 3
+		UPLOAD_ERR_NO_FILE=>"UPLOAD_ERR_NO_FILE",		// 4
+		UPLOAD_ERR_NO_TMP_DIR=>"UPLOAD_ERR_NO_TMP_DIR",	// 6
+		UPLOAD_ERR_CANT_WRITE=>"UPLOAD_ERR_CANT_WRITE",	// 7
+		UPLOAD_ERR_EXTENSION=>"UPLOAD_ERR_EXTENSION"	// 8
+	);
+	if(isset($errors[$error])) return $errors[$error];
+	return "UPLOAD_ERR_UNKWOWN";
+}
 ?>

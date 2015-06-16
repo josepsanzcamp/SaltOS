@@ -250,8 +250,9 @@ function eval_files() {
 			setParam($key."_size",$val["size"]);
 			setParam($key."_type",$val["type"]);
 			setParam($key."_temp",$val["tmp_name"]);
-		} elseif(isset($val["name"]) && $val["name"]!="") {
-			session_error(LANG("fileuploaderror").$val["name"]);
+		} else {
+			if(isset($val["name"]) && $val["name"]!="") session_error(LANG("fileuploaderror").$val["name"]);
+			if(isset($val["error"]) && $val["error"]!="") session_error(LANG("fileuploaderror").upload_error2string($val["error"])." (code ".$val["error"].")");
 		}
 	}
 }

@@ -81,8 +81,9 @@ if($page=="datacfg") {
 		if(isset($file["tmp_name"]) && $file["tmp_name"]!="" && file_exists($file["tmp_name"])) {
 			$ok=1;
 			break;
-		} elseif(isset($file["name"]) && $file["name"]!="") {
-			session_error(LANG("fileuploaderror").$file["name"]);
+		} else {
+			if(isset($file["name"]) && $file["name"]!="") session_error(LANG("fileuploaderror").$file["name"]);
+			if(isset($file["error"]) && $file["error"]!="") session_error(LANG("fileuploaderror").upload_error2string($file["error"])." (code ".$file["error"].")");
 			javascript_history(-1);
 			die();
 		}
