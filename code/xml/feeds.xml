@@ -507,7 +507,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">statenew</label>
 							<type>checkbox</type>
 							<value>1</value>
-							<readonly>true</readonly>
+							<onchange>if(!$(this).prop("writed")) $(this).prop("checked",true); $(this).prop("writed",true); update_state2(abs(getParam('id')),'new',this.checked?1:0)</onchange>
+							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
 							<width2>1px</width2>
 						</field>
@@ -621,6 +622,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<javascript>
 			<javascript include="xml/common/jsform.xml" replace="true"/>
 			<function>forward() { setParam("page","correo"); setParam("id","0_feed_"+abs(getParam("id"))); submit1(); }</function>
+			<function eval="true">"lang_msgnumsileidos() { return '".LANG_ESCAPE("msgnumsileidos")."1".LANG_ESCAPE("message1")."'; }"</function>
+			<function eval="true">"lang_msgnumnoleidos() { return '".LANG_ESCAPE("msgnumnoleidos")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumsiwait() { return '".LANG_ESCAPE("msgnumsiwait")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumnowait() { return '".LANG_ESCAPE("msgnumnowait")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumsicool() { return '".LANG_ESCAPE("msgnumsicool")."1".LANG_ESCAPE("message1")."'; }"</function>

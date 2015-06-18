@@ -4,20 +4,20 @@
 - [Submitting bug reports](#submitting-bug-reports-)
 - [Contributing code](#contributing-code-)
 
-## Getting help
+## Getting help [^](#how-to-contribute)
 
 Community discussion, questions, and informal bug reporting is done on the
-[discuss.CodeMirror forum](http://discuss.codemirror.net).
+[CodeMirror Google group](http://groups.google.com/group/codemirror).
 
-## Submitting bug reports
+## Submitting bug reports [^](#how-to-contribute)
 
 The preferred way to report bugs is to use the
-[GitHub issue tracker](http://github.com/codemirror/CodeMirror/issues). Before
+[GitHub issue tracker](http://github.com/marijnh/CodeMirror/issues). Before
 reporting a bug, read these pointers.
 
 **Note:** The issue tracker is for *bugs*, not requests for help. Questions
 should be asked on the
-[discuss.CodeMirror forum](http://discuss.codemirror.net) instead.
+[CodeMirror Google group](http://groups.google.com/group/codemirror) instead.
 
 ### Reporting bugs effectively
 
@@ -45,10 +45,10 @@ should be asked on the
   [jsbin.com](http://jsbin.com/ihunin/edit), enter it there, press save, and
   include the resulting link in your bug report.
 
-## Contributing code
+## Contributing code [^](#how-to-contribute)
 
 - Make sure you have a [GitHub Account](https://github.com/signup/free)
-- Fork [CodeMirror](https://github.com/codemirror/CodeMirror/)
+- Fork [CodeMirror](https://github.com/marijnh/CodeMirror/)
   ([how to fork a repo](https://help.github.com/articles/fork-a-repo))
 - Make your changes
 - If your changes are easy to test or likely to regress, add tests.
@@ -63,17 +63,6 @@ should be asked on the
 - Submit a pull request
 ([how to create a pull request](https://help.github.com/articles/fork-a-repo))
 
-By contributing code to CodeMirror you
-
- - agree to license the contributed code under CodeMirror's [MIT
-   license](http://codemirror.net/LICENSE).
-
- - confirm that you have the right to contribute and license the code
-   in question. (Either you hold all rights on the code, or the rights
-   holder has explicitly granted the right to use it like this,
-   through a compatible open source license or through a direct
-   agreement with you.)
-
 ### Coding standards
 
 - 2 spaces per indentation level, no tabs.
@@ -81,7 +70,3 @@ By contributing code to CodeMirror you
 - Note that the linter (`bin/lint`) which is run after each commit
   complains about unused variables and functions. Prefix their names
   with an underscore to muffle it.
-
-- CodeMirror does *not* follow JSHint or JSLint prescribed style.
-  Patches that try to 'fix' code to pass one of these linters will be
-  unceremoniously discarded.
