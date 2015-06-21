@@ -25,7 +25,7 @@ To get started, check out <http://getbootstrap.com>!
 
 Several quick start options are available:
 
-- [Download the latest release](https://github.com/twbs/bootstrap/archive/v3.3.4.zip).
+- [Download the latest release](https://github.com/twbs/bootstrap/archive/v3.3.5.zip).
 - Clone the repo: `git clone https://github.com/twbs/bootstrap.git`.
 - Install with [Bower](http://bower.io): `bower install bootstrap`.
 - Install with [npm](https://www.npmjs.com): `npm install bootstrap`.
@@ -44,9 +44,11 @@ bootstrap/
 │   ├── bootstrap.css
 │   ├── bootstrap.css.map
 │   ├── bootstrap.min.css
+│   ├── bootstrap.min.css.map
 │   ├── bootstrap-theme.css
 │   ├── bootstrap-theme.css.map
-│   └── bootstrap-theme.min.css
+│   ├── bootstrap-theme.min.css
+│   └── bootstrap-theme.min.css.map
 ├── js/
 │   ├── bootstrap.js
 │   └── bootstrap.min.js

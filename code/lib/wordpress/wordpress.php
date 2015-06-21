@@ -263,9 +263,7 @@ function _make_email_clickable_cb( $matches ) {
  *
  * @param string $url       The URL to be cleaned.
  * @param array  $protocols Optional. An array of acceptable protocols.
- *		                    Defaults to 'http', 'https', 'ftp', 'ftps', 'mailto',
- *                          'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms',
- *                          'rtsp', 'svn' if not set.
+ *		                    Defaults to return value of wp_allowed_protocols()
  * @param string $_context  Private. Use esc_url_raw() for database usage.
  * @return string The cleaned $url after the 'clean_url' filter is applied.
  */
@@ -375,7 +373,9 @@ function wp_kses_normalize_entities($string) {
  *
  * @staticvar array $protocols
  *
- * @return array Array of allowed protocols.
+ * @return array Array of allowed protocols. Defaults to an array containing 'http', 'https',
+ *               'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet',
+ *               'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', and 'webcal'.
  */
 function wp_allowed_protocols() {
 	static $protocols = array();
@@ -584,11 +584,18 @@ function wp_kses_normalize_entities3($matches) {
  * @since 1.0.0
  *
  * @param string $string
+ * @param array $options Set 'slash_zero' => 'keep' when '\0' is allowed. Default is 'remove'.
  * @return string
  */
-function wp_kses_no_null($string) {
-	$string = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]/', '', $string);
-	$string = preg_replace('/(\\\\0)+/', '', $string);
+function wp_kses_no_null( $string, $options = null ) {
+	if ( ! isset( $options['slash_zero'] ) ) {
+		$options = array( 'slash_zero' => 'remove' );
+	}
+
+	$string = preg_replace( '/[\x00-\x08\x0B\x0C\x0E-\x1F]/', '', $string );
+	if ( 'remove' == $options['slash_zero'] ) {
+		$string = preg_replace( '/\\\\+0+/', '', $string );
+	}
 
 	return $string;
 }
