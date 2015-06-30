@@ -30,9 +30,9 @@ c.nombre grupo,
 a.datetime,
 CONCAT('download2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') download,
 CONCAT('viewpdf2(\'$page\',\'".abs($id)."\',\'',a.id,'\')') viewpdf,
-CASE WHEN fichero_size>1073741824 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
-	WHEN fichero_size>1048576 THEN CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
-	WHEN fichero_size>1024 THEN CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
+CASE WHEN fichero_size&gt;=1048576000 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
+	WHEN fichero_size&gt;=1024000 THEN CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
+	WHEN fichero_size&gt;=1000 THEN CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
 	ELSE CONCAT(fichero_size,' bytes')
 END fichero_size
 FROM tbl_ficheros a

@@ -595,9 +595,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			datetime,
 			size,
 			CASE
-				WHEN size&gt;1073741824 THEN CONCAT(ROUND(size/1073741824.0,2),' Gbytes')
-				WHEN size&gt;1048576 THEN CONCAT(ROUND(size/1048576.0,2),' Mbytes')
-				WHEN size&gt;1024 THEN CONCAT(ROUND(size/1024.0,2),' Kbytes')
+				WHEN size&gt;=1048576000 THEN CONCAT(ROUND(size/1073741824.0,2),' Gbytes')
+				WHEN size&gt;=1024000 THEN CONCAT(ROUND(size/1048576.0,2),' Mbytes')
+				WHEN size&gt;=1000 THEN CONCAT(ROUND(size/1024.0,2),' Kbytes')
 				ELSE CONCAT(size,' bytes')
 			END size2,
 			files,
@@ -686,9 +686,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					(SELECT REPLACE(GROUP_CONCAT(SUBSTR(CONCAT(fichero,' (',fichero_size,')'),1,255)),',',' | ') FROM
 						(SELECT fichero,id_registro,
 							CASE
-								WHEN fichero_size&gt;1073741824 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
-								WHEN fichero_size&gt;1048576 THEN CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
-								WHEN fichero_size&gt;1024 THEN CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
+								WHEN fichero_size&gt;=1048576000 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
+								WHEN fichero_size&gt;=1024000 THEN CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
+								WHEN fichero_size&gt;=1000 THEN CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
 								ELSE CONCAT(fichero_size,' bytes')
 							END fichero_size
 						 FROM tbl_ficheros WHERE id_aplicacion='".page2id("correo")."') z WHERE id_registro=a.id
@@ -1179,9 +1179,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					(SELECT REPLACE(GROUP_CONCAT(SUBSTR(CONCAT(fichero,' (',fichero_size,')'),1,255)),',',', ') FROM
 						(SELECT fichero,id_registro,
 							CASE
-								WHEN fichero_size&gt;1073741824 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
-								WHEN fichero_size&gt;1048576 THEN CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
-								WHEN fichero_size&gt;1024 THEN CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
+								WHEN fichero_size&gt;=1048576000 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
+								WHEN fichero_size&gt;=1024000 THEN CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
+								WHEN fichero_size&gt;=1000 THEN CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
 								ELSE CONCAT(fichero_size,' bytes')
 							END fichero_size
 						 FROM tbl_ficheros WHERE id_aplicacion='".page2id("correo")."') z WHERE id_registro=a.id
