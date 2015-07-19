@@ -1144,6 +1144,7 @@ function check_postlimit() {
 	$content_length=getServer("CONTENT_LENGTH");
 	if($content_length) {
 		$post_max_size=ini_get("post_max_size");
+		if(!$post_max_size && ishhvm()) $post_max_size=ini_get("hhvm.server.max_post_size");
 		$post_max_size=normalize_value($post_max_size);
 		if($content_length>$post_max_size) session_error(LANG("postlimiterror"));
 	}

@@ -100,25 +100,20 @@ function checklog($hash,$file="") {
 function addlog($msg,$file="") {
 	if(!$file) $file=getDefault("debug/logfile","saltos.log");
 	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
-	$maxlines=intval(getDefault("debug/maxlines",1000));
-	if($maxlines>0 && file_exists($dir.$file) && memory_get_free(true)>filesize($dir.$file)) {
+	$maxfilesize=normalize_value(getDefault("debug/maxfilesize","1M"));
+	if($maxfilesize>0 && file_exists($dir.$file) && filesize($dir.$file)>=$maxfilesize) {
+		$next=1;
+		while(file_exists($dir.$file.".".$next)) $next++;
 		capture_next_error();
-		$numlines=count(file($dir.$file));
-		$error=get_clear_error();
-		if(!$error && $numlines>$maxlines) {
-			$next=1;
-			while(file_exists($dir.$file.".".$next)) $next++;
-			capture_next_error();
-			rename($dir.$file,$dir.$file.".".$next);
-			get_clear_error();
-		}
+		rename($dir.$file,$dir.$file.".".$next);
+		get_clear_error();
 	}
 	$msg=trim($msg);
 	$msg=explode("\n",$msg);
 	$msg=array_map("__addlog_helper",$msg);
 	$msg=implode("\n",$msg)."\n";
 	file_put_contents($dir.$file,$msg,FILE_APPEND);
-	if(memory_get_free()>0) chmod_protected($dir.$file,0666);
+	chmod_protected($dir.$file,0666);
 }
 
 function semaphore_acquire($name="",$timeout=INF) {

@@ -212,7 +212,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logfile>saltos.log</logfile>
 		<errorfile>error.log</errorfile>
 		<warningfile>warning.log</warningfile>
-		<maxlines>1000</maxlines>
+		<maxfilesize>1M</maxfilesize>
 	</debug>
 	<parser>
 		<preevals>
