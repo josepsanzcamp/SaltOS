@@ -271,12 +271,20 @@ if(getParam("action")=="sendmail") {
 					if($current_user!=$user) $idem=0;
 					if($current_pass!=$pass) $idem=0;
 					if(!$idem) {
-						$mail->Host=$current_host;
-						$mail->Port=$current_port;
-						$mail->SMTPSecure=$current_extra;
-						$mail->Username=$current_user;
-						$mail->Password=$current_pass;
-						$mail->SMTPAuth=($current_user!="" || $current_pass!="");
+						if(!in_array($current_host,array("mail","sendmail","qmail",""))) {
+							$mail->IsSMTP();
+							$mail->set("Host",$current_host);
+							$mail->set("Port",$current_port);
+							$mail->set("SMTPSecure",$current_extra);
+							$mail->set("Username",$current_user);
+							$mail->set("Password",$current_pass);
+							$mail->set("SMTPAuth",($current_user!="" || $current_pass!=""));
+							$mail->set("Hostname",$current_host);
+						} else {
+							if($current_host=="mail") $mail->IsMail();
+							elseif($current_host=="sendmail") $mail->IsSendmail();
+							elseif($current_host=="qmail") $mail->IsQmail();
+						}
 						capture_next_error();
 						$current=$mail->PostSend();
 						$error=get_clear_error();
