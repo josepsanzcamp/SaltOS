@@ -354,7 +354,11 @@ function xml2html($buffer,$usecache=true) {
 	$doc->loadXML($xsldata,LIBXML_COMPACT);
 	$xsl->importStylesheet($doc);
 	$doc->loadXML($buffer,LIBXML_COMPACT);
+	capture_next_error();
 	$buffer=$xsl->transformToXML($doc);
+	$error=get_clear_error();
+	// TO PREVENT A BUG IN LIBXML 2.9.1
+	if($error!="" && !words_exists("id already defined",$error)) show_php_error();
 	if($usecache) {
 		file_put_contents($cache,$buffer);
 		chmod_protected($cache,0666);

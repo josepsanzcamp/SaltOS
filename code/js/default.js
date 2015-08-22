@@ -1057,7 +1057,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("updatecontent");
 		unloadingcontent();
 		$(document).scrollTop(0);
-		fix4id2(html);
 		// UPDATE THE LANG AND DIR IF NEEDED
 		var temp=$("html");
 		var temp2=$("div[type=html]",html);
@@ -2085,18 +2084,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		return islogin;
 	}
 
-	function fix4id2(obj) {
-		//~ console.time("fix4id2");
-		if(typeof(obj)=="undefined") var obj=$("body");
-		$(".fix4id2",obj).each(function() {
-			var id2=$(this).attr("id2");
-			if(id2!="") $(this).attr("id",id2);
-			$(this).removeAttr("id2");
-			$(this).removeClass("fix4id2");
-		});
-		//~ console.timeEnd("fix4id2");
-	}
-
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
 	$.ajaxSetup({ cache:true });
 
@@ -2110,7 +2097,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		loadingcontent();
 		setTimeout(function() {
 			//~ console.time("document_ready fase 1");
-			fix4id2();
 			init_history();
 			make_notice();
 			make_dialog();

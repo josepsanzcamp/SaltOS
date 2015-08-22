@@ -814,14 +814,12 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function update_style(html,html2) {
-		//~ console.time("update_style");
 		var style1=getstylesheet(html2);
 		var style2=getstylesheet(html);
 		if(style1 && style2 && $(style1).attr("href")!=$(style2).attr("href")) {
 			$("head").append("<link href='"+$(style2).attr("href")+"' rel='stylesheet' type='text/css'></link>");
 			get_colors();
 		}
-		//~ console.timeEnd("update_style");
 	}
 
 	function updatecontent(html) {
