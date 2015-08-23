@@ -224,9 +224,9 @@ function __getmail_getfiles($array,$level=0) {
 
 // RETURN THE HUMAN SIZE (GBYTES, MBYTES, KBYTES OR BYTES)
 function __getmail_gethumansize($size) {
-	if($size>=1048576000) $size=round($size/1073741824,2)." Gbytes";
-	elseif($size>=1024000) $size=round($size/1048576,2)." Mbytes";
-	elseif($size>=1000) $size=round($size/1024,2)." Kbytes";
+	if($size>=1073741824) $size=round($size/1073741824,2)." Gbytes";
+	elseif($size>=1048576) $size=round($size/1048576,2)." Mbytes";
+	elseif($size>=1024) $size=round($size/1024,2)." Kbytes";
 	else $size=$size." bytes";
 	return $size;
 }
