@@ -496,7 +496,7 @@ function apply_filters( $tag, $value ) {
 		$args = func_get_args();
 
 	do {
-		foreach( (array) current($wp_filter[$tag]) as $the_ )
+		foreach ( (array) current($wp_filter[$tag]) as $the_ )
 			if ( !is_null($the_['function']) ){
 				$args[1] = $value;
 				$value = call_user_func_array($the_['function'], array_slice($args, 1, (int) $the_['accepted_args']));

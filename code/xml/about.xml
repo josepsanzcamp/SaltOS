@@ -673,9 +673,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.generatedata.com/")</onclick>
 						</field>
 						<field>
+							<label>Font Awesome (OFL 1.1 &amp; MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://fontawesome.io/")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>
