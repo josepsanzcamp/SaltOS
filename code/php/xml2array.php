@@ -498,7 +498,8 @@ function eval_attr($array) {
 								if($global) $attr=array_merge(array("global"=>$global),$attr);
 								$old_value=$value;
 								$value=array();
-								for($$stack["for_var"]=$stack["for_from"];$$stack["for_var"]<=$stack["for_to"];$$stack["for_var"]+=$stack["for_step"]) {
+								$temp1=$stack["for_var"]; // TO PREVENT SOME MEMORY LEAKS
+								for($$temp1=$stack["for_from"];$$temp1<=$stack["for_to"];$$temp1+=$stack["for_step"]) {
 									$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
 									if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 								}
@@ -513,7 +514,9 @@ function eval_attr($array) {
 								if($global) $attr=array_merge(array("global"=>$global),$attr);
 								$old_value=$value;
 								$value=array();
-								foreach($$stack["foreach_rows"] as $$stack["foreach_as"]) {
+								$temp1=$stack["foreach_rows"]; // TO PREVENT SOME MEMORY LEAKS
+								$temp2=$stack["foreach_as"]; // TO PREVENT SOME MEMORY LEAKS
+								foreach($$temp1 as $$temp2) {
 									$temp_value=eval_attr(array("inline"=>array("value"=>$old_value,"#attr"=>$attr)));
 									if(isset($temp_value["inline"])) $value[]=$temp_value["inline"];
 								}

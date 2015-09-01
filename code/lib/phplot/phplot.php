@@ -397,7 +397,7 @@ class PHPlot
      *   $output_file : Filename for output. Omit, or NULL, or '' to mean no output file.
      *   $input_file : Path to a file to be used as background. Omit, NULL, or '' for none.
      */
-    function PHPlot($width=600, $height=400, $output_file=NULL, $input_file=NULL)
+    function __construct($width=600, $height=400, $output_file=NULL, $input_file=NULL)
     {
         $this->initialize('imagecreate', $width, $height, $output_file, $input_file);
     }
@@ -3970,7 +3970,7 @@ class PHPlot
             } elseif ($adjust_mode == 'I') {
                 // Mode 'I': Adjustment to next higher integer.
                 $plot_max = ceil($plot_max);
-            }  
+            }
         }
 
         // Calculate the tick increment for the case where number of ticks was given:
@@ -5762,7 +5762,7 @@ class PHPlot
                 case 'line':
                     // Draw a short line segment with proper color, width, and style
                     imagesetthickness($this->img, $this->line_widths[$lws_index]);
-                    $style = $this->SetDashedStyle($this->ndx_data_colors[$color_index], 
+                    $style = $this->SetDashedStyle($this->ndx_data_colors[$color_index],
                                                    $this->line_styles[$lws_index] == 'dashed');
                     imageline($this->img, $dot_left_x, $yc, $dot_right_x, $yc, $style);
                     imagesetthickness($this->img, 1);

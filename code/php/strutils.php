@@ -282,13 +282,13 @@ function get_unique_id_md5() {
 	return md5(uniqid(rand(),true));
 }
 
-function intelligence_cut($txt,$max) {
+function intelligence_cut($txt,$max,$end="...") {
 	$len=strlen($txt);
 	if($len>$max) {
 		while($max>0 && $txt[$max]!=" ") $max--;
 		if($max==0) while($max<$len && $txt[$max]!=" ") $max++;
 		if($max>0) if(in_array($txt[$max-1],array(",",".","-","("))) $max--;
-		$preview=($max==$len)?$txt:substr($txt,0,$max)."...";
+		$preview=($max==$len)?$txt:substr($txt,0,$max).$end;
 	} else {
 		$preview=$txt;
 	}

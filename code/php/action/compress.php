@@ -37,6 +37,9 @@ if(getParam("action")=="compress") {
 		if(!isset($info[0])) show_php_error(array("phperror"=>"Content not found"));
 		if(substr($info[0],-3,3)=="...") $info[0]=substr($info[0],0,-3);
 	}
+	$info[0]=encode_bad_chars($info[0]," ");
+	$info[0]=encode_search($info[0]," ");
+	$info[0]=intelligence_cut($info[0],50,"");
 	$info[0]=encode_bad_chars($info[0]);
 	$cids=getParam("cid");
 	if(!$cids) show_php_error(array("phperror"=>"Unknown files"));

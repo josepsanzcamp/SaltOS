@@ -1,3 +1,2 @@
 Changed made by sanz:
-- function sort_files($a, $b) needs to be static (detected a bug when is called from usort)
 - Rename constructor from class name to __construct to prevent errors in PHP 7.0

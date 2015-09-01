@@ -214,7 +214,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://httpd.apache.org")</onclick>
 						</field>
 						<field>
-							<label>PHP 5.2-5.6 (PHP-3.01)</label>
+							<label>PHP 5.2-7.0 (PHP-3.01)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.php.net")</onclick>
