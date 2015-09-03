@@ -304,7 +304,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://code.google.com/p/cssmin/")</onclick>
 						</field>
 						<field>
-							<label>PHP Mobile Detect 2.8.15 (MIT)</label>
+							<label>PHP Mobile Detect 2.8.16 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
