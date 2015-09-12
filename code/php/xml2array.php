@@ -315,7 +315,7 @@ function xml2struct($xml,$file="") {
 	// CONTINUE
 	$parser=xml_parser_create();
 	xml_parser_set_option($parser,XML_OPTION_CASE_FOLDING,0);
-	xml_parser_set_option($parser,XML_OPTION_SKIP_WHITE,1);
+	xml_parser_set_option($parser,XML_OPTION_SKIP_WHITE,check_xml_option_skip_white());
 	xml_parser_set_option($parser,XML_OPTION_TARGET_ENCODING,"UTF-8");
 	$array=array();
 	$index=array();
@@ -329,6 +329,24 @@ function xml2struct($xml,$file="") {
 	}
 	xml_parser_free($parser);
 	return $array;
+}
+
+function check_xml_option_skip_white() {
+	static $xml_option_skip_white=null;
+	if($xml_option_skip_white===null) {
+		$test="1\n2";
+		$xml="<root>${test}</root>";
+		$parser=xml_parser_create();
+		xml_parser_set_option($parser,XML_OPTION_CASE_FOLDING,0);
+		xml_parser_set_option($parser,XML_OPTION_SKIP_WHITE,1);
+		xml_parser_set_option($parser,XML_OPTION_TARGET_ENCODING,"UTF-8");
+		$array=array();
+		$index=array();
+		xml_parse_into_struct($parser,$xml,$array,$index);
+		xml_parser_free($parser);
+		$xml_option_skip_white=($array[0]["value"]==$test)?1:0;
+	}
+	return $xml_option_skip_white;
 }
 
 function eval_attr($array) {
