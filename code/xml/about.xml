@@ -448,31 +448,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>w2ui (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://w2ui.com/")</onclick>
-						</field>
-						<field>
-							<label>Bootstrap v3.3.4 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://getbootstrap.com/")</onclick>
-						</field>
-						<field>
-							<label>Bootswatch v3.3.4+1 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://bootswatch.com/")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>1</colspan>
-						</field>
-					</row>
-					<row>
-						<field>
 							<type>separator</type>
 						</field>
 					</row>
@@ -602,32 +577,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://codemirror.net/")</onclick>
 						</field>
 						<field>
-							<label>D3.js (BSD)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://d3js.org/")</onclick>
-						</field>
-						<field>
-							<label>NVD3 (ASL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://nvd3.org/")</onclick>
-						</field>
-						<field>
-							<label>dagre-d3 (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/cpettitt/dagre-d3")</onclick>
-						</field>
-					</row>
-					<row>
-						<field>
-							<label>Layout Grid (BSD)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://clippings.github.io/layout-grid/")</onclick>
-						</field>
-						<field>
 							<type>separator</type>
 							<class>tbody</class>
 							<colspan>3</colspan>
@@ -686,15 +635,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.generatedata.com/")</onclick>
 						</field>
 						<field>
-							<label>Font Awesome (OFL 1.1 &amp; MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://fontawesome.io/")</onclick>
-						</field>
-						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>1</colspan>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
