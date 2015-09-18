@@ -1056,8 +1056,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</support>
 	<home>
 		<formupdate>Startseite</formupdate>
-		<hide>Verbergen</hide>
-		<nodata>Sie können hier Inhalte hinzufügen indem Sie diesen Ordner auf der Registerkarte "Ordner" der jeweiligen Funktion auswählen.</nodata>
+		<buscar2>In SaltOS suchen</buscar2>
+		<buscar3>In Dateien suchen</buscar3>
 	</home>
 	<seguimientos>
 		<list>Aufgaben</list>
@@ -1468,8 +1468,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<folders>
 		<notfound>Ordner nicht gefunden</notfound>
 		<todaslasaplicaciones>[Alle Anwendungen]</todaslasaplicaciones>
-		<deleteoffolder>Ordner entfernen</deleteoffolder>
-		<defaultfolder>Mein Ordner</defaultfolder>
+		<deleteoffolder>Aus dem Ordner entfernen</deleteoffolder>
+		<defaultfolder>Persönlicher Ordner</defaultfolder>
 	</folders>
 	<translate>
 		<translate>Übersetzer</translate>
