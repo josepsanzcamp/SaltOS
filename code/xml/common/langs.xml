@@ -30,36 +30,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<width>120px</width>
 	<rows>
 		<row>
-			<label>Español (España)</label>
-			<value>es_ES</value>
+			<label>Arabic (Saudi Arabia)</label>
+			<value>ar_SA</value>
 		</row>
 		<row>
 			<label>Català (Espanya)</label>
 			<value>ca_ES</value>
 		</row>
 		<row>
-			<label>English (USA)</label>
-			<value>en_US</value>
-		</row>
-		<row>
 			<label>Deutsch (Deutschland)</label>
 			<value>de_DE</value>
 		</row>
 		<row>
-			<label>Português (Portugal)</label>
-			<value>pt_PT</value>
+			<label>English (USA)</label>
+			<value>en_US</value>
 		</row>
 		<row>
-			<label>Português (Brasil)</label>
-			<value>pt_BR</value>
+			<label>Español (España)</label>
+			<value>es_ES</value>
+		</row>
+		<row>
+			<label>Español (América Latina)</label>
+			<value>es_LA</value>
 		</row>
 		<row>
 			<label>French (France)</label>
 			<value>fr_FR</value>
 		</row>
 		<row>
-			<label>Arabic (Saudi Arabia)</label>
-			<value>ar_SA</value>
+			<label>Português (Brasil)</label>
+			<value>pt_BR</value>
+		</row>
+		<row>
+			<label>Português (Portugal)</label>
+			<value>pt_PT</value>
 		</row>
 	</rows>
 	<value global="lang" eval="true">$lang</value>

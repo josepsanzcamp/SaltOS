@@ -130,19 +130,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Español-España (Josep Sanz)</label>
+							<label>Arabic-Saudi Arabia (Mohammed Mubarak)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.org")</onclick>
+							<onclick>mailto("mawedElkareem@gmail.com")</onclick>
 						</field>
 						<field>
 							<label>Català-Espanya (Josep Sanz)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("josep.sanz@saltos.org")</onclick>
-						</field>
-						<field>
-							<label>English-USA (Josep Sanz)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("josep.sanz@saltos.org")</onclick>
@@ -153,6 +147,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>mailto("alex.muller@ws3.es")</onclick>
 						</field>
+						<field>
+							<label>English-USA (Josep Sanz)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>mailto("josep.sanz@saltos.org")</onclick>
+						</field>
+					</row>
+					<row>
+						<field>
+							<label>Español-América Latina (Hector Ruben Echaniz)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://www.google.cat/#q=Hector+Ruben+Echaniz")</onclick>
+						</field>
+						<field>
+							<label>Español-España (Josep Sanz)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>mailto("josep.sanz@saltos.org")</onclick>
+						</field>
+						<field>
+							<label>French-France (Francis Dionne)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>mailto("agencewebtictacto@gmail.com")</onclick>
+						</field>
+						<field>
+							<label>Português-Brasil (Benedito Fulvio)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>mailto("f.manfredini@hotmail.com")</onclick>
+						</field>
 					</row>
 					<row>
 						<field>
@@ -162,22 +188,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>mailto("nunolopes@nearu.info")</onclick>
 						</field>
 						<field>
-							<label>Português-Brasil (Benedito Fulvio)</label>
-							<type>link</type>
+							<type>separator</type>
 							<class>tbody</class>
-							<onclick>mailto("f.manfredini@hotmail.com")</onclick>
-						</field>
-						<field>
-							<label>French-France (Francis Dionne)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("agencewebtictacto@gmail.com")</onclick>
-						</field>
-						<field>
-							<label>Arabic-Saudi Arabia (Mohammed Mubarak)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>mailto("mawedElkareem@gmail.com")</onclick>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>

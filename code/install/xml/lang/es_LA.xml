@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2015 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<dir>ltr</dir>
+	<default>common</default>
+	<common>
+		<title>Programa de instalación de SaltOS</title>
+		<yes>Si</yes>
+		<no>No</no>
+		<language>Selección del idioma, diseño y iconos</language>
+		<welcome_message>Bienvenido al programa de instalación de SaltOS</welcome_message>
+		<lang_message>Seleccione el idioma</lang_message>
+		<style_message>Seleccione el diseño</style_message>
+		<iconset_message>Seleccione los iconos</iconset_message>
+		<begin_message>Pulse "Siguiente" para instalar SaltOS en 5 sencillos pasos</begin_message>
+		<back>Anterior</back>
+		<next>Siguiente</next>
+		<test>Comprobar</test>
+		<install>Instalar SaltOS</install>
+		<saltos>Iniciar SaltOS</saltos>
+		<is_writable>Comprobación de permisos de escritura</is_writable>
+		<is_executable>Comprobación de programas externos</is_executable>
+		<directory>Directorio</directory>
+		<file>Fichero</file>
+		<executable>Ejecutable</executable>
+		<database_link>Conexión a la base de datos</database_link>
+		<select_dbtype>Seleccione el SGBD</select_dbtype>
+		<select_prefered> (recomendado)</select_prefered>
+		<selected_dbtype>SGBD seleccionado</selected_dbtype>
+		<dbfile>Fichero base de datos</dbfile>
+		<dbtest>Funcionó la conexión de prueba</dbtest>
+		<dbvoid>La base de datos esta vacía</dbvoid>
+		<dbhost>Servidor BBDD</dbhost>
+		<dbport>Puerto</dbport>
+		<dbuser>Usuario</dbuser>
+		<dbpass>Clave</dbpass>
+		<dbname>Nombre base de datos</dbname>
+		<admin_account>Datos de acceso a la cuenta de administrador</admin_account>
+		<user>Usuario</user>
+		<pass>Clave</pass>
+		<email>Correo electrónico</email>
+		<optional>Opcional</optional>
+		<server_config>Configuración del servidor</server_config>
+		<timezone>Zona horaria</timezone>
+		<hostname>Servidor web</hostname>
+		<automatic>Automático</automatic>
+		<forcessl>Forzar SSL (https)</forcessl>
+		<porthttp>Puerto http</porthttp>
+		<porthttps>Puerto https</porthttps>
+		<initial_data>Carga de datos iniciales</initial_data>
+		<exampledata>Importar datos de ejemplo</exampledata>
+		<undefined>Sin definir</undefined>
+		<install_input>Resumen y confirmación de la instalación</install_input>
+		<install_output>Resultado de la instalación</install_output>
+		<config>Guardar configuración de acceso a la base de datos</config>
+		<dbschema>Crear tablas en la base de datos</dbschema>
+		<dbstatic>Importar datos internos</dbstatic>
+		<streetdata>Importar datos del callejero</streetdata>
+		<defaultdata>Importar datos genéricos</defaultdata>
+		<permissiondata>Crear permisos para el grupo administador</permissiondata>
+		<finish>Fin de la instalación</finish>
+		<gotohome>Volver a cargar</gotohome>
+		<notifybug>Notificar fallo</notifybug>
+		<step>Paso</step>
+		<lang>Idioma</lang>
+		<style>Diseño</style>
+		<iconset>Iconos</iconset>
+		<env_vars>Variables de entorno</env_vars>
+		<env_path>PATH</env_path>
+		<env_lang>LANG</env_lang>
+		<applications>Aplicaciones</applications>
+		<select_layer>Seleccione el perfil</select_layer>
+		<selected_layer>Perfil seleccionado</selected_layer>
+		<layer_all>Todas las aplicaciones</layer_all>
+		<layer_personal>Aplicaciones uso personal</layer_personal>
+		<select_apps>Seleccione las aplicaciones</select_apps>
+		<selected_apps>Aplicaciones seleccionadas</selected_apps>
+	</common>
+</root>
