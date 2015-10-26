@@ -2,7 +2,7 @@
 /*
  * mime_parser.php
  *
- * @(#) $Id: mime_parser.php,v 1.86 2012/10/19 05:05:24 mlemos Exp $
+ * @(#) $Id: mime_parser.php,v 1.88 2015/10/04 00:15:39 mlemos Exp $
  *
  */
 
@@ -30,7 +30,7 @@ define('MIME_ADDRESS_FIRST',            2);
 
 	<package>net.manuellemos.mimeparser</package>
 
-	<version>@(#) $Id: mime_parser.php,v 1.86 2012/10/19 05:05:24 mlemos Exp $</version>
+	<version>@(#) $Id: mime_parser.php,v 1.88 2015/10/04 00:15:39 mlemos Exp $</version>
 	<copyright>Copyright © (C) Manuel Lemos 2006 - 2008</copyright>
 	<title>MIME parser</title>
 	<author>Manuel Lemos</author>
@@ -296,7 +296,7 @@ class mime_parser_class
 {/metadocument}
 */
 	var $track_lines = 0;
-
+	
 /*
 {metadocument}
 	<variable>
@@ -898,7 +898,7 @@ class mime_parser_class
 		}
 		return($return_value);
 	}
-
+	
 	Function ParseBody($data, $end, $offset)
 	{
 		$success = $this->body_parser->Parse($data, $end);
@@ -976,7 +976,7 @@ class mime_parser_class
 						if($encoded > $position)
 						{
 							if(count($decoded_header))
-								$decoded_header[count($decoded_header)-1]['Value'].=substr($value, $position, $encoded - $position - 1);
+								$decoded_header[count($decoded_header)-1]['Value'].=substr($value, $position, $encoded - $position);
 							else
 							{
 								$decoded_header[]=array(
@@ -2235,6 +2235,33 @@ class mime_parser_class
 									if(strlen($body))
 										$results['Response'] = $body;
 									break;
+								case 'feedback-report':
+									$body_part = $results = null;
+									for($p = 1; $p < $lp; ++$p)
+									{
+										if(!strcmp($parts[$p]['Type'], $parameters['report-type']))
+										{
+											$results = $parts[$p];
+											UnSet($results['Data']);
+										}
+										elseif(!strcmp($parts[$p]['Type'], 'message'))
+											$body_part = $p;
+									}
+									if(!IsSet($results))
+									{
+										$this->SetErrorWithContact('the report of type '.$parameters['report-type'].' does not contain the report details part');
+										$results['Response'] = $this->error;
+										$this->error = '';
+										break;
+									}
+									if(IsSet($body_part))
+									{
+										if(!$this->ReadMessageBody($parts[$body_part], $body, 'Data'))
+											return false;
+										if(strlen($body))
+											$results['Response'] = $body;
+									}
+									break;
 								default:
 									$this->SetErrorWithContact('the report type is '.$parameters['report-type'].' is not yet supported');
 									$results['Response'] = $this->error;
@@ -2439,6 +2466,25 @@ class mime_parser_class
 							$results['Recipients'] = $recipients;
 						}
 						$copy_body = 0;
+						break;
+					case 'feedback-report':
+						$results['Type'] = $sub_type;
+						$results['Description'] = 'Notification of the processing of a message sent';
+						if(!$this->ReadMessageBody($message, $body, 'Body'))
+							return(0);
+						if(($l = strlen($body)))
+						{
+							$position = 0;
+							$this->ParseHeaderString($body, $position, $headers);
+							$report = array();
+							for(;$position<$l;)
+							{
+								$this->ParseHeaderString($body, $position, $headers);
+								foreach($headers as $name => $value)
+									$report[$name] = $value;
+							}
+							$results['Report'] = $report;
+						}
 						break;
 					case 'rfc822':
 						$results['Type'] = 'message';
