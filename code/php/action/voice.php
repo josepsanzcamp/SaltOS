@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="voice") {
-	if(!eval_bool(getDefault("enablevoice"))) return;
+	if(!eval_bool(getDefault("enablevoice"))) die();
 	require_once("php/translate.php");
 	// SOME CHECKS
 	if(!check_commands(array(getDefault("commands/text2wave"),getDefault("commands/wavetomp3")),60)) action_denied();

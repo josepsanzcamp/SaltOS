@@ -61,8 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<row>
 						<field>
 							<type>image</type>
-							<image>img/saltos_big.png</image>
-							<width>100px</width>
+							<image>img/saltos.png</image>
 							<height>100px</height>
 							<colspan>2</colspan>
 							<class>logo</class>

@@ -50,8 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<row>
 						<field>
 							<type>image</type>
-							<image>img/saltos_big.png</image>
-							<width>100px</width>
+							<image>img/saltos.png</image>
 							<height>100px</height>
 							<rowspan>100</rowspan>
 							<class>logo</class>
@@ -61,7 +60,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label eval="true">get_name_version_revision(true)</label>
 							<type>label</type>
 							<class>left bold</class>
-							<colspan>4</colspan>
+							<colspan>3</colspan>
+						</field>
+						<field>
+							<type>image</type>
+							<image>img/gplv3.png</image>
+							<width>100px</width>
+							<rowspan>4</rowspan>
+							<class>nada</class>
+							<class3>top right</class3>
 						</field>
 					</row>
 					<row>

@@ -203,8 +203,10 @@ function get_base() {
 	$servername=getDefault("server/hostname");
 	if(!$servername) $servername=getServer("SERVER_NAME");
 	$addedport="";
-	$scriptname=getServer("SCRIPT_NAME");
+	$scriptname=getDefault("server/pathname");
+	if(!$scriptname) $scriptname=getServer("SCRIPT_NAME");
 	// SOME CHECKS
+	if(substr($scriptname,0,1)!="/") $scriptname="/".$scriptname;
 	if(basename($scriptname)==getDefault("server/dirindex","index.php")) {
 		$scriptname=dirname($scriptname);
 		if(substr($scriptname,-1,1)!="/") $scriptname.="/";

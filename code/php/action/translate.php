@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="translate") {
-	if(!eval_bool(getDefault("enabletranslate"))) return;
+	if(!eval_bool(getDefault("enabletranslate"))) die();
 	require_once("php/translate.php");
 	require_once("php/libaction.php");
 	// CHECK COMMANDS

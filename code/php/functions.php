@@ -198,14 +198,21 @@ function force_ssl() {
 	$protocol="https://";
 	$servername=getDefault("server/hostname");
 	if(!$servername) $servername=getServer("SERVER_NAME");
-	$added="";
-	$scriptname=getServer("SCRIPT_NAME");
-	$querystring=str_replace("+","%20",getServer("QUERY_STRING"));
+	$addedport="";
+	$scriptname=getDefault("server/pathname");
+	if(!$scriptname) $scriptname=getServer("SCRIPT_NAME");
+	$querystring=getServer("QUERY_STRING");
 	// SOME CHECKS
-	if($querystring) $querystring="?".$querystring;
-	if($porthttps!=443) $added=":${porthttps}";
+	if(substr($scriptname,0,1)!="/") $scriptname="/".$scriptname;
+	if(basename($scriptname)==getDefault("server/dirindex","index.php")) {
+		$scriptname=dirname($scriptname);
+		if(substr($scriptname,-1,1)!="/") $scriptname.="/";
+	}
+	// SOME CHECKS
+	if($querystring) $querystring="?".str_replace("+","%20",$querystring);
+	if($porthttps!=443) $addedport=":${porthttps}";
 	// CONTINUE
-	$url=$protocol.$servername.$added.$scriptname.$querystring;
+	$url=$protocol.$servername.$addedport.$scriptname.$querystring;
 	javascript_location($url);
 	die();
 }

@@ -66,6 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<server_config>Configuración del servidor</server_config>
 		<timezone>Zona horaria</timezone>
 		<hostname>Servidor web</hostname>
+		<pathname>Ruta del servidor</pathname>
 		<automatic>Automático</automatic>
 		<forcessl>Forzar SSL (https)</forcessl>
 		<porthttp>Puerto http</porthttp>
