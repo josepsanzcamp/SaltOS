@@ -120,7 +120,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- FOR COOKIES MODULE -->
 	<cookies eval="true">"SELECT clave,valor FROM tbl_cookies WHERE id_usuario='".current_user()."'"</cookies>
 	<!-- FOR FEEDS APPS -->
-	<feeds eval="true">"SELECT id,CONCAT(title,' (',url,')') nombre FROM tbl_usuarios_f WHERE id_usuario='".intval(getParam("id_usuario"))."' ORDER BY nombre"</feeds>
+	<feeds eval="true">"SELECT id,CONCAT(title,' (',url,')') nombre FROM tbl_usuarios_f WHERE id_usuario='".intval(getParam("id_usuario"))."' AND id IN (SELECT id_feed FROM tbl_feeds) ORDER BY nombre"</feeds>
 	<state2 eval="true">in_array(getParam("type"),array("new","wait","cool"))?make_update_query("tbl_feeds",array(
 		"state_new"=>0,
 		"state_".getParam("type")=>(
