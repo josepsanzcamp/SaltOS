@@ -1152,7 +1152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:if>
 			<td class="{class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width};height:{height}">
 				<xsl:for-each select="rows">
-					<table cellpadding="0" cellspacing="0" border="0">
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">
 						<xsl:call-template name="form_by_rows">
 							<xsl:with-param name="form" select="$form"/>
 							<xsl:with-param name="node" select="$node"/>
