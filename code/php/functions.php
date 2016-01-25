@@ -197,11 +197,9 @@ function force_ssl() {
 	if($serverport==$porthttps) return;
 	// MAIN VARIABLES
 	$protocol="https://";
-	$servername=getDefault("server/hostname");
-	if(!$servername) $servername=getServer("SERVER_NAME");
+	$servername=getDefault("server/hostname",getServer("SERVER_NAME"));
 	$addedport="";
-	$scriptname=getDefault("server/pathname");
-	if(!$scriptname) $scriptname=getServer("SCRIPT_NAME");
+	$scriptname=getDefault("server/pathname",getServer("SCRIPT_NAME"));
 	$querystring=getServer("QUERY_STRING");
 	// SOME CHECKS
 	if(substr($scriptname,0,1)!="/") $scriptname="/".$scriptname;

@@ -69,8 +69,8 @@ function useCookie($name,$value="",$default="") {
 }
 
 function __useCookie_setcookie($name,$value,$expire) {
-	setcookie($name,$value,$expire,dirname(getServer("SCRIPT_NAME")),"",eval_bool(getDefault("server/forcessl")),false);
-	setcookie("__".$name."__",$value==""?"":$expire,$expire,dirname(getServer("SCRIPT_NAME")),"",eval_bool(getDefault("server/forcessl")),false);
+	setcookie($name,$value,$expire,dirname(getDefault("server/pathname",getServer("SCRIPT_NAME"))),"",eval_bool(getDefault("server/forcessl")),false);
+	setcookie("__".$name."__",$value==""?"":$expire,$expire,dirname(getDefault("server/pathname",getServer("SCRIPT_NAME"))),"",eval_bool(getDefault("server/forcessl")),false);
 }
 
 function current_datetime($offset=0) {
@@ -201,11 +201,9 @@ function sprintr($array,$oneline=false) {
 function get_base() {
 	// MAIN VARIABLES
 	$protocol="http://";
-	$servername=getDefault("server/hostname");
-	if(!$servername) $servername=getServer("SERVER_NAME");
+	$servername=getDefault("server/hostname",getServer("SERVER_NAME"));
 	$addedport="";
-	$scriptname=getDefault("server/pathname");
-	if(!$scriptname) $scriptname=getServer("SCRIPT_NAME");
+	$scriptname=getDefault("server/pathname",getServer("SCRIPT_NAME"));
 	// SOME CHECKS
 	if(substr($scriptname,0,1)!="/") $scriptname="/".$scriptname;
 	if(basename($scriptname)==getDefault("server/dirindex","index.php")) {

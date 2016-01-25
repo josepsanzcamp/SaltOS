@@ -116,7 +116,7 @@ function sess_init() {
 	foreach($ini_set as $varname=>$newvalue) ini_set($varname,$newvalue);
 	session_set_save_handler("sess_open_handler","sess_close_handler","sess_read_handler","sess_write_handler","sess_destroy_handler","sess_gc_handler");
 	session_save_path(getDefault("sess/save_path"));
-	session_set_cookie_params(0,dirname(getServer("SCRIPT_NAME")),"",eval_bool(getDefault("server/forcessl")),false);
+	session_set_cookie_params(0,dirname(getDefault("server/pathname",getServer("SCRIPT_NAME"))),"",eval_bool(getDefault("server/forcessl")),false);
 	session_start();
 }
 
