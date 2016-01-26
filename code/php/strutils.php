@@ -316,11 +316,9 @@ function header_expires($cache=true) {
 function header_etag($hash) {
 	$etag=getServer("HTTP_IF_NONE_MATCH");
 	if($etag==$hash) {
-		ob_start_protected(getDefault("obhandler"));
 		header_powered();
 		header_expires();
 		header("HTTP/1.1 304 Not Modified");
-		ob_end_flush();
 		die();
 	}
 }
@@ -410,26 +408,42 @@ function str_word_count_utf8($subject) {
 	return $matches[0];
 }
 
+function output_handler($buffer) {
+	$encodings=getServer("HTTP_ACCEPT_ENCODING");
+	if(stripos($encodings,"gzip")!==false && function_exists("gzencode")) {
+		$buffer=gzencode($buffer);
+		header("Content-Encoding: gzip");
+	} elseif(stripos($encodings,"deflate")!==false && function_exists("gzdeflate")) {
+		$buffer=gzdeflate($buffer);
+		header("Content-Encoding: deflate");
+	}
+	header("Vary: Accept-Encoding");
+	return $buffer;
+}
+
 function output_buffer($buffer,$type) {
-	ob_start_protected(getDefault("obhandler"));
+	$buffer=output_handler($buffer);
 	header_powered();
 	header_expires(false);
-	header("Content-type: $type");
+	$size=strlen($buffer);
+	header("Content-Type: ${type}");
+	header("Content-Length: ${size}");
 	echo $buffer;
-	ob_end_flush();
 	die();
 }
 
 function output_file($file) {
 	$hash=md5_file($file);
 	header_etag($hash);
-	ob_start_protected(getDefault("obhandler"));
+	$buffer=file_get_contents($file);
+	$buffer=output_handler($buffer);
 	header_powered();
 	header_expires($hash);
 	$type=saltos_content_type($file);
-	header("Content-Type: $type");
-	readfile($file);
-	ob_end_flush();
+	$size=strlen($buffer);
+	header("Content-Type: ${type}");
+	header("Content-Length: ${size}");
+	echo $buffer;
 	die();
 }
 
@@ -567,16 +581,6 @@ function password_strength($pass) {
 	$score=round($ps->get_score(),0);
 	unset($ps);
 	return $score;
-}
-
-function ob_start_protected($param="") {
-	if($param!="") {
-		capture_next_error();
-		ob_start($param);
-		$error=get_clear_error();
-		if($error=="") return;
-	}
-	ob_start();
 }
 
 function isphp($version) {

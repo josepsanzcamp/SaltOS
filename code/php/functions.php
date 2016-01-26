@@ -1025,6 +1025,7 @@ function show_php_error($array=null) {
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");
+			header("Content-Length: ".strlen($msg));
 		}
 	}
 	// DUMP TO STDOUT

@@ -90,24 +90,27 @@ if(getParam("action")=="signature") {
 	$file=__signature_getfile(getParam("id"));
 	if(!$file) die();
 	if(!$file["file"]) die();
-	ob_start_protected(getDefault("obhandler"));
-	header_powered();
-	header_expires(false);
 	$type=$file["type"];
 	if($type=="text/plain") {
 		$file["data"]=htmlentities($file["data"],ENT_COMPAT,"UTF-8");
 		$file["data"]=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$file["data"]);
 		$type="text/html";
 	}
-	header("Content-Type: ${type}");
-	header("x-frame-options: SAMEORIGIN");
+	ob_start();
 	require_once("php/getmail.php");
 	if($type=="text/html") echo __HTML_PAGE_OPEN__.__HTML_TEXT_OPEN__;
 	if($type=="text/plain") echo __HTML_PAGE_OPEN__.__PLAIN_TEXT_OPEN__;
 	echo $file["data"];
 	if($type=="text/html") echo __HTML_TEXT_CLOSE__.__HTML_PAGE_CLOSE__;
 	if($type=="text/plain") echo __PLAIN_TEXT_CLOSE__.__HTML_PAGE_CLOSE__;
-	ob_end_flush();
+	$buffer=ob_get_clean();
+	$buffer=output_handler($buffer);
+	header_powered();
+	header_expires(false);
+	header("Content-Type: ${type}");
+	header("Content-Length: ".strlen($buffer));
+	header("x-frame-options: SAMEORIGIN");
+	echo $buffer;
 	die();
 }
 ?>

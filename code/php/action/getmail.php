@@ -39,7 +39,9 @@ if(getParam("action")=="getmail") {
 			if(!isset($session["files"])) $session["files"]=array();
 			foreach($session["files"] as $key=>$file) {
 				if(!$first) $buffer.=" | ";
-				$buffer.="<a href='javascript:void(0)' onclick='download2(\"correo\",\"session\",\"${key}\")'><b>${file["name"]}</b></a> (${file["size"]})";
+				$name=$file["name"];
+				$size=__getmail_gethumansize($file["size"]);
+				$buffer.="<a href='javascript:void(0)' onclick='download2(\"correo\",\"session\",\"${key}\")'><b>${name}</b></a> (${size})";
 				$first=0;
 			}
 			output_buffer($buffer,"text/html");
@@ -49,13 +51,13 @@ if(getParam("action")=="getmail") {
 			$name=$temp["name"];
 			$type=$temp["mime"];
 			$file=$temp["file"];
-			ob_start_protected(getDefault("obhandler"));
+			$size=$temp["size"];
 			header_powered();
 			header_expires(false);
 			header("Content-Type: ${type}");
+			header("Content-Length: ${size}");
 			header("Content-Disposition: attachment; filename=\"${name}\"");
 			readfile($file);
-			ob_end_flush();
 			die();
 		}
 		die();
@@ -75,13 +77,13 @@ if(getParam("action")=="getmail") {
 		$buffer.=$source;
 		$buffer.=__PLAIN_TEXT_CLOSE__;
 		$buffer.=__HTML_PAGE_CLOSE__;
-		ob_start_protected(getDefault("obhandler"));
+		$buffer=output_handler($buffer);
 		header_powered();
 		header_expires(false);
 		header("Content-Type: text/html");
+		header("Content-Length: ".strlen($buffer));
 		header("x-frame-options: SAMEORIGIN");
 		echo $buffer;
-		ob_end_flush();
 		die();
 	}
 	// CHECK FOR CID REQUEST
@@ -150,13 +152,13 @@ if(getParam("action")=="getmail") {
 				}
 			}
 			$buffer.=__HTML_PAGE_CLOSE__;
-			ob_start_protected(getDefault("obhandler"));
+			$buffer=output_handler($buffer);
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");
+			header("Content-Length: ".strlen($buffer));
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
-			ob_end_flush();
 			die();
 		} elseif($cid=="files") {
 			$result=__getmail_getfiles(__getmail_getnode("0",$decoded));
@@ -170,12 +172,12 @@ if(getParam("action")=="getmail") {
 				$buffer.="<a href='javascript:void(0)' onclick='download2(\"correo\",\"${id}\",\"${chash}\")'><b>${cname}</b></a> (${hsize})";
 				$first=0;
 			}
-			ob_start_protected(getDefault("obhandler"));
+			$buffer=output_handler($buffer);
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");
+			header("Content-Length: ".strlen($buffer));
 			echo $buffer;
-			ob_end_flush();
 			die();
 		} elseif($cid=="full") {
 			$result=__getmail_getinfo(__getmail_getnode("0",$decoded));
@@ -304,25 +306,24 @@ if(getParam("action")=="getmail") {
 				}
 			}
 			$buffer.=__HTML_PAGE_CLOSE__;
-			ob_start_protected(getDefault("obhandler"));
+			$buffer=output_handler($buffer);
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");
+			header("Content-Length: ".strlen($buffer));
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
-			ob_end_flush();
 			die();
 		} else {
 			$result=__getmail_getcid(__getmail_getnode("0",$decoded),$cid);
 			if(!$result) die();
 			$name=$result["cname"]?$result["cname"]:$result["cid"];
-			ob_start_protected(getDefault("obhandler"));
 			header_powered();
 			header_expires(false);
-			header("Content-Type: ${result["type"]}");
+			header("Content-Type: ${result["ctype"]}");
+			header("Content-Length: ${result["csize"]}");
 			header("Content-Disposition: attachment; filename=\"${name}\"");
 			echo $result["body"];
-			ob_end_flush();
 			die();
 		}
 		die();
@@ -565,6 +566,7 @@ if(getParam("page")=="correo") {
 		}
 	}
 	if(isset($id_extra[1]) && $id_extra[1]=="session") {
+		require_once("php/getmail.php");
 		sess_init();
 		$session=$_SESSION["correo"];
 		sess_close();
@@ -576,7 +578,7 @@ if(getParam("page")=="correo") {
 		if(!isset($session["files"])) $session["files"]=array();
 		foreach($session["files"] as $key2=>$file) {
 			$fichero=$file["name"];
-			$size=$file["size"];
+			$size=__getmail_gethumansize($file["size"]);
 			$download="download2('correo','session','${key2}')";
 			$viewpdf="viewpdf2('correo','session','${key2}')";
 			set_array($rows[$key],"row",array("id"=>$key2,"usuario"=>$usuario,"grupo"=>$grupo,"datetime"=>$datetime,"fichero"=>$fichero,"fichero_size"=>$size,"download"=>$download,"viewpdf"=>$viewpdf));

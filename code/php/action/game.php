@@ -42,13 +42,13 @@ if(getParam("action")=="game") {
 	$buffer=ob_get_clean();
 	$hash=md5($buffer);
 	header_etag($hash);
-	ob_start_protected(getDefault("obhandler"));
+	$buffer=output_handler($buffer);
 	header_powered();
 	header_expires($hash);
 	header("Content-Type: text/html");
+	header("Content-Length: ".strlen($buffer));
 	header("x-frame-options: SAMEORIGIN");
 	echo $buffer;
-	ob_end_flush();
 	die();
 }
 ?>

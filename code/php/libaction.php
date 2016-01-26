@@ -113,15 +113,19 @@ function __excel_dump($query,$page) {
 	require_once("php/import.php");
 	for($i=0;$i<count($matrix[0]);$i++) $objPHPExcel->getActiveSheet()->getColumnDimension(__import_col2name($i))->setAutoSize(true);
 	$objPHPExcel->getActiveSheet()->setTitle(substr($title,0,31));
+	$objWriter=PHPExcel_IOFactory::createWriter($objPHPExcel,"Excel5");
+	$name=$page.getDefault("exts/excelext",".xls");
+	ob_start();
+	$objWriter->save("php://output");
+	$buffer=ob_get_clean();
 	if(!defined("__CANCEL_HEADER__")) {
 		header_powered();
 		header_expires(false);
 		header("Content-Type: application/x-excel");
-		$name=$page.getDefault("exts/excelext",".xls");
+		header("Content-Length: ".strlen($buffer));
 		header("Content-Disposition: attachment; filename=\"$name\"");
 	}
-	$objWriter=PHPExcel_IOFactory::createWriter($objPHPExcel,"Excel5");
-	$objWriter->save("php://output");
+	echo $buffer;
 	if(!defined("__CANCEL_DIE__")) die();
 }
 
@@ -824,6 +828,7 @@ function __pdf_eval_pdftag($array,$row=array()) {
 						header_powered();
 						header_expires(false);
 						header("Content-Type: application/pdf");
+						header("Content-Length: ".strlen($buffer));
 						header("Content-Disposition: attachment; filename=\"$name\"");
 					}
 					echo $buffer;

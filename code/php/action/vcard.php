@@ -150,16 +150,14 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 	}
 	$buffer.="END:VCARD\r\n";
 	if(!defined("__CANCEL_HEADER__")) {
-		ob_start_protected(getDefault("obhandler"));
+		$buffer=output_handler($buffer);
 		header_powered();
 		header_expires(false);
 		header("Content-Type: text/x-vcard");
+		header("Content-Length: ".strlen($buffer));
 		header("Content-disposition: attachment; filename=\"$name\"");
-		echo $buffer;
-		ob_end_flush();
-	} else {
-		echo $buffer;
 	}
+	echo $buffer;
 	if(!defined("__CANCEL_DIE__")) die();
 }
 ?>

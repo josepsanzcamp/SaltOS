@@ -74,13 +74,13 @@ if(getParam("action")=="barcode") {
 		chmod_protected($cache,0666);
 	}
 	if(!defined("__CANCEL_HEADER__")) {
-		ob_start_protected(getDefault("obhandler"));
 		header_powered();
 		header_expires(false);
 		$type=saltos_content_type($cache);
-		header("Content-Type: $type");
+		$size=filesize($cache);
+		header("Content-Type: ${type}");
+		header("Content-Length: ${size}");
 		readfile($cache);
-		ob_end_flush();
 	} else {
 		readfile($cache);
 	}

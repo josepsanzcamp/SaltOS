@@ -80,13 +80,13 @@ if(getParam("action")=="qrcode") {
 		imagedestroy($im);
 		chmod_protected($cache,0666);
 	}
-	ob_start_protected(getDefault("obhandler"));
 	header_powered();
 	header_expires(false);
 	$type=saltos_content_type($cache);
-	header("Content-Type: $type");
+	$size=filesize($cache);
+	header("Content-Type: ${type}");
+	header("Content-Length: ${size}");
 	readfile($cache);
-	ob_end_flush();
 	die();
 }
 ?>

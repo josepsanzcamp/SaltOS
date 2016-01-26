@@ -75,13 +75,12 @@ if(getParam("action")=="download") {
 	if(!defined("__CANCEL_HEADER__")) {
 		$hash=md5_file($file);
 		header_etag($hash);
-		ob_start_protected();
 		header_powered();
 		header_expires($hash);
-		header("Content-Disposition: attachment; filename=\"${name}\"");
 		header("Content-Type: ${type}");
+		header("Content-Length: ${size}");
+		header("Content-Disposition: attachment; filename=\"${name}\"");
 		readfile_protected($file);
-		ob_end_flush();
 	} else {
 		readfile($file);
 	}

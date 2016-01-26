@@ -134,15 +134,18 @@ if(getParam("action")=="captcha") {
 	}
 	// APPLY BLUR
 	if(eval_bool($blur)) if(function_exists("imagefilter")) imagefilter($im,IMG_FILTER_GAUSSIAN_BLUR);
-	// OUTPUT IMAGE
-	ob_start_protected(getDefault("obhandler"));
-	header_powered();
-	header_expires(false);
-	header("Content-type: image/png");
+	// CONTINUE
+	ob_start();
 	imagepng($im);
+	$buffer=ob_get_clean();
 	imagedestroy($im);
 	imagedestroy($im2);
-	ob_end_flush();
+	// OUTPUT IMAGE
+	header_powered();
+	header_expires(false);
+	header("Content-Type: image/png");
+	header("Content-Length: ".strlen($buffer));
+	echo $buffer;
 	die();
 }
 ?>

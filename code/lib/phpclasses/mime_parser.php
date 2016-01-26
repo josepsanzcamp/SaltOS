@@ -976,7 +976,7 @@ class mime_parser_class
 						if($encoded > $position)
 						{
 							if(count($decoded_header))
-								$decoded_header[count($decoded_header)-1]['Value'].=substr($value, $position, $encoded - $position);
+								$decoded_header[count($decoded_header)-1]['Value'].=substr($value, $position, $encoded - $position - 1);
 							else
 							{
 								$decoded_header[]=array(

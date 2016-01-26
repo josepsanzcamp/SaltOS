@@ -53,6 +53,17 @@ if(getParam("action")=="sendmail") {
 		$body=highlight_geshi($body);
 		// REMOVE THE SIGNATURE TAG IF EXISTS
 		$body=str_replace(array("<signature>","</signature>"),"",$body);
+		// CHECK FOR MOBILE DEVICES
+		if(ismobile()) {
+			$source=$body;
+			$source=htmlentities($source,ENT_COMPAT,"UTF-8");
+			$source=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$source);
+			$body=__HTML_PAGE_OPEN__;
+			$body.=__PLAIN_TEXT_OPEN__;
+			$body.=$source;
+			$body.=__PLAIN_TEXT_CLOSE__;
+			$body.=__HTML_PAGE_CLOSE__;
+		}
 		// REPLACE SIGNATURE IF NEEDED AND ADD THE INLINE IMAGE
 		$inlines=array();
 		require_once("php/libaction.php");
@@ -639,6 +650,12 @@ if(getParam("page")=="correo") {
 			$body_extra=$body_extra.__HTML_NEWLINE__.__HTML_NEWLINE__.$oldhead.__HTML_NEWLINE__.__HTML_NEWLINE__.__BLOCKQUOTE_OPEN__.$oldbody.__BLOCKQUOTE_CLOSE__;
 		}
 	}
+	// CHECK FOR MOBILE DEVICES
+	if(ismobile() && $body_extra!="") {
+		require_once("php/getmail.php");
+		$body_extra="\n\n\n".html2text($body_extra);
+	}
+	// CONTINUE
 	set_array($rows[$key],"row",array("id"=>0,"id_extra"=>implode("_",$id_extra),
 		"id_cuenta"=>$id_cuenta,"para"=>$to_extra,"cc"=>$cc_extra,"bcc"=>$bcc_extra,
 		"subject"=>$subject_extra,"body"=>$body_extra,

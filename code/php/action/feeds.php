@@ -218,13 +218,13 @@ if(getParam("action")=="feeds") {
 			$buffer.=$row["description"];
 			$buffer.=__HTML_TEXT_CLOSE__;
 			$buffer.=__HTML_PAGE_CLOSE__;
-			ob_start_protected(getDefault("obhandler"));
+			$buffer=output_handler($buffer);
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");
+			header("Content-Length: ".strlen($buffer));
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
-			ob_end_flush();
 			die();
 		} elseif($cid=="full") {
 			$buffer="";
@@ -260,13 +260,13 @@ if(getParam("action")=="feeds") {
 			$buffer.=$row["description"];
 			$buffer.=__HTML_TEXT_CLOSE__;
 			$buffer.=__HTML_PAGE_CLOSE__;
-			ob_start_protected(getDefault("obhandler"));
+			$buffer=output_handler($buffer);
 			header_powered();
 			header_expires(false);
 			header("Content-Type: text/html");
+			header("Content-Length: ".strlen($buffer));
 			header("x-frame-options: SAMEORIGIN");
 			echo $buffer;
-			ob_end_flush();
 			die();
 		}
 		die();

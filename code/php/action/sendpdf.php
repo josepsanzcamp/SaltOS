@@ -79,7 +79,7 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 		$name=$body[$key].".pdf";
 		$name=encode_bad_chars_file($name);
 		$mime="application/pdf";
-		$size=__getmail_gethumansize(strlen($pdf));
+		$size=strlen($pdf);
 		$files["pdf_${key}"]=array("file"=>$file,"name"=>$name,"mime"=>$mime,"size"=>$size);
 	}
 	$body=implode("<br/>",$body);

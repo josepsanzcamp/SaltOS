@@ -48,10 +48,6 @@ if($page=="importaciones") {
 		"nodes"=>array($node0,$node1)
 	));
 	// DISPLAY OUTPUT
-	ob_start_protected(getDefault("obhandler"));
-	header_powered();
-	header_expires(false);
-	header("Content-type: text/html");
 	if(is_array($array)) {
 		$buscar=getParam("buscar");
 		if($buscar!="") $array=__import_filter($array,$buscar);
@@ -70,8 +66,12 @@ if($page=="importaciones") {
 	$next=($currentpage<$totalpages)?1:0;
 	$last=($currentpage<$totalpages)?1:0;
 	$buffer.=javascript_template("import_pager('".LANG("paginaspc").$currentpage.LANG("spcdespc").$totalpages." (".LANG("regsfrom",$page)." ".$currentregini.LANG("spcalspc").$currentregend.LANG("spcdespc").$count.")."."',".$currentpage.",".$totalpages.",".$first.",".$previous.",".$next.",".$last.")");
+	$buffer=output_handler($buffer);
+	header_powered();
+	header_expires(false);
+	header("Content-Type: text/html");
+	header("Content-Length: ".strlen($buffer));
 	echo $buffer;
-	ob_end_flush();
 	die();
 }
 if($page=="datacfg") {
