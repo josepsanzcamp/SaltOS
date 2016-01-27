@@ -44,7 +44,11 @@ if(getParam("action")=="getmail") {
 				$buffer.="<a href='javascript:void(0)' onclick='download2(\"correo\",\"session\",\"${key}\")'><b>${name}</b></a> (${size})";
 				$first=0;
 			}
-			output_buffer($buffer,"text/html");
+			output_handler(array(
+				"data"=>$buffer,
+				"type"=>"text/html",
+				"cache"=>false
+			));
 		} else {
 			if(!isset($session["files"][$cid])) die();
 			$temp=$session["files"][$cid];
@@ -52,13 +56,11 @@ if(getParam("action")=="getmail") {
 			$type=$temp["mime"];
 			$file=$temp["file"];
 			$size=$temp["size"];
-			header_powered();
-			header_expires(false);
-			header("Content-Type: ${type}");
-			header("Content-Length: ${size}");
-			header("Content-Disposition: attachment; filename=\"${name}\"");
-			readfile($file);
-			die();
+			output_handler(array(
+				"file"=>$file,
+				"cache"=>false,
+				"name"=>$name
+			));
 		}
 		die();
 	}
@@ -77,14 +79,12 @@ if(getParam("action")=="getmail") {
 		$buffer.=$source;
 		$buffer.=__PLAIN_TEXT_CLOSE__;
 		$buffer.=__HTML_PAGE_CLOSE__;
-		$buffer=output_handler($buffer);
-		header_powered();
-		header_expires(false);
-		header("Content-Type: text/html");
-		header("Content-Length: ".strlen($buffer));
-		header("x-frame-options: SAMEORIGIN");
-		echo $buffer;
-		die();
+		output_handler(array(
+			"data"=>$buffer,
+			"type"=>"text/html",
+			"cache"=>false,
+			"extra"=>array("x-frame-options: SAMEORIGIN")
+		));
 	}
 	// CHECK FOR CID REQUEST
 	if(getParam("id") && getParam("cid")) {
@@ -152,14 +152,12 @@ if(getParam("action")=="getmail") {
 				}
 			}
 			$buffer.=__HTML_PAGE_CLOSE__;
-			$buffer=output_handler($buffer);
-			header_powered();
-			header_expires(false);
-			header("Content-Type: text/html");
-			header("Content-Length: ".strlen($buffer));
-			header("x-frame-options: SAMEORIGIN");
-			echo $buffer;
-			die();
+			output_handler(array(
+				"data"=>$buffer,
+				"type"=>"text/html",
+				"cache"=>false,
+				"extra"=>array("x-frame-options: SAMEORIGIN")
+			));
 		} elseif($cid=="files") {
 			$result=__getmail_getfiles(__getmail_getnode("0",$decoded));
 			$buffer="";
@@ -172,13 +170,12 @@ if(getParam("action")=="getmail") {
 				$buffer.="<a href='javascript:void(0)' onclick='download2(\"correo\",\"${id}\",\"${chash}\")'><b>${cname}</b></a> (${hsize})";
 				$first=0;
 			}
-			$buffer=output_handler($buffer);
-			header_powered();
-			header_expires(false);
-			header("Content-Type: text/html");
-			header("Content-Length: ".strlen($buffer));
-			echo $buffer;
-			die();
+			output_handler(array(
+				"data"=>$buffer,
+				"type"=>"text/html",
+				"cache"=>false,
+				"extra"=>array("x-frame-options: SAMEORIGIN")
+			));
 		} elseif($cid=="full") {
 			$result=__getmail_getinfo(__getmail_getnode("0",$decoded));
 			$lista=array("from","to","cc","bcc");
@@ -306,25 +303,23 @@ if(getParam("action")=="getmail") {
 				}
 			}
 			$buffer.=__HTML_PAGE_CLOSE__;
-			$buffer=output_handler($buffer);
-			header_powered();
-			header_expires(false);
-			header("Content-Type: text/html");
-			header("Content-Length: ".strlen($buffer));
-			header("x-frame-options: SAMEORIGIN");
-			echo $buffer;
-			die();
+			output_handler(array(
+				"data"=>$buffer,
+				"type"=>"text/html",
+				"cache"=>false,
+				"extra"=>array("x-frame-options: SAMEORIGIN")
+			));
 		} else {
 			$result=__getmail_getcid(__getmail_getnode("0",$decoded),$cid);
 			if(!$result) die();
 			$name=$result["cname"]?$result["cname"]:$result["cid"];
-			header_powered();
-			header_expires(false);
-			header("Content-Type: ${result["ctype"]}");
-			header("Content-Length: ${result["csize"]}");
-			header("Content-Disposition: attachment; filename=\"${name}\"");
-			echo $result["body"];
-			die();
+			output_handler(array(
+				"data"=>$result["body"],
+				"type"=>$result["ctype"],
+				"size"=>$result["csize"],
+				"cache"=>false,
+				"name"=>$name
+			));
 		}
 		die();
 	}

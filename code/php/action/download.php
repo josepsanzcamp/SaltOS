@@ -72,18 +72,15 @@ if(getParam("action")=="download") {
 		$type=$result["fichero_type"];
 		$size=$result["fichero_size"];
 	}
-	if(!defined("__CANCEL_HEADER__")) {
-		$hash=md5_file($file);
-		header_etag($hash);
-		header_powered();
-		header_expires($hash);
-		header("Content-Type: ${type}");
-		header("Content-Length: ${size}");
-		header("Content-Disposition: attachment; filename=\"${name}\"");
-		readfile_protected($file);
+	if(!defined("__CANCEL_DIE__")) {
+		output_handler(array(
+			"file"=>$file,
+			"type"=>$type,
+			"cache"=>true,
+			"name"=>$name
+		));
 	} else {
 		readfile($file);
 	}
-	if(!defined("__CANCEL_DIE__")) die();
 }
 ?>

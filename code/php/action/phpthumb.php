@@ -112,6 +112,9 @@ if(getParam("action")=="phpthumb") {
 		imagedestroy($im2);
 		chmod_protected($cache,0666);
 	}
-	output_file($cache);
+	output_handler(array(
+		"file"=>$cache,
+		"cache"=>true
+	));
 }
 ?>

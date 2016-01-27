@@ -29,6 +29,10 @@ if(getParam("action")=="cookies") {
 	$name=getParam("name");
 	$value=getParam("value");
 	$value=use_table_cookies($name,$value);
-	output_buffer($value,"text/plain");
+	output_handler(array(
+		"data"=>$value,
+		"type"=>"text/plain",
+		"cache"=>false
+	));
 }
 ?>

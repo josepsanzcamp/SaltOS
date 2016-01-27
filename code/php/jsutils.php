@@ -26,8 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function javascript_headers() {
 	if(!headers_sent()) {
-		header_powered();
-		header_expires(false);
 		header("Content-Type: text/html");
 	}
 }

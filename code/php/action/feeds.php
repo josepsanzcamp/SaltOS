@@ -194,7 +194,11 @@ if(getParam("action")=="feeds") {
 		$_RESULT["rows"]=array_values($_RESULT["rows"]);
 		$buffer=json_encode($_RESULT);
 		// CONTINUE
-		output_buffer($buffer,"application/json");
+		output_handler(array(
+			"data"=>$buffer,
+			"type"=>"application/json",
+			"cache"=>false
+		));
 	}
 	if(getParam("id")) {
 		require_once("php/getmail.php");
@@ -218,14 +222,12 @@ if(getParam("action")=="feeds") {
 			$buffer.=$row["description"];
 			$buffer.=__HTML_TEXT_CLOSE__;
 			$buffer.=__HTML_PAGE_CLOSE__;
-			$buffer=output_handler($buffer);
-			header_powered();
-			header_expires(false);
-			header("Content-Type: text/html");
-			header("Content-Length: ".strlen($buffer));
-			header("x-frame-options: SAMEORIGIN");
-			echo $buffer;
-			die();
+			output_handler(array(
+				"data"=>$buffer,
+				"type"=>"text/html",
+				"cache"=>false,
+				"extra"=>array("x-frame-options: SAMEORIGIN")
+			));
 		} elseif($cid=="full") {
 			$buffer="";
 			$lista=array(
@@ -260,14 +262,12 @@ if(getParam("action")=="feeds") {
 			$buffer.=$row["description"];
 			$buffer.=__HTML_TEXT_CLOSE__;
 			$buffer.=__HTML_PAGE_CLOSE__;
-			$buffer=output_handler($buffer);
-			header_powered();
-			header_expires(false);
-			header("Content-Type: text/html");
-			header("Content-Length: ".strlen($buffer));
-			header("x-frame-options: SAMEORIGIN");
-			echo $buffer;
-			die();
+			output_handler(array(
+				"data"=>$buffer,
+				"type"=>"text/html",
+				"cache"=>false,
+				"extra"=>array("x-frame-options: SAMEORIGIN")
+			));
 		}
 		die();
 	}

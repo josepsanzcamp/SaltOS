@@ -141,11 +141,10 @@ if(getParam("action")=="captcha") {
 	imagedestroy($im);
 	imagedestroy($im2);
 	// OUTPUT IMAGE
-	header_powered();
-	header_expires(false);
-	header("Content-Type: image/png");
-	header("Content-Length: ".strlen($buffer));
-	echo $buffer;
-	die();
+	output_handler(array(
+		"data"=>$buffer,
+		"type"=>"image/png",
+		"cache"=>false
+	));
 }
 ?>

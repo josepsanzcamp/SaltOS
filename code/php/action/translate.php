@@ -44,7 +44,10 @@ if(getParam("action")=="translate") {
 			file_put_contents($cache,$options);
 			chmod_protected($cache,0666);
 		}
-		output_file($cache);
+		output_handler(array(
+			"file"=>$cache,
+			"cache"=>true
+		));
 	}
 	// SECURITY CHECKS
 	$error=0;
@@ -69,6 +72,9 @@ if(getParam("action")=="translate") {
 		file_put_contents($cache,$text);
 		chmod_protected($cache,0666);
 	}
-	output_file($cache);
+	output_handler(array(
+		"file"=>$cache,
+		"cache"=>false
+	));
 }
 ?>

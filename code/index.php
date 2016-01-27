@@ -164,5 +164,9 @@ $format=strtolower(getDefault("format","xml"));
 if(!in_array($format,array("xml","html"))) show_php_error(array("phperror"=>"Unknown format '$format'"));
 if($format=="html") $buffer=xml2html($buffer);
 // FLUSH THE OUTPUT NOW
-output_buffer($buffer,"text/$format");
+output_handler(array(
+	"data"=>$buffer,
+	"type"=>"text/$format",
+	"cache"=>false
+));
 ?>

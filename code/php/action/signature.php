@@ -84,7 +84,11 @@ if(getParam("action")=="signature") {
 		$_RESULT["rows"]=array_values($_RESULT["rows"]);
 		$buffer=json_encode($_RESULT);
 		// CONTINUE
-		output_buffer($buffer,"application/json");
+		output_handler(array(
+			"data"=>$buffer,
+			"type"=>"application/json",
+			"cache"=>false
+		));
 	}
 	// NORMAL REQUEST SIGNATURE CODE
 	$file=__signature_getfile(getParam("id"));
@@ -96,6 +100,7 @@ if(getParam("action")=="signature") {
 		$file["data"]=str_replace(array(" ","\t","\n"),array("&nbsp;",str_repeat("&nbsp;",8),"<br/>"),$file["data"]);
 		$type="text/html";
 	}
+	// PREPARE OUTPUT
 	ob_start();
 	require_once("php/getmail.php");
 	if($type=="text/html") echo __HTML_PAGE_OPEN__.__HTML_TEXT_OPEN__;
@@ -104,13 +109,12 @@ if(getParam("action")=="signature") {
 	if($type=="text/html") echo __HTML_TEXT_CLOSE__.__HTML_PAGE_CLOSE__;
 	if($type=="text/plain") echo __PLAIN_TEXT_CLOSE__.__HTML_PAGE_CLOSE__;
 	$buffer=ob_get_clean();
-	$buffer=output_handler($buffer);
-	header_powered();
-	header_expires(false);
-	header("Content-Type: ${type}");
-	header("Content-Length: ".strlen($buffer));
-	header("x-frame-options: SAMEORIGIN");
-	echo $buffer;
-	die();
+	// SEND OUTPUT
+	output_handler(array(
+		"data"=>$buffer,
+		"type"=>$type,
+		"cache"=>false,
+		"extra"=>array("x-frame-options: SAMEORIGIN")
+	));
 }
 ?>

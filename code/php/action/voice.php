@@ -53,6 +53,9 @@ if(getParam("action")=="voice") {
 		if(!file_exists($cache)) action_denied();
 		chmod_protected($cache,0666);
 	}
-	output_file($cache);
+	output_handler(array(
+		"file"=>$cache,
+		"cache"=>true
+	));
 }
 ?>

@@ -1018,18 +1018,19 @@ function show_php_error($array=null) {
 	// CHECK FOR CANCEL_DIE
 	if(isset($array["cancel"]) && eval_bool($array["cancel"])) return;
 	if(isset($array["die"]) && !eval_bool($array["die"])) return;
+	while(ob_get_level()) ob_end_clean(); // TRICK TO CLEAR SCREEN
 	// PREPARE THE FINAL REPORT (ONLY IN NOT SHELL MODE)
 	if(!getServer("SHELL")) {
 		$msg=pretty_html_error($msg);
 		if(!headers_sent()) {
-			header_powered();
-			header_expires(false);
-			header("Content-Type: text/html");
-			header("Content-Length: ".strlen($msg));
+			output_handler(array(
+				"data"=>$msg,
+				"type"=>"text/html",
+				"cache"=>false
+			));
 		}
 	}
 	// DUMP TO STDOUT
-	while(ob_get_level()) ob_end_clean(); // TRICK TO CLEAR SCREEN
 	echo $msg;
 	die();
 }

@@ -64,6 +64,10 @@ if(getParam("action")=="pagerlist") {
 	$_RESULT["rows"]=array_values($_RESULT["rows"]);
 	$buffer=json_encode($_RESULT);
 	// CONTINUE
-	output_buffer($buffer,"application/json");
+	output_handler(array(
+		"data"=>$buffer,
+		"type"=>"application/json",
+		"cache"=>false
+	));
 }
 ?>

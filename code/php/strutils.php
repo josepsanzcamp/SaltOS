@@ -296,33 +296,6 @@ function intelligence_cut($txt,$max,$end="...") {
 	return $preview;
 }
 
-function header_powered() {
-	header("X-Powered-By: ".get_name_version_revision());
-}
-
-function header_expires($cache=true) {
-	if($cache) {
-		header("Expires: ".gmdate("D, d M Y H:i:s",time()+getDefault("cache/cachegctimeout"))." GMT");
-		header("Cache-Control: max-age=".getDefault("cache/cachegctimeout"));
-		header("Pragma: public");
-		if(is_string($cache) && strlen($cache)==32) header("ETag: $cache");
-	} else {
-		header("Expires: -1");
-		header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
-		header("Pragma: no-cache");
-	}
-}
-
-function header_etag($hash) {
-	$etag=getServer("HTTP_IF_NONE_MATCH");
-	if($etag==$hash) {
-		header_powered();
-		header_expires();
-		header("HTTP/1.1 304 Not Modified");
-		die();
-	}
-}
-
 function xml2html($buffer,$usecache=true) {
 	// SOME CHECKS
 	if(!class_exists("DomDocument")) show_php_error(array("phperror"=>"Class DomDocument not found","details"=>"Try to install php-xml package"));
@@ -408,43 +381,57 @@ function str_word_count_utf8($subject) {
 	return $matches[0];
 }
 
-function output_handler($buffer) {
-	$encodings=getServer("HTTP_ACCEPT_ENCODING");
-	if(stripos($encodings,"gzip")!==false && function_exists("gzencode")) {
-		$buffer=gzencode($buffer);
+function output_handler($array) {
+	$file=isset($array["file"])?$array["file"]:"";
+	$data=isset($array["data"])?$array["data"]:"";
+	$type=isset($array["type"])?$array["type"]:"";
+	$cache=isset($array["cache"])?$array["cache"]:"";
+	$name=isset($array["name"])?$array["name"]:"";
+	$extra=isset($array["extra"])?$array["extra"]:array();
+	$die=isset($array["die"])?$array["die"]:true;
+	if($file!="") {
+		if($data=="") $data=file_get_contents($file);
+		if($type=="") $type=saltos_content_type($file);
+	}
+	if($type==="") show_php_error(array("phperror"=>"output_handler requires the type parameter"));
+	if($cache==="") show_php_error(array("phperror"=>"output_handler requires the cache parameter"));
+	header("X-Powered-By: ".get_name_version_revision());
+	if($cache) {
+		$hash1=getServer("HTTP_IF_NONE_MATCH");
+		$hash2=md5($data);
+		if($hash1==$hash2) {
+			header("HTTP/1.1 304 Not Modified");
+			die();
+		}
+	}
+	$encoding=getServer("HTTP_ACCEPT_ENCODING");
+	if(stripos($encoding,"gzip")!==false && function_exists("gzencode")) {
 		header("Content-Encoding: gzip");
-	} elseif(stripos($encodings,"deflate")!==false && function_exists("gzdeflate")) {
-		$buffer=gzdeflate($buffer);
+		$data=gzencode($data);
+	} elseif(stripos($encoding,"deflate")!==false && function_exists("gzdeflate")) {
 		header("Content-Encoding: deflate");
+		$data=gzdeflate($data);
+	} else {
+		header("Content-Encoding: none");
 	}
 	header("Vary: Accept-Encoding");
-	return $buffer;
-}
-
-function output_buffer($buffer,$type) {
-	$buffer=output_handler($buffer);
-	header_powered();
-	header_expires(false);
-	$size=strlen($buffer);
+	$size=strlen($data);
+	if($cache) {
+		header("Expires: ".gmdate("D, d M Y H:i:s",time()+getDefault("cache/cachegctimeout"))." GMT");
+		header("Cache-Control: max-age=".getDefault("cache/cachegctimeout"));
+		header("Pragma: public");
+		header("ETag: ${hash2}");
+	} else {
+		header("Expires: -1");
+		header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
+		header("Pragma: no-cache");
+	}
 	header("Content-Type: ${type}");
 	header("Content-Length: ${size}");
-	echo $buffer;
-	die();
-}
-
-function output_file($file) {
-	$hash=md5_file($file);
-	header_etag($hash);
-	$buffer=file_get_contents($file);
-	$buffer=output_handler($buffer);
-	header_powered();
-	header_expires($hash);
-	$type=saltos_content_type($file);
-	$size=strlen($buffer);
-	header("Content-Type: ${type}");
-	header("Content-Length: ${size}");
-	echo $buffer;
-	die();
+	if($name!="") header("Content-disposition: attachment; filename=\"$name\"");
+	foreach($extra as $temp) header($temp,false);
+	echo $data;
+	if($die) die();
 }
 
 function minify_css($buffer) {

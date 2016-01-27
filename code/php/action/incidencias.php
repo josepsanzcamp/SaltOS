@@ -206,7 +206,6 @@ if($page=="correo") {
 		$_GET["id"]=$id_correo;
 		ob_start();
 		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
-		if(!defined("__CANCEL_HEADER__")) define("__CANCEL_HEADER__",1);
 		include("php/action/pdf.php");
 		$pdf=ob_get_clean();
 		$name=encode_bad_chars_file(LANG("correo","menu")." ".__incidencias_codigo($id_correo)." ".$info["subject"].getDefault("exts/pdfext",".pdf"));

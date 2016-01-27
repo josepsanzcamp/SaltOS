@@ -66,13 +66,11 @@ if($page=="importaciones") {
 	$next=($currentpage<$totalpages)?1:0;
 	$last=($currentpage<$totalpages)?1:0;
 	$buffer.=javascript_template("import_pager('".LANG("paginaspc").$currentpage.LANG("spcdespc").$totalpages." (".LANG("regsfrom",$page)." ".$currentregini.LANG("spcalspc").$currentregend.LANG("spcdespc").$count.")."."',".$currentpage.",".$totalpages.",".$first.",".$previous.",".$next.",".$last.")");
-	$buffer=output_handler($buffer);
-	header_powered();
-	header_expires(false);
-	header("Content-Type: text/html");
-	header("Content-Length: ".strlen($buffer));
-	echo $buffer;
-	die();
+	output_handler(array(
+		"data"=>$buffer,
+		"type"=>"text/html",
+		"cache"=>false
+	));
 }
 if($page=="datacfg") {
 	include("php/import.php");

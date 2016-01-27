@@ -80,6 +80,9 @@ if(getParam("action")=="cache") {
 		rename($precache,$cache);
 		chmod_protected($cache,0666);
 	}
-	output_file($cache);
+	output_handler(array(
+		"file"=>$cache,
+		"cache"=>true
+	));
 }
 ?>

@@ -30,9 +30,7 @@ if(getParam("action")=="qrcode") {
 		$msg=getParam("msg");
 	} elseif(getParam("page") && getParam("id")) {
 		ob_start();
-		define("__CANCEL_DIE__",1);
-		define("__CANCEL_HEADER__",1);
-		define("__CANCEL_FULL__",1);
+		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 		include("php/action/vcard.php");
 		$msg=ob_get_clean();
 	} else {
@@ -80,13 +78,9 @@ if(getParam("action")=="qrcode") {
 		imagedestroy($im);
 		chmod_protected($cache,0666);
 	}
-	header_powered();
-	header_expires(false);
-	$type=saltos_content_type($cache);
-	$size=filesize($cache);
-	header("Content-Type: ${type}");
-	header("Content-Length: ${size}");
-	readfile($cache);
-	die();
+	output_handler(array(
+		"file"=>$cache,
+		"cache"=>false
+	));
 }
 ?>

@@ -40,15 +40,11 @@ if(getParam("action")=="game") {
 	echo __HTML_TEXT_CLOSE__;
 	echo __HTML_PAGE_CLOSE__;
 	$buffer=ob_get_clean();
-	$hash=md5($buffer);
-	header_etag($hash);
-	$buffer=output_handler($buffer);
-	header_powered();
-	header_expires($hash);
-	header("Content-Type: text/html");
-	header("Content-Length: ".strlen($buffer));
-	header("x-frame-options: SAMEORIGIN");
-	echo $buffer;
-	die();
+	output_handler(array(
+		"data"=>$buffer,
+		"type"=>"text/html",
+		"cache"=>true,
+		"extra"=>array("x-frame-options: SAMEORIGIN")
+	));
 }
 ?>

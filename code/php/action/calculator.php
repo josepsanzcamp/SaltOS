@@ -33,6 +33,10 @@ if(getParam("action")=="calculator") {
 	$text=$m->evaluate($text);
 	$error=get_clear_error();
 	if($error) $text="error";
-	output_buffer($text,"text/plain");
+	output_handler(array(
+		"data"=>$text,
+		"type"=>"text/plain",
+		"cache"=>false
+	));
 }
 ?>

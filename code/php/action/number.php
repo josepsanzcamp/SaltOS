@@ -100,7 +100,10 @@ if(getParam("action")=="number") {
 			chmod_protected($cache,0666);
 			// DUMP THE DATA
 			if(defined("__CANCEL_DIE__")) readfile($cache);
-			if(!defined("__CANCEL_DIE__")) output_file($cache);
+			if(!defined("__CANCEL_DIE__")) output_handler(array(
+				"file"=>$cache,
+				"cache"=>true
+			));
 		}
 		if($format=="css") {
 			$buffer=array();
@@ -129,11 +132,17 @@ if(getParam("action")=="number") {
 			file_put_contents($cache,$buffer);
 			chmod_protected($cache,0666);
 			// DUMP THE DATA
-			output_file($cache);
+			output_handler(array(
+				"file"=>$cache,
+				"cache"=>true
+			));
 		}
 	} else {
 		if(defined("__CANCEL_DIE__")) readfile($cache);
-		if(!defined("__CANCEL_DIE__")) output_file($cache);
+		if(!defined("__CANCEL_DIE__")) output_handler(array(
+			"file"=>$cache,
+			"cache"=>true
+		));
 	}
 }
 ?>

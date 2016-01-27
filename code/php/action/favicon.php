@@ -94,6 +94,9 @@ if(getParam("action")=="favicon") {
 		imagedestroy($im3);
 	}
 	// DUMP THE DATA
-	output_file($cache);
+	output_handler(array(
+		"file"=>$cache,
+		"cache"=>true
+	));
 }
 ?>

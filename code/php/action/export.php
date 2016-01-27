@@ -61,14 +61,14 @@ if($page=="datacfg") {
 	// RESTORE DB CACHE
 	set_use_cache($oldcache);
 	// CONTINUE
-	header_powered();
-	header_expires(false);
-	header("Content-Type: application/octet-stream");
-	header("Content-Type: application/force-download",false);
-	header("Content-Type: application/download",false);
-	header("Content-Length: ".filesize($file));
-	header("Content-Disposition: attachment; filename=\"$name\"");
-	readfile_protected($file);
+	output_handler(array(
+		"file"=>$file,
+		"type"=>"application/octet-stream",
+		"cache"=>false,
+		"extras"=>array("Content-Type: application/force-download","Content-Type: application/download"),
+		"name"=>$name,
+		"die"=>false
+	));
 	unlink($file);
 	die();
 }

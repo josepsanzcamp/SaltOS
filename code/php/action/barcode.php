@@ -73,17 +73,13 @@ if(getParam("action")=="barcode") {
 		imagedestroy($im);
 		chmod_protected($cache,0666);
 	}
-	if(!defined("__CANCEL_HEADER__")) {
-		header_powered();
-		header_expires(false);
-		$type=saltos_content_type($cache);
-		$size=filesize($cache);
-		header("Content-Type: ${type}");
-		header("Content-Length: ${size}");
-		readfile($cache);
+	if(!defined("__CANCEL_DIE__")) {
+		output_handler(array(
+			"file"=>$cache,
+			"cache"=>false
+		));
 	} else {
 		readfile($cache);
 	}
-	if(!defined("__CANCEL_DIE__")) die();
 }
 ?>

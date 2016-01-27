@@ -58,6 +58,10 @@ if(getParam("action")=="ajax") {
 	} else {
 		die();
 	}
-	output_buffer($buffer,$format);
+	output_handler(array(
+		"data"=>$buffer,
+		"type"=>$format,
+		"cache"=>false
+	));
 }
 ?>

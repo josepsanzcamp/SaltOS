@@ -84,7 +84,10 @@ if(getParam("action")=="themeroller") {
 			chmod_protected($cache,0666);
 			// DUMP THE DATA
 			if(defined("__CANCEL_DIE__")) readfile($cache);
-			if(!defined("__CANCEL_DIE__")) output_file($cache);
+			if(!defined("__CANCEL_DIE__")) output_handler(array(
+				"file"=>$cache,
+				"cache"=>true
+			));
 		}
 		if($over) {
 			$over=explode(",",$over);
@@ -118,7 +121,10 @@ if(getParam("action")=="themeroller") {
 			chmod_protected($cache,0666);
 			// DUMP THE DATA
 			if(defined("__CANCEL_DIE__")) readfile($cache);
-			if(!defined("__CANCEL_DIE__")) output_file($cache);
+			if(!defined("__CANCEL_DIE__")) output_handler(array(
+				"file"=>$cache,
+				"cache"=>true
+			));
 		}
 		if($theme) {
 			// QUERY STRING TO GENERATE THE THEME
@@ -306,11 +312,17 @@ if(getParam("action")=="themeroller") {
 			file_put_contents($cache,$buffer);
 			chmod_protected($cache,0666);
 			// DUMP THE DATA
-			output_file($cache);
+			output_handler(array(
+				"file"=>$cache,
+				"cache"=>true
+			));
 		}
 	} else {
 		if(defined("__CANCEL_DIE__")) readfile($cache);
-		if(!defined("__CANCEL_DIE__")) output_file($cache);
+		if(!defined("__CANCEL_DIE__")) output_handler(array(
+			"file"=>$cache,
+			"cache"=>true
+		));
 	}
 }
 ?>

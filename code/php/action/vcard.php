@@ -124,7 +124,7 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 	$name=encode_bad_chars($nombre).".vcf";
 	$buffer="BEGIN:VCARD\r\n";
 	$buffer.="VERSION:2.1\r\n";
-	if(!defined("__CANCEL_FULL__")) {
+	if(!defined("__CANCEL_DIE__")) {
 		$buffer.="N:$nombre2;$nombre1\r\n";
 		$buffer.="FN:$nombre\r\n";
 		$buffer.="ORG:$organizacion;$comentarios\r\n";
@@ -149,15 +149,15 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 		if($tel_movil) $buffer.="TEL;CELL;VOICE:$tel_movil\r\n";
 	}
 	$buffer.="END:VCARD\r\n";
-	if(!defined("__CANCEL_HEADER__")) {
-		$buffer=output_handler($buffer);
-		header_powered();
-		header_expires(false);
-		header("Content-Type: text/x-vcard");
-		header("Content-Length: ".strlen($buffer));
-		header("Content-disposition: attachment; filename=\"$name\"");
+	if(!defined("__CANCEL_DIE__")) {
+		output_handler(array(
+			"data"=>$buffer,
+			"type"=>"text/x-vcard",
+			"cache"=>false,
+			"name"=>$name
+		));
+	} else {
+		echo $buffer;
 	}
-	echo $buffer;
-	if(!defined("__CANCEL_DIE__")) die();
 }
 ?>

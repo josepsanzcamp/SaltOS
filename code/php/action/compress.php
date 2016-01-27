@@ -50,7 +50,6 @@ if(getParam("action")=="compress") {
 	$action="download";
 	setParam("action",$action);
 	define("__CANCEL_DIE__",1);
-	define("__CANCEL_HEADER__",1);
 	foreach($cids as $cid) {
 		setParam("cid",$cid);
 		ob_start();
@@ -67,15 +66,19 @@ if(getParam("action")=="compress") {
 	switch($format) {
 		case "zip":
 			$archive=new zip_file($info[0].getDefault("exts/zipext",".zip"));
+			$type="application/zip";
 			break;
 		case "tar":
 			$archive=new tar_file($info[0].getDefault("exts/tarext",".tar"));
+			$type="application/x-tar";
 			break;
 		case "gzip":
 			$archive=new gzip_file($info[0].getDefault("exts/targzipext",".tgz"));
+			$type="application/x-gzip";
 			break;
 		case "bzip":
 			$archive=new bzip_file($info[0].getDefault("exts/tarbzipext",".tbz"));
+			$type="application/x-bzip2";
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown format"));
@@ -86,9 +89,15 @@ if(getParam("action")=="compress") {
 		$archive->files[$index]["name2"]=dirname($archive->files[0]["name2"])."/".$temp["name"];
 	}
 	$archive->create_archive();
-	header_powered();
-	header_expires(false);
+	ob_start();
 	$archive->download_file();
+	$buffer=ob_get_clean();
+	output_handler(array(
+		"data"=>$buffer,
+		"type"=>$type,
+		"cache"=>false,
+		"die"=>false
+	));
 	foreach($todelete as $delete) unlink($delete);
 	die();
 }

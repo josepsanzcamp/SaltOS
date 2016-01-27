@@ -186,8 +186,7 @@ if(getParam("action")=="viewpdf") {
 			$action="pdf";
 			setParam("action",$action);
 			ob_start();
-			define("__CANCEL_DIE__",1);
-			define("__CANCEL_HEADER__",1);
+			if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 			include("php/action/pdf.php");
 			$pdf=ob_get_clean();
 			file_put_contents($cache,$pdf);
@@ -200,8 +199,7 @@ if(getParam("action")=="viewpdf") {
 		$action="download";
 		setParam("action",$action);
 		ob_start();
-		define("__CANCEL_DIE__",1);
-		define("__CANCEL_HEADER__",1);
+		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 		include("php/action/download.php");
 		$data=ob_get_clean();
 		$hash=md5(serialize(array($data,$name,$size,$type)));
@@ -226,6 +224,10 @@ if(getParam("action")=="viewpdf") {
 	$_RESULT["rows"]=array_values($_RESULT["rows"]);
 	$buffer=json_encode($_RESULT);
 	// CONTINUE
-	output_buffer($buffer,"application/json");
+	output_handler(array(
+		"data"=>$buffer,
+		"type"=>"application/json",
+		"cache"=>false
+	));
 }
 ?>

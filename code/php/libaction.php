@@ -118,15 +118,16 @@ function __excel_dump($query,$page) {
 	ob_start();
 	$objWriter->save("php://output");
 	$buffer=ob_get_clean();
-	if(!defined("__CANCEL_HEADER__")) {
-		header_powered();
-		header_expires(false);
-		header("Content-Type: application/x-excel");
-		header("Content-Length: ".strlen($buffer));
-		header("Content-Disposition: attachment; filename=\"$name\"");
+	if(!defined("__CANCEL_DIE__")) {
+		output_handler(array(
+			"data"=>$buffer,
+			"type"=>"application/x-excel",
+			"cache"=>false,
+			"name"=>$name
+		));
+	} else {
+		echo $buffer;
 	}
-	echo $buffer;
-	if(!defined("__CANCEL_DIE__")) die();
 }
 
 function __favicon_color2dec($color,$component) {
@@ -824,15 +825,16 @@ function __pdf_eval_pdftag($array,$row=array()) {
 					if(!$booleval) break;
 					$name=__pdf_eval_value($val,$row);
 					$buffer=$pdf->Output($name,"S");
-					if(!defined("__CANCEL_HEADER__")) {
-						header_powered();
-						header_expires(false);
-						header("Content-Type: application/pdf");
-						header("Content-Length: ".strlen($buffer));
-						header("Content-Disposition: attachment; filename=\"$name\"");
+					if(!defined("__CANCEL_DIE__")) {
+						output_handler(array(
+							"data"=>$buffer,
+							"type"=>"application/pdf",
+							"cache"=>false,
+							"name"=>$name
+						));
+					} else {
+						echo $buffer;
 					}
-					echo $buffer;
-					if(!defined("__CANCEL_DIE__")) die();
 					break;
 				case "header":
 					if(!$booleval) break;
