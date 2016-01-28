@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function __translate_get_aspell_langs() {
 	if(!check_commands(getDefault("commands/aspell"),60)) return array();
-	$langs=ob_passthru(getDefault("commands/aspell")." ".getDefault("commands/__aspell_langs__"),60);
+	$langs=ob_passthru(getDefault("commands/aspell")." ".getDefault("commands/__aspell_langs__"),getDefault("default/commandtimeout",60));
 	$langs=explode("\n",$langs);
 	foreach($langs as $key=>$val) {
 		$val=trim($val);
@@ -42,7 +42,7 @@ function __translate_get_aspell_langs() {
 
 function __translate_get_apertium_langs() {
 	if(!check_commands(getDefault("commands/apertium"),60)) return array();
-	$langs=ob_passthru(getDefault("commands/apertium")." ".getDefault("commands/__apertium_langs__"),60);
+	$langs=ob_passthru(getDefault("commands/apertium")." ".getDefault("commands/__apertium_langs__"),getDefault("default/commandtimeout",60));
 	$langs=explode("\n",$langs);
 	foreach($langs as $key=>$val) {
 		$val=trim($val);

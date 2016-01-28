@@ -114,7 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<regspagerlist>25,50,100,200,500,1000</regspagerlist>
 		<regspagerdef eval="true">ismobile()?25:50</regspagerdef>
 		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
-		<commandtimeout>60</commandtimeout>
+		<commandtimeout>86400</commandtimeout><!-- as cachegctimeout -->
 		<nativesoffice>true</nativesoffice>
 		<enablevoice>true</enablevoice>
 		<enabletranslate>true</enabletranslate>
