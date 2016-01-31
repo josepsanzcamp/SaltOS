@@ -1,5 +1,4 @@
 <?php
-declare(ticks=1000);
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -8,7 +7,7 @@ declare(ticks=1000);
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2015 by Josep Sanz Campderrós
+Copyright (C) 2007-2016 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -240,7 +239,7 @@ if(getParam("action")=="sendmail") {
 	$sended=0;
 	$haserror=0;
 	foreach($result as $row) {
-		if(time_get_free()<getDefault("server/percentstop")) break;
+		if(time_get_usage()>getDefault("server/percentstop")) break;
 		$last_id=$row["id"];
 		$messageid=$row["id_cuenta"]."/".$row["uidl"];
 		$file=get_directory("dirs/outboxdir").$messageid.getDefault("exts/objectext",".obj");

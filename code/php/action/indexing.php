@@ -1,5 +1,4 @@
 <?php
-declare(ticks=1000);
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -8,7 +7,7 @@ declare(ticks=1000);
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2015 by Josep Sanz Campderrós
+Copyright (C) 2007-2016 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -36,7 +35,7 @@ if(getParam("action")=="indexing") {
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
-		if(time_get_free()<getDefault("server/percentstop")) break;
+		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// CHECK IF EXISTS
 		$query=make_select_query("tbl_ficheros","id",make_where_query(array("id"=>$row["id"])));
 		$exists=execute_query($query);

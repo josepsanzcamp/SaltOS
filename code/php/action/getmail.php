@@ -1,5 +1,4 @@
 <?php
-declare(ticks=1000);
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -8,7 +7,7 @@ declare(ticks=1000);
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2015 by Josep Sanz Campderrós
+Copyright (C) 2007-2016 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -360,7 +359,7 @@ if(getParam("action")=="getmail") {
 	$haserror=0;
 	$voice_ids=array();
 	foreach($result as $row) {
-		if(time_get_free()<getDefault("server/percentstop")) break;
+		if(time_get_usage()>getDefault("server/percentstop")) break;
 		$error="";
 		if($row["pop3_host"]=="") {
 			$temp=$row["email_from"];
@@ -423,7 +422,7 @@ if(getParam("action")=="getmail") {
 			// RETRIEVE ALL NEW MESSAGES
 			$retrieve=array_diff($uidls,$olduidls);
 			foreach($retrieve as $index=>$uidl) {
-				if(time_get_free()<getDefault("server/percentstop")) break;
+				if(time_get_usage()>getDefault("server/percentstop")) break;
 				if($error=="") {
 					$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
 					$file=$prefix."/".$uidls[$index].$fext;

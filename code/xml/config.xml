@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2015 by Josep Sanz Campderrós
+Copyright (C) 2007-2016 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<name>SaltOS</name>
 		<version>3.1</version>
 		<revision eval="true">svnversion("../code")</revision>
-		<copyright>Copyright (C) 2007-2015 by Josep Sanz Campderrós</copyright>
+		<copyright>Copyright (C) 2007-2016 by Josep Sanz Campderrós</copyright>
 		<title config="true">application_title</title>
 		<favicon>img/favicon.png</favicon>
 	</info>
@@ -72,11 +72,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</noexports>
 		<dbschema>true</dbschema>
 		<dbstatic>true</dbstatic>
-		<semaphoretimeout>10000000</semaphoretimeout><!-- for SQLite --><!-- in microseconds -->
+		<semaphoretimeout>10000000</semaphoretimeout><!-- in microseconds, only for SQLite -->
 	</db>
 	<sess>
 		<save_path>saltos</save_path>
-		<timeout>3600</timeout>
+		<timeout>3600</timeout><!-- in seconds, 3600 is 1 hour -->
 		<probability>1</probability>
 		<divisor>100</divisor>
 	</sess>
@@ -87,11 +87,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<porthttp>80</porthttp>
 		<porthttps>443</porthttps>
 		<dirindex>index.php</dirindex>
-		<memory_limit>288M</memory_limit>
-		<max_execution_time>900</max_execution_time>
-		<percentstop>10</percentstop>
-		<percenterror>1</percenterror>
-		<percentincr>5</percentincr>
+		<percentstop>90</percentstop><!-- long actions stop when reached the 90% of max_execution_time -->
 	</server>
 	<default>
 		<page>home</page>
@@ -114,7 +110,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<regspagerlist>25,50,100,200,500,1000</regspagerlist>
 		<regspagerdef eval="true">ismobile()?25:50</regspagerdef>
 		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
-		<commandtimeout>86400</commandtimeout><!-- as cachegctimeout -->
+		<commandtimeout>3600</commandtimeout><!-- in seconds, 3600 is 1 hour -->
 		<nativesoffice>true</nativesoffice>
 		<enablevoice>true</enablevoice>
 		<enabletranslate>true</enabletranslate>
@@ -156,7 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>
-		<cachegctimeout>86400</cachegctimeout><!-- 86400 (1 day) -->
+		<cachegctimeout>86400</cachegctimeout><!-- in seconds, 86400 is 1 day -->
 		<cachegcprobability>1</cachegcprobability>
 		<cachegcdivisor>100</cachegcdivisor>
 		<usexml2arraycache>true</usexml2arraycache>
@@ -375,7 +371,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<session.bug_compat_42 ifeval="!isphp(5.4)">On</session.bug_compat_42>
 		<register_globals ifeval="!isphp(5.4)">Off</register_globals>
 		<memory_limit>192M</memory_limit>
-		<max_execution_time>600</max_execution_time>
+		<max_execution_time>600</max_execution_time><!-- in seconds, 600 are 10 minutes -->
 		<date.timezone>Europe/Madrid</date.timezone>
 		<default_charset>UTF-8</default_charset>
 		<gd.jpeg_ignore_warning ifeval="!ishhvm()">1</gd.jpeg_ignore_warning>
@@ -408,7 +404,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<filterenabled>true</filterenabled><!-- enable security module -->
 		<maxretries>3</maxretries><!-- number of failed retries until displays captcha -->
 		<allowremember>true</allowremember><!-- enable or disable the remember feature -->
-		<cookietimeout>2592000</cookietimeout><!-- 86400 (1 day) * 30 = 2592000 (1 month aprox.) -->
+		<cookietimeout>2592000</cookietimeout><!-- in seconds, 2592000 are 30 days -->
 		<minscore>50</minscore><!-- min password strength score -->
 		<allowbasicauth>true</allowbasicauth><!-- enable or disable the basic auth feature -->
 	</security>

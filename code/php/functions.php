@@ -1,5 +1,4 @@
 <?php
-declare(ticks=1000);
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -8,7 +7,7 @@ declare(ticks=1000);
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2015 by Josep Sanz Campderrós
+Copyright (C) 2007-2016 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -1094,39 +1093,6 @@ function __shutdown_handler() {
 	}
 }
 
-function __tick_handler() {
-	if(ini_get("max_execution_time")>0 && time_get_free()<getDefault("server/percenterror")) {
-		$cur=ini_get("max_execution_time");
-		$max=getDefault("server/max_execution_time");
-		if($cur>0 && $max>0) {
-			$cur=min($cur*(1+getDefault("server/percentincr")/100),$max);
-			//~ addlog("max_execution_time, max=$max, cur=$cur");
-			capture_next_error();
-			ini_set("max_execution_time",$cur);
-			get_clear_error();
-		}
-		if(time_get_free()<getDefault("server/percenterror")) {
-			$backtrace=debug_backtrace();
-			show_php_error(array("phperror"=>"max_execution_time reached","backtrace"=>$backtrace));
-		}
-	}
-	if(normalize_value(ini_get("memory_limit"))>0 && memory_get_free()<getDefault("server/percenterror")) {
-		$cur=normalize_value(ini_get("memory_limit"));
-		$max=normalize_value(getDefault("server/memory_limit"));
-		if($cur>0 && $max>0) {
-			$cur=min($cur*(1+getDefault("server/percentincr")/100),$max);
-			//~ addlog("memory_limit, max=$max, cur=$cur");
-			capture_next_error();
-			ini_set("memory_limit",$cur);
-			get_clear_error();
-		}
-		if(memory_get_free()<getDefault("server/percenterror")) {
-			$backtrace=debug_backtrace();
-			show_php_error(array("phperror"=>"memory_limit reached","backtrace"=>$backtrace));
-		}
-	}
-}
-
 function program_handlers() {
 	global $_ERROR_HANDLER;
 	$_ERROR_HANDLER=array("level"=>0,"msg"=>array());
@@ -1138,7 +1104,6 @@ function program_handlers() {
 	set_exception_handler("__exception_handler");
 	register_shutdown_function("__shutdown_handler");
 	time_get_usage(true);
-	if(isphp(5.3) && !ishhvm()) register_tick_function("__tick_handler");
 }
 
 function init_random() {
@@ -1256,8 +1221,7 @@ function __time_get_helper($fn,$secs) {
 	if($ini===null) $ini=microtime(true);
 	$cur=microtime(true);
 	$max=ini_get("max_execution_time");
-	if(!$max) $max=getDefault("server/max_execution_time");
-	if(!$max) $max=600;
+	if(!$max) $max=getDefault("ini_set/max_execution_time");
 	if(stripos($fn,"usage")!==false) $diff=$cur-$ini;
 	elseif(stripos($fn,"free")!==false) $diff=$max-($cur-$ini);
 	if(!$secs) $diff=($diff*100)/$max;
