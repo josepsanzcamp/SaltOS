@@ -29,7 +29,7 @@ if(getParam("action")=="translate") {
 	require_once("php/translate.php");
 	require_once("php/libaction.php");
 	// CHECK COMMANDS
-	if(!check_commands(array(getDefault("commands/apertium"),getDefault("commands/aspell")),60)) action_denied();
+	if(!(check_commands(getDefault("commands/apertium"),60) || check_commands(getDefault("commands/aspell"),60))) action_denied();
 	// GET PARAMETERS
 	$text=getParam("text");
 	$langs=getParam("langs");
