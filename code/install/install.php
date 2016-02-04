@@ -196,11 +196,20 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 								<input type="hidden" name="step" value="<?php echo intval(getParam("step")); ?>"/>
 								<?php echo LANG("select_dbtype"); ?>:
 								<select name="dbtype" <?php echo __UI__; ?>>
+									<?php $_CONFIG["db"]["type"]="pdo_mysql"; capture_next_error(); db_connect(); $error=get_clear_error(); ?>
+									<?php if($error=="") { ?>
 									<option value="pdo_mysql">MariaDB &amp; MySQL (PDO)<?php echo LANG("select_prefered"); ?></option>
 									<option value="mysqli">MariaDB &amp; MySQL (improved extension)</option>
 									<option value="mysql">MariaDB &amp; MySQL (obsolete extension)</option>
 									<option value="pdo_sqlite">SQLite3 (PDO)</option>
 									<option value="sqlite3">SQLite3 (extension)</option>
+									<?php } else { ?>
+									<option value="pdo_sqlite">SQLite3 (PDO)<?php echo LANG("select_prefered"); ?></option>
+									<option value="sqlite3">SQLite3 (extension)</option>
+									<option value="pdo_mysql">MariaDB &amp; MySQL (PDO)</option>
+									<option value="mysqli">MariaDB &amp; MySQL (improved extension)</option>
+									<option value="mysql">MariaDB &amp; MySQL (obsolete extension)</option>
+									<?php } ?>
 								</select>
 							<?php } elseif(in_array(getParam("dbtype"),array("pdo_sqlite","sqlite3"))) { ?>
 								<input type="hidden" name="step" value="<?php echo intval(getParam("step"))+1; ?>"/>
