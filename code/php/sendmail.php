@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	require_once("lib/phpmailer/class.phpmailer.php");
+	require_once("lib/phpmailer/class.smtp.php");
 	require_once("php/getmail.php");
 	// FIND ACCOUNT DATA
 	if($id_cuenta) {
@@ -53,6 +54,7 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	if(!$mail->set("CharSet","UTF-8")) return $mail->ErrorInfo;
 	if(!$mail->SetFrom($from,$fromname)) return $mail->ErrorInfo;
 	if(!$mail->set("WordWrap",50)) return $mail->ErrorInfo;
+	if(!$mail->set("SMTPOptions",array("ssl"=>array("verify_peer"=>false,"verify_peer_name"=>false,"allow_self_signed"=>true)))) return $mail->ErrorInfo;
 	$mail->IsHTML();
 	if(!in_array($host,array("mail","sendmail","qmail",""))) {
 		$mail->IsSMTP();

@@ -235,6 +235,7 @@ if(getParam("action")=="sendmail") {
 		die();
 	}
 	require_once("lib/phpmailer/class.phpmailer.php");
+	require_once("lib/phpmailer/class.smtp.php");
 	require_once("php/getmail.php");
 	$sended=0;
 	$haserror=0;

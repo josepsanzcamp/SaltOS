@@ -292,10 +292,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
 						</field>
 						<field>
-							<label>PHPMailer 5.2.4 (LGPL-2.1)</label>
+							<label>PHPMailer 5.2.14 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://code.google.com/a/apache-extras.org/p/phpmailer/")</onclick>
+							<onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
 						</field>
 						<field>
 							<label>PHPExcel 1.8.1 (LGPL-2.1)</label>
@@ -321,7 +321,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>CssMin 3.0.1 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://code.google.com/p/cssmin/")</onclick>
+							<onclick>openwin("https://github.com/natxet/CssMin")</onclick>
 						</field>
 						<field>
 							<label>PHP Mobile Detect 2.8.19 (MIT)</label>
