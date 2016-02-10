@@ -377,8 +377,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasformasdepago>[Totes les formes de pagament]</todaslasformasdepago>
 		<sinformapago>[Sense forma de pagament]</sinformapago>
 		<actions>Accions d'aquest registre</actions>
-		<msgtotalindexed1> fitxer indexat a la base de dades</msgtotalindexed1>
-		<msgtotalindexed2> fitxers indexats a la base de dades</msgtotalindexed2>
+		<msgfilesindexed1> fitxer indexat a la base de dades</msgfilesindexed1>
+		<msgfilesindexed2> fitxers indexats a la base de dades</msgfilesindexed2>
+		<msgregistersindexed1> registre indexat a la base de dades</msgregistersindexed1>
+		<msgregistersindexed2> registres indexats a la base de dades</msgregistersindexed2>
 	</common>
 	<login>
 		<logintitle>Accés a l'aplicació</logintitle>

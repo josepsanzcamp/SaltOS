@@ -377,8 +377,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasformasdepago>[Todas las formas de pago]</todaslasformasdepago>
 		<sinformapago>[Sin forma de pago]</sinformapago>
 		<actions>Acciones sobre este registro</actions>
-		<msgtotalindexed1> fichero indexado en la base de datos</msgtotalindexed1>
-		<msgtotalindexed2> ficheros indexados en la base de datos</msgtotalindexed2>
+		<msgfilesindexed1> fichero indexado en la base de datos</msgfilesindexed1>
+		<msgfilesindexed2> ficheros indexados en la base de datos</msgfilesindexed2>
+		<msgregistersindexed1> registro indexado en la base de datos</msgregistersindexed1>
+		<msgregistersindexed2> registros indexado en la base de datos</msgregistersindexed2>
 	</common>
 	<login>
 		<logintitle>Acceso a la aplicación</logintitle>

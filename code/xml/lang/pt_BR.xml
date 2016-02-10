@@ -377,8 +377,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todaslasformasdepago>[Todas as formas de pagamento]</todaslasformasdepago>
 		<sinformapago>[Sem Forma de pagamento]</sinformapago>
 		<actions translated="false">Options of this register</actions>
-		<msgtotalindexed1 translated="false"> file indexed to the database</msgtotalindexed1>
-		<msgtotalindexed2 translated="false"> files indexed to the database</msgtotalindexed2>
+		<msgfilesindexed1 translated="false"> file indexed to the database</msgfilesindexed1>
+		<msgfilesindexed2 translated="false"> files indexed to the database</msgfilesindexed2>
+		<msgregistersindexed1 translated="false"> register indexed to the database</msgregistersindexed1>
+		<msgregistersindexed2 translated="false"> registers indexed to the database</msgregistersindexed2>
 	</common>
 	<login>
 		<logintitle>Acesso a aplicação</logintitle>

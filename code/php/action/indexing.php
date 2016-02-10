@@ -88,7 +88,41 @@ if(getParam("action")=="indexing") {
 	}
 	db_free($result);
 	// SEND RESPONSE
-	if($total) javascript_alert($total.LANG("msgtotalindexed".min($total,2)));
+	if($total) javascript_alert($total.LANG("msgfilesindexed".min($total,2)));
+	// DISABLE CACHE
+	$oldcache=set_use_cache("false");
+	// INDEXING UNINDEXED CONTENTS
+	$query=make_select_query("tbl_aplicaciones",array(
+		"id",
+		"tabla"
+	),make_where_query(array(
+		"tabla"=>array("!=","")
+	)));
+	$result=db_query($query);
+	$total=0;
+	while($row=db_fetch_row($result)) {
+		$id_aplicacion=$row["id"];
+		$tabla=$row["tabla"];
+		for(;;) {
+			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DO NOT EXIST ON THE INDEXING TABLE
+			$query=make_select_query($tabla,"id",make_where_query(array(),"AND",array(
+				"id NOT IN (".make_select_query("tbl_indexing","id_registro",make_where_query(array(
+					"id_aplicacion"=>$id_aplicacion
+				))).")"
+			)),array(
+				"limit"=>1000
+			));
+			$ids=execute_query_array($query);
+			if(!count($ids)) break;
+			make_indexing($id_aplicacion,$ids);
+			$total+=count($ids);
+		}
+	}
+	db_free($result);
+	// SEND RESPONSE
+	if($total) javascript_alert($total.LANG("msgregistersindexed".min($total,2)));
+	// RESTOCE CACHE
+	set_use_cache($oldcache);
 	// RELEASE SEMAPHORE
 	semaphore_release(getParam("action"));
 	javascript_headers();
