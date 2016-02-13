@@ -341,7 +341,6 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view","a.")." ORD
 					</proyectosclose>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</view>
 			<insert>
@@ -351,7 +350,6 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view","a.")." ORD
 					<default eval="true">"SELECT '0' id,'0' id_estado,'".current_date()."' dstart,'".current_date()."' dstop"</default>
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</insert>
 			<update>
@@ -365,7 +363,6 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view","a.")." ORD
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>

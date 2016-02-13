@@ -314,7 +314,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<files_old include="xml/common/qfilesold.xml" />
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</view>
 			<insert>
@@ -327,7 +326,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</usuarios>
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</insert>
 			<update>
@@ -344,7 +342,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>

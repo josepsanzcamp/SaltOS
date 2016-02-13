@@ -387,7 +387,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</actas>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</view>
 			<insert>
@@ -447,7 +446,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<condiciones eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT * FROM tbl_presupuestos WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id"</condiciones>
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</insert>
 			<update>
@@ -504,7 +502,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>

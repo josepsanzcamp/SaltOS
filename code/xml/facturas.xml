@@ -406,7 +406,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</vencimientos_old>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</view>
 			<insert>
@@ -480,7 +479,6 @@ SELECT 'j' id,'' fecha,'0.00' percent,'0.00' importe
 						"</vencimientos_new>
 					</vencimientos_new>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</insert>
 			<update>
@@ -542,7 +540,6 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 					</vencimientos_new>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>

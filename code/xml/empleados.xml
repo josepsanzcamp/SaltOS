@@ -191,7 +191,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
 					</contactos>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</view>
 			<insert>
@@ -200,7 +199,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
 					<query include="xml/common/qpermcreate.xml" replace="true" />
 					<default>SELECT '0' id</default>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</insert>
 			<update>
@@ -210,7 +208,6 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
 					<query include="xml/common/qdefaultview.xml" replace="true" />
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>

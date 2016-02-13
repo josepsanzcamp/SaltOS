@@ -46,7 +46,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<feeds_new ifeval="check_user('profile','feeds')">SELECT '0' id</feeds_new>
 					<correo_old ifeval="check_user('profile','correo')" eval="true">"SELECT *,CONCAT('?action=signature&amp;id=',id) email_signature FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' ORDER BY id ASC"</correo_old>
 					<correo_new ifeval="check_user('profile','correo')" eval="true">"SELECT '0' id,'0' pop3_days,'?action=signature&amp;id=0' email_signature FROM tbl_usuarios WHERE id='".current_user()."'"</correo_new>
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>

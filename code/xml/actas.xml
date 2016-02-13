@@ -329,7 +329,6 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 					<query include="xml/common/qdefaultview.xml" replace="true" />
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</view>
 			<insert>
@@ -338,7 +337,6 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 					<query include="xml/common/qpermcreate.xml" replace="true" />
 					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop FROM tbl_actas WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_campanya"))."' id_campanya"</default>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</insert>
 			<update>
@@ -348,7 +346,6 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 					<query include="xml/common/qdefaultview.xml" replace="true" />
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>

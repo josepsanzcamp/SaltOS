@@ -196,7 +196,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</permisos>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</view>
 			<insert>
@@ -242,7 +241,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						ORDER BY aplicacion,pos"</permisos>
 					</permisos>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</insert>
 			<update>
@@ -290,7 +288,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</permisos>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>

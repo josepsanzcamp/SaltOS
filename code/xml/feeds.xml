@@ -463,7 +463,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<full global="id" eval="true">"SELECT '".abs($id)."' id"</full>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</view>
 		</views>

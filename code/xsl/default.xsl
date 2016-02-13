@@ -206,8 +206,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</xsl:otherwise>
 					</xsl:choose>
 				</a>
-			</xsl:if>
-			<xsl:if test="sort='true'">
 				<a href="javascript:void(0)" title="{../../sort/labeldesc}">
 					<xsl:attribute name="onclick">
 						<xsl:call-template name="replace_string">

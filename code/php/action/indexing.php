@@ -117,6 +117,49 @@ if(getParam("action")=="indexing") {
 			make_indexing($id_aplicacion,$ids);
 			$total+=count($ids);
 		}
+		for(;;) {
+			// SEARCH IDS OF THE INDEXING TABLE, THAT DO NOT EXIST ON THE MAIN APPLICATION TABLE
+			$query=make_select_query("tbl_indexing","id_registro",make_where_query(array(
+				"id_aplicacion"=>$id_aplicacion
+			),"AND",array(
+				"id_registro NOT IN (".make_select_query($tabla,"id").")"
+			)),array(
+				"limit"=>1000
+			));
+			$ids=execute_query_array($query);
+			if(!count($ids)) break;
+			make_indexing($id_aplicacion,$ids);
+			$total+=count($ids);
+		}
+		for(;;) {
+			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DO NOT EXIST ON THE REGISTER TABLE
+			$query=make_select_query($tabla,"id",make_where_query(array(),"AND",array(
+				"id NOT IN (".make_select_query("tbl_registros_i","id_registro",make_where_query(array(
+					"id_aplicacion"=>$id_aplicacion
+				))).")"
+			)),array(
+				"limit"=>1000
+			));
+			$ids=execute_query_array($query);
+			if(!count($ids)) break;
+			// LLAMAR A MAKE_INDEXING
+			make_control($id_aplicacion,$ids);
+			$total+=count($ids);
+		}
+		for(;;) {
+			// SEARCH IDS OF THE REGISTER TABLE, THAT DO NOT EXIST ON THE MAIN APPLICATION TABLE
+			$query=make_select_query("tbl_registros_i","id_registro",make_where_query(array(
+				"id_aplicacion"=>$id_aplicacion
+			),"AND",array(
+				"id_registro NOT IN (".make_select_query($tabla,"id").")"
+			)),array(
+				"limit"=>1000
+			));
+			$ids=execute_query_array($query);
+			if(!count($ids)) break;
+			make_control($id_aplicacion,$ids);
+			$total+=count($ids);
+		}
 	}
 	db_free($result);
 	// SEND RESPONSE

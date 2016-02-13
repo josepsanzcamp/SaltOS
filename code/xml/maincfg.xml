@@ -49,7 +49,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<logo eval="true">make_select_config("logo_left,logo_top,logo_width,logo_height,logo_file,color_line,color_text1,color_text2")</logo>
 					<correo eval="true">make_select_config("email_host,email_port,email_extra,email_user,email_pass,email_name,email_from,email_async,email_support")</correo>
 					<accounting eval="true">make_select_config("accounting_currency,accounting_iva_name,accounting_iva_value,accounting_irpf_name,accounting_irpf_value")</accounting>
-					<help include="xml/common/qhelp.xml" replace="true" />
 				</query>
 			</update>
 		</views>
