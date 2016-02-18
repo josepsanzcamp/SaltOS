@@ -1032,7 +1032,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<span class="saltos-icon saltos-icon-{icon} {class2}" alt="{label}" title="{$label}"/>
 					</xsl:when>
 					<xsl:otherwise>
-						<span class="{class2}"><xsl:value-of select="label"/></span>
+						<span class="{class2}" title="{tip}"><xsl:value-of select="label"/></span>
 					</xsl:otherwise>
 				</xsl:choose>
 			</td>

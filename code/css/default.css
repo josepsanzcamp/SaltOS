@@ -411,6 +411,11 @@ img.ui-state-default {
 	font-weight:bold;
 }
 
+.error {
+	padding:3px 5px;
+	font-weight:bold;
+}
+
 .nowrap {
 	white-space:nowrap!important;
 }

@@ -48,6 +48,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</field>
 		</fields>
 		<javascript include="xml/common/jslist.xml"/>
+		<form>
+			<name>list</name>
+			<action></action>
+			<method>get</method>
+			<fields>
+				<buttons>true</buttons>
+				<title lang="true">filter</title>
+				<row>
+					<field include="xml/common/hiddenslist.xml" replace="true" />
+					<field>
+						<name>filtro</name>
+						<label lang="true">filtro</label>
+						<type>text</type>
+						<width>240px</width>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+						<colspan>2</colspan>
+						<onchange>copy_value("buscar","filtro");</onchange>
+						<speech>true</speech>
+					</field>
+				</row>
+			</fields>
+			<fields include="xml/common/filters.xml" replace="true" />
+			<buttons include="xml/common/buttonslist.xml" />
+		</form>
 		<quick>
 			<row>
 				<field>
@@ -63,6 +87,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<type>separator</type>
 					<width>100%</width>
+				</field>
+				<field global="limit" ifeval="$limit&gt;=200">
+					<type>label</type>
+					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+					<class>nowrap</class>
+					<class2>error</class2>
 				</field>
 				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>''))">
 					<type>label</type>
@@ -100,30 +131,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 			</row>
 		</quick>
-		<form>
-			<name>list</name>
-			<action></action>
-			<method>get</method>
-			<fields>
-				<buttons>true</buttons>
-				<title lang="true">filter</title>
-				<row>
-					<field include="xml/common/hiddenslist.xml" replace="true" />
-					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
-						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>2</colspan>
-						<onchange>copy_value("buscar","filtro");</onchange>
-						<speech>true</speech>
-					</field>
-				</row>
-			</fields>
-			<fields include="xml/common/filters.xml" replace="true" />
-			<buttons include="xml/common/buttonslist.xml" />
-		</form>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,filtro" eval="true">"
 		SELECT id2,id,

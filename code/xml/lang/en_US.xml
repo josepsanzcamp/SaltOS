@@ -381,6 +381,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgfilesindexed2> files indexed to the database</msgfilesindexed2>
 		<msgregistersindexed1> register indexed to the database</msgregistersindexed1>
 		<msgregistersindexed2> registers indexed to the database</msgregistersindexed2>
+		<biglist>$limit records</biglist>
+		<biglisttip>Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
 	</common>
 	<login>
 		<logintitle>Application access</logintitle>
@@ -1195,8 +1197,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyemail>Only in the email address</onlyemail>
 		<onlysubject>Only in the subject</onlysubject>
 		<onlybody>Only in the message</onlybody>
-		<onlyfiles>Only in the files</onlyfiles>
-		<restocampos>In the other fields</restocampos>
 		<filtrarcorreos>Filter by</filtrarcorreos>
 		<priority>Priority</priority>
 		<priorityhigh>High</priorityhigh>

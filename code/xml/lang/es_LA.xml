@@ -381,6 +381,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgfilesindexed2> ficheros indexados en la base de datos</msgfilesindexed2>
 		<msgregistersindexed1> registro indexado en la base de datos</msgregistersindexed1>
 		<msgregistersindexed2> registros indexado en la base de datos</msgregistersindexed2>
+		<biglist>$limit registros</biglist>
+		<biglisttip>Atención: se estan mostrando $limit registros i puede ser que la aplicación funcione con lentitud</biglisttip>
 	</common>
 	<login>
 		<logintitle>Acceso a la aplicación</logintitle>
@@ -1195,8 +1197,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyemail>Sólo en las direcciones</onlyemail>
 		<onlysubject>Sólo en el asunto</onlysubject>
 		<onlybody>Sólo en el mensaje</onlybody>
-		<onlyfiles>Sólo en los ficheros</onlyfiles>
-		<restocampos>En el resto de campos</restocampos>
 		<filtrarcorreos>Filtrar por</filtrarcorreos>
 		<priority>Prioridad</priority>
 		<priorityhigh>Alta</priorityhigh>

@@ -429,6 +429,7 @@ function output_handler($array) {
 	header("Content-Length: ${size}");
 	if($name!="") header("Content-disposition: attachment; filename=\"$name\"");
 	foreach($extra as $temp) header($temp,false);
+	header("Connection: keep-alive, close");
 	echo $data;
 	if($die) die();
 }

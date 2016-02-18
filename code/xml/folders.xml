@@ -129,48 +129,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<function>forward2(cid) { cid=explode("_",cid); setParam("page","correo"); setParam("action","form"); var action=(cid[1]=="feeds")?"feed":"forward"; setParam("id","0_"+action+"_"+cid[2]); submit1(); }</function>
 			<function>delete2(cid) { cid=explode("_",cid); delete1(cid[0]); }</function>
 		</javascript>
-		<quick>
-			<row>
-				<field>
-					<type>separator</type>
-					<width>100%</width>
-				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_aplicacion'=>'','id_usuario'=>''))">
-					<type>label</type>
-					<label lang="true">usedfilter</label>
-					<class>nowrap</class>
-					<class2>info</class2>
-				</field>
-				<field>
-					<name>buscar</name>
-					<label lang="true">buscar</label>
-					<type>text</type>
-					<width>240px</width>
-					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-					<onchange>copy_value("filtro","buscar");</onchange>
-					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
-					<focus>true</focus>
-					<speech>true</speech>
-					<class3>shortcut_ctrl_f</class3>
-				</field>
-				<field>
-					<type>button</type>
-					<value lang="true">buscar</value>
-					<tip lang="true">buscartip</tip>
-					<onclick>buscar()</onclick>
-					<icon>find</icon>
-					<class>nowrap</class>
-				</field>
-				<field>
-					<type>button</type>
-					<value lang="true">limpiar</value>
-					<tip lang="true">limpiartip</tip>
-					<onclick>limpiar()</onclick>
-					<icon>refresh</icon>
-					<class>nowrap contextmenu</class>
-				</field>
-			</row>
-		</quick>
 		<form>
 			<name>list</name>
 			<action></action>
@@ -218,6 +176,55 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/filters.xml" replace="true" />
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
+		<quick>
+			<row>
+				<field>
+					<type>separator</type>
+					<width>100%</width>
+				</field>
+				<field global="limit" ifeval="$limit&gt;=200">
+					<type>label</type>
+					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
+					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
+					<class>nowrap</class>
+					<class2>error</class2>
+				</field>
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_aplicacion'=>'','id_usuario'=>''))">
+					<type>label</type>
+					<label lang="true">usedfilter</label>
+					<class>nowrap</class>
+					<class2>info</class2>
+				</field>
+				<field>
+					<name>buscar</name>
+					<label lang="true">buscar</label>
+					<type>text</type>
+					<width>240px</width>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+					<onchange>copy_value("filtro","buscar");</onchange>
+					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
+					<focus>true</focus>
+					<speech>true</speech>
+					<class3>shortcut_ctrl_f</class3>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">buscar</value>
+					<tip lang="true">buscartip</tip>
+					<onclick>buscar()</onclick>
+					<icon>find</icon>
+					<class>nowrap</class>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">limpiar</value>
+					<tip lang="true">limpiartip</tip>
+					<onclick>limpiar()</onclick>
+					<icon>refresh</icon>
+					<class>nowrap contextmenu</class>
+				</field>
+			</row>
+		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_usuario,id_aplicacion,filtro,id_folder" eval="true">"SELECT id,id2,id_registro,id_aplicacion,id_folder,id_usuario,id_grupo,datetime,comments,files,action_id,aplicacion,usuario,email_privated,nombre,action_title,action_view3,action_pdf4,action_view4,action_edit2,action_copy2,action_reply2,action_replyall2,action_forward2,action_delete2,id_cliente,id_proyecto,id_proveedor FROM (
 			SELECT a.id_registro id,

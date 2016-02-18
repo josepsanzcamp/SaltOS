@@ -381,6 +381,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgfilesindexed2 translated="false"> files indexed to the database</msgfilesindexed2>
 		<msgregistersindexed1 translated="false"> register indexed to the database</msgregistersindexed1>
 		<msgregistersindexed2 translated="false"> registers indexed to the database</msgregistersindexed2>
+		<biglist translated="false">$limit records</biglist>
+		<biglisttip translated="false">Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
 	</common>
 	<login>
 		<logintitle>الوصول للتطبيق</logintitle>
@@ -1195,8 +1197,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyemail>فقط في عنوان البريد</onlyemail>
 		<onlysubject>فقط في الموضوع</onlysubject>
 		<onlybody>فقط في محتوى الرسالة</onlybody>
-		<onlyfiles>فقط في الملفات</onlyfiles>
-		<restocampos>في باقي الحقول</restocampos>
 		<filtrarcorreos>ترشيح ب</filtrarcorreos>
 		<priority>الاولوية</priority>
 		<priorityhigh>عالية</priorityhigh>

@@ -1441,6 +1441,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".nowrap.siwrap",obj).removeClass("nowrap siwrap");
 		// TRICK FOR STYLING THE INFO NOTIFY
 		$(".info",obj).addClass("ui-state-highlight ui-corner-all");
+		$(".error",obj).addClass("ui-state-error ui-corner-all");
 		// TRICK FOR STYLING THE TITLES
 		$(".title",obj).addClass("ui-widget-header ui-corner-all");
 		// TRICK FOR DISABLE BUTTONS
