@@ -110,7 +110,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<regspagerlist>25,50,100,200,500,1000</regspagerlist>
 		<regspagerdef eval="true">ismobile()?25:50</regspagerdef>
 		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
-		<commandtimeout>3600</commandtimeout><!-- in seconds, 3600 is 1 hour -->
+		<commandtimeout>60</commandtimeout><!-- in seconds, 60 is 1 minute -->
+		<commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
 		<nativesoffice>true</nativesoffice>
 		<enablevoice>true</enablevoice>
 		<enabletranslate>true</enabletranslate>

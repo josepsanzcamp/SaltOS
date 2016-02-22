@@ -790,7 +790,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>ooformats</name>
 							<type>textarea</type>
-							<value eval="true">ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),getDefault("default/commandtimeout",60))</value>
+							<value eval="true">ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),getDefault("default/commandexpires",60))</value>
 							<width>800px</width>
 							<height>240px</height>
 							<readonly>true</readonly>

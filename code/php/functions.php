@@ -1247,6 +1247,17 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 		"id_registro"=>$id_registro
 	)));
 	$id_indexing=execute_query($query);
+	// SOME CHECKS
+	if(is_array($id_indexing)) {
+		$temp=$id_indexing;
+		$id_indexing=array_pop($temp);
+		foreach($temp as $temp2) {
+			$query=make_delete_query("tbl_indexing",make_where_query(array(
+				"id"=>$temp2
+			)));
+			db_query($query);
+		}
+	}
 	// OBTENER DATOS DE LA TABLA PRINCIPAL
 	$query=make_select_query($tabla,__make_indexing_helper($tabla),make_where_query(array(
 		"id"=>$id_registro

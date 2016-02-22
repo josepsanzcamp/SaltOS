@@ -81,7 +81,7 @@ function unoconv2txt($input) {
 
 function __unoconv_list() {
 	if(!check_commands(getDefault("commands/unoconv"),60)) return array();
-	$abouts=ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),getDefault("default/commandtimeout",60));
+	$abouts=ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),getDefault("default/commandexpires",60));
 	$abouts=explode("\n",$abouts);
 	$exts=array();
 	foreach($abouts as $about) {

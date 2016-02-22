@@ -485,8 +485,8 @@ function svnversion($dir=".") {
 	if($rev===null) {
 		$rev=0;
 		// USING SVNVERSION
-		if(check_commands("svnversion",getDefault("default/commandtimeout",60))) {
-			$rev=intval(ob_passthru("cd ${dir}; svnversion",getDefault("default/commandtimeout",60)));
+		if(check_commands("svnversion",getDefault("default/commandexpires",60))) {
+			$rev=intval(ob_passthru("cd ${dir}; svnversion",getDefault("default/commandexpires",60)));
 		}
 		// ALTERNATIVE METHOD
 		if(!$rev) {
@@ -518,7 +518,7 @@ function svnversion($dir=".") {
 						$link->close();
 						get_clear_error();
 					} elseif(check_commands("sqlite3",60)) {
-						$rev=intval(ob_passthru("sqlite3 '${file}' '${query}'",getDefault("default/commandtimeout",60)));
+						$rev=intval(ob_passthru("sqlite3 '${file}' '${query}'",getDefault("default/commandexpires",60)));
 					}
 					break;
 				}
@@ -538,7 +538,7 @@ function svnversion($dir=".") {
 function gitversion($dir=".") {
 	// USING GIT
 	if(check_commands("git",60)) {
-		return intval(ob_passthru("cd ${dir}; git rev-list HEAD --count",getDefault("default/commandtimeout",60)));
+		return intval(ob_passthru("cd ${dir}; git rev-list HEAD --count",getDefault("default/commandexpires",60)));
 	}
 	// NOTHING TO DO
 	return 0;
