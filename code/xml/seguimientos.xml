@@ -188,7 +188,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label global="limit" eval="true">str_replace('$limit',$limit,LANG("biglist"))</label>
 					<tip global="limit" eval="true">str_replace('$limit',$limit,LANG("biglisttip"))</tip>
 					<class>nowrap</class>
-					<class2>error</class2>
+					<class2>info</class2>
 				</field>
 				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_usuario'=>'','id_cliente'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','comentarios'=>'','id_tarea'=>''))">
 					<type>label</type>
