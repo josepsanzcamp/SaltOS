@@ -1109,7 +1109,7 @@ function program_handlers() {
 function init_random() {
 	static $init=false;
 	if($init) return;
-	srand((float)microtime(true)*1000000);
+	srand(intval(microtime(true)*1000000));
 	$init=true;
 }
 
