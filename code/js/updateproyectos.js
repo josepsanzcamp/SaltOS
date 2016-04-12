@@ -28,7 +28,7 @@ if(typeof(__updateproyectos__)=="undefined" && typeof(parent.__updateproyectos__
 	var __updateproyectos__=1;
 
 	function update_proyectos() {
-		var cliente=$("select[name$=id_cliente]");
+		var cliente=$("*[name$=id_cliente]");
 		var posiblecli=$("select[name$=id_posiblecli]");
 		var proyecto=$("select[name$=id_proyecto]");
 		if(proyectos_defaults=="") proyectos_defaults=$(proyecto).html();
