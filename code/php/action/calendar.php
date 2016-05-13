@@ -132,9 +132,7 @@ if(getParam("action")=="calendar") {
 			LEFT JOIN tbl_estados c ON a.id_estado=c.id
 			LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id
-			WHERE a.id IN ($ids)
-				AND UNIX_TIMESTAMP(dstart)>=$dstart
-				AND UNIX_TIMESTAMP(dstart)<=$dstop
+			WHERE a.id IN ($ids) AND UNIX_TIMESTAMP(dstop)>=$dstart AND UNIX_TIMESTAMP(dstart)<=$dstop
 			ORDER BY dstart ASC, a.id ASC";
 	$result=db_query($query);
 	$current=current_datetime();
@@ -161,8 +159,8 @@ if(getParam("action")=="calendar") {
 		$urlcopy="opencontent(\"?page=agenda&action=form&id=0_copy_$id\")";
 		$class="siwrap ui-state-highlight ui-corner-all normal";
 		$style="overflow:hidden;height:1.2em";
-		$unixini=strtotime($fechaini);
-		$unixfin=strtotime($fechafin);
+		$unixini=max(strtotime($fechaini),$dstart);
+		$unixfin=min(strtotime($fechafin),$dstop);
 		$maxiter=0;
 		$class2="float";
 		while($unixini+$maxiter*86400<=$unixfin) {

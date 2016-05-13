@@ -160,6 +160,22 @@ if($page=="posiblescli") {
 	// OBTENER ID DEL NUEVO CLIENTE
 	$query="SELECT MAX(id) FROM tbl_clientes";
 	$id_cliente=execute_query($query);
+	// MOVER CONTROL DEL REGISTRO DE POSIBLES CLIENTES A CLIENTES
+	$id_aplicacion=page2id("clientes");
+	$id_aplicacion3=page2id("posiblescli");
+	$query=make_update_query("tbl_registros_i",array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_cliente
+	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
+	db_query($query);
+	$query=make_update_query("tbl_registros_u",array(
+		"id_aplicacion"=>$id_aplicacion,
+		"id_registro"=>$id_cliente
+	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
+	db_query($query);
+	// BORRAR EL POSIBLE CLIENTE
+	$query=make_delete_query("tbl_posiblescli","id='${id_posiblecli}'");
+	db_query($query);
 	// AÑADIR CONTROL DEL REGISTRO
 	$id_aplicacion=page2id("clientes");
 	$id_usuario=current_user();
@@ -231,23 +247,9 @@ if($page=="posiblescli") {
 		"id_registro"=>$id_cliente
 	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
 	db_query($query);
-	// MOVER CONTROL DEL REGISTRO DE POSIBLES CLIENTES A CLIENTES
-	$query=make_update_query("tbl_registros_i",array(
-		"id_aplicacion"=>$id_aplicacion,
-		"id_registro"=>$id_cliente
-	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
-	db_query($query);
-	$query=make_update_query("tbl_registros_u",array(
-		"id_aplicacion"=>$id_aplicacion,
-		"id_registro"=>$id_cliente
-	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
-	db_query($query);
-	// BORRAR EL POSIBLE CLIENTE
-	$query=make_delete_query("tbl_posiblescli","id='${id_posiblecli}'");
-	db_query($query);
 	// VOLVER
 	session_alert(LANG("clientcreatedok","posiblescli"));
-	javascript_history(-1);
+	javascript_history(-2);
 	die();
 }
 ?>
