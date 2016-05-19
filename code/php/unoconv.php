@@ -145,16 +145,17 @@ function __unoconv_img2ocr($file) {
 	}
 	$hocr=get_cache_file($file,getDefault("exts/hocrext",".hocr"));
 	$html=str_replace(getDefault("exts/hocrext",".hocr"),getDefault("exts/htmlext",".html"),$hocr);
+	$txt=str_replace(getDefault("exts/hocrext",".hocr"),getDefault("exts/textext",".txt"),$hocr);
 	if(file_exists($html)) $hocr=$html;
 	//~ if(file_exists($hocr)) unlink($hocr);
 	if(!file_exists($hocr)) {
 		$base=str_replace(array(getDefault("exts/hocrext",".hocr"),getDefault("exts/htmlext",".html")),"",$hocr);
 		ob_passthru(__unoconv_timeout(getDefault("commands/tesseract")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$base),getDefault("commands/__tesseract__"))));
 		if(file_exists($html)) $hocr=$html;
+		if(file_exists($txt)) unlink($txt);
 	}
 	if(isset($tiff)) file_put_contents($tiff,"");
 	if(!file_exists($hocr)) return "";
-	$txt=str_replace(array(getDefault("exts/hocrext",".hocr"),getDefault("exts/htmlext",".html")),getDefault("exts/textext",".txt"),$hocr);
 	//~ if(file_exists($txt)) unlink($txt);
 	if(!file_exists($txt)) file_put_contents($txt,__unoconv_hocr2txt($hocr));
 	return file_get_contents($txt);
