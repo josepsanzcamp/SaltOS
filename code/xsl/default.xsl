@@ -867,6 +867,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</a>
 					</xsl:if>
 				</xsl:if>
+				<xsl:if test="readonly='true'">
+					<input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" onchange="{onchange}" class="{class}">
+						<xsl:for-each select="$node/*[name()=$name]">
+							<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
+						</xsl:for-each>
+					</input>
+				</xsl:if>
 			</td>
 		</xsl:when>
 		<xsl:when test="type='checkbox'">
