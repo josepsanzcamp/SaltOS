@@ -173,8 +173,7 @@ function _split_str_by_whitespace( $string, $goal ) {
 /**
  * Callback to convert URI match to HTML A element.
  *
- * This function was backported from 2.5.0 to 2.3.2. Regex callback for {@link
- * make_clickable()}.
+ * This function was backported from 2.5.0 to 2.3.2. Regex callback for make_clickable().
  *
  * @since 2.3.2
  * @access private
@@ -210,8 +209,7 @@ function _make_url_clickable_cb( $matches ) {
 /**
  * Callback to convert URL match to HTML A element.
  *
- * This function was backported from 2.5.0 to 2.3.2. Regex callback for {@link
- * make_clickable()}.
+ * This function was backported from 2.5.0 to 2.3.2. Regex callback for make_clickable().
  *
  * @since 2.3.2
  * @access private
@@ -240,8 +238,7 @@ function _make_web_ftp_clickable_cb( $matches ) {
 /**
  * Callback to convert email address match to HTML A element.
  *
- * This function was backported from 2.5.0 to 2.3.2. Regex callback for {@link
- * make_clickable()}.
+ * This function was backported from 2.5.0 to 2.3.2. Regex callback for make_clickable().
  *
  * @since 2.3.2
  * @access private
@@ -258,7 +255,7 @@ function _make_email_clickable_cb( $matches ) {
  * Checks and cleans a URL.
  *
  * A number of characters are removed from the URL. If the URL is for displaying
- * (the default behaviour) ampersands are also replaced. The 'clean_url' filter
+ * (the default behaviour) ampersands are also replaced. The {@see 'clean_url'} filter
  * is applied to the returned cleaned URL.
  *
  * @since 2.8.0
@@ -267,7 +264,7 @@ function _make_email_clickable_cb( $matches ) {
  * @param array  $protocols Optional. An array of acceptable protocols.
  *		                    Defaults to return value of wp_allowed_protocols()
  * @param string $_context  Private. Use esc_url_raw() for database usage.
- * @return string The cleaned $url after the 'clean_url' filter is applied.
+ * @return string The cleaned $url after the {@see 'clean_url'} filter is applied.
  */
 function esc_url( $url, $protocols = null, $_context = 'display' ) {
 	$original_url = $url;
@@ -351,7 +348,7 @@ function esc_url( $url, $protocols = null, $_context = 'display' ) {
 	}
 
 	/**
-	 * Filter a string cleaned and escaped for output as a URL.
+	 * Filters a string cleaned and escaped for output as a URL.
 	 *
 	 * @since 2.3.0
 	 *
@@ -433,7 +430,7 @@ function wp_allowed_protocols() {
 		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal' );
 
 		/**
-		 * Filter the list of protocols allowed in HTML attributes.
+		 * Filters the list of protocols allowed in HTML attributes.
 		 *
 		 * @since 3.0.0
 		 *
@@ -582,7 +579,7 @@ function wp_kses_named_entities($matches) {
 /**
  * Callback for wp_kses_normalize_entities() regular expression.
  *
- * This function helps {@see wp_kses_normalize_entities()} to only accept 16-bit
+ * This function helps wp_kses_normalize_entities() to only accept 16-bit
  * values and nothing more for `&#number;` entities.
  *
  * @access private

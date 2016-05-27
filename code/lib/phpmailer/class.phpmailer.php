@@ -31,7 +31,7 @@ class PHPMailer
      * The PHPMailer Version number.
      * @var string
      */
-    public $Version = '5.2.14';
+    public $Version = '5.2.15';
 
     /**
      * Email priority.
@@ -285,7 +285,7 @@ class PHPMailer
 
     /**
      * SMTP auth type.
-     * Options are LOGIN (default), PLAIN, NTLM, CRAM-MD5
+     * Options are CRAM-MD5, LOGIN, PLAIN, NTLM, XOAUTH2, attempted in that order if not specified
      * @var string
      */
     public $AuthType = '';
@@ -446,6 +446,15 @@ class PHPMailer
      * @var string
      */
     public $XMailer = '';
+
+    /**
+     * Which validator to use by default when validating email addresses.
+     * May be a callable to inject your own validator, but there are several built-in validators.
+     * @see PHPMailer::validateAddress()
+     * @var string|callable
+     * @static
+     */
+    public static $validator = 'auto';
 
     /**
      * An instance of the SMTP sender class.
@@ -635,9 +644,11 @@ class PHPMailer
      * Constructor.
      * @param boolean $exceptions Should we throw external exceptions?
      */
-    public function __construct($exceptions = false)
+    public function __construct($exceptions = null)
     {
-        $this->exceptions = (boolean)$exceptions;
+        if ($exceptions !== null) {
+            $this->exceptions = (boolean)$exceptions;
+        }
     }
 
     /**
@@ -1026,19 +1037,30 @@ class PHPMailer
     /**
      * Check that a string looks like an email address.
      * @param string $address The email address to check
-     * @param string $patternselect A selector for the validation pattern to use :
+     * @param string|callable $patternselect A selector for the validation pattern to use :
      * * `auto` Pick best pattern automatically;
      * * `pcre8` Use the squiloople.com pattern, requires PCRE > 8.0, PHP >= 5.3.2, 5.2.14;
      * * `pcre` Use old PCRE implementation;
      * * `php` Use PHP built-in FILTER_VALIDATE_EMAIL;
      * * `html5` Use the pattern given by the HTML5 spec for 'email' type form input elements.
      * * `noregex` Don't use a regex: super fast, really dumb.
+     * Alternatively you may pass in a callable to inject your own validator, for example:
+     * PHPMailer::validateAddress('user@example.com', function($address) {
+     *     return (strpos($address, '@') !== false);
+     * });
+     * You can also set the PHPMailer::$validator static to a callable, allowing built-in methods to use your validator.
      * @return boolean
      * @static
      * @access public
      */
-    public static function validateAddress($address, $patternselect = 'auto')
+    public static function validateAddress($address, $patternselect = null)
     {
+        if (is_null($patternselect)) {
+            $patternselect = self::$validator;
+        }
+        if (is_callable($patternselect)) {
+            return call_user_func($patternselect, $address);
+        }
         //Reject line breaks in addresses; it's valid RFC5322, but not RFC5321
         if (strpos($address, "\n") !== false or strpos($address, "\r") !== false) {
             return false;
@@ -1519,10 +1541,15 @@ class PHPMailer
      * @throws phpmailerException
      * @return boolean
      */
-    public function smtpConnect($options = array())
+    public function smtpConnect($options = null)
     {
         if (is_null($this->smtp)) {
             $this->smtp = $this->getSMTPInstance();
+        }
+
+        //If no options are provided, use whatever is set in the instance
+        if (is_null($options)) {
+            $options = $this->SMTPOptions;
         }
 
         // Already connected?
@@ -1594,7 +1621,7 @@ class PHPMailer
                         if (!$this->smtp->startTLS()) {
                             throw new phpmailerException($this->lang('connect_host'));
                         }
-                        // We must resend HELO after tls negotiation
+                        // We must resend EHLO after TLS negotiation
                         $this->smtp->hello($hello);
                     }
                     if ($this->SMTPAuth) {
@@ -2103,12 +2130,12 @@ class PHPMailer
         //Can we do a 7-bit downgrade?
         if ($bodyEncoding == '8bit' and !$this->has8bitChars($this->Body)) {
             $bodyEncoding = '7bit';
+            //All ISO 8859, Windows codepage and UTF-8 charsets are ascii compatible up to 7-bit
             $bodyCharSet = 'us-ascii';
         }
         //If lines are too long, and we're not already using an encoding that will shorten them,
-        //change to quoted-printable transfer encoding
+        //change to quoted-printable transfer encoding for the body part only
         if ('base64' != $this->Encoding and self::hasLineLongerThanMax($this->Body)) {
-            $this->Encoding = 'quoted-printable';
             $bodyEncoding = 'quoted-printable';
         }
 
@@ -2117,10 +2144,11 @@ class PHPMailer
         //Can we do a 7-bit downgrade?
         if ($altBodyEncoding == '8bit' and !$this->has8bitChars($this->AltBody)) {
             $altBodyEncoding = '7bit';
+            //All ISO 8859, Windows codepage and UTF-8 charsets are ascii compatible up to 7-bit
             $altBodyCharSet = 'us-ascii';
         }
         //If lines are too long, and we're not already using an encoding that will shorten them,
-        //change to quoted-printable transfer encoding
+        //change to quoted-printable transfer encoding for the alt body part only
         if ('base64' != $altBodyEncoding and self::hasLineLongerThanMax($this->AltBody)) {
             $altBodyEncoding = 'quoted-printable';
         }
@@ -2224,8 +2252,10 @@ class PHPMailer
                 $body .= $this->attachAll('attachment', $this->boundary[1]);
                 break;
             default:
-                // catch case 'plain' and case ''
-                $body .= $this->encodeString($this->Body, $bodyEncoding);
+                // Catch case 'plain' and case '', applies to simple `text/plain` and `text/html` body content types
+                //Reset the `Encoding` property in case we changed it for line length reasons
+                $this->Encoding = $bodyEncoding;
+                $body .= $this->encodeString($this->Body, $this->Encoding);
                 break;
         }
 
@@ -2331,8 +2361,7 @@ class PHPMailer
 
     /**
      * Set the message type.
-     * PHPMailer only supports some preset message types,
-     * not arbitrary MIME structures.
+     * PHPMailer only supports some preset message types, not arbitrary MIME structures.
      * @access protected
      * @return void
      */
@@ -2350,6 +2379,7 @@ class PHPMailer
         }
         $this->message_type = implode('_', $type);
         if ($this->message_type == '') {
+            //The 'plain' message_type refers to the message having a single body element, not that it is plain-text
             $this->message_type = 'plain';
         }
     }

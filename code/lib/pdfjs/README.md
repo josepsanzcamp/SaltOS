@@ -11,7 +11,7 @@ rendering PDFs.
 PDF.js is an open source project and always looking for more contributors. To
 get involved checkout:
 
-+ [Issue Reporting Guide](https://github.com/mozilla/pdf.js/blob/master/CONTRIBUTING.md)
++ [Issue Reporting Guide](https://github.com/mozilla/pdf.js/blob/master/.github/CONTRIBUTING.md)
 + [Code Contribution Guide](https://github.com/mozilla/pdf.js/wiki/Contributing)
 + [Frequently Asked Questions](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions)
 + [Good Beginner Bugs](https://github.com/mozilla/pdf.js/issues?direction=desc&labels=5-good-beginner-bug&page=1&sort=created&state=open)
@@ -85,6 +85,13 @@ Both scripts are needed but only `pdf.js` needs to be included since `pdf.worker
 be loaded by `pdf.js`. If you want to support more browsers than Firefox you'll also need
 to include `compatibility.js` from `build/generic/web/`. The PDF.js files are large and
 should be minified for production.
+
+## Using PDF.js in a web application
+
+To use PDF.js in a web application you can choose to use a pre-built version of the library
+or to build it from source. We supply pre-built versions for usage with NPM and Bower under
+the `pdfjs-dist` name. For more information and examples please refer to the
+[wiki page](https://github.com/mozilla/pdf.js/wiki/Setup-pdf.js-in-a-website) on this subject.
 
 ## Learning
 
