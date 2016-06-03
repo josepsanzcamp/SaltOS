@@ -667,6 +667,16 @@ function make_select_query($table,$array="*",$where="",$extra=array()) {
 	}
 	if($table!="") $query.=" FROM ${table}";
 	if($where!="") $query.=" WHERE ${where}";
+	if(isset($extra["groupby"])) {
+		$groupby=$extra["groupby"];
+		if(is_array($groupby)) $groupby=implode(",",$groupby);
+		$query.=" GROUP BY ${groupby}";
+	}
+	if(isset($extra["having"])) {
+		$having=$extra["having"];
+		if(is_array($having)) $having=implode(" AND ",$having);
+		$query.=" HAVING ${having}";
+	}
 	if(isset($extra["order"])) {
 		$order=$extra["order"];
 		if(is_array($order)) {
