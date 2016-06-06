@@ -1100,7 +1100,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:call-template name="alert"/>
 					<xsl:call-template name="error"/>
 				</div>
-				<div data-role="footer" data-position="fixed" data-tap-toggle="false" id="jGrowl"></div>
+				<div data-role="footer" data-position="fixed" data-tap-toggle="false" id="jGrowl" data-hide-during-focus=""></div>
 			</div>
 		</body>
 	</html>
