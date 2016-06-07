@@ -698,7 +698,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Google Kalender</gcalendar>
 		<prefgcalendar>Synchronisation mit Google Kalender</prefgcalendar>
 		<prefgcalendar2>Mit dieser Option können Sie den SaltOS Kalender über Google Kalender verwenden. Die Daten werden automatisch syncronisiert um beide aktuell zu halten.</prefgcalendar2>
-		<logingcalendar>Google Konto</logingcalendar>
+		<emailgcalendar>Google Konto</emailgcalendar>
+		<tokengcalendar translated="false">Access token</tokengcalendar>
 		<feedstitle>Fügen Sie den RSS-Feed hinzu den Sie in SaltOS lesen wollen (RSS 1.0, RSS 2.0 und Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>Titel</title>
@@ -862,8 +863,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<add>Termin hinzufügen</add>
 		<gcalendar>Google Kalender</gcalendar>
 		<gcalendartip revised="false">Wechseln Sync Ereignisse zwischen Google Kalender und</gcalendartip>
-		<notgcalendarpassword revised="false">Nicht Ihr Google Kalender-Konto Vorlieben eingestellt</notgcalendarpassword>
-		<invalidgcalendarpassword revised="false">Datenzugriff auf Ihrem Google Kalender-Konto ist falsch</invalidgcalendarpassword>
+		<notgcalendaremail revised="false">Nicht Ihr Google Kalender-Konto Vorlieben eingestellt</notgcalendaremail>
+		<invalidgcalendartoken revised="false">Datenzugriff auf Ihrem Google Kalender-Konto ist falsch</invalidgcalendartoken>
+		<requestgcalendartoken translated="false">Click here to obtain an access token</requestgcalendartoken>
 		<insertgcalendar>SaltOS Termine in Google Kalender erstellt: </insertgcalendar>
 		<updategcalendar revised="false">Gehe zu Datum Termine in Google Kalender: </updategcalendar>
 		<insertsaltos>Google Termine in SaltOS Kalender erstellt: </insertsaltos>
@@ -936,7 +938,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Google Kalender</gcalendar>
 		<prefgcalendar>Synchronisation mit Google Kalender</prefgcalendar>
 		<prefgcalendar2>Mit dieser Option können Sie den SaltOS Kalender über Google Kalender verwenden. Die Daten werden automatisch syncronisiert um beide aktuell zu halten.</prefgcalendar2>
-		<logingcalendar>Google Konto</logingcalendar>
+		<emailgcalendar>Google Konto</emailgcalendar>
+		<tokengcalendar translated="false">Access token</tokengcalendar>
 		<addmetocc>Mich als CC zu allen E-Mail hinzufügen die versandt werden</addmetocc>
 		<defaultcrt>Empfangsbestätigung standardmäßig anfordern</defaultcrt>
 		<feedstitle>Fügen Sie den RSS-Feed hinzu den Sie in SaltOS lesen wollen (RSS 1.0, RSS 2.0 und Atom 1.0)</feedstitle>

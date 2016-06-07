@@ -64,8 +64,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>hidden</type>
 			</field>
 			<field>
-				<name>login</name>
-				<label lang="true">logingcalendar</label>
+				<name>email</name>
+				<label lang="true">emailgcalendar</label>
 				<type>text</type>
 				<width>240px</width>
 				<width2>1px</width2>
@@ -75,10 +75,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</row>
 		<row>
 			<field>
-				<name>password</name>
-				<label lang="true">password</label>
-				<type>password</type>
-				<width>60px</width>
+				<name>token</name>
+				<label lang="true">tokengcalendar</label>
+				<type>text</type>
+				<width>240px</width>
 				<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 			</field>
 		</row>

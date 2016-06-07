@@ -698,7 +698,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Google Calendar</gcalendar>
 		<prefgcalendar>Sync calendar with Google Calendar service</prefgcalendar>
 		<prefgcalendar2>With this option, you can use the calendar from SaltOS from Google Calendar, maintaining updated data automatically without worrying about having to replicate data from one calendar to the other</prefgcalendar2>
-		<logingcalendar>gmail email account</logingcalendar>
+		<emailgcalendar>GMail email account</emailgcalendar>
+		<tokengcalendar>Access token</tokengcalendar>
 		<feedstitle>Configure the feeds you want to read from SaltOS ( RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>Title</title>
@@ -862,8 +863,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<add>Add Event</add>
 		<gcalendar>Google Calendar</gcalendar>
 		<gcalendartip>Sync events between Google Calendar and SaltOS</gcalendartip>
-		<notgcalendarpassword>You have not configured Google Calendar account preferences</notgcalendarpassword>
-		<invalidgcalendarpassword>Data access your Google Calendar account is incorrect</invalidgcalendarpassword>
+		<notgcalendaremail>You have not configured Google Calendar account preferences</notgcalendaremail>
+		<invalidgcalendartoken>Data access your Google Calendar account is incorrect</invalidgcalendartoken>
+		<requestgcalendartoken>Click here to obtain an access token</requestgcalendartoken>
 		<insertgcalendar>SaltOS events created in Google Calendar:</insertgcalendar>
 		<updategcalendar>SaltOS events updated in Google Calendar:</updategcalendar>
 		<insertsaltos>Google Calendar events created in SaltOS:</insertsaltos>
@@ -936,7 +938,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Google Calendar</gcalendar>
 		<prefgcalendar>Sync calendar with Google Calendar service</prefgcalendar>
 		<prefgcalendar2>With this option, you can use calendar from Google Calendar and SaltOS from maintaining the updated data automatically without worrying about having to replicate data from one calendar to the other</prefgcalendar2>
-		<logingcalendar>gmail email account</logingcalendar>
+		<emailgcalendar>GMail email account</emailgcalendar>
+		<tokengcalendar>Access token</tokengcalendar>
 		<addmetocc>Add to my CC all emails I send</addmetocc>
 		<defaultcrt>On the default application acknowledgment</defaultcrt>
 		<feedstitle>Configure the feeds you want to read from SaltOS (RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>

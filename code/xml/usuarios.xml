@@ -264,7 +264,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<appsregs>
 						<appsregs global="id" eval="true">make_select_appsregs($id)</appsregs>
 					</appsregs>
-					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
+					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,email,token,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>
 						<feeds_old global="id" eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,title title2,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title2 ASC"</feeds_old>
 					</feeds_old>
@@ -391,7 +391,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<appsregs>
 						<appsregs global="id" eval="true">make_select_appsregs($id)</appsregs>
 					</appsregs>
-					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,login,password,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
+					<gcalendar global="id" eval="true">"SELECT IFNULL(id,'0') id,IFNULL(id_usuario,'".abs($id)."') id_usuario,email,token,COUNT(*) contador FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'"</gcalendar>
 					<feeds_old>
 						<feeds_old global="id" eval="true">"SELECT id,id_usuario,CONCAT('link:openwin(\"',REPLACE(link,':','%3A'),'\"):',title) title,disabled FROM tbl_usuarios_f WHERE id_usuario='".abs($id)."' ORDER BY title ASC"</feeds_old>
 					</feeds_old>
@@ -829,9 +829,9 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		),array(
 			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
 		)):""</query>
-		<query match="gcalendar" prefix="true" eval="true">getParam("login")||getParam("password")?make_insert_query("tbl_gcalendar",array(
-			"login"=>getParam("login"),
-			"password"=>getParam("password")
+		<query match="gcalendar" prefix="true" eval="true">getParam("email")||getParam("token")?make_insert_query("tbl_gcalendar",array(
+			"email"=>getParam("email"),
+			"token"=>getParam("token")
 		),array(
 			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
 		)):""</query>
@@ -912,14 +912,14 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 			"id_registro"=>intval(getParam("id_registro"))
 		)):""</query>
         <query match="gcalendar" prefix="true" global="id" eval="true">execute_query("SELECT COUNT(*) FROM tbl_gcalendar WHERE id_usuario='".abs($id)."'")?make_update_query("tbl_gcalendar",array(
-			"login"=>getParam("login"),
-			"password"=>getParam("password")
+			"email"=>getParam("email"),
+			"token"=>getParam("token")
 		),make_where_query(array(
 			"id_usuario"=>abs($id)
 		))):(getParam("login")||getParam("password")?make_insert_query("tbl_gcalendar",array(
 			"id_usuario"=>abs($id),
-			"login"=>getParam("login"),
-			"password"=>getParam("password")
+			"email"=>getParam("email"),
+			"token"=>getParam("token")
 		)):"")</query>
 		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".abs($id)."') AND id_aplicacion='".page2id("feeds")."'"):""</query>
 		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".abs($id)."') AND id_aplicacion='".page2id("feeds")."'"):""</query>

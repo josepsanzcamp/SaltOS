@@ -698,7 +698,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Google Calendar</gcalendar>
 		<prefgcalendar>Sincronització de l'agenda amb el servei de Google Calendar</prefgcalendar>
 		<prefgcalendar2>Amb aquesta opció, vostè pot utilitzar l'agenda des de SaltOS i des de Google Calendar, mantenint les dades actualitzades de forma automàtica i sense preocupar d'haver de replicar les dades d'una agenda a l'altra</prefgcalendar2>
-		<logingcalendar>Compte de correu de gmail</logingcalendar>
+		<emailgcalendar>Compte de correu de gmail</emailgcalendar>
+		<tokengcalendar>Token d'accès</tokengcalendar>
 		<feedstitle>Configuri els feeds que vol llegir des de SaltOS ( RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>Títol</title>
@@ -862,14 +863,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<add>Afegir event</add>
 		<gcalendar>Google Calendar</gcalendar>
 		<gcalendartip>Sincronitzar events entre SaltOS i Google Calendar</gcalendartip>
-		<notgcalendarpassword>No ha configurat el seu compte de Google Calendar a les preferències</notgcalendarpassword>
-		<invalidgcalendarpassword>Les dades d'accés al vostre compte de Google Calendar són incorrectes</invalidgcalendarpassword>
+		<notgcalendaremail>No ha configurat el seu compte de Google Calendar a les preferències</notgcalendaremail>
+		<invalidgcalendartoken>Les dades d'accés al vostre compte de Google Calendar són incorrectes</invalidgcalendartoken>
+		<requestgcalendartoken>Faci clic aquí per obtenir un token d'accès</requestgcalendartoken>
 		<insertgcalendar>Events de SaltOS creats a Google Calendar:</insertgcalendar>
 		<updategcalendar>Events de SaltOS actualitzats a Google Calendar :</updategcalendar>
 		<insertsaltos>Events de Google Calendar creats a SaltOS:</insertsaltos>
 		<updatesaltos>Events de Google Calendar actualitzats a SaltOS:</updatesaltos>
 		<notinsertupdate>No hi ha events a actualitzar</notinsertupdate>
-		<gcalendarerror>No es pot contactar amb el servidor de Google Calendar</gcalendarerror>
 		<expand>Expandir</expand>
 		<expandtip>Expandir per mostrar el detall de tots els events del calendari</expandtip>
 		<collapse>Contraure</collapse>
@@ -936,7 +937,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Google Calendar</gcalendar>
 		<prefgcalendar>Sincronització de l'agenda amb el servei de Google Calendar</prefgcalendar>
 		<prefgcalendar2>Amb aquesta opció, vostè pot utilitzar l'agenda des de SaltOS i des de Google Calendar, mantenint les dades actualitzades de forma automàtica i sense preocupar d'haver de replicar les dades d'una agenda a l'altra</prefgcalendar2>
-		<logingcalendar>Compte de correu de gmail</logingcalendar>
+		<emailgcalendar>Compte de correu de gmail</emailgcalendar>
+		<tokengcalendar>Token d'accès</tokengcalendar>
 		<addmetocc>Afegir a la meva com CC en tots els emails que enviï</addmetocc>
 		<defaultcrt>Activar per defecte la sol licitud de confirmació de recepció</defaultcrt>
 		<feedstitle>Configuri els feeds que vol llegir des de SaltOS (RSS 1.0, RSS 2.0 i Atom 1.0)</feedstitle>

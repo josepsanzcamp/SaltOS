@@ -1631,12 +1631,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<fcheck>false</fcheck>
 				</field>
 				<field>
-					<name>login</name>
+					<name>email</name>
 					<type>VARCHAR(255)</type>
 				</field>
 				<field>
-					<name>password</name>
-					<type>VARCHAR(255)</type>
+					<name>token</name>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>token2</name>

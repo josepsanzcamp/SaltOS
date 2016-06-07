@@ -698,7 +698,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Google Agenda</gcalendar>
 		<prefgcalendar>Sync calendrier avec Google Calendar service</prefgcalendar>
 		<prefgcalendar2>Avec cette option, vous pouvez utiliser le calendrier à partir de Google Agenda Saltos, le maintien des données mises à jour automatiquement sans vous soucier d'avoir à dupliquer les données d'un calendrier à l'autre</prefgcalendar2>
-		<logingcalendar>compte de messagerie Gmail</logingcalendar>
+		<emailgcalendar>compte de messagerie Gmail</emailgcalendar>
+		<tokengcalendar translated="false">Access token</tokengcalendar>
 		<feedstitle>Configurez le flux que vous voulez lire de Saltos (RSS 1.0, RSS 2.0 et Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>Titre</title>
@@ -862,8 +863,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<add>Ajouter un évènement </add>
 		<gcalendar>Google Agenda</gcalendar>
 		<gcalendartip>des événements de synchronisation entre Google Agenda et Saltos</gcalendartip>
-		<notgcalendarpassword>Vous n'avez pas configuré les préférences de compte Google Agenda</notgcalendarpassword>
-		<invalidgcalendarpassword>Données accéder à votre compte Google Agenda est incorrect</invalidgcalendarpassword>
+		<notgcalendaremail>Vous n'avez pas configuré les préférences de compte Google Agenda</notgcalendaremail>
+		<invalidgcalendartoken>Données accéder à votre compte Google Agenda est incorrect</invalidgcalendartoken>
+		<requestgcalendartoken translated="false">Click here to obtain an access token</requestgcalendartoken>
 		<insertgcalendar>évènements Saltos créé dans Google Agenda:</insertgcalendar>
 		<updategcalendar>évènements Saltos à jour dans Google Agenda:</updategcalendar>
 		<insertsaltos>Google événements de calendrier créé en Saltos:</insertsaltos>
@@ -936,7 +938,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Google Agenda</gcalendar>
 		<prefgcalendar>Sync calendrier avec Google Calendar service</prefgcalendar>
 		<prefgcalendar2>Avec cette option, vous pouvez utiliser le calendrier de Google Agenda et Saltos de maintenir les données mises à jour automatiquement sans vous soucier d'avoir à dupliquer les données d'un calendrier à l'autre</prefgcalendar2>
-		<logingcalendar>compte de messagerie Gmail</logingcalendar>
+		<emailgcalendar>compte de messagerie Gmail</emailgcalendar>
+		<tokengcalendar translated="false">Access token</tokengcalendar>
 		<addmetocc>Ajouter à mon CC tous les emails que j'envoie</addmetocc>
 		<defaultcrt>Sur la reconnaissance d'application par défaut</defaultcrt>
 		<feedstitle>Configurez le flux que vous voulez lire de Saltos (RSS 1.0, RSS 2.0 et Atom 1.0)</feedstitle>

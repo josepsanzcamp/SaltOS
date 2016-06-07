@@ -698,7 +698,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Calendário do Google</gcalendar>
 		<prefgcalendar>Sincronização da agenda com o serviço de Calendário do Google</prefgcalendar>
 		<prefgcalendar2>Com esta opção, você pode usar a agenda do SaltOS e do Google Calendar, mantendo os dados atualizados de forma automática, sem ter que se preocupar em replicar os dados de uma agenda para outra.</prefgcalendar2>
-		<logingcalendar>Conta de mensagem de gmail</logingcalendar>
+		<emailgcalendar>Conta de mensagem de gmail</emailgcalendar>
+		<tokengcalendar translated="false">Access token</tokengcalendar>
 		<feedstitle>Configure os feeds que Deseja ler desde o SaltOS (RSS 1.0, RSS 2.0 e Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>Título</title>
@@ -862,8 +863,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<add>Inserir evento</add>
 		<gcalendar>Calendário do Google</gcalendar>
 		<gcalendartip>Sincronizar eventos entre o SaltOS e o Calendário do Google</gcalendartip>
-		<notgcalendarpassword>Não configurou a sua conta do Calendário do Google nas preferências</notgcalendarpassword>
-		<invalidgcalendarpassword>Os dados de acceso a sua conta do Calendário do Google estão incorretos</invalidgcalendarpassword>
+		<notgcalendaremail>Não configurou a sua conta do Calendário do Google nas preferências</notgcalendaremail>
+		<invalidgcalendartoken>Os dados de acceso a sua conta do Calendário do Google estão incorretos</invalidgcalendartoken>
+		<requestgcalendartoken translated="false">Click here to obtain an access token</requestgcalendartoken>
 		<insertgcalendar>Eventos de SaltOS criados no Calendário do Google:</insertgcalendar>
 		<updategcalendar>Eventos de SaltOS atualizados no Calendário do Google:</updategcalendar>
 		<insertsaltos>Eventos de Calendário do Google criados no SaltOS:</insertsaltos>
@@ -936,7 +938,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>Calendário Google</gcalendar>
 		<prefgcalendar>Sincronização da agenda com o serviço do Google Calendar</prefgcalendar>
 		<prefgcalendar2>Com esta opção, você pode usar a agenda do SaltOS e do Google Calendar, mantendo os dados atualizados de forma automática, sem ter que se preocupar em replicar os dados de uma agenda para outra.</prefgcalendar2>
-		<logingcalendar>Conta de correio do Gmail</logingcalendar>
+		<emailgcalendar>Conta de correio do Gmail</emailgcalendar>
+		<tokengcalendar translated="false">Access token</tokengcalendar>
 		<addmetocc>Me inclua como CC em todos os emails à enviar</addmetocc>
 		<defaultcrt>Ativar por padrão a confirmação de recebimento</defaultcrt>
 		<feedstitle>Configure os feeds que deseja ler desde SaltOS (RSS 1.0, RSS 2.0 y Atom 1.0)</feedstitle>

@@ -25,37 +25,59 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="gcalendar") {
-	// GET GOOGLE CALENDAR USER ACCOUNT
-	$query=make_select_query("tbl_gcalendar",array(
-		"login",
-		"password"
-	),make_where_query(array(
-		"id_usuario"=>current_user()
-	)));
-	$result=execute_query($query);
-	$login=$result["login"];
-	$password=$result["password"];
-	if($login=="" || $password=="") {
-		session_error(LANG("notgcalendarpassword",$page));
-		javascript_history(-1);
-		die();
-	}
-
 	// EXTERNAL LIBRARIES
 	require_once("lib/google/autoload.php");
 	require_once("php/libaction.php");
 
-	// GET A VALID SERVICE
-	capture_next_error();
-	$client=__gcalendar_connect($login,$password);
-	$error=get_clear_error();
-	if($error!="") {
-		session_error(LANG("gcalendarerror",$page));
+	// GET GOOGLE CALENDAR USER ACCOUNT
+	$query=make_select_query("tbl_gcalendar",array(
+		"email",
+		"token",
+		"token2"
+	),make_where_query(array(
+		"id_usuario"=>current_user()
+	)));
+	$result=execute_query($query);
+	$email=$result["email"];
+	$token=$result["token"];
+	$token2=base64_decode($result["token2"]);
+	if($email=="") {
+		session_error(LANG("notgcalendaremail",$page));
 		javascript_history(-1);
 		die();
 	}
-	if($client===null) {
-		session_error(LANG("invalidgcalendarpassword",$page));
+
+	// GET A VALID SERVICE
+	$client=new Google_Client();
+	$client->setAuthConfigFile("lib/google/saltos.json");
+	$client->setRedirectUri("urn:ietf:wg:oauth:2.0:oob");
+	$client->addScope("https://www.googleapis.com/auth/calendar");
+	$client->setAccessType("offline");
+	if($token2!="") {
+		$client->setAccessToken($token2);
+		if(!$client->getAccessToken()) {
+			$query=make_update_query("tbl_gcalendar",array(
+				"token2"=>""
+			),make_where_query(array(
+				"id_usuario"=>current_user()
+			)));
+			db_query($query);
+			session_error(LANG("invalidgcalendartoken",$page));
+			javascript_history(-1);
+			die();
+		}
+	} elseif($token!="") {
+		$client->authenticate($token);
+		$token2=$client->getAccessToken();
+		$query=make_update_query("tbl_gcalendar",array(
+			"token"=>"",
+			"token2"=>base64_encode($token2)
+		),make_where_query(array(
+			"id_usuario"=>current_user()
+		)));
+		db_query($query);
+	} else {
+		session_alert("<a href='".$client->createAuthUrl()."'>".LANG("requestgcalendartoken",$page)."</a>");
 		javascript_history(-1);
 		die();
 	}

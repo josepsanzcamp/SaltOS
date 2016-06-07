@@ -123,9 +123,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<function>buscar3() { setParam("page","ficheros"); setParam("action","list"); submit1(); }</function>
 			<inline>$(function() { $(".spacer").animate({height:$(window).height()/4}); });</inline>
 			<inline>$(function() { $(".logo").bind("click",function() { opencontent("?page=about"); }); });</inline>
-			<cache>
-				<include>js/home.js</include>
-			</cache>
 		</javascript>
 		<styles>
 			<inline>.logo { cursor:pointer; }</inline>

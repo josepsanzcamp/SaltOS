@@ -698,7 +698,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>تقويم Google </gcalendar>
 		<prefgcalendar>خدمة مزامنة التقويم مع تقويم Google </prefgcalendar>
 		<prefgcalendar2>مع هذا الخيار، يمكنك استخدام التقويم من تقويم Google من SaltOS، والحفاظ على البيانات المحدثة تلقائيا دون الحاجة إلى القلق حول الحاجة إلى تكرار البيانات من التقويم إلى أخر</prefgcalendar2>
-		<logingcalendar>حساب بريد gmail</logingcalendar>
+		<emailgcalendar>حساب بريد gmail</emailgcalendar>
+		<tokengcalendar translated="false">Access token</tokengcalendar>
 		<feedstitle>قم بتهيئة التغذيات التي تود قرائتها من SaltOS ( RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>العنوان</title>
@@ -862,8 +863,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<add>إضافة حدث</add>
 		<gcalendar>تقويم Google </gcalendar>
 		<gcalendartip>مزامنة التقويم بين تقويم Google و تقويم SaltOS</gcalendartip>
-		<notgcalendarpassword>لم تقم بتهيئة حساب الافضليات لتقويم Google</notgcalendarpassword>
-		<invalidgcalendarpassword>البيانات الواصلة لحسابتقويم قوقل لديك غير صحيحة</invalidgcalendarpassword>
+		<notgcalendaremail>لم تقم بتهيئة حساب الافضليات لتقويم Google</notgcalendaremail>
+		<invalidgcalendartoken>البيانات الواصلة لحسابتقويم قوقل لديك غير صحيحة</invalidgcalendartoken>
+		<requestgcalendartoken translated="false">Click here to obtain an access token</requestgcalendartoken>
 		<insertgcalendar>أحداث SaltOS المنشئة علي تقويم Google :</insertgcalendar>
 		<updategcalendar>أحداث SaltOS المحدثة علي تقويم Google :</updategcalendar>
 		<insertsaltos>أحداث تقويم Google التي تم إنشائها علي SaltOS:</insertsaltos>
@@ -936,7 +938,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendar>تقويم قوقل</gcalendar>
 		<prefgcalendar>مزامنة التقويم مع خدمة تقويم قوقل</prefgcalendar>
 		<prefgcalendar2>بهذا الخيار يمكنك استخدام التقويم من Google  و SaltOS لمعالجة التحديثات تلقائيا بدون الانزعاج بتكرار البيانات من تقويم لاخر </prefgcalendar2>
-		<logingcalendar>حساب بريدي علي gmail </logingcalendar>
+		<emailgcalendar>حساب بريدي علي gmail </emailgcalendar>
+		<tokengcalendar translated="false">Access token</tokengcalendar>
 		<addmetocc>اضف الي الCC الخاص بي جميع رسائل البريد المرسلة</addmetocc>
 		<defaultcrt>افتح المعرف الخاص بالتطبيق الافتراضي</defaultcrt>
 		<feedstitle>اضبط التغذيات التي تود قرائتها من  SaltOS (RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>

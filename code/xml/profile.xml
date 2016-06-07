@@ -454,14 +454,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		)):""</query>
 		<query match="folders_new" prefix="true">SELECT 'php/action/folders.php' action_include</query>
 		<query ifeval="check_user('profile','gcalendar')" match="gcalendar" prefix="true" eval="true">execute_query("SELECT COUNT(*) FROM tbl_gcalendar WHERE id_usuario='".current_user()."'")?make_update_query("tbl_gcalendar",array(
-			"login"=>getParam("login"),
-			"password"=>getParam("password")
+			"email"=>getParam("email"),
+			"token"=>getParam("token")
 		),make_where_query(array(
 			"id_usuario"=>current_user()
 		))):make_insert_query("tbl_gcalendar",array(
 			"id_usuario"=>current_user(),
-			"login"=>getParam("login"),
-			"password"=>getParam("password")
+			"email"=>getParam("email"),
+			"token"=>getParam("token")
 		))</query>
 		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("feeds")."'"):""</query>
 		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("feeds")."'"):""</query>
