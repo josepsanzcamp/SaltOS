@@ -56,28 +56,27 @@ if(getParam("action")=="gcalendar") {
 	if($token2!="") {
 		$client->setAccessToken($token2);
 		if(!$client->getAccessToken()) {
-			$query=make_update_query("tbl_gcalendar",array(
-				"token2"=>""
-			),make_where_query(array(
-				"id_usuario"=>current_user()
-			)));
-			db_query($query);
-			session_error(LANG("invalidgcalendartoken",$page));
+			__gcalendar_updatetokens("","");
+			__gcalendar_invalidtoken();
+			__gcalendar_requesttoken($client);
 			javascript_history(-1);
 			die();
 		}
 	} elseif($token!="") {
-		$client->authenticate($token);
-		$token2=$client->getAccessToken();
-		$query=make_update_query("tbl_gcalendar",array(
-			"token"=>"",
-			"token2"=>base64_encode($token2)
-		),make_where_query(array(
-			"id_usuario"=>current_user()
-		)));
-		db_query($query);
+		try {
+			$client->authenticate($token);
+			$token2=$client->getAccessToken();
+			__gcalendar_updatetokens("",base64_encode($token2));
+			db_query($query);
+		} catch(Exception $e) {
+			__gcalendar_updatetokens("","");
+			__gcalendar_invalidtoken();
+			__gcalendar_requesttoken($client);
+			javascript_history(-1);
+			die();
+		}
 	} else {
-		session_alert("<a href='".$client->createAuthUrl()."'>".LANG("requestgcalendartoken",$page)."</a>");
+		__gcalendar_requesttoken($client);
 		javascript_history(-1);
 		die();
 	}
@@ -93,7 +92,15 @@ if(getParam("action")=="gcalendar") {
 	db_query($query);
 
 	// GET DATAS FROM GOOGLE CALENDAR AND SALTOS
-	$gevents=__gcalendar_feed($client);
+	try {
+		$gevents=__gcalendar_feed($client);
+	} catch(Exception $e) {
+		__gcalendar_updatetokens("","");
+		__gcalendar_invalidtoken();
+		__gcalendar_requesttoken($client);
+		javascript_history(-1);
+		die();
+	}
 	$query="SELECT a.* FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id WHERE f.id_usuario='".current_user()."'";
 	$result=db_query($query);
 	$sevents=array();

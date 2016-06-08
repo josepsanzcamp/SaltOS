@@ -435,6 +435,24 @@ function __folders_update_tree($id_usuario,$id_parent=0,&$pos=0,$depth=0) {
 }
 
 // FUNCTIONS FOR THE NEW API V3
+function __gcalendar_requesttoken($client) {
+	session_alert("<a href='".$client->createAuthUrl()."' target='_blank'>".LANG("requestgcalendartoken","agenda")."</a>");
+}
+
+function __gcalendar_invalidtoken() {
+	session_error(LANG("invalidgcalendartoken","agenda"));
+}
+
+function __gcalendar_updatetokens($token,$token2) {
+	$query=make_update_query("tbl_gcalendar",array(
+		"token"=>$token,
+		"token2"=>$token2
+	),make_where_query(array(
+		"id_usuario"=>current_user()
+	)));
+	db_query($query);
+}
+
 function __gcalendar_format($datetime) {
 	return date("Y-m-d\TH:i:sP",strtotime($datetime));
 }

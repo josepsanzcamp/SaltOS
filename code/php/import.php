@@ -320,7 +320,7 @@ function __import_array2tree_set(&$result,$parts) {
 		if(!isset($result[$key])) $result[$key]=array("row"=>$val,"rows"=>array());
 		__import_array2tree_set($result[$key]["rows"],$parts);
 	} else {
-		$result[$key]=$val;
+		set_array($result,$key,$val);
 	}
 }
 

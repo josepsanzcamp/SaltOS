@@ -1072,13 +1072,11 @@ function __pretty_html_error_helper($action,$hiddens,$submit) {
 }
 
 function __error_handler($type,$message,$file,$line) {
-	$backtrace=debug_backtrace();
-	show_php_error(array("phperror"=>"${message} (code ${type})","details"=>"Error on file '${file}' at line ${line}","backtrace"=>$backtrace));
+	show_php_error(array("phperror"=>"${message} (code ${type})","details"=>"Error on file '${file}' at line ${line}","backtrace"=>debug_backtrace()));
 }
 
 function __exception_handler($e) {
-	$backtrace=$e->getTrace();
-	show_php_error(array("exception"=>$e->getMessage()." (code ".$e->getCode().")","details"=>"Error on file '".$e->getFile()."' at line ".$e->getLine(),"backtrace"=>$backtrace));
+	show_php_error(array("exception"=>$e->getMessage()." (code ".$e->getCode().")","details"=>"Error on file '".$e->getFile()."' at line ".$e->getLine(),"backtrace"=>$e->getTrace()));
 }
 
 function __shutdown_handler() {
@@ -1088,8 +1086,7 @@ function __shutdown_handler() {
 	if(is_array($error) && isset($error["type"]) && in_array($error["type"],$types)) {
 		global $_ERROR_HANDLER;
 		$_ERROR_HANDLER=array("level"=>0,"msg"=>array());
-		$backtrace=debug_backtrace();
-		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}","backtrace"=>$backtrace));
+		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}","backtrace"=>debug_backtrace()));
 	}
 }
 
