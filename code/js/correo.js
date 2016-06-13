@@ -87,7 +87,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 				var emails=explode(";",request.term);
 				var term=trim(emails.pop());
 				var input=this.element;
-				var data="action=ajax&query=emails&term="+rawurlencode(term);
+				var data="action=ajax&query=emails&term="+encodeURIComponent(term);
 				$.ajax({
 					url:"index.php",
 					data:data,
@@ -147,8 +147,8 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 			var data="action=signature";
 			data+="&old="+old_signature;
 			data+="&new="+id_cuenta;
-			data+="&body="+rawurlencode($(body).val());
-			data+="&cc="+rawurlencode($(cc).val());
+			data+="&body="+encodeURIComponent($(body).val());
+			data+="&cc="+encodeURIComponent($(cc).val());
 			data+="&state_crt="+($(state_crt).prop("checked")?1:0);
 			$.ajax({
 				url:"index.php",

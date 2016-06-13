@@ -30,7 +30,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	/* ERROR HANDLER */
 	window.onerror=function(msg,file,line) {
 		var data={"jserror":msg,"details":"Error on file "+file+" at line "+line};
-		data="array="+rawurlencode(base64_encode(serialize(data)));
+		data="array="+encodeURIComponent(btoa(JSON.stringify(data)));
 		$.ajax({ url:"index.php?action=adderror",data:data,type:"post" });
 	};
 
@@ -219,7 +219,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 
 	/* FOR DEBUG PURPOSES */
 	function addlog(msg) {
-		var data="msg="+rawurlencode(base64_encode(utf8_encode(msg)));
+		var data="msg="+encodeURIComponent(btoa(utf8_encode(msg)));
 		$.ajax({ url:"index.php?action=addlog",data:data,type:"post",async:false });
 	}
 
@@ -360,7 +360,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		for(var hash in cookies_data) {
 			if(cookies_data[hash].sync) {
 				if(cookies_data[hash].val!=cookies_data[hash].orig) {
-					var data="action=cookies&name="+rawurlencode(cookies_data[hash].key)+"&value="+rawurlencode(cookies_data[hash].val);
+					var data="action=cookies&name="+encodeURIComponent(cookies_data[hash].key)+"&value="+encodeURIComponent(cookies_data[hash].val);
 					var value=$.ajax({ url:"index.php",data:data,type:"get",async:false }).responseText;
 					if(value!="") {
 						cookies_data[hash].orig=cookies_data[hash].val;
@@ -647,7 +647,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 							});
 							$("input[type=checkbox]:checked:not(:visible)",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
-									var temp=$(this).attr("name")+"="+rawurlencode($(this).val());
+									var temp=$(this).attr("name")+"="+encodeURIComponent($(this).val());
 									fix_input_vars.push(temp);
 									$(this).remove();
 									total_input_vars--;
@@ -655,13 +655,13 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 							});
 							$("input[type=hidden]",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
-									var temp=$(this).attr("name")+"="+rawurlencode($(this).val());
+									var temp=$(this).attr("name")+"="+encodeURIComponent($(this).val());
 									fix_input_vars.push(temp);
 									$(this).remove();
 									total_input_vars--;
 								}
 							});
-							fix_input_vars=base64_encode(utf8_encode(implode("&",fix_input_vars)));
+							fix_input_vars=btoa(utf8_encode(implode("&",fix_input_vars)));
 							$(jqForm).append("<input type='hidden' name='fix_input_vars' value='"+fix_input_vars+"'/>");
 							submitcontent(form,callback);
 						},100);
@@ -1037,10 +1037,10 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 					querystring+="&width="+$(img).width();
 					querystring+="&height="+$(img).height();
 					var data=$(img).attr("title3");
-					if(typeof(data)!="undefined") querystring+="&title="+rawurlencode(data);
+					if(typeof(data)!="undefined") querystring+="&title="+encodeURIComponent(data);
 					for(var i=0,len=attrs.length;i<len;i++) {
 						var data=$(img).attr(attrs[i]);
-						if(typeof(data)!="undefined") querystring+="&"+attrs[i]+"="+rawurlencode(data);
+						if(typeof(data)!="undefined") querystring+="&"+attrs[i]+"="+encodeURIComponent(data);
 					};
 					$.ajax({
 						url:"index.php",
@@ -1080,7 +1080,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			for(var hash in cache_colors) delete cache_colors[hash];
 			return;
 		}
-		hash=md5(serialize([clase,param]));
+		hash=md5(JSON.stringify([clase,param]));
 		if(typeof(cache_colors[hash])=="undefined") {
 			// GET THE COLORS USING THIS TRICK
 			if($("#ui-color-trick").length==0) {

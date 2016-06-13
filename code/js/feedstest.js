@@ -31,7 +31,7 @@ if(typeof(__feedstest__)=="undefined" && typeof(parent.__feedstest__)=="undefine
 		var url=$("#feeds_new_0_url").val();
 		if(url=="") url="null";
 		loadingcontent();
-		var data="action=feeds&url="+rawurlencode(url);
+		var data="action=feeds&url="+encodeURIComponent(url);
 		$.ajax({
 			url:"index.php",
 			data:data,

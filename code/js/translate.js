@@ -125,7 +125,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 				if(levenshtein(oldtext,text)<strlen(oldtext)/2) return;
 				oldtext=text;
 				__translate_disable();
-				var data="action=translate&langs=auto&text="+rawurlencode(text);
+				var data="action=translate&langs=auto&text="+encodeURIComponent(text);
 				$.ajax({
 					url:"index.php",
 					data:data,
@@ -150,7 +150,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 				var text=$("textarea:first",div).val();
 				__translate_set_cookie();
 				__translate_disable();
-				var data="action=translate&langs="+langs+"&text="+rawurlencode(text);
+				var data="action=translate&langs="+langs+"&text="+encodeURIComponent(text);
 				$.ajax({
 					url:"index.php",
 					data:data,
@@ -172,7 +172,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 				var text=$("textarea:last",div).val();
 				__translate_set_cookie();
 				__translate_disable();
-				var data="action=translate&langs="+langs+"&text="+rawurlencode(text);
+				var data="action=translate&langs="+langs+"&text="+encodeURIComponent(text);
 				$.ajax({
 					url:"index.php",
 					data:data,

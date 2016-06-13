@@ -102,7 +102,7 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 	function update_score() {
 		var pass=$("input[name$=password_new]");
 		if($(pass).val()) {
-			var data="action=score&pass="+rawurlencode($(pass).val())+"&format=json"
+			var data="action=score&pass="+encodeURIComponent($(pass).val())+"&format=json"
 			$.ajax({
 				url:"index.php",
 				data:data,

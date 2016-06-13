@@ -62,7 +62,7 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 			data:data,
 			type:"get",
 			success:function(response) {
-				var data='action=favoritos&url='+rawurlencode(response["rows"][0]["link"]);
+				var data='action=favoritos&url='+encodeURIComponent(response["rows"][0]["link"]);
 				$.ajax({
 					url:'',
 					data:data,

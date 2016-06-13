@@ -63,7 +63,7 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 					text=trim(text.pop());
 					if(text!="") {
 						__calculator_disable();
-						var data="action=calculator&text="+rawurlencode(text);
+						var data="action=calculator&text="+encodeURIComponent(text);
 						$.ajax({
 							url:"index.php",
 							data:data,

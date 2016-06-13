@@ -39,11 +39,11 @@ if(typeof(__qrcode__)=="undefined" && typeof(parent.__qrcode__)=="undefined") {
 				var tel="<h1 class='tel'>"+temp[1]+"</h1>";
 				temp[1]=str_replace(" ","",temp[1]);
 				temp=implode(":",temp);
-				var url="?action=qrcode&msg="+rawurlencode(temp);
+				var url="?action=qrcode&msg="+encodeURIComponent(temp);
 				var img="<img src='"+url+"' />";
 				html=tel+img;
 			} else {
-				var url="?action=qrcode&msg="+rawurlencode(page);
+				var url="?action=qrcode&msg="+encodeURIComponent(page);
 				var img="<img src='"+url+"' />";
 				html=img;
 			}

@@ -1,8 +1,6 @@
 Note about the php.saltos.min.js file
 - This file only contains the php.js functions used by SaltOS
   - abs
-  - base64_decode
-  - base64_encode
   - chr
   - count
   - explode
@@ -18,10 +16,7 @@ Note about the php.saltos.min.js file
   - mktime
   - nl2br
   - parse_url
-  - rawurldecode
-  - rawurlencode
   - round
-  - serialize
   - sprintf
   - str_replace
   - strip_tags
