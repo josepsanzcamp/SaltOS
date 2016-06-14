@@ -317,6 +317,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<type>button</type>
+					<value lang="true">gcalendar</value>
+					<onclick>google_calendar()</onclick>
+					<icon>agenda</icon>
+					<tip lang="true">gcalendartip</tip>
+					<class>nowrap contextmenu</class>
+					<width>1px</width>
+				</field>
+				<field>
+					<type>button</type>
+					<value lang="true">notifyclear</value>
+					<onclick>notify_clear()</onclick>
+					<icon>refresh</icon>
+					<tip lang="true">notifytip</tip>
+					<class>nowrap contextmenu</class>
+					<width>1px</width>
+				</field>
+				<field>
+					<type>button</type>
 					<value lang="true">limpiar</value>
 					<tip lang="true">limpiartip</tip>
 					<onclick>limpiar()</onclick>

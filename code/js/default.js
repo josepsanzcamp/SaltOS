@@ -1556,7 +1556,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						//~ console.debug("iframe "+iframe+" init");
 						$(iframe2).each(function() {
 							$(this).prop("isloaded","false");
-							$(this).load(function() {
+							$(this).on("load",function() {
 								$(this).prop("isloaded","true");
 							});
 							var iframe3=this.contentWindow.location;

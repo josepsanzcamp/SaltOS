@@ -445,7 +445,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>Locutus latest (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://locutus.io/")</onclick>
+							<onclick>openwin("http://locutus.io/php/")</onclick>
 						</field>
 						<field>
 							<label>JQuery 2.2.4 (MIT)</label>

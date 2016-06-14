@@ -990,17 +990,18 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				if(!$(iframe2).length) {
 					clearInterval(interval);
 				} else if($(iframe2).is(":visible")) {
-					if(typeof($(iframe2).attr("isloaded"))=="undefined") {
-						$(iframe2).attr("isloaded","false");
-						$(iframe2).load(function() {
-							$(this).attr("isloaded","true");
-						}).each(function() {
+					if(typeof($(iframe2).prop("isloaded"))=="undefined") {
+						$(iframe2).each(function() {
+							$(this).prop("isloaded","false");
+							$(this).on("load",function() {
+								$(this).prop("isloaded","true");
+							});
 							var iframe3=this.contentWindow.location;
 							var url=$(this).attr("url");
 							if(url) iframe3.replace(url);
 							if(!url) clearInterval(interval);
 						});
-					} else if($(iframe2).attr("isloaded")=="true") {
+					} else if($(iframe2).prop("isloaded")=="true") {
 						clearInterval(interval);
 						if(security_iframe(iframe2)) {
 							var minheight=$(iframe2).height();
