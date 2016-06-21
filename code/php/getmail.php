@@ -101,6 +101,18 @@ function __getmail_getsource($id,$max=0) {
 }
 
 // RETURN THE DECODED MIME STRUCTURE OF MESSAGE
+function __getmail_mime_decode_protected($input) {
+	$mime=new mime_parser_class;
+	$decoded="";
+	$mime->Decode($input,$decoded);
+	if(!count($decoded)) {
+		$mime->decode_bodies=0;
+		$mime->Decode($input,$decoded);
+	}
+	return $decoded;
+}
+
+// RETURN THE DECODED MIME STRUCTURE BY ID
 function __getmail_getmime($id) {
 	$query="SELECT * FROM tbl_correo WHERE id='$id'";
 	$row=execute_query($query);
@@ -111,9 +123,7 @@ function __getmail_getmime($id) {
 	if(!file_exists($cache)) {
 		$file=($row["is_outbox"]?get_directory("dirs/outboxdir"):get_directory("dirs/inboxdir")).$email.$fext;
 		if(!file_exists($file)) return "";
-		$mime=new mime_parser_class;
-		$decoded="";
-		$mime->Decode(array("File"=>"compress.zlib://".$file),$decoded);
+		$decoded=__getmail_mime_decode_protected(array("File"=>"compress.zlib://".$file));
 		file_put_contents($cache,serialize($decoded));
 		chmod_protected($cache,0666);
 	} else {
@@ -188,9 +198,7 @@ function __getmail_getfiles($array,$level=0) {
 	} elseif(__getmail_processmessage($disp,$type)) {
 		$temp=__getmail_getnode("Body",$array);
 		if($temp) {
-			$mime=new mime_parser_class;
-			$decoded="";
-			$mime->Decode(array("Data"=>$temp),$decoded);
+			$decoded=__getmail_mime_decode_protected(array("Data"=>$temp));
 			$result=array_merge($result,__getmail_getfiles(__getmail_getnode("0",$decoded),$level+1));
 		}
 	}
@@ -254,6 +262,7 @@ function __getmail_getinfo($array) {
 	}
 	// CREATE THE DATETIME STRING
 	$datetime=__getmail_fixstring(__getmail_getnode("Headers/date:",$array));
+	if(!$datetime) $datetime=__getmail_fixstring(__getmail_getnode("Headers/delivery-date:",$array));
 	if($datetime && strpos($datetime,"(")!==false) $datetime=strtok($datetime,"(");
 	if($datetime) $result["datetime"]=date("Y-m-d H:i:s",strtotime($datetime));
 	if(!$datetime) $result["datetime"]=current_datetime();
@@ -306,9 +315,7 @@ function __getmail_gettextbody($array,$level=0) {
 	} elseif(__getmail_processmessage($disp,$type)) {
 		$temp=__getmail_getnode("Body",$array);
 		if($temp) {
-			$mime=new mime_parser_class;
-			$decoded="";
-			$mime->Decode(array("Data"=>$temp),$decoded);
+			$decoded=__getmail_mime_decode_protected(array("Data"=>$temp));
 			$result[]=array("type"=>$type,"body"=>__getmail_gettextbody(__getmail_getnode("0",$decoded)));
 		}
 	}
@@ -357,9 +364,7 @@ function __getmail_getfullbody($array) {
 	} elseif(__getmail_processmessage($disp,$type)) {
 		$temp=__getmail_getnode("Body",$array);
 		if($temp) {
-			$mime=new mime_parser_class;
-			$decoded="";
-			$mime->Decode(array("Data"=>$temp),$decoded);
+			$decoded=__getmail_mime_decode_protected(array("Data"=>$temp));
 			$result=array_merge($result,__getmail_getfullbody(__getmail_getnode("0",$decoded)));
 		}
 	} else {
@@ -414,9 +419,7 @@ function __getmail_getcid($array,$hash) {
 	if(__getmail_processmessage($disp,$type)) {
 		$temp=__getmail_getnode("Body",$array);
 		if($temp) {
-			$mime=new mime_parser_class;
-			$decoded="";
-			$mime->Decode(array("Data"=>$temp),$decoded);
+			$decoded=__getmail_mime_decode_protected(array("Data"=>$temp));
 			$result=__getmail_getcid(__getmail_getnode("0",$decoded),$hash);
 			if($result) return $result;
 		}
@@ -457,9 +460,7 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 	$id_aplicacion=page2id("correo");
 	$datetime=current_datetime();
 	// DECODE THE MESSAGE
-	$mime=new mime_parser_class;
-	$decoded="";
-	$mime->Decode(array("File"=>"compress.zlib://".$file),$decoded);
+	$decoded=__getmail_mime_decode_protected(array("File"=>"compress.zlib://".$file));
 	$info=__getmail_getinfo(__getmail_getnode("0",$decoded));
 	$body=__getmail_gettextbody(__getmail_getnode("0",$decoded));
 	unset($decoded); // TRICK TO RELEASE MEMORY
