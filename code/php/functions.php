@@ -1390,6 +1390,17 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 		"id_registro"=>$id_registro
 	)));
 	$id_control=execute_query($query);
+	// SOME CHECKS
+	if(is_array($id_control)) {
+		$temp=$id_control;
+		$id_control=array_pop($temp);
+		foreach($temp as $temp2) {
+			$query=make_delete_query("tbl_registros_i",make_where_query(array(
+				"id"=>$temp2
+			)));
+			db_query($query);
+		}
+	}
 	// BUSCAR SI EXISTEN DATOS DE LA TABLA PRINCIPAL
 	$query=make_select_query($tabla,"id",make_where_query(array(
 		"id"=>$id_registro

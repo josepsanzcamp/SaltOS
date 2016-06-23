@@ -161,7 +161,7 @@ if(getParam("action")=="indexing") {
 			$total+=count($ids);
 		}
 		for(;;) {
-			// SEARCH FOR DUPLICATED REGISTERS, IF EXISTS
+			// SEARCH FOR DUPLICATED ROWS IN REGISTER TABLE
 			$query=make_select_query("tbl_registros_i",array(
 				"GROUP_CONCAT(id)"=>"ids",
 				"id_aplicacion"=>"id_aplicacion",
@@ -179,6 +179,29 @@ if(getParam("action")=="indexing") {
 				array_shift($temp);
 				$temp=implode(",",$temp);
 				$query=make_delete_query("tbl_registros_i","id IN (${temp})");
+				db_query($query);
+			}
+			$total+=count($ids);
+		}
+		for(;;) {
+			// SEARCH FOR DUPLICATED ROWS IN INDEXING TABLE
+			$query=make_select_query("tbl_indexing",array(
+				"GROUP_CONCAT(id)"=>"ids",
+				"id_aplicacion"=>"id_aplicacion",
+				"id_registro"=>"id_registro",
+				"COUNT(*)"=>"total"
+			),"",array(
+				"groupby"=>array("id_aplicacion","id_registro"),
+				"having"=>"total>1",
+				"limit"=>"1000"
+			));
+			$ids=execute_query_array($query);
+			if(!count($ids)) break;
+			foreach($ids as $id) {
+				$temp=explode(",",$id["ids"]);
+				array_shift($temp);
+				$temp=implode(",",$temp);
+				$query=make_delete_query("tbl_indexing","id IN (${temp})");
 				db_query($query);
 			}
 			$total+=count($ids);
