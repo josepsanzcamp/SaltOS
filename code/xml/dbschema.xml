@@ -3236,6 +3236,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
+			<name>registros3</name>
+			<table>tbl_registros_i</table>
+			<fields>
+				<field>
+					<name>id_aplicacion</name>
+				</field>
+				<field>
+					<name>id_registro</name>
+				</field>
+				<field>
+					<name>id_usuario</name>
+				</field>
+			</fields>
+		</index>
+		<index>
 			<name>usuarios</name>
 			<table>tbl_usuarios</table>
 			<fields>
@@ -3335,6 +3350,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<name>correos5</name>
 			<table>tbl_correo</table>
 			<fields>
+				<field>
+					<name>id_cuenta</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>correos6</name>
+			<table>tbl_correo</table>
+			<fields>
+				<field>
+					<name>id</name>
+				</field>
 				<field>
 					<name>id_cuenta</name>
 				</field>
