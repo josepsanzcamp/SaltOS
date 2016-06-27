@@ -3332,6 +3332,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>state_new</name>
 				</field>
+				<field>
+					<name>id</name>
+				</field>
 			</fields>
 		</index>
 		<index>
@@ -3376,6 +3379,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>state_new</name>
+				</field>
+				<field>
+					<name>id</name>
 				</field>
 			</fields>
 		</index>

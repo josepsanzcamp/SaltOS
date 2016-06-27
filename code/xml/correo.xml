@@ -638,9 +638,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 			WHERE
-				a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
-				AND
-				a.id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='0' OR (email_privated='1' AND id_usuario='".current_user()."'))
+				".($filtro!=""?"a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")":"1=1")."
 		) z
 		WHERE ".make_like_query($campos_array[$campos],$filtro)."
 		AND ".($id_usuario?"id_usuario='$id_usuario'":"(1=1)")."
@@ -651,6 +649,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		AND ".($withoutfiles?"files=0":"(1=1)")."
 		AND ".($onlyinbox?"is_outbox=0":"(1=1)")."
 		AND ".($onlyoutbox?"is_outbox=1":"(1=1)")."
+		AND id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."')
 		AND ".($fecha1?"(DATE(datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
 		AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(datetime))":"(1=1)")."
 		AND ".$fecha3_array[$fecha3]."
