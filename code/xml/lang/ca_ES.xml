@@ -1502,6 +1502,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<bookmarkexists>La URL que inteta guardar ja existeix com a favorit.</bookmarkexists>
 		<invalidurl>La URL no és vàlida, verifiqui l'adreça web: </invalidurl>
 		<bookmarkadded>La URL s'ha afegit correctament als favorits</bookmarkadded>
+		<previews>Vistes prèvies</previews>
 	</favoritos>
 	<ivas>
 		<list eval="true">"Llistat de ".CONFIG("accounting_iva_name")</list>

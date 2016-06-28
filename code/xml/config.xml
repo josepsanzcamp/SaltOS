@@ -150,6 +150,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tarbzipext>.tbz</tarbzipext>
 		<tiffext>.tif</tiffext>
 		<hocrext>.hocr</hocrext>
+		<jpegext>.jpg</jpegext>
 	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>
@@ -197,6 +198,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__tesseract__>__INPUT__ __OUTPUT__ -psm 1 hocr</__tesseract__>
 		<timeout>timeout</timeout>
 		<__timeout__>__TIMEOUT__ __COMMAND__</__timeout__>
+		<preview>wkhtmltoimage</preview>
+		<__preview__>--format jpg --width 1366 --height 768 --quiet "__INPUT__" __OUTPUT__</__preview__>
+		<xserver>xvfb-run</xserver>
+		<__xserver__>-a -s "-screen 0 1366x768x16" __COMMAND__</__xserver__>
 	</commands>
 	<debug>
 		<actiondebug>false</actiondebug>

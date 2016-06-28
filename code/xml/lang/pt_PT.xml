@@ -871,7 +871,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<insertsaltos>Eventos de Calendario do Google criados Não SaltOS:</insertsaltos>
 		<updatesaltos>Eventos de Calendario do Google actualizados Não SaltOS:</updatesaltos>
 		<notinsertupdate>Não existem eventos a actualizar</notinsertupdate>
-		<gcalendarerror>Não e possivel contactar o servidor do Calendario do Google</gcalendarerror>
 		<expand>Expandir</expand>
 		<expandtip>Expandir para mostrar o Detalhe de todos os eventos do calendario</expandtip>
 		<collapse>Contrair</collapse>
@@ -1503,6 +1502,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<bookmarkexists translated="false">La url que inteta guardar ya existe como favorito.</bookmarkexists>
 		<invalidurl translated="false">La url no es válida, verifique la dirección web: </invalidurl>
 		<bookmarkadded translated="false">The url was successfully added to bookmarks</bookmarkadded>
+		<previews translated="false">Previews</previews>
 	</favoritos>
 	<ivas>
 		<list eval="true" translated="false">"List of ".CONFIG("accounting_iva_name")</list>

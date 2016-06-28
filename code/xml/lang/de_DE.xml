@@ -871,7 +871,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<insertsaltos>Google Termine in SaltOS Kalender erstellt: </insertsaltos>
 		<updatesaltos revised="false">Google Kalender Ereignisse in Salt Datum: </updatesaltos>
 		<notinsertupdate>Es gibt keine Termine zu aktualisieren</notinsertupdate>
-		<gcalendarerror revised="false">Kann Server for Google Kalender Kontakt</gcalendarerror>
 		<expand>Ausklappen</expand>
 		<expandtip>Ausklappen um die Details aller Termine anzuzeigen</expandtip>
 		<collapse>Einklappen</collapse>
@@ -1503,6 +1502,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<bookmarkexists>Der Favorit mit der eingegebenen URL existiert bereits.</bookmarkexists>
 		<invalidurl>Die eingegebene URL ist nicht korrekt, bitte überprüfen Sie die Adresse: </invalidurl>
 		<bookmarkadded>Die eingegebene URL wurde den Favoriten erfolgreich hinzugefügt.</bookmarkadded>
+		<previews translated="false">Previews</previews>
 	</favoritos>
 	<ivas>
 		<list eval="true" translated="false">"List of ".CONFIG("accounting_iva_name")</list>

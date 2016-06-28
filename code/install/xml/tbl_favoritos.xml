@@ -25,48 +25,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_ui_menu_gestiongeneral</clave>
-		<valor>1</valor>
+		<id>1</id>
+		<url>http://www.saltos.org</url>
+		<nombre>Inicio - The SaltOS project</nombre>
+		<descripcion>El proyecto SaltOS, http://www.saltos.org</descripcion>
 	</row>
 	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_ui_menu_folders</clave>
-		<valor>1</valor>
-	</row>
-	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_ui_menu_calculator</clave>
-		<valor>1</valor>
-	</row>
-	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_ui_menu_translate</clave>
-		<valor>1</valor>
-	</row>
-	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_agenda_tab</clave>
-		<valor>2</valor>
-	</row>
-	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_voice</clave>
-		<valor>1</valor>
-	</row>
-	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_desktop</clave>
-		<valor>1</valor>
-	</row>
-	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_ui_menu_closed</clave>
-		<valor>0</valor>
-	</row>
-	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_favoritos_tab</clave>
-		<valor>2</valor>
+		<id>2</id>
+		<url>http://www.josepsanz.net</url>
+		<nombre>Página personal de Josep Sanz Campderrós</nombre>
+		<descripcion>Página personal de Josep Sanz Campderrós</descripcion>
 	</row>
 </root>

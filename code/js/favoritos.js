@@ -42,4 +42,36 @@ if(typeof(__favoritos__)=="undefined" && typeof(parent.__favoritos__)=="undefine
 		});
 	}
 
+	function update_tabs() {
+		setTimeout(function() {
+			var active=getIntCookie("saltos_favoritos_tab");
+			$(".tabs").tabs("option","active",active);
+			$(".tabs").bind("tabsactivate",function(event,ui) {
+				var active=$(".tabs").tabs("option","active");
+				if(!in_array(active,[0,2])) return;
+				setIntCookie("saltos_favoritos_tab",active);
+			});
+		},100);
+	}
+
+	function init_previews() {
+		var tabla=$(".tabla tr:not(:eq(0))").each(function() {
+			var url1=$("td:eq(2)",this).text();
+			var url2=$("td:eq(2) span",this).attr("title");
+			var title1=$("td:eq(3)",this).text();
+			var title2=$("td:eq(3) span",this).attr("title");
+			var url=(typeof(url2)=="undefined")?url1:url2;
+			var title=(typeof(title2)=="undefined")?title1:title2;
+			var a="<a href='"+url+"' title='"+title+"' onclick='openwin(this.href);return false;'>";
+			var img="<img class='preview ui-state-default ui-corner-all' src='?action=preview&url="+encodeURIComponent(url)+"'>";
+			$(".previews").append(a+img+"</img></a>");
+		});
+	}
 }
+
+"use strict";
+$(function() {
+	if(getParam("action")=="list" && getParam("page")=="favoritos") {
+		update_tabs(); init_previews();
+	}
+});

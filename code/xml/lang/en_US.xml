@@ -871,7 +871,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<insertsaltos>Google Calendar events created in SaltOS:</insertsaltos>
 		<updatesaltos>Google Calendar events updated in SaltOS:</updatesaltos>
 		<notinsertupdate>There are no events to update</notinsertupdate>
-		<gcalendarerror>Can not contact server Google Calendar</gcalendarerror>
 		<expand>Expand</expand>
 		<expandtip>Expand to show detail of all calendar events</expandtip>
 		<collapse>Collapse</collapse>
@@ -1503,6 +1502,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<bookmarkexists>The url you try to save already exists.</bookmarkexists>
 		<invalidurl>The url is invalid, check the web address: </invalidurl>
 		<bookmarkadded>The url was successfully added to bookmarks</bookmarkadded>
+		<previews>Previews</previews>
 	</favoritos>
 	<ivas>
 		<list eval="true">"List of ".CONFIG("accounting_iva_name")</list>

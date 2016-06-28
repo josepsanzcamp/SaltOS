@@ -871,7 +871,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<insertsaltos>أحداث تقويم Google التي تم إنشائها علي SaltOS:</insertsaltos>
 		<updatesaltos>أحداث تقويم Google التي تم تحديثها علي SaltOS:</updatesaltos>
 		<notinsertupdate>لا يوجد أحداث لليتم تحديثها</notinsertupdate>
-		<gcalendarerror>لا يمكن الاتصال بخادم تقويم Google </gcalendarerror>
 		<expand>توسيع</expand>
 		<expandtip>قم بالتوسيع لاظهارالتفاصل لجميع الاحداث علي التقويم</expandtip>
 		<collapse>تضييق</collapse>
@@ -1503,6 +1502,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<bookmarkexists translated="false">عنوان URL الذي تحاول حفظه موجود مسبقا في قائمة المفضلة لديط.</bookmarkexists>
 		<invalidurl translated="false">عنوان URL غير صالح،الرجاء  التحقق من عنوان الويب: </invalidurl>
 		<bookmarkadded translated="false">The url was successfully added to bookmarks</bookmarkadded>
+		<previews translated="false">Previews</previews>
 	</favoritos>
 	<ivas>
 		<list eval="true" translated="false">"List of ".CONFIG("accounting_iva_name")</list>

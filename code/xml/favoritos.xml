@@ -41,16 +41,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<label lang="true">url</label>
 				<sort>true</sort>
 				<order>url2</order>
+				<size>50</size>
 			</field>
 			<field>
 				<name>nombre</name>
 				<label lang="true">nombre</label>
 				<sort>true</sort>
+				<size>50</size>
 			</field>
 			<field>
 				<name>descripcion</name>
 				<label lang="true">descripcion</label>
 				<sort>true</sort>
+				<size>50</size>
 			</field>
 			<field>
 				<name>datetime</name>
@@ -81,6 +84,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
+
+			<fields ifeval="!ismobile()">
+				<title lang="true">previews</title>
+				<row>
+					<field>
+						<type>separator</type>
+						<class>previews</class>
+					</field>
+				</row>
+			</fields>
+
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<quick>

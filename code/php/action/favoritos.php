@@ -31,8 +31,7 @@ if(getParam("action")=="favoritos") {
 	if(!$scheme) $url="http://".$url;
 	if(substr($url,-1,1)=="/") $url=substr($url,0,-1);
 	$query=make_select_query("tbl_favoritos","id",make_where_query(array("url"=>$url)));
-	$existe=execute_query($query);
-	if($existe===null) {
+	if(!execute_query($query)) {
 		capture_next_error();
 		$html=url_get_contents($url);
 		$error=get_clear_error();
