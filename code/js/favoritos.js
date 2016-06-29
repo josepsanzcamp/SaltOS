@@ -56,22 +56,25 @@ if(typeof(__favoritos__)=="undefined" && typeof(parent.__favoritos__)=="undefine
 
 	function init_previews() {
 		var tabla=$(".tabla tr:not(:eq(0))").each(function() {
+			var id1=$("td:eq(1)",this).text();
+			var id2=$("td:eq(1) span",this).attr("title");
 			var url1=$("td:eq(2)",this).text();
 			var url2=$("td:eq(2) span",this).attr("title");
 			var title1=$("td:eq(3)",this).text();
 			var title2=$("td:eq(3) span",this).attr("title");
+			var id=(typeof(id2)=="undefined")?id1:id2;
 			var url=(typeof(url2)=="undefined")?url1:url2;
 			var title=(typeof(title2)=="undefined")?title1:title2;
-			var a="<a href='"+url+"' title='"+title+"' onclick='openwin(this.href);return false;'>";
-			var img="<img class='preview ui-state-default ui-corner-all' src='?action=preview&url="+encodeURIComponent(url)+"'>";
-			$(".previews").append(a+img+"</img></a>");
+			var img=$("<img>").attr("class","preview ui-state-default ui-corner-all").attr("src","?action=favoritos&id="+id)
+			var a=$("<a>").attr("href",url).attr("title",title).on("click",function() { openwin(this.href); return false; }).append(img);
+			$(".previews").append(a);
 		});
 	}
 }
 
 "use strict";
 $(function() {
-	if(getParam("action")=="list" && getParam("page")=="favoritos") {
+	if(getParam("page")=="favoritos") {
 		update_tabs(); init_previews();
 	}
 });

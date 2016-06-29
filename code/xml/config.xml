@@ -199,9 +199,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<timeout>timeout</timeout>
 		<__timeout__>__TIMEOUT__ __COMMAND__</__timeout__>
 		<preview>wkhtmltoimage</preview>
-		<__preview__>--format jpg --width 1366 --height 768 --quiet "__INPUT__" __OUTPUT__</__preview__>
+		<__preview__>--load-error-handling ignore --format __FORMAT__ --width __WIDTH__ --height __HEIGHT__ --javascript-delay __DELAY__ --custom-header "User-Agent" "__USER_AGENT__" --custom-header-propagation --quiet "__INPUT__" __OUTPUT__</__preview__>
 		<xserver>xvfb-run</xserver>
-		<__xserver__>-a -s "-screen 0 1366x768x16" __COMMAND__</__xserver__>
+		<__xserver__>-a -s "-screen 0 __WIDTH__x__HEIGHT__x__COLORS__" __COMMAND__</__xserver__>
 	</commands>
 	<debug>
 		<actiondebug>false</actiondebug>

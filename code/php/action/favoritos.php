@@ -24,12 +24,71 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
-if(getParam("action")=="favoritos") {
+
+if(getParam("action")=="favoritos" && getParam("id")!="") {
+	if(!check_commands(array(getDefault("commands/preview"),getDefault("commands/xserver")),60)) {
+		output_handler(array(
+			"file"=>"img/none.png",
+			"cache"=>true
+		));
+		die();
+	}
+	$query=make_select_query("tbl_favoritos","url",make_where_query(array("id"=>intval(getParam("id")))));
+	$url=execute_query($query);
+	if(!$url) {
+		output_handler(array(
+			"file"=>"img/none.png",
+			"cache"=>true
+		));
+		die();
+	}
+	$format="jpg";
+	$width=1366;
+	$height=768;
+	$colors=16;
+	$delay=1000;
+	$useragent=getServer("HTTP_USER_AGENT");
+	$width2=350;
+	$height2=200;
+	$cache=get_cache_file(array($url,$format,$width,$height,$colors,$delay,$useragent,$width2,$height2),$format);
+	if(!file_exists($cache)) {
+		if(!semaphore_acquire(getParam("action"))) die();
+		if(!file_exists($cache)) {
+			$preview=getDefault("commands/preview")." ".str_replace(array("__FORMAT__","__WIDTH__","__HEIGHT__","__DELAY__","__USER_AGENT__","__INPUT__","__OUTPUT__"),array($format,$width,$height,$delay,$useragent,$url,$cache),getDefault("commands/__preview__"));
+			$xserver=getDefault("commands/xserver")." ".str_replace(array("__WIDTH__","__HEIGHT__","__COLORS__","__COMMAND__"),array($width,$height,$colors,$preview),getDefault("commands/__xserver__"));
+			ob_passthru($xserver);
+			semaphore_release(getParam("action"));
+			if(!file_exists($cache)) {
+				output_handler(array(
+					"file"=>"img/none.png",
+					"cache"=>true
+				));
+				die();
+			}
+			// RESIZE
+			$im1=imagecreatefromjpeg($cache);
+			$im2=imagecreatetruecolor($width2,$height2);
+			imagecopyresampled($im2,$im1,0,0,0,0,$width2,$height2,imagesx($im1),imagesy($im1));
+			imagejpeg($im2,$cache);
+			imagedestroy($im1);
+			imagedestroy($im2);
+			// CONTINUE
+			chmod_protected($cache,0666);
+		}
+	}
+	output_handler(array(
+		"file"=>$cache,
+		"cache"=>true
+	));
+	die();
+}
+
+if(getParam("action")=="favoritos" && getParam("url")!="") {
 	require_once("php/libaction.php");
 	$url=getParam("url");
 	$scheme=parse_url($url,PHP_URL_SCHEME);
 	if(!$scheme) $url="http://".$url;
-	if(substr($url,-1,1)=="/") $url=substr($url,0,-1);
+	//~ if(substr($url,-1,1)=="/") $url=substr($url,0,-1);
 	$query=make_select_query("tbl_favoritos","id",make_where_query(array("url"=>$url)));
 	if(!execute_query($query)) {
 		capture_next_error();

@@ -1496,7 +1496,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<defaultdata>Contingut del fitxer </defaultdata>
 	</errorlog>
 	<favoritos>
-		<list>Listado de favorits</list>
+		<list>Llistat de favorits</list>
 		<create>Nou favorit</create>
 		<url>URL</url>
 		<bookmarkexists>La URL que inteta guardar ja existeix com a favorit.</bookmarkexists>
