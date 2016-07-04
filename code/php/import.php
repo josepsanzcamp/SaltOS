@@ -76,6 +76,7 @@ function import_file($args) {
 			$array=__import_csv2array($args["file"],$args["sep"]);
 			if(!is_array($array)) return $array;
 			if($args["prefn"]) $array=$args["prefn"]($array,$args);
+			if(!is_array($array)) return $array;
 			$array=__import_array2tree($array,$args["nodes"]);
 			break;
 		case "application/vnd.ms-excel":
@@ -83,13 +84,14 @@ function import_file($args) {
 		case "excel":
 			$array=__import_xls2array($args["file"],$args["sheet"]);
 			if(!is_array($array)) return $array;
-			if($args["prefn"])  $array=$args["prefn"]($array,$args);
+			if($args["prefn"]) $array=$args["prefn"]($array,$args);
+			if(!is_array($array)) return $array;
 			$array=__import_array2tree($array,$args["nodes"]);
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
 	}
-	if($args["postfn"])  $array=$args["postfn"]($array,$args);
+	if($args["postfn"]) $array=$args["postfn"]($array,$args);
 	return $array;
 }
 
