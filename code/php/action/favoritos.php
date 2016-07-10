@@ -52,6 +52,14 @@ if(getParam("action")=="favoritos" && getParam("id")!="") {
 	$height2=200;
 	$cache=get_cache_file(array($url,$format,$width,$height,$colors,$delay,$useragent,$width2,$height2),$format);
 	if(!file_exists($cache)) {
+		$query=make_select_query("tbl_favoritos","preview",make_where_query(array("id"=>intval(getParam("id")))));
+		$preview=execute_query($query);
+		if($preview!="") {
+			file_put_contents($cache,base64_decode($preview));
+			chmod_protected($cache,0666);
+		}
+	}
+	if(!file_exists($cache)) {
 		if(!semaphore_acquire(getParam("action"))) die();
 		if(!file_exists($cache)) {
 			$preview=getDefault("commands/preview")." ".str_replace(array("__FORMAT__","__WIDTH__","__HEIGHT__","__DELAY__","__USER_AGENT__","__INPUT__","__OUTPUT__"),array($format,$width,$height,$delay,$useragent,$url,$cache),getDefault("commands/__preview__"));
@@ -72,8 +80,10 @@ if(getParam("action")=="favoritos" && getParam("id")!="") {
 			imagejpeg($im2,$cache);
 			imagedestroy($im1);
 			imagedestroy($im2);
-			// CONTINUE
 			chmod_protected($cache,0666);
+			// DATABASE
+			$query=make_update_query("tbl_favoritos",array("preview"=>base64_encode(file_get_contents($cache))),make_where_query(array("id"=>intval(getParam("id")))));
+			db_query($query);
 		}
 	}
 	output_handler(array(

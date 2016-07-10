@@ -1262,6 +1262,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>descripcion</name>
 					<type>TEXT</type>
 				</field>
+				<field>
+					<name>preview</name>
+					<type>TEXT</type>
+				</field>
 			</fields>
 		</table>
 		<table>
