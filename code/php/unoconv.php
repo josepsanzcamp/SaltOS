@@ -102,6 +102,12 @@ function __unoconv_list() {
 function __unoconv_pdf2txt($input,$output) {
 	if(!check_commands(getDefault("commands/pdftotext"),60)) return;
 	ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
+	if(file_exists($output)) {
+		$freq=count_chars(file_get_contents($output));
+		$freq=array(array_sum(array_slice($freq,33,128-33)),array_sum(array_slice($freq,128)));
+		$freq=$freq[1]/max(array_sum($freq),1);
+		if($freq>=0.90) unlink($output);
+	}
 }
 
 function __unoconv_all2pdf($input,$output) {
