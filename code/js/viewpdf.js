@@ -81,6 +81,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						$(dialog2).dialog("option","resizeStop",function(event,ui) {
 							setIntCookie("saltos_viewpdf_width",$(dialog2).dialog("option","width"));
 							setIntCookie("saltos_viewpdf_height",$(dialog2).dialog("option","height"));
+							pdfViewer.currentScaleValue="page-width";
 						});
 						// PROGRAM CLOSE EVENT
 						$(dialog2).dialog("option","close",function(event,ui) {

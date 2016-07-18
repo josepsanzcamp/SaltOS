@@ -952,48 +952,6 @@ function __signature_getauto($file) {
 	return $file;
 }
 
-function __themeroller_calibrate($r,$g,$b) {
-	return 0.299*$r+0.587*$g+0.114*$b;
-}
-
-function __themeroller_colorize($color,$rgb,$mult=1,$incr=0) {
-	list($r,$g,$b)=__themeroller_components($color,true);
-	$z=__themeroller_calibrate($r,$g,$b)*$mult+$incr;
-	//~ echo "r=$r, g=$g, b=$b, z=$z\n";
-	list($r,$g,$b)=__themeroller_components($rgb,true);
-	$iter=0;
-	for(;;) {
-		$z2=__themeroller_calibrate($r,$g,$b);
-		//~ echo "r=$r, g=$g, b=$b, z2=$z2\n";
-		if(max($r,$g,$b)>1) { $r*=0.99; $g*=0.99; $b*=0.99; }
-		elseif($iter>1000) break;
-		elseif(abs($z2-$z)<0.01) break;
-		elseif($z2<$z) { $r+=0.01; $g+=0.01; $b+=0.01; }
-		elseif($z2>$z) { $r*=0.99; $g*=0.99; $b*=0.99; }
-		$iter++;
-	}
-	//~ echo "iter=$iter\n";
-	$z=sprintf("%02x%02x%02x",$r*255,$g*255,$b*255);
-	return $z;
-}
-
-function __themeroller_csstrick($file,$csstrick) {
-	foreach($csstrick as $key=>$val) if(strpos($file,$key)!==false) return explode(",",$val);
-	show_php_error(array("phperror"=>"Mask '${file}' not found"));
-}
-
-function __themeroller_components($color,$normalize=false) {
-	$len=strlen($color);
-	if($len==3) { $size=1; $div=15; $mult=16; }
-	elseif($len==6) { $size=2; $div=255; $mult=1; }
-	else show_php_error(array("phperror"=>"Invalid color: '$color'"));
-	$r=hexdec(substr($color,0*$size,$size));
-	$g=hexdec(substr($color,1*$size,$size));
-	$b=hexdec(substr($color,2*$size,$size));
-	list($r,$g,$b)=$normalize?array($r/$div,$g/$div,$b/$div):array($r*$mult,$g*$mult,$b*$mult);
-	return array($r,$g,$b);
-}
-
 function __translate_get_options($filter="") {
 	if(!is_array($filter)) $filter=explode(",",$filter);
 	if($filter[0]=="") unset($filter[0]);

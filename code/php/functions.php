@@ -653,8 +653,8 @@ function load_iconset($iconset) {
 
 function load_style($style) {
 	global $_CONFIG;
-	if(!isset($_CONFIG["themeroller"])) $_CONFIG["themeroller"]=xml2array("xml/themeroller.xml");
-	return getDefault("themeroller/themes/$style")!==null;
+	if(!isset($_CONFIG["styles2"])) $_CONFIG["styles2"]=xml2array("xml/styles.xml");
+	return in_array($style,getDefault("styles2/".(ismobile()?"mobile":"desktop")));
 }
 
 function load_lang($lang) {

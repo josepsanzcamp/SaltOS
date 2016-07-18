@@ -95,9 +95,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<id>0</id>
 		<format>HTML</format><!-- output format can be XML or HTML -->
 		<lang>es_ES</lang>
-		<style>blue</style>
-		<stylepre>?action=themeroller&amp;theme=</stylepre>
-		<stylepost></stylepost>
+		<style eval="true">ismobile()?"flatui.f":"redmond.light"</style>
+		<stylepre eval="true">ismobile()?"lib/jquery/jquery.mobile.":"lib/jquery/jquery-ui."</stylepre>
+		<stylepost eval="true">ismobile()?"/jquery.mobile.min.css":"/jquery-ui.min.css"</stylepost>
 		<iconset>silk</iconset>
 		<iconsetpre>?action=iconset&amp;iconset=</iconsetpre>
 		<iconsetpost>&amp;format=css</iconsetpost>
@@ -236,7 +236,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<javascript>
 		<cache ifeval="!ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery.min.js</include>
+			<include>lib/jquery/jquery-3.0.0.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery-ui.min.js</include>
@@ -262,7 +262,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</cache>
 		<cache ifeval="ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery.min.js</include>
+			<include>lib/jquery/jquery-2.2.4.min.js</include>
 			<include>lib/jquery/jquery.kookie.js</include>
 			<include>lib/jquery/jquery.form.js</include>
 			<include>lib/jquery/jquery.mobile.min.js</include>

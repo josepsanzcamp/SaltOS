@@ -28,78 +28,267 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<label lang="true">style</label>
 	<type>select</type>
 	<width>120px</width>
-	<rows>
+	<rows ifeval="!ismobile()">
 		<row>
-			<label>Blue (default)</label>
-			<value>blue</value>
+			<label>Base</label>
+			<value>base.light</value>
 		</row>
 		<row>
-			<label>Pink</label>
-			<value>pink</value>
+			<label>Black tie</label>
+			<value>black-tie.light</value>
 		</row>
 		<row>
-			<label>Red</label>
-			<value>red</value>
+			<label>Blitzer</label>
+			<value>blitzer.light</value>
 		</row>
 		<row>
-			<label>Orange</label>
-			<value>orange</value>
+			<label>Cupertino</label>
+			<value>cupertino.light</value>
 		</row>
 		<row>
-			<label>Yellow</label>
-			<value>yellow</value>
+			<label>Dark hive</label>
+			<value>dark-hive.light</value>
 		</row>
 		<row>
-			<label>Brown</label>
-			<value>brown</value>
+			<label>Dot luv</label>
+			<value>dot-luv.light</value>
 		</row>
 		<row>
-			<label>Green</label>
-			<value>green</value>
+			<label>Eggplant</label>
+			<value>eggplant.light</value>
 		</row>
 		<row>
-			<label>Cyan</label>
-			<value>cyan</value>
+			<label>Excite bike</label>
+			<value>excite-bike.light</value>
 		</row>
 		<row>
-			<label>Gray</label>
-			<value>gray</value>
+			<label>Flick</label>
+			<value>flick.light</value>
 		</row>
 		<row>
-			<label>Blue (inverted)</label>
-			<value>invblue</value>
+			<label>Hot sneaks</label>
+			<value>hot-sneaks.light</value>
 		</row>
 		<row>
-			<label>Pink (inverted)</label>
-			<value>invpink</value>
+			<label>Humanity</label>
+			<value>humanity.light</value>
 		</row>
 		<row>
-			<label>Red (inverted)</label>
-			<value>invred</value>
+			<label>Le frog</label>
+			<value>le-frog.light</value>
 		</row>
 		<row>
-			<label>Orange (inverted)</label>
-			<value>invorange</value>
+			<label>Mint-choc</label>
+			<value>mint-choc.light</value>
 		</row>
 		<row>
-			<label>Yellow (inverted)</label>
-			<value>invyellow</value>
+			<label>Overcast</label>
+			<value>overcast.light</value>
 		</row>
 		<row>
-			<label>Brown (inverted)</label>
-			<value>invbrown</value>
+			<label>Pepper grinder</label>
+			<value>pepper-grinder.light</value>
 		</row>
 		<row>
-			<label>Green (inverted)</label>
-			<value>invgreen</value>
+			<label>Redmond (default)</label>
+			<value>redmond.light</value>
 		</row>
 		<row>
-			<label>Cyan (inverted)</label>
-			<value>invcyan</value>
+			<label>Smoothness</label>
+			<value>smoothness.light</value>
 		</row>
 		<row>
-			<label>Gray (inverted)</label>
-			<value>invgray</value>
+			<label>South street</label>
+			<value>south-street.light</value>
+		</row>
+		<row>
+			<label>Start</label>
+			<value>start.light</value>
+		</row>
+		<row>
+			<label>Sunny</label>
+			<value>sunny.light</value>
+		</row>
+		<row>
+			<label>Swanky purse</label>
+			<value>swanky-purse.light</value>
+		</row>
+		<row>
+			<label>Trontastic</label>
+			<value>trontastic.light</value>
+		</row>
+		<row>
+			<label>UI darkness</label>
+			<value>ui-darkness.light</value>
+		</row>
+		<row>
+			<label>UI lightness</label>
+			<value>ui-lightness.light</value>
+		</row>
+		<row>
+			<label>Vader</label>
+			<value>vader.light</value>
+		</row>
+
+
+
+		<row>
+			<label>Base (inverted)</label>
+			<value>base.dark</value>
+		</row>
+		<row>
+			<label>Black tie (inverted)</label>
+			<value>black-tie.dark</value>
+		</row>
+		<row>
+			<label>Blitzer (inverted)</label>
+			<value>blitzer.dark</value>
+		</row>
+		<row>
+			<label>Cupertino (inverted)</label>
+			<value>cupertino.dark</value>
+		</row>
+		<row>
+			<label>Dark hive (inverted)</label>
+			<value>dark-hive.dark</value>
+		</row>
+		<row>
+			<label>Dot luv (inverted)</label>
+			<value>dot-luv.dark</value>
+		</row>
+		<row>
+			<label>Eggplant (inverted)</label>
+			<value>eggplant.dark</value>
+		</row>
+		<row>
+			<label>Excite bike (inverted)</label>
+			<value>excite-bike.dark</value>
+		</row>
+		<row>
+			<label>Flick (inverted)</label>
+			<value>flick.dark</value>
+		</row>
+		<row>
+			<label>Hot sneaks (inverted)</label>
+			<value>hot-sneaks.dark</value>
+		</row>
+		<row>
+			<label>Humanity (inverted)</label>
+			<value>humanity.dark</value>
+		</row>
+		<row>
+			<label>Le frog (inverted)</label>
+			<value>le-frog.dark</value>
+		</row>
+		<row>
+			<label>Mint-choc (inverted)</label>
+			<value>mint-choc.dark</value>
+		</row>
+		<row>
+			<label>Overcast (inverted)</label>
+			<value>overcast.dark</value>
+		</row>
+		<row>
+			<label>Pepper grinder (inverted)</label>
+			<value>pepper-grinder.dark</value>
+		</row>
+		<row>
+			<label>Redmond (inverted)</label>
+			<value>redmond.dark</value>
+		</row>
+		<row>
+			<label>Smoothness (inverted)</label>
+			<value>smoothness.dark</value>
+		</row>
+		<row>
+			<label>South street (inverted)</label>
+			<value>south-street.dark</value>
+		</row>
+		<row>
+			<label>Start (inverted)</label>
+			<value>start.dark</value>
+		</row>
+		<row>
+			<label>Sunny (inverted)</label>
+			<value>sunny.dark</value>
+		</row>
+		<row>
+			<label>Swanky purse (inverted)</label>
+			<value>swanky-purse.dark</value>
+		</row>
+		<row>
+			<label>Trontastic (inverted)</label>
+			<value>trontastic.dark</value>
+		</row>
+		<row>
+			<label>UI darkness (inverted)</label>
+			<value>ui-darkness.dark</value>
+		</row>
+		<row>
+			<label>UI lightness (inverted)</label>
+			<value>ui-lightness.dark</value>
+		</row>
+		<row>
+			<label>Vader (inverted)</label>
+			<value>vader.dark</value>
+		</row>
+	</rows>
+	<rows ifeval="ismobile()">
+		<row>
+			<label>Base A</label>
+			<value>base.a</value>
+		</row>
+		<row>
+			<label>Base B</label>
+			<value>base.b</value>
+		</row>
+		<row>
+			<label>FlatUI A</label>
+			<value>flatui.a</value>
+		</row>
+		<row>
+			<label>FlatUI B</label>
+			<value>flatui.b</value>
+		</row>
+		<row>
+			<label>FlatUI C</label>
+			<value>flatui.c</value>
+		</row>
+		<row>
+			<label>FlatUI D</label>
+			<value>flatui.d</value>
+		</row>
+		<row>
+			<label>FlatUI E</label>
+			<value>flatui.e</value>
+		</row>
+		<row>
+			<label>FlatUI F</label>
+			<value>flatui.f</value>
+		</row>
+		<row>
+			<label>SquareUI A</label>
+			<value>squareui.a</value>
+		</row>
+		<row>
+			<label>SquareUI B</label>
+			<value>squareui.b</value>
+		</row>
+		<row>
+			<label>SquareUI C</label>
+			<value>squareui.c</value>
+		</row>
+		<row>
+			<label>SquareUI D</label>
+			<value>squareui.d</value>
+		</row>
+		<row>
+			<label>SquareUI E</label>
+			<value>squareui.e</value>
+		</row>
+		<row>
+			<label>SquareUI F</label>
+			<value>squareui.f</value>
 		</row>
 	</rows>
 	<value global="style" eval="true">$style</value>
