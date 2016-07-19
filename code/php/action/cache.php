@@ -27,10 +27,8 @@ if(getParam("action")=="cache") {
 	require_once("php/libaction.php");
 	$files=trim(getParam("files",getParam("amp;files")));
 	if(substr($files,-1,1)==",") $files=substr($files,0,-1);
-	$usecssminify=eval_bool(getDefault("cache/usecssminify"));
-	$usejsminify=eval_bool(getDefault("cache/usejsminify"));
 	$useimginline=eval_bool(getDefault("cache/useimginline"));
-	$cache=get_cache_file(array("cache",$usecssminify,$usejsminify,$useimginline,$files),strtolower(extension($files)));
+	$cache=get_cache_file(array("cache",$useimginline,$files),strtolower(extension($files)));
 	$files=explode(",",$files);
 	foreach($files as $key=>$val) $files[$key]=trim($val);
 	//if(file_exists($cache)) unlink($cache);
@@ -43,25 +41,22 @@ if(getParam("action")=="cache") {
 		foreach($files as $file) {
 			if(file_exists($file)) {
 				$buffer="";
-				$subcache=get_cache_file(array("subcache",$usecssminify,$usejsminify,$useimginline,$file),strtolower(extension($file)));
+				$subcache=get_cache_file(array("subcache",$useimginline,$file),strtolower(extension($file)));
 				//if(file_exists($subcache)) unlink($subcache);
 				if(!cache_exists($subcache,$file)) {
 					if(file_exists($subcache)) unlink_protected($subcache);
 					$type=saltos_content_type($file);
-					$isminified=strpos($file,".min.");
 					if($type=="text/css") {
 						$buffer=file_get_contents($file);
 						if($buffer) {
 							$buffer=__cache_resolve_path($buffer,$file);
 							if($useimginline) $buffer=inline_images($buffer);
-							if($usecssminify && !$isminified) $buffer=minify_css($buffer);
 							file_put_contents($subcache,$buffer);
 							chmod_protected($subcache,0666);
 						}
 					} elseif($type=="text/javascript") {
 						$buffer=file_get_contents($file);
 						if($buffer) {
-							if($usejsminify && !$isminified) $buffer=minify_js($buffer);
 							if(substr(trim($buffer),-1,1)!=";") $buffer.=";";
 							file_put_contents($subcache,$buffer);
 							chmod_protected($subcache,0666);

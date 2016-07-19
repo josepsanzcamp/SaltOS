@@ -32,7 +32,7 @@ if(getParam("action")=="number") {
 	if(!in_array($format,array("png","css"))) action_denied();
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
-	$hash=md5(serialize(array($bgcolor,$fgcolor,getDefault("cache/usecssminify"),getDefault("cache/useimginline"))));
+	$hash=md5(serialize(array($bgcolor,$fgcolor,getDefault("cache/useimginline"))));
 	$cache="$temp$hash.$format";
 	require_once("php/libaction.php");
 	// FOR DEBUG PURPOSES
@@ -127,7 +127,6 @@ if(getParam("action")=="number") {
 				$index++;
 			}
 			$buffer=implode("\n",$buffer);
-			if(eval_bool(getDefault("cache/usecssminify"))) $buffer=minify_css($buffer);
 			file_put_contents($cache,$buffer);
 			chmod_protected($cache,0666);
 			// DUMP THE DATA

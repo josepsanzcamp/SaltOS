@@ -85,9 +85,7 @@ function __array2xml_write_nodes(&$array,$level=null) {
 }
 
 function array2xml($array,$usecache=true,$usexmlminify=true) {
-	$usecache=$usecache && eval_bool(getDefault("cache/usearray2xmlcache",true));
 	$array=array("root"=>$array);
-	$usexmlminify=$usexmlminify && eval_bool(getDefault("cache/usexmlminify",true));
 	if($usecache) {
 		$cache=get_cache_file(array($array,$usexmlminify),getDefault("exts/xmlext",".xml"));
 		if(file_exists($cache)) return file_get_contents($cache);

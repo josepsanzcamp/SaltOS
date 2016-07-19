@@ -310,18 +310,14 @@ function xml2html($buffer,$usecache=true) {
 	if($pos4!==false) $xslfile=substr($xslfile,0,$pos4);
 	if(!file_exists($xslfile)) show_php_error(array("phperror"=>"Unknown XSL file","details"=>"File '$xslfile' not found"));
 	// CACHE MANAGEMENT
-	$usecache=$usecache && eval_bool(getDefault("cache/usexml2htmlcache",true));
-	$usehtmlminify=eval_bool(getDefault("cache/usehtmlminify",true));
 	if($usecache) {
-		$cache=get_cache_file(array($buffer,$usehtmlminify),getDefault("exts/htmext",".htm"));
+		$cache=get_cache_file($buffer,getDefault("exts/htmext",".htm"));
 		if(cache_exists($cache,$xslfile)) return file_get_contents($cache);
 	}
 	// BEGIN THE TRANSFORMATION
 	$doc=new DomDocument();
 	$xsl=new XsltProcessor();
 	$xsldata=file_get_contents($xslfile);
-	if($usehtmlminify) $xsldata=str_replace('indent="yes"','indent="no"',$xsldata);
-	if(!$usehtmlminify) $xsldata=str_replace('indent="no"','indent="yes"',$xsldata);
 	$doc->loadXML($xsldata,LIBXML_COMPACT);
 	$xsl->importStylesheet($doc);
 	$doc->loadXML($buffer,LIBXML_COMPACT);
@@ -432,34 +428,6 @@ function output_handler($array) {
 	header("Connection: keep-alive, close");
 	echo $data;
 	if($die) die();
-}
-
-function minify_css($buffer) {
-	require_once("lib/minify/cssmin-v3.0.1.php");
-	capture_next_error();
-	try {
-		$buffer2=CssMin::minify($buffer);
-	} catch(Exception $e) {
-		__exception_handler($e);
-	}
-	$error=get_clear_error();
-	$buffer=$error?$buffer:$buffer2;
-	return $buffer;
-}
-
-function minify_js($buffer) {
-	if(isphp(5.3)) require_once("lib/minify/Minifier.php");
-	if(!isphp(5.3)) require_once("lib/minify/jsmin-1.1.2.php");
-	capture_next_error();
-	try {
-		if(isphp(5.3)) $buffer2=Minifier::minify($buffer);
-		if(!isphp(5.3)) $buffer2=JSMin::minify($buffer);
-	} catch(Exception $e) {
-		__exception_handler($e);
-	}
-	$error=get_clear_error();
-	$buffer=$error?$buffer:$buffer2;
-	return $buffer;
 }
 
 function inline_images($buffer) {

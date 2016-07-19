@@ -95,7 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<id>0</id>
 		<format>HTML</format><!-- output format can be XML or HTML -->
 		<lang>es_ES</lang>
-		<style eval="true">ismobile()?"flatui.f":"redmond.light"</style>
+		<style eval="true">ismobile()?"flatui.f":"custom.blue"</style>
 		<stylepre eval="true">ismobile()?"lib/jquery/jquery.mobile.":"lib/jquery/jquery-ui."</stylepre>
 		<stylepost eval="true">ismobile()?"/jquery.mobile.min.css":"/jquery-ui.min.css"</stylepost>
 		<iconset>silk</iconset>
@@ -157,16 +157,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cachegctimeout>86400</cachegctimeout><!-- in seconds, 86400 is 1 day -->
 		<cachegcprobability>1</cachegcprobability>
 		<cachegcdivisor>100</cachegcdivisor>
-		<usexml2arraycache>true</usexml2arraycache>
-		<usearray2xmlcache>true</usearray2xmlcache>
-		<usexml2htmlcache>true</usexml2htmlcache>
 		<usecsscache>true</usecsscache>
 		<usejscache>true</usejscache>
-		<usecssminify>true</usecssminify>
-		<usejsminify>true</usejsminify>
-		<usexmlminify>true</usexmlminify>
-		<usehtmlminify>true</usehtmlminify>
-		<useimginline eval="true">ismsie()?"false":"true"</useimginline>
+		<useimginline>true</useimginline>
 	</cache>
 	<commands>
 		<unoconv>unoconv</unoconv><!-- for unoconv module -->
@@ -226,29 +219,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</parser>
 	<styles>
 		<cache ifeval="!ismobile()">
-			<include>lib/jquery/jquery.colorpicker.css</include>
-			<include>lib/jquery/jquery.ptTimeSelect.css</include>
-			<include>lib/jquery/jquery.jgrowl.css</include>
+			<include>lib/jquery/jquery.colorpicker.min.css</include>
+			<include>lib/jquery/jquery.ptTimeSelect.min.css</include>
+			<include>lib/jquery/jquery.jgrowl.min.css</include>
 			<include>lib/pdfjs/pdf_viewer.min.css</include>
 			<include>lib/codemirror/codemirror.min.css</include>
+			<include>lib/jquery/jquery.ui.totop.min.css</include>
 		</cache>
 	</styles>
 	<javascript>
 		<cache ifeval="!ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
-			<include>lib/jquery/jquery-3.0.0.min.js</include>
-			<include>lib/jquery/jquery.kookie.js</include>
-			<include>lib/jquery/jquery.form.js</include>
+			<include>lib/jquery/jquery-3.1.0.min.js</include>
+			<include>lib/jquery/jquery.kookie.min.js</include>
+			<include>lib/jquery/jquery.form.min.js</include>
 			<include>lib/jquery/jquery-ui.min.js</include>
-			<include>lib/jquery/jquery.autogrow-textarea.js</include>
-			<include>lib/jquery/jquery.blockUI.js</include>
-			<include>lib/jquery/jquery.jgrowl.js</include>
-			<include>lib/jquery/jquery.colorpicker.js</include>
-			<include>lib/jquery/jquery.ptTimeSelect.js</include>
-			<include>lib/jquery/jquery.favicon.js</include>
-			<include>lib/jquery/jquery.jplayer.js</include>
-			<include>lib/jquery/jquery.ui.totop.js</include>
-			<include>lib/jquery/jquery.easing.js</include>
+			<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
+			<include>lib/jquery/jquery.blockUI.min.js</include>
+			<include>lib/jquery/jquery.jgrowl.min.js</include>
+			<include>lib/jquery/jquery.colorpicker.min.js</include>
+			<include>lib/jquery/jquery.ptTimeSelect.min.js</include>
+			<include>lib/jquery/jquery.favicon.min.js</include>
+			<include>lib/jquery/jquery.jplayer.min.js</include>
+			<include>lib/jquery/jquery.ui.totop.min.js</include>
+			<include>lib/jquery/jquery.easing.min.js</include>
 		</cache>
 		<inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<cache ifeval="!ismobile()">
@@ -263,10 +257,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cache ifeval="ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>
 			<include>lib/jquery/jquery-2.2.4.min.js</include>
-			<include>lib/jquery/jquery.kookie.js</include>
-			<include>lib/jquery/jquery.form.js</include>
+			<include>lib/jquery/jquery.kookie.min.js</include>
+			<include>lib/jquery/jquery.form.min.js</include>
 			<include>lib/jquery/jquery.mobile.min.js</include>
-			<include>lib/jquery/jquery.autogrow-textarea.js</include>
+			<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
 		</cache>
 	</javascript>
 	<configs>

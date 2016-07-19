@@ -25,56 +25,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<desktop>
-		<style>base.light</style>
-		<style>black-tie.light</style>
-		<style>blitzer.light</style>
-		<style>cupertino.light</style>
-		<style>dark-hive.light</style>
-		<style>dot-luv.light</style>
-		<style>eggplant.light</style>
-		<style>excite-bike.light</style>
-		<style>flick.light</style>
-		<style>hot-sneaks.light</style>
-		<style>humanity.light</style>
-		<style>le-frog.light</style>
-		<style>mint-choc.light</style>
-		<style>overcast.light</style>
-		<style>pepper-grinder.light</style>
-		<style>redmond.light</style>
-		<style>smoothness.light</style>
-		<style>south-street.light</style>
-		<style>start.light</style>
-		<style>sunny.light</style>
-		<style>swanky-purse.light</style>
-		<style>trontastic.light</style>
-		<style>ui-darkness.light</style>
-		<style>ui-lightness.light</style>
-		<style>vader.light</style>
-		<style>base.dark</style>
-		<style>black-tie.dark</style>
-		<style>blitzer.dark</style>
-		<style>cupertino.dark</style>
-		<style>dark-hive.dark</style>
-		<style>dot-luv.dark</style>
-		<style>eggplant.dark</style>
-		<style>excite-bike.dark</style>
-		<style>flick.dark</style>
-		<style>hot-sneaks.dark</style>
-		<style>humanity.dark</style>
-		<style>le-frog.dark</style>
-		<style>mint-choc.dark</style>
-		<style>overcast.dark</style>
-		<style>pepper-grinder.dark</style>
-		<style>redmond.dark</style>
-		<style>smoothness.dark</style>
-		<style>south-street.dark</style>
-		<style>start.dark</style>
-		<style>sunny.dark</style>
-		<style>swanky-purse.dark</style>
-		<style>trontastic.dark</style>
-		<style>ui-darkness.dark</style>
-		<style>ui-lightness.dark</style>
-		<style>vader.dark</style>
+		<style>custom.blue</style>
+		<style>custom.green</style>
+		<style>custom.violet</style>
+		<style>custom.orange</style>
+		<style>custom.red</style>
+		<style>theme.humanity</style>
+		<style>theme.redmond</style>
+		<style>theme.ui-darkness</style>
+		<style>theme.ui-lightness</style>
 	</desktop>
 	<mobile>
 		<style>base.a</style>
@@ -85,11 +44,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<style>flatui.d</style>
 		<style>flatui.e</style>
 		<style>flatui.f</style>
-		<style>squareui.a</style>
-		<style>squareui.b</style>
-		<style>squareui.c</style>
-		<style>squareui.d</style>
-		<style>squareui.e</style>
-		<style>squareui.f</style>
+		<style>flatui.g</style>
 	</mobile>
 </root>

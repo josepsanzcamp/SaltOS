@@ -259,7 +259,6 @@ function eval_files() {
 
 function xml2array($file,$usecache=true) {
 	static $depend=array();
-	$usecache=$usecache && eval_bool(getDefault("cache/usexml2arraycache",true));
 	if(!file_exists($file)) xml_error("File not found: $file");
 	if($usecache) {
 		$cache=get_cache_file($file,getDefault("exts/arrayext",".arr"));

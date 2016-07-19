@@ -109,7 +109,6 @@ function javascript_settimeout($temp,$timeout,$cond="") {
 function javascript_template($temp,$cond="") {
 	javascript_headers();
 	if($cond) $temp="if($cond) { ${temp} }";
-	if(eval_bool(getDefault("cache/usejsminify"))) $temp=minify_js($temp);
 	echo "<script type='text/javascript'>";
 	echo $temp;
 	echo "</script>";

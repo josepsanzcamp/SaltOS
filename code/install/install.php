@@ -574,8 +574,7 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 									"#attr"=>array("path"=>"server/porthttps","replace"=>"true")
 								));
 								$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
-								$_CONFIG["cache"]["usexmlminify"]="false";
-								$buffer.=array2xml($config);
+								$buffer.=array2xml($config,false,false);
 								file_put_contents("files/config.xml",$buffer);
 								if(file_exists("files/config.xml")) {
 									echo __YES__.__BR__;
