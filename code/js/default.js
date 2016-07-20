@@ -625,9 +625,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(".blockMsg > h1").text(message);
 			return false;
 		}
-		// GET COLORS AND FONT FAMILY
-		var color=get_colors("ui-state-highlight","color");
-		var background=get_colors("ui-state-highlight","background-color");
+		// GET FONT FAMILY
 		var fontfamily=get_colors("ui-widget","font-family");
 		// TRICK TO FORCE THE FADEIN AND FADEOUT TO BE DISABLED
 		$.blockUI.defaults.fadeIn=0;
@@ -646,19 +644,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				opacity:0.9,
 				border:"0px",
 				padding:"15px",
-				"border-radius":"10px",
-				"-moz-border-radius":"10px",
-				"-webkit-border-radius":"10px",
-				"box-shadow":"1px 1px 0px 0px rgba(0,0,0,1)",
-				"-moz-box-shadow":"1px 1px 0px 0px rgba(0,0,0,1)",
-				"-webkit-box-shadow":"1px 1px 0px 0px rgba(0,0,0,1)",
-				color:color,
-				backgroundColor:background,
+				color:"",
+				backgroundColor:"",
 				"font-family":fontfamily,
 				left:($(window).width()-500)/2+"px",
 				width:"500px"
 			}
 		});
+		$(".blockMsg").addClass("ui-state-highlight ui-corner-all");
 		return true;
 	}
 
@@ -1402,7 +1395,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var table=$(checkbox).parent().parent().parent();
 			if(!$(slave,table).length) table=$(table).parent().parent().parent();
 			$(slave,table).prop("checked",!value);
-			if(!value) $(".tbody",table).addClass("ui-state-highlight");
+			if(!value) {
+				var color=$(".tbody:first",table).css("border-bottom-color");
+				$(".tbody",table).addClass("ui-state-highlight").css("border-color",color);
+			}
 			if(value) $(".tbody",table).removeClass("ui-state-highlight");
 		});
 		// PROGRAM CHECK ENTER
@@ -1774,14 +1770,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// SUPPORT FOR LTR AND RTL LANGS
 		var dir=$("html").attr("dir");
 		var rtl={
-			"ltr":{"ui-corner-tl":"ui-corner-tl","ui-corner-tr":"ui-corner-tr","ui-corner-bl":"ui-corner-bl","ui-corner-br":"ui-corner-br","noright":"noright"},
-			"rtl":{"ui-corner-tl":"ui-corner-tr","ui-corner-tr":"ui-corner-tl","ui-corner-bl":"ui-corner-br","ui-corner-br":"ui-corner-bl","noright":"noleft"}
+			"ltr":{"ui-corner-tl":"ui-corner-tl","ui-corner-tr":"ui-corner-tr","ui-corner-bl":"ui-corner-bl","ui-corner-br":"ui-corner-br"},
+			"rtl":{"ui-corner-tl":"ui-corner-tr","ui-corner-tr":"ui-corner-tl","ui-corner-bl":"ui-corner-br","ui-corner-br":"ui-corner-bl"}
 		};
 		// GET ALL TABLES OF THE TABLA CLASS
 		$(".tabla",obj).each(function() {
 			if($(".thead",this).length>0) {
 				// FIXS FOR POSIBLE NEXT RECALLS
-				$("td",this).removeClass("ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br ui-widget-header ui-widget-content ui-state-default ui-state-highlight notop "+rtl[dir]["noright"]);
+				$("td",this).removeClass("ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br ui-widget-header ui-widget-content ui-state-default ui-state-highlight");
 				$("[hasbind=true]",this).unbind();
 				// STYLING THE THEAD AND NODATA
 				$(".thead",this).addClass("ui-widget-header");
@@ -1802,23 +1798,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					if(tdshead==null && numhead>0) {
 						tdshead=this;
 						tdsbody=this;
-						var tds=$("td",this);
-						var total=$(tds).length;
-						var count=1;
-						$(tds).each(function() {
-							if(count<total) $(this).addClass(rtl[dir]["noright"]);
-							count++;
-						});
 					} else if(tdshead!=null && numhead+numbody+numdata>0) {
 						tdsbody=this;
-						var tds=$("td",this);
-						var total=$(tds).length;
-						var count=1;
-						$(tds).each(function() {
-							if(count<total) $(this).addClass("notop").addClass(rtl[dir]["noright"]);
-							if(count==total) $(this).addClass("notop")
-							count++;
-						});
 					} else if(tdshead!=null) {
 						var tds=$("td",tdshead);
 						var total=$(tds).length;
@@ -1852,7 +1833,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						var slave="input.slave[type=checkbox]";
 						$(this).bind("mouseover",function() {
 							var value=$(slave,this).prop("checked");
-							if(!value) $(".tbody",this).addClass("ui-state-highlight");
+							if(!value) {
+								var color=$(".tbody:first",this).css("border-bottom-color");
+								$(".tbody",this).addClass("ui-state-highlight").css("border-color",color);
+							}
 						}).bind("mouseout",function() {
 							var value=$(slave,this).prop("checked");
 							if(!value) $(".tbody",this).removeClass("ui-state-highlight");
@@ -1860,7 +1844,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							var checkbox=$(slave,this);
 							var value=$(checkbox).prop("checked");
 							$(checkbox).prop("checked",!value);
-							if(!value) $(".tbody",this).addClass("ui-state-highlight");
+							if(!value) {
+								var color=$(".tbody:first",this).css("border-bottom-color");
+								$(".tbody",this).addClass("ui-state-highlight").css("border-color",color);
+							}
 							if(value) $(".tbody",this).removeClass("ui-state-highlight");
 							// CHECK FOR MULTIPLE SELECTION
 							var count=0;
@@ -1876,7 +1863,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 								$(this).parent().find(slave).each(function() {
 									if(count>=from && count<=to) {
 										$(this).prop("checked",true);
-										$(this).parent().parent().find(".tbody").addClass("ui-state-highlight");
+										var color=$(this).parent().parent().find(".tbody:first").css("border-bottom-color");
+										$(this).parent().parent().find(".tbody").addClass("ui-state-highlight").css("border-color",color);
 									}
 									count++;
 								});
@@ -1949,6 +1937,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		}).bind("click",function(event) {
 			if(event.button!=2) hide_contextmenu();
 		}).bind("contextmenu",function(event) {
+			if(event.ctrlKey) return true;
 			var obj=$("#contextMenu");
 			$("li",obj).remove();
 			var parent=$(event.target).parent();
@@ -1972,7 +1961,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if(!disabled) disabled=$("a",this).hasClass("ui-state-disabled");
 				if(!disabled) disabled=$("span",this).hasClass("ui-state-disabled");
 				var extra2=disabled?"ui-state-disabled":"";
-				var html="<li class='"+extra2+"'><span class='"+extra1+"'></span>&nbsp;"+texto+"</li>";
+				var html="<li class='"+extra2+"'><div><span class='"+extra1+"'></span>&nbsp;"+texto+"<div></li>";
 				var hash=md5(html);
 				if(!in_array(hash,hashes)) {
 					$(obj).append(html);

@@ -284,12 +284,17 @@ img.ui-state-default {
 	white-space:nowrap;
 	padding:0px 3px;
 	height:22px;
+	border-left:none;
+	border-right:none;
 }
 
 .tabla tr td.tbody {
 	font-weight:normal;
 	padding:0px 3px;
 	height:22px;
+	border-left:none;
+	border-right:none;
+	border-top:none;
 }
 
 .tabla tr td.tbody a {
@@ -523,6 +528,7 @@ img[isplot=true] {
 	box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
 	-moz-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
 	-webkit-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
+	padding:5px 10px!important;
 }
 
 /* FOR PHPERROR */
@@ -535,13 +541,17 @@ img[isplot=true] {
 }
 
 /* FOR CONTEXT MENU */
-#contextMenu {
-	padding:3px 0;
+ul.ui-menu {
 	display:none;
+	padding:5px;
 }
 
-#contextMenu li {
-	font-weight:normal!important;
+ul.ui-menu .ui-menu-item-wrapper {
+	font-weight:normal;
+}
+
+ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
+	background-color:#fbec88;
 }
 
 /* FOR VIEWPDF */
@@ -580,4 +590,12 @@ img[isplot=true] {
 
 .rtl .tabs2 .texto {
 	float:none!important;
+}
+
+/* FOR BLOCKUI */
+.blockUI.blockMsg {
+	border:0px!important;
+	box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
+	-moz-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
+	-webkit-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
 }

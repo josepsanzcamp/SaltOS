@@ -24,17 +24,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 .estado.style_pending,
 .estado.style_alarm {
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
 	color:#ffffff;
 }
 
 .estado.style_pending {
-	background-color: #114477;
+	background: #2780e3;
 }
 
 .estado.style_alarm {
-	background-color: #aa3333;
+	background: #FF0039;
 }

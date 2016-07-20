@@ -72,7 +72,7 @@ define("__DEFAULT__","install/xml/tbl_*.xml");
 define("__EXAMPLE__","install/csv/example/tbl_*.csv");
 define("__STREET__","install/csv/street/tbl_*.csv.gz");
 // JQUERY VERSIONS
-$jquery="lib/jquery/jquery.min.js";
+$jquery="lib/jquery/jquery-3.1.0.min.js";
 $jqueryui="lib/jquery/jquery-ui.min.js";
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $lang; ?>" dir="<?php echo $dir; ?>">
@@ -507,7 +507,7 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 									"#attr"=>array("path"=>"default/lang","replace"=>"true")
 								));
 								set_array($config,"node",array(
-									"value"=>array("style"=>$style),
+									"value"=>array("style"=>array("value"=>"ismobile()?\"flatui.f\":\"$style\"","#attr"=>array("eval"=>"true"))),
 									"#attr"=>array("path"=>"default/style","replace"=>"true")
 								));
 								set_array($config,"node",array(

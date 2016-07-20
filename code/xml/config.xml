@@ -101,8 +101,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<iconset>silk</iconset>
 		<iconsetpre>?action=iconset&amp;iconset=</iconsetpre>
 		<iconsetpost>&amp;format=css</iconsetpost>
-		<forcelang></forcelang>
-		<forcestyle></forcestyle>
+		<forcelang eval="true">getParam("lang")</forcelang>
+		<forcestyle eval="true">getParam("style")</forcestyle>
 		<forceiconset eval="true">ismobile()?"mobile":""</forceiconset>
 		<forcecss eval="true">ismobile()?"mobile":""</forcecss>
 		<forcejs eval="true">ismobile()?"mobile":""</forcejs>
