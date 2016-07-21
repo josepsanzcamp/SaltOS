@@ -3216,6 +3216,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
+			<name>ficheros2</name>
+			<table>tbl_ficheros</table>
+			<fields>
+				<field>
+					<name>indexed</name>
+				</field>
+				<field>
+					<name>retries</name>
+				</field>
+			</fields>
+		</index>
+		<index>
 			<name>registros</name>
 			<table>tbl_registros_i</table>
 			<fields>
