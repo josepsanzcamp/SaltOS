@@ -305,6 +305,9 @@ img.ui-state-default {
 	font-weight:bold;
 	text-align:center;
 	height:44px;
+	border-left:none;
+	border-right:none;
+	border-top:none;
 }
 
 .tabla tr td.notop {

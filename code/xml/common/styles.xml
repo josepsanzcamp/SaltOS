@@ -68,40 +68,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</rows>
 	<rows ifeval="ismobile()">
 		<row>
-			<label>Base (light)</label>
-			<value>base.a</value>
+			<label>Blue</label>
+			<value>custom.blue</value>
 		</row>
 		<row>
-			<label>Base (dark)</label>
-			<value>base.b</value>
+			<label>Green</label>
+			<value>custom.green</value>
 		</row>
 		<row>
-			<label>FlatUI blue (dark)</label>
-			<value>flatui.a</value>
+			<label>Violet</label>
+			<value>custom.violet</value>
 		</row>
 		<row>
-			<label>FlatUI green</label>
-			<value>flatui.b</value>
+			<label>Orange</label>
+			<value>custom.orange</value>
 		</row>
 		<row>
-			<label>FlatUI b/w (dark)</label>
-			<value>flatui.c</value>
+			<label>Red</label>
+			<value>custom.red</value>
 		</row>
 		<row>
-			<label>FlatUI red</label>
-			<value>flatui.d</value>
+			<label>Light</label>
+			<value>theme.light</value>
 		</row>
 		<row>
-			<label>FlatUI yellow</label>
-			<value>flatui.e</value>
-		</row>
-		<row>
-			<label>FlatUI blue</label>
-			<value>flatui.f</value>
-		</row>
-		<row>
-			<label>FlatUI green (light)</label>
-			<value>flatui.g</value>
+			<label>Dark</label>
+			<value>theme.dark</value>
 		</row>
 	</rows>
 	<value global="style" eval="true">$style</value>

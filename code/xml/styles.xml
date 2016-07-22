@@ -36,14 +36,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<style>theme.ui-lightness</style>
 	</desktop>
 	<mobile>
-		<style>base.a</style>
-		<style>base.b</style>
-		<style>flatui.a</style>
-		<style>flatui.b</style>
-		<style>flatui.c</style>
-		<style>flatui.d</style>
-		<style>flatui.e</style>
-		<style>flatui.f</style>
-		<style>flatui.g</style>
+		<style>custom.blue</style>
+		<style>custom.green</style>
+		<style>custom.violet</style>
+		<style>custom.orange</style>
+		<style>custom.red</style>
+		<style>theme.light</style>
+		<style>theme.dark</style>
 	</mobile>
 </root>

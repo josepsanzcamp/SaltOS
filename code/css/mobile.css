@@ -34,13 +34,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 .ui-state-highlight {
-	border: 1px solid #fad42e!important;
+	/* border: 1px solid #fad42e!important; */
 	background: #fbec88!important;
 	color: #363636!important;
 }
 
 .ui-state-error {
-	border: 1px solid #cd0a0a!important;
+	/* border: 1px solid #cd0a0a!important; */
 	background: #fef1ec!important;
 	color: #cd0a0a!important;
 }
@@ -84,6 +84,14 @@ iframe {
 
 /* FOR NOTICE */
 .jGrowl-notification {
+	border:0px!important;
+	box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
+	-moz-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
+	-webkit-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
+}
+
+/* FOR DIALOG */
+#dialog > div {
 	border:0px!important;
 	box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
 	-moz-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;

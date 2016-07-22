@@ -423,6 +423,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(dialog2).dialog("option","buttons",buttons);
 		$(dialog2).dialog("option","width","300px");
 		$(dialog2).dialog("option","height","auto");
+		// TRICK TO PREVENT THE DEFAULT FOCUS ON THE CLOSE BUTTON
+		$(dialog2).parent().find(".ui-dialog-titlebar-close").attr("tabindex","-1");
 		// IF MESSAGE EXISTS, OPEN IT
 		if(message=="") return false;
 		var br="<br/>";

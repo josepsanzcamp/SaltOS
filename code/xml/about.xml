@@ -634,14 +634,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.generatedata.com/")</onclick>
 						</field>
 						<field>
-							<label>jQuery Mobile Flat-UI Theme (WTFPL)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/ququplay/jquery-mobile-flat-ui-theme")</onclick>
-						</field>
-						<field>
 							<type>separator</type>
 							<class>tbody</class>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
