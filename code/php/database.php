@@ -39,11 +39,13 @@ function db_connect($args=null) {
 function db_query($query,$fetch="query") {
 	static $stack=array();
 	// CHECK CACHE
-	$hash=md5(serialize(array($query,$fetch)));
+	$hash=md5(json_encode(array($query,$fetch)));
 	$usecache=eval_bool(get_use_cache($query));
 	if($usecache && isset($stack[$hash])) return $stack[$hash];
 	// DO QUERY
+	if(eval_bool(getDefault("debug/databasedebug"))) debug_db($hash,$query,-microtime(true),0,0);
 	$result=getDefault("db/obj")->db_query($query,$fetch);
+	if(eval_bool(getDefault("debug/databasedebug"))) debug_db($hash,"",microtime(true),1,$result["total"]);
 	// AND RETURN
 	if($usecache) $stack[$hash]=$result;
 	return $result;

@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<info>
 		<name>SaltOS</name>
-		<version>3.1</version>
+		<version>3.5</version>
 		<revision eval="true">svnversion("../code")</revision>
 		<copyright>Copyright (C) 2007-2016 by Josep Sanz Campderrós</copyright>
 		<title config="true">application_title</title>
@@ -144,13 +144,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sqlext>.sql</sqlext>
 		<csvext>.csv</csvext>
 		<xmlext>.xml</xmlext>
-		<arrayext>.arr</arrayext>
 		<pngext>.png</pngext>
 		<targzipext>.tgz</targzipext>
 		<tarbzipext>.tbz</tarbzipext>
 		<tiffext>.tif</tiffext>
 		<hocrext>.hocr</hocrext>
 		<jpegext>.jpg</jpegext>
+		<jsonext>.json</jsonext>
 	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>
@@ -199,6 +199,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<debug>
 		<actiondebug>false</actiondebug>
 		<langdebug>false</langdebug>
+		<databasedebug>false</databasedebug>
 		<cancelgetmail>false</cancelgetmail>
 		<cancelsendmail>false</cancelsendmail>
 		<cancelfeeds>false</cancelfeeds>
@@ -224,7 +225,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.jgrowl.min.css</include>
 			<include>lib/pdfjs/pdf_viewer.min.css</include>
 			<include>lib/codemirror/codemirror.min.css</include>
-			<include>lib/jquery/jquery.ui.totop.min.css</include>
 		</cache>
 	</styles>
 	<javascript>
@@ -241,8 +241,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.ptTimeSelect.min.js</include>
 			<include>lib/jquery/jquery.favicon.min.js</include>
 			<include>lib/jquery/jquery.jplayer.min.js</include>
-			<include>lib/jquery/jquery.ui.totop.min.js</include>
-			<include>lib/jquery/jquery.easing.min.js</include>
 		</cache>
 		<inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<cache ifeval="!ismobile()">

@@ -497,7 +497,7 @@ function db_schema() {
 	capture_next_error();
 	$hash1=CONFIG($file);
 	get_clear_error();
-	$hash2=md5(serialize(xml2array($file)));
+	$hash2=md5(json_encode(xml2array($file)));
 	if($hash1!=$hash2) {
 		if(!semaphore_acquire(array("db_schema","db_static"),getDefault("semaphoretimeout",100000))) return;
 		$oldcache=set_use_cache("false");
@@ -518,8 +518,8 @@ function db_schema() {
 				if(in_array($table,$tables1)) {
 					$fields1=get_fields($table);
 					$fields2=get_fields_from_dbschema($table);
-					$hash3=md5(serialize($fields1));
-					$hash4=md5(serialize($fields2));
+					$hash3=md5(json_encode($fields1));
+					$hash4=md5(json_encode($fields2));
 					if($hash3!=$hash4) {
 						db_query(sql_alter_table($table,$backup));
 						db_query(sql_create_table($tablespec));
@@ -529,8 +529,8 @@ function db_schema() {
 				} elseif(in_array($backup,$tables1)) {
 					$fields1=get_fields($backup);
 					$fields2=get_fields_from_dbschema($table);
-					$hash3=md5(serialize($fields1));
-					$hash4=md5(serialize($fields2));
+					$hash3=md5(json_encode($fields1));
+					$hash4=md5(json_encode($fields2));
 					if($hash3!=$hash4) {
 						db_query(sql_create_table($tablespec));
 						db_query(sql_insert_from_select($table,$backup));
@@ -561,8 +561,8 @@ function db_schema() {
 							if(array_key_exists($index,$indexes1)) {
 								$fields1=$indexes1[$index];
 								$fields2=$indexes2[$index];
-								$hash3=md5(serialize($fields1));
-								$hash4=md5(serialize($fields2));
+								$hash3=md5(json_encode($fields1));
+								$hash4=md5(json_encode($fields2));
 								if($hash3!=$hash4) {
 									db_query(sql_drop_index($index,$table));
 									db_query(sql_create_index($indexspec));
@@ -585,7 +585,7 @@ function db_static() {
 	if(!eval_bool(getDefault("db/dbstatic"))) return;
 	$file="xml/dbstatic.xml";
 	$hash1=CONFIG($file);
-	$hash2=md5(serialize(xml2array($file)));
+	$hash2=md5(json_encode(xml2array($file)));
 	if($hash1!=$hash2) {
 		if(!semaphore_acquire(array("db_schema","db_static"),getDefault("semaphoretimeout",100000))) return;
 		$oldcache=set_use_cache("false");
@@ -1052,7 +1052,7 @@ function pretty_html_error($msg) {
 	$html.="</head>";
 	$html.="<body class='phperror'>";
 	$html.="<div>";
-	$bug=base64_encode(serialize(array("app"=>get_name_version_revision(),"msg"=>$msg)));
+	$bug=base64_encode(json_encode(array("app"=>get_name_version_revision(),"msg"=>$msg)));
 	$html.=__pretty_html_error_helper("http://bugs.saltos.org",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
 	$html.=__pretty_html_error_helper("",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
 	$html.=$msg;
@@ -1080,6 +1080,7 @@ function __exception_handler($e) {
 }
 
 function __shutdown_handler() {
+	if(eval_bool(getDefault("debug/databasedebug"))) debug_db("dump");
 	semaphore_shutdown();
 	$error=error_get_last();
 	$types=array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
@@ -1167,23 +1168,6 @@ function memory_get_free($bytes=false) {
 	$diff=$memory_limit-$memory_usage;
 	if(!$bytes) $diff=($diff*100)/$memory_limit;
 	return $diff;
-}
-
-function debug($name,$end=0) {
-	static $stack=array();
-	if(!isset($stack[$name])) $stack[$name]=array();
-	$home=microtime(true);
-	if(!$end) {
-		$stack[$name][]=$home;
-		file_put_contents("files/debug.txt",sprintf("%f: timer %s start\n",$home,$name),FILE_APPEND);
-	} else {
-		$diff=$home-array_pop($stack[$name]);
-		file_put_contents("files/debug.txt",sprintf("%f: timer %s stop: %f\n",$home,$name,$diff),FILE_APPEND);
-	}
-}
-
-function debugEnd($name) {
-	debug($name,1);
 }
 
 function usleep_protected($usec) {
@@ -1442,5 +1426,17 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 		db_query($query);
 		return 1;
 	}
+}
+
+function debug_db($hash,$query="",$time=0,$iter=0,$rows=0) {
+	static $stack=array();
+	if($hash=="dump") {
+		echo "<pre>".sprintr($stack)."</pre>";
+		die();
+	}
+	if(!isset($stack[$hash])) $stack[$hash]=array("query"=>$query,"time"=>0,"iter"=>0,"rows"=>0);
+	$stack[$hash]["time"]+=$time;
+	$stack[$hash]["iter"]+=1;
+	$stack[$hash]["rows"]+=$rows;
 }
 ?>

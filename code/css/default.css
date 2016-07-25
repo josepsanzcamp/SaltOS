@@ -558,6 +558,11 @@ ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
 }
 
 /* FOR VIEWPDF */
+.pdfViewer {
+	margin-top:10px;
+	margin-bottom:20px;
+}
+
 .pdfViewer .page {
 	margin-bottom:1px;
 }
@@ -601,4 +606,18 @@ ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
 	box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
 	-moz-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
 	-webkit-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
+}
+
+/* FOR BACK TO TOP FEATURE */
+.back2top {
+	background:none;
+	margin:0;
+	position:fixed;
+	bottom:10px;
+	left:10px;
+	width:60px;
+	height:60px;
+	z-index:100;
+	display:none;
+	text-decoration:none;
 }

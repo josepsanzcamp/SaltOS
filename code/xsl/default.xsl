@@ -1493,6 +1493,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<td valign="top">
 						<div class="ui-layout-west">
 							<xsl:call-template name="menu"/>
+							<a href="#" class="back2top ui-state-default ui-corner-all none"><img src="img/back2top.png"/></a>
 						</div>
 					</td>
 					<td valign="top" class="width100">

@@ -32,7 +32,7 @@ if(getParam("action")=="favicon") {
 	if(!in_array($format,array("animation","alternate"))) action_denied();
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
-	$hash=md5(serialize(array($bgcolor,$fgcolor,$format)));
+	$hash=md5(json_encode(array($bgcolor,$fgcolor,$format)));
 	$cache="$temp$hash.png";
 	require_once("php/libaction.php");
 	// CREATE IF NOT EXISTS

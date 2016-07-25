@@ -31,7 +31,7 @@ if(getParam("action")=="voice") {
 	if(!check_commands(array(getDefault("commands/text2wave"),getDefault("commands/wavetomp3")),60)) action_denied();
 	// NORMAL OPERATION
 	$text=getParam("text");
-	$dirhash=get_directory("dirs/cachedir").md5(serialize(array("voice",$text)));
+	$dirhash=get_directory("dirs/cachedir").md5(json_encode(array("voice",$text)));
 	$cache=$dirhash.getDefault("exts/mp3ext",".mp3");
 	//if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {

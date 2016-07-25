@@ -2074,6 +2074,22 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		return islogin;
 	}
 
+	function make_back2top() {
+		$(".back2top").removeClass("none").hide();
+		$(window).scroll(function() {
+			if($(this).scrollTop()>300) {
+				$(".back2top").show();
+			} else {
+				$(".back2top").hide();
+			}
+		});
+		$(".back2top").bind("click",function(event) {
+			event.preventDefault();
+			$("html,body").animate({ scrollTop:0 },"fast");
+			return false;
+		})
+	}
+
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
 	$.ajaxSetup({ cache:true });
 
@@ -2125,7 +2141,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				//~ console.timeEnd("document_ready fase 2 center");
 			},100);
 			unloadingcontent();
-			$().UItoTop({ easingType:"easeOutQuart" });
+			make_back2top();
 			//~ console.timeEnd("document_ready fase 1");
 		},100);
 		//~ console.timeEnd("document_ready fase 0");

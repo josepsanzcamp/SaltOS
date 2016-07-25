@@ -356,7 +356,7 @@ function normalize_value($value) {
 
 function get_name_version_revision($copyright=false) {
 	$result=getDefault("info/name","SaltOS");
-	$result.=" v".getDefault("info/version","3.1");
+	$result.=" v".getDefault("info/version","3.5");
 	capture_next_error();
 	$revision=svnversion("../code");
 	get_clear_error();

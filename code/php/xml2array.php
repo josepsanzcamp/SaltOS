@@ -261,9 +261,9 @@ function xml2array($file,$usecache=true) {
 	static $depend=array();
 	if(!file_exists($file)) xml_error("File not found: $file");
 	if($usecache) {
-		$cache=get_cache_file($file,getDefault("exts/arrayext",".arr"));
+		$cache=get_cache_file($file,getDefault("exts/jsonext",".json"));
 		if(cache_exists($cache,$file)) {
-			$array=unserialize(file_get_contents($cache));
+			$array=json_decode(file_get_contents($cache),true);
 			if(isset($array["depend"]) && isset($array["root"])) {
 				if(cache_exists($cache,$array["depend"])) {
 					return $array["root"];
@@ -282,7 +282,7 @@ function xml2array($file,$usecache=true) {
 		$array["source"]=$file;
 		$array["depend"]=array_unique_protected($depend);
 		if(file_exists($cache)) unlink_protected($cache);
-		file_put_contents($cache,serialize($array));
+		file_put_contents($cache,json_encode($array));
 		chmod_protected($cache,0666);
 	}
 	return $array["root"];

@@ -2,7 +2,7 @@
 /*
  * mime_parser.php
  *
- * @(#) $Id: mime_parser.php,v 1.88 2015/10/04 00:15:39 mlemos Exp $
+ * @(#) $Id: mime_parser.php,v 1.89 2016/07/23 03:55:07 mlemos Exp $
  *
  */
 
@@ -30,7 +30,7 @@ define('MIME_ADDRESS_FIRST',            2);
 
 	<package>net.manuellemos.mimeparser</package>
 
-	<version>@(#) $Id: mime_parser.php,v 1.88 2015/10/04 00:15:39 mlemos Exp $</version>
+	<version>@(#) $Id: mime_parser.php,v 1.89 2016/07/23 03:55:07 mlemos Exp $</version>
 	<copyright>Copyright © (C) Manuel Lemos 2006 - 2008</copyright>
 	<title>MIME parser</title>
 	<author>Manuel Lemos</author>
@@ -917,6 +917,13 @@ class mime_parser_class
 		return(1);
 	}
 
+	Function TrimEncodedWord($not_encoded)
+	{
+		if(strspn($not_encoded, " \t") == strlen($not_encoded))
+			$not_encoded = '';
+		return $not_encoded;
+	}
+
 	Function DecodePart($part)
 	{
 		switch($part['Type'])
@@ -939,12 +946,13 @@ class mime_parser_class
 						{
 							if($position<strlen($value))
 							{
+								$not_encoded = $this->TrimEncodedWord(substr($value, $position));
 								if(count($decoded_header))
-									$decoded_header[count($decoded_header)-1]['Value'].=substr($value, $position);
+									$decoded_header[count($decoded_header)-1]['Value'].=$not_encoded;
 								else
 								{
 									$decoded_header[]=array(
-										'Value'=>substr($value, $position),
+										'Value'=>$not_encoded,
 										'Encoding'=>'ASCII'
 									);
 								}
@@ -975,12 +983,13 @@ class mime_parser_class
 						}
 						if($encoded > $position)
 						{
+							$not_encoded = $this->TrimEncodedWord(substr($value, $position, $encoded - $position));
 							if(count($decoded_header))
-								$decoded_header[count($decoded_header)-1]['Value'].=substr($value, $position, $encoded - $position - 1);
+								$decoded_header[count($decoded_header)-1]['Value'].= $not_encoded;
 							else
 							{
 								$decoded_header[]=array(
-									'Value'=>substr($value, $position, $encoded - $position),
+									'Value'=>$not_encoded,
 									'Encoding'=>'ASCII'
 								);
 							}

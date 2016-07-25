@@ -2,7 +2,7 @@
 /*
  * rfc822_addresses.php
  *
- * @(#) $Id: rfc822_addresses.php,v 1.15 2011/10/29 09:11:50 mlemos Exp $
+ * @(#) $Id: rfc822_addresses.php,v 1.16 2016/07/23 01:50:22 mlemos Exp $
  *
  */
 
@@ -12,7 +12,7 @@
 
 	<package>net.manuellemos.mimeparser</package>
 
-	<version>@(#) $Id: rfc822_addresses.php,v 1.15 2011/10/29 09:11:50 mlemos Exp $</version>
+	<version>@(#) $Id: rfc822_addresses.php,v 1.16 2016/07/23 01:50:22 mlemos Exp $</version>
 	<copyright>Copyright © (C) Manuel Lemos 2006 - 2008</copyright>
 	<title>RFC 822 e-mail addresses parser</title>
 	<author>Manuel Lemos</author>
@@ -442,7 +442,7 @@ class rfc822_addresses_class
 		$a = $p;
 		if(!$this->SkipCommentGetWhiteSpace($a, $space))
 			return(0);
-		$match = '/^([-'.($dot ? '.' : '').'A-Za-z0-9!#$&\'*+\\/=?^_{|}~]+)/';
+		$match = '/^([-'.($dot ? '.' : '').'A-Za-z0-9!#$%&\'*+\\/=?^_`{|}~]+)/';
 		for($s = $a;$a < $l;)
 		{
 			if(preg_match($match, substr($this->v, $a), $m))

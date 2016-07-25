@@ -32,7 +32,7 @@ if(getParam("action")=="number") {
 	if(!in_array($format,array("png","css"))) action_denied();
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
-	$hash=md5(serialize(array($bgcolor,$fgcolor,getDefault("cache/useimginline"))));
+	$hash=md5(json_encode(array($bgcolor,$fgcolor,getDefault("cache/useimginline"))));
 	$cache="$temp$hash.$format";
 	require_once("php/libaction.php");
 	// FOR DEBUG PURPOSES

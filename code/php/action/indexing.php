@@ -56,7 +56,7 @@ if(getParam("action")=="indexing") {
 				$files=__getmail_getfiles(__getmail_getnode("0",$decoded));
 				foreach($files as $key=>$val) {
 					$test1=$row["fichero_file"]==md5(md5($val["body"]).md5($val["cid"]).md5($val["cname"]).md5($val["ctype"]).md5($val["csize"]));
-					$test2=$row["fichero_file"]==md5(serialize(array($val["body"],$val["cid"],$val["cname"],$val["ctype"],$val["csize"])));
+					$test2=$row["fichero_file"]==md5(json_encode(array($val["body"],$val["cid"],$val["cname"],$val["ctype"],$val["csize"])));
 					if($test1 || $test2) {
 						make_update_query("tbl_ficheros",array("fichero_file"=>$val["chash"]),make_where_query(array("id"=>$row["id"])));
 						db_query($query);
@@ -160,54 +160,55 @@ if(getParam("action")=="indexing") {
 			make_control($id_aplicacion,$ids);
 			$total+=count($ids);
 		}
-		for(;;) {
-			// SEARCH FOR DUPLICATED ROWS IN REGISTER TABLE
-			$query=make_select_query("tbl_registros_i",array(
-				"GROUP_CONCAT(id)"=>"ids",
-				"id_aplicacion"=>"id_aplicacion",
-				"id_registro"=>"id_registro",
-				"COUNT(*)"=>"total"
-			),"",array(
-				"groupby"=>array("id_aplicacion","id_registro"),
-				"having"=>"total>1",
-				"limit"=>"1000"
-			));
-			$ids=execute_query_array($query);
-			if(!count($ids)) break;
-			foreach($ids as $id) {
-				$temp=explode(",",$id["ids"]);
-				array_shift($temp);
-				$temp=implode(",",$temp);
-				$query=make_delete_query("tbl_registros_i","id IN (${temp})");
-				db_query($query);
-			}
-			$total+=count($ids);
-		}
-		for(;;) {
-			// SEARCH FOR DUPLICATED ROWS IN INDEXING TABLE
-			$query=make_select_query("tbl_indexing",array(
-				"GROUP_CONCAT(id)"=>"ids",
-				"id_aplicacion"=>"id_aplicacion",
-				"id_registro"=>"id_registro",
-				"COUNT(*)"=>"total"
-			),"",array(
-				"groupby"=>array("id_aplicacion","id_registro"),
-				"having"=>"total>1",
-				"limit"=>"1000"
-			));
-			$ids=execute_query_array($query);
-			if(!count($ids)) break;
-			foreach($ids as $id) {
-				$temp=explode(",",$id["ids"]);
-				array_shift($temp);
-				$temp=implode(",",$temp);
-				$query=make_delete_query("tbl_indexing","id IN (${temp})");
-				db_query($query);
-			}
-			$total+=count($ids);
-		}
 	}
 	db_free($result);
+	// CHECK INTEGRITY
+	for(;;) {
+		// SEARCH FOR DUPLICATED ROWS IN REGISTER TABLE
+		$query=make_select_query("tbl_registros_i",array(
+			"GROUP_CONCAT(id)"=>"ids",
+			"id_aplicacion"=>"id_aplicacion",
+			"id_registro"=>"id_registro",
+			"COUNT(*)"=>"total"
+		),"",array(
+			"groupby"=>array("id_aplicacion","id_registro"),
+			"having"=>"total>1",
+			"limit"=>"1000"
+		));
+		$ids=execute_query_array($query);
+		if(!count($ids)) break;
+		foreach($ids as $id) {
+			$temp=explode(",",$id["ids"]);
+			array_shift($temp);
+			$temp=implode(",",$temp);
+			$query=make_delete_query("tbl_registros_i","id IN (${temp})");
+			db_query($query);
+		}
+		$total+=count($ids);
+	}
+	for(;;) {
+		// SEARCH FOR DUPLICATED ROWS IN INDEXING TABLE
+		$query=make_select_query("tbl_indexing",array(
+			"GROUP_CONCAT(id)"=>"ids",
+			"id_aplicacion"=>"id_aplicacion",
+			"id_registro"=>"id_registro",
+			"COUNT(*)"=>"total"
+		),"",array(
+			"groupby"=>array("id_aplicacion","id_registro"),
+			"having"=>"total>1",
+			"limit"=>"1000"
+		));
+		$ids=execute_query_array($query);
+		if(!count($ids)) break;
+		foreach($ids as $id) {
+			$temp=explode(",",$id["ids"]);
+			array_shift($temp);
+			$temp=implode(",",$temp);
+			$query=make_delete_query("tbl_indexing","id IN (${temp})");
+			db_query($query);
+		}
+		$total+=count($ids);
+	}
 	// SEND RESPONSE
 	if($total) javascript_alert($total.LANG("msgregistersindexed".min($total,2)));
 	// RESTOCE CACHE

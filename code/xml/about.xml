@@ -317,13 +317,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
 						</field>
 						<field>
-							<label>MimeParser 1.88 (BSD)</label>
+							<label>MimeParser 1.89 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
 						</field>
 						<field>
-							<label>RFC822 Addresses 1.15 (BSD)</label>
+							<label>RFC822 Addresses 1.16 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
@@ -518,15 +518,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
 						</field>
 						<field>
-							<label>UItoTop (GPL-3.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/sksmatt/UItoTop-jQuery-Plugin/")</onclick>
-						</field>
-						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>
@@ -562,7 +556,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 4.5.9 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 4.5.10 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>
@@ -570,7 +564,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>CodeMirror v5.16.0 (MIT)</label>
+							<label>CodeMirror v5.17.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://codemirror.net/")</onclick>
