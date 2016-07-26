@@ -1727,7 +1727,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			},
 			content:function() {
 				// GET THE TITLE VALUE
-				var title=trim($(this).attr("title"));
+				var title=$(this).attr("title");
 				if(title) {
 					// CHECK IF TITLE IS THE SAME THAT THE OBJECT TEXT
 					if(title==$(this).text()) {
@@ -1779,7 +1779,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabla",obj).each(function() {
 			if($(".thead",this).length>0) {
 				// FIXS FOR POSIBLE NEXT RECALLS
-				$("td",this).removeClass("ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br ui-widget-header ui-widget-content ui-state-default ui-state-highlight");
+				$("td",this).removeClass("ui-corner-tl ui-corner-tr ui-corner-bl ui-corner-br ui-widget-header ui-widget-content ui-state-default ui-state-highlight notop");
 				$("[hasbind=true]",this).unbind();
 				// STYLING THE THEAD AND NODATA
 				$(".thead",this).addClass("ui-widget-header");
@@ -1802,6 +1802,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						tdsbody=this;
 					} else if(tdshead!=null && numhead+numbody+numdata>0) {
 						tdsbody=this;
+						var tds=$("td",this);
+						$(tds).each(function() {
+							$(this).addClass("notop")
+						});
 					} else if(tdshead!=null) {
 						var tds=$("td",tdshead);
 						var total=$(tds).length;
