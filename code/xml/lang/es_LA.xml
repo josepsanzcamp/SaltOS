@@ -1172,6 +1172,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyoutbox>Sólo salientes</onlyoutbox>
 		<options>Opciones</options>
 		<optionstip>Mostrar más opciones del listado</optionstip>
+		<pdfoptions>Opciones del PDF</pdfoptions>
 		<sinsubject>(sin asunto)</sinsubject>
 		<msgfromkosendmail>No se ha encontrado la configuración para el From: requerido</msgfromkosendmail>
 		<msgsendoksendmail>Se ha enviado correctamente el correo electrónico</msgsendoksendmail>

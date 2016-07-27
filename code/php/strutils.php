@@ -377,6 +377,9 @@ function str_word_count_utf8($subject) {
 }
 
 function output_handler($array) {
+	// CHECK FOR DATABASE DEBUG
+	if(eval_bool(getDefault("debug/databasedebug"))) return;
+	// CONTINUE
 	$file=isset($array["file"])?$array["file"]:"";
 	$data=isset($array["data"])?$array["data"]:"";
 	$type=isset($array["type"])?$array["type"]:"";

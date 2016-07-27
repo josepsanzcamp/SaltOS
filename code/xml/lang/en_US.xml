@@ -1172,6 +1172,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyoutbox>Outbound only</onlyoutbox>
 		<options>Options</options>
 		<optionstip>Show more options from the list</optionstip>
+		<pdfoptions>PDF options</pdfoptions>
 		<sinsubject>(no subject)</sinsubject>
 		<msgfromkosendmail>Setting for the From field not found</msgfromkosendmail>
 		<msgsendoksendmail>It has been successfully sent e-mail</msgsendoksendmail>

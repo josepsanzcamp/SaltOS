@@ -289,13 +289,16 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			$("#dialog p a:last").bind("click",function() { dialog("close"); });
 		}
 		$("#dialog").page();
-		$("#dialog").css("margin-top",$(document).scrollTop());
+		//~ $("#dialog").css("margin-top",$(document).scrollTop());
 		$("#dialog .ui-content").addClass("ui-state-highlight");
 		$("#dialog").show();
 		$("#dialog p a:first").trigger("focus");
 		var interval=setInterval(function() {
 			if(dialog("isopen")) {
-				$("#dialog").css("margin-top",$(document).scrollTop());
+				var height1=$(window).height();
+				var height2=$("#dialog .ui-dialog-contain").height();
+				var offset=$(document).scrollTop();
+				$("#dialog").css("margin-top",height1/2-height2/2+offset);
 			} else {
 				clearInterval(interval);
 			}
@@ -873,6 +876,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 			update_style(html,html2);
 		},100);
 		$(page).page();
+		$(".ui-footer a").removeAttr("class").removeAttr("role");
 		$(page).show();
 		unloadingcontent();
 		$(document).scrollTop(1);

@@ -1172,6 +1172,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyoutbox>فقط الصادر</onlyoutbox>
 		<options>خيارات</options>
 		<optionstip>عرض خيارات اضافية من القائمة</optionstip>
+		<pdfoptions translated="false">PDF options</pdfoptions>
 		<sinsubject>(ليوجد عنوان)</sinsubject>
 		<msgfromkosendmail>الاعدادات لحقل المرسل غير موجودة</msgfromkosendmail>
 		<msgsendoksendmail>لقد تم ارسال الرسالة بنجاح</msgsendoksendmail>

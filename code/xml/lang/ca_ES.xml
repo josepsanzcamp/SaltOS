@@ -1172,6 +1172,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyoutbox>Només sortints</onlyoutbox>
 		<options>Opcions</options>
 		<optionstip>Mostra més opcions de la llista</optionstip>
+		<pdfoptions>Opcions del PDF</pdfoptions>
 		<sinsubject>(sense assumpte)</sinsubject>
 		<msgfromkosendmail>No s'ha trobat la configuració per al From: requerit</msgfromkosendmail>
 		<msgsendoksendmail>S'ha enviat correctament el correu electrònic</msgsendoksendmail>

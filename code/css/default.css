@@ -294,7 +294,6 @@ img.ui-state-default {
 	height:22px;
 	border-left:none;
 	border-right:none;
-	border-top:none;
 }
 
 .tabla tr td.tbody a {
@@ -307,7 +306,6 @@ img.ui-state-default {
 	height:44px;
 	border-left:none;
 	border-right:none;
-	border-top:none;
 }
 
 .tabla tr td.notop {

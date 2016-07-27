@@ -1172,6 +1172,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyoutbox>Nur ausgehende</onlyoutbox>
 		<options>Optionen</options>
 		<optionstip>Weitere Optionen</optionstip>
+		<pdfoptions translated="false">PDF options</pdfoptions>
 		<sinsubject>(Ohne Betreff)</sinsubject>
 		<msgfromkosendmail revised="false">Nicht gefunden die Einstellung für das Aus: erforderlich</msgfromkosendmail>
 		<msgsendoksendmail>Die E-Mail wurde erfolgreich versandt</msgsendoksendmail>

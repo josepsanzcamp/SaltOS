@@ -1080,7 +1080,10 @@ function __exception_handler($e) {
 }
 
 function __shutdown_handler() {
-	if(eval_bool(getDefault("debug/databasedebug"))) debug_db("dump");
+	if(eval_bool(getDefault("debug/databasedebug"))) {
+		echo "<pre>".sprintr(debug_db("get"))."</pre>";
+		die();
+	}
 	semaphore_shutdown();
 	$error=error_get_last();
 	$types=array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
@@ -1430,13 +1433,13 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 
 function debug_db($hash,$query="",$time=0,$iter=0,$rows=0) {
 	static $stack=array();
-	if($hash=="dump") {
-		echo "<pre>".sprintr($stack)."</pre>";
-		die();
+	if($hash=="get") {
+		foreach($stack as $key=>$val) $stack[$key]["time"]=sprintf("%g",$val["time"]);
+		return $stack;
 	}
 	if(!isset($stack[$hash])) $stack[$hash]=array("query"=>$query,"time"=>0,"iter"=>0,"rows"=>0);
 	$stack[$hash]["time"]+=$time;
-	$stack[$hash]["iter"]+=1;
+	$stack[$hash]["iter"]+=$iter;
 	$stack[$hash]["rows"]+=$rows;
 }
 ?>

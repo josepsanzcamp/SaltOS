@@ -1172,6 +1172,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyoutbox>Só saídas</onlyoutbox>
 		<options>Opções</options>
 		<optionstip>Mostrar mais opções da Lista</optionstip>
+		<pdfoptions translated="false">PDF options</pdfoptions>
 		<sinsubject>(sem assunto)</sinsubject>
 		<msgfromkosendmail>Não foi encontrada a configuração para o De: requerido</msgfromkosendmail>
 		<msgsendoksendmail>A mensagem foi enviada com sucesso</msgsendoksendmail>

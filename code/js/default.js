@@ -1588,7 +1588,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			forcePasteAsPlainText:true,
 			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet","base64image"],["About"]],
 			language:lang_default(),
-			uiColor:get_colors("ui-state-default","background-color"),
+			//~ uiColor:get_colors("ui-state-default","background-color"),
+			uiColor:"transparent",
 			autoGrow_onStartup:true,
 			disableNativeSpellChecker:false,
 			dialog_backgroundCoverColor:"#aaa",
@@ -1597,7 +1598,17 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			codeSnippetGeshi_url:"../../?action=geshi",
 			allowedContent:true
 		},function() {
-			$("#"+$(this).attr("name")).next().addClass("ui-state-default ui-corner-all");
+			var obj=$("#"+$(this).attr("name")).next();
+			$(obj).addClass("ui-state-default ui-corner-all");
+			$(obj).bind("mouseover",function() {
+				$(this).addClass("ui-state-hover");
+			}).bind("mouseout",function() {
+				$(this).removeClass("ui-state-hover");
+			}).bind("focus",function() {
+				$(this).addClass("ui-state-focus");
+			}).bind("blur",function() {
+				$(this).removeClass("ui-state-focus");
+			});
 		});
 		// CREATE THE CODE MIRROR
 		$("textarea[codemirror=true]",obj).each(function() {

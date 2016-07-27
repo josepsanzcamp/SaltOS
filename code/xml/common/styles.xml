@@ -30,69 +30,69 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<width>120px</width>
 	<rows ifeval="!ismobile()">
 		<row>
-			<label>Blue</label>
+			<label>Custom Blue</label>
 			<value>custom.blue</value>
 		</row>
 		<row>
-			<label>Green</label>
+			<label>Custom Green</label>
 			<value>custom.green</value>
 		</row>
 		<row>
-			<label>Violet</label>
+			<label>Custom Violet</label>
 			<value>custom.violet</value>
 		</row>
 		<row>
-			<label>Orange</label>
+			<label>Custom Orange</label>
 			<value>custom.orange</value>
 		</row>
 		<row>
-			<label>Red</label>
+			<label>Custom Red</label>
 			<value>custom.red</value>
 		</row>
 		<row>
-			<label>Humanity</label>
+			<label>Theme Humanity</label>
 			<value>theme.humanity</value>
 		</row>
 		<row>
-			<label>Redmond</label>
+			<label>Theme Redmond</label>
 			<value>theme.redmond</value>
 		</row>
 		<row>
-			<label>UI darkness</label>
+			<label>Theme UI darkness</label>
 			<value>theme.ui-darkness</value>
 		</row>
 		<row>
-			<label>UI lightness</label>
+			<label>Theme UI lightness</label>
 			<value>theme.ui-lightness</value>
 		</row>
 	</rows>
 	<rows ifeval="ismobile()">
 		<row>
-			<label>Blue</label>
+			<label>Custom Blue</label>
 			<value>custom.blue</value>
 		</row>
 		<row>
-			<label>Green</label>
+			<label>Custom Green</label>
 			<value>custom.green</value>
 		</row>
 		<row>
-			<label>Violet</label>
+			<label>Custom Violet</label>
 			<value>custom.violet</value>
 		</row>
 		<row>
-			<label>Orange</label>
+			<label>Custom Orange</label>
 			<value>custom.orange</value>
 		</row>
 		<row>
-			<label>Red</label>
+			<label>Custom Red</label>
 			<value>custom.red</value>
 		</row>
 		<row>
-			<label>Light</label>
+			<label>Theme Light</label>
 			<value>theme.light</value>
 		</row>
 		<row>
-			<label>Dark</label>
+			<label>Theme Dark</label>
 			<value>theme.dark</value>
 		</row>
 	</rows>

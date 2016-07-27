@@ -289,6 +289,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<onclick></onclick>
 					</option>
 					<group>
+						<label lang="true">pdfoptions</label>
 						<option>
 							<label lang="true">pdf</label>
 							<onclick>pdf()</onclick>

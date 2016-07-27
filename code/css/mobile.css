@@ -97,3 +97,14 @@ iframe {
 	-moz-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
 	-webkit-box-shadow:1px 1px 0px 0px rgba(0,0,0,1)!important;
 }
+
+#dialog > div {
+	margin-top:1em!important;
+}
+
+/* FOR FIX A SPURIOUS LINE */
+.ui-header,
+.ui-li-static,
+.ui-field-contain {
+	border-bottom:none!important;
+}
