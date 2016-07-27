@@ -6,6 +6,10 @@ What is SaltOS?
 ===============
 SaltOS is the solution 100% Cloud Computing Management. Integrates the functionalities of CRM and ERP. Besides being licensed as free software under the GPL-3.0 license.
 
+![The SaltOS project](https://a.fsdn.com/con/app/proj/saltos/screenshots/screenshot1.jpg)
+![The SaltOS project](https://a.fsdn.com/con/app/proj/saltos/screenshots/screenshot2.jpg)
+![The SaltOS project](https://a.fsdn.com/con/app/proj/saltos/screenshots/screenshot3.jpg)
+
 Why?
 ====
 With SaltOS, you can manage an online business: customers, suppliers, invoices, expenses, email, calendar sync with Google Calendar, bookmarks, social networks and many other things ...
