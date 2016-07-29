@@ -611,8 +611,8 @@ ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
 	background:none;
 	margin:0;
 	position:fixed;
-	bottom:10px;
-	left:10px;
+	bottom:1px;
+	left:1px;
 	width:60px;
 	height:60px;
 	z-index:100;

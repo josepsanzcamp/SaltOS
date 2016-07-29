@@ -105,7 +105,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						while($("button",titlebar).length>1) $("button:last",titlebar).remove();
 						if(viewpdf_history.length>1) {
 							$(titlebar).append("<button role='button' class='ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close' type='button'><span class='ui-button-icon-primary ui-icon ui-icon-triangle-1-w'></span><span class='ui-button-text'>Back</span></button>");
-							$("button:last",titlebar).css("margin-right","22px").bind("click",function() {
+							$("button:last",titlebar).css("margin-right","22px").on("click",function() {
 								viewpdf_history.pop();
 								viewpdf(viewpdf_history.pop());
 							});

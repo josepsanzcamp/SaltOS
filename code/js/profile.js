@@ -109,7 +109,7 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
 "use strict";
 $(function() {
 	var checkbox="input[type=checkbox][name$=email_default]";
-	$(checkbox).bind("change",function() {
+	$(checkbox).on("change",function() {
 		var value=$(this).prop("checked");
 		$(checkbox).prop("checked",false);
 		$(this).prop("checked",value);

@@ -93,7 +93,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 					// PROGRAM SELECT PERSISTENCE USING A COOKIE
 					__translate_get_cookie();
 					__translate_ui_reverse();
-					$("select",div).bind("change",function() {
+					$("select",div).on("change",function() {
 						__translate_set_cookie();
 						__translate_ui_reverse();
 					});
@@ -105,7 +105,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 			// PROGRAM SIZES OF ELEMENTS
 			$(div).css("padding","15px 0px 0px 15px");
 			$(div).height(200);
-			$(div).parent().bind("accordionactivate",function() {
+			$(div).parent().on("accordionactivate",function() {
 				if($(div).is(":visible")) {
 					var width=$(div).width()-30;
 					$("textarea",div).width(width);
@@ -119,7 +119,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 			}).trigger("accordionactivate");
 			// PROGRAM AUTODETECT LANG
 			var oldtext="";
-			$("textarea:first").bind("change",function() {
+			$("textarea:first").on("change",function() {
 				if($(this).hasClass("ui-state-disabled")) return;
 				var text=$("textarea:first",div).val();
 				if(levenshtein(oldtext,text)<strlen(oldtext)/2) return;
@@ -144,7 +144,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 				});
 			});
 			// PROGRAM TRANSLATE BUTTON
-			$("a:first",div).bind("click",function() {
+			$("a:first",div).on("click",function() {
 				if($(this).hasClass("ui-state-disabled")) return;
 				var langs=$("select",div).val();
 				var text=$("textarea:first",div).val();
@@ -166,7 +166,7 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 					}
 				});
 			});
-			$("a:last",div).bind("click",function() {
+			$("a:last",div).on("click",function() {
 				if($(this).hasClass("ui-state-disabled")) return;
 				var langs=__translate_get_reverse();
 				var text=$("textarea:last",div).val();

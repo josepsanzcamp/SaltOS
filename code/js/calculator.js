@@ -47,7 +47,7 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 			// PROGRAM SIZES OF ELEMENTS
 			$(div).css("padding","15px 0px 0px 15px");
 			$(div).height(100);
-			$(div).parent().bind("accordionactivate",function() {
+			$(div).parent().on("accordionactivate",function() {
 				if($(div).is(":visible")) {
 					var width=$(div).width()-30;
 					$("textarea",div).width(width);
@@ -56,7 +56,7 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 				}
 			}).trigger("accordionactivate");
 			// PROGRAM CALCULATOR BUTTON
-			$("textarea",div).bind("keydown",function(event) {
+			$("textarea",div).on("keydown",function(event) {
 				if(is_enterkey(event)) {
 					var text=$("textarea",div).val();
 					text=explode("\n",text);

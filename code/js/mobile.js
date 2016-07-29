@@ -282,11 +282,11 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		$("#dialog p").html("");
 		jQuery.each(buttons,function(btn,fn) {
 			$("#dialog p").append("<a href='javascript:void(0)' data-role='button' data-mini='true' data-inline='true'>"+btn+"</a>");
-			$("#dialog p a:last").bind("click",function() { dialog("close",fn); });
+			$("#dialog p a:last").on("click",function() { dialog("close",fn); });
 		});
 		if($("#dialog p a").length==0) {
 			$("#dialog p").append("<a href='javascript:void(0)' data-role='button' data-mini='true' data-inline='true'>"+lang_buttoncontinue()+"</a>");
-			$("#dialog p a:last").bind("click",function() { dialog("close"); });
+			$("#dialog p a:last").on("click",function() { dialog("close"); });
 		}
 		$("#dialog").page();
 		//~ $("#dialog").css("margin-top",$(document).scrollTop());
@@ -347,7 +347,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				action();
 			},10000);
 		}
-		$(div).bind("click",function() {
+		$(div).on("click",function() {
 			if(timeout) clearTimeout(timeout);
 			$(div).remove();
 			action();
@@ -566,7 +566,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function init_history() {
-		$(window).bind("hashchange",function() {
+		$(window).on("hashchange",function() {
 			// TRICK FOR OLD BROWSERS
 			if(ignore_hashchange) {
 				ignore_hashchange=0;
@@ -886,18 +886,18 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		if(typeof(obj)=="undefined") var obj=$("body");
 		// PROGRAM INTERGER TYPE CAST
 		$("input[isinteger=true]",obj).each(function() {
-			$(this).bind("keyup",function() { intval2(this); });
+			$(this).on("keyup",function() { intval2(this); });
 		});
 		// PROGRAM FLOAT TYPE CAST
 		$("input[isfloat=true]",obj).each(function() {
-			$(this).bind("keyup",function() { floatval2(this); });
+			$(this).on("keyup",function() { floatval2(this); });
 		});
 		// ADD THE SELECT ALL FEATURE TO LIST
 		var master="input.master[type=checkbox]";
 		var slave="input.slave[type=checkbox]";
 		$(master,obj).prev().html(lang_selectallcheckbox());
 		$(slave,obj).prev().html(lang_selectonecheckbox());
-		$(master,obj).bind("click",function() {
+		$(master,obj).on("click",function() {
 			var value=$(this).prop("checked");
 			var ul=$(this).parent().parent().parent().parent();
 			$(slave,ul).prop("checked",value).checkboxradio("refresh");
@@ -905,7 +905,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// ADD THE ACTIONS DEFAULT OPTION LABEL
 		$(".actions",obj).find("option:eq(0)",obj).html(lang_actions());
 		// PROGRAM CHECK ENTER
-		$("input,select",obj).bind("keydown",function(event) {
+		$("input,select",obj).on("keydown",function(event) {
 			if(is_enterkey(event)) {
 				if(this.form) {
 					for(var i=0,len=this.form.elements.length;i<len;i++) {
@@ -933,7 +933,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		// TRICK FOR DISABLE BUTTONS
 		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
 		// PROGRAM MENU SELECTS
-		$("select[ismenu=true]",obj).bind("change",function() {
+		$("select[ismenu=true]",obj).on("change",function() {
 			if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
 			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
 		});
@@ -1013,8 +1013,8 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 							if(newheight>minheight) $(iframe2).height(newheight);
 							$(iframe2).each(function() {
 								var iframe3=this.contentWindow.document;
-								$(iframe3).bind("contextmenu",function(e) { return false; });
-								$(iframe3).bind("keydown",function(e) { $(document).trigger(e); });
+								$(iframe3).on("contextmenu",function(e) { return false; });
+								$(iframe3).on("keydown",function(e) { $(document).trigger(e); });
 							});
 						}
 					}

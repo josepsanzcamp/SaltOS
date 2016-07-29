@@ -54,9 +54,9 @@ if(typeof(__favicon__)=="undefined" && typeof(parent.__favicon__)=="undefined") 
 	}
 
 	$(function() {
-		$(document).bind("mouseover",function() {
+		$(document).on("mouseover",function() {
 			if(favicon_running) favicon_animate(0);
-		}).bind("keydown",function() {
+		}).on("keydown",function() {
 			if(favicon_running) favicon_animate(0);
 		});
 	});

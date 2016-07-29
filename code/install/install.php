@@ -37,6 +37,8 @@ $lang=getParam("lang",getDefault("lang"));
 $style=getParam("style",getDefault("style"));
 $iconset=getParam("iconset",getDefault("iconset"));
 $_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml"));
+$temp=eval_attr(xml2array("xml/styles.xml"));
+$style=in_array($style,$temp["desktop"])?$style:$temp["desktop"]["style"];
 $_ICONSET=eval_attr(xml2array("xml/iconset.xml"));
 // SOME ALLOWED ACTIONS
 if(getParam("action")=="themeroller") {
@@ -506,8 +508,11 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 									"value"=>array("lang"=>$lang),
 									"#attr"=>array("path"=>"default/lang","replace"=>"true")
 								));
+								$temp=eval_attr(xml2array("xml/styles.xml"));
+								$style_mobile=in_array($style,$temp["mobile"])?$style:$temp["desktop"]["style"];
+								$style_desktop=in_array($style,$temp["desktop"])?$style:$temp["desktop"]["style"];
 								set_array($config,"node",array(
-									"value"=>array("style"=>array("value"=>"ismobile()?\"flatui.f\":\"$style\"","#attr"=>array("eval"=>"true"))),
+									"value"=>array("style"=>array("value"=>"ismobile()?\"$style_mobile\":\"$style_desktop\"","#attr"=>array("eval"=>"true"))),
 									"#attr"=>array("path"=>"default/style","replace"=>"true")
 								));
 								set_array($config,"node",array(
