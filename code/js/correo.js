@@ -180,6 +180,7 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 					clearInterval(interval);
 				} else {
 					$(checkbox).prop("checked",!$(checkbox).prop("checked"));
+					if(typeof(__mobile__)!="undefined") $(checkbox).checkboxradio("refresh");
 				}
 			},1000);
 		}
