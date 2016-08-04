@@ -590,12 +590,7 @@ ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
 
 .tabs2 .texto {
 	float:none!important;
-	display:inline-block!important;
-	margin-bottom:0!important;
-}
-
-.rtl .tabs2 .texto {
-	float:none!important;
+	display:inline-flex!important;
 }
 
 /* FOR BLOCKUI */

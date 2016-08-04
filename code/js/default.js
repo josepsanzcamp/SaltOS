@@ -1285,11 +1285,15 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabs2 div",obj).remove();
 		// CHANGE TABS FROM TOP TO BOTTOM
 		$(".tabs2 ul",obj).removeClass("ui-corner-all").addClass("ui-corner-bottom");
-		$(".tabs2 li",obj).removeClass("ui-corner-top ui-tabs-active ui-state-active").addClass("ui-corner-bottom");
-		var padding=$(".tabs2 ul",obj).css("padding-top");
-		$(".tabs2 ul",obj).css("padding-top","0").css("padding-bottom",padding);
-		var margin=$(".tabs2 li",obj).css("margin-top");
-		$(".tabs2 li",obj).css("margin-top","0").css("margin-bottom",margin);
+		$(".tabs2 li",obj).removeClass("ui-tabs-active ui-state-active");
+		$(".tabs2 li",obj).removeClass("ui-corner-top").addClass("ui-corner-bottom");
+		var elements=[".tabs2 ul",".tabs2 li"];
+		for(var i in elements) {
+			var padding=$(elements[i],obj).css("padding-top");
+			var margin=$(elements[i],obj).css("margin-top");
+			$(elements[i],obj).css("padding-top","0").css("padding-bottom",padding);
+			$(elements[i],obj).css("margin-top","0").css("margin-bottom",margin);
+		}
 		//~ console.timeEnd("make_tabs2");
 	}
 
