@@ -1290,6 +1290,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var elements=[".tabs2 ul",".tabs2 li"];
 		for(var i in elements) {
 			var padding=$(elements[i],obj).css("padding-top");
+			if(padding=="2.2px") padding="3.51667px"; // TO FIX A SPURIOUS PADDING ERROR
 			var margin=$(elements[i],obj).css("margin-top");
 			$(elements[i],obj).css("padding-top","0").css("padding-bottom",padding);
 			$(elements[i],obj).css("margin-top","0").css("margin-bottom",margin);
