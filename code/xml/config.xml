@@ -108,7 +108,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forcejs eval="true">ismobile()?"mobile":""</forcejs>
 		<forcexsl eval="true">ismobile()?"mobile":""</forcexsl>
 		<regspagerlist>25,50,100,200,500,1000</regspagerlist>
-		<regspagerdef eval="true">ismobile()?25:50</regspagerdef>
+		<regspagerdef>50</regspagerdef>
+		<regspagermobile>10</regspagermobile>
 		<semaphoretimeout>100000</semaphoretimeout><!-- in microseconds -->
 		<commandtimeout>60</commandtimeout><!-- in seconds, 60 is 1 minute -->
 		<commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
@@ -241,6 +242,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.ptTimeSelect.min.js</include>
 			<include>lib/jquery/jquery.favicon.min.js</include>
 			<include>lib/jquery/jquery.jplayer.min.js</include>
+			<include>lib/zlibjs/rawdeflate.min.js</include>
+			<include>lib/zlibjs/rawinflate.min.js</include>
+			<include>lib/zlibjs/string.js</include>
 		</cache>
 		<inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<cache ifeval="!ismobile()">
@@ -259,6 +263,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.form.min.js</include>
 			<include>lib/jquery/jquery.mobile.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
+			<include>lib/zlibjs/rawdeflate.min.js</include>
+			<include>lib/zlibjs/rawinflate.min.js</include>
+			<include>lib/zlibjs/string.js</include>
 		</cache>
 	</javascript>
 	<configs>

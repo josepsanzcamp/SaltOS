@@ -570,9 +570,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://codemirror.net/")</onclick>
 						</field>
 						<field>
+							<label>zlib.js v0.2.0 (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://github.com/imaya/zlib.js")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>3</colspan>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>

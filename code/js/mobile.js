@@ -497,19 +497,13 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		return $(".ui-loader:visible").length>0;
 	}
 
-	/* HELPERS FOR HISTORY MANAGEMENT */
-	var history_data={};
-
+	/* FOR HISTORY MANAGEMENT */
 	function hash_encode(url) {
-		var hash=md5(url);
-		history_data[hash]=url;
-		return hash;
+		return str_replace("/","-",btoa(bytesToString(new Zlib.RawDeflate(stringToBytes(url)).compress())));
 	}
 
 	function hash_decode(hash) {
-		if(typeof(history_data[hash])=="undefined") history_data[hash]="";
-		var url=history_data[hash];
-		return url;
+		return bytesToString(new Zlib.RawInflate(stringToBytes(atob(str_replace("-","/",hash)))).decompress());
 	}
 
 	function current_href() {
