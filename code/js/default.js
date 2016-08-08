@@ -667,11 +667,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	/* FOR HISTORY MANAGEMENT */
 	function hash_encode(url) {
-		return str_replace("/","-",btoa(bytesToString(new Zlib.RawDeflate(stringToBytes(url)).compress())));
+		return str_replace("/","-",btoa(bytesToString((new Zlib.RawDeflate(stringToBytes(url))).compress())));
 	}
 
 	function hash_decode(hash) {
-		return bytesToString(new Zlib.RawInflate(stringToBytes(atob(str_replace("-","/",hash)))).decompress());
+		return bytesToString((new Zlib.RawInflate(stringToBytes(atob(str_replace("-","/",hash))))).decompress());
 	}
 
 	function current_href() {

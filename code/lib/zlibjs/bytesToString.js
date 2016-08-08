@@ -1,4 +1,5 @@
 
+/* COPIED FROM THE PDF.JS PROJECT */
 function bytesToString(bytes) {
   var length = bytes.length;
   var MAX_ARGUMENT_COUNT = 8192;
@@ -12,13 +13,4 @@ function bytesToString(bytes) {
     strBuf.push(String.fromCharCode.apply(null, chunk));
   }
   return strBuf.join('');
-}
-
-function stringToBytes(str) {
-  var length = str.length;
-  var bytes = new Uint8Array(length);
-  for (var i = 0; i < length; ++i) {
-    bytes[i] = str.charCodeAt(i) & 0xFF;
-  }
-  return bytes;
 }
