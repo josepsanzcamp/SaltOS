@@ -33,6 +33,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<onclick>forward(ID)</onclick>
 				<icon>forward</icon>
 			</forward>
+			<new>
+				<label lang="true">actionnew</label>
+				<onclick>update_state2(ID,'new',-1);submit1()</onclick>
+				<icon>new</icon>
+			</new>
 			<wait>
 				<label lang="true">actionwait</label>
 				<onclick>update_state2(ID,'wait',-1);submit1()</onclick>
@@ -422,6 +427,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_pdf2,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view2,
 			CASE (".check_user("correo","create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_forward,
+			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_new,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_wait,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_cool,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_favoritos,

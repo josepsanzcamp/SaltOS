@@ -1127,6 +1127,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnospam>Marcados como não Lixo - SPAM: </msgnumnospam>
 		<msgnumdelete>Apagados: </msgnumdelete>
 		<statenew>Novo</statenew>
+		<actionnwew>Novo</actionnwew>
 		<stateread>Lido</stateread>
 		<statereply>Respondido</statereply>
 		<stateforward>Reenviado</stateforward>
@@ -1410,6 +1411,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fulldata>Zoom do post</fulldata>
 		<actionwait>Pendente</actionwait>
 		<statenew>Novo</statenew>
+		<actionnwew>Novo</actionnwew>
 		<statemodified>Modificado</statemodified>
 		<statewait>Pendente</statewait>
 		<stateread>Lido</stateread>

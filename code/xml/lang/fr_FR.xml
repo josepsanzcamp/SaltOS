@@ -1127,6 +1127,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnospam>Vous avez été marqués comme spam:</msgnumnospam>
 		<msgnumdelete>ont été supprimés:</msgnumdelete>
 		<statenew>Nouveau</statenew>
+		<actionnwew>Nouveau</actionnwew>
 		<stateread>Lire</stateread>
 		<statereply>Répondu</statereply>
 		<stateforward>Statue avant</stateforward>
@@ -1410,6 +1411,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fulldata>Zoom sur le post de </fulldata>
 		<actionwait>attente</actionwait>
 		<statenew>Nouveau</statenew>
+		<actionnwew>Nouveau</actionnwew>
 		<statemodified>Dernière</statemodified>
 		<statewait>attente</statewait>
 		<stateread>Lire</stateread>

@@ -1126,14 +1126,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnowait>Wurden als schwebende markiert: </msgnumnowait>
 		<msgnumnospam>Wurden als SPAM markiert: </msgnumnospam>
 		<msgnumdelete>Wurden gelöscht: </msgnumdelete>
-		<statenew>neu</statenew>
-		<stateread>gelesen</stateread>
-		<statereply>beantwortet</statereply>
-		<stateforward>weitergeleitet</stateforward>
-		<statewait>ausstehend</statewait>
+		<statenew>Neu</statenew>
+		<actionnwew>Neu</actionnwew>
+		<stateread>Gelesen</stateread>
+		<statereply>Beantwortet</statereply>
+		<stateforward>Weitergeleitet</stateforward>
+		<statewait>Ausstehend</statewait>
 		<statespam>SPAM</statespam>
-		<statesent>versandt</statesent>
-		<statenotsent>nicht versandt</statenotsent>
+		<statesent>Versandt</statesent>
+		<statenotsent>Nicht versandt</statenotsent>
 		<stateerror>Fehler</stateerror>
 		<stateall>Alle</stateall>
 		<todaslascuentas>[Alle Konto]</todaslascuentas>
@@ -1409,11 +1410,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<defaultdata>Feed Daten</defaultdata>
 		<fulldata>Zeige Details</fulldata>
 		<actionwait>ausstehend</actionwait>
-		<statenew>neu</statenew>
-		<statemodified>geändert</statemodified>
-		<statewait>ausstehend</statewait>
-		<stateread>gelesen</stateread>
-		<actionforward>weiterleiten</actionforward>
+		<statenew>Neu</statenew>
+		<actionnwew>Neu</actionnwew>
+		<statemodified>Geändert</statemodified>
+		<statewait>Ausstehend</statewait>
+		<stateread>Gelesen</stateread>
+		<actionforward>Weiterleiten</actionforward>
 		<actionforwardtip>Per E-Mail weiterleiten</actionforwardtip>
 		<formview>Feed Details</formview>
 		<msggotofeeds>Gehen Sie zu den RSS-Feeds</msggotofeeds>

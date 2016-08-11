@@ -1127,6 +1127,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnospam>لقد قمت بتصنيفها كغير مرغوبة: </msgnumnospam>
 		<msgnumdelete>تم حذفها: </msgnumdelete>
 		<statenew>جديد</statenew>
+		<actionnwew>جديد</actionnwew>
 		<stateread>غير مقروئة</stateread>
 		<statereply>تم الرد عليها</statereply>
 		<stateforward>معاد توجيهها</stateforward>
@@ -1410,6 +1411,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fulldata>التكبير في المشاركة</fulldata>
 		<actionwait>تاجيل</actionwait>
 		<statenew>جديد</statenew>
+		<actionnwew>جديد</actionnwew>
 		<statemodified>الاخير</statemodified>
 		<statewait>مؤجلة</statewait>
 		<stateread>قرائة</stateread>

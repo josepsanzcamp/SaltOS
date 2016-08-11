@@ -1127,6 +1127,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnospam>S'han marcat com no SPAM: </msgnumnospam>
 		<msgnumdelete>S'han esborrat: </msgnumdelete>
 		<statenew>Nou</statenew>
+		<actionnew>Nou</actionnew>
 		<stateread>Llegit</stateread>
 		<statereply>Respost</statereply>
 		<stateforward>Reenviat</stateforward>
@@ -1410,6 +1411,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fulldata>Zoom del post</fulldata>
 		<actionwait>Pendent</actionwait>
 		<statenew>Nou</statenew>
+		<actionnew>Nou</actionnew>
 		<statemodified>Modificat</statemodified>
 		<statewait>Pendent</statewait>
 		<stateread>Llegit</stateread>

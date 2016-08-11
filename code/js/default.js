@@ -1263,6 +1263,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.timeEnd("make_tabs");
 	}
 
+	var make_tabs2_padding=0;
+	var make_tabs2_margin=0;
+
 	function make_tabs2(obj) {
 		//~ console.time("make_tabs2");
 		if(typeof(obj)=="undefined") var obj=$("body");
@@ -1281,14 +1284,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabs2 ul",obj).removeClass("ui-corner-all").addClass("ui-corner-bottom");
 		$(".tabs2 li",obj).removeClass("ui-tabs-active ui-state-active");
 		$(".tabs2 li",obj).removeClass("ui-corner-top").addClass("ui-corner-bottom");
-		var elements=[".tabs2 ul",".tabs2 li"];
-		for(var i in elements) {
-			var padding=$(elements[i],obj).css("padding-top");
-			if(padding=="2.2px") padding="3.51667px"; // TO FIX A SPURIOUS PADDING ERROR
-			var margin=$(elements[i],obj).css("margin-top");
-			$(elements[i],obj).css("padding-top","0").css("padding-bottom",padding);
-			$(elements[i],obj).css("margin-top","0").css("margin-bottom",margin);
-		}
+		if(!make_tabs2_padding) make_tabs2_padding=$(".tabs2 ul",obj).css("padding-top");
+		if(!make_tabs2_margin) make_tabs2_margin=$(".tabs2 li",obj).css("margin-top");
+		$(".tabs2 ul",obj).css("padding-top","0").css("padding-bottom",make_tabs2_padding);
+		$(".tabs2 li",obj).css("margin-top","0").css("margin-bottom",make_tabs2_margin);
 		//~ console.timeEnd("make_tabs2");
 	}
 

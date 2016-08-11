@@ -115,6 +115,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cancelvoice>lib/highcontrast/actions/player_eject.png</cancelvoice>
 		<up>lib/highcontrast/actions/stock_up.png</up>
 		<down>lib/highcontrast/actions/stock_down.png</down>
+		<new>lib/highcontrast/actions/bookmark-view-green.png</new>
 	</highcontrast>
 	<crystal>
 		<none>img/none.png</none>
@@ -207,6 +208,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cancelvoice>lib/crystal/actions/player_eject.png</cancelvoice>
 		<up>lib/crystal/actions/1downarrow.png</up>
 		<down>lib/crystal/actions/1uparrow.png</down>
+		<new>lib/crystal/actions/flag_green.png</new>
 	</crystal>
 	<silk>
 		<none>img/none.png</none>
@@ -299,5 +301,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cancelvoice>lib/silk/icons/control_eject_blue.png</cancelvoice>
 		<up>lib/silk/icons/bullet_up.png</up>
 		<down>lib/silk/icons/bullet_down.png</down>
+		<new>lib/silk/icons/tag_green.png</new>
 	</silk>
 </root>

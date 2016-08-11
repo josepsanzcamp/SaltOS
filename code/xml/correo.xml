@@ -43,6 +43,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<onclick>forward(ID)</onclick>
 				<icon>forward</icon>
 			</forward>
+			<new>
+				<label lang="true">actionnew</label>
+				<onclick>update_state(ID,'new',-1);submit1()</onclick>
+				<icon>new</icon>
+			</new>
 			<wait>
 				<label lang="true">actionwait</label>
 				<onclick>update_state(ID,'wait',-1);submit1()</onclick>
@@ -609,6 +614,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE (".check_user($page,"create")." AND ".check_sql($page,"view").") WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_reply,
 			CASE (".check_user($page,"create")." AND ".check_sql($page,"view").") WHEN 1 THEN CASE is_outbox WHEN '0' THEN CASE WHEN (SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo=z.id AND id_tipo IN (2,3))&gt;1 THEN 'true' ELSE 'false' END ELSE 'false' END ELSE 'false' END action_replyall,
 			CASE (".check_user($page,"create")." AND ".check_sql($page,"view").") WHEN 1 THEN 'true' ELSE 'false' END action_forward,
+			CASE ".check_sql($page,"view")." WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_new,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_wait,
 			CASE ".check_sql($page,"view")." WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_spam,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
