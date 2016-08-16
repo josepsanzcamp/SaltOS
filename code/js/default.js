@@ -1068,7 +1068,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(header).replaceWith(header2);
 			setTimeout(function() {
 				//~ console.time("updatecontent north fase 1");
-				make_hovers(header2);
 				make_draganddrop(header2);
 				//~ console.timeEnd("updatecontent north fase 1");
 			},100);
@@ -1088,7 +1087,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(menu).replaceWith(menu2);
 			setTimeout(function() {
 				//~ console.time("updatecontent west fase 1");
-				make_hovers(menu2);
 				make_draganddrop(menu2);
 				//~ console.timeEnd("updatecontent west fase 1");
 			},100);
@@ -1112,7 +1110,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var html2=$("html");
 			update_style(html,html2);
 			update_iconset(html,html2);
-			make_hovers(screen2);
 			make_draganddrop(screen2);
 			make_focus();
 			//~ console.timeEnd("updatecontent center fase 1");
@@ -1514,18 +1511,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		return get_class_key_val(obj,"hash_");
 	}
 
-	function make_hovers(obj) {
+	function make_hovers() {
 		//~ console.time("make_hovers");
-		if(typeof(obj)=="undefined") var obj=$("body");
-		// ADD HOVER, FOCUS AND BLUR EVENTS
 		var inputs="a.ui-state-default,input.ui-state-default,textarea.ui-state-default,select.ui-state-default";
-		$(inputs,obj).on("mouseover",function() {
+		$(document).on("mouseover",inputs,function() {
 			$(this).addClass("ui-state-hover");
-		}).on("mouseout",function() {
+		}).on("mouseout",inputs,function() {
 			$(this).removeClass("ui-state-hover");
-		}).on("focus",function() {
+		}).on("focus",inputs,function() {
 			$(this).addClass("ui-state-focus");
-		}).on("blur",function() {
+		}).on("blur",inputs,function() {
 			$(this).removeClass("ui-state-focus");
 		});
 		//~ console.timeEnd("make_hovers");
@@ -2122,11 +2117,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_shortcuts();
 			make_abort();
 			make_tooltips();
+			make_hovers();
 			var header=$(".ui-layout-north");
 			make_tabs2(header);
 			setTimeout(function() {
 				//~ console.time("document_ready fase 2 north");
-				make_hovers(header);
 				make_draganddrop(header);
 				//~ console.timeEnd("document_ready fase 2 north");
 			},100);
@@ -2135,7 +2130,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_menu(menu);
 			setTimeout(function() {
 				//~ console.time("document_ready fase 2 west");
-				make_hovers(menu);
 				make_draganddrop(menu);
 				//~ console.timeEnd("document_ready fase 2 west");
 			},100);
@@ -2147,7 +2141,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$("body > *").removeClass("none");
 			setTimeout(function() {
 				//~ console.time("document_ready fase 2 center");
-				make_hovers(screen);
 				make_draganddrop(screen);
 				make_focus();
 				//~ console.timeEnd("document_ready fase 2 center");
