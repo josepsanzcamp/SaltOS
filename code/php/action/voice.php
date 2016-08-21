@@ -28,7 +28,7 @@ if(getParam("action")=="voice") {
 	if(!eval_bool(getDefault("enablevoice"))) die();
 	require_once("php/translate.php");
 	// SOME CHECKS
-	if(!check_commands(array(getDefault("commands/text2wave"),getDefault("commands/wavetomp3")),60)) action_denied();
+	if(!check_commands(array(getDefault("commands/text2wave"),getDefault("commands/wavetomp3")),60)) die();
 	// NORMAL OPERATION
 	$text=getParam("text");
 	$dirhash=get_directory("dirs/cachedir").md5(json_encode(array("voice",$text)));
@@ -45,11 +45,11 @@ if(getParam("action")=="voice") {
 		// CONTINUE WITH DEFAULT COMMAND/__TEXT2WAVE__ IF NEEDED
 		if(!file_exists($wavcache)) ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/__text2wave__")));
 		unlink($textcache);
-		if(!file_exists($wavcache)) action_denied();
+		if(!file_exists($wavcache)) die();
 		// CONVERT THE WAV TO MP3 FORMAT
 		ob_passthru(getDefault("commands/wavetomp3")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($wavcache,$cache),getDefault("commands/__wavetomp3__")));
 		unlink($wavcache);
-		if(!file_exists($cache)) action_denied();
+		if(!file_exists($cache)) die();
 		chmod_protected($cache,0666);
 	}
 	output_handler(array(

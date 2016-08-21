@@ -114,9 +114,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<commandtimeout>60</commandtimeout><!-- in seconds, 60 is 1 minute -->
 		<commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
 		<nativesoffice>true</nativesoffice>
-		<enablevoice>true</enablevoice>
-		<enabletranslate>true</enabletranslate>
+		<enablevoice eval="true">!ismobile()</enablevoice>
+		<enabletranslate eval="true">!ismobile()</enabletranslate>
 		<enableindexing>true</enableindexing>
+		<enablepurge>false</enablepurge>
 	</default>
 	<dirs>
 		<filesdir eval="true">getcwd()."/files"</filesdir>
@@ -287,6 +288,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<session_interval>30</session_interval>
 		<session_warning>300</session_warning>
 		<indexing_interval>300</indexing_interval>
+		<purge_interval>300</purge_interval>
 		<water_actas_text>Confidencial</water_actas_text>
 		<water_actas_posx>40</water_actas_posx>
 		<water_actas_posy>220</water_actas_posy>

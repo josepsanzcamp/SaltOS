@@ -381,6 +381,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgfilesindexed2 translated="false"> files indexed to the database</msgfilesindexed2>
 		<msgregistersindexed1 translated="false"> register indexed to the database</msgregistersindexed1>
 		<msgregistersindexed2 translated="false"> registers indexed to the database</msgregistersindexed2>
+		<msgregisterspurged1 translated="false"> register purged to the database</msgregisterspurged1>
+		<msgregisterspurged2 translated="false"> registers purged to the database</msgregisterspurged2>
 		<biglist translated="false">$limit records</biglist>
 		<biglisttip translated="false">Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
 	</common>
@@ -993,6 +995,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sessioninterval>Prüfe Fehlerprotokoll alle</sessioninterval>
 		<sessionwarning>Abmeldungewarnung</sessionwarning>
 		<indexinginterval translated="false">Index new files every</indexinginterval>
+		<purgeinterval translated="false">Purge data every</purgeinterval>
 		<emailsupport>E-Mail Addresse für Supportanfragen</emailsupport>
 		<segundos>Sekunden</segundos>
 		<dias>Tage</dias>

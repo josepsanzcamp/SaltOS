@@ -356,6 +356,32 @@ function table2subtables($table) {
 	return __aplicaciones(__FUNCTION__,$table);
 }
 
+function __usuarios($tipo,$dato) {
+	static $diccionario=array();
+	if(!count($diccionario)) {
+		$query=make_select_query("tbl_usuarios",array("id","login"));
+		$result=db_query($query);
+		$diccionario["user2id"]=array();
+		$diccionario["id2user"]=array();
+		while($row=db_fetch_row($result)) {
+			$diccionario["user2id"][$row["login"]]=$row["id"];
+			$diccionario["id2user"][$row["id"]]=$row["login"];
+		}
+		db_free($result);
+	}
+	if(!isset($diccionario[$tipo])) return "";
+	if(!isset($diccionario[$tipo][$dato])) return "";
+	return $diccionario[$tipo][$dato];
+}
+
+function user2id($user) {
+	return __usuarios(__FUNCTION__,$user);
+}
+
+function id2user($id) {
+	return __usuarios(__FUNCTION__,$id);
+}
+
 function get_filtered_field($field) {
 	if(substr($field,0,4)=="tel:") {
 		$temp=strtok($field,":");

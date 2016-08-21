@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<query>
 					<general eval="true">make_select_config("application_title,
 						plot_list_size,plot_list_width,plot_list_height,plot_form_size,plot_form_width,plot_form_height,
-						agenda_interval,inbox_interval,outbox_interval,feeds_interval,feeds_timeout,session_interval,session_warning,indexing_interval")</general>
+						agenda_interval,inbox_interval,outbox_interval,feeds_interval,feeds_timeout,session_interval,session_warning,indexing_interval,purge_interval")</general>
 					<water eval="true">make_select_config("water_actas_text,water_actas_posx,water_actas_posy,water_actas_size,water_actas_angle,
 						water_partes_text,water_partes_posx,water_partes_posy,water_partes_size,water_partes_angle,
 						water_facturas_text,water_facturas_posx,water_facturas_posy,water_facturas_size,water_facturas_angle,
@@ -232,6 +232,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<name>indexing_interval</name>
 							<label lang="true">indexinginterval</label>
+							<type>integer</type>
+							<width>60px</width>
+						</field>
+						<field>
+							<type>label</type>
+							<label lang="true">segundos</label>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>purge_interval</name>
+							<label lang="true">purgeinterval</label>
 							<type>integer</type>
 							<width>60px</width>
 						</field>
@@ -845,6 +857,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="general" prefix="true" preeval="true" eval="true">getParam("session_interval")?preeval_update_config("session_interval"):""</query>
 		<query match="general" prefix="true" preeval="true" eval="true">getParam("session_warning")?preeval_update_config("session_warning"):""</query>
 		<query match="general" prefix="true" preeval="true" eval="true">getParam("indexing_interval")?preeval_update_config("indexing_interval"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">getParam("purge_interval")?preeval_update_config("purge_interval"):""</query>
 		<!-- water section -->
 		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_text")?preeval_update_config("water_actas_text"):""</query>
 		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_posx")?preeval_update_config("water_actas_posx"):""</query>

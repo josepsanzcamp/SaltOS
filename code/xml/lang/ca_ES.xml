@@ -381,6 +381,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgfilesindexed2> fitxers indexats a la base de dades</msgfilesindexed2>
 		<msgregistersindexed1> registre indexat a la base de dades</msgregistersindexed1>
 		<msgregistersindexed2> registres indexats a la base de dades</msgregistersindexed2>
+		<msgregisterspurged1> registre purgat a la base de dades</msgregisterspurged1>
+		<msgregisterspurged2> registres purgats a la base de dades</msgregisterspurged2>
 		<biglist>$limit registres</biglist>
 		<biglisttip>Atenció: s'estan mostrant $limit registres i pot ser que l'aplicació funcioni amb lentitud</biglisttip>
 	</common>
@@ -992,7 +994,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<feedstimeout>Oblidar feeds esborrats passats</feedstimeout>
 		<sessioninterval>Comprovar avís de tancar sessió cada</sessioninterval>
 		<sessionwarning>Adverteix el tancament de sessió abans de</sessionwarning>
-		<indexinginterval>Indexar arxius nous cada </indexinginterval>
+		<indexinginterval>Indexar arxius nous cada</indexinginterval>
+		<purgeinterval>Purgar dades cada</purgeinterval>
 		<emailsupport>email per al suport tècnic</emailsupport>
 		<segundos>segons</segundos>
 		<dias>dies</dias>

@@ -25,11 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="indexing") {
-	if(!eval_bool(getDefault("enableindexing"))) return;
+	if(!eval_bool(getDefault("enableindexing"))) die();
 	require_once("php/unoconv.php");
 	require_once("php/getmail.php");
 	// CHECK THE SEMAPHORE
 	if(!semaphore_acquire(getParam("action"),getDefault("semaphoretimeout",100000))) die();
+	// DISABLE CACHE
+	$oldcache=set_use_cache("false");
 	// INDEXING FILES
 	$query="SELECT id,id_aplicacion,id_registro,fichero_file,retries FROM tbl_ficheros WHERE indexed=0 AND retries<3 LIMIT 1000";
 	$result=db_query($query);
@@ -89,8 +91,6 @@ if(getParam("action")=="indexing") {
 	db_free($result);
 	// SEND RESPONSE
 	if($total) javascript_alert($total.LANG("msgfilesindexed".min($total,2)));
-	// DISABLE CACHE
-	$oldcache=set_use_cache("false");
 	// INDEXING UNINDEXED CONTENTS
 	$query=make_select_query("tbl_aplicaciones",array(
 		"id",
@@ -101,9 +101,11 @@ if(getParam("action")=="indexing") {
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
+		if(time_get_usage()>getDefault("server/percentstop")) break;
 		$id_aplicacion=$row["id"];
 		$tabla=$row["tabla"];
 		for(;;) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DO NOT EXIST ON THE INDEXING TABLE
 			$query=make_select_query($tabla,"id",make_where_query(array(),"AND",array(
 				"id NOT IN (".make_select_query("tbl_indexing","id_registro",make_where_query(array(
@@ -118,6 +120,7 @@ if(getParam("action")=="indexing") {
 			$total+=count($ids);
 		}
 		for(;;) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE INDEXING TABLE, THAT DO NOT EXIST ON THE MAIN APPLICATION TABLE
 			$query=make_select_query("tbl_indexing","id_registro",make_where_query(array(
 				"id_aplicacion"=>$id_aplicacion
@@ -132,6 +135,7 @@ if(getParam("action")=="indexing") {
 			$total+=count($ids);
 		}
 		for(;;) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DO NOT EXIST ON THE REGISTER TABLE
 			$query=make_select_query($tabla,"id",make_where_query(array(),"AND",array(
 				"id NOT IN (".make_select_query("tbl_registros_i","id_registro",make_where_query(array(
@@ -147,6 +151,7 @@ if(getParam("action")=="indexing") {
 			$total+=count($ids);
 		}
 		for(;;) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE REGISTER TABLE, THAT DO NOT EXIST ON THE MAIN APPLICATION TABLE
 			$query=make_select_query("tbl_registros_i","id_registro",make_where_query(array(
 				"id_aplicacion"=>$id_aplicacion
@@ -164,29 +169,7 @@ if(getParam("action")=="indexing") {
 	db_free($result);
 	// CHECK INTEGRITY
 	for(;;) {
-		// SEARCH FOR DUPLICATED ROWS IN REGISTER TABLE
-		$query=make_select_query("tbl_registros_i",array(
-			"GROUP_CONCAT(id)"=>"ids",
-			"id_aplicacion"=>"id_aplicacion",
-			"id_registro"=>"id_registro",
-			"COUNT(*)"=>"total"
-		),"",array(
-			"groupby"=>array("id_aplicacion","id_registro"),
-			"having"=>"total>1",
-			"limit"=>"1000"
-		));
-		$ids=execute_query_array($query);
-		if(!count($ids)) break;
-		foreach($ids as $id) {
-			$temp=explode(",",$id["ids"]);
-			array_shift($temp);
-			$temp=implode(",",$temp);
-			$query=make_delete_query("tbl_registros_i","id IN (${temp})");
-			db_query($query);
-		}
-		$total+=count($ids);
-	}
-	for(;;) {
+		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH FOR DUPLICATED ROWS IN INDEXING TABLE
 		$query=make_select_query("tbl_indexing",array(
 			"GROUP_CONCAT(id)"=>"ids",
@@ -205,6 +188,30 @@ if(getParam("action")=="indexing") {
 			array_shift($temp);
 			$temp=implode(",",$temp);
 			$query=make_delete_query("tbl_indexing","id IN (${temp})");
+			db_query($query);
+		}
+		$total+=count($ids);
+	}
+	for(;;) {
+		if(time_get_usage()>getDefault("server/percentstop")) break;
+		// SEARCH FOR DUPLICATED ROWS IN REGISTER TABLE
+		$query=make_select_query("tbl_registros_i",array(
+			"GROUP_CONCAT(id)"=>"ids",
+			"id_aplicacion"=>"id_aplicacion",
+			"id_registro"=>"id_registro",
+			"COUNT(*)"=>"total"
+		),"",array(
+			"groupby"=>array("id_aplicacion","id_registro"),
+			"having"=>"total>1",
+			"limit"=>"1000"
+		));
+		$ids=execute_query_array($query);
+		if(!count($ids)) break;
+		foreach($ids as $id) {
+			$temp=explode(",",$id["ids"]);
+			array_shift($temp);
+			$temp=implode(",",$temp);
+			$query=make_delete_query("tbl_registros_i","id IN (${temp})");
 			db_query($query);
 		}
 		$total+=count($ids);

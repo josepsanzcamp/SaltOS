@@ -88,15 +88,15 @@ if($page=="correo") {
 				// BORRAR FICHEROS .EML.GZ DEL INBOX
 				$query="SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='0'";
 				$result=execute_query_array($query);
-				foreach($result as $delete) if(file_exists($delete)) unlink($delete);
+				foreach($result as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				// BORRAR FICHEROS .EML.GZ DEL OUTBOX
 				$query="SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='1'";
 				$result=execute_query_array($query);
-				foreach($result as $delete) if(file_exists($delete)) unlink($delete);
+				foreach($result as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				// BORRAR FICHEROS .OBJ DEL OUTBOX
 				$query="SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='1'";
 				$result=execute_query_array($query);
-				foreach($result as $delete) if(file_exists($delete)) unlink($delete);
+				foreach($result as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				// BORRAR CORREOS
 				$query=make_delete_query("tbl_correo","id IN (${ids})");
 				db_query($query);

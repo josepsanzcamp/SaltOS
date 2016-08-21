@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap shortcut_ctrl_m</class>
 		</option>
 	</header>
-	<header ifeval="!ismobile() &amp;&amp; check_commands(array(getDefault('commands/text2wave'),getDefault('commands/wavetomp3')),60)">
+	<header ifeval="eval_bool(getDefault('enablevoice'))">
 		<option>
 			<label lang="true">playvoice</label>
 			<onclick>play_voice()</onclick>
@@ -365,7 +365,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<name>calculator</name>
 		<class>tools calculator</class>
 	</group>
-	<group ifeval="!ismobile() &amp;&amp; eval_bool(getDefault('enabletranslate')) &amp;&amp; (check_commands(getDefault('commands/aspell'),60) || check_commands(getDefault('commands/apertium'),60))">
+	<group ifeval="eval_bool(getDefault('enabletranslate'))">
 		<label eval="true">LANG(check_commands(getDefault('commands/apertium'),60)?"translate":"corrector")</label>
 		<name>translate</name>
 		<class>tools translate</class>

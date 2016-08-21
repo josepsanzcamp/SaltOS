@@ -88,6 +88,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"lang_actions() { return '".LANG_ESCAPE("actions")."'; }"</function>
 	<!-- FOR INDEXING MODULE -->
 	<function eval="true">"config_indexing_interval() { return intval('".CONFIG('indexing_interval')."')*1000; }"</function>
+	<!-- FOR PURGE MODULE -->
+	<function eval="true">"config_purge_interval() { return intval('".CONFIG('purge_interval')."')*1000; }"</function>
 	<!-- FOR HELP MODULE -->
 	<function eval="true">"lang_help() { return '".LANG_ESCAPE("help")."'; }"</function>
 	<!-- USING CACHE -->
@@ -99,10 +101,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<include>js/checkemail.js</include>
 		<include>js/checkfeeds.js</include>
 		<include>js/checksession.js</include>
-		<include>js/checkindexing.js</include>
+		<include ifeval="eval_bool(getDefault('enableindexing'))">js/checkindexing.js</include>
+		<include ifeval="eval_bool(getDefault('enablepurge'))">js/checkpurge.js</include>
 		<include>js/favicon.js</include>
-		<include>js/voice.js</include>
-		<include>js/translate.js</include>
+		<include ifeval="eval_bool(getDefault('enablevoice'))">js/voice.js</include>
+		<include ifeval="eval_bool(getDefault('enabletranslate'))">js/translate.js</include>
 		<include>js/calculator.js</include>
 		<include>js/folders.js</include>
 	</cache>
