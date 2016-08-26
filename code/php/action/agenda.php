@@ -117,10 +117,10 @@ if(getParam("action")=="agenda") {
 	}
 	// VOICE FEATURES
 	if(count($notify_texts)) {
-		foreach($notify_texts as $text) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$text)."')","saltos_voice()");
+		foreach($notify_texts as $text) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$text)."')","typeof(saltos_voice)=='function' && saltos_voice()");
 	}
 	if(count($reader_texts)) {
-		foreach($reader_texts as $text) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$text)."')","saltos_voice()");
+		foreach($reader_texts as $text) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$text)."')","typeof(saltos_voice)=='function' && saltos_voice()");
 	}
 	javascript_headers();
 	die();

@@ -514,12 +514,12 @@ if(getParam("action")=="getmail") {
 	}
 	// VOICE FEATURES
 	if($newemail>0) {
-		javascript_template("notify_voice('".$newemail.LANG_ESCAPE("msgnewokpop3email".min($newemail,2),"correo")."')","saltos_voice()");
+		javascript_template("notify_voice('".$newemail.LANG_ESCAPE("msgnewokpop3email".min($newemail,2),"correo")."')","typeof(saltos_voice)=='function' && saltos_voice()");
 	}
 	if(count($voice_ids)) {
 		$query="SELECT SUBSTR(CONCAT(de,'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)),1,255) reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
 		$result=execute_query_array($query);
-		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","saltos_voice()");
+		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","typeof(saltos_voice)=='function' && saltos_voice()");
 	}
 	// RELEASE SEMAPHORE
 	semaphore_release($semaphore);

@@ -434,13 +434,13 @@ if(getParam("action")=="feeds") {
 	}
 	// VOICE FEATURES
 	if($newfeeds+$modifiedfeeds>0) {
-		if($newfeeds>0) javascript_template("notify_voice('".$newfeeds.LANG_ESCAPE("msgnewfeedsok".min($newfeeds,2),"feeds")."')","saltos_voice()");
-		if($modifiedfeeds>0) javascript_template("notify_voice('".$modifiedfeeds.LANG_ESCAPE("msgmodifiedfeedsok".min($modifiedfeeds,2),"feeds")."')","saltos_voice()");
+		if($newfeeds>0) javascript_template("notify_voice('".$newfeeds.LANG_ESCAPE("msgnewfeedsok".min($newfeeds,2),"feeds")."')","typeof(saltos_voice)=='function' && saltos_voice()");
+		if($modifiedfeeds>0) javascript_template("notify_voice('".$modifiedfeeds.LANG_ESCAPE("msgmodifiedfeedsok".min($modifiedfeeds,2),"feeds")."')","typeof(saltos_voice)=='function' && saltos_voice()");
 	}
 	if(count($voice_ids)) {
 		$query="SELECT CONCAT((SELECT title FROM tbl_usuarios_f WHERE id=tbl_feeds.id_feed),'. ',title) reader FROM tbl_feeds WHERE id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
 		$result=execute_query_array($query);
-		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","saltos_voice()");
+		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","typeof(saltos_voice)=='function' && saltos_voice()");
 	}
 	// RELEASE SEMAPHORE
 	semaphore_release($semaphore);
