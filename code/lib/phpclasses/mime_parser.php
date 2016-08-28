@@ -2,7 +2,7 @@
 /*
  * mime_parser.php
  *
- * @(#) $Id: mime_parser.php,v 1.90 2016/07/27 01:56:38 mlemos Exp $
+ * @(#) $Id: mime_parser.php,v 1.91 2016/08/27 22:11:07 mlemos Exp $
  *
  */
 
@@ -30,7 +30,7 @@ define('MIME_ADDRESS_FIRST',            2);
 
 	<package>net.manuellemos.mimeparser</package>
 
-	<version>@(#) $Id: mime_parser.php,v 1.90 2016/07/27 01:56:38 mlemos Exp $</version>
+	<version>@(#) $Id: mime_parser.php,v 1.91 2016/08/27 22:11:07 mlemos Exp $</version>
 	<copyright>Copyright © (C) Manuel Lemos 2006 - 2008</copyright>
 	<title>MIME parser</title>
 	<author>Manuel Lemos</author>
@@ -1938,7 +1938,7 @@ class mime_parser_class
 							$address = trim($values[$v]);
 							if(strlen($address) === 0)
 							{
-								if(!$this->SetPositionedWarning('Address extraction warning from header '.$header.' empty email address', $warning + $p[$v]))
+								if(!$this->SetPositionedWarning('Address extraction warning from header '.$header.' empty email address', $p[$v]))
 									return(0);
 							}
 							elseif($addresses->ParseAddressList($address, $a))
