@@ -2036,6 +2036,6 @@ c.*,ROUND(base*iva/100.0,2) iva2,-ROUND(base*irpf/100.0,2) irpf2 FROM (SELECT a.
 			ELSE
 				CONCAT('".LANG_ESCAPE("factura")."',' ',num,' ',nombre)
 			END subject
-		FROM tbl_facturas WHERE id IN (".check_ids(getParam("id")).")"):LANG("facturas"))).getDefault("exts/pdfext",".pdf")</output>
+		FROM tbl_facturas WHERE id IN (".check_ids(getParam("id")).")"):LANG("facturas"))).".pdf"</output>
 	</pdf>
 </root>

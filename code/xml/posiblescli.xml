@@ -750,6 +750,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT CONCAT('".LANG_ESCAPE("posiblecli")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
-		FROM tbl_posiblescli WHERE id IN (".check_ids(getParam("id")).")"):LANG("posiblescli"))).getDefault("exts/pdfext",".pdf")</output>
+		FROM tbl_posiblescli WHERE id IN (".check_ids(getParam("id")).")"):LANG("posiblescli"))).".pdf"</output>
 	</pdf>
 </root>

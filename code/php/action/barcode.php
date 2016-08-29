@@ -38,7 +38,7 @@ if(getParam("action")=="barcode") {
 	$s=intval(getParam("s",8));
 	$t=getParam("t","C39");
 	// BEGIN THE BARCODE WRAPPER
-	$cache=get_cache_file(array($msg,$w,$h,$m,$s,$t),getDefault("exts/pngext",".png"));
+	$cache=get_cache_file(array($msg,$w,$h,$m,$s,$t),".png");
 	//~ if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		require_once("lib/tcpdf/tcpdf_barcodes_1d.php");

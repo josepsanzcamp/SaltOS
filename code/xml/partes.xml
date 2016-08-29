@@ -778,7 +778,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT CONCAT('".LANG_ESCAPE("parte")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',tarea) subject
-		FROM tbl_partes WHERE id IN (".check_ids(getParam("id")).")"):LANG("partes"))).getDefault("exts/pdfext",".pdf")</output>
+		FROM tbl_partes WHERE id IN (".check_ids(getParam("id")).")"):LANG("partes"))).".pdf"</output>
 	</pdf>
 	<excel>
 		<query require="php/listsim.php" global="page" eval="true">"

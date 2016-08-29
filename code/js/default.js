@@ -1262,6 +1262,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	var make_tabs2_padding=0;
 	var make_tabs2_margin=0;
+	var make_tabs2_border=0;
 
 	function make_tabs2(obj) {
 		//~ console.time("make_tabs2");
@@ -1283,8 +1284,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabs2 li",obj).removeClass("ui-corner-top").addClass("ui-corner-bottom");
 		if(!make_tabs2_padding) make_tabs2_padding=$(".tabs2 ul",obj).css("padding-top");
 		if(!make_tabs2_margin) make_tabs2_margin=$(".tabs2 li",obj).css("margin-top");
+		if(!make_tabs2_border) make_tabs2_border=$(".tabs2 li",obj).css("border-top");
 		$(".tabs2 ul",obj).css("padding-top","0").css("padding-bottom",make_tabs2_padding);
 		$(".tabs2 li",obj).css("margin-top","0").css("margin-bottom",make_tabs2_margin);
+		$(".tabs2 li",obj).css("border-top","0").css("border-bottom",make_tabs2_border);
 		//~ console.timeEnd("make_tabs2");
 	}
 

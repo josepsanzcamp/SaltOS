@@ -32,13 +32,13 @@ if(getParam("action")=="voice") {
 	// NORMAL OPERATION
 	$text=getParam("text");
 	$dirhash=get_directory("dirs/cachedir").md5(json_encode(array("voice",$text)));
-	$cache=$dirhash.getDefault("exts/mp3ext",".mp3");
+	$cache=$dirhash.".mp3";
 	//if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		// CONVERT THE TEXT 2 VOICE IN WAV FORMAT
-		$textcache=$dirhash.getDefault("exts/textext",".txt");
+		$textcache=$dirhash.".txt";
 		file_put_contents($textcache,utf8_decode($text));
-		$wavcache=$dirhash.getDefault("exts/wavext",".wav");
+		$wavcache=$dirhash.".wav";
 		// DETECT THE LANG TO USE THE APPROPRIATE COMMAND/__TEXT2WAVE_XX__
 		$langs=__translate_detect_aspell_langs($text);
 		if(getDefault("commands/__text2wave_${langs[0]}__")) ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/__text2wave_${langs[0]}__")));

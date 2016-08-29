@@ -88,8 +88,7 @@ function __getmail_getsource($id,$max=0) {
 	$row=execute_query($query);
 	if(!$row) return "";
 	$email="${row["id_cuenta"]}/${row["uidl"]}";
-	$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
-	$file=($row["is_outbox"]?get_directory("dirs/outboxdir"):get_directory("dirs/inboxdir")).$email.$fext;
+	$file=($row["is_outbox"]?get_directory("dirs/outboxdir"):get_directory("dirs/inboxdir")).$email.".eml.gz";
 	if(!file_exists($file)) return "";
 	$fp=gzopen($file,"r");
 	$message="";
@@ -118,10 +117,9 @@ function __getmail_getmime($id) {
 	$row=execute_query($query);
 	if(!$row) return "";
 	$email="${row["id_cuenta"]}/${row["uidl"]}";
-	$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
-	$cache=get_cache_file($row,getDefault("exts/emailext",".eml"));
+	$cache=get_cache_file($row,".eml");
 	if(!file_exists($cache)) {
-		$file=($row["is_outbox"]?get_directory("dirs/outboxdir"):get_directory("dirs/inboxdir")).$email.$fext;
+		$file=($row["is_outbox"]?get_directory("dirs/outboxdir"):get_directory("dirs/inboxdir")).$email.".eml.gz";
 		if(!file_exists($file)) return "";
 		$decoded=__getmail_mime_decode_protected(array("File"=>"compress.zlib://".$file));
 		file_put_contents($cache,serialize($decoded));
@@ -180,7 +178,7 @@ function __getmail_getfiles($array,$level=0) {
 			if($cid=="" && $cname=="" && $location!="") $cid=$location;
 			$ctype=__getmail_getnode("Headers/content-type:",$array);
 			if(strpos($ctype,";")!==false) $ctype=strtok($ctype,";");
-			if($cid=="" && $cname=="" && __getmail_processfile($disp,$type)) $cname=encode_bad_chars($ctype).getDefault("exts/emailext",".eml");
+			if($cid=="" && $cname=="" && __getmail_processfile($disp,$type)) $cname=encode_bad_chars($ctype).".eml";
 			if($cname!="") {
 				$csize=__getmail_getnode("BodyLength",$array);
 				$hsize=__getmail_gethumansize($csize);
@@ -378,7 +376,7 @@ function __getmail_getfullbody($array) {
 			if($cid=="" && $cname=="" && $location!="") $cid=$location;
 			$ctype=__getmail_getnode("Headers/content-type:",$array);
 			if(strpos($ctype,";")!==false) $ctype=strtok($ctype,";");
-			if($cid=="" && $cname=="" && __getmail_processfile($disp,$type)) $cname=encode_bad_chars($ctype).getDefault("exts/emailext",".eml");
+			if($cid=="" && $cname=="" && __getmail_processfile($disp,$type)) $cname=encode_bad_chars($ctype).".eml";
 			if($cid!="" || $cname!="") {
 				$csize=__getmail_getnode("BodyLength",$array);
 				$hsize=__getmail_gethumansize($csize);
@@ -434,7 +432,7 @@ function __getmail_getcid($array,$hash) {
 			if($cid=="" && $cname=="" && $location!="") $cid=$location;
 			$ctype=__getmail_getnode("Headers/content-type:",$array);
 			if(strpos($ctype,";")!==false) $ctype=strtok($ctype,";");
-			if($cid=="" && $cname=="" && __getmail_processfile($disp,$type)) $cname=encode_bad_chars($ctype).getDefault("exts/emailext",".eml");
+			if($cid=="" && $cname=="" && __getmail_processfile($disp,$type)) $cname=encode_bad_chars($ctype).".eml";
 			$csize=__getmail_getnode("BodyLength",$array);
 			$chash=md5(json_encode(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
 			if($chash==$hash) {

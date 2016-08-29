@@ -64,19 +64,19 @@ if(getParam("action")=="compress") {
 	$format=getParam("format");
 	switch($format) {
 		case "zip":
-			$archive=new zip_file($info[0].getDefault("exts/zipext",".zip"));
+			$archive=new zip_file($info[0].".zip");
 			$type="application/zip";
 			break;
 		case "tar":
-			$archive=new tar_file($info[0].getDefault("exts/tarext",".tar"));
+			$archive=new tar_file($info[0].".tar");
 			$type="application/x-tar";
 			break;
 		case "gzip":
-			$archive=new gzip_file($info[0].getDefault("exts/targzipext",".tgz"));
+			$archive=new gzip_file($info[0].".tgz");
 			$type="application/x-gzip";
 			break;
 		case "bzip":
-			$archive=new bzip_file($info[0].getDefault("exts/tarbzipext",".tbz"));
+			$archive=new bzip_file($info[0].".tbz");
 			$type="application/x-bzip2";
 			break;
 		default:

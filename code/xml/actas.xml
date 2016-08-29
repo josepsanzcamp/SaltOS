@@ -900,6 +900,6 @@ LEFT JOIN tbl_proyectos p ON a.id_proyecto=p.id) z WHERE ROUND(id) IN (".check_i
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT CONCAT('".LANG_ESCAPE("acta")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
-		FROM tbl_actas WHERE id IN (".check_ids(getParam("id")).")"):LANG("actas"))).getDefault("exts/pdfext",".pdf")</output>
+		FROM tbl_actas WHERE id IN (".check_ids(getParam("id")).")"):LANG("actas"))).".pdf"</output>
 	</pdf>
 </root>

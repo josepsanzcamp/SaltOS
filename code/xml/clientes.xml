@@ -839,6 +839,6 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT CONCAT('".LANG_ESCAPE("cliente")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
-		FROM tbl_clientes WHERE id IN (".check_ids(getParam("id")).")"):LANG("clientes"))).getDefault("exts/pdfext",".pdf")</output>
+		FROM tbl_clientes WHERE id IN (".check_ids(getParam("id")).")"):LANG("clientes"))).".pdf"</output>
 	</pdf>
 </root>

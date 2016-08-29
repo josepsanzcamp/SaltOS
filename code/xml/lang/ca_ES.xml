@@ -35,10 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<edit>Editar</edit>
 		<copy>Copiar</copy>
 		<delete>Esborrar</delete>
-		<first>Primera pàgina</first>
-		<previous>Pàgina anterior</previous>
-		<next>Pàgina següent</next>
-		<last>Última pàgina</last>
+		<first>Primera plana</first>
+		<previous>Plana anterior</previous>
+		<next>Plana següent</next>
+		<last>Darrera plana</last>
 		<id>Cod.</id>
 		<codigo>Codi</codigo>
 		<cif>CIF</cif>
@@ -66,11 +66,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pais>País</pais>
 		<comentarios>Comentaris</comentarios>
 		<descripcion>Descripció</descripcion>
-		<buttoncreate>Crea</buttoncreate>
+		<buttoncreate>Crear</buttoncreate>
 		<buttoncreatereturnhere>Crear i tornar aquí</buttoncreatereturnhere>
 		<buttonupdate>Actualitzar</buttonupdate>
 		<buttonupdatereturnhere>Actualitzar i tornar aquí</buttonupdatereturnhere>
-		<buttoncancel>Cancel</buttoncancel>
+		<buttoncancel>Cancel·lar</buttoncancel>
 		<buttonreturn>Tornar</buttonreturn>
 		<date>Data</date>
 		<incidencia>Incidència</incidencia>
@@ -85,7 +85,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cobrado>Cobrat</cobrado>
 		<empresa>Empresa</empresa>
 		<msgdelete>Vol esborrar aquest registre?</msgdelete>
-		<permdenied>No tens autorització per realitzar aquesta acció</permdenied>
+		<permdenied>No te autorització per realitzar aquesta acció</permdenied>
 		<sinnombre>Sense Nom</sinnombre>
 		<deldenied>No es pot esborrar perquè està sent usat en una altra aplicació</deldenied>
 		<yes>Si</yes>
@@ -128,13 +128,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<rol>Rol</rol>
 		<permiso>Permís</permiso>
 		<pos>Pos.</pos>
-		<posicion>Posició.</posicion>
+		<posicion>Posició</posicion>
 		<trimestre>Trimestre</trimestre>
 		<otroscampos>Altres camps</otroscampos>
 		<excel>Excel</excel>
-		<exceltip>Descarregui's un fitxer Excel amb les dades actuals</exceltip>
+		<exceltip>Descarregar un fitxer Excel amb les dades actuals</exceltip>
 		<pdf>Descarregar PDF</pdf>
-		<pdftip>Descarregui's un fitxer PDF amb les dades actuals</pdftip>
+		<pdftip>Descarregar un fitxer PDF amb les dades actuals</pdftip>
 		<epigrafe>Epígraf</epigrafe>
 		<campoauto>(*) Camp automàtic</campoauto>
 		<cerr>Tanc.</cerr>
@@ -152,13 +152,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todoslosposiblescli>[Tots els possibles clients]</todoslosposiblescli>
 		<todoslosusuarios>[Tots els usuaris]</todoslosusuarios>
 		<todoslosproveedores>[Tots els proveïdors]</todoslosproveedores>
-		<mostrartodos>[Mostra tots]</mostrartodos>
+		<mostrartodos>[Mostrar tots]</mostrartodos>
 		<sinusuario>[Sense usuari]</sinusuario>
-		<paginaspc>Pàgina </paginaspc>
+		<paginaspc>Plana </paginaspc>
 		<regsfrom>registres del </regsfrom>
 		<spcdespc> de </spcdespc>
 		<spcalspc> a </spcalspc>
-		<regspage>Registres per pàgina:</regspage>
+		<regspage>Registres per plana:</regspage>
 		<registerdata>Dades del registre</registerdata>
 		<userinsert>Creat per</userinsert>
 		<userupdate>Modificat per</userupdate>
@@ -1195,7 +1195,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<week>Setmana</week>
 		<month>Mes</month>
 		<confirmreadingto>Demana confirmació de recepció</confirmreadingto>
-		<marcarcorreos>Marca com a</marcarcorreos>
+		<marcarcorreos>Marcar com a</marcarcorreos>
 		<message0> missatges</message0>
 		<message1> missatge</message1>
 		<message2> missatges</message2>
@@ -1431,7 +1431,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<yesterday>Ahir</yesterday>
 		<week>Setmana</week>
 		<month>Mes</month>
-		<marcarfeeds>Marca com a</marcarfeeds>
+		<marcarfeeds>Marcar com a</marcarfeeds>
 		<leidos>Llegits</leidos>
 		<wait>Pendent</wait>
 		<borrar>Esborrar</borrar>

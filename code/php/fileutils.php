@@ -49,8 +49,8 @@ function get_directory($key,$default="") {
 }
 
 function get_temp_file($ext="") {
-	if($ext=="") $ext=getDefault("exts/defaultext",".dat");
-	if($ext[0]!=".") $ext=".".$ext;
+	if($ext=="") $ext=".dat";
+	if(substr($ext,0,1)!=".") $ext=".".$ext;
 	$dir=get_directory("dirs/cachedir");
 	while(1) {
 		$uniqid=get_unique_id_md5();
@@ -75,7 +75,7 @@ function cache_exists($cache,$file) {
 function get_cache_file($data,$ext="") {
 	if(is_array($data)) $data=json_encode($data);
 	if($ext=="") $ext=strtolower(extension($data));
-	if($ext=="") $ext=getDefault("exts/defaultext",".dat");
+	if($ext=="") $ext=".dat";
 	if(substr($ext,0,1)!=".") $ext=".".$ext;
 	$dir=get_directory("dirs/cachedir");
 	$file=$dir.md5($data).$ext;
@@ -132,7 +132,7 @@ function __semaphore_helper($fn,$name,$timeout) {
 	static $stack=array();
 	if(stripos($fn,"acquire")!==false) {
 		if($name=="") $name=__FUNCTION__;
-		$file=get_cache_file($name,getDefault("exts/semext",".sem"));
+		$file=get_cache_file($name,".sem");
 		if(!is_writable(dirname($file))) return false;
 		$hash=md5($file);
 		if(!isset($stack[$hash])) $stack[$hash]=null;
@@ -171,7 +171,7 @@ function __semaphore_helper($fn,$name,$timeout) {
 		return true;
 	} elseif(stripos($fn,"release")!==false) {
 		if($name=="") $name=__FUNCTION__;
-		$file=get_cache_file($name,getDefault("exts/semext",".sem"));
+		$file=get_cache_file($name,".sem");
 		$hash=md5($file);
 		if(!isset($stack[$hash])) $stack[$hash]=null;
 		if(!$stack[$hash]) return false;
@@ -222,7 +222,7 @@ function ob_passthru($cmd,$expires=0) {
 	static $disableds_string=null;
 	static $disableds_array=array();
 	if($expires) {
-		$cache=get_cache_file($cmd,getDefault("exts/outputext",".out"));
+		$cache=get_cache_file($cmd,".out");
 		list($mtime,$error)=filemtime_protected($cache);
 		if(file_exists($cache) && !$error && time()-$expires<$mtime) return file_get_contents($cache);
 	}

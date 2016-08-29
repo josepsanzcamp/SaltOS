@@ -113,7 +113,7 @@ function __excel_dump($query,$page) {
 	for($i=0;$i<count($matrix[0]);$i++) $objPHPExcel->getActiveSheet()->getColumnDimension(__import_col2name($i))->setAutoSize(true);
 	$objPHPExcel->getActiveSheet()->setTitle(substr($title,0,31));
 	$objWriter=PHPExcel_IOFactory::createWriter($objPHPExcel,"Excel5");
-	$name=$page.getDefault("exts/excelext",".xls");
+	$name=$page.".xls";
 	ob_start();
 	$objWriter->save("php://output");
 	$buffer=ob_get_clean();
@@ -902,7 +902,7 @@ function __phpthumb_imagecreatefromtiff($src) {
 		$im=imagecreatefromstring($im2->getImageBlob());
 		$im2->destroy();
 	} else {
-		$file=get_temp_file(getDefault("exts/pngext",".png"));
+		$file=get_temp_file(".png");
 		ob_passthru("convert ${src} ${file}");
 		if(!file_exists($file)) show_php_error(array("phperror"=>"ImageMagick failed using convert command line"));
 		$im=imagecreatefrompng($file);

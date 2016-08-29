@@ -60,7 +60,7 @@ function __translate_detect_aspell_langs($text,$length=50) {
 	$words=str_word_count_utf8($text);
 	$words=array_slice($words,0,$length);
 	$text=implode(" ",$words);
-	$input=get_temp_file(getDefault("exts/inputext",".in"));
+	$input=get_temp_file(".in");
 	file_put_contents($input,$text);
 	$langs=__translate_get_aspell_langs();
 	$counts=array();
@@ -79,7 +79,7 @@ function __translate_detect_aspell_langs($text,$length=50) {
 
 function __translate_aspell($text,$lang) {
 	if(!check_commands(getDefault("commands/aspell"),60)) return $text;
-	$input=get_temp_file(getDefault("exts/inputext",".in"));
+	$input=get_temp_file(".in");
 	file_put_contents($input,$text);
 	$aspell=ob_passthru(getDefault("commands/aspell")." ".str_replace(array("__LANG__","__INPUT__"),array($lang,$input),getDefault("commands/__aspell__")));
 	unlink($input);
@@ -113,7 +113,7 @@ function __translate_aspell($text,$lang) {
 
 function __translate_apertium($text,$langs) {
 	if(!check_commands(getDefault("commands/apertium"),60)) return $text;
-	$input=get_temp_file(getDefault("exts/inputext",".in"));
+	$input=get_temp_file(".in");
 	file_put_contents($input,$text);
 	$text=ob_passthru(getDefault("commands/apertium")." ".str_replace(array("__LANGS__","__INPUT__"),array($langs,$input),getDefault("commands/__apertium__")));
 	unlink($input);

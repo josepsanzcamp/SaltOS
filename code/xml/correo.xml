@@ -1152,9 +1152,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"uidl",
 			"datetime"
 		))</query>
-		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='0'"</query>
-		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>
-		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>
+		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='0'"</query>
+		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>
+		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.obj') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>
 		<query include="xml/common/qdelete.xml" replace="true" />
 		<query global="page,id" eval="true">make_delete_query("tbl_correo_a",make_where_query(array("id_correo"=>$id)))</query>
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
@@ -1302,6 +1302,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT
 			CONCAT('".LANG_ESCAPE("correo")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END) subject
-		FROM tbl_correo WHERE id IN (".check_ids(getParam("id")).")"):LANG("correo"))).getDefault("exts/pdfext",".pdf")</output>
+		FROM tbl_correo WHERE id IN (".check_ids(getParam("id")).")"):LANG("correo"))).".pdf"</output>
 	</pdf>
 </root>

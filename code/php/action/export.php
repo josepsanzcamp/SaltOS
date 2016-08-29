@@ -29,14 +29,13 @@ if($page=="datacfg") {
 	$oldcache=set_use_cache("false");
 	// CONTINUE
 	$noexports=defined("__FULL_DUMP__")?array():getDefault("db/noexports");
-	$fext=getDefault("exts/gzipext",".gz");
-	$name=encode_bad_chars("backup_saltos_".current_date()).$fext;
+	$name=encode_bad_chars("backup_saltos_".current_date()).".gz";
 	$dbschema=xml2array("xml/dbschema.xml");
 	$tables=array();
 	foreach($dbschema["tables"] as $table) {
 		if(!is_array($noexports) || !in_array($table["name"],$noexports)) $tables[]=$table["name"];
 	}
-	$file=get_temp_file($fext);
+	$file=get_temp_file(".gz");
 	$fp=gzopen($file,"w");
 	foreach($tables as $table) {
 		$query=make_delete_query($table).";\n";

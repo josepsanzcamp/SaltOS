@@ -125,35 +125,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<inboxdir eval="true">getcwd()."/inbox"</inboxdir>
 		<outboxdir eval="true">getcwd()."/outbox"</outboxdir>
 	</dirs>
-	<exts>
-		<defaultext>.dat</defaultext>
-		<inputext>.in</inputext>
-		<outputext>.out</outputext>
-		<logext>.log</logext>
-		<emailext>.eml</emailext>
-		<gzipext>.gz</gzipext>
-		<objectext>.obj</objectext>
-		<semext>.sem</semext>
-		<zipext>.zip</zipext>
-		<pdfext>.pdf</pdfext>
-		<textext>.txt</textext>
-		<tarext>.tar</tarext>
-		<excelext>.xls</excelext>
-		<wavext>.wav</wavext>
-		<mp3ext>.mp3</mp3ext>
-		<htmext>.htm</htmext>
-		<htmlext>.html</htmlext>
-		<sqlext>.sql</sqlext>
-		<csvext>.csv</csvext>
-		<xmlext>.xml</xmlext>
-		<pngext>.png</pngext>
-		<targzipext>.tgz</targzipext>
-		<tarbzipext>.tbz</tarbzipext>
-		<tiffext>.tif</tiffext>
-		<hocrext>.hocr</hocrext>
-		<jpegext>.jpg</jpegext>
-		<jsonext>.json</jsonext>
-	</exts>
 	<cache>
 		<cachegcenabled>true</cachegcenabled>
 		<cachegctimeout>86400</cachegctimeout><!-- in seconds, 86400 is 1 day -->

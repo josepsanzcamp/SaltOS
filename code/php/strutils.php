@@ -311,7 +311,7 @@ function xml2html($buffer,$usecache=true) {
 	if(!file_exists($xslfile)) show_php_error(array("phperror"=>"Unknown XSL file","details"=>"File '$xslfile' not found"));
 	// CACHE MANAGEMENT
 	if($usecache) {
-		$cache=get_cache_file($buffer,getDefault("exts/htmext",".htm"));
+		$cache=get_cache_file($buffer,".htm");
 		if(cache_exists($cache,$xslfile)) return file_get_contents($cache);
 	}
 	// BEGIN THE TRANSFORMATION

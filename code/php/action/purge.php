@@ -107,11 +107,11 @@ if(getParam("action")=="purge") {
 				// BORRAR FICHEROS DEL SISTEMA DE FICHEROS
 				if($row2["id_aplicacion"]==page2id("correo")) {
 					$query="
-					SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id='${row2["id_registro"]}' AND is_outbox='0'
+					SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='${row2["id_registro"]}' AND is_outbox='0'
 					UNION
-					SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id='${row2["id_registro"]}' AND is_outbox='1'
+					SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='${row2["id_registro"]}' AND is_outbox='1'
 					UNION
-					SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') action_delete FROM tbl_correo WHERE id='${row2["id_registro"]}' AND is_outbox='1'";
+					SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.obj') action_delete FROM tbl_correo WHERE id='${row2["id_registro"]}' AND is_outbox='1'";
 					$rows3=execute_query_array($query);
 					foreach($rows3 as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				}

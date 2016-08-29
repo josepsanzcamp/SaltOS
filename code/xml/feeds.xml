@@ -741,6 +741,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT CONCAT('".LANG_ESCAPE("feed")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',CASE WHEN title='' THEN '".LANG_ESCAPE("sintitle")."' ELSE title END) subject
-		FROM tbl_feeds WHERE id IN (".check_ids(getParam("id")).")"):LANG("feeds"))).getDefault("exts/pdfext",".pdf")</output>
+		FROM tbl_feeds WHERE id IN (".check_ids(getParam("id")).")"):LANG("feeds"))).".pdf"</output>
 	</pdf>
 </root>

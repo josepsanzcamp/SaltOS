@@ -336,9 +336,8 @@ if(getParam("action")=="getmail") {
 	}
 	// FOR DEBUG PURPOSES
 	if(getDefault("debug/getmailmsgid")) {
-		$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
-		$file=get_directory("dirs/inboxdir").getDefault("debug/getmailmsgid").$fext;
-		if(!file_exists($file)) $file=get_directory("dirs/outboxdir").getDefault("debug/getmailmsgid").$fext;
+		$file=get_directory("dirs/inboxdir").getDefault("debug/getmailmsgid").".eml.gz";
+		if(!file_exists($file)) $file=get_directory("dirs/outboxdir").getDefault("debug/getmailmsgid").".eml.gz";
 		__getmail_insert($file,getDefault("debug/getmailmsgid"),1,0,0,0,0,0,0,"");
 		die();
 	}
@@ -424,8 +423,7 @@ if(getParam("action")=="getmail") {
 			foreach($retrieve as $index=>$uidl) {
 				if(time_get_usage()>getDefault("server/percentstop")) break;
 				if($error=="") {
-					$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
-					$file=$prefix."/".$uidls[$index].$fext;
+					$file=$prefix."/".$uidls[$index].".eml.gz";
 					if(!file_exists($file)) {
 						// RETRIEVE THE ENTIRE MESSAGE
 						$error=$pop3->OpenMessage($index,-1);

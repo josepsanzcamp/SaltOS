@@ -542,6 +542,6 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view","a.")." ORD
 		</foreach>
 		<output>encode_bad_chars(str_replace(".","",strpos(check_ids(getParam("id")),",")===false?execute_query("
 		SELECT CONCAT('".LANG_ESCAPE("campanya")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject
-		FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"):LANG_ESCAPE("campanyas"))).getDefault("exts/pdfext",".pdf")</output>
+		FROM tbl_campanyas WHERE id IN (".check_ids(getParam("id")).")"):LANG_ESCAPE("campanyas"))).".pdf"</output>
 	</pdf>
 </root>

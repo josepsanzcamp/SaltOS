@@ -207,7 +207,7 @@ if($page=="correo") {
 		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 		include("php/action/pdf.php");
 		$pdf=ob_get_clean();
-		$name=encode_bad_chars_file(LANG("correo","menu")." ".__incidencias_codigo($id_correo)." ".$info["subject"].getDefault("exts/pdfext",".pdf"));
+		$name=encode_bad_chars_file(LANG("correo","menu")." ".__incidencias_codigo($id_correo)." ".$info["subject"].".pdf");
 		$file=time()."_".get_unique_id_md5()."_".$name;
 		$size=strlen($pdf);
 		$type="application/pdf";

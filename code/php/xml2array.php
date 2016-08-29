@@ -243,7 +243,7 @@ function eval_files() {
 			// SECURITY ISSUE
 			$ext=strtolower(extension($val["file"]));
 			if(!$ext) $ext=strtolower(extension2($val["type"]));
-			if(in_array($ext,array("php","x-php"))) $val["file"]=str_replace(".php",getDefault("exts/defaultext",".dat"),$val["file"]);
+			if(in_array($ext,array("php","x-php"))) $val["file"]=str_replace(".php",".dat",$val["file"]);
 			// CONTINUE
 			setParam($key,$val["name"]);
 			setParam($key."_file",$val["file"]);
@@ -261,7 +261,7 @@ function xml2array($file,$usecache=true) {
 	static $depend=array();
 	if(!file_exists($file)) xml_error("File not found: $file");
 	if($usecache) {
-		$cache=get_cache_file($file,getDefault("exts/jsonext",".json"));
+		$cache=get_cache_file($file,".json");
 		if(cache_exists($cache,$file)) {
 			$array=json_decode(file_get_contents($cache),true);
 			if(isset($array["depend"]) && isset($array["root"])) {

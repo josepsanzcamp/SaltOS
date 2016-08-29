@@ -243,7 +243,7 @@ if(getParam("action")=="sendmail") {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		$last_id=$row["id"];
 		$messageid=$row["id_cuenta"]."/".$row["uidl"];
-		$file=get_directory("dirs/outboxdir").$messageid.getDefault("exts/objectext",".obj");
+		$file=get_directory("dirs/outboxdir").$messageid.".obj";
 		if(file_exists($file)) {
 			$mail=unserialize(file_get_contents($file));
 			capture_next_error();

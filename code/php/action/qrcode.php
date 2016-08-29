@@ -39,7 +39,7 @@ if(getParam("action")=="qrcode") {
 	$s=intval(getParam("s",6));
 	$m=intval(getParam("m",10));
 	// BEGIN THE QRCODE WRAPPER
-	$cache=get_cache_file($msg,getDefault("exts/pngext",".png"));
+	$cache=get_cache_file($msg,".png");
 	//~ if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		require_once("lib/tcpdf/tcpdf_barcodes_2d.php");

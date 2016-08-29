@@ -35,7 +35,7 @@ if(getParam("action")=="translate") {
 	$langs=getParam("langs");
 	// CHECK FOR THE OPTIONS REQUEST
 	if($langs=="auto") {
-		$cache=get_cache_file(array("translate","auto",$text,__translate_get_apertium_langs(),__translate_get_aspell_langs()),getDefault("exts/textext",".txt"));
+		$cache=get_cache_file(array("translate","auto",$text,__translate_get_apertium_langs(),__translate_get_aspell_langs()),".txt");
 		//if(file_exists($cache)) unlink($cache);
 		if(!file_exists($cache)) {
 			$langs=__translate_detect_aspell_langs($text);
@@ -63,7 +63,7 @@ if(getParam("action")=="translate") {
 	if(!$error && strlen($langs_array[1])!=2) $error=1;
 	if($error) action_denied();
 	// CONTINUE
-	$cache=get_cache_file(array("translate",$langs,$text,__translate_get_apertium_langs(),__translate_get_aspell_langs()),getDefault("exts/textext",".txt"));
+	$cache=get_cache_file(array("translate",$langs,$text,__translate_get_apertium_langs(),__translate_get_aspell_langs()),".txt");
 	//if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		$text=__translate_aspell($text,$langs_array[0]);

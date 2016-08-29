@@ -146,7 +146,6 @@ function __sendmail_parser($oldaddr) {
 
 function __sendmail_messageid($id_cuenta,$from) {
 	require_once("php/getmail.php");
-	$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
 	$prefix=get_directory("dirs/outboxdir").$id_cuenta;
 	if(!file_exists($prefix)) {
 		mkdir($prefix);
@@ -162,20 +161,19 @@ function __sendmail_messageid($id_cuenta,$from) {
 		$count++;
 	}
 	$uidl1=sprintf("%08X",$count);
-	$file=$prefix."/".$uidl1.$uidl2.$fext;
+	$file=$prefix."/".$uidl1.$uidl2.".eml.gz";
 	while(file_exists($file)) {
 		$count++;
 		$uidl1=sprintf("%08X",$count);
-		$file=$prefix."/".$uidl1.$uidl2.$fext;
+		$file=$prefix."/".$uidl1.$uidl2.".eml.gz";
 	}
 	return $id_cuenta."/".$uidl1.$uidl2;
 }
 
 function __sendmail_emlsaver($message,$messageid) {
 	require_once("php/getmail.php");
-	$fext=getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz");
 	$prefix=get_directory("dirs/outboxdir").$messageid;
-	$file=$prefix.$fext;
+	$file=$prefix.".eml.gz";
 	$fp=gzopen($file,"w");
 	gzwrite($fp,$message);
 	gzclose($fp);
@@ -185,7 +183,7 @@ function __sendmail_emlsaver($message,$messageid) {
 
 function __sendmail_objsaver($mail,$messageid) {
 	$prefix=get_directory("dirs/outboxdir").$messageid;
-	$file=$prefix.getDefault("exts/objectext",".obj");
+	$file=$prefix.".obj";
 	file_put_contents($file,serialize($mail));
 	chmod_protected($file,0666);
 }

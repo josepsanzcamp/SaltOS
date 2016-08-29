@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function unoconv2pdf($input) {
-	$output=get_cache_file($input,getDefault("exts/pdfext",".pdf"));
+	$output=get_cache_file($input,".pdf");
 	if(!file_exists($output)) {
 		$type=saltos_content_type($input);
 		$ext=strtolower(extension($input));
@@ -42,7 +42,7 @@ function unoconv2pdf($input) {
 }
 
 function unoconv2txt($input) {
-	$output=get_cache_file($input,getDefault("exts/textext",".txt"));
+	$output=get_cache_file($input,".txt");
 	if(!file_exists($output)) {
 		$type=saltos_content_type($input);
 		$ext=strtolower(extension($input));
@@ -57,7 +57,7 @@ function unoconv2txt($input) {
 				file_put_contents($output,__unoconv_pdf2ocr($input));
 			}
 		} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("image","audio","video"))) || in_array($type0,array("text","message"))) {
-			$pdf=get_cache_file($input,getDefault("exts/pdfext",".pdf"));
+			$pdf=get_cache_file($input,".pdf");
 			if(!file_exists($pdf)) {
 				__unoconv_all2pdf($input,$pdf);
 			}
@@ -141,7 +141,7 @@ function __unoconv_img2ocr($file) {
 	if(!check_commands(array(getDefault("commands/convert"),getDefault("commands/tesseract")),60)) return "";
 	$type=saltos_content_type($file);
 	if($type!="image/tiff") {
-		$tiff=get_cache_file($file,getDefault("exts/tiffext",".tif"));
+		$tiff=get_cache_file($file,".tif");
 		//~ if(file_exists($tiff)) unlink($tiff);
 		if(!file_exists($tiff)) {
 			ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tiff),getDefault("commands/__convert__")));
@@ -149,13 +149,13 @@ function __unoconv_img2ocr($file) {
 		}
 		$file=$tiff;
 	}
-	$hocr=get_cache_file($file,getDefault("exts/hocrext",".hocr"));
-	$html=str_replace(getDefault("exts/hocrext",".hocr"),getDefault("exts/htmlext",".html"),$hocr);
-	$txt=str_replace(getDefault("exts/hocrext",".hocr"),getDefault("exts/textext",".txt"),$hocr);
+	$hocr=get_cache_file($file,".hocr");
+	$html=str_replace(".hocr",".html",$hocr);
+	$txt=str_replace(".hocr",".txt",$hocr);
 	if(file_exists($html)) $hocr=$html;
 	//~ if(file_exists($hocr)) unlink($hocr);
 	if(!file_exists($hocr)) {
-		$base=str_replace(array(getDefault("exts/hocrext",".hocr"),getDefault("exts/htmlext",".html")),"",$hocr);
+		$base=str_replace(array(".hocr",".html"),"",$hocr);
 		ob_passthru(__unoconv_timeout(getDefault("commands/tesseract")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$base),getDefault("commands/__tesseract__"))));
 		if(file_exists($html)) $hocr=$html;
 		if(file_exists($txt)) unlink($txt);

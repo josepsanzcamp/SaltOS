@@ -72,7 +72,7 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 		include("php/action/pdf.php");
 		$pdf=ob_get_clean();
-		$file=get_temp_file(getDefault("exts/pdfext",".pdf"));
+		$file=get_temp_file(".pdf");
 		file_put_contents($file,$pdf);
 		$name=$body[$key].".pdf";
 		$name=encode_bad_chars_file($name);

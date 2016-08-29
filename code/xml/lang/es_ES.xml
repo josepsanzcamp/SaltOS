@@ -128,7 +128,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<rol>Rol</rol>
 		<permiso>Permiso</permiso>
 		<pos>Pos.</pos>
-		<posicion>Posición.</posicion>
+		<posicion>Posición</posicion>
 		<trimestre>Trimestre</trimestre>
 		<otroscampos>Otros campos</otroscampos>
 		<excel>Excel</excel>

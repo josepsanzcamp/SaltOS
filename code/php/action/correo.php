@@ -86,15 +86,15 @@ if($page=="correo") {
 				));
 				db_query($query);
 				// BORRAR FICHEROS .EML.GZ DEL INBOX
-				$query="SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='0'";
+				$query="SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='0'";
 				$result=execute_query_array($query);
 				foreach($result as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				// BORRAR FICHEROS .EML.GZ DEL OUTBOX
-				$query="SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/emailext",".eml").getDefault("exts/gzipext",".gz")."') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='1'";
+				$query="SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='1'";
 				$result=execute_query_array($query);
 				foreach($result as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				// BORRAR FICHEROS .OBJ DEL OUTBOX
-				$query="SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'".getDefault("exts/objectext",".obj")."') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='1'";
+				$query="SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.obj') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='1'";
 				$result=execute_query_array($query);
 				foreach($result as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				// BORRAR CORREOS
@@ -130,7 +130,7 @@ if(in_array($page,array("profile","usuarios"))) {
 	if($correo_new && !getParam($temp_key)) {
 		$outputdir=get_directory("dirs/filesdir");
 		$temp_data=str_replace("SaltOS","<a href='http://www.saltos.org'>SaltOS</a>",LANG("sentfromsaltos"));
-		$temp_name="email_signature".getDefault("exts/htmext",".htm");
+		$temp_name="email_signature.htm";
 		$temp_file=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($temp_name);
 		$temp_size=strlen($temp_data);
 		$temp_type="text/html";
