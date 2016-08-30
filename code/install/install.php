@@ -609,7 +609,6 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 									echo __NO__.__BR__;
 								}
 								// IMPORT DEFAULT DATA
-								$oldcache=set_use_cache("false");
 								$files=glob(__DEFAULT__);
 								if(is_array($files) && count($files)>0) {
 									foreach($files as $file) {
@@ -634,9 +633,7 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 										}
 									}
 								}
-								set_use_cache($oldcache);
 								// CREATE THE NEEDED PERMISSIONS TO MAIN GROUP
-								$oldcache=set_use_cache("false");
 								echo current_datetime().": ".LANG("permissiondata").": ";
 								$query="SELECT COUNT(*) FROM tbl_grupos_p";
 								$numrows=execute_query($query);
@@ -670,10 +667,8 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 								} else {
 									echo __NO__.__BR__;
 								}
-								set_use_cache($oldcache);
 								// IMPORT EXAMPLE DATA
 								if(getParam("exampledata")) {
-									$oldcache=set_use_cache("false");
 									$files=glob(__EXAMPLE__);
 									if(is_array($files) && count($files)>0) {
 										foreach($files as $file) {
@@ -706,11 +701,9 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 											}
 										}
 									}
-									set_use_cache($oldcache);
 								}
 								// IMPORT STREET DATA
 								if(getParam("streetdata")) {
-									$oldcache=set_use_cache("false");
 									$files=glob(__STREET__);
 									if(is_array($files) && count($files)>0) {
 										foreach($files as $file) {
@@ -765,7 +758,6 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 											}
 										}
 									}
-									set_use_cache($oldcache);
 								}
 								// END OF INSTALL
 								echo current_datetime().": ".LANG("finish").__BR__;

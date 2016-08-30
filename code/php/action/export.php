@@ -25,19 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user($page,"export")) action_denied();
 if($page=="datacfg") {
-	// DISABLE DB CACHE
-	$oldcache=set_use_cache("false");
 	// CONTINUE
-	$noexports=defined("__FULL_DUMP__")?array():getDefault("db/noexports");
 	$name=encode_bad_chars("backup_saltos_".current_date()).".gz";
 	$dbschema=xml2array("xml/dbschema.xml");
-	$tables=array();
-	foreach($dbschema["tables"] as $table) {
-		if(!is_array($noexports) || !in_array($table["name"],$noexports)) $tables[]=$table["name"];
-	}
 	$file=get_temp_file(".gz");
 	$fp=gzopen($file,"w");
-	foreach($tables as $table) {
+	foreach($dbschema["tables"] as $table) {
+		$table=$table["name"];
 		$query=make_delete_query($table).";\n";
 		gzwrite($fp,$query);
 		$query="SELECT COUNT(*) count FROM $table";
@@ -56,8 +50,6 @@ if($page=="datacfg") {
 		}
 	}
 	gzclose($fp);
-	// RESTORE DB CACHE
-	set_use_cache($oldcache);
 	// CONTINUE
 	output_handler(array(
 		"file"=>$file,

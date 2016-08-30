@@ -33,8 +33,6 @@ function list_simulator($newpage,$ids="string") {
 	if(!isset($config["list"])) return null;
 	// SAVE THE CURRENT CONTEXT
 	saltos_context($newpage,"list");
-	// DISABLE DB CACHE
-	$oldcache=set_use_cache("false");
 	// RESTORE THE HISTORY DATA IF EXISTS
 	$id_usuario=current_user();
 	$id_aplicacion=page2id($page);
@@ -62,8 +60,6 @@ function list_simulator($newpage,$ids="string") {
 		$query="SELECT action_title FROM ($query0) __a__ WHERE action_id IN ($ids) ORDER BY $order";
 		$result=execute_query_array($query);
 	}
-	// RESTORE DB CACHE
-	set_use_cache($oldcache);
 	// RESTORE THE SAVED CONTEXT
 	saltos_context();
 	// RETURN THE EXPECTED RESULT

@@ -357,9 +357,7 @@ if(getParam("action")=="feeds") {
 								));
 								db_query($query);
 								$query="SELECT MAX(id) FROM tbl_feeds WHERE id_feed='${id_feed}'";
-								$oldcache=set_use_cache("false");
 								$last_id=execute_query($query);
-								set_use_cache($oldcache);
 								make_control($id_aplicacion,$last_id);
 								make_indexing($id_aplicacion,$last_id);
 								$newfeeds++;

@@ -30,8 +30,6 @@ if(getParam("action")=="indexing") {
 	require_once("php/getmail.php");
 	// CHECK THE SEMAPHORE
 	if(!semaphore_acquire(getParam("action"),getDefault("semaphoretimeout",100000))) die();
-	// DISABLE CACHE
-	$oldcache=set_use_cache("false");
 	// INDEXING FILES
 	$query="SELECT id,id_aplicacion,id_registro,fichero_file,retries FROM tbl_ficheros WHERE indexed=0 AND retries<3 LIMIT 1000";
 	$result=db_query($query);
@@ -218,8 +216,6 @@ if(getParam("action")=="indexing") {
 	}
 	// SEND RESPONSE
 	if($total) javascript_alert($total.LANG("msgregistersindexed".min($total,2)));
-	// RESTOCE CACHE
-	set_use_cache($oldcache);
 	// RELEASE SEMAPHORE
 	semaphore_release(getParam("action"));
 	javascript_headers();

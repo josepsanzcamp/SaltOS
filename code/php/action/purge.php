@@ -28,8 +28,6 @@ if(getParam("action")=="purge") {
 	if(!eval_bool(getDefault("enablepurge"))) die();
 	// CHECK THE SEMAPHORE
 	if(!semaphore_acquire(getParam("action"),getDefault("semaphoretimeout",100000))) die();
-	// DISABLE CACHE
-	$oldcache=set_use_cache("false");
 	// GET THE PURGE CONFIGURATION
 	$rows=xml2array("xml/purge.xml");
 	$fields=array(
@@ -158,8 +156,6 @@ if(getParam("action")=="purge") {
 	}
 	// SEND RESPONSE
 	if($total) javascript_alert($total.LANG("msgregisterspurged".min($total,2)));
-	// RESTOCE CACHE
-	set_use_cache($oldcache);
 	// RELEASE SEMAPHORE
 	semaphore_release(getParam("action"));
 	javascript_headers();

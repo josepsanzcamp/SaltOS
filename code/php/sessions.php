@@ -37,9 +37,7 @@ function sess_read_handler($id) {
 	$query=make_select_query("tbl_sessions","sess_data",make_where_query(array(
 		"sess_file"=>$sess_file
 	)));
-	$oldcache=set_use_cache("false");
 	$sess_data=execute_query($query);
-	set_use_cache($oldcache);
 	if($sess_data!==null) {
 		$sess_data=base64_decode($sess_data);
 	} else {
@@ -57,9 +55,7 @@ function sess_write_handler($id,$sess_data) {
 	$query=make_select_query("tbl_sessions","id",make_where_query(array(
 		"sess_file"=>$sess_file
 	)));
-	$oldcache=set_use_cache("false");
 	$exists=execute_query($query);
-	set_use_cache($oldcache);
 	if($exists) {
 		$query=make_update_query("tbl_sessions",array(
 			"sess_data"=>$sess_data,
@@ -126,9 +122,7 @@ function sess_close() {
 function current_session() {
 	$sess_file=session_save_path()."/".session_id();
 	$query="SELECT id FROM tbl_sessions WHERE sess_file='${sess_file}'";
-	$oldcache=set_use_cache("false");
 	$id=execute_query($query);
-	set_use_cache($oldcache);
 	if(!$id) {
 		$sess_time=time();
 		$query=make_insert_query("tbl_sessions",array(
@@ -137,10 +131,8 @@ function current_session() {
 			"sess_time"=>$sess_time
 		));
 		db_query($query);
-		$oldcache=set_use_cache("false");
 		$query="SELECT MAX(id) maximo FROM tbl_sessions";
 		$id=execute_query($query);
-		set_use_cache($oldcache);
 	}
 	return $id;
 }

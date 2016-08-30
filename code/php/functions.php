@@ -416,43 +416,6 @@ function debug_dump($die=true) {
 	if($die) die();
 }
 
-function get_use_cache($query="") {
-	static $max=0;
-	static $maxs=array();
-	$usecache=getDefault("db/usecache");
-	if(!$query) return $usecache;
-	if(!eval_bool($usecache)) return $usecache;
-	$nocaches=getDefault("db/nocaches");
-	if(is_array($nocaches)) {
-		if(!$max) {
-			foreach($nocaches as $key=>$nocache) $maxs[$key]=str_word_count($nocache);
-			$max=max($maxs);
-		}
-		$words=array(strtoupper(strtok($query," ")));
-		for($i=1;$i<$max;$i++) $words[]=strtoupper(strtok(" "));
-		foreach($nocaches as $key=>$nocache) {
-			$word=strtoupper(strtok($nocache," "));
-			$pos=0;
-			while($pos<$maxs[$key] && $word==$words[$pos]) {
-				$word=strtoupper(strtok(" "));
-				$pos++;
-			}
-			if($pos==$maxs[$key]) {
-				$usecache="false";
-				break;
-			}
-		}
-	}
-	return $usecache;
-}
-
-function set_use_cache($bool) {
-	global $_CONFIG;
-	$result=getDefault("db/usecache");
-	$_CONFIG["db"]["usecache"]=$bool;
-	return $result;
-}
-
 function check_filter($array) {
 	foreach($array as $key=>$val) {
 		if(getParam($key)!=$val) {
@@ -526,7 +489,6 @@ function db_schema() {
 	$hash2=md5(json_encode(xml2array($file)));
 	if($hash1!=$hash2) {
 		if(!semaphore_acquire(array("db_schema","db_static"),getDefault("semaphoretimeout",100000))) return;
-		$oldcache=set_use_cache("false");
 		$dbschema=eval_attr(xml2array($file));
 		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
 			$tables1=get_tables();
@@ -602,7 +564,6 @@ function db_schema() {
 			}
 		}
 		setConfig($file,$hash2);
-		set_use_cache($oldcache);
 		semaphore_release(array("db_schema","db_static"));
 	}
 }
@@ -614,7 +575,6 @@ function db_static() {
 	$hash2=md5(json_encode(xml2array($file)));
 	if($hash1!=$hash2) {
 		if(!semaphore_acquire(array("db_schema","db_static"),getDefault("semaphoretimeout",100000))) return;
-		$oldcache=set_use_cache("false");
 		$dbstatic=eval_attr(xml2array($file));
 		if(is_array($dbstatic)) {
 			foreach($dbstatic as $table=>$rows) {
@@ -627,7 +587,6 @@ function db_static() {
 			}
 		}
 		setConfig($file,$hash2);
-		set_use_cache($oldcache);
 		semaphore_release(array("db_schema","db_static"));
 	}
 }
@@ -753,9 +712,7 @@ function check_security($action="") {
 	$remote_addr=getServer("REMOTE_ADDR");
 	// BUSCAR ID_SECURITY
 	$query=make_select_query("tbl_security","id",make_where_query(array("id_session"=>$id_session)));
-	$oldcache=set_use_cache("false");
 	$id_security=execute_query($query);
-	set_use_cache($oldcache);
 	if(is_array($id_security)) {
 		$query=make_delete_query("tbl_security",make_where_query(array("id_session"=>$id_session)));
 		db_query($query);
@@ -773,9 +730,7 @@ function check_security($action="") {
 	}
 	// BUSCAR ID_SECURITY_IP
 	$query="SELECT id FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
-	$oldcache=set_use_cache("false");
 	$id_security_ip=execute_query($query);
-	set_use_cache($oldcache);
 	if(is_array($id_security_ip)) {
 		$query=make_delete_query("tbl_security_ip","id_session='${id_session}' AND remote_addr='${remote_addr}'");
 		db_query($query);

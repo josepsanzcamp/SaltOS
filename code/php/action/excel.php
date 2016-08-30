@@ -34,10 +34,8 @@ if(getParam("action")=="excel") {
 	if(eval_bool(getDefault("debug/actiondebug"))) debug_dump(false);
 	$config=eval_attr($config);
 	if(eval_bool(getDefault("debug/actiondebug"))) debug_dump();
-	$oldcache=set_use_cache("false");
 	$query=$config["query"];
 	__excel_dump($query,$page);
-	set_use_cache($oldcache);
 	if(!defined("__CANCEL_DIE__")) die();
 }
 ?>

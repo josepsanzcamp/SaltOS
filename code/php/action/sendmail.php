@@ -175,9 +175,7 @@ if(getParam("action")=="sendmail") {
 		$send=sendmail($id_cuenta,$recipients,$subject,$body,$files);
 		if($send=="") {
 			$query="SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND is_outbox='1'";
-			$oldcache=set_use_cache("false");
 			$last_id=execute_query($query);
-			set_use_cache($oldcache);
 			// SOME UPDATES
 			if(isset($id_extra[1]) && in_array($id_extra[1],array("reply","replyall","forward"))) {
 				__getmail_update("id_correo",$id_extra[2],$last_id);

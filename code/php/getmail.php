@@ -492,9 +492,7 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 	db_query($query);
 	// GET LAST_ID
 	$query="SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND is_outbox='${is_outbox}'";
-	$oldcache=set_use_cache("false");
 	$last_id=execute_query($query);
-	set_use_cache($oldcache);
 	// INSERT ALL ADDRESS
 	foreach($info["emails"] as $email) {
 		$query=make_insert_query("tbl_correo_a",array(

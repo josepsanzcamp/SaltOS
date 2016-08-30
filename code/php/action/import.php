@@ -91,8 +91,6 @@ if($page=="datacfg") {
 		javascript_history(-1);
 		die();
 	}
-	// DISABLE DB CACHE
-	$oldcache=set_use_cache("false");
 	// OPEN FILE
 	$fp=gzopen($file["tmp_name"],"r");
 	// IMPORT QUERYES
@@ -127,8 +125,6 @@ if($page=="datacfg") {
 		}
 	}
 	gzclose($fp);
-	// RESTORE DB CACHE
-	set_use_cache($oldcache);
 	// RETURN
 	session_alert(LANG("filefoundok","datacfg").$file["name"]);
 	javascript_history(-1);
