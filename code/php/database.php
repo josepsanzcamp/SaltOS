@@ -37,9 +37,14 @@ function db_connect($args=null) {
 }
 
 function db_query($query,$fetch="query") {
-	if(eval_bool(getDefault("debug/databasedebug"))) debug_db($hash,$query,-microtime(true),0,0);
+	if(eval_bool(getDefault("debug/databasedebug"))) {
+		$hash=md5(json_encode(array($query,$fetch)));
+		debug_db($hash,$query,-microtime(true),0,0);
+	}
 	$result=getDefault("db/obj")->db_query($query,$fetch);
-	if(eval_bool(getDefault("debug/databasedebug"))) debug_db($hash,"",microtime(true),1,$result["total"]);
+	if(eval_bool(getDefault("debug/databasedebug"))) {
+		debug_db($hash,"",microtime(true),1,$result["total"]);
+	}
 	return $result;
 }
 

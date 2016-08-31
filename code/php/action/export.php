@@ -25,28 +25,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user($page,"export")) action_denied();
 if($page=="datacfg") {
-	// CONTINUE
 	$name=encode_bad_chars("backup_saltos_".current_date()).".gz";
 	$dbschema=xml2array("xml/dbschema.xml");
 	$file=get_temp_file(".gz");
 	$fp=gzopen($file,"w");
 	foreach($dbschema["tables"] as $table) {
+		$fields=array();
+		foreach($table["fields"] as $field) $fields[]=$field["name"];
+		$fields="LENGTH(".implode(")+LENGTH(",$fields).")";
 		$table=$table["name"];
 		$query=make_delete_query($table).";\n";
 		gzwrite($fp,$query);
 		$query="SELECT COUNT(*) count FROM $table";
 		$count=execute_query($query);
-		$limit=1000;
 		$offset=0;
 		while($offset<$count) {
-			$query="SELECT * FROM $table LIMIT $offset,$limit";
-			$offset=$offset+$limit;
+			$limit=10000;
+			$free=memory_get_free(true);
+			// LIMIT CHECK
+			for(;;) {
+				$query="SELECT $fields FROM $table ORDER BY id ASC LIMIT $offset,$limit";
+				$length=array_sum(execute_query_array($query));
+				if($length>=$free/3 && $limit==1) show_php_error(array("phperror"=>"Could not get the query data"));
+				if($length>=$free/3) $limit=intval($limit/2);
+				if($length<$free/3) break;
+			}
+			// CONTINUE
+			$query="SELECT * FROM $table ORDER BY id ASC LIMIT $offset,$limit";
 			$result=db_query($query);
 			while($row=db_fetch_row($result)) {
 				$query=make_insert_query($table,$row).";\n";
 				gzwrite($fp,$query);
 			}
 			db_free($result);
+			$offset=$offset+$limit;
 		}
 	}
 	gzclose($fp);

@@ -88,7 +88,7 @@ function __addlog_helper($a) {
 
 function checklog($hash,$file="") {
 	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
-	if(file_exists($dir.$file) && memory_get_free(true)>filesize($dir.$file)) {
+	if(file_exists($dir.$file) && filesize($dir.$file)<memory_get_free(true)/3) {
 		capture_next_error();
 		$buffer=file_get_contents($dir.$file);
 		$error=get_clear_error();

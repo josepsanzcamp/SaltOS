@@ -388,7 +388,8 @@ function output_handler($array) {
 	$extra=isset($array["extra"])?$array["extra"]:array();
 	$die=isset($array["die"])?$array["die"]:true;
 	if($file!="") {
-		if($data=="") $data=file_get_contents($file);
+		if(!file_exists($file) || !is_file($file)) show_php_error(array("phperror"=>"file ${file} not found"));
+		if($data=="" && filesize($file)<memory_get_free(true)/3) $data=file_get_contents($file);
 		if($type=="") $type=saltos_content_type($file);
 	}
 	if($type==="") show_php_error(array("phperror"=>"output_handler requires the type parameter"));
@@ -396,24 +397,36 @@ function output_handler($array) {
 	header("X-Powered-By: ".get_name_version_revision());
 	if($cache) {
 		$hash1=getServer("HTTP_IF_NONE_MATCH");
-		$hash2=md5($data);
+		if($file!="" && $data=="") {
+			$hash2=md5_file($file);
+		} else {
+			$hash2=md5($data);
+		}
 		if($hash1==$hash2) {
 			header("HTTP/1.1 304 Not Modified");
 			die();
 		}
 	}
-	$encoding=getServer("HTTP_ACCEPT_ENCODING");
-	if(stripos($encoding,"gzip")!==false && function_exists("gzencode")) {
-		header("Content-Encoding: gzip");
-		$data=gzencode($data);
-	} elseif(stripos($encoding,"deflate")!==false && function_exists("gzdeflate")) {
-		header("Content-Encoding: deflate");
-		$data=gzdeflate($data);
-	} else {
+	if($file!="" && $data=="") {
 		header("Content-Encoding: none");
+	} else {
+		$encoding=getServer("HTTP_ACCEPT_ENCODING");
+		if(stripos($encoding,"gzip")!==false && function_exists("gzencode")) {
+			header("Content-Encoding: gzip");
+			$data=gzencode($data);
+		} elseif(stripos($encoding,"deflate")!==false && function_exists("gzdeflate")) {
+			header("Content-Encoding: deflate");
+			$data=gzdeflate($data);
+		} else {
+			header("Content-Encoding: none");
+		}
+		header("Vary: Accept-Encoding");
 	}
-	header("Vary: Accept-Encoding");
-	$size=strlen($data);
+	if($file!="" && $data=="") {
+		$size=filesize($file);
+	} else {
+		$size=strlen($data);
+	}
 	if($cache) {
 		header("Expires: ".gmdate("D, d M Y H:i:s",time()+getDefault("cache/cachegctimeout"))." GMT");
 		header("Cache-Control: max-age=".getDefault("cache/cachegctimeout"));
@@ -426,10 +439,14 @@ function output_handler($array) {
 	}
 	header("Content-Type: ${type}");
 	header("Content-Length: ${size}");
-	if($name!="") header("Content-disposition: attachment; filename=\"$name\"");
+	if($name!="") header("Content-disposition: attachment; filename=\"${name}\"");
 	foreach($extra as $temp) header($temp,false);
 	header("Connection: keep-alive, close");
-	echo $data;
+	if($file!="" && $data=="") {
+		readfile_protected($file);
+	} else {
+		echo $data;
+	}
 	if($die) die();
 }
 
