@@ -108,3 +108,8 @@ iframe {
 .ui-field-contain {
 	border-bottom:none!important;
 }
+
+/* FOR REMOVE DEFAULT CHROME FOCUS HIGHLIGHT */
+:focus {
+	outline:none;
+}

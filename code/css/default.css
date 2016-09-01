@@ -614,3 +614,8 @@ ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
 	display:none;
 	text-decoration:none;
 }
+
+/* FOR REMOVE DEFAULT CHROME FOCUS HIGHLIGHT */
+:focus {
+	outline:none;
+}
