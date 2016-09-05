@@ -53,20 +53,6 @@ if(getParam("action")=="indexing") {
 			}
 			$file=__getmail_getcid(__getmail_getnode("0",$decoded),$row["fichero_file"]);
 			if(!$file) {
-				$files=__getmail_getfiles(__getmail_getnode("0",$decoded));
-				foreach($files as $key=>$val) {
-					$test1=$row["fichero_file"]==md5(md5($val["body"]).md5($val["cid"]).md5($val["cname"]).md5($val["ctype"]).md5($val["csize"]));
-					$test2=$row["fichero_file"]==md5(json_encode(array($val["body"],$val["cid"],$val["cname"],$val["ctype"],$val["csize"])));
-					if($test1 || $test2) {
-						make_update_query("tbl_ficheros",array("fichero_file"=>$val["chash"]),make_where_query(array("id"=>$row["id"])));
-						db_query($query);
-						$row["fichero_file"]=$val["chash"];
-						$file=__getmail_getcid(__getmail_getnode("0",$decoded),$row["fichero_file"]);
-						break;
-					}
-				}
-			}
-			if(!$file) {
 				show_php_error(array("phperror"=>"Attachment not found","details"=>sprintr($row),"file"=>getDefault("debug/warningfile","warning.log"),"die"=>false));
 				$QUERY=make_update_query("tbl_ficheros",array("retries"=>"3"),make_where_query(array("id"=>$row["id"])));
 				db_query($query);

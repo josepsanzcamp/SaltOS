@@ -439,6 +439,16 @@ function __getmail_getcid($array,$hash) {
 				$hsize=__getmail_gethumansize($csize);
 				return array("disp"=>$disp,"type"=>$type,"ctype"=>$ctype,"cid"=>$cid,"cname"=>$cname,"csize"=>$csize,"hsize"=>$hsize,"chash"=>$chash,"body"=>$temp);
 			}
+			// FOR COMPATIBILITY WITH OLD SALTOS VERSIONS
+			if(in_array($hash,array(
+				md5(md5($temp).md5($cid).md5($cname).md5($ctype).md5($csize)),
+				md5(serialize(array($temp,$cid,$cname,$ctype,$csize))),
+				md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))),
+			))) {
+				$hsize=__getmail_gethumansize($csize);
+				return array("disp"=>$disp,"type"=>$type,"ctype"=>$ctype,"cid"=>$cid,"cname"=>$cname,"csize"=>$csize,"hsize"=>$hsize,"chash"=>$chash,"body"=>$temp);
+			}
+			// END OF COMPATIBILITY CODE
 		}
 	}
 	$parts=__getmail_getnode("Parts",$array);
