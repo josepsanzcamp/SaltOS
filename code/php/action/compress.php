@@ -60,7 +60,7 @@ if(getParam("action")=="compress") {
 		}
 		$files[]=array("file"=>$file,"name"=>$name);
 	}
-	require_once("lib/archive/archive.php");
+	require_once("lib/phpclasses/archive/archive.php");
 	$format=getParam("format");
 	switch($format) {
 		case "zip":

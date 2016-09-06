@@ -1,0 +1,5 @@
+Code downloaded from:
+- http://www.phpclasses.org/package/2-PHP-Access-to-e-mail-mailboxes-using-the-POP3-protocol.html
+
+Some changes:
+- lib/phpclasses/pop3class/pop3.php: replaced the fsockopen by fsockopen_protected

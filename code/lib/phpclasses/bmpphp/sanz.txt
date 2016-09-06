@@ -1,0 +1,2 @@
+Code downloaded from:
+- http://www.phpclasses.org/package/5991-PHP-Load-and-save-images-in-the-BMP-format.html

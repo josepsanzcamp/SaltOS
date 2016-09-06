@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(getParam("action")=="phpthumb") {
 	// INCLUDE HELPER LIBRARIES
-	require_once("lib/bmpphp/BMP.php");
+	require_once("lib/phpclasses/bmpphp/BMP.php");
 	require_once("php/libaction.php");
 	// FIND THE REAL FILE
 	$src=getParam("src",getParam("amp;src"));

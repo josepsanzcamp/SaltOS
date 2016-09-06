@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="calculator") {
-	include("lib/evalmath/evalmath.class.php");
+	include("lib/phpclasses/evalmath/evalmath.class.php");
 	$text=getParam("text");
 	$m=new EvalMath;
 	capture_next_error();

@@ -308,7 +308,7 @@ function url_get_contents($url) {
 	$scheme=parse_url($url,PHP_URL_SCHEME);
 	if(!$scheme) $url="http://".$url;
 	// DO THE REQUEST
-	require_once("lib/phpclasses/http.php");
+	require_once("lib/phpclasses/httpclient/http.php");
 	$http=new http_class;
 	$http->user_agent=get_name_version_revision();
 	$http->follow_redirect=1;
