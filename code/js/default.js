@@ -1250,6 +1250,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				return false;
 			}
 		});
+		// CHANGE TABS FROM ALL TO TOP
+		$(".tabs ul",obj).removeClass("ui-corner-all").addClass("ui-corner-top");
 		// TUNNING THE HELP TAB
 		var help=$(".tabs ul li.help",obj);
 		if(saltos_islogin()) {
