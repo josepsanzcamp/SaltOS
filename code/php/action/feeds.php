@@ -157,7 +157,7 @@ if(getParam("action")=="feeds") {
 							if(isset($array["path"])) $array2["path"]=$array["path"]."/".$array2["path"];
 							if(!isset($array["path"])) $array2["path"]="/".$array2["path"];
 						}
-						require_once("lib/wordpress/http_build_url.php");
+						require_once("lib/httpbuildurl/http_build_url.php");
 						$url3=http_build_url($url3,$array2);
 						unset($array);
 						unset($array2);

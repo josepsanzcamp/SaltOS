@@ -499,7 +499,6 @@ function wp_kses_bad_protocol($string, $allowed_protocols) {
  * @since 0.71
  *
  * @global array $wp_filter         Stores all of the filters.
- * @global array $merged_filters    Merges the filter hooks using this function.
  * @global array $wp_current_filter Stores the list of current filters with the current one last.
  *
  * @param string $tag     The name of the filter hook.
@@ -508,7 +507,7 @@ function wp_kses_bad_protocol($string, $allowed_protocols) {
  * @return mixed The filtered value after all hooked functions are applied to it.
  */
 function apply_filters( $tag, $value ) {
-	global $wp_filter, $merged_filters, $wp_current_filter;
+	global $wp_filter, $wp_current_filter;
 
 	$args = array();
 
@@ -528,29 +527,17 @@ function apply_filters( $tag, $value ) {
 	if ( !isset($wp_filter['all']) )
 		$wp_current_filter[] = $tag;
 
-	// Sort.
-	if ( !isset( $merged_filters[ $tag ] ) ) {
-		ksort($wp_filter[$tag]);
-		$merged_filters[ $tag ] = true;
-	}
-
-	reset( $wp_filter[ $tag ] );
-
 	if ( empty($args) )
 		$args = func_get_args();
 
-	do {
-		foreach ( (array) current($wp_filter[$tag]) as $the_ )
-			if ( !is_null($the_['function']) ){
-				$args[1] = $value;
-				$value = call_user_func_array($the_['function'], array_slice($args, 1, (int) $the_['accepted_args']));
-			}
+	// don't pass the tag name to WP_Hook
+	array_shift( $args );
 
-	} while ( next($wp_filter[$tag]) !== false );
+	$filtered = $wp_filter[ $tag ]->apply_filters( $value, $args );
 
 	array_pop( $wp_current_filter );
 
-	return $value;
+	return $filtered;
 }
 
 /**
