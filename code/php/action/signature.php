@@ -29,6 +29,7 @@ if(getParam("action")=="signature") {
 	// DETECT IF IS A REQUEST FOR REPLACE BODY, CC AND STATE_CRT
 	if(getParam("old") && getParam("new")) {
 		require_once("php/sendmail.php");
+		require_once("php/getmail.php");
 		$old=getParam("old");
 		$new=getParam("new");
 		$body=getParam("body");
@@ -36,11 +37,20 @@ if(getParam("action")=="signature") {
 		$state_crt=intval(getParam("state_crt"));
 		// REPLACE THE SIGNATURE BODY
 		$file=__signature_getauto(__signature_getfile($new));
-		$auto=$file?$file["auto"]:"";
-		$pos1=strpos($body,"<signature>");
-		if($pos1!==false) $pos1=strpos($body,">",$pos1);
-		$pos2=strpos($body,"</signature>");
-		if($pos1!==false && $pos2!==false) $body=substr_replace($body,$auto,$pos1+1,$pos2-$pos1-1);
+		if(ismobile()) {
+			$from=__signature_getauto(__signature_getfile($old));
+			$from=$from?html2text($from["auto"]):"";
+			$auto=$file?html2text($file["auto"]):"";
+			$body=str_replace($from,$auto,$body);
+		} else {
+			$pos1=strpos($body,"<signature>");
+			if($pos1!==false) $pos1=strpos($body,">",$pos1);
+			$pos2=strpos($body,"</signature>");
+			if($pos1!==false && $pos2!==false) {
+				$auto=$file?$file["auto"]:"";
+				$body=substr_replace($body,$auto,$pos1+1,$pos2-$pos1-1);
+			}
+		}
 		// FIND THE OLD AND NEW CC'S AND STATE_CRT'S
 		$query="SELECT * FROM tbl_usuarios_c WHERE id='".$old."'";
 		$result_old=execute_query($query);
