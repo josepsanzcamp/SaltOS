@@ -61,6 +61,7 @@ function import_file($args) {
 	if(!isset($args["nodes"])) $args["nodes"]=array();
 	if(!isset($args["prefn"])) $args["prefn"]="";
 	if(!isset($args["postfn"])) $args["postfn"]="";
+	if(!isset($args["nohead"])) $args["nohead"]=0;
 	if(!file_exists($args["file"])) return "Error: File '${args["file"]}' not found";
 	// CONTINUE
 	switch($args["type"]) {
@@ -77,7 +78,7 @@ function import_file($args) {
 			if(!is_array($array)) return $array;
 			if($args["prefn"]) $array=$args["prefn"]($array,$args);
 			if(!is_array($array)) return $array;
-			$array=__import_array2tree($array,$args["nodes"]);
+			$array=__import_array2tree($array,$args["nodes"],$args["nohead"]);
 			break;
 		case "application/vnd.ms-excel":
 		case "application/excel":
@@ -86,7 +87,7 @@ function import_file($args) {
 			if(!is_array($array)) return $array;
 			if($args["prefn"]) $array=$args["prefn"]($array,$args);
 			if(!is_array($array)) return $array;
-			$array=__import_array2tree($array,$args["nodes"]);
+			$array=__import_array2tree($array,$args["nodes"],$args["nohead"]);
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
@@ -261,9 +262,16 @@ function __import_removevoid($array) {
 	return $array;
 }
 
-function __import_array2tree($array,$nodes) {
+function __import_array2tree($array,$nodes,$nohead) {
 	if(!count($array)) return $array;
-	$head=array_shift($array);
+	if($nohead) {
+		$head=array();
+		$num=1;
+		foreach($array as $temp) $num=max($num,count($temp));
+		for($i=0;$i<$num;$i++) $head[]=__import_col2name($i);
+	} else {
+		$head=array_shift($array);
+	}
 	// FIX FOR DUPLICATES AND SPACES
 	$temp=array();
 	foreach($head as $temp2) {
