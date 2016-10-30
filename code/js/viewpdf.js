@@ -128,6 +128,9 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 									if(typeof($(this).attr("target"))=="undefined") {
 										$(this).attr("target","_blank");
 									}
+									if($(this).attr("target")=="") {
+										$(this).attr("target","_blank");
+									}
 								}
 							});
 						});
