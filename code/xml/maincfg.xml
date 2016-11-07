@@ -918,7 +918,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"valor"=>"action_delete"
 		),make_where_query(array(
 			"clave"=>"logo_file",
-			"SUBSTR(valor,1,7)",array("!=","../img/")
+			"SUBSTR(valor,1,7)"=>array("!=","../img/")
 		))):""</query>
 		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?make_update_query("tbl_configuracion",array(
 			"valor"=>getParam("logo_file_new_file")
