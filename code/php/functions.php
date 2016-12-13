@@ -1349,7 +1349,7 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 	if(is_string($id_registro) && strpos($id_registro,",")!==false) $id_registro=explode(",",$id_registro);
 	if(is_array($id_registro)) {
 		$last_result=0;
-		foreach($id_registro as $id) $last_result=make_control($id_aplicacion,$id);
+		foreach($id_registro as $id) $last_result=make_control($id_aplicacion,$id,$id_usuario,$datetime);
 		return $last_result;
 	}
 	// BUSCAR SI EXISTE REGISTRO DE CONTROL
