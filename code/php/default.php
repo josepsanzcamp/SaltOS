@@ -50,6 +50,7 @@ switch($action) {
 		if($action=="update") $go=-2;
 		if($action=="delete") $go=-1;
 		if(eval_bool(intval(getParam("returnhere"))?"true":"false")) $go=-1;
+		if(eval_bool(intval(getParam("returnback"))?"true":"false")) $go=-2;
 		foreach($config as $query) {
 			$inline=eval_attr($query);
 			foreach($inline as $query) {

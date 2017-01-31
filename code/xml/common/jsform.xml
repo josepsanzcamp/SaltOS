@@ -45,6 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"getIds() { var ids=[]; $('input.slave[type=checkbox]:checked').each(function() { ids.push(get_class_id(this)); }); if(ids.length==0) alerta('".LANG_ESCAPE("msgnotcheckbox")."'); return implode(',',ids); }"</function>
 	<inline>$(function() { $('input.slave[type=checkbox]').each(function() { var id=$(this).attr("id"); id=str_replace("files_old_","",id); id=str_replace("_zip","",id); $(this).addClass("id_"+id); }); })</inline>
 	<function>compress(format) { var cid=getIds(); if(!cid) return; openurl("?page="+getParam("page")+"&amp;action=compress&amp;format="+format+"&amp;id="+getParam("id")+"&amp;cid="+cid); }</function>
+	<function eval="true">"delete1() { dialog('".LANG_ESCAPE("confirm")."','".LANG_ESCAPE("msgdelete")."',{'".LANG_ESCAPE("yes")."':function() { dialog('close'); setParam('action','delete'); setParam('id',intval(getParam('id'))*-1); setParam('returnback',1); submit1(); },'".LANG_ESCAPE("no")."':function() { dialog('close'); } }); }"</function>
 	<!-- FOR FORM ACCESS -->
 	<function>openapp(page,id) { setParam("page",page); setParam("action","form"); setParam("id",id); submit1(); }</function>
 	<!-- FOR QUICKFORM MODULE -->

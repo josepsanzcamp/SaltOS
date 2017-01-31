@@ -622,6 +622,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<icon>forward</icon>
 					<class2>shortcut_ctrl_insert</class2>
 				</field>
+				<field global="id" ifeval="$id&lt;0">
+					<type>button</type>
+					<name>delete</name>
+					<value lang="true">delete</value>
+					<tip lang="true">delete</tip>
+					<onclick>delete1()</onclick>
+					<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM (SELECT a.id,e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".page2table($page)." a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."') z WHERE NOT ".check_sql($page,"delete"))?"true":"false"</disabled>
+					<class>nowrap contextmenu</class>
+					<icon>delete</icon>
+				</field>
 				<field>
 					<type>button</type>
 					<value lang="true">buttonreturn</value>

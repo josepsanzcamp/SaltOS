@@ -45,6 +45,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<value eval="true">getParam("returnhere")</value>
 	</field>
 	<field>
+		<name>returnback</name>
+		<type>hidden</type>
+		<value eval="true">getParam("returnback")</value>
+	</field>
+	<field>
 		<name>id_folder</name>
 		<type>hidden</type>
 		<value global="id_folder" eval="true">$id_folder=intval(getParam("id_folder"))</value>
