@@ -37,6 +37,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<title lang="true">logintitle</title>
 			<row>
 				<field>
+					<type>image</type>
+					<image>img/saltos2.png</image>
+					<width>200px</width>
+					<class>login</class>
+				</field>
+			</row>
+		</fields>
+		<fields>
+			<row>
+				<field>
 					<name>action</name>
 					<type>hidden</type>
 					<value>login</value>
