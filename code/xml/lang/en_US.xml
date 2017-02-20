@@ -1031,6 +1031,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_iva_name>Name of tax (is added)</accounting_iva_name>
 		<accounting_irpf_name>Name of tax (is subtracted)</accounting_irpf_name>
 		<accounting_value>Default value (only if it's used)</accounting_value>
+		<applications_config revised="false">Applications</applications_config>
+		<config_tabs revised="false">Setting tabs</config_tabs>
+		<default_values revised="false">Default values</default_values>
+		<configuracion_presupuestos revised="false">Budget Settings</configuracion_presupuestos>
+		<configuracion_agenda revised="false">Schedule settings</configuracion_agenda>
+		<configuracion_incidencias revised="false">Event settings</configuracion_incidencias>
+		<configuracion_facturas revised="false">Invoice settings</configuracion_facturas>
+		<configuracion_gastos revised="false">Spending settings</configuracion_gastos>
+		<show_tab_objetivos_presupuesto revised="false">Show Goals</show_tab_objetivos_presupuesto>
+		<show_tab_condiciones_presupuesto revised="false">Show conditions</show_tab_condiciones_presupuesto>
+		<show_tab_funcional_presupuesto revised="false">Show functional proposal</show_tab_funcional_presupuesto>
+		<show_tab_tecnica_presupuesto revised="false">Show technical proposal</show_tab_tecnica_presupuesto>
+		<show_tab_info_adicional_presupuesto revised="false">Show additional information</show_tab_info_adicional_presupuesto>
+		<show_tab_tareas_presupuesto revised="false">Show Tasks</show_tab_tareas_presupuesto>
+		<show_tab_productos_presupuesto revised="false">Show products</show_tab_productos_presupuesto>
+		<sin_configurar revised="false">[Not configured]</sin_configurar>
 	</maincfg>
 	<about>
 		<formupdate>About SaltOS</formupdate>

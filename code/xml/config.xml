@@ -325,6 +325,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<zero_padding_digits>5</zero_padding_digits>
 		<invoice_count_size>3</invoice_count_size>
 		<invoice_date_size>2</invoice_date_size>
+		<tab_objetivos_presupuesto>2</tab_objetivos_presupuesto>
+		<tab_funcional_presupuesto>2</tab_funcional_presupuesto>
+		<tab_tecnica_presupuesto>2</tab_tecnica_presupuesto>
+		<tab_info_adicional_presupuesto>2</tab_info_adicional_presupuesto>
+		<tab_tareas_presupuesto>2</tab_tareas_presupuesto>
+		<tab_productos_presupuesto>2</tab_productos_presupuesto>
+		<tab_condiciones_presupuesto>2</tab_condiciones_presupuesto>
+		<df_estado_presupuestos>21</df_estado_presupuestos>
+		<df_estado_agenda>17</df_estado_agenda>
+		<df_tipo_evento_agenda>13</df_tipo_evento_agenda>
+		<df_estado_incidencias>8</df_estado_incidencias>
+		<df_prioridad_incidencias>3</df_prioridad_incidencias>
+		<df_cuenta_facturas>1</df_cuenta_facturas>
+		<df_formaspago_facturas>1</df_formaspago_facturas>
+		<df_epigfrafes_facturas>1</df_epigfrafes_facturas>
+		<df_cuenta_gastos>1</df_cuenta_gastos>
+		<df_formaspago_gastos>1</df_formaspago_gastos>
+		<df_epigfrafes_gastos>1</df_epigfrafes_gastos>
 	</configs>
 	<ini_set>
 		<session.bug_compat_42 ifeval="!isphp(5.4)">On</session.bug_compat_42>

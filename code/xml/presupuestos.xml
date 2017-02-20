@@ -400,7 +400,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">forminsert</title>
 				<query>
 					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id_estado,'".current_date()."' fecha FROM tbl_presupuestos WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'0' id_cliente,'0' id_estado,'0' id_posiblecli,'".current_date()."' fecha,'0' id_campanya"</default>
+					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'".CONFIG('df_estado_presupuestos')."' id_estado,'".current_date()."' fecha FROM tbl_presupuestos WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'0' id_cliente,'".CONFIG('df_estado_presupuestos')."' id_estado,'0' id_posiblecli,'".current_date()."' fecha,'0' id_campanya"</default>
 					<resumen>
 						<resumen>SELECT '1' id</resumen>
 					</resumen>
@@ -750,7 +750,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 			</resumen>
 			<detalle>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(objetivos) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
+				<fieldset global="id" ifeval="CONFIG('tab_objetivos_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(objetivos) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">objetivos</title>
 					<row>
 						<field>
@@ -784,7 +784,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(funcional) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
+				<fieldset global="id" ifeval="CONFIG('tab_funcional_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(funcional) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">funcional</title>
 					<row>
 						<field>
@@ -814,7 +814,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(tecnica) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
+				<fieldset global="id" ifeval="CONFIG('tab_tecnica_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(tecnica) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">tecnica</title>
 					<row>
 						<field>
@@ -844,7 +844,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(extras) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
+				<fieldset global="id" ifeval="CONFIG('tab_info_adicional_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(extras) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">extras</title>
 					<row>
 						<field>
@@ -875,7 +875,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 			</detalle>
-			<tareas_head>
+			<tareas_head global="id" ifeval="CONFIG('tab_tareas_presupuesto')&gt;1">
 				<fieldset>
 					<title lang="true">tareaspresupuesto</title>
 					<width>700px</width>
@@ -930,7 +930,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</head>
 				</fieldset>
 			</tareas_head>
-			<tareas_old>
+			<tareas_old global="id" ifeval="CONFIG('tab_tareas_presupuesto')&gt;1">
 				<fieldset>
 					<width>700px</width>
 					<head>
@@ -1043,7 +1043,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 			</tareas_old>
-			<tareas_new>
+			<tareas_new global="id" ifeval="CONFIG('tab_tareas_presupuesto')&gt;1">
 				<fieldset>
 					<width>700px</width>
 					<head>
@@ -1136,7 +1136,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</tail>
 				</fieldset>
 			</tareas_new>
-			<products_head>
+			<products_head global="id" ifeval="CONFIG('tab_productos_presupuesto')&gt;1">
 				<fieldset>
 					<title lang="true">productospresupuesto</title>
 					<width>700px</width>
@@ -1179,7 +1179,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</head>
 				</fieldset>
 			</products_head>
-			<products_old>
+			<products_old global="id" ifeval="CONFIG('tab_productos_presupuesto')&gt;1">
 				<fieldset>
 					<width>700px</width>
 					<head>
@@ -1304,7 +1304,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 			</products_old>
-			<products_new>
+			<products_new global="id" ifeval="CONFIG('tab_productos_presupuesto')&gt;1">
 				<fieldset>
 					<width>700px</width>
 					<head>
@@ -1409,7 +1409,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 			</products_new>
 			<condiciones>
-				<fieldset global="id" ifeval="execute_query('SELECT LENGTH(condiciones) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id&gt;=0)">
+				<fieldset global="id" ifeval="CONFIG('tab_condiciones_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(condiciones) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id&gt;=0)" >
 					<title lang="true">condiciones</title>
 					<row>
 						<field>

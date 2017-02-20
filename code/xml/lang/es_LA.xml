@@ -1031,6 +1031,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_iva_name>Nombre del impuesto (se suma)</accounting_iva_name>
 		<accounting_irpf_name>Nombre del impuesto (se resta)</accounting_irpf_name>
 		<accounting_value>Valor por defecto (sólo si se usa)</accounting_value>
+		<applications_config>Aplicaciones</applications_config>
+		<config_tabs>Configuración pestañas</config_tabs>
+		<default_values>Valores por defecto</default_values>
+		<configuracion_presupuestos>Configuración presupuestos</configuracion_presupuestos>
+		<configuracion_agenda>Configuración agenda</configuracion_agenda>
+		<configuracion_incidencias>Configuración incidencias</configuracion_incidencias>
+		<configuracion_facturas>Configuración facturas</configuracion_facturas>
+		<configuracion_gastos>Configuración gastos</configuracion_gastos>
+		<show_tab_objetivos_presupuesto>Mostrar objetivos</show_tab_objetivos_presupuesto>
+		<show_tab_condiciones_presupuesto>Mostrar condiciones</show_tab_condiciones_presupuesto>
+		<show_tab_funcional_presupuesto>Mostrar propuesta funcional</show_tab_funcional_presupuesto>
+		<show_tab_tecnica_presupuesto>Mostrar propuesta técnica</show_tab_tecnica_presupuesto>
+		<show_tab_info_adicional_presupuesto>Mostrar información adicional</show_tab_info_adicional_presupuesto>
+		<show_tab_tareas_presupuesto>Mostrar tareas</show_tab_tareas_presupuesto>
+		<show_tab_productos_presupuesto>Mostrar productos</show_tab_productos_presupuesto>
+		<sin_configurar>[Sin configurar]</sin_configurar>
 	</maincfg>
 	<about>
 		<formupdate>Acerca de SaltOS</formupdate>

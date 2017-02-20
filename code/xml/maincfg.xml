@@ -49,6 +49,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<logo eval="true">make_select_config("logo_left,logo_top,logo_width,logo_height,logo_file,color_line,color_text1,color_text2")</logo>
 					<correo eval="true">make_select_config("email_host,email_port,email_extra,email_user,email_pass,email_name,email_from,email_async,email_support")</correo>
 					<accounting eval="true">make_select_config("accounting_currency,accounting_iva_name,accounting_iva_value,accounting_irpf_name,accounting_irpf_value")</accounting>
+					<applications_config eval="true">make_select_config("tab_objetivos_presupuesto,tab_funcional_presupuesto,tab_tecnica_presupuesto,tab_info_adicional_presupuesto,tab_tareas_presupuesto,tab_productos_presupuesto,tab_condiciones_presupuesto,df_estado_presupuestos,df_estado_agenda,df_tipo_evento_agenda,df_estado_incidencias,df_prioridad_incidencias,df_cuenta_facturas,df_formaspago_facturas,df_epigfrafes_facturas,df_cuenta_gastos,df_formaspago_gastos,df_epigfrafes_gastos")</applications_config>
 				</query>
 			</update>
 		</views>
@@ -810,6 +811,395 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 			</accounting>
+			<applications_config>
+				<fieldset>
+					<width>450px</width>
+					<title lang="true">applications_config</title>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">configuracion_presupuestos</label>
+							<class>center bold siwrap title</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">config_tabs</label>
+							<class>center bold siwrap</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>tab_objetivos_presupuesto</name>
+							<label lang="true">show_tab_objetivos_presupuesto</label>
+							<width>40px</width>
+							<type>select</type>
+							<rows>
+								<row>
+									<label eval="true">LANG("no")</label>
+									<value>1</value>
+								</row>
+								<row>
+									<label eval="true">LANG("yes")</label>
+									<value>2</value>
+								</row>
+							</rows>
+						</field>
+						<field>
+							<name>tab_info_adicional_presupuesto</name>
+							<label lang="true">show_tab_info_adicional_presupuesto</label>
+							<width>40px</width>
+							<type>select</type>
+							<rows>
+								<row>
+									<label eval="true">LANG("no")</label>
+									<value>1</value>
+								</row>
+								<row>
+									<label eval="true">LANG("yes")</label>
+									<value>2</value>
+								</row>
+							</rows>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>tab_funcional_presupuesto</name>
+							<label lang="true">show_tab_funcional_presupuesto</label>
+							<width>40px</width>
+							<type>select</type>
+							<rows>
+								<row>
+									<label eval="true">LANG("no")</label>
+									<value>1</value>
+								</row>
+								<row>
+									<label eval="true">LANG("yes")</label>
+									<value>2</value>
+								</row>
+							</rows>
+						</field>
+						<field>
+							<name>tab_tecnica_presupuesto</name>
+							<label lang="true">show_tab_tecnica_presupuesto</label>
+							<width>40px</width>
+							<type>select</type>
+							<rows>
+								<row>
+									<label eval="true">LANG("no")</label>
+									<value>1</value>
+								</row>
+								<row>
+									<label eval="true">LANG("yes")</label>
+									<value>2</value>
+								</row>
+							</rows>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>tab_tareas_presupuesto</name>
+							<label lang="true">show_tab_tareas_presupuesto</label>
+							<width>40px</width>
+							<type>select</type>
+							<rows>
+								<row>
+									<label eval="true">LANG("no")</label>
+									<value>1</value>
+								</row>
+								<row>
+									<label eval="true">LANG("yes")</label>
+									<value>2</value>
+								</row>
+							</rows>
+						</field>
+						<field>
+							<name>tab_productos_presupuesto</name>
+							<label lang="true">show_tab_productos_presupuesto</label>
+							<width>40px</width>
+							<type>select</type>
+							<rows>
+								<row>
+									<label eval="true">LANG("no")</label>
+									<value>1</value>
+								</row>
+								<row>
+									<label eval="true">LANG("yes")</label>
+									<value>2</value>
+								</row>
+							</rows>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>tab_condiciones_presupuesto</name>
+							<label lang="true">show_tab_condiciones_presupuesto</label>
+							<width>40px</width>
+							<type>select</type>
+							<rows>
+								<row>
+									<label eval="true">LANG("no")</label>
+									<value>1</value>
+								</row>
+								<row>
+									<label eval="true">LANG("yes")</label>
+									<value>2</value>
+								</row>
+							</rows>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">default_values</label>
+							<class>center bold siwrap</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>df_estado_presupuestos</name>
+							<label lang="true">estado</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_estados WHERE id_aplicacion = '34'"</query>
+						</field>
+						<field>
+							<type>separator</type>
+						</field>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+				</fieldset>
+				<fieldset>
+					<width>450px</width>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">configuracion_agenda</label>
+							<class>center bold siwrap title</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">default_values</label>
+							<class>center bold siwrap</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>df_estado_agenda</name>
+							<label lang="true">estado</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_estados WHERE id_aplicacion = '17'"</query>
+						</field>
+						<field>
+							<name>df_tipo_evento_agenda</name>
+							<label lang="true">tiposevento</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_tiposevento"</query>
+						</field>
+					</row>
+				</fieldset>
+				<fieldset>
+					<width>450px</width>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">configuracion_incidencias</label>
+							<class>center bold siwrap title</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">default_values</label>
+							<class>center bold siwrap</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>df_estado_incidencias</name>
+							<label lang="true">estado</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_estados WHERE id_aplicacion = '3'"</query>
+						</field>
+						<field>
+							<name>df_prioridad_incidencias</name>
+							<label lang="true">prioridad</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_prioridades"</query>
+						</field>
+					</row>
+				</fieldset>
+				<fieldset>
+					<width>450px</width>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">configuracion_facturas</label>
+							<class>center bold siwrap title</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">default_values</label>
+							<class>center bold siwrap</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>df_cuenta_facturas</name>
+							<label lang="true">cuenta</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_cuentas"</query>
+						</field>
+						<field>
+							<name>df_formaspago_facturas</name>
+							<label lang="true">formaspago</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_formaspago"</query>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>df_epigfrafes_facturas</name>
+							<label lang="true">epigrafe</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_epigrafes"</query>
+						</field>
+					</row>
+				</fieldset>
+				<fieldset>
+					<width>450px</width>
+					<buttons>true</buttons>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">configuracion_gastos</label>
+							<class>center bold siwrap title</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">default_values</label>
+							<class>center bold siwrap</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>df_cuenta_gastos</name>
+							<label lang="true">cuenta</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_cuentas"</query>
+						</field>
+						<field>
+							<name>df_formaspago_gastos</name>
+							<label lang="true">formaspago</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_formaspago"</query>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>df_epigfrafes_gastos</name>
+							<label lang="true">epigrafe</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_epigrafes"</query>
+						</field>
+					</row>
+				</fieldset>
+			</applications_config>
 		</fields>
 		<buttons>
 			<row>
@@ -945,6 +1335,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_iva_value")?preeval_update_config("accounting_iva_value"):""</query>
 		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_irpf_name")?preeval_update_config("accounting_irpf_name"):""</query>
 		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_irpf_value")?preeval_update_config("accounting_irpf_value"):""</query>
+		<!-- bussines config section -->
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_objetivos_presupuesto")?preeval_update_config("tab_objetivos_presupuesto"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_funcional_presupuesto")?preeval_update_config("tab_funcional_presupuesto"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_tecnica_presupuesto")?preeval_update_config("tab_tecnica_presupuesto"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_info_adicional_presupuesto")?preeval_update_config("tab_info_adicional_presupuesto"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_tareas_presupuesto")?preeval_update_config("tab_tareas_presupuesto"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_productos_presupuesto")?preeval_update_config("tab_productos_presupuesto"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_condiciones_presupuesto")?preeval_update_config("tab_condiciones_presupuesto"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_estado_presupuestos")?preeval_update_config("df_estado_presupuestos"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_estado_agenda")?preeval_update_config("df_estado_agenda"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_tipo_evento_agenda")?preeval_update_config("df_tipo_evento_agenda"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_estado_incidencias")?preeval_update_config("df_estado_incidencias"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_prioridad_incidencias")?preeval_update_config("df_prioridad_incidencias"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_cuenta_facturas")?preeval_update_config("df_cuenta_facturas"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_formaspago_facturas")?preeval_update_config("df_formaspago_facturas"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_epigfrafes_facturas")?preeval_update_config("df_epigfrafes_facturas"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_cuenta_gastos")?preeval_update_config("df_cuenta_gastos"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_formaspago_gastos")?preeval_update_config("df_formaspago_gastos"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_epigfrafes_gastos")?preeval_update_config("df_epigfrafes_gastos"):""</query>
 		<!-- return section -->
 		<query match="general" prefix="true" eval="true">"SELECT '-1' action_go FROM tbl_usuarios WHERE id='".current_user()."'"</query>
 	</update>

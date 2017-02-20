@@ -1031,6 +1031,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_iva_name>Nom de l'impost (es suma)</accounting_iva_name>
 		<accounting_irpf_name>Nom de l'impost (es resta)</accounting_irpf_name>
 		<accounting_value>Valor per defecte (només si es fa servir)</accounting_value>
+		<applications_config>Aplicacions</applications_config>
+		<config_tabs>Configuració pestanyes</config_tabs>
+		<default_values>Valors per defecte</default_values>
+		<configuracion_presupuestos>Configuració pressupostos</configuracion_presupuestos>
+		<configuracion_agenda>Configuració agenda</configuracion_agenda>
+		<configuracion_incidencias>Configuració incidències</configuracion_incidencias>
+		<configuracion_facturas>Configuració factures</configuracion_facturas>
+		<configuracion_gastos>Configuració despeses</configuracion_gastos>
+		<show_tab_objetivos_presupuesto>Mostrar objectius</show_tab_objetivos_presupuesto>
+		<show_tab_condiciones_presupuesto>Mostrar condicions</show_tab_condiciones_presupuesto>
+		<show_tab_funcional_presupuesto>Mostrar proposta funcional</show_tab_funcional_presupuesto>
+		<show_tab_tecnica_presupuesto>Mostrar proposta tècnica</show_tab_tecnica_presupuesto>
+		<show_tab_info_adicional_presupuesto>Mostrar informació addicional</show_tab_info_adicional_presupuesto>
+		<show_tab_tareas_presupuesto>Mostrar tasques</show_tab_tareas_presupuesto>
+		<show_tab_productos_presupuesto>Mostrar productes</show_tab_productos_presupuesto>
+		<sin_configurar>[Sense configurar]</sin_configurar>
 	</maincfg>
 	<about>
 		<formupdate>Credits de SaltOS</formupdate>

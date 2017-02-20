@@ -327,7 +327,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">forminsert</title>
 				<query>
 					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default>SELECT '0' id,'0' id_cliente,'0' id_estado,'0' id_prioridad</default>
+					<default eval="true">"SELECT '0' id,'0' id_cliente,'".CONFIG('df_estado_incidencias')."' id_estado,'".CONFIG('df_prioridad_incidencias')."' id_prioridad"</default>
 					<usuarios>
 						<usuarios eval="true">"SELECT id,id id_usuario,'0' id_incidencia,".make_extra_query_with_login("a.")." nombre,CASE id WHEN '".current_user()."' THEN '1' ELSE '0' END activado FROM tbl_usuarios a WHERE a.activo='1' ORDER BY nombre"</usuarios>
 					</usuarios>

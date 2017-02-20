@@ -1031,6 +1031,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_iva_name>Nom d'impôt (est ajouté)</accounting_iva_name>
 		<accounting_irpf_name>Nom d'impôt (soit soustrait)</accounting_irpf_name>
 		<accounting_value>La valeur par défaut (seulement si elle est utilisée)</accounting_value>
+		<applications_config translated="false">Applications</applications_config>
+		<config_tabs translated="false">Setting tabs</config_tabs>
+		<default_values translated="false">Default values</default_values>
+		<configuracion_presupuestos translated="false">Budget Settings</configuracion_presupuestos>
+		<configuracion_agenda translated="false">Schedule settings</configuracion_agenda>
+		<configuracion_incidencias translated="false">Event settings</configuracion_incidencias>
+		<configuracion_facturas translated="false">Invoice settings</configuracion_facturas>
+		<configuracion_gastos translated="false">Spending settings</configuracion_gastos>
+		<show_tab_objetivos_presupuesto translated="false">Show Goals</show_tab_objetivos_presupuesto>
+		<show_tab_condiciones_presupuesto translated="false">Show conditions</show_tab_condiciones_presupuesto>
+		<show_tab_funcional_presupuesto translated="false">Show functional proposal</show_tab_funcional_presupuesto>
+		<show_tab_tecnica_presupuesto translated="false">Show technical proposal</show_tab_tecnica_presupuesto>
+		<show_tab_info_adicional_presupuesto translated="false">Show additional information</show_tab_info_adicional_presupuesto>
+		<show_tab_tareas_presupuesto translated="false">Show Tasks</show_tab_tareas_presupuesto>
+		<show_tab_productos_presupuesto translated="false">Show products</show_tab_productos_presupuesto>
+		<sin_configurar translated="false">[Not configured]</sin_configurar>
 	</maincfg>
 	<about>
 		<formupdate>propos Saltos</formupdate>
