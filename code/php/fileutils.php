@@ -405,7 +405,7 @@ function readfile_protected($file) {
 	fclose($fp);
 }
 
-function fsockopen_protected($hostname,$port,&$errno,&$errstr,$timeout=null) {
+function fsockopen_protected($hostname,$port,&$errno=0,&$errstr="",$timeout=null) {
 	if($timeout==null) $timeout=ini_get("default_socket_timeout");
 	return stream_socket_client(
 		$hostname.":".$port,

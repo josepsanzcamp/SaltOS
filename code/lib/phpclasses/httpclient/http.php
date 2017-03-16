@@ -416,7 +416,7 @@ class http_class
 			$this->OutputDebug('Connecting to '.$server_type.' server IP '.$ip.' port '.$port.'...');
 		if($ssl)
 			$ip="ssl://".$host_name;
-		if(($this->connection=($this->timeout ? @fsockopen($ip, $port, $errno, $error, $this->timeout) : @fsockopen($ip, $port, $errno)))==0)
+		if(($this->connection=($this->timeout ? @fsockopen_protected($ip, $port, $errno, $error, $this->timeout) : @fsockopen_protected($ip, $port, $errno)))==0)
 		{
 			$error_code = HTTP_CLIENT_ERROR_CANNOT_CONNECT;
 			switch($errno)
@@ -1911,7 +1911,7 @@ class http_class
 		}
 		return("");
 	}
-	
+
 	Function ReadReplyHeaders(&$headers)
 	{
 		if(strlen($error=$this->ReadReplyHeadersResponse($headers)))

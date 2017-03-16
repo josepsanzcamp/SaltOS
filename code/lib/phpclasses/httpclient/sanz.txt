@@ -1,2 +1,5 @@
 Code downloaded from:
 - http://www.phpclasses.org/package/3-PHP-HTTP-client-to-access-Web-site-pages.html
+
+Some changes:
+- lib/phpclasses/httpclient/http.php: replaced the fsockopen by fsockopen_protected
