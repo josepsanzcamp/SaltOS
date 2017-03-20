@@ -810,4 +810,65 @@ function wp_parse_url( $url, $component = -1 ) {
 
 	return _get_component_from_parsed_url_array( $parts, $component );
 }
+
+/**
+ * Retrieve a specific component from a parsed URL array.
+ *
+ * @internal
+ *
+ * @since 4.7.0
+ *
+ * @param array|false $url_parts The parsed URL. Can be false if the URL failed to parse.
+ * @param int    $component The specific component to retrieve. Use one of the PHP
+ *                          predefined constants to specify which one.
+ *                          Defaults to -1 (= return all parts as an array).
+ *                          @see http://php.net/manual/en/function.parse-url.php
+ * @return mixed False on parse failure; Array of URL components on success;
+ *               When a specific component has been requested: null if the component
+ *               doesn't exist in the given URL; a sting or - in the case of
+ *               PHP_URL_PORT - integer when it does. See parse_url()'s return values.
+ */
+function _get_component_from_parsed_url_array( $url_parts, $component = -1 ) {
+	if ( -1 === $component ) {
+		return $url_parts;
+	}
+
+	$key = _wp_translate_php_url_constant_to_key( $component );
+	if ( false !== $key && is_array( $url_parts ) && isset( $url_parts[ $key ] ) ) {
+		return $url_parts[ $key ];
+	} else {
+		return null;
+	}
+}
+
+/**
+ * Translate a PHP_URL_* constant to the named array keys PHP uses.
+ *
+ * @internal
+ *
+ * @since 4.7.0
+ *
+ * @see   http://php.net/manual/en/url.constants.php
+ *
+ * @param int $constant PHP_URL_* constant.
+ * @return string|bool The named key or false.
+ */
+function _wp_translate_php_url_constant_to_key( $constant ) {
+	$translation = array(
+		PHP_URL_SCHEME   => 'scheme',
+		PHP_URL_HOST     => 'host',
+		PHP_URL_PORT     => 'port',
+		PHP_URL_USER     => 'user',
+		PHP_URL_PASS     => 'pass',
+		PHP_URL_PATH     => 'path',
+		PHP_URL_QUERY    => 'query',
+		PHP_URL_FRAGMENT => 'fragment',
+	);
+
+	if ( isset( $translation[ $constant ] ) ) {
+		return $translation[ $constant ];
+	} else {
+		return false;
+	}
+}
 ?>
