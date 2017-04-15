@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>pdf() { var id=getIds(); if(!id) return; openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
 	<function>mail() { var id=getIds(); if(!id) return; addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
 	<function>excel() { openurl("?page="+getParam("page")+"&amp;action=excel"); }</function>
-	<function>limpiar() { setParam("action","limpiar"); submit1(); }</function>
+	<function>limpiar() { addcontent("cancel"); setParam("action","limpiar"); submit1(); }</function>
 	<function>pdf2(id) { openurl("?page="+getParam("page")+"&amp;action=pdf&amp;id="+id); }</function>
 	<function>mail2(id) { addcontent("cancel"); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
 	<function>vcard(id) { openurl("?page="+getParam("page")+"&amp;action=vcard&amp;id="+id); }</function>
