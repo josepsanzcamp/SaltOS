@@ -61,7 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  		</actions>
 		<width>100%</width>
 		<fields>
-			<field>
+			<field ifeval="!ismobile()">
 				<name>id2</name>
 				<label lang="true">id</label>
 				<sort>true</sort>
@@ -91,14 +91,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<sort>true</sort>
 				<class>nowrap</class>
 			</field>
-			<field>
+			<field ifeval="!ismobile()">
 				<name>size2</name>
 				<label lang="true">size</label>
 				<sort>true</sort>
 				<order>size</order>
 				<class>nowrap</class>
 			</field>
-			<field>
+			<field ifeval="!ismobile()">
 				<name>files</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
