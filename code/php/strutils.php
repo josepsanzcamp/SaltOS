@@ -429,12 +429,12 @@ function output_handler($array) {
 	}
 	if($cache) {
 		header("Expires: ".gmdate("D, d M Y H:i:s",time()+getDefault("cache/cachegctimeout"))." GMT");
-		header("Cache-Control: max-age=".getDefault("cache/cachegctimeout"));
+		header("Cache-Control: max-age=".getDefault("cache/cachegctimeout").", no-transform");
 		header("Pragma: public");
 		header("ETag: ${hash2}");
 	} else {
 		header("Expires: -1");
-		header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
+		header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0, no-transform");
 		header("Pragma: no-cache");
 	}
 	header("Content-Type: ${type}");

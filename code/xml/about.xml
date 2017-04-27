@@ -114,7 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>Andrés Diaz (Beta tester)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>mailto("adiaz@bewsystems.com")</onclick>
+							<onclick>mailto("adiaz@saltos.org")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
@@ -139,7 +139,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>Arabic-Saudi Arabia (Mohammed Mubarak)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>mailto("mawedElkareem@gmail.com")</onclick>
+							<onclick>openwin("http://www.google.cat/search?q=Mohammed+Mubarak")</onclick>
 						</field>
 						<field>
 							<label>Català-Espanya (Josep Sanz)</label>
@@ -151,7 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>Deutsch-Deutschland (Alex Muller)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>mailto("alex.muller@ws3.es")</onclick>
+							<onclick>openwin("http://www.google.cat/search?q=Alex+Muller")</onclick>
 						</field>
 						<field>
 							<label>English-USA (Josep Sanz)</label>
