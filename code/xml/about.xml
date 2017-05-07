@@ -355,7 +355,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpclasses.org/package/2695-PHP-Safely-evaluate-mathematical-expressions.html")</onclick>
 						</field>
 						<field>
-							<label>PHPass 0.3 (Public domain)</label>
+							<label>PHPass 0.5 (Public domain)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.openwall.com/phpass/")</onclick>
