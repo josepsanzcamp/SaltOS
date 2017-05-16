@@ -40,7 +40,7 @@ if(getParam("action")=="captcha") {
 	$color=getDefault("captcha/color","5C8ED1");
 	$bgcolor=getDefault("captcha/bgcolor","C8C8C8");
 	$fgcolor=getDefault("captcha/fgcolor","B4B4B4");
-	$type=getDefault("captcha/type","math");
+	$type=getDefault("captcha/type","number");
 	$length=getDefault("captcha/length",5);
 	$period=getDefault("captcha/period",2);
 	$amplitude=getDefault("captcha/amplitude",8);

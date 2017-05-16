@@ -390,8 +390,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logintitle>Application access</logintitle>
 		<remember>Remember password on this computer</remember>
 		<enter>Enter</enter>
-		<captcha1>Security question</captcha1>
-		<captcha2>Result of the math operation</captcha2>
+		<captcha1>Security code</captcha1>
+		<captcha2>Enter the code here</captcha2>
 		<captcha3>Reload image</captcha3>
 		<mobileaccess>Access from mobile device</mobileaccess>
 	</login>

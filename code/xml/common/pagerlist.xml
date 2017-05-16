@@ -82,7 +82,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<name>selectpager</name>
 			<rows>
 				<row>
-					<label global="offset,limit" eval="true">intval($offset/$limit)+1</label>
+					<label global="offset,limit" eval="true">intval($offset/max($limit,1))+1</label>
 					<value></value>
 				</row>
 			</rows>

@@ -390,8 +390,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logintitle>Accés a l'aplicació</logintitle>
 		<remember>Recordar la contrasenya en aquest ordinador</remember>
 		<enter>Entrar</enter>
-		<captcha1>Pregunta de seguretat</captcha1>
-		<captcha2>Resultat de la suma/resta</captcha2>
+		<captcha1>Codi de seguretat</captcha1>
+		<captcha2>Entri el codi aquí</captcha2>
 		<captcha3>Recarregar imatge</captcha3>
 		<mobileaccess>Accés des de dispositiu mòbil</mobileaccess>
 	</login>

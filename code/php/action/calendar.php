@@ -54,7 +54,7 @@ if(getParam("action")=="calendar") {
 				LANG("abril"),LANG("mayo"),LANG("junio"),
 				LANG("julio"),LANG("agosto"),LANG("setiembre"),
 				LANG("octubre"),LANG("noviembre"),LANG("diciembre"));
-	$query="SELECT COUNT(*) count,MIN(dstart) min,MAX(dstop) max FROM tbl_agenda WHERE id IN ($ids)";
+	$query="SELECT COUNT(*) count,MIN(dstart) min,MAX(dstop) max FROM tbl_agenda WHERE id IN ($ids) AND dstart!='0000-00-00 00:00:00' AND dstop!='0000-00-00 00:00:00'";
 	$result=execute_query($query);
 	if($result["count"]) {
 		$result["min"]=explode("-",$result["min"]);

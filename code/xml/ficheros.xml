@@ -205,9 +205,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
 		<query global="page,id_usuario,id_aplicacion,filtro,fecha1,fecha2" eval="true">"SELECT id, id2, aplicacion, nombre, datetime, usuario, fichero, fichero_size2, action_id, action_title, action_download, action_viewpdf FROM (
-			SELECT a.id,a.datetime,a.fichero,a.id_aplicacion,e.id_usuario,
+			SELECT a.id,
 			LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
-			d.id_grupo id_grupo,
+			a.datetime,a.fichero,a.id_aplicacion,d.id id_usuario,d.id_grupo id_grupo,
 			 CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
 			(SELECT  CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
 			".make_extra_query_with_login("d.")." usuario,

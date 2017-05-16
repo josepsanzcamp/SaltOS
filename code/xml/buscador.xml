@@ -245,7 +245,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
 			a.id_registro id_registro,
 			a.id_aplicacion id_aplicacion,
-			e.id_usuario id_usuario,
+			d.id id_usuario,
 			d.id_grupo id_grupo,
 			e.datetime datetime,
 			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) comments,

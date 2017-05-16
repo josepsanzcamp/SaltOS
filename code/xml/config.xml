@@ -94,7 +94,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<nativesoffice>true</nativesoffice>
 		<enablevoice eval="true">!ismobile()</enablevoice>
 		<enabletranslate eval="true">!ismobile()</enabletranslate>
-		<enableindexing>true</enableindexing>
+		<enableindexing>false</enableindexing>
 		<enablepurge>false</enablepurge>
 	</default>
 	<dirs>
@@ -371,7 +371,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color>5C8ED1</color>
 		<bgcolor>C8C8C8</bgcolor>
 		<fgcolor>B4B4B4</fgcolor>
-		<type>math</type><!-- captcha type can be number or math -->
+		<type>number</type><!-- captcha type can be number or math -->
 		<length>5</length>
 		<period>4</period>
 		<amplitude>8</amplitude>

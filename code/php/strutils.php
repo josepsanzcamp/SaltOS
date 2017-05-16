@@ -469,14 +469,14 @@ function inline_images($buffer) {
 }
 
 function svnversion($dir=".") {
+	// USING SVNVERSION
+	if(check_commands("svnversion",getDefault("default/commandexpires",60))) {
+		return intval(ob_passthru("cd ${dir}; svnversion",getDefault("default/commandexpires",60)));
+	}
+	// ALTERNATIVE METHOD
 	static $rev=null;
 	if($rev===null) {
 		$rev=0;
-		// USING SVNVERSION
-		if(check_commands("svnversion",getDefault("default/commandexpires",60))) {
-			$rev=intval(ob_passthru("cd ${dir}; svnversion",getDefault("default/commandexpires",60)));
-		}
-		// ALTERNATIVE METHOD
 		if(!$rev) {
 			$dir=realpath($dir);
 			if(!$dir) $dir=getcwd_protected();
@@ -519,13 +519,12 @@ function svnversion($dir=".") {
 			}
 		}
 	}
-	// NOTHING TO DO
 	return $rev;
 }
 
 function gitversion($dir=".") {
 	// USING GIT
-	if(check_commands("git",60)) {
+	if(check_commands("git",getDefault("default/commandexpires",60))) {
 		return intval(ob_passthru("cd ${dir}; git rev-list HEAD --count",getDefault("default/commandexpires",60)));
 	}
 	// NOTHING TO DO

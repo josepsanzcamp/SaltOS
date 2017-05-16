@@ -390,8 +390,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logintitle>الوصول للتطبيق</logintitle>
 		<remember>تذكر كلمة المرور علي هذا الجهاز</remember>
 		<enter>دخول</enter>
-		<captcha1>سؤال الامان</captcha1>
-		<captcha2>ناتج العملية الحسابية</captcha2>
+		<captcha1 translated="false">Security code</captcha1>
+		<captcha2 translated="false">Enter the code here</captcha2>
 		<captcha3>اعادة تحميل الصورة</captcha3>
 		<mobileaccess>الدخول عن طريق الجوال</mobileaccess>
 	</login>

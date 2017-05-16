@@ -508,8 +508,8 @@ function eval_attr($array) {
 							} elseif(isset($stack["for_var"]) && isset($stack["for_from"]) && isset($stack["for_to"])) {
 								// CHECK SOME DOMAIN ERRORS
 								if(!isset($stack["for_step"])) $stack["for_step"]=1;
-								if(!$stack["for_step"]) xml_error("Error sequence FOR - FROM(${param["for_from"]}) - STEP(${param["for_step"]}) - TO(${param["for_to"]})");
-								if(sign($stack["for_to"]-$stack["for_from"])!=sign($stack["for_step"])) xml_error("Error sequence FOR - FROM(${param["for_from"]}) - STEP(${param["for_step"]}) - TO(${param["for_to"]})");
+								if(!$stack["for_step"]) xml_error("Error sequence FOR - FROM(${stack["for_from"]}) - STEP(${stack["for_step"]}) - TO(${stack["for_to"]})");
+								if(sign($stack["for_to"]-$stack["for_from"])!=sign($stack["for_step"])) xml_error("Error sequence FOR - FROM(${stack["for_from"]}) - STEP(${stack["for_step"]}) - TO(${stack["for_to"]})");
 								// CONTINUE
 								$attr=array_slice($attr,$count);
 								if($global) $attr=array_merge(array("global"=>$global),$attr);
