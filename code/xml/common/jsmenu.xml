@@ -88,6 +88,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"lang_actions() { return '".LANG_ESCAPE("actions")."'; }"</function>
 	<!-- FOR INDEXING MODULE -->
 	<function eval="true">"config_indexing_interval() { return intval('".CONFIG('indexing_interval')."')*1000; }"</function>
+	<function eval="true">"config_integrity_interval() { return intval('".CONFIG('integrity_interval')."')*1000; }"</function>
 	<!-- FOR PURGE MODULE -->
 	<function eval="true">"config_purge_interval() { return intval('".CONFIG('purge_interval')."')*1000; }"</function>
 	<!-- FOR HELP MODULE -->
@@ -102,6 +103,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<include>js/checkfeeds.js</include>
 		<include>js/checksession.js</include>
 		<include ifeval="eval_bool(getDefault('enableindexing'))">js/checkindexing.js</include>
+		<include ifeval="eval_bool(getDefault('enableintegrity'))">js/checkintegrity.js</include>
 		<include ifeval="eval_bool(getDefault('enablepurge'))">js/checkpurge.js</include>
 		<include>js/favicon.js</include>
 		<include ifeval="eval_bool(getDefault('enablevoice'))">js/voice.js</include>

@@ -280,7 +280,7 @@ function xml2array($file,$usecache=true) {
 	$array=struct2array($data,$file);
 	if($usecache) {
 		$array["source"]=$file;
-		$array["depend"]=array_unique_protected($depend);
+		$array["depend"]=array_unique($depend);
 		if(file_exists($cache)) unlink_protected($cache);
 		file_put_contents($cache,json_encode($array));
 		chmod_protected($cache,0666);

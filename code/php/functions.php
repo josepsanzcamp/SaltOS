@@ -1275,7 +1275,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 		db_free($result);
 	}
 	// AÑADIR A LA TABLA INDEXING
-	$search=encode_search(implode(" ",$search));
+	$search=implode(" ",$search);
 	if($id_indexing) {
 		$query=make_update_query("tbl_indexing",array(
 			"search"=>$search

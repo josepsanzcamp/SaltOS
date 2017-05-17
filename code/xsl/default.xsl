@@ -835,11 +835,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:if test="label!=''">
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
-			<!-- THIS CODE IS A TRICK FOR A RENDER BUG OF ROUNDED SELECT OBJECTS -->
-			<xsl:variable name="width" select="concat(string(number(substring-before(width,'px'))+12),'px')"/>
-			<!-- END OF TRICK -->
-			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{$width}">
-				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{$width}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" original="{value}">
+			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
+				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" original="{value}">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
 						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class3"/></xsl:attribute>
@@ -1115,11 +1112,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</td>
 		</xsl:when>
 		<xsl:when test="type='menu'">
-			<!-- THIS CODE IS A TRICK FOR A RENDER BUG OF ROUNDED SELECT OBJECTS -->
-			<xsl:variable name="width" select="concat(string(number(substring-before(width,'px'))+12),'px')"/>
-			<!-- END OF TRICK -->
-			<td colspan="{colspan}" rowspan="{rowspan}" class="{class}" style="width:{$width}">
-				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{$width}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class2}" ismenu="true">
+			<td colspan="{colspan}" rowspan="{rowspan}" class="{class}" style="width:{width}">
+				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class2}" ismenu="true">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
 						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class2"/></xsl:attribute>

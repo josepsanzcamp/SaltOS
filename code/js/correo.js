@@ -186,6 +186,17 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		}
 	}
 
+	function update_screen() {
+		setTimeout(function() {
+			var width=$(window).width()-200;
+			if($(".ui-layout-west").is(":visible")) width-=200;
+			if(width<800) return;
+			$("input,textarea,select,iframe").filter(function () {
+				return $(this).width()==800;
+			}).width(width);
+		},100);
+	}
+
 }
 
 "use strict";
@@ -194,4 +205,5 @@ $(function() {
 	update_auto();
 	update_signature();
 	update_checkbox();
+	update_screen();
 });

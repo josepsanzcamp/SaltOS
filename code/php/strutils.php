@@ -132,49 +132,6 @@ function prepare_words($cad,$pad=" ") {
 	return $cad;
 }
 
-function array_unique_protected($array) {
-	return array_flip(array_flip($array));
-}
-
-function explode_unique($delimiter,$string) {
-	static $limit=10000;
-	$result=array();
-	while($string!="") {
-		$string=explode($delimiter,$string,$limit);
-		if(count($string)==$limit) {
-			$temp=array_pop($string);
-			$result=array_merge($result,$string);
-			$string=$temp;
-		} else {
-			$result=array_merge($result,$string);
-			$string="";
-		}
-		$result=array_unique_protected($result);
-	}
-	return $result;
-}
-
-function encode_search($cad,$pad=" ") {
-	static $orig=array(
-		"á","à","ä","é","è","ë","í","ì","ï","ó","ò","ö","ú","ù","ü","ñ","ç",
-		"Á","À","Ä","É","È","Ë","Í","Ì","Ï","Ó","Ò","Ö","Ú","Ù","Ü","Ñ","Ç");
-	static $dest=array(
-		"a","a","a","e","e","e","i","i","i","o","o","o","u","u","u","n","c",
-		"a","a","a","e","e","e","i","i","i","o","o","o","u","u","u","n","c");
-	static $bad_chars=null;
-	if($bad_chars===null) {
-		$bad_chars=array();
-		for($i=0;$i<32;$i++) $bad_chars[]=chr($i);
-	}
-	$cad=str_replace($orig,$dest,$cad);
-	$cad=str_replace($bad_chars,$pad,$cad);
-	$cad=strtolower($cad);
-	$cad=prepare_words($cad,$pad);
-	$cad=explode_unique($pad,$cad);
-	$cad=implode($pad,$cad);
-	return $cad;
-}
-
 function querystring2array($querystring) {
 	$items=explode("&",$querystring);
 	$result=array();

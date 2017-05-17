@@ -94,7 +94,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<nativesoffice>true</nativesoffice>
 		<enablevoice eval="true">!ismobile()</enablevoice>
 		<enabletranslate eval="true">!ismobile()</enabletranslate>
-		<enableindexing>false</enableindexing>
+		<enableindexing>true</enableindexing>
+		<enableintegrity>true</enableintegrity>
 		<enablepurge>false</enablepurge>
 	</default>
 	<dirs>
@@ -237,6 +238,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<session_interval>30</session_interval>
 		<session_warning>300</session_warning>
 		<indexing_interval>300</indexing_interval>
+		<integrity_interval>300</integrity_interval>
 		<purge_interval>300</purge_interval>
 		<water_actas_text>Confidencial</water_actas_text>
 		<water_actas_posx>40</water_actas_posx>

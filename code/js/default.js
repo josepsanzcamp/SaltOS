@@ -1291,6 +1291,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(!make_tabs2_padding) make_tabs2_padding=$(".tabs2 ul",obj).css("padding-top");
 		if(!make_tabs2_margin) make_tabs2_margin=$(".tabs2 li",obj).css("margin-top");
 		if(!make_tabs2_border) make_tabs2_border=$(".tabs2 li",obj).css("border-top");
+		if(!make_tabs2_border) make_tabs2_border=$(".tabs2 li",obj).css("border-top-width")+" "+$(".tabs2 li",obj).css("border-top-style")+" "+$(".tabs2 li",obj).css("border-top-color");
 		$(".tabs2 ul",obj).css("padding-top","0").css("padding-bottom",make_tabs2_padding);
 		$(".tabs2 li",obj).css("margin-top","0").css("margin-bottom",make_tabs2_margin);
 		$(".tabs2 li",obj).css("border-top","0").css("border-bottom",make_tabs2_border);
@@ -1450,6 +1451,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$("select[ismenu=true]",obj).on("change",function() {
 			if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
 			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
+		});
+		// FIX WIDTH OF THE SELECTS
+		$("select",obj).each(function() {
+			var id=$(this).attr("id");
+			var width=$(this).css("width");
+			if(substr(width,-2,2)=="px" && intval(width)>0) {
+				setTimeout(function() {
+					$("#"+id).width(width);
+				},100);
+			}
 		});
 		//~ console.timeEnd("make_extras");
 	}
