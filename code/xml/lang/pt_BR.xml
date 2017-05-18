@@ -995,6 +995,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sessioninterval>Checar aviso de encerramento de sessão a cada</sessioninterval>
 		<sessionwarning>Avisar sobre o encerramento da sessão antes de</sessionwarning>
 		<indexinginterval translated="false">Index new files every</indexinginterval>
+		<integrityinterval translated="false">Check integrity every</integrityinterval>
 		<purgeinterval translated="false">Purge data every</purgeinterval>
 		<emailsupport>Email para o suporte técnico</emailsupport>
 		<segundos>segundos</segundos>

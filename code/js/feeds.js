@@ -99,8 +99,8 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 
 	function update_screen2() {
 		setTimeout(function() {
-			var width=$(window).width()-200;
-			if($(".ui-layout-west").is(":visible")) width-=200;
+			var delta=$(".ui-layout-center table:first").width()-800;
+			var width=$(".ui-layout-center").width()-50-delta;
 			if(width<800) return;
 			$("input,textarea,select,iframe").filter(function () {
 				return $(this).width()==800;

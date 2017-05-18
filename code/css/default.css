@@ -544,11 +544,11 @@ img[isplot=true] {
 /* FOR CONTEXT MENU */
 ul.ui-menu {
 	display:none;
-	padding:5px;
 }
 
 ul.ui-menu .ui-menu-item-wrapper {
 	font-weight:normal;
+	padding:5px 7px;
 }
 
 ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
@@ -603,16 +603,13 @@ ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
 
 /* FOR BACK TO TOP FEATURE */
 .back2top {
-	background:none;
-	margin:0;
 	position:fixed;
-	bottom:1px;
-	left:1px;
+	bottom:2px;
+	left:2px;
 	width:60px;
 	height:60px;
 	z-index:100;
 	display:none;
-	text-decoration:none;
 }
 
 /* FOR REMOVE DEFAULT CHROME FOCUS HIGHLIGHT */

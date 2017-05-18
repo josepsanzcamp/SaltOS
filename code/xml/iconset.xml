@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sortascin>img/sort_asc_in.png</sortascin>
 		<sortdescout>img/sort_desc_out.png</sortdescout>
 		<sortdescin>img/sort_desc_in.png</sortdescin>
+		<actions>lib/highcontrast/actions/stock_down.png</actions>
 		<about>lib/highcontrast/actions/help-about.png</about>
 		<accept>lib/highcontrast/actions/dialog-ok.png</accept>
 		<actas>lib/highcontrast/apps/text-editor.png</actas>
@@ -123,6 +124,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sortascin>img/sort_asc_in.png</sortascin>
 		<sortdescout>img/sort_desc_out.png</sortdescout>
 		<sortdescin>img/sort_desc_in.png</sortdescin>
+		<actions>lib/crystal/actions/14_layer_lowerlayer.png</actions>
 		<about>lib/crystal/actions/info.png</about>
 		<accept>lib/crystal/actions/apply.png</accept>
 		<actas>lib/crystal/apps/easymoblog.png</actas>
@@ -216,6 +218,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sortascin>img/sort_asc_in.png</sortascin>
 		<sortdescout>img/sort_desc_out.png</sortdescout>
 		<sortdescin>img/sort_desc_in.png</sortdescin>
+		<actions>lib/silk/icons/bullet_arrow_down.png</actions>
 		<about>lib/silk/icons/information.png</about>
 		<accept>lib/silk/icons/accept.png</accept>
 		<actas>lib/silk/icons/note.png</actas>

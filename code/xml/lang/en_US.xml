@@ -995,6 +995,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sessioninterval>Check alert log every</sessioninterval>
 		<sessionwarning>Warn logoff before</sessionwarning>
 		<indexinginterval>Index new files every</indexinginterval>
+		<integrityinterval>Check integrity every</integrityinterval>
 		<purgeinterval>Purge data every</purgeinterval>
 		<emailsupport>Email for technical support</emailsupport>
 		<segundos>seconds</segundos>

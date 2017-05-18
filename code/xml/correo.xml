@@ -61,12 +61,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  		</actions>
 		<width>100%</width>
 		<fields>
+<!--
 			<field ifeval="!ismobile()">
 				<name>id2</name>
 				<label lang="true">id</label>
 				<sort>true</sort>
 				<order>id</order>
 			</field>
+-->
 			<field>
 				<name>de2</name>
 				<label lang="true">from</label>

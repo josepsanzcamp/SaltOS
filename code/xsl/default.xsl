@@ -354,7 +354,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xsl:variable name="name" select="substring(name(),8)"/>
 		<xsl:variable name="value" select="."/>
 		<xsl:for-each select="../../../actions/*[name()=$name]">
-			<td class="width1 actions tbody">
+			<td class="width1 actions1 tbody none">
 				<xsl:choose>
 					<xsl:when test="$value='true'">
 						<a href="javascript:void(0)">
@@ -375,6 +375,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</td>
 		</xsl:for-each>
 	</xsl:for-each>
+	<td class="width1 actions2 tbody"><a href="javascript:void(0)"><span class="saltos-icon saltos-icon-actions"/></a></td>
 </xsl:template>
 
 <xsl:template name="list_quick">
@@ -1487,7 +1488,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<td valign="top">
 						<div class="ui-layout-west">
 							<xsl:call-template name="menu"/>
-							<a href="#" class="back2top ui-state-default ui-corner-all none"><img src="img/back2top.png"/></a>
+							<a href="#" class="back2top ui-widget-header ui-corner-all"><img src="img/back2top.png" class="ui-corner-all"/></a>
 						</div>
 					</td>
 					<td valign="top" class="width100">

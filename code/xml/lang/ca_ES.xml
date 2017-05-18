@@ -995,6 +995,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sessioninterval>Comprovar avís de tancar sessió cada</sessioninterval>
 		<sessionwarning>Adverteix el tancament de sessió abans de</sessionwarning>
 		<indexinginterval>Indexar arxius nous cada</indexinginterval>
+		<integrityinterval>Revisar integritat cada</integrityinterval>
 		<purgeinterval>Purgar dades cada</purgeinterval>
 		<emailsupport>email per al suport tècnic</emailsupport>
 		<segundos>segons</segundos>

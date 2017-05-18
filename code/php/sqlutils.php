@@ -707,6 +707,7 @@ function make_where_query($array,$union="AND",$queries=array()) {
 }
 
 function make_fulltext_query($keys,$values,$table) {
+	$values=encode_bad_chars($values," ");
 	$engine=strtolower(get_engine($table));
 	if($engine=="mroonga") {
 		$keys=explode(",",$keys);

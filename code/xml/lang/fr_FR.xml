@@ -995,6 +995,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sessioninterval>Vérifiez alerte journal toutes les</sessioninterval>
 		<sessionwarning>Prévenez déconnexion avant</sessionwarning>
 		<indexinginterval translated="false">Index new files every</indexinginterval>
+		<integrityinterval translated="false">Check integrity every</integrityinterval>
 		<purgeinterval translated="false">Purge data every</purgeinterval>
 		<emailsupport>Courriel pour le soutien technique</emailsupport>
 		<segundos>secondes</segundos>

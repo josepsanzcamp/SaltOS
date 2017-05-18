@@ -232,7 +232,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			a.id_registro id_registro,
 			a.id_aplicacion id_aplicacion,
 			a.id_folder id_folder,
-			e.id_usuario id_usuario,
+			d.id id_usuario,
 			d.id_grupo id_grupo,
 			e.datetime datetime,
 			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) comments,

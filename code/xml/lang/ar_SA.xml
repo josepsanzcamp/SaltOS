@@ -995,6 +995,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sessioninterval>تحقق من تسجيل الدخول كل</sessioninterval>
 		<sessionwarning>تحذيز الخروج قبل</sessionwarning>
 		<indexinginterval translated="false">Index new files every</indexinginterval>
+		<integrityinterval translated="false">Check integrity every</integrityinterval>
 		<purgeinterval translated="false">Purge data every</purgeinterval>
 		<emailsupport>بريد الدعم الفني</emailsupport>
 		<segundos>ثواني</segundos>
