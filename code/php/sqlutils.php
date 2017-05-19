@@ -446,7 +446,7 @@ function __make_like_query_explode($separator,$str) {
 	$open=array("'"=>0,'"'=>0);
 	for($i=0;$i<$len;$i++) {
 		$letter=$str[$i];
-		if(array_key_exists($letter,$open)) {
+		if(isset($open[$letter])) {
 			$open[$letter]=($open[$letter]==1)?0:1;
 		}
 		if($letter==$separator && array_sum($open)==0) {
@@ -478,14 +478,18 @@ function make_like_query($keys,$values) {
 	if(!count($values)) return "1=1";
 	$query=array();
 	foreach($values as $value) {
-		$query2=array();
-		if($value[0]=="-") {
-			$value=substr($value,1);
-			foreach($keys as $key) $query2[]="$key NOT LIKE '%$value%' ESCAPE '@'";
-			if($value!="") $query[]="(".implode(" AND ",$query2).")";
-		} else {
-			foreach($keys as $key) $query2[]="$key LIKE '%$value%' ESCAPE '@'";
-			$query[]="(".implode(" OR ",$query2).")";
+		$type=($value[0]=="-")?"-":"+";
+		while(strlen($value)>0 && in_array($value[0],array("+","-"))) $value=substr($value,1);
+		if($value!="") {
+			if($type=="-") {
+				$query2=array();
+				foreach($keys as $key) $query2[]="$key NOT LIKE '%$value%' ESCAPE '@'";
+				$query[]="(".implode(" AND ",$query2).")";
+			} else {
+				$query2=array();
+				foreach($keys as $key) $query2[]="$key LIKE '%$value%' ESCAPE '@'";
+				$query[]="(".implode(" OR ",$query2).")";
+			}
 		}
 	}
 	if(!count($query)) return "1=1";
@@ -707,7 +711,6 @@ function make_where_query($array,$union="AND",$queries=array()) {
 }
 
 function make_fulltext_query($keys,$values,$table) {
-	$values=encode_bad_chars($values," ");
 	$engine=strtolower(get_engine($table));
 	if($engine=="mroonga") {
 		$keys=explode(",",$keys);
@@ -718,7 +721,7 @@ function make_fulltext_query($keys,$values,$table) {
 		}
 		if(!count($keys)) return "1=1";
 		$keys=implode(",",$keys);
-		$values=explode(" ",$values);
+		$values=__make_like_query_explode(" ",$values);
 		foreach($values as $key=>$val) {
 			$val=trim($val);
 			$val=str_replace(array("'",'"',"\\","(",")"),"",$val);
@@ -728,12 +731,9 @@ function make_fulltext_query($keys,$values,$table) {
 		if(!count($values)) return "1=1";
 		$query=array();
 		foreach($values as $value) {
-			if($value[0]=="-") {
-				$value=substr($value,1);
-				if($value!="") $query[]="-".$value;
-			} else {
-				$query[]="+".$value;
-			}
+			$type=($value[0]=="-")?"-":"+";
+			while(strlen($value)>0 && in_array($value[0],array("+","-"))) $value=substr($value,1);
+			if($value!="") $query[]=$type.$value;
 		}
 		if(!count($query)) return "1=1";
 		$query=implode(" ",$query);

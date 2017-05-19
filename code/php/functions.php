@@ -1223,12 +1223,12 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 			db_query($query);
 		}
 	}
-	// OBTENER DATOS DE LA TABLA PRINCIPAL
-	$query=make_select_query($tabla,__make_indexing_helper($tabla),make_where_query(array(
+	// BUSCAR SI EXISTEN DATOS DE LA TABLA PRINCIPAL
+	$query=make_select_query($tabla,"id",make_where_query(array(
 		"id"=>$id_registro
 	)));
-	$result=db_query($query);
-	if(!db_num_rows($result)) {
+	$id_data=execute_query($query);
+	if(!$id_data) {
 		if($id_indexing) {
 			$query=make_delete_query("tbl_indexing",make_where_query(array(
 				"id"=>$id_indexing
@@ -1239,55 +1239,59 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 			return -2;
 		}
 	}
-	$row=db_fetch_row($result);
-	db_free($result);
-	$search=$row;
+	// CONTINUE
+	$queries=array();
+	// OBTENER DATOS DE LA TABLA PRINCIPAL
+	$campos=__make_indexing_helper($tabla);
+	foreach($campos as $key=>$val) $campos[$key]="IFNULL((${val}),'')";
+	$campos="CONCAT(".implode(",' ',",$campos).")";
+	$query=make_select_query($tabla,$campos,make_where_query(array(
+		"id"=>$id_registro
+	)));
+	$queries[]=$query;
 	// OBTENER DATOS DE LAS SUBTABLAS
 	if($subtablas!="") {
 		foreach(explode(",",$subtablas) as $subtabla) {
 			$tabla=strtok($subtabla,"(");
 			$campo=strtok(")");
-			$query=make_select_query($tabla,__make_indexing_helper($tabla),make_where_query(array(
+			$campos=__make_indexing_helper($tabla);
+			foreach($campos as $key=>$val) $campos[$key]="IFNULL((${val}),'')";
+			$campos="GROUP_CONCAT(CONCAT(".implode(",' ',",$campos)."))";
+			$query=make_select_query($tabla,$campos,make_where_query(array(
 				$campo=>$id_registro
 			)));
-			$result=db_query($query);
-			while($row=db_fetch_row($result)) {
-				unset($row["id"]);
-				unset($row[$campo]);
-				foreach($row as $key=>$val) set_array($search,$key,$val);
-			}
-			db_free($result);
+			$queries[]=$query;
 		}
 	}
 	// OBTENER DATOS DE LAS TABLAS GENERICAS
 	$tablas=array("tbl_ficheros","tbl_comentarios");
-	$nosearch=array("id","id_aplicacion","id_registro","fichero_file","fichero_size","fichero_type","indexed","retries");
 	foreach($tablas as $tabla) {
-		$query=make_select_query($tabla,__make_indexing_helper($tabla),make_where_query(array(
+		$campos=__make_indexing_helper($tabla);
+		foreach($campos as $key=>$val) $campos[$key]="IFNULL((${val}),'')";
+		$campos="GROUP_CONCAT(CONCAT(".implode(",' ',",$campos)."))";
+		$query=make_select_query($tabla,$campos,make_where_query(array(
 			"id_aplicacion"=>$id_aplicacion,
 			"id_registro"=>$id_registro
 		)));
-		$result=db_query($query);
-		while($row=db_fetch_row($result)) {
-			foreach($nosearch as $key) if(isset($row[$key])) unset($row[$key]);
-			foreach($row as $key=>$val) set_array($search,$key,$val);
-		}
-		db_free($result);
+		$queries[]=$query;
 	}
+	// PREPARAR QUERY PRINCIPAL
+	foreach($queries as $key=>$val) $queries[$key]="IFNULL((${val}),'')";
+	$search="SELECT CONCAT(".implode(",' ',",$queries).")";
 	// AÑADIR A LA TABLA INDEXING
-	$search=implode(" ",$search);
 	if($id_indexing) {
-		$query=make_update_query("tbl_indexing",array(
-			"search"=>$search
-		),make_where_query(array(
+		$query=make_update_query("tbl_indexing",array(),make_where_query(array(
 			"id"=>$id_indexing
-		)));
+		)),array(
+			"search"=>$search
+		));
 		db_query($query);
 		return 2;
 	} else {
 		$query=make_insert_query("tbl_indexing",array(
 			"id_aplicacion"=>$id_aplicacion,
-			"id_registro"=>$id_registro,
+			"id_registro"=>$id_registro
+		),array(
 			"search"=>$search
 		));
 		db_query($query);
@@ -1298,6 +1302,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 function __make_indexing_helper($tabla) {
 	static $tables=null;
 	static $campos=null;
+	static $fields=null;
 	if($tables===null) {
 		$file="xml/dbschema.xml";
 		$dbschema=eval_attr(xml2array($file));
@@ -1322,16 +1327,24 @@ function __make_indexing_helper($tabla) {
 			}
 		}
 	}
-	$result=array();
-	$result[]="*";
-	$result[]="LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id";
+	if($fields===null) {
+		$file="xml/dbschema.xml";
+		$dbschema=eval_attr(xml2array($file));
+		$fields=array();
+		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
+			foreach($dbschema["tables"] as $tablespec) {
+				$fields[$tablespec["name"]]=array();
+				foreach($tablespec["fields"] as $fieldspec) $fields[$tablespec["name"]][]=$fieldspec["name"];
+			}
+		}
+	}
+	$result=$fields[$tabla];
+	$result[]="LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)";
 	if(isset($campos[$tabla])) $result[]=$campos[$tabla];
 	if(isset($tables[$tabla])) {
 		foreach($tables[$tabla] as $key=>$val) {
 			if(isset($campos[$val])) {
-				$result[]="(".make_select_query($val,$campos[$val],make_where_query(array(),"AND",array("${val}.id=${key}"))).") ${key}";
-			} else {
-				$result[]="'' ${key}";
+				$result[]="(".make_select_query($val,$campos[$val],make_where_query(array(),"AND",array("${val}.id=${key}"))).")";
 			}
 		}
 	}
