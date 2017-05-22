@@ -145,6 +145,18 @@ function check_sql($aplicacion,$permiso) {
 	return "(1=0)";
 }
 
+function check_sql2($permiso) {
+	$query="SELECT * FROM tbl_aplicaciones WHERE tabla!=''";
+	$result=db_query($query);
+	$cases=array();
+	while($row=db_fetch_row($result)) {
+		$cases[]="(id_aplicacion='${row["id"]}' AND (".check_sql($row["codigo"],$permiso)."))";
+	}
+	db_free($result);
+	$cases="(".implode(" OR ",$cases).")";
+	return $cases;
+}
+
 function eval_iniset($array) {
 	if(is_array($array)) {
 		foreach($array as $key=>$val) {

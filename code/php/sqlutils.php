@@ -744,15 +744,15 @@ function make_fulltext_query($keys,$values,$table) {
 	return $query;
 }
 
-function make_linktitle_query($prefix) {
+function make_linktitle_query($prefix="") {
 	return __make_helper_query(__FUNCTION__,$prefix);
 }
 
-function make_actiontitle_query($prefix) {
+function make_actiontitle_query($prefix="") {
 	return __make_helper_query(__FUNCTION__,$prefix);
 }
 
-function __make_helper_query($fn,$prefix) {
+function __make_helper_query($fn,$prefix="") {
 	$query="SELECT * FROM tbl_aplicaciones WHERE tabla!='' AND campo!=''";
 	$result=db_query($query);
 	$cases=array("CASE ${prefix}id_aplicacion");
