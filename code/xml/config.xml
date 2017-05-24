@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<info>
 		<name>SaltOS</name>
 		<version>3.5</version>
-		<revision eval="true">svnversion("../code")</revision>
+		<revision config="true">application_revision</revision>
 		<copyright>Copyright (C) 2007-2017 by Josep Sanz Campderrós</copyright>
 		<title config="true">application_title</title>
 		<favicon>img/favicon.png</favicon>
@@ -224,6 +224,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</javascript>
 	<configs>
 		<application_title>Suite de Gestión Empresarial</application_title>
+		<application_revision>SVN</application_revision>
 		<plot_list_size>1</plot_list_size>
 		<plot_list_width>350</plot_list_width>
 		<plot_list_height>200</plot_list_height>

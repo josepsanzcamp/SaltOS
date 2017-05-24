@@ -257,14 +257,14 @@ function CONFIG_LOADED() {
 function CONFIG($key) {
 	$row=array();
 	$query=make_select_query("tbl_configuracion","valor",make_where_query(array("clave"=>$key)));
-	$result=db_query($query);
-	if(db_num_rows($result)==1) {
-		$row=db_fetch_row($result);
-		$row=array($key=>$row["valor"]);
+	capture_next_error();
+	$config=execute_query($query);
+	$error=get_clear_error();
+	if($error=="" && $config!==null) {
+		$row=array($key=>$config);
 	} else {
 		$row=getDefault("configs");
 	}
-	db_free($result);
 	if(!isset($row[$key])) return null;
 	return $row[$key];
 }

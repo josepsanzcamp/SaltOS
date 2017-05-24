@@ -37,6 +37,7 @@ $lang=getParam("lang",getDefault("lang"));
 $style=getParam("style",getDefault("style"));
 $iconset=getParam("iconset",getDefault("iconset"));
 $_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml"));
+$_CONFIG=eval_attr($_CONFIG);
 $temp=eval_attr(xml2array("xml/styles.xml"));
 $style=in_array($style,$temp["desktop"])?$style:$temp["desktop"]["style"];
 $_ICONSET=eval_attr(xml2array("xml/iconset.xml"));

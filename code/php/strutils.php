@@ -314,11 +314,8 @@ function normalize_value($value) {
 function get_name_version_revision($copyright=false) {
 	$result=getDefault("info/name","SaltOS");
 	$result.=" v".getDefault("info/version","3.5");
-	capture_next_error();
-	$revision=svnversion("../code");
-	get_clear_error();
-	$result.=" r".getDefault("info/revision",$revision);
-	if($copyright) $result.=", ".getDefault("info/copyright");
+	$result.=" r".getDefault("info/revision","SVN");
+	if($copyright) $result.=", ".getDefault("info/copyright","Copyright (C) 2007-2017 by Josep Sanz Campderrós");
 	return $result;
 }
 
@@ -430,53 +427,8 @@ function svnversion($dir=".") {
 	if(check_commands("svnversion",getDefault("default/commandexpires",60))) {
 		return intval(ob_passthru("cd ${dir}; svnversion",getDefault("default/commandexpires",60)));
 	}
-	// ALTERNATIVE METHOD
-	static $rev=null;
-	if($rev===null) {
-		$rev=0;
-		if(!$rev) {
-			$dir=realpath($dir);
-			if(!$dir) $dir=getcwd_protected();
-			for(;;) {
-				// FOR SUBVERSION <= 11
-				$file="$dir/.svn/entries";
-				if(file_exists($file)) {
-					$data=file($file);
-					if(isset($data[3])) $rev=intval($data[3]);
-					break;
-				}
-				// FOR SUBVERSION >= 12
-				$file="$dir/.svn/wc.db";
-				if(file_exists($file)) {
-					$query="SELECT MAX(revision) FROM NODES";
-					if(class_exists("PDO")) {
-						capture_next_error();
-						$link=new PDO("sqlite:${file}");
-						$stmt=$link->query($query);
-						if($stmt) $rev=intval($stmt->fetchColumn());
-						$link=null;
-						get_clear_error();
-					} elseif(class_exists("SQLite3")) {
-						capture_next_error();
-						$link=new SQLite3($file);
-						$rev=intval($link->querySingle($query));
-						$link->close();
-						get_clear_error();
-					} elseif(check_commands("sqlite3",60)) {
-						$rev=intval(ob_passthru("sqlite3 '${file}' '${query}'",getDefault("default/commandexpires",60)));
-					}
-					break;
-				}
-				// CONTINUE
-				capture_next_error();
-				$temp=realpath($dir."/..");
-				$error=get_clear_error();
-				if($error || $dir==$temp) break;
-				$dir=$temp;
-			}
-		}
-	}
-	return $rev;
+	// NOTHING TO DO
+	return 0;
 }
 
 function gitversion($dir=".") {
