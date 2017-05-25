@@ -423,6 +423,11 @@ function inline_images($buffer) {
 }
 
 function svnversion($dir=".") {
+	if($dir=="." && file_exists("../code")) $dir="../code";
+	// USING REGULAR FILE
+	if(file_exists("${dir}/svnversion")) {
+		return intval(file_get_contents("${dir}/svnversion"));
+	}
 	// USING SVNVERSION
 	if(check_commands("svnversion",getDefault("default/commandexpires",60))) {
 		return intval(ob_passthru("cd ${dir}; svnversion",getDefault("default/commandexpires",60)));
@@ -432,6 +437,11 @@ function svnversion($dir=".") {
 }
 
 function gitversion($dir=".") {
+	if($dir=="." && file_exists("../code")) $dir="../code";
+	// USING REGULAR FILE
+	if(file_exists("${dir}/gitversion")) {
+		return intval(file_get_contents("${dir}/gitversion"));
+	}
 	// USING GIT
 	if(check_commands("git",getDefault("default/commandexpires",60))) {
 		return intval(ob_passthru("cd ${dir}; git rev-list HEAD --count",getDefault("default/commandexpires",60)));

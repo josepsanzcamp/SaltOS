@@ -227,7 +227,7 @@ class SMTP
                 break;
             case 'html':
                 //Cleans up output a bit for a better looking, HTML-safe output
-                echo htmlentities(
+                echo gmdate('Y-m-d H:i:s') . ' ' . htmlentities(
                     preg_replace('/[\r\n]+/', '', $str),
                     ENT_QUOTES,
                     'UTF-8'
@@ -989,7 +989,10 @@ class SMTP
     public function client_send($data)
     {
         $this->edebug("CLIENT -> SERVER: $data", self::DEBUG_CLIENT);
-        return fwrite($this->smtp_conn, $data);
+        set_error_handler(array($this, 'errorHandler'));
+        $result = fwrite($this->smtp_conn, $data);
+        restore_error_handler();
+        return $result;
     }
 
     /**

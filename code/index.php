@@ -96,6 +96,10 @@ if(!file_exists("xml/${page}.xml")) $page=getDefault("page");
 // PREPARE THE OUTPUT
 $_RESULT=array();
 $_RESULT["info"]=getDefault("info");
+switch($_RESULT["info"]["revision"]) {
+	case "SVN": $_RESULT["info"]["revision"]=svnversion(); break;
+	case "GIT": $_RESULT["info"]["revision"]=gitversion(); break;
+}
 $_RESULT["styles"]=getDefault("styles");
 $_RESULT["javascript"]=getDefault("javascript");
 add_css_page($_RESULT,getDefault("forcecss","default"));
