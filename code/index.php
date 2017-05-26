@@ -64,6 +64,8 @@ if(!load_lang($lang)) $lang=getDefault("lang");
 $lang=getDefault("forcelang",$lang);
 $_LANG=eval_attr(xml2Array("xml/lang/${lang}.xml"));
 $_CONFIG=eval_attr($_CONFIG);
+if(getDefault("info/revision")=="SVN") $_CONFIG["info"]["revision"]=svnversion();
+if(getDefault("info/revision")=="GIT") $_CONFIG["info"]["revision"]=gitversion();
 // EXECUTE MORE ITEMS
 post_datauser();
 check_time();
@@ -96,10 +98,6 @@ if(!file_exists("xml/${page}.xml")) $page=getDefault("page");
 // PREPARE THE OUTPUT
 $_RESULT=array();
 $_RESULT["info"]=getDefault("info");
-switch($_RESULT["info"]["revision"]) {
-	case "SVN": $_RESULT["info"]["revision"]=svnversion(); break;
-	case "GIT": $_RESULT["info"]["revision"]=gitversion(); break;
-}
 $_RESULT["styles"]=getDefault("styles");
 $_RESULT["javascript"]=getDefault("javascript");
 add_css_page($_RESULT,getDefault("forcecss","default"));

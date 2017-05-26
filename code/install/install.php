@@ -38,6 +38,8 @@ $style=getParam("style",getDefault("style"));
 $iconset=getParam("iconset",getDefault("iconset"));
 $_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml"));
 $_CONFIG=eval_attr($_CONFIG);
+if($_CONFIG["info"]["revision"]=="SVN") $_CONFIG["info"]["revision"]=svnversion();
+if($_CONFIG["info"]["revision"]=="GIT") $_CONFIG["info"]["revision"]=gitversion();
 $temp=eval_attr(xml2array("xml/styles.xml"));
 $style=in_array($style,$temp["desktop"])?$style:$temp["desktop"]["style"];
 $_ICONSET=eval_attr(xml2array("xml/iconset.xml"));
