@@ -204,7 +204,7 @@ html .ui-alt-icon .ui-radio-off:after {
 	width: 8px;
 	height: 8px;
 	border-width: 5px;
-	border-style: solid; 
+	border-style: solid;
 }
 .ui-alt-icon.ui-btn.ui-radio-on:after,
 .ui-alt-icon .ui-btn.ui-radio-on:after {
@@ -351,7 +351,7 @@ html body div.ui-slider-track.ui-body-a .ui-btn-active {
 	background-color: #FF7518 /*{a-active-background-color}*/;
 	border-color: #FE6600 /*{a-active-border}*/;
 	color: #ffffff /*{a-active-color}*/;
-	text-shadow: 0 /*{a-active-shadow-x}*/ 0 /*{a-active-shadow-y}*/ 0 /*{a-active-shadow-radius}*/ #005599 /*{a-active-shadow-color}*/;
+	text-shadow: 0 /*{a-active-shadow-x}*/ 0 /*{a-active-shadow-y}*/ 0 /*{a-active-shadow-radius}*/ #f3f3f3 /*{a-active-shadow-color}*/;
 }
 /* Active radio button icon */
 .ui-page-theme-a .ui-radio-on:after,

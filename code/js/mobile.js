@@ -814,7 +814,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		var style1=getstylesheet(html2);
 		var style2=getstylesheet(html);
 		if(style1 && style2 && $(style1).attr("href")!=$(style2).attr("href")) {
-			$("head").append("<link href='"+$(style2).attr("href")+"' rel='stylesheet' type='text/css'></link>");
+			$(style1).replaceWith(style2);
 			get_colors();
 		}
 	}

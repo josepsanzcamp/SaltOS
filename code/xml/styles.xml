@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<style>custom.violet</style>
 		<style>custom.orange</style>
 		<style>custom.red</style>
+		<style>custom.black</style>
 		<style>theme.humanity</style>
 		<style>theme.redmond</style>
 		<style>theme.ui-darkness</style>
@@ -41,6 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<style>custom.violet</style>
 		<style>custom.orange</style>
 		<style>custom.red</style>
+		<style>custom.black</style>
 		<style>theme.light</style>
 		<style>theme.dark</style>
 	</mobile>

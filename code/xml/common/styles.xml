@@ -50,6 +50,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>custom.red</value>
 		</row>
 		<row>
+			<label>Custom Black</label>
+			<value>custom.black</value>
+		</row>
+		<row>
 			<label>Theme Humanity</label>
 			<value>theme.humanity</value>
 		</row>
@@ -86,6 +90,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<row>
 			<label>Custom Red</label>
 			<value>custom.red</value>
+		</row>
+		<row>
+			<label>Custom Black</label>
+			<value>custom.black</value>
 		</row>
 		<row>
 			<label>Theme Light</label>
