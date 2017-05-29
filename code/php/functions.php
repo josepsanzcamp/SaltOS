@@ -642,12 +642,6 @@ function check_ids() {
 	return $value;
 }
 
-function load_iconset($iconset) {
-	global $_CONFIG;
-	if(!isset($_CONFIG["iconset"])) $_CONFIG["iconset"]=xml2array("xml/iconset.xml");
-	return is_array(getDefault("iconset/$iconset"));
-}
-
 function load_style($style) {
 	global $_CONFIG;
 	if(!isset($_CONFIG["styles2"])) $_CONFIG["styles2"]=xml2array("xml/styles.xml");
@@ -1447,5 +1441,12 @@ function debug_db($hash,$query="",$time=0,$iter=0,$rows=0) {
 	$stack[$hash]["time"]+=$time;
 	$stack[$hash]["iter"]+=$iter;
 	$stack[$hash]["rows"]+=$rows;
+}
+
+function ICON($icon) {
+	global $_CONFIG;
+	if(!isset($_CONFIG["icons"])) $_CONFIG["icons"]=xml2array("xml/icons.xml");
+	if(isset($_CONFIG["icons"][$icon])) return $_CONFIG["icons"][$icon];
+	return "fa fa-tag";
 }
 ?>

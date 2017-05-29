@@ -164,7 +164,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>create</icon>
+					<icon>fa fa-plus-circle</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -203,7 +203,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buscar</value>
 					<tip lang="true">buscartip</tip>
 					<onclick>buscar()</onclick>
-					<icon>find</icon>
+					<icon>fa fa-search</icon>
 					<class>nowrap</class>
 				</field>
 				<field>
@@ -213,7 +213,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<tip lang="true">liquidar</tip>
 					<onclick>liquidar1()</onclick>
 					<width>1px</width>
-					<icon>download</icon>
+					<icon>fa fa-save</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -221,7 +221,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">limpiar</value>
 					<tip lang="true">limpiartip</tip>
 					<onclick>limpiar()</onclick>
-					<icon>refresh</icon>
+					<icon>fa fa-refresh</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>
@@ -886,7 +886,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_factura()</onchange>
-							<icon>delete</icon>
+							<icon>fa fa-trash</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -982,7 +982,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 						</field>
 					</tail>
 				</fieldset>
@@ -1091,7 +1091,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_factura()</onchange>
-							<icon>delete</icon>
+							<icon>fa fa-trash</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -1198,7 +1198,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 						</field>
 					</tail>
 				</fieldset>
@@ -1243,7 +1243,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>calendar</icon>
+							<icon>fa fa-calendar</icon>
 						</field>
 						<field>
 							<name>percent</name>
@@ -1269,7 +1269,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_vencimientos(this)</onchange>
-							<icon>delete</icon>
+							<icon>fa fa-trash</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -1313,7 +1313,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>calendar</icon>
+							<icon>fa fa-calendar</icon>
 						</field>
 						<field>
 							<name>percent</name>
@@ -1344,7 +1344,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 						</field>
 					</tail>
 				</fieldset>

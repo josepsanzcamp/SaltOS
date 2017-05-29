@@ -31,13 +31,11 @@ if(typeof(__favicon__)=="undefined" && typeof(parent.__favicon__)=="undefined") 
 
 	function favicon_animate(num) {
 		if(num>0) {
-			var num1=((num>99)?99:num)*2;
-			var num2=num1+1;
 			jQuery.favicon.animate(
-				"?action=favicon&format=animation",
-				"?action=favicon&format=alternate",
+				"img/favicon2.png",
+				"img/favicon3.png",
 				{
-					frames:[num1,num2],
+					frames:[0,1],
 					interval:1000,
 					onDraw:function() {
 						favicon_running=1;

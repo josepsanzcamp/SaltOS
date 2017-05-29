@@ -179,7 +179,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<ficheroactual>Fitxer actual</ficheroactual>
 		<language>Idioma</language>
 		<style>Disseny</style>
-		<iconset>Icones</iconset>
 		<nodata>Sense resultats a mostrar</nodata>
 		<prioridad>Prioritat</prioridad>
 		<sinproyecto>[Sense projecte associat]</sinproyecto>

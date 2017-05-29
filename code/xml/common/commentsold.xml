@@ -73,7 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value>1</value>
 				<width>1px</width>
 				<width2>1px</width2>
-				<icon>delete</icon>
+				<icon>fa fa-trash</icon>
 				<class>tbody</class>
 				<class2>tbody</class2>
 			</field>

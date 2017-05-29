@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value lang="true">create</value>
 				<tip lang="true">create</tip>
 				<onclick>create()</onclick>
-				<icon>create</icon>
+				<icon>fa fa-plus-circle</icon>
 				<class>nowrap contextmenu</class>
 				<class2>shortcut_ctrl_insert</class2>
 				<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>button</type>
 				<value lang="true">gcalendar</value>
 				<onclick>google_calendar()</onclick>
-				<icon>agenda</icon>
+				<icon>fa fa-cloud</icon>
 				<tip lang="true">gcalendartip</tip>
 				<class>nowrap contextmenu</class>
 				<width>1px</width>
@@ -73,7 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>button</type>
 				<value lang="true">notifyclear</value>
 				<onclick>notify_clear()</onclick>
-				<icon>refresh</icon>
+				<icon>fa fa-refresh</icon>
 				<tip lang="true">notifytip</tip>
 				<class>nowrap contextmenu</class>
 				<width>1px</width>
@@ -87,7 +87,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>button</type>
 				<value lang="true">expand</value>
 				<onclick>openclose_all_calendar("[+]")</onclick>
-				<icon>expand</icon>
+				<icon>fa fa-expand</icon>
 				<tip lang="true">expandtip</tip>
 				<class>nowrap contextmenu</class>
 				<width>1px</width>
@@ -96,7 +96,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>button</type>
 				<value lang="true">collapse</value>
 				<onclick>openclose_all_calendar("[-]")</onclick>
-				<icon>collapse</icon>
+				<icon>fa fa-compress</icon>
 				<tip lang="true">collapsetip</tip>
 				<class>nowrap contextmenu</class>
 				<width>1px</width>
@@ -111,21 +111,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<tip lang="true">prevmonth</tip>
 				<class>nowrap contextmenu</class>
 				<onclick>setIntCookie("saltos_calendar_offset",getIntCookie("saltos_calendar_offset")-1);update_calendar()</onclick>
-				<icon>previous</icon>
+				<icon>fa fa-backward</icon>
 			</field>
 			<field>
 				<type>button</type>
 				<tip lang="true">currentmonth</tip>
 				<class>nowrap contextmenu</class>
 				<onclick>setIntCookie("saltos_calendar_offset",0);update_calendar()</onclick>
-				<icon>home</icon>
+				<icon>fa fa-home</icon>
 			</field>
 			<field>
 				<type>button</type>
 				<tip lang="true">nextmonth</tip>
 				<class>nowrap contextmenu</class>
 				<onclick>setIntCookie("saltos_calendar_offset",getIntCookie("saltos_calendar_offset")+1);update_calendar()</onclick>
-				<icon>next</icon>
+				<icon>fa fa-forward</icon>
 			</field>
 		</row>
 	</fields>

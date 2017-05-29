@@ -179,7 +179,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">view</label>
 					<width>1px</width>
-					<icon>view</icon>
+					<icon>fa fa-search</icon>
 					<class>tbody</class>
 				</field>
 				<field>
@@ -187,7 +187,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">pdf</label>
 					<width>1px</width>
-					<icon>pdf</icon>
+					<icon>fa fa-file-pdf-o</icon>
 					<class>tbody</class>
 				</field>
 				<field>
@@ -195,7 +195,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">view2</label>
 					<width>1px</width>
-					<icon>view2</icon>
+					<icon>fa fa-desktop</icon>
 					<class>tbody</class>
 				</field>
 				<field>
@@ -203,7 +203,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">mail</label>
 					<width>1px</width>
-					<icon>mail</icon>
+					<icon>fa fa-envelope-o</icon>
 					<class>tbody</class>
 				</field>
 			</row>
@@ -218,7 +218,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">actionliquidar</value>
 					<class>left</class>
 					<onclick>liquidar1()</onclick>
-					<icon>download</icon>
+					<icon>fa fa-save</icon>
 				</field>
 			</tail>
 		</fieldset>

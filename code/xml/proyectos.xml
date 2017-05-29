@@ -168,7 +168,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>date</type>
 						<width>90px</width>
 						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")</value>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha1","le","fecha2")</onchange>
 					</field>
 					<field>
@@ -178,7 +178,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>90px</width>
 						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")</value>
 						<class2>right</class2>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha2","ge","fecha1")</onchange>
 					</field>
 				</row>
@@ -294,7 +294,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>create</icon>
+					<icon>fa fa-plus-circle</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -333,7 +333,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buscar</value>
 					<tip lang="true">buscartip</tip>
 					<onclick>buscar()</onclick>
-					<icon>find</icon>
+					<icon>fa fa-search</icon>
 					<class>nowrap</class>
 				</field>
 				<field>
@@ -341,7 +341,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">limpiar</value>
 					<tip lang="true">limpiartip</tip>
 					<onclick>limpiar()</onclick>
-					<icon>refresh</icon>
+					<icon>fa fa-refresh</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>
@@ -624,7 +624,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 						<field>
 							<name>id_campanya</name>
@@ -635,7 +635,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('campanyas',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 					</row>
 					<row>
@@ -1059,7 +1059,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_proyecto()</onchange>
-							<icon>delete</icon>
+							<icon>fa fa-trash</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -1159,7 +1159,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 						</field>
 					</tail>
 				</fieldset>
@@ -1330,7 +1330,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_proyecto()</onchange>
-							<icon>delete</icon>
+							<icon>fa fa-trash</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -1441,7 +1441,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 						</field>
 					</tail>
 				</fieldset>
@@ -1554,7 +1554,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<type>link</type>
 							<label lang="true">view</label>
 							<width>1px</width>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 							<class>tbody</class>
 						</field>
 					</row>
@@ -1586,7 +1586,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<onclick>setParam("page","seguimientos");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>create</icon>
+				<icon>fa fa-plus-circle</icon>
 			</field>
 			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
@@ -1595,7 +1595,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<onclick>setParam("page","actas");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>create</icon>
+				<icon>fa fa-plus-circle</icon>
 			</field>
 			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
@@ -1604,7 +1604,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<onclick>setParam("page","contactos");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
 				<disabled eval="true">check_user("contactos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>create</icon>
+				<icon>fa fa-plus-circle</icon>
 			</field>
 			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
@@ -1613,7 +1613,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<onclick>setParam("page","agenda");setParam("action","form");setParam("id_cliente",$("select[name$='id_cliente']").val());setParam("id_proyecto",abs(getParam("id")));setParam("id","0");submit1()</onclick>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>create</icon>
+				<icon>fa fa-plus-circle</icon>
 			</field>
 			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
@@ -1622,7 +1622,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<onclick>facturar()</onclick>
 				<disabled eval="true">check_user("facturas","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>create</icon>
+				<icon>fa fa-plus-circle</icon>
 			</field>
 			<field global="id" ifeval="$id==0">
 				<type>button</type>
@@ -1631,7 +1631,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<onclick>setParam("page","clientes");setParam("action","form");submit1()</onclick>
 				<disabled eval="true">check_user("clientes","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>create</icon>
+				<icon>fa fa-plus-circle</icon>
 			</field>
 		</node>
 		<javascript>

@@ -142,7 +142,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>date</type>
 						<width>90px</width>
 						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha1","le","fecha2")</onchange>
 					</field>
 					<field>
@@ -152,7 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>90px</width>
 						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
 						<class2>right</class2>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha2","ge","fecha1")</onchange>
 					</field>
 					<field>
@@ -190,7 +190,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>date</type>
 						<width>90px</width>
 						<value global="fecha1reg" eval="true">$fecha1reg=getParam("fecha1reg")?dateval(getParam("fecha1reg")):""</value>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha1reg","le","fecha2reg")</onchange>
 					</field>
 					<field>
@@ -200,7 +200,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>90px</width>
 						<value global="fecha2reg" eval="true">$fecha2reg=getParam("fecha2reg")?dateval(getParam("fecha2reg")):""</value>
 						<class2>right</class2>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha2reg","ge","fecha1reg")</onchange>
 					</field>
 					<field>
@@ -236,7 +236,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>date</type>
 						<width>90px</width>
 						<value global="fecha1liq" eval="true">$fecha1liq=getParam("fecha1liq")?dateval(getParam("fecha1liq")):""</value>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha1liq","le","fecha2liq")</onchange>
 					</field>
 					<field>
@@ -246,7 +246,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>90px</width>
 						<value global="fecha2liq" eval="true">$fecha2liq=getParam("fecha2liq")?dateval(getParam("fecha2liq")):""</value>
 						<class2>right</class2>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha2liq","ge","fecha1liq")</onchange>
 					</field>
 					<field>
@@ -350,7 +350,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>create</icon>
+					<icon>fa fa-plus-circle</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -389,7 +389,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buscar</value>
 					<tip lang="true">buscartip</tip>
 					<onclick>buscar()</onclick>
-					<icon>find</icon>
+					<icon>fa fa-search</icon>
 					<class>nowrap</class>
 				</field>
 				<field ifeval="!ismobile()">
@@ -397,7 +397,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">excel</value>
 					<tip lang="true">exceltip</tip>
 					<onclick>excel()</onclick>
-					<icon>excel</icon>
+					<icon>fa fa-file-excel-o</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -406,7 +406,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">liquidar</value>
 					<onclick>liquidar1()</onclick>
 					<width>1px</width>
-					<icon>download</icon>
+					<icon>fa fa-save</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -414,7 +414,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">limpiar</value>
 					<tip lang="true">limpiartip</tip>
 					<onclick>limpiar()</onclick>
-					<icon>refresh</icon>
+					<icon>fa fa-refresh</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>
@@ -562,7 +562,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<colspan>4</colspan>
 							<focus>true</focus>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 							<required>true</required>
 						</field>
 						<field>
@@ -605,7 +605,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<onchange>update_proyectos()</onchange>
 							<colspan>4</colspan>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 					</row>
 					<row>
@@ -618,7 +618,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>4</colspan>
 							<link>openapp('proveedores',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 						<field>
 							<name>id_proyecto</name>
@@ -629,7 +629,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 					</row>
 					<row>
@@ -654,7 +654,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<required>true</required>
-							<icon>calendar</icon>
+							<icon>fa fa-calendar</icon>
 						</field>
 					</row>
 					<row>
@@ -774,7 +774,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<width>90px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
-							<icon>calendar</icon>
+							<icon>fa fa-calendar</icon>
 						</field>
 					</row>
 				</fieldset>
@@ -833,7 +833,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>calendar</icon>
+							<icon>fa fa-calendar</icon>
 						</field>
 						<field>
 							<name>percent</name>
@@ -868,7 +868,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>calendar</icon>
+							<icon>fa fa-calendar</icon>
 						</field>
 						<field global="id" ifeval="$id&gt;=0">
 							<name>delete</name>
@@ -878,7 +878,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_vencimientos(this)</onchange>
-							<icon>delete</icon>
+							<icon>fa fa-trash</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -932,7 +932,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>calendar</icon>
+							<icon>fa fa-calendar</icon>
 						</field>
 						<field>
 							<name>percent</name>
@@ -967,7 +967,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>calendar</icon>
+							<icon>fa fa-calendar</icon>
 						</field>
 					</row>
 				</fieldset>
@@ -985,7 +985,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 				<onclick>setParam("page","proveedores");setParam("action","form");submit1()</onclick>
 				<disabled eval="true">check_user("proveedores","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>create</icon>
+				<icon>fa fa-plus-circle</icon>
 			</field>
 		</node>
 		<javascript>

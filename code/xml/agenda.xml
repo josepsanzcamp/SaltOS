@@ -123,7 +123,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>date</type>
 						<width>90px</width>
 						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha1","le","fecha2")</onchange>
 					</field>
 					<field>
@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>90px</width>
 						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
 						<class2>right</class2>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha2","ge","fecha1")</onchange>
 					</field>
 				</row>
@@ -274,7 +274,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>create</icon>
+					<icon>fa fa-plus-circle</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -312,14 +312,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buscar</value>
 					<tip lang="true">buscartip</tip>
 					<onclick>buscar()</onclick>
-					<icon>find</icon>
+					<icon>fa fa-search</icon>
 					<class>nowrap</class>
 				</field>
 				<field>
 					<type>button</type>
 					<value lang="true">gcalendar</value>
 					<onclick>google_calendar()</onclick>
-					<icon>agenda</icon>
+					<icon>fa fa-cloud</icon>
 					<tip lang="true">gcalendartip</tip>
 					<class>nowrap contextmenu</class>
 					<width>1px</width>
@@ -328,7 +328,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>button</type>
 					<value lang="true">notifyclear</value>
 					<onclick>notify_clear()</onclick>
-					<icon>refresh</icon>
+					<icon>fa fa-refresh</icon>
 					<tip lang="true">notifytip</tip>
 					<class>nowrap contextmenu</class>
 					<width>1px</width>
@@ -338,7 +338,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">limpiar</value>
 					<tip lang="true">limpiartip</tip>
 					<onclick>limpiar()</onclick>
-					<icon>refresh</icon>
+					<icon>fa fa-refresh</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>
@@ -475,7 +475,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>openapp('campanyas',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 					</row>
 					<row>
@@ -487,7 +487,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('posiblescli',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 							<onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
 							<colspan>3</colspan>
 						</field>
@@ -499,7 +499,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('presupuestos',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 					</row>
 					<row>
@@ -512,7 +512,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 							<colspan>3</colspan>
 						</field>
 						<field>
@@ -523,7 +523,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 					</row>
 					<row>
@@ -540,8 +540,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<colspan>3</colspan>
-							<icon>calendar</icon>
-							<icon2>clock</icon2>
+							<icon>fa fa-calendar</icon>
+							<icon2>fa fa-clock-o</icon2>
 							<onchange>check_datetime("dstart","le","dstop")</onchange>
 						</field>
 						<field>
@@ -551,8 +551,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<icon>calendar</icon>
-							<icon2>clock</icon2>
+							<icon>fa fa-calendar</icon>
+							<icon2>fa fa-clock-o</icon2>
 							<onchange>check_datetime("dstop","ge","dstart")</onchange>
 						</field>
 					</row>

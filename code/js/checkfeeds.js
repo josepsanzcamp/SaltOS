@@ -79,16 +79,7 @@ if(typeof(__checkfeeds__)=="undefined" && typeof(parent.__checkfeeds__)=="undefi
 	}
 
 	function number_feeds(num) {
-		var obj=$(".number_feeds");
-		$(obj).each(function() {
-			var padre=$(this).parent();
-			unmake_numbers(padre);
-			var html=$(this).html();
-			html=strtok(html,"(");
-			html=html+="("+num+")";
-			$(this).html(html);
-			make_numbers(padre);
-		});
+		make_numbers($(".number_feeds"),num);
 	}
 
 	$(function() {

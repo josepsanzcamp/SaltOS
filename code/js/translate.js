@@ -37,8 +37,8 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 			$(div).append("<textarea "+clase+" spellcheck='false'></textarea>");
 			$(div).append("<br/>");
 			$(div).append("<select "+clase+"></select>");
-			var down="<span class='saltos-icon saltos-icon-down'></span>";
-			var up="<span class='saltos-icon saltos-icon-up'></span>";
+			var down="<span class='fa fa-arrow-down'></span>";
+			var up="<span class='fa fa-arrow-up'></span>";
 			$(div).append("<a href='javascript:void(0)' "+clase+">"+down+"</a>");
 			$(div).append("<a href='javascript:void(0)' "+clase+">"+up+"</a>");
 			$(div).append("<br/>");

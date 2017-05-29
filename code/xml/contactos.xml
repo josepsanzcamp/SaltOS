@@ -142,7 +142,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>create</icon>
+					<icon>fa fa-plus-circle</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -181,7 +181,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buscar</value>
 					<tip lang="true">buscartip</tip>
 					<onclick>buscar()</onclick>
-					<icon>find</icon>
+					<icon>fa fa-search</icon>
 					<class>nowrap</class>
 				</field>
 				<field>
@@ -189,7 +189,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">limpiar</value>
 					<tip lang="true">limpiartip</tip>
 					<onclick>limpiar()</onclick>
-					<icon>refresh</icon>
+					<icon>fa fa-refresh</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>
@@ -316,7 +316,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 								update_contacto();
 							</oncomplete>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 						<field>
 							<name>id_proveedor</name>
@@ -327,7 +327,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>openapp('proveedores',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 							<onchange>
 								$("input[name$=id_cliente]").val(0);
 								$("input[name$=nombre_cliente]").val("");
@@ -347,7 +347,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 						<field>
 							<name>id_empleado</name>
@@ -358,7 +358,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>openapp('empleados',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 							<onchange>
 								$("input[name$=id_cliente]").val(0);
 								$("input[name$=nombre_cliente]").val("");

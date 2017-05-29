@@ -36,13 +36,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 .ui-state-highlight {
 	/* border: 1px solid #fad42e!important; */
 	background: #fbec88!important;
-	color: #363636!important;
+	color:#363636!important;
 }
 
 .ui-state-error {
 	/* border: 1px solid #cd0a0a!important; */
 	background: #fef1ec!important;
-	color: #cd0a0a!important;
+	color:#cd0a0a!important;
 }
 
 /* AUTO-GROWING IFRAMES */

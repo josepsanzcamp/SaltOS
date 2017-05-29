@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<option global="temp" ifeval="check_user($temp,'menu')">
 		<label global="temp" eval="true">LANG($temp)</label>
 		<onclick global="temp" eval="true">"opencontent('?page=$temp')"</onclick>
-		<icon global="temp" eval="true">$temp</icon>
+		<icon global="temp" eval="true">ICON($temp)</icon>
 		<tip global="temp" eval="true">LANG("desc_$temp")</tip>
 		<class global="temp" eval="true">"nowrap".($temp=="correo"?" number_correo number":"").($temp=="agenda"?" number_agenda number":"").($temp=="feeds"?" number_feeds number":"")</class>
 		<selected global="page,temp" eval="true">$page==$temp?"true":"false"</selected>

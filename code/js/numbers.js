@@ -27,26 +27,7 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 	"use strict";
 	var __numbers__=1;
 
-	function load_numbers() {
-		if(!exists_numbers()) return;
-		// DETECT CURRENT NUMBER COLOR SCHEMA
-		var prefix="?action=number&format=css"
-		var last=null;
-		$("link[rel=stylesheet]").each(function() {
-			var href=$(this).attr("href");
-			if(strpos(href,prefix)!==false) last=this;
-		});
-		// GET COLORS OF ERROR CLASS
-		var color=rgb2hex(get_colors("ui-state-error","color"));
-		var background=rgb2hex(get_colors("ui-state-error","background-color"));
-		var href=prefix+"&bgcolor="+color+"&fgcolor="+background;
-		if(!last || $(last).attr("href")!=href) {
-			$("head").append("<link href='"+href+"' rel='stylesheet' type='text/css'></link>");
-		}
-	}
-
 	function update_numbers() {
-		if(!exists_numbers()) return;
 		if(!saltos_islogin()) return;
 		// LOAD AJAX COUNTS
 		var data="action=ajax&query=numbers&page="+getParam("page")+"&action2="+getParam("action")+"&id="+getParam("id");
@@ -65,42 +46,25 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 		});
 	}
 
-	function make_numbers(obj) {
-		if(!exists_numbers()) return;
-		if(typeof(obj)=="undefined") var obj=$("body");
-		// CONVERT THE NUMBERS TO IMAGES
-		$("a.number",obj).each(function() {
-			var html=$(this).html();
-			if(substr(html,-1,1)==")") {
-				var txt=strtok(html,"(");
-				var num1=intval(strtok(")"));
-				var num2=(num1>99)?99:num1;
-				var span="<span class='number number-icon number-icon-"+num2+"' original='"+num1+"'></span>";
-				$(this).html(txt);
-				$(this).append(span);
-			}
-		});
+	function make_numbers(obj,num) {
+		unmake_numbers(obj);
+		var clase="none";
+		var space="&nbsp;";
+		if(num>0) clase="";
+		if(num>9) space="";
+		var span="<span class='number "+clase+"'>"+space+num+space+"</span>";
+		$(obj).append(span);
 	}
 
 	function unmake_numbers(obj) {
-		if(!exists_numbers()) return;
 		if(typeof(obj)=="undefined") var obj=$("body");
 		// CONVERT THE IMAGES TO NUMBERS
-		$("span.number",obj).each(function() {
-			var num=$(this).attr("original");
-			$(this).parent().append("("+num+")");
-			$(this).remove();
-		});
-	}
-
-	function exists_numbers() {
-		return $(".number").length;
+		$("span.number",obj).remove();
 	}
 
 }
 
 "use strict";
 $(function() {
-	load_numbers();
 	update_numbers();
 });

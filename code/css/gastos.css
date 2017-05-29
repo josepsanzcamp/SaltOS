@@ -28,9 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 .estado.style_pending {
-	background: #2780e3;
+	background:#0000aa;
 }
 
 .estado.style_alarm {
-	background: #FF0039;
+	background:#00aa00;
 }

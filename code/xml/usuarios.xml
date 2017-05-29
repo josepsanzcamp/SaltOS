@@ -116,7 +116,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>create</icon>
+					<icon>fa fa-plus-circle</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -155,7 +155,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buscar</value>
 					<tip lang="true">buscartip</tip>
 					<onclick>buscar()</onclick>
-					<icon>find</icon>
+					<icon>fa fa-search</icon>
 					<class>nowrap</class>
 				</field>
 				<field>
@@ -163,7 +163,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">limpiar</value>
 					<tip lang="true">limpiartip</tip>
 					<onclick>limpiar()</onclick>
-					<icon>refresh</icon>
+					<icon>fa fa-refresh</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>
@@ -519,7 +519,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>2</colspan>
 							<required>true</required>
-							<icon>clock</icon>
+							<icon>fa fa-clock-o</icon>
 						</field>
 						<field>
 							<name>hora_fin</name>
@@ -528,7 +528,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<width>60px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<icon>clock</icon>
+							<icon>fa fa-clock-o</icon>
 						</field>
 					</row>
 				</fieldset>

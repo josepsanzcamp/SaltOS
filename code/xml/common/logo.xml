@@ -97,7 +97,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>color</type>
 				<width>60px</width>
 				<colspan>2</colspan>
-				<icon>color</icon>
+				<icon>fa fa-thumb-tack</icon>
 			</field>
 			<field>
 				<name>color_text1</name>
@@ -105,14 +105,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>color</type>
 				<width>60px</width>
 				<colspan>2</colspan>
-				<icon>color</icon>
+				<icon>fa fa-thumb-tack</icon>
 			</field>
 			<field>
 				<name>color_text2</name>
 				<label lang="true">colortext2</label>
 				<type>color</type>
 				<width>60px</width>
-				<icon>color</icon>
+				<icon>fa fa-thumb-tack</icon>
 			</field>
 		</row>
 	</fieldset>

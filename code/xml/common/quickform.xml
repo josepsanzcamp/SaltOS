@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<label lang="true">first</label>
 			<value ifeval="ismobile()">&lt;&lt;</value>
 			<onclick>if(!is_disabled(this)) first()</onclick>
-			<icon>first</icon>
+			<icon>fa fa-fast-backward</icon>
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_home</class2>
 		</field>
@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<label lang="true">previous</label>
 			<value ifeval="ismobile()">&lt;</value>
 			<onclick>if(!is_disabled(this)) previous()</onclick>
-			<icon>previous</icon>
+			<icon>fa fa-backward</icon>
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
 		</field>
@@ -72,7 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<label lang="true">next</label>
 			<value ifeval="ismobile()">&gt;</value>
 			<onclick>if(!is_disabled(this)) next()</onclick>
-			<icon>next</icon>
+			<icon>fa fa-forward</icon>
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
 		</field>
@@ -83,7 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<label lang="true">last</label>
 			<value ifeval="ismobile()">&gt;&gt;</value>
 			<onclick>if(!is_disabled(this)) last()</onclick>
-			<icon>last</icon>
+			<icon>fa fa-fast-forward</icon>
 			<class>nowrap contextmenu</class>
 			<class2>ui-state-disabled shortcut_ctrl_end</class2>
 		</field>

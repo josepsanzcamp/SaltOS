@@ -78,14 +78,6 @@ $stylepre=getDefault("stylepre");
 $stylepost=getDefault("stylepost");
 if(!load_style($style)) $style=getDefault("style");
 $style=getDefault("forcestyle",$style);
-// GET THE ICONSET
-$iconset=getDefault("iconset");
-$iconset=useCookie("iconset","",$iconset);
-$iconset=use_table_cookies("iconset","",$iconset);
-$iconsetpre=getDefault("iconsetpre");
-$iconsetpost=getDefault("iconsetpost");
-if(!load_iconset($iconset)) $iconset=getDefault("iconset");
-$iconset=getDefault("forceiconset",$iconset);
 // GET THE FLOW PARAMETERS
 $page=getParam("page",getDefault("page"));
 $action=getParam("action",getDefault("action"));
@@ -103,7 +95,6 @@ $_RESULT["javascript"]=getDefault("javascript");
 add_css_page($_RESULT,getDefault("forcecss","default"));
 add_js_page($_RESULT,getDefault("forcejs","default"));
 if(load_style($style)) set_array($_RESULT["styles"],"include",$stylepre.$style.$stylepost);
-if(load_iconset($iconset)) set_array($_RESULT["styles"],"include",$iconsetpre.$iconset.$iconsetpost);
 // SWITCH FOR EACH CASE
 if(!check_user()) {
 	$_LANG["default"]="login,common";

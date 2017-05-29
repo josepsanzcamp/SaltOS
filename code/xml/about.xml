@@ -596,18 +596,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Crystal Project (LGPL*)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.everaldo.com/crystal/")</onclick>
-						</field>
-						<field>
-							<label>GNome High Contrast (LGPL-2.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://commons.wikimedia.org/wiki/Template:GNOME-high-contrast-icon-theme")</onclick>
-						</field>
-						<field>
 							<label>Gorri Sans (GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
@@ -619,14 +607,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>openwin("http://codigos-postales.albin.es/")</onclick>
 						</field>
-					</row>
-					<row>
-						<field>
-							<label>FamFamFam Silk Icons (CC-BY-2.5)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.famfamfam.com/lab/icons/silk/")</onclick>
-						</field>
 						<field>
 							<label>GenerateData.com (GPL-2.0)</label>
 							<type>link</type>
@@ -634,9 +614,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.generatedata.com/")</onclick>
 						</field>
 						<field>
-							<type>separator</type>
+							<label>Font Awesome Icons (SIL OFL 1.1)</label>
+							<type>link</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<onclick>openwin("http://fontawesome.io/")</onclick>
 						</field>
 					</row>
 					<row>
@@ -746,7 +727,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>button</type>
 							<value lang="true">buttonreturn</value>
 							<onclick>goback()</onclick>
-							<icon>return</icon>
+							<icon>fa fa-hand-o-left</icon>
 							<class>nowrap right</class>
 						</field>
 					</row>

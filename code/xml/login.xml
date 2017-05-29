@@ -118,14 +118,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<colspan>2</colspan>
 				</actions>
 			</row>
-			<row ifeval="!getDefault('forceiconset') &amp;&amp; !ismobile()">
-				<field>
-					<field include="xml/common/iconset.xml" replace="true" />
-				</field>
-				<actions path="field" append="true">
-					<colspan>2</colspan>
-				</actions>
-			</row>
 		</fields>
 		<fields ifeval="eval_bool(getDefault('security/allowremember'))">
 			<row>
@@ -144,7 +136,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>button</type>
 					<value lang="true">enter</value>
 					<onclick>if(check_required()) submit1()</onclick>
-					<icon>accept</icon>
+					<icon>fa fa-check-circle</icon>
 				</field>
 			</row>
 		</fields>

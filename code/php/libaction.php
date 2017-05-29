@@ -32,7 +32,7 @@ function __cache_resolve_path($buffer,$file) {
 		$img=substr($buffer,$pos+4,$pos2-$pos-4);
 		if(in_array(substr($img,0,1),array("'",'"'))) $img=substr($img,1);
 		if(in_array(substr($img,-1,1),array("'",'"'))) $img=substr($img,0,-1);
-		$newimg=semi_realpath($dirname_file.$img);
+		$newimg=semi_realpath($dirname_file.strtok($img,"?"));
 		if(file_exists($newimg)) {
 			$buffer=substr_replace($buffer,$newimg,$pos+4,$pos2-$pos-4);
 			$pos2=$pos2-strlen($img)+strlen($newimg);

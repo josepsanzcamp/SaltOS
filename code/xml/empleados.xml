@@ -94,7 +94,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>create</icon>
+					<icon>fa fa-plus-circle</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buscar</value>
 					<tip lang="true">buscartip</tip>
 					<onclick>buscar()</onclick>
-					<icon>find</icon>
+					<icon>fa fa-search</icon>
 					<class>nowrap</class>
 				</field>
 				<field>
@@ -141,7 +141,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">limpiar</value>
 					<tip lang="true">limpiartip</tip>
 					<onclick>limpiar()</onclick>
-					<icon>refresh</icon>
+					<icon>fa fa-refresh</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>
@@ -454,7 +454,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
 				<onclick>setParam("page","contactos");setParam("action","form");setParam("id_empleado",abs(getParam("id")));setParam("id","0");submit1()</onclick>
 				<disabled eval="true">check_user("contactos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>create</icon>
+				<icon>fa fa-plus-circle</icon>
 			</field>
 		</node>
 		<javascript>

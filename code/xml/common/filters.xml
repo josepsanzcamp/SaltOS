@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value lang="true">loadfilter</value>
 				<tip lang="true">loadfiltertip</tip>
 				<onclick>load_filter()</onclick>
-				<icon>find</icon>
+				<icon>fa fa-search</icon>
 				<class>nowrap</class>
 			</field>
 			<field>
@@ -58,7 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value lang="true">updatefilter</value>
 				<tip lang="true">updatefiltertip</tip>
 				<onclick>update_filter()</onclick>
-				<icon>download</icon>
+				<icon>fa fa-save</icon>
 				<class>nowrap</class>
 			</field>
 			<field>
@@ -66,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value lang="true">deletefilter</value>
 				<tip lang="true">deletefiltertip</tip>
 				<onclick>delete_filter()</onclick>
-				<icon>delete</icon>
+				<icon>fa fa-trash</icon>
 				<class>nowrap</class>
 			</field>
 		</row>
@@ -85,7 +85,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value lang="true">createfilter</value>
 				<tip lang="true">createfiltertip</tip>
 				<onclick>create_filter()</onclick>
-				<icon>download</icon>
+				<icon>fa fa-save</icon>
 				<class>nowrap</class>
 			</field>
 			<field>
@@ -93,7 +93,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value lang="true">renamefilter</value>
 				<tip lang="true">renamefiltertip</tip>
 				<onclick>rename_filter()</onclick>
-				<icon>download</icon>
+				<icon>fa fa-save</icon>
 				<class>nowrap</class>
 			</field>
 		</row>

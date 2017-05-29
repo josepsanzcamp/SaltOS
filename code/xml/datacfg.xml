@@ -88,7 +88,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<value global="temp" eval="true">LANG($temp)</value>
 							<onclick global="temp" eval="true">"openurl('?page=datacfg&amp;action=$temp');"</onclick>
 							<class>right</class>
-							<icon>accept</icon>
+							<icon>fa fa-check-circle</icon>
 						</field>
 					</row>
 				</fieldset>
@@ -168,7 +168,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<value global="temp" eval="true">LANG($temp)</value>
 							<onclick global="temp" eval="true">"setParam('action','$temp');submit1();"</onclick>
 							<class>right nowrap</class>
-							<icon>accept</icon>
+							<icon>fa fa-check-circle</icon>
 						</field>
 					</row>
 				</fieldset>

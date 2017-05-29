@@ -29,19 +29,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 .estado.state_new {
-	background: #3FB618;
+	background:#00aa00;
 }
 
 .estado.state_wait {
-	background: #2780e3;
+	background:#0000aa;
 }
 
 .estado.state_cool {
-	background: #FF7518;
+	background:#ffaa00;
 }
 
 .enlace {
 	display:block;
 	overflow:hidden;
 	width:800px;
+}
+
+/* FOR FONT AWESOME */
+.fa-tag-new {
+	color:#00aa00;
+}
+
+.fa-tag-wait {
+	color:#0000aa;
+}
+
+.fa-tag-cool {
+	color:#ffaa00;
 }

@@ -81,7 +81,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">view</label>
 					<width>1px</width>
-					<icon>view</icon>
+					<icon>fa fa-search</icon>
 					<class>tbody</class>
 				</field>
 				<field>
@@ -89,7 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">vcard</label>
 					<width>1px</width>
-					<icon>vcard</icon>
+					<icon>fa fa-address-card</icon>
 					<class>tbody</class>
 				</field>
 				<field>
@@ -97,7 +97,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">qrcode</label>
 					<width>1px</width>
-					<icon>qrcode</icon>
+					<icon>fa fa-qrcode</icon>
 					<class>tbody</class>
 				</field>
 			</row>

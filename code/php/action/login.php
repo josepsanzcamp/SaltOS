@@ -30,7 +30,6 @@ if(getParam("action")=="login") {
 	$remember=getParam("remember");
 	$lang=getParam("lang");
 	$style=getParam("style");
-	$iconset=getParam("iconset");
 	if($user!="" || $pass!="") {
 		$check1=check_security("retries");
 		$check2=check_captcha($captcha);
@@ -62,7 +61,6 @@ if(getParam("action")=="login") {
 	}
 	useCookie("lang",$lang);
 	useCookie("style",$style);
-	useCookie("iconset",$iconset);
 	$querystring=getParam("querystring");
 	$querystring=html_entity_decode($querystring,ENT_COMPAT,"UTF-8");
 	$querystring=$querystring?"?${querystring}":"";

@@ -110,7 +110,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>date</type>
 						<width>90px</width>
 						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha1","le","fecha2")</onchange>
 					</field>
 					<field>
@@ -120,7 +120,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>90px</width>
 						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
 						<class2>right</class2>
-						<icon>calendar</icon>
+						<icon>fa fa-calendar</icon>
 						<onchange>check_date("fecha2","ge","fecha1")</onchange>
 					</field>
 				</row>
@@ -204,7 +204,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>create</icon>
+					<icon>fa fa-plus-circle</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -243,7 +243,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buscar</value>
 					<tip lang="true">buscartip</tip>
 					<onclick>buscar()</onclick>
-					<icon>find</icon>
+					<icon>fa fa-search</icon>
 					<class>nowrap</class>
 				</field>
 				<field ifeval="!ismobile()">
@@ -251,7 +251,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">pdf</value>
 					<tip lang="true">pdftip</tip>
 					<onclick>pdf()</onclick>
-					<icon>pdf</icon>
+					<icon>fa fa-file-pdf-o</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field ifeval="!ismobile()">
@@ -259,7 +259,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">view2</value>
 					<tip lang="true">view2tip</tip>
 					<onclick>view4()</onclick>
-					<icon>view2</icon>
+					<icon>fa fa-desktop</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -267,7 +267,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">mail</value>
 					<tip lang="true">mailtip</tip>
 					<onclick>mail()</onclick>
-					<icon>mail</icon>
+					<icon>fa fa-envelope-o</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -275,7 +275,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">limpiar</value>
 					<tip lang="true">limpiartip</tip>
 					<onclick>limpiar()</onclick>
-					<icon>refresh</icon>
+					<icon>fa fa-refresh</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>
@@ -380,7 +380,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('campanyas',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 					</row>
 					<row>
@@ -393,7 +393,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('posiblescli',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 							<onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
 						</field>
 						<field>
@@ -404,7 +404,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('presupuestos',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 					</row>
 					<row>
@@ -418,7 +418,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 						<field>
 							<name>id_proyecto</name>
@@ -428,7 +428,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon>view</icon>
+							<icon>fa fa-search</icon>
 						</field>
 					</row>
 					<row>
@@ -444,8 +444,8 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<icon>calendar</icon>
-							<icon2>clock</icon2>
+							<icon>fa fa-calendar</icon>
+							<icon2>fa fa-clock-o</icon2>
 							<onchange>check_datetime("dstart","le","dstop")</onchange>
 						</field>
 						<field>
@@ -455,8 +455,8 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<icon>calendar</icon>
-							<icon2>clock</icon2>
+							<icon>fa fa-calendar</icon>
+							<icon2>fa fa-clock-o</icon2>
 							<onchange>check_datetime("dstop","ge","dstart")</onchange>
 						</field>
 					</row>
@@ -522,7 +522,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 							<onclick>add_textos_textarea('textos_temas','temas')</onclick>
 						</field>
 					</row>
@@ -552,7 +552,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 							<onclick>add_textos_textarea('textos_aceptados','aceptados')</onclick>
 						</field>
 					</row>
@@ -582,7 +582,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 							<onclick>add_textos_textarea('textos_cancelados','cancelados')</onclick>
 						</field>
 					</row>
@@ -612,7 +612,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 							<onclick>add_textos_textarea('textos_pendientes','pendientes')</onclick>
 						</field>
 					</row>
@@ -642,7 +642,7 @@ WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblec
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>create</icon>
+							<icon>fa fa-plus-circle</icon>
 							<onclick>add_textos_textarea('textos_comentarios','comentarios')</onclick>
 						</field>
 					</row>

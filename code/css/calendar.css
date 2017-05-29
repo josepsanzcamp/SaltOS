@@ -31,15 +31,18 @@ span.float {
 }
 
 span.red {
-	color: #aa0000;
+	color:#aa0000;
+	font-weight:bold;
 }
 
 span.green {
-	color: #007700;
+	color:#00aa00;
+	font-weight:bold;
 }
 
 span.blue {
-	color: #0000aa;
+	color:#0000aa;
+	font-weight:bold;
 }
 
 td.tbody div.ui-state-highlight {

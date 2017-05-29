@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2017 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<home>fa fa-home</home>
+	<correo>fa fa-envelope</correo>
+	<feeds>fa fa-rss</feeds>
+	<about>fa fa-info-circle</about>
+	<documentos>fa fa-book</documentos>
+	<support>fa fa-question-circle</support>
+	<favoritos>fa fa-star</favoritos>
+	<agenda>fa fa-calendar</agenda>
+	<profile>fa fa-user-circle</profile>
+	<logout>fa fa-sign-out</logout>
+	<importaciones>fa fa-cogs</importaciones>
+	<maincfg>fa fa-cogs</maincfg>
+	<datacfg>fa fa-database</datacfg>
+	<errorlog>fa fa-bug</errorlog>
+	<empleados>fa fa-user</empleados>
+	<usuarios>fa fa-user-o</usuarios>
+	<grupos>fa fa-users</grupos>
+	<productos>fa fa-industry</productos>
+	<incidencias>fa fa-bug</incidencias>
+	<facturas>fa fa-heart</facturas>
+	<periodicas>fa fa-heart-o</periodicas>
+	<gastos>fa fa-hotel</gastos>
+	<proveedores>fa fa-id-card</proveedores>
+	<campanyas>fa fa-anchor</campanyas>
+	<posiblescli>fa fa-car</posiblescli>
+	<presupuestos>fa fa-pencil-square</presupuestos>
+	<actas>fa fa-print</actas>
+	<clientes>fa fa-id-card</clientes>
+	<contactos>fa fa-id-card-o</contactos>
+	<proyectos>fa fa-map</proyectos>
+	<seguimientos>fa fa-map-o</seguimientos>
+	<partes>fa fa-map-o</partes>
+	<cuentas>fa fa-tag</cuentas>
+	<epigrafes>fa fa-tag</epigrafes>
+	<estados>fa fa-tag</estados>
+	<formaspago>fa fa-tag</formaspago>
+	<ivas>fa fa-tag</ivas>
+	<prioridades>fa fa-tag</prioridades>
+	<textos>fa fa-tag</textos>
+	<tiposevento>fa fa-tag</tiposevento>
+</root>

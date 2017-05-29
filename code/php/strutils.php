@@ -409,6 +409,8 @@ function inline_images($buffer) {
 	while($pos!==false) {
 		$pos2=strpos($buffer,")",$pos+4);
 		$img=substr($buffer,$pos+4,$pos2-$pos-4);
+		if(in_array(substr($img,0,1),array("'",'"'))) $img=substr($img,1);
+		if(in_array(substr($img,-1,1),array("'",'"'))) $img=substr($img,0,-1);
 		if(file_exists($img)) {
 			$type=saltos_content_type($img);
 			if(substr($type,0,5)=="image") {

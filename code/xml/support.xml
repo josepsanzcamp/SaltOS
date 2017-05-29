@@ -91,14 +91,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>button</type>
 					<value lang="true">send</value>
 					<onclick>setParam("action","support"); if(check_required()) submit1()</onclick>
-					<icon>mail</icon>
+					<icon>fa fa-envelope-o</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
 					<type>button</type>
 					<value lang="true">buttonreturn</value>
 					<onclick>goback()</onclick>
-					<icon>return</icon>
+					<icon>fa fa-hand-o-left</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>

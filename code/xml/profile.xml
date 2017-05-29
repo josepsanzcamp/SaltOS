@@ -65,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<default>
 				<fieldset>
 					<title lang="true">general</title>
-					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle') || !getDefault('forceiconset')">
+					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle')">
 						<field>
 							<type>label</type>
 							<label lang="true">prefgeneral</label>
@@ -73,7 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>center bold</class>
 						</field>
 					</row>
-					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle') || !getDefault('forceiconset')">
+					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle')">
 						<field>
 							<type>separator</type>
 						</field>
@@ -90,13 +90,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>2</colspan>
 						</field>
 					</row>
-					<row ifeval="!getDefault('forceiconset') &amp;&amp; !ismobile()">
-						<field>
-							<field include="xml/common/iconset.xml" replace="true" />
-							<colspan>2</colspan>
-						</field>
-					</row>
-					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle') || !getDefault('forceiconset')">
+					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle')">
 						<field>
 							<type>separator</type>
 						</field>
@@ -213,7 +207,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 						<field>
 							<type>button</type>
-							<icon>delete</icon>
+							<icon>fa fa-trash</icon>
 							<tip lang="true">delete</tip>
 							<onclick>$(this).parent().parent().find("select").val("")</onclick>
 							<class>nowrap</class>
@@ -280,7 +274,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<value>1</value>
 							<width>1px</width>
 							<width2>1px</width2>
-							<icon>delete</icon>
+							<icon>fa fa-trash</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -314,7 +308,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>add</name>
 							<type>button</type>
 							<value lang="true">add</value>
-							<icon>refresh</icon>
+							<icon>fa fa-refresh</icon>
 							<class>nowrap</class>
 							<class2>disabled</class2>
 							<onclick>if(!is_disabled(this)) submit1()</onclick>
@@ -387,14 +381,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buttonupdate</value>
 					<onclick>submit1()</onclick>
 					<colspan>4</colspan>
-					<icon>accept</icon>
+					<icon>fa fa-check-circle</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
 					<type>button</type>
 					<value lang="true">buttonreturn</value>
 					<onclick>goback()</onclick>
-					<icon>return</icon>
+					<icon>fa fa-hand-o-left</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>
@@ -424,7 +418,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		))):""</query>
 		<query match="default" prefix="true" eval="true">use_table_cookies("lang",getParam("lang"))?"":""</query>
 		<query match="default" prefix="true" eval="true">use_table_cookies("style",getParam("style"))?"":""</query>
-		<query ifeval="!ismobile()"  match="default" prefix="true" eval="true">use_table_cookies("iconset",getParam("iconset"))?"":""</query>
 		<query ifeval="!ismobile()" match="default" prefix="true" eval="true">make_delete_query("tbl_quick",make_where_query(array("id_usuario"=>current_user())))</query>
 		<query ifeval="!ismobile()" global="var_i" for="var_i" from="1" to="12" match="default" prefix="true" eval="true">make_insert_query("tbl_quick",array(
 			"id_usuario"=>current_user(),

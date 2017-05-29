@@ -116,16 +116,7 @@ if(typeof(__checkemail__)=="undefined" && typeof(parent.__checkemail__)=="undefi
 	}
 
 	function number_correo(num) {
-		var obj=$(".number_correo");
-		$(obj).each(function() {
-			var padre=$(this).parent();
-			unmake_numbers(padre);
-			var html=$(this).html();
-			html=strtok(html,"(");
-			html=html+="("+num+")";
-			$(this).html(html);
-			make_numbers(padre);
-		});
+		make_numbers($(".number_correo"),num);
 	}
 
 	$(function() {

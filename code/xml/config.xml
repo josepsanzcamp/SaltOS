@@ -76,12 +76,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<style>custom.blue</style>
 		<stylepre eval="true">ismobile()?"lib/jquery/jquery.mobile.":"lib/jquery/jquery-ui."</stylepre>
 		<stylepost eval="true">ismobile()?"/jquery.mobile.min.css":"/jquery-ui.min.css"</stylepost>
-		<iconset>silk</iconset>
-		<iconsetpre>?action=iconset&amp;iconset=</iconsetpre>
-		<iconsetpost>&amp;format=css</iconsetpost>
 		<forcelang eval="true">getParam("lang")</forcelang>
 		<forcestyle eval="true">getParam("style")</forcestyle>
-		<forceiconset eval="true">getParam("iconset")</forceiconset>
 		<forcecss eval="true">ismobile()?"mobile":""</forcecss>
 		<forcejs eval="true">ismobile()?"mobile":""</forcejs>
 		<forcexsl eval="true">ismobile()?"mobile":""</forcexsl>
@@ -177,6 +173,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.jgrowl.min.css</include>
 			<include>lib/pdfjs/pdf_viewer.min.css</include>
 			<include>lib/codemirror/codemirror.min.css</include>
+			<include>css/icons.css</include>
+			<include>lib/fontawesome/css/font-awesome.min.css</include>
 		</cache>
 	</styles>
 	<javascript>

@@ -62,16 +62,7 @@ if(typeof(__checkagenda__)=="undefined" && typeof(parent.__checkagenda__)=="unde
 	}
 
 	function number_agenda(num) {
-		var obj=$(".number_agenda");
-		$(obj).each(function() {
-			var padre=$(this).parent();
-			unmake_numbers(padre);
-			var html=$(this).html();
-			html=strtok(html,"(");
-			html=html+="("+num+")";
-			$(this).html(html);
-			make_numbers(padre);
-		});
+		make_numbers($(".number_agenda"),num);
 	}
 
 	$(function() {

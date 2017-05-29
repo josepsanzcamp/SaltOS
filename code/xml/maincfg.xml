@@ -1224,7 +1224,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>button</type>
 					<value lang="true">buttonupdate</value>
 					<onclick>submit1()</onclick>
-					<icon>accept</icon>
+					<icon>fa fa-check-circle</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 			</row>

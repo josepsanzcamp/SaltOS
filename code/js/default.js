@@ -1011,17 +1011,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		return style;
 	}
 
-	function geticonset(html) {
-		var cad1=default_iconsetpre();
-		var cad2=default_iconsetpost();
-		var iconset=null;
-		$("link[rel=stylesheet]",html).each(function() {
-			var href=$(this).attr("href");
-			if(strpos(href,cad1)!==false && strpos(href,cad2)!==false) iconset=this;
-		});
-		return iconset;
-	}
-
 	function update_style(html,html2) {
 		//~ console.time("update_style");
 		var style1=getstylesheet(html2);
@@ -1031,16 +1020,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			get_colors();
 		}
 		//~ console.timeEnd("update_style");
-	}
-
-	function update_iconset(html,html2) {
-		//~ console.time("update_iconset");
-		var iconset1=geticonset(html2);
-		var iconset2=geticonset(html);
-		if(iconset1 && iconset2 && $(iconset1).attr("href")!=$(iconset2).attr("href")) {
-			$(iconset1).replaceWith(iconset2);
-		}
-		//~ console.timeEnd("update_iconset");
 	}
 
 	function updatecontent(html) {
@@ -1066,6 +1045,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("updatecontent north fase 0");
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
+		unmake_numbers(header);
 		if($(header).text()!=$(header2).text()) {
 			make_tabs2(header2);
 			$(header).replaceWith(header2);
@@ -1085,6 +1065,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(saltos_login) sync_cookies("start");
 		// UPDATE THE MENU IF NEEDED
 		//~ console.time("updatecontent west fase 0");
+		unmake_numbers(menu);
 		if($(".menu",menu).text()!=$(".menu",menu2).text()) {
 			make_menu(menu2);
 			$(menu).replaceWith(menu2);
@@ -1112,7 +1093,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(saltos_login || saltos_logout) make_notice();
 			var html2=$("html");
 			update_style(html,html2);
-			update_iconset(html,html2);
 			make_draganddrop(screen2);
 			make_focus();
 			$(window).trigger("resize");
@@ -1257,11 +1237,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// CHANGE TABS FROM ALL TO TOP
 		$(".tabs ul",obj).removeClass("ui-corner-all").addClass("ui-corner-top");
 		// TUNNING THE HELP TAB
-		var help=$(".tabs ul li.help",obj);
-		if(saltos_islogin()) {
-			$("a",help).html("<span class='saltos-icon saltos-icon-help'></span> "+lang_help());
-		} else {
-			$(help).remove();
+		if(!saltos_islogin()) {
+			$(".tabs ul li.help",obj).remove();
 		}
 		//~ console.timeEnd("make_tabs");
 	}
@@ -1972,7 +1949,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$("li",obj).remove();
 			var parent=$(event.target).parent();
 			var trs=$("tr",parent);
-			var tds=$("td.actions1",parent);
+			var tds=$("td.actions",parent);
 			if($(trs).length || !$(tds).length) tds=$(".contextmenu");
 			var hashes=[];
 			$(tds).each(function() {

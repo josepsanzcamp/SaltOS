@@ -110,7 +110,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buttonreturn</value>
 					<onclick>goback()</onclick>
 					<class>right contextmenu</class>
-					<icon>return</icon>
+					<icon>fa fa-hand-o-left</icon>
 				</field>
 			</row>
 		</buttons>

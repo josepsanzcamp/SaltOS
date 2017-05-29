@@ -47,8 +47,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- FOR STYLE MANAGER -->
 	<function global="stylepre" eval="true">"default_stylepre() { return '$stylepre'; }"</function>
 	<function global="stylepost" eval="true">"default_stylepost() { return '$stylepost'; }"</function>
-	<function global="iconsetpre" eval="true">"default_iconsetpre() { return '$iconsetpre'; }"</function>
-	<function global="iconsetpost" eval="true">"default_iconsetpost() { return '$iconsetpost'; }"</function>
 	<!-- FOR TIMEPICKER -->
 	<function eval='true'>"lang_buttonaccept() { return '".LANG_ESCAPE("buttonaccept")."'; }"</function>
 	<function eval='true'>"lang_horas() { return '".LANG_ESCAPE("horas")."'; }"</function>
@@ -91,8 +89,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"config_integrity_interval() { return intval('".CONFIG('integrity_interval')."')*1000; }"</function>
 	<!-- FOR PURGE MODULE -->
 	<function eval="true">"config_purge_interval() { return intval('".CONFIG('purge_interval')."')*1000; }"</function>
-	<!-- FOR HELP MODULE -->
-	<function eval="true">"lang_help() { return '".LANG_ESCAPE("help")."'; }"</function>
 	<!-- USING CACHE -->
 	<cache>
 		<!-- FOR DATEPICKER -->

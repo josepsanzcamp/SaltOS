@@ -30,19 +30,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 .estado.state_new {
-	background: #3FB618;
+	background:#00aa00;
 }
 
 .estado.state_wait {
-	background: #2780e3;
+	background:#0000aa;
 }
 
 .estado.state_spam {
-	background: #FF0039;
+	background:#aa0000;
 }
 
 .estado.state_error {
-	background: #FF0039;
+	background:#aa0000;
 }
 
 /* SET TO RED THE LABEL OF THE INPUT BOX IN THE EMAIL FORM */
@@ -53,4 +53,17 @@ input.state_error {
 /* FOR MOBILE DEVICES */
 label a {
 	color:inherit!important;
+}
+
+/* FOR FONT AWESOME */
+.fa-tag-new {
+	color:#00aa00;
+}
+
+.fa-tag-wait {
+	color:#0000aa;
+}
+
+.fa-tag-spam {
+	color:#aa0000;
 }
