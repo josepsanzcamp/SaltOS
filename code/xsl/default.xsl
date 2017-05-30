@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<xsl:for-each select="menu/header/option">
 					<li taborder="{taborder}" class="{class2}"><a href="javascript:void(0)" onclick="{onclick}" title="{tip}" class="{class}">
 						<xsl:if test="icon!=''">
-							<span class="{icon}"/>
+							<span class="{icon}"></span>
 							<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
 						</xsl:if>
 						<xsl:value-of select="label"/>
@@ -152,7 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:for-each select="option">
 						<li><a href="javascript:void(0)" class="{class} ui-state-default" onclick="{onclick}" title="{tip}" id="{name}">
 							<xsl:if test="icon!=''">
-								<span class="{icon}"/>
+								<span class="{icon}"></span>
 								<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
 							</xsl:if>
 							<xsl:value-of select="label"/>
@@ -199,10 +199,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</xsl:attribute>
 					<xsl:choose>
 						<xsl:when test="selected='asc'">
-							<span class="{../../sort/iconascin}"/>
+							<span class="{../../sort/iconascin}"></span>
 						</xsl:when>
 						<xsl:otherwise>
-							<span class="{../../sort/iconascout}" hover="true" toggle="{../../sort/iconascin} {../../sort/iconascout}"/>
+							<span class="{../../sort/iconascout}" hover="true" toggle="{../../sort/iconascin} {../../sort/iconascout}"></span>
 						</xsl:otherwise>
 					</xsl:choose>
 				</a>
@@ -216,17 +216,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</xsl:attribute>
 					<xsl:choose>
 						<xsl:when test="selected='desc'">
-							<span class="{../../sort/icondescin}"/>
+							<span class="{../../sort/icondescin}"></span>
 						</xsl:when>
 						<xsl:otherwise>
-							<span class="{../../sort/icondescout}" hover="true" toggle="{../../sort/icondescin} {../../sort/icondescout}"/>
+							<span class="{../../sort/icondescout}" hover="true" toggle="{../../sort/icondescin} {../../sort/icondescout}"></span>
 						</xsl:otherwise>
 					</xsl:choose>
 				</a>
 			</xsl:if>
 		</td>
 	</xsl:for-each>
-	<td class=" width1 thead" colspan="100" oldwidth=""><span class="saltos-icon saltos-icon-none"/></td>
+	<td class=" width1 thead" colspan="100" oldwidth=""><span class="saltos-icon saltos-icon-none"></span></td>
 </xsl:template>
 
 <xsl:template name="list_table_data">
@@ -365,11 +365,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<xsl:with-param name="string" select="onclick"/>
 								</xsl:call-template>
 							</xsl:attribute>
-							<span class="{icon}" alt="{label}" title="{label}" labeled="{label}"/>
+							<span class="{icon}" alt="{label}" title="{label}" labeled="{label}"></span>
 						</a>
 					</xsl:when>
 					<xsl:otherwise>
-						<span class="{icon} ui-state-disabled" alt="{label}" title="{label}" labeled="{label}" disabled="true"/>
+						<span class="{icon} ui-state-disabled" alt="{label}" title="{label}" labeled="{label}" disabled="true"></span>
 					</xsl:otherwise>
 				</xsl:choose>
 			</td>
@@ -379,7 +379,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xsl:attribute name="title">
 			<xsl:value-of select="../../actions2/label"/>
 		</xsl:attribute>
-		<span class="{../../actions2/icon}"/>
+		<span class="{../../actions2/icon}"></span>
 	</a></td>
 </xsl:template>
 
@@ -473,7 +473,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:for-each>
 		</xsl:otherwise>
 	</xsl:choose>
-	<li class="help" taborder=""><a href="javascript:void(0)"><span class="{../help/icon}"/><xsl:text> </xsl:text><xsl:value-of select="../help/label"/></a></li>
+	<li class="help" taborder=""><a href="javascript:void(0)"><span class="saltos-icon saltos-icon-none"></span></a></li>
 </xsl:template>
 
 <xsl:template name="brtag">
@@ -567,7 +567,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<xsl:if test="link!=''">
 					<xsl:if test="readonly='true'">
 						<a href="javascript:void(0)" class="ui-state-default ui-corner-all" islink="true" fnlink="{link}" forlink="{$prefix}{name}">
-							<span class="{icon}" title="{tip2}"/>
+							<span class="{icon}" title="{tip2}"></span>
 						</a>
 					</xsl:if>
 				</xsl:if>
@@ -643,7 +643,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							</xsl:for-each>
 							<xsl:choose>
 								<xsl:when test="icon!=''">
-									<span class="{icon}" title="{tip2}"/>
+									<span class="{icon}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
 									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
@@ -679,7 +679,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<a href="javascript:void(0)" class="ui-state-default ui-corner-all" isdate="true">
 							<xsl:choose>
 								<xsl:when test="icon!=''">
-									<span class="{icon}" title="{tip2}"/>
+									<span class="{icon}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
 									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
@@ -715,7 +715,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<a href="javascript:void(0)" class="ui-state-default ui-corner-all" istime="true">
 							<xsl:choose>
 								<xsl:when test="icon!=''">
-									<span class="{icon}" title="{tip2}"/>
+									<span class="{icon}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
 									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
@@ -763,7 +763,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<a href="javascript:void(0)" class="ui-state-default ui-corner-all" isdate="true">
 							<xsl:choose>
 								<xsl:when test="icon!=''">
-									<span class="{icon}" title="{tip2}"/>
+									<span class="{icon}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
 									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
@@ -792,7 +792,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<a href="javascript:void(0)" class="ui-state-default ui-corner-all" istime="true">
 							<xsl:choose>
 								<xsl:when test="icon2!=''">
-									<span class="{icon2}" title="{tip2}"/>
+									<span class="{icon2}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
 									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
@@ -866,7 +866,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<xsl:if test="link!=''">
 					<xsl:if test="readonly='true'">
 						<a href="javascript:void(0)" class="ui-state-default ui-corner-all" islink="true" fnlink="{link}" forlink="{$prefix}{name}">
-							<span class="{icon}" title="{tip2}"/>
+							<span class="{icon}" title="{tip2}"></span>
 						</a>
 					</xsl:if>
 				</xsl:if>
@@ -899,7 +899,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:choose>
 						<xsl:when test="icon!=''">
 							<label for="{$prefix}{name}">
-								<span class="{icon} {class3}" alt="{label}" title="{label}"/>
+								<span class="{icon} {class3}" alt="{label}" title="{label}"></span>
 							</label>
 						</xsl:when>
 						<xsl:otherwise>
@@ -924,7 +924,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class2"/></xsl:attribute>
 					</xsl:if>
 					<xsl:if test="icon!=''">
-						<span class="{icon}"/>
+						<span class="{icon}"></span>
 						<xsl:if test="value!=''"><xsl:text> </xsl:text></xsl:if>
 					</xsl:if>
 					<xsl:value-of select="value"/>
@@ -976,7 +976,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</xsl:for-each>
 					<xsl:choose>
 						<xsl:when test="icon!=''">
-							<span class="{icon} {class2}" alt="{label}" labeled="{label}" title="{$tip}"/>
+							<span class="{icon} {class2}" alt="{label}" labeled="{label}" title="{$tip}"></span>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="label"/>
@@ -1039,7 +1039,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</xsl:for-each>
 				<xsl:choose>
 					<xsl:when test="icon!=''">
-						<span class="{icon} {class2}" alt="{label}" title="{$label}"/>
+						<span class="{icon} {class2}" alt="{label}" title="{$label}"></span>
 					</xsl:when>
 					<xsl:otherwise>
 						<span class="{class2}" title="{tip}"><xsl:value-of select="label"/></span>
@@ -1493,7 +1493,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<td valign="top">
 						<div class="ui-layout-west">
 							<xsl:call-template name="menu"/>
-							<a href="#" class="back2top ui-widget-header ui-corner-all"><img src="img/back2top.png" class="ui-corner-all"/></a>
+							<a href="#" class="back2top ui-widget-header ui-corner-all">
+								<span class="fa fa-arrow-circle-up"></span>
+							</a>
 						</div>
 					</td>
 					<td valign="top" class="width100">

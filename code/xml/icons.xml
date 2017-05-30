@@ -64,4 +64,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<prioridades>fa fa-tag</prioridades>
 	<textos>fa fa-tag</textos>
 	<tiposevento>fa fa-tag</tiposevento>
+	<help>fa fa-question-circle</help>
 </root>

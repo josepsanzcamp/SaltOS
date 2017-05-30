@@ -34,7 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<welcome_message>Benvingut al programa d'instal·lació de SaltOS</welcome_message>
 		<lang_message>Seleccioneu l'idioma</lang_message>
 		<style_message>Seleccioneu el diseny</style_message>
-		<iconset_message>Seleccioneu les icones</iconset_message>
 		<begin_message>Premi "Següent" per instal·lar SaltOS 5 senzills passos</begin_message>
 		<back>Anterior</back>
 		<next>Següent</next>
@@ -88,7 +87,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<step>Pas</step>
 		<lang>Idioma</lang>
 		<style>Diseny</style>
-		<iconset>Icones</iconset>
 		<env_vars>Variables d'entorn</env_vars>
 		<env_path>PATH</env_path>
 		<env_lang>LANG</env_lang>

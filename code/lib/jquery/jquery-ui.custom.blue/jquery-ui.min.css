@@ -8,10 +8,10 @@
 
 /* SANZ FIXES */
 h3.ui-accordion-header.ui-state-default{border-color:#1967be;}
-div.ui-accordion-content{border-color:#1967be;}
-h3.ui-accordion-header.ui-state-default{background-color: #2780e3;}
+div.ui-accordion-content.ui-widget-content{border-color:#1967be;}
+h3.ui-accordion-header.ui-state-default{background-color:#2780e3;}
 h3.ui-accordion-header.ui-state-default a{color:#ffffff;}
-h3.ui-accordion-header.ui-state-default .ui-icon{background-image: url("images/ui-icons_ffffff_256x240.png");}
+h3.ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_ffffff_256x240.png");}
 h3.ui-accordion-header.ui-state-hover{background:#fffa90;}
 h3.ui-accordion-header.ui-state-hover a{color:#333333;}
-h3.ui-accordion-header.ui-state-hover .ui-icon{background-image: url("images/ui-icons_444444_256x240.png");}
+h3.ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_444444_256x240.png");}

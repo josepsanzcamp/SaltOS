@@ -34,7 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<welcome_message>Bem vindo ao programa de instalação do SaltOS</welcome_message>
 		<lang_message>Selecione o idioma</lang_message>
 		<style_message revised="false">Selecione o design</style_message>
-		<iconset_message revised="false">Selecione os ícones</iconset_message>
 		<begin_message>Pressione "Seguinte" para instalar o SaltOS em 5 simples passos</begin_message>
 		<back>Anterior</back>
 		<next>Seguinte</next>
@@ -88,7 +87,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<step>Passo</step>
 		<lang revised="false">Linguagem</lang>
 		<style revised="false">Style</style>
-		<iconset revised="false">Icones</iconset>
 		<env_vars revised="false">Variáveis ​​de ambiente</env_vars>
 		<env_path>PATH</env_path>
 		<env_lang>LANG</env_lang>

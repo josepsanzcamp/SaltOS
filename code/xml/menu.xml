@@ -150,7 +150,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option global="rows,row" foreach="rows" as="row">
 			<label global="row" eval="true">$row["name"]</label>
 			<onclick global="temp,row" eval="true">"opencontent('?page=$temp&amp;id_folder=".$row["id"]."')"</onclick>
-			<icon>fa fa-folder</icon>
+			<icon>fa fa-folder-open</icon>
 			<tip global="row" eval="true">$row["name"]</tip>
 			<class global="row" eval="true">"nowrap droppable id_".$row["id"]." fn_dropregfolder depth_".$row["depth"]</class>
 			<selected global="page,temp,id_folder,row" eval="true">($page==$temp &amp;&amp; $id_folder==$row["id"])?"true":"false"</selected>

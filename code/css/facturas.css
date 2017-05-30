@@ -29,13 +29,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }
 
 .cerrado.style_opened {
-	background:#0000aa;
+	background:#2780e3;
 }
 
 .cobrado.style_closed {
-	background:#0000aa;
+	background:#2780e3;
 }
 
 .cobrado.style_alarm {
-	background:#00aa00;
+	background:#449d44;
 }

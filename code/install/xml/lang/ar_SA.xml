@@ -34,7 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<welcome_message>مرحبا بك في اعداد برنامج  SaltOS </welcome_message>
 		<lang_message>إختر اللغة</lang_message>
 		<style_message>إختر المظهر</style_message>
-		<iconset_message>إختر الايقونات</iconset_message>
 		<begin_message>اضغط علي "التالي" لاعداد SaltOS فقط في 5 خطوات سهلة</begin_message>
 		<back>السابق</back>
 		<next>التالي</next>
@@ -88,7 +87,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<step>الخطوة</step>
 		<lang>اللغة</lang>
 		<style>المظهر</style>
-		<iconset>الايقونات</iconset>
 		<env_vars>متغيرات بيئة النظام</env_vars>
 		<env_path>المسار</env_path>
 		<env_lang>الغة</env_lang>

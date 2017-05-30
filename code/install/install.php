@@ -35,14 +35,12 @@ if(getDefault("putenv")) eval_putenv(getDefault("putenv"));
 // LOAD LANGUAGE
 $lang=getParam("lang",getDefault("lang"));
 $style=getParam("style",getDefault("style"));
-$iconset=getParam("iconset",getDefault("iconset"));
 $_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml"));
 $_CONFIG=eval_attr($_CONFIG);
 if($_CONFIG["info"]["revision"]=="SVN") $_CONFIG["info"]["revision"]=svnversion();
 if($_CONFIG["info"]["revision"]=="GIT") $_CONFIG["info"]["revision"]=gitversion();
 $temp=eval_attr(xml2array("xml/styles.xml"));
 $style=in_array($style,$temp["desktop"])?$style:$temp["desktop"]["style"];
-$_ICONSET=eval_attr(xml2array("xml/iconset.xml"));
 // SOME ALLOWED ACTIONS
 if(getParam("action")=="themeroller") {
 	global $page;
@@ -56,12 +54,11 @@ $dir=$_LANG["dir"];
 $textalign=array("ltr"=>"right","rtl"=>"left");
 // SOME DEFINES
 define("__UI__","class='ui-state-default ui-corner-all'");
-define("__IMG__","style='vertical-align:middle'");
-define("__BACK__","<a href='javascript:history.back()' ".__UI__."><img src='".$_ICONSET[$iconset]['return']."' ".__IMG__."/>&nbsp;".LANG("back")."</a>");
-define("__NEXT__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."' ".__IMG__."/>&nbsp;".LANG("next")."</a>");
-define("__TEST__","<a href='javascript:window.location.reload()' ".__UI__."><img src='".$_ICONSET[$iconset]['refresh']."' ".__IMG__."/>&nbsp;".LANG("test")."</a>");
-define("__INSTALL__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."' ".__IMG__."/>&nbsp;".LANG("install")."</a>");
-define("__SALTOS__","<a href='javascript:document.form.submit()' ".__UI__."><img src='".$_ICONSET[$iconset]['accept']."' ".__IMG__."/>&nbsp;".LANG("saltos")."</a>");
+define("__BACK__","<a href='javascript:history.back()' ".__UI__."><span class='fa fa-hand-o-left'></span>&nbsp;".LANG("back")."</a>");
+define("__NEXT__","<a href='javascript:document.form.submit()' ".__UI__."><span class='fa fa-check-circle'></span>&nbsp;".LANG("next")."</a>");
+define("__TEST__","<a href='javascript:window.location.reload()' ".__UI__."><span class='fa fa-refresh'></span>&nbsp;".LANG("test")."</a>");
+define("__INSTALL__","<a href='javascript:document.form.submit()' ".__UI__."><span class='fa fa-check-circle'></span>&nbsp;".LANG("install")."</a>");
+define("__SALTOS__","<a href='javascript:document.form.submit()' ".__UI__."><span class='fa fa-check-circle'></span>&nbsp;".LANG("saltos")."</a>");
 define("__GREEN__","<span style='color:#007700'><b>");
 define("__RED__","<span style='color:#770000'><b>");
 define("__BOLD__","<span><b>");
@@ -76,18 +73,16 @@ define("__HR__","<hr style='border:0px;height:1px;background:#ccc'/>");
 define("__DEFAULT__","install/xml/tbl_*.xml");
 define("__EXAMPLE__","install/csv/example/tbl_*.csv");
 define("__STREET__","install/csv/street/tbl_*.csv.gz");
-// JQUERY VERSIONS
-$jquery="lib/jquery/jquery.min.js";
-$jqueryui="lib/jquery/jquery-ui.min.js";
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $lang; ?>" dir="<?php echo $dir; ?>">
 	<head>
 		<link xmlns="" href="img/favicon.ico" rel="shortcut icon">
 		<title><?php echo LANG("title")." - ".get_name_version_revision(); ?></title>
+		<link href="lib/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="<?php echo $jquery; ?>"></script>
+		<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
-		<script type="text/javascript" src="<?php echo $jqueryui; ?>"></script>
+		<script type="text/javascript" src="lib/jquery/jquery-ui.min.js"></script>
 		<script type="text/javascript">$(function() { $("a:last").focus(); });</script>
 	</head>
 	<body>
@@ -128,17 +123,6 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 							<select name="style" onchange="document.form.step.value='0';document.form.submit()" <?php echo __UI__; ?>>
 								<?php foreach($styles as $key=>$val) { ?>
 									<?php $selected=($style==$key)?"selected":""; ?>
-									<option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $val; ?></option>
-								<?php } ?>
-							</select>
-							<?php echo __BR__; ?>
-							<?php echo LANG("iconset_message"); ?>:
-							<?php $temp=eval_attr(xml2array("xml/common/iconset.xml")); ?>
-							<?php $iconsets=array(); ?>
-							<?php foreach($temp["rows"] as $row) $iconsets[$row["value"]]=$row["label"]; ?>
-							<select name="iconset" onchange="document.form.step.value='0';document.form.submit()" <?php echo __UI__; ?>>
-								<?php foreach($iconsets as $key=>$val) { ?>
-									<?php $selected=($iconset==$key)?"selected":""; ?>
 									<option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $val; ?></option>
 								<?php } ?>
 							</select>
@@ -396,10 +380,6 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 							<?php $styles=array(); ?>
 							<?php foreach($temp["rows"] as $row) $styles[$row["value"]]=$row["label"]; ?>
 							<?php echo LANG("style"); ?>: <?php echo __GREEN__.$styles[getParam("style",getDefault("style"))]." (".getParam("style",getDefault("style")).")".__COLOR__.__BR__; ?>
-							<?php $temp=eval_attr(xml2array("xml/common/iconset.xml")); ?>
-							<?php $iconsets=array(); ?>
-							<?php foreach($temp["rows"] as $row) $iconsets[$row["value"]]=$row["label"]; ?>
-							<?php echo LANG("iconset"); ?>: <?php echo __GREEN__.$iconsets[getParam("iconset",getDefault("iconset"))]." (".getParam("iconset",getDefault("iconset")).")".__COLOR__.__BR__; ?>
 							<?php echo __HR__; ?>
 							<b><?php echo LANG("is_writable"); ?></b><?php echo __BR__; ?>
 							<?php foreach(getDefault("dirs") as $dir) { ?>
@@ -518,10 +498,6 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 									"value"=>array("style"=>array("value"=>"ismobile()?\"$style_mobile\":\"$style_desktop\"","#attr"=>array("eval"=>"true"))),
 									"#attr"=>array("path"=>"default/style","replace"=>"true")
 								));
-								set_array($config,"node",array(
-									"value"=>array("iconset"=>$iconset),
-									"#attr"=>array("path"=>"default/iconset","replace"=>"true")
-								));
 								// STEP 1
 								set_array($config,"node",array(
 									"value"=>array("PATH"=>getParam("env_path",getDefault("putenv/PATH"))),
@@ -581,6 +557,7 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 									"value"=>array("porthttps"=>getParam("porthttps",getDefault("server/porthttps"))),
 									"#attr"=>array("path"=>"server/porthttps","replace"=>"true")
 								));
+								//~ echo "<pre>".sprintr($config)."</pre>";die();
 								$buffer="<?xml version='1.0' encoding='UTF-8' ?>\n";
 								$buffer.=array2xml($config,false,false);
 								file_put_contents("files/config.xml",$buffer);
@@ -774,7 +751,6 @@ $jqueryui="lib/jquery/jquery-ui.min.js";
 						<input type="hidden" name="pass" value="<?php echo getParam("pass","admin"); ?>"/>
 						<input type="hidden" name="lang" value="<?php echo getParam("lang",getDefault("lang")); ?>"/>
 						<input type="hidden" name="style" value="<?php echo getParam("style",getDefault("style")); ?>"/>
-						<input type="hidden" name="iconset" value="<?php echo getParam("iconset",getDefault("iconset")); ?>"/>
 					<?php } ?>
 				</form>
 			</div>

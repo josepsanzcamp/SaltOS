@@ -23,7 +23,6 @@ Note about the php.saltos.min.js file
   - strncasecmp
   - strpos
   - strrpos
-  - strtok
   - strtoupper
   - substr
   - time

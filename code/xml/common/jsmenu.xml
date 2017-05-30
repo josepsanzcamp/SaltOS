@@ -89,6 +89,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"config_integrity_interval() { return intval('".CONFIG('integrity_interval')."')*1000; }"</function>
 	<!-- FOR PURGE MODULE -->
 	<function eval="true">"config_purge_interval() { return intval('".CONFIG('purge_interval')."')*1000; }"</function>
+	<!-- FOR HELP MODULE -->
+	<function eval="true">"lang_help() { return '".LANG_ESCAPE("help")."'; }"</function>
+	<function eval="true">"icon_help() { return '".ICON("help")."'; }"</function>
 	<!-- USING CACHE -->
 	<cache>
 		<!-- FOR DATEPICKER -->

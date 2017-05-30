@@ -38,24 +38,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>custom.facebook</value>
 		</row>
 		<row>
-			<label>Custom Green</label>
-			<value>custom.green</value>
+			<label>Custom Gray</label>
+			<value>custom.gray</value>
 		</row>
 		<row>
-			<label>Custom Purple</label>
-			<value>custom.purple</value>
+			<label>Custom Green</label>
+			<value>custom.green</value>
 		</row>
 		<row>
 			<label>Custom Red</label>
 			<value>custom.red</value>
 		</row>
 		<row>
-			<label>Custom Darkred</label>
-			<value>custom.darkred</value>
+			<label>Custom Pink</label>
+			<value>custom.pink</value>
 		</row>
 		<row>
-			<label>Custom Gray</label>
-			<value>custom.gray</value>
+			<label>Custom Orange</label>
+			<value>custom.orange</value>
+		</row>
+		<row>
+			<label>Custom Yellow</label>
+			<value>custom.yellow</value>
 		</row>
 		<row>
 			<label>Theme Humanity</label>
@@ -84,24 +88,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>custom.facebook</value>
 		</row>
 		<row>
-			<label>Custom Green</label>
-			<value>custom.green</value>
+			<label>Custom Gray</label>
+			<value>custom.gray</value>
 		</row>
 		<row>
-			<label>Custom Purple</label>
-			<value>custom.purple</value>
+			<label>Custom Green</label>
+			<value>custom.green</value>
 		</row>
 		<row>
 			<label>Custom Red</label>
 			<value>custom.red</value>
 		</row>
 		<row>
-			<label>Custom Darkred</label>
-			<value>custom.darkred</value>
+			<label>Custom Pink</label>
+			<value>custom.pink</value>
 		</row>
 		<row>
-			<label>Custom Gray</label>
-			<value>custom.gray</value>
+			<label>Custom Orange</label>
+			<value>custom.orange</value>
+		</row>
+		<row>
+			<label>Custom Yellow</label>
+			<value>custom.yellow</value>
 		</row>
 		<row>
 			<label>Theme Light</label>

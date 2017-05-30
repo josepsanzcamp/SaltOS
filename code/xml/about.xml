@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<default>
 				<fieldset>
 					<title lang="true">about</title>
-					<width>900px</width>
+					<width>100%</width>
 					<class>tabla</class>
 					<row>
 						<field>
@@ -61,6 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>label</type>
 							<class>left bold</class>
 							<colspan>3</colspan>
+							<width>100%</width>
 						</field>
 						<field>
 							<type>image</type>
@@ -103,22 +104,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("josep.sanz@saltos.org")</onclick>
+							<width>25%</width>
 						</field>
 						<field>
 							<label>Jordi Company (Devel &amp; docs)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("jcompany@saltos.org")</onclick>
+							<width>25%</width>
 						</field>
 						<field>
 							<label>Andrés Diaz (Beta tester)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>mailto("adiaz@saltos.org")</onclick>
+							<width>25%</width>
 						</field>
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
+							<width>25%</width>
 						</field>
 					</row>
 					<row>

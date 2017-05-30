@@ -86,10 +86,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<icon>ui-icon ui-icon-triangle-1-s</icon>
 		<label lang="true">actions</label>
 	</actions2>
-	<help>
-		<icon>fa fa-question-circle</icon>
-		<label lang="true">help</label>
-	</help>
 	<!-- SORT HEADER FOR LIST -->
 	<sort>
 		<onclick>sort('FIELD')</onclick>

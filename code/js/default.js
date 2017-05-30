@@ -1237,8 +1237,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// CHANGE TABS FROM ALL TO TOP
 		$(".tabs ul",obj).removeClass("ui-corner-all").addClass("ui-corner-top");
 		// TUNNING THE HELP TAB
-		if(!saltos_islogin()) {
-			$(".tabs ul li.help",obj).remove();
+		var help=$(".tabs ul li.help",obj);
+		if(saltos_islogin()) {
+			$("span",help).removeClass("saltos-icon saltos-icon-none").addClass(icon_help());
+			$("a",help).append("&nbsp;").append(lang_help());
+		} else {
+			$(help).remove();
 		}
 		//~ console.timeEnd("make_tabs");
 	}
@@ -1945,6 +1949,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(event.button!=2) hide_contextmenu();
 		}).on("contextmenu",function(event) {
 			if(event.ctrlKey) return true;
+			$(".ui-tooltip").remove();
 			var obj=$("#contextMenu");
 			$("li",obj).remove();
 			var parent=$(event.target).parent();
