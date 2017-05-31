@@ -1106,7 +1106,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(typeof(obj)=="undefined") var obj=$("body");
 		// CREATE THE MENU USING THE OLD OPENED SECTION STORED IN A COOKIE
 		var exists=0;
-		$(".menu,.tools",obj).each(function() {
+		$(".menu",obj).each(function() {
 			var name=$(this).attr("id");
 			var active=getIntCookie("saltos_ui_menu_"+name)?0:false;
 			$(this).accordion({
@@ -1442,6 +1442,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$("#"+id).width(width);
 				},100);
 			}
+		});
+		// FOR ACTIONS LIST
+		$(".actions2",obj).each(function() {
+			var actions1=$(this).parent().find(".actions1");
+			var actions2=$(this);
+			if(actions1.length<=1) {
+				$(actions1).removeClass("none");
+				$(actions2).addClass("none");
+			}
+
 		});
 		//~ console.timeEnd("make_extras");
 	}
@@ -1954,7 +1964,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$("li",obj).remove();
 			var parent=$(event.target).parent();
 			var trs=$("tr",parent);
-			var tds=$("td.actions",parent);
+			var tds=$("td.actions1",parent);
 			if($(trs).length || !$(tds).length) tds=$(".contextmenu");
 			var hashes=[];
 			$(tds).each(function() {
@@ -2111,16 +2121,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		})
 	}
 
-	function make_animate() {
-		$(window).bind("resize",function() {
-			$(".sitabs").has(".login").each(function() {
-				var padding=($(window).height()/2-$(this).height()/2-50);
-				if(padding<10) padding=10;
-				$(this).animate({"padding-top":padding,"padding-bottom":padding});
-			});
-		},200);
-	}
-
 	// COPIED FROM STACK OVERFLOW
 	// http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
 	(function ($) {
@@ -2165,7 +2165,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_abort();
 			make_tooltips();
 			make_hovers();
-			make_animate();
 			var header=$(".ui-layout-north");
 			make_tabs2(header);
 			setTimeout(function() {

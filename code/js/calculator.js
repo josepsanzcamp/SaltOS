@@ -27,68 +27,83 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 	"use strict";
 	var __calculator__=1;
 
-	function init_calculator() {
-		setTimeout(function() {
-			var div=$(".ui-layout-west > .calculator > div");
-			if(!$(div).length) return;
-			if($("textarea",div).length) return;
-			// ADD ELEMENTS
-			var clase="class='ui-state-default ui-corner-all'";
-			$(div).append("<textarea "+clase+" spellcheck='false'></textarea>");
-			// SOME NEEDEDS FUNCTIONS
-			function __calculator_enable() {
-				$("textarea",div).removeAttr("disabled");
-				$("textarea",div).removeClass("ui-state-disabled");
-			};
-			function __calculator_disable() {
-				$("textarea",div).attr("disabled",true);
-				$("textarea",div).addClass("ui-state-disabled");
-			};
-			// PROGRAM SIZES OF ELEMENTS
-			$(div).css("padding","15px 0px 0px 15px");
-			$(div).height(100);
-			$(div).parent().on("accordionactivate",function() {
-				if($(div).is(":visible")) {
-					var width=$(div).width()-30;
-					$("textarea",div).width(width);
-					var height=$(div).height()-30;
-					$("textarea",div).height(height);
+	function calculator() {
+		// BEGIN OPEN DIALOG
+		dialog(lang_calculator());
+		var dialog2=$("#dialog");
+		$(dialog2).html("<div id='calculator'></div>");
+		// PROGRAM RESIZE EVENT
+		$(dialog2).dialog("option","resizeStop",function(event,ui) {
+			setIntCookie("saltos_calculator_width",$(dialog2).dialog("option","width"));
+			setIntCookie("saltos_calculator_height",$(dialog2).dialog("option","height"));
+			__calculator_resize(0);
+		});
+		// PROGRAM CLOSE EVENT
+		$(dialog2).dialog("option","close",function(event,ui) {
+			$(dialog2).dialog("option","resizeStop",function() {});
+			$(dialog2).dialog("option","close",function() {});
+			$("*",dialog2).each(function() { $(this).remove(); });
+		});
+		// UPDATE SIZE AND POSITION
+		var width=getIntCookie("saltos_calculator_width");
+		if(!width) width=300;
+		$(dialog2).dialog("option","width",width);
+		var height=getIntCookie("saltos_calculator_height");
+		if(!height) height=400;
+		$(dialog2).dialog("option","height",height);
+		// END OPEN DIALOG
+		$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
+		$(dialog2).dialog("open");
+		// CONTINUE
+		var div=$("#calculator");
+		// ADD ELEMENTS
+		var clase="class='ui-state-default ui-corner-all'";
+		$(div).append("<textarea "+clase+" spellcheck='false'></textarea>");
+		// SOME NEEDEDS FUNCTIONS
+		function __calculator_enable() {
+			$("textarea",div).removeAttr("disabled");
+			$("textarea",div).removeClass("ui-state-disabled");
+		};
+		function __calculator_disable() {
+			$("textarea",div).attr("disabled",true);
+			$("textarea",div).addClass("ui-state-disabled");
+		};
+		// PROGRAM SIZES OF ELEMENTS
+		$(div).css("padding","10px 0 0 0");
+		function __calculator_resize(arg) {
+			$("textarea",dialog2).width($(dialog2).dialog("option","width")-50);
+			$("textarea",dialog2).height($(dialog2).dialog("option","height")-70-arg);
+		}
+		__calculator_resize(5);
+		// PROGRAM CALCULATOR BUTTON
+		$("textarea",div).on("keydown",function(event) {
+			if(is_enterkey(event)) {
+				var text=$("textarea",div).val();
+				text=explode("\n",text);
+				text=trim(text.pop());
+				if(text!="") {
+					__calculator_disable();
+					var data="action=calculator&text="+encodeURIComponent(text);
+					$.ajax({
+						url:"index.php",
+						data:data,
+						type:"post",
+						success:function(response) {
+							var text=$("textarea",div).val();
+							$("textarea",div).val(text+"="+response+"\n");
+							__calculator_enable();
+							$("textarea",div).trigger("focus");
+						},
+						error:function(XMLHttpRequest,textStatus,errorThrown) {
+							__calculator_enable();
+							errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+						}
+					});
+					return false;
 				}
-			}).trigger("accordionactivate");
-			// PROGRAM CALCULATOR BUTTON
-			$("textarea",div).on("keydown",function(event) {
-				if(is_enterkey(event)) {
-					var text=$("textarea",div).val();
-					text=explode("\n",text);
-					text=trim(text.pop());
-					if(text!="") {
-						__calculator_disable();
-						var data="action=calculator&text="+encodeURIComponent(text);
-						$.ajax({
-							url:"index.php",
-							data:data,
-							type:"post",
-							success:function(response) {
-								var text=$("textarea",div).val();
-								$("textarea",div).val(text+"="+response+"\n");
-								__calculator_enable();
-								$("textarea",div).trigger("focus");
-							},
-							error:function(XMLHttpRequest,textStatus,errorThrown) {
-								__calculator_enable();
-								errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-							}
-						});
-						return false;
-					}
-				}
-			});
-			// FINISH PLUGUIN INIT
-			make_hovers(div);
-		},100);
+			}
+		});
+		$("textarea:first",div).focus();
 	}
 
 }
-
-"use strict";
-$(function() { init_calculator(); });

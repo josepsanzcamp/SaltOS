@@ -36,16 +36,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</row>
 	<row>
 		<id_usuario>1</id_usuario>
-		<clave>saltos_ui_menu_calculator</clave>
-		<valor>1</valor>
-	</row>
-	<row>
-		<id_usuario>1</id_usuario>
-		<clave>saltos_ui_menu_translate</clave>
-		<valor>1</valor>
-	</row>
-	<row>
-		<id_usuario>1</id_usuario>
 		<clave>saltos_agenda_tab</clave>
 		<valor>2</valor>
 	</row>

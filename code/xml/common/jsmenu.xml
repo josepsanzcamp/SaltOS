@@ -92,6 +92,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- FOR HELP MODULE -->
 	<function eval="true">"lang_help() { return '".LANG_ESCAPE("help")."'; }"</function>
 	<function eval="true">"icon_help() { return '".ICON("help")."'; }"</function>
+	<!-- FOR CALCULATOR MODULE -->
+	<function eval="true">"lang_calculator() { return '".LANG_ESCAPE("calculator")."'; }"</function>
+	<!-- FOR TRANSLATE MODULE -->
+	<function eval="true">"lang_translate() { return '".LANG_ESCAPE(check_commands(getDefault('commands/apertium'),60)?"translate":"corrector")."'; }"</function>
 	<!-- USING CACHE -->
 	<cache>
 		<!-- FOR DATEPICKER -->

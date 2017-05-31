@@ -1064,7 +1064,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<onclick>if(check_required()) sendmail(0)</onclick>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
 					<class>nowrap contextmenu</class>
-					<icon>fa fa-check-circle</icon>
+					<icon>fa fa-check</icon>
 				</field>
 				<field global="id" ifeval="$id==0">
 					<type>button</type>
@@ -1073,7 +1073,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<onclick>if(check_required()) sendmail(1)</onclick>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
 					<class>nowrap contextmenu</class>
-					<icon>fa fa-check-circle</icon>
+					<icon>fa fa-check</icon>
 				</field>
 				<field global="id" ifeval="$id>=0">
 					<type>button</type>
@@ -1081,7 +1081,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<tip lang="true">buttoncancel</tip>
 					<onclick>cancel()</onclick>
 					<class>nowrap contextmenu</class>
-					<icon>fa fa-times-circle</icon>
+					<icon>fa fa-times</icon>
 				</field>
 				<field global="id" ifeval="$id&lt;0">
 					<type>button</type>

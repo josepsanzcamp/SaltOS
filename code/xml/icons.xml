@@ -41,21 +41,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<empleados>fa fa-user</empleados>
 	<usuarios>fa fa-user-o</usuarios>
 	<grupos>fa fa-users</grupos>
-	<productos>fa fa-industry</productos>
+	<productos>fa fa-archive</productos>
 	<incidencias>fa fa-bug</incidencias>
-	<facturas>fa fa-heart</facturas>
-	<periodicas>fa fa-heart-o</periodicas>
+	<facturas>fa fa-print</facturas>
+	<periodicas>fa fa-print</periodicas>
 	<gastos>fa fa-hotel</gastos>
 	<proveedores>fa fa-id-card</proveedores>
-	<campanyas>fa fa-anchor</campanyas>
-	<posiblescli>fa fa-car</posiblescli>
-	<presupuestos>fa fa-pencil-square</presupuestos>
+	<campanyas>fa fa-id-card-o</campanyas>
+	<posiblescli>fa fa-id-card</posiblescli>
+	<presupuestos>fa fa-print</presupuestos>
 	<actas>fa fa-print</actas>
 	<clientes>fa fa-id-card</clientes>
 	<contactos>fa fa-id-card-o</contactos>
-	<proyectos>fa fa-map</proyectos>
-	<seguimientos>fa fa-map-o</seguimientos>
-	<partes>fa fa-map-o</partes>
+	<proyectos>fa fa-briefcase</proyectos>
+	<seguimientos>fa fa-briefcase</seguimientos>
+	<partes>fa fa-briefcase</partes>
 	<cuentas>fa fa-tag</cuentas>
 	<epigrafes>fa fa-tag</epigrafes>
 	<estados>fa fa-tag</estados>

@@ -37,10 +37,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<title lang="true">logintitle</title>
 			<row>
 				<field>
+					<type>separator</type>
+					<class>spacer</class>
+				</field>
+			</row>
+			<row>
+				<field>
 					<type>image</type>
 					<image>img/saltos2.png</image>
 					<width>200px</width>
-					<class>login</class>
+					<class>logo</class>
 				</field>
 			</row>
 		</fields>
@@ -136,7 +142,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>button</type>
 					<value lang="true">enter</value>
 					<onclick>if(check_required()) submit1()</onclick>
-					<icon>fa fa-check-circle</icon>
+					<icon>fa fa-check</icon>
 				</field>
 			</row>
 		</fields>
@@ -149,6 +155,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 			</row>
 		</fields>
-		<javascript include="xml/common/jsform.xml"/>
+		<javascript>
+			<javascript include="xml/common/jsform.xml" replace="true"/>
+			<inline>$(function() { $(".spacer").animate({height:$(window).height()/4}); });</inline>
+			<inline>$(function() { $(".logo").on("click",function() { openwin("http://www.saltos.org"); }); });</inline>
+		</javascript>
+		<styles>
+			<inline>.logo { cursor:pointer; }</inline>
+		</styles>
 	</form>
 </root>

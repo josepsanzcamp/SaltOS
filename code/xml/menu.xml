@@ -32,6 +32,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<tip lang="true">menutip</tip>
 			<class>nowrap shortcut_ctrl_m</class>
 		</option>
+		<option>
+			<onclick>calculator()</onclick>
+			<icon>fa fa-calculator</icon>
+			<tip lang="true">calculator</tip>
+			<class>nowrap shortcut_ctrl_j</class>
+		</option>
+		<option ifeval="eval_bool(getDefault('enabletranslate'))">
+			<onclick>translate()</onclick>
+			<icon>fa fa-flag</icon>
+			<tip eval="true">LANG(check_commands(getDefault('commands/apertium'),60)?"translate":"corrector")</tip>
+			<class>nowrap shortcut_ctrl_k</class>
+		</option>
 	</header>
 	<header ifeval="eval_bool(getDefault('enablevoice'))">
 		<option>
@@ -359,15 +371,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option include="xml/common/menuoptionslist.xml" replace="true"/>
 		<temp global="temp" eval="true">$temp="errorlog"</temp>
 		<option include="xml/common/menuoptionslist.xml" replace="true"/>
-	</group>
-	<group ifeval="!ismobile()">
-		<label lang="true">calculator</label>
-		<name>calculator</name>
-		<class>tools calculator</class>
-	</group>
-	<group ifeval="eval_bool(getDefault('enabletranslate'))">
-		<label eval="true">LANG(check_commands(getDefault('commands/apertium'),60)?"translate":"corrector")</label>
-		<name>translate</name>
-		<class>tools translate</class>
 	</group>
 </root>

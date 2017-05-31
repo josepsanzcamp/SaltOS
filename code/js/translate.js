@@ -27,173 +27,190 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 	"use strict";
 	var __translate__=1;
 
-	function init_translate() {
-		setTimeout(function() {
-			var div=$(".ui-layout-west > .translate > div");
-			if(!$(div).length) return;
-			if($("textarea",div).length) return;
-			// ADD ELEMENTS
-			var clase="class='ui-state-default ui-corner-all'";
-			$(div).append("<textarea "+clase+" spellcheck='false'></textarea>");
-			$(div).append("<br/>");
-			$(div).append("<select "+clase+"></select>");
-			var down="<span class='fa fa-arrow-down'></span>";
-			var up="<span class='fa fa-arrow-up'></span>";
-			$(div).append("<a href='javascript:void(0)' "+clase+">"+down+"</a>");
-			$(div).append("<a href='javascript:void(0)' "+clase+">"+up+"</a>");
-			$(div).append("<br/>");
-			$(div).append("<textarea "+clase+" spellcheck='false'></textarea>");
-			// SOME NEEDEDS FUNCTIONS
-			function __translate_get_reverse() {
-				var langs=$("select",div).val();
-				var option=$("option[value='"+langs+"']",div);
-				langs=$(option).attr("reverse");
-				return langs;
+	function translate() {
+		// BEGIN OPEN DIALOG
+		dialog(lang_translate());
+		var dialog2=$("#dialog");
+		$(dialog2).html("<div id='translate'></div>");
+		// PROGRAM RESIZE EVENT
+		$(dialog2).dialog("option","resizeStop",function(event,ui) {
+			setIntCookie("saltos_translate_width",$(dialog2).dialog("option","width"));
+			setIntCookie("saltos_translate_height",$(dialog2).dialog("option","height"));
+			__translate_resize(0);
+		});
+		// PROGRAM CLOSE EVENT
+		$(dialog2).dialog("option","close",function(event,ui) {
+			$(dialog2).dialog("option","resizeStop",function() {});
+			$(dialog2).dialog("option","close",function() {});
+			$("*",dialog2).each(function() { $(this).remove(); });
+		});
+		// UPDATE SIZE AND POSITION
+		var width=getIntCookie("saltos_translate_width");
+		if(!width) width=600;
+		$(dialog2).dialog("option","width",width);
+		var height=getIntCookie("saltos_translate_height");
+		if(!height) height=400;
+		$(dialog2).dialog("option","height",height);
+		// END OPEN DIALOG
+		$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
+		$(dialog2).dialog("open");
+		// CONTINUE
+		var div=$("#translate");
+		// ADD ELEMENTS
+		var clase="class='ui-state-default ui-corner-all'";
+		$(div).append("<textarea "+clase+" spellcheck='false'></textarea>");
+		$(div).append("<br/>");
+		$(div).append("<select "+clase+"></select>");
+		var down="<span class='fa fa-arrow-down'></span>";
+		var up="<span class='fa fa-arrow-up'></span>";
+		$(div).append("<a href='javascript:void(0)' "+clase+">"+down+"</a>");
+		$(div).append("<a href='javascript:void(0)' "+clase+">"+up+"</a>");
+		$(div).append("<br/>");
+		$(div).append("<textarea "+clase+" spellcheck='false'></textarea>");
+		// SOME NEEDEDS FUNCTIONS
+		function __translate_get_reverse() {
+			var langs=$("select",div).val();
+			var option=$("option[value='"+langs+"']",div);
+			langs=$(option).attr("reverse");
+			return langs;
+		}
+		function __translate_ui_reverse() {
+			var langs=__translate_get_reverse();
+			if(langs) {
+				$("a:last",div).removeAttr("disabled");
+				$("a:last",div).removeClass("ui-state-disabled");
+			} else {
+				$("a:last",div).attr("disabled",true);
+				$("a:last",div).addClass("ui-state-disabled");
 			}
-			function __translate_ui_reverse() {
-				var langs=__translate_get_reverse();
-				if(langs) {
-					$("a:last",div).removeAttr("disabled");
-					$("a:last",div).removeClass("ui-state-disabled");
-				} else {
-					$("a:last",div).attr("disabled",true);
-					$("a:last",div).addClass("ui-state-disabled");
+		}
+		function __translate_enable() {
+			$("textarea,select,a",div).removeAttr("disabled");
+			$("textarea,select,a",div).removeClass("ui-state-disabled");
+			__translate_ui_reverse();
+		};
+		function __translate_disable() {
+			$("textarea,select,a",div).attr("disabled",true);
+			$("textarea,select,a",div).addClass("ui-state-disabled");
+		};
+		function __translate_get_cookie() {
+			var langs=getCookie("saltos_translate_langs");
+			var option=$("option[value='"+langs+"']",div);
+			if($(option).length) $("select",div).val(langs);
+		}
+		function __translate_set_cookie() {
+			var langs=$("select",div).val();
+			setCookie("saltos_translate_langs",langs);
+		}
+		// ADD LANGS
+		var data="action=translate&langs=auto";
+		$.ajax({
+			url:"index.php",
+			data:data,
+			type:"get",
+			success:function(response) {
+				if(!response) {
+					__translate_disable();
+					return;
 				}
-			}
-			function __translate_enable() {
-				$("textarea,select,a",div).removeAttr("disabled");
-				$("textarea,select,a",div).removeClass("ui-state-disabled");
+				$("select",div).append(response);
+				// PROGRAM SELECT PERSISTENCE USING A COOKIE
+				__translate_get_cookie();
 				__translate_ui_reverse();
-			};
-			function __translate_disable() {
-				$("textarea,select,a",div).attr("disabled",true);
-				$("textarea,select,a",div).addClass("ui-state-disabled");
-			};
-			function __translate_get_cookie() {
-				var langs=getCookie("saltos_translate_langs");
-				var option=$("option[value='"+langs+"']",div);
-				if($(option).length) $("select",div).val(langs);
+				$("select",div).on("change",function() {
+					__translate_set_cookie();
+					__translate_ui_reverse();
+				});
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 			}
-			function __translate_set_cookie() {
-				var langs=$("select",div).val();
-				setCookie("saltos_translate_langs",langs);
-			}
-			// ADD LANGS
-			var data="action=translate&langs=auto";
+		});
+		// PROGRAM SIZES OF ELEMENTS
+		$(div).css("padding","10px 0 0 0");
+		function __translate_resize(arg) {
+			var width=$(dialog2).dialog("option","width")-50;
+			$("textarea",dialog2).width(width);
+			var width_a_first=$("a:first",dialog2).width();
+			var width_a_last=$("a:last",dialog2).width();
+			$("select",dialog2).width(width-width_a_first-width_a_last-28);
+			var height=$(dialog2).dialog("option","height")-90-arg;
+			var height_select=$("select",dialog2).height();
+			$("textarea",dialog2).height((height-height_select)/2);
+		}
+		__translate_resize(5);
+		// PROGRAM AUTODETECT LANG
+		var oldtext="";
+		$("textarea:first").on("change",function() {
+			if($(this).hasClass("ui-state-disabled")) return;
+			var text=$("textarea:first",div).val();
+			if(levenshtein(oldtext,text)<strlen(oldtext)/2) return;
+			oldtext=text;
+			__translate_disable();
+			var data="action=translate&langs=auto&text="+encodeURIComponent(text);
 			$.ajax({
 				url:"index.php",
 				data:data,
-				type:"get",
+				type:"post",
 				success:function(response) {
-					if(!response) {
-						__translate_disable();
-						return;
-					}
+					$("option",div).remove();
 					$("select",div).append(response);
-					// PROGRAM SELECT PERSISTENCE USING A COOKIE
+					__translate_enable();
 					__translate_get_cookie();
 					__translate_ui_reverse();
-					$("select",div).on("change",function() {
-						__translate_set_cookie();
-						__translate_ui_reverse();
-					});
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					__translate_enable();
 					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 				}
 			});
-			// PROGRAM SIZES OF ELEMENTS
-			$(div).css("padding","15px 0px 0px 15px");
-			$(div).height(200);
-			$(div).parent().on("accordionactivate",function() {
-				if($(div).is(":visible")) {
-					var width=$(div).width()-30;
-					$("textarea",div).width(width);
-					var width_a_first=$("a:first",div).width();
-					var width_a_last=$("a:last",div).width();
-					$("select",div).width(width-width_a_first-width_a_last-20);
-					var height=$(div).height()-50;
-					var height_select=$("select",div).height();
-					$("textarea",div).height((height-height_select)/2);
+		});
+		// PROGRAM TRANSLATE BUTTON
+		$("a:first",div).on("click",function() {
+			if($(this).hasClass("ui-state-disabled")) return;
+			var langs=$("select",div).val();
+			var text=$("textarea:first",div).val();
+			__translate_set_cookie();
+			__translate_disable();
+			var data="action=translate&langs="+langs+"&text="+encodeURIComponent(text);
+			$.ajax({
+				url:"index.php",
+				data:data,
+				type:"post",
+				success:function(response) {
+					$("textarea:last",div).val(response);
+					__translate_enable();
+					$("textarea:last",div).trigger("focus");
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					__translate_enable();
+					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 				}
-			}).trigger("accordionactivate");
-			// PROGRAM AUTODETECT LANG
-			var oldtext="";
-			$("textarea:first").on("change",function() {
-				if($(this).hasClass("ui-state-disabled")) return;
-				var text=$("textarea:first",div).val();
-				if(levenshtein(oldtext,text)<strlen(oldtext)/2) return;
-				oldtext=text;
-				__translate_disable();
-				var data="action=translate&langs=auto&text="+encodeURIComponent(text);
-				$.ajax({
-					url:"index.php",
-					data:data,
-					type:"post",
-					success:function(response) {
-						$("option",div).remove();
-						$("select",div).append(response);
-						__translate_enable();
-						__translate_get_cookie();
-						__translate_ui_reverse();
-					},
-					error:function(XMLHttpRequest,textStatus,errorThrown) {
-						__translate_enable();
-						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-					}
-				});
 			});
-			// PROGRAM TRANSLATE BUTTON
-			$("a:first",div).on("click",function() {
-				if($(this).hasClass("ui-state-disabled")) return;
-				var langs=$("select",div).val();
-				var text=$("textarea:first",div).val();
-				__translate_set_cookie();
-				__translate_disable();
-				var data="action=translate&langs="+langs+"&text="+encodeURIComponent(text);
-				$.ajax({
-					url:"index.php",
-					data:data,
-					type:"post",
-					success:function(response) {
-						$("textarea:last",div).val(response);
-						__translate_enable();
-						$("textarea:last",div).trigger("focus");
-					},
-					error:function(XMLHttpRequest,textStatus,errorThrown) {
-						__translate_enable();
-						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-					}
-				});
+		});
+		$("a:last",div).on("click",function() {
+			if($(this).hasClass("ui-state-disabled")) return;
+			var langs=__translate_get_reverse();
+			var text=$("textarea:last",div).val();
+			__translate_set_cookie();
+			__translate_disable();
+			var data="action=translate&langs="+langs+"&text="+encodeURIComponent(text);
+			$.ajax({
+				url:"index.php",
+				data:data,
+				type:"post",
+				success:function(response) {
+					$("textarea:first",div).val(response);
+					__translate_enable();
+					$("textarea:first",div).trigger("focus");
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown) {
+					__translate_enable();
+					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+				}
 			});
-			$("a:last",div).on("click",function() {
-				if($(this).hasClass("ui-state-disabled")) return;
-				var langs=__translate_get_reverse();
-				var text=$("textarea:last",div).val();
-				__translate_set_cookie();
-				__translate_disable();
-				var data="action=translate&langs="+langs+"&text="+encodeURIComponent(text);
-				$.ajax({
-					url:"index.php",
-					data:data,
-					type:"post",
-					success:function(response) {
-						$("textarea:first",div).val(response);
-						__translate_enable();
-						$("textarea:first",div).trigger("focus");
-					},
-					error:function(XMLHttpRequest,textStatus,errorThrown) {
-						__translate_enable();
-						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-					}
-				});
-			});
-			// FINISH PLUGUIN INIT
-			make_hovers(div);
-		},100);
+		});
+		$("textarea:first",div).focus();
 	}
 
 }
-
-"use strict";
-$(function() { init_translate(); });

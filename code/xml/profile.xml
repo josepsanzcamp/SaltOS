@@ -381,7 +381,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buttonupdate</value>
 					<onclick>submit1()</onclick>
 					<colspan>4</colspan>
-					<icon>fa fa-check-circle</icon>
+					<icon>fa fa-check</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>

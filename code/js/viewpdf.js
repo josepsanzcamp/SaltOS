@@ -92,10 +92,10 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						});
 						// UPDATE SIZE AND POSITION
 						var width=getIntCookie("saltos_viewpdf_width");
-						if(!width) width=800;
+						if(!width) width=900;
 						$(dialog2).dialog("option","width",width);
 						var height=getIntCookie("saltos_viewpdf_height");
-						if(!height) height=450;
+						if(!height) height=600;
 						$(dialog2).dialog("option","height",height);
 						// END OPEN DIALOG
 						$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });

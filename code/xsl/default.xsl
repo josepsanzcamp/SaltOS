@@ -354,7 +354,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xsl:variable name="name" select="substring(name(),8)"/>
 		<xsl:variable name="value" select="."/>
 		<xsl:for-each select="../../../actions/*[name()=$name]">
-			<td class="width1 actions tbody none">
+			<td class="width1 actions1 tbody none">
 				<xsl:choose>
 					<xsl:when test="$value='true'">
 						<a href="javascript:void(0)">

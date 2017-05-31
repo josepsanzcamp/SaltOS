@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<onclick>if(check_required()) insert(0)</onclick>
 			<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
 			<class>nowrap contextmenu</class>
-			<icon>fa fa-check-circle</icon>
+			<icon>fa fa-check</icon>
 		</field>
 		<field global="id" ifeval="$id==0">
 			<type>button</type>
@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<onclick>if(check_required()) insert(1)</onclick>
 			<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
 			<class>nowrap contextmenu</class>
-			<icon>fa fa-check-circle</icon>
+			<icon>fa fa-check</icon>
 		</field>
 		<field global="id" ifeval="$id&gt;0">
 			<type>button</type>
@@ -55,7 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<onclick>if(check_required()) update(0)</onclick>
 			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM (SELECT a.id,e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".page2table($page)." a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."') z WHERE NOT ".check_sql($page,"edit"))?"true":"false"</disabled>
 			<class>nowrap contextmenu</class>
-			<icon>fa fa-check-circle</icon>
+			<icon>fa fa-check</icon>
 		</field>
 		<field global="id" ifeval="$id&gt;0">
 			<type>button</type>
@@ -65,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<onclick>if(check_required()) update(1)</onclick>
 			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM (SELECT a.id,e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".page2table($page)." a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."') z WHERE NOT ".check_sql($page,"edit"))?"true":"false"</disabled>
 			<class>nowrap contextmenu</class>
-			<icon>fa fa-check-circle</icon>
+			<icon>fa fa-check</icon>
 		</field>
 		<field global="id" ifeval="$id&gt;=0">
 			<type>button</type>
@@ -73,7 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<tip lang="true">buttoncancel</tip>
 			<onclick>cancel()</onclick>
 			<class>nowrap contextmenu</class>
-			<icon>fa fa-times-circle</icon>
+			<icon>fa fa-times</icon>
 		</field>
 		<field global="id" ifeval="$id&lt;0">
 			<type>button</type>
