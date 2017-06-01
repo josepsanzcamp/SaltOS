@@ -26,19 +26,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user()) action_denied();
 if(getParam("action")=="translate") {
 	if(!eval_bool(getDefault("enabletranslate"))) die();
-	require_once("php/translate.php");
 	require_once("php/libaction.php");
 	// CHECK COMMANDS
-	if(!(check_commands(getDefault("commands/apertium"),60) || check_commands(getDefault("commands/aspell"),60))) die();
+	if(!(check_commands(getDefault("commands/translate"),60) || check_commands(getDefault("commands/aspell"),60))) die();
 	// GET PARAMETERS
 	$text=getParam("text");
 	$langs=getParam("langs");
 	// CHECK FOR THE OPTIONS REQUEST
 	if($langs=="auto") {
-		$cache=get_cache_file(array("translate","auto",$text,__translate_get_apertium_langs(),__translate_get_aspell_langs()),".txt");
+		$cache=get_cache_file(array("translate","auto",$text,__translate_get_langs(),__translate_get_aspell_langs()),".txt");
 		//if(file_exists($cache)) unlink($cache);
 		if(!file_exists($cache)) {
-			$langs=__translate_detect_aspell_langs($text);
+			$langs=__translate_get_aspell_langs();
 			$options=__translate_get_options($langs);
 			file_put_contents($cache,$options);
 			chmod_protected($cache,0666);
@@ -63,11 +62,11 @@ if(getParam("action")=="translate") {
 	if(!$error && strlen($langs_array[1])!=2) $error=1;
 	if($error) action_denied();
 	// CONTINUE
-	$cache=get_cache_file(array("translate",$langs,$text,__translate_get_apertium_langs(),__translate_get_aspell_langs()),".txt");
+	$cache=get_cache_file(array("translate",$langs,$text,__translate_get_langs(),__translate_get_aspell_langs()),".txt");
 	//if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		$text=__translate_aspell($text,$langs_array[0]);
-		if($langs_array[0]!=$langs_array[1]) $text=__translate_apertium($text,$langs);
+		if($langs_array[0]!=$langs_array[1]) $text=__translate($text,$langs);
 		file_put_contents($cache,$text);
 		chmod_protected($cache,0666);
 	}

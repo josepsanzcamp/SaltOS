@@ -139,32 +139,6 @@ if(typeof(__translate__)=="undefined" && typeof(parent.__translate__)=="undefine
 			$("textarea",dialog2).height((height-height_select)/2);
 		}
 		__translate_resize(5);
-		// PROGRAM AUTODETECT LANG
-		var oldtext="";
-		$("textarea:first").on("change",function() {
-			if($(this).hasClass("ui-state-disabled")) return;
-			var text=$("textarea:first",div).val();
-			if(levenshtein(oldtext,text)<strlen(oldtext)/2) return;
-			oldtext=text;
-			__translate_disable();
-			var data="action=translate&langs=auto&text="+encodeURIComponent(text);
-			$.ajax({
-				url:"index.php",
-				data:data,
-				type:"post",
-				success:function(response) {
-					$("option",div).remove();
-					$("select",div).append(response);
-					__translate_enable();
-					__translate_get_cookie();
-					__translate_ui_reverse();
-				},
-				error:function(XMLHttpRequest,textStatus,errorThrown) {
-					__translate_enable();
-					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-				}
-			});
-		});
 		// PROGRAM TRANSLATE BUTTON
 		$("a:first",div).on("click",function() {
 			if($(this).hasClass("ui-state-disabled")) return;

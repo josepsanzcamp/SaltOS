@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option ifeval="eval_bool(getDefault('enabletranslate'))">
 			<onclick>translate()</onclick>
 			<icon>fa fa-flag</icon>
-			<tip eval="true">LANG(check_commands(getDefault('commands/apertium'),60)?"translate":"corrector")</tip>
+			<tip eval="true">LANG(check_commands(getDefault('commands/translate'),60)?"translate":"corrector")</tip>
 			<class>nowrap shortcut_ctrl_k</class>
 		</option>
 	</header>

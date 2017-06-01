@@ -684,10 +684,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://lame.sourceforge.net/")</onclick>
 						</field>
 						<field>
-							<label>Apertium 3.2 (GPL-2.0)</label>
+							<label>Libtranslate 0.99 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://www.apertium.org/")</onclick>
+							<onclick>openwin("http://www.nongnu.org/libtranslate/")</onclick>
 						</field>
 					</row>
 					<row>

@@ -123,9 +123,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__text2wave_en__>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</__text2wave_en__>
 		<wavetomp3>lame</wavetomp3><!-- for voice module -->
 		<__wavetomp3__>--quiet __INPUT__ __OUTPUT__</__wavetomp3__>
-		<apertium>apertium</apertium><!-- for translate module -->
-		<__apertium__>-f txtu __LANGS__ &lt; __INPUT__</__apertium__>
-		<__apertium_langs__>-l</__apertium_langs__>
+		<translate>translate</translate>
+		<__translate__>-s google -f __FROM__ -t __TO__ __INPUT__</__translate__>
+		<__translate_langs__>-s google -l</__translate_langs__>
 		<aspell>aspell</aspell><!-- for translate module -->
 		<__aspell__>-a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
 		<__aspell_langs__>dump dicts</__aspell_langs__>
