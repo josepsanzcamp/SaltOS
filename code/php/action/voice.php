@@ -40,7 +40,7 @@ if(getParam("action")=="voice") {
 		file_put_contents($textcache,utf8_decode($text));
 		$wavcache=$dirhash.".wav";
 		// DETECT THE LANG TO USE THE APPROPRIATE COMMAND/__TEXT2WAVE_XX__
-		$langs=__translate_detect_aspell_langs($text);
+		$langs=__translator_detect_aspell_langs($text);
 		if(getDefault("commands/__text2wave_${langs[0]}__")) ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/__text2wave_${langs[0]}__")));
 		// CONTINUE WITH DEFAULT COMMAND/__TEXT2WAVE__ IF NEEDED
 		if(!file_exists($wavcache)) ob_passthru(getDefault("commands/text2wave")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($textcache,$wavcache),getDefault("commands/__text2wave__")));

@@ -530,7 +530,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_importaciones>Importações</quick_importaciones>
 		<quick_buscador>Pesquisador</quick_buscador>
 		<quick_errorlog revised="false">Erros</quick_errorlog>
-		<translate revised="false">Tradutor</translate>
+		<translator revised="false">Tradutor</translator>
 		<corrector revised="false">Corretor ortográfico</corrector>
 		<calculator revised="false">Calculadora</calculator>
 		<menu revised="false">Menu</menu>
@@ -1497,8 +1497,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<deleteoffolder revised="false">Remover desta pasta</deleteoffolder>
 		<defaultfolder revised="false">Pasta pessoal</defaultfolder>
 	</folders>
-	<translate>
-		<translate revised="false">Tradutor</translate>
+	<translator>
+		<translator revised="false">Tradutor</translator>
 		<corrector revised="false">Corretor ortográfico</corrector>
 		<es revised="false">Espanhol</es>
 		<ca revised="false">Catalão</ca>
@@ -1508,7 +1508,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gl revised="false">Gallego</gl>
 		<fr revised="false">Francês</fr>
 		<ar translated="false">Arabic</ar>
-	</translate>
+	</translator>
 	<buscador>
 		<list revised="false">Pesquisa</list>
 		<todaslasaplicaciones>[Todas as aplicações]</todaslasaplicaciones>

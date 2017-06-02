@@ -952,31 +952,29 @@ function __signature_getauto($file) {
 	return $file;
 }
 
-function __translate_get_options($filter="") {
+function __translator_get_options($filter="") {
 	if(!is_array($filter)) $filter=explode(",",$filter);
 	if($filter[0]=="") unset($filter[0]);
 	$options=array();
-	$langs=__translate_get_langs();
+	$langs=__translator_get_langs();
 	if(count($langs)>0) {
-		$options[]="<option value='' reverse=''>".LANG("translate","translate")."</option>";
 		foreach($langs as $key=>$val) {
 			$temp=explode("-",$val);
 			if(!count($filter) || (in_array($temp[0],$filter) && in_array($temp[1],$filter))) {
-				$val2=implode("-",array(LANG($temp[0],"translate"),LANG($temp[1],"translate")));
+				$val2=LANG("translator","translator")." ".LANG($temp[0],"translator")." => ".LANG($temp[1],"translator");
 				$val3=implode("-",array($temp[1],$temp[0]));
 				$val3=in_array($val3,$langs)?$val3:"";
-				$options[]="<option value='$val' reverse='$val3'>- $val2</option>";
+				$options[]="<option value='${val}' reverse='${val3}'>${val2}</option>";
 			}
 		}
 	}
-	$langs=__translate_get_aspell_langs();
+	$langs=__translator_get_aspell_langs();
 	if(count($langs)>0) {
-		$options[]="<option value='' reverse=''>".LANG("corrector","translate")."</option>";
 		foreach($langs as $key=>$val) {
 			if(!count($filter) || in_array($val,$filter)) {
+				$val2=LANG("corrector","translator")." ".LANG($val,"translator");
 				$val3=implode("-",array($val,$val));
-				$val2=LANG($val,"translate");
-				$options[]="<option value='$val3' reverse='$val3'>- $val2</option>";
+				$options[]="<option value='${val3}' reverse='${val3}'>${val2}</option>";
 			}
 		}
 	}
@@ -984,7 +982,7 @@ function __translate_get_options($filter="") {
 	return $options;
 }
 
-function __translate_get_aspell_langs() {
+function __translator_get_aspell_langs() {
 	if(!check_commands(getDefault("commands/aspell"),60)) return array();
 	$langs=ob_passthru(getDefault("commands/aspell")." ".getDefault("commands/__aspell_langs__"),getDefault("default/commandexpires",60));
 	$langs=explode("\n",$langs);
@@ -1000,7 +998,7 @@ function __translate_get_aspell_langs() {
 	return $langs;
 }
 
-function __translate_get_langs() {
+function __translator_get_langs() {
 	if(!check_commands(getDefault("commands/translate"),60)) return array();
 	$langs=ob_passthru(getDefault("commands/translate")." ".getDefault("commands/__translate_langs__"),getDefault("default/commandexpires",60));
 	$langs=explode("\n",$langs);
@@ -1022,14 +1020,14 @@ function __translate_get_langs() {
 	return $langs;
 }
 
-function __translate_detect_aspell_langs($text,$length=50) {
+function __translator_detect_aspell_langs($text,$length=50) {
 	if(!check_commands(getDefault("commands/aspell"),60)) return array();
 	$words=str_word_count_utf8($text);
 	$words=array_slice($words,0,$length);
 	$text=implode(" ",$words);
 	$input=get_temp_file(".in");
 	file_put_contents($input,$text);
-	$langs=__translate_get_aspell_langs();
+	$langs=__translator_get_aspell_langs();
 	$counts=array();
 	foreach($langs as $lang) {
 		$aspell=ob_passthru(getDefault("commands/aspell")." ".str_replace(array("__LANG__","__INPUT__"),array($lang,$input),getDefault("commands/__aspell__")));
@@ -1044,7 +1042,7 @@ function __translate_detect_aspell_langs($text,$length=50) {
 	return $langs;
 }
 
-function __translate_aspell($text,$lang) {
+function __translator_aspell($text,$lang) {
 	if(!check_commands(getDefault("commands/aspell"),60)) return $text;
 	$input=get_temp_file(".in");
 	file_put_contents($input,$text);
@@ -1078,7 +1076,7 @@ function __translate_aspell($text,$lang) {
 	return $text;
 }
 
-function __translate($text,$langs) {
+function __translator($text,$langs) {
 	if(!check_commands(getDefault("commands/translate"),60)) return $text;
 	$input=get_temp_file(".in");
 	file_put_contents($input,$text);

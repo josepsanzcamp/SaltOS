@@ -94,8 +94,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"icon_help() { return '".ICON("help")."'; }"</function>
 	<!-- FOR CALCULATOR MODULE -->
 	<function eval="true">"lang_calculator() { return '".LANG_ESCAPE("calculator")."'; }"</function>
-	<!-- FOR TRANSLATE MODULE -->
-	<function eval="true">"lang_translate() { return '".LANG_ESCAPE(check_commands(getDefault('commands/translate'),60)?"translate":"corrector")."'; }"</function>
+	<!-- FOR TRANSLATOR MODULE -->
+	<function eval="true">"lang_translator() { return '".LANG_ESCAPE(check_commands(getDefault('commands/translate'),60)?"translator":"corrector")."'; }"</function>
 	<!-- USING CACHE -->
 	<cache>
 		<!-- FOR DATEPICKER -->
@@ -110,7 +110,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<include ifeval="eval_bool(getDefault('enablepurge'))">js/checkpurge.js</include>
 		<include>js/favicon.js</include>
 		<include ifeval="eval_bool(getDefault('enablevoice'))">js/voice.js</include>
-		<include ifeval="eval_bool(getDefault('enabletranslate'))">js/translate.js</include>
+		<include ifeval="eval_bool(getDefault('enabletranslator'))">js/translator.js</include>
 		<include>js/calculator.js</include>
 		<include>js/folders.js</include>
 	</cache>

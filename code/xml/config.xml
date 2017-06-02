@@ -89,7 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
 		<nativesoffice>true</nativesoffice>
 		<enablevoice eval="true">!ismobile()</enablevoice>
-		<enabletranslate eval="true">!ismobile()</enabletranslate>
+		<enabletranslator eval="true">!ismobile()</enabletranslator>
 		<enableindexing>true</enableindexing>
 		<enableintegrity>true</enableintegrity>
 		<enablepurge>false</enablepurge>
@@ -113,7 +113,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<unoconv>unoconv</unoconv><!-- for unoconv module -->
 		<__unoconv__>-f __FORMAT__ -o __OUTPUT__ __INPUT__</__unoconv__>
 		<__unoconv_about__>--show 2&gt;&amp;1</__unoconv_about__>
-		<soffice>soffice</soffice>
+		<soffice>soffice</soffice><!-- for unoconv module -->
 		<__soffice__>--headless --convert-to __FORMAT__ --outdir __OUTDIR__ __INPUT__</__soffice__>
 		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
 		<__pdftotext__>-nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
@@ -123,10 +123,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__text2wave_en__>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</__text2wave_en__>
 		<wavetomp3>lame</wavetomp3><!-- for voice module -->
 		<__wavetomp3__>--quiet __INPUT__ __OUTPUT__</__wavetomp3__>
-		<translate>translate</translate>
+		<translate>translate</translate><!-- for translator module -->
 		<__translate__>-s google -f __FROM__ -t __TO__ __INPUT__</__translate__>
 		<__translate_langs__>-s google -l</__translate_langs__>
-		<aspell>aspell</aspell><!-- for translate module -->
+		<aspell>aspell</aspell><!-- for translator module -->
 		<__aspell__>-a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
 		<__aspell_langs__>dump dicts</__aspell_langs__>
 		<which>which</which><!-- for check commands -->
@@ -137,11 +137,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__convert__>__INPUT__ -quality 100 __OUTPUT__</__convert__>
 		<tesseract>tesseract</tesseract><!-- for ocr module included in unoconv -->
 		<__tesseract__>__INPUT__ __OUTPUT__ -psm 1 hocr</__tesseract__>
-		<timeout>timeout</timeout>
+		<timeout>timeout</timeout><!-- for ocr module -->
 		<__timeout__>__TIMEOUT__ __COMMAND__</__timeout__>
-		<preview>wkhtmltoimage</preview>
+		<preview>wkhtmltoimage</preview><!-- for favoritos application -->
 		<__preview__>--load-error-handling ignore --format __FORMAT__ --width __WIDTH__ --height __HEIGHT__ --javascript-delay __DELAY__ --custom-header "User-Agent" "__USER_AGENT__" --custom-header-propagation --quiet "__INPUT__" __OUTPUT__</__preview__>
-		<xserver>xvfb-run</xserver>
+		<xserver>xvfb-run</xserver><!-- for favoritos application -->
 		<__xserver__>-a -s "-screen 0 __WIDTH__x__HEIGHT__x__COLORS__" __COMMAND__</__xserver__>
 	</commands>
 	<debug>

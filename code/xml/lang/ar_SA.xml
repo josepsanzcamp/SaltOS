@@ -530,7 +530,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_importaciones>الواردات</quick_importaciones>
 		<quick_buscador>بحث</quick_buscador>
 		<quick_errorlog>الاخطاء</quick_errorlog>
-		<translate>المترجم</translate>
+		<translator>المترجم</translator>
 		<corrector>Spell checker</corrector>
 		<calculator>الحاسبة</calculator>
 		<menu>القائمة</menu>
@@ -1497,8 +1497,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<deleteoffolder>حذف هذا الدليل</deleteoffolder>
 		<defaultfolder>الدليل الشخصي</defaultfolder>
 	</folders>
-	<translate>
-		<translate>المترجم</translate>
+	<translator>
+		<translator>المترجم</translator>
 		<corrector>Spell checker</corrector>
 		<es>Spanish</es>
 		<ca>Catalan</ca>
@@ -1508,7 +1508,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gl>Gallego</gl>
 		<fr>French</fr>
 		<ar>Arabic</ar>
-	</translate>
+	</translator>
 	<buscador>
 		<list>بحث</list>
 		<todaslasaplicaciones>[جميع التطبيقات]</todaslasaplicaciones>

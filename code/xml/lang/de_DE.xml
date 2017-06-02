@@ -530,7 +530,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_importaciones>Importieren</quick_importaciones>
 		<quick_buscador>Suche</quick_buscador>
 		<quick_errorlog>Fehlerprot.</quick_errorlog>
-		<translate>Übersetzer</translate>
+		<translator>Übersetzer</translator>
 		<corrector>Rechtschreibprüfung</corrector>
 		<calculator>Rechner</calculator>
 		<menu>Menü</menu>
@@ -1497,8 +1497,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<deleteoffolder>Aus dem Ordner entfernen</deleteoffolder>
 		<defaultfolder>Persönlicher Ordner</defaultfolder>
 	</folders>
-	<translate>
-		<translate>Übersetzer</translate>
+	<translator>
+		<translator>Übersetzer</translator>
 		<corrector>Rechtschreibprüfung</corrector>
 		<es>Spanisch</es>
 		<ca>Katalanisch</ca>
@@ -1508,7 +1508,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gl>Gallego</gl>
 		<fr>Französisch</fr>
 		<ar>Arabisch</ar>
-	</translate>
+	</translator>
 	<buscador>
 		<list>Suche</list>
 		<todaslasaplicaciones>[Alle Anwendungen]</todaslasaplicaciones>
