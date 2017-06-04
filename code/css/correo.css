@@ -22,32 +22,24 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-.estado.state_new,
-.estado.state_wait,
-.estado.state_spam,
-.estado.state_error {
-	color:#ffffff;
-}
-
 .estado.state_new {
+	color:#ffffff;
 	background:#449d44;
 }
 
 .estado.state_wait {
+	color:#ffffff;
 	background:#2780e3;
 }
 
 .estado.state_spam {
+	color:#ffffff;
 	background:#d62c1a;
 }
 
 .estado.state_error {
+	color:#ffffff;
 	background:#d62c1a;
-}
-
-/* SET TO RED THE LABEL OF THE INPUT BOX IN THE EMAIL FORM */
-input.state_error {
-	color:#d62c1a;
 }
 
 /* FOR MOBILE DEVICES */

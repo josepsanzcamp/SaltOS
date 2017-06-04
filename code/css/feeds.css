@@ -22,21 +22,18 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-.estado.state_new,
-.estado.state_wait,
-.estado.state_cool {
-	color:#ffffff;
-}
-
 .estado.state_new {
+	color:#ffffff;
 	background:#449d44;
 }
 
 .estado.state_wait {
+	color:#ffffff;
 	background:#2780e3;
 }
 
 .estado.state_cool {
+	color:#ffffff;
 	background:#b58900;
 }
 

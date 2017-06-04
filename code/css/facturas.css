@@ -22,20 +22,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-.cerrado.style_opened,
-.cobrado.style_closed,
-.cobrado.style_alarm {
-	color:#ffffff;
-}
-
 .cerrado.style_opened {
+	color:#ffffff;
 	background:#2780e3;
 }
 
 .cobrado.style_closed {
+	color:#ffffff;
 	background:#2780e3;
 }
 
 .cobrado.style_alarm {
+	color:#ffffff;
 	background:#449d44;
 }
