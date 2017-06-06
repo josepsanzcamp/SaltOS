@@ -30,9 +30,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<style>custom.gray</style>
 		<style>custom.green</style>
 		<style>custom.red</style>
-		<style>custom.pink</style>
-		<style>custom.orange</style>
 		<style>custom.yellow</style>
+		<style>custom.pink</style>
+		<style>custom.purple</style>
+		<style>custom.orange</style>
+		<style>custom.brown</style>
 		<style>theme.humanity</style>
 		<style>theme.redmond</style>
 		<style>theme.ui-darkness</style>
@@ -44,9 +46,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<style>custom.gray</style>
 		<style>custom.green</style>
 		<style>custom.red</style>
-		<style>custom.pink</style>
-		<style>custom.orange</style>
 		<style>custom.yellow</style>
+		<style>custom.pink</style>
+		<style>custom.purple</style>
+		<style>custom.orange</style>
+		<style>custom.brown</style>
 		<style>theme.light</style>
 		<style>theme.dark</style>
 	</mobile>

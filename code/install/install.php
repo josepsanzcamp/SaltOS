@@ -66,7 +66,7 @@ define("__COLOR__","</b></span>");
 define("__YES__",__GREEN__.LANG("yes").__COLOR__);
 define("__NO__",__RED__.LANG("no").__COLOR__);
 define("__DIV1__","class='ui-widget-header ui-corner-tl ui-corner-tr' style='margin:0px auto;padding:5px'");
-define("__DIV2__","class='ui-widget-content ui-corner-bl ui-corner-br' style='margin:0px auto 2px auto;padding:5px'");
+define("__DIV2__","class='ui-widget-content ui-corner-bl ui-corner-br' style='margin:0px auto 2px auto;padding:5px; border-top:0'");
 define("__DIV3__","style='margin:10px auto;padding:0px;text-align:".$textalign[$dir]."'");
 define("__BR__","<br/>");
 define("__HR__","<hr style='border:0px;height:1px;background:#ccc'/>");

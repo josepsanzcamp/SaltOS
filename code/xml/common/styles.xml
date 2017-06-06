@@ -50,16 +50,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>custom.red</value>
 		</row>
 		<row>
+			<label>Custom Yellow</label>
+			<value>custom.yellow</value>
+		</row>
+		<row>
 			<label>Custom Pink</label>
 			<value>custom.pink</value>
+		</row>
+		<row>
+			<label>Custom Purple</label>
+			<value>custom.purple</value>
 		</row>
 		<row>
 			<label>Custom Orange</label>
 			<value>custom.orange</value>
 		</row>
 		<row>
-			<label>Custom Yellow</label>
-			<value>custom.yellow</value>
+			<label>Custom Brown</label>
+			<value>custom.brown</value>
 		</row>
 		<row>
 			<label>Theme Humanity</label>
@@ -100,16 +108,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>custom.red</value>
 		</row>
 		<row>
+			<label>Custom Yellow</label>
+			<value>custom.yellow</value>
+		</row>
+		<row>
 			<label>Custom Pink</label>
 			<value>custom.pink</value>
+		</row>
+		<row>
+			<label>Custom Purple</label>
+			<value>custom.purple</value>
 		</row>
 		<row>
 			<label>Custom Orange</label>
 			<value>custom.orange</value>
 		</row>
 		<row>
-			<label>Custom Yellow</label>
-			<value>custom.yellow</value>
+			<label>Custom Brown</label>
+			<value>custom.brown</value>
 		</row>
 		<row>
 			<label>Theme Light</label>
