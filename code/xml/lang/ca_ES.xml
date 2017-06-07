@@ -1442,6 +1442,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlywait>Només pendents</onlywait>
 		<options>Opcions</options>
 		<optionstip>Mostra més opcions de la llista</optionstip>
+		<pdfoptions>Opcions del PDF</pdfoptions>
 		<stateall>Tot</stateall>
 		<today>Avui</today>
 		<yesterday>Ahir</yesterday>

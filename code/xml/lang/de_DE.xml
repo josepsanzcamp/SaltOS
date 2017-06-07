@@ -1442,6 +1442,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlywait>nur ausstehende</onlywait>
 		<options>Optionen</options>
 		<optionstip>Weitere Optionen</optionstip>
+		<pdfoptions translated="false">PDF options</pdfoptions>
 		<stateall>alle</stateall>
 		<today>Heute</today>
 		<yesterday>Gestern</yesterday>

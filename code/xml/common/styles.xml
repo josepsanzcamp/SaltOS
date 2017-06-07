@@ -50,10 +50,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>custom.red</value>
 		</row>
 		<row>
-			<label>Custom Yellow</label>
-			<value>custom.yellow</value>
-		</row>
-		<row>
 			<label>Custom Pink</label>
 			<value>custom.pink</value>
 		</row>
@@ -106,10 +102,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<row>
 			<label>Custom Red</label>
 			<value>custom.red</value>
-		</row>
-		<row>
-			<label>Custom Yellow</label>
-			<value>custom.yellow</value>
 		</row>
 		<row>
 			<label>Custom Pink</label>

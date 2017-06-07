@@ -146,7 +146,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <xsl:template name="menu">
 	<xsl:for-each select="/root/menu/group">
 		<div class="{class}" id="{name}">
-			<h3><a href="javascript:void(0)" title="{tip}"><xsl:value-of select="label"/></a></h3>
+			<h3 title="{tip}"><xsl:value-of select="label"/></h3>
 			<div>
 				<ul class="accordion-link">
 					<xsl:for-each select="option">
@@ -1135,16 +1135,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								</option>
 							</xsl:when>
 							<xsl:when test="name()='group'">
-								<optgroup label="{label}" class="{class}">
-									<xsl:for-each select="option">
-										<option value="{onclick}" class="{class}">
-											<xsl:if test="disabled='true'">
-												<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
-											</xsl:if>
-											<xsl:value-of select="label"/>
-										</option>
-									</xsl:for-each>
-								</optgroup>
+								<option value="" class="{class}"><xsl:value-of select="label"/></option>
+								<xsl:for-each select="option">
+									<option value="{onclick}" class="{class}">
+										<xsl:if test="disabled='true'">
+											<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
+										</xsl:if>
+										<xsl:text>- </xsl:text><xsl:value-of select="label"/>
+									</option>
+								</xsl:for-each>
 							</xsl:when>
 						</xsl:choose>
 					</xsl:for-each>

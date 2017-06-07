@@ -1442,6 +1442,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlywait>فقط المؤجلة</onlywait>
 		<options>خيارات</options>
 		<optionstip>اظهر المزيد من الخيارات من القائمة</optionstip>
+		<pdfoptions translated="false">PDF options</pdfoptions>
 		<stateall>الكل</stateall>
 		<today>اليوم</today>
 		<yesterday>أمس</yesterday>
