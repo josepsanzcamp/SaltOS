@@ -505,6 +505,12 @@ function db_schema() {
 		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
 			$tables1=get_tables();
 			$tables2=get_tables_from_dbschema();
+			if(isset($dbschema["excludes"]) && is_array($dbschema["excludes"])) {
+				foreach($dbschema["excludes"] as $exclude) {
+					foreach($tables1 as $key=>$val) if($exclude["name"]==$val) unset($tables1[$key]);
+					foreach($tables2 as $key=>$val) if($exclude["name"]==$val) unset($tables2[$key]);
+				}
+			}
 			foreach($tables1 as $table) {
 				$isbackup=(substr($table,0,2)=="__" && substr($table,-2,2)=="__");
 				if(!$isbackup && !in_array($table,$tables2)) {
