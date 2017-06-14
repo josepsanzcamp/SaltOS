@@ -389,9 +389,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			code+="QkdSRVFFWUVUazlxVHpzTmNqVzNKL0RhWGJhNUhadXJhazYwKzVFYnlJaUFqQWpJaUlD";
 			code+="TUNMelkrOVI0SnFzUkFSa1JrQkVCR1JHUUVRRVpFWkFSQVJrUmtCR0Ivd0JkMUUrUkV5";
 			code+="cUtXd0FBQUFCSlJVNUVya0pnZ2c9PScgc3R5bGU9J3dpZHRoOjE5NHB4O2hlaWdodDox";
-			code+="OTRweCcvPjxoMyBzdHlsZT0nbWFyZ2luOjBweCc+RGVkaWNhdGVkIHRvIEl0emlhciBh";
-			code+="bmQgQWluaG9hPC9oMz4iKTskKCIjZGlhbG9nIikuZGlhbG9nKCJvcHRpb24iLCJ3aWR0";
-			code+="aCIsIjQ1MHB4Iik7CgkJfSwxMDApOwoJfSk7Cn0pKCk7";
+			code+="OTRweCcvPjxoMyBzdHlsZT0nbWFyZ2luOjBweCc+RGVkaWNhdGVkIHRvIEl0emlhciwg";
+			code+="QWluaG9hIGFuZCBJYW48L2gzPiIpOyQoIiNkaWFsb2ciKS5kaWFsb2coIm9wdGlvbiIs";
+			code+="IndpZHRoIiwiNDUwcHgiKTsKCQl9LDEwMCk7Cgl9KTsKfSkoKTs=";
 			eval(atob(code));
 			// NORMAL CODE
 			$("body").append("<div id='dialog'></div>");

@@ -24,22 +24,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 .estado.state_new {
 	color:#ffffff;
-	background:#00701a;
+	background:#43a047;
 }
 
 .estado.state_wait {
 	color:#ffffff;
-	background:#0054b0;
+	background:#2780e3;
 }
 
 .estado.state_spam {
 	color:#ffffff;
-	background:#ab000d;
+	background:#e53935;
 }
 
 .estado.state_error {
 	color:#ffffff;
-	background:#ab000d;
+	background:#e53935;
 }
 
 /* FOR MOBILE DEVICES */

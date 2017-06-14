@@ -24,15 +24,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 .cerrado.style_opened {
 	color:#ffffff;
-	background:#0054b0;
+	background:#2780e3;
 }
 
 .cobrado.style_closed {
 	color:#ffffff;
-	background:#0054b0;
+	background:#2780e3;
 }
 
 .cobrado.style_alarm {
 	color:#ffffff;
-	background:#00701a;
+	background:#e53935;
 }

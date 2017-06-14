@@ -24,17 +24,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 .estado.state_new {
 	color:#ffffff;
-	background:#00701a;
+	background:#43a047;
 }
 
 .estado.state_wait {
 	color:#ffffff;
-	background:#0054b0;
+	background:#2780e3;
 }
 
 .estado.state_cool {
 	color:#ffffff;
-	background:#c25e00;
+	background:#fb8c00;
 }
 
 .enlace {
