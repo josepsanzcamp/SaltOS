@@ -138,7 +138,7 @@ sess_close();
 // MORE TO PREPARE THE OUTPUT
 if(isset($_ALERT)) $_RESULT["alerts"]=$_ALERT;
 if(isset($_ERROR)) $_RESULT["errors"]=$_ERROR;
-$_RESULT["info"]["color"]=getDefault("themeroller/themes/$style");
+$_RESULT["info"]["color"]=color_style($style);
 $_RESULT["info"]["usejscache"]=getDefault("cache/usejscache");
 $_RESULT["info"]["usecsscache"]=getDefault("cache/usecsscache");
 $_RESULT["info"]["lang"]=$lang;

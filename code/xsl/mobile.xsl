@@ -31,10 +31,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	doctype-system ="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
 <xsl:template name="head">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta name="apple-mobile-web-app-capable" content="yes"/>
 	<xsl:for-each select="/root">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="theme-color" content="{info/color}"/>
 		<link href="{info/favicon}" rel="icon"></link>
 		<link href="{info/favicon}" rel="shortcut icon"></link>
 		<link href="{info/favicon}" rel="apple-touch-icon"/>

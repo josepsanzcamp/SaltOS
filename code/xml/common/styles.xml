@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<label lang="true">style</label>
 	<type>select</type>
 	<width>120px</width>
-	<rows ifeval="!ismobile()">
+	<rows>
 		<row>
 			<label>Custom Blue</label>
 			<value>custom.blue</value>
@@ -65,65 +65,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<label>Custom Brown</label>
 			<value>custom.brown</value>
 		</row>
-		<row>
+		<row ifeval="!ismobile()">
 			<label>Theme Humanity</label>
 			<value>theme.humanity</value>
 		</row>
-		<row>
+		<row ifeval="!ismobile()">
 			<label>Theme Redmond</label>
 			<value>theme.redmond</value>
 		</row>
-		<row>
+		<row ifeval="!ismobile()">
 			<label>Theme UI darkness</label>
 			<value>theme.ui-darkness</value>
 		</row>
-		<row>
+		<row ifeval="!ismobile()">
 			<label>Theme UI lightness</label>
 			<value>theme.ui-lightness</value>
 		</row>
-	</rows>
-	<rows ifeval="ismobile()">
-		<row>
-			<label>Custom Blue</label>
-			<value>custom.blue</value>
-		</row>
-		<row>
-			<label>Custom Facebook</label>
-			<value>custom.facebook</value>
-		</row>
-		<row>
-			<label>Custom Gray</label>
-			<value>custom.gray</value>
-		</row>
-		<row>
-			<label>Custom Green</label>
-			<value>custom.green</value>
-		</row>
-		<row>
-			<label>Custom Red</label>
-			<value>custom.red</value>
-		</row>
-		<row>
-			<label>Custom Pink</label>
-			<value>custom.pink</value>
-		</row>
-		<row>
-			<label>Custom Purple</label>
-			<value>custom.purple</value>
-		</row>
-		<row>
-			<label>Custom Orange</label>
-			<value>custom.orange</value>
-		</row>
-		<row>
-			<label>Custom Brown</label>
-			<value>custom.brown</value>
-		</row>
-		<row>
+		<row ifeval="ismobile()">
 			<label>Theme Light</label>
 			<value>theme.light</value>
 		</row>
-		<row>
+		<row ifeval="ismobile()">
 			<label>Theme Dark</label>
 			<value>theme.dark</value>
 		</row>

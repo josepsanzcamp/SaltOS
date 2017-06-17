@@ -1017,6 +1017,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var style2=getstylesheet(html);
 		if(style1 && style2 && $(style1).attr("href")!=$(style2).attr("href")) {
 			$(style1).replaceWith(style2);
+			var meta1=$("meta[name='theme-color']",html2);
+			var meta2=$("meta[name='theme-color']",html);
+			if($(meta1).attr("content")!=$(meta2).attr("content")) {
+				$(meta1).replaceWith(meta2);
+			}
 			get_colors();
 		}
 		//~ console.timeEnd("update_style");
