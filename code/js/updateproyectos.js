@@ -48,7 +48,7 @@ if(typeof(__updateproyectos__)=="undefined" && typeof(parent.__updateproyectos__
 					var selected=(this["id"]==original)?"selected='selected'":"";
 					options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
 				});
-				$(proyecto).html(options);
+				$(proyecto).html(options).trigger("refresh");
 				proyectos_init=1;
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {

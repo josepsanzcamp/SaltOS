@@ -913,7 +913,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function loadcontent(xml) {
 		//~ console.time("loadcontent");
-		$(".ui-tooltip").remove();
+		hide_tooltips();
 		loadingcontent();
 		if(xml.firstChild) {
 			var xsl=$("root>info>xslt",xml).text();
@@ -1433,19 +1433,34 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".title",obj).addClass("ui-widget-header ui-corner-all");
 		// TRICK FOR DISABLE BUTTONS
 		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
-		// PROGRAM MENU SELECTS
+		// PROGRAM SELECT MENU
 		$("select[ismenu=true]",obj).on("change",function() {
 			if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
 			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
 		});
-		// FIX WIDTH OF THE SELECTS
+		// PROGRAM SELECT MENU
 		$("select",obj).each(function() {
-			var id=$(this).attr("id");
 			var width=$(this).css("width");
 			if(substr(width,-2,2)=="px" && intval(width)>0) {
-				setTimeout(function() {
-					$("#"+id).width(width);
-				},100);
+				width=(intval(width)+12)+"px";
+			} else {
+				width="auto";
+			}
+			$(this).selectmenu({
+				width:width,
+				change:function() {
+					$(this).trigger("change");
+				},
+				open:function() {
+					hide_tooltips();
+				},
+				close:function() {
+					hide_tooltips();
+				}
+			});
+		}).on("refresh change",function() {
+			if(typeof($(this).selectmenu("instance"))!="undefined") {
+				$(this).selectmenu("refresh");
 			}
 		});
 		// FOR ACTIONS LIST
@@ -1456,7 +1471,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				$(actions1).removeClass("none");
 				$(actions2).addClass("none");
 			}
-
 		});
 		//~ console.timeEnd("make_extras");
 	}
@@ -1774,6 +1788,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.timeEnd("make_tooltips");
 	}
 
+	function hide_tooltips() {
+		$(".ui-tooltip").remove();
+	}
+
 	var make_focus_obj=null;
 
 	function make_focus() {
@@ -1957,14 +1975,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	function make_contextmenu() {
 		//~ console.time("make_contextmenu");
 		$("body").append("<ul id='contextMenu' class='ui-corner-all'></ul>");
-		$("#contextMenu").menu();
+		$("#contextMenu").menu().hide();
 		$(document).on("keydown",function(event) {
 			if(is_escapekey(event)) hide_contextmenu();
 		}).on("click",function(event) {
 			if(event.button!=2) hide_contextmenu();
 		}).on("contextmenu",function(event) {
 			if(event.ctrlKey) return true;
-			$(".ui-tooltip").remove();
+			hide_tooltips();
 			var obj=$("#contextMenu");
 			$("li",obj).remove();
 			var parent=$(event.target).parent();

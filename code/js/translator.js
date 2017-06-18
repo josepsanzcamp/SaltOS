@@ -67,6 +67,13 @@ if(typeof(__translator__)=="undefined" && typeof(parent.__translator__)=="undefi
 		$(div).append("<a href='javascript:void(0)' "+clase+">"+up+"</a>");
 		$(div).append("<br/>");
 		$(div).append("<textarea "+clase+" spellcheck='false'></textarea>");
+		$("select",div).selectmenu({
+			width:"auto"
+		}).on("selectmenuchange",function() {
+			$(this).trigger("change");
+		}).on("refresh change",function() {
+			$(this).selectmenu("refresh");
+		});
 		// SOME NEEDEDS FUNCTIONS
 		function __translator_get_reverse() {
 			var langs=$("select",div).val();
@@ -96,7 +103,7 @@ if(typeof(__translator__)=="undefined" && typeof(parent.__translator__)=="undefi
 		function __translator_get_cookie() {
 			var langs=getCookie("saltos_translator_langs");
 			var option=$("option[value='"+langs+"']",div);
-			if($(option).length) $("select",div).val(langs);
+			if($(option).length) $("select",div).val(langs).trigger("refresh");
 		}
 		function __translator_set_cookie() {
 			var langs=$("select",div).val();

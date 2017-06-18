@@ -1136,15 +1136,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								</option>
 							</xsl:when>
 							<xsl:when test="name()='group'">
-								<option value="" class="{class}"><xsl:value-of select="label"/></option>
-								<xsl:for-each select="option">
-									<option value="{onclick}" class="{class}">
-										<xsl:if test="disabled='true'">
-											<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
-										</xsl:if>
-										<xsl:text>- </xsl:text><xsl:value-of select="label"/>
-									</option>
-								</xsl:for-each>
+								<optgroup label="{label}" class="{class}">
+									<xsl:for-each select="option">
+										<option value="{onclick}" class="{class}">
+											<xsl:if test="disabled='true'">
+												<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
+											</xsl:if>
+											<xsl:value-of select="label"/>
+										</option>
+									</xsl:for-each>
+								</optgroup>
 							</xsl:when>
 						</xsl:choose>
 					</xsl:for-each>

@@ -51,7 +51,7 @@ if(typeof(__updatetareas__)=="undefined" && typeof(parent.__updatetareas__)=="un
 					var selected=(this["id"]==original)?"selected='selected'":"";
 					options+="<option value='"+this["id"]+"' "+selected+">"+this["tarea"]+"</option>";
 				});
-				$(tarea).html(options);
+				$(tarea).html(options).trigger("refresh");
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

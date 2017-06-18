@@ -67,7 +67,7 @@ if(typeof(__gastos__)=="undefined" && typeof(parent.__gastos__)=="undefined") {
 					var selected=(this["id"]==original || contador==1)?"selected='selected'":"";
 					options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
 				});
-				$(proveedor).html(options);
+				$(proveedor).html(options).trigger("refresh");
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

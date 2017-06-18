@@ -43,7 +43,7 @@ if(typeof(__updatecuentas__)=="undefined" && typeof(parent.__updatecuentas__)=="
 					var selected=(this["id"]==original)?"selected='selected'":"";
 					options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
 				});
-				$(cuenta).html(options);
+				$(cuenta).html(options).trigger("refresh");
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

@@ -39,8 +39,7 @@ $_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml"));
 $_CONFIG=eval_attr($_CONFIG);
 if($_CONFIG["info"]["revision"]=="SVN") $_CONFIG["info"]["revision"]=svnversion();
 if($_CONFIG["info"]["revision"]=="GIT") $_CONFIG["info"]["revision"]=gitversion();
-$temp=eval_attr(xml2array("xml/styles.xml"));
-$style=in_array($style,$temp["desktop"])?$style:$temp["desktop"]["style"];
+$style=load_style($style)?$style:"custom.blue";
 // SOME ALLOWED ACTIONS
 if(getParam("action")=="themeroller") {
 	global $page;
@@ -84,6 +83,15 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="lib/jquery/jquery-ui.min.js"></script>
 		<script type="text/javascript">$(function() { $("a:last").focus(); });</script>
+		<script type="text/javascript">$(function() {
+		$("select").selectmenu({
+			width:"auto"
+		}).on("selectmenuchange",function() {
+			$(this).trigger("change");
+		}).on("refresh change",function() {
+			$(this).selectmenu("refresh");
+		});
+		});</script>
 	</head>
 	<body>
 		<div class="ui-layout-north" style="margin-left:auto;margin-right:auto;width:800px">
@@ -491,11 +499,8 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 									"value"=>array("lang"=>$lang),
 									"#attr"=>array("path"=>"default/lang","replace"=>"true")
 								));
-								$temp=eval_attr(xml2array("xml/styles.xml"));
-								$style_mobile=in_array($style,$temp["mobile"])?$style:$temp["desktop"]["style"];
-								$style_desktop=in_array($style,$temp["desktop"])?$style:$temp["desktop"]["style"];
 								set_array($config,"node",array(
-									"value"=>array("style"=>array("value"=>"ismobile()?\"$style_mobile\":\"$style_desktop\"","#attr"=>array("eval"=>"true"))),
+									"value"=>array("style"=>array("value"=>"ismobile()?\"$style\":\"$style\"","#attr"=>array("eval"=>"true"))),
 									"#attr"=>array("path"=>"default/style","replace"=>"true")
 								));
 								// STEP 1

@@ -532,20 +532,6 @@ img[isplot=true] {
 	width:auto!important;
 }
 
-/* FOR CONTEXT MENU */
-ul.ui-menu {
-	display:none;
-}
-
-ul.ui-menu .ui-menu-item-wrapper {
-	font-weight:normal;
-	padding:5px 7px;
-}
-
-ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
-	background-color:#fbec88;
-}
-
 /* FOR VIEWPDF */
 .pdfViewer {
 	margin-top:10px;
@@ -632,4 +618,26 @@ ul.ui-menu .ui-menu-item-wrapper.ui-state-active {
 
 .fa-times {
 	color:#ab000d;
+}
+
+/* FOR SELECT MENU */
+.ui-selectmenu-button.ui-button {
+	margin:1px;
+	padding:2px 0 0 10px;
+	vertical-align:-1px;
+}
+
+/* FOR CONTEXT MENU */
+#contextMenu .ui-menu-item-wrapper {
+	padding:5px 7px;
+}
+
+/* FOR SELECT MENU AND CONTEXT MENU */
+.ui-menu .ui-menu-item-wrapper {
+	font-weight:normal;
+}
+
+.ui-menu .ui-menu-item-wrapper.ui-state-active {
+	background-color:#fbec88;
+	font-weight:normal;
 }

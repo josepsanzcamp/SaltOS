@@ -44,7 +44,7 @@ if(typeof(__updatepresupuestos__)=="undefined" && typeof(parent.__updatepresupue
 					var selected=(this["id"]==original)?"selected='selected'":"";
 					options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
 				});
-				$(presupuesto).html(options);
+				$(presupuesto).html(options).trigger("refresh");
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
