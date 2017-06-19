@@ -1545,12 +1545,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("make_hovers");
 		var inputs="a.ui-state-default,input.ui-state-default,textarea.ui-state-default,select.ui-state-default";
 		$(document).on("mouseover",inputs,function() {
+			if($(this).hasClass("ui-state-disabled")) return;
 			$(this).addClass("ui-state-hover");
 		}).on("mouseout",inputs,function() {
+			if($(this).hasClass("ui-state-disabled")) return;
 			$(this).removeClass("ui-state-hover");
 		}).on("focus",inputs,function() {
+			if($(this).hasClass("ui-state-disabled")) return;
 			$(this).addClass("ui-state-focus");
 		}).on("blur",inputs,function() {
+			if($(this).hasClass("ui-state-disabled")) return;
 			$(this).removeClass("ui-state-focus");
 		});
 		//~ console.timeEnd("make_hovers");

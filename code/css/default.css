@@ -232,7 +232,7 @@ input.ui-state-error {
 
 input.ui-state-disabled {
 	opacity:0.85!important;
-	filter:Alpha(Opacity=85)!important;
+	pointer-events:auto;
 }
 
 textarea.ui-state-default {
@@ -247,7 +247,7 @@ textarea.ui-state-error {
 
 textarea.ui-state-disabled {
 	opacity:0.85!important;
-	filter:Alpha(Opacity=85)!important;
+	pointer-events:auto;
 }
 
 select.ui-state-default {
@@ -262,7 +262,7 @@ select.ui-state-error {
 
 select.ui-state-disabled {
 	opacity:0.85!important;
-	filter:Alpha(Opacity=85)!important;
+	pointer-events:auto;
 }
 
 iframe.ui-state-default {
@@ -621,10 +621,18 @@ img[isplot=true] {
 }
 
 /* FOR SELECT MENU */
-.ui-selectmenu-button.ui-button {
+.ui-button.ui-selectmenu-button {
 	margin:1px;
 	padding:2px 0 0 10px;
 	vertical-align:-1px;
+}
+
+.ui-button.ui-selectmenu-button.ui-state-disabled {
+	opacity:0.85!important;
+}
+
+.ui-selectmenu-menu .ui-menu {
+	max-height:400px;
 }
 
 /* FOR CONTEXT MENU */
