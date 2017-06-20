@@ -26,9 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:output method="html" version="1.0" encoding="UTF-8" indent="no"
-	doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
-	doctype-system ="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
+<xsl:output method="html" encoding="UTF-8" indent="no" doctype-system="about:legacy-compat"/>
 
 <xsl:template name="head">
 	<xsl:for-each select="/root">
@@ -1130,6 +1128,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<xsl:when test="name()='option'">
 								<option value="{onclick}" class="{class}">
 									<xsl:if test="disabled='true'">
+										<xsl:attribute name="disabled">disabled</xsl:attribute>
 										<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
 									</xsl:if>
 									<xsl:value-of select="label"/>
@@ -1140,6 +1139,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<xsl:for-each select="option">
 										<option value="{onclick}" class="{class}">
 											<xsl:if test="disabled='true'">
+												<xsl:attribute name="disabled">disabled</xsl:attribute>
 												<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
 											</xsl:if>
 											<xsl:value-of select="label"/>
@@ -1477,7 +1477,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template match="/">
-	<html xmlns="http://www.w3.org/1999/xhtml" lang="{/root/info/lang}" dir="{/root/info/dir}">
+	<html lang="{/root/info/lang}" dir="{/root/info/dir}">
 		<head>
 			<xsl:call-template name="head"/>
 		</head>

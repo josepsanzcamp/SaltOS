@@ -621,21 +621,27 @@ img[isplot=true] {
 }
 
 /* FOR SELECT MENU */
-.ui-button.ui-selectmenu-button {
+.ui-selectmenu-button.ui-button {
 	margin:1px;
 	padding:2px 0 0 10px;
 	vertical-align:-1px;
 }
 
-.ui-button.ui-selectmenu-button.ui-state-disabled {
+.ui-selectmenu-button.ui-button.ui-state-disabled {
 	opacity:0.85!important;
 }
 
 .ui-selectmenu-menu .ui-menu {
-	max-height:400px;
+	min-width:150px;
+	max-width:300px;
+	max-height:300px;
 }
 
 /* FOR CONTEXT MENU */
+#contextMenu {
+	min-width:150px;
+}
+
 #contextMenu .ui-menu-item-wrapper {
 	padding:5px 7px;
 }

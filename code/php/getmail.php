@@ -29,7 +29,7 @@ require_once("lib/phpclasses/mimeparser/rfc822_addresses.php");
 require_once("lib/phpclasses/pop3class/pop3.php");
 
 // SOME DEFINES
-define("__HTML_PAGE_OPEN__",'<html><head><style type="text/css">'.getDefault("defines/htmlpage").'</style></head><body>');
+define("__HTML_PAGE_OPEN__",'<!DOCTYPE html><html><head><style type="text/css">'.getDefault("defines/htmlpage").'</style></head><body>');
 define("__HTML_PAGE_CLOSE__",'</body></html>');
 define("__HTML_BOX_OPEN__",'<div style="'.getDefault("defines/htmlbox").'">');
 define("__HTML_BOX_CLOSE__",'</div>');

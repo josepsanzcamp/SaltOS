@@ -103,7 +103,7 @@ if(typeof(__calculator__)=="undefined" && typeof(parent.__calculator__)=="undefi
 				}
 			}
 		});
-		$("textarea:first",div).focus();
+		$("textarea:first",div).trigger("focus");
 	}
 
 }

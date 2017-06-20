@@ -24,17 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 .saltos-icon { background-image: url(../img/icons.png)!important; }
 .saltos-icon-none { background-position: -0px -0px; }
-.ui-state-disabled .saltos-icon-none { background-position: -16px -0px; }
-.ui-state-disabled.saltos-icon-none { background-position: -16px -0px; }
-.saltos-icon-sortascout { background-position: -32px -0px; }
-.ui-state-disabled .saltos-icon-sortascout { background-position: -48px -0px; }
-.ui-state-disabled.saltos-icon-sortascout { background-position: -48px -0px; }
-.saltos-icon-sortascin { background-position: -64px -0px; }
-.ui-state-disabled .saltos-icon-sortascin { background-position: -80px -0px; }
-.ui-state-disabled.saltos-icon-sortascin { background-position: -80px -0px; }
-.saltos-icon-sortdescout { background-position: -96px -0px; }
-.ui-state-disabled .saltos-icon-sortdescout { background-position: -112px -0px; }
-.ui-state-disabled.saltos-icon-sortdescout { background-position: -112px -0px; }
-.saltos-icon-sortdescin { background-position: -128px -0px; }
-.ui-state-disabled .saltos-icon-sortdescin { background-position: -144px -0px; }
-.ui-state-disabled.saltos-icon-sortdescin { background-position: -144px -0px; }
+.saltos-icon-sortascout { background-position: -16px -0px; }
+.saltos-icon-sortascin { background-position: -32px -0px; }
+.saltos-icon-sortdescout { background-position: -48px -0px; }
+.saltos-icon-sortdescin { background-position: -64px -0px; }

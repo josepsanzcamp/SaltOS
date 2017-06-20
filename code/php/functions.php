@@ -1035,7 +1035,8 @@ function show_php_error($array=null) {
 }
 
 function pretty_html_error($msg) {
-	$html="<html>";
+	$html="<!DOCTYPE html>";
+	$html.="<html>";
 	$html.="<head>";
 	$html.="<title>".get_name_version_revision()."</title>";
 	$html.="<style>";

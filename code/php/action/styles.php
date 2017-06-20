@@ -31,13 +31,12 @@ if(getParam("action")=="styles") {
 		$revision=getDefault("info/revision");
 		$styles=eval_attr(xml2array("xml/common/styles.xml"));
 		foreach($styles["rows"] as $row) if($style==$row["value"]) break;
+		echo "<!DOCTYPE html>";
 		echo "<html>";
 		echo "<head>";
 		echo "<link href='${stylepre}${style}${stylepost}?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<link href='css/default.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<style>";
-		//~ echo "body{background:#fff;}";
-		echo "table{font-size:10px;}";
 		echo "#datepicker{margin:20px 0 0 0;}";
 		echo "ul{padding-left:0;}";
 		echo "</style>";
@@ -113,6 +112,7 @@ if(getParam("action")=="styles") {
 	} else {
 		$styles=eval_attr(xml2array("xml/common/styles.xml"));
 		$revision=getDefault("info/revision");
+		echo "<!DOCTYPE html>";
 		echo "<html>";
 		echo "<head>";
 		echo "<link href='css/default.css?r=${revision}' rel='stylesheet' type='text/css'>";

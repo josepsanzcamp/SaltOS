@@ -50,7 +50,7 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
 				$("div",obj).css("overflow","auto");
 				$("div",obj).width(width);
 				$("div",obj).scrollLeft(offset);
-				$("input[name$=buscar]").focus();
+				$("input[name$=buscar]").trigger("focus");
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				unloadingcontent();

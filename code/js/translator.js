@@ -104,6 +104,7 @@ if(typeof(__translator__)=="undefined" && typeof(parent.__translator__)=="undefi
 			var langs=getCookie("saltos_translator_langs");
 			var option=$("option[value='"+langs+"']",div);
 			if($(option).length) $("select",div).val(langs).trigger("refresh");
+			else $("option:first",div).prop("selected","selected").parent().trigger("refresh");
 		}
 		function __translator_set_cookie() {
 			var langs=$("select",div).val();
@@ -191,7 +192,7 @@ if(typeof(__translator__)=="undefined" && typeof(parent.__translator__)=="undefi
 				}
 			});
 		});
-		$("textarea:first",div).focus();
+		$("textarea:first",div).trigger("focus");
 	}
 
 }

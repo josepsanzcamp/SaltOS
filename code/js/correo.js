@@ -192,8 +192,14 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 			var width=$(".ui-layout-center").width()-50-delta;
 			if(width<800) return;
 			$("input,textarea,select,iframe").filter(function () {
-				return $(this).width()==800;
-			}).width(width);
+				return $(this).css("width")=="800px";
+			}).each(function() {
+				if(substr(this.type,0,6)=="select") {
+					$(this).selectmenu("option","width",(intval(width)+12)+"px");
+				} else {
+					$(this).width(width);
+				}
+			});
 		},100);
 	}
 

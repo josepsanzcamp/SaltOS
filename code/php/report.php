@@ -24,30 +24,31 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function __report_begin($subject) {
-	$message="<html>\n";
-	$message.="<head>\n";
-	$message.="<title>$subject</title>\n";
-	$message.="</head>\n";
-	$message.="<body bgcolor='".__report_config("bgbody")."'>\n";
-	$message.="<table cellspacing='2px' cellpadding='2px' border='0px' width='".__report_config("big")."'>\n";
+	$message="<!DOCTYPE html>";
+	$message.="<html>";
+	$message.="<head>";
+	$message.="<title>$subject</title>";
+	$message.="</head>";
+	$message.="<body bgcolor='".__report_config("bgbody")."'>";
+	$message.="<table cellspacing='2px' cellpadding='2px' border='0px' width='".__report_config("big")."'>";
 	$message.=__report_head($subject);
 	return $message;
 }
 
 function __report_text($label,$value) {
 	if($label!="") $label.=":";
-	$message="<tr>\n";
+	$message="<tr>";
 	$message.="<td bgcolor='".__report_config("bglabel")."' valign='top' align='right' width='".__report_config("small")."' style='".__report_config("style")."'>";
 	$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fglabel")."'><b>";
 	$message.=$label;
 	$message.="</b></font>";
-	$message.="</td>\n";
+	$message.="</td>";
 	$message.="<td bgcolor='".__report_config("bgvalue")."' valign='top' align='left' width='".__report_config("medium")."' style='".__report_config("style")."'>";
 	$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fgvalue")."'>";
 	$message.=$value;
 	$message.="</font>";
-	$message.="</td>\n";
-	$message.="</tr>\n";
+	$message.="</td>";
+	$message.="</tr>";
 	return $message;
 }
 
@@ -55,75 +56,75 @@ function __report_textarea($label,$value,$repare=true) {
 	if($label!="") $label.=":";
 	$message="";
 	if($label!="") {
-		$message.="<tr>\n";
+		$message.="<tr>";
 		$message.="<td bgcolor='".__report_config("bglabel")."' valign='top' align='center' width='".__report_config("big")."' colspan='2' style='".__report_config("style")."'>";
 		$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fglabel")."'><b>";
 		$message.=$label;
 		$message.="</b></font>";
-		$message.="</td>\n";
-		$message.="</tr>\n";
+		$message.="</td>";
+		$message.="</tr>";
 	}
 	if($repare) $value=str_replace("\n","<br/>",$value);
-	$message.="<tr>\n";
+	$message.="<tr>";
 	$message.="<td bgcolor='".__report_config("bgvalue")."' valign='top' align='left' width='".__report_config("big")."' colspan='2' height='100px' style='".__report_config("style")."'>";
 	$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fgvalue")."'>";
 	$message.=$value;
 	$message.="</font>";
-	$message.="</td>\n";
-	$message.="</tr>\n";
+	$message.="</td>";
+	$message.="</tr>";
 	return $message;
 }
 
 function __report_mail($label,$value) {
 	if($label!="") $label.=":";
-	$message="<tr>\n";
+	$message="<tr>";
 	$message.="<td bgcolor='".__report_config("bglabel")."' valign='top' align='right' width='".__report_config("small")."' style='".__report_config("style")."'>";
 	$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fglabel")."'><b>";
 	$message.=$label;
 	$message.="</b></font>";
-	$message.="</td>\n";
+	$message.="</td>";
 	$message.="<td bgcolor='".__report_config("bgvalue")."' valign='top' align='left' width='".__report_config("medium")."' style='".__report_config("style")."'>";
 	$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fgvalue")."'>";
 	$message.="<a style='color:".__report_config("fgvalue")."' href='mailto: $value'>$value</a>";
 	$message.="</font>";
 	$message.="</td>";
-	$message.="</tr>\n";
+	$message.="</tr>";
 	return $message;
 }
 
 function __report_link($label,$value,$text) {
 	if($label!="") $label.=":";
-	$message="<tr>\n";
+	$message="<tr>";
 	$message.="<td bgcolor='".__report_config("bglabel")."' valign='top' align='right' width='".__report_config("small")."' style='".__report_config("style")."'>";
 	$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fglabel")."'><b>";
 	$message.=$label;
 	$message.="</b></font>";
-	$message.="</td>\n";
+	$message.="</td>";
 	if($text=="") $text=$value;
 	$message.="<td bgcolor='".__report_config("bgvalue")."' valign='top' align='left' width='".__report_config("medium")."' style='".__report_config("style")."'>";
 	$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fgvalue")."'>";
 	$message.="<a style='color:".__report_config("fgvalue")."' href='$value'>$text</a>";
 	$message.="</font>";
 	$message.="</td>";
-	$message.="</tr>\n";
+	$message.="</tr>";
 	return $message;
 }
 
 function __report_end() {
-	$message="</table>\n";
-	$message.="</body>\n";
-	$message.="</html>\n";
+	$message="</table>";
+	$message.="</body>";
+	$message.="</html>";
 	return $message;
 }
 
 function __report_head($title) {
-	$message="<tr>\n";
+	$message="<tr>";
 	$message.="<td bgcolor='".__report_config("bgtitle")."' valign='top' align='center' width='".__report_config("big")."' colspan='2' style='".__report_config("style")."'>";
 	$message.="<font size='".__report_config("size")."' face='".__report_config("face")."' color='".__report_config("fgtitle")."'><b>";
 	$message.=$title;
 	$message.="</b></font>";
-	$message.="</td>\n";
-	$message.="</tr>\n";
+	$message.="</td>";
+	$message.="</tr>";
 	return $message;
 }
 
