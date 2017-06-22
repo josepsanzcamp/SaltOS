@@ -40,16 +40,16 @@ define("__HTML_ROW_CLOSE__",'</tr>');
 define("__HTML_CELL_OPEN__",'<td>');
 define("__HTML_RCELL_OPEN__",'<td align="right" nowrap="nowrap">');
 define("__HTML_CELL_CLOSE__",'</td>');
-define("__HTML_TEXT_OPEN__",'<span style="'.getDefault("defines/htmltext").'">');
-define("__HTML_TEXT_CLOSE__",'</span>');
-define("__PLAIN_TEXT_OPEN__",'<span style="'.getDefault("defines/plaintext").'">');
-define("__PLAIN_TEXT_CLOSE__",'</span>');
+define("__HTML_TEXT_OPEN__",'<div style="'.getDefault("defines/htmltext").'">');
+define("__HTML_TEXT_CLOSE__",'</div>');
+define("__PLAIN_TEXT_OPEN__",'<div style="'.getDefault("defines/plaintext").'">');
+define("__PLAIN_TEXT_CLOSE__",'</div>');
 define("__HTML_SEPARATOR__",'<hr style="'.getDefault("defines/separator").'"/>');
 define("__HTML_NEWLINE__",'<br/>');
 define("__BLOCKQUOTE_OPEN__",'<blockquote style="'.getDefault("defines/blockquote").'">');
 define("__BLOCKQUOTE_CLOSE__",'</blockquote>');
-define("__SIGNATURE_OPEN__",'<span style="'.getDefault("defines/signature").'">');
-define("__SIGNATURE_CLOSE__",'</span>');
+define("__SIGNATURE_OPEN__",'<div style="'.getDefault("defines/signature").'">');
+define("__SIGNATURE_CLOSE__",'</div>');
 
 // REMOVE ALL BODY (ONLY FOR DEBUG PURPOSES)
 function __getmail_removebody($array) {

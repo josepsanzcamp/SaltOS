@@ -300,7 +300,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		LEFT JOIN tbl_estados c ON a.id_estado=c.id
 		WHERE
-			a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$comentarios,"tbl_indexing").")
+			".($comentarios!=""?"a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$comentarios,"tbl_indexing").")":"1=1")."
 		) z
 		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")." AND (id_prioridad='$id_prioridad' OR ''='$id_prioridad') AND (((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".intval(getParam("id_asignado"))."')='".intval(getParam("id_asignado"))."' OR ''='".getParam("id_asignado")."')) AND (".check_sql($page,"list")." OR ((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=z.id AND u.id_usuario='".current_user()."')='".current_user()."'))"</query>
 		<order global="order" eval="true">$order</order>

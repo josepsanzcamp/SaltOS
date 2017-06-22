@@ -272,7 +272,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 				WHERE
-					a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")
+					".($filtro!=""?"a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")":"1=1")."
 				GROUP BY a.id) c
 		) d
 		WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND (id_cuenta='$id_cuenta' OR ''='$id_cuenta') AND (SUBSTR(meses,".intval($meses).",1)='1' OR ''='$meses') AND (dia>='$dia1' OR ''='$dia1') AND ('$dia2'>=dia OR ''='$dia2') AND ".check_sql($page,"list")</query>
