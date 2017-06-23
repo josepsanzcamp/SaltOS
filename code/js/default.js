@@ -64,6 +64,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var field=null;
 		var label="";
 		$("[isrequired=true]").each(function() {
+			// CHECK FOR VISIBILITY
+			if(this.type && substr(this.type,0,6)=="select") {
+				if(!$(this).next().is(":visible")) return;
+			} else {
+				if(!$(this).is(":visible")) return;
+			}
+			// CONTINUE
 			var valor=$(this).val();
 			var campo=this;
 			if(this.type && substr(this.type,0,6)=="select") {

@@ -8,7 +8,6 @@ Note about the php.saltos.min.js file
   - in_array
   - intval
   - is_numeric
-  - levenshtein
   - max
   - md5
   - min
