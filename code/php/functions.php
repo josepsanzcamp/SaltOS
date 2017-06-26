@@ -1358,6 +1358,10 @@ function __make_indexing_helper($tabla) {
 			}
 		}
 	}
+	if(!isset($fields[$tabla])) {
+		$fields[$tabla]=array();
+		foreach(get_fields($tabla) as $field) $fields[$tabla][]=$field["name"];
+	}
 	$result=$fields[$tabla];
 	$result[]="LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)";
 	if(isset($campos[$tabla])) $result[]=$campos[$tabla];

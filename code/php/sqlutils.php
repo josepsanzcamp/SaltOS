@@ -220,13 +220,13 @@ function execute_query_extra($query,$extra) {
 }
 
 function get_fields($table) {
-    $query="/*MYSQL SHOW COLUMNS FROM $table *//*SQLITE PRAGMA TABLE_INFO($table) */";
-    $result=db_query($query);
+	$query="/*MYSQL SHOW COLUMNS FROM $table *//*SQLITE PRAGMA TABLE_INFO($table) */";
+	$result=db_query($query);
 	$fields=array();
-    while($row=db_fetch_row($result)) {
+	while($row=db_fetch_row($result)) {
 		if(isset($row["Field"])) $fields[]=array("name"=>$row["Field"],"type"=>strtoupper($row["Type"]));
 		if(isset($row["name"])) $fields[]=array("name"=>$row["name"],"type"=>strtoupper($row["type"]));
-    }
+	}
 	db_free($result);
 	return $fields;
 }
