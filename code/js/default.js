@@ -820,13 +820,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						//~ console.time("fix_input_vars");
 						setTimeout(function() {
 							var fix_input_vars=[];
-							$("input[type=checkbox]:not(:checked):not(:visible)",jqForm).each(function() {
-								if(total_input_vars>=max_input_vars) {
-									$(this).remove();
-									total_input_vars--;
-								}
-							});
-							$("input[type=checkbox]:checked:not(:visible)",jqForm).each(function() {
+							$("input[type=hidden]",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
 									var temp=$(this).attr("name")+"="+encodeURIComponent($(this).val());
 									fix_input_vars.push(temp);
@@ -834,7 +828,27 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 									total_input_vars--;
 								}
 							});
-							$("input[type=hidden]",jqForm).each(function() {
+							$("input[type=checkbox]:not(:checked):not(:visible)",jqForm).each(function() {
+								if(total_input_vars>=max_input_vars) {
+									$(this).remove();
+									total_input_vars--;
+								}
+							});
+							$("input[type=checkbox]:not(:visible),input[type=text]:not(:visible),select:not(:visible),textarea:not(:visible)",jqForm).each(function() {
+								if(total_input_vars>=max_input_vars) {
+									var temp=$(this).attr("name")+"="+encodeURIComponent($(this).val());
+									fix_input_vars.push(temp);
+									$(this).remove();
+									total_input_vars--;
+								}
+							});
+							$("input[type=checkbox]:not(:checked)",jqForm).each(function() {
+								if(total_input_vars>=max_input_vars) {
+									$(this).remove();
+									total_input_vars--;
+								}
+							});
+							$("input[type=checkbox],input[type=text],select,textarea",jqForm).each(function() {
 								if(total_input_vars>=max_input_vars) {
 									var temp=$(this).attr("name")+"="+encodeURIComponent($(this).val());
 									fix_input_vars.push(temp);
@@ -1601,7 +1615,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 							if(newheight>minheight) $(iframe2).height(newheight);
 							$(iframe2).each(function() {
 								var iframe3=this.contentWindow.document;
-								$(iframe3).on("contextmenu",function(e) { return false; });
+								$(iframe3).on("contextmenu",function(e) { return e.ctrlKey; });
 								$(iframe3).on("keydown",function(e) { $(document).trigger(e); });
 							});
 						}
