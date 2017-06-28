@@ -596,7 +596,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<select name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}" class="{class3}" original="{value}" data-mini="true">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
-						<xsl:attribute name="class">ui-disabled <xsl:value-of select="class3"/></xsl:attribute>
 					</xsl:if>
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="original"><xsl:value-of select="."/></xsl:attribute>
@@ -833,7 +832,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<select name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}" class="{class2}" ismenu="true" data-mini="true">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
-						<xsl:attribute name="class">ui-disabled <xsl:value-of select="class2"/></xsl:attribute>
 					</xsl:if>
 					<xsl:for-each select="*">
 						<xsl:choose>
@@ -841,7 +839,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<option value="{onclick}" class="{class}">
 									<xsl:if test="disabled='true'">
 										<xsl:attribute name="disabled">true</xsl:attribute>
-										<xsl:attribute name="class">ui-disabled <xsl:value-of select="class2"/></xsl:attribute>
 									</xsl:if>
 									<xsl:value-of select="label"/>
 								</option>
@@ -852,7 +849,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<option value="{onclick}" class="{class}">
 											<xsl:if test="disabled='true'">
 												<xsl:attribute name="disabled">true</xsl:attribute>
-												<xsl:attribute name="class">ui-disabled <xsl:value-of select="class2"/></xsl:attribute>
 											</xsl:if>
 											<xsl:value-of select="label"/>
 										</option>

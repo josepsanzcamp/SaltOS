@@ -844,7 +844,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class3}" original="{value}">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
-						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class3"/></xsl:attribute>
 					</xsl:if>
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="original"><xsl:value-of select="."/></xsl:attribute>
@@ -1121,7 +1120,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class2}" ismenu="true">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
-						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class2"/></xsl:attribute>
 					</xsl:if>
 					<xsl:for-each select="*">
 						<xsl:choose>
@@ -1129,7 +1127,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 								<option value="{onclick}" class="{class}">
 									<xsl:if test="disabled='true'">
 										<xsl:attribute name="disabled">disabled</xsl:attribute>
-										<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
 									</xsl:if>
 									<xsl:value-of select="label"/>
 								</option>
@@ -1140,7 +1137,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<option value="{onclick}" class="{class}">
 											<xsl:if test="disabled='true'">
 												<xsl:attribute name="disabled">disabled</xsl:attribute>
-												<xsl:attribute name="class">ui-state-disabled <xsl:value-of select="class"/></xsl:attribute>
 											</xsl:if>
 											<xsl:value-of select="label"/>
 										</option>
