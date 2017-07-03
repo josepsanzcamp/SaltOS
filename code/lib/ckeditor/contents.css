@@ -7,7 +7,7 @@ body
 {
 	/* Font */
 	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
-	font-size: 11px;
+	font-size: 12px;
 
 	/* Text color */
 	color: #333;
@@ -15,13 +15,13 @@ body
 	/* Remove the background color to make it transparent */
 	background-color: #fff;
 
-	
+	margin: 20px;
 }
 
 .cke_editable
 {
-	
-	
+	font-size: 13px;
+	line-height: 1.6;
 
 	/* Fix for missing scrollbars with RTL texts. (#10488) */
 	word-wrap: break-word;
@@ -206,3 +206,4 @@ a > img {
 	max-height: 1080px;
 	margin:0 auto;
 }
+/* BY SANZ */body{font-size:11px;margin:8px;}.cke_editable{font-size:11px;line-height:15px;}

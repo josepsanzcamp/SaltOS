@@ -1626,7 +1626,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// CREATE THE CKEDITORS
 		$("textarea[ckeditor=true]",obj).ckeditor({
 			title:"",
-			skin:"kama",
+			skin:"moono-lisa",
 			extraPlugins:"codesnippetgeshi,autogrow,base64image",
 			removePlugins:"elementspath",
 			enterMode:CKEDITOR.ENTER_BR,

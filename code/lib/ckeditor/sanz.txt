@@ -1,17 +1,4 @@
+
 Some SaltOS changes:
-
-php << EOF
-<?php
-file_put_contents("contents.css",str_replace("font-size: 12px;","font-size: 11px;",file_get_contents("contents.css")));
-file_put_contents("contents.css",str_replace("margin: 20px;","",file_get_contents("contents.css")));
-file_put_contents("contents.css",str_replace("font-size: 13px;","",file_get_contents("contents.css")));
-file_put_contents("contents.css",str_replace("line-height: 1.6;","",file_get_contents("contents.css")));
-foreach(glob("skins/kama/editor*.css") as \$file) {
-	file_put_contents(\$file,str_replace("border-radius:5px;border:1px solid #d3d3d3;padding:5px","margin:1px",file_get_contents(\$file)));
-	file_put_contents(\$file,str_replace(".cke_button__source_label,","",file_get_contents(\$file)));
-	file_put_contents(\$file,str_replace("background:linear-gradient(to bottom,#fff -15px,#d3d3d3 40px);","",file_get_contents(\$file)));
-}
-?>
-EOF
-
-REMOVED samples
+- REMOVED samples
+- Added some SANZ styles
