@@ -196,13 +196,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>separator</type>
 						</field>
 					</row>
-					<row global="var_i" for="var_i" from="1" to="12">
+					<row global="i" for="i" from="1" to="12">
 						<field>
-							<name global="var_i" eval="true">"quick_button_f$var_i"</name>
-							<label global="var_i" eval="true">LANG("quick_button_f$var_i")</label>
+							<name global="i" eval="true">"quick_button_f${i}"</name>
+							<label global="i" eval="true">LANG("quick_button_f${i}")</label>
 							<type>select</type>
 							<query eval="true">"SELECT codigo value,nombre label,0 pos FROM tbl_aplicaciones UNION SELECT '' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
-							<value global="var_i,temp" eval="true">!is_null($temp=execute_query("SELECT codigo FROM tbl_quick WHERE id_usuario='".current_user()."' AND button='f$var_i'"))?$temp:CONFIG("quick_button_f$var_i")</value>
+							<value global="i,temp" eval="true">!is_null($temp=execute_query("SELECT codigo FROM tbl_quick WHERE id_usuario='".current_user()."' AND button='f${i}'"))?$temp:CONFIG("quick_button_f${i}")</value>
 							<width>240px</width>
 						</field>
 						<field>
@@ -419,10 +419,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="default" prefix="true" eval="true">use_table_cookies("lang",getParam("lang"))?"":""</query>
 		<query match="default" prefix="true" eval="true">use_table_cookies("style",getParam("style"))?"":""</query>
 		<query ifeval="!ismobile()" match="default" prefix="true" eval="true">make_delete_query("tbl_quick",make_where_query(array("id_usuario"=>current_user())))</query>
-		<query ifeval="!ismobile()" global="var_i" for="var_i" from="1" to="12" match="default" prefix="true" eval="true">make_insert_query("tbl_quick",array(
+		<query ifeval="!ismobile()" global="i" for="i" from="1" to="12" match="default" prefix="true" eval="true">make_insert_query("tbl_quick",array(
 			"id_usuario"=>current_user(),
-			"button"=>"f${var_i}",
-			"codigo"=>getParam("quick_button_f${var_i}")
+			"button"=>"f${i}",
+			"codigo"=>getParam("quick_button_f${i}")
 		))</query>
 		<query match="folders_old" prefix="true" eval="true">intval(getParam("id"))!=intval(getParam("id_parent")) &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id!='".intval(getParam("id"))."' AND id_parent='".intval(getParam("id_parent"))."' AND id_usuario='".current_user()."' AND name='".getParam("name")."'")?make_update_query("tbl_folders",array(
 			"id_parent"=>intval(getParam("id_parent")),
