@@ -25,63 +25,99 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<style>
-		<name>custom.blue</name>
+		<name>custom.blue.light</name>
 		<color>#2780e3</color>
 	</style>
 	<style>
-		<name>custom.facebook</name>
+		<name>custom.blue.dark</name>
+		<color>#2780e3</color>
+	</style>
+	<style>
+		<name>custom.facebook.light</name>
 		<color>#3b5998</color>
 	</style>
 	<style>
-		<name>custom.gray</name>
+		<name>custom.facebook.dark</name>
+		<color>#3b5998</color>
+	</style>
+	<style>
+		<name>custom.gray.light</name>
 		<color>#546e7a</color>
 	</style>
 	<style>
-		<name>custom.green</name>
+		<name>custom.gray.dark</name>
+		<color>#546e7a</color>
+	</style>
+	<style>
+		<name>custom.green.light</name>
 		<color>#43a047</color>
 	</style>
 	<style>
-		<name>custom.red</name>
+		<name>custom.green.dark</name>
+		<color>#43a047</color>
+	</style>
+	<style>
+		<name>custom.red.light</name>
 		<color>#e53935</color>
 	</style>
 	<style>
-		<name>custom.pink</name>
+		<name>custom.red.dark</name>
+		<color>#e53935</color>
+	</style>
+	<style>
+		<name>custom.pink.light</name>
 		<color>#d33682</color>
 	</style>
 	<style>
-		<name>custom.purple</name>
+		<name>custom.pink.dark</name>
+		<color>#d33682</color>
+	</style>
+	<style>
+		<name>custom.purple.light</name>
 		<color>#8e24aa</color>
 	</style>
 	<style>
-		<name>custom.orange</name>
+		<name>custom.purple.dark</name>
+		<color>#8e24aa</color>
+	</style>
+	<style>
+		<name>custom.orange.light</name>
 		<color>#fb8c00</color>
 	</style>
 	<style>
-		<name>custom.brown</name>
+		<name>custom.orange.dark</name>
+		<color>#fb8c00</color>
+	</style>
+	<style>
+		<name>custom.brown.light</name>
+		<color>#6d4c41</color>
+	</style>
+	<style>
+		<name>custom.brown.dark</name>
 		<color>#6d4c41</color>
 	</style>
 	<style ifeval="!ismobile()">
-		<name>theme.humanity</name>
-		<color>#cb842e</color>
-	</style>
-	<style ifeval="!ismobile()">
-		<name>theme.redmond</name>
+		<name>theme.redmond.light</name>
 		<color>5c9ccc</color>
 	</style>
 	<style ifeval="!ismobile()">
-		<name>theme.ui-darkness</name>
-		<color>#333333</color>
+		<name>theme.redmond.dark</name>
+		<color>5c9ccc</color>
 	</style>
 	<style ifeval="!ismobile()">
-		<name>theme.ui-lightness</name>
-		<color>#f6a828</color>
+		<name>theme.humanity.light</name>
+		<color>#cb842e</color>
+	</style>
+	<style ifeval="!ismobile()">
+		<name>theme.humanity.dark</name>
+		<color>#cb842e</color>
 	</style>
 	<style ifeval="ismobile()">
-		<name>theme.light</name>
+		<name>theme.default.light</name>
 		<color>#e9e9e9</color>
 	</style>
 	<style ifeval="ismobile()">
-		<name>theme.dark</name>
+		<name>theme.default.dark</name>
 		<color>#1d1d1d</color>
 	</style>
 </root>

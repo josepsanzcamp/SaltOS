@@ -39,7 +39,7 @@ $_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml"));
 $_CONFIG=eval_attr($_CONFIG);
 if($_CONFIG["info"]["revision"]=="SVN") $_CONFIG["info"]["revision"]=svnversion();
 if($_CONFIG["info"]["revision"]=="GIT") $_CONFIG["info"]["revision"]=gitversion();
-$style=load_style($style)?$style:"custom.blue";
+$style=load_style($style)?$style:"custom.blue.light";
 // SOME ALLOWED ACTIONS
 if(getParam("action")=="themeroller") {
 	global $page;

@@ -653,5 +653,6 @@ img[isplot=true] {
 
 .ui-menu .ui-menu-item-wrapper.ui-state-active {
 	background-color:#fbec88;
+	color:#333333;
 	font-weight:normal;
 }

@@ -30,64 +30,100 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<width>120px</width>
 	<rows>
 		<row>
-			<label>Custom Blue</label>
-			<value>custom.blue</value>
+			<label>Custom Blue Light</label>
+			<value>custom.blue.light</value>
 		</row>
 		<row>
-			<label>Custom Facebook</label>
-			<value>custom.facebook</value>
+			<label>Custom Blue Dark</label>
+			<value>custom.blue.dark</value>
 		</row>
 		<row>
-			<label>Custom Gray</label>
-			<value>custom.gray</value>
+			<label>Custom Facebook Light</label>
+			<value>custom.facebook.light</value>
 		</row>
 		<row>
-			<label>Custom Green</label>
-			<value>custom.green</value>
+			<label>Custom Facebook Dark</label>
+			<value>custom.facebook.dark</value>
 		</row>
 		<row>
-			<label>Custom Red</label>
-			<value>custom.red</value>
+			<label>Custom Gray Light</label>
+			<value>custom.gray.light</value>
 		</row>
 		<row>
-			<label>Custom Pink</label>
-			<value>custom.pink</value>
+			<label>Custom Gray Dark</label>
+			<value>custom.gray.dark</value>
 		</row>
 		<row>
-			<label>Custom Purple</label>
-			<value>custom.purple</value>
+			<label>Custom Green Light</label>
+			<value>custom.green.light</value>
 		</row>
 		<row>
-			<label>Custom Orange</label>
-			<value>custom.orange</value>
+			<label>Custom Green Dark</label>
+			<value>custom.green.dark</value>
 		</row>
 		<row>
-			<label>Custom Brown</label>
-			<value>custom.brown</value>
+			<label>Custom Red Light</label>
+			<value>custom.red.light</value>
+		</row>
+		<row>
+			<label>Custom Red Dark</label>
+			<value>custom.red.dark</value>
+		</row>
+		<row>
+			<label>Custom Pink Light</label>
+			<value>custom.pink.light</value>
+		</row>
+		<row>
+			<label>Custom Pink Dark</label>
+			<value>custom.pink.dark</value>
+		</row>
+		<row>
+			<label>Custom Purple Light</label>
+			<value>custom.purple.light</value>
+		</row>
+		<row>
+			<label>Custom Purple Dark</label>
+			<value>custom.purple.dark</value>
+		</row>
+		<row>
+			<label>Custom Orange Light</label>
+			<value>custom.orange.light</value>
+		</row>
+		<row>
+			<label>Custom Orange Dark</label>
+			<value>custom.orange.dark</value>
+		</row>
+		<row>
+			<label>Custom Brown Light</label>
+			<value>custom.brown.light</value>
+		</row>
+		<row>
+			<label>Custom Brown Dark</label>
+			<value>custom.brown.dark</value>
 		</row>
 		<row ifeval="!ismobile()">
-			<label>Theme Humanity</label>
-			<value>theme.humanity</value>
+			<label>Theme Redmond Light</label>
+			<value>theme.redmond.light</value>
 		</row>
 		<row ifeval="!ismobile()">
-			<label>Theme Redmond</label>
-			<value>theme.redmond</value>
+			<label>Theme Redmond Dark</label>
+			<value>theme.redmond.dark</value>
 		</row>
 		<row ifeval="!ismobile()">
-			<label>Theme UI darkness</label>
-			<value>theme.ui-darkness</value>
+			<label>Theme Humanity Light</label>
+			<value>theme.humanity.light</value>
 		</row>
 		<row ifeval="!ismobile()">
-			<label>Theme UI lightness</label>
-			<value>theme.ui-lightness</value>
+			<label>Theme Humanity Dark</label>
+			<value>theme.humanity.dark</value>
 		</row>
 		<row ifeval="ismobile()">
-			<label>Theme Light</label>
-			<value>theme.light</value>
+			<label>Theme Default Light</label>
+			<value>theme.default.light</value>
 		</row>
 		<row ifeval="ismobile()">
-			<label>Theme Dark</label>
-			<value>theme.dark</value>
+			<label>Theme Default Dark</label>
+			<value>theme.default.dark</value>
 		</row>
 	</rows>
 	<value global="style" eval="true">$style</value>

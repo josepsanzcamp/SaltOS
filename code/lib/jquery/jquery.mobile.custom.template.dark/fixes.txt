@@ -1,0 +1,2 @@
+/* SANZ FIXES */
+.ui-shadow,.ui-shadow-inset,.ui-overlay-shadow { -webkit-box-shadow:none!important; -moz-box-shadow:none!important; box-shadow:none!important; }

@@ -117,7 +117,7 @@ if(getParam("action")=="styles") {
 		echo "<head>";
 		echo "<link href='css/default.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<style>";
-		echo "iframe{width:450px; height:300px; margin:10px; border:1px solid #333;}";
+		echo "iframe{width:600px; height:300px; margin:10px; border:1px solid #333;}";
 		echo "</style>";
 		echo "</head>";
 		echo "<body>";

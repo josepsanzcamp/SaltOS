@@ -1,0 +1,8 @@
+/* SANZ FIXES */
+body{background-color:#222;}
+
+/* SANZ FIXES */
+.accordion-link .ui-state-hover{color:#fff;}
+.accordion-link .ui-state-focus{color:#fff;}
+.cke.ui-state-default{background:#f6f6f6;}
+.cke.ui-state-hover{background:#fbec88;}
