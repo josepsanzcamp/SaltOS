@@ -638,8 +638,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(".blockMsg > h1").text(message);
 			return false;
 		}
-		// GET FONT FAMILY
-		var fontfamily=get_colors("ui-widget","font-family");
 		// TRICK TO FORCE THE FADEIN AND FADEOUT TO BE DISABLED
 		$.blockUI.defaults.fadeIn=0;
 		$.blockUI.defaults.fadeOut=0;
@@ -651,7 +649,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			fadeOut:0,
 			overlayCSS:{
 				opacity:0.3,
-				backgroundColor:"#aaa"
+				backgroundColor:"#aaaaaa"
 			},
 			css:{
 				opacity:0.9,
@@ -659,7 +657,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				padding:"15px",
 				color:"",
 				backgroundColor:"",
-				"font-family":fontfamily,
+				"font-family":get_colors("ui-widget","font-family"),
 				left:($(window).width()-500)/2+"px",
 				width:"500px"
 			}
