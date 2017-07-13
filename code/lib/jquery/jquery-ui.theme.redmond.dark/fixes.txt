@@ -1,5 +1,5 @@
 /* SANZ FIXES */
-body{background-color:#333333;}
+body{background-color:#000000;}
 
 /* SANZ FIXES */
 .accordion-link .ui-state-hover{color:#ffffff;}

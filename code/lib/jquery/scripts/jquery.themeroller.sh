@@ -30,15 +30,15 @@ rm -rf jquery-ui.custom.purple.dark
 rm -rf jquery-ui.custom.orange.dark
 rm -rf jquery-ui.custom.brown.dark
 
-php scripts/jquery-ui.themeroller.php blue dark 334455 2780e3
-php scripts/jquery-ui.themeroller.php facebook dark 444455 3b5998
-php scripts/jquery-ui.themeroller.php gray dark 444444 546e7a
-php scripts/jquery-ui.themeroller.php green dark 445544 43a047
-php scripts/jquery-ui.themeroller.php red dark 554444 e53935
-php scripts/jquery-ui.themeroller.php pink dark 553344 d33682
-php scripts/jquery-ui.themeroller.php purple dark 443355 8e24aa
-php scripts/jquery-ui.themeroller.php orange dark 554433 fb8c00
-php scripts/jquery-ui.themeroller.php brown dark 444444 6d4c41
+php scripts/jquery-ui.themeroller.php blue dark 07192d 2780e3
+php scripts/jquery-ui.themeroller.php facebook dark 0b111e 3b5998
+php scripts/jquery-ui.themeroller.php gray dark 101618 546e7a
+php scripts/jquery-ui.themeroller.php green dark 0d200e 43a047
+php scripts/jquery-ui.themeroller.php red dark 2d0b0a e53935
+php scripts/jquery-ui.themeroller.php pink dark 2a0a1a d33682
+php scripts/jquery-ui.themeroller.php purple dark 1c0722 8e24aa
+php scripts/jquery-ui.themeroller.php orange dark 321c00 fb8c00
+php scripts/jquery-ui.themeroller.php brown dark 150f0d 6d4c41
 
 rm -rf jquery.mobile.custom.blue.light
 rm -rf jquery.mobile.custom.facebook.light

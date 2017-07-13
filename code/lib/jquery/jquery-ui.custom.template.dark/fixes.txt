@@ -9,7 +9,7 @@ h3.ui-accordion-header.ui-state-hover{color:#333333;}
 h3.ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_444444_256x240.png");}
 
 /* SANZ FIXES */
-body{background-color:#333333;}
+body{background-color:#000000;}
 
 /* SANZ FIXES */
 .accordion-link .ui-state-hover{color:#ffffff;}
