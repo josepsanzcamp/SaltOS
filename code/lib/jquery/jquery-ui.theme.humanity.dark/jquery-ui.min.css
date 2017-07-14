@@ -14,3 +14,6 @@ body{background-color:#000000;}
 .accordion-link .ui-state-focus{color:#ffffff;}
 .cke.ui-state-default{background:#f6f6f6;}
 .cke.ui-state-hover{background:#fbec88;}
+
+/* SANZ FIXES */
+.ui-menu .ui-menu-item-wrapper.ui-state-active {color:#b85700;}
