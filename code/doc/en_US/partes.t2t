@@ -33,20 +33,20 @@ In the working parts list you will find the most important pillars of registrati
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
-- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data selected.
-- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
-- [../../lib/silk/icons/email_go.png]: Prepare an email with the selected record attached as PDF file.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-clone]: This action will lead to the creation of a new record using data selected.
+- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Show data through-PDF Viewer.
+- [fa-share]: Prepare an email with the selected record attached as PDF file.
 
 
 This list also features the following:
 
-- [../../lib/silk/icons/page_white_excel.png]: Export the list of all the working parts to a file with Excel format.
-- [../../lib/silk/icons/page_white_acrobat.png]: Download the selected file format parts. PDF.
-- [../../lib/silk/icons/monitor.png]: Display the selected format parts. PDF on screen.
-- [../../lib/silk/icons/email_go.png]: Prepare a mail with the selected parts attached as PDF files.
-- [../../lib/silk/icons/disk.png]: Liquid selected parts indicating the date hereof.
+- [fa-file-excel-o]: Export the list of all the working parts to a file with Excel format.
+- [fa-file-pdf-o]: Download the selected file format parts. PDF.
+- [fa-desktop]: Display the selected format parts. PDF on screen.
+- [fa-share]: Prepare a mail with the selected parts attached as PDF files.
+- [fa-save]: Liquid selected parts indicating the date hereof.
 
 
 ===Filter Options===

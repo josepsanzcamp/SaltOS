@@ -26,13 +26,13 @@ En el listado de seguimientos podrá encontrar las columnas mas importantes de c
 
 Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
-- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
+- [fa-clone]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
 
 
 Este listado dispone ademas de las siguientes acciones:
 
-- [../../lib/silk/icons/page_white_excel.png]: Exportar el listado de todos los datos de seguimiento de tareas a un archivo con formato Excel.
+- [fa-file-excel-o]: Exportar el listado de todos los datos de seguimiento de tareas a un archivo con formato Excel.
 
 
 ===Opciones de filtro===

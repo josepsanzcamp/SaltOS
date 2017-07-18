@@ -31,13 +31,13 @@ En el llistat de factures podrà trobar les columnes més importants del registr
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
-- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-clone]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
 
 
 Aquest llistat disposa a més de les següents accions seleccionant diversos registres simultàniament:
 
-- [../../lib/silk/icons/disk.png]: Utilitzeu aquest botó per generar les factures seleccionades. Prèviament ha de filtrar pel mes que vulgui generar.
+- [fa-save]: Utilitzeu aquest botó per generar les factures seleccionades. Prèviament ha de filtrar pel mes que vulgui generar.
 
 
 ===Opcions de filtre===

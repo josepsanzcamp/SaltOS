@@ -24,7 +24,7 @@ El listado de entradas le muestra los últimos favoritos agregados.
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-[../../lib/silk/icons/delete.png]: Borrar registro.
+[fa-trash]: Borrar registro.
 
 
 Sobre el listado ademas de la opción normal de busqueda, encontrará las siguientes funciones:

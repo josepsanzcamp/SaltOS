@@ -21,7 +21,7 @@ In the list of IVA's, you will find the most important pillars of registration:
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
 
 
 ===Filter Options===

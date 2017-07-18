@@ -33,18 +33,18 @@ In the list of budgets you will find the most important pillars of registration:
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
-- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data from the current.
-- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
-- [../../lib/silk/icons/email_go.png]: Prepare an email with the selected budget attached as PDF file.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-clone]: This action will lead to the creation of a new record using data from the current.
+- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Show data through-PDF Viewer.
+- [fa-share]: Prepare an email with the selected budget attached as PDF file.
 
 
 This list also features the following quote by selecting multiple simultaneously:
 
-- [../../lib/silk/icons/page_white_acrobat.png]: Download the selected file format is budget. PDF.
-- [../../lib/silk/icons/monitor.png]: Display the selected format budget. PDF on screen.
-- [../../lib/silk/icons/email_go.png]: Prepare a mail with the selected budget attached as PDF files.
+- [fa-file-pdf-o]: Download the selected file format is budget. PDF.
+- [fa-desktop]: Display the selected format budget. PDF on screen.
+- [fa-share]: Prepare a mail with the selected budget attached as PDF files.
 
 
 ===Filter Options===
@@ -54,6 +54,8 @@ This list also features the following quote by selecting multiple simultaneously
 ===Graphs and statistics===
 
 In this tab you can view statistics about how many budget is in every state, can detect peaks and downs slaughter before they happen so we can take steps to mitigate these critical times.
+
+[presupuestos-listado-graficas.png]
 
 ==Form budgets==
 
@@ -80,9 +82,9 @@ In this tab you can view and modify the main details of the budget. Here we rela
 
 Furthermore, in the first tab has a **action buttons.**
 
-- **[../../lib/silk/icons/add.png]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
-- **[../../lib/silk/icons/add.png]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly to the customer.
-- **[../../lib/silk/icons/add.png]  Add event:**  Will take the form of new events so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle]  Add event:**  Will take the form of new events so you can fill in relevant information and relate directly to the customer.
 
 
 ===Objectives tab===

@@ -15,7 +15,7 @@ Veureu que la interfície de SaltOS és intuïtiva i fàcil d'usar, la qual cosa
 
 SaltOS està compost per una sèrie d'aplicacions o mòduls. Cada aplicació ofereix un funcionalitat concreta dins de les següents categories:
 
-  [home-inicio.png]
+  [home-formulario.png]
 
   - Funcionalitats Generals
     - **Pàgina d'inici o Dashboard**, Accedeixi a la pantalla principal de l'aplicació.
@@ -73,9 +73,13 @@ Per gestionar la configuració del propi SaltOS existeixen diverses aplicacions:
 
 La interfície gràfica de SaltOS està dividit en 3 seccions:
   - **Espai central:**  en ell trobareu l'aplicació seleccionada amb la seva pestanya d'ajuda.
+
   [home-zona-central.png]
+
   - **Barra superior:**  en ella podrà trobar el botó per amagar el menú, l'enllaç al about i la versió actual de SaltOS, el control del lector per veu (si està habilitat) i els botons d'accés ràpid a les diferents aplicacions.
+
   [home-zona-superior.png]
+
   - **Menú zona esquerra:**  des d'aquí podrà accedir a les diferents aplicacions de SaltOS. Podeu ocultar aquest menú per ampliar l'espai disponible a la pantalla.
 
   [home-zona-izquierda.png]
@@ -87,25 +91,25 @@ Al **espai central**  es mostraran els llistats i formularis de les diferents a
 
 ====Llistats====
 
-[clientes-listado.png]
+[home-listado.png]
 
 En la primera es mostra un llistat amb les dades de cada aplicació. A la part superior del llistat trobarà el significat de cada columna així com la possibilitat d'ordinador el llistat en funció del valor d'aquesta. L'ordenació pot realitzar en sentit ascendent o descendent fent clic a les fletxes disponibles a cada columna.
 
 A la primera columna de cada llistat trobarà un element de tipus //checkbox//  per tal de poder seleccionar tots els registres en un únic clic. També podeu trobar aquest element en cada registre del llistat per poder seleccionar de forma individual. Aquests controls serviran per poder aplicar funcions de manera massiva en el o els registres seleccionats, per exemple esborrar registres o liquidar parts de treball.
 
 En les últimes columnes de cada registre es troben els botons per realitzar accions sobre el registre en qüestió:
-  - [../../lib/silk/icons/magnifier.png]Veure o consultar
-  - [../../lib/silk/icons/pencil.png]  Edita.
-  - [../../lib/silk/icons/delete.png]  Copia.
-  - [../../lib/silk/icons/page_white_acrobat.png]  Exportar en format PDF. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
-  - [../../lib/silk/icons/monitor.png]  Mostra registre en el visor intern.
-  - [../../lib/silk/icons/delete.png]  Esborrar.
+  - [fa-search]Veure o consultar
+  - [fa-pencil]  Edita.
+  - [fa-trash]  Copia.
+  - [fa-file-pdf-o]  Exportar en format PDF. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+  - [fa-desktop]  Mostra registre en el visor intern.
+  - [fa-trash]  Esborrar.
 
 
 En funció de cada aplicació podrà trobar més funcionalitats com:
-  - [../../lib/silk/icons/vcard.png]: Exportar en format VCard. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-  - [../../lib/silk/icons/layout_sidebar.png]: Visualitzar QRCode amb les dades del registre. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-  - [../../lib/silk/icons/email_go.png]: Envia registre per correu electrònic.
+  - [fa-address-card]: Exportar en format VCard. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+  - [fa-qrcode]: Visualitzar QRCode amb les dades del registre. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+  - [fa-share]: Envia registre per correu electrònic.
 
 
 En determinades aplicacions trobarà **informació addicional**  a la part inferior del llistat, per exemple, en l'aplicació de factures trobarà el sumari dels imports de les factura mostrades.
@@ -113,10 +117,10 @@ En determinades aplicacions trobarà **informació addicional**  a la part infe
 A sobre del llistat es troba el **cercador ràpid**  en forma de caixa de text. Introduïu aquí el terme buscat i feu clic al botó 'Cerca' per iniciar la cerca. Un cop filtrat el contingut del llistat actual podrà tornar a obtenir tots els registres fent clic al botó 'Reset'.
 
 En funció de l'aplicació trobareu altres botons:
-  - [../../lib/silk/icons/page_white_excel.png]  Exportar en format Excel
-  - [../../lib/silk/icons/page_white_acrobat.png]  Exportar en format PDF
-  - [../../lib/silk/icons/email_go.png]  Enviar PDF
-  - [../../lib/silk/icons/disk.png]  Liquidar
+  - [fa-file-excel-o]  Exportar en format Excel
+  - [fa-file-pdf-o]  Exportar en format PDF
+  - [fa-share]  Enviar PDF
+  - [fa-save]  Liquidar
   - etc.
 
 

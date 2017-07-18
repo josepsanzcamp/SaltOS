@@ -28,16 +28,16 @@ In the list of potential customers can find the most important pillars of regist
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
-- [../../lib/silk/icons/vcard.png]: Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [../../lib/silk/icons/layout_sidebar.png]: Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-address-card]: Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode]: Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Show data through-PDF Viewer.
 
 
 This list also features the following:
 
-- [../../lib/silk/icons/page_white_excel.png]: Export list of all potential customers data to a file in Excel format.
+- [fa-file-excel-o]: Export list of all potential customers data to a file in Excel format.
 
 
 ===Filter Options===
@@ -81,9 +81,9 @@ In this tab you can view and modify the main elements of prospect. Here we relat
 
 Furthermore, in the first tab has a **action buttons.**  to facilitate major tasks related to business contacts.
 
-- **[../../lib/silk/icons/add.png]  Add event:**  Will take the form of new event for you to fill in the relevant information and relate directly with this prospect.
-- **[../../lib/silk/icons/add.png]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly with this prospect.
-- **[../../lib/silk/icons/add.png]  Create Customer:**  Will take the form of creating client with all data included in the record of the prospect.
+- **[fa-plus-circle]  Add event:**  Will take the form of new event for you to fill in the relevant information and relate directly with this prospect.
+- **[fa-plus-circle]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly with this prospect.
+- **[fa-plus-circle]  Create Customer:**  Will take the form of creating client with all data included in the record of the prospect.
 
 
 ===Comments Tab===

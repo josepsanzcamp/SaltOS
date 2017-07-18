@@ -31,9 +31,9 @@ The list of commercial campaigns. you will find the most important pillars of re
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
-- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Show data through-PDF Viewer.
 
 
 ===Filter Options===

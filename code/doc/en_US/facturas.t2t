@@ -31,18 +31,18 @@ In the list of invoices you will find the most important pillars of registration
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
-- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data from the current.
-- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
-- [../../lib/silk/icons/email_go.png]: Prepare an email with the selected budget attached as PDF file.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-clone]: This action will lead to the creation of a new record using data from the current.
+- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Show data through-PDF Viewer.
+- [fa-share]: Prepare an email with the selected budget attached as PDF file.
 
 
 This list also provides the following actions by selecting multiple records simultaneously:
 
-- [../../lib/silk/icons/page_white_acrobat.png]: Download the selected records to a file format. PDF.
-- [../../lib/silk/icons/monitor.png]: Display records selected format. PDF on screen.
-- [../../lib/silk/icons/email_go.png]: Prepare an email with the selected records attached as PDF files.
+- [fa-file-pdf-o]: Download the selected records to a file format. PDF.
+- [fa-desktop]: Display records selected format. PDF on screen.
+- [fa-share]: Prepare an email with the selected records attached as PDF files.
 
 
 ===Filter Options===

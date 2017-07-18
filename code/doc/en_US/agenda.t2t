@@ -36,8 +36,8 @@ In this view you can create a new event by clicking the corresponding button in 
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
-- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data from the current.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-clone]: This action will lead to the creation of a new record using data from the current.
 
 
 ===Filter Options===

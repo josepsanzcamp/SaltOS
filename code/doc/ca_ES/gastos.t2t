@@ -30,14 +30,14 @@ En el llistat de despeses podrà trobar les columnes més importants del registr
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
-- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-clone]: Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
 
 
 Aquest llistat disposa a més de les següents accions:
 
-- [../../lib/silk/icons/page_white_excel.png]: Exportar el llistat de totes les despeses a un arxiu amb format Excel.
-- [../../lib/silk/icons/disk.png]: Liquida les despeses seleccionats indicant la data d'avui.
+- [fa-file-excel-o]: Exportar el llistat de totes les despeses a un arxiu amb format Excel.
+- [fa-save]: Liquida les despeses seleccionats indicant la data d'avui.
 
 
 ===Opcions de filtre===

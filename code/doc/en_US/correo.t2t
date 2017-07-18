@@ -32,27 +32,27 @@ In the list of emails find both submitted by you as received.
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete (*) record.
-- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
-- [../../lib/silk/icons/email_reply.png]: Reply mail to the sender.
-- [../../lib/silk/icons/email_replyall.png]: Reply Mail to all.
-- [../../lib/silk/icons/email_go.png]: Forward mail.
-- [../../lib/silk/icons/tag_blue.png]: Mark email as pending.
-- [../../lib/silk/icons/tag_red.png]: Mark email as SPAM.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete (*) record.
+- [fa-file-pdf-o]: Download PDF with log data. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Show data through-PDF Viewer.
+- [fa-reply]: Reply mail to the sender.
+- [fa-reply-all]: Reply Mail to all.
+- [fa-share]: Forward mail.
+- [fa-tag]: Mark email as pending.
+- [fa-tag]: Mark email as SPAM.
 
 
 On the list besides normal search option, you will find the following functions:
 
-- [../../lib/silk/icons/email_open.png]: Force checking new mails on the server.
-- [../../lib/silk/icons/email_go.png]: Force sending emails send earrings.
+- [fa-download]: Force checking new mails on the server.
+- [fa-share]: Force sending emails send earrings.
 - Selector **actions to multiple mailings**:
  - //Options//: Downloading and viewing PDF format.
  - //Mark as//: Read, Unread, Earrings, earrings No, SPAM, SPAM No.
  - //Filter by type//: All, Inbox, Outbox.
  - //Filter by State//: All, Read, Earrings, Interesting.
  - //Filter by publication date//: All, Today, Yesterday, Week, Month.
-- [../../lib/silk/icons/delete.png]  Delete selected emails (*).
+- [fa-trash]  Delete selected emails (*).
 
 
 To send a new email to the sender of the mail you can click on the email address it. To send a new email from the recipient's account (probably yours), click above it. Also check email by clicking the matter.

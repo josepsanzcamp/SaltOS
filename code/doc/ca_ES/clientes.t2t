@@ -27,11 +27,11 @@ En el llistat de clients podrà trobar les columnes més importants del registre
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
-- [../../lib/silk/icons/vcard.png]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [../../lib/silk/icons/layout_sidebar.png]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-address-card]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Mostra dades a través del Visor-PDF.
 
 
 ===Opcions de filtre===
@@ -74,9 +74,9 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de clien
 
 A més, a la primera pestanya té uns **botons d'acció.**
 
-- **[../../lib/silk/icons/add.png]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
-- **[../../lib/silk/icons/add.png]  Afegir acta:**  El portés al formulari de nova acta perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
-- **[../../lib/silk/icons/add.png]  Afegir esdeveniment:**  El portés al formulari de nou esdeveniments perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[fa-plus-circle]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[fa-plus-circle]  Afegir acta:**  El portés al formulari de nova acta perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[fa-plus-circle]  Afegir esdeveniment:**  El portés al formulari de nou esdeveniments perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
 
 
 ===Pestanya Comentaris===

@@ -32,27 +32,27 @@ En el listado de sus correos electrónicos encontrará tanto los enviados por us
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar(*) registro.
-- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
-- [../../lib/silk/icons/email_reply.png]: Responder correo al remitente.
-- [../../lib/silk/icons/email_replyall.png]: Responder correo a todos.
-- [../../lib/silk/icons/email_go.png]: Reenviar correo.
-- [../../lib/silk/icons/tag_blue.png]: Marcar correo como pendiente.
-- [../../lib/silk/icons/tag_red.png]: Marcar correo como SPAM.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar(*) registro.
+- [fa-file-pdf-o]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Mostrar datos a través del Visor-PDF.
+- [fa-reply]: Responder correo al remitente.
+- [fa-reply-all]: Responder correo a todos.
+- [fa-share]: Reenviar correo.
+- [fa-tag]: Marcar correo como pendiente.
+- [fa-tag]: Marcar correo como SPAM.
 
 
 Sobre el listado ademas de la opción normal de búsqueda, encontrará las siguientes funciones:
 
-- [../../lib/silk/icons/email_open.png]: Fuerza la comprobación de correos nuevos en el servidor.
-- [../../lib/silk/icons/email_go.png]: Fuerza el envío de los correos pendientes de enviar.
+- [fa-download]: Fuerza la comprobación de correos nuevos en el servidor.
+- [fa-share]: Fuerza el envío de los correos pendientes de enviar.
 - Selector de **acciones para múltiples correos**:
  - //Opciones//: Descarga y visualización en formato PDF.
  - //Marcar como//: Leídos, No leídos, Pendientes, No pendientes, SPAM, No SPAM.
  - //Filtrar por tipo//: Todos, Entrada, Salida.
  - //Filtrar por estado//: Todos, Leídos, Pendientes, Interesantes.
  - //Filtrar por fecha publicación//: Todos, Hoy, Ayer, Semana, Mes.
-- [../../lib/silk/icons/delete.png] Borrar los correos seleccionados (*).
+- [fa-trash] Borrar los correos seleccionados (*).
 
 
 Para enviar un correo nuevo al remitente del correo puede hacer clic en la dirección de correo electrónico del mismo. Si desea enviar un nuevo correo desde la cuenta del destinatario (probablemente la suya), haga clic encima de la misma. También consultar el correo haciendo clic en el asunto.

@@ -24,7 +24,7 @@ The list of entries shows you the last added favorites.
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-[../../lib/silk/icons/delete.png]: Clear log.
+[fa-trash]: Clear log.
 
 
 On the list besides normal search option, you will find the following functions:

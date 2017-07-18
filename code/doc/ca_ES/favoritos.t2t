@@ -24,7 +24,7 @@ El llistat d'entrades li mostra els darrers favorits agregats.
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-[../../lib/silk/icons/delete.png]: Esborrar registre.
+[fa-trash]: Esborrar registre.
 
 
 Sobre el llistat a més de l'opció normal de cerca, trobareu les següents funcions:

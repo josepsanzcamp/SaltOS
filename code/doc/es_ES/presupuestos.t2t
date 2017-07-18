@@ -33,18 +33,18 @@ En el listado de presupuestos podrá encontrar las columnas mas importantes del 
 
 Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
-- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
-- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
-- [../../lib/silk/icons/email_go.png]: Preparara un correo con el presupuesto seleccionado adjuntado como archivo PDF.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
+- [fa-clone]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [fa-file-pdf-o]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Mostrar datos a través del Visor-PDF.
+- [fa-share]: Preparara un correo con el presupuesto seleccionado adjuntado como archivo PDF.
 
 
 Este listado dispone ademas de las siguientes acciones seleccionando varios presupuesto simultáneamente:
 
-- [../../lib/silk/icons/page_white_acrobat.png]: Descargar los presupuesto seleccionados a un archivo en formato. PDF.
-- [../../lib/silk/icons/monitor.png]: Visualizar los presupuesto seleccionados en formato. PDF en pantalla.
-- [../../lib/silk/icons/email_go.png]: Preparara un correo con los presupuestos seleccionados adjuntados como archivos PDF.
+- [fa-file-pdf-o]: Descargar los presupuesto seleccionados a un archivo en formato. PDF.
+- [fa-desktop]: Visualizar los presupuesto seleccionados en formato. PDF en pantalla.
+- [fa-share]: Preparara un correo con los presupuestos seleccionados adjuntados como archivos PDF.
 
 
 ===Opciones de filtro===
@@ -54,6 +54,8 @@ Este listado dispone ademas de las siguientes acciones seleccionando varios pres
 ===Gráficas y estadísticas===
 
 En esta pestaña podrá ver las estadísticas sobre cuantos presupuesto tiene en cada estado, pudiendo detectar picos y bajadas de faena antes de que sucedan y así poder tomar medidas para mitigar estos momentos críticos.
+
+[presupuestos-listado-graficas.png]
 
 ==Formulario de presupuestos==
 
@@ -80,9 +82,9 @@ En esta pestaña podrá visualizar y modificar los principales datos del presupu
 
 Ademas, en la primera pestaña tiene unos **botones de acción.**
 
-- **[../../lib/silk/icons/add.png] Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
-- **[../../lib/silk/icons/add.png] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
-- **[../../lib/silk/icons/add.png] Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[fa-plus-circle] Añadir contacto:** Le llevara al formulario de nuevo contacto para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[fa-plus-circle] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
+- **[fa-plus-circle] Añadir evento:** Le llevara al formulario de nuevo eventos para que pueda rellenar la información pertinente y lo relacionara directamente con este cliente.
 
 
 ===Pestaña de Objetivos===

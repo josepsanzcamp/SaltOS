@@ -28,16 +28,16 @@ En el listado de posibles clientes podrá encontrar las columnas mas importantes
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
-- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
+- [fa-address-card]: Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode]: Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-file-pdf-o]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Mostrar datos a través del Visor-PDF.
 
 
 Este listado dispone ademas de las siguientes acciones:
 
-- [../../lib/silk/icons/page_white_excel.png]: Exportar listado de todos los datos de los posibles clientes a un archivo con formato Excel.
+- [fa-file-excel-o]: Exportar listado de todos los datos de los posibles clientes a un archivo con formato Excel.
 
 
 ===Opciones de filtro===
@@ -81,9 +81,9 @@ En esta pestaña podrá visualizar y modificar los principales datos del posible
 
 Ademas, en la primera pestaña tiene unos **botones de acción.** para facilitarle las principales tareas relacionadas con los contactos comerciales.
 
-- **[../../lib/silk/icons/add.png] Añadir evento:** Le llevara al formulario de nuevo evento para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
-- **[../../lib/silk/icons/add.png] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
-- **[../../lib/silk/icons/add.png] Crear cliente:** Le llevara al formulario de creación de cliente con todos los datos incluidos en la ficha del posible cliente.
+- **[fa-plus-circle] Añadir evento:** Le llevara al formulario de nuevo evento para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
+- **[fa-plus-circle] Añadir acta:** Le llevara al formulario de nueva acta para que pueda rellenar la información pertinente y lo relacionara directamente con este posible cliente.
+- **[fa-plus-circle] Crear cliente:** Le llevara al formulario de creación de cliente con todos los datos incluidos en la ficha del posible cliente.
 
 
 ===Pestaña Comentarios===

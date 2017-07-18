@@ -26,9 +26,9 @@ En el llistat de contactes podrà trobar les columnes més importants del regist
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
-- [../../lib/silk/icons/vcard.png]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [../../lib/silk/icons/layout_sidebar.png]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-address-card]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
 
 
 ===Opcions de filtre===

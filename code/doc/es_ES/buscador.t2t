@@ -26,13 +26,13 @@ En este listado podrá encontrar todo tipo de datos, clientes, proveedores, corr
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png]: Consultar/Editar registro.
-- [../../lib/silk/icons/page_white_acrobat.png]: Descargar PDF con los datos del registro. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Mostrar datos a través del Visor-PDF.
-- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
-- [../../lib/silk/icons/email_reply.png]: Responder correo al remitente.
-- [../../lib/silk/icons/email_replyall.png]: Responder correo a todos.
-- [../../lib/silk/icons/email_go.png]: Reenviar correo.
+- [fa-search] [fa-pencil]: Consultar/Editar registro.
+- [fa-file-pdf-o]: Descargar PDF con los datos del registro. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Mostrar datos a través del Visor-PDF.
+- [fa-clone]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [fa-reply]: Responder correo al remitente.
+- [fa-reply-all]: Responder correo a todos.
+- [fa-share]: Reenviar correo.
 
 
 ===Opciones de filtro===

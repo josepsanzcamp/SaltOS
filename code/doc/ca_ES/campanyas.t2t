@@ -31,9 +31,9 @@ En el llistat de campanyes comercials. podrà trobar les columnes més important
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
-- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Mostra dades a través del Visor-PDF.
 
 
 ===Opcions de filtre===

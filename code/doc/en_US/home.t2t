@@ -15,7 +15,7 @@ You will see that SaltOS interface is intuitive and easy to use, allowing you to
 
 SaltOS consists of a series of applications or modules. Each application provides specific functionality within the following categories:
 
-  [home-inicio.png]
+  [home-formulario.png]
 
   - General Features
     - **Home or Dashboard**, Go to the main screen of the application.
@@ -73,9 +73,13 @@ To manage the configuration of SaltOS itself there are several applications:
 
 The graph SaltOS interface is divided into 3 sections:
   - **Central Area:**  it will find the selected application with the help tab.
+
   [home-zona-central.png]
+
   - **Top bar:**  in it you will find the button to hide the menu, the link about and the current version of SaltOS, control voice reader (if enabled) and the speed buttons to access different applications.
+
   [home-zona-superior.png]
+
   - **Left side menu:**  from here you can access different applications SaltOS. You can hide this menu to expand the available space on the screen.
 
   [home-zona-izquierda.png]
@@ -87,25 +91,25 @@ In **central space**  lists and forms for various applications are displayed. F
 
 ====Listings====
 
-[clientes-listado.png]
+[home-listado.png]
 
 In the first list with data from each application is displayed. At the top of the list find the meaning of each column and the possibility of computer listing according to its value. Sorting can be done in ascending or descending order by clicking the arrows available in each column.
 
 In the first column of each listing find an element of type //checkbox//  in order to select all records in a single click. You will also find this item in each record listed to select them individually. These controls will apply functions to massively in or selected records, deleting records or liquidate working parts.
 
 In the last column of each record are buttons to perform actions on the recording in question:
-  - [../../lib/silk/icons/magnifier.png]View or consult
-  - [../../lib/silk/icons/pencil.png]  Edit.
-  - [../../lib/silk/icons/delete.png]  Copy.
-  - [../../lib/silk/icons/page_white_acrobat.png]  Export in PDF format. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
-  - [../../lib/silk/icons/monitor.png]  Show record in the internal viewer.
-  - [../../lib/silk/icons/delete.png]  Clear.
+  - [fa-search]View or consult
+  - [fa-pencil]  Edit.
+  - [fa-trash]  Copy.
+  - [fa-file-pdf-o]  Export in PDF format. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+  - [fa-desktop]  Show record in the internal viewer.
+  - [fa-trash]  Clear.
 
 
 Depending on each application provides additional functionality such as:
-  - [../../lib/silk/icons/vcard.png]: Export in vCard format. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-  - [../../lib/silk/icons/layout_sidebar.png]: Display QRCode with log data. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-  - [../../lib/silk/icons/email_go.png]: Send registration email.
+  - [fa-address-card]: Export in vCard format. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+  - [fa-qrcode]: Display QRCode with log data. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+  - [fa-share]: Send registration email.
 
 
 In certain applications will find **additional information**  at the bottom of the list, for example, in the application of invoices will find a summary of the amount of the invoice displayed.
@@ -113,10 +117,10 @@ In certain applications will find **additional information**  at the bottom of 
 On top of the list is the **Quick search**  shaped box. Please enter search term and click the 'Search' button to start the search. After filtering the content of the current list you can regain all records by clicking the 'Reset' button.
 
 Depending on the application you will find other buttons:
-  - [../../lib/silk/icons/page_white_excel.png]  Export to Excel
-  - [../../lib/silk/icons/page_white_acrobat.png]  Export as PDF
-  - [../../lib/silk/icons/email_go.png]  Send PDF
-  - [../../lib/silk/icons/disk.png]  Settle
+  - [fa-file-excel-o]  Export to Excel
+  - [fa-file-pdf-o]  Export as PDF
+  - [fa-share]  Send PDF
+  - [fa-save]  Settle
   - etc.
 
 

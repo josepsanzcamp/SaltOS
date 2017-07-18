@@ -34,10 +34,10 @@ In the list of projects you will find the most important columns of each record:
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
-- [../../lib/silk/icons/page_paste.png]: With this action you can create a new project by copying the data from this.
-- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-clone]: With this action you can create a new project by copying the data from this.
+- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Show data through-PDF Viewer.
 
 
 ===Filter Options===
@@ -48,7 +48,7 @@ For more information about the filter options listed in the **[ayuda general htt
 
 In this tab you can view statistics on how many projects have in each state can detect peaks and downs slaughter before they happen so we can take steps to mitigate these critical times.
 
-[proyectos-estadisticas.png]
+[proyectos-listado-graficas.png]
 
 ==Projects form==
 
@@ -73,11 +73,11 @@ In this tab you can view and modify the main project data. Here we relate all in
 
 Furthermore, in the first tab has a **action buttons.**
 
-- **[../../lib/silk/icons/add.png]  Add Followup:**  Will take the form of new track so you can fill in relevant information and relate directly with this project.
-- **[../../lib/silk/icons/add.png]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly to the customer.
-- **[../../lib/silk/icons/add.png]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
-- **[../../lib/silk/icons/add.png]  Add event:**  Will take the form of new events so you can fill in relevant information and relate directly to the customer.
-- **[../../lib/silk/icons/add.png]  Check in:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle]  Add Followup:**  Will take the form of new track so you can fill in relevant information and relate directly with this project.
+- **[fa-plus-circle]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle]  Add event:**  Will take the form of new events so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle]  Check in:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
 
 
 ===Tasks tab===

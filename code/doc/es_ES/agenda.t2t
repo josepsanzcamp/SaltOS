@@ -36,8 +36,8 @@ En esta vista puede crear un nuevo evento haciendo clic en el botón correspondi
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
-- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
+- [fa-clone]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
 
 
 ===Opciones de filtro===

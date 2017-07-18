@@ -25,9 +25,9 @@ En el llistat de proveïdors podrà trobar les columnes més importants del regi
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
-- [../../lib/silk/icons/vcard.png]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [../../lib/silk/icons/layout_sidebar.png]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-address-card]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
 
 
 ===Opcions de filtre===
@@ -68,7 +68,7 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de prove
 
 A més, a la primera pestanya té uns **botons d'acció.**
 
-- **[../../lib/silk/icons/add.png]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest proveïdor.
+- **[fa-plus-circle]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest proveïdor.
 
 
 ===Pestanya Gràfiques i estadístiques===

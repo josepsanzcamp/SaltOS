@@ -30,25 +30,25 @@ The list shows recent entries //posts//  downloaded.
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete (*) record.
-- [../../lib/silk/icons/page_white_acrobat.png]: Download PDF with log data. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Show data through-PDF Viewer.
-- [../../lib/silk/icons/email_go.png]: Share feed via email.
-- [../../lib/silk/icons/tag_blue.png]: Mark feed as pending.
-- [../../lib/silk/icons/tag_gold.png]: Mark as interesting feed.
-- [../../lib/silk/icons/star.png]: Add feed to favorites.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete (*) record.
+- [fa-file-pdf-o]: Download PDF with log data. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Show data through-PDF Viewer.
+- [fa-share]: Share feed via email.
+- [fa-tag]: Mark feed as pending.
+- [fa-tag]: Mark as interesting feed.
+- [fa-star]: Add feed to favorites.
 
 
 On the list besides normal search option, you will find the following functions:
 
 - Selector RSS feed: allows you to quickly filter the RSS feed.
-- [../../lib/silk/icons/email_open.png]: This button is hard to check for new post download all RSS feeds (RSS Depending on the amount of subscribed this action may take).
+- [fa-download]: This button is hard to check for new post download all RSS feeds (RSS Depending on the amount of subscribed this action may take).
 - Selector **actions to multiple feeds**:
  - //Options//: Downloading and viewing PDF format.
  - //Mark as//: Read, unread, Earrings, earrings No, Interesting, not interesting.
  - //Filter by State//: Everyone read, Earrings, Interesting.
  - //Filter by publication date//: All, Today, Yesterday, Week, Month.
-- [../../lib/silk/icons/delete.png]  RSS Feeds Delete selected (*).
+- [fa-trash]  RSS Feeds Delete selected (*).
 
 
 **(*)**  More information about setting erase feeds on [configuración general http://viewpdf/page=maincfg]

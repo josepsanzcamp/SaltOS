@@ -26,13 +26,13 @@ En el llistat de seguiments podrà trobar les columnes més importants de cada r
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
-- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-clone]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
 
 
 Aquest llistat disposa a més de les següents accions:
 
-- [../../lib/silk/icons/page_white_excel.png]: Exportar el llistat de totes les dades de seguiment de tasques a un arxiu amb format Excel.
+- [fa-file-excel-o]: Exportar el llistat de totes les dades de seguiment de tasques a un arxiu amb format Excel.
 
 
 ===Opcions de filtre===

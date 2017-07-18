@@ -32,27 +32,27 @@ En el llistat dels seus correus electrònics trobarà tant els enviats per vost�
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix (*) registre.
-- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
-- [../../lib/silk/icons/email_reply.png]: Respondre correu al remitent.
-- [../../lib/silk/icons/email_replyall.png]: Respondre correu a tots.
-- [../../lib/silk/icons/email_go.png]: Reenviar correu.
-- [../../lib/silk/icons/tag_blue.png]: Marcar correu com a pendent.
-- [../../lib/silk/icons/tag_red.png]: Marcar correu com SPAM.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix (*) registre.
+- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Mostra dades a través del Visor-PDF.
+- [fa-reply]: Respondre correu al remitent.
+- [fa-reply-all]: Respondre correu a tots.
+- [fa-share]: Reenviar correu.
+- [fa-tag]: Marcar correu com a pendent.
+- [fa-tag]: Marcar correu com SPAM.
 
 
 Sobre el llistat a més de l'opció normal de cerca, trobareu les següents funcions:
 
-- [../../lib/silk/icons/email_open.png]: Força la comprovació de correus nous al servidor.
-- [../../lib/silk/icons/email_go.png]: Força l'enviament dels correus pendents d'enviar.
+- [fa-download]: Força la comprovació de correus nous al servidor.
+- [fa-share]: Força l'enviament dels correus pendents d'enviar.
 - Selector de **accions per a múltiples correus**:
  - //Opcions//: Descàrrega i visualització en format PDF.
  - //Marca com//: Llegits, No llegits, Pendents, No pendents, SPAM, No SPAM.
  - //Filtrar per tipus//: Tots, Entrada, Sortida.
  - //Filtrar per estat//: Tots, llegits, Pendents, Interessants.
  - //Filtrar per data publicació//: Tots, Avui, Ahir, Setmana, Mes.
-- [../../lib/silk/icons/delete.png]  Esborrar els correus seleccionats (*).
+- [fa-trash]  Esborrar els correus seleccionats (*).
 
 
 Per enviar un correu a l'emissor del correu pot fer clic a l'adreça de correu electrònic del mateix. Si voleu enviar un nou correu des del compte del destinatari (probablement la seva), feu clic a sobre de la mateixa. També consultar el correu fent clic en l'assumpte.

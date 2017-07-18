@@ -31,13 +31,13 @@ En el listado de facturas podrá encontrar las columnas mas importantes del regi
 
 Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
-- [../../lib/silk/icons/page_paste.png]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
+- [fa-clone]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
 
 
 Este listado dispone ademas de las siguientes acciones seleccionando varios registros simultáneamente:
 
-- [../../lib/silk/icons/disk.png]: Utilice este botón para generar las facturas seleccionadas. Previamente tiene que filtrar por el mes que quiera generar.
+- [fa-save]: Utilice este botón para generar las facturas seleccionadas. Previamente tiene que filtrar por el mes que quiera generar.
 
 
 ===Opciones de filtro===

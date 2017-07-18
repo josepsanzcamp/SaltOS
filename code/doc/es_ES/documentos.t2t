@@ -13,7 +13,7 @@ Los documentos no se subirán sueltos, sino que puede agruparlos, como si se tra
 
 El listado le mostrará los parámetros más importante de las distintas  carpetas o contenedores de ficheros. Las dos últimas columnas, //NC// y //NF//, le muestran el número de comentarios y el número de ficheros de la carpeta respectivamente.
 
-[favoritos-listado.png]
+[documentos-listado.png]
 
 - **Cód.:** Código numérico que identifica el documento.
 - **Fecha y hora:** Momento en el que se sube el documento por primera vez.
@@ -30,7 +30,7 @@ El listado le mostrará los parámetros más importante de las distintas  carpet
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
 
 
 ===Opciones de filtro===
@@ -45,7 +45,7 @@ Esta es la aplicación de documentos con ella podrá añadir, modificar, visiona
 
 En esta pestaña podrá visualizar y modificar los principales datos de cliente. A continuación le relacionamos todos los campos de información.
 
-[clientes-formulario.png]
+[documentos-formulario.png]
 
 - **Cliente:** Para vincular el documento con un cliente concreto.
 - **Proyecto:** Para vincular el documento con un proyecto concreto.

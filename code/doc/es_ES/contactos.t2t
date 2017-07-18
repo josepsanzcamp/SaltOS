@@ -26,9 +26,9 @@ En el listado de contactos podrá encontrar las columnas mas importantes del reg
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar/Editar/Borrar registro.
-- [../../lib/silk/icons/vcard.png]: Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
+- [fa-address-card]: Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode]: Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
 
 
 ===Opciones de filtro===

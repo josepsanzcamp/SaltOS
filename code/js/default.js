@@ -1416,23 +1416,27 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(value) $(".tbody",table).removeClass("ui-state-highlight");
 		});
 		// PROGRAM CHECK ENTER
-		$("input",obj).on("keydown",function(event) {
+		$("input,select",obj).on("keydown",function(event) {
 			if($(".ui-autocomplete").is(":visible")) {
 				// DETECTED AN OPEN AUTOCOMPLETE WIDGET
 				return;
 			}
 			if(is_enterkey(event)) {
-				if(!this.form) return;
-				if(!this.form.elements) return;
-				var objs=this.form.elements;
-				for(var i=0,len=objs.length;i<len;i++) {
-					if(this==objs[i]) break;
+				if(this.form) {
+					for(var i=0,len=this.form.elements.length;i<len;i++) {
+						if(this==this.form.elements[i]) break;
+					}
+					for(var j=0,len=this.form.elements.length;j<len;j++) {
+						i=(i+1)%this.form.elements.length;
+						if(this.form.elements[i].type!="hidden") break;
+					}
+					$(this.form.elements[i]).trigger("focus");
+					if(this.form.elements[i].type) {
+						if(substr(this.form.elements[i].type,0,6)!="select") {
+							this.form.elements[i].select();
+						}
+					}
 				}
-				for(var j=0,len=objs.length;j<len;j++) {
-					i=(i+1)%objs.length;
-					if(objs[i].type && objs[i].type!="hidden") break;
-				}
-				objs[i].focus().select();
 			}
 		});
 		// PROGRAM THEAD TOGGLE EFFECT

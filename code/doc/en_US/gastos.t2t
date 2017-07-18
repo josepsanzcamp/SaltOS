@@ -30,14 +30,14 @@ In the list of expenses you will find the most important pillars of registration
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
-- [../../lib/silk/icons/page_paste.png]: This action will lead to the creation of a new record using data selected.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-clone]: This action will lead to the creation of a new record using data selected.
 
 
 This list also features the following:
 
-- [../../lib/silk/icons/page_white_excel.png]: Export the list of all expenses to a file in Excel format.
-- [../../lib/silk/icons/disk.png]: Liquid selected expenses indicating the date hereof.
+- [fa-file-excel-o]: Export the list of all expenses to a file in Excel format.
+- [fa-save]: Liquid selected expenses indicating the date hereof.
 
 
 ===Filter Options===

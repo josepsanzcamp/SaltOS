@@ -26,7 +26,7 @@ En el llistat de productes podrà trobar les columnes més importants del regist
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===

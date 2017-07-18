@@ -15,7 +15,7 @@ Verá que la interfaz de SaltOS es intuitiva y fácil de usar, lo cual le permit
 
 SaltOS está compuesto por una serie de aplicaciones o módulos. Cada aplicación ofrece un funcionalidad concreta dentro de las siguientes categorías:
 
-  [home-inicio.png]
+  [home-formulario.png]
 
   - Funcionalidades Generales
     - **Página de inicio o Dashboard**, acceda a la pantalla principal de la aplicación.
@@ -73,9 +73,13 @@ Para gestionar la configuración del propio SaltOS existen varias aplicaciones:
 
 El interfaz gráfico de SaltOS está divido en 3 secciones:
   - **Espacio central:** en él encontrará la aplicación seleccionada con su pestaña de ayuda.
+
   [home-zona-central.png]
+
   - **Barra superior:** en ella podrá encontrar el botón para esconder el menú, el enlace al about y la versión actual de SaltOS, el control del lector por voz (si está habilitado) y los botones de acceso rápido a las diferentes aplicaciones.
+
   [home-zona-superior.png]
+
   - **Menú zona izquierda:** desde aquí podrá acceder a las distintas aplicaciones de SaltOS. Puede ocultar este menú para ampliar el espacio disponible en la pantalla.
 
   [home-zona-izquierda.png]
@@ -87,25 +91,25 @@ En el **espacio central** se mostrarán los listados y formularios de las distin
 
 ====Listados====
 
-[clientes-listado.png]
+[home-listado.png]
 
 En la primera se muestra un listado con los datos de cada aplicación. En la parte superior del listado encontrará el significado de cada columna así como la posibilidad de ordenador el listado en función del valor de ésta. La ordenación puede realizarse en sentido ascendente o descendente haciendo clic en las flechas disponibles en cada columna.
 
 En la primera columna de cada listado encontrará un elemento de tipo //checkbox// con el fin de poder seleccionar todos los registros en un único clic. También encontrará este elemento en cada registro del listado para poder seleccionarlos de forma individual. Estos controles servirán para poder aplicar funciones de manera masiva en el o los registros seleccionados, por ejemplo borrar registros o liquidar partes de trabajo.
 
 En las últimas columnas de cada registro se encuentran los botones para realizar acciones sobre el registro en cuestión:
-  - [../../lib/silk/icons/magnifier.png]Ver o consultar
-  - [../../lib/silk/icons/pencil.png] Editar.
-  - [../../lib/silk/icons/delete.png] Copiar.
-  - [../../lib/silk/icons/page_white_acrobat.png] Exportar en formato PDF. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
-  - [../../lib/silk/icons/monitor.png] Mostrar registro en el visor interno.
-  - [../../lib/silk/icons/delete.png] Borrar.
+  - [fa-search]Ver o consultar
+  - [fa-pencil] Editar.
+  - [fa-trash] Copiar.
+  - [fa-file-pdf-o] Exportar en formato PDF. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+  - [fa-desktop] Mostrar registro en el visor interno.
+  - [fa-trash] Borrar.
 
 
 En función de cada aplicación podrá encontrar más funcionalidades como:
-  - [../../lib/silk/icons/vcard.png]: Exportar en formato VCard. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-  - [../../lib/silk/icons/layout_sidebar.png]: Visualizar QRCode con los datos del registro. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-  - [../../lib/silk/icons/email_go.png]: Enviar registro por correo electrónico.
+  - [fa-address-card]: Exportar en formato VCard. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+  - [fa-qrcode]: Visualizar QRCode con los datos del registro. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+  - [fa-share]: Enviar registro por correo electrónico.
 
 
 En determinadas aplicaciones encontrará **información adicional** en la parte inferior del listado, por ejemplo, en la aplicación de facturas encontrará el sumario de los importes de las factura mostradas.
@@ -113,10 +117,10 @@ En determinadas aplicaciones encontrará **información adicional** en la parte 
 Encima del listado se encuentra el **buscador rápido** en forma de caja de texto. Introduzca aquí el término buscado y haga clic en el botón 'Buscar' para iniciar la búsqueda. Una vez filtrado el contenido del listado actual podrá volver a obtener todos los registros haciendo clic en el botón 'Reset'.
 
 En función de la aplicación encontrará otros botones:
-  - [../../lib/silk/icons/page_white_excel.png] Exportar en formato Excel
-  - [../../lib/silk/icons/page_white_acrobat.png] Exportar en formato PDF
-  - [../../lib/silk/icons/email_go.png] Enviar PDF
-  - [../../lib/silk/icons/disk.png] Liquidar
+  - [fa-file-excel-o] Exportar en formato Excel
+  - [fa-file-pdf-o] Exportar en formato PDF
+  - [fa-share] Enviar PDF
+  - [fa-save] Liquidar
   - etc.
 
 

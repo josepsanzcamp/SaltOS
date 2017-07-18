@@ -33,20 +33,20 @@ En el llistat de parts de treball podrà trobar les columnes més importants del
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
-- [../../lib/silk/icons/page_paste.png]: Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
-- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [../../lib/silk/icons/monitor.png]: Mostra dades a través del Visor-PDF.
-- [../../lib/silk/icons/email_go.png]: Preparés un correu amb el registre seleccionat adjuntat com arxiu PDF.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-clone]: Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
+- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop]: Mostra dades a través del Visor-PDF.
+- [fa-share]: Preparés un correu amb el registre seleccionat adjuntat com arxiu PDF.
 
 
 Aquest llistat disposa a més de les següents accions:
 
-- [../../lib/silk/icons/page_white_excel.png]: Exportar el llistat de tots els parts de treball a un fitxer amb format Excel.
-- [../../lib/silk/icons/page_white_acrobat.png]: Descarregar els parts seleccionats a un fitxer en format. PDF.
-- [../../lib/silk/icons/monitor.png]: Visualitzar els parts seleccionats en format. PDF en pantalla.
-- [../../lib/silk/icons/email_go.png]: Preparés un correu amb les parts seleccionats adjuntats com arxius PDF.
-- [../../lib/silk/icons/disk.png]: Liquida els parts seleccionats indicant la data d'avui.
+- [fa-file-excel-o]: Exportar el llistat de tots els parts de treball a un fitxer amb format Excel.
+- [fa-file-pdf-o]: Descarregar els parts seleccionats a un fitxer en format. PDF.
+- [fa-desktop]: Visualitzar els parts seleccionats en format. PDF en pantalla.
+- [fa-share]: Preparés un correu amb les parts seleccionats adjuntats com arxius PDF.
+- [fa-save]: Liquida els parts seleccionats indicant la data d'avui.
 
 
 ===Opcions de filtre===

@@ -13,7 +13,7 @@ The documents will not be uploaded loose, but can group them as if they were fol
 
 The list will show the most important parameters of the different file folders or containers. The last two columns, //NC//  and //NF//, We show the number of comments and the number of files in the folder respectively.
 
-[favoritos-listado.png]
+[documentos-listado.png]
 
 - **Ref .:**  Numeric code that identifies the document.
 - **Date and Time:**  Time when the document is uploaded for the first time.
@@ -30,7 +30,7 @@ The list will show the most important parameters of the different file folders o
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -45,7 +45,7 @@ This is the application documents with it can add, modify, view and download doc
 
 In this tab you can view and modify the main customer data. Here we relate all information fields.
 
-[clientes-formulario.png]
+[documentos-formulario.png]
 
 - **Customer:**  To link the document to a particular customer.
 - **Project:**  To link the document to a particular project.

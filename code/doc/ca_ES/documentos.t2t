@@ -13,7 +13,7 @@ Els documents no pujaran solts, sinó que pot agrupar-los, com si es tractés de
 
 El llistat mostrarà els paràmetres més important de les diferents carpetes o contenidors de fitxers. Les dues últimes columnes, //NC//  i //NF//, Li mostren el nombre de comentaris i el nombre de fitxers de la carpeta respectivament.
 
-[favoritos-listado.png]
+[documentos-listado.png]
 
 - **Codi .:**  Codi numèric que identifica el document.
 - **Data i hora:**  Moment en què es puja el document per primera vegada.
@@ -30,7 +30,7 @@ El llistat mostrarà els paràmetres més important de les diferents carpetes o 
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [../../lib/silk/icons/magnifier.png][../../lib/silk/icons/pencil.png][../../lib/silk/icons/delete.png]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -45,7 +45,7 @@ Aquesta és l'aplicació de documents amb ella podrà afegir, modificar, visiona
 
 En aquesta pestanya podrà visualitzar i modificar les principals dades de client. A continuació li relacionem tots els camps d'informació.
 
-[clientes-formulario.png]
+[documentos-formulario.png]
 
 - **Client:**  Per enllaçar el document amb un client concret.
 - **Projecte:**  Per enllaçar el document amb un projecte concret.
