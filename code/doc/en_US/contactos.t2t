@@ -11,13 +11,13 @@ This application lets you keep track of all your contacts.
 
 In the contact list you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the contact.
-- **Customer:**  Customer name associated with the contact.
-- **Name:**  Name of contact.
-- **Project:**  Project name associated with the contact.
-- **Landline:**  Main fixed telephone to contact.
-- **Mobile phone:**  Principal to contact mobile phone.
-- **Mail account:**  Primary email account to contact.
+- **Ref.:** Numeric code that identifies the contact.
+- **Customer:** Customer name associated with the contact.
+- **Name:** Name of contact.
+- **Project:** Project name associated with the contact.
+- **Landline:** Main fixed telephone to contact.
+- **Mobile phone:** Principal to contact mobile phone.
+- **Mail account:** Primary email account to contact.
 
 
 **Remember**: The events can be arranged by dragging them to the user folder you want.
@@ -26,9 +26,9 @@ In the contact list you will find the most important pillars of registration:
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-address-card]: Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [fa-qrcode]: Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-address-card] Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode] Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
 
 
 ===Filter Options===
@@ -45,26 +45,26 @@ In this tab you can view and modify the main contact details. Here we relate all
 
 [contactos-formulario.png]
 
-- **Customer:**  To link the contact with a client.
-- **Supplier:**  To link the contact with a supplier.
-- **Project:**  To link the contact with a particular project.
-- **Employee:**  To link the contact with our employee.
-- **Name (*):**  Trade name of the contact.
-- **Surname:**  Last name of the contact.
-- **Cargo:**  Position held in their workplace.
-- **Show as (*):**  This is the name that is used in the list and selectors can be used to refer to the nickname, or nick.
-- **Comment:**  Comments on contact.
-- **Address:**  Contact address is used in legal documents such as invoices, contracts, etc ..
-- **Country:**  Country of contact, be used in legal documents such as invoices, contracts, etc ..
-- **County:**  Contact Province, was used in legal documents such as invoices, contracts, etc ..
-- **Population:**  Contact population, was used in legal documents such as invoices, contracts, etc ..
-- **Postal Code:**  Zip code of contact, be used in legal documents such as invoices, contracts, etc ..
-- **Email:**  Contact primary email account is what will be displayed on all listings.
-- **Web:**  Contact Web master is that which will be displayed on all listings.
-- **Fixed Number:**  Fixed main contact is what will be displayed on all listings.
-- **Phone Number:**  Contact mainspring is what will be displayed on all listings.
-- **Fax Number:**  Main fax number is the one that will be displayed on all listings.
-- **Comment:**  To indicate comments on this contact.
+- **Customer:** To link the contact with a client.
+- **Supplier:** To link the contact with a supplier.
+- **Project:** To link the contact with a particular project.
+- **Employee:** To link the contact with our employee.
+- **Name (*):** Trade name of the contact.
+- **Surname:** Last name of the contact.
+- **Cargo:** Position held in their workplace.
+- **Show as (*):** This is the name that is used in the list and selectors can be used to refer to the nickname, or nick.
+- **Comment:** Comments on contact.
+- **Address:** Contact address is used in legal documents such as invoices, contracts, etc ..
+- **Country:** Country of contact, be used in legal documents such as invoices, contracts, etc ..
+- **County:** Contact Province, was used in legal documents such as invoices, contracts, etc ..
+- **Population:** Contact population, was used in legal documents such as invoices, contracts, etc ..
+- **Postal Code:** Zip code of contact, be used in legal documents such as invoices, contracts, etc ..
+- **Email:** Contact primary email account is what will be displayed on all listings.
+- **Web:** Contact Web master is that which will be displayed on all listings.
+- **Fixed Number:** Fixed main contact is what will be displayed on all listings.
+- **Phone Number:** Contact mainspring is what will be displayed on all listings.
+- **Fax Number:** Main fax number is the one that will be displayed on all listings.
+- **Comment:** To indicate comments on this contact.
 
 
 (*) **Required when creating or editing a contact fields.**

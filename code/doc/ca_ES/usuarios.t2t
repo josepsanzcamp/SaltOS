@@ -11,23 +11,23 @@ Aquesta aplicació li permet portar un control de tots usuaris amb accés a l'ap
 
 En el llistat d'usuaris podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica l'usuari.
-- **Usuari:**  Nom d'accés a l'aplicació.
-- **Grup:**  Grup al que pertany l'usuari.
-- **Nom:**  Nom real de l'usuari.
-- **Email:**  Compte de correu de contacte de l'usuari.
-- **Actiu:**  Determina el compte aquesta bloquejada.
-- **Entrada:**  Determina l'inici de l'horari permès per a accedir a l'aplicació.
-- **Sortida:**  Determina el final de l'horari permès per a accedir a l'aplicació.
-- **Dies:**  Determina els dies que l'usuari té permès entrar a l'aplicació.
-- **Connectat:**  Determina si l'usuari està connectat en aquest moment.
+- **Codi.:** Codi numèric que identifica l'usuari.
+- **Usuari:** Nom d'accés a l'aplicació.
+- **Grup:** Grup al que pertany l'usuari.
+- **Nom:** Nom real de l'usuari.
+- **Email:** Compte de correu de contacte de l'usuari.
+- **Actiu:** Determina el compte aquesta bloquejada.
+- **Entrada:** Determina l'inici de l'horari permès per a accedir a l'aplicació.
+- **Sortida:** Determina el final de l'horari permès per a accedir a l'aplicació.
+- **Dies:** Determina els dies que l'usuari té permès entrar a l'aplicació.
+- **Connectat:** Determina si l'usuari està connectat en aquest moment.
 
 
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -44,16 +44,16 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de l'usu
 
 [usuarios-formulario.png]
 
-- **Usuari (*):**  Nom de l'usuari.
-- **Grup (*):**  Grup al que pertany l'usuari.
-- **Clau:**  Clau d'accés.
-- **Repetiu clau:**  Repetició de la clau d'accés per descartar errors d'escriptura.
-- **Aplicació (*):**  A quin tipus de contacte pertany aquest usuari.
-- **Registre (*):**  Que contacte específic pertànyer aquest usuari.
-- **Actiu:**  Serveix per bloquejar el compte momentàniament.
-- **Entrada (*):**  Hora d'inici de permís d'accés a l'aplicació.
-- **Sortida (*):**  Hora final de permís d'accés a l'aplicació.
-- **Accés setmanal:**  Dies de la setmana que es permet l'accés a l'aplicació.
+- **Usuari (*):** Nom de l'usuari.
+- **Grup (*):** Grup al que pertany l'usuari.
+- **Clau:** Clau d'accés.
+- **Repetiu clau:** Repetició de la clau d'accés per descartar errors d'escriptura.
+- **Aplicació (*):** A quin tipus de contacte pertany aquest usuari.
+- **Registre (*):** Que contacte específic pertànyer aquest usuari.
+- **Actiu:** Serveix per bloquejar el compte momentàniament.
+- **Entrada (*):** Hora d'inici de permís d'accés a l'aplicació.
+- **Sortida (*):** Hora final de permís d'accés a l'aplicació.
+- **Accés setmanal:** Dies de la setmana que es permet l'accés a l'aplicació.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un usuari.**

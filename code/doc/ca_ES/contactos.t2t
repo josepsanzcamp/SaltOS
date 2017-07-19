@@ -11,13 +11,13 @@ Aquesta aplicació li permet portar un control de tots els seus contactes.
 
 En el llistat de contactes podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica el contactes.
-- **Client:**  Nom del client vinculat amb el contacte.
-- **Nom:**  Nom del contacte.
-- **Projecte:**  Nom del projecte vinculat amb el contacte.
-- **Telèfon fix:**  Telèfon fix principal per posar-nos en contacte.
-- **Telèfon mòbil:**  Telèfon mòbil principal per posar-nos en contacte.
-- **Compte de correu:**  Compte de correu principal per posar-nos en contacte.
+- **Codi.:** Codi numèric que identifica el contactes.
+- **Client:** Nom del client vinculat amb el contacte.
+- **Nom:** Nom del contacte.
+- **Projecte:** Nom del projecte vinculat amb el contacte.
+- **Telèfon fix:** Telèfon fix principal per posar-nos en contacte.
+- **Telèfon mòbil:** Telèfon mòbil principal per posar-nos en contacte.
+- **Compte de correu:** Compte de correu principal per posar-nos en contacte.
 
 
 **Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
@@ -26,9 +26,9 @@ En el llistat de contactes podrà trobar les columnes més importants del regist
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
-- [fa-address-card]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [fa-qrcode]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
+- [fa-address-card] Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode] Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
 
 
 ===Opcions de filtre===
@@ -45,26 +45,26 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de conta
 
 [contactos-formulario.png]
 
-- **Client:**  Per poder vincular el contacte amb un client.
-- **Proveïdor:**  Per poder vincular el contacte amb un proveïdor.
-- **Projecte:**  Per poder vincular el contacte amb un projecte en concret.
-- **Empleat:**  Per poder vincular el contacte amb un empleat nostre.
-- **Nom (*):**  Nom comercial del contacte.
-- **Cognoms:**  Cognoms del contacte.
-- **Càrrec:**  Càrrec que exerceix en el seu lloc de treball.
-- **Mostrar com (*):**  Aquest el és nom que s'utilitzés en els llistat i selectors, es pot utilitzar per referir-se al sobrenom o nick.
-- **Comentaris:**  Comentaris sobre el contacte.
-- **Direcció:**  Direcció del contacte, es fa a documents legals com ara factures, contractes, etc ..
-- **País:**  País del contacte, es fa a documents legals com ara factures, contractes, etc ..
-- **Província:**  Província del contacte, es fa a documents legals com ara factures, contractes, etc ..
-- **Població:**  Població del contacte, es fa a documents legals com ara factures, contractes, etc ..
-- **Codi postal:**  Codi postal del contacte, es fa a documents legals com ara factures, contractes, etc ..
-- **Email:**  Compte de correu principal de contacte és la que es visualitzés en tots llistats.
-- **Web:**  Web principal de contacte és el que es visualitzés en tots llistats.
-- **Nombre Fix:**  Fix principal de contacte és el que es visualitzés en tots llistats.
-- **Nombre Mòbil:**  Mòbil principal de contacte és el que es visualitzés en tots llistats.
-- **Nombre Fax:**  Fax principal de contacte és el que es visualitzés en tots llistats.
-- **Comentari:**  Per poder indicar comentaris sobre aquest contacte.
+- **Client:** Per poder vincular el contacte amb un client.
+- **Proveïdor:** Per poder vincular el contacte amb un proveïdor.
+- **Projecte:** Per poder vincular el contacte amb un projecte en concret.
+- **Empleat:** Per poder vincular el contacte amb un empleat nostre.
+- **Nom (*):** Nom comercial del contacte.
+- **Cognoms:** Cognoms del contacte.
+- **Càrrec:** Càrrec que exerceix en el seu lloc de treball.
+- **Mostrar com (*):** Aquest el és nom que s'utilitzés en els llistat i selectors, es pot utilitzar per referir-se al sobrenom o nick.
+- **Comentaris:** Comentaris sobre el contacte.
+- **Direcció:** Direcció del contacte, es fa a documents legals com ara factures, contractes, etc ..
+- **País:** País del contacte, es fa a documents legals com ara factures, contractes, etc ..
+- **Província:** Província del contacte, es fa a documents legals com ara factures, contractes, etc ..
+- **Població:** Població del contacte, es fa a documents legals com ara factures, contractes, etc ..
+- **Codi postal:** Codi postal del contacte, es fa a documents legals com ara factures, contractes, etc ..
+- **Email:** Compte de correu principal de contacte és la que es visualitzés en tots llistats.
+- **Web:** Web principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Fix:** Fix principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Mòbil:** Mòbil principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Fax:** Fax principal de contacte és el que es visualitzés en tots llistats.
+- **Comentari:** Per poder indicar comentaris sobre aquest contacte.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un contacte.**

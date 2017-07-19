@@ -28,16 +28,16 @@ En el listado de posibles clientes podrá encontrar las columnas mas importantes
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
-- [fa-address-card]: Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [fa-qrcode]: Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-- [fa-file-pdf-o]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Mostrar datos a través del Visor-PDF.
+- [fa-search] [fa-pencil] [fa-trash] Consultar/Editar/Borrar registro.
+- [fa-address-card] Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode] Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-file-pdf-o] Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Mostrar datos a través del Visor-PDF.
 
 
 Este listado dispone ademas de las siguientes acciones:
 
-- [fa-file-excel-o]: Exportar listado de todos los datos de los posibles clientes a un archivo con formato Excel.
+- [fa-file-excel-o] Exportar listado de todos los datos de los posibles clientes a un archivo con formato Excel.
 
 
 ===Opciones de filtro===

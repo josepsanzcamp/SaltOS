@@ -11,17 +11,17 @@ Aquesta aplicació li permet portar un control de tots els IVA s que utilitzi l'
 
 En el llistat d'IVA s podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica a l'IVA.
-- **Nom:**  Nom d'IVA.
-- **Descripció:**  Descripció d'IVA.
-- **IVA (%):**  Percentatge d'IVA.
+- **Codi.:** Codi numèric que identifica a l'IVA.
+- **Nom:** Nom d'IVA.
+- **Descripció:** Descripció d'IVA.
+- **IVA (%):** Percentatge d'IVA.
 
 
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -38,9 +38,9 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de l'IVA
 
 [ivas-formulario.png]
 
-- **Nom (*):**  Nom d'IVA.
-- **IVA (%):**  Percentatge d'IVA.
-- **Descripció:**  Descripció d'IVA.
+- **Nom (*):** Nom d'IVA.
+- **IVA (%):** Percentatge d'IVA.
+- **Descripció:** Descripció d'IVA.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un IVA.**

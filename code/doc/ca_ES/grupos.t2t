@@ -11,16 +11,16 @@ Aquesta aplicació li permet portar un control de tots grups de l'aplicació.
 
 En el llistat de grups podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica el grup.
-- **Nom:**  Nom del grup.
-- **Descripció:**  Descripció del grup.
+- **Codi.:** Codi numèric que identifica el grup.
+- **Nom:** Nom del grup.
+- **Descripció:** Descripció del grup.
 
 
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -37,8 +37,8 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades del grup
 
 [grupos-formulario.png]
 
-- **Usuari (*):**  Nom del grup.
-- **Descripció:**  Descrpció del grup.
+- **Usuari (*):** Nom del grup.
+- **Descripció:** Descrpció del grup.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un grup.**

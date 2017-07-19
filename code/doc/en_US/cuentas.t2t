@@ -11,16 +11,16 @@ This application allows you to keep track of different accounts.
 
 In the list of accounts you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the account.
-- **Name:**  Account name.
-- **Description:**  Description of the account.
+- **Ref.:** Numeric code that identifies the account.
+- **Name:** Account name.
+- **Description:** Description of the account.
 
 
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -37,8 +37,8 @@ In this tab you can view and modify the main details of the account. Here we rel
 
 [cuentas-formulario.png]
 
-- **Name (*):**  Account name.
-- **Description:**  Description of the account.
+- **Name (*):** Account name.
+- **Description:** Description of the account.
 
 
 (*) **Required when creating or modifying a form of payment Campos.**
@@ -50,22 +50,22 @@ In this tab you can view and change settings Logo account.
 [cuentas-formulario-logo.png]
 
 - **Position and measures the logo:**
-  - **X:**  Horizontal axis, away from the placement of the logo from 0,0 expressed in millimeters value.
-  - **Y:**  Vertical axis, away from the placement of the logo from 0,0 expressed in millimeters value.
-  - **Width:**  Logo paper width, expressed in millimeters.
-  - **Height:**  Logo Alto paper, expressed in millimeters.
+  - **X:** Horizontal axis, away from the placement of the logo from 0,0 expressed in millimeters value.
+  - **Y:** Vertical axis, away from the placement of the logo from 0,0 expressed in millimeters value.
+  - **Width:** Logo paper width, expressed in millimeters.
+  - **Height:** Logo Alto paper, expressed in millimeters.
 
 
 - **Files logo:**
-  - **Current logo file:**  Viewing the current logo.
-  - **New file (JPEG only):**  If you want to change the logo, select here the new file, only formats (JPEG).
+  - **Current logo file:** Viewing the current logo.
+  - **New file (JPEG only):** If you want to change the logo, select here the new file, only formats (JPEG).
 
 
 - **Colors in the PDF documents generated:**
-  - **Lines:**  Color of the lines that utlizan to draw boxes, lines of columns and rows, etc ...
-  - **Titles:**  Color of the titles used in the generated documents.
-  - **Texts:**  Color of normal text that is used in the generated documents.
-  
+  - **Lines:** Color of the lines that utlizan to draw boxes, lines of columns and rows, etc ...
+  - **Titles:** Color of the titles used in the generated documents.
+  - **Texts:** Color of normal text that is used in the generated documents.
+
 
 ===Invoices tab settings===
 
@@ -73,12 +73,12 @@ In this tab you can view and modify the configuration of invoices for this accou
 
 [cuentas-formulario-factura.png]
 
-- **Name tax (added):**  Name use tax, taxes to be added to invoices.
-- **Default (only if used):**  Tax value.
-- **Name tax (subtracted):**  Name use tax, a tax that must subtract bills.
-- **Default (only if used):**  Tax value.
-- **First line stand:**  Text anger at the foot of the bill.
-- **Second line stand:**  Text anger at the foot of the bill.
+- **Name tax (added):** Name use tax, taxes to be added to invoices.
+- **Default (only if used):** Tax value.
+- **Name tax (subtracted):** Name use tax, a tax that must subtract bills.
+- **Default (only if used):** Tax value.
+- **First line stand:** Text anger at the foot of the bill.
+- **Second line stand:** Text anger at the foot of the bill.
 
 
 ===Registry Data Tab===

@@ -11,14 +11,14 @@ This application lets you keep track of all acts performed in the company.
 
 In the list of records you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the record.
-- **User:**  User who created the record.
-- **Home:**  Date and time of beginning of the meeting.
-- **End:**  Date and time of end of the meeting.
-- **Customer:**  Customer linked in the minutes.
-- **Project:**  Project linked in the minutes.
-- **Name:**  Descriptive name of the reason for the meeting.
-- **Location (€):**  Place that has been conducted the meeting.
+- **Ref.:** Numeric code that identifies the record.
+- **User:** User who created the record.
+- **Home:** Date and time of beginning of the meeting.
+- **End:** Date and time of end of the meeting.
+- **Customer:** Customer linked in the minutes.
+- **Project:** Project linked in the minutes.
+- **Name:** Descriptive name of the reason for the meeting.
+- **Location (€):** Place that has been conducted the meeting.
 
 
 **Remember**: The events can be arranged by dragging them to the user folder you want.
@@ -27,18 +27,18 @@ In the list of records you will find the most important pillars of registration:
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-clone]: This action will lead to the creation of a new record using data from the current.
-- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Show data through-PDF Viewer.
-- [fa-share]: Prepare an email with the selected record as a file attached. PDF.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-clone] This action will lead to the creation of a new record using data from the current.
+- [fa-file-pdf-o] Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Show data through-PDF Viewer.
+- [fa-share] Prepare an email with the selected record as a file attached. PDF.
 
 
 This list also provides the following actions by selecting multiple records simultaneously:
 
-- [fa-file-pdf-o]: Download the selected records to a file in PDF format.
-- [fa-desktop]: Display selected records in PDF format on the screen.
-- [fa-share]: Prepare an email with the selected records attached as PDF files.
+- [fa-file-pdf-o] Download the selected records to a file in PDF format.
+- [fa-desktop] Display selected records in PDF format on the screen.
+- [fa-share] Prepare an email with the selected records attached as PDF files.
 
 
 ===Filter Options===
@@ -55,18 +55,18 @@ In this tab you can view and modify the main contact details. Here we relate all
 
 [actas-formulario.png]
 
-- **Campaigns:**  To link the record to a particular marketing campaign.
-- **Prospect:**  To link the record to a possible individual customer.
-- **Budget:**  To link the record with a possible specific budget.
-- **Customer:**  To link the record with a particular customer.
-- **Project:**  To link the record to a particular project.
-- **Home (*):**  Start time of the meeting.
-- **Fin (*):**  End time of the meeting.
-- **Name (*):**  Name you want to give the minutes
-- **Location (*):**  Where the meeting is held.
-- **Assistants (*):**  Attending the meeting
-- **Topics (*):**  Topics to be discussed at the meeting
-- **Predefined texts:**  Ability to add predefined text box themes texts.
+- **Campaigns:** To link the record to a particular marketing campaign.
+- **Prospect:** To link the record to a possible individual customer.
+- **Budget:** To link the record with a possible specific budget.
+- **Customer:** To link the record with a particular customer.
+- **Project:** To link the record to a particular project.
+- **Home (*):** Start time of the meeting.
+- **Fin (*):** End time of the meeting.
+- **Name (*):** Name you want to give the minutes
+- **Location (*):** Where the meeting is held.
+- **Assistants (*):** Attending the meeting
+- **Topics (*):** Topics to be discussed at the meeting
+- **Predefined texts:** Ability to add predefined text box themes texts.
 
 
 (*) **Required when creating or modifying a record fields.**

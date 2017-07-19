@@ -11,9 +11,9 @@ This application lets you keep track of all sections (economic activities) to co
 
 In the list of headings you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the item.
-- **Name:**  Name heading.
-- **Description:**  Description section, in which cases are used, etc ...
+- **Ref.:** Numeric code that identifies the item.
+- **Name:** Name heading.
+- **Description:** Description section, in which cases are used, etc ...
 
 
 More Info for Spanish entities: [Agencia Tributaria https://www2.agenciatributaria.gob.es/ADUA/internet/es/aeat/dit/adu/adws/certificados/Tabla_de_epigrafes_IAE.pdf]
@@ -22,7 +22,7 @@ More Info for Spanish entities: [Agencia Tributaria https://www2.agenciatributar
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -39,9 +39,9 @@ In this tab you can view and modify the main data item. Here we relate all infor
 
 [epigrafes-formulario.png]
 
-- **Code (*):**  Code section.
-- **Name (*):**  Name heading.
-- **Description:**  Description section.
+- **Code (*):** Code section.
+- **Name (*):** Name heading.
+- **Description:** Description section.
 
 
 (*) **Required when creating or modifying a caption fields.**

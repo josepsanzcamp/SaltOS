@@ -13,26 +13,26 @@ In this list you can find all kinds of data, customers, suppliers, couriers, etc
 
 [buscador-listado-todo-saltos.png]
 
-- **Ref .:**  Numeric code that identifies the record.
-- **Application:**  Application where the information (customers, suppliers, couriers, etc ..).
-- **Name:**  Name or title of the record.
-- **User:**  User who created this record.
-- **Date and Time:**  Date and time of record creation.
-- **NC:**  Number of comments entered on this register.
-- **NF:**  Number of files associated with this record.
+- **Ref.:** Numeric code that identifies the record.
+- **Application:** Application where the information (customers, suppliers, couriers, etc ..).
+- **Name:** Name or title of the record.
+- **User:** User who created this record.
+- **Date and Time:** Date and time of record creation.
+- **NC:** Number of comments entered on this register.
+- **NF:** Number of files associated with this record.
 
 
 ===Listing Options===
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil]: Check / Edit record.
-- [fa-file-pdf-o]: Download PDF with log data. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Show data through-PDF Viewer.
-- [fa-clone]: This action will lead to the creation of a new record using data from the current.
-- [fa-reply]: Reply mail to the sender.
-- [fa-reply-all]: Reply Mail to all.
-- [fa-share]: Forward mail.
+- [fa-search] [fa-pencil] Check / Edit record.
+- [fa-file-pdf-o] Download PDF with log data. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Show data through-PDF Viewer.
+- [fa-clone] This action will lead to the creation of a new record using data from the current.
+- [fa-reply] Reply mail to the sender.
+- [fa-reply-all] Reply Mail to all.
+- [fa-share] Forward mail.
 
 
 ===Filter Options===
@@ -45,10 +45,10 @@ This list will include only files of different applications that support attach 
 
 [buscador-listado-solo-ficheros.png]
 
-- **Ref .:**  Numeric code that identifies the file.
-- **Application:**  Application where the file is (e, act, etc ..).
-- **Name:**  Name or title of the file.
-- **User:**  User who created this file.
-- **Date and Time:**  Date and time of file creation.
-- **File:**  Real name of the file (name on disk).
-- **Size:**  File size (unit varies (bytes, kilobytes, Mbytes, etc ..-) depending on the size thereof).
+- **Ref.:** Numeric code that identifies the file.
+- **Application:** Application where the file is (e, act, etc ..).
+- **Name:** Name or title of the file.
+- **User:** User who created this file.
+- **Date and Time:** Date and time of file creation.
+- **File:** Real name of the file (name on disk).
+- **Size:** File size (unit varies (bytes, kilobytes, Mbytes, etc ..-) depending on the size thereof).

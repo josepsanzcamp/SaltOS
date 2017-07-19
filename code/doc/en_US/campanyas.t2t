@@ -11,18 +11,18 @@ This application lets you keep track of all your marketing campaigns.
 
 The list of commercial campaigns. you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the marketing year.
-- **Home:**  Date of commencement of commercial campaign.
-- **End:**  Daylight commercial campaign.
-- **Name:**  Name of the marketing year.
-- **State:**  State in which is the marketing year. (Planned, Begun, Cancelled, Finished).
-- **NPC:**  Number of possible customers included in the marketing year.
-- **NCL:**  Number of clients including in marketing year.
-- **NAG:**  Number of events in the marketing year.
-- **NPR:**  Number of estimates made by the commercial campaign.
-- **NPY:**  Number of projects carried out by the commercial campaign.
-- **NC:**  Number of comments entered this campaign.
-- **NF:**  Number of files associated with this campaign.
+- **Ref.:** Numeric code that identifies the marketing year.
+- **Home:** Date of commencement of commercial campaign.
+- **End:** Daylight commercial campaign.
+- **Name:** Name of the marketing year.
+- **State:** State in which is the marketing year. (Planned, Begun, Cancelled, Finished).
+- **NPC:** Number of possible customers included in the marketing year.
+- **NCL:** Number of clients including in marketing year.
+- **NAG:** Number of events in the marketing year.
+- **NPR:** Number of estimates made by the commercial campaign.
+- **NPY:** Number of projects carried out by the commercial campaign.
+- **NC:** Number of comments entered this campaign.
+- **NF:** Number of files associated with this campaign.
 
 
 **Remember**: The events can be arranged by dragging them to the user folder you want.
@@ -31,9 +31,9 @@ The list of commercial campaigns. you will find the most important pillars of re
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Show data through-PDF Viewer.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-file-pdf-o] Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Show data through-PDF Viewer.
 
 
 ===Filter Options===
@@ -50,11 +50,11 @@ In this tab you can view and modify the main details about the campaign. Here we
 
 [campanyas-formulario.png]
 
-- **Name (*):**  Trade name of the marketing year.
-- **State (*):**  State in which is the marketing year.
-- **Home (*):**  Date of commencement of commercial campaign.
-- **Fin (*):**  Daylight commercial campaign.
-- **Description:**  Brief description of the marketing year.
+- **Name (*):** Trade name of the marketing year.
+- **State (*):** State in which is the marketing year.
+- **Home (*):** Date of commencement of commercial campaign.
+- **Fin (*):** Daylight commercial campaign.
+- **Description:** Brief description of the marketing year.
 
 
 (*) **Required when creating or modifying a campaign Campos.**

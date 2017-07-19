@@ -11,16 +11,16 @@ Aquesta aplicació li permet portar un control de totes formes de pagament que u
 
 En el llistat de formes de pagament podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica la forma de pagament.
-- **Nom:**  Nom de la forma de pagament.
-- **Descripció:**  Descripció del mètode de pagament.
+- **Codi.:** Codi numèric que identifica la forma de pagament.
+- **Nom:** Nom de la forma de pagament.
+- **Descripció:** Descripció del mètode de pagament.
 
 
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -37,8 +37,8 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de la fo
 
 [formaspago-formulario.png]
 
-- **Nom (*):**  Nom del mètode de pagament.
-- **Descripció:**  Descripció del mètode de pagament.
+- **Nom (*):** Nom del mètode de pagament.
+- **Descripció:** Descripció del mètode de pagament.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un forma de pagament.**

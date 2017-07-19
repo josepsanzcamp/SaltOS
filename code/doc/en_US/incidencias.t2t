@@ -11,17 +11,17 @@ This application lets you keep track of all the events in the company.
 
 The list of incidents you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the job.
-- **User:**  User opening incidence.
-- **Date:**  Date and time of occurrence.
-- **Customer:**  Customer which has generated the incident.
-- **Project:**  Name of project that has generated the incident.
-- **Incidence:**  Descriptive name of the reason for the incident.
-- **State:**  State in which is the incidence (New, begun, assigned, resolved, revised, closed, rejected, duplicated, reopened).
-- **Priority:**  Priority incidence (high, normal, low).
-- **Assigned to:**  Users involved in the incident.
-- **NC:**  Number of comments entered on this issue.
-- **NF:**  Number of linked files on this issue.
+- **Ref.:** Numeric code that identifies the job.
+- **User:** User opening incidence.
+- **Date:** Date and time of occurrence.
+- **Customer:** Customer which has generated the incident.
+- **Project:** Name of project that has generated the incident.
+- **Incidence:** Descriptive name of the reason for the incident.
+- **State:** State in which is the incidence (New, begun, assigned, resolved, revised, closed, rejected, duplicated, reopened).
+- **Priority:** Priority incidence (high, normal, low).
+- **Assigned to:** Users involved in the incident.
+- **NC:** Number of comments entered on this issue.
+- **NF:** Number of linked files on this issue.
 
 
 **Remember**: The events can be arranged by dragging them to the user folder you want.
@@ -30,7 +30,7 @@ The list of incidents you will find the most important pillars of registration:
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -47,12 +47,12 @@ In this tab you can view and modify the main details of the incident. Here we re
 
 [incidencias-formulario.png]
 
-- **Customer:**  To link the client where the incidence has occurred.
-- **Project:**  To link the project in which the incidence has occurred.
-- **Priority (*):**  Priority incidence (high, normal, low).
-- **Name (*):**  Descriptive name of incidence occurred.
-- **State (*):**  State in which is the incidence (New, begun, assigned, resolved, revised, closed, rejected, duplicated, reopened).
-- **Description (*):**  More detailed description of the incident occurred.
+- **Customer:** To link the client where the incidence has occurred.
+- **Project:** To link the project in which the incidence has occurred.
+- **Priority (*):** Priority incidence (high, normal, low).
+- **Name (*):** Descriptive name of incidence occurred.
+- **State (*):** State in which is the incidence (New, begun, assigned, resolved, revised, closed, rejected, duplicated, reopened).
+- **Description (*):** More detailed description of the incident occurred.
 
 
 (*) **Required when creating or modifying an incidence Campos.**

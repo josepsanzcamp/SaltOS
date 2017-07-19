@@ -11,16 +11,16 @@ This application lets you keep track of all recurring invoices generated in the 
 
 In the list of invoices you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the recurring invoice.
-- **Customer:**  Client for which the recurring invoice generated.
-- **Day:**  Day the invoice is generated.
-- **Month:**  Months in which it has to generate the bill.
-- **Base (*):**  Amount before tax invoice invoice to be generated.
-- **Total (*):**  Amount after applying the relevant tax invoice will be generated.
-- **Account:**  Account where to assign the bill when it is generated.
-- **NC:**  Number of items included in this periodic bill.
-- **NP:**  Number of products included in this recurring invoice.
-- **NV:**  Maturity Number assigned to this recurring invoice.
+- **Ref.:** Numeric code that identifies the recurring invoice.
+- **Customer:** Client for which the recurring invoice generated.
+- **Day:** Day the invoice is generated.
+- **Month:** Months in which it has to generate the bill.
+- **Base (*):** Amount before tax invoice invoice to be generated.
+- **Total (*):** Amount after applying the relevant tax invoice will be generated.
+- **Account:** Account where to assign the bill when it is generated.
+- **NC:** Number of items included in this periodic bill.
+- **NP:** Number of products included in this recurring invoice.
+- **NV:** Maturity Number assigned to this recurring invoice.
 
 
 (*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
@@ -31,13 +31,13 @@ In the list of invoices you will find the most important pillars of registration
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-clone]: This action will lead to the creation of a new record using data from the current.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-clone] This action will lead to the creation of a new record using data from the current.
 
 
 This list also provides the following actions by selecting multiple records simultaneously:
 
-- [fa-save]: Use this button to generate the selected invoices. Previously has to be filtered by the month you want to generate.
+- [fa-save] Use this button to generate the selected invoices. Previously has to be filtered by the month you want to generate.
 
 
 ===Filter Options===
@@ -55,18 +55,18 @@ In this tab you can view and modify the main details of the delivery note or inv
 
 [periodicas-formulario.png]
 
-- **Count (*):**  Account where the income is counted.
-- **Heading (*):**  Economic activity.
-- **Payment (*):**  Payment method used to collect the revenue.
-- **Customer:**  Which Customer will be charged the amount.
-- **Day:**  Day the invoice is generated.
-- **Month:**  Months in which it has to generate the bill.
-- **VAT rate (%):**  VAT rate. more info about[ IVA http://es.wikipedia.org/wiki/Impuesto_al_valor_agregado]
-- **Income tax (%):**  Percentage of income tax. more info about [IRPF http://es.wikipedia.org/wiki/Impuesto_sobre_la_renta_de_las_personas_f%C3%ADsicas_%28Espa%C3%B1a%29]
-- **Base (€):**  Taxable income, total economic value before taxes.
-- **VAT (€):**  Economic amount of VAT.
-- **Income tax (€):**  Monetary amount of income tax
-- **Total (€):**  Total receivables including tax.
+- **Count (*):** Account where the income is counted.
+- **Heading (*):** Economic activity.
+- **Payment (*):** Payment method used to collect the revenue.
+- **Customer:** Which Customer will be charged the amount.
+- **Day:** Day the invoice is generated.
+- **Month:** Months in which it has to generate the bill.
+- **VAT rate (%):** VAT rate. more info about[ IVA http://es.wikipedia.org/wiki/Impuesto_al_valor_agregado]
+- **Income tax (%):** Percentage of income tax. more info about [IRPF http://es.wikipedia.org/wiki/Impuesto_sobre_la_renta_de_las_personas_f%C3%ADsicas_%28Espa%C3%B1a%29]
+- **Base (€):** Taxable income, total economic value before taxes.
+- **VAT (€):** Economic amount of VAT.
+- **Income tax (€):** Monetary amount of income tax
+- **Total (€):** Total receivables including tax.
 
 
 (*) **Required when creating or modifying a delivery note or invoice fields.**

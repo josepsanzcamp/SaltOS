@@ -11,19 +11,19 @@ This application allows you to keep track of every project undertaken in the com
 
 In the list of projects you will find the most important columns of each record:
 
-- **Ref .:**  Numeric code that identifies the project.
-- **Customer:**  For customer has been the project.
-- **project:**  Name that has been given to the project.
-- **Tasks (€) (*):**  Amount of total planned tasks in the project.
-- **Prod (€) (*).:**  Total amount of all products included in the project.
-- **Total (€) (*):**  Total project.
-- **Real (€) (*):**  Actual total amount of the project.
-- **State:**  Current status of the project (No start, budgeted, accepted, started, canceled, stopped, finishing, finishing).
-- **NT:**  Number of planned tasks in the project.
-- **NP:**  Number of products included in the project.
-- **NP:**  Number of traces associated with the project.
-- **NC:**  Number of comments entered on this project.
-- **NF:**  Number of files linked to this project.
+- **Ref.:** Numeric code that identifies the project.
+- **Customer:** For customer has been the project.
+- **project:** Name that has been given to the project.
+- **Tasks (€) (*):** Amount of total planned tasks in the project.
+- **Prod (€) (*).:** Total amount of all products included in the project.
+- **Total (€) (*):** Total project.
+- **Real (€) (*):** Actual total amount of the project.
+- **State:** Current status of the project (No start, budgeted, accepted, started, canceled, stopped, finishing, finishing).
+- **NT:** Number of planned tasks in the project.
+- **NP:** Number of products included in the project.
+- **NP:** Number of traces associated with the project.
+- **NC:** Number of comments entered on this project.
+- **NF:** Number of files linked to this project.
 
 
 (*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
@@ -34,10 +34,10 @@ In the list of projects you will find the most important columns of each record:
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-clone]: With this action you can create a new project by copying the data from this.
-- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Show data through-PDF Viewer.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-clone] With this action you can create a new project by copying the data from this.
+- [fa-file-pdf-o] Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Show data through-PDF Viewer.
 
 
 ===Filter Options===
@@ -60,24 +60,24 @@ In this tab you can view and modify the main project data. Here we relate all in
 
 [proyectos-formulario.png]
 
-- **Customer:**  To link the project with a client.
-- **Campaign:**  To link if the project has been. Order thanks to a particular marketing campaign.
-- **Name (*):**  Name you want to give the project.
-- **Date:**  Date of completion of the project.
-- **State (*):**  State in which the project (No start, budgeted, accepted, started, canceled, stopped, finishing, finishing) is.
-- **Description:**  Overview of the project.
-- **Summary table:**  In this table you can find the total hours of work, product units, and the total amount of the project.
+- **Customer:** To link the project with a client.
+- **Campaign:** To link if the project has been. Order thanks to a particular marketing campaign.
+- **Name (*):** Name you want to give the project.
+- **Date:** Date of completion of the project.
+- **State (*):** State in which the project (No start, budgeted, accepted, started, canceled, stopped, finishing, finishing) is.
+- **Description:** Overview of the project.
+- **Summary table:** In this table you can find the total hours of work, product units, and the total amount of the project.
 
 
 (*) **Required when creating or modifying a project fields.**
 
 Furthermore, in the first tab has a **action buttons.**
 
-- **[fa-plus-circle]  Add Followup:**  Will take the form of new track so you can fill in relevant information and relate directly with this project.
-- **[fa-plus-circle]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly to the customer.
-- **[fa-plus-circle]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
-- **[fa-plus-circle]  Add event:**  Will take the form of new events so you can fill in relevant information and relate directly to the customer.
-- **[fa-plus-circle]  Check in:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle] Add Followup:** Will take the form of new track so you can fill in relevant information and relate directly with this project.
+- **[fa-plus-circle] Add record:** Will take the form of new record so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle] Add contact:** We take the new contact form so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle] Add event:** Will take the form of new events so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle] Check in:** We take the new contact form so you can fill in relevant information and relate directly to the customer.
 
 
 ===Tasks tab===
@@ -86,8 +86,8 @@ This tab may include, modify or delete all the tasks linked to this project.
 
 [proyectos-formulario-listado-tareas.png]
 
-- **Summary Table:**  In this table you can see different information about the tasks in the project: **total hours, average price, total amount of hours.**
-- **Task list:**  This list may include, modify or delete as many tasks as may be necessary, including the fields are: **job description, hours required, unit price, discount, the total task.**
+- **Summary Table:** In this table you can see different information about the tasks in the project: **total hours, average price, total amount of hours.**
+- **Task list:** This list may include, modify or delete as many tasks as may be necessary, including the fields are: **job description, hours required, unit price, discount, the total task.**
 
 
 ===Tab Products===
@@ -96,8 +96,8 @@ This tab may include, modify or remove all products linked to this project.
 
 [proyectos-formulario-listado-productos.png]
 
-- **Summary Table:**  In this table you can see different information on the products included in the project: **total units, total product.**
-- **Product list:**  This list may include, modify or delete as many products as needed, including the fields are: **product description, units, unit price, discount, all goods.**
+- **Summary Table:** In this table you can see different information on the products included in the project: **total units, total product.**
+- **Product list:** This list may include, modify or delete as many products as needed, including the fields are: **product description, units, unit price, discount, all goods.**
 
 
 ===Graphs and statistics tab===

@@ -33,18 +33,18 @@ En el listado de presupuestos podrá encontrar las columnas mas importantes del 
 
 Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
-- [fa-clone]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
-- [fa-file-pdf-o]: Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Mostrar datos a través del Visor-PDF.
-- [fa-share]: Preparara un correo con el presupuesto seleccionado adjuntado como archivo PDF.
+- [fa-search] [fa-pencil] [fa-trash] Consultar/Editar/Borrar registro.
+- [fa-clone] Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del actual.
+- [fa-file-pdf-o] Descargar PDF con los datos del registro. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Mostrar datos a través del Visor-PDF.
+- [fa-share] Preparara un correo con el presupuesto seleccionado adjuntado como archivo PDF.
 
 
 Este listado dispone ademas de las siguientes acciones seleccionando varios presupuesto simultáneamente:
 
-- [fa-file-pdf-o]: Descargar los presupuesto seleccionados a un archivo en formato. PDF.
-- [fa-desktop]: Visualizar los presupuesto seleccionados en formato. PDF en pantalla.
-- [fa-share]: Preparara un correo con los presupuestos seleccionados adjuntados como archivos PDF.
+- [fa-file-pdf-o] Descargar los presupuesto seleccionados a un archivo en formato. PDF.
+- [fa-desktop] Visualizar los presupuesto seleccionados en formato. PDF en pantalla.
+- [fa-share] Preparara un correo con los presupuestos seleccionados adjuntados como archivos PDF.
 
 
 ===Opciones de filtro===

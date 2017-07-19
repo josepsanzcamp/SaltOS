@@ -11,18 +11,18 @@ Aquesta aplicació li permet portar un control de totes les seves campanyes come
 
 En el llistat de campanyes comercials. podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica la campanya comercial.
-- **Inici:**  Data d'inici de la campanya comercial.
-- **Fi:**  Data de fi de la campanya comercial.
-- **Nom:**  Nom de la campanya comercial.
-- **Estat:**  Estat en què es troba la campanya comercial. (Planificada, Començada, Cancel·lada, Acabada).
-- **NPC:**  Nombre de possibles clients inclosos en la campanya comercial.
-- **NCL:**  Nombre de clients inclosos en la campanya comercial.
-- **NAG:**  Nombre d'esdeveniments realitzats en la campanya comercial.
-- **NPR:**  Nombre de pressupostos realitzats gràcies a la campanya comercial.
-- **NPY:**  Nombre de projectes realitzats gràcies a la campanya comercial.
-- **NC:**  Nombre de comentaris introduïts sobre aquesta campanya.
-- **NF:**  Nombre de fitxers vinculats amb aquesta campanya.
+- **Codi.:** Codi numèric que identifica la campanya comercial.
+- **Inici:** Data d'inici de la campanya comercial.
+- **Fi:** Data de fi de la campanya comercial.
+- **Nom:** Nom de la campanya comercial.
+- **Estat:** Estat en què es troba la campanya comercial. (Planificada, Començada, Cancel·lada, Acabada).
+- **NPC:** Nombre de possibles clients inclosos en la campanya comercial.
+- **NCL:** Nombre de clients inclosos en la campanya comercial.
+- **NAG:** Nombre d'esdeveniments realitzats en la campanya comercial.
+- **NPR:** Nombre de pressupostos realitzats gràcies a la campanya comercial.
+- **NPY:** Nombre de projectes realitzats gràcies a la campanya comercial.
+- **NC:** Nombre de comentaris introduïts sobre aquesta campanya.
+- **NF:** Nombre de fitxers vinculats amb aquesta campanya.
 
 
 **Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
@@ -31,9 +31,9 @@ En el llistat de campanyes comercials. podrà trobar les columnes més important
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
-- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Mostra dades a través del Visor-PDF.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
+- [fa-file-pdf-o] Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Mostra dades a través del Visor-PDF.
 
 
 ===Opcions de filtre===
@@ -50,11 +50,11 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades sobre la
 
 [campanyas-formulario.png]
 
-- **Nom (*):**  Nom comercial de la campanya comercial.
-- **Estat (*):**  Estat en què es troba la campanya comercial.
-- **Inici (*):**  Data d'inici de la campanya comercial.
-- **Fi (*):**  Data de fi de la campanya comercial.
-- **Descripció:**  Breu descripció de la campanya comercial.
+- **Nom (*):** Nom comercial de la campanya comercial.
+- **Estat (*):** Estat en què es troba la campanya comercial.
+- **Inici (*):** Data d'inici de la campanya comercial.
+- **Fi (*):** Data de fi de la campanya comercial.
+- **Descripció:** Breu descripció de la campanya comercial.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar una campanya.**

@@ -11,16 +11,16 @@ Aquesta aplicació li permet portar un control de tots tipus d'esdeveniment que 
 
 En el llistat de tipus d'esdeveniment podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica del tipus d'esdeveniment.
-- **Nom:**  Nom del tipus d'esdeveniment.
-- **Descripció:**  Descripció del tipus d'esdeveniment.
+- **Codi.:** Codi numèric que identifica del tipus d'esdeveniment.
+- **Nom:** Nom del tipus d'esdeveniment.
+- **Descripció:** Descripció del tipus d'esdeveniment.
 
 
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -37,8 +37,8 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades del tipu
 
 [tiposevento-formulario.png]
 
-- **Nom (*):**  Nom del tipus d'esdeveniment.
-- **Descripció:**  Descripció del tipus d'esdeveniment.
+- **Nom (*):** Nom del tipus d'esdeveniment.
+- **Descripció:** Descripció del tipus d'esdeveniment.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un forma de pagament.**

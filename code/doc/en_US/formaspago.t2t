@@ -11,16 +11,16 @@ This application lets you keep track of all forms of payment that use the entity
 
 In the list of payment you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the payment.
-- **Name:**  Name payment.
-- **Description:**  Description of the method of payment.
+- **Ref.:** Numeric code that identifies the payment.
+- **Name:** Name payment.
+- **Description:** Description of the method of payment.
 
 
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -37,8 +37,8 @@ In this tab you can view and modify the main details of the payment. Here we rel
 
 [formaspago-formulario.png]
 
-- **Name (*):**  Name payment.
-- **Description:**  Description of the method of payment.
+- **Name (*):** Name payment.
+- **Description:** Description of the method of payment.
 
 
 (*) **Required when creating or modifying a form of payment Campos.**

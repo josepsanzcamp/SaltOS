@@ -11,16 +11,16 @@ This application lets you keep track of all priorities that are used in various 
 
 In the list of priorities you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the priority.
-- **Name:**  Name of priority.
-- **Description:**  Description of priority.
+- **Ref.:** Numeric code that identifies the priority.
+- **Name:** Name of priority.
+- **Description:** Description of priority.
 
 
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -37,8 +37,8 @@ In this tab you can view and modify the main details of priority. Here we relate
 
 [prioridades-formulario.png]
 
-- **Name (*):**  Name of priority.
-- **Description:**  Description of priority.
+- **Name (*):** Name of priority.
+- **Description:** Description of priority.
 
 
 (*) **Required when creating or modifying a form of payment Campos.**

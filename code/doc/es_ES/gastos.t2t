@@ -30,14 +30,14 @@ En el listado de gastos podrá encontrar las columnas mas importantes del regist
 
 Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
-- [fa-clone]: Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del seleccionado.
+- [fa-search] [fa-pencil] [fa-trash] Consultar/Editar/Borrar registro.
+- [fa-clone] Con esta acción se le llevara a la creación de un nuevo registro utilizando los datos del seleccionado.
 
 
 Este listado dispone ademas de las siguientes acciones:
 
-- [fa-file-excel-o]: Exportar el listado de todos los gastos a un archivo con formato Excel.
-- [fa-save]: Liquida los gastos seleccionados indicando la fecha de hoy.
+- [fa-file-excel-o] Exportar el listado de todos los gastos a un archivo con formato Excel.
+- [fa-save] Liquida los gastos seleccionados indicando la fecha de hoy.
 
 
 ===Opciones de filtro===

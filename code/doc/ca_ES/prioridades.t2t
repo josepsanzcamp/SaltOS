@@ -11,16 +11,16 @@ Aquesta aplicació li permet portar un control de totes prioritats que s'utilitz
 
 En el llistat de prioritats podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica la prioritat.
-- **Nom:**  Nom de la prioritat.
-- **Descripció:**  Descripció de la prioritat.
+- **Codi.:** Codi numèric que identifica la prioritat.
+- **Nom:** Nom de la prioritat.
+- **Descripció:** Descripció de la prioritat.
 
 
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -37,8 +37,8 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de la pr
 
 [prioridades-formulario.png]
 
-- **Nom (*):**  Nom de la prioritat.
-- **Descripció:**  Descripció de la prioritat.
+- **Nom (*):** Nom de la prioritat.
+- **Descripció:** Descripció de la prioritat.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un forma de pagament.**

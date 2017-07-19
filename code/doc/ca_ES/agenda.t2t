@@ -19,15 +19,15 @@ En aquesta vista pot crear un nou esdeveniment fent clic al botó corresponent a
 
 [agenda-listado.png]
 
-- **Codi .:**  Codi numèric que identifica l'esdeveniment.
-- **Usuari:**  Usuari que ha creat l'esdeveniment.
-- **Inici:**  Data i hora d'inici de l'esdeveniment.
-- **Fi:**  Data i hora de fi de l'esdeveniment.
-- **Client:**  Client vinculat amb aquest esdeveniment.
-- **Projecte:**  Projecte vinculat amb aquest esdeveniment.
-- **Esdeveniment:**  Títol o assumpte de l'esdeveniment.
-- **Tipus d'esdeveniment:**  Tipus d'esdeveniment (Trucades, reunions, visites, emails, esdeveniments).
-- **Estat:**  Estat en què es troba l'esdeveniment (Programada, Pendent de confirmar, Acabada, Cancel·lat).
+- **Codi.:** Codi numèric que identifica l'esdeveniment.
+- **Usuari:** Usuari que ha creat l'esdeveniment.
+- **Inici:** Data i hora d'inici de l'esdeveniment.
+- **Fi:** Data i hora de fi de l'esdeveniment.
+- **Client:** Client vinculat amb aquest esdeveniment.
+- **Projecte:** Projecte vinculat amb aquest esdeveniment.
+- **Esdeveniment:** Títol o assumpte de l'esdeveniment.
+- **Tipus d'esdeveniment:** Tipus d'esdeveniment (Trucades, reunions, visites, emails, esdeveniments).
+- **Estat:** Estat en què es troba l'esdeveniment (Programada, Pendent de confirmar, Acabada, Cancel·lat).
 
 
 **Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
@@ -36,8 +36,8 @@ En aquesta vista pot crear un nou esdeveniment fent clic al botó corresponent a
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
-- [fa-clone]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
+- [fa-clone] Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
 
 
 ===Opcions de filtre===
@@ -65,20 +65,20 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades sobre el
 
 [agenda-formulario.png]
 
-- **Campanyes:**  Per enllaçar l'esdeveniment amb una campanya comercial concreta.
-- **Possible client:**  Per enllaçar a l'esdeveniment amb un possible client concret.
-- **Pressupost:**  Per enllaçar a l'esdeveniment amb un possible pressupost concret.
-- **Client:**  Per enllaçar a l'esdeveniment amb un client concret.
-- **Projecte:**  Per enllaçar a l'esdeveniment amb un projecte concret.
-- **Inici (*):**  Hora d'inici de l'esdeveniment.
-- **Fi (*):**  Hora de finalització de l'esdeveniment.
-- **Tipus d'esdeveniment:**  Tipus d'esdeveniment (Trucades, reunions, visites, emails, esdeveniments).
-- **Lloc:**  Lloc de celebració de l'esdeveniment.
-- **Estat:**  Estat actual de l'esdeveniment (Programat, Pendent de confirmar, Acabat, Cancel·lat).
-- **Descripció (*):**  Breu descripció de l'esdeveniment.
-- **Notificar:**  Per indicar quan ens ha de notificar l'avís.
-- **Notificació inicio rebuda:**  Marca aquesta casella farà desaparèixer l'avís d'inici d'esdeveniment.
-- **Notificació final rebuda:**  Marca aquesta casella farà desaparèixer l'avís de fi d'esdeveniment.
+- **Campanyes:** Per enllaçar l'esdeveniment amb una campanya comercial concreta.
+- **Possible client:** Per enllaçar a l'esdeveniment amb un possible client concret.
+- **Pressupost:** Per enllaçar a l'esdeveniment amb un possible pressupost concret.
+- **Client:** Per enllaçar a l'esdeveniment amb un client concret.
+- **Projecte:** Per enllaçar a l'esdeveniment amb un projecte concret.
+- **Inici (*):** Hora d'inici de l'esdeveniment.
+- **Fi (*):** Hora de finalització de l'esdeveniment.
+- **Tipus d'esdeveniment:** Tipus d'esdeveniment (Trucades, reunions, visites, emails, esdeveniments).
+- **Lloc:** Lloc de celebració de l'esdeveniment.
+- **Estat:** Estat actual de l'esdeveniment (Programat, Pendent de confirmar, Acabat, Cancel·lat).
+- **Descripció (*):** Breu descripció de l'esdeveniment.
+- **Notificar:** Per indicar quan ens ha de notificar l'avís.
+- **Notificació inicio rebuda:** Marca aquesta casella farà desaparèixer l'avís d'inici d'esdeveniment.
+- **Notificació final rebuda:** Marca aquesta casella farà desaparèixer l'avís de fi d'esdeveniment.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un esdeveniment.**

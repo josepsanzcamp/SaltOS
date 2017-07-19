@@ -11,14 +11,14 @@ Aquesta aplicació li permet portar un control de tots els seus clients.
 
 En el llistat de clients podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica el client.
-- **N.I.F:**  Número d'identificació fiscal facilitat per la hisenda pública.
-- **Nom:**  Nom del client.
-- **Telèfon fix:**  Telèfon fix principal per posar-nos en contacte.
-- **Telèfon mòbil:**  Telèfon mòbil principal per posar-nos en contacte.
-- **Compte de correu:**  Compte de correu principal per posar-nos en contacte.
-- **NC:**  Nombre de comentaris introduïts sobre aquest client.
-- **NF:**  Nombre de fitxers vinculats amb aquest client.
+- **Codi.:** Codi numèric que identifica el client.
+- **N.I.F:** Número d'identificació fiscal facilitat per la hisenda pública.
+- **Nom:** Nom del client.
+- **Telèfon fix:** Telèfon fix principal per posar-nos en contacte.
+- **Telèfon mòbil:** Telèfon mòbil principal per posar-nos en contacte.
+- **Compte de correu:** Compte de correu principal per posar-nos en contacte.
+- **NC:** Nombre de comentaris introduïts sobre aquest client.
+- **NF:** Nombre de fitxers vinculats amb aquest client.
 
 
 **Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
@@ -27,11 +27,11 @@ En el llistat de clients podrà trobar les columnes més importants del registre
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
-- [fa-address-card]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [fa-qrcode]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Mostra dades a través del Visor-PDF.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
+- [fa-address-card] Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode] Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-file-pdf-o] Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Mostra dades a través del Visor-PDF.
 
 
 ===Opcions de filtre===
@@ -48,35 +48,35 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de clien
 
 [clientes-formulario.png]
 
-- **Campanya comercial:**  Campanya comercial
-- **Tipus d'entitat:**  Amb aquest camp pot designar si el client és una persona física o una entitat jurídica.
-- **Nom comercial:**  Nom comercial del client.
-- **Nom Fiscal:**  Nom fiscal que s'utilitza en els documents legals com factures, contractes, etc ..
-- **N.I.F:**  Nombre d'Identificació fiscal, nombre proporcionat per la hisenda publica amb el qual s'identifica a l'entitat.
-- **Mostrar com (*):**  Aquest el és nom que s'utilitzés en els llistat i selectors, en cas de ser una persona podria dedicar-se per incloure el sobrenom.
-- **Direcció:**  Adreça de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
-- **País:**  País de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
-- **Província:**  Província de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
-- **Població:**  Població de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
-- **Codi postal:**  Codi postal de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
-- **Email:**  Compte de correu principal de contacte és la que es visualitzés en tots llistats.
-- **Web:**  Web principal de contacte és el que es visualitzés en tots llistats.
-- **Nombre Fix:**  Fix principal de contacte és el que es visualitzés en tots llistats.
-- **Nombre Mòbil:**  Mòbil principal de contacte és el que es visualitzés en tots llistats.
-- **Nombre Fax:**  Fax principal de contacte és el que es visualitzés en tots llistats.
-- **Corrent:**  Compte corrent que s'utilitza per fer els càrrecs de les compres realitzades per aquest client.
-- **Comptable:**  Compte comptable que s'utilitzés en el sistema comptable de l'empresa.
-- **Dia de pagament:**  Dia en el qual s'han de realitzar els càrrecs de les compres realitzades durant tot el mes.
-- **Comentari:**  Per poder indicar comentaris sobre aquest client.
+- **Campanya comercial:** Campanya comercial
+- **Tipus d'entitat:** Amb aquest camp pot designar si el client és una persona física o una entitat jurídica.
+- **Nom comercial:** Nom comercial del client.
+- **Nom Fiscal:** Nom fiscal que s'utilitza en els documents legals com factures, contractes, etc ..
+- **N.I.F:** Nombre d'Identificació fiscal, nombre proporcionat per la hisenda publica amb el qual s'identifica a l'entitat.
+- **Mostrar com (*):** Aquest el és nom que s'utilitzés en els llistat i selectors, en cas de ser una persona podria dedicar-se per incloure el sobrenom.
+- **Direcció:** Adreça de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **País:** País de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Província:** Província de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Població:** Població de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Codi postal:** Codi postal de l'entitat, es fa a documents legals com ara factures, contractes, etc ..
+- **Email:** Compte de correu principal de contacte és la que es visualitzés en tots llistats.
+- **Web:** Web principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Fix:** Fix principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Mòbil:** Mòbil principal de contacte és el que es visualitzés en tots llistats.
+- **Nombre Fax:** Fax principal de contacte és el que es visualitzés en tots llistats.
+- **Corrent:** Compte corrent que s'utilitza per fer els càrrecs de les compres realitzades per aquest client.
+- **Comptable:** Compte comptable que s'utilitzés en el sistema comptable de l'empresa.
+- **Dia de pagament:** Dia en el qual s'han de realitzar els càrrecs de les compres realitzades durant tot el mes.
+- **Comentari:** Per poder indicar comentaris sobre aquest client.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un client.**
 
 A més, a la primera pestanya té uns **botons d'acció.**
 
-- **[fa-plus-circle]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
-- **[fa-plus-circle]  Afegir acta:**  El portés al formulari de nova acta perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
-- **[fa-plus-circle]  Afegir esdeveniment:**  El portés al formulari de nou esdeveniments perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[fa-plus-circle] Afegir contacte:** El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[fa-plus-circle] Afegir acta:** El portés al formulari de nova acta perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[fa-plus-circle] Afegir esdeveniment:** El portés al formulari de nou esdeveniments perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
 
 
 ===Pestanya Comentaris===

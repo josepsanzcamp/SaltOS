@@ -11,18 +11,18 @@ This application lets you keep track of all parts of work performed by employees
 
 In the working parts list you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the job.
-- **Customer:**  For customer has done the job.
-- **Project:**  Name of the project on which it will load the work
-- **Task:**  Descriptive name of the work performed.
-- **Date:**  The date the work was performed.
-- **Hours (*):**  Hours were taken to complete the work.
-- **Price (*):**  Price hour depending on the job category.
-- **Total (*):**  Total amount of work done.
-- **Liq.:**  Determines whether the part is liquidated. **The unsettled parts are marked with a red background.**
-- **Date liq .:**  Settlement date of the party.
-- **NC:**  Number of comments entered on this part.
-- **NF:**  Number of files linked this part.
+- **Ref.:** Numeric code that identifies the job.
+- **Customer:** For customer has done the job.
+- **Project:** Name of the project on which it will load the work
+- **Task:** Descriptive name of the work performed.
+- **Date:** The date the work was performed.
+- **Hours (*):** Hours were taken to complete the work.
+- **Price (*):** Price hour depending on the job category.
+- **Total (*):** Total amount of work done.
+- **Liq.:** Determines whether the part is liquidated. **The unsettled parts are marked with a red background.**
+- **Date liq .:** Settlement date of the party.
+- **NC:** Number of comments entered on this part.
+- **NF:** Number of files linked this part.
 
 
 (*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
@@ -33,20 +33,20 @@ In the working parts list you will find the most important pillars of registrati
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-clone]: This action will lead to the creation of a new record using data selected.
-- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Show data through-PDF Viewer.
-- [fa-share]: Prepare an email with the selected record attached as PDF file.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-clone] This action will lead to the creation of a new record using data selected.
+- [fa-file-pdf-o] Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Show data through-PDF Viewer.
+- [fa-share] Prepare an email with the selected record attached as PDF file.
 
 
 This list also features the following:
 
-- [fa-file-excel-o]: Export the list of all the working parts to a file with Excel format.
-- [fa-file-pdf-o]: Download the selected file format parts. PDF.
-- [fa-desktop]: Display the selected format parts. PDF on screen.
-- [fa-share]: Prepare a mail with the selected parts attached as PDF files.
-- [fa-save]: Liquid selected parts indicating the date hereof.
+- [fa-file-excel-o] Export the list of all the working parts to a file with Excel format.
+- [fa-file-pdf-o] Download the selected file format parts. PDF.
+- [fa-desktop] Display the selected format parts. PDF on screen.
+- [fa-share] Prepare a mail with the selected parts attached as PDF files.
+- [fa-save] Liquid selected parts indicating the date hereof.
 
 
 ===Filter Options===
@@ -69,16 +69,16 @@ In this tab you can view and modify the main data part. Here we relate all infor
 
 [partes-formulario.png]
 
-- **Customer:**  To link the client for whom the work is done.
-- **Project:**  To link the project that included this work.
-- **Name (*):**  Descriptive name of the research.
-- **Date (*):**  Date of work.
-- **Comments (*):**  To add data or important notes related work.
-- **Hours (*):**  Hours have been used to perform the work.
-- **Price (*):**  Unit price.
-- **Total (*):**  Total amount of work performed, calculated by the application field.
-- **Liquidated:**  Selector to determine if the part is liquidated.
-- **Date Liq .:**  Settlement date of the party.
+- **Customer:** To link the client for whom the work is done.
+- **Project:** To link the project that included this work.
+- **Name (*):** Descriptive name of the research.
+- **Date (*):** Date of work.
+- **Comments (*):** To add data or important notes related work.
+- **Hours (*):** Hours have been used to perform the work.
+- **Price (*):** Unit price.
+- **Total (*):** Total amount of work performed, calculated by the application field.
+- **Liquidated:** Selector to determine if the part is liquidated.
+- **Date Liq .:** Settlement date of the party.
 
 
 (*) **Required when creating or modifying a part Campos.**

@@ -11,12 +11,12 @@ The list shows recent entries //posts//  downloaded.
 
 [feeds-listado.png]
 
-- **Ref .:**  Numeric code that identifies the post.
-- **RSS Feed:**  Link to the website of the publisher of RSS.
-- **RSS Post:**  Link to post on the web.
-- **Title:**  Title of the post.
-- **Date Posted:**  Date and time of publication.
-- **State:**  State in which is the post background color identifies each state:
+- **Ref.:** Numeric code that identifies the post.
+- **RSS Feed:** Link to the website of the publisher of RSS.
+- **RSS Post:** Link to post on the web.
+- **Title:** Title of the post.
+- **Date Posted:** Date and time of publication.
+- **State:** State in which is the post background color identifies each state:
   - //New//: green.
   - //Read//: transparent.
   - //Modified//: transparent.
@@ -30,25 +30,25 @@ The list shows recent entries //posts//  downloaded.
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete (*) record.
-- [fa-file-pdf-o]: Download PDF with log data. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Show data through-PDF Viewer.
-- [fa-share]: Share feed via email.
-- [fa-tag]: Mark feed as pending.
-- [fa-tag]: Mark as interesting feed.
-- [fa-star]: Add feed to favorites.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete (*) record.
+- [fa-file-pdf-o] Download PDF with log data. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Show data through-PDF Viewer.
+- [fa-share] Share feed via email.
+- [fa-tag] Mark feed as pending.
+- [fa-tag] Mark as interesting feed.
+- [fa-star] Add feed to favorites.
 
 
 On the list besides normal search option, you will find the following functions:
 
 - Selector RSS feed: allows you to quickly filter the RSS feed.
-- [fa-download]: This button is hard to check for new post download all RSS feeds (RSS Depending on the amount of subscribed this action may take).
+- [fa-download] This button is hard to check for new post download all RSS feeds (RSS Depending on the amount of subscribed this action may take).
 - Selector **actions to multiple feeds**:
  - //Options//: Downloading and viewing PDF format.
  - //Mark as//: Read, unread, Earrings, earrings No, Interesting, not interesting.
  - //Filter by State//: Everyone read, Earrings, Interesting.
  - //Filter by publication date//: All, Today, Yesterday, Week, Month.
-- [fa-trash]  RSS Feeds Delete selected (*).
+- [fa-trash] RSS Feeds Delete selected (*).
 
 
 **(*)**  More information about setting erase feeds on [configuración general http://viewpdf/page=maincfg]

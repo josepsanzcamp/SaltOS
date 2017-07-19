@@ -11,16 +11,16 @@ This application lets you keep track of all delivery notes and invoices generate
 
 In the list of invoices you will find the most important pillars of registration:
 
-- **N.Fac.:**  Numeric code that identifies the packing slip or invoice.
-- **User:**  Date of delivery note or invoice.
-- **Date:**  Date and time of occurrence.
-- **Customer:**  Client for which generated the packing slip or invoice.
-- **Project:**  Name of project that has generated the delivery note or invoice.
-- **Base (*):**  Amount of the delivery note or invoice before tax.
-- **Total (*):**  Amount of the delivery note or invoice after applying the applicable taxes.
-- **Closed:**  When the packing list is closed, it becomes invoice.
-- **Charged:**  If you have made the payment on the packing slip or invoice.
-- **Account:**  Account which allocate income.
+- **N.Fac.:** Numeric code that identifies the packing slip or invoice.
+- **User:** Date of delivery note or invoice.
+- **Date:** Date and time of occurrence.
+- **Customer:** Client for which generated the packing slip or invoice.
+- **Project:** Name of project that has generated the delivery note or invoice.
+- **Base (*):** Amount of the delivery note or invoice before tax.
+- **Total (*):** Amount of the delivery note or invoice after applying the applicable taxes.
+- **Closed:** When the packing list is closed, it becomes invoice.
+- **Charged:** If you have made the payment on the packing slip or invoice.
+- **Account:** Account which allocate income.
 
 
 (*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
@@ -31,18 +31,18 @@ In the list of invoices you will find the most important pillars of registration
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-clone]: This action will lead to the creation of a new record using data from the current.
-- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Show data through-PDF Viewer.
-- [fa-share]: Prepare an email with the selected budget attached as PDF file.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-clone] This action will lead to the creation of a new record using data from the current.
+- [fa-file-pdf-o] Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Show data through-PDF Viewer.
+- [fa-share] Prepare an email with the selected budget attached as PDF file.
 
 
 This list also provides the following actions by selecting multiple records simultaneously:
 
-- [fa-file-pdf-o]: Download the selected records to a file format. PDF.
-- [fa-desktop]: Display records selected format. PDF on screen.
-- [fa-share]: Prepare an email with the selected records attached as PDF files.
+- [fa-file-pdf-o] Download the selected records to a file format. PDF.
+- [fa-desktop] Display records selected format. PDF on screen.
+- [fa-share] Prepare an email with the selected records attached as PDF files.
 
 
 ===Filter Options===
@@ -65,29 +65,29 @@ In this tab you can view and modify the main details of the delivery note or inv
 
 [facturas-formulario.png]
 
-- **Count (*):**  Account where the income is counted.
-- **Heading (*):**  Economic activity.
-- **Payment (*):**  Payment method used to collect the revenue.
-- **Customer:**  Which Customer will be charged the amount.
-- **Project:**  Project that is being billed.
-- **Name (*):**  Customer name. This field is automatically populated when you select the customer.
-- **Address:**  Customer address. This field is automatically populated when you select the customer.
-- **Country:**  Customer Country. This field is automatically populated when you select the customer.
-- **County:**  Province client. This field is automatically populated when you select the customer.
-- **Population:**  Population customer. This field is automatically populated when you select the customer.
-- **Postal Code:**  ZIP customer. This field is automatically populated when you select the customer.
-- **Notes:**  Explanatory notes you want to include.
-- **Closed:**  Determines if a delivery note or invoice.
-- **Issued on:**  Date the invoice is generated when you close the delivery note.
-- **N. Fac .:**  Invoice number.
-- **I collected:**  If you have already claimed.
-- **Date due:**  Date of recovery.
-- **VAT rate (%):**  VAT rate. [(más info sobre IVA) http://es.wikipedia.org/wiki/Impuesto_al_valor_agregado]
-- **Income tax (%):**  Percentage of income tax. [(más info sobre IRPF) http://es.wikipedia.org/wiki/Impuesto_sobre_la_renta_de_las_personas_f%C3%ADsicas_%28Espa%C3%B1a%29]
-- **Base (€):**  Taxable income, total economic value before taxes.
-- **VAT (€):**  Economic amount of VAT.
-- **Income tax (€):**  Monetary amount of income tax
-- **Total (€):**  Total receivables including tax.
+- **Count (*):** Account where the income is counted.
+- **Heading (*):** Economic activity.
+- **Payment (*):** Payment method used to collect the revenue.
+- **Customer:** Which Customer will be charged the amount.
+- **Project:** Project that is being billed.
+- **Name (*):** Customer name. This field is automatically populated when you select the customer.
+- **Address:** Customer address. This field is automatically populated when you select the customer.
+- **Country:** Customer Country. This field is automatically populated when you select the customer.
+- **County:** Province client. This field is automatically populated when you select the customer.
+- **Population:** Population customer. This field is automatically populated when you select the customer.
+- **Postal Code:** ZIP customer. This field is automatically populated when you select the customer.
+- **Notes:** Explanatory notes you want to include.
+- **Closed:** Determines if a delivery note or invoice.
+- **Issued on:** Date the invoice is generated when you close the delivery note.
+- **N. Fac .:** Invoice number.
+- **I collected:** If you have already claimed.
+- **Date due:** Date of recovery.
+- **VAT rate (%):** VAT rate. [(más info sobre IVA) http://es.wikipedia.org/wiki/Impuesto_al_valor_agregado]
+- **Income tax (%):** Percentage of income tax. [(más info sobre IRPF) http://es.wikipedia.org/wiki/Impuesto_sobre_la_renta_de_las_personas_f%C3%ADsicas_%28Espa%C3%B1a%29]
+- **Base (€):** Taxable income, total economic value before taxes.
+- **VAT (€):** Economic amount of VAT.
+- **Income tax (€):** Monetary amount of income tax
+- **Total (€):** Total receivables including tax.
 
 
 (*) **Required when creating or modifying a delivery note or invoice fields.**

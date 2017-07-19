@@ -11,16 +11,16 @@ This application lets you keep track of all application groups.
 
 In the list of groups you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the group.
-- **Name:**  Group name.
-- **Description:**  Group Description.
+- **Ref.:** Numeric code that identifies the group.
+- **Name:** Group name.
+- **Description:** Group Description.
 
 
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -37,8 +37,8 @@ In this tab you can view and modify the main details of the group. Here we relat
 
 [grupos-formulario.png]
 
-- **User (*):**  Group name.
-- **Description:**  Descrpcion group.
+- **User (*):** Group name.
+- **Description:** Descrpcion group.
 
 
 (*) **Required when creating or modifying a group fields.**

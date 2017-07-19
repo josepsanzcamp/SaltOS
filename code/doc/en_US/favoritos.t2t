@@ -11,11 +11,11 @@ The list of entries shows you the last added favorites.
 
 [favoritos-listado.png]
 
-- **Ref .:**  Numeric code that identifies the link.
-- **URL:**  URL of the link.
-- **Name:**  Name detected in the headwaters of the website.
-- **Description:**  Descipción detected in the header of the website.
-- **Date:**  Date and time that the link was saved.
+- **Ref.:** Numeric code that identifies the link.
+- **URL:** URL of the link.
+- **Name:** Name detected in the headwaters of the website.
+- **Description:** Descipción detected in the header of the website.
+- **Date:** Date and time that the link was saved.
 
 
 **Remember**: Favourite can be arranged by dragging them to the user folder you want.
@@ -24,7 +24,7 @@ The list of entries shows you the last added favorites.
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-[fa-trash]: Clear log.
+[fa-trash] Clear log.
 
 
 On the list besides normal search option, you will find the following functions:

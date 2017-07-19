@@ -19,15 +19,15 @@ In this view you can create a new event by clicking the corresponding button in 
 
 [agenda-listado.png]
 
-- **Ref .:**  Numeric code that identifies the event.
-- **User:**  User who created the event.
-- **Home:**  Date and time of start of the event.
-- **End:**  Date and time of end of event.
-- **Customer:**  Customer linked to this event.
-- **Project:**  Project linked to this event.
-- **Event:**  Title or subject of the event.
-- **Event type:**  Event type (calls, meetings, visits, emails, events).
-- **State:**  State where you will find the event (Scheduled, TBC, Finished, Cancelled).
+- **Ref.:** Numeric code that identifies the event.
+- **User:** User who created the event.
+- **Home:** Date and time of start of the event.
+- **End:** Date and time of end of event.
+- **Customer:** Customer linked to this event.
+- **Project:** Project linked to this event.
+- **Event:** Title or subject of the event.
+- **Event type:** Event type (calls, meetings, visits, emails, events).
+- **State:** State where you will find the event (Scheduled, TBC, Finished, Cancelled).
 
 
 **Remember**: The events can be arranged by dragging them to the user folder you want.
@@ -36,8 +36,8 @@ In this view you can create a new event by clicking the corresponding button in 
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-clone]: This action will lead to the creation of a new record using data from the current.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-clone] This action will lead to the creation of a new record using data from the current.
 
 
 ===Filter Options===
@@ -65,20 +65,20 @@ In this tab you can view and modify the main data events. Here we relate all inf
 
 [agenda-formulario.png]
 
-- **Campaigns:**  To link the event to a particular marketing campaign.
-- **Prospect:**  To link the event with a possible specific customer.
-- **Budget:**  To link the event with a possible specific budget.
-- **Customer:**  To link the event with a particular customer.
-- **Project:**  To link the event with a specific project.
-- **Home (*):**  Start time of the event.
-- **Fin (*):**  End time of the event.
-- **Event type:**  Event type (calls, meetings, visits, emails, events).
-- **Location:**  Venue of the event.
-- **State:**  Current Status of the event (Default, TBC, Finishing, canceled).
-- **Description (*):**  Brief description of the event.
-- **Report:**  To indicate when we have to notify the notice.
-- **I start notification received:**  Checking this box will make the announcement event start disappearing.
-- **Final report received:**  Checking this box will notice event to disappear.
+- **Campaigns:** To link the event to a particular marketing campaign.
+- **Prospect:** To link the event with a possible specific customer.
+- **Budget:** To link the event with a possible specific budget.
+- **Customer:** To link the event with a particular customer.
+- **Project:** To link the event with a specific project.
+- **Home (*):** Start time of the event.
+- **Fin (*):** End time of the event.
+- **Event type:** Event type (calls, meetings, visits, emails, events).
+- **Location:** Venue of the event.
+- **State:** Current Status of the event (Default, TBC, Finishing, canceled).
+- **Description (*):** Brief description of the event.
+- **Report:** To indicate when we have to notify the notice.
+- **I start notification received:** Checking this box will make the announcement event start disappearing.
+- **Final report received:** Checking this box will notice event to disappear.
 
 
 (*) **Required when creating or modifying an event fields.**

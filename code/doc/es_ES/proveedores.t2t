@@ -25,9 +25,9 @@ En el listado de proveedores podrá encontrar las columnas mas importantes del r
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
-- [fa-address-card]: Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [fa-qrcode]: Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-search] [fa-pencil] [fa-trash] Consultar/Editar/Borrar registro.
+- [fa-address-card] Descargar datos del registro en formato Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode] Visualizar QRCode con los datos del registro. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
 
 
 ===Opciones de filtro===

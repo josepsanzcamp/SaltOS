@@ -11,15 +11,15 @@ Aquesta aplicació li permet portar un control de tots despeses que es realitzin
 
 En el llistat de despeses podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica la despesa.
-- **Empresa:**  Empresa on s'ha realitzat la despesa
-- **Data:**  Data en què es va realitzar la despesa
-- **Base (*):**  Import econòmic abans d'impostos.
-- **Total (*):**  Import total de la despesa.
-- **Liq.:**  Determina si la despesa aquesta liquidat. **Les despeses no liquidats es marquen amb fons vermell.**
-- **Data liq .:**  Data de liquidació de la despesa.
-- **NV:**  Nombre de venciments introduïts sobre aquesta despesa.
-- **Compte:**  Compte on es comptabilitzés aquesta despesa.
+- **Codi.:** Codi numèric que identifica la despesa.
+- **Empresa:** Empresa on s'ha realitzat la despesa
+- **Data:** Data en què es va realitzar la despesa
+- **Base (*):** Import econòmic abans d'impostos.
+- **Total (*):** Import total de la despesa.
+- **Liq.:** Determina si la despesa aquesta liquidat. **Les despeses no liquidats es marquen amb fons vermell.**
+- **Data liq .:** Data de liquidació de la despesa.
+- **NV:** Nombre de venciments introduïts sobre aquesta despesa.
+- **Compte:** Compte on es comptabilitzés aquesta despesa.
 
 
 (*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
@@ -30,14 +30,14 @@ En el llistat de despeses podrà trobar les columnes més importants del registr
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
-- [fa-clone]: Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
+- [fa-clone] Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
 
 
 Aquest llistat disposa a més de les següents accions:
 
-- [fa-file-excel-o]: Exportar el llistat de totes les despeses a un arxiu amb format Excel.
-- [fa-save]: Liquida les despeses seleccionats indicant la data d'avui.
+- [fa-file-excel-o] Exportar el llistat de totes les despeses a un arxiu amb format Excel.
+- [fa-save] Liquida les despeses seleccionats indicant la data d'avui.
 
 
 ===Opcions de filtre===
@@ -60,23 +60,23 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de la de
 
 [gastos-formulario.png]
 
-- **Compte (*):**  Compte on es comptabilitzés la despesa.
-- **Epígraf (*):**  Activitat econòmica a la qual es vinculés la despesa.
-- **Cercador:**  Cercador de proveïdors.
-- **Client:**  Per indicar el client al qual vincular la despesa.
-- **Proveïdor:**  Nom del proveïdor on s'ha realitzat la despesa.
-- **Projecte:**  Per enllaçar el projecte en el qual s'ha realitzat la despesa.
-- **N. Fac .:**  Nombre de factura de la despesa.
-- **Data (*):**  Data de la despesa.
-- **Descripció (*):**  Descripció de la despesa realitzada.
-- **Base (*):**  Import del despeses abans d'aplicar els impostos pertinents, camp calculat per l'aplicació.
-- **IVA (%) (*):**  Percentatge IVA.
-- **Total (*):**  Import total de la despesa realitzada.
-- **IRPF (%) (*):**  Percentatge d'IRPF que s'aplica.
-- **Pagador (*):**  Selector per indicar qui ha realitzat el pagament
-- **Liquidat:**  Selector per determinar si la despesa aquesta liquidat.
-- **Forma de pagament (*):**  Selector per determinar la forma de pagament utilitzada.
-- **Data Liq .:**  Data de liquidació de la despesa.
+- **Compte (*):** Compte on es comptabilitzés la despesa.
+- **Epígraf (*):** Activitat econòmica a la qual es vinculés la despesa.
+- **Cercador:** Cercador de proveïdors.
+- **Client:** Per indicar el client al qual vincular la despesa.
+- **Proveïdor:** Nom del proveïdor on s'ha realitzat la despesa.
+- **Projecte:** Per enllaçar el projecte en el qual s'ha realitzat la despesa.
+- **N. Fac .:** Nombre de factura de la despesa.
+- **Data (*):** Data de la despesa.
+- **Descripció (*):** Descripció de la despesa realitzada.
+- **Base (*):** Import del despeses abans d'aplicar els impostos pertinents, camp calculat per l'aplicació.
+- **IVA (%) (*):** Percentatge IVA.
+- **Total (*):** Import total de la despesa realitzada.
+- **IRPF (%) (*):** Percentatge d'IRPF que s'aplica.
+- **Pagador (*):** Selector per indicar qui ha realitzat el pagament
+- **Liquidat:** Selector per determinar si la despesa aquesta liquidat.
+- **Forma de pagament (*):** Selector per determinar la forma de pagament utilitzada.
+- **Data Liq .:** Data de liquidació de la despesa.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar una despesa.**

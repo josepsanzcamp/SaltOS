@@ -11,9 +11,9 @@ Aquesta aplicació li permet portar un control de tots epígrafs (activitats eco
 
 En el llistat d'epígrafs podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica a l'epígraf.
-- **Nom:**  Nom de l'epígraf.
-- **Descripció:**  Descripció de l'epígraf, en quins casos s'utilitzen, etc ...
+- **Codi.:** Codi numèric que identifica a l'epígraf.
+- **Nom:** Nom de l'epígraf.
+- **Descripció:** Descripció de l'epígraf, en quins casos s'utilitzen, etc ...
 
 
 Més informació per a entitats espanyoles: [Agencia Tributaria https://www2.agenciatributaria.gob.es/ADUA/internet/es/aeat/dit/adu/adws/certificados/Tabla_de_epigrafes_IAE.pdf]
@@ -22,7 +22,7 @@ Més informació per a entitats espanyoles: [Agencia Tributaria https://www2.age
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -39,9 +39,9 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de l'ep�
 
 [epigrafes-formulario.png]
 
-- **Codi (*):**  Codi de l'epígraf.
-- **Nom (*):**  Nom de l'epígraf.
-- **Descripció:**  Descripció de l'epígraf.
+- **Codi (*):** Codi de l'epígraf.
+- **Nom (*):** Nom de l'epígraf.
+- **Descripció:** Descripció de l'epígraf.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un epígraf.**

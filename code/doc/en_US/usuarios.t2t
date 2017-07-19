@@ -11,23 +11,23 @@ This application lets you keep track of all users accessing the application.
 
 In the list of users you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the user.
-- **User:**  Name of access to the application.
-- **Group:**  Group to which the user belongs.
-- **Name:**  Actual username.
-- **Email:**  Mail account user contact.
-- **Active:**  Determines the account is locked.
-- **Check-in:**  Determines the start of permitted hours to access the application.
-- **Check out:**  Determines the end of permitted hours to access the application.
-- **Days:**  Determines the days that the user is allowed to enter the application.
-- **Online:**  Determines whether the user is currently connected.
+- **Ref.:** Numeric code that identifies the user.
+- **User:** Name of access to the application.
+- **Group:** Group to which the user belongs.
+- **Name:** Actual username.
+- **Email:** Mail account user contact.
+- **Active:** Determines the account is locked.
+- **Check-in:** Determines the start of permitted hours to access the application.
+- **Check out:** Determines the end of permitted hours to access the application.
+- **Days:** Determines the days that the user is allowed to enter the application.
+- **Online:** Determines whether the user is currently connected.
 
 
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -44,16 +44,16 @@ In this tab you can view and modify the main user data. Here we relate all infor
 
 [usuarios-formulario.png]
 
-- **User (*):**  Username.
-- **Group (*):**  Group to which the user belongs.
-- **Key:**  Access key.
-- **Repeat password:**  Repeat the password to rule out typing errors.
-- **Application (*):**  A type of contact that this user belongs.
-- **Log (*):**  A specific contact that pertener this user.
-- **Active:**  Serves to block the account momentarily.
-- **Input (*):**  Start Time permission to access the application.
-- **Output (*):**  End time of permit application access.
-- **Weekly Access:**  Weekdays access to the application is allowed.
+- **User (*):** Username.
+- **Group (*):** Group to which the user belongs.
+- **Key:** Access key.
+- **Repeat password:** Repeat the password to rule out typing errors.
+- **Application (*):** A type of contact that this user belongs.
+- **Log (*):** A specific contact that pertener this user.
+- **Active:** Serves to block the account momentarily.
+- **Input (*):** Start Time permission to access the application.
+- **Output (*):** End time of permit application access.
+- **Weekly Access:** Weekdays access to the application is allowed.
 
 
 (*) **Required when creating or modifying a user Campos.**

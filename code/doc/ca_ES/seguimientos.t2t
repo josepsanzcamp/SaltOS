@@ -11,13 +11,13 @@ Aquesta aplicació li permet portar un control de tots seguiments de les tasques
 
 En el llistat de seguiments podrà trobar les columnes més importants de cada registre:
 
-- **Codi .:**  Codi numèric que identifica el projecte.
-- **Usuari:**  Usuari que ha creat el seguiment.
-- **Client:**  Perquè client s'ha realitzat el projecte.
-- **projecte:**  Nom que se li ha donat al projecte.
-- **Tasca:**  Nom de la tasca de la qual està realitzant el seguiment.
-- **Data:**  Data en què es va realitzar el seguiment.
-- **Hores (*):**  Hores necessitades per al seguiment de la tasca.
+- **Codi.:** Codi numèric que identifica el projecte.
+- **Usuari:** Usuari que ha creat el seguiment.
+- **Client:** Perquè client s'ha realitzat el projecte.
+- **projecte:** Nom que se li ha donat al projecte.
+- **Tasca:** Nom de la tasca de la qual està realitzant el seguiment.
+- **Data:** Data en què es va realitzar el seguiment.
+- **Hores (*):** Hores necessitades per al seguiment de la tasca.
 
 
 (*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
@@ -26,13 +26,13 @@ En el llistat de seguiments podrà trobar les columnes més importants de cada r
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
-- [fa-clone]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
+- [fa-clone] Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
 
 
 Aquest llistat disposa a més de les següents accions:
 
-- [fa-file-excel-o]: Exportar el llistat de totes les dades de seguiment de tasques a un arxiu amb format Excel.
+- [fa-file-excel-o] Exportar el llistat de totes les dades de seguiment de tasques a un arxiu amb format Excel.
 
 
 ===Opcions de filtre===
@@ -49,12 +49,12 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades del segu
 
 [seguimientos-formulario.png]
 
-- **Client (*):**  Per enllaçar el client per al qual es realitza la tasca.
-- **Projecte (*):**  Per enllaçar en el projecte en el qual està inclosa la tasca.
-- **Nom (*):**  Selector de la tasca sobre la qual es realitza el seguiment.
-- **Data (*):**  Data de realització del seguiment.
-- **Comentaris (*):**  Per indicar dades rellevants sobre el seguiment.
-- **Hores (*):**  Hores que s'han utilitzat per fer el seguiment de la tasca.
+- **Client (*):** Per enllaçar el client per al qual es realitza la tasca.
+- **Projecte (*):** Per enllaçar en el projecte en el qual està inclosa la tasca.
+- **Nom (*):** Selector de la tasca sobre la qual es realitza el seguiment.
+- **Data (*):** Data de realització del seguiment.
+- **Comentaris (*):** Per indicar dades rellevants sobre el seguiment.
+- **Hores (*):** Hores que s'han utilitzat per fer el seguiment de la tasca.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un seguiment.**

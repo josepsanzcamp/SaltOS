@@ -15,13 +15,13 @@ El llistat mostrarà els paràmetres més important de les diferents carpetes o 
 
 [documentos-listado.png]
 
-- **Codi .:**  Codi numèric que identifica el document.
-- **Data i hora:**  Moment en què es puja el document per primera vegada.
-- **Client:**  Client amb el qual aquesta vinculat el document.
-- **Projecte:**  Projecte amb el qual aquesta vinculat el document.
-- **Nom:**  Nom del document.
-- **NC:**  Nombre de comentaris afegits.
-- **NF:**  Nombre de fitxers afegits.
+- **Codi.:** Codi numèric que identifica el document.
+- **Data i hora:** Moment en què es puja el document per primera vegada.
+- **Client:** Client amb el qual aquesta vinculat el document.
+- **Projecte:** Projecte amb el qual aquesta vinculat el document.
+- **Nom:** Nom del document.
+- **NC:** Nombre de comentaris afegits.
+- **NF:** Nombre de fitxers afegits.
 
 
 **Recordeu**: Els documents es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
@@ -30,7 +30,7 @@ El llistat mostrarà els paràmetres més important de les diferents carpetes o 
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -47,10 +47,10 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de clien
 
 [documentos-formulario.png]
 
-- **Client:**  Per enllaçar el document amb un client concret.
-- **Projecte:**  Per enllaçar el document amb un projecte concret.
-- **Nom (*):**  Nom del fitxer.
-- **Descripció (*):**  Descripció del contingut de l'arxiu.
+- **Client:** Per enllaçar el document amb un client concret.
+- **Projecte:** Per enllaçar el document amb un projecte concret.
+- **Nom (*):** Nom del fitxer.
+- **Descripció (*):** Descripció del contingut de l'arxiu.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un document.**

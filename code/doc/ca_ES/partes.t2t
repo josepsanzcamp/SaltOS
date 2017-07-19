@@ -11,18 +11,18 @@ Aquesta aplicació li permet portar un control de tots parts de treball que real
 
 En el llistat de parts de treball podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica el treball.
-- **Client:**  Perquè client s'ha realitzat el treball.
-- **Projecte:**  Nom del projecte sobre el qual es carregués el treball realitzat
-- **Tasca:**  Nom descriptiu del treball realitzat.
-- **Data:**  Data en què es va realitzar el treball.
-- **Hores (*):**  Hores que s'han emprat per finalitzar la feina.
-- **Preu (*):**  Preu hora en funció de la categoria laboral.
-- **Total (*):**  Import total del treball realitzat.
-- **Liq.:**  Determina si el comunicat aquesta liquidat. **Els parts no liquidats es marquen amb fons vermell.**
-- **Data liq .:**  Data de liquidació del part.
-- **NC:**  Nombre de comentaris introduïts sobre aquest lloc.
-- **NF:**  Nombre de fitxers vinculats aquest part.
+- **Codi.:** Codi numèric que identifica el treball.
+- **Client:** Perquè client s'ha realitzat el treball.
+- **Projecte:** Nom del projecte sobre el qual es carregués el treball realitzat
+- **Tasca:** Nom descriptiu del treball realitzat.
+- **Data:** Data en què es va realitzar el treball.
+- **Hores (*):** Hores que s'han emprat per finalitzar la feina.
+- **Preu (*):** Preu hora en funció de la categoria laboral.
+- **Total (*):** Import total del treball realitzat.
+- **Liq.:** Determina si el comunicat aquesta liquidat. **Els parts no liquidats es marquen amb fons vermell.**
+- **Data liq .:** Data de liquidació del part.
+- **NC:** Nombre de comentaris introduïts sobre aquest lloc.
+- **NF:** Nombre de fitxers vinculats aquest part.
 
 
 (*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
@@ -33,20 +33,20 @@ En el llistat de parts de treball podrà trobar les columnes més importants del
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
-- [fa-clone]: Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
-- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Mostra dades a través del Visor-PDF.
-- [fa-share]: Preparés un correu amb el registre seleccionat adjuntat com arxiu PDF.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
+- [fa-clone] Amb aquesta acció se li portés a la creació d'un nou registre utilitzant les dades del seleccionat.
+- [fa-file-pdf-o] Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Mostra dades a través del Visor-PDF.
+- [fa-share] Preparés un correu amb el registre seleccionat adjuntat com arxiu PDF.
 
 
 Aquest llistat disposa a més de les següents accions:
 
-- [fa-file-excel-o]: Exportar el llistat de tots els parts de treball a un fitxer amb format Excel.
-- [fa-file-pdf-o]: Descarregar els parts seleccionats a un fitxer en format. PDF.
-- [fa-desktop]: Visualitzar els parts seleccionats en format. PDF en pantalla.
-- [fa-share]: Preparés un correu amb les parts seleccionats adjuntats com arxius PDF.
-- [fa-save]: Liquida els parts seleccionats indicant la data d'avui.
+- [fa-file-excel-o] Exportar el llistat de tots els parts de treball a un fitxer amb format Excel.
+- [fa-file-pdf-o] Descarregar els parts seleccionats a un fitxer en format. PDF.
+- [fa-desktop] Visualitzar els parts seleccionats en format. PDF en pantalla.
+- [fa-share] Preparés un correu amb les parts seleccionats adjuntats com arxius PDF.
+- [fa-save] Liquida els parts seleccionats indicant la data d'avui.
 
 
 ===Opcions de filtre===
@@ -69,16 +69,16 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades del part
 
 [partes-formulario.png]
 
-- **Client:**  Per enllaçar el client per al qual es realitza el treball.
-- **Projecte:**  Per enllaçar el projecte en el qual aquesta inclòs aquest treball.
-- **Nom (*):**  Nom descriptiu del treball a realitzar.
-- **Data (*):**  Data del treball.
-- **Comentaris (*):**  Per afegir dades o notes importants relacionades amb el treball realitzat.
-- **Hores (*):**  Hores que s'han utilitzat per realitzar el treball.
-- **Preu (*):**  Preu unitari.
-- **Total (*):**  Import total del treball realitzat, camp calculat per l'aplicació.
-- **Liquidat:**  Selector per determinar si el part aquesta liquidat.
-- **Data Liq .:**  Data de liquidació del part.
+- **Client:** Per enllaçar el client per al qual es realitza el treball.
+- **Projecte:** Per enllaçar el projecte en el qual aquesta inclòs aquest treball.
+- **Nom (*):** Nom descriptiu del treball a realitzar.
+- **Data (*):** Data del treball.
+- **Comentaris (*):** Per afegir dades o notes importants relacionades amb el treball realitzat.
+- **Hores (*):** Hores que s'han utilitzat per realitzar el treball.
+- **Preu (*):** Preu unitari.
+- **Total (*):** Import total del treball realitzat, camp calculat per l'aplicació.
+- **Liquidat:** Selector per determinar si el part aquesta liquidat.
+- **Data Liq .:** Data de liquidació del part.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un part.**

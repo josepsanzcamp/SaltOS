@@ -28,7 +28,7 @@ SaltOS està compost per una sèrie d'aplicacions o mòduls. Cada aplicació ofe
     - **[Textos predefinidos http://viewpdf/page=textos]**, Creu textos predefinits per usar-los en altres aplicacions.
     - **[Mi perfil http://viewpdf/page=profile]**, Canviar les preferències del seu usuari.
     - **[Soporte técnico http://viewpdf/page=support]**, Contacti amb el suport tècnic.
-    - **Acerca del proyecto SaltOS**, Conegui els crèdits, formats suportat pel visor intern, les llicències i altres projectes inclosos en SaltOS. A més pot jugar a Legend of The Bouncing Behold [+ http://marijnhaverbeke.nl/js1k/], Guanyador del 2010 de la competició JS1k [+ http://js1k.com/]  (The JavaScript code Golfing competition).
+    - **Acerca del proyecto SaltOS**, Conegui els crèdits, formats suportat pel visor intern, les llicències i altres projectes inclosos en SaltOS. A més pot jugar a Legend of The Bouncing Behold [+ http://marijnhaverbeke.nl/js1k/], Guanyador del 2010 de la competició JS1k [+ http://js1k.com/] (The JavaScript code Golfing competition).
   - Carpetes de l'usuari
   - Gestió Comercial
     - **[Campañas comerciales http://viewpdf/page=campanyas]**, Feu campanyes comercials amb seguiments.
@@ -72,15 +72,15 @@ Per gestionar la configuració del propi SaltOS existeixen diverses aplicacions:
 ==Interfície==
 
 La interfície gràfica de SaltOS està dividit en 3 seccions:
-  - **Espai central:**  en ell trobareu l'aplicació seleccionada amb la seva pestanya d'ajuda.
+  - **Espai central:** en ell trobareu l'aplicació seleccionada amb la seva pestanya d'ajuda.
 
   [home-zona-central.png]
 
-  - **Barra superior:**  en ella podrà trobar el botó per amagar el menú, l'enllaç al about i la versió actual de SaltOS, el control del lector per veu (si està habilitat) i els botons d'accés ràpid a les diferents aplicacions.
+  - **Barra superior:** en ella podrà trobar el botó per amagar el menú, l'enllaç al about i la versió actual de SaltOS, el control del lector per veu (si està habilitat) i els botons d'accés ràpid a les diferents aplicacions.
 
   [home-zona-superior.png]
 
-  - **Menú zona esquerra:**  des d'aquí podrà accedir a les diferents aplicacions de SaltOS. Podeu ocultar aquest menú per ampliar l'espai disponible a la pantalla.
+  - **Menú zona esquerra:** des d'aquí podrà accedir a les diferents aplicacions de SaltOS. Podeu ocultar aquest menú per ampliar l'espai disponible a la pantalla.
 
   [home-zona-izquierda.png]
 
@@ -98,18 +98,18 @@ En la primera es mostra un llistat amb les dades de cada aplicació. A la part s
 A la primera columna de cada llistat trobarà un element de tipus //checkbox//  per tal de poder seleccionar tots els registres en un únic clic. També podeu trobar aquest element en cada registre del llistat per poder seleccionar de forma individual. Aquests controls serviran per poder aplicar funcions de manera massiva en el o els registres seleccionats, per exemple esborrar registres o liquidar parts de treball.
 
 En les últimes columnes de cada registre es troben els botons per realitzar accions sobre el registre en qüestió:
-  - [fa-search]Veure o consultar
-  - [fa-pencil]  Edita.
-  - [fa-trash]  Copia.
-  - [fa-file-pdf-o]  Exportar en format PDF. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
-  - [fa-desktop]  Mostra registre en el visor intern.
-  - [fa-trash]  Esborrar.
+  - [fa-search] Veure o consultar
+  - [fa-pencil] Edita.
+  - [fa-trash] Copia.
+  - [fa-file-pdf-o] Exportar en format PDF. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
+  - [fa-desktop] Mostra registre en el visor intern.
+  - [fa-trash] Esborrar.
 
 
 En funció de cada aplicació podrà trobar més funcionalitats com:
-  - [fa-address-card]: Exportar en format VCard. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-  - [fa-qrcode]: Visualitzar QRCode amb les dades del registre. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-  - [fa-share]: Envia registre per correu electrònic.
+  - [fa-address-card] Exportar en format VCard. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+  - [fa-qrcode] Visualitzar QRCode amb les dades del registre. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+  - [fa-share] Envia registre per correu electrònic.
 
 
 En determinades aplicacions trobarà **informació addicional**  a la part inferior del llistat, per exemple, en l'aplicació de factures trobarà el sumari dels imports de les factura mostrades.
@@ -117,10 +117,10 @@ En determinades aplicacions trobarà **informació addicional**  a la part infe
 A sobre del llistat es troba el **cercador ràpid**  en forma de caixa de text. Introduïu aquí el terme buscat i feu clic al botó 'Cerca' per iniciar la cerca. Un cop filtrat el contingut del llistat actual podrà tornar a obtenir tots els registres fent clic al botó 'Reset'.
 
 En funció de l'aplicació trobareu altres botons:
-  - [fa-file-excel-o]  Exportar en format Excel
-  - [fa-file-pdf-o]  Exportar en format PDF
-  - [fa-share]  Enviar PDF
-  - [fa-save]  Liquidar
+  - [fa-file-excel-o] Exportar en format Excel
+  - [fa-file-pdf-o] Exportar en format PDF
+  - [fa-share] Enviar PDF
+  - [fa-save] Liquidar
   - etc.
 
 

@@ -9,6 +9,6 @@ The application allows you to send a message to the team //Support//. If the gen
 
 [support-formulario.png]
 
-- **Name (*):**  Username that is sending the support.
-- **Subject (*):**  Short description of error or incident occurred.
-- **Comments (*):**  Complete and detailed explanation of the problem occurred.
+- **Name (*):** Username that is sending the support.
+- **Subject (*):** Short description of error or incident occurred.
+- **Comments (*):** Complete and detailed explanation of the problem occurred.

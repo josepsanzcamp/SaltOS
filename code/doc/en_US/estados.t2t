@@ -11,19 +11,19 @@ This application lets you keep track of all states that are used in different ap
 
 In the list of states you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the state.
-- **Name:**  State name.
-- **Application:**  Application that is linked state.
-- **Location:**  Status position compared to other states linked with your application.
-- **Description:**  Description of the state in which cases are used, etc ...
-- **Active:**  If the state can be used in the linked application.
+- **Ref.:** Numeric code that identifies the state.
+- **Name:** State name.
+- **Application:** Application that is linked state.
+- **Location:** Status position compared to other states linked with your application.
+- **Description:** Description of the state in which cases are used, etc ...
+- **Active:** If the state can be used in the linked application.
 
 
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -40,11 +40,11 @@ In this tab you can view and modify the main state data. Here we relate all info
 
 [estados-formulario.png]
 
-- **Name (*):**  State name.
-- **Application (*):**  Application that is linked state.
-- **Position (*):**  Status position compared to other states linked with your application.
-- **Active:**  If the state can be used in the linked application.
-- **Description:**  Description of the state in which cases are used, etc ...
+- **Name (*):** State name.
+- **Application (*):** Application that is linked state.
+- **Position (*):** Status position compared to other states linked with your application.
+- **Active:** If the state can be used in the linked application.
+- **Description:** Description of the state in which cases are used, etc ...
 
 
 (*) **Required when creating or modifying a state Campos.**

@@ -11,12 +11,12 @@ This application lets you keep track of all your suppliers.
 
 In the list of providers you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the provider.
-- **N.I.F:**  Tax identification number provided by the public finances.
-- **Name:**  Supplier Name.
-- **Landline:**  Main fixed telephone to contact.
-- **Mobile phone:**  Principal to contact mobile phone.
-- **Mail account:**  Primary email account to contact.
+- **Ref.:** Numeric code that identifies the provider.
+- **N.I.F:** Tax identification number provided by the public finances.
+- **Name:** Supplier Name.
+- **Landline:** Main fixed telephone to contact.
+- **Mobile phone:** Principal to contact mobile phone.
+- **Mail account:** Primary email account to contact.
 
 
 **Remember**: The events can be arranged by dragging them to the user folder you want.
@@ -25,9 +25,9 @@ In the list of providers you will find the most important pillars of registratio
 
 On each record you can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-address-card]: Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [fa-qrcode]: Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-address-card] Download registration data in vCard format. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode] Display QRCode with log data. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
 
 
 ===Filter Options===
@@ -44,31 +44,31 @@ In this tab you can view and modify the main data provider. Here we relate all i
 
 [proveedores-formulario.png]
 
-- **Tradename (*):**  Trade name provider.
-- **Attorney Name (*):**  Fiscal name used in legal documents such as invoices, contracts, etc ..
-- **N.I.F:**  Tax ID number, number provided by public finance team which identifies the entity.
-- **Show as (*):**  This is the name that is used in the list and selectors, should be a person could devote to include the nickname.
-- **Address:**  Address of the entity are used in legal documents such as invoices, contracts, etc ..
-- **Country:**  Country of the entity are used in legal documents such as invoices, contracts, etc ..
-- **County:**  Province of the entity are used in legal documents such as invoices, contracts, etc ..
-- **Population:**  Population of the entity are used in legal documents such as invoices, contracts, etc ..
-- **Postal Code:**  Postal code of the entity are used in legal documents such as invoices, contracts, etc ..
-- **Email:**  Contact primary email account is what will be displayed on all listings.
-- **Web:**  Contact Web master is that which will be displayed on all listings.
-- **Fixed Number:**  Fixed main contact is what will be displayed on all listings.
-- **Phone Number:**  Contact mainspring is what will be displayed on all listings.
-- **Fax Number:**  Main fax number is the one that will be displayed on all listings.
-- **Current:**  Current account used to make charges for purchases made by this provider.
-- **Accountant:**  Ledger account that was used in the accounting system of the company.
-- **Payment date:**  Day in which be performed charges for purchases made during the month.
-- **Comment:**  To indicate comments on this supplier.
+- **Tradename (*):** Trade name provider.
+- **Attorney Name (*):** Fiscal name used in legal documents such as invoices, contracts, etc ..
+- **N.I.F:** Tax ID number, number provided by public finance team which identifies the entity.
+- **Show as (*):** This is the name that is used in the list and selectors, should be a person could devote to include the nickname.
+- **Address:** Address of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Country:** Country of the entity are used in legal documents such as invoices, contracts, etc ..
+- **County:** Province of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Population:** Population of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Postal Code:** Postal code of the entity are used in legal documents such as invoices, contracts, etc ..
+- **Email:** Contact primary email account is what will be displayed on all listings.
+- **Web:** Contact Web master is that which will be displayed on all listings.
+- **Fixed Number:** Fixed main contact is what will be displayed on all listings.
+- **Phone Number:** Contact mainspring is what will be displayed on all listings.
+- **Fax Number:** Main fax number is the one that will be displayed on all listings.
+- **Current:** Current account used to make charges for purchases made by this provider.
+- **Accountant:** Ledger account that was used in the accounting system of the company.
+- **Payment date:** Day in which be performed charges for purchases made during the month.
+- **Comment:** To indicate comments on this supplier.
 
 
 (*) **Required when creating or modifying a provider Campos.**
 
 Furthermore, in the first tab has a **action buttons.**
 
-- **[fa-plus-circle]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly with the provider.
+- **[fa-plus-circle] Add contact:** We take the new contact form so you can fill in relevant information and relate directly with the provider.
 
 
 ===Charts tab and statistics===

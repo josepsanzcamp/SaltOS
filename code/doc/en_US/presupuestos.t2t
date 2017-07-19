@@ -11,18 +11,18 @@ This application lets you keep track of all budget made in the company.
 
 In the list of budgets you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the budget.
-- **Customer:**  So that the customer has been budget.
-- **Budget:**  Name that has been given to the budget.
-- **Date:**  Recorded budget.
-- **Tasks (€) (*):**  Total amount of the budget planned tasks.
-- **Prod (€) (*).:**  Total amount of all products included in the budget.
-- **Total (€) (*):**  Total budget.
-- **State:**  Current state budget (Unsent, sent, accepted, canceled, stopped).
-- **NT:**  Number of tasks planned in the budget.
-- **NP:**  Number of products included in the budget.
-- **NC:**  Number of comments entered on this budget.
-- **NF:**  Number of files linked to this budget.
+- **Ref.:** Numeric code that identifies the budget.
+- **Customer:** So that the customer has been budget.
+- **Budget:** Name that has been given to the budget.
+- **Date:** Recorded budget.
+- **Tasks (€) (*):** Total amount of the budget planned tasks.
+- **Prod (€) (*).:** Total amount of all products included in the budget.
+- **Total (€) (*):** Total budget.
+- **State:** Current state budget (Unsent, sent, accepted, canceled, stopped).
+- **NT:** Number of tasks planned in the budget.
+- **NP:** Number of products included in the budget.
+- **NC:** Number of comments entered on this budget.
+- **NF:** Number of files linked to this budget.
 
 
 (*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
@@ -33,18 +33,18 @@ In the list of budgets you will find the most important pillars of registration:
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-clone]: This action will lead to the creation of a new record using data from the current.
-- [fa-file-pdf-o]: Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Show data through-PDF Viewer.
-- [fa-share]: Prepare an email with the selected budget attached as PDF file.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-clone] This action will lead to the creation of a new record using data from the current.
+- [fa-file-pdf-o] Download PDF with log data. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Show data through-PDF Viewer.
+- [fa-share] Prepare an email with the selected budget attached as PDF file.
 
 
 This list also features the following quote by selecting multiple simultaneously:
 
-- [fa-file-pdf-o]: Download the selected file format is budget. PDF.
-- [fa-desktop]: Display the selected format budget. PDF on screen.
-- [fa-share]: Prepare a mail with the selected budget attached as PDF files.
+- [fa-file-pdf-o] Download the selected file format is budget. PDF.
+- [fa-desktop] Display the selected format budget. PDF on screen.
+- [fa-share] Prepare a mail with the selected budget attached as PDF files.
 
 
 ===Filter Options===
@@ -67,24 +67,24 @@ This is the implementation of budget, it may add, modify and view all budget dat
 
 In this tab you can view and modify the main details of the budget. Here we relate all information fields.
 
-- **Prospect:**  To link the budget with a potential client.
-- **Campaign:**  To link if the budget has been. Order thanks to a particular marketing campaign.
-- **Customer:**  To link the budget with a client.
-- **Project:**  To link the budget to the project at hand and then to see deviations.
-- **Name (*):**  Name you want to give the budget.
-- **Date:**  Recorded budget.
-- **State (*):**  State in which is the budget (Unsent, sent, accepted, canceled, stopped).
-- **Description:**  Overview of the budget.
-- **Summary table:**  In this table you can find the total hours of work, product units, and the total amount of the budget.
+- **Prospect:** To link the budget with a potential client.
+- **Campaign:** To link if the budget has been. Order thanks to a particular marketing campaign.
+- **Customer:** To link the budget with a client.
+- **Project:** To link the budget to the project at hand and then to see deviations.
+- **Name (*):** Name you want to give the budget.
+- **Date:** Recorded budget.
+- **State (*):** State in which is the budget (Unsent, sent, accepted, canceled, stopped).
+- **Description:** Overview of the budget.
+- **Summary table:** In this table you can find the total hours of work, product units, and the total amount of the budget.
 
 
 (*) **Required when creating or modifying a budget Campos.**
 
 Furthermore, in the first tab has a **action buttons.**
 
-- **[fa-plus-circle]  Add contact:**  We take the new contact form so you can fill in relevant information and relate directly to the customer.
-- **[fa-plus-circle]  Add record:**  Will take the form of new record so you can fill in relevant information and relate directly to the customer.
-- **[fa-plus-circle]  Add event:**  Will take the form of new events so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle] Add contact:** We take the new contact form so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle] Add record:** Will take the form of new record so you can fill in relevant information and relate directly to the customer.
+- **[fa-plus-circle] Add event:** Will take the form of new events so you can fill in relevant information and relate directly to the customer.
 
 
 ===Objectives tab===
@@ -117,8 +117,8 @@ This tab may include, modify or delete all the tasks linked in this budget.
 
 [presupuestos-formulario-listado-tareas.png]
 
-- **Summary Table:**  In this table you can see different information about the tasks included in the budget, total hours, average price, total amount of hours.
-- **Task list:**  This list may be adding, modifying or deleting many tasks as may be necessary, including the fields are: **job description, hours required, unit price, discount, whole task**.
+- **Summary Table:** In this table you can see different information about the tasks included in the budget, total hours, average price, total amount of hours.
+- **Task list:** This list may be adding, modifying or deleting many tasks as may be necessary, including the fields are: **job description, hours required, unit price, discount, whole task**.
 
 
 ===Tab Products===
@@ -127,8 +127,8 @@ This tab may include, modify or delete all the related products in this budget.
 
 [presupuestos-formulario-listado-productos.png]
 
-- **Summary Table:**  In this table you can see different information on the products included in the budget, total units, total product.
-- **Product list:**  This list may be adding, modifying or deleting as many products as needed, including the fields are: **product description, units, unit price, discount, all goods**.
+- **Summary Table:** In this table you can see different information on the products included in the budget, total units, total product.
+- **Product list:** This list may be adding, modifying or deleting as many products as needed, including the fields are: **product description, units, unit price, discount, all goods**.
 
 
 ===Conditions tab===

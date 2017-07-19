@@ -11,17 +11,17 @@ This application lets you keep track of all IVA's that use the entity.
 
 In the list of IVA's, you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the VAT.
-- **Name:**  Name VAT.
-- **Description:**  Description VAT.
-- **VAT rate (%):**  VAT rate.
+- **Ref.:** Numeric code that identifies the VAT.
+- **Name:** Name VAT.
+- **Description:** Description VAT.
+- **VAT rate (%):** VAT rate.
 
 
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -38,9 +38,9 @@ In this tab you can view and modify the main elements of VAT. Here we relate all
 
 [ivas-formulario.png]
 
-- **Name (*):**  Name VAT.
-- **VAT rate (%):**  VAT rate.
-- **Description:**  Description VAT.
+- **Name (*):** Name VAT.
+- **VAT rate (%):** VAT rate.
+- **Description:** Description VAT.
 
 
 (*) **Required when creating or modifying a VAT Campos.**

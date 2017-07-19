@@ -32,20 +32,20 @@ En el listado de sus correos electrónicos encontrará tanto los enviados por us
 
 Sobre cada registro podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar(*) registro.
-- [fa-file-pdf-o]: Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Mostrar datos a través del Visor-PDF.
-- [fa-reply]: Responder correo al remitente.
-- [fa-reply-all]: Responder correo a todos.
-- [fa-share]: Reenviar correo.
-- [fa-tag]: Marcar correo como pendiente.
-- [fa-tag]: Marcar correo como SPAM.
+- [fa-search] [fa-pencil] [fa-trash] Consultar/Editar/Borrar(*) registro.
+- [fa-file-pdf-o] Descargar PDF con los datos del registro. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Mostrar datos a través del Visor-PDF.
+- [fa-reply] Responder correo al remitente.
+- [fa-reply-all] Responder correo a todos.
+- [fa-share] Reenviar correo.
+- [fa-tag] Marcar correo como pendiente.
+- [fa-tag] Marcar correo como SPAM.
 
 
 Sobre el listado ademas de la opción normal de búsqueda, encontrará las siguientes funciones:
 
-- [fa-download]: Fuerza la comprobación de correos nuevos en el servidor.
-- [fa-share]: Fuerza el envío de los correos pendientes de enviar.
+- [fa-download] Fuerza la comprobación de correos nuevos en el servidor.
+- [fa-share] Fuerza el envío de los correos pendientes de enviar.
 - Selector de **acciones para múltiples correos**:
  - //Opciones//: Descarga y visualización en formato PDF.
  - //Marcar como//: Leídos, No leídos, Pendientes, No pendientes, SPAM, No SPAM.

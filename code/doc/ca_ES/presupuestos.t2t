@@ -11,18 +11,18 @@ Aquesta aplicació li permet portar un control de tots els pressupost realitzats
 
 En el llistat de pressupostos podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica el pressupost.
-- **Client:**  Perquè client s'ha realitzat el pressupost.
-- **Pressupost:**  Nom que se li ha donat al pressupost.
-- **Data:**  Data de realització del pressupost.
-- **Tasques (€) (*):**  Import del total de tasques planejades en el pressupost.
-- **Prod. (€) (*):**  Import total de tots els productes inclosos en el pressupost.
-- **Total (€) (*):**  Import total del pressupost.
-- **Estat:**  Estat actual del pressupost (Sense enviar, enviat, acceptat, cancel·lat, parat).
-- **NT:**  Nombre de tasques planejades en el pressupost.
-- **NP:**  Nombre de productes inclosos en el pressupost.
-- **NC:**  Nombre de comentaris introduïts sobre aquest pressupost.
-- **NF:**  Nombre de fitxers vinculats amb aquest pressupost.
+- **Codi.:** Codi numèric que identifica el pressupost.
+- **Client:** Perquè client s'ha realitzat el pressupost.
+- **Pressupost:** Nom que se li ha donat al pressupost.
+- **Data:** Data de realització del pressupost.
+- **Tasques (€) (*):** Import del total de tasques planejades en el pressupost.
+- **Prod. (€) (*):** Import total de tots els productes inclosos en el pressupost.
+- **Total (€) (*):** Import total del pressupost.
+- **Estat:** Estat actual del pressupost (Sense enviar, enviat, acceptat, cancel·lat, parat).
+- **NT:** Nombre de tasques planejades en el pressupost.
+- **NP:** Nombre de productes inclosos en el pressupost.
+- **NC:** Nombre de comentaris introduïts sobre aquest pressupost.
+- **NF:** Nombre de fitxers vinculats amb aquest pressupost.
 
 
 (*) **Al final de llistat s'inclou el sumatori d'aquestes columnes, tingui en compte que el resultat només inclou les columnes visibles per pàgina.**
@@ -33,18 +33,18 @@ En el llistat de pressupostos podrà trobar les columnes més importants del reg
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
-- [fa-clone]: Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
-- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Mostra dades a través del Visor-PDF.
-- [fa-share]: Preparés un correu amb el pressupost seleccionat adjuntat com arxiu PDF.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
+- [fa-clone] Amb aquesta acció se li portés a la creació d'un nou registre fent servir les dades de l'actual.
+- [fa-file-pdf-o] Descarregar PDF amb les dades del registre. [(más info sobre PDF) http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Mostra dades a través del Visor-PDF.
+- [fa-share] Preparés un correu amb el pressupost seleccionat adjuntat com arxiu PDF.
 
 
 Aquest llistat disposa a més de les següents accions seleccionant diversos pressupost simultàniament:
 
-- [fa-file-pdf-o]: Descarregar els pressupost seleccionats a un fitxer en format. PDF.
-- [fa-desktop]: Visualitzar els pressupost seleccionats en format. PDF en pantalla.
-- [fa-share]: Preparés un correu amb els pressupostos seleccionats adjuntats com arxius PDF.
+- [fa-file-pdf-o] Descarregar els pressupost seleccionats a un fitxer en format. PDF.
+- [fa-desktop] Visualitzar els pressupost seleccionats en format. PDF en pantalla.
+- [fa-share] Preparés un correu amb els pressupostos seleccionats adjuntats com arxius PDF.
 
 
 ===Opcions de filtre===
@@ -67,24 +67,24 @@ Aquesta és l'aplicació de pressupost, amb ella podrà afegir, modificar i visi
 
 En aquesta pestanya podrà visualitzar i modificar les principals dades del pressupost. A continuació li relacionem tots els camps d'informació.
 
-- **Possible client:**  Per poder vincular el pressupost amb un possible client.
-- **Campanya:**  Per enllaçar en cas que el pressupost hagi estat. Comanda gràcies a una campanya comercial concreta.
-- **Client:**  Per poder vincular el pressupost amb un client.
-- **Projecte:**  Per poder vincular el pressupost amb el projecte a realitzar i després poder veure desviacions.
-- **Nom (*):**  Nom que se li vulgui donar al pressupost.
-- **Data:**  Data de realització del pressupost.
-- **Estat (*):**  Estat en què es troba el pressupost (Sense enviar, enviat, acceptat, cancel·lat, parat).
-- **Descripció:**  Descripció general del pressupost.
-- **Taula resum:**  En aquesta taula es pot trobar el total d'hores de tasques, unitats de productes, i l'import total del pressupost.
+- **Possible client:** Per poder vincular el pressupost amb un possible client.
+- **Campanya:** Per enllaçar en cas que el pressupost hagi estat. Comanda gràcies a una campanya comercial concreta.
+- **Client:** Per poder vincular el pressupost amb un client.
+- **Projecte:** Per poder vincular el pressupost amb el projecte a realitzar i després poder veure desviacions.
+- **Nom (*):** Nom que se li vulgui donar al pressupost.
+- **Data:** Data de realització del pressupost.
+- **Estat (*):** Estat en què es troba el pressupost (Sense enviar, enviat, acceptat, cancel·lat, parat).
+- **Descripció:** Descripció general del pressupost.
+- **Taula resum:** En aquesta taula es pot trobar el total d'hores de tasques, unitats de productes, i l'import total del pressupost.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un pressupost.**
 
 A més, a la primera pestanya té uns **botons d'acció.**
 
-- **[fa-plus-circle]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
-- **[fa-plus-circle]  Afegir acta:**  El portés al formulari de nova acta perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
-- **[fa-plus-circle]  Afegir esdeveniment:**  El portés al formulari de nou esdeveniments perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[fa-plus-circle] Afegir contacte:** El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[fa-plus-circle] Afegir acta:** El portés al formulari de nova acta perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
+- **[fa-plus-circle] Afegir esdeveniment:** El portés al formulari de nou esdeveniments perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest client.
 
 
 ===Pestanya d'Objectius===
@@ -117,8 +117,8 @@ En aquesta pestanya pot incloure, modificar o eliminar totes les tasques a reali
 
 [presupuestos-formulario-listado-tareas.png]
 
-- **Taula Resum:**  En aquesta taula podrà veure diferent informació sobre les tasques incloses en el pressupost, total d'hores, preu mitjà, import total d'hores.
-- **Llista de tasques:**  En aquesta llista podrà anar afegint, modificant o eliminant tantes tasques com siguin necessàries, els camps que inclou són: **descripció de la tasca, hores necessàries, preu unitari, descompte, total tasca**.
+- **Taula Resum:** En aquesta taula podrà veure diferent informació sobre les tasques incloses en el pressupost, total d'hores, preu mitjà, import total d'hores.
+- **Llista de tasques:** En aquesta llista podrà anar afegint, modificant o eliminant tantes tasques com siguin necessàries, els camps que inclou són: **descripció de la tasca, hores necessàries, preu unitari, descompte, total tasca**.
 
 
 ===Pestanya de Productes===
@@ -127,8 +127,8 @@ En aquesta pestanya pot incloure, modificar o eliminar totes els productes vincu
 
 [presupuestos-formulario-listado-productos.png]
 
-- **Taula Resum:**  En aquesta taula podrà veure diferent informació sobre els productes inclosos en el pressupost, total d'unitats, import total de productes.
-- **Llista de productes:**  En aquesta llista podrà anar afegint, modificant o eliminant tants productes com siguin necessaris, els camps que inclou són: **descripció del producte, unitats, preu unitari, descompte, totalment productes**.
+- **Taula Resum:** En aquesta taula podrà veure diferent informació sobre els productes inclosos en el pressupost, total d'unitats, import total de productes.
+- **Llista de productes:** En aquesta llista podrà anar afegint, modificant o eliminant tants productes com siguin necessaris, els camps que inclou són: **descripció del producte, unitats, preu unitari, descompte, totalment productes**.
 
 
 ===Pestanya de condicions===

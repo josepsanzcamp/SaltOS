@@ -11,17 +11,17 @@ Aquesta aplicació li permet portar un control de totes les incidències ocorreg
 
 En el llistat d'incidències podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica el treball.
-- **Usuari:**  Usuari que obre la incidència.
-- **Data:**  Data i hora de la incidència.
-- **Client:**  Client en el qual s'ha generat la incidència.
-- **Projecte:**  Nom del projecte en el qual s'ha generat la incidència.
-- **Incidència:**  Nom descriptiu del motiu de la incidència.
-- **Estat:**  Estat en què es troba la incidència (Nova, començada, assignada, resolta, revisada, tancada, rebutjada, duplicada, reoberta).
-- **Prioritat:**  Prioritat de la incidència (Alta, normal, baixa).
-- **Assignat a:**  Usuaris involucrats en la incidència.
-- **NC:**  Nombre de comentaris introduïts sobre aquesta incidència.
-- **NF:**  Nombre de fitxers vinculats sobre aquesta incidència.
+- **Codi.:** Codi numèric que identifica el treball.
+- **Usuari:** Usuari que obre la incidència.
+- **Data:** Data i hora de la incidència.
+- **Client:** Client en el qual s'ha generat la incidència.
+- **Projecte:** Nom del projecte en el qual s'ha generat la incidència.
+- **Incidència:** Nom descriptiu del motiu de la incidència.
+- **Estat:** Estat en què es troba la incidència (Nova, començada, assignada, resolta, revisada, tancada, rebutjada, duplicada, reoberta).
+- **Prioritat:** Prioritat de la incidència (Alta, normal, baixa).
+- **Assignat a:** Usuaris involucrats en la incidència.
+- **NC:** Nombre de comentaris introduïts sobre aquesta incidència.
+- **NF:** Nombre de fitxers vinculats sobre aquesta incidència.
 
 
 **Recordeu**: Els esdeveniments es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
@@ -30,7 +30,7 @@ En el llistat d'incidències podrà trobar les columnes més importants del regi
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -47,12 +47,12 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de la in
 
 [incidencias-formulario.png]
 
-- **Client:**  Per enllaçar el client on ha ocorregut la incidència.
-- **Projecte:**  Per enllaçar el projecte en què ha ocorregut la incidència.
-- **Prioritat (*):**  Prioritat de la incidència (Alta, normal, baixa).
-- **Nom (*):**  Nom descriptiu de la incidència ocorreguda.
-- **Estat (*):**  Estat en què es troba la incidència (Nova, començada, assignada, resolta, revisada, tancada, rebutjada, duplicada, reoberta).
-- **Descripció (*):**  Descripció més detallada de la incidència ocorreguda.
+- **Client:** Per enllaçar el client on ha ocorregut la incidència.
+- **Projecte:** Per enllaçar el projecte en què ha ocorregut la incidència.
+- **Prioritat (*):** Prioritat de la incidència (Alta, normal, baixa).
+- **Nom (*):** Nom descriptiu de la incidència ocorreguda.
+- **Estat (*):** Estat en què es troba la incidència (Nova, començada, assignada, resolta, revisada, tancada, rebutjada, duplicada, reoberta).
+- **Descripció (*):** Descripció més detallada de la incidència ocorreguda.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar una incidència.**

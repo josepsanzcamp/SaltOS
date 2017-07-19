@@ -98,7 +98,7 @@ En la primera se muestra un listado con los datos de cada aplicación. En la par
 En la primera columna de cada listado encontrará un elemento de tipo //checkbox// con el fin de poder seleccionar todos los registros en un único clic. También encontrará este elemento en cada registro del listado para poder seleccionarlos de forma individual. Estos controles servirán para poder aplicar funciones de manera masiva en el o los registros seleccionados, por ejemplo borrar registros o liquidar partes de trabajo.
 
 En las últimas columnas de cada registro se encuentran los botones para realizar acciones sobre el registro en cuestión:
-  - [fa-search]Ver o consultar
+  - [fa-search] Ver o consultar
   - [fa-pencil] Editar.
   - [fa-trash] Copiar.
   - [fa-file-pdf-o] Exportar en formato PDF. [más info sobre PDF http://es.wikipedia.org/wiki/PDF]
@@ -107,9 +107,9 @@ En las últimas columnas de cada registro se encuentran los botones para realiza
 
 
 En función de cada aplicación podrá encontrar más funcionalidades como:
-  - [fa-address-card]: Exportar en formato VCard. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
-  - [fa-qrcode]: Visualizar QRCode con los datos del registro. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
-  - [fa-share]: Enviar registro por correo electrónico.
+  - [fa-address-card] Exportar en formato VCard. [más info sobre VCARD http://es.wikipedia.org/wiki/VCard]
+  - [fa-qrcode] Visualizar QRCode con los datos del registro. [más info sobre QRCode http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+  - [fa-share] Enviar registro por correo electrónico.
 
 
 En determinadas aplicaciones encontrará **información adicional** en la parte inferior del listado, por ejemplo, en la aplicación de facturas encontrará el sumario de los importes de las factura mostradas.

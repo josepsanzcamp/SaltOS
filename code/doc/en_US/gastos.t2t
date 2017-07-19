@@ -11,15 +11,15 @@ This application lets you keep track of all expenditure incurred within the comp
 
 In the list of expenses you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies spending.
-- **Company:**  Where there has been company spending
-- **Date:**  Date on which the expenditure was performed
-- **Base (*):**  Monetary amount before taxes.
-- **Total (*):**  Total amount of expenditure.
-- **Liq.:**  Determines whether the expense is paid. **The unsettled expenses are marked with red background.**
-- **Date liq .:**  Settlement date of expenditure.
-- **NV:**  Number of maturities introduced for this expenditure.
-- **Account:**  Account where this expenditure is counted.
+- **Ref.:** Numeric code that identifies spending.
+- **Company:** Where there has been company spending
+- **Date:** Date on which the expenditure was performed
+- **Base (*):** Monetary amount before taxes.
+- **Total (*):** Total amount of expenditure.
+- **Liq.:** Determines whether the expense is paid. **The unsettled expenses are marked with red background.**
+- **Date liq .:** Settlement date of expenditure.
+- **NV:** Number of maturities introduced for this expenditure.
+- **Account:** Account where this expenditure is counted.
 
 
 (*) **At the end of listing the sum of these columns is included, note that the result only includes the visible columns per page.**
@@ -30,14 +30,14 @@ In the list of expenses you will find the most important pillars of registration
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
-- [fa-clone]: This action will lead to the creation of a new record using data selected.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
+- [fa-clone] This action will lead to the creation of a new record using data selected.
 
 
 This list also features the following:
 
-- [fa-file-excel-o]: Export the list of all expenses to a file in Excel format.
-- [fa-save]: Liquid selected expenses indicating the date hereof.
+- [fa-file-excel-o] Export the list of all expenses to a file in Excel format.
+- [fa-save] Liquid selected expenses indicating the date hereof.
 
 
 ===Filter Options===
@@ -60,23 +60,23 @@ In this tab you can view and modify the main elements of expenditure. Here we re
 
 [gastos-formulario.png]
 
-- **Count (*):**  Account where spending is counted.
-- **Heading (*):**  Economic activity to which the expenditure was linking.
-- **Search:**  Search providers.
-- **Customer:**  To tell the client that link spending.
-- **Supplier:**  Supplier name where there has been spending.
-- **Project:**  To link the project that has been done spending.
-- **N. Fac .:**  Number spending bill.
-- **Date (*):**  Date of expenditure.
-- **Description (*):**  Description expenditure.
-- **Base (*):**  Amount of expenses before applying applicable taxes, calculated by the application field.
-- **VAT rate (%) (*):**  Percentage VAT.
-- **Total (*):**  Total amount of expenditure.
-- **Income tax (%) (*):**  Percentage of personal income imposed.
-- **Payer (*):**  Selector to indicate who has paid
-- **Liquidated:**  Selector to determine whether the expense is paid.
-- **Payment (*):**  Selector to determine the form of payment used.
-- **Date Liq .:**  Settlement date of expenditure.
+- **Count (*):** Account where spending is counted.
+- **Heading (*):** Economic activity to which the expenditure was linking.
+- **Search:** Search providers.
+- **Customer:** To tell the client that link spending.
+- **Supplier:** Supplier name where there has been spending.
+- **Project:** To link the project that has been done spending.
+- **N. Fac .:** Number spending bill.
+- **Date (*):** Date of expenditure.
+- **Description (*):** Description expenditure.
+- **Base (*):** Amount of expenses before applying applicable taxes, calculated by the application field.
+- **VAT rate (%) (*):** Percentage VAT.
+- **Total (*):** Total amount of expenditure.
+- **Income tax (%) (*):** Percentage of personal income imposed.
+- **Payer (*):** Selector to indicate who has paid
+- **Liquidated:** Selector to determine whether the expense is paid.
+- **Payment (*):** Selector to determine the form of payment used.
+- **Date Liq .:** Settlement date of expenditure.
 
 
 (*) **Required when creating or modifying an expense Campos.**

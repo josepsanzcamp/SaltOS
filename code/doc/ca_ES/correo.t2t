@@ -11,14 +11,14 @@ En el llistat dels seus correus electrònics trobarà tant els enviats per vost�
 
 [correo-listado.png]
 
-- **Codi .:**  Codi numèric que identifica el correu.
-- **De:**  Remitent del correu. (En fer clic a l'enllaç creés un nou correu amb aquest destinatari)
-- **Per:**  Destinatari del correu. (En fer clic a l'enllaç creés un nou correu amb aquest destinatari)
-- **Assumpte:**  Assumpte del correu.
-- **Data i hora:**  Dia i hora d'enviament.
-- **Mida:**  Mida d'espai en disc.
-- **NF:**  Nombre de fitxers adjunts.
-- **Estat:**  Estat en què es troba el correu el color de fons identifica cada estat:
+- **Codi.:** Codi numèric que identifica el correu.
+- **De:** Remitent del correu. (En fer clic a l'enllaç creés un nou correu amb aquest destinatari)
+- **Per:** Destinatari del correu. (En fer clic a l'enllaç creés un nou correu amb aquest destinatari)
+- **Assumpte:** Assumpte del correu.
+- **Data i hora:** Dia i hora d'enviament.
+- **Mida:** Mida d'espai en disc.
+- **NF:** Nombre de fitxers adjunts.
+- **Estat:** Estat en què es troba el correu el color de fons identifica cada estat:
   - //Nou//: verd.
   - //Llegit//: transparent.
   - //Modificat//: transparent.
@@ -32,27 +32,27 @@ En el llistat dels seus correus electrònics trobarà tant els enviats per vost�
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix (*) registre.
-- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Mostra dades a través del Visor-PDF.
-- [fa-reply]: Respondre correu al remitent.
-- [fa-reply-all]: Respondre correu a tots.
-- [fa-share]: Reenviar correu.
-- [fa-tag]: Marcar correu com a pendent.
-- [fa-tag]: Marcar correu com SPAM.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix (*) registre.
+- [fa-file-pdf-o] Descarregar PDF amb les dades del registre. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Mostra dades a través del Visor-PDF.
+- [fa-reply] Respondre correu al remitent.
+- [fa-reply-all] Respondre correu a tots.
+- [fa-share] Reenviar correu.
+- [fa-tag] Marcar correu com a pendent.
+- [fa-tag] Marcar correu com SPAM.
 
 
 Sobre el llistat a més de l'opció normal de cerca, trobareu les següents funcions:
 
-- [fa-download]: Força la comprovació de correus nous al servidor.
-- [fa-share]: Força l'enviament dels correus pendents d'enviar.
+- [fa-download] Força la comprovació de correus nous al servidor.
+- [fa-share] Força l'enviament dels correus pendents d'enviar.
 - Selector de **accions per a múltiples correus**:
  - //Opcions//: Descàrrega i visualització en format PDF.
  - //Marca com//: Llegits, No llegits, Pendents, No pendents, SPAM, No SPAM.
  - //Filtrar per tipus//: Tots, Entrada, Sortida.
  - //Filtrar per estat//: Tots, llegits, Pendents, Interessants.
  - //Filtrar per data publicació//: Tots, Avui, Ahir, Setmana, Mes.
-- [fa-trash]  Esborrar els correus seleccionats (*).
+- [fa-trash] Esborrar els correus seleccionats (*).
 
 
 Per enviar un correu a l'emissor del correu pot fer clic a l'adreça de correu electrònic del mateix. Si voleu enviar un nou correu des del compte del destinatari (probablement la seva), feu clic a sobre de la mateixa. També consultar el correu fent clic en l'assumpte.
@@ -67,15 +67,15 @@ Aquesta és l'aplicació de correu, amb ella podrà llegir i enviar correus, les
 
 [correo-formulario.png]
 
-- **De (*):**  Remitent del correu.
-- **Per (*):**  Destinatari del correu.
-- **CC:**  Enviar còpia.
-- **BCC:**  Envia còpia oculta.
-- **Sol·licitar confirmació:**  Sol·licitar confirmació de recepció.
-- **Prioritat:**  Importància del correu (Alta, Mitjana, Baixa).
-- **Sensibilitat:**  Indica la privacitat del contingut del missatge.
-- **Missatge (*):**  Editor per missatge del correu (``**``).
-- **Textos predefinits:**  Possibilitat d'afegir textos predefinits a la caixa de text de temes.
+- **De (*):** Remitent del correu.
+- **Per (*):** Destinatari del correu.
+- **CC:** Enviar còpia.
+- **BCC:** Envia còpia oculta.
+- **Sol·licitar confirmació:** Sol·licitar confirmació de recepció.
+- **Prioritat:** Importància del correu (Alta, Mitjana, Baixa).
+- **Sensibilitat:** Indica la privacitat del contingut del missatge.
+- **Missatge (*):** Editor per missatge del correu (``**``).
+- **Textos predefinits:** Possibilitat d'afegir textos predefinits a la caixa de text de temes.
 
 
 (*) **Camps obligatoris a l'hora d'enviar un correu.**

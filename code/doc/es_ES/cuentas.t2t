@@ -20,7 +20,7 @@ En el listado de cuentas podrá encontrar las columnas mas importantes del regis
 
 Sobre cada registro. Podrá realizar una serie de acciones que están representadas por los siguientes iconos:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar/Editar/Borrar registro.
+- [fa-search] [fa-pencil] [fa-trash] Consultar/Editar/Borrar registro.
 
 
 ===Opciones de filtro===
@@ -65,7 +65,7 @@ En esta pestaña podrá visualizar y modificar la configuración del logotipo de
   - **Lineas:** Color de las lineas que se utlizan para dibujar cajas, lineas de columnas y de filas, etc...
   - **Titulos:** Color de los títulos utilizados en los documentos generados.
   - **Textos:** Color del texto normal que se utilizara en los documentos generados.
-  
+
 
 ===Pestaña configuración facturas===
 

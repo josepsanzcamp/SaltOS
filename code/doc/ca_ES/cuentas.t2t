@@ -11,16 +11,16 @@ Aquesta aplicació li permet portar un control de les diferents comptabilitats.
 
 En el llistat de comptes podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica el compte.
-- **Nom:**  Nom del compte.
-- **Descripció:**  Descripció del compte.
+- **Codi.:** Codi numèric que identifica el compte.
+- **Nom:** Nom del compte.
+- **Descripció:** Descripció del compte.
 
 
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -37,8 +37,8 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades del comp
 
 [cuentas-formulario.png]
 
-- **Nom (*):**  Nom del compte.
-- **Descripció:**  Descripció del compte.
+- **Nom (*):** Nom del compte.
+- **Descripció:** Descripció del compte.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un forma de pagament.**
@@ -50,22 +50,22 @@ En aquesta pestanya podreu visualitzar i modificar la configuració del logotip 
 [cuentas-formulario-logo.png]
 
 - **Posició i mesures del logotip:**
-  - **X:**  Eix horitzontal, distància de la col·locació del logo des de la coordenada 0,0, valor expressat en mil·límetres.
-  - **I:**  Eix vertical, distància de la col·locació del logo des de la coordenada 0,0, valor expressat en mil·límetres.
-  - **Ample:**  Ample del logotip en paper, expressat en mil·límetres.
-  - **Alt:**  Alt del logotip en paper, expressat en mil·límetres.
+  - **X:** Eix horitzontal, distància de la col·locació del logo des de la coordenada 0,0, valor expressat en mil·límetres.
+  - **I:** Eix vertical, distància de la col·locació del logo des de la coordenada 0,0, valor expressat en mil·límetres.
+  - **Ample:** Ample del logotip en paper, expressat en mil·límetres.
+  - **Alt:** Alt del logotip en paper, expressat en mil·límetres.
 
 
 - **Fitxers logotip:**
-  - **Fitxer del logo actual:**  Visualització del logo actual.
-  - **Nou fitxer (només JPEG):**  En cas que vulgui canviar el logotip, seleccioneu aquí el nou arxiu, només formats (JPEG).
+  - **Fitxer del logo actual:** Visualització del logo actual.
+  - **Nou fitxer (només JPEG):** En cas que vulgui canviar el logotip, seleccioneu aquí el nou arxiu, només formats (JPEG).
 
 
 - **Colors en els documents PDF generats:**
-  - **Línies:**  Color de les línies que s'utlizan per dibuixar caixes, línies de columnes i de files, etc ...
-  - **Títols:**  Color dels títols utilitzats en els documents generats.
-  - **Textos:**  Color del text normal que s'utilitzés en els documents generats.
-  
+  - **Línies:** Color de les línies que s'utlizan per dibuixar caixes, línies de columnes i de files, etc ...
+  - **Títols:** Color dels títols utilitzats en els documents generats.
+  - **Textos:** Color del text normal que s'utilitzés en els documents generats.
+
 
 ===Pestanya configuració factures===
 
@@ -73,12 +73,12 @@ En aquesta pestanya podreu visualitzar i modificar la configuració de les factu
 
 [cuentas-formulario-factura.png]
 
-- **Nom de l'impost (es suma):**  Nom de l'impost a utilitzar, impostos que s'han de sumar a factures.
-- **Valor per defecte (només si es fa servir):**  Valor de l'impost.
-- **Nom de l'impost (es resta):**  Nom de l'impost a utilitzar, impost que s'han de restar en factures.
-- **Valor per defecte (només si es fa servir):**  Valor de l'impost.
-- **Primera línia de peu:**  Text que anirà al peu de la factura.
-- **Segona línia de peu:**  Text que anirà al peu de la factura.
+- **Nom de l'impost (es suma):** Nom de l'impost a utilitzar, impostos que s'han de sumar a factures.
+- **Valor per defecte (només si es fa servir):** Valor de l'impost.
+- **Nom de l'impost (es resta):** Nom de l'impost a utilitzar, impost que s'han de restar en factures.
+- **Valor per defecte (només si es fa servir):** Valor de l'impost.
+- **Primera línia de peu:** Text que anirà al peu de la factura.
+- **Segona línia de peu:** Text que anirà al peu de la factura.
 
 
 ===Pestanya Dades del registre===

@@ -11,19 +11,19 @@ Aquesta aplicació li permet portar un control de tots estats que s'utilitzen en
 
 En el llistat d'estats podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica l'estat.
-- **Nom:**  Nom de l'estat.
-- **Aplicació:**  Aplicació a la qual està vinculada l'estat.
-- **Posició:**  Posició de l'estat respecte a la resta d'estats vinculats amb la seva aplicació.
-- **Descripció:**  Descripció de l'estat, en quins casos s'utilitzen, etc ...
-- **Actiu:**  Si l'estat es pot utilitzar en l'aplicació vinculada.
+- **Codi.:** Codi numèric que identifica l'estat.
+- **Nom:** Nom de l'estat.
+- **Aplicació:** Aplicació a la qual està vinculada l'estat.
+- **Posició:** Posició de l'estat respecte a la resta d'estats vinculats amb la seva aplicació.
+- **Descripció:** Descripció de l'estat, en quins casos s'utilitzen, etc ...
+- **Actiu:** Si l'estat es pot utilitzar en l'aplicació vinculada.
 
 
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
 
 
 ===Opcions de filtre===
@@ -40,11 +40,11 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de l'est
 
 [estados-formulario.png]
 
-- **Nom (*):**  Nom de l'estat.
-- **Aplicació (*):**  Aplicació a la qual està vinculada l'estat.
-- **Posició (*):**  Posició de l'estat respecte a la resta d'estats vinculats amb la seva aplicació.
-- **Actiu:**  Si l'estat es pot utilitzar en l'aplicació vinculada.
-- **Descripció:**  Descripció de l'estat, en quins casos s'utilitzen, etc ...
+- **Nom (*):** Nom de l'estat.
+- **Aplicació (*):** Aplicació a la qual està vinculada l'estat.
+- **Posició (*):** Posició de l'estat respecte a la resta d'estats vinculats amb la seva aplicació.
+- **Actiu:** Si l'estat es pot utilitzar en l'aplicació vinculada.
+- **Descripció:** Descripció de l'estat, en quins casos s'utilitzen, etc ...
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un estat.**

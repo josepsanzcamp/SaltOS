@@ -11,21 +11,21 @@ Aquesta aplicació li permet portar un control de tots empleats que tingui l'emp
 
 En el llistat d'empleats podrà trobar les columnes més importants del registre:
 
-- **Codi .:**  Codi numèric que identifica l'empleat.
-- **Nom:**  Nom de l'empleat.
-- **Càrrec:**  Càrrec que ocupa l'empleat
-- **Fix:**  Telèfon fix de contacte de l'empleat.
-- **Mòbil:**  Telèfon mòbil de contacte de l'empleat.
-- **Email:**  Compte de correu de contacte de l'empleat.
+- **Codi.:** Codi numèric que identifica l'empleat.
+- **Nom:** Nom de l'empleat.
+- **Càrrec:** Càrrec que ocupa l'empleat
+- **Fix:** Telèfon fix de contacte de l'empleat.
+- **Mòbil:** Telèfon mòbil de contacte de l'empleat.
+- **Email:** Compte de correu de contacte de l'empleat.
 
 
 ===Opcions del llistat===
 
 Sobre cada registre. Podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix registre.
-- [fa-address-card]: Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
-- [fa-qrcode]: Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix registre.
+- [fa-address-card] Descarregar dades del registre en format Vcard. [(más info sobre VCARD) http://es.wikipedia.org/wiki/VCard]
+- [fa-qrcode] Visualitzar QRCode amb les dades del registre. [(más info sobre QRCode) http://es.wikipedia.org/wiki/C%C3%B3digo_QR]
 
 
 ===Opcions de filtre===
@@ -42,28 +42,28 @@ En aquesta pestanya podrà visualitzar i modificar les principals dades de l'emp
 
 [empleados-formulario.png]
 
-- **Nom (*):**  Nom de l'empleat.
-- **Cognoms (*):**  Cognoms de l'empleat
-- **Càrrec:**  Càrrec que ocupa.
-- **Mostrar com (*):**  Aquest el és nom que s'utilitzés en els llistat i selectors, en cas de ser una persona podria dedicar-se per incloure el sobrenom.
-- **Direcció:**  Direcció de l'empleat es fa a documents legals com ara factures, contractes, etc ..
-- **País:**  País de l'empleat es fa a documents legals com ara factures, contractes, etc ..
-- **Província:**  Província de l'empleat es fa a documents legals com ara factures, contractes, etc ..
-- **Població:**  Població de l'empleat es fa a documents legals com ara factures, contractes, etc ..
-- **Codi postal:**  Codi postal de l'empleat es fa a documents legals com ara factures, contractes, etc ..
-- **Email:**  Compte de correu principal de l'empleat és la que es visualitzés en tots llistats.
-- **Web:**  Web principal de l'empleat és el que es visualitzés en tots llistats.
-- **Nombre Fix:**  Fix principal de l'empleat és el que es visualitzés en tots llistats.
-- **Nombre Mòbil:**  Mòbil principal de l'empleat és el que es visualitzés en tots llistats.
-- **Nombre Fax:**  Fax principal de l'empleat és el que es visualitzés en tots llistats.
-- **Comentari:**  Per poder indicar comentaris sobre l'empleat.
+- **Nom (*):** Nom de l'empleat.
+- **Cognoms (*):** Cognoms de l'empleat
+- **Càrrec:** Càrrec que ocupa.
+- **Mostrar com (*):** Aquest el és nom que s'utilitzés en els llistat i selectors, en cas de ser una persona podria dedicar-se per incloure el sobrenom.
+- **Direcció:** Direcció de l'empleat es fa a documents legals com ara factures, contractes, etc ..
+- **País:** País de l'empleat es fa a documents legals com ara factures, contractes, etc ..
+- **Província:** Província de l'empleat es fa a documents legals com ara factures, contractes, etc ..
+- **Població:** Població de l'empleat es fa a documents legals com ara factures, contractes, etc ..
+- **Codi postal:** Codi postal de l'empleat es fa a documents legals com ara factures, contractes, etc ..
+- **Email:** Compte de correu principal de l'empleat és la que es visualitzés en tots llistats.
+- **Web:** Web principal de l'empleat és el que es visualitzés en tots llistats.
+- **Nombre Fix:** Fix principal de l'empleat és el que es visualitzés en tots llistats.
+- **Nombre Mòbil:** Mòbil principal de l'empleat és el que es visualitzés en tots llistats.
+- **Nombre Fax:** Fax principal de l'empleat és el que es visualitzés en tots llistats.
+- **Comentari:** Per poder indicar comentaris sobre l'empleat.
 
 
 (*) **Camps obligatoris a l'hora de crear o modificar un empleat.**
 
 A més, a la primera pestanya té uns **botons d'acció.**
 
-- **[fa-plus-circle]  Afegir contacte:**  El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest empleat.
+- **[fa-plus-circle] Afegir contacte:** El portés al formulari de nou contacte perquè pugui omplir la informació pertinent i ho relacionés directament amb aquest empleat.
 
 
 ===Pestanya contactes de l'empleat===

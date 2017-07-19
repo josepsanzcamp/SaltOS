@@ -11,11 +11,11 @@ El llistat d'entrades li mostra els darrers favorits agregats.
 
 [favoritos-listado.png]
 
-- **Codi .:**  Codi numèric que identifica l'enllaç.
-- **URL:**  URL de l'enllaç.
-- **Nom:**  Nom detectat en les capçaleres de la pàgina web.
-- **Descripció:**  Descipción detectada en les capçaleres de la pàgina web.
-- **Data:**  Dia i hora que guardo l'enllaç.
+- **Codi.:** Codi numèric que identifica l'enllaç.
+- **URL:** URL de l'enllaç.
+- **Nom:** Nom detectat en les capçaleres de la pàgina web.
+- **Descripció:** Descipción detectada en les capçaleres de la pàgina web.
+- **Data:** Dia i hora que guardo l'enllaç.
 
 
 **Recordeu**: Els favorits es poden organitzar arrossegant-los a la carpeta d'usuari que desitgi.
@@ -24,7 +24,7 @@ El llistat d'entrades li mostra els darrers favorits agregats.
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-[fa-trash]: Esborrar registre.
+[fa-trash] Esborrar registre.
 
 
 Sobre el llistat a més de l'opció normal de cerca, trobareu les següents funcions:

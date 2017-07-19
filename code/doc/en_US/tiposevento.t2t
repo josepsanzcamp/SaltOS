@@ -11,16 +11,16 @@ This application lets you keep track of all event types that are used in the app
 
 In the list of event types you will find the most important pillars of registration:
 
-- **Ref .:**  Numeric code that identifies the type of event.
-- **Name:**  Name the type of event.
-- **Description:**  Description of the type of event.
+- **Ref.:** Numeric code that identifies the type of event.
+- **Name:** Name the type of event.
+- **Description:** Description of the type of event.
 
 
 ===Listing Options===
 
 On each record. You can perform a series of actions that are represented by the following icons:
 
-- [fa-search] [fa-pencil] [fa-trash]: Check / Edit / Delete Record.
+- [fa-search] [fa-pencil] [fa-trash] Check / Edit / Delete Record.
 
 
 ===Filter Options===
@@ -37,8 +37,8 @@ In this tab you can view and modify the main details of the event type. Here we 
 
 [tiposevento-formulario.png]
 
-- **Name (*):**  Name the type of event.
-- **Description:**  Description of the type of event.
+- **Name (*):** Name the type of event.
+- **Description:** Description of the type of event.
 
 
 (*) **Required when creating or modifying a form of payment Campos.**

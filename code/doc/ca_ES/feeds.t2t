@@ -11,12 +11,12 @@ El llistat d'entrades li mostra els últims //posts//  descarregats.
 
 [feeds-listado.png]
 
-- **Codi .:**  Codi numèric que identifica el post.
-- **Feed RSS:**  Enllaç a la Web del publicador de l'RSS.
-- **Post RSS:**  Enllaç al post a la web.
-- **Títol:**  Títol del post.
-- **Data publicació:**  Dia i hora de publicació.
-- **Estat:**  Estat en què es troba el post el color de fons identifica cada estat:
+- **Codi.:** Codi numèric que identifica el post.
+- **Feed RSS:** Enllaç a la Web del publicador de l'RSS.
+- **Post RSS:** Enllaç al post a la web.
+- **Títol:** Títol del post.
+- **Data publicació:** Dia i hora de publicació.
+- **Estat:** Estat en què es troba el post el color de fons identifica cada estat:
   - //Nou//: verd.
   - //Llegit//: transparent.
   - //Modificat//: transparent.
@@ -30,25 +30,25 @@ El llistat d'entrades li mostra els últims //posts//  descarregats.
 
 Sobre cada registre podrà realitzar una sèrie d'accions que estan representades pels següents icones:
 
-- [fa-search] [fa-pencil] [fa-trash]: Consultar / Edita / Suprimeix (*) registre.
-- [fa-file-pdf-o]: Descarregar PDF amb les dades del registre. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
-- [fa-desktop]: Mostra dades a través del Visor-PDF.
-- [fa-share]: Compartir feed via correu.
-- [fa-tag]: Marca feed com a pendent.
-- [fa-tag]: Marca feed com interessant.
-- [fa-star]: Afegir feed a favorits.
+- [fa-search] [fa-pencil] [fa-trash] Consultar / Edita / Suprimeix (*) registre.
+- [fa-file-pdf-o] Descarregar PDF amb les dades del registre. [+ info sobre PDF http://es.wikipedia.org/wiki/PDF]
+- [fa-desktop] Mostra dades a través del Visor-PDF.
+- [fa-share] Compartir feed via correu.
+- [fa-tag] Marca feed com a pendent.
+- [fa-tag] Marca feed com interessant.
+- [fa-star] Afegir feed a favorits.
 
 
 Sobre el llistat a més de l'opció normal de cerca, trobareu les següents funcions:
 
 - Selector de canal RSS: li permet filtrar ràpidament al canal RSS.
-- [fa-download]: Amb aquest botó força a que es verifiqui si hi ha post nous que descarregar de totes les subscripcions RSS (Segons la quantitat de RSS subscrit aquesta acció pot trigar).
+- [fa-download] Amb aquest botó força a que es verifiqui si hi ha post nous que descarregar de totes les subscripcions RSS (Segons la quantitat de RSS subscrit aquesta acció pot trigar).
 - Selector de **accions per múltiples feeds**:
  - //Opcions//: Descàrrega i visualització en format PDF.
  - //Marca com//: Llegits, No llegits, Pendents, No pendents, Interessants, No interessants.
  - //Filtrar per estat//: Tots, llegits, Pendents, Interessants.
  - //Filtrar per data publicació//: Tots, Avui, Ahir, Setmana, Mes.
-- [fa-trash]  Esborrar els Feeds RSS seleccionats (*).
+- [fa-trash] Esborrar els Feeds RSS seleccionats (*).
 
 
 **(*)**  Més informació sobre la configuració d'esborrat de feeds a la [configuración general http://viewpdf/page=maincfg]
