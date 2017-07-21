@@ -38,6 +38,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>custom.blue.dark</value>
 		</row>
 		<row>
+			<label>Custom UPC Light</label>
+			<value>custom.upc.light</value>
+		</row>
+		<row>
+			<label>Custom UPC Dark</label>
+			<value>custom.upc.dark</value>
+		</row>
+		<row>
 			<label>Custom Facebook Light</label>
 			<value>custom.facebook.light</value>
 		</row>

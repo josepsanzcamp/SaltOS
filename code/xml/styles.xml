@@ -33,6 +33,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color>#2780e3</color>
 	</style>
 	<style>
+		<name>custom.upc.light</name>
+		<color>#007bc0</color>
+	</style>
+	<style>
+		<name>custom.upc.dark</name>
+		<color>#007bc0</color>
+	</style>
+	<style>
 		<name>custom.facebook.light</name>
 		<color>#3b5998</color>
 	</style>

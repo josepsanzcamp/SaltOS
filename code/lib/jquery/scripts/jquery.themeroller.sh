@@ -1,6 +1,7 @@
 #!/bin/bash
 
 rm -rf jquery-ui.custom.blue.light
+rm -rf jquery-ui.custom.upc.light
 rm -rf jquery-ui.custom.facebook.light
 rm -rf jquery-ui.custom.gray.light
 rm -rf jquery-ui.custom.green.light
@@ -11,6 +12,7 @@ rm -rf jquery-ui.custom.orange.light
 rm -rf jquery-ui.custom.brown.light
 
 php scripts/jquery-ui.themeroller.php blue light 0054b0 2780e3
+php scripts/jquery-ui.themeroller.php upc light 333333 007BC0
 php scripts/jquery-ui.themeroller.php facebook light 003069 3b5998
 php scripts/jquery-ui.themeroller.php gray light 29434e 546e7a
 php scripts/jquery-ui.themeroller.php green light 00701a 43a047
@@ -21,6 +23,7 @@ php scripts/jquery-ui.themeroller.php orange light c25e00 fb8c00
 php scripts/jquery-ui.themeroller.php brown light 40241a 6d4c41
 
 rm -rf jquery-ui.custom.blue.dark
+rm -rf jquery-ui.custom.upc.dark
 rm -rf jquery-ui.custom.facebook.dark
 rm -rf jquery-ui.custom.gray.dark
 rm -rf jquery-ui.custom.green.dark
@@ -31,6 +34,7 @@ rm -rf jquery-ui.custom.orange.dark
 rm -rf jquery-ui.custom.brown.dark
 
 php scripts/jquery-ui.themeroller.php blue dark 07192d 2780e3
+php scripts/jquery-ui.themeroller.php upc dark 333333 007BC0
 php scripts/jquery-ui.themeroller.php facebook dark 0b111e 3b5998
 php scripts/jquery-ui.themeroller.php gray dark 101618 546e7a
 php scripts/jquery-ui.themeroller.php green dark 0d200e 43a047
@@ -41,6 +45,7 @@ php scripts/jquery-ui.themeroller.php orange dark 321c00 fb8c00
 php scripts/jquery-ui.themeroller.php brown dark 150f0d 6d4c41
 
 rm -rf jquery.mobile.custom.blue.light
+rm -rf jquery.mobile.custom.upc.light
 rm -rf jquery.mobile.custom.facebook.light
 rm -rf jquery.mobile.custom.gray.light
 rm -rf jquery.mobile.custom.green.light
@@ -51,6 +56,7 @@ rm -rf jquery.mobile.custom.orange.light
 rm -rf jquery.mobile.custom.brown.light
 
 php scripts/jquery.mobile.themeroller.php blue light 0054b0 2780e3
+php scripts/jquery.mobile.themeroller.php upc light 007BC0 007BC0
 php scripts/jquery.mobile.themeroller.php facebook light 003069 3b5998
 php scripts/jquery.mobile.themeroller.php gray light 29434e 546e7a
 php scripts/jquery.mobile.themeroller.php green light 00701a 43a047
@@ -61,6 +67,7 @@ php scripts/jquery.mobile.themeroller.php orange light c25e00 fb8c00
 php scripts/jquery.mobile.themeroller.php brown light 40241a 6d4c41
 
 rm -rf jquery.mobile.custom.blue.dark
+rm -rf jquery.mobile.custom.upc.dark
 rm -rf jquery.mobile.custom.facebook.dark
 rm -rf jquery.mobile.custom.gray.dark
 rm -rf jquery.mobile.custom.green.dark
@@ -71,6 +78,7 @@ rm -rf jquery.mobile.custom.orange.dark
 rm -rf jquery.mobile.custom.brown.dark
 
 php scripts/jquery.mobile.themeroller.php blue dark 2780e3 2780e3
+php scripts/jquery.mobile.themeroller.php upc dark 007BC0 007BC0
 php scripts/jquery.mobile.themeroller.php facebook dark 3b5998 3b5998
 php scripts/jquery.mobile.themeroller.php gray dark 546e7a 546e7a
 php scripts/jquery.mobile.themeroller.php green dark 43a047 43a047
