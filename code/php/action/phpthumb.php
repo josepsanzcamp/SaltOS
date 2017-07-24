@@ -57,7 +57,7 @@ if(getParam("action")=="phpthumb") {
 	// FOR DEBUG PURPOSES
 	//~ if(file_exists($cache)) unlink($cache);
 	// CREATE IF NOT EXISTS
-	if(!file_exists($cache)) {
+	if(!cache_exists($cache,$src)) {
 		// LOAD IMAGE
 		switch($format_input) {
 			case "png": $im=imagecreatefrompng($src); break;
