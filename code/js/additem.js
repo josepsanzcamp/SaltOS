@@ -29,17 +29,18 @@ if(typeof(__additem__)=="undefined" && typeof(parent.__additem__)=="undefined") 
 
 	function additem(obj) {
 		var padre=$(obj).parent();
+		var padre2=$(padre).parent();
 		var maxiter=100;
-		while(maxiter>0 && !$("table.tabla",padre).length) {
+		while(maxiter>0 && !$("table.tabla",padre2).length) {
 			padre=$(padre).parent();
+			padre2=$(padre).parent();
 			maxiter--;
 		}
-		var table=$("table.tabla",padre);
-		var limit=$("tr",table).has("input[type=hidden]").length;
-		var num=$("tr:visible",table).has("input[type=hidden]").length;
+		var limit=$("tr",padre).has("input[type=hidden]").length;
+		var num=$("tr:visible",padre).has("input[type=hidden]").length;
 		if(num<limit) {
 			var count=0;
-			$("tr",table).has("input[type=hidden]").each(function() {
+			$("tr",padre).has("input[type=hidden]").each(function() {
 				if(num==count) $(this).removeClass("none");
 				count++;
 			});
@@ -51,9 +52,11 @@ if(typeof(__additem__)=="undefined" && typeof(parent.__additem__)=="undefined") 
 	function init_additem() {
 		$(".init_additem").each(function() {
 			var padre=$(this).parent();
+			var padre2=$(padre).parent();
 			var maxiter=100;
-			while(maxiter>0 && !$("table.tabla",padre).length) {
+			while(maxiter>0 && !$("table.tabla",padre2).length) {
 				padre=$(padre).parent();
+				padre2=$(padre).parent();
 				maxiter--;
 			}
 			var temp=$("input[type=hidden][name$=id]",padre);
