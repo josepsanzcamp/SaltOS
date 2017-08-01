@@ -623,8 +623,13 @@ img[isplot=true] {
 /* FOR SELECT MENU */
 .ui-selectmenu-button.ui-button {
 	margin:1px;
-	padding:2px 0 0 10px;
+	padding:3px 0 3px 5px;
 	vertical-align:-1px;
+}
+
+.ui-selectmenu-button.ui-button .ui-icon {
+	margin-top:-.25em;
+	height:13px;
 }
 
 .ui-selectmenu-button.ui-button.ui-state-disabled {

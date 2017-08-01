@@ -85,8 +85,9 @@ function current_time($offset=0) {
 }
 
 function current_decimals($offset=0) {
-	$decimals=explode(".",microtime(true)+$offset);
-	return substr((isset($decimals[1])?$decimals[1]:"")."0000",0,4);
+	$decimals=microtime(true)+$offset;
+	$decimals-=intval($decimals);
+	return substr($decimals,2,4);
 }
 
 function current_datetime_decimals($offset=0) {
