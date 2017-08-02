@@ -622,14 +622,14 @@ img[isplot=true] {
 
 /* FOR SELECT MENU */
 .ui-selectmenu-button.ui-button {
-	margin:1px;
 	padding:3px 0 3px 5px;
-	vertical-align:-1px;
+	margin:1px;
 }
 
 .ui-selectmenu-button.ui-button .ui-icon {
-	margin-top:-.25em;
-	height:13px;
+	position:absolute; /* FIX FOR BUTTON SIZE */
+	top:1px; /* FIX FOR BUTTON SIZE */
+	right:1px; /* FIX FOR BUTTON SIZE */
 }
 
 .ui-selectmenu-button.ui-button.ui-state-disabled {
