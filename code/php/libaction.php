@@ -92,7 +92,7 @@ function __excel_dump($query,$page) {
 	for($i=0;$i<db_num_fields($result);$i++) $matrix[0][]=db_field_name($result,$i);
 	while($row=db_fetch_row($result)) $matrix[]=array_values($row);
 	db_free($result);
-	set_include_path("lib/phpexcel:".get_include_path());
+	set_include_path("lib/phpexcel".PATH_SEPARATOR.get_include_path());
 	require_once("PHPExcel.php");
 	$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
 	$cacheSettings=array("memoryCacheSize"=>"8MB");

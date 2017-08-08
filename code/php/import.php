@@ -174,7 +174,7 @@ function __import_csv2array($file,$sep) {
 }
 
 function __import_xls2array($file,$sheet) {
-	set_include_path("lib/phpexcel:".get_include_path());
+	set_include_path("lib/phpexcel".PATH_SEPARATOR.get_include_path());
 	require_once("PHPExcel.php");
 	$objReader=PHPExcel_IOFactory::createReaderForFile($file);
 	//~ $objReader->setReadDataOnly(true);
