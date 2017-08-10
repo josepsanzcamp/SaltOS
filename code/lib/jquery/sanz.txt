@@ -1,0 +1,15 @@
+Fixed a bug in jquery-ui:
+
+I have replaced:
+
+	this._adjustInstDate( inst, offset +
+		( period === "M" ? this._get( inst, "showCurrentAtPos" ) : 0 ), // undo positioning
+		period );
+
+By the follow simplified code:
+
+	this._adjustInstDate( inst, offset, period );
+
+This change fix the bug when displays more that 1 month at the same time and the showCurrentAtPos is different of 0
+
+And then, minified!!!.
