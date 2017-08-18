@@ -86,8 +86,13 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 		$valids=array("to:","cc:","bcc:","crt:","priority:","sensitivity:","replyto:");
 		foreach($to as $addr) {
 			$type=$valids[0];
-			foreach($valids as $valid) if(strncasecmp($addr,$valid,strlen($valid))==0) $type=$valid;
-			$addr=substr($addr,strlen($type));
+			foreach($valids as $valid) {
+				if(strncasecmp($addr,$valid,strlen($valid))==0) {
+					$type=$valid;
+					$addr=substr($addr,strlen($type));
+					break;
+				}
+			}
 			// EXTRA FOR POPULATE $bcc
 			if($type==$valids[2]) $bcc[]=$addr;
 			// CONTINUE
