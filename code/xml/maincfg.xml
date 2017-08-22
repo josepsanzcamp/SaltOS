@@ -1233,91 +1233,83 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</form>
 	<update>
 		<!-- general section -->
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("application_title")?preeval_update_config("application_title"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_list_size")?preeval_update_config("plot_list_size"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="1"?setParam("plot_list_width","350"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="2"?setParam("plot_list_width","475"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="3"?setParam("plot_list_width","600"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_list_width")?preeval_update_config("plot_list_width"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="1"?setParam("plot_list_height","200"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="2"?setParam("plot_list_height","300"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_list_size")=="3"?setParam("plot_list_height","400"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_list_height")?preeval_update_config("plot_list_height"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_form_size")?preeval_update_config("plot_form_size"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="1"?setParam("plot_form_width","350"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="2"?setParam("plot_form_width","475"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="3"?setParam("plot_form_width","600"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_form_width")?preeval_update_config("plot_form_width"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="1"?setParam("plot_form_height","200"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="2"?setParam("plot_form_height","300"):""</query>
-		<query match="general" prefix="true" eval="true">getParam("plot_form_size")=="3"?setParam("plot_form_height","400"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("plot_form_height")?preeval_update_config("plot_form_height"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("agenda_interval")?preeval_update_config("agenda_interval"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("inbox_interval")?preeval_update_config("inbox_interval"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("outbox_interval")?preeval_update_config("outbox_interval"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("feeds_interval")?preeval_update_config("feeds_interval"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("feeds_timeout")?preeval_update_config("feeds_timeout"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("session_interval")?preeval_update_config("session_interval"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("session_warning")?preeval_update_config("session_warning"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("indexing_interval")?preeval_update_config("indexing_interval"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("integrity_interval")?preeval_update_config("integrity_interval"):""</query>
-		<query match="general" prefix="true" preeval="true" eval="true">getParam("purge_interval")?preeval_update_config("purge_interval"):""</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("application_title")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_list_size")</query>
+		<query match="general" prefix="true" eval="true">setParam("plot_list_width",implode(array_slice(array("","350","475","600"),getParam("plot_list_size"),1)))</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_list_width")</query>
+		<query match="general" prefix="true" eval="true">setParam("plot_list_height",implode(array_slice(array("","200","300","400"),getParam("plot_list_size"),1)))</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_list_height")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_form_size")</query>
+		<query match="general" prefix="true" eval="true">setParam("plot_form_width",implode(array_slice(array("","350","475","600"),getParam("plot_form_size"),1)))</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_form_width")</query>
+		<query match="general" prefix="true" eval="true">setParam("plot_form_height",implode(array_slice(array("","200","300","400"),getParam("plot_form_size"),1)))</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_form_height")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("agenda_interval")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("inbox_interval")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("outbox_interval")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("feeds_interval")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("feeds_timeout")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("session_interval")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("session_warning")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("indexing_interval")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("integrity_interval")</query>
+		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("purge_interval")</query>
 		<!-- water section -->
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_text")?preeval_update_config("water_actas_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_posx")?preeval_update_config("water_actas_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_posy")?preeval_update_config("water_actas_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_size")?preeval_update_config("water_actas_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_actas_angle")?preeval_update_config("water_actas_angle"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_text")?preeval_update_config("water_partes_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_posx")?preeval_update_config("water_partes_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_posy")?preeval_update_config("water_partes_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_size")?preeval_update_config("water_partes_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_partes_angle")?preeval_update_config("water_partes_angle"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_text")?preeval_update_config("water_facturas_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_posx")?preeval_update_config("water_facturas_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_posy")?preeval_update_config("water_facturas_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_size")?preeval_update_config("water_facturas_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_facturas_angle")?preeval_update_config("water_facturas_angle"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_text")?preeval_update_config("water_albaranes_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_posx")?preeval_update_config("water_albaranes_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_posy")?preeval_update_config("water_albaranes_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_size")?preeval_update_config("water_albaranes_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_albaranes_angle")?preeval_update_config("water_albaranes_angle"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_text")?preeval_update_config("water_presupuestos_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_posx")?preeval_update_config("water_presupuestos_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_posy")?preeval_update_config("water_presupuestos_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_size")?preeval_update_config("water_presupuestos_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_presupuestos_angle")?preeval_update_config("water_presupuestos_angle"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_text")?preeval_update_config("water_clientes_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_posx")?preeval_update_config("water_clientes_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_posy")?preeval_update_config("water_clientes_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_size")?preeval_update_config("water_clientes_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_clientes_angle")?preeval_update_config("water_clientes_angle"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_text")?preeval_update_config("water_proyectos_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_posx")?preeval_update_config("water_proyectos_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_posy")?preeval_update_config("water_proyectos_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_size")?preeval_update_config("water_proyectos_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_proyectos_angle")?preeval_update_config("water_proyectos_angle"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_text")?preeval_update_config("water_posiblescli_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_posx")?preeval_update_config("water_posiblescli_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_posy")?preeval_update_config("water_posiblescli_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_size")?preeval_update_config("water_posiblescli_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_posiblescli_angle")?preeval_update_config("water_posiblescli_angle"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_text")?preeval_update_config("water_correo_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_posx")?preeval_update_config("water_correo_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_posy")?preeval_update_config("water_correo_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_size")?preeval_update_config("water_correo_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_correo_angle")?preeval_update_config("water_correo_angle"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_text")?preeval_update_config("water_feeds_text"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_posx")?preeval_update_config("water_feeds_posx"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_posy")?preeval_update_config("water_feeds_posy"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_size")?preeval_update_config("water_feeds_size"):""</query>
-		<query match="water" prefix="true" preeval="true" eval="true">getParam("water_feeds_angle")?preeval_update_config("water_feeds_angle"):""</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_actas_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_actas_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_actas_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_actas_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_actas_angle")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_partes_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_partes_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_partes_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_partes_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_partes_angle")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_facturas_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_facturas_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_facturas_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_facturas_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_facturas_angle")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_albaranes_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_albaranes_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_albaranes_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_albaranes_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_albaranes_angle")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_presupuestos_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_presupuestos_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_presupuestos_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_presupuestos_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_presupuestos_angle")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_clientes_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_clientes_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_clientes_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_clientes_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_clientes_angle")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_proyectos_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_proyectos_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_proyectos_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_proyectos_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_proyectos_angle")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_posiblescli_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_posiblescli_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_posiblescli_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_posiblescli_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_posiblescli_angle")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_correo_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_correo_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_correo_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_correo_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_correo_angle")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_feeds_text")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_feeds_posx")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_feeds_posy")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_feeds_size")</query>
+		<query match="water" prefix="true" preeval="true" eval="true">preeval_update_config("water_feeds_angle")</query>
 		<!-- logo section -->
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_left")!=""?preeval_update_config("logo_left"):""</query>
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_top")!=""?preeval_update_config("logo_top"):""</query>
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_width")!=""?preeval_update_config("logo_width"):""</query>
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("logo_height")!=""?preeval_update_config("logo_height"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">preeval_update_config("logo_left")</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">preeval_update_config("logo_top")</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">preeval_update_config("logo_width")</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">preeval_update_config("logo_height")</query>
 		<query match="logo" prefix="true" eval="true">getParam("logo_file_new")?make_select_query("tbl_configuracion",array(
 			"valor"=>"action_delete"
 		),make_where_query(array(
@@ -1329,45 +1321,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		),make_where_query(array(
 			"clave"=>"logo_file"
 		))):""</query>
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_line")?preeval_update_config("color_line"):""</query>
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_text1")?preeval_update_config("color_text1"):""</query>
-		<query match="logo" prefix="true" preeval="true" eval="true">getParam("color_text2")?preeval_update_config("color_text2"):""</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">preeval_update_config("color_line")</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">preeval_update_config("color_text1")</query>
+		<query match="logo" prefix="true" preeval="true" eval="true">preeval_update_config("color_text2")</query>
 		<!-- correo section -->
-		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_host")?preeval_update_config("email_host"):""</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_host")</query>
 		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_port")</query>
 		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_extra")</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_user")?preeval_update_config("email_user"):""</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_pass")?preeval_update_config("email_pass"):""</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_name")?preeval_update_config("email_name"):""</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_from")?preeval_update_config("email_from"):""</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_user")</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_pass")</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_name")</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_from")</query>
 		<query match="correo" prefix="true" preeval="true" eval="true">setParam("email_async",intval(getParam("email_async")))</query>
 		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_async")</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">getParam("email_support")?preeval_update_config("email_support"):""</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_support")</query>
 		<!-- accounting section -->
-		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_currency")?preeval_update_config("accounting_currency"):""</query>
-		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_iva_name")?preeval_update_config("accounting_iva_name"):""</query>
-		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_iva_value")?preeval_update_config("accounting_iva_value"):""</query>
-		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_irpf_name")?preeval_update_config("accounting_irpf_name"):""</query>
-		<query match="accounting" prefix="true" preeval="true" eval="true">getParam("accounting_irpf_value")?preeval_update_config("accounting_irpf_value"):""</query>
+		<query match="accounting" prefix="true" preeval="true" eval="true">preeval_update_config("accounting_currency")</query>
+		<query match="accounting" prefix="true" preeval="true" eval="true">preeval_update_config("accounting_iva_name")</query>
+		<query match="accounting" prefix="true" preeval="true" eval="true">preeval_update_config("accounting_iva_value")</query>
+		<query match="accounting" prefix="true" preeval="true" eval="true">preeval_update_config("accounting_irpf_name")</query>
+		<query match="accounting" prefix="true" preeval="true" eval="true">preeval_update_config("accounting_irpf_value")</query>
 		<!-- bussines config section -->
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_objetivos_presupuesto")?preeval_update_config("tab_objetivos_presupuesto"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_funcional_presupuesto")?preeval_update_config("tab_funcional_presupuesto"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_tecnica_presupuesto")?preeval_update_config("tab_tecnica_presupuesto"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_info_adicional_presupuesto")?preeval_update_config("tab_info_adicional_presupuesto"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_tareas_presupuesto")?preeval_update_config("tab_tareas_presupuesto"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_productos_presupuesto")?preeval_update_config("tab_productos_presupuesto"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("tab_condiciones_presupuesto")?preeval_update_config("tab_condiciones_presupuesto"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_estado_presupuestos")?preeval_update_config("df_estado_presupuestos"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_estado_agenda")?preeval_update_config("df_estado_agenda"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_tipo_evento_agenda")?preeval_update_config("df_tipo_evento_agenda"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_estado_incidencias")?preeval_update_config("df_estado_incidencias"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_prioridad_incidencias")?preeval_update_config("df_prioridad_incidencias"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_cuenta_facturas")?preeval_update_config("df_cuenta_facturas"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_formaspago_facturas")?preeval_update_config("df_formaspago_facturas"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_epigfrafes_facturas")?preeval_update_config("df_epigfrafes_facturas"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_cuenta_gastos")?preeval_update_config("df_cuenta_gastos"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_formaspago_gastos")?preeval_update_config("df_formaspago_gastos"):""</query>
-		<query match="applications_config" prefix="true" preeval="true" eval="true">getParam("df_epigfrafes_gastos")?preeval_update_config("df_epigfrafes_gastos"):""</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("tab_objetivos_presupuesto")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("tab_funcional_presupuesto")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("tab_tecnica_presupuesto")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("tab_info_adicional_presupuesto")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("tab_tareas_presupuesto")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("tab_productos_presupuesto")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("tab_condiciones_presupuesto")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_estado_presupuestos")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_estado_agenda")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_tipo_evento_agenda")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_estado_incidencias")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_prioridad_incidencias")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_cuenta_facturas")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_formaspago_facturas")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_epigfrafes_facturas")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_cuenta_gastos")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_formaspago_gastos")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_epigfrafes_gastos")</query>
 		<!-- return section -->
 		<query match="general" prefix="true" eval="true">"SELECT '-1' action_go FROM tbl_usuarios WHERE id='".current_user()."'"</query>
 	</update>
