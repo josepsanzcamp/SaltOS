@@ -1660,6 +1660,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// CREATE THE CODE MIRROR
 		$("textarea[codemirror=true]",obj).each(function() {
+			$(this).css("overflow","hidden"); // TRICK FOR THE FUCKED GOOGLE CHROME
 			var width=$(this).width();
 			var height=$(this).height();
 			var classes=$(this).attr("class");
@@ -1667,11 +1668,15 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				lineNumbers:true
 			});
 			$(this).data("cm",cm);
-			cm.setSize(width,height);
-			$(this).next().addClass(classes);
-			cm.on("change",function() {
-				cm.save();
-			});
+			var fnresize=function(cm) {
+				var height2=max(height,cm.doc.size*13);
+				if(cm.display.sizerWidth>cm.display.lastWrapWidth) height2+=13;
+				cm.setSize(width+10,height2+6);
+			}
+			fnresize(cm);
+			cm.on("viewportChange",fnresize);
+			$(this).next().addClass(classes).css("margin","1px");
+			cm.on("change",cm.save);
 		});
 		// REQUEST THE PLOTS
 		var attrs=["legend","vars","colors","graph","ticks","posx",
@@ -2232,8 +2237,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_tabs(screen);
 			make_tables(screen);
 			make_extras(screen);
-			make_ckeditors(screen);
 			$("body > *").removeClass("none");
+			make_ckeditors(screen);
 			setTimeout(function() {
 				//~ console.time("document_ready fase 2 center");
 				make_draganddrop(screen);
