@@ -232,8 +232,9 @@ if(getParam("action")=="sendmail") {
 		javascript_headers();
 		die();
 	}
-	require_once("lib/phpmailer/class.phpmailer.php");
-	require_once("lib/phpmailer/class.smtp.php");
+	set_include_path("lib/phpmailer".PATH_SEPARATOR.get_include_path());
+	require_once("src/PHPMailer.php");
+	require_once("src/SMTP.php");
 	require_once("php/getmail.php");
 	$sended=0;
 	$haserror=0;

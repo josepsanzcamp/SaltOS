@@ -1,0 +1,4 @@
+
+Some SaltOS changes:
+- Commented all namespaces to add compatibility with all php servers
+

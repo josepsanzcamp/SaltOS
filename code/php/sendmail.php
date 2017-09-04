@@ -24,8 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function sendmail($id_cuenta,$to,$subject,$body,$files="") {
-	require_once("lib/phpmailer/class.phpmailer.php");
-	require_once("lib/phpmailer/class.smtp.php");
+	set_include_path("lib/phpmailer".PATH_SEPARATOR.get_include_path());
+	require_once("src/PHPMailer.php");
+	require_once("src/SMTP.php");
 	require_once("php/getmail.php");
 	// FIND ACCOUNT DATA
 	if($id_cuenta) {
@@ -47,6 +48,7 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 		$from=CONFIG("email_from");
 		$fromname=CONFIG("email_name");
 	}
+
 	$mail=new PHPMailer();
 	if(!$mail->set("XMailer",get_name_version_revision())) return $mail->ErrorInfo;
 	if(!$mail->AddCustomHeader("X-Originating-IP",getServer("REMOTE_ADDR"))) if($mail->ErrorInfo) return $mail->ErrorInfo;
