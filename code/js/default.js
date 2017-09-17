@@ -1462,8 +1462,15 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// PROGRAM SELECT MENU
 		$("select",obj).each(function() {
 			var width=$(this).css("width");
-			if(substr(width,-2,2)=="px" && intval(width)>0) {
-				width=(intval(width)+12)+"px";
+			// TO FIX SOME GOOGLE CHROME ISSUES
+			var width2=$(this).width();
+			if(substr(width,-2,2)=="px" && intval(width)>0 && intval(width2)>0) {
+				if(intval(width)!=intval(width2)) {
+					width=(intval(width)+12)+"px";
+				} else {
+					// TO FIX SOME GOOGLE CHROME ISSUES
+					width=(intval(width)+5)+"px";
+				}
 			} else {
 				width="auto";
 			}

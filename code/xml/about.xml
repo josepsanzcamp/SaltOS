@@ -296,7 +296,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
 						</field>
 						<field>
-							<label>PHPMailer 6.0.0 (LGPL-2.1)</label>
+							<label>PHPMailer 6.0.1 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
