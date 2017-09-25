@@ -644,7 +644,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$.blockUI.defaults.applyPlatformOpacityRules=false;
 		// ACTIVATE THE BLOCK UI FEATURE
 		$.blockUI({
-			message:"<h1>"+message+"</h1>",
+			message:"<h2>"+message+"</h2>",
 			fadeIn:0,
 			fadeOut:0,
 			overlayCSS:{

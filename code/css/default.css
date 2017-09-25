@@ -24,7 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* GENERAL SETTINGS */
 body {
-	font-size:10px;
 	border:0;
 	padding:0;
 	margin:0;
@@ -481,8 +480,8 @@ span.number {
 	top:0px;
 	left:11px;
 	z-index:100;
-	font-size:9px;
-	line-height:10px;
+	font-size:10px;
+	line-height:12px;
 	color:#ffffff;
 	background-color:#e53935;
 	border-radius:50%;

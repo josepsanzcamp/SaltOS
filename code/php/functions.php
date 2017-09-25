@@ -1045,7 +1045,7 @@ function pretty_html_error($msg) {
 	$favicon=getDefault("info/favicon","img/favicon.png");
 	if(file_exists($favicon) && filesize($favicon)<memory_get_free(true)/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
 	$html.=".phperror h3 { background:url(${favicon}) top left no-repeat; padding-left: 48px; height:32px; font-size:24px; margin:0; }";
-	$html.=".phperror pre { white-space:pre-wrap; font-size:10px; }";
+	$html.=".phperror pre { white-space:pre-wrap; font-size:11px; }";
 	$html.=".phperror form { display:inline; float:right; }";
 	$html.=".phperror a { color:#00c; }";
 	$html.=".phperror form a { margin-left:12px; font-size:12px; }";
