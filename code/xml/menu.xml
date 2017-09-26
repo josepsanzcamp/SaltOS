@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<tip lang="true">menutip</tip>
 			<class>nowrap shortcut_ctrl_m</class>
 		</option>
-		<option>
+		<option ifeval="eval_bool(getDefault('enablecalculator'))">
 			<onclick>calculator()</onclick>
 			<icon>fa fa-calculator</icon>
 			<tip lang="true">calculator</tip>

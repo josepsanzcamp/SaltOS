@@ -89,6 +89,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
 		<nativesoffice>true</nativesoffice>
 		<enablevoice eval="true">!ismobile()</enablevoice>
+		<enablecalculator eval="true">!ismobile()</enablecalculator>
 		<enabletranslator eval="true">!ismobile()</enabletranslator>
 		<enableindexing>true</enableindexing>
 		<enableintegrity>true</enableintegrity>
