@@ -21,7 +21,7 @@ foreach($images as $image) {
 	if(file_exists($source."/images/".$image)) {
 		copy($source."/images/".$image,$dest."/images/".$image);
 	} else {
-		$buffer=file_get_contents("http://download.jqueryui.com/themeroller/images/".$image);
+		$buffer=file_get_contents("http://127.0.0.1:8088/themeroller/images/".$image);
 		file_put_contents($dest."/images/".$image,$buffer);
 	}
 }

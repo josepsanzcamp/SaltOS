@@ -642,7 +642,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential")." ' ELSE '' END,
 				CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
 				)) estado,
-				CASE WHEN state_error!='' THEN 'state_error' WHEN state_spam=1 THEN 'state_spam' WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE '' END action_style
+				CASE WHEN state_error!='' THEN 'state_error' WHEN state_spam=1 THEN 'state_spam' WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' ELSE 'state_nowrap' END action_style
 			FROM tbl_correo a
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id

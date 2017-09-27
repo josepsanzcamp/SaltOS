@@ -42,6 +42,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	background:#e53935;
 }
 
+.estado.state_nowrap {
+	white-space:nowrap;
+}
+
 /* FOR MOBILE DEVICES */
 label a {
 	color:inherit!important;

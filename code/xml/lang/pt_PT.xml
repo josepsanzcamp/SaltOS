@@ -1153,7 +1153,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<statewait>Pendente</statewait>
 		<statespam>SPAM</statespam>
 		<statesent>Enviado</statesent>
-		<statenotsent>Não-enviado</statenotsent>
+		<statenotsent>Não enviado</statenotsent>
 		<stateerror>Erro</stateerror>
 		<stateall>Tudo</stateall>
 		<todaslascuentas>[Todas as contas]</todaslascuentas>
