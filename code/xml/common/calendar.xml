@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<fields ifeval="!ismobile()">
 		<title lang="true">calendar</title>
+		<icon eval="true">ICON("agenda")</icon>
 		<width>100%</width>
 		<row>
 			<field>

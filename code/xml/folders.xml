@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<list>
 		<temp eval="true">setParam("id_folder",lastfolder(getParam("id_folder")))</temp>
 		<title eval="true">($temp=execute_query("SELECT name FROM tbl_folders WHERE id='".intval(getParam("id_folder"))."'"))?$temp:LANG_ESCAPE("notfound")</title>
+		<icon eval="true">ICON("files")</icon>
 		<actions include="xml/common/actions.xml" replace="true" />
 		<actions path="actions" append="true">
 			<view3>
@@ -135,6 +136,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
+				<icon eval="true">ICON("filter")</icon>
 				<buttons>true</buttons>
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />

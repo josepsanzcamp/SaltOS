@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<list>
 		<title lang="true">list</title>
+		<icon eval="true">ICON("list")</icon>
 		<actions include="xml/common/actions.xml" replace="true"/>
 		<width>100%</width>
 		<fields>
@@ -101,6 +102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
+				<icon eval="true">ICON("filter")</icon>
 				<buttons>true</buttons>
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />
@@ -300,6 +302,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/filters.xml" replace="true" />
 			<fields ifeval="!ismobile()">
 				<title lang="true">graficas</title>
+				<icon eval="true">ICON("plots")</icon>
 				<row>
 					<field>
 						<type>plot</type>
@@ -545,6 +548,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 			<default>
 				<fieldset>
 					<title lang="true">defaultdata</title>
+					<icon eval="true">ICON("form")</icon>
 					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
 					<buttons>true</buttons>
 					<row>
@@ -785,6 +789,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 				<fieldset>
 					<width>700px</width>
 					<title lang="true">vencimientos_old</title>
+					<icon eval="true">ICON("form")</icon>
 					<head>
 						<field>
 							<type>label</type>
@@ -889,6 +894,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 				<fieldset>
 					<width>700px</width>
 					<title lang="true">vencimientos_new</title>
+					<icon eval="true">ICON("form")</icon>
 					<head>
 						<field>
 							<type>label</type>

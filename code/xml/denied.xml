@@ -36,6 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<buttons>true</buttons>
 			<width>600px</width>
 			<title lang="true">title</title>
+			<icon eval="true">ICON("error")</icon>
 			<row>
 				<field>
 					<label lang="true">title</label>

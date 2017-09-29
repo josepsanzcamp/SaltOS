@@ -50,6 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset global="files,row" foreach="files" as="row">
 					<buttons>true</buttons>
 					<title global="row" eval="true">basename($row)</title>
+					<icon eval="true">ICON("errorlog")</icon>
 					<row>
 						<field>
 							<label global="row" eval="true">LANG("defaultdata").basename($row)</label>
@@ -77,6 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset global="files" ifeval="!count($files)">
 					<buttons>true</buttons>
 					<title lang="true">formupdate</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<label lang="true">nodata</label>

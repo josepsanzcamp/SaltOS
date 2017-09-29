@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<list>
 		<title lang="true">list</title>
+		<icon eval="true">ICON("list")</icon>
 		<actions include="xml/common/actions.xml" replace="true"/>
 		<width>100%</width>
 		<fields>
@@ -117,6 +118,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
+				<icon eval="true">ICON("filter")</icon>
 				<buttons>true</buttons>
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />
@@ -204,6 +206,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/filters.xml" replace="true" />
 			<fields ifeval="!ismobile()">
 				<title lang="true">graficas</title>
+				<icon eval="true">ICON("plots")</icon>
 				<row>
 					<field>
 						<type>plot</type>
@@ -520,6 +523,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<default>
 				<fieldset>
 					<title lang="true">defaultdata</title>
+					<icon eval="true">ICON("form")</icon>
 					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
 					<row>
 						<field>
@@ -752,6 +756,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<detalle>
 				<fieldset global="id" ifeval="CONFIG('tab_objetivos_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(objetivos) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">objetivos</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<name>id</name>
@@ -786,6 +791,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 				<fieldset global="id" ifeval="CONFIG('tab_funcional_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(funcional) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">funcional</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<name>funcional</name>
@@ -816,6 +822,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 				<fieldset global="id" ifeval="CONFIG('tab_tecnica_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(tecnica) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">tecnica</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<name>tecnica</name>
@@ -846,6 +853,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 				<fieldset global="id" ifeval="CONFIG('tab_info_adicional_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(extras) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id>=0)">
 					<title lang="true">extras</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<name>extras</name>
@@ -878,6 +886,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<tareas_head global="id" ifeval="CONFIG('tab_tareas_presupuesto')&gt;1">
 				<fieldset>
 					<title lang="true">tareaspresupuesto</title>
+					<icon eval="true">ICON("form")</icon>
 					<width>700px</width>
 					<head>
 						<field>
@@ -1139,6 +1148,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<products_head global="id" ifeval="CONFIG('tab_productos_presupuesto')&gt;1">
 				<fieldset>
 					<title lang="true">productospresupuesto</title>
+					<icon eval="true">ICON("form")</icon>
 					<width>700px</width>
 					<head>
 						<field>
@@ -1411,6 +1421,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<condiciones>
 				<fieldset global="id" ifeval="CONFIG('tab_condiciones_presupuesto')&gt;1 &amp;&amp; execute_query('SELECT LENGTH(condiciones) hasdata FROM tbl_presupuestos WHERE id='.abs($id)) || ($id&gt;=0)" >
 					<title lang="true">condiciones</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<name>id</name>

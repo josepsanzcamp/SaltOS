@@ -51,6 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<default>
 				<fieldset>
 					<title lang="true">formupdate</title>
+					<icon eval="true">ICON("home")</icon>
 					<row>
 						<field>
 							<type>separator</type>

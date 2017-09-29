@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<list>
 		<title lang="true">list</title>
+		<icon eval="true">ICON("list")</icon>
 		<actions include="xml/common/actions.xml" replace="true"/>
 		<width>100%</width>
 		<fields>
@@ -68,6 +69,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
+				<icon eval="true">ICON("filter")</icon>
 				<buttons>true</buttons>
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />
@@ -84,9 +86,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
-
 			<fields ifeval="!ismobile()">
 				<title lang="true">previews</title>
+				<icon eval="true">ICON("favoritos")</icon>
 				<row>
 					<field>
 						<type>separator</type>
@@ -94,7 +96,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</field>
 				</row>
 			</fields>
-
 			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<quick>

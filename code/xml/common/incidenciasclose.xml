@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fieldset ifeval="check_user('incidencias','menu')">
 			<width>700px</width>
 			<title lang="true">incidentclose</title>
+			<icon eval="true">ICON("form")</icon>
 			<head>
 				<field>
 					<type>label</type>

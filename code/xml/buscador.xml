@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<list>
 		<title lang="true">list</title>
+		<icon eval="true">ICON("list")</icon>
 		<actions include="xml/common/actions.xml" replace="true" />
 		<actions path="actions" append="true">
 			<view3>
@@ -128,6 +129,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
+				<icon eval="true">ICON("filter")</icon>
 				<buttons>true</buttons>
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />

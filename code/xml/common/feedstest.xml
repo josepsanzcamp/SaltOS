@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<feeds_old>
 		<fieldset>
 			<title lang="true">feeds_old</title>
+			<icon eval="true">ICON("feeds")</icon>
 			<width>700px</width>
 			<buttons>true</buttons>
 			<head>
@@ -82,6 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<feeds_new>
 		<fieldset>
 			<title lang="true">feeds_new</title>
+			<icon eval="true">ICON("feeds")</icon>
 			<row>
 				<field>
 					<type>label</type>

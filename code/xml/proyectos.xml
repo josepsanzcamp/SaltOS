@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<list>
 		<title lang="true">list</title>
+		<icon eval="true">ICON("list")</icon>
 		<actions include="xml/common/actions.xml" replace="true"/>
 		<width>100%</width>
 		<fields>
@@ -147,6 +148,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
+				<icon eval="true">ICON("filter")</icon>
 				<buttons>true</buttons>
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />
@@ -264,6 +266,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields include="xml/common/filters.xml" replace="true" />
 			<fields ifeval="!ismobile()">
 				<title lang="true">graficas</title>
+				<icon eval="true">ICON("plots")</icon>
 				<row>
 					<field>
 						<type>plot</type>
@@ -609,6 +612,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 			<default>
 				<fieldset>
 					<title lang="true">defaultdata</title>
+					<icon eval="true">ICON("form")</icon>
 					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
 					<row>
 						<field>
@@ -790,6 +794,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 			<tareas_head>
 				<fieldset>
 					<title lang="true">tareasproyecto</title>
+					<icon eval="true">ICON("form")</icon>
 					<width>700px</width>
 					<head>
 						<field>
@@ -1167,6 +1172,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 			<products_head>
 				<fieldset>
 					<title lang="true">productosproyecto</title>
+					<icon eval="true">ICON("form")</icon>
 					<width>700px</width>
 					<head>
 						<field>
@@ -1449,6 +1455,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 			<graficas>
 				<fieldset ifeval="!ismobile()">
 					<title lang="true">graficas</title>
+					<icon eval="true">ICON("plots")</icon>
 					<row>
 						<field>
 							<type>plot</type>
@@ -1456,8 +1463,8 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<height eval="true">CONFIG("plot_form_height")."px"</height>
 							<vars>2</vars>
 							<graph>bars</graph>
-							<title lang="true">plotseguimientotareas</title>
 							<legend lang="true">legendseguimientotareas</legend>
+							<title lang="true">plotseguimientotareas</title>
 							<query global="id" eval="true">"SELECT CASE WHEN LENGTH(a.tarea)>10 THEN CONCAT(SUBSTR(a.tarea,1,10),'...') ELSE a.tarea END y0,a.horas y1,(SELECT CASE WHEN SUM(horas) IS NULL THEN 0 ELSE SUM(horas) END sumahoras FROM tbl_seguimientos WHERE id_tarea=a.id) y2 FROM tbl_proyectos_t a WHERE a.id_proyecto='".abs($id)."' ORDER BY a.id"</query>
 						</field>
 						<field>
@@ -1480,6 +1487,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<fieldset ifeval="check_user('seguimientos','menu')">
 					<width>700px</width>
 					<title lang="true">relatedseguimientos</title>
+					<icon eval="true">ICON("form")</icon>
 					<head>
 						<field>
 							<type>label</type>

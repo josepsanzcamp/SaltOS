@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<fieldset>
 		<buttons>true</buttons>
 		<title lang="true">gcalendar</title>
+		<icon eval="true">ICON("agenda")</icon>
 		<width>500px</width>
 		<row>
 			<field>

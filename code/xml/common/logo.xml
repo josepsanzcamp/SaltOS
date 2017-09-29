@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<fieldset>
 		<title lang="true">logo</title>
+		<icon eval="true">ICON("form")</icon>
 		<row>
 			<field>
 				<type>label</type>

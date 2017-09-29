@@ -45,6 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<default>
 				<fieldset>
 					<title lang="true">about</title>
+					<icon eval="true">ICON("about")</icon>
 					<width>100%</width>
 					<class>tabla</class>
 					<row>
@@ -739,6 +740,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 				<fieldset ifeval="!ismobile() &amp;&amp; check_commands(getDefault('commands/unoconv'),60)">
 					<title lang="true">ooformats</title>
+					<icon eval="true">ICON("about")</icon>
 					<row>
 						<field>
 							<label lang="true">ootitle</label>
@@ -769,6 +771,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<temp global="directory,extension,files" eval="true">$files=str_replace(array($directory,$extension),"",$files)</temp>
 				<fieldset ifeval="!ismobile()" global="files,row" foreach="files" as="row">
 					<title global="row" eval="true">LANG("license").$row</title>
+					<icon eval="true">ICON("about")</icon>
 					<row>
 						<field>
 							<label global="row" eval="true">LANG("licensetitle").$row</label>
@@ -795,6 +798,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</fieldset>
 				<fieldset ifeval="!ismobile()">
 					<title lang="true">game</title>
+					<icon eval="true">ICON("about")</icon>
 					<row>
 						<field>
 							<label lang="true">gametitle</label>

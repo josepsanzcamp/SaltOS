@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<fieldset ifeval="!ismobile()">
 		<title lang="true">newattachments</title>
+		<icon eval="true">ICON("files")</icon>
 		<class>tabla</class>
 		<width>700px</width>
 		<head>

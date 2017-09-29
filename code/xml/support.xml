@@ -45,6 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<default>
 				<fieldset>
 					<title lang="true">contact</title>
+					<icon eval="true">ICON("support")</icon>
 					<buttons>true</buttons>
 					<row>
 						<field>

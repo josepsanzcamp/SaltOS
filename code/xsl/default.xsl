@@ -443,7 +443,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:choose>
 		<xsl:when test="count($fields/row)!=0">
 			<xsl:for-each select="$fields[title!='']">
-				<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
+				<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
+					<xsl:if test="icon!=''"><span class="{icon}"></span><xsl:text> </xsl:text></xsl:if>
+					<xsl:value-of select="title"/>
+				</a></li>
 			</xsl:for-each>
 		</xsl:when>
 		<xsl:otherwise>
@@ -458,13 +461,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:when test="count($node2/*[name()=$name2])=0">
 							<xsl:for-each select="$node2/row">
 								<xsl:for-each select="$node1/fieldset[title!='']">
-									<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
+									<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
+										<xsl:if test="icon!=''"><span class="{icon}"></span><xsl:text> </xsl:text></xsl:if>
+										<xsl:value-of select="title"/>
+									</a></li>
 								</xsl:for-each>
 							</xsl:for-each>
 						</xsl:when>
 						<xsl:when test="count($node2/*[name()=$name2])=1">
 							<xsl:for-each select="$node1/fieldset[title!='']">
-								<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
+								<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
+									<xsl:if test="icon!=''"><span class="{icon}"></span><xsl:text> </xsl:text></xsl:if>
+									<xsl:value-of select="title"/>
+								</a></li>
 							</xsl:for-each>
 						</xsl:when>
 					</xsl:choose>
@@ -493,7 +502,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<ul>
 				<xsl:for-each select="/root/list">
 					<xsl:if test="title!=''">
-						<li taborder="{taborder}"><a href="#tab{generate-id(.)}"><xsl:value-of select="title"/></a></li>
+						<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
+							<xsl:if test="icon!=''"><span class="{icon}"></span><xsl:text> </xsl:text></xsl:if>
+							<xsl:value-of select="title"/>
+						</a></li>
 					</xsl:if>
 					<xsl:for-each select="form">
 						<xsl:call-template name="tabs"/>

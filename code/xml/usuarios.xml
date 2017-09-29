@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<list>
 		<title lang="true">list</title>
+		<icon eval="true">ICON("list")</icon>
 		<actions include="xml/common/actions.xml" replace="true"/>
 		<width>100%</width>
 		<fields>
@@ -91,6 +92,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<method>get</method>
 			<fields>
 				<title lang="true">filter</title>
+				<icon eval="true">ICON("filter")</icon>
 				<buttons>true</buttons>
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />
@@ -412,6 +414,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 				<fieldset>
 					<width>600px</width>
 					<title lang="true">personaldata</title>
+					<icon eval="true">ICON("form")</icon>
 					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
 					<row>
 						<field>
@@ -594,6 +597,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 				<fieldset>
 					<width>700px</width>
 					<title lang="true">permdata</title>
+					<icon eval="true">ICON("form")</icon>
 					<head>
 						<field>
 							<type>label</type>
@@ -663,6 +667,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 				<fieldset>
 					<width>700px</width>
 					<title lang="true">groupsdata</title>
+					<icon eval="true">ICON("form")</icon>
 					<head>
 						<field>
 							<type>label</type>
@@ -703,6 +708,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 				<fieldset>
 					<width>700px</width>
 					<title lang="true">appsregsdata</title>
+					<icon eval="true">ICON("form")</icon>
 					<head>
 						<field>
 							<type>label</type>
@@ -772,6 +778,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 			<correo_old>
 				<fieldset>
 					<title lang="true">correo</title>
+					<icon eval="true">ICON("correo")</icon>
 					<row include="xml/common/correo.xml" replace="true"/>
 					<row>
 						<field global="id" ifeval="$id>0">
@@ -787,6 +794,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 			<correo_new>
 				<fieldset>
 					<title lang="true">correonew</title>
+					<icon eval="true">ICON("correo")</icon>
 					<row include="xml/common/correo.xml" replace="true"/>
 				</fieldset>
 			</correo_new>

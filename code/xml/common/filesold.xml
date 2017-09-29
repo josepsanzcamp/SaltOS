@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<fieldset ifeval="!ismobile()">
 		<width>700px</width>
 		<title lang="true">attachments</title>
+		<icon eval="true">ICON("files")</icon>
 		<head>
 			<field>
 				<type>checkbox</type>
@@ -182,6 +183,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</fieldset>
 	<fieldset ifeval="ismobile()">
 		<title lang="true">attachments</title>
+		<icon eval="true">ICON("form")</icon>
 		<row>
 			<field>
 				<name>id</name>

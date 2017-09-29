@@ -65,6 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<default>
 				<fieldset>
 					<title lang="true">general</title>
+					<icon eval="true">ICON("profile")</icon>
 					<row ifeval="!getDefault('forcelang') || !getDefault('forcestyle')">
 						<field>
 							<type>label</type>
@@ -183,6 +184,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset ifeval="!ismobile()">
 					<buttons>true</buttons>
 					<title lang="true">quick</title>
+					<icon eval="true">ICON("files")</icon>
 					<row>
 						<field>
 							<type>label</type>
@@ -218,6 +220,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<folders>
 				<fieldset>
 					<title lang="true">folderstab</title>
+					<icon eval="true">ICON("files")</icon>
 					<width>500px</width>
 					<row>
 						<field>
@@ -324,6 +327,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset>
 					<buttons>true</buttons>
 					<title lang="true">correo</title>
+					<icon eval="true">ICON("correo")</icon>
 					<row>
 						<field>
 							<type>label</type>
@@ -353,6 +357,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset>
 					<buttons>true</buttons>
 					<title lang="true">correonew</title>
+					<icon eval="true">ICON("correo")</icon>
 					<row>
 						<field>
 							<type>label</type>

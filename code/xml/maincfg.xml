@@ -69,6 +69,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<general>
 				<fieldset>
 					<title lang="true">general</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<type>label</type>
@@ -278,6 +279,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset>
 					<buttons>true</buttons>
 					<title lang="true">water</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<type>label</type>
@@ -628,6 +630,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<buttons>true</buttons>
 					<width>450px</width>
 					<title lang="true">correo</title>
+					<icon eval="true">ICON("correo")</icon>
 					<row>
 						<field>
 							<type>label</type>
@@ -768,6 +771,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<buttons>true</buttons>
 					<width>450px</width>
 					<title lang="true">accounting</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<type>label</type>
@@ -828,6 +832,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset>
 					<width>450px</width>
 					<title lang="true">applications_config</title>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<type>label</type>
