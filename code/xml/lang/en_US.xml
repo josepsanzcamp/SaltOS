@@ -531,8 +531,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_buscador>Search</quick_buscador>
 		<quick_errorlog>Errors</quick_errorlog>
 		<translator>Translator</translator>
+		<translatortip>To do text's translations</translatortip>
 		<corrector>Spell checker</corrector>
+		<correctortip>To do text's corrections</correctortip>
 		<calculator>Calculator</calculator>
+		<calculatortip>To do mathematical calculations</calculatortip>
 		<menu>Menu</menu>
 		<menutip>To show and hide the application menu</menutip>
 	</menu>
@@ -1146,7 +1149,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnospam>You have been marked as SPAM: </msgnumnospam>
 		<msgnumdelete>Have been deleted: </msgnumdelete>
 		<statenew>New</statenew>
-		<actionnwew>New</actionnwew>
+		<actionnew>New</actionnew>
 		<stateread>Read</stateread>
 		<statereply>Answered</statereply>
 		<stateforward>Forward</stateforward>
@@ -1430,7 +1433,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fulldata>Zoom in on post</fulldata>
 		<actionwait>Pending</actionwait>
 		<statenew>New</statenew>
-		<actionnwew>New</actionnwew>
+		<actionnew>New</actionnew>
 		<statemodified>Last</statemodified>
 		<statewait>Pending</statewait>
 		<stateread>Read</stateread>

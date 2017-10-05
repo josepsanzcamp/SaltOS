@@ -1264,12 +1264,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabs ul",obj).removeClass("ui-corner-all").addClass("ui-corner-top");
 		// TUNNING THE HELP TAB
 		var help=$(".tabs ul li.help",obj);
-		if(saltos_islogin()) {
-			$("span",help).removeClass("saltos-icon saltos-icon-none").addClass(icon_help());
-			$("a",help).append("&nbsp;").append(lang_help());
-		} else {
-			$(help).remove();
-		}
+		$("span",help).removeClass("saltos-icon saltos-icon-none").addClass(icon_help());
+		$("a",help).append("&nbsp;").append(lang_help());
 		//~ console.timeEnd("make_tabs");
 	}
 
@@ -1517,7 +1513,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			revert:"invalid",
 			delay:500,
 			helper:function(event) {
-				var row=$("<div class='nowrap'></div>");
+				var row=$("<div class='ui-widget nowrap'></div>");
 				var text=[];
 				var padre=$(this).parent().parent();
 				$("td",padre).each(function() {
@@ -2032,7 +2028,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if(!onclick) onclick=$("a",this).attr("onclick");
 				var extra1=$("span",this).attr("class");
 				extra1=str_replace("ui-state-disabled","",extra1);
-				var texto=$(this).text();
+				var texto=trim($(this).text());
 				if(!texto) texto=$(this).attr("labeled");
 				if(!texto) texto=$(this).attr("title");
 				if(!texto) texto=$("a",this).attr("labeled");

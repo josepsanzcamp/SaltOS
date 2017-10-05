@@ -531,8 +531,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_buscador>Cercador</quick_buscador>
 		<quick_errorlog>Errors</quick_errorlog>
 		<translator>Traductor</translator>
+		<translatortip>Per fer traduccions de textos</translatortip>
 		<corrector>Corrector</corrector>
+		<correctortip>Per fer correccions de textos</correctortip>
 		<calculator>Calculadora</calculator>
+		<calculatortip>Per fer càlculs matemàtics</calculatortip>
 		<menu>Menú</menu>
 		<menutip>Per veure i amagar el menú d'aplicacions</menutip>
 	</menu>

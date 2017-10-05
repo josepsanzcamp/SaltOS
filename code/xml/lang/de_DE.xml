@@ -531,8 +531,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_buscador>Suche</quick_buscador>
 		<quick_errorlog>Fehlerprot.</quick_errorlog>
 		<translator>Übersetzer</translator>
+		<translatortip translated="false">To do text's translations</translatortip>
 		<corrector>Rechtschreibprüfung</corrector>
+		<correctortip translated="false">To do text's corrections</correctortip>
 		<calculator>Rechner</calculator>
+		<calculatortip translated="false">To do mathematical calculations</calculatortip>
 		<menu>Menü</menu>
 		<menutip>Hier klicken um das Menü ein- bzw. auszublenden</menutip>
 	</menu>
@@ -1146,7 +1149,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnospam>Wurden als SPAM markiert: </msgnumnospam>
 		<msgnumdelete>Wurden gelöscht: </msgnumdelete>
 		<statenew>Neu</statenew>
-		<actionnwew>Neu</actionnwew>
+		<actionnew>Neu</actionnew>
 		<stateread>Gelesen</stateread>
 		<statereply>Beantwortet</statereply>
 		<stateforward>Weitergeleitet</stateforward>
@@ -1430,7 +1433,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fulldata>Zeige Details</fulldata>
 		<actionwait>ausstehend</actionwait>
 		<statenew>Neu</statenew>
-		<actionnwew>Neu</actionnwew>
+		<actionnew>Neu</actionnew>
 		<statemodified>Geändert</statemodified>
 		<statewait>Ausstehend</statewait>
 		<stateread>Gelesen</stateread>

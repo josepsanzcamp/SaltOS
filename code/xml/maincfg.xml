@@ -65,6 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value>update</value>
 			</field>
 		</node>
+		<help>true</help>
 		<fields>
 			<general>
 				<fieldset>

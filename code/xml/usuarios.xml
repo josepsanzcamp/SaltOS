@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<list>
 		<title lang="true">list</title>
 		<icon eval="true">ICON("list")</icon>
+		<help>true</help>
 		<actions include="xml/common/actions.xml" replace="true"/>
 		<width>100%</width>
 		<fields>
@@ -409,6 +410,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<action></action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
+		<help>true</help>
 		<fields>
 			<default>
 				<fieldset>

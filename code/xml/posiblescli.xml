@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<list>
 		<title lang="true">list</title>
 		<icon eval="true">ICON("list")</icon>
+		<help>true</help>
 		<actions include="xml/common/actions.xml" replace="true"/>
 		<width>100%</width>
 		<fields>
@@ -336,6 +337,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value></value>
 			</field>
 		</hiddens>
+		<help>true</help>
 		<fields>
 			<default>
 				<fieldset>

@@ -531,8 +531,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_buscador>Pesquisador</quick_buscador>
 		<quick_errorlog revised="false">Erros</quick_errorlog>
 		<translator revised="false">Tradutor</translator>
+		<translatortip translated="false">To do text's translations</translatortip>
 		<corrector revised="false">Corretor ortográfico</corrector>
+		<correctortip translated="false">To do text's corrections</correctortip>
 		<calculator revised="false">Calculadora</calculator>
+		<calculatortip translated="false">To do mathematical calculations</calculatortip>
 		<menu revised="false">Menu</menu>
 		<menutip revised="false">Para mostrar e ocultar o menu do aplicativo</menutip>
 	</menu>
@@ -1146,7 +1149,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnospam>Marcados como não Lixo - SPAM: </msgnumnospam>
 		<msgnumdelete>Apagados: </msgnumdelete>
 		<statenew>Novo</statenew>
-		<actionnwew>Novo</actionnwew>
+		<actionnew>Novo</actionnew>
 		<stateread>Lido</stateread>
 		<statereply>Respondido</statereply>
 		<stateforward>Reenviado</stateforward>
@@ -1430,7 +1433,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fulldata>Zoom do post</fulldata>
 		<actionwait>Pendente</actionwait>
 		<statenew>Novo</statenew>
-		<actionnwew>Novo</actionnwew>
+		<actionnew>Novo</actionnew>
 		<statemodified>Modificado</statemodified>
 		<statewait>Pendente</statewait>
 		<stateread>Lido</stateread>

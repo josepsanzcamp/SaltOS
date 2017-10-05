@@ -23,9 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
 <xsl:output method="html" encoding="UTF-8" indent="no" doctype-system="about:legacy-compat"/>
 
 <xsl:template name="head">
@@ -48,21 +46,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<ul>
 				<xsl:for-each select="menu/header/option">
 					<li taborder="{taborder}" class="{class2}"><a href="javascript:void(0)" onclick="{onclick}" title="{tip}" class="{class}">
-						<xsl:if test="icon!=''">
-							<span class="{icon}"></span>
-							<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
-						</xsl:if>
+						<span class="{icon}"></span>
+						<xsl:text> </xsl:text>
 						<xsl:value-of select="label"/>
 					</a></li>
 				</xsl:for-each>
-				<li class="texto"><a href="javascript:void(0)" onclick="opencontent('?page=about')"><xsl:call-template name="title_2"/></a></li>
+				<li class="texto"><a href="javascript:void(0)" onclick="opencontent('?page=about')">
+					<span class="{info/icon}"></span>
+					<xsl:text> </xsl:text>
+					<xsl:call-template name="title_2"/>
+				</a></li>
 			</ul>
 		</div>
 	</xsl:for-each>
 </xsl:template>
 
 <xsl:template name="title_2">
-	<xsl:value-of select="list/title"/><xsl:value-of select="form/title"/><xsl:text> - </xsl:text><xsl:value-of select="info/title"/><xsl:text> - </xsl:text><xsl:value-of select="info/name"/><xsl:text> </xsl:text>v<xsl:value-of select="info/version"/><xsl:text> </xsl:text>r<xsl:value-of select="info/revision"/>
+	<xsl:value-of select="list/title"/><xsl:value-of select="form/title"/>
+	<xsl:text> - </xsl:text>
+	<xsl:value-of select="info/title"/>
+	<xsl:text> - </xsl:text>
+	<xsl:value-of select="info/name"/>
+	<xsl:text> </xsl:text>
+	v<xsl:value-of select="info/version"/>
+	<xsl:text> </xsl:text>
+	r<xsl:value-of select="info/revision"/>
 </xsl:template>
 
 <xsl:template name="javascript">
@@ -150,10 +158,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<ul class="accordion-link">
 					<xsl:for-each select="option">
 						<li><a href="javascript:void(0)" class="{class} ui-state-default" onclick="{onclick}" title="{tip}" id="{name}">
-							<xsl:if test="icon!=''">
-								<span class="{icon}"></span>
-								<xsl:if test="label!=''"><xsl:text> </xsl:text></xsl:if>
-							</xsl:if>
+							<span class="{icon}"></span>
+							<xsl:text> </xsl:text>
 							<xsl:value-of select="label"/>
 						</a></li>
 					</xsl:for-each>
@@ -444,7 +450,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xsl:when test="count($fields/row)!=0">
 			<xsl:for-each select="$fields[title!='']">
 				<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
-					<xsl:if test="icon!=''"><span class="{icon}"></span><xsl:text> </xsl:text></xsl:if>
+					<span class="{icon}"></span>
+					<xsl:text> </xsl:text>
 					<xsl:value-of select="title"/>
 				</a></li>
 			</xsl:for-each>
@@ -462,7 +469,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<xsl:for-each select="$node2/row">
 								<xsl:for-each select="$node1/fieldset[title!='']">
 									<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
-										<xsl:if test="icon!=''"><span class="{icon}"></span><xsl:text> </xsl:text></xsl:if>
+										<span class="{icon}"></span>
+										<xsl:text> </xsl:text>
 										<xsl:value-of select="title"/>
 									</a></li>
 								</xsl:for-each>
@@ -471,7 +479,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:when test="count($node2/*[name()=$name2])=1">
 							<xsl:for-each select="$node1/fieldset[title!='']">
 								<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
-									<xsl:if test="icon!=''"><span class="{icon}"></span><xsl:text> </xsl:text></xsl:if>
+									<span class="{icon}"></span>
+									<xsl:text> </xsl:text>
 									<xsl:value-of select="title"/>
 								</a></li>
 							</xsl:for-each>
@@ -481,7 +490,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:for-each>
 		</xsl:otherwise>
 	</xsl:choose>
-	<li class="help" taborder=""><a href="javascript:void(0)"><span class="saltos-icon saltos-icon-none"></span></a></li>
+</xsl:template>
+
+<xsl:template name="help">
+	<xsl:if test="help='true'">
+		<li class="help" taborder=""><a href="javascript:void(0)"><span class="saltos-icon saltos-icon-none"></span></a></li>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template name="brtag">
@@ -503,13 +517,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<xsl:for-each select="/root/list">
 					<xsl:if test="title!=''">
 						<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
-							<xsl:if test="icon!=''"><span class="{icon}"></span><xsl:text> </xsl:text></xsl:if>
+							<span class="{icon}"></span>
+							<xsl:text> </xsl:text>
 							<xsl:value-of select="title"/>
 						</a></li>
 					</xsl:if>
 					<xsl:for-each select="form">
 						<xsl:call-template name="tabs"/>
 					</xsl:for-each>
+					<xsl:call-template name="help"/>
 				</xsl:for-each>
 			</ul>
 			<xsl:for-each select="/root/list">
@@ -933,10 +949,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:attribute name="onclick"></xsl:attribute>
 						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class2"/></xsl:attribute>
 					</xsl:if>
-					<xsl:if test="icon!=''">
-						<span class="{icon}"></span>
-						<xsl:if test="value!=''"><xsl:text> </xsl:text></xsl:if>
-					</xsl:if>
+					<span class="{icon}"></span>
+					<xsl:text> </xsl:text>
 					<xsl:value-of select="value"/>
 				</a>
 			</td>
@@ -1416,6 +1430,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<ul>
 				<xsl:for-each select="/root/form">
 					<xsl:call-template name="tabs"/>
+					<xsl:call-template name="help"/>
 				</xsl:for-each>
 			</ul>
 			<xsl:for-each select="/root/form">
@@ -1484,6 +1499,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</xsl:for-each>
 </xsl:template>
 
+<xsl:template name="back2top">
+	<a href="#" class="back2top ui-widget-header ui-corner-all">
+		<span class="fa fa-arrow-circle-up"></span>
+	</a>
+</xsl:template>
+
 <xsl:template match="/">
 	<html lang="{/root/info/lang}" dir="{/root/info/dir}">
 		<head>
@@ -1502,9 +1523,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<td valign="top">
 						<div class="ui-layout-west">
 							<xsl:call-template name="menu"/>
-							<a href="#" class="back2top ui-widget-header ui-corner-all">
-								<span class="fa fa-arrow-circle-up"></span>
-							</a>
+							<xsl:call-template name="back2top"/>
 						</div>
 					</td>
 					<td valign="top" class="width100">

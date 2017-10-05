@@ -42,6 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<action></action>
 		<method>post</method>
 		<hiddens include="xml/common/hiddensform.xml" />
+		<help>true</help>
 		<fields>
 			<export>
 				<fieldset global="temp" ifeval="(check_user('datacfg',($temp='export')))">

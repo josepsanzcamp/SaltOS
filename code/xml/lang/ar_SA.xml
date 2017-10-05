@@ -531,8 +531,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_buscador>بحث</quick_buscador>
 		<quick_errorlog>الاخطاء</quick_errorlog>
 		<translator>المترجم</translator>
-		<corrector>Spell checker</corrector>
+		<translatortip translated="false">To do text's translations</translatortip>
+		<corrector translated="false">Spell checker</corrector>
+		<correctortip translated="false">To do text's corrections</correctortip>
 		<calculator>الحاسبة</calculator>
+		<calculatortip translated="false">To do mathematical calculations</calculatortip>
 		<menu>القائمة</menu>
 		<menutip>لاظهار واخفاء قائمة التطبيق</menutip>
 	</menu>
@@ -1146,7 +1149,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnospam>لقد قمت بتصنيفها كغير مرغوبة: </msgnumnospam>
 		<msgnumdelete>تم حذفها: </msgnumdelete>
 		<statenew>جديد</statenew>
-		<actionnwew>جديد</actionnwew>
+		<actionnew>جديد</actionnew>
 		<stateread>غير مقروئة</stateread>
 		<statereply>تم الرد عليها</statereply>
 		<stateforward>معاد توجيهها</stateforward>
@@ -1430,7 +1433,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fulldata>التكبير في المشاركة</fulldata>
 		<actionwait>تاجيل</actionwait>
 		<statenew>جديد</statenew>
-		<actionnwew>جديد</actionnwew>
+		<actionnew>جديد</actionnew>
 		<statemodified>الاخير</statemodified>
 		<statewait>مؤجلة</statewait>
 		<stateread>قرائة</stateread>

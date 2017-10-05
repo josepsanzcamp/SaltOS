@@ -531,8 +531,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_buscador>Buscador</quick_buscador>
 		<quick_errorlog>Errores</quick_errorlog>
 		<translator>Traductor</translator>
+		<translatortip>Para hacer traducciones de textos</translatortip>
 		<corrector>Corrector</corrector>
+		<correctortip>Para hacer correcciones de textos</correctortip>
 		<calculator>Calculadora</calculator>
+		<calculatortip>Para hacer calculos matemáticos</calculatortip>
 		<menu>Menú</menu>
 		<menutip>Para mostrar y ocultar el menú de aplicaciones</menutip>
 	</menu>
@@ -1146,7 +1149,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgnumnospam>Se han marcado como no SPAM: </msgnumnospam>
 		<msgnumdelete>Se han borrado: </msgnumdelete>
 		<statenew>Nuevo</statenew>
-		<actionnwew>Nuevo</actionnwew>
+		<actionnew>Nuevo</actionnew>
 		<stateread>Leido</stateread>
 		<statereply>Respondido</statereply>
 		<stateforward>Reenviado</stateforward>
@@ -1430,7 +1433,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<fulldata>Zoom del post</fulldata>
 		<actionwait>Pendiente</actionwait>
 		<statenew>Nuevo</statenew>
-		<actionnwew>Nuevo</actionnwew>
+		<actionnew>Nuevo</actionnew>
 		<statemodified>Modificado</statemodified>
 		<statewait>Pendiente</statewait>
 		<stateread>Leido</stateread>

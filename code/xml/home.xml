@@ -47,6 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>hidden</type>
 			</field>
 		</hiddens>
+		<help>true</help>
 		<fields>
 			<default>
 				<fieldset>

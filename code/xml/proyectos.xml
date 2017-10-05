@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<list>
 		<title lang="true">list</title>
 		<icon eval="true">ICON("list")</icon>
+		<help>true</help>
 		<actions include="xml/common/actions.xml" replace="true"/>
 		<width>100%</width>
 		<fields>
@@ -608,6 +609,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 				<value></value>
 			</field>
 		</hiddens>
+		<help>true</help>
 		<fields>
 			<default>
 				<fieldset>

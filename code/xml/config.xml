@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<copyright>Copyright (C) 2007-2017 by Josep Sanz Campderrós</copyright>
 		<title config="true">application_title</title>
 		<favicon>img/favicon.png</favicon>
+		<icon>fa fa-info-circle</icon>
 	</info>
 	<db>
 		<type>pdo_sqlite</type>
