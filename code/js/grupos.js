@@ -123,6 +123,8 @@ if(typeof(__grupos__)=="undefined" && typeof(parent.__grupos__)=="undefined") {
 
 	function make_grupos() {
 		if(getParam("action")!="form") return;
+		var readonly=0
+		if(intval(getParam("id"))<0) readonly=1;
 		setTimeout(function() {
 			$("input[type=hidden][name$=id_permiso][value=-2]").each(function(index) {
 				var padre=$(this).parent();
@@ -149,23 +151,23 @@ if(typeof(__grupos__)=="undefined" && typeof(parent.__grupos__)=="undefined") {
 						if(id_permiso<0) {
 							if(allow==0) {
 								$("input[type=checkbox][name$=allow]",padre).prop("checked",false);
-								$("input[type=checkbox][name$=allow]",padre).prop("disabled",false);
+								if(!readonly) $("input[type=checkbox][name$=allow]",padre).prop("disabled",false);
 							} else if(allow==total) {
 								$("input[type=checkbox][name$=allow]",padre).prop("checked",true);
-								$("input[type=checkbox][name$=allow]",padre).prop("disabled",false);
+								if(!readonly) $("input[type=checkbox][name$=allow]",padre).prop("disabled",false);
 							} else {
 								$("input[type=checkbox][name$=allow]",padre).prop("checked",true);
-								$("input[type=checkbox][name$=allow]",padre).prop("disabled",true);
+								if(!readonly) $("input[type=checkbox][name$=allow]",padre).prop("disabled",true);
 							}
 							if(deny==0) {
 								$("input[type=checkbox][name$=deny]",padre).prop("checked",false);
-								$("input[type=checkbox][name$=deny]",padre).prop("disabled",false);
+								if(!readonly) $("input[type=checkbox][name$=deny]",padre).prop("disabled",false);
 							} else if(deny==total) {
 								$("input[type=checkbox][name$=deny]",padre).prop("checked",true);
-								$("input[type=checkbox][name$=deny]",padre).prop("disabled",false);
+								if(!readonly) $("input[type=checkbox][name$=deny]",padre).prop("disabled",false);
 							} else {
 								$("input[type=checkbox][name$=deny]",padre).prop("checked",true);
-								$("input[type=checkbox][name$=deny]",padre).prop("disabled",true);
+								if(!readonly) $("input[type=checkbox][name$=deny]",padre).prop("disabled",true);
 							}
 							var hasallow=$("input[type=checkbox][name$=allow]",padre).prop("disabled");
 							var hasdeny=$("input[type=checkbox][name$=deny]",padre).prop("disabled");
