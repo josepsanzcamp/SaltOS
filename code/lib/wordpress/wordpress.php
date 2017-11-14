@@ -429,7 +429,9 @@ function wp_allowed_protocols() {
 
 	if ( empty( $protocols ) ) {
 		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal', 'urn' );
+	}
 
+	if ( ! did_action( 'wp_loaded' ) ) {
 		/**
 		 * Filters the list of protocols allowed in HTML attributes.
 		 *
@@ -437,7 +439,7 @@ function wp_allowed_protocols() {
 		 *
 		 * @param array $protocols Array of allowed protocols e.g. 'http', 'ftp', 'tel', and more.
 		 */
-		$protocols = apply_filters( 'kses_allowed_protocols', $protocols );
+		$protocols = array_unique( (array) apply_filters( 'kses_allowed_protocols', $protocols ) );
 	}
 
 	return $protocols;
@@ -874,5 +876,24 @@ function _wp_translate_php_url_constant_to_key( $constant ) {
 	} else {
 		return false;
 	}
+}
+
+/**
+ * Retrieve the number of times an action is fired.
+ *
+ * @since 2.1.0
+ *
+ * @global array $wp_actions Increments the amount of times action was triggered.
+ *
+ * @param string $tag The name of the action hook.
+ * @return int The number of times action hook $tag is fired.
+ */
+function did_action($tag) {
+	global $wp_actions;
+
+	if ( ! isset( $wp_actions[ $tag ] ) )
+		return 0;
+
+	return $wp_actions[$tag];
 }
 ?>
