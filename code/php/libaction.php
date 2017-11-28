@@ -86,12 +86,7 @@ function __captcha_isprime($num) {
 	return true;
 }
 
-function __excel_dump($query,$page) {
-	$result=db_query($query);
-	$matrix=array(array());
-	for($i=0;$i<db_num_fields($result);$i++) $matrix[0][]=db_field_name($result,$i);
-	while($row=db_fetch_row($result)) $matrix[]=array_values($row);
-	db_free($result);
+function __excel_dump($matrix,$file,$title="") {
 	set_include_path("lib/phpexcel".PATH_SEPARATOR.get_include_path());
 	require_once("PHPExcel.php");
 	$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
@@ -100,7 +95,6 @@ function __excel_dump($query,$page) {
 	$objPHPExcel=new PHPExcel();
 	$objPHPExcel->getProperties()->setCreator(get_name_version_revision());
 	$objPHPExcel->getProperties()->setLastModifiedBy(current_datetime());
-	$title=ucfirst($page);
 	$objPHPExcel->getProperties()->setTitle($title);
 	$objPHPExcel->getProperties()->setSubject($title);
 	$objPHPExcel->getProperties()->setDescription($title);
@@ -113,7 +107,6 @@ function __excel_dump($query,$page) {
 	for($i=0;$i<count($matrix[0]);$i++) $objPHPExcel->getActiveSheet()->getColumnDimension(__import_col2name($i))->setAutoSize(true);
 	$objPHPExcel->getActiveSheet()->setTitle(substr($title,0,31));
 	$objWriter=PHPExcel_IOFactory::createWriter($objPHPExcel,"Excel5");
-	$name=$page.".xls";
 	ob_start();
 	$objWriter->save("php://output");
 	$buffer=ob_get_clean();
@@ -122,11 +115,35 @@ function __excel_dump($query,$page) {
 			"data"=>$buffer,
 			"type"=>"application/x-excel",
 			"cache"=>false,
-			"name"=>$name
+			"name"=>$file
 		));
 	} else {
 		echo $buffer;
 	}
+}
+
+function __csv_dump($matrix,$file) {
+	foreach($matrix as $key=>$val) $matrix[$key]='"'.implode('";"',$val).'"';
+	$matrix=implode("\r\n",$matrix);
+	if(!defined("__CANCEL_DIE__")) {
+		output_handler(array(
+			"data"=>$matrix,
+			"type"=>"text/csv",
+			"cache"=>false,
+			"name"=>$file
+		));
+	} else {
+		echo $matrix;
+	}
+}
+
+function __query2matrix($query) {
+	$result=db_query($query);
+	$matrix=array(array());
+	for($i=0;$i<db_num_fields($result);$i++) $matrix[0][]=db_field_name($result,$i);
+	while($row=db_fetch_row($result)) $matrix[]=array_values($row);
+	db_free($result);
+	return $matrix;
 }
 
 function __favicon_color2dec($color,$component) {

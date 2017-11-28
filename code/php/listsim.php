@@ -56,6 +56,11 @@ function list_simulator($newpage,$ids="string") {
 		$query="SELECT action_id FROM ($query0 $extra) __a__ ORDER BY $order";
 		$result=execute_query_array($query);
 		if($ids=="string") $result=count($result)?implode(",",$result):"0";
+	} elseif($ids=="excel") {
+		$fields=array();
+		foreach($config["fields"] as $key=>$val) $fields[]=(isset($val["excel"])?$val["excel"]:$val["name"])." '".$val["label"]."'";
+		$fields=implode(",",$fields);
+		$result="SELECT ${fields} FROM (${query0} ${extra}) __a__ ORDER BY ${order}";
 	} else {
 		$ids=check_ids($ids);
 		$query="SELECT action_title FROM ($query0 $extra) __a__ WHERE action_id IN ($ids) ORDER BY $order";
