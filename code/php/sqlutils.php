@@ -647,8 +647,11 @@ function make_update_query($table,$array,$where="",$queries=array()) {
 }
 
 function make_delete_query($table,$where="") {
-	$query="DELETE FROM ${table}";
-	if($where!="") $query.=" WHERE ${where}";
+	if($where!="") {
+		$query="DELETE FROM ${table} WHERE ${where}";
+	} else {
+		$query="TRUNCATE ${table}";
+	}
 	return $query;
 }
 

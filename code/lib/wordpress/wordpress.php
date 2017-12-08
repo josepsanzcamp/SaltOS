@@ -1,47 +1,257 @@
 <?php
 $allowedentitynames = array(
-	'nbsp',    'iexcl',  'cent',    'pound',  'curren', 'yen',
-	'brvbar',  'sect',   'uml',     'copy',   'ordf',   'laquo',
-	'not',     'shy',    'reg',     'macr',   'deg',    'plusmn',
-	'acute',   'micro',  'para',    'middot', 'cedil',  'ordm',
-	'raquo',   'iquest', 'Agrave',  'Aacute', 'Acirc',  'Atilde',
-	'Auml',    'Aring',  'AElig',   'Ccedil', 'Egrave', 'Eacute',
-	'Ecirc',   'Euml',   'Igrave',  'Iacute', 'Icirc',  'Iuml',
-	'ETH',     'Ntilde', 'Ograve',  'Oacute', 'Ocirc',  'Otilde',
-	'Ouml',    'times',  'Oslash',  'Ugrave', 'Uacute', 'Ucirc',
-	'Uuml',    'Yacute', 'THORN',   'szlig',  'agrave', 'aacute',
-	'acirc',   'atilde', 'auml',    'aring',  'aelig',  'ccedil',
-	'egrave',  'eacute', 'ecirc',   'euml',   'igrave', 'iacute',
-	'icirc',   'iuml',   'eth',     'ntilde', 'ograve', 'oacute',
-	'ocirc',   'otilde', 'ouml',    'divide', 'oslash', 'ugrave',
-	'uacute',  'ucirc',  'uuml',    'yacute', 'thorn',  'yuml',
-	'quot',    'amp',    'lt',      'gt',     'apos',   'OElig',
-	'oelig',   'Scaron', 'scaron',  'Yuml',   'circ',   'tilde',
-	'ensp',    'emsp',   'thinsp',  'zwnj',   'zwj',    'lrm',
-	'rlm',     'ndash',  'mdash',   'lsquo',  'rsquo',  'sbquo',
-	'ldquo',   'rdquo',  'bdquo',   'dagger', 'Dagger', 'permil',
-	'lsaquo',  'rsaquo', 'euro',    'fnof',   'Alpha',  'Beta',
-	'Gamma',   'Delta',  'Epsilon', 'Zeta',   'Eta',    'Theta',
-	'Iota',    'Kappa',  'Lambda',  'Mu',     'Nu',     'Xi',
-	'Omicron', 'Pi',     'Rho',     'Sigma',  'Tau',    'Upsilon',
-	'Phi',     'Chi',    'Psi',     'Omega',  'alpha',  'beta',
-	'gamma',   'delta',  'epsilon', 'zeta',   'eta',    'theta',
-	'iota',    'kappa',  'lambda',  'mu',     'nu',     'xi',
-	'omicron', 'pi',     'rho',     'sigmaf', 'sigma',  'tau',
-	'upsilon', 'phi',    'chi',     'psi',    'omega',  'thetasym',
-	'upsih',   'piv',    'bull',    'hellip', 'prime',  'Prime',
-	'oline',   'frasl',  'weierp',  'image',  'real',   'trade',
-	'alefsym', 'larr',   'uarr',    'rarr',   'darr',   'harr',
-	'crarr',   'lArr',   'uArr',    'rArr',   'dArr',   'hArr',
-	'forall',  'part',   'exist',   'empty',  'nabla',  'isin',
-	'notin',   'ni',     'prod',    'sum',    'minus',  'lowast',
-	'radic',   'prop',   'infin',   'ang',    'and',    'or',
-	'cap',     'cup',    'int',     'sim',    'cong',   'asymp',
-	'ne',      'equiv',  'le',      'ge',     'sub',    'sup',
-	'nsub',    'sube',   'supe',    'oplus',  'otimes', 'perp',
-	'sdot',    'lceil',  'rceil',   'lfloor', 'rfloor', 'lang',
-	'rang',    'loz',    'spades',  'clubs',  'hearts', 'diams',
-	'sup1',    'sup2',   'sup3',    'frac14', 'frac12', 'frac34',
+	'nbsp',
+	'iexcl',
+	'cent',
+	'pound',
+	'curren',
+	'yen',
+	'brvbar',
+	'sect',
+	'uml',
+	'copy',
+	'ordf',
+	'laquo',
+	'not',
+	'shy',
+	'reg',
+	'macr',
+	'deg',
+	'plusmn',
+	'acute',
+	'micro',
+	'para',
+	'middot',
+	'cedil',
+	'ordm',
+	'raquo',
+	'iquest',
+	'Agrave',
+	'Aacute',
+	'Acirc',
+	'Atilde',
+	'Auml',
+	'Aring',
+	'AElig',
+	'Ccedil',
+	'Egrave',
+	'Eacute',
+	'Ecirc',
+	'Euml',
+	'Igrave',
+	'Iacute',
+	'Icirc',
+	'Iuml',
+	'ETH',
+	'Ntilde',
+	'Ograve',
+	'Oacute',
+	'Ocirc',
+	'Otilde',
+	'Ouml',
+	'times',
+	'Oslash',
+	'Ugrave',
+	'Uacute',
+	'Ucirc',
+	'Uuml',
+	'Yacute',
+	'THORN',
+	'szlig',
+	'agrave',
+	'aacute',
+	'acirc',
+	'atilde',
+	'auml',
+	'aring',
+	'aelig',
+	'ccedil',
+	'egrave',
+	'eacute',
+	'ecirc',
+	'euml',
+	'igrave',
+	'iacute',
+	'icirc',
+	'iuml',
+	'eth',
+	'ntilde',
+	'ograve',
+	'oacute',
+	'ocirc',
+	'otilde',
+	'ouml',
+	'divide',
+	'oslash',
+	'ugrave',
+	'uacute',
+	'ucirc',
+	'uuml',
+	'yacute',
+	'thorn',
+	'yuml',
+	'quot',
+	'amp',
+	'lt',
+	'gt',
+	'apos',
+	'OElig',
+	'oelig',
+	'Scaron',
+	'scaron',
+	'Yuml',
+	'circ',
+	'tilde',
+	'ensp',
+	'emsp',
+	'thinsp',
+	'zwnj',
+	'zwj',
+	'lrm',
+	'rlm',
+	'ndash',
+	'mdash',
+	'lsquo',
+	'rsquo',
+	'sbquo',
+	'ldquo',
+	'rdquo',
+	'bdquo',
+	'dagger',
+	'Dagger',
+	'permil',
+	'lsaquo',
+	'rsaquo',
+	'euro',
+	'fnof',
+	'Alpha',
+	'Beta',
+	'Gamma',
+	'Delta',
+	'Epsilon',
+	'Zeta',
+	'Eta',
+	'Theta',
+	'Iota',
+	'Kappa',
+	'Lambda',
+	'Mu',
+	'Nu',
+	'Xi',
+	'Omicron',
+	'Pi',
+	'Rho',
+	'Sigma',
+	'Tau',
+	'Upsilon',
+	'Phi',
+	'Chi',
+	'Psi',
+	'Omega',
+	'alpha',
+	'beta',
+	'gamma',
+	'delta',
+	'epsilon',
+	'zeta',
+	'eta',
+	'theta',
+	'iota',
+	'kappa',
+	'lambda',
+	'mu',
+	'nu',
+	'xi',
+	'omicron',
+	'pi',
+	'rho',
+	'sigmaf',
+	'sigma',
+	'tau',
+	'upsilon',
+	'phi',
+	'chi',
+	'psi',
+	'omega',
+	'thetasym',
+	'upsih',
+	'piv',
+	'bull',
+	'hellip',
+	'prime',
+	'Prime',
+	'oline',
+	'frasl',
+	'weierp',
+	'image',
+	'real',
+	'trade',
+	'alefsym',
+	'larr',
+	'uarr',
+	'rarr',
+	'darr',
+	'harr',
+	'crarr',
+	'lArr',
+	'uArr',
+	'rArr',
+	'dArr',
+	'hArr',
+	'forall',
+	'part',
+	'exist',
+	'empty',
+	'nabla',
+	'isin',
+	'notin',
+	'ni',
+	'prod',
+	'sum',
+	'minus',
+	'lowast',
+	'radic',
+	'prop',
+	'infin',
+	'ang',
+	'and',
+	'or',
+	'cap',
+	'cup',
+	'int',
+	'sim',
+	'cong',
+	'asymp',
+	'ne',
+	'equiv',
+	'le',
+	'ge',
+	'sub',
+	'sup',
+	'nsub',
+	'sube',
+	'supe',
+	'oplus',
+	'otimes',
+	'perp',
+	'sdot',
+	'lceil',
+	'rceil',
+	'lfloor',
+	'rfloor',
+	'lang',
+	'rang',
+	'loz',
+	'spades',
+	'clubs',
+	'hearts',
+	'diams',
+	'sup1',
+	'sup2',
+	'sup3',
+	'frac14',
+	'frac12',
+	'frac34',
 	'there4',
 );
 
@@ -57,15 +267,16 @@ $allowedentitynames = array(
  * @return string Content with converted URIs.
  */
 function make_clickable( $text ) {
-	$r = '';
-	$textarr = preg_split( '/(<[^<>]+>)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE ); // split out HTML tags
+	$r               = '';
+	$textarr         = preg_split( '/(<[^<>]+>)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE ); // split out HTML tags
 	$nested_code_pre = 0; // Keep track of how many levels link is nested inside <pre> or <code>
 	foreach ( $textarr as $piece ) {
 
-		if ( preg_match( '|^<code[\s>]|i', $piece ) || preg_match( '|^<pre[\s>]|i', $piece ) || preg_match( '|^<script[\s>]|i', $piece ) || preg_match( '|^<style[\s>]|i', $piece ) )
+		if ( preg_match( '|^<code[\s>]|i', $piece ) || preg_match( '|^<pre[\s>]|i', $piece ) || preg_match( '|^<script[\s>]|i', $piece ) || preg_match( '|^<style[\s>]|i', $piece ) ) {
 			$nested_code_pre++;
-		elseif ( $nested_code_pre && ( '</code>' === strtolower( $piece ) || '</pre>' === strtolower( $piece ) || '</script>' === strtolower( $piece ) || '</style>' === strtolower( $piece ) ) )
+		} elseif ( $nested_code_pre && ( '</code>' === strtolower( $piece ) || '</pre>' === strtolower( $piece ) || '</script>' === strtolower( $piece ) || '</style>' === strtolower( $piece ) ) ) {
 			$nested_code_pre--;
+		}
 
 		if ( $nested_code_pre || empty( $piece ) || ( $piece[0] === '<' && ! preg_match( '|^<\s*[\w]{1,20}+://|', $piece ) ) ) {
 			$r .= $piece;
@@ -98,7 +309,7 @@ function make_clickable( $text ) {
 				)
 				(\)?)                                                  # 3: Trailing closing parenthesis (for parethesis balancing post processing)
 			~xS'; // The regex is a non-anchored pattern and does not have a single fixed starting character.
-			      // Tell PCRE to spend more time optimizing since, when used on a page load, it will probably be used several times.
+				  // Tell PCRE to spend more time optimizing since, when used on a page load, it will probably be used several times.
 
 			$ret = preg_replace_callback( $url_clickable, '_make_url_clickable_cb', $ret );
 
@@ -106,12 +317,12 @@ function make_clickable( $text ) {
 			$ret = preg_replace_callback( '#([\s>])([.0-9a-z_+-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,})#i', '_make_email_clickable_cb', $ret );
 
 			$ret = substr( $ret, 1, -1 ); // Remove our whitespace padding.
-			$r .= $ret;
+			$r  .= $ret;
 		}
 	}
 
 	// Cleanup of accidental links within links
-	return preg_replace( '#(<a([ \r\n\t]+[^>]+?>|>))<a [^>]+?>([^>]+?)</a></a>#i', "$1$3</a>", $r );
+	return preg_replace( '#(<a([ \r\n\t]+[^>]+?>|>))<a [^>]+?>([^>]+?)</a></a>#i', '$1$3</a>', $r );
 }
 
 /**
@@ -158,8 +369,8 @@ function _split_str_by_whitespace( $string, $goal ) {
 			}
 		}
 
-		$chunks[] = substr( $string, 0, $pos + 1 );
-		$string = substr( $string, $pos + 1 );
+		$chunks[]         = substr( $string, 0, $pos + 1 );
+		$string           = substr( $string, $pos + 1 );
 		$string_nullspace = substr( $string_nullspace, $pos + 1 );
 	}
 
@@ -187,7 +398,7 @@ function _make_url_clickable_cb( $matches ) {
 	if ( ')' == $matches[3] && strpos( $url, '(' ) ) {
 		// If the trailing character is a closing parethesis, and the URL has an opening parenthesis in it, add the closing parenthesis to the URL.
 		// Then we can let the parenthesis balancer do its thing below.
-		$url .= $matches[3];
+		$url   .= $matches[3];
 		$suffix = '';
 	} else {
 		$suffix = $matches[3];
@@ -196,12 +407,13 @@ function _make_url_clickable_cb( $matches ) {
 	// Include parentheses in the URL only if paired
 	while ( substr_count( $url, '(' ) < substr_count( $url, ')' ) ) {
 		$suffix = strrchr( $url, ')' ) . $suffix;
-		$url = substr( $url, 0, strrpos( $url, ')' ) );
+		$url    = substr( $url, 0, strrpos( $url, ')' ) );
 	}
 
-	$url = esc_url($url);
-	if ( empty($url) )
+	$url = esc_url( $url );
+	if ( empty( $url ) ) {
 		return $matches[0];
+	}
 
 	return $matches[1] . "<a href=\"$url\" rel=\"nofollow\">$url</a>" . $suffix;
 }
@@ -218,19 +430,20 @@ function _make_url_clickable_cb( $matches ) {
  * @return string HTML A element with URL address.
  */
 function _make_web_ftp_clickable_cb( $matches ) {
-	$ret = '';
+	$ret  = '';
 	$dest = $matches[2];
 	$dest = 'http://' . $dest;
 
 	// removed trailing [.,;:)] from URL
-	if ( in_array( substr($dest, -1), array('.', ',', ';', ':', ')') ) === true ) {
-		$ret = substr($dest, -1);
-		$dest = substr($dest, 0, strlen($dest)-1);
+	if ( in_array( substr( $dest, -1 ), array( '.', ',', ';', ':', ')' ) ) === true ) {
+		$ret  = substr( $dest, -1 );
+		$dest = substr( $dest, 0, strlen( $dest ) - 1 );
 	}
 
-	$dest = esc_url($dest);
-	if ( empty($dest) )
+	$dest = esc_url( $dest );
+	if ( empty( $dest ) ) {
 		return $matches[0];
+	}
 
 	return $matches[1] . "<a href=\"$dest\" rel=\"nofollow\">$dest</a>$ret";
 }
@@ -262,36 +475,38 @@ function _make_email_clickable_cb( $matches ) {
  *
  * @param string $url       The URL to be cleaned.
  * @param array  $protocols Optional. An array of acceptable protocols.
- *		                    Defaults to return value of wp_allowed_protocols()
+ *                          Defaults to return value of wp_allowed_protocols()
  * @param string $_context  Private. Use esc_url_raw() for database usage.
  * @return string The cleaned $url after the {@see 'clean_url'} filter is applied.
  */
 function esc_url( $url, $protocols = null, $_context = 'display' ) {
 	$original_url = $url;
 
-	if ( '' == $url )
+	if ( '' == $url ) {
 		return $url;
+	}
 
 	$url = str_replace( ' ', '%20', $url );
-	$url = preg_replace('|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\[\]\\x80-\\xff]|i', '', $url);
+	$url = preg_replace( '|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\[\]\\x80-\\xff]|i', '', $url );
 
 	if ( '' === $url ) {
 		return $url;
 	}
 
 	if ( 0 !== stripos( $url, 'mailto:' ) ) {
-		$strip = array('%0d', '%0a', '%0D', '%0A');
-		$url = _deep_replace($strip, $url);
+		$strip = array( '%0d', '%0a', '%0D', '%0A' );
+		$url   = _deep_replace( $strip, $url );
 	}
 
-	$url = str_replace(';//', '://', $url);
+	$url = str_replace( ';//', '://', $url );
 	/* If the URL doesn't appear to contain a scheme, we
 	 * presume it needs http:// prepended (unless a relative
 	 * link starting with /, # or ? or a php file).
 	 */
-	if ( strpos($url, ':') === false && ! in_array( $url[0], array( '/', '#', '?' ) ) &&
-		! preg_match('/^[a-z0-9-]+?\.php/i', $url) )
+	if ( strpos( $url, ':' ) === false && ! in_array( $url[0], array( '/', '#', '?' ) ) &&
+		! preg_match( '/^[a-z0-9-]+?\.php/i', $url ) ) {
 		$url = 'http://' . $url;
+	}
 
 	// Replace ampersands and single quotes only when displaying.
 	if ( 'display' == $_context ) {
@@ -340,11 +555,13 @@ function esc_url( $url, $protocols = null, $_context = 'display' ) {
 	if ( '/' === $url[0] ) {
 		$good_protocol_url = $url;
 	} else {
-		if ( ! is_array( $protocols ) )
+		if ( ! is_array( $protocols ) ) {
 			$protocols = wp_allowed_protocols();
+		}
 		$good_protocol_url = wp_kses_bad_protocol( $url, $protocols );
-		if ( strtolower( $good_protocol_url ) != strtolower( $url ) )
+		if ( strtolower( $good_protocol_url ) != strtolower( $url ) ) {
 			return '';
+		}
 	}
 
 	/**
@@ -396,14 +613,14 @@ function _deep_replace( $search, $subject ) {
  * @param string $string Content to normalize entities
  * @return string Content with normalized entities
  */
-function wp_kses_normalize_entities($string) {
+function wp_kses_normalize_entities( $string ) {
 	// Disarm all entities by converting & to &amp;
-	$string = str_replace('&', '&amp;', $string);
+	$string = str_replace( '&', '&amp;', $string );
 
 	// Change back the allowed entities in our entity whitelist
-	$string = preg_replace_callback('/&amp;([A-Za-z]{2,8}[0-9]{0,2});/', 'wp_kses_named_entities', $string);
-	$string = preg_replace_callback('/&amp;#(0*[0-9]{1,7});/', 'wp_kses_normalize_entities2', $string);
-	$string = preg_replace_callback('/&amp;#[Xx](0*[0-9A-Fa-f]{1,6});/', 'wp_kses_normalize_entities3', $string);
+	$string = preg_replace_callback( '/&amp;([A-Za-z]{2,8}[0-9]{0,2});/', 'wp_kses_named_entities', $string );
+	$string = preg_replace_callback( '/&amp;#(0*[0-9]{1,7});/', 'wp_kses_normalize_entities2', $string );
+	$string = preg_replace_callback( '/&amp;#[Xx](0*[0-9A-Fa-f]{1,6});/', 'wp_kses_normalize_entities3', $string );
 
 	return $string;
 }
@@ -459,17 +676,18 @@ function wp_allowed_protocols() {
  * @param array  $allowed_protocols Allowed protocols to keep
  * @return string Filtered content
  */
-function wp_kses_bad_protocol($string, $allowed_protocols) {
-	$string = wp_kses_no_null($string);
+function wp_kses_bad_protocol( $string, $allowed_protocols ) {
+	$string     = wp_kses_no_null( $string );
 	$iterations = 0;
 
 	do {
 		$original_string = $string;
-		$string = wp_kses_bad_protocol_once($string, $allowed_protocols);
+		$string          = wp_kses_bad_protocol_once( $string, $allowed_protocols );
 	} while ( $original_string != $string && ++$iterations < 6 );
 
-	if ( $original_string != $string )
+	if ( $original_string != $string ) {
 		return '';
+	}
 
 	return $string;
 }
@@ -515,23 +733,26 @@ function apply_filters( $tag, $value ) {
 	$args = array();
 
 	// Do 'all' actions first.
-	if ( isset($wp_filter['all']) ) {
+	if ( isset( $wp_filter['all'] ) ) {
 		$wp_current_filter[] = $tag;
-		$args = func_get_args();
-		_wp_call_all_hook($args);
+		$args                = func_get_args();
+		_wp_call_all_hook( $args );
 	}
 
-	if ( !isset($wp_filter[$tag]) ) {
-		if ( isset($wp_filter['all']) )
-			array_pop($wp_current_filter);
+	if ( ! isset( $wp_filter[ $tag ] ) ) {
+		if ( isset( $wp_filter['all'] ) ) {
+			array_pop( $wp_current_filter );
+		}
 		return $value;
 	}
 
-	if ( !isset($wp_filter['all']) )
+	if ( ! isset( $wp_filter['all'] ) ) {
 		$wp_current_filter[] = $tag;
+	}
 
-	if ( empty($args) )
+	if ( empty( $args ) ) {
 		$args = func_get_args();
+	}
 
 	// don't pass the tag name to WP_Hook
 	array_shift( $args );
@@ -556,11 +777,12 @@ function apply_filters( $tag, $value ) {
  * @param array $matches preg_replace_callback() matches array
  * @return string Correctly encoded entity
  */
-function wp_kses_named_entities($matches) {
+function wp_kses_named_entities( $matches ) {
 	global $allowedentitynames;
 
-	if ( empty($matches[1]) )
+	if ( empty( $matches[1] ) ) {
 		return '';
+	}
 
 	$i = $matches[1];
 	return ( ! in_array( $i, $allowedentitynames ) ) ? "&amp;$i;" : "&$i;";
@@ -578,13 +800,14 @@ function wp_kses_named_entities($matches) {
  * @param array $matches preg_replace_callback() matches array
  * @return string Correctly encoded entity
  */
-function wp_kses_normalize_entities2($matches) {
-	if ( empty($matches[1]) )
+function wp_kses_normalize_entities2( $matches ) {
+	if ( empty( $matches[1] ) ) {
 		return '';
+	}
 
 	$i = $matches[1];
-	if (valid_unicode($i)) {
-		$i = str_pad(ltrim($i,'0'), 3, '0', STR_PAD_LEFT);
+	if ( valid_unicode( $i ) ) {
+		$i = str_pad( ltrim( $i, '0' ), 3, '0', STR_PAD_LEFT );
 		$i = "&#$i;";
 	} else {
 		$i = "&amp;#$i;";
@@ -605,12 +828,13 @@ function wp_kses_normalize_entities2($matches) {
  * @param array $matches preg_replace_callback() matches array
  * @return string Correctly encoded entity
  */
-function wp_kses_normalize_entities3($matches) {
-	if ( empty($matches[1]) )
+function wp_kses_normalize_entities3( $matches ) {
+	if ( empty( $matches[1] ) ) {
 		return '';
+	}
 
 	$hexchars = $matches[1];
-	return ( ! valid_unicode( hexdec( $hexchars ) ) ) ? "&amp;#x$hexchars;" : '&#x'.ltrim($hexchars,'0').';';
+	return ( ! valid_unicode( hexdec( $hexchars ) ) ) ? "&amp;#x$hexchars;" : '&#x' . ltrim( $hexchars, '0' ) . ';';
 }
 
 /**
@@ -649,17 +873,19 @@ function wp_kses_no_null( $string, $options = null ) {
  * @param string $allowed_protocols Allowed protocols
  * @return string Sanitized content
  */
-function wp_kses_bad_protocol_once($string, $allowed_protocols, $count = 1 ) {
+function wp_kses_bad_protocol_once( $string, $allowed_protocols, $count = 1 ) {
 	$string2 = preg_split( '/:|&#0*58;|&#x0*3a;/i', $string, 2 );
-	if ( isset($string2[1]) && ! preg_match('%/\?%', $string2[0]) ) {
-		$string = trim( $string2[1] );
+	if ( isset( $string2[1] ) && ! preg_match( '%/\?%', $string2[0] ) ) {
+		$string   = trim( $string2[1] );
 		$protocol = wp_kses_bad_protocol_once2( $string2[0], $allowed_protocols );
 		if ( 'feed:' == $protocol ) {
-			if ( $count > 2 )
+			if ( $count > 2 ) {
 				return '';
+			}
 			$string = wp_kses_bad_protocol_once( $string, $allowed_protocols, ++$count );
-			if ( empty( $string ) )
+			if ( empty( $string ) ) {
 				return $string;
+			}
 		}
 		$string = $protocol . $string;
 	}
@@ -675,11 +901,11 @@ function wp_kses_bad_protocol_once($string, $allowed_protocols, $count = 1 ) {
  * @param int $i Unicode value
  * @return bool True if the value was a valid Unicode number
  */
-function valid_unicode($i) {
+function valid_unicode( $i ) {
 	return ( $i == 0x9 || $i == 0xa || $i == 0xd ||
-			($i >= 0x20 && $i <= 0xd7ff) ||
-			($i >= 0xe000 && $i <= 0xfffd) ||
-			($i >= 0x10000 && $i <= 0x10ffff) );
+			( $i >= 0x20 && $i <= 0xd7ff ) ||
+			( $i >= 0xe000 && $i <= 0xfffd ) ||
+			( $i >= 0x10000 && $i <= 0x10ffff ) );
 }
 
 /**
@@ -696,22 +922,24 @@ function valid_unicode($i) {
  * @return string Sanitized content
  */
 function wp_kses_bad_protocol_once2( $string, $allowed_protocols ) {
-	$string2 = wp_kses_decode_entities($string);
-	$string2 = preg_replace('/\s/', '', $string2);
-	$string2 = wp_kses_no_null($string2);
-	$string2 = strtolower($string2);
+	$string2 = wp_kses_decode_entities( $string );
+	$string2 = preg_replace( '/\s/', '', $string2 );
+	$string2 = wp_kses_no_null( $string2 );
+	$string2 = strtolower( $string2 );
 
 	$allowed = false;
-	foreach ( (array) $allowed_protocols as $one_protocol )
-		if ( strtolower($one_protocol) == $string2 ) {
+	foreach ( (array) $allowed_protocols as $one_protocol ) {
+		if ( strtolower( $one_protocol ) == $string2 ) {
 			$allowed = true;
 			break;
 		}
+	}
 
-	if ($allowed)
+	if ( $allowed ) {
 		return "$string2:";
-	else
+	} else {
 		return '';
+	}
 }
 
 /**
@@ -726,9 +954,9 @@ function wp_kses_bad_protocol_once2( $string, $allowed_protocols ) {
  * @param string $string Content to change entities
  * @return string Content after decoded entities
  */
-function wp_kses_decode_entities($string) {
-	$string = preg_replace_callback('/&#([0-9]+);/', '_wp_kses_decode_entities_chr', $string);
-	$string = preg_replace_callback('/&#[Xx]([0-9A-Fa-f]+);/', '_wp_kses_decode_entities_chr_hexdec', $string);
+function wp_kses_decode_entities( $string ) {
+	$string = preg_replace_callback( '/&#([0-9]+);/', '_wp_kses_decode_entities_chr', $string );
+	$string = preg_replace_callback( '/&#[Xx]([0-9A-Fa-f]+);/', '_wp_kses_decode_entities_chr_hexdec', $string );
 
 	return $string;
 }
@@ -788,15 +1016,15 @@ function _wp_kses_decode_entities_chr_hexdec( $match ) {
  */
 function wp_parse_url( $url, $component = -1 ) {
 	$to_unset = array();
-	$url = strval( $url );
+	$url      = strval( $url );
 
 	if ( '//' === substr( $url, 0, 2 ) ) {
 		$to_unset[] = 'scheme';
-		$url = 'placeholder:' . $url;
+		$url        = 'placeholder:' . $url;
 	} elseif ( '/' === substr( $url, 0, 1 ) ) {
 		$to_unset[] = 'scheme';
 		$to_unset[] = 'host';
-		$url = 'placeholder://placeholder' . $url;
+		$url        = 'placeholder://placeholder' . $url;
 	}
 
 	$parts = @parse_url( $url );
@@ -888,12 +1116,13 @@ function _wp_translate_php_url_constant_to_key( $constant ) {
  * @param string $tag The name of the action hook.
  * @return int The number of times action hook $tag is fired.
  */
-function did_action($tag) {
+function did_action( $tag ) {
 	global $wp_actions;
 
-	if ( ! isset( $wp_actions[ $tag ] ) )
+	if ( ! isset( $wp_actions[ $tag ] ) ) {
 		return 0;
+	}
 
-	return $wp_actions[$tag];
+	return $wp_actions[ $tag ];
 }
 ?>
