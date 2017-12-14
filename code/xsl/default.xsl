@@ -1142,6 +1142,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</td>
 		</xsl:when>
 		<xsl:when test="type='menu'">
+			<xsl:if test="label!=''">
+				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:value-of select="label"/></td>
+			</xsl:if>
 			<td colspan="{colspan}" rowspan="{rowspan}" class="{class}" style="width:{width}">
 				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}" title="{tip}" class="ui-state-default ui-corner-all {class2}" ismenu="true">
 					<xsl:if test="readonly='true'">
@@ -1176,7 +1179,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</xsl:when>
 		<xsl:when test="type='grid'">
 			<xsl:if test="label!=''">
-				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
+				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="{class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width};height:{height}">
 				<xsl:for-each select="rows">

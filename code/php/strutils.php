@@ -464,7 +464,11 @@ function check_password($pass,$hash) {
 function hash_password($pass) {
 	require_once("lib/phpass/PasswordHash.php");
 	$t_hasher=new PasswordHash(8,true);
+	// TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
+	capture_next_error();
 	$result=$t_hasher->HashPassword($pass);
+	// TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
+	get_clear_error();
 	unset($t_hasher);
 	return $result;
 }

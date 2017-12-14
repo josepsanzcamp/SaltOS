@@ -293,7 +293,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>menu</type>
 					<name>options</name>
 					<tip lang="true">optionstip</tip>
-					<label lang="true">options</label>
 					<option>
 						<label lang="true">options</label>
 						<onclick></onclick>
