@@ -134,9 +134,10 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 								}
 							});
 						});
-						pdfViewer.setDocument(pdfDocument).then(function() {
+						pdfViewer.setDocument(pdfDocument);
+						setTimeout(function() {
 							$(dialog2).scrollTop(0);
-						});
+						},100);
 					},function(message,exception) {
 						errorcontent(0,message);
 					});
