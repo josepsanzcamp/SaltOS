@@ -767,7 +767,7 @@ function check_security($action="") {
 	// BORRAR REGISTROS CADUCADOS
 	$query=make_delete_query("tbl_security","NOT id_session IN (SELECT id FROM tbl_sessions)");
 	db_query($query);
-	$querty=make_delete_query("tbl_security_ip","NOT id_session IN (SELECT id FROM tbl_sessions)");
+	$query=make_delete_query("tbl_security_ip","NOT id_session IN (SELECT id FROM tbl_sessions)");
 	db_query($query);
 	// NORMAL CODE
 	if($action=="login") {
