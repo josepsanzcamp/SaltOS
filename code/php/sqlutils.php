@@ -650,7 +650,7 @@ function make_delete_query($table,$where="") {
 	if($where!="") {
 		$query="DELETE FROM ${table} WHERE ${where}";
 	} else {
-		$query="TRUNCATE ${table}";
+		$query="/*MYSQL TRUNCATE *//*SQLITE DELETE FROM */ ${table}";
 	}
 	return $query;
 }
