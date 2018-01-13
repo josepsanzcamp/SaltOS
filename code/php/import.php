@@ -54,6 +54,10 @@ function __import_find_query($data,$pos) {
 
 function import_file($args) {
 	// CHECK PARAMETERS
+	if(isset($args["data"])) {
+		$args["file"]=get_cache_file($args["data"],"tmp");
+		if(!file_exists($args["file"])) file_put_contents($args["file"],$args["data"]);
+	}
 	if(!isset($args["file"])) show_php_error(array("phperror"=>"Unknown file"));
 	if(!isset($args["type"])) show_php_error(array("phperror"=>"Unknown type"));
 	if(!isset($args["sep"])) $args["sep"]=";";
@@ -83,6 +87,8 @@ function import_file($args) {
 		case "application/vnd.ms-excel":
 		case "application/excel":
 		case "excel":
+		case "xlsx":
+		case "xls":
 			$array=__import_xls2array($args["file"],$args["sheet"]);
 			if(!is_array($array)) return $array;
 			if($args["prefn"]) $array=$args["prefn"]($array,$args);
