@@ -37,8 +37,9 @@ if(getParam("action")=="barcode") {
 	$m=intval(getParam("m",10));
 	$s=intval(getParam("s",8));
 	$t=getParam("t","C39");
+	$l=intval(getParam("l",1));
 	// BEGIN THE BARCODE WRAPPER
-	$cache=get_cache_file(array($msg,$w,$h,$m,$s,$t),".png");
+	$cache=get_cache_file(array($msg,$w,$h,$m,$s,$t,$l),".png");
 	//~ if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		require_once("lib/tcpdf/tcpdf_barcodes_1d.php");
@@ -61,12 +62,14 @@ if(getParam("action")=="barcode") {
 			}
 			$x+=$bw;
 		}
-		// ADD MSG TO THE IMAGE FOOTER
-		$font=getcwd()."/lib/fonts/DejaVuSans.ttf";
-		$bbox=imagettfbbox($s,0,$font,$msg);
-		$px=($width+2*$m)/2-($bbox[4]-$bbox[0])/2;
-		$py=$m+$h+$s+$w;
-		imagettftext($im,$s,0,$px,$py,$fgcol,$font,$msg);
+		if($l) {
+			// ADD MSG TO THE IMAGE FOOTER
+			$font=getcwd()."/lib/fonts/DejaVuSans.ttf";
+			$bbox=imagettfbbox($s,0,$font,$msg);
+			$px=($width+2*$m)/2-($bbox[4]-$bbox[0])/2;
+			$py=$m+$h+$s+$w;
+			imagettftext($im,$s,0,$px,$py,$fgcol,$font,$msg);
+		}
 		// CONTINUE
 		imagepng($im,$cache);
 		imagedestroy($im);
