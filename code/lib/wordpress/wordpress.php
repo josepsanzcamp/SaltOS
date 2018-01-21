@@ -589,7 +589,7 @@ function esc_url( $url, $protocols = null, $_context = 'display' ) {
  * @param string|array $search  The value being searched for, otherwise known as the needle.
  *                              An array may be used to designate multiple needles.
  * @param string       $subject The string being searched and replaced on, otherwise known as the haystack.
- * @return string The string with the replaced svalues.
+ * @return string The string with the replaced values.
  */
 function _deep_replace( $search, $subject ) {
 	$subject = (string) $subject;
