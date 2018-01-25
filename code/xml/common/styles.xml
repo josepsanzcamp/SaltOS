@@ -109,6 +109,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<label>Custom Brown Dark</label>
 			<value>custom.brown.dark</value>
 		</row>
+		<row>
+			<label>Custom Yellow Light</label>
+			<value>custom.yellow.light</value>
+		</row>
+		<row>
+			<label>Custom Yellow Dark</label>
+			<value>custom.yellow.dark</value>
+		</row>
 		<row ifeval="!ismobile()">
 			<label>Theme Redmond Light</label>
 			<value>theme.redmond.light</value>

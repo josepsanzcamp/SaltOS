@@ -104,6 +104,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<name>custom.brown.dark</name>
 		<color>#6d4c41</color>
 	</style>
+	<style>
+		<name>custom.yellow.light</name>
+		<color>#bfa200</color>
+	</style>
+	<style>
+		<name>custom.yellow.dark</name>
+		<color>#bfa200</color>
+	</style>
 	<style ifeval="!ismobile()">
 		<name>theme.redmond.light</name>
 		<color>5c9ccc</color>
