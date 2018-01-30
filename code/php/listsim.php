@@ -44,26 +44,25 @@ function list_simulator($newpage,$ids="string") {
 	$query0=$config["query"];
 	$limit=$config["limit"];
 	$offset=$config["offset"];
-	$extra=isset($config["limit2"])?"LIMIT ".$config["limit2"]:"";
 	// CHECK ORDER
 	list($order,$array)=list_check_order($config["order"],$config["fields"]);
 	// EXECUTE THE QUERY TO GET THE REQUESTED DATA
 	if($ids=="count") {
-		$query="SELECT COUNT(*) FROM ($query0 $extra) __a__";
+		$query="SELECT COUNT(*) FROM ($query0) __a__";
 		$count=execute_query($query);
 		$result=array("count"=>$count,"limit"=>$limit,"offset"=>$offset);
 	} elseif($ids=="string" || $ids=="array") {
-		$query="SELECT action_id FROM ($query0 $extra) __a__ ORDER BY $order";
+		$query="SELECT action_id FROM ($query0) __a__ ORDER BY $order";
 		$result=execute_query_array($query);
 		if($ids=="string") $result=count($result)?implode(",",$result):"0";
 	} elseif($ids=="excel") {
 		$fields=array();
 		foreach($config["fields"] as $key=>$val) $fields[]=(isset($val["excel"])?$val["excel"]:$val["name"])." '".$val["label"]."'";
 		$fields=implode(",",$fields);
-		$result="SELECT ${fields} FROM (${query0} ${extra}) __a__ ORDER BY ${order}";
+		$result="SELECT ${fields} FROM ($query0) __a__ ORDER BY ${order}";
 	} else {
 		$ids=check_ids($ids);
-		$query="SELECT action_title FROM ($query0 $extra) __a__ WHERE action_id IN ($ids) ORDER BY $order";
+		$query="SELECT action_title FROM ($query0) __a__ WHERE action_id IN ($ids) ORDER BY $order";
 		$result=execute_query_array($query);
 	}
 	// RESTORE THE SAVED CONTEXT
