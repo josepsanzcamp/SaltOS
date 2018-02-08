@@ -918,18 +918,6 @@ function get_clear_error() {
 	global $_ERROR_HANDLER;
 	if($_ERROR_HANDLER["level"]<=0) show_php_error(array("phperror"=>"error_handler without levels availables"));
 	$_ERROR_HANDLER["level"]--;
-	// TRICK TO PREVENT THAT SHUTDOWN_HANDLER CAPTURES THE ERROR
-	//~ $error=error_get_last();
-	//~ if(is_array($error) && isset($error["type"]) && $error["type"]!=E_USER_NOTICE) {
-		//~ set_error_handler("var_dump",0);
-		//~ ob_start();
-		//~ $olderror=error_reporting(0);
-		//~ trigger_error("");
-		//~ error_reporting($olderror);
-		//~ ob_end_clean();
-		//~ restore_error_handler();
-	//~ }
-	// CONTINUE
 	return array_pop($_ERROR_HANDLER["msg"]);
 }
 
@@ -1081,18 +1069,9 @@ function __exception_handler($e) {
 }
 
 function __shutdown_handler() {
-	if(eval_bool(getDefault("debug/databasedebug"))) {
-		echo "<pre>".sprintr(debug_db("get"))."</pre>";
-		die();
-	}
+	global $_ERROR_HANDLER;
+	if($_ERROR_HANDLER["level"]>0) show_php_error();
 	semaphore_shutdown();
-	$error=error_get_last();
-	$types=array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
-	if(is_array($error) && isset($error["type"]) && in_array($error["type"],$types)) {
-		global $_ERROR_HANDLER;
-		$_ERROR_HANDLER=array("level"=>0,"msg"=>array());
-		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}","backtrace"=>debug_backtrace()));
-	}
 }
 
 function program_handlers() {
@@ -1447,18 +1426,6 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 		db_query($query);
 		return 1;
 	}
-}
-
-function debug_db($hash,$query="",$time=0,$iter=0,$rows=0) {
-	static $stack=array();
-	if($hash=="get") {
-		foreach($stack as $key=>$val) $stack[$key]["time"]=sprintf("%g",$val["time"]);
-		return $stack;
-	}
-	if(!isset($stack[$hash])) $stack[$hash]=array("query"=>$query,"time"=>0,"iter"=>0,"rows"=>0);
-	$stack[$hash]["time"]+=$time;
-	$stack[$hash]["iter"]+=$iter;
-	$stack[$hash]["rows"]+=$rows;
 }
 
 function ICON($icon) {

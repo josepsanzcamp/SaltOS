@@ -37,18 +37,11 @@ function db_connect($args=null) {
 }
 
 function db_query($query,$fetch="query") {
-	if(eval_bool(getDefault("debug/databasedebug"))) {
-		$hash=md5(json_encode(array($query,$fetch)));
-		debug_db($hash,$query,-microtime(true),0,0);
-	}
 	if(method_exists(getDefault("db/obj"),"db_query")) {
 		$result=getDefault("db/obj")->db_query($query,$fetch);
 	} else {
 		show_php_error(array("phperror"=>"Unknown database connector"));
 		$result=array("total"=>0,"header"=>array(),"rows"=>array());
-	}
-	if(eval_bool(getDefault("debug/databasedebug"))) {
-		debug_db($hash,"",microtime(true),1,$result["total"]);
 	}
 	return $result;
 }
