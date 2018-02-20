@@ -564,22 +564,6 @@ function __incidencias_codigo($id) {
 	return substr(str_repeat("0",CONFIG("zero_padding_digits")).$id,-CONFIG("zero_padding_digits"),CONFIG("zero_padding_digits"));
 }
 
-function __number_color2dec($color,$component) {
-	$offset=array("R"=>0,"G"=>2,"B"=>4);
-	if(!isset($offset[$component])) show_php_error(array("phperror"=>"Unknown component"));
-	return hexdec(substr($color,$offset[$component],2));
-}
-
-function __number_color2incr($color,$incr) {
-	return min(max($color*$incr,0),255);
-}
-
-function __number_color2aprox($fgcolor,$bgcolor1,$bgcolor2) {
-	$color=255;
-	while($color==$fgcolor || $color==$bgcolor1 || $color==$bgcolor2) $color--;
-	return $color;
-}
-
 require_once("lib/tcpdf/tcpdf.php");
 
 class PDF extends TCPDF {

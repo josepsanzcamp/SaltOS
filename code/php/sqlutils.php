@@ -499,7 +499,7 @@ function make_like_query($keys,$values) {
 
 function make_extra_query_with_login($prefix="") {
 	$query=make_extra_query($prefix);
-	return "SUBSTR(CONCAT($query,' (',${prefix}login,')'),1,255)";
+	return "SUBSTR(REPLACE(CONCAT(${prefix}login,' (',$query,')'),'()',''),1,255)";
 }
 
 function make_extra_query($prefix="") {
@@ -507,14 +507,17 @@ function make_extra_query($prefix="") {
 	$hash=md5($prefix);
 	if(!isset($stack[$hash])) {
 		$query="SELECT * FROM tbl_aplicaciones WHERE islink=1";
-		$result=db_query($query);
-		$cases=array("CASE ${prefix}id_aplicacion");
-		while($row=db_fetch_row($result)) {
-			$cases[]="WHEN '${row["id"]}' THEN (SELECT ${row["campo"]} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
+		$rows=execute_query_array($query);
+		if(count($rows)>0) {
+			$cases=array("CASE ${prefix}id_aplicacion");
+			foreach($rows as $row) {
+				$cases[]="WHEN '${row["id"]}' THEN (SELECT ${row["campo"]} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
+			}
+			$cases[]="END";
+			$stack[$hash]=implode(" ",$cases);
+		} else {
+			$stack[$hash]="''";
 		}
-		db_free($result);
-		$cases[]="END";
-		$stack[$hash]=implode(" ",$cases);
 	}
 	return $stack[$hash];
 }
@@ -524,32 +527,38 @@ function make_extra_query_with_field($field,$prefix="") {
 	$hash=md5(json_encode(array($field,$prefix)));
 	if(!isset($stack[$hash])) {
 		$query="SELECT * FROM tbl_aplicaciones WHERE islink=1";
-		$result=db_query($query);
-		$cases=array("CASE ${prefix}id_aplicacion");
-		while($row=db_fetch_row($result)) {
-			$fields=get_fields_from_dbschema($row["tabla"]);
-			foreach($fields as $key=>$val) $fields[$key]=$val["name"];
-			if(in_array($field,$fields)) $cases[]="WHEN '${row["id"]}' THEN (SELECT ${field} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
+		$rows=execute_query_array($query);
+		if(count($rows)>0) {
+			$cases=array("CASE ${prefix}id_aplicacion");
+			foreach($rows as $row) {
+				$fields=get_fields_from_dbschema($row["tabla"]);
+				foreach($fields as $key=>$val) $fields[$key]=$val["name"];
+				if(in_array($field,$fields)) $cases[]="WHEN '${row["id"]}' THEN (SELECT ${field} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
+			}
+			$cases[]="END";
+			$stack[$hash]=implode(" ",$cases);
+		} else {
+			$stack[$hash]="''";
 		}
-		db_free($result);
-		$cases[]="END";
-		$stack[$hash]=implode(" ",$cases);
 	}
 	return $stack[$hash];
 }
 
 function make_select_appsregs($id=0) {
 	$query="SELECT * FROM tbl_aplicaciones WHERE islink=1";
-	$result=db_query($query);
-	$subquery=array();
-	while($row=db_fetch_row($result)) {
-		$subquery[]="SELECT CONCAT('${row["id"]}','_','-2') id,'${row["id"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
-		$subquery[]="SELECT CONCAT('${row["id"]}','_','-1') id,'${row["id"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
-		$subquery[]="SELECT CONCAT('${row["id"]}','_',a.id) id,'${row["id"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["tabla"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
+	$rows=execute_query_array($query);
+	if(count($rows)>0) {
+		$subquery=array();
+		foreach($rows as $row) {
+			$subquery[]="SELECT CONCAT('${row["id"]}','_','-2') id,'${row["id"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
+			$subquery[]="SELECT CONCAT('${row["id"]}','_','-1') id,'${row["id"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
+			$subquery[]="SELECT CONCAT('${row["id"]}','_',a.id) id,'${row["id"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["tabla"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
+		}
+		$query=implode(" UNION ",$subquery)." ORDER BY aplicacion,pos,registro";
+	} else {
+		$query="";
 	}
-	db_free($result);
-	$query=implode(" UNION ",$subquery);
-	return $query." ORDER BY aplicacion,pos,registro";
+	return $query;
 }
 
 function make_extra_query_with_perms($page,$table,$field,$arg1=null,$arg2=null) {
