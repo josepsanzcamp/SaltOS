@@ -76,7 +76,7 @@ function struct2array(&$data,$file="") {
 			foreach($attr as $key=>$val) {
 				$key=limpiar_key($key);
 				if($key=="include") {
-					$value=xml2array($val,false);
+					$value=xml2array($val);
 					$include=1;
 				} elseif($key=="replace") {
 					$replace=eval_bool($val);
@@ -270,9 +270,17 @@ function xml2array($file,$usecache=true) {
 				}
 			}
 		}
-		$depend=array();
-	} else {
-		$depend[]=$file;
+		$temp=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+		foreach($temp as $key=>$val) {
+			if(!isset($val["function"]) || $val["function"]!=__FUNCTION__) {
+				unset($temp[$key]);
+			}
+		}
+		if(count($temp)==1) {
+			$depend=array();
+		} else {
+			$depend[]=$file;
+		}
 	}
 	$xml=file_get_contents($file);
 	$data=xml2struct($xml,$file);
