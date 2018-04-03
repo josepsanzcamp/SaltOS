@@ -134,10 +134,16 @@ function __set_array_recursive($array,$keys,$value,$type) {
 		$key=array();
 		foreach($array as $key2=>$val2) {
 			$valid=1;
+			$hasattr=(isset($val2["value"]) && isset($val2["#attr"]));
 			if(!in_array($path[0],array("","*",limpiar_key($key2)))) $valid=0;
 			for($i=1;$i<$count && $valid;$i++) {
-				if(!isset($val2[$path[$i][0]])) $valid=0;
-				elseif($val2[$path[$i][0]]!=$path[$i][1]) $valid=0;
+				if($hasattr) {
+					if(!isset($val2["value"][$path[$i][0]])) $valid=0;
+					elseif($val2["value"][$path[$i][0]]!=$path[$i][1]) $valid=0;
+				} else {
+					if(!isset($val2[$path[$i][0]])) $valid=0;
+					elseif($val2[$path[$i][0]]!=$path[$i][1]) $valid=0;
+				}
 			}
 			if($valid) $key[]=$key2;
 		}

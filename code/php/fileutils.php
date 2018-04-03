@@ -128,6 +128,10 @@ function semaphore_shutdown() {
 	return __semaphore_helper(__FUNCTION__,null,null);
 }
 
+function semaphore_file($name="") {
+	return __semaphore_helper(__FUNCTION__,$name,null);
+}
+
 function __semaphore_helper($fn,$name,$timeout) {
 	static $stack=array();
 	if(stripos($fn,"acquire")!==false) {
@@ -196,6 +200,10 @@ function __semaphore_helper($fn,$name,$timeout) {
 			}
 		}
 		return true;
+	} elseif(stripos($fn,"file")!==false) {
+		if($name=="") $name=__FUNCTION__;
+		$file=get_cache_file($name,".sem");
+		return $file;
 	}
 	return false;
 }

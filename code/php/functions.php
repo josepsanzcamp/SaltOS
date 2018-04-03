@@ -1070,13 +1070,11 @@ function __exception_handler($e) {
 
 function __shutdown_handler() {
 	global $_ERROR_HANDLER;
+	if($_ERROR_HANDLER["level"]>0) show_php_error();
 	$error=error_get_last();
 	$types=array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
 	if(is_array($error) && isset($error["type"]) && in_array($error["type"],$types)) {
-		$_ERROR_HANDLER=array("level"=>0,"msg"=>array());
 		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}","backtrace"=>debug_backtrace()));
-	} elseif($_ERROR_HANDLER["level"]>0 && implode("",$_ERROR_HANDLER["msg"])!="") {
-		show_php_error();
 	}
 	semaphore_shutdown();
 }
@@ -1087,7 +1085,7 @@ function program_handlers() {
 	// IMPORTANT CHECK
 	if(!ini_get("date.timezone")) ini_set("date.timezone","Europe/Madrid");
 	// CONTINUE
-	error_reporting(0);
+	error_reporting(E_ALL);
 	set_error_handler("__error_handler");
 	set_exception_handler("__exception_handler");
 	register_shutdown_function("__shutdown_handler");
