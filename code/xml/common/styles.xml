@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2017 by Josep Sanz Campderrós
+Copyright (C) 2007-2018 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -116,6 +116,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<row>
 			<label>Custom Yellow Dark</label>
 			<value>custom.yellow.dark</value>
+		</row>
+		<row>
+			<label>Custom Black Light</label>
+			<value>custom.black.light</value>
+		</row>
+		<row>
+			<label>Custom Black Dark</label>
+			<value>custom.black.dark</value>
 		</row>
 		<row ifeval="!ismobile()">
 			<label>Theme Redmond Light</label>

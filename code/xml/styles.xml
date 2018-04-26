@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2017 by Josep Sanz Campderrós
+Copyright (C) 2007-2018 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -50,67 +50,75 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</style>
 	<style>
 		<name>custom.gray.light</name>
-		<color>#546e7a</color>
+		<color>#666666</color>
 	</style>
 	<style>
 		<name>custom.gray.dark</name>
-		<color>#546e7a</color>
+		<color>#666666</color>
 	</style>
 	<style>
 		<name>custom.green.light</name>
-		<color>#43a047</color>
+		<color>#2f8912</color>
 	</style>
 	<style>
 		<name>custom.green.dark</name>
-		<color>#43a047</color>
+		<color>#2f8912</color>
 	</style>
 	<style>
 		<name>custom.red.light</name>
-		<color>#e53935</color>
+		<color>#cc002e</color>
 	</style>
 	<style>
 		<name>custom.red.dark</name>
-		<color>#e53935</color>
+		<color>#cc002e</color>
 	</style>
 	<style>
 		<name>custom.pink.light</name>
-		<color>#d33682</color>
+		<color>#e4007c</color>
 	</style>
 	<style>
 		<name>custom.pink.dark</name>
-		<color>#d33682</color>
+		<color>#e4007c</color>
 	</style>
 	<style>
 		<name>custom.purple.light</name>
-		<color>#8e24aa</color>
+		<color>#9954bb</color>
 	</style>
 	<style>
 		<name>custom.purple.dark</name>
-		<color>#8e24aa</color>
+		<color>#9954bb</color>
 	</style>
 	<style>
 		<name>custom.orange.light</name>
-		<color>#fb8c00</color>
+		<color>#ff7900</color>
 	</style>
 	<style>
 		<name>custom.orange.dark</name>
-		<color>#fb8c00</color>
+		<color>#ff7900</color>
 	</style>
 	<style>
 		<name>custom.brown.light</name>
-		<color>#6d4c41</color>
+		<color>#945d31</color>
 	</style>
 	<style>
 		<name>custom.brown.dark</name>
-		<color>#6d4c41</color>
+		<color>#945d31</color>
 	</style>
 	<style>
 		<name>custom.yellow.light</name>
-		<color>#bfa200</color>
+		<color>#ffd700</color>
 	</style>
 	<style>
 		<name>custom.yellow.dark</name>
-		<color>#bfa200</color>
+		<color>#ffd700</color>
+	</style>
+	<style>
+		<name>custom.black.light</name>
+		<color>#000000</color>
+	</style>
+	<style>
+		<name>custom.black.dark</name>
+		<color>#000000</color>
 	</style>
 	<style ifeval="!ismobile()">
 		<name>theme.redmond.light</name>
