@@ -1264,7 +1264,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabs ul",obj).removeClass("ui-corner-all").addClass("ui-corner-top");
 		// TUNNING THE HELP TAB
 		var help=$(".tabs ul li.help",obj);
-		$("span",help).removeClass("saltos-icon saltos-icon-none").addClass(icon_help());
+		$("span",help).removeClass("ui-icon ui-icon-none").addClass(icon_help());
 		$("a",help).append("&nbsp;").append(lang_help());
 		//~ console.timeEnd("make_tabs");
 	}

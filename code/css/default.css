@@ -492,22 +492,6 @@ span.number {
 	right:11px;
 }
 
-/* FOR ICONSET */
-.saltos-icon {
-	/* COPIED FROM JQUERY-UI */
-	display:block;
-	text-indent:-99999px;
-	overflow:hidden;
-	background-repeat:no-repeat;
-	width:16px;
-	height:16px;
-	/* MODIFIED BY SANZ */
-	display:inline-block;
-	position:relative;
-	top:4px;
-	margin-top:-8px;
-}
-
 /* FOR PLOTS */
 img[isplot=true] {
 	margin:2px;
@@ -657,4 +641,28 @@ img[isplot=true] {
 	background-color:#fbec88;
 	color:#333333;
 	font-weight:normal;
+}
+
+/* FOR SORT ICONS */
+.ui-icon-asc {
+	position:relative;
+	left:3px;
+	top:1px;
+}
+
+.ui-icon-desc {
+	position:relative;
+	left:-3px;
+}
+
+.ui-icon-in {
+	opacity:1.0!important;
+}
+
+.ui-icon-out {
+	opacity:0.5!important;
+}
+
+.ui-icon-none {
+	background-position:-240px -240px;
 }

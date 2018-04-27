@@ -231,7 +231,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:if>
 		</td>
 	</xsl:for-each>
-	<td class=" width1 thead" colspan="100" oldwidth=""><span class="saltos-icon saltos-icon-none"></span></td>
+	<td class=" width1 thead" colspan="100" oldwidth=""><span class="ui-icon ui-icon-none"></span></td>
 </xsl:template>
 
 <xsl:template name="list_table_data">
@@ -494,7 +494,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="help">
 	<xsl:if test="help='true'">
-		<li class="help" taborder=""><a href="javascript:void(0)"><span class="saltos-icon saltos-icon-none"></span></a></li>
+		<li class="help" taborder=""><a href="javascript:void(0)"><span class="ui-icon ui-icon-none"></span></a></li>
 	</xsl:if>
 </xsl:template>
 
@@ -673,7 +673,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<span class="{icon}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
-									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
+									<span class="ui-icon ui-icon-none" title="{tip2}"></span>
 								</xsl:otherwise>
 							</xsl:choose>
 						</a>
@@ -709,7 +709,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<span class="{icon}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
-									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
+									<span class="ui-icon ui-icon-none" title="{tip2}"></span>
 								</xsl:otherwise>
 							</xsl:choose>
 						</a>
@@ -745,7 +745,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<span class="{icon}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
-									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
+									<span class="ui-icon ui-icon-none" title="{tip2}"></span>
 								</xsl:otherwise>
 							</xsl:choose>
 						</a>
@@ -793,7 +793,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<span class="{icon}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
-									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
+									<span class="ui-icon ui-icon-none" title="{tip2}"></span>
 								</xsl:otherwise>
 							</xsl:choose>
 						</a>
@@ -822,7 +822,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 									<span class="{icon2}" title="{tip2}"></span>
 								</xsl:when>
 								<xsl:otherwise>
-									<span class="saltos-icon saltos-icon-none" title="{tip2}"></span>
+									<span class="ui-icon ui-icon-none" title="{tip2}"></span>
 								</xsl:otherwise>
 							</xsl:choose>
 						</a>
