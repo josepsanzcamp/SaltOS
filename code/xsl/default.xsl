@@ -851,12 +851,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:if test="label!=''">
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:value-of select="label"/></td>
 			</xsl:if>
-			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<iframe src="" url="" name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width};height:{height}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" frameborder="0" title="{tip}" class="ui-state-default ui-corner-all {class3}">
-					<xsl:if test="readonly='true'">
-						<xsl:attribute name="readonly">true</xsl:attribute>
-						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class3"/></xsl:attribute>
-					</xsl:if>
+			<td class="left {class3}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
+				<iframe src="" url="" name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width};height:{height}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" frameborder="0" title="{tip}" class="{class}">
+					<xsl:choose>
+						<xsl:when test="class!=''"/>
+						<xsl:otherwise>
+							<xsl:attribute name="class">ui-state-default ui-corner-all iframe</xsl:attribute>
+						</xsl:otherwise>
+					</xsl:choose>
 					<xsl:attribute name="url"><xsl:value-of select="value"/></xsl:attribute>
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="url"><xsl:value-of select="."/></xsl:attribute>
