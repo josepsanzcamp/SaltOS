@@ -1468,7 +1468,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					width=(intval(width)+5)+"px";
 				}
 			} else {
-				width="auto";
+				var width2=$(this).attr("width2");
+				if(width2!="") {
+					width=width2;
+				} else {
+					width="auto";
+				}
 			}
 			$(this).selectmenu({
 				width:width,

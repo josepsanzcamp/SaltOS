@@ -186,23 +186,6 @@ if(typeof(__correo__)=="undefined" && typeof(parent.__correo__)=="undefined") {
 		}
 	}
 
-	function update_screen() {
-		setTimeout(function() {
-			var delta=$(".ui-layout-center table:first").width()-800;
-			var width=$(".ui-layout-center").width()-50-delta;
-			if(width<800) return;
-			$("input,textarea,select,iframe").filter(function () {
-				return $(this).css("width")=="800px";
-			}).each(function() {
-				if(substr(this.type,0,6)=="select") {
-					$(this).selectmenu("option","width",(intval(width)+12)+"px");
-				} else {
-					$(this).width(width);
-				}
-			});
-		},100);
-	}
-
 }
 
 "use strict";
@@ -211,5 +194,4 @@ $(function() {
 	update_auto();
 	update_signature();
 	update_checkbox();
-	update_screen();
 });

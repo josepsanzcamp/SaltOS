@@ -1,4 +1,8 @@
 <?php
+/**
+ * @var string[] $allowedentitynames Array of KSES allowed HTML entitity names.
+ * @since 1.0.0
+ */
 $allowedentitynames = array(
 	'nbsp',
 	'iexcl',
@@ -610,8 +614,8 @@ function _deep_replace( $search, $subject ) {
  *
  * @since 1.0.0
  *
- * @param string $string Content to normalize entities
- * @return string Content with normalized entities
+ * @param string $string Content to normalize entities.
+ * @return string Content with normalized entities.
  */
 function wp_kses_normalize_entities( $string ) {
 	// Disarm all entities by converting & to &amp;
@@ -637,9 +641,11 @@ function wp_kses_normalize_entities( $string ) {
  *
  * @staticvar array $protocols
  *
- * @return array Array of allowed protocols. Defaults to an array containing 'http', 'https',
- *               'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet',
- *               'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal', and 'urn'.
+ * @return string[] Array of allowed protocols. Defaults to an array containing 'http', 'https',
+ *                  'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet',
+ *                  'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal', and 'urn'. This covers
+ *                  all common link protocols, except for 'javascript' which should not be
+ *                  allowed for untrusted users.
  */
 function wp_allowed_protocols() {
 	static $protocols = array();
@@ -663,18 +669,18 @@ function wp_allowed_protocols() {
 }
 
 /**
- * Sanitize string from bad protocols.
+ * Sanitizes a string and removed disallowed URL protocols.
  *
- * This function removes all non-allowed protocols from the beginning of
- * $string. It ignores whitespace and the case of the letters, and it does
- * understand HTML entities. It does its work in a while loop, so it won't be
- * fooled by a string like "javascript:javascript:alert(57)".
+ * This function removes all non-allowed protocols from the beginning of the
+ * string. It ignores whitespace and the case of the letters, and it does
+ * understand HTML entities. It does its work recursively, so it won't be
+ * fooled by a string like `javascript:javascript:alert(57)`.
  *
  * @since 1.0.0
  *
- * @param string $string            Content to filter bad protocols from
- * @param array  $allowed_protocols Allowed protocols to keep
- * @return string Filtered content
+ * @param string   $string            Content to filter bad protocols from.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
+ * @return string Filtered content.
  */
 function wp_kses_bad_protocol( $string, $allowed_protocols ) {
 	$string     = wp_kses_no_null( $string );
@@ -765,7 +771,7 @@ function apply_filters( $tag, $value ) {
 }
 
 /**
- * Callback for wp_kses_normalize_entities() regular expression.
+ * Callback for `wp_kses_normalize_entities()` regular expression.
  *
  * This function only accepts valid named entity references, which are finite,
  * case-sensitive, and highly scrutinized by HTML and XML validators.
@@ -774,8 +780,8 @@ function apply_filters( $tag, $value ) {
  *
  * @global array $allowedentitynames
  *
- * @param array $matches preg_replace_callback() matches array
- * @return string Correctly encoded entity
+ * @param array $matches preg_replace_callback() matches array.
+ * @return string Correctly encoded entity.
  */
 function wp_kses_named_entities( $matches ) {
 	global $allowedentitynames;
@@ -789,16 +795,17 @@ function wp_kses_named_entities( $matches ) {
 }
 
 /**
- * Callback for wp_kses_normalize_entities() regular expression.
+ * Callback for `wp_kses_normalize_entities()` regular expression.
  *
- * This function helps wp_kses_normalize_entities() to only accept 16-bit
+ * This function helps `wp_kses_normalize_entities()` to only accept 16-bit
  * values and nothing more for `&#number;` entities.
  *
  * @access private
+ * @ignore
  * @since 1.0.0
  *
- * @param array $matches preg_replace_callback() matches array
- * @return string Correctly encoded entity
+ * @param array $matches `preg_replace_callback()` matches array.
+ * @return string Correctly encoded entity.
  */
 function wp_kses_normalize_entities2( $matches ) {
 	if ( empty( $matches[1] ) ) {
@@ -817,16 +824,17 @@ function wp_kses_normalize_entities2( $matches ) {
 }
 
 /**
- * Callback for wp_kses_normalize_entities() for regular expression.
+ * Callback for `wp_kses_normalize_entities()` for regular expression.
  *
- * This function helps wp_kses_normalize_entities() to only accept valid Unicode
+ * This function helps `wp_kses_normalize_entities()` to only accept valid Unicode
  * numeric entities in hex form.
  *
  * @since 2.7.0
  * @access private
+ * @ignore
  *
- * @param array $matches preg_replace_callback() matches array
- * @return string Correctly encoded entity
+ * @param array $matches `preg_replace_callback()` matches array.
+ * @return string Correctly encoded entity.
  */
 function wp_kses_normalize_entities3( $matches ) {
 	if ( empty( $matches[1] ) ) {
@@ -838,15 +846,15 @@ function wp_kses_normalize_entities3( $matches ) {
 }
 
 /**
- * Removes any invalid control characters in $string.
+ * Removes any invalid control characters in a text string.
  *
- * Also removes any instance of the '\0' string.
+ * Also removes any instance of the `\0` string.
  *
  * @since 1.0.0
  *
- * @param string $string
- * @param array $options Set 'slash_zero' => 'keep' when '\0' is allowed. Default is 'remove'.
- * @return string
+ * @param string $string  Content to filter null characters from.
+ * @param array  $options Set 'slash_zero' => 'keep' when '\0' is allowed. Default is 'remove'.
+ * @return string Filtered content.
  */
 function wp_kses_no_null( $string, $options = null ) {
 	if ( ! isset( $options['slash_zero'] ) ) {
@@ -864,14 +872,14 @@ function wp_kses_no_null( $string, $options = null ) {
 /**
  * Sanitizes content from bad protocols and other characters.
  *
- * This function searches for URL protocols at the beginning of $string, while
+ * This function searches for URL protocols at the beginning of the string, while
  * handling whitespace and HTML entities.
  *
  * @since 1.0.0
  *
- * @param string $string            Content to check for bad protocols
- * @param string $allowed_protocols Allowed protocols
- * @return string Sanitized content
+ * @param string   $string            Content to check for bad protocols.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
+ * @return string Sanitized content.
  */
 function wp_kses_bad_protocol_once( $string, $allowed_protocols, $count = 1 ) {
 	$string2 = preg_split( '/:|&#0*58;|&#x0*3a;/i', $string, 2 );
@@ -894,12 +902,12 @@ function wp_kses_bad_protocol_once( $string, $allowed_protocols, $count = 1 ) {
 }
 
 /**
- * Helper function to determine if a Unicode value is valid.
+ * Determines if a Unicode codepoint is valid.
  *
  * @since 2.7.0
  *
- * @param int $i Unicode value
- * @return bool True if the value was a valid Unicode number
+ * @param int $i Unicode codepoint.
+ * @return bool Whether or not the codepoint is a valid Unicode codepoint.
  */
 function valid_unicode( $i ) {
 	return ( $i == 0x9 || $i == 0xa || $i == 0xd ||
@@ -909,17 +917,18 @@ function valid_unicode( $i ) {
 }
 
 /**
- * Callback for wp_kses_bad_protocol_once() regular expression.
+ * Callback for `wp_kses_bad_protocol_once()` regular expression.
  *
  * This function processes URL protocols, checks to see if they're in the
  * whitelist or not, and returns different data depending on the answer.
  *
  * @access private
+ * @ignore
  * @since 1.0.0
  *
- * @param string $string            URI scheme to check against the whitelist
- * @param string $allowed_protocols Allowed protocols
- * @return string Sanitized content
+ * @param string   $string            URI scheme to check against the whitelist.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
+ * @return string Sanitized content.
  */
 function wp_kses_bad_protocol_once2( $string, $allowed_protocols ) {
 	$string2 = wp_kses_decode_entities( $string );
@@ -943,16 +952,16 @@ function wp_kses_bad_protocol_once2( $string, $allowed_protocols ) {
 }
 
 /**
- * Convert all entities to their character counterparts.
+ * Converts all numeric HTML entities to their named counterparts.
  *
  * This function decodes numeric HTML entities (`&#65;` and `&#x41;`).
- * It doesn't do anything with other entities like &auml;, but we don't
+ * It doesn't do anything with named entities like `&auml;`, but we don't
  * need them in the URL protocol whitelisting system anyway.
  *
  * @since 1.0.0
  *
- * @param string $string Content to change entities
- * @return string Content after decoded entities
+ * @param string $string Content to change entities.
+ * @return string Content after decoded entities.
  */
 function wp_kses_decode_entities( $string ) {
 	$string = preg_replace_callback( '/&#([0-9]+);/', '_wp_kses_decode_entities_chr', $string );
@@ -962,9 +971,11 @@ function wp_kses_decode_entities( $string ) {
 }
 
 /**
- * Regex callback for wp_kses_decode_entities()
+ * Regex callback for `wp_kses_decode_entities()`.
  *
  * @since 2.9.0
+ * @access private
+ * @ignore
  *
  * @param array $match preg match
  * @return string
@@ -974,9 +985,11 @@ function _wp_kses_decode_entities_chr( $match ) {
 }
 
 /**
- * Regex callback for wp_kses_decode_entities()
+ * Regex callback for `wp_kses_decode_entities()`.
  *
  * @since 2.9.0
+ * @access private
+ * @ignore
  *
  * @param array $match preg match
  * @return string
@@ -1001,7 +1014,7 @@ function _wp_kses_decode_entities_chr_hexdec( $match ) {
  * when URL parsing failed.
  *
  * @since 4.4.0
- * @since 4.7.0 The $component parameter was added for parity with PHP's parse_url().
+ * @since 4.7.0 The `$component` parameter was added for parity with PHP's `parse_url()`.
  *
  * @link https://secure.php.net/manual/en/function.parse-url.php
  *

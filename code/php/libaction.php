@@ -32,7 +32,7 @@ function __cache_resolve_path($buffer,$file) {
 		$img=substr($buffer,$pos+4,$pos2-$pos-4);
 		if(in_array(substr($img,0,1),array("'",'"'))) $img=substr($img,1);
 		if(in_array(substr($img,-1,1),array("'",'"'))) $img=substr($img,0,-1);
-		$newimg=semi_realpath($dirname_file.strtok($img,"?"));
+		$newimg=semi_realpath($dirname_file.strtok(strtok($img,"?"),"#"));
 		if(file_exists($newimg)) {
 			$buffer=substr_replace($buffer,$newimg,$pos+4,$pos2-$pos-4);
 			$pos2=$pos2-strlen($img)+strlen($newimg);
@@ -87,29 +87,12 @@ function __captcha_isprime($num) {
 }
 
 function __excel_dump($matrix,$file,$title="") {
-	set_include_path("lib/phpexcel".PATH_SEPARATOR.get_include_path());
-	require_once("PHPExcel.php");
-	$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
-	$cacheSettings=array("memoryCacheSize"=>"8MB");
-	PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);
-	$objPHPExcel=new PHPExcel();
-	$objPHPExcel->getProperties()->setCreator(get_name_version_revision());
-	$objPHPExcel->getProperties()->setLastModifiedBy(current_datetime());
-	$objPHPExcel->getProperties()->setTitle($title);
-	$objPHPExcel->getProperties()->setSubject($title);
-	$objPHPExcel->getProperties()->setDescription($title);
-	$objPHPExcel->getProperties()->setKeywords($title);
-	$objPHPExcel->getProperties()->setCategory($title);
-	//~ $objPHPExcel->createSheet();
-	$objPHPExcel->setActiveSheetIndex(0);
-	$objPHPExcel->getActiveSheet()->fromArray($matrix,NULL,"A1");
-	require_once("php/import.php");
-	for($i=0;$i<count($matrix[0]);$i++) $objPHPExcel->getActiveSheet()->getColumnDimension(__import_col2name($i))->setAutoSize(true);
-	$objPHPExcel->getActiveSheet()->setTitle(substr($title,0,31));
-	$objWriter=PHPExcel_IOFactory::createWriter($objPHPExcel,"Excel5");
-	ob_start();
-	$objWriter->save("php://output");
-	$buffer=ob_get_clean();
+	require_once("php/export.php");
+	$buffer=export_file(array(
+		"type"=>"excel",
+		"data"=>$matrix,
+		"title"=>$title,
+	));
 	if(!defined("__CANCEL_DIE__")) {
 		output_handler(array(
 			"data"=>$buffer,
@@ -123,17 +106,20 @@ function __excel_dump($matrix,$file,$title="") {
 }
 
 function __csv_dump($matrix,$file) {
-	foreach($matrix as $key=>$val) $matrix[$key]='"'.implode('";"',$val).'"';
-	$matrix=implode("\r\n",$matrix);
+	require_once("php/export.php");
+	$buffer=export_file(array(
+		"type"=>"csv",
+		"data"=>$matrix,
+	));
 	if(!defined("__CANCEL_DIE__")) {
 		output_handler(array(
-			"data"=>$matrix,
+			"data"=>$buffer,
 			"type"=>"text/csv",
 			"cache"=>false,
 			"name"=>$file
 		));
 	} else {
-		echo $matrix;
+		echo $buffer;
 	}
 }
 

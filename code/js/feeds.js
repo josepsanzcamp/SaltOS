@@ -97,21 +97,9 @@ if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
 		}
 	}
 
-	function update_screen2() {
-		setTimeout(function() {
-			var delta=$(".ui-layout-center table:first").width()-800;
-			var width=$(".ui-layout-center").width()-50-delta;
-			if(width<800) return;
-			$("input,textarea,select,iframe").filter(function () {
-				return $(this).width()==800;
-			}).width(width);
-		},100);
-	}
-
 }
 
 "use strict";
 $(function() {
 	update_checkbox2();
-	update_screen2();
 });

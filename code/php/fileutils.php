@@ -304,6 +304,15 @@ function touch_protected($file) {
 	return $error1.$error2;
 }
 
+function mkdir_protected($dir) {
+	capture_next_error();
+	ob_start();
+	mkdir($dir);
+	$error1=ob_get_clean();
+	$error2=get_clear_error();
+	return $error1.$error2;
+}
+
 function check_commands($commands,$expires=0) {
 	if(!is_array($commands)) $commands=explode(",",$commands);
 	$result=1;

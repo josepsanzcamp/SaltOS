@@ -496,6 +496,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<icon eval="true">ICON("form")</icon>
 					<quick global="id" eval="true">$id>=0?"false":"true"</quick>
 					<buttons>true</buttons>
+					<width>100%</width>
 					<row>
 						<field>
 							<name>id</name>
@@ -505,9 +506,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>title</name>
 							<label lang="true">title</label>
 							<type>text</type>
-							<width>800px</width>
 							<readonly>true</readonly>
 							<colspan>10</colspan>
+							<width>calc(100% - 14px)</width>
+							<width2>1%</width2>
 						</field>
 					</row>
 					<row>
@@ -588,7 +590,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">descripcion</label>
 							<type>iframe</type>
 							<value global="id" eval="true">"?action=feeds&amp;id=".abs($id)."&amp;cid=body"</value>
-							<width>800px</width>
+							<width>calc(100% - 14px)</width>
 							<height>240px</height>
 							<colspan>10</colspan>
 						</field>
@@ -599,13 +601,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset>
 					<title lang="true">fulldata</title>
 					<icon eval="true">ICON("form")</icon>
+					<width>100%</width>
 					<row>
 						<field>
 							<name>full</name>
 							<type>iframe</type>
 							<value global="id" eval="true">"?action=feeds&amp;id=".abs($id)."&amp;cid=full"</value>
-							<width>800px</width>
+							<width>100%</width>
 							<height>240px</height>
+							<class>nada</class>
 						</field>
 					</row>
 				</fieldset>
