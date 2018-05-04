@@ -1621,7 +1621,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						clearInterval(interval);
 						if(security_iframe(iframe2)) {
 							var minheight=$(iframe2).height();
-							var newheight=$(iframe2).contents().height();
+							var newheight=$(iframe2).contents().height()+20;
 							if(newheight>minheight) $(iframe2).height(newheight);
 							$(iframe2).each(function() {
 								var iframe3=this.contentWindow.document;

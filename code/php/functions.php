@@ -1031,7 +1031,7 @@ function pretty_html_error($msg) {
 	$html.=".phperror { background:#eee; color:#000; padding:20px; font-family:Helvetica,Arial,sans-serif; }";
 	$html.=".phperror div { width:80%; margin:0 auto; background:#fff; padding:20px 40px; border:1px solid #aaa; border-radius:5px; text-align:left; }";
 	$favicon=getDefault("info/favicon","img/favicon.png");
-	if(file_exists($favicon) && filesize($favicon)<memory_get_free(true)/3) $favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
+	$favicon="data:".saltos_content_type($favicon).";base64,".base64_encode(file_get_contents($favicon));
 	$html.=".phperror h3 { background:url(${favicon}) top left no-repeat; padding-left: 48px; height:32px; font-size:24px; margin:0; }";
 	$html.=".phperror pre { white-space:pre-wrap; font-size:11px; }";
 	$html.=".phperror form { display:inline; float:right; }";
@@ -1152,7 +1152,7 @@ function fix_input_vars() {
 
 function memory_get_free($bytes=false) {
 	$memory_limit=normalize_value(ini_get("memory_limit"));
-	$memory_usage=memory_get_usage(true);
+	$memory_usage=memory_get_usage();
 	$diff=$memory_limit-$memory_usage;
 	if(!$bytes) $diff=($diff*100)/$memory_limit;
 	return $diff;
