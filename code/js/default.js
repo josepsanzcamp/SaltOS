@@ -1469,6 +1469,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 			} else {
 				var width2=$(this).attr("width2");
+				if(typeof(width2)=="undefined") width2="";
 				if(width2!="") {
 					width=width2;
 				} else {
