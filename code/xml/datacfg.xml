@@ -48,7 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset global="temp" ifeval="(check_user('datacfg',($temp='export')))">
 					<width>600px</width>
 					<title lang="true">export</title>
-					<icon eval="true">ICON("datacfg")</icon>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<type>label</type>
@@ -99,7 +99,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<fieldset global="temp" ifeval="(check_user('datacfg',($temp='import')))">
 					<width>600px</width>
 					<title lang="true">import</title>
-					<icon eval="true">ICON("datacfg")</icon>
+					<icon eval="true">ICON("form")</icon>
 					<row>
 						<field>
 							<type>label</type>

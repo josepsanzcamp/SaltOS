@@ -43,14 +43,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<hiddens include="xml/common/hiddensform.xml" />
 		<fields>
 			<default>
-				<temp global="files" eval="true">$files=array()</temp>
-				<temp global="files" eval="true">$files=array_merge($files,glob_protected("files/error*.log"))</temp>
-				<temp global="files" eval="true">$files=array_merge($files,glob_protected("files/warning*.log"))</temp>
-				<temp global="files" eval="true">$files=array_merge($files,glob_protected("files/saltos*.log"))</temp>
+				<temp global="files" eval="true">$files=glob_protected("files/*.log")</temp>
 				<fieldset global="files,row" foreach="files" as="row">
 					<buttons>true</buttons>
 					<title global="row" eval="true">basename($row)</title>
-					<icon eval="true">ICON("errorlog")</icon>
+					<icon eval="true">ICON("form")</icon>
+					<width>100%</width>
 					<row>
 						<field>
 							<label global="row" eval="true">LANG("defaultdata").basename($row)</label>
@@ -68,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name global="row" eval="true">$row</name>
 							<type>textarea</type>
 							<value global="row" eval="true">implode("\n",array_slice(array_reverse(file($row,FILE_IGNORE_NEW_LINES)),0,200))</value>
-							<width>800px</width>
+							<width>calc(100% - 14px)</width>
 							<height>240px</height>
 							<readonly>true</readonly>
 							<class3>ascii</class3>
@@ -79,6 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<buttons>true</buttons>
 					<title lang="true">formupdate</title>
 					<icon eval="true">ICON("form")</icon>
+					<width>100%</width>
 					<row>
 						<field>
 							<label lang="true">nodata</label>
@@ -96,7 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>void</name>
 							<type>textarea</type>
 							<value></value>
-							<width>800px</width>
+							<width>calc(100% - 14px)</width>
 							<height>240px</height>
 							<readonly>true</readonly>
 							<class3>ascii</class3>
