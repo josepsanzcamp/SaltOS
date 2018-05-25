@@ -1635,36 +1635,39 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			},100);
 		});
 		// CREATE THE CKEDITORS
-		$("textarea[ckeditor=true]",obj).ckeditor({
-			title:"",
-			skin:"moono-lisa",
-			extraPlugins:"codesnippetgeshi,autogrow,base64image",
-			removePlugins:"elementspath",
-			enterMode:CKEDITOR.ENTER_BR,
-			shiftEnterMode:CKEDITOR.ENTER_BR,
-			forcePasteAsPlainText:true,
-			toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet","base64image"],["About"]],
-			language:lang_default(),
-			//~ uiColor:get_colors("ui-state-default","background-color"),
-			uiColor:"transparent",
-			autoGrow_onStartup:true,
-			disableNativeSpellChecker:false,
-			dialog_backgroundCoverColor:"#aaa",
-			dialog_backgroundCoverOpacity:0.3,
-			resize_enabled:false,
-			codeSnippetGeshi_url:"../../?action=geshi",
-			allowedContent:true
-		},function() {
-			var obj=$("#"+$(this).attr("name")).next();
-			$(obj).addClass("ui-state-default ui-corner-all");
-			$(obj).on("mouseover",function() {
-				$(this).addClass("ui-state-hover");
-			}).on("mouseout",function() {
-				$(this).removeClass("ui-state-hover");
-			}).on("focus",function() {
-				$(this).addClass("ui-state-focus");
-			}).on("blur",function() {
-				$(this).removeClass("ui-state-focus");
+		$("textarea[ckeditor=true]",obj).each(function() {
+			$(this).ckeditor({
+				title:"",
+				skin:"moono-lisa",
+				extraPlugins:"codesnippetgeshi,autogrow,base64image",
+				removePlugins:"elementspath",
+				enterMode:CKEDITOR.ENTER_BR,
+				shiftEnterMode:CKEDITOR.ENTER_BR,
+				forcePasteAsPlainText:true,
+				toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet","base64image"],["About"]],
+				language:lang_default(),
+				//~ uiColor:get_colors("ui-state-default","background-color"),
+				uiColor:"transparent",
+				autoGrow_onStartup:true,
+				autoGrow_minHeight:$(this).height(),
+				disableNativeSpellChecker:false,
+				dialog_backgroundCoverColor:"#aaa",
+				dialog_backgroundCoverOpacity:0.3,
+				resize_enabled:false,
+				codeSnippetGeshi_url:"../../?action=geshi",
+				allowedContent:true,
+			},function() {
+				var obj=$("#"+$(this).attr("name")).next();
+				$(obj).addClass("ui-state-default ui-corner-all");
+				$(obj).on("mouseover",function() {
+					$(this).addClass("ui-state-hover");
+				}).on("mouseout",function() {
+					$(this).removeClass("ui-state-hover");
+				}).on("focus",function() {
+					$(this).addClass("ui-state-focus");
+				}).on("blur",function() {
+					$(this).removeClass("ui-state-focus");
+				});
 			});
 		});
 		// CREATE THE CODE MIRROR
@@ -1678,9 +1681,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			});
 			$(this).data("cm",cm);
 			var fnresize=function(cm) {
-				var height2=max(height,cm.doc.size*13);
-				if(cm.display.sizerWidth>cm.display.lastWrapWidth) height2+=13;
-				cm.setSize(width+10,height2+6);
+				var height2=max(height,cm.doc.size*14);
+				if(cm.display.sizerWidth>cm.display.lastWrapWidth) height2+=14;
+				cm.setSize(width+10,height2+10);
 			}
 			fnresize(cm);
 			cm.on("viewportChange",fnresize);
