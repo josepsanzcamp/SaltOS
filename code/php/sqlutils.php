@@ -426,7 +426,7 @@ function sql_create_index($indexspec) {
 		$pre="";
 	}
 	if(isset($indexspec["fulltext"]) && eval_bool($indexspec["fulltext"]) && __has_mroonga_engine()) {
-		$post="/*MYSQL COMMENT 'parser \"TokenBigramSplitSymbolAlphaDigit\"' */";
+		$post="/*MYSQL COMMENT 'tokenizer \"TokenBigramSplitSymbolAlphaDigit\"' */";
 	} else {
 		$post="";
 	}

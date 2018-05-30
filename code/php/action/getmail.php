@@ -457,7 +457,7 @@ if(getParam("action")=="getmail") {
 		if($error=="" && $row["pop3_delete"]) {
 			// REMOVE ALL EXPIRED MESSAGES (IF CHECKED THE DELETE OPTION)
 			$delete="'".implode("','",$uidls)."'";
-			$query="SELECT uidl,datetime FROM (SELECT uidl,datetime FROM tbl_correo WHERE uidl IN ($delete) UNION SELECT uidl,datetime FROM tbl_correo_d WHERE uidl IN ($delete)) a";
+			$query="SELECT uidl,datetime FROM (SELECT uidl,datetime FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND uidl IN ($delete) UNION SELECT uidl,datetime FROM tbl_correo_d WHERE id_cuenta='${id_cuenta}' AND uidl IN ($delete)) a";
 			$result2=execute_query_array($query);
 			$time1=strtotime(current_datetime());
 			foreach($result2 as $row2) {
@@ -477,7 +477,7 @@ if(getParam("action")=="getmail") {
 			// REMOVE ALL UNUSED UIDLS
 			$delete=array_diff($olduidls_d,$uidls);
 			$delete="'".implode("','",$delete)."'";
-			$query=make_delete_query("tbl_correo_d","uidl IN (${delete})");
+			$query=make_delete_query("tbl_correo_d","id_cuenta='${id_cuenta}' AND uidl IN (${delete})");
 			db_query($query);
 		}
 		if($error!="") {
