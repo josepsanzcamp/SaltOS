@@ -313,9 +313,9 @@ function sql_create_table($tablespec) {
 	//~ }
 	$fields=implode(",",$fields);
 	if(__has_fulltext_index($table) && __has_mroonga_engine()) {
-		$post="/*MYSQL ENGINE=Mroonga CHARSET=utf8 */";
+		$post="/*MYSQL ENGINE=Mroonga CHARSET=utf8mb4 */";
 	} else {
-		$post="/*MYSQL ENGINE=MyISAM CHARSET=utf8 */";
+		$post="/*MYSQL ENGINE=MyISAM CHARSET=utf8mb4 */";
 	}
 	$query="CREATE TABLE ${table} (${fields}) ${post}";
 	return $query;

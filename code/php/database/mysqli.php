@@ -31,7 +31,7 @@ class database_mysqli {
 		if(!function_exists("mysqli_connect")) { show_php_error(array("phperror"=>"mysqli_connect not found","details"=>"Try to install php-mysql package")); return; }
 		$this->link=mysqli_connect($args["host"],$args["user"],$args["pass"],$args["name"],$args["port"]);
 		if($this->link) {
-			$this->db_query("SET NAMES 'UTF8'");
+			$this->db_query("SET NAMES 'utf8mb4'");
 			$this->db_query("SET FOREIGN_KEY_CHECKS=0");
 			$this->db_query("SET GROUP_CONCAT_MAX_LEN:=@@MAX_ALLOWED_PACKET");
 		}

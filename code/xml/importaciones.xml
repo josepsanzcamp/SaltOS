@@ -491,7 +491,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"datetime"=>current_datetime(),
 			"fichero"=>getParam("fichero"),
 			"fichero_file"=>getParam("fichero_file"),
-			"fichero_size"=>getParam("fichero_size"),
+			"fichero_size"=>intval(getParam("fichero_size")),
 			"fichero_type"=>getParam("fichero_type")
 		),array(
 			"id_registro"=>"SELECT MAX(id) FROM ".page2table($page)

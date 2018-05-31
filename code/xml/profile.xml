@@ -488,7 +488,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"email_signature"=>getParam("email_signature_new"),
 			"email_signature_file"=>getParam("email_signature_new_file"),
 			"email_signature_type"=>getParam("email_signature_new_type"),
-			"email_signature_size"=>getParam("email_signature_new_size")
+			"email_signature_size"=>intval(getParam("email_signature_new_size"))
 		),make_where_query(array(
 			"id"=>intval(getParam("id")),
 			"id_usuario"=>current_user()
@@ -538,7 +538,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"email_signature"=>getParam("email_signature_new"),
 			"email_signature_file"=>getParam("email_signature_new_file"),
 			"email_signature_type"=>getParam("email_signature_new_type"),
-			"email_signature_size"=>getParam("email_signature_new_size"),
+			"email_signature_size"=>intval(getParam("email_signature_new_size")),
 			"pop3_host"=>getParam("pop3_host"),
 			"pop3_port"=>getParam("pop3_port"),
 			"pop3_extra"=>getParam("pop3_extra"),

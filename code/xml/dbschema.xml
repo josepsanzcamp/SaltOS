@@ -641,7 +641,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>uidl</name>
-					<type>VARCHAR(255)</type>
+					<type>VARCHAR(250)</type>
 				</field>
 				<field>
 					<name>datetime</name>
@@ -772,7 +772,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>uidl</name>
-					<type>VARCHAR(255)</type>
+					<type>VARCHAR(250)</type>
 				</field>
 				<field>
 					<name>datetime</name>

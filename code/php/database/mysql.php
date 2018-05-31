@@ -33,7 +33,7 @@ class database_mysql {
 		if($this->link===false) show_php_error(array("dberror"=>mysql_error()));
 		if(!mysql_select_db($args["name"],$this->link)) show_php_error(array("dberror"=>mysql_error($this->link)));
 		if($this->link) {
-			$this->db_query("SET NAMES 'UTF8'");
+			$this->db_query("SET NAMES 'utf8mb4'");
 			$this->db_query("SET FOREIGN_KEY_CHECKS=0");
 			$this->db_query("SET GROUP_CONCAT_MAX_LEN:=@@MAX_ALLOWED_PACKET");
 		}

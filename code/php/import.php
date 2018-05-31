@@ -102,8 +102,14 @@ function import_file($args) {
 	return $array;
 }
 
+function __import_utf8bom($data) {
+	if(substr($data,0,3)=="\xef\xbb\xbf") $data=substr($data,3);
+	return $data;
+}
+
 function __import_xml2array($file) {
 	$xml=file_get_contents($file);
+	$xml=__import_utf8bom($xml);
 	capture_next_error();
 	$data=xml2struct($xml);
 	$error=get_clear_error();
@@ -175,6 +181,7 @@ function __import_csv2array($file,$sep) {
 		$array[]=$row;
 	}
 	fclose($fd);
+	if(isset($array[0][0])) $array[0][0]=__import_utf8bom($array[0][0]);
 	$array=__import_removevoid($array);
 	return $array;
 }
