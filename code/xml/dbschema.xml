@@ -3447,5 +3447,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 			</fields>
 		</index>
+		<index>
+			<name>agenda1</name>
+			<table>tbl_agenda_u</table>
+			<fields>
+				<field>
+					<name>id_agenda</name>
+				</field>
+				<field>
+					<name>id_usuario</name>
+				</field>
+			</fields>
+		</index>
 	</indexes>
 </root>
