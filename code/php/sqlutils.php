@@ -499,7 +499,7 @@ function make_like_query($keys,$values) {
 
 function make_extra_query_with_login($prefix="") {
 	$query=make_extra_query($prefix);
-	return "SUBSTR(REPLACE(CONCAT(${prefix}login,' (',$query,')'),'()',''),1,255)";
+	return "REPLACE(CONCAT(${prefix}login,' (',$query,')'),'()','')";
 }
 
 function make_extra_query($prefix="") {

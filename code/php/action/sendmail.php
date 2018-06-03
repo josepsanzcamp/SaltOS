@@ -41,7 +41,7 @@ if(getParam("action")=="sendmail") {
 		$priority=intval(getParam($prefix."priority"));
 		$sensitivity=intval(getParam($prefix."sensitivity"));
 		// SEARCH FROM
-		$query="SELECT SUBSTR(CONCAT(email_name,' <',email_from,'>'),1,255) email FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND id='${id_cuenta}'";
+		$query="SELECT CONCAT(email_name,' <',email_from,'>') email FROM tbl_usuarios_c WHERE id_usuario='".current_user()."' AND id='${id_cuenta}'";
 		$de=execute_query($query);
 		if(!$de) {
 			javascript_error(LANG("msgfromkosendmail","correo"));
@@ -474,7 +474,7 @@ if(getParam("page")=="correo") {
 					$result2["to"]=str_replace("<>","<".execute_query($query).">",$result2["to"]);
 				}
 				if(!isset($result2["to"])) {
-					$query="SELECT CASE WHEN (SELECT email_name FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id_extra[2]}'))='' THEN (SELECT email_from FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id_extra[2]}')) ELSE (SELECT SUBSTR(CONCAT(email_name,' <',email_from,'>'),1,255) FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id_extra[2]}')) END";
+					$query="SELECT CASE WHEN (SELECT email_name FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id_extra[2]}'))='' THEN (SELECT email_from FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id_extra[2]}')) ELSE (SELECT CONCAT(email_name,' <',email_from,'>') FROM tbl_usuarios_c WHERE id=(SELECT id_cuenta FROM tbl_correo WHERE id='${id_extra[2]}')) END";
 					$result2["to"]=execute_query($query);
 				}
 				if(isset($result2["cc"])) $result2["cc"]=implode("; ",$result2["cc"]);

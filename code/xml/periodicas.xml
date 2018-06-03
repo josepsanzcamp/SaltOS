@@ -472,7 +472,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<label lang="true">epigrafe</label>
 							<type>select</type>
 							<width>240px</width>
-							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id value,SUBSTR(CONCAT('(',codigo,') ',nombre),1,255) label FROM tbl_epigrafes ORDER BY label"</query>
+							<query eval="true">"SELECT '0' value,'".LANG_ESCAPE("sinepigrafe")."' label UNION SELECT id value,CONCAT('(',codigo,') ',nombre) label FROM tbl_epigrafes ORDER BY label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<required>true</required>

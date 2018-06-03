@@ -682,12 +682,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					ELSE
 						CASE WHEN uc.email_name=''
 						THEN uc.email_from
-						ELSE SUBSTR(CONCAT(uc.email_name,' &lt;',uc.email_from,'&gt;'),1,255)
+						ELSE CONCAT(uc.email_name,' &lt;',uc.email_from,'&gt;')
 						END
 					END para,
 					CASE WHEN subject='' THEN '".LANG("sinsubject")."' ELSE subject END subject,
 					CONCAT(id_cuenta,'/',uidl) msgid,
-					(SELECT REPLACE(GROUP_CONCAT(SUBSTR(CONCAT(fichero,' (',fichero_size,')'),1,255)),',',' | ') FROM
+					(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' (',fichero_size,')')),',',' | ') FROM
 						(SELECT fichero,id_registro,
 							CASE
 								WHEN fichero_size&gt;=1073741824 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
@@ -759,7 +759,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>calc(100% - 9px)</width>
 							<colspan>12</colspan>
 							<query eval="true">"SELECT
-							SUBSTR(CONCAT(email_name,' &lt;',email_from,'&gt;'),1,255) label,id value,email_default,(SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta=a.id AND is_outbox=1) AND id_tipo IN (1,2,3,4)) contador FROM tbl_usuarios_c a WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC, contador DESC"</query>
+							CONCAT(email_name,' &lt;',email_from,'&gt;') label,id value,email_default,(SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta=a.id AND is_outbox=1) AND id_tipo IN (1,2,3,4)) contador FROM tbl_usuarios_c a WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC, contador DESC"</query>
 							<focus>true</focus>
 							<required>true</required>
 							<onchange>update_signature(1)</onchange>
@@ -1202,11 +1202,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					ELSE
 						CASE WHEN uc.email_name=''
 						THEN uc.email_from
-						ELSE SUBSTR(CONCAT(uc.email_name,' &lt;',uc.email_from,'&gt;'),1,255)
+						ELSE CONCAT(uc.email_name,' &lt;',uc.email_from,'&gt;')
 						END
 					END para,
 					CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END subject,
-					(SELECT REPLACE(GROUP_CONCAT(SUBSTR(CONCAT(fichero,' (',fichero_size,')'),1,255)),',',', ') FROM
+					(SELECT REPLACE(GROUP_CONCAT(CONCAT(fichero,' (',fichero_size,')')),',',', ') FROM
 						(SELECT fichero,id_registro,
 							CASE
 								WHEN fichero_size&gt;=1073741824 THEN CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
