@@ -259,13 +259,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>MariaDB 5.5/10.0/10.1 (GPL-2.0)</label>
+							<label>MariaDB 5.5-10.3 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://mariadb.org")</onclick>
 						</field>
 						<field>
-							<label>MySQL 5.1-5.5 (GPL-2.0)</label>
+							<label>MySQL 5.1-5.7 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://dev.mysql.com/")</onclick>
