@@ -1,5 +1,14 @@
 # PHPMailer Change Log
 
+## Version 6.0.5 (March 27th 2018)
+* Re-roll of 6.0.4 to fix missed version file entry. No code changes.
+
+## Version 6.0.4 (March 27th 2018)
+* Add some modern MIME types
+* Add Hindi translation (thanks to @dextel2)
+* Improve composer docs
+* Fix generation of path to language files
+
 ## Version 6.0.3 (January 5th 2018)
 * Correct DKIM canonicalization of line breaks for header & body - thanks to @themichaelhall
 * Make dependence on ext-filter explicit in composer.json

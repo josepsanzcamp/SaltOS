@@ -139,6 +139,16 @@ Mobile attributes include type of device, Operating System, Browser, etc. Exampl
 .is-tablet, .is-ios, .is-not-ios, .is-androidos, .is-chromebrowser. 
 Made by [wescleveland56](https://github.com/wescleveland56).
 
+* [Adaptive Content](https://wordpress.org/plugins/addfunc-adaptive-content/) for WordPress provides the most
+intuitive set of shortcodes for including/excluding content  on mobile devices, tablets desktops and other
+more specific device parameters. This lightweight plugin lets content writers and theme authors choose when
+WordPress should or shouldn’t show any give content item using shortcodes and quicktags or theme elements using functions.
+Made by [AddFunc](https://profiles.wordpress.org/addfunc).
+
+* [AddFunc Mobile Detect](https://wordpress.org/plugins/addfunc-mobile-detect/) for WordPress redirects
+mobile traffic to your mobile website and, basically, gives you loads of control over your mobile redirects.
+Made by [AddFunc](https://profiles.wordpress.org/addfunc).
+
 **Drupal**
 
 * [Drupal Mobile Switch](https://www.drupal.org/project/mobile_switch) - The Mobile Switch Drupal module provides a 
@@ -285,6 +295,8 @@ for Craft CMS. Made by [Lewis Jenkins](https://github.com/lewisjenkins).
 * [Grav Plugin Mobile Detect](https://github.com/dimitrilongo/grav-plugin-mobile-detect/) is a simple implementation 
 of Mobile Detect for Grav CMS. Made by [Dimitri Longo](https://github.com/dimitrilongo).
 
+* [Mobile_Detect module for UliCMS](https://github.com/derUli/ulicms-Mobile_Detect). 
+Made by [derUli](https://github.com/derUli).
 
 **Perl**
 
@@ -318,3 +330,8 @@ Made by [Frédéric Robinet](https://github.com/robinef).
 
 * [mobile-detect](https://github.com/validide/mobile-detect) is a .Net partial port written in C#. 
 Made by [Valentin Dide](https://github.com/validide).
+
+**ColdFusion**
+
+* [MobileDetect](https://github.com/GiancarloGomez/ColdFusion-MobileDetect) is a CFC port of the 
+Mobile_Detect PHP Library. Made by [Giancarlo Gomez](https://github.com/GiancarloGomez).
