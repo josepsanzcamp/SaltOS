@@ -971,7 +971,15 @@ function show_php_error($array=null) {
 		if(!count($array["debug"])) unset($array["debug"]);
 	}
 	// PROTECTION OF SENSITIVE DATA
-	foreach($array as $key=>$val) $array[$key]=str_replace(array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name")),"...",$val);
+	foreach($array as $key=>$val) {
+		if(is_array($val)) {
+			foreach($val as $key2=>$val2) {
+				$array[$key][$key2]=__error_sensitive_data($val2);
+			}
+		} else {
+			$array[$key]=__error_sensitive_data($val);
+		}
+	}
 	// CREATE THE MESSAGE ERROR USING HTML ENTITIES AND PLAIN TEXT
 	$msg_html=do_message_error($array,"html");
 	$msg_text=do_message_error($array,"text");
@@ -1020,6 +1028,17 @@ function show_php_error($array=null) {
 	// DUMP TO STDOUT
 	echo $msg;
 	die();
+}
+
+function __error_sensitive_data($data) {
+	return str_replace(array(
+		getcwd(),
+		getDefault("database/host"),
+		getDefault("database/port"),
+		getDefault("database/user"),
+		getDefault("database/pass"),
+		getDefault("database/name")
+	),"...",$data);
 }
 
 function pretty_html_error($msg) {

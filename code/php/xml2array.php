@@ -267,25 +267,22 @@ function xml2array($file,$usecache=true) {
 	static $depend=array();
 	if(!file_exists($file)) xml_error("File not found: $file");
 	if($usecache) {
-		$cache=get_cache_file($file,".json");
-		if(cache_exists($cache,$file)) {
-			$array=json_decode(file_get_contents($cache),true);
-			if(isset($array["depend"]) && isset($array["root"])) {
-				if(cache_exists($cache,$array["depend"])) {
-					return $array["root"];
-				}
-			}
-		}
 		$temp=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 		foreach($temp as $key=>$val) {
 			if(!isset($val["function"]) || $val["function"]!=__FUNCTION__) {
 				unset($temp[$key]);
 			}
 		}
-		if(count($temp)==1) {
-			$depend=array();
-		} else {
-			$depend[]=$file;
+		if(count($temp)==1) $depend=array();
+		$cache=get_cache_file($file,".json");
+		if(cache_exists($cache,$file)) {
+			$array=json_decode(file_get_contents($cache),true);
+			if(isset($array["depend"]) && isset($array["root"])) {
+				if(cache_exists($cache,$array["depend"])) {
+					$depend=array_merge($depend,$array["depend"]);
+					return $array["root"];
+				}
+			}
 		}
 	}
 	$xml=file_get_contents($file);
@@ -293,7 +290,7 @@ function xml2array($file,$usecache=true) {
 	$data=array_reverse($data);
 	$array=struct2array($data,$file);
 	if($usecache) {
-		$array["source"]=$file;
+		$depend[]=$file;
 		$array["depend"]=array_unique($depend);
 		if(file_exists($cache)) unlink_protected($cache);
 		file_put_contents($cache,json_encode($array));
