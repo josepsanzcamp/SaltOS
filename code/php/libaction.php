@@ -89,7 +89,7 @@ function __captcha_isprime($num) {
 function __excel_dump($matrix,$file,$title="") {
 	require_once("php/export.php");
 	$buffer=export_file(array(
-		"type"=>"excel",
+		"type"=>"xls",
 		"data"=>$matrix,
 		"title"=>$title,
 	));

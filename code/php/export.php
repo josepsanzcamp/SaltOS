@@ -36,7 +36,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		- sep: separator char used only by csv format
 		- eol: enf of line char used only by csv format
 		- title: title used only by excel format
-		- type2: type used only by excel format, can be Excel5 or Excel2007
 		- file: local filename used to store the results
 	Output:
 		if file argument is specified, void string is returned
@@ -50,33 +49,29 @@ function export_file($args) {
 	if(!isset($args["sep"])) $args["sep"]=";";
 	if(!isset($args["eol"])) $args["eol"]="\r\n";
 	if(!isset($args["title"])) $args["title"]="";
-	if(!isset($args["type2"])) $args["type2"]="Excel5";
-	if(!in_array($args["type2"],array("Excel5","Excel2007"))) show_php_error(array("phperror"=>"Unknown type2 '${args["type2"]}'"));
 	if(!isset($args["file"])) $args["file"]="";
+	if(!isset($args["ext"])) $args["ext"]="";
 	// CONTINUE
 	switch($args["type"]) {
-		case "application/xml":
-		case "text/xml":
 		case "xml":
 			$buffer=__export_file_xml($args["data"]);
 			break;
-		case "text/plain":
-		case "text/csv":
 		case "csv":
 			$buffer=__export_file_csv($args["data"],$args["sep"],$args["eol"]);
 			break;
-		case "application/vnd.ms-excel":
-		case "application/excel":
-		case "excel":
-		case "xlsx":
 		case "xls":
-			$buffer=__export_file_excel($args["data"],$args["title"]);
+			$buffer=__export_file_excel($args["data"],$args["title"],"Excel5");
+			break;
+		case "xlsx":
+			$buffer=__export_file_excel($args["data"],$args["title"],"Excel2007");
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
 	}
 	if($args["file"]!="") {
-		file_put_contents($file,$buffer);
+		if($args["ext"]=="") $args["ext"]=$args["type"];
+		if(strtolower(extension($args["file"]))!=$args["ext"]) $args["file"].=".".$args["ext"];
+		file_put_contents($args["file"],$buffer);
 		return "";
 	}
 	return $buffer;
