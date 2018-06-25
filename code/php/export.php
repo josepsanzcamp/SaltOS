@@ -48,6 +48,8 @@ function export_file($args) {
 	if(!isset($args["data"])) show_php_error(array("phperror"=>"Unknown data"));
 	if(!isset($args["sep"])) $args["sep"]=";";
 	if(!isset($args["eol"])) $args["eol"]="\r\n";
+	if(!isset($args["encoding"])) $args["encoding"]="UTF-8";
+	if(!isset($args["replace"])) $args["replace"]=array("from"=>"","to"=>"");
 	if(!isset($args["title"])) $args["title"]="";
 	if(!isset($args["file"])) $args["file"]="";
 	if(!isset($args["ext"])) $args["ext"]="";
@@ -57,7 +59,7 @@ function export_file($args) {
 			$buffer=__export_file_xml($args["data"]);
 			break;
 		case "csv":
-			$buffer=__export_file_csv($args["data"],$args["sep"],$args["eol"]);
+			$buffer=__export_file_csv($args["data"],$args["sep"],$args["eol"],$args["encoding"],$args["replace"]);
 			break;
 		case "xls":
 			$buffer=__export_file_excel($args["data"],$args["title"],"Excel5");
@@ -108,15 +110,25 @@ function __export_file_xml($matrix) {
 	Output:
 		They will returns all data
 */
-function __export_file_csv($matrix,$sep=";",$eol="\r\n") {
+function __export_file_csv($matrix,$sep=";",$eol="\r\n",$encoding="UTF-8",$replace=array("from"=>"","to"=>"")) {
+	require_once("php/import.php");
+	$sep=__import_specialchars($sep);
+	$eol=__import_specialchars($eol);
+	$replace["from"]=__import_specialchars(explode(",",$replace["from"]));
+	$replace["to"]=__import_specialchars($replace["to"]);
 	$buffer=array();
 	foreach($matrix as $key=>$val) {
 		foreach($val as $key2=>$val2) {
-			if(strpos($val2,$sep)!==false) $val[$key2]='"'.$val2.'"';
+			//~ $val2=str_replace($sep,$replace["to"],$val2);
+			$val2=str_replace($replace["from"],$replace["to"],$val2);
+			$val2=trim($val2);
+			if(strpos($val2,$sep)!==false) $val2='"'.$val2.'"';
+			$val[$key2]=$val2;
 		}
 		$buffer[]=implode($sep,$val);
 	}
 	$buffer=implode($eol,$buffer);
+	$buffer=mb_convert_encoding($buffer,$encoding,"UTF-8");
 	return $buffer;
 }
 
