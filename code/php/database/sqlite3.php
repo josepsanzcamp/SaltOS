@@ -96,9 +96,9 @@ class database_sqlite3 {
 					show_php_error(array("dberror"=>"Error ".$this->link->lastErrorCode().": ".$this->link->lastErrorMsg(),"query"=>$query));
 					break;
 				} elseif(stripos($error,"database is locked")!==false) {
-					$timeout-=usleep_protected(rand(0,1000));
+					$timeout-=__semaphore_usleep(rand(0,1000));
 				} elseif(stripos($error,"database schema has changed")!==false) {
-					$timeout-=usleep_protected(rand(0,1000));
+					$timeout-=__semaphore_usleep(rand(0,1000));
 				} else {
 					show_php_error(array("dberror"=>"Error ".$this->link->lastErrorCode().": ".$this->link->lastErrorMsg(),"query"=>$query));
 					break;

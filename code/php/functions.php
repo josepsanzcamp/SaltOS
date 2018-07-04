@@ -1177,25 +1177,6 @@ function memory_get_free($bytes=false) {
 	return $diff;
 }
 
-function usleep_protected($usec) {
-	if(function_exists("socket_create")) {
-		$socket=socket_create(AF_UNIX,SOCK_STREAM,0);
-		$read=null;
-		$write=null;
-		$except=array($socket);
-		capture_next_error();
-		$time1=microtime(true);
-		socket_select($read,$write,$except,intval($usec/1000000),intval($usec%1000000));
-		$time2=microtime(true);
-		get_clear_error();
-		return ($time2-$time1)*1000000;
-	}
-	$time1=microtime(true);
-	usleep($usec);
-	$time2=microtime(true);
-	return ($time2-$time1)*1000000;
-}
-
 function time_get_usage($secs=false) {
 	return __time_get_helper(__FUNCTION__,$secs);
 }

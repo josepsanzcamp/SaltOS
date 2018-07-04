@@ -1776,6 +1776,43 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 			});
 		});
+		// FOR EXCEL
+		$(".excel").each(function() {
+			var data=$(this).attr("data");
+			if(data!="") data=eval(data);
+			else data=JSON.parse($(this).attr("rows"));
+			var rowHeaders=$(this).attr("rowHeaders");
+			if(rowHeaders!="") rowHeaders=eval(rowHeaders);
+			else rowHeaders=true;
+			var colHeaders=$(this).attr("colHeaders");
+			if(colHeaders!="") colHeaders=eval(colHeaders);
+			else colHeaders=true;
+			var minSpareRows=$(this).attr("minSpareRows");
+			if(minSpareRows!="") minSpareRows=eval(minSpareRows);
+			else minSpareRows=0;
+			var contextMenu=$(this).attr("contextMenu");
+			if(contextMenu!="") contextMenu=eval(contextMenu);
+			else contextMenu=true;
+			var rowHeaderWidth=$(this).attr("rowHeaderWidth");
+			if(rowHeaderWidth!="") rowHeaderWidth=eval(rowHeaderWidth);
+			else rowHeaderWidth=undefined;
+			var colWidths=$(this).attr("colWidths");
+			if(colWidths!="") colWidths=eval(colWidths);
+			else colWidths=undefined;
+			var input=$(this).prev();
+			$(this).handsontable({
+				data:data,
+				rowHeaders:rowHeaders,
+				colHeaders:colHeaders,
+				minSpareRows:minSpareRows,
+				contextMenu:contextMenu,
+				rowHeaderWidth:rowHeaderWidth,
+				colWidths:colWidths,
+				afterChange:function(changes,source) {
+					$(input).val(btoa(JSON.stringify(data)));
+				}
+			});
+		});
 		//~ console.timeEnd("make_ckeditors");
 	}
 

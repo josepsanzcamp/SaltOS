@@ -666,3 +666,8 @@ img[isplot=true] {
 .ui-icon-none {
 	background-position:-240px -240px;
 }
+
+/* FOR EXCEL */
+.excel {
+	overflow:auto;
+}

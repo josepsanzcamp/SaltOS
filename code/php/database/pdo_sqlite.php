@@ -98,9 +98,9 @@ class database_pdo_sqlite {
 						show_php_error(array("dberror"=>$e->getMessage(),"query"=>$query));
 						break;
 					} elseif(stripos($e->getMessage(),"database is locked")!==false) {
-						$timeout-=usleep_protected(rand(0,1000));
+						$timeout-=__semaphore_usleep(rand(0,1000));
 					} elseif(stripos($e->getMessage(),"database schema has changed")!==false) {
-						$timeout-=usleep_protected(rand(0,1000));
+						$timeout-=__semaphore_usleep(rand(0,1000));
 					} else {
 						show_php_error(array("dberror"=>$e->getMessage(),"query"=>$query));
 						break;

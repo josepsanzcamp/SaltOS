@@ -338,13 +338,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:param name="replace"/>
 	<xsl:param name="string"/>
 	<xsl:choose>
-		<xsl:when test="contains($string, $find)">
-			<xsl:value-of select="substring-before($string, $find)"/>
+		<xsl:when test="contains($string,$find)">
+			<xsl:value-of select="substring-before($string,$find)"/>
 			<xsl:value-of select="$replace"/>
 			<xsl:call-template name="replace_string">
 				<xsl:with-param name="find" select="$find"/>
 				<xsl:with-param name="replace" select="$replace"/>
-				<xsl:with-param name="string" select="substring-after($string, $find)"/>
+				<xsl:with-param name="string" select="substring-after($string,$find)"/>
 			</xsl:call-template>
 		</xsl:when>
 		<xsl:otherwise>
@@ -1116,9 +1116,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:attribute name="vars"><xsl:value-of select="vars"/></xsl:attribute>
 					<xsl:attribute name="colors"><xsl:value-of select="colors"/></xsl:attribute>
 					<xsl:attribute name="graph"><xsl:value-of select="graph"/></xsl:attribute>
-					<xsl:attribute name="ticks"><xsl:for-each select="rows/row"><xsl:value-of select="y0"/>|</xsl:for-each></xsl:attribute>
 					<xsl:if test="count(rows/row/x0)>0"><xsl:attribute name="posx"><xsl:for-each select="rows/row"><xsl:value-of select="x0"/>|</xsl:for-each></xsl:attribute></xsl:if>
-					<xsl:attribute name="data1"><xsl:for-each select="rows/row"><xsl:value-of select="y1"/>|</xsl:for-each></xsl:attribute>
+					<xsl:if test="count(rows/row/y0)>0"><xsl:attribute name="ticks"><xsl:for-each select="rows/row"><xsl:value-of select="y0"/>|</xsl:for-each></xsl:attribute></xsl:if>
+					<xsl:if test="count(rows/row/y1)>0"><xsl:attribute name="data1"><xsl:for-each select="rows/row"><xsl:value-of select="y1"/>|</xsl:for-each></xsl:attribute></xsl:if>
 					<xsl:if test="count(rows/row/y2)>0"><xsl:attribute name="data2"><xsl:for-each select="rows/row"><xsl:value-of select="y2"/>|</xsl:for-each></xsl:attribute></xsl:if>
 					<xsl:if test="count(rows/row/y3)>0"><xsl:attribute name="data3"><xsl:for-each select="rows/row"><xsl:value-of select="y3"/>|</xsl:for-each></xsl:attribute></xsl:if>
 					<xsl:if test="count(rows/row/y4)>0"><xsl:attribute name="data4"><xsl:for-each select="rows/row"><xsl:value-of select="y4"/>|</xsl:for-each></xsl:attribute></xsl:if>
@@ -1196,7 +1196,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</xsl:for-each>
 			</td>
 		</xsl:when>
+		<xsl:when test="type='excel'">
+			<xsl:if test="label!=''">
+				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:value-of select="label"/></td>
+			</xsl:if>
+			<td class="{class}" colspan="{colspan}" rowspan="{rowspan}">
+				<input type="hidden" name="{$prefix}{name}" id="{$prefix}{name}" onchange="{onchange}"/>
+				<div class="excel" style="width:{width};height:{height}">
+					<xsl:attribute name="rows"><xsl:call-template name="xml2json"><xsl:with-param name="xml" select="rows"/></xsl:call-template></xsl:attribute>
+					<xsl:attribute name="data"><xsl:value-of select="data"/></xsl:attribute>
+					<xsl:attribute name="rowHeaders"><xsl:value-of select="rowHeaders"/></xsl:attribute>
+					<xsl:attribute name="colHeaders"><xsl:value-of select="colHeaders"/></xsl:attribute>
+					<xsl:attribute name="minSpareRows"><xsl:value-of select="minSpareRows"/></xsl:attribute>
+					<xsl:attribute name="contextMenu"><xsl:value-of select="contextMenu"/></xsl:attribute>
+					<xsl:attribute name="rowHeaderWidth"><xsl:value-of select="rowHeaderWidth"/></xsl:attribute>
+					<xsl:attribute name="colWidths"><xsl:value-of select="colWidths"/></xsl:attribute>
+				</div>
+			</td>
+		</xsl:when>
 	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="xml2json">
+	<xsl:param name="xml"/>
+	<xsl:variable name="newline" select="'&#10;'"/>
+	<xsl:call-template name="replace_string"><xsl:with-param name="find">,]</xsl:with-param><xsl:with-param name="replace">]</xsl:with-param><xsl:with-param name="string"><xsl:call-template name="replace_string"><xsl:with-param name="find">,}</xsl:with-param><xsl:with-param name="replace">}</xsl:with-param><xsl:with-param name="string">[<xsl:for-each select="$xml/*">{<xsl:for-each select="*">"<xsl:value-of select="name()"/>":"<xsl:call-template name="replace_string"><xsl:with-param name="find">"</xsl:with-param><xsl:with-param name="replace">\"</xsl:with-param><xsl:with-param name="string"><xsl:call-template name="replace_string"><xsl:with-param name="find" select="$newline"/><xsl:with-param name="replace">\n</xsl:with-param><xsl:with-param name="string"><xsl:value-of select="."/></xsl:with-param></xsl:call-template></xsl:with-param></xsl:call-template>",</xsl:for-each>},</xsl:for-each>]</xsl:with-param></xsl:call-template></xsl:with-param></xsl:call-template>
 </xsl:template>
 
 <xsl:template name="form_by_rows">
