@@ -669,5 +669,5 @@ img[isplot=true] {
 
 /* FOR EXCEL */
 .excel {
-	overflow:auto;
+	overflow:hidden;
 }

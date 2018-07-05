@@ -1809,7 +1809,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				rowHeaderWidth:rowHeaderWidth,
 				colWidths:colWidths,
 				afterChange:function(changes,source) {
-					$(input).val(btoa(JSON.stringify(data)));
+					$(input).val(btoa(utf8_encode(JSON.stringify(data))));
 				}
 			});
 		});
