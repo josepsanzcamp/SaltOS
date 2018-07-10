@@ -427,12 +427,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Locutus latest (MIT)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://locutus.io/php/")</onclick>
-						</field>
-						<field>
 							<label>JQuery 3.3.1 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
@@ -449,6 +443,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>tbody</class>
+							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>
@@ -524,9 +523,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.jplayer.org/")</onclick>
 						</field>
 						<field>
+							<label>Locutus latest (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://locutus.io/php/")</onclick>
+						</field>
+						<field>
+							<label>Handsontable (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://handsontable.com/")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>3</colspan>
+							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>
