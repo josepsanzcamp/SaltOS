@@ -335,9 +335,8 @@ function __import_array2tree($array,$nodes,$nohead) {
 }
 
 function __import_array2tree_set(&$result,$parts) {
-	$part=each($parts);
-	$key=$part["key"];
-	$val=$part["value"];
+	$key=key($parts);
+	$val=current($parts);
 	unset($parts[$key]);
 	if(count($parts)) {
 		if(!isset($result[$key])) $result[$key]=array("row"=>$val,"rows"=>array());
