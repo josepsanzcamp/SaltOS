@@ -53,7 +53,7 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
 			if(obj.checked) enable_voice();
 			if(!obj.checked) disable_voice();
 		} else {
-			if(exists_voice()) {
+			if(typeof(exists_voice)=="function" && exists_voice()) {
 				if(saltos_voice()) {
 					$("#default_0_voice").prop("checked",true);
 				} else {
