@@ -235,8 +235,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				FROM tbl_contactos a
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
-				WHERE
-					".($filtro!=""?"a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")":"1=1")."
+				LEFT JOIN tbl_indexing z ON z.id_aplicacion=e.id_aplicacion AND z.id_registro=e.id_registro
+				WHERE ".make_fulltext_query("search",$filtro,"tbl_indexing")."
 		) d
 		WHERE (id_cliente=ROUND('$id_cliente') OR ''='$id_cliente') AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND (id_proveedor='$id_proveedor' OR ''='$id_proveedor') AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>

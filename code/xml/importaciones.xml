@@ -185,8 +185,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					LEFT JOIN tbl_ficheros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
 					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 					LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-				WHERE
-					".($filtro!=""?"a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")":"1=1")."
+					LEFT JOIN tbl_indexing z ON z.id_aplicacion=e.id_aplicacion AND z.id_registro=e.id_registro
+					WHERE ".make_fulltext_query("z.search",$filtro,"tbl_indexing")."
 			) b
 		) c
 		WHERE ".check_sql($page,"list")</query>

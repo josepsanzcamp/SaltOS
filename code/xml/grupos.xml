@@ -153,8 +153,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				a.id id_grupo
 			FROM tbl_grupos a
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
-			WHERE
-				".($filtro!=""?"a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")":"1=1")."
+				LEFT JOIN tbl_indexing z ON z.id_aplicacion=e.id_aplicacion AND z.id_registro=e.id_registro
+				WHERE ".make_fulltext_query("search",$filtro,"tbl_indexing")."
 		) b
 		WHERE ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>

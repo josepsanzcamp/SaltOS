@@ -197,9 +197,11 @@ CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit
 CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
 e.id_usuario id_usuario,id_grupo id_grupo FROM (
 SELECT id,login,id_grupo,id_aplicacion,id_registro,".make_extra_query("d.")." a_nombre,".make_extra_query_with_field("email","d.")." email,activo,hora_ini,hora_fin,dias_sem FROM tbl_usuarios d
-) a LEFT JOIN tbl_grupos b ON a.id_grupo=b.id LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
-WHERE
-	".($filtro!=""?"a.id IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='".page2id($page)."' AND ".make_fulltext_query("search",$filtro,"tbl_indexing").")":"1=1")."
+) a
+LEFT JOIN tbl_grupos b ON a.id_grupo=b.id
+LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
+LEFT JOIN tbl_indexing z ON z.id_aplicacion=e.id_aplicacion AND z.id_registro=e.id_registro
+WHERE ".make_fulltext_query("search",$filtro,"tbl_indexing")."
 ) z
 WHERE ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
@@ -1038,7 +1040,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query global="id" eval="true">make_delete_query("tbl_correo","id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')")</query>
 		<query global="id" eval="true">make_delete_query("tbl_correo_d","id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')")</query>
 		<query global="id" eval="true">"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE id_usuario='$id' AND email_signature_file!=''"</query>
-		<query global="id" eval="true">make_delete_query("tbl_usuarios_c",make_array_query(array("id_usuario"=>intval($id))))</query>
+		<query global="id" eval="true">make_delete_query("tbl_usuarios_c",make_where_query(array("id_usuario"=>intval($id))))</query>
 		<query global="id" eval="true">make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'")</query>
 		<query global="id" eval="true">make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'")</query>
 		<query global="id" eval="true">make_delete_query("tbl_feeds","id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')")</query>
