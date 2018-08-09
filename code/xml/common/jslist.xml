@@ -68,6 +68,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"lang_view2error() { return '".LANG_ESCAPE("view2error")."'; }"</function>
 	<function eval="true">"lang_view2hash() { return '".LANG_ESCAPE("view2hash")."'; }"</function>
 	<function eval="true">"lang_view2opening() { return '".LANG_ESCAPE("view2opening")."'; }"</function>
+	<function eval="true">"current_revision() { return '".getDefault("info/revision","SVN")."'; }"</function>
 	<!-- FOR FILTER MODULE -->
 	<function eval="true">"lang_createfilterok() { return '".LANG_ESCAPE("createfilterok")."'; }"</function>
 	<function eval="true">"lang_createfilterko() { return '".LANG_ESCAPE("createfilterko")."'; }"</function>

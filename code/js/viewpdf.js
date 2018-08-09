@@ -64,8 +64,8 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						return;
 					}
 					// CREATE PDFDOC
-					PDFJS.workerSrc="lib/pdfjs/pdf.worker.min.js";
-					PDFJS.getDocument({data:atob(data)}).then(function(pdfDocument) {
+					pdfjsLib.GlobalWorkerOptions.workerSrc="lib/pdfjs/pdf.worker.min.js?r="+current_revision();
+					pdfjsLib.getDocument({data:atob(data)}).then(function(pdfDocument) {
 						unloadingcontent();
 						// CHECK FOR NUMPAGES>0
 						if(!pdfDocument.numPages) {
@@ -112,7 +112,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						}
 						// PAINT ALL PAGES
 						var container=document.getElementById("viewerContainer");
-						var pdfViewer=new PDFJS.PDFViewer({
+						var pdfViewer=new pdfjsViewer.PDFViewer({
 							container:container
 						});
 						container.addEventListener("pagesinit",function() {
