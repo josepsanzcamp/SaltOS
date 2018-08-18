@@ -31,7 +31,7 @@ function unoconv2pdf($input) {
 		$type0=saltos_content_type0($type);
 		if($type=="application/pdf") {
 			copy($input,$output);
-		} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("audio","video"))) || in_array($type0,array("text","message"))) {
+		} elseif((in_array($ext,__unoconv_list()) && !in_array($type0,array("audio","video"))) || in_array($type0,array("text","message","image"))) {
 			__unoconv_all2pdf($input,$output);
 		}
 		if(!file_exists($output)) {
