@@ -174,7 +174,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.jgrowl.min.css</include>
 			<include>lib/pdfjs/pdf_viewer.min.css</include>
 			<include>lib/codemirror/codemirror.min.css</include>
-			<include>lib/fontawesome/css/font-awesome.min.css</include>
+			<include>lib/fontawesome/css/fontawesome.min.css</include>
+			<include>lib/fontawesome/css/solid.min.css</include>
+			<include>lib/fontawesome/css/v4-shims.min.css</include>
 			<include>lib/handsontable/handsontable.full.min.css</include>
 		</cache>
 	</styles>

@@ -291,13 +291,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.2.13 (LGPL-3.0)</label>
+							<label>TCPDF 6.2.22 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
 						</field>
 						<field>
-							<label>PHPMailer 6.0.3 (LGPL-2.1)</label>
+							<label>PHPMailer 6.0.5 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
@@ -317,7 +317,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>PHP Mobile Detect 2.8.26 (MIT)</label>
+							<label>PHP Mobile Detect 2.8.33 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
@@ -581,7 +581,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>CodeMirror v5.37.0 (MIT)</label>
+							<label>CodeMirror v5.40.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://codemirror.net/")</onclick>
@@ -634,7 +634,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>Font Awesome Icons (SIL OFL 1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://fontawesome.io/")</onclick>
+							<onclick>openwin("https://fontawesome.com/changelog/latest")</onclick>
 						</field>
 					</row>
 					<row>

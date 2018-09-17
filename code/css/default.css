@@ -481,11 +481,18 @@ span.number {
 	left:11px;
 	z-index:100;
 	font-size:10px;
-	line-height:12px;
+	line-height:11px;
 	color:#ffffff;
 	background-color:#e53935;
 	border-radius:50%;
-	padding:1px;
+}
+
+.number1 {
+	padding:1px 3px;
+}
+
+.number2 {
+	padding:1px 1px;
 }
 
 .rtl span.number {
@@ -585,7 +592,7 @@ img[isplot=true] {
 
 /* FOR FONT AWESOME */
 .fa {
-	font-size:14px;
+	font-size:13px;
 	line-height:0;
 }
 
@@ -668,6 +675,6 @@ img[isplot=true] {
 }
 
 /* FOR EXCEL */
-.excel {
+div.excel {
 	overflow:hidden;
 }

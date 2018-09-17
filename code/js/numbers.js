@@ -49,10 +49,9 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 	function make_numbers(obj,num) {
 		unmake_numbers(obj);
 		var clase="none";
-		var space="&nbsp;";
-		if(num>0) clase="";
-		if(num>9) space="";
-		var span="<span class='number "+clase+"'>"+space+num+space+"</span>";
+		num=max(min(num,99),0)
+		if(num>0) clase="number"+Math.ceil(Math.log10(num+1));
+		var span="<span class='number "+clase+"'>"+num+"</span>";
 		$(obj).append(span);
 	}
 

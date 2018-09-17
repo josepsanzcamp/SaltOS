@@ -154,10 +154,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todoslosproveedores>[Tous les fournisseurs]</todoslosproveedores>
 		<mostrartodos>[Voir tout]</mostrartodos>
 		<sinusuario>[Aucun utilisateur]</sinusuario>
-		<paginaspc>Page</paginaspc>
-		<regsfrom>dossiers de</regsfrom>
-		<spcdespc>d'</spcdespc>
-		<spcalspc>à</spcalspc>
+		<paginaspc>Page </paginaspc>
+		<regsfrom>dossiers de </regsfrom>
+		<spcdespc> d' </spcdespc>
+		<spcalspc> à </spcalspc>
 		<regspage>Enregistrements par page:</regspage>
 		<registerdata>Enregistrer les données</registerdata>
 		<userinsert>Créé par</userinsert>
