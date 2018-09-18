@@ -24,22 +24,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 .estado.state_new {
 	color:#ffffff;
-	background:#43a047;
+	background:#107c0f;
 }
 
 .estado.state_wait {
 	color:#ffffff;
-	background:#2780e3;
+	background:#2c579b;
 }
 
 .estado.state_spam {
 	color:#ffffff;
-	background:#e53935;
+	background:#d24726;
 }
 
 .estado.state_error {
 	color:#ffffff;
-	background:#e53935;
+	background:#d24726;
 }
 
 .estado.state_nowrap {
@@ -53,13 +53,13 @@ label a {
 
 /* FOR FONT AWESOME */
 .fa-tag-new {
-	color:#43a047;
+	color:#107c0f;
 }
 
 .fa-tag-wait {
-	color:#2780e3;
+	color:#2c579b;
 }
 
 .fa-tag-spam {
-	color:#e53935;
+	color:#d24726;
 }

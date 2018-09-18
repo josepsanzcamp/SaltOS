@@ -314,7 +314,7 @@ function normalize_value($value) {
 
 function get_name_version_revision($copyright=false) {
 	$result=getDefault("info/name","SaltOS");
-	$result.=" v".getDefault("info/version","3.5");
+	$result.=" v".getDefault("info/version","3.7");
 	if(!is_array(getDefault("info/revision","SVN"))) $result.=" r".getDefault("info/revision","SVN");
 	if($copyright) $result.=", ".getDefault("info/copyright","Copyright (C) 2007-2018 by Josep Sanz Campderrós");
 	return $result;

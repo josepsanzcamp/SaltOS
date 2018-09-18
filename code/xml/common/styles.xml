@@ -38,30 +38,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>custom.blue.dark</value>
 		</row>
 		<row>
-			<label>Custom UPC Light</label>
-			<value>custom.upc.light</value>
-		</row>
-		<row>
-			<label>Custom UPC Dark</label>
-			<value>custom.upc.dark</value>
-		</row>
-		<row>
-			<label>Custom Facebook Light</label>
-			<value>custom.facebook.light</value>
-		</row>
-		<row>
-			<label>Custom Facebook Dark</label>
-			<value>custom.facebook.dark</value>
-		</row>
-		<row>
-			<label>Custom Gray Light</label>
-			<value>custom.gray.light</value>
-		</row>
-		<row>
-			<label>Custom Gray Dark</label>
-			<value>custom.gray.dark</value>
-		</row>
-		<row>
 			<label>Custom Green Light</label>
 			<value>custom.green.light</value>
 		</row>
@@ -78,52 +54,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>custom.red.dark</value>
 		</row>
 		<row>
-			<label>Custom Pink Light</label>
-			<value>custom.pink.light</value>
-		</row>
-		<row>
-			<label>Custom Pink Dark</label>
-			<value>custom.pink.dark</value>
-		</row>
-		<row>
 			<label>Custom Purple Light</label>
 			<value>custom.purple.light</value>
 		</row>
 		<row>
 			<label>Custom Purple Dark</label>
 			<value>custom.purple.dark</value>
-		</row>
-		<row>
-			<label>Custom Orange Light</label>
-			<value>custom.orange.light</value>
-		</row>
-		<row>
-			<label>Custom Orange Dark</label>
-			<value>custom.orange.dark</value>
-		</row>
-		<row>
-			<label>Custom Brown Light</label>
-			<value>custom.brown.light</value>
-		</row>
-		<row>
-			<label>Custom Brown Dark</label>
-			<value>custom.brown.dark</value>
-		</row>
-		<row>
-			<label>Custom Yellow Light</label>
-			<value>custom.yellow.light</value>
-		</row>
-		<row>
-			<label>Custom Yellow Dark</label>
-			<value>custom.yellow.dark</value>
-		</row>
-		<row>
-			<label>Custom Black Light</label>
-			<value>custom.black.light</value>
-		</row>
-		<row>
-			<label>Custom Black Dark</label>
-			<value>custom.black.dark</value>
 		</row>
 		<row ifeval="!ismobile()">
 			<label>Theme Redmond Light</label>

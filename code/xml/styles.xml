@@ -26,99 +26,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<style>
 		<name>custom.blue.light</name>
-		<color>#2780e3</color>
+		<color>#2c579b</color>
 	</style>
 	<style>
 		<name>custom.blue.dark</name>
-		<color>#2780e3</color>
-	</style>
-	<style>
-		<name>custom.upc.light</name>
-		<color>#007bc0</color>
-	</style>
-	<style>
-		<name>custom.upc.dark</name>
-		<color>#007bc0</color>
-	</style>
-	<style>
-		<name>custom.facebook.light</name>
-		<color>#3b5998</color>
-	</style>
-	<style>
-		<name>custom.facebook.dark</name>
-		<color>#3b5998</color>
-	</style>
-	<style>
-		<name>custom.gray.light</name>
-		<color>#666666</color>
-	</style>
-	<style>
-		<name>custom.gray.dark</name>
-		<color>#666666</color>
+		<color>#2c579b</color>
 	</style>
 	<style>
 		<name>custom.green.light</name>
-		<color>#2f8912</color>
+		<color>#107c0f</color>
 	</style>
 	<style>
 		<name>custom.green.dark</name>
-		<color>#2f8912</color>
-	</style>
-	<style>
-		<name>custom.red.light</name>
-		<color>#cc002e</color>
-	</style>
-	<style>
-		<name>custom.red.dark</name>
-		<color>#cc002e</color>
-	</style>
-	<style>
-		<name>custom.pink.light</name>
-		<color>#e4007c</color>
-	</style>
-	<style>
-		<name>custom.pink.dark</name>
-		<color>#e4007c</color>
+		<color>#107c0f</color>
 	</style>
 	<style>
 		<name>custom.purple.light</name>
-		<color>#9954bb</color>
+		<color>#80397b</color>
 	</style>
 	<style>
 		<name>custom.purple.dark</name>
-		<color>#9954bb</color>
+		<color>#80397b</color>
 	</style>
 	<style>
-		<name>custom.orange.light</name>
-		<color>#ff7900</color>
+		<name>custom.red.light</name>
+		<color>#d24726</color>
 	</style>
 	<style>
-		<name>custom.orange.dark</name>
-		<color>#ff7900</color>
-	</style>
-	<style>
-		<name>custom.brown.light</name>
-		<color>#945d31</color>
-	</style>
-	<style>
-		<name>custom.brown.dark</name>
-		<color>#945d31</color>
-	</style>
-	<style>
-		<name>custom.yellow.light</name>
-		<color>#ffd700</color>
-	</style>
-	<style>
-		<name>custom.yellow.dark</name>
-		<color>#ffd700</color>
-	</style>
-	<style>
-		<name>custom.black.light</name>
-		<color>#000000</color>
-	</style>
-	<style>
-		<name>custom.black.dark</name>
-		<color>#000000</color>
+		<name>custom.red.dark</name>
+		<color>#d24726</color>
 	</style>
 	<style ifeval="!ismobile()">
 		<name>theme.redmond.light</name>

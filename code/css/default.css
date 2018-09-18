@@ -483,7 +483,7 @@ span.number {
 	font-size:10px;
 	line-height:11px;
 	color:#ffffff;
-	background-color:#e53935;
+	background-color:#d24726;
 	border-radius:50%;
 }
 
@@ -511,15 +511,6 @@ img[isplot=true] {
 	-moz-box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
 	-webkit-box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
 	padding:5px 10px!important;
-}
-
-/* FOR PHPERROR */
-.phperror {
-	padding:0!important;
-}
-
-.phperror div {
-	width:auto!important;
 }
 
 /* FOR VIEWPDF */
@@ -597,15 +588,15 @@ img[isplot=true] {
 }
 
 .fa-trash {
-	color:#e53935;
+	color:#d24726;
 }
 
 .fa-check {
-	color:#43a047;
+	color:#107c0f;
 }
 
 .fa-times {
-	color:#e53935;
+	color:#d24726;
 }
 
 /* FOR SELECT MENU */
