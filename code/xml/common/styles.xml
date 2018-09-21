@@ -30,36 +30,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<width>120px</width>
 	<rows>
 		<row>
-			<label>Custom Blue Light</label>
-			<value>custom.blue.light</value>
+			<label>Custom UPC Light</label>
+			<value>custom.upc.light</value>
 		</row>
 		<row>
-			<label>Custom Blue Dark</label>
-			<value>custom.blue.dark</value>
+			<label>Custom UPC Dark</label>
+			<value>custom.upc.dark</value>
 		</row>
 		<row>
-			<label>Custom Green Light</label>
-			<value>custom.green.light</value>
+			<label>Custom UAB Light</label>
+			<value>custom.uab.light</value>
 		</row>
 		<row>
-			<label>Custom Green Dark</label>
-			<value>custom.green.dark</value>
+			<label>Custom UAB Dark</label>
+			<value>custom.uab.dark</value>
 		</row>
 		<row>
-			<label>Custom Red Light</label>
-			<value>custom.red.light</value>
+			<label>Custom URL Light</label>
+			<value>custom.url.light</value>
 		</row>
 		<row>
-			<label>Custom Red Dark</label>
-			<value>custom.red.dark</value>
+			<label>Custom URL Dark</label>
+			<value>custom.url.dark</value>
 		</row>
 		<row>
-			<label>Custom Purple Light</label>
-			<value>custom.purple.light</value>
+			<label>Custom CAT Light</label>
+			<value>custom.cat.light</value>
 		</row>
 		<row>
-			<label>Custom Purple Dark</label>
-			<value>custom.purple.dark</value>
+			<label>Custom CAT Dark</label>
+			<value>custom.cat.dark</value>
 		</row>
 		<row ifeval="!ismobile()">
 			<label>Theme Redmond Light</label>

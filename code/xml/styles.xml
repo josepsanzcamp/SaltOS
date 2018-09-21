@@ -25,36 +25,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<style>
-		<name>custom.blue.light</name>
-		<color>#2c579b</color>
+		<name>custom.upc.light</name>
+		<color>#007BC1</color>
 	</style>
 	<style>
-		<name>custom.blue.dark</name>
-		<color>#2c579b</color>
+		<name>custom.upc.dark</name>
+		<color>#007BC1</color>
 	</style>
 	<style>
-		<name>custom.green.light</name>
-		<color>#107c0f</color>
+		<name>custom.uab.light</name>
+		<color>#00856c</color>
 	</style>
 	<style>
-		<name>custom.green.dark</name>
-		<color>#107c0f</color>
+		<name>custom.uab.dark</name>
+		<color>#00856c</color>
 	</style>
 	<style>
-		<name>custom.purple.light</name>
-		<color>#80397b</color>
+		<name>custom.url.light</name>
+		<color>#990002</color>
 	</style>
 	<style>
-		<name>custom.purple.dark</name>
-		<color>#80397b</color>
+		<name>custom.url.dark</name>
+		<color>#990002</color>
 	</style>
 	<style>
-		<name>custom.red.light</name>
-		<color>#d24726</color>
+		<name>custom.cat.light</name>
+		<color>#ffc500</color>
 	</style>
 	<style>
-		<name>custom.red.dark</name>
-		<color>#d24726</color>
+		<name>custom.cat.dark</name>
+		<color>#ffc500</color>
 	</style>
 	<style ifeval="!ismobile()">
 		<name>theme.redmond.light</name>
