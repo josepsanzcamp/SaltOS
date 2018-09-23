@@ -483,7 +483,7 @@ span.number {
 	font-size:10px;
 	line-height:11px;
 	color:#ffffff;
-	background-color:#990002;
+	background-color:#ea4335;
 	border-radius:50%;
 }
 
@@ -588,15 +588,15 @@ img[isplot=true] {
 }
 
 .fa-trash {
-	color:#990002;
+	color:#ea4335;
 }
 
 .fa-check {
-	color:#00856c;
+	color:#34a853;
 }
 
 .fa-times {
-	color:#990002;
+	color:#ea4335;
 }
 
 /* FOR SELECT MENU */

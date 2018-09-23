@@ -24,17 +24,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 .estado.state_new {
 	color:#ffffff;
-	background:#00856c;
+	background:#34a853;
 }
 
 .estado.state_wait {
 	color:#ffffff;
-	background:#007BC1;
+	background:#4285f4;
 }
 
 .estado.state_cool {
 	color:#000000;
-	background:#ffc500;
+	background:#fbbc05;
 }
 
 .enlace {
@@ -45,13 +45,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* FOR FONT AWESOME */
 .fa-tag-new {
-	color:#00856c;
+	color:#34a853;
 }
 
 .fa-tag-wait {
-	color:#007BC1;
+	color:#4285f4;
 }
 
 .fa-tag-cool {
-	color:#ffc500;
+	color:#fbbc05;
 }
