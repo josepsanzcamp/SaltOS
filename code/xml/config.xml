@@ -74,9 +74,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<id>0</id>
 		<format>HTML</format><!-- output format can be XML or HTML -->
 		<lang>es_ES</lang>
-		<style eval="true">ismobile()?"custom.blue.light":"custom.blue.light"</style>
-		<stylepre eval="true">ismobile()?"lib/jquery/jquery.mobile.":"lib/jquery/jquery-ui."</stylepre>
-		<stylepost eval="true">ismobile()?"/jquery.mobile.min.css":"/jquery-ui.min.css"</stylepost>
+		<style eval="true">ismobile()?"google/blue/light":"google/blue/light"</style>
+		<stylepre eval="true">ismobile()?"lib/themes/":"lib/themes/"</stylepre>
+		<stylepost eval="true">ismobile()?"/jquery.mobile/jquery.mobile.min.css":"/jquery-ui/jquery-ui.min.css"</stylepost>
 		<forcelang eval="true">load_lang(getParam("lang"))?getParam("lang"):""</forcelang>
 		<forcestyle eval="true">load_style(getParam("style"))?getParam("style"):""</forcestyle>
 		<forcecss eval="true">ismobile()?"mobile":""</forcecss>

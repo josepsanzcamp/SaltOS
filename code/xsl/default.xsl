@@ -157,7 +157,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<div>
 				<ul class="accordion-link">
 					<xsl:for-each select="option">
-						<li><a href="javascript:void(0)" class="{class} ui-state-default" onclick="{onclick}" title="{tip}" id="{name}">
+						<li><a href="javascript:void(0)" class="{class}" onclick="{onclick}" title="{tip}" id="{name}">
 							<span class="{icon}"></span>
 							<xsl:text> </xsl:text>
 							<xsl:value-of select="label"/>

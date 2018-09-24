@@ -651,13 +651,13 @@ function check_ids() {
 function load_style($style) {
 	global $_CONFIG;
 	if(!isset($_CONFIG["styles2"])) $_CONFIG["styles2"]=eval_attr(xml2array("xml/styles.xml"));
-	foreach($_CONFIG["styles2"] as $style2) if($style2["name"]==$style) return true;
+	foreach($_CONFIG["styles2"] as $style2) if($style2["value"]==$style) return true;
 	return false;
 }
 
 function color_style($style) {
 	global $_CONFIG;
-	foreach($_CONFIG["styles2"] as $style2) if($style2["name"]==$style) return $style2["color"];
+	foreach($_CONFIG["styles2"] as $style2) if($style2["value"]==$style) return $style2["color"];
 	return "";
 }
 

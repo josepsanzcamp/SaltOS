@@ -72,6 +72,7 @@ form {
 .accordion-link li {
 	position:relative;
 	left:-16px;
+	padding:4px 6px;
 }
 
 .rtl .accordion-link li {
@@ -80,8 +81,7 @@ form {
 
 .accordion-link li a {
 	text-decoration:none;
-	border:none!important;
-	background:none!important;
+	font-weight:bold;
 }
 
 .accordion-link li a.submenu {
@@ -477,8 +477,8 @@ a.number {
 
 span.number {
 	position:absolute;
-	top:0px;
-	left:11px;
+	top:-3px;
+	left:6px;
 	z-index:100;
 	font-size:10px;
 	line-height:11px;
@@ -496,7 +496,7 @@ span.number {
 }
 
 .rtl span.number {
-	right:11px;
+	right:6px;
 }
 
 /* FOR PLOTS */
