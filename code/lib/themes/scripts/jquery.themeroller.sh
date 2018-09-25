@@ -10,11 +10,11 @@ rm -rf cosmo/orange/light/jquery-ui
 rm -rf cosmo/red/light/jquery-ui
 
 php scripts/jquery-ui.themeroller.php cosmo/blue/light 2780e3 ffffff ffffff 000000 f0f6ff 134071
-php scripts/jquery-ui.themeroller.php cosmo/gray/light 373a3c ffffff ffffff 000000 f0f6ff 1b1d1e
-php scripts/jquery-ui.themeroller.php cosmo/green/light 3fb618 ffffff ffffff 000000 f0f6ff 1f5b0c
-php scripts/jquery-ui.themeroller.php cosmo/purple/light 9954bb ffffff ffffff 000000 f0f6ff 4c2a5d
-php scripts/jquery-ui.themeroller.php cosmo/orange/light ff7518 ffffff ffffff 000000 f0f6ff 7f3a0c
-php scripts/jquery-ui.themeroller.php cosmo/red/light ff0039 ffffff ffffff 000000 f0f6ff 7f001c
+php scripts/jquery-ui.themeroller.php cosmo/gray/light 373a3c ffffff ffffff 000000 f0f0f0 1b1d1e
+php scripts/jquery-ui.themeroller.php cosmo/green/light 3fb618 ffffff ffffff 000000 f0fff8 1f5b0c
+php scripts/jquery-ui.themeroller.php cosmo/purple/light 9954bb ffffff ffffff 000000 fff6ff 4c2a5d
+php scripts/jquery-ui.themeroller.php cosmo/orange/light ff7518 ffffff ffffff 000000 fff6f0 7f3a0c
+php scripts/jquery-ui.themeroller.php cosmo/red/light ff0039 ffffff ffffff 000000 fff0f0 7f001c
 
 rm -rf cosmo/blue/dark/jquery-ui
 rm -rf cosmo/gray/dark/jquery-ui
@@ -24,7 +24,7 @@ rm -rf cosmo/orange/dark/jquery-ui
 rm -rf cosmo/red/dark/jquery-ui
 
 php scripts/jquery-ui.themeroller.php cosmo/blue/dark 2780e3 ffffff 000000 ffffff 092038 ffffff
-php scripts/jquery-ui.themeroller.php cosmo/gray/dark 373a3c ffffff 000000 ffffff 0d0e0f ffffff
+php scripts/jquery-ui.themeroller.php cosmo/gray/dark 373a3c ffffff 000000 ffffff 222222 ffffff
 php scripts/jquery-ui.themeroller.php cosmo/green/dark 3fb618 ffffff 000000 ffffff 0f2d06 ffffff
 php scripts/jquery-ui.themeroller.php cosmo/purple/dark 9954bb ffffff 000000 ffffff 26152e ffffff
 php scripts/jquery-ui.themeroller.php cosmo/orange/dark ff7518 ffffff 000000 ffffff 3f1d06 ffffff
@@ -38,11 +38,11 @@ rm -rf cosmo/orange/light/jquery.mobile
 rm -rf cosmo/red/light/jquery.mobile
 
 php scripts/jquery.mobile.themeroller.php cosmo/blue/light 2780e3 ffffff ffffff 000000 f0f6ff 134071
-php scripts/jquery.mobile.themeroller.php cosmo/gray/light 373a3c ffffff ffffff 000000 f0f6ff 1b1d1e
-php scripts/jquery.mobile.themeroller.php cosmo/green/light 3fb618 ffffff ffffff 000000 f0f6ff 1f5b0c
-php scripts/jquery.mobile.themeroller.php cosmo/purple/light 9954bb ffffff ffffff 000000 f0f6ff 4c2a5d
-php scripts/jquery.mobile.themeroller.php cosmo/orange/light ff7518 ffffff ffffff 000000 f0f6ff 7f3a0c
-php scripts/jquery.mobile.themeroller.php cosmo/red/light ff0039 ffffff ffffff 000000 f0f6ff 7f001c
+php scripts/jquery.mobile.themeroller.php cosmo/gray/light 373a3c ffffff ffffff 000000 f0f0f0 1b1d1e
+php scripts/jquery.mobile.themeroller.php cosmo/green/light 3fb618 ffffff ffffff 000000 f0fff8 1f5b0c
+php scripts/jquery.mobile.themeroller.php cosmo/purple/light 9954bb ffffff ffffff 000000 fff6ff 4c2a5d
+php scripts/jquery.mobile.themeroller.php cosmo/orange/light ff7518 ffffff ffffff 000000 fff6f0 7f3a0c
+php scripts/jquery.mobile.themeroller.php cosmo/red/light ff0039 ffffff ffffff 000000 fff0f0 7f001c
 
 rm -rf cosmo/blue/dark/jquery.mobile
 rm -rf cosmo/gray/dark/jquery.mobile
@@ -52,7 +52,7 @@ rm -rf cosmo/orange/dark/jquery.mobile
 rm -rf cosmo/red/dark/jquery.mobile
 
 php scripts/jquery.mobile.themeroller.php cosmo/blue/dark 2780e3 ffffff 000000 ffffff 092038 ffffff
-php scripts/jquery.mobile.themeroller.php cosmo/gray/dark 373a3c ffffff 000000 ffffff 0d0e0f ffffff
+php scripts/jquery.mobile.themeroller.php cosmo/gray/dark 373a3c ffffff 000000 ffffff 222222 ffffff
 php scripts/jquery.mobile.themeroller.php cosmo/green/dark 3fb618 ffffff 000000 ffffff 0f2d06 ffffff
 php scripts/jquery.mobile.themeroller.php cosmo/purple/dark 9954bb ffffff 000000 ffffff 26152e ffffff
 php scripts/jquery.mobile.themeroller.php cosmo/orange/dark ff7518 ffffff 000000 ffffff 3f1d06 ffffff
