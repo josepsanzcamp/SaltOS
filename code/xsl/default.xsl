@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <xsl:template name="title">
 	<xsl:for-each select="/root">
 		<div class="tabs2">
-			<ul>
+			<ul class="headertabs">
 				<xsl:for-each select="menu/header/option">
 					<li taborder="{taborder}" class="{class2}"><a href="javascript:void(0)" onclick="{onclick}" title="{tip}" class="{class}">
 						<span class="{icon}"></span>
@@ -390,7 +390,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="list_quick">
 	<xsl:for-each select="quick">
-		<table class="width100" cellpadding="0" cellspacing="0" border="0">
+		<table class="width100 helperbuttons" cellpadding="0" cellspacing="0" border="0">
 			<xsl:call-template name="form_by_rows">
 				<xsl:with-param name="form" select="null"/>
 				<xsl:with-param name="node" select="null"/>
@@ -403,7 +403,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="list_pager">
 	<xsl:for-each select="pager">
-		<table class="width100" cellpadding="0" cellspacing="0" border="0">
+		<table class="width100 helperbuttons" cellpadding="0" cellspacing="0" border="0">
 			<xsl:call-template name="form_by_rows">
 				<xsl:with-param name="form" select="null"/>
 				<xsl:with-param name="node" select="null"/>
@@ -513,7 +513,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <xsl:template name="list">
 	<xsl:if test="count(/root/list)!=0">
 		<div class="tabs">
-			<ul>
+			<ul class="centertabs">
 				<xsl:for-each select="/root/list">
 					<xsl:if test="title!=''">
 						<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
@@ -549,7 +549,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:call-template name="list_pager"/>
 				</div>
 				<xsl:for-each select="form">
-					<xsl:call-template name="form_maker"/>
+					<xsl:call-template name="form_maker">
+						<xsl:with-param name="clase">helperbuttons</xsl:with-param>
+					</xsl:call-template>
 				</xsl:for-each>
 			</xsl:for-each>
 		</div>
@@ -1276,7 +1278,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="form_maker">
-	<form name="{name}" id="{name}" action="{action}" method="{method}" onsubmit="return false">
+	<xsl:param name="clase"/>
+	<form name="{name}" id="{name}" action="{action}" method="{method}" onsubmit="return false" class="{$clase}">
 		<!-- <xsl:if test="method='post'"><xsl:attribute name="enctype">multipart/form-data</xsl:attribute></xsl:if> -->
 		<xsl:call-template name="form_maker_1"/>
 		<xsl:call-template name="form_maker_2"/>
@@ -1456,7 +1459,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <xsl:template name="form">
 	<xsl:if test="count(/root/form)!=0">
 		<div class="tabs">
-			<ul>
+			<ul class="centertabs">
 				<xsl:for-each select="/root/form">
 					<xsl:call-template name="tabs"/>
 					<xsl:call-template name="help"/>
@@ -1465,7 +1468,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:for-each select="/root/form">
 				<xsl:call-template name="styles"/>
 				<xsl:call-template name="javascript"/>
-				<xsl:call-template name="form_maker"/>
+				<xsl:call-template name="form_maker">
+					<xsl:with-param name="clase"></xsl:with-param>
+				</xsl:call-template>
 			</xsl:for-each>
 		</div>
 	</xsl:if>
@@ -1477,7 +1482,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:for-each select="$quick">
 		<tr>
 			<td colspan="100">
-				<table class="width100" cellpadding="0" cellspacing="0" border="0">
+				<table class="width100 helperbuttons" cellpadding="0" cellspacing="0" border="0">
 					<xsl:call-template name="form_by_rows">
 						<xsl:with-param name="form" select="null"/>
 						<xsl:with-param name="node" select="null"/>
@@ -1515,7 +1520,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:for-each select="$buttons">
 		<tr>
 			<td colspan="100">
-				<table class="width100" cellpadding="0" cellspacing="0" border="0">
+				<table class="width100 helperbuttons" cellpadding="0" cellspacing="0" border="0">
 					<xsl:call-template name="form_by_rows">
 						<xsl:with-param name="form" select="null"/>
 						<xsl:with-param name="node" select="null"/>

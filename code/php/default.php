@@ -51,6 +51,8 @@ switch($action) {
 		if($action=="delete") $go=-1;
 		if(eval_bool(intval(getParam("returnhere"))?"true":"false")) $go=-1;
 		if(eval_bool(intval(getParam("returnback"))?"true":"false")) $go=-2;
+		$semaphore=array($page,$action);
+		if(!semaphore_acquire($semaphore)) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 		foreach($config as $query) {
 			$inline=eval_attr($query);
 			foreach($inline as $query) {
@@ -99,6 +101,7 @@ switch($action) {
 			}
 			if(!$commit) break;
 		}
+		semaphore_release($semaphore);
 		if(is_numeric($go)) {
 			javascript_history($go);
 		} else {

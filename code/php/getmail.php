@@ -473,6 +473,7 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 	$body=__getmail_gettextbody(__getmail_getnode("0",$decoded));
 	unset($decoded); // TRICK TO RELEASE MEMORY
 	// INSERT THE NEW EMAIL
+	if(!semaphore_acquire(__FUNCTION__)) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 	$query=make_insert_query("tbl_correo",array(
 		"id_cuenta"=>$id_cuenta,
 		"uidl"=>$uidl,
@@ -503,6 +504,7 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 	// GET LAST_ID
 	$query="SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND is_outbox='${is_outbox}'";
 	$last_id=execute_query($query);
+	semaphore_release(__FUNCTION__);
 	// INSERT ALL ADDRESS
 	foreach($info["emails"] as $email) {
 		$query=make_insert_query("tbl_correo_a",array(

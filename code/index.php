@@ -48,14 +48,14 @@ cache_gc();
 db_connect();
 db_schema();
 db_static();
-if(!semaphore_acquire()) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
+if(!semaphore_acquire(__FILE__)) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 sess_init();
 check_remember();
 check_basicauth();
 pre_datauser();
 sess_close();
 check_security("main");
-semaphore_release();
+semaphore_release(__FILE__);
 // GET THE LANGUAGE
 $lang=getDefault("lang");
 $lang=useCookie("lang","",$lang);

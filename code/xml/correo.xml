@@ -840,7 +840,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">messageid</label>
 							<type>text</type>
 							<width>150px</width>
-							<width2>1px</width2>
+							<width2>150px</width2>
 							<readonly>true</readonly>
 						</field>
 						<field global="id" ifeval="!execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
@@ -850,8 +850,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<value>1</value>
 							<onchange>if(!$(this).prop("writed")) $(this).prop("checked",true); $(this).prop("writed",true); update_state(abs(getParam('id')),'new',this.checked?1:0)</onchange>
 							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
-							<width>1px</width>
-							<width2>1px</width2>
+							<width>100px</width>
+							<width2>100px</width2>
 						</field>
 						<field global="id" ifeval="!execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
 							<name>state_reply</name>
@@ -860,7 +860,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<value>1</value>
 							<readonly>true</readonly>
 							<width>1px</width>
-							<width2>1px</width2>
+							<width2>100px</width2>
 						</field>
 						<field global="id" ifeval="execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id))">
 							<name>state_sent</name>
@@ -868,8 +868,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>checkbox</type>
 							<value>1</value>
 							<readonly>true</readonly>
-							<width>1px</width>
-							<width2>1px</width2>
+							<width>100px</width>
+							<width2>100px</width2>
 						</field>
 						<field>
 							<name>state_forward</name>
@@ -878,7 +878,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<value>1</value>
 							<readonly>true</readonly>
 							<width>1px</width>
-							<width2>1px</width2>
+							<width2>100px</width2>
 						</field>
 						<field>
 							<name>state_wait</name>
@@ -888,7 +888,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onchange>update_state(abs(getParam('id')),'wait',this.checked?1:0)</onchange>
 							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
-							<width2>1px</width2>
+							<width2>100px</width2>
+						</field>
+						<field>
+							<type>separator</type>
 						</field>
 					</row>
 					<row>
@@ -898,8 +901,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>checkbox</type>
 							<value>1</value>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<width>1px</width>
-							<width2>1px</width2>
+							<width2>150px</width2>
 						</field>
 						<field>
 							<name>priority</name>
@@ -907,7 +909,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>select</type>
 							<query eval="true">"SELECT '".LANG("prioritylow")."' label,'-1' value UNION SELECT '".LANG("prioritynormal")."' label,'0' value UNION SELECT '".LANG("priorityhigh")."' label,'1' value ORDER BY value ASC"</query>
 							<width>90px</width>
-							<width2>1px</width2>
+							<width2>150px</width2>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 						<field>
@@ -916,10 +918,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>select</type>
 							<query eval="true">"SELECT '".LANG("sensitivitynormal")."' label,'0' value UNION SELECT '".LANG("sensitivitypersonal")."' label,'1' value UNION SELECT '".LANG("sensitivityprivate")."' label,'2' value UNION SELECT '".LANG("sensitivityconfidential")."' label,'3' value ORDER BY value ASC"</query>
 							<width>90px</width>
-							<width2>1px</width2>
+							<width2>150px</width2>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>4</colspan>
-							<colspan2>2</colspan2>
+							<colspan global="id" eval="true">$id>=0?"1":"4"</colspan>
+							<colspan2 global="id" eval="true">$id>=0?"1":"2"</colspan2>
 						</field>
 						<field global="id" ifeval="!(execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id)) || $id&gt;=0)">
 							<name>state_spam</name>
@@ -929,7 +931,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onchange>update_state(abs(getParam('id')),'spam',this.checked?1:0)</onchange>
 							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
-							<width2>1px</width2>
+							<width2>100px</width2>
+						</field>
+						<field>
+							<type>separator</type>
 						</field>
 					</row>
 					<row global="id" ifeval="execute_query('SELECT is_outbox FROM tbl_correo WHERE id='.abs($id).' AND LENGTH(state_error)>0')">
@@ -940,7 +945,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>calc(100% - 14px)</width>
 							<class3>ui-state-error</class3>
 							<class2>state_error</class2>
-							<width>1px</width>
 							<colspan>12</colspan>
 							<readonly>true</readonly>
 						</field>

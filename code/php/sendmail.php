@@ -115,9 +115,11 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	$current=$mail->PreSend();
 	get_clear_error();
 	if(!$current) return $mail->ErrorInfo;
+	if(!semaphore_acquire(__FUNCTION__)) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 	$messageid=__sendmail_messageid($id_cuenta,$mail->From);
 	$file=__sendmail_emlsaver($mail->GetSentMIMEMessage(),$messageid);
 	$last_id=__getmail_insert($file,$messageid,0,0,0,0,0,1,1,"");
+	semaphore_release(__FUNCTION__);
 	if(count($bcc)) __getmail_add_bcc($last_id,$bcc); // BCC DOESN'T APPEAR IN THE RFC822 SOMETIMES
 	if(CONFIG("email_async")) {
 		__sendmail_objsaver($mail,$messageid);

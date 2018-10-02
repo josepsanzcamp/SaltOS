@@ -25,6 +25,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<!-- THE FOUR GOOGLE COLORS -->
+	<row ifeval="!ismobile()">
+		<label>Google Multi Light</label>
+		<value>google/multi/light</value>
+		<color>#4285f4</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Google Multi Dark</label>
+		<value>google/multi/dark</value>
+		<color>#4285f4</color>
+	</row>
 	<row>
 		<label>Google Blue Light</label>
 		<value>google/blue/light</value>
@@ -64,16 +74,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<label>Google Yellow Dark</label>
 		<value>google/yellow/dark</value>
 		<color>#fbbc05</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Google Multi Light</label>
-		<value>google/multi/light</value>
-		<color>#4285f4</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Google Multi Dark</label>
-		<value>google/multi/dark</value>
-		<color>#4285f4</color>
 	</row>
 	<!-- UPC OLD AND NEW BLUE COLOR -->
 	<row>
