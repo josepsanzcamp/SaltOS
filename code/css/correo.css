@@ -23,23 +23,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 .estado.state_new {
-	color:#ffffff;
-	background:#34a853;
+	color:#ffffff!important;
+	background:#34a853!important;
 }
 
 .estado.state_wait {
-	color:#ffffff;
-	background:#4285f4;
+	color:#ffffff!important;
+	background:#4285f4!important;
 }
 
 .estado.state_spam {
-	color:#ffffff;
-	background:#ea4335;
+	color:#ffffff!important;
+	background:#ea4335!important;
 }
 
 .estado.state_error {
-	color:#ffffff;
-	background:#ea4335;
+	color:#ffffff!important;
+	background:#ea4335!important;
 }
 
 .estado.state_nowrap {

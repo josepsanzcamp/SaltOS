@@ -23,11 +23,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 .estado.style_pending {
-	color:#ffffff;
-	background:#4285f4;
+	color:#ffffff!important;
+	background:#4285f4!important;
 }
 
 .estado.style_alarm {
-	color:#ffffff;
-	background:#ea4335;
+	color:#ffffff!important;
+	background:#ea4335!important;
 }
