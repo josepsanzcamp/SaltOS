@@ -1,0 +1,258 @@
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2018 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<table class="width100 ltr" cellspacing="0" cellpadding="0" border="0"><tbody>
+<tr><td colspan="2" valign="top"><div class="ui-layout-north"><div class="tabs2 ui-tabs ui-corner-all ui-widget ui-widget-content"><ul class="headertabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-bottom" style="padding-top: 0px; padding-bottom: 2.4px;">
+<li class="ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-bars"></span> Menu</a></li>
+<li class="ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-calculator"></span> Calc</a></li>
+<li class="right ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-sign-out"></span> Close</a></li>
+<li class="right ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-user-circle"></span> Profile</a></li>
+<li class="texto ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="ui-tabs-anchor"><span class="fa fa-info-circle"></span> App name - Suite de Gesti&oacute;n Empresarial - SaltOS v3.7 r8716</a></li>
+</ul></div></div></td></tr>
+<tr>
+<td valign="top"><div class="ui-layout-west">
+<div class="menu ui-accordion ui-widget ui-helper-reset">
+<h3 class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-header-active ui-state-active ui-accordion-icons">
+<span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-s"></span>General</h3>
+<div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content ui-accordion-content-active"><ul class="accordion-link">
+<li><a href="#" class="nowrap"><span class="fa fa-home"></span> Home</a></li>
+<li><a href="#" class="nowrap number_correo number"><span class="fa fa-envelope"></span> Email</a></li>
+<li><a href="#" class="nowrap submenu"><span class="fa fa-plus-circle"></span> New email</a></li>
+<li><a href="#" class="nowrap submenu"><span class="fa fa-tag"></span> Inbox</a></li>
+<li><a href="#" class="nowrap submenu"><span class="fa fa-tag"></span> Outbox</a></li>
+<li><a href="#" class="nowrap"><span class="fa fa-user-circle"></span> Profile</a></li>
+<li><a href="#" class="nowrap"><span class="fa fa-question-circle"></span> Support</a></li>
+<li><a href="#" class="nowrap"><span class="fa fa-info-circle"></span> About</a></li>
+<li><a href="#" class="nowrap"><span class="fa fa-sign-out"></span> Close</a></li>
+</ul></div>
+</div>
+<div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
+<span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>Folders</h3></div>
+<div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
+<span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>Customers</h3></div>
+<div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
+<span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>Projects</h3></div>
+<div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
+<span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>Invoices</h3></div>
+<div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
+<span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>Administration</h3></div>
+<div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
+<span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>Types</h3></div>
+<div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">
+<span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-e"></span>System</h3></div>
+<a href="#" class="back2top ui-widget-header ui-corner-all"><span class="fa fa-arrow-circle-up"></span></a>
+</div></td>
+<td class="width100" valign="top"><div class="ui-layout-center"><div class="tabs ui-tabs ui-corner-all ui-widget ui-widget-content">
+<ul class="centertabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-top">
+<li class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active"><a href="#" class="ui-tabs-anchor"><span class="fa fa-files-o"></span> App list</a></li>
+<li class="ui-tabs-tab ui-corner-top ui-state-default ui-tab"><a href="#" class="ui-tabs-anchor"><span class="fa fa-search"></span> Filter options</a></li>
+<li class="help ui-tabs-tab ui-corner-top ui-state-default ui-tab"><a href="#" class="ui-tabs-anchor"><span class="fa fa-question-circle"></span> Help</a></li>
+</ul>
+<div class="sitabs ui-tabs-panel ui-corner-bottom ui-widget-content">
+<table class="width100 helperbuttons" cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-plus-circle"></span> New</a></td>
+<td class="separator " style="width:100%;height:"></td>
+<td class="left nowrap label nowrap" style="width:;height:"><span class="info ui-state-highlight ui-corner-all">Filter enabled</span></td>
+<td class="right nowrap label ">Search</td>
+<td class="left nowrap " style="width:120px"><input value="" style="width:120px" class="ui-state-default ui-corner-all" type="text"></td>
+<td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-search"></span> Search</a></td>
+<td><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">Options</span></span></td>
+</tr></tbody></table>
+<table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="separator"></td></tr></tbody></table>
+<table class="tabla" style="width:100%" cellspacing="0" cellpadding="0" border="0">
+<thead><tr>
+<td class="width1 thead ui-widget-header ui-corner-tl"><input class="master" type="checkbox"></td>
+<td class="thead ui-widget-header">Date and time<a href="#"><span class="ui-icon ui-icon-triangle-1-n ui-icon-asc ui-icon-out"></span></a><a href="#"><span class="ui-icon ui-icon-triangle-1-s ui-icon-desc ui-icon-out"></span></a>
+</td>
+<td class="thead ui-widget-header">Size<a href="#"><span class="ui-icon ui-icon-triangle-1-n ui-icon-asc ui-icon-out"></span></a><a href="#"><span class="ui-icon ui-icon-triangle-1-s ui-icon-desc ui-icon-out"></span></a>
+</td>
+<td class="thead ui-widget-header"><span>NF</span></td>
+<td class="thead ui-widget-header" style="width:1px">State</td>
+<td class="width1 thead ui-widget-header ui-corner-tr" colspan="100"></td>
+</tr></thead>
+<tbody>
+<tr>
+<td class="width1 tbody notop ui-widget-content"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-widget-content">2018-10-04 11:47:10</td>
+<td class="tbody nowrap notop ui-widget-content">13.50 Kbytes</td>
+<td class="tbody notop ui-widget-content">0</td>
+<td class="tbody estado notop ui-widget-content">Sent</td>
+<td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-state-default">2018-10-04 11:32:37</td>
+<td class="tbody nowrap notop ui-state-default">14.07 Kbytes</td>
+<td class="tbody notop ui-state-default">0</td>
+<td class="tbody estado notop ui-state-default">Respost</td>
+<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-widget-content"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-widget-content">2018-10-04 11:06:31</td>
+<td class="tbody nowrap notop ui-widget-content">9.98 Kbytes</td>
+<td class="tbody notop ui-widget-content">0</td>
+<td class="tbody estado notop ui-widget-content">Sent</td>
+<td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-state-default">2018-10-04 10:52:20</td>
+<td class="tbody nowrap notop ui-state-default">40.73 Kbytes</td>
+<td class="tbody notop ui-state-default">0</td>
+<td class="tbody estado notop ui-state-default">Read</td>
+<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-widget-content"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-widget-content">2018-10-04 11:03:58</td>
+<td class="tbody nowrap notop ui-widget-content">15.87 Kbytes</td>
+<td class="tbody notop ui-widget-content">0</td>
+<td class="tbody estado notop ui-widget-content">Sent</td>
+<td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-state-default">2018-10-04 10:46:21</td>
+<td class="tbody nowrap notop ui-state-default">11.67 Kbytes</td>
+<td class="tbody notop ui-state-default">0</td>
+<td class="tbody estado notop ui-state-default">Read</td>
+<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-widget-content"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-widget-content">2018-10-04 10:42:39</td>
+<td class="tbody nowrap notop ui-widget-content">129.03 Kbytes</td>
+<td class="tbody notop ui-widget-content">2</td>
+<td class="tbody estado notop ui-widget-content">Read</td>
+<td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-state-default">2018-10-04 10:34:43</td>
+<td class="tbody nowrap notop ui-state-default">17.88 Kbytes</td>
+<td class="tbody notop ui-state-default">0</td>
+<td class="tbody estado notop ui-state-default">Read</td>
+<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-widget-content"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-widget-content">2018-10-04 10:27:56</td>
+<td class="tbody nowrap notop ui-widget-content">85.59 Kbytes</td>
+<td class="tbody notop ui-widget-content">2</td>
+<td class="tbody estado notop ui-widget-content">Read</td>
+<td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-state-default">2018-10-04 10:20:02</td>
+<td class="tbody nowrap notop ui-state-default">1.96 Kbytes</td>
+<td class="tbody notop ui-state-default">0</td>
+<td class="tbody estado state_wait notop ui-state-default">Pending</td>
+<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-widget-content"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-widget-content">2018-10-04 10:15:02</td>
+<td class="tbody nowrap notop ui-widget-content">1.96 Kbytes</td>
+<td class="tbody notop ui-widget-content">0</td>
+<td class="tbody estado notop ui-widget-content">Read</td>
+<td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-state-default">2018-10-04 09:59:52</td>
+<td class="tbody nowrap notop ui-state-default">8.03 Kbytes</td>
+<td class="tbody notop ui-state-default">0</td>
+<td class="tbody estado state_new notop ui-state-default">New</td>
+<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-widget-content"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-widget-content">2018-10-04 11:03:58</td>
+<td class="tbody nowrap notop ui-widget-content">15.87 Kbytes</td>
+<td class="tbody notop ui-widget-content">0</td>
+<td class="tbody estado notop ui-widget-content">Sent</td>
+<td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap state_wait notop ui-state-default">2018-10-04 10:46:21</td>
+<td class="tbody nowrap state_wait notop ui-state-default">11.67 Kbytes</td>
+<td class="tbody state_wait notop ui-state-default">0</td>
+<td class="tbody estado state_spam notop ui-state-default">Spam</td>
+<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-widget-content"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-widget-content">2018-10-04 11:47:10</td>
+<td class="tbody nowrap notop ui-widget-content">13.50 Kbytes</td>
+<td class="tbody notop ui-widget-content">0</td>
+<td class="tbody estado notop ui-widget-content">Sent</td>
+<td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-state-default">2018-10-04 11:32:37</td>
+<td class="tbody nowrap notop ui-state-default">14.07 Kbytes</td>
+<td class="tbody notop ui-state-default">0</td>
+<td class="tbody estado notop ui-state-default">Reply</td>
+<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-widget-content"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-widget-content">2018-10-04 11:06:31</td>
+<td class="tbody nowrap notop ui-widget-content">9.98 Kbytes</td>
+<td class="tbody notop ui-widget-content">0</td>
+<td class="tbody estado notop ui-widget-content">Sent</td>
+<td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+<tr>
+<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="tbody nowrap notop ui-state-default">2018-10-04 10:52:20</td>
+<td class="tbody nowrap notop ui-state-default">40.73 Kbytes</td>
+<td class="tbody notop ui-state-default">0</td>
+<td class="tbody estado notop ui-state-default">Read</td>
+<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+</tr>
+</tbody>
+</table>
+<table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="separator"></td></tr></tbody></table>
+<table class="width100 helperbuttons" cellspacing="0" cellpadding="0" border="0"><tbody><tr>
+<td class="separator " style="width:10%;height:"></td>
+<td class="separator " style="width:50%;height:"></td>
+<td class="left nowrap label nowrap" style="width:;height:"><span class="infopager">Page 1 of 10 (regs between 1 and 18 of 180).</span></td>
+<td class="right nowrap label ">Regs by page:</td>
+<td class="left nowrap "><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">18</span></span></td>
+<td class="separator " style="width:50%;height:"></td>
+<td class="nowrap"><a href="#" class="ui-state-default ui-corner-all ui-state-disabled"><span class="fa fa-fast-backward"></span></a></td>
+<td class="nowrap"><a href="#" class="ui-state-default ui-corner-all ui-state-disabled"><span class="fa fa-backward"></span></a></td>
+<td class="left nowrap "><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">1</span></span></td>
+<td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-forward"></span></a></td>
+<td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-fast-forward"></span></a></td>
+</tr></tbody></table>
+</div>
+</div></div></td>
+</tr>
+</tbody></table>

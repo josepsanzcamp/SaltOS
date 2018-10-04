@@ -96,6 +96,88 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<value>upc/new/dark</value>
 		<color>#007bc0</color>
 	</row>
+	<!-- THE FOUR MICROSOFT COLORS -->
+	<row>
+		<label>Microsoft Blue Light</label>
+		<value>microsoft/blue/light</value>
+		<color>#04a5f0</color>
+	</row>
+	<row>
+		<label>Microsoft Blue Dark</label>
+		<value>microsoft/blue/dark</value>
+		<color>#04a5f0</color>
+	</row>
+	<row>
+		<label>Microsoft Green Light</label>
+		<value>microsoft/green/light</value>
+		<color>#81bb05</color>
+	</row>
+	<row>
+		<label>Microsoft Green Dark</label>
+		<value>microsoft/green/dark</value>
+		<color>#81bb05</color>
+	</row>
+	<row>
+		<label>Microsoft Red Light</label>
+		<value>microsoft/red/light</value>
+		<color>#f35225</color>
+	</row>
+	<row>
+		<label>Microsoft Red Dark</label>
+		<value>microsoft/red/dark</value>
+		<color>#f35225</color>
+	</row>
+	<row>
+		<label>Microsoft Yellow Light</label>
+		<value>microsoft/yellow/light</value>
+		<color>#ffba07</color>
+	</row>
+	<row>
+		<label>Microsoft Yellow Dark</label>
+		<value>microsoft/yellow/dark</value>
+		<color>#ffba07</color>
+	</row>
+	<!-- THE FOUR OFFICE 365 COLORS -->
+	<row>
+		<label>Office 365 Blue Light</label>
+		<value>office365/blue/light</value>
+		<color>#2c579b</color>
+	</row>
+	<row>
+		<label>Office 365 Blue Dark</label>
+		<value>office365/blue/dark</value>
+		<color>#2c579b</color>
+	</row>
+	<row>
+		<label>Office 365 Green Light</label>
+		<value>office365/green/light</value>
+		<color>#107b11</color>
+	</row>
+	<row>
+		<label>Office 365 Green Dark</label>
+		<value>office365/green/dark</value>
+		<color>#107b11</color>
+	</row>
+	<row>
+		<label>Office 365 Red Light</label>
+		<value>office365/red/light</value>
+		<color>#d24726</color>
+	</row>
+	<row>
+		<label>Office 365 Red Dark</label>
+		<value>office365/red/dark</value>
+		<color>#d24726</color>
+	</row>
+	<row>
+		<label>Office 365 Purple Light</label>
+		<value>office365/purple/light</value>
+		<color>#80397b</color>
+	</row>
+	<row>
+		<label>Office 365 Purple Dark</label>
+		<value>office365/purple/dark</value>
+		<color>#80397b</color>
+	</row>
 	<!-- THE SIX COSMO COLORS -->
 	<row>
 		<label>Cosmo Blue Light</label>
