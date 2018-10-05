@@ -47,7 +47,7 @@ if(getParam("action")=="demo") {
 		echo "<!DOCTYPE html>";
 		echo "<html>";
 		echo "<head>";
-		echo "<link href='css/default.css?r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<link href='?action=cache&files=css/default.css&r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<style>";
 		echo "iframe{width:900px; height:600px; margin:10px; border:1px solid #333;}";
 		echo "</style>";

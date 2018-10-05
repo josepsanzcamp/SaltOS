@@ -6,6 +6,7 @@ $color=str_split($color,2);
 foreach($color as $key=>$val) {
 	$val=hexdec($val);
 	$val=$val*$factor;
+	$val=intval($val);
 	$val=min($val,255);
 	$val=max($val,0);
 	$val=sprintf("%02x",$val);
