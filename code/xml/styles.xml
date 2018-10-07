@@ -24,17 +24,57 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
+	<row ifeval="!ismobile()">
+		<label>Multi Google Light</label>
+		<value>multi/google/light</value>
+		<color>#4285f4</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Multi Google Dark</label>
+		<value>multi/google/dark</value>
+		<color>#4285f4</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Multi Microsoft Light</label>
+		<value>multi/microsoft/light</value>
+		<color>#04a5f0</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Multi Microsoft Dark</label>
+		<value>multi/microsoft/dark</value>
+		<color>#04a5f0</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Multi Office 365 Light</label>
+		<value>multi/office365/light</value>
+		<color>#2c579b</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Multi Office 365 Dark</label>
+		<value>multi/office365/dark</value>
+		<color>#2c579b</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Multi Cosmo Light</label>
+		<value>multi/cosmo/light</value>
+		<color>#2780e3</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Multi Cosmo Dark</label>
+		<value>multi/cosmo/dark</value>
+		<color>#2780e3</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Multi UPC Light</label>
+		<value>multi/upc/light</value>
+		<color>#007bc0</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Multi UPC Dark</label>
+		<value>multi/upc/dark</value>
+		<color>#007bc0</color>
+	</row>
 	<!-- THE FOUR GOOGLE COLORS -->
-	<row ifeval="!ismobile()">
-		<label>Google Multi Light</label>
-		<value>google/multi/light</value>
-		<color>#4285f4</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Google Multi Dark</label>
-		<value>google/multi/dark</value>
-		<color>#4285f4</color>
-	</row>
 	<row>
 		<label>Google Blue Light</label>
 		<value>google/blue/light</value>
@@ -77,16 +117,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</row>
 	<!-- UPC OLD AND NEW BLUE COLOR -->
 	<row>
-		<label>Old UPC Light</label>
-		<value>upc/old/light</value>
-		<color>#336699</color>
-	</row>
-	<row>
-		<label>Old UPC Dark</label>
-		<value>upc/old/dark</value>
-		<color>#336699</color>
-	</row>
-	<row>
 		<label>New UPC Light</label>
 		<value>upc/new/light</value>
 		<color>#007bc0</color>
@@ -95,6 +125,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<label>New UPC Dark</label>
 		<value>upc/new/dark</value>
 		<color>#007bc0</color>
+	</row>
+	<row>
+		<label>Old UPC Light</label>
+		<value>upc/old/light</value>
+		<color>#336699</color>
+	</row>
+	<row>
+		<label>Old UPC Dark</label>
+		<value>upc/old/dark</value>
+		<color>#336699</color>
 	</row>
 	<!-- THE FOUR MICROSOFT COLORS -->
 	<row>
@@ -190,16 +230,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color>#2780e3</color>
 	</row>
 	<row>
-		<label>Cosmo Gray Light</label>
-		<value>cosmo/gray/light</value>
-		<color>#373a3c</color>
-	</row>
-	<row>
-		<label>Cosmo Gray Dark</label>
-		<value>cosmo/gray/dark</value>
-		<color>#373a3c</color>
-	</row>
-	<row>
 		<label>Cosmo Geeen Light</label>
 		<value>cosmo/green/light</value>
 		<color>#3fb618</color>
@@ -210,14 +240,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color>#3fb618</color>
 	</row>
 	<row>
-		<label>Cosmo Purple Light</label>
-		<value>cosmo/purple/light</value>
-		<color>#9954bb</color>
+		<label>Cosmo Red Light</label>
+		<value>cosmo/red/light</value>
+		<color>#ff0039</color>
 	</row>
 	<row>
-		<label>Cosmo Purple Dark</label>
-		<value>cosmo/purple/dark</value>
-		<color>#9954bb</color>
+		<label>Cosmo Red Dark</label>
+		<value>cosmo/red/dark</value>
+		<color>#ff0039</color>
 	</row>
 	<row>
 		<label>Cosmo Orange Light</label>
@@ -230,14 +260,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color>#ff7518</color>
 	</row>
 	<row>
-		<label>Cosmo Red Light</label>
-		<value>cosmo/red/light</value>
-		<color>#ff0039</color>
+		<label>Cosmo Purple Light</label>
+		<value>cosmo/purple/light</value>
+		<color>#9954bb</color>
 	</row>
 	<row>
-		<label>Cosmo Red Dark</label>
-		<value>cosmo/red/dark</value>
-		<color>#ff0039</color>
+		<label>Cosmo Purple Dark</label>
+		<value>cosmo/purple/dark</value>
+		<color>#9954bb</color>
+	</row>
+	<row>
+		<label>Cosmo Gray Light</label>
+		<value>cosmo/gray/light</value>
+		<color>#373a3c</color>
+	</row>
+	<row>
+		<label>Cosmo Gray Dark</label>
+		<value>cosmo/gray/dark</value>
+		<color>#373a3c</color>
 	</row>
 	<!-- ORIGINAL THEMES -->
 	<row ifeval="!ismobile()">

@@ -1047,8 +1047,7 @@ function pretty_html_error($msg) {
 	$html.="<head>";
 	$html.="<title>".get_name_version_revision()."</title>";
 	$html.="<style>";
-	$html.=".phperror { background:#000; margin:0; }";
-	$html.=".phperror div { width:800px; height:600px; margin:0 auto; color:#fff; background:#00f; padding:10px; font-family:monospace; }";
+	$html.=".phperror { color:#fff; background:#00f; padding:10px; font-family:monospace; }";
 	$html.=".phperror form { display:inline; float:right; }";
 	$html.=".phperror input { background:#fff; color:#00f; font-weight:bold; border:0; padding:10px 20px; font-family:monospace; margin-left:10px; }";
 	$html.=".phperror input:hover { background:#000; color:#fff; cursor:pointer; }";
@@ -1057,13 +1056,11 @@ function pretty_html_error($msg) {
 	$html.="</style>";
 	$html.="</head>";
 	$html.="<body class='phperror'>";
-	$html.="<div>";
 	$bug=base64_encode(json_encode(array("app"=>get_name_version_revision(),"msg"=>$msg)));
 	$html.=__pretty_html_error_helper("",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
 	$html.=__pretty_html_error_helper("http://bugs.saltos.org",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
 	$html.="<h1>".get_name_version_revision()."</h1>";
 	$html.=$msg;
-	$html.="</div>";
 	$html.="</body>";
 	$html.="</html>";
 	return $html;

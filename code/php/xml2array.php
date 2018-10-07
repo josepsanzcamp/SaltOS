@@ -247,9 +247,9 @@ function eval_files() {
 			if(!isset($val["size"])) $val["size"]=filesize($val["tmp_name"]);
 			if(!isset($val["type"])) $val["type"]=saltos_content_type($val["tmp_name"]);
 			// SECURITY ISSUE
-			$ext=strtolower(extension($val["file"]));
-			if(!$ext) $ext=strtolower(extension2($val["type"]));
-			if(in_array($ext,array("php","x-php"))) $val["file"]=str_replace(".php",".dat",$val["file"]);
+			if(substr($val["file"],-4,4)==".php") $val["file"]=substr($val["file"],0,-4).".dat";
+			// FOLDER ISSUE
+			$val["file"]=getParam("page","unknown")."/".$val["file"];
 			// CONTINUE
 			setParam($key,$val["name"]);
 			setParam($key."_file",$val["file"]);

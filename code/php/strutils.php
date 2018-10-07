@@ -30,8 +30,16 @@ define("__XML_HEADER__","<?xml version='1.0' encoding='UTF-8' ?>\n");
 function getParam($index,$default="") {
 	if(substr($index,-5,5)=="_file") {
 		$prefix=substr($index,0,-5);
-		if(file_exists(__getParam_helper($prefix."_temp"))) {
-			move_uploaded_file(__getParam_helper($prefix."_temp"),get_directory("dirs/filesdir").__getParam_helper($prefix."_file"));
+		$temp=__getParam_helper($prefix."_temp");
+		if(file_exists($temp)) {
+			$file=get_directory("dirs/filesdir").__getParam_helper($prefix."_file");
+			$dir=dirname($file);
+			if(!file_exists($dir)) {
+				mkdir($dir);
+				chmod_protected($dir,0777);
+			}
+			move_uploaded_file($temp,$file);
+			chmod_protected($file,0666);
 		}
 	}
 	return __getParam_helper($index,$default);

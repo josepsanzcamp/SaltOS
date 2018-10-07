@@ -34,20 +34,24 @@ if(getParam("action")=="demo") {
 		echo "<!DOCTYPE html>";
 		echo "<html>";
 		echo "<head>";
-		echo "<link href='?action=cache&files=${stylepre}${style}${stylepost}&r=${revision}' rel='stylesheet' type='text/css'>";
-		echo "<link href='?action=cache&files=css/default.css,css/correo.css,lib/fontawesome/css/fontawesome.min.css,lib/fontawesome/css/solid.min.css,lib/fontawesome/css/v4-shims.min.css&r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<link href='${stylepre}${style}${stylepost}?r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<link href='css/default.css?r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<link href='css/correo.css?r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<link href='lib/fontawesome/css/fontawesome.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<link href='lib/fontawesome/css/solid.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<link href='lib/fontawesome/css/v4-shims.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "</head>";
 		echo "<body>";
 		echo str_replace("App name - Suite de Gesti&oacute;n Empresarial - SaltOS v3.7 r8716",$row["label"]." - ".getDefault("info/title")." - ".get_name_version_revision(),file_get_contents("xml/common/demo.xml"));
 		echo "</body>";
 		echo "</html>";
 	} else {
-		$styles=eval_attr(xml2array("xml/common/styles.xml"));
 		$revision=getDefault("info/revision");
+		$styles=eval_attr(xml2array("xml/common/styles.xml"));
 		echo "<!DOCTYPE html>";
 		echo "<html>";
 		echo "<head>";
-		echo "<link href='?action=cache&files=css/default.css&r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<link href='css/default.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<style>";
 		echo "iframe{width:900px; height:600px; margin:10px; border:1px solid #333;}";
 		echo "</style>";
