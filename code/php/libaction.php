@@ -123,6 +123,16 @@ function __csv_dump($matrix,$file) {
 	}
 }
 
+function __matrix2dump($matrix,$file,$title) {
+	if(substr($file,-4,4)==".csv") $file=substr($file,0,-4);
+	if(substr($file,-4,4)==".xls") $file=substr($file,0,-4);
+	if(count($matrix)<=10000) {
+		__excel_dump($matrix,$file.".xls",$title);
+	} else {
+		__csv_dump($matrix,$file.".csv");
+	}
+}
+
 function __query2matrix($query) {
 	$result=db_query($query);
 	$matrix=array(array());

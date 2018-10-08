@@ -59,10 +59,13 @@ php scripts/jquery-ui.themeroller4.php multi/cosmo/dark \
 rm -rf multi/upc/light/jquery-ui
 rm -rf multi/upc/dark/jquery-ui
 
-php scripts/jquery-ui.themeroller2.php multi/upc/light \
+php scripts/jquery-ui.themeroller4.php multi/upc/light \
 	007bc0 ffffff ffffff 000000 $(php scripts/lightness.calculator.php 007bc0 0.97) $(php scripts/lightness.calculator.php 007bc0 0.2) \
+	336699 ffffff $(php scripts/lightness.calculator.php 336699 0.97) $(php scripts/lightness.calculator.php 336699 0.2) \
+	007bc0 ffffff $(php scripts/lightness.calculator.php 007bc0 0.97) $(php scripts/lightness.calculator.php 007bc0 0.2) \
 	336699 ffffff $(php scripts/lightness.calculator.php 336699 0.97) $(php scripts/lightness.calculator.php 336699 0.2)
-php scripts/jquery-ui.themeroller2.php multi/upc/dark \
+php scripts/jquery-ui.themeroller4.php multi/upc/dark \
 	007bc0 ffffff 000000 ffffff $(php scripts/lightness.calculator.php 007bc0 0.1) ffffff \
+	336699 ffffff $(php scripts/lightness.calculator.php 336699 0.1) ffffff \
+	007bc0 ffffff $(php scripts/lightness.calculator.php 007bc0 0.1) ffffff \
 	336699 ffffff $(php scripts/lightness.calculator.php 336699 0.1) ffffff
-

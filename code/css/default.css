@@ -42,6 +42,16 @@ form {
 	padding:0 0 0 0;
 }
 
+.ui-layout-north .headertabs {
+	text-align:center;
+}
+
+.ui-layout-north .center {
+	float:none!important;
+	display:inline-block!important;
+	margin-bottom:0px!important;
+}
+
 .ui-layout-north .right {
 	float:right!important;
 }
@@ -540,15 +550,6 @@ img[isplot=true] {
 
 .rtl .tabs2 span.number {
 	right:17px;
-}
-
-.tabs2 ul {
-	text-align:center!important;
-}
-
-.tabs2 .texto {
-	float:none!important;
-	display:inline-flex!important;
 }
 
 /* FOR BLOCKUI */

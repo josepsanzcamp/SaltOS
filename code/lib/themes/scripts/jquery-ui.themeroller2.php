@@ -1,5 +1,5 @@
 <?php
-if($argc!=12) die("Unknown arguments!!!\n");
+if($argc!=10) die("Unknown arguments!!!\n");
 $name=$argv[1];
 $color1=$argv[2];
 $color2=$argv[3];
@@ -9,8 +9,6 @@ $color5=$argv[6];
 $color6=$argv[7];
 $color7=$argv[8];
 $color8=$argv[9];
-$color9=$argv[10];
-$colora=$argv[11];
 // FUNCTIONS
 function __rgb2rgba($color) {
 	return hexdec(substr($color,0,2)).",".hexdec(substr($color,2,2)).",".hexdec(substr($color,4,2));
@@ -31,8 +29,6 @@ foreach($images as $image) {
 	$image=str_replace("6789ab",$color6,$image);
 	$image=str_replace("789abc",$color7,$image);
 	$image=str_replace("89abcd",$color8,$image);
-	$image=str_replace("9abcde",$color9,$image);
-	$image=str_replace("abcdef",$colora,$image);
 	if(file_exists($source."/images/".$image)) {
 		copy($source."/images/".$image,$dest."/images/".$image);
 	} else {
@@ -50,8 +46,6 @@ $buffer=str_replace("56789a",$color5,$buffer);
 $buffer=str_replace("6789ab",$color6,$buffer);
 $buffer=str_replace("789abc",$color7,$buffer);
 $buffer=str_replace("89abcd",$color8,$buffer);
-$buffer=str_replace("9abcde",$color9,$buffer);
-$buffer=str_replace("abcdef",$colora,$buffer);
 $buffer=str_replace(__rgb2rgba("123456"),__rgb2rgba($color1),$buffer);
 $buffer=str_replace(__rgb2rgba("234567"),__rgb2rgba($color2),$buffer);
 $buffer=str_replace(__rgb2rgba("345678"),__rgb2rgba($color3),$buffer);
@@ -60,7 +54,5 @@ $buffer=str_replace(__rgb2rgba("56789a"),__rgb2rgba($color5),$buffer);
 $buffer=str_replace(__rgb2rgba("6789ab"),__rgb2rgba($color6),$buffer);
 $buffer=str_replace(__rgb2rgba("789abc"),__rgb2rgba($color7),$buffer);
 $buffer=str_replace(__rgb2rgba("89abcd"),__rgb2rgba($color8),$buffer);
-$buffer=str_replace(__rgb2rgba("9abcde"),__rgb2rgba($color9),$buffer);
-$buffer=str_replace(__rgb2rgba("abcdef"),__rgb2rgba($colora),$buffer);
 file_put_contents($dest."/".$file,$buffer);
 ?>

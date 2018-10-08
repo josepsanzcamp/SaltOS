@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <li class="ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-calculator"></span> Calc</a></li>
 <li class="right ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-sign-out"></span> Close</a></li>
 <li class="right ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-user-circle"></span> Profile</a></li>
-<li class="texto ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="ui-tabs-anchor"><span class="fa fa-info-circle"></span> App name - Suite de Gesti&oacute;n Empresarial - SaltOS v3.7 r8716</a></li>
+<li class="center ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="ui-tabs-anchor"><span class="fa fa-info-circle"></span> APP_NAME</a></li>
 </ul></div></div></td></tr>
 <tr>
 <td valign="top"><div class="ui-layout-west">

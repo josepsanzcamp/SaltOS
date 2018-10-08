@@ -40,9 +40,14 @@ if(getParam("action")=="demo") {
 		echo "<link href='lib/fontawesome/css/fontawesome.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<link href='lib/fontawesome/css/solid.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<link href='lib/fontawesome/css/v4-shims.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<script src='lib/jquery/jquery.min.js'></script>";
+		echo "<script>";
+		echo "var inputs='a.ui-state-default,input.ui-state-default,li.ui-state-default,h3.ui-state-default'; $(document).on('mouseover',inputs,function() { $(this).addClass('ui-state-hover'); }).on('mouseout',inputs,function() { $(this).removeClass('ui-state-hover'); });";
+		echo "var inputs='.tabla td.tbody'; $(document).on('mouseover',inputs,function() { $(this).parent().find('td').addClass('ui-state-highlight'); }).on('mouseout',inputs,function() { $(this).parent().find('td').removeClass('ui-state-highlight'); });";
+		echo "</script>";
 		echo "</head>";
 		echo "<body>";
-		echo str_replace("App name - Suite de Gesti&oacute;n Empresarial - SaltOS v3.7 r8716",$row["label"]." - ".getDefault("info/title")." - ".get_name_version_revision(),file_get_contents("xml/common/demo.xml"));
+		echo str_replace("APP_NAME",$row["label"]." - ".getDefault("info/title")." - ".get_name_version_revision(),file_get_contents("xml/common/demo.xml"));
 		echo "</body>";
 		echo "</html>";
 	} else {

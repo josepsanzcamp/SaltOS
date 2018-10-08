@@ -20,7 +20,7 @@
 body{background-color:#345678;}
 
 /* SANZ FIXES */
-.cke.ui-state-default{background:#f6f6f6;}
+.cke.ui-state-default{background:#56789a;}
 .cke.ui-state-hover{background:#fbec88;}
 
 /* FOR MULTICOLOR SCHEMA */
@@ -36,46 +36,46 @@ body{background-color:#345678;}
 .menu:nth-of-type(4n+2) .ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 
 /* SANZ FIXES */
-.menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-default{border-color:#bcdefg;}
-.menu:nth-of-type(4n+3) .ui-accordion-content.ui-widget-content{border-color:#bcdefg;}
-.menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-default{background-color:#bcdefg;}
-.menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-default{color:#cdefgh;}
-.menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_cdefgh_256x240.png");}
+.menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-default{border-color:#bcdef1;}
+.menu:nth-of-type(4n+3) .ui-accordion-content.ui-widget-content{border-color:#bcdef1;}
+.menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-default{background-color:#bcdef1;}
+.menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-default{color:#cdef12;}
+.menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_cdef12_256x240.png");}
 .menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-hover{background:#fbec88;}
 .menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-hover{color:#363636;}
 .menu:nth-of-type(4n+3) .ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 
 /* SANZ FIXES */
-.menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-default{border-color:#fghijk;}
-.menu:nth-of-type(4n+0) .ui-accordion-content.ui-widget-content{border-color:#fghijk;}
-.menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-default{background-color:#fghijk;}
-.menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-default{color:#ghijkl;}
-.menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_ghijkl_256x240.png");}
+.menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-default{border-color:#f12345;}
+.menu:nth-of-type(4n+0) .ui-accordion-content.ui-widget-content{border-color:#f12345;}
+.menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-default{background-color:#f12345;}
+.menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-default{color:#123457;}
+.menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_123457_256x240.png");}
 .menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-hover{background:#fbec88;}
 .menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-hover{color:#363636;}
 .menu:nth-of-type(4n+0) .ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 
 /* SANZ FIXES */
-.headertabs.ui-widget-header{border-color:#fghijk;}
-.headertabs.ui-widget-header{background-color:#fghijk;}
-.headertabs .ui-state-default{border-color:#fghijk;}
-.headertabs .ui-state-default{background-color:#hijklm;}
-.headertabs .ui-state-default a{color:#ijklmn;}
+.headertabs.ui-widget-header{border-color:#f12345;}
+.headertabs.ui-widget-header{background-color:#f12345;}
+.headertabs .ui-state-default{border-color:#f12345;}
+.headertabs .ui-state-default{background-color:#234568;}
+.headertabs .ui-state-default a{color:#345679;}
 .headertabs .ui-state-hover{background:#fbec88;}
 .headertabs .ui-state-hover a{color:#363636;}
-.headertabs .ui-state-active{background-color:#hijklm;}
-.headertabs .ui-state-active a{color:#ijklmn;}
+.headertabs .ui-state-active{background-color:#234568;}
+.headertabs .ui-state-active a{color:#345679;}
 
 /* SANZ FIXES */
-.centertabs.ui-widget-header{border-color:#bcdefg;}
-.centertabs.ui-widget-header{background-color:#bcdefg;}
-.centertabs .ui-state-default{border-color:#bcdefg;}
-.centertabs .ui-state-default{background-color:#defghi;}
-.centertabs .ui-state-default a{color:#efghij;}
+.centertabs.ui-widget-header{border-color:#bcdef1;}
+.centertabs.ui-widget-header{background-color:#bcdef1;}
+.centertabs .ui-state-default{border-color:#bcdef1;}
+.centertabs .ui-state-default{background-color:#def123;}
+.centertabs .ui-state-default a{color:#ef1234;}
 .centertabs .ui-state-hover{background:#fbec88;}
 .centertabs .ui-state-hover a{color:#363636;}
-.centertabs .ui-state-active{background-color:#defghi;}
-.centertabs .ui-state-active a{color:#efghij;}
+.centertabs .ui-state-active{background-color:#def123;}
+.centertabs .ui-state-active a{color:#ef1234;}
 
 /* SANZ FIXES */
 .helperbuttons a.ui-state-default{border-color:#789abc;}
@@ -108,16 +108,16 @@ body{background-color:#345678;}
 .tabla tr:nth-of-type(8n+4) .ui-state-default{background-color:#9abcde;}
 .tabla tr:nth-of-type(8n+4) .ui-state-default{color:#abcdef;}
 .tabla tr:nth-of-type(8n+4) .ui-state-default a{color:#abcdef;}
-.tabla tr:nth-of-type(8n+5) .ui-widget-content{border-color:#bcdefg;}
-.tabla tr:nth-of-type(8n+6) .ui-state-default{border-color:#bcdefg;}
-.tabla tr:nth-of-type(8n+6) .ui-state-default{background-color:#defghi;}
-.tabla tr:nth-of-type(8n+6) .ui-state-default{color:#efghij;}
-.tabla tr:nth-of-type(8n+6) .ui-state-default a{color:#efghij;}
-.tabla tr:nth-of-type(8n+7) .ui-widget-content{border-color:#fghijk;}
-.tabla tr:nth-of-type(8n+0) .ui-state-default{border-color:#fghijk;}
-.tabla tr:nth-of-type(8n+0) .ui-state-default{background-color:#hijklm;}
-.tabla tr:nth-of-type(8n+0) .ui-state-default{color:#ijklmn;}
-.tabla tr:nth-of-type(8n+0) .ui-state-default a{color:#ijklmn;}
+.tabla tr:nth-of-type(8n+5) .ui-widget-content{border-color:#bcdef1;}
+.tabla tr:nth-of-type(8n+6) .ui-state-default{border-color:#bcdef1;}
+.tabla tr:nth-of-type(8n+6) .ui-state-default{background-color:#def123;}
+.tabla tr:nth-of-type(8n+6) .ui-state-default{color:#ef1234;}
+.tabla tr:nth-of-type(8n+6) .ui-state-default a{color:#ef1234;}
+.tabla tr:nth-of-type(8n+7) .ui-widget-content{border-color:#f12345;}
+.tabla tr:nth-of-type(8n+0) .ui-state-default{border-color:#f12345;}
+.tabla tr:nth-of-type(8n+0) .ui-state-default{background-color:#234568;}
+.tabla tr:nth-of-type(8n+0) .ui-state-default{color:#345679;}
+.tabla tr:nth-of-type(8n+0) .ui-state-default a{color:#345679;}
 .tabla tr:nth-of-type(8n+4) .ui-state-highlight{background:#fbec88;}
 .tabla tr:nth-of-type(8n+4) .ui-state-highlight{color:#363636;}
 .tabla tr:nth-of-type(8n+4) .ui-state-highlight a{color:#363636;}
@@ -134,16 +134,16 @@ body{background-color:#345678;}
 .tabla tr:nth-of-type(8n+5) .ui-state-default{background-color:#9abcde;}
 .tabla tr:nth-of-type(8n+5) .ui-state-default{color:#abcdef;}
 .tabla tr:nth-of-type(8n+5) .ui-state-default a{color:#abcdef;}
-.tabla tr:nth-of-type(8n+6) .ui-widget-content{border-color:#bcdefg;}
-.tabla tr:nth-of-type(8n+7) .ui-state-default{border-color:#bcdefg;}
-.tabla tr:nth-of-type(8n+7) .ui-state-default{background-color:#defghi;}
-.tabla tr:nth-of-type(8n+7) .ui-state-default{color:#efghij;}
-.tabla tr:nth-of-type(8n+7) .ui-state-default a{color:#efghij;}
-.tabla tr:nth-of-type(8n+0) .ui-widget-content{border-color:#fghijk;}
-.tabla tr:nth-of-type(8n+1) .ui-state-default{border-color:#fghijk;}
-.tabla tr:nth-of-type(8n+1) .ui-state-default{background-color:#hijklm;}
-.tabla tr:nth-of-type(8n+1) .ui-state-default{color:#ijklmn;}
-.tabla tr:nth-of-type(8n+1) .ui-state-default a{color:#ijklmn;}
+.tabla tr:nth-of-type(8n+6) .ui-widget-content{border-color:#bcdef1;}
+.tabla tr:nth-of-type(8n+7) .ui-state-default{border-color:#bcdef1;}
+.tabla tr:nth-of-type(8n+7) .ui-state-default{background-color:#def123;}
+.tabla tr:nth-of-type(8n+7) .ui-state-default{color:#ef1234;}
+.tabla tr:nth-of-type(8n+7) .ui-state-default a{color:#ef1234;}
+.tabla tr:nth-of-type(8n+0) .ui-widget-content{border-color:#f12345;}
+.tabla tr:nth-of-type(8n+1) .ui-state-default{border-color:#f12345;}
+.tabla tr:nth-of-type(8n+1) .ui-state-default{background-color:#234568;}
+.tabla tr:nth-of-type(8n+1) .ui-state-default{color:#345679;}
+.tabla tr:nth-of-type(8n+1) .ui-state-default a{color:#345679;}
 .tabla tr:nth-of-type(8n+5) .ui-state-highlight{background:#fbec88;}
 .tabla tr:nth-of-type(8n+5) .ui-state-highlight{color:#363636;}
 .tabla tr:nth-of-type(8n+5) .ui-state-highlight a{color:#363636;}

@@ -1047,7 +1047,7 @@ function pretty_html_error($msg) {
 	$html.="<head>";
 	$html.="<title>".get_name_version_revision()."</title>";
 	$html.="<style>";
-	$html.=".phperror { color:#fff; background:#00f; padding:10px; font-family:monospace; }";
+	$html.=".phperror { color:#fff; background:#00f; margin:0; padding:10px; font-family:monospace; }";
 	$html.=".phperror form { display:inline; float:right; }";
 	$html.=".phperror input { background:#fff; color:#00f; font-weight:bold; border:0; padding:10px 20px; font-family:monospace; margin-left:10px; }";
 	$html.=".phperror input:hover { background:#000; color:#fff; cursor:pointer; }";

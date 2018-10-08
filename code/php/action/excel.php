@@ -36,7 +36,7 @@ if(getParam("action")=="excel") {
 	if(eval_bool(getDefault("debug/actiondebug"))) debug_dump();
 	$query=$config["query"];
 	$matrix=__query2matrix($query);
-	__excel_dump($matrix,"${page}.xls",ucfirst($page));
+	__matrix2dump($matrix,"${page}.xls",ucfirst($page));
 	if(!defined("__CANCEL_DIE__")) die();
 }
 ?>

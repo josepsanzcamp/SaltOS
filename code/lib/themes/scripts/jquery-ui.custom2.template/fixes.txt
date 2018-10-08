@@ -1,16 +1,84 @@
 /* SANZ FIXES */
-h3.ui-accordion-header.ui-state-default{border-color:#123456;}
-div.ui-accordion-content.ui-widget-content{border-color:#123456;}
-h3.ui-accordion-header.ui-state-default{background-color:#123456;}
-h3.ui-accordion-header.ui-state-default{color:#234567;}
-h3.ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_234567_256x240.png");}
-h3.ui-accordion-header.ui-state-hover{background:#fbec88;}
-h3.ui-accordion-header.ui-state-hover{color:#363636;}
-h3.ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.ui-accordion-header.ui-state-default{border-color:#123456;}
+.ui-accordion-content.ui-widget-content{border-color:#123456;}
+.ui-accordion-header.ui-state-default{background-color:#123456;}
+.ui-accordion-header.ui-state-default{color:#234567;}
+.ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_234567_256x240.png");}
+.ui-accordion-header.ui-state-hover{background:#fbec88;}
+.ui-accordion-header.ui-state-hover{color:#363636;}
+.ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 
 /* SANZ FIXES */
 body{background-color:#345678;}
 
 /* SANZ FIXES */
-.cke.ui-state-default{background:#f6f6f6;}
+.cke.ui-state-default{background:#56789a;}
 .cke.ui-state-hover{background:#fbec88;}
+
+/* FOR MULTICOLOR SCHEMA */
+
+/* SANZ FIXES */
+.menu:nth-of-type(2n+2) .ui-accordion-header.ui-state-default{border-color:#789abc;}
+.menu:nth-of-type(2n+2) .ui-accordion-content.ui-widget-content{border-color:#789abc;}
+.menu:nth-of-type(2n+2) .ui-accordion-header.ui-state-default{background-color:#789abc;}
+.menu:nth-of-type(2n+2) .ui-accordion-header.ui-state-default{color:#89abcd;}
+.menu:nth-of-type(2n+2) .ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_89abcd_256x240.png");}
+.menu:nth-of-type(2n+2) .ui-accordion-header.ui-state-hover{background:#fbec88;}
+.menu:nth-of-type(2n+2) .ui-accordion-header.ui-state-hover{color:#363636;}
+.menu:nth-of-type(2n+2) .ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+
+/* SANZ FIXES */
+.headertabs.ui-widget-header{border-color:#789abc;}
+.headertabs.ui-widget-header{background-color:#789abc;}
+.headertabs .ui-state-default{border-color:#789abc;}
+.headertabs .ui-state-default{background-color:#9abcde;}
+.headertabs .ui-state-default a{color:#abcdef;}
+.headertabs .ui-state-hover{background:#fbec88;}
+.headertabs .ui-state-hover a{color:#363636;}
+.headertabs .ui-state-active{background-color:#9abcde;}
+.headertabs .ui-state-active a{color:#abcdef;}
+
+/* SANZ FIXES */
+.helperbuttons a.ui-state-default{border-color:#789abc;}
+.helperbuttons a.ui-state-default{background-color:#9abcde;}
+.helperbuttons a.ui-state-default{color:#abcdef;}
+.helperbuttons input.ui-state-default{border-color:#789abc;}
+.helperbuttons input.ui-state-default{background-color:#9abcde;}
+.helperbuttons input.ui-state-default{color:#abcdef;}
+.helperbuttons span.ui-button{border-color:#789abc;}
+.helperbuttons span.ui-button{background-color:#9abcde;}
+.helperbuttons span.ui-button{color:#abcdef;}
+.helperbuttons div.ui-state-default{border-color:#789abc;}
+.helperbuttons iframe.ui-state-default{border-color:#789abc;}
+.helperbuttons a.ui-state-hover{background:#fbec88;}
+.helperbuttons a.ui-state-hover{color:#363636;}
+.helperbuttons input.ui-state-hover{background:#fbec88;}
+.helperbuttons input.ui-state-hover{color:#363636;}
+.helperbuttons span.ui-button:hover{background:#fbec88;}
+.helperbuttons span.ui-button:hover{color:#363636;}
+.helperbuttons a.ui-state-focus{background:#fbec88;}
+.helperbuttons a.ui-state-focus{color:#363636;}
+.helperbuttons input.ui-state-focus{background:#fbec88;}
+.helperbuttons input.ui-state-focus{color:#363636;}
+.helperbuttons span.ui-button:focus{background:#fbec88;}
+.helperbuttons span.ui-button:focus{color:#363636;}
+
+/* SANZ FIXES */
+.tabla tr:nth-of-type(4n+3) .ui-widget-content{border-color:#789abc;}
+.tabla tr:nth-of-type(4n+0) .ui-state-default{border-color:#789abc;}
+.tabla tr:nth-of-type(4n+0) .ui-state-default{background-color:#9abcde;}
+.tabla tr:nth-of-type(4n+0) .ui-state-default{color:#abcdef;}
+.tabla tr:nth-of-type(4n+0) .ui-state-default a{color:#abcdef;}
+.tabla tr:nth-of-type(4n+0) .ui-state-highlight{background:#fbec88;}
+.tabla tr:nth-of-type(4n+0) .ui-state-highlight{color:#363636;}
+.tabla tr:nth-of-type(4n+0) .ui-state-highlight a{color:#363636;}
+
+/* SANZ FIXES */
+.tabla tr:nth-of-type(4n+0) .ui-widget-content{border-color:#789abc;}
+.tabla tr:nth-of-type(4n+1) .ui-state-default{border-color:#789abc;}
+.tabla tr:nth-of-type(4n+1) .ui-state-default{background-color:#9abcde;}
+.tabla tr:nth-of-type(4n+1) .ui-state-default{color:#abcdef;}
+.tabla tr:nth-of-type(4n+1) .ui-state-default a{color:#abcdef;}
+.tabla tr:nth-of-type(4n+1) .ui-state-highlight{background:#fbec88;}
+.tabla tr:nth-of-type(4n+1) .ui-state-highlight{color:#363636;}
+.tabla tr:nth-of-type(4n+1) .ui-state-highlight a{color:#363636;}

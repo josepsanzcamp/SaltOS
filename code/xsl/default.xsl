@@ -51,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:value-of select="label"/>
 					</a></li>
 				</xsl:for-each>
-				<li class="texto"><a href="javascript:void(0)" onclick="opencontent('?page=about')">
+				<li class="center"><a href="javascript:void(0)" onclick="opencontent('?page=about')">
 					<span class="{info/icon}"></span>
 					<xsl:text> </xsl:text>
 					<xsl:call-template name="title_2"/>
