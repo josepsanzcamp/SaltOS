@@ -119,7 +119,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</row>
 			<row ifeval="!getDefault('forcestyle')">
 				<field>
-					<field include="xml/common/styles.xml" replace="true" />
+					<field include="xml/common/styles2.xml" replace="true" />
 				</field>
 				<actions path="field" append="true">
 					<colspan>2</colspan>

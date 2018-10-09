@@ -126,9 +126,9 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							</select>
 							<?php echo __BR__; ?>
 							<?php echo LANG("style_message"); ?>:
-							<?php $temp=eval_attr(xml2array("xml/common/styles.xml")); ?>
+							<?php $temp=eval_attr(xml2array("xml/styles.xml")); ?>
 							<?php $styles=array(); ?>
-							<?php foreach($temp["rows"] as $row) $styles[$row["value"]]=$row["label"]; ?>
+							<?php foreach($temp as $row) $styles[$row["value"]]=$row["label"]; ?>
 							<select name="style" onchange="document.form.step.value='0';document.form.submit()" <?php echo __UI__; ?>>
 								<?php foreach($styles as $key=>$val) { ?>
 									<?php $selected=($style==$key)?"selected":""; ?>
@@ -384,10 +384,9 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 							<?php $langs=array(); ?>
 							<?php foreach($temp["rows"] as $row) $langs[$row["value"]]=$row["label"]; ?>
 							<?php echo LANG("lang"); ?>: <?php echo __GREEN__.$langs[getParam("lang",getDefault("lang"))]." (".getParam("lang",getDefault("lang")).")".__COLOR__.__BR__; ?>
-							<?php $temp=eval_attr(xml2array("xml/common/styles.xml")); ?>
-							<?php if(!isset($temp["rows"]) && isset($temp["rows#1"])) { $temp["rows"]=$temp["rows#1"]; unset($temp["rows#1"]); } ?>
+							<?php $temp=eval_attr(xml2array("xml/styles.xml")); ?>
 							<?php $styles=array(); ?>
-							<?php foreach($temp["rows"] as $row) $styles[$row["value"]]=$row["label"]; ?>
+							<?php foreach($temp as $row) $styles[$row["value"]]=$row["label"]; ?>
 							<?php echo LANG("style"); ?>: <?php echo __GREEN__.$styles[getParam("style",getDefault("style"))]." (".getParam("style",getDefault("style")).")".__COLOR__.__BR__; ?>
 							<?php echo __HR__; ?>
 							<b><?php echo LANG("is_writable"); ?></b><?php echo __BR__; ?>

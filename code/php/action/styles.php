@@ -23,14 +23,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if(getParam("action")=="demo") {
+if(getParam("action")=="styles") {
 	$style=getParam("style");
 	if(load_style($style)) {
 		$stylepre=getDefault("stylepre");
 		$stylepost=getDefault("stylepost");
 		$revision=getDefault("info/revision");
-		$styles=eval_attr(xml2array("xml/common/styles.xml"));
-		foreach($styles["rows"] as $row) if($style==$row["value"]) break;
+		$styles=eval_attr(xml2array("xml/styles.xml"));
+		foreach($styles as $row) if($style==$row["value"]) break;
 		echo "<!DOCTYPE html>";
 		echo "<html>";
 		echo "<head>";
@@ -47,12 +47,12 @@ if(getParam("action")=="demo") {
 		echo "</script>";
 		echo "</head>";
 		echo "<body>";
-		echo str_replace("APP_NAME",$row["label"]." - ".getDefault("info/title")." - ".get_name_version_revision(),file_get_contents("xml/common/demo.xml"));
+		echo str_replace("APP_NAME",$row["label"]." - ".getDefault("info/title")." - ".get_name_version_revision(),file_get_contents("xml/common/styles3.xml"));
 		echo "</body>";
 		echo "</html>";
 	} else {
 		$revision=getDefault("info/revision");
-		$styles=eval_attr(xml2array("xml/common/styles.xml"));
+		$styles=eval_attr(xml2array("xml/styles.xml"));
 		echo "<!DOCTYPE html>";
 		echo "<html>";
 		echo "<head>";
@@ -62,8 +62,8 @@ if(getParam("action")=="demo") {
 		echo "</style>";
 		echo "</head>";
 		echo "<body>";
-		foreach($styles["rows"] as $row) {
-			echo "<iframe src='?action=demo&amp;style=${row["value"]}' frameborder='0'></iframe>";
+		foreach($styles as $row) {
+			echo "<iframe src='?action=styles&amp;style=${row["value"]}' frameborder='0'></iframe>";
 		}
 		echo "</body>";
 		echo "</html>";

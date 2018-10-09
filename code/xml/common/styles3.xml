@@ -229,12 +229,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <td class="width1 actions2 tbody notop ui-widget-content"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
 </tr>
 <tr>
-<td class="width1 tbody notop ui-state-default"><input class="slave" type="checkbox"></td>
+<td class="width1 tbody notop ui-state-default ui-corner-bl"><input class="slave" type="checkbox"></td>
 <td class="tbody nowrap notop ui-state-default">2018-10-04 10:52:20</td>
 <td class="tbody nowrap notop ui-state-default">40.73 Kbytes</td>
 <td class="tbody notop ui-state-default">0</td>
 <td class="tbody estado notop ui-state-default">Read</td>
-<td class="width1 actions2 tbody notop ui-state-default"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
+<td class="width1 actions2 tbody notop ui-state-default ui-corner-br"><a href="#"><span class="ui-icon ui-icon-triangle-1-s"></span></a></td>
 </tr>
 </tbody>
 </table>
