@@ -109,10 +109,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			WHEN DATE(datetime)>=DATE('".current_date(-86400*30)."') THEN '5'
 			ELSE '1'
 		END) score
-	FROM tbl_correo_a a /*MYSQL USE KEY (PRIMARY) */
-		LEFT JOIN tbl_correo b ON a.id_correo=b.id
-	WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."')
+	FROM tbl_correo_a a
+	LEFT JOIN tbl_correo b
+		ON a.id_correo=b.id
+		AND id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."')
 		AND state_spam='0'
+	WHERE b.id IS NOT NULL
 		AND id_tipo IN (1,2,3,4)
 		AND (".make_like_query("nombre,valor",getParam("term")).")
 	GROUP BY label
