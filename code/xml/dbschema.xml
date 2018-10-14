@@ -3436,6 +3436,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>id_aplicacion</name>
 				</field>
+			</fields>
+		</index>
+		<index>
+			<name>indexing3</name>
+			<table>tbl_indexing</table>
+			<fields>
 				<field>
 					<name>id_registro</name>
 				</field>
