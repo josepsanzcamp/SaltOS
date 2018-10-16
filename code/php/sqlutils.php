@@ -447,7 +447,7 @@ function __make_like_query_explode($separator,$str) {
 	for($i=0;$i<$len;$i++) {
 		$letter=$str[$i];
 		if(isset($open[$letter])) {
-			$open[$letter]=($open[$letter]==1)?0:1;
+			$open[$letter]=($open[$letter]+1)%2;
 		}
 		if($letter==$separator && array_sum($open)==0) {
 			$result[]=substr($str,$ini,$i-$ini);
@@ -745,7 +745,10 @@ function make_fulltext_query($keys,$values,$table) {
 		foreach($values as $value) {
 			$type=($value[0]=="-")?"-":"+";
 			while(strlen($value)>0 && in_array($value[0],array("+","-"))) $value=substr($value,1);
-			if($value!="") $query[]=$type.$value;
+			if($value!="") {
+				if(strpos($value," ")!==false) $value='"'.$value.'"';
+				$query[]=$type.$value;
+			}
 		}
 		if(!count($query)) return "1=1";
 		$query=implode(" ",$query);
