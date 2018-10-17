@@ -722,17 +722,22 @@ function make_where_query($array,$union="AND",$queries=array()) {
 	return $query;
 }
 
-function make_fulltext_query($keys,$values,$table) {
-	$engine=strtolower(get_engine($table));
+function make_fulltext_query2($values,$arg="") {
+	if(is_array($arg)) {
+		$filter=$arg;
+		$search="search";
+	} elseif(is_numeric($arg)) {
+		$filter=array($arg);
+		$search="search";
+	} elseif($arg!="") {
+		$filter=array();
+		$search=$arg;
+	} else {
+		$filter=array();
+		$search="search";
+	}
+	$engine=strtolower(get_engine("tbl_indexing"));
 	if($engine=="mroonga") {
-		$keys=explode(",",$keys);
-		foreach($keys as $key=>$val) {
-			$val=trim($val);
-			if($val=="") unset($keys[$key]);
-			if($val!="") $keys[$key]=$val;
-		}
-		if(!count($keys)) return "1=1";
-		$keys=implode(",",$keys);
 		$values=__make_like_query_explode(" ",$values);
 		foreach($values as $key=>$val) {
 			$val=trim($val);
@@ -751,10 +756,23 @@ function make_fulltext_query($keys,$values,$table) {
 			}
 		}
 		if(!count($query)) return "1=1";
+		if(count($filter)) {
+			foreach($filter as $key=>$val) $filter[$key]="id_aplicacion:${val}";
+			$filter=implode(" ",$filter);
+			$filter="+(${filter})";
+			array_unshift($query,$filter);
+		}
 		$query=implode(" ",$query);
-		$query="MATCH($keys) AGAINST('${query}' IN BOOLEAN MODE)";
+		$query="MATCH(${search}) AGAINST('${query}' IN BOOLEAN MODE)";
 	} else {
-		$query=make_like_query($keys,$values);
+		$query=array();
+		if(count($filter)) {
+			$filter=implode(",",$filter);
+			$filter="id_aplicacion IN (${filter})";
+			$query[]=$filter;
+		}
+		$query[]=make_like_query("search",$values);
+		$query=implode(" AND ",$query);
 	}
 	return $query;
 }

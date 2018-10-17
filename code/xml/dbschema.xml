@@ -3228,6 +3228,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
+			<name>ficheros3</name>
+			<table>tbl_ficheros</table>
+			<fields>
+				<field>
+					<name>id_usuario</name>
+				</field>
+			</fields>
+		</index>
+		<index>
 			<name>registros</name>
 			<table>tbl_registros_i</table>
 			<fields>
@@ -3442,6 +3451,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<name>indexing3</name>
 			<table>tbl_indexing</table>
 			<fields>
+				<field>
+					<name>id_registro</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>indexing4</name>
+			<table>tbl_indexing</table>
+			<fields>
+				<field>
+					<name>id_aplicacion</name>
+				</field>
 				<field>
 					<name>id_registro</name>
 				</field>

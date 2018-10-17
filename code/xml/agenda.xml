@@ -244,12 +244,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 				<row>
 					<field>
-						<name>otros</name>
-						<label lang="true">otroscampos</label>
+						<name>filtro</name>
+						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="otros" eval="true">$otros=getParam("otros")</value>
-						<onchange>copy_value("buscar","otros");</onchange>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
 					</field>
 					<field>
@@ -293,7 +293,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('otros'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','id_cliente'=>'', 'fecha3'=>'','id_tipoevento'=>'','id_estado'=>'','id_posiblecli'=>'','id_asignado'=>'','id_campanya'=>''))">
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_proyecto'=>'','id_cliente'=>'', 'fecha3'=>'','id_tipoevento'=>'','id_estado'=>'','id_posiblecli'=>'','id_asignado'=>'','id_campanya'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>
@@ -304,9 +304,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="otros" eval="true">$otros=getParam("otros")</value>
-					<onchange>copy_value("otros","buscar");</onchange>
-					<onkey>if(is_enterkey(event)) { copy_value("otros","buscar");buscar(); }</onkey>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+					<onchange>copy_value("filtro","buscar");</onchange>
+					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<speech>true</speech>
 					<class3>shortcut_ctrl_f</class3>
 				</field>
@@ -347,7 +347,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</row>
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_proyecto,id_presupuesto,id_estado,id_usuario,fecha1,fecha2,otros,id_tipoevento,fecha3,fecha3key,fecha3val,id_posiblecli,id_asignado,id_campanya" eval="true">"SELECT id2,id,usuario,dstart,dstop,cliente,cliente2,proyecto,nombre,proyecto2,nombre2,tipoevento,estado,action_id,action_title,action_view,action_edit,action_copy,action_delete,id_usuario,descripcion,id_tipoevento,id_grupo,activo,id_estado,id_cliente,id_proyecto,id_posiblecli,id_presupuesto,id_campanya FROM (
+		<query global="page,id_cliente,id_proyecto,id_presupuesto,id_estado,id_usuario,fecha1,fecha2,filtro,id_tipoevento,fecha3,fecha3key,fecha3val,id_posiblecli,id_asignado,id_campanya" eval="true">"SELECT id2,id,usuario,dstart,dstop,cliente,cliente2,proyecto,nombre,proyecto2,nombre2,tipoevento,estado,action_id,action_title,action_view,action_edit,action_copy,action_delete,id_usuario,descripcion,id_tipoevento,id_grupo,activo,id_estado,id_cliente,id_proyecto,id_posiblecli,id_presupuesto,id_campanya FROM (
 			SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 				".make_extra_query_with_login("d.")." usuario,
 				dstart,dstop,
@@ -389,10 +389,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LEFT JOIN tbl_tiposevento e ON e.id=id_tipoevento
 			LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id
-			LEFT JOIN tbl_indexing z ON z.id_aplicacion=f.id_aplicacion AND z.id_registro=f.id_registro
-			WHERE ".make_fulltext_query("search",$otros,"tbl_indexing")."
 			) z
-			WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_presupuesto?"(id_presupuesto='$id_presupuesto')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".($id_tipoevento?"(id_tipoevento='$id_tipoevento')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND
+			WHERE
+			".($filtro!=""?"id IN (SELECT id_registro FROM tbl_indexing WHERE ".make_fulltext_query2($filtro,page2id($page)).")":"(1=1)")." AND
+			".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_presupuesto?"(id_presupuesto='$id_presupuesto')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".($id_tipoevento?"(id_tipoevento='$id_tipoevento')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND
 			(''='$fecha3' OR
 				".($fecha3key=="DATE"?"(DATE('$fecha3val')>=DATE(dstart) AND DATE(dstop)>=DATE('$fecha3val'))":"(1=0)")." OR
 				".($fecha3key=="WEEK"?"(CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1))>=CONCAT(YEAR(dstart),WEEK(dstart,1)) AND CONCAT(YEAR(dstop),WEEK(dstop,1))>=CONCAT(YEAR('$fecha3val'),WEEK('$fecha3val',1)))":"(1=0)")." OR

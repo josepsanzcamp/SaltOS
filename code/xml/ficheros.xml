@@ -211,7 +211,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			SELECT a.id,
 			LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
 			a.datetime,a.fichero,a.id_aplicacion,d.id id_usuario,d.id_grupo id_grupo,
-			 CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
+			CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
 			(SELECT  CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
 			".make_extra_query_with_login("d.")." usuario,
 			c.id_cuenta id_cuenta,
@@ -229,7 +229,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 			LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
 			LEFT JOIN tbl_indexing z ON z.id_aplicacion=e.id_aplicacion AND z.id_registro=e.id_registro
-			WHERE ".make_fulltext_query("z.search",$filtro,"tbl_indexing")."
+			WHERE ".make_fulltext_query2($filtro,"z.search")."
 		) z
 		WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion')
 		AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."

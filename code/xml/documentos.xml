@@ -153,13 +153,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 				<row>
 					<field>
-						<name>comentarios</name>
-						<label lang="true">comentarios</label>
+						<name>filtro</name>
+						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
-						<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>3</colspan>
-						<onchange>copy_value("buscar","comentarios");</onchange>
+						<onchange>copy_value("buscar","filtro");</onchange>
 						<speech>true</speech>
 					</field>
 				</row>
@@ -190,7 +190,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('comentarios'=>'','id_cliente'=>'','id_proyecto'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>''))">
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_cliente'=>'','id_proyecto'=>'','id_usuario'=>'','fecha1'=>'','fecha2'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>
@@ -201,9 +201,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">buscar</label>
 					<type>text</type>
 					<width>240px</width>
-					<value global="comentarios" eval="true">$comentarios=getParam("comentarios")</value>
-					<onchange>copy_value("comentarios","buscar");</onchange>
-					<onkey>if(is_enterkey(event)) { copy_value("comentarios","buscar");buscar(); }</onkey>
+					<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+					<onchange>copy_value("filtro","buscar");</onchange>
+					<onkey>if(is_enterkey(event)) { copy_value("filtro","buscar");buscar(); }</onkey>
 					<focus>true</focus>
 					<speech>true</speech>
 					<class3>shortcut_ctrl_f</class3>
@@ -227,7 +227,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</row>
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_usuario,fecha1,fecha2,comentarios,id_proyecto" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,action_id,action_title,action_view,action_edit,action_delete,id_cliente,id_usuario,id_grupo,id_proyecto,descripcion FROM (
+		<query global="page,id_cliente,id_usuario,fecha1,fecha2,filtro,id_proyecto" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,action_id,action_title,action_view,action_edit,action_delete,id_cliente,id_usuario,id_grupo,id_proyecto,descripcion FROM (
 		SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 			".make_extra_query_with_login("d.")." usuario,
 			e.datetime datetime,
@@ -251,10 +251,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto) a
 			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-			LEFT JOIN tbl_indexing z ON z.id_aplicacion=e.id_aplicacion AND z.id_registro=e.id_registro
-			WHERE ".make_fulltext_query("search",$comentarios,"tbl_indexing")."
 		) z
-	WHERE ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE(datetime)>=DATE('$fecha2'))":"(1=1)")." AND ".check_sql($page,"list")</query>
+	WHERE 1=1
+	AND ".($filtro!=""?"id IN (SELECT id_registro FROM tbl_indexing WHERE ".make_fulltext_query2($filtro,page2id($page)).")":"(1=1)")."
+	AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE(datetime)>=DATE('$fecha2'))":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

@@ -267,10 +267,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 				LEFT JOIN tbl_estados c ON a.id_estado=c.id
-				LEFT JOIN tbl_indexing z ON z.id_aplicacion=e.id_aplicacion AND z.id_registro=e.id_registro
-				WHERE ".make_fulltext_query("search",$filtro,"tbl_indexing")."
 		) cc
-		WHERE (activo2='$activo' OR ''='$activo') AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND c_activo='1') OR ('alldisabled'='$id_estado' AND c_activo='0')) AND ".check_sql($page,"list")</query>
+		WHERE 1=1
+		AND ".($filtro!=""?"id IN (SELECT id_registro FROM tbl_indexing WHERE ".make_fulltext_query2($filtro,page2id($page)).")":"(1=1)")."
+		AND (activo2='$activo' OR ''='$activo') AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND c_activo='1') OR ('alldisabled'='$id_estado' AND c_activo='0')) AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
