@@ -84,9 +84,10 @@ if(getParam("action")=="purge") {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			$query="
 				SELECT a.id_aplicacion,a.id_registro,a.id_usuario,IFNULL(MAX(b.datetime),a.datetime) datetime2
-				FROM tbl_registros_i a
-				LEFT JOIN tbl_registros_u b ON a.id_aplicacion=b.id_aplicacion AND a.id_registro=b.id_registro
+				FROM tbl_registros a
+				LEFT JOIN tbl_registros b ON a.id_aplicacion=b.id_aplicacion AND a.id_registro=b.id_registro AND b.first=0
 				WHERE
+					a.first=1 AND
 					(a.id_aplicacion='${row["id_aplicacion"]}' OR ''='${row["id_aplicacion"]}') AND
 					(a.id_usuario='${row["id_usuario"]}' OR ''='${row["id_usuario"]}') AND
 					((a.id_aplicacion='".page2id("correo")."' AND a.id_registro IN (SELECT id FROM tbl_correo c WHERE c.id_cuenta='${row["id_cuenta"]}')) OR ''='${row["id_cuenta"]}') AND
@@ -141,7 +142,7 @@ if(getParam("action")=="purge") {
 					foreach($rows3 as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				}
 				// BORRAR DATOS DE LAS TABLAS GENERICAS
-				$tablas=array("tbl_ficheros","tbl_comentarios","tbl_registros_i","tbl_registros_u","tbl_indexing");
+				$tablas=array("tbl_ficheros","tbl_comentarios","tbl_registros","tbl_indexing");
 				foreach($tablas as $tabla) {
 					$query=make_delete_query($tabla,make_where_query(array(
 						"id_aplicacion"=>$row2["id_aplicacion"],

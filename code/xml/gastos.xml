@@ -215,7 +215,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">trimestrereg</label>
 						<type>select</type>
 						<width>90px</width>
-						<query global="page" eval="true">"SELECT DISTINCT YEAR(datetime)*4+TRUNCATE((MONTH(datetime)-1)/3,0) value,CONCAT(YEAR(datetime),' (',TRUNCATE((MONTH(datetime)-1)/3,0)+1,')') label from tbl_gastos a LEFT JOIN tbl_registros_i b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY value DESC"</query>
+						<query global="page" eval="true">"SELECT DISTINCT YEAR(datetime)*4+TRUNCATE((MONTH(datetime)-1)/3,0) value,CONCAT(YEAR(datetime),' (',TRUNCATE((MONTH(datetime)-1)/3,0)+1,')') label from tbl_gastos a LEFT JOIN tbl_registros b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id AND b.first=1 UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY value DESC"</query>
 						<value global="trimestrereg" eval="true">$trimestrereg=getParam("trimestrereg")</value>
 					</field>
 					<field>
@@ -261,7 +261,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">trimestreliq</label>
 						<type>select</type>
 						<width>90px</width>
-						<query global="page" eval="true">"SELECT DISTINCT YEAR(datetime)*4+TRUNCATE((MONTH(datetime)-1)/3,0) value,CONCAT(YEAR(datetime),' (',TRUNCATE((MONTH(datetime)-1)/3,0)+1,')') label from tbl_gastos a LEFT JOIN tbl_registros_i b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY value DESC"</query>
+						<query global="page" eval="true">"SELECT DISTINCT YEAR(datetime)*4+TRUNCATE((MONTH(datetime)-1)/3,0) value,CONCAT(YEAR(datetime),' (',TRUNCATE((MONTH(datetime)-1)/3,0)+1,')') label from tbl_gastos a LEFT JOIN tbl_registros b ON b.id_aplicacion='".page2id($page)."' AND b.id_registro=a.id AND b.first=1 UNION SELECT '' value,'".LANG_ESCAPE("todos")."' label ORDER BY value DESC"</query>
 						<value global="trimestreliq" eval="true">$trimestreliq=getParam("trimestreliq")</value>
 					</field>
 					<field>
@@ -458,7 +458,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_usuarios b ON a.id_pagador=b.id
 				LEFT JOIN tbl_proveedores c ON a.id_proveedor=c.id
 				LEFT JOIN tbl_formaspago d ON a.id_formapago=d.id
-				LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id
+				LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id AND f.first=1
 				LEFT JOIN tbl_usuarios g ON f.id_usuario=g.id
 		) e
 		WHERE 1=1
@@ -1072,6 +1072,6 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 	<excel>
 		<query require="php/listsim.php" global="page" eval="true">"SELECT CONCAT('\'',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0)) '".LANG_ESCAPE("codigo")."',usuario '".LANG_ESCAPE("username")."',datetime '".LANG_ESCAPE("datetime")."',CASE id_epigrafe WHEN '0' THEN '".LANG_ESCAPE("sinepigrafe")."' ELSE (SELECT CONCAT('(',codigo,') ',nombre) FROM tbl_epigrafes WHERE id_epigrafe=tbl_epigrafes.id) END '".LANG_ESCAPE("epigrafe")."',
 		CASE id_formapago WHEN '0' THEN '".LANG_ESCAPE("sinformapago")."' ELSE (SELECT nombre FROM tbl_formaspago WHERE id_formapago=tbl_formaspago.id) END '".LANG_ESCAPE("formapago")."'
-		,cif '".LANG_ESCAPE("cif")."',CONCAT('\'',num) '".LANG_ESCAPE("numfac")."',fecha '".LANG_ESCAPE("date")."',CASE id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE empresa END '".LANG_ESCAPE("empresa")."',descripcion '".LANG_ESCAPE("descripcion")."',base '".LANG_ESCAPE("base")."',iva '".CONFIG("accounting_iva_name")." (%)',ROUND(base*iva/100,2) '".CONFIG("accounting_iva_name")."',irpf '".CONFIG("accounting_irpf_name")." (%)',ROUND(base*irpf/100,2) '".CONFIG("accounting_irpf_name")."',total '".LANG_ESCAPE("total")."' FROM (SELECT CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE b.nombre END empresa2,a.id action_id,a.*,b.nombre empresa,b.cif cif,f.datetime datetime,".make_extra_query_with_login("g.")." usuario FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id LEFT JOIN tbl_usuarios g ON f.id_usuario=g.id) c WHERE id IN (".list_simulator($page).")"</query>
+		,cif '".LANG_ESCAPE("cif")."',CONCAT('\'',num) '".LANG_ESCAPE("numfac")."',fecha '".LANG_ESCAPE("date")."',CASE id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE empresa END '".LANG_ESCAPE("empresa")."',descripcion '".LANG_ESCAPE("descripcion")."',base '".LANG_ESCAPE("base")."',iva '".CONFIG("accounting_iva_name")." (%)',ROUND(base*iva/100,2) '".CONFIG("accounting_iva_name")."',irpf '".CONFIG("accounting_irpf_name")." (%)',ROUND(base*irpf/100,2) '".CONFIG("accounting_irpf_name")."',total '".LANG_ESCAPE("total")."' FROM (SELECT CASE a.id_proveedor WHEN '0' THEN '".LANG_ESCAPE("sinproveedor")."' ELSE b.nombre END empresa2,a.id action_id,a.*,b.nombre empresa,b.cif cif,f.datetime datetime,".make_extra_query_with_login("g.")." usuario FROM tbl_gastos a LEFT JOIN tbl_proveedores b ON a.id_proveedor=b.id LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id AND f.first=1 LEFT JOIN tbl_usuarios g ON f.id_usuario=g.id) c WHERE id IN (".list_simulator($page).")"</query>
 	</excel>
 </root>

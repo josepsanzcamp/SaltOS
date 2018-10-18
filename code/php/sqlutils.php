@@ -425,12 +425,7 @@ function sql_create_index($indexspec) {
 	} else {
 		$pre="";
 	}
-	if(isset($indexspec["fulltext"]) && eval_bool($indexspec["fulltext"]) && __has_mroonga_engine()) {
-		$post="/*MYSQL COMMENT 'tokenizer \"TokenBigramSplitSymbolAlphaDigit\"' */";
-	} else {
-		$post="";
-	}
-	$query="CREATE ${pre} INDEX ${name} ON $table (${fields}) ${post}";
+	$query="CREATE ${pre} INDEX ${name} ON $table (${fields})";
 	return $query;
 }
 
@@ -579,7 +574,7 @@ function make_extra_query_with_perms($page,$table,$field,$arg1=null,$arg2=null) 
 	$query="SELECT id value,".(is_array($field)?$field[0]:$field)." label,".($haspos?"pos":"'0' pos")." FROM (
 		SELECT a2.id id,".($haspos?"a2.pos pos,":"").$temp.",e.id_usuario id_usuario,d.id_grupo id_grupo
 		FROM $table a2
-		LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a2.id
+		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a2.id AND e.first=1
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 	) a WHERE ".($filter?"id IN ($filter)":"1=1")." AND ".check_sql($page,"list");
 	return $query;
@@ -771,7 +766,7 @@ function make_fulltext_query2($values,$arg="") {
 			$filter="id_aplicacion IN (${filter})";
 			$query[]=$filter;
 		}
-		$query[]=make_like_query("search",$values);
+		$query[]=make_like_query($search,$values);
 		$query=implode(" AND ",$query);
 	}
 	return $query;

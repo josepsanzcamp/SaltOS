@@ -28,7 +28,7 @@ if($page=="correo") {
 	$ids=check_ids(getParam("id"));
 	if($ids) {
 		$numids=count(explode(",",$ids));
-		$query="SELECT id FROM tbl_correo a WHERE id IN ($ids) AND id IN (SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("correo")."' AND id_registro=a.id AND id_usuario='".current_user()."')";
+		$query="SELECT id FROM tbl_correo a WHERE id IN ($ids) AND id IN (SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("correo")."' AND id_registro=a.id AND first=1 AND id_usuario='".current_user()."')";
 		$result=execute_query_array($query);
 		$numresult=count($result);
 		if($numresult==$numids) {

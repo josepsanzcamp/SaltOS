@@ -45,8 +45,9 @@ if(getParam("action")=="integrity") {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DO NOT EXIST ON THE REGISTER TABLE
 			$query=make_select_query($tabla,"id",make_where_query(array(),"AND",array(
-				"id NOT IN (".make_select_query("tbl_registros_i","id_registro",make_where_query(array(
-					"id_aplicacion"=>$id_aplicacion
+				"id NOT IN (".make_select_query("tbl_registros","id_registro",make_where_query(array(
+					"id_aplicacion"=>$id_aplicacion,
+					"first"=>1
 				))).")"
 			)),array(
 				"limit"=>1000
@@ -59,8 +60,9 @@ if(getParam("action")=="integrity") {
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE REGISTER TABLE, THAT DO NOT EXIST ON THE MAIN APPLICATION TABLE
-			$query=make_select_query("tbl_registros_i","id_registro",make_where_query(array(
-				"id_aplicacion"=>$id_aplicacion
+			$query=make_select_query("tbl_registros","id_registro",make_where_query(array(
+				"id_aplicacion"=>$id_aplicacion,
+				"first"=>1
 			),"AND",array(
 				"id_registro NOT IN (".make_select_query($tabla,"id").")"
 			)),array(
@@ -77,12 +79,12 @@ if(getParam("action")=="integrity") {
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH FOR DUPLICATED ROWS IN REGISTER TABLE
-		$query=make_select_query("tbl_registros_i",array(
+		$query=make_select_query("tbl_registros",array(
 			"GROUP_CONCAT(id)"=>"ids",
 			"id_aplicacion"=>"id_aplicacion",
 			"id_registro"=>"id_registro",
 			"COUNT(*)"=>"total"
-		),"",array(
+		),"first=1",array(
 			"groupby"=>array("id_aplicacion","id_registro"),
 			"having"=>"total>1",
 			"limit"=>"1000"
@@ -93,7 +95,7 @@ if(getParam("action")=="integrity") {
 			$temp=explode(",",$id["ids"]);
 			array_shift($temp);
 			$temp=implode(",",$temp);
-			$query=make_delete_query("tbl_registros_i","id IN (${temp})");
+			$query=make_delete_query("tbl_registros","id IN (${temp})");
 			db_query($query);
 		}
 		$total+=count($ids);

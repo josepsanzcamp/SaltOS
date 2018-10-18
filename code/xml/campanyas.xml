@@ -286,7 +286,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado
 			FROM tbl_campanyas a
 			LEFT JOIN tbl_estados c ON id_estado=c.id
-			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
+			LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) b
 		WHERE
@@ -316,7 +316,7 @@ SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
 	 CONCAT('vcardposiblescli(',-a.id,')')  link_vcard,
 	 CONCAT('qrcodeposiblescli(',-a.id,')')  link_qrcode
 FROM tbl_posiblescli a
-	LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("posiblescli")."' AND e.id_registro=a.id
+	LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("posiblescli")."' AND e.id_registro=a.id AND e.first=1
 	LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 WHERE a.id_campanya='".abs($id)."' AND ".check_sql("posiblescli","view")." ORDER BY a.nombre ASC
 						"</posiblescli>
@@ -332,22 +332,22 @@ SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,
 	 CONCAT('vcardclientes(',-a.id,')')  link_vcard,
 	 CONCAT('qrcodeclientes(',-a.id,')')  link_qrcode
 FROM tbl_clientes a
-	LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a.id
+	LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a.id AND e.first=1
 	LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view","a.")." ORDER BY a.nombre ASC
 						"</clientes>
 					</clientes>
 					<agenda>
-						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'agenda\',',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_campanya=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
+						<agenda global="id" eval="true">"SELECT id_usuario,id_grupo,LPAD(id,".intval(CONFIG("zero_padding_digits")).",0) id,dstart,dstop,CONCAT('link:openapp(\'agenda\',',-id,'):',nombre) nombre,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,CONCAT('agenda(',-id,')') link_view FROM (SELECT id_usuario,id_grupo,a.*,c.nombre c_nombre,x.nombre x_nombre FROM tbl_agenda a LEFT JOIN tbl_estados c ON id_estado=c.id LEFT JOIN tbl_tiposevento x ON x.id=id_tipoevento LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("agenda")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id) z WHERE id_campanya=".abs($id)." AND (".check_sql("agenda","view").") ORDER BY dstart DESC"</agenda>
 					</agenda>
 					<presupuestos>
-						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'presupuestos\',',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
+						<presupuestos global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'presupuestos\',',-a.id,'):',a.nombre) presupuesto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('presupuestos(',-a.id,')') link_view,CONCAT('pdfpresupuesto(',a.id,')') link_pdf,CONCAT('viewpresupuesto(',a.id,')') link_view2,CONCAT('mailpresupuesto(',a.id,')') link_mail FROM tbl_presupuestos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND (".check_sql("presupuestos","view").") ORDER BY e.datetime DESC"</presupuestos>
 					</presupuestos>
 					<proyectosopen>
-						<proyectosopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='1' AND (".check_sql("proyectos","view","a.").") ORDER BY e.datetime DESC"</proyectosopen>
+						<proyectosopen global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='1' AND (".check_sql("proyectos","view","a.").") ORDER BY e.datetime DESC"</proyectosopen>
 					</proyectosopen>
 					<proyectosclose>
-						<proyectosclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='0' AND (".check_sql("proyectos","view","a.").") ORDER BY e.datetime DESC"</proyectosclose>
+						<proyectosclose global="page,id" eval="true">"SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id,".make_extra_query_with_login("b.")." usuario,e.datetime,CONCAT('link:openapp(\'proyectos\',',-a.id,'):',a.nombre) proyecto,CASE id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,CONCAT('proyectos(',-a.id,')') link_view FROM tbl_proyectos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE a.id_campanya=".abs($id)." AND c.activo='0' AND (".check_sql("proyectos","view","a.").") ORDER BY e.datetime DESC"</proyectosclose>
 					</proyectosclose>
 					<control include="xml/common/qcontrol.xml"/>
 					<folders include="xml/common/qfolders.xml" />

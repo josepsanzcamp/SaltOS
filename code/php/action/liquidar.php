@@ -121,7 +121,7 @@ if($page=="partes") {
 					".make_extra_query_with_login("b.")." usuario,
 					c.nombre cliente,e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
 					FROM tbl_partes a
-					LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id
+					LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("partes")."' AND e.id_registro=a.id and e.first=1
 					LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id LEFT JOIN tbl_clientes c ON a.id_cliente=c.id) d
 				WHERE ROUND(id) IN ($ids) AND id_cliente='$id_cliente' AND liquidado='0'";
 			$result=db_query($query2);

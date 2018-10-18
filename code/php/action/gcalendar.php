@@ -101,7 +101,7 @@ if(getParam("action")=="gcalendar") {
 		javascript_history(-1);
 		die();
 	}
-	$query="SELECT a.* FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id WHERE f.id_usuario='".current_user()."'";
+	$query="SELECT a.* FROM tbl_agenda a LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.first=1 WHERE f.id_usuario='".current_user()."'";
 	$result=db_query($query);
 	$sevents=array();
 	while($row=db_fetch_row($result)) {

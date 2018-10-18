@@ -199,7 +199,7 @@ e.id_usuario id_usuario,id_grupo id_grupo FROM (
 SELECT id,login,id_grupo,id_aplicacion,id_registro,".make_extra_query("d.")." a_nombre,".make_extra_query_with_field("email","d.")." email,activo,hora_ini,hora_fin,dias_sem FROM tbl_usuarios d
 ) a
 LEFT JOIN tbl_grupos b ON a.id_grupo=b.id
-LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
+LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
 ) z
 WHERE 1=1
 AND ".($filtro!=""?"id IN (SELECT id_registro FROM tbl_indexing WHERE ".make_fulltext_query2($filtro,page2id($page)).")":"(1=1)")."
@@ -883,12 +883,13 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		),array(
 			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
 		)):""</query>
-		<query global="page" match="default" prefix="true" eval="true">make_insert_query("tbl_registros_i",array(
+		<query global="page" match="default" prefix="true" eval="true">make_insert_query("tbl_registros",array(
 			"id_aplicacion"=>page2id($page),
 			"datetime"=>current_datetime()
 		),array(
 			"id_registro"=>"SELECT MAX(id) FROM ".page2table($page),
-			"id_usuario"=>"SELECT MAX(id) FROM ".page2table($page)
+			"id_usuario"=>"SELECT MAX(id) FROM ".page2table($page),
+			"first"=>1
 		))</query>
 		<query global="page" match="default" prefix="true" eval="true">make_control(page2id($page))?"":""</query>
 		<query global="page" match="default" prefix="true" eval="true">make_indexing(page2id($page))?"":""</query>
@@ -933,8 +934,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 			"email"=>getParam("email"),
 			"token"=>getParam("token")
 		)):"")</query>
-		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".abs($id)."') AND id_aplicacion='".page2id("feeds")."'"):""</query>
-		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".abs($id)."') AND id_aplicacion='".page2id("feeds")."'"):""</query>
+		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".abs($id)."') AND id_aplicacion='".page2id("feeds")."'"):""</query>
 		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_feeds",make_where_query(array("id_feed"=>abs($id)))):""</query>
 		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_feeds_d",make_where_query(array("id_feed"=>abs($id)))):""</query>
 		<query match="feeds_old" prefix="true" global="id" eval="true">getParam("feeds_del")?make_delete_query("tbl_usuarios_f",make_where_query(array(
@@ -961,8 +961,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		),make_where_query(array(
 			"id"=>intval(getParam("id"))
 		))):""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."') AND id_aplicacion='".page2id("correo")."'"):""</query>
-		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."') AND id_aplicacion='".page2id("correo")."'"):""</query>
+		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?make_delete_query("tbl_registros","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."') AND id_aplicacion='".page2id("correo")."'"):""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?make_delete_query("tbl_correo_a","id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta='".abs($id)."')"):""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='0'":""</query>
 		<query match="correo_old" prefix="true" global="id" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id_cuenta='".abs($id)."' AND is_outbox='1'":""</query>
@@ -1031,8 +1030,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query include="xml/common/qdelete.xml" replace="true" />
 		<query global="id" eval="true">make_delete_query("tbl_usuarios_p",make_where_query(array("id_usuario"=>intval($id))))</query>
 		<query global="id" eval="true">make_delete_query("tbl_usuarios_g",make_where_query(array("id_usuario"=>intval($id))))</query>
-		<query global="id" eval="true">make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'")</query>
-		<query global="id" eval="true">make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'")</query>
+		<query global="id" eval="true">make_delete_query("tbl_registros","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')) AND id_aplicacion='".page2id("correo")."'")</query>
 		<query global="id" eval="true">make_delete_query("tbl_correo_a","id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id'))")</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='0'"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id') AND is_outbox='1'"</query>
@@ -1041,8 +1039,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		<query global="id" eval="true">make_delete_query("tbl_correo_d","id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id')")</query>
 		<query global="id" eval="true">"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE id_usuario='$id' AND email_signature_file!=''"</query>
 		<query global="id" eval="true">make_delete_query("tbl_usuarios_c",make_where_query(array("id_usuario"=>intval($id))))</query>
-		<query global="id" eval="true">make_delete_query("tbl_registros_i","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'")</query>
-		<query global="id" eval="true">make_delete_query("tbl_registros_u","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'")</query>
+		<query global="id" eval="true">make_delete_query("tbl_registros","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')) AND id_aplicacion='".page2id("feeds")."'")</query>
 		<query global="id" eval="true">make_delete_query("tbl_feeds","id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')")</query>
 		<query global="id" eval="true">make_delete_query("tbl_feeds_d","id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='$id')")</query>
 		<query global="id" eval="true">make_delete_query("tbl_usuarios_f",make_where_query(array("id_usuario"=>intval($id))))</query>

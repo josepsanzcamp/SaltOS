@@ -138,11 +138,11 @@ function check_sql($aplicacion,$permiso) {
 	global $_USER;
 	// CHECK FOR USER/GROUP/ALL PERMISSIONS
 	$sql=array();
-	$sql["all"]="(1=1)";
+	$sql["all"]="1=1";
 	$sql["group"]="id_grupo IN (".check_ids($_USER["id_grupo"],execute_query_array(make_select_query("tbl_usuarios_g","id_grupo",make_where_query(array("id_usuario"=>$_USER["id"]))))).")";
 	$sql["user"]=make_where_query(array("id_usuario"=>$_USER["id"]));
 	foreach($sql as $key=>$val) if(check_user($aplicacion,"${key}_${permiso}")) return $val;
-	return "(1=0)";
+	return "1=0";
 }
 
 function check_sql2($permiso) {
@@ -1370,9 +1370,10 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 		return $last_result;
 	}
 	// BUSCAR SI EXISTE REGISTRO DE CONTROL
-	$query=make_select_query("tbl_registros_i","id",make_where_query(array(
+	$query=make_select_query("tbl_registros","id",make_where_query(array(
 		"id_aplicacion"=>$id_aplicacion,
-		"id_registro"=>$id_registro
+		"id_registro"=>$id_registro,
+		"first"=>1
 	)));
 	$id_control=execute_query($query);
 	// SOME CHECKS
@@ -1380,7 +1381,7 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 		$temp=$id_control;
 		$id_control=array_pop($temp);
 		foreach($temp as $temp2) {
-			$query=make_delete_query("tbl_registros_i",make_where_query(array(
+			$query=make_delete_query("tbl_registros",make_where_query(array(
 				"id"=>$temp2
 			)));
 			db_query($query);
@@ -1393,12 +1394,7 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 	$id_data=execute_query($query);
 	if(!$id_data) {
 		if($id_control) {
-			$query=make_delete_query("tbl_registros_i",make_where_query(array(
-				"id_aplicacion"=>$id_aplicacion,
-				"id_registro"=>$id_registro
-			)));
-			db_query($query);
-			$query=make_delete_query("tbl_registros_u",make_where_query(array(
+			$query=make_delete_query("tbl_registros",make_where_query(array(
 				"id_aplicacion"=>$id_aplicacion,
 				"id_registro"=>$id_registro
 			)));
@@ -1409,20 +1405,22 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 		}
 	}
 	if($id_control) {
-		$query=make_insert_query("tbl_registros_u",array(
+		$query=make_insert_query("tbl_registros",array(
 			"id_aplicacion"=>$id_aplicacion,
 			"id_registro"=>$id_registro,
 			"id_usuario"=>$id_usuario,
-			"datetime"=>$datetime
+			"datetime"=>$datetime,
+			"first"=>0
 		));
 		db_query($query);
 		return 2;
 	} else {
-		$query=make_insert_query("tbl_registros_i",array(
+		$query=make_insert_query("tbl_registros",array(
 			"id_aplicacion"=>$id_aplicacion,
 			"id_registro"=>$id_registro,
 			"id_usuario"=>$id_usuario,
-			"datetime"=>$datetime
+			"datetime"=>$datetime,
+			"first"=>1
 		));
 		db_query($query);
 		return 1;

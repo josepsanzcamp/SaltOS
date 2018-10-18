@@ -30,7 +30,7 @@ if(getParam("action")=="feeds") {
 		$ids=check_ids(getParam("id"));
 		if($ids) {
 			$numids=count(explode(",",$ids));
-			$query="SELECT id FROM tbl_feeds a WHERE id IN (${ids}) AND id IN (SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro=a.id AND id_usuario='".current_user()."')";
+			$query="SELECT id FROM tbl_feeds a WHERE id IN (${ids}) AND id IN (SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("feeds")."' AND id_registro=a.id AND first=1 AND id_usuario='".current_user()."')";
 			$result=execute_query_array($query);
 			$numresult=count($result);
 			if($numresult==$numids) {
@@ -212,7 +212,7 @@ if(getParam("action")=="feeds") {
 			// MARCAR FEED COMO LEIDO SI ES EL PROPIETARIO
 			$query=make_update_query("tbl_feeds",array(
 				"state_new"=>"0"
-			),"id=(SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='${id}' AND id_usuario='".current_user()."')");
+			),"id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='${id}' AND id_usuario='".current_user()."' AND first=1)");
 			db_query($query);
 			// CONTINUE
 			$buffer="";

@@ -163,12 +163,7 @@ if($page=="posiblescli") {
 	// MOVER CONTROL DEL REGISTRO DE POSIBLES CLIENTES A CLIENTES
 	$id_aplicacion=page2id("clientes");
 	$id_aplicacion3=page2id("posiblescli");
-	$query=make_update_query("tbl_registros_i",array(
-		"id_aplicacion"=>$id_aplicacion,
-		"id_registro"=>$id_cliente
-	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
-	db_query($query);
-	$query=make_update_query("tbl_registros_u",array(
+	$query=make_update_query("tbl_registros",array(
 		"id_aplicacion"=>$id_aplicacion,
 		"id_registro"=>$id_cliente
 	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");

@@ -78,7 +78,7 @@ function __getmail_processfile($disp,$type) {
 
 // CHECK VIEW PERMISION FOR THE CURRENT USER AND THE REQUESTED EMAIL
 function __getmail_checkperm($id) {
-	$query="SELECT a.id FROM (SELECT a2.*,uc.email_privated email_privated FROM tbl_correo a2 LEFT JOIN tbl_usuarios_c uc ON a2.id_cuenta=uc.id) a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND (TRIM(IFNULL(email_privated,0))='0' OR (TRIM(IFNULL(email_privated,0))='1' AND e.id_usuario='".current_user()."')) AND ".check_sql("correo","view");
+	$query="SELECT a.id FROM (SELECT a2.*,uc.email_privated email_privated FROM tbl_correo a2 LEFT JOIN tbl_usuarios_c uc ON a2.id_cuenta=uc.id) a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND (TRIM(IFNULL(email_privated,0))='0' OR (TRIM(IFNULL(email_privated,0))='1' AND e.id_usuario='".current_user()."')) AND ".check_sql("correo","view");
 	return execute_query($query);
 }
 

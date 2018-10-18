@@ -221,7 +221,7 @@ if(getParam("action")=="sendmail") {
 		die();
 	}
 	// BEGIN THE SPOOL OPERATION
-	$query="SELECT a.id,a.id_cuenta,a.uidl FROM tbl_correo a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'";
+	$query="SELECT a.id,a.id_cuenta,a.uidl FROM tbl_correo a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id AND e.first=1 WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'";
 	$result=execute_query_array($query);
 	if(!count($result)) {
 		if(!getParam("ajax")) {

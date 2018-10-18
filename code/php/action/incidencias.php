@@ -64,7 +64,7 @@ if($page=="incidencias") {
 			LEFT JOIN tbl_clientes b ON a.id_cliente=b.id
 			LEFT JOIN tbl_proyectos c ON a.id_proyecto=c.id
 			LEFT JOIN tbl_estados d ON a.id_estado=d.id
-			LEFT JOIN tbl_registros_i e ON e.id_aplicacion='$id_aplicacion' AND e.id_registro=a.id
+			LEFT JOIN tbl_registros e ON e.id_aplicacion='$id_aplicacion' AND e.id_registro=a.id AND e.first=1
 			LEFT JOIN tbl_usuarios f ON e.id_usuario=f.id
 			LEFT JOIN tbl_prioridades g ON g.id=a.id_prioridad
 			WHERE a.id='$id_incidencia'";

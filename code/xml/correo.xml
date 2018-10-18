@@ -76,18 +76,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<label lang="true">from</label>
 				<sort>true</sort>
 				<size>25</size>
+				<order>de</order>
 			</field>
 			<field>
 				<name>para2</name>
 				<label lang="true">to</label>
 				<sort>true</sort>
 				<size>25</size>
+				<order>para</order>
 			</field>
 			<field>
-				<name>subject</name>
+				<name>subject2</name>
 				<label lang="true">subject</label>
 				<sort>true</sort>
 				<size>50</size>
+				<order>subject</order>
 			</field>
 			<field>
 				<name>datetime</name>
@@ -106,7 +109,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<name>files</name>
 				<label lang="true">numf</label>
 				<tip lang="true">numftip</tip>
-				<sort>false</sort>
 			</field>
 			<field>
 				<name>estado</name>
@@ -443,7 +445,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<onclick>if(!is_disabled(this)) check_outbox(1)</onclick>
 					<icon>fa fa-paper-plane</icon>
 					<class>nowrap contextmenu</class>
-					<disabled eval="true">execute_query("SELECT COUNT(*) FROM tbl_correo a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'")==0?"true":"false"</disabled>
+					<disabled eval="true">execute_query("SELECT COUNT(*) FROM tbl_correo a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id AND e.first=1 WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'")==0?"true":"false"</disabled>
 				</field>
 				<field ifeval="!ismobile()">
 					<type>menu</type>
@@ -598,9 +600,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					CONCAT('mailto:',email_name,' &lt;',email_from,'&gt;') END
 				FROM tbl_usuarios_c WHERE id=id_cuenta)
 			END para2,
-			CONCAT('link:openapp(\'correo\',',-id,'):',subject) subject,
+			CONCAT('link:openapp(\'correo\',',-id,'):',subject) subject2,
 			datetime,
-			size,
 			CASE
 				WHEN size&gt;=1073741824 THEN CONCAT(ROUND(size/1073741824.0,2),' Gbytes')
 				WHEN size&gt;=1048576 THEN CONCAT(ROUND(size/1048576.0,2),' Mbytes')
@@ -623,14 +624,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE ".check_sql($page,"view")." WHEN 1 THEN CASE is_outbox WHEN '0' THEN 'true' ELSE 'false' END ELSE 'false' END action_spam,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete
 		FROM (
-			SELECT a.id id,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
+			SELECT a.id,LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,
 				de,para,cc,bcc,
-				a.datetime datetime,a.size size,
-				files,body,
-				e.id_usuario id_usuario,d.id_grupo id_grupo,a.id_cuenta id_cuenta,
+				a.datetime,size,files,
+				id_usuario,id_grupo,id_cuenta,
 				state_new,state_wait,state_spam,is_outbox,
 				CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END subject,
-				CONCAT(id_cuenta,'/',uidl) msgid,
 				TRIM(CONCAT(
 				CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent")." ' ELSE '' END,
 				CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror")." ' END,
@@ -644,9 +643,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				CASE sensitivity WHEN 1 THEN '".LANG_ESCAPE("sensitivitypersonal")." ' WHEN 2 THEN '".LANG_ESCAPE("sensitivityprivate")." ' WHEN 3 THEN '".LANG_ESCAPE("sensitivityconfidential")." ' ELSE '' END,
 				CASE is_outbox+state_new+state_reply+state_forward+state_wait+state_spam+priority*10+sensitivity WHEN 0 THEN '".LANG_ESCAPE("stateread")." ' ELSE '' END
 				)) estado,
-				CASE WHEN state_error!='' THEN 'state_error' WHEN state_spam=1 THEN 'state_spam' WHEN state_new=1 THEN 'state_new' WHEN state_wait=1 THEN 'state_wait' WHEN is_outbox=1 AND state_sent=0 THEN 'state_nowrap' ELSE '' END action_style
+				CASE WHEN state_error!='' THEN 'state_error'
+					WHEN state_spam=1 THEN 'state_spam'
+					WHEN state_new=1 THEN 'state_new'
+					WHEN state_wait=1 THEN 'state_wait'
+					WHEN is_outbox=1 AND state_sent=0 THEN 'state_nowrap'
+					ELSE ''
+				END action_style
 			FROM tbl_correo a
-				LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id
+				LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
 				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) z
 		WHERE ".make_like_query($campos_array[$campos],$filtro)."
@@ -848,7 +853,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>checkbox</type>
 							<value>1</value>
 							<onchange>if(!$(this).prop("writed")) $(this).prop("checked",true); $(this).prop("writed",true); update_state(abs(getParam('id')),'new',this.checked?1:0)</onchange>
-							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
+							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND first=1 AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>100px</width>
 							<width2>100px</width2>
 						</field>
@@ -885,7 +890,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>checkbox</type>
 							<value>1</value>
 							<onchange>update_state(abs(getParam('id')),'wait',this.checked?1:0)</onchange>
-							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
+							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND first=1 AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
 							<width2>100px</width2>
 						</field>
@@ -928,7 +933,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>checkbox</type>
 							<value>1</value>
 							<onchange>update_state(abs(getParam('id')),'spam',this.checked?1:0)</onchange>
-							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros_i WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND id_usuario='".current_user()."'")?"false":"true"</readonly>
+							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND first=1 AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
 							<width2>100px</width2>
 						</field>
@@ -1140,7 +1145,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">delete</value>
 					<tip lang="true">delete</tip>
 					<onclick>delete1()</onclick>
-					<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM (SELECT a.id,e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".page2table($page)." a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."') z WHERE NOT ".check_sql($page,"delete"))?"true":"false"</disabled>
+					<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM (SELECT a.id,e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".page2table($page)." a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."') z WHERE NOT ".check_sql($page,"delete"))?"true":"false"</disabled>
 					<class>nowrap contextmenu</class>
 					<icon>fa fa-trash</icon>
 				</field>

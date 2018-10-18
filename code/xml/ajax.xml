@@ -66,15 +66,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		"limit"=>25
 	))</codpostales>
 	<!-- FOR GENERAL APPS -->
-	<cliente eval="true">"SELECT id,nombre,nombre1,nombre2,id_tipo,cif,direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax FROM (SELECT a2.id id,a2.nombre nombre,a2.nombre1 nombre1,a2.nombre2 nombre2,a2.id_tipo id_tipo,a2.cif cif,e.id_usuario id_usuario,d.id_grupo id_grupo,direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax FROM tbl_clientes a2 LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a2.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE a.id='".intval(getParam("id_cliente"))."' AND ".check_sql("clientes","list")</cliente>
+	<cliente eval="true">"SELECT id,nombre,nombre1,nombre2,id_tipo,cif,direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax FROM (SELECT a2.id id,a2.nombre nombre,a2.nombre1 nombre1,a2.nombre2 nombre2,a2.id_tipo id_tipo,a2.cif cif,e.id_usuario id_usuario,d.id_grupo id_grupo,direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax FROM tbl_clientes a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a2.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE a.id='".intval(getParam("id_cliente"))."' AND ".check_sql("clientes","list")</cliente>
 	<tipocliente eval="true">"SELECT '".LANG_ESCAPE(getParam("id_tipo")==1?"nombrecomercial":"nombre","clientes")."' nombre1,'".LANG_ESCAPE(getParam("id_tipo")==1?"nombrefiscal":"apellidos","clientes")."' nombre2,'".LANG_ESCAPE(getParam("id_tipo")==1?"cif":"nif","clientes")."' cif"</tipocliente>
-	<proveedores eval="true">"SELECT id,nombre FROM (SELECT a2.id id,a2.nombre nombre,a2.cif cif,a2.comentarios comentarios,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_proveedores a2 LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proveedores")."' AND e.id_registro=a2.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ".make_like_query("nombre,cif,comentarios",getParam("filtro"))." AND ".check_sql("proveedores","list")." ORDER BY nombre"</proveedores>
-	<proyectos eval="true">"SELECT id,nombre FROM (SELECT a2.id id,a2.nombre nombre,a2.id_cliente id_cliente,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_proyectos a2 LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a2.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE id_cliente='".intval(getParam("id_cliente"))."' AND '".intval(getParam("id_posiblecli"))."'='0' AND ".check_sql("proyectos","list")." ORDER BY nombre"</proyectos>
-	<tareas eval="true">"SELECT id,tarea FROM (SELECT a2.id id,a2.tarea tarea,a2.id_proyecto id_proyecto,e.id_usuario id_usuario,d.id_grupo id_grupo,x.id_cliente id_cliente FROM tbl_proyectos_t a2 LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a2.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id LEFT JOIN tbl_proyectos x ON x.id=a2.id_proyecto) a WHERE id_proyecto='".intval(getParam("id_proyecto"))."' AND ".check_sql("proyectos","list")." ORDER BY tarea"</tareas>
-	<presupuestos eval="true">"SELECT id,CONCAT(nombre,' (',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),')') nombre FROM (SELECT a2.id id,a2.nombre nombre,a2.id_cliente id_cliente,a2.id_posiblecli id_posiblecli,a2.id_proyecto id_proyecto,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_presupuestos a2 LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a2.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ((id_cliente='".intval(getParam("id_cliente"))."' AND id_cliente!=0) OR (id_posiblecli='".intval(getParam("id_posiblecli"))."' AND id_posiblecli!=0) OR (id_cliente='".intval(getParam("id_cliente"))."' AND id_cliente=0 AND id_posiblecli='".intval(getParam("id_posiblecli"))."' AND id_posiblecli=0)) AND ".check_sql("presupuestos","list")." ORDER BY nombre"</presupuestos>
-	<registros eval="true">execute_query("SELECT id FROM tbl_aplicaciones WHERE id='".intval(getParam("id_aplicacion"))."' AND islink=1")?"SELECT id,nombre FROM (SELECT a2.id id,a2.nombre nombre,e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".id2table(intval(getParam("id_aplicacion")))." a2 LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".intval(getParam("id_aplicacion"))."' AND e.id_registro=a2.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE (".check_sql(id2page(intval(getParam("id_aplicacion"))),"list").") ORDER BY nombre":""</registros>
-	<productos eval="true">"SELECT id,CASE ref WHEN '' THEN nombre ELSE CONCAT(nombre,' (',ref,')') END label,precio,descuento FROM (SELECT a2.*,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_productos a2 LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("productos")."' AND e.id_registro=a2.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ".make_like_query("id,nombre,ref,descripcion,precio,descuento,peso,volumen,dimensiones,web",getParam("term"))." AND ".check_sql("productos","list")." ORDER BY nombre LIMIT 25"</productos>
-	<clientes eval="true">"SELECT id,CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END label FROM (SELECT a2.*,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_clientes a2 LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a2.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ".make_like_query("id,nombre,nombre1,nombre2,cif,comentarios,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax",getParam("term"))." AND ".check_sql("clientes","list")." ORDER BY nombre LIMIT 25"</clientes>
+	<proveedores eval="true">"SELECT id,nombre FROM (SELECT a2.id id,a2.nombre nombre,a2.cif cif,a2.comentarios comentarios,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_proveedores a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proveedores")."' AND e.id_registro=a2.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ".make_like_query("nombre,cif,comentarios",getParam("filtro"))." AND ".check_sql("proveedores","list")." ORDER BY nombre"</proveedores>
+	<proyectos eval="true">"SELECT id,nombre FROM (SELECT a2.id id,a2.nombre nombre,a2.id_cliente id_cliente,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_proyectos a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a2.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE id_cliente='".intval(getParam("id_cliente"))."' AND '".intval(getParam("id_posiblecli"))."'='0' AND ".check_sql("proyectos","list")." ORDER BY nombre"</proyectos>
+	<tareas eval="true">"SELECT id,tarea FROM (SELECT a2.id id,a2.tarea tarea,a2.id_proyecto id_proyecto,e.id_usuario id_usuario,d.id_grupo id_grupo,x.id_cliente id_cliente FROM tbl_proyectos_t a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("proyectos")."' AND e.id_registro=a2.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id LEFT JOIN tbl_proyectos x ON x.id=a2.id_proyecto) a WHERE id_proyecto='".intval(getParam("id_proyecto"))."' AND ".check_sql("proyectos","list")." ORDER BY tarea"</tareas>
+	<presupuestos eval="true">"SELECT id,CONCAT(nombre,' (',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),')') nombre FROM (SELECT a2.id id,a2.nombre nombre,a2.id_cliente id_cliente,a2.id_posiblecli id_posiblecli,a2.id_proyecto id_proyecto,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_presupuestos a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("presupuestos")."' AND e.id_registro=a2.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ((id_cliente='".intval(getParam("id_cliente"))."' AND id_cliente!=0) OR (id_posiblecli='".intval(getParam("id_posiblecli"))."' AND id_posiblecli!=0) OR (id_cliente='".intval(getParam("id_cliente"))."' AND id_cliente=0 AND id_posiblecli='".intval(getParam("id_posiblecli"))."' AND id_posiblecli=0)) AND ".check_sql("presupuestos","list")." ORDER BY nombre"</presupuestos>
+	<registros eval="true">execute_query("SELECT id FROM tbl_aplicaciones WHERE id='".intval(getParam("id_aplicacion"))."' AND islink=1")?"SELECT id,nombre FROM (SELECT a2.id id,a2.nombre nombre,e.id_usuario id_usuario,d.id_grupo id_grupo FROM ".id2table(intval(getParam("id_aplicacion")))." a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".intval(getParam("id_aplicacion"))."' AND e.id_registro=a2.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE (".check_sql(id2page(intval(getParam("id_aplicacion"))),"list").") ORDER BY nombre":""</registros>
+	<productos eval="true">"SELECT id,CASE ref WHEN '' THEN nombre ELSE CONCAT(nombre,' (',ref,')') END label,precio,descuento FROM (SELECT a2.*,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_productos a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("productos")."' AND e.id_registro=a2.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ".make_like_query("id,nombre,ref,descripcion,precio,descuento,peso,volumen,dimensiones,web",getParam("term"))." AND ".check_sql("productos","list")." ORDER BY nombre LIMIT 25"</productos>
+	<clientes eval="true">"SELECT id,CASE cif WHEN '' THEN nombre ELSE CONCAT(nombre,' (',cif,')') END label FROM (SELECT a2.*,e.id_usuario id_usuario,d.id_grupo id_grupo FROM tbl_clientes a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a2.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE ".make_like_query("id,nombre,nombre1,nombre2,cif,comentarios,direccion,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax",getParam("term"))." AND ".check_sql("clientes","list")." ORDER BY nombre LIMIT 25"</clientes>
 	<!-- FOR EMAIL APPS -->
 	<cuentas eval="true">"SELECT id,CONCAT(email_name,' &amp;lt;',email_from,'&amp;gt;') nombre FROM tbl_usuarios_c WHERE id_usuario='".intval(getParam("id_usuario"))."' AND (email_privated='0' OR (TRIM(IFNULL(email_privated,0))='1' AND id_usuario='".current_user()."')) UNION SELECT '0' id,'".CONFIG("email_name")." &amp;lt;".CONFIG("email_from")."&amp;gt;"."' nombre ORDER BY nombre"</cuentas>
 	<state eval="true">in_array(getParam("type"),array("new","wait","spam"))?make_update_query("tbl_correo",array(
@@ -86,17 +86,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				"id"=>abs(getParam("id"))
 			)))))
 		)
-	),"id=(".make_select_query("tbl_registros_i","id_registro",make_where_query(array(
+	),"id=(".make_select_query("tbl_registros","id_registro",make_where_query(array(
 		"id_aplicacion"=>page2id("correo"),
 		"id_registro"=>abs(getParam("id")),
-		"id_usuario"=>current_user()
+		"id_usuario"=>current_user(),
+		"first"=>1
 	))).")"):""</state>
 	<agenda eval="true">make_update_query("tbl_agenda",array(
 		"notify_".getParam("type")=>1
-	),"id=(".make_select_query("tbl_registros_i","id_registro",make_where_query(array(
+	),"id=(".make_select_query("tbl_registros","id_registro",make_where_query(array(
 		"id_aplicacion"=>page2id("agenda"),
 		"id_registro"=>abs(getParam("id")),
-		"id_usuario"=>current_user()
+		"id_usuario"=>current_user(),
+		"first"=>1
 	))).")")</agenda>
 	<emails eval="true">"SELECT
 		CASE nombre
@@ -132,17 +134,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				"id"=>abs(getParam("id"))
 			)))))
 		)
-	),"id=(".make_select_query("tbl_registros_i","id_registro",make_where_query(array(
+	),"id=(".make_select_query("tbl_registros","id_registro",make_where_query(array(
 		"id_aplicacion"=>page2id("feeds"),
 		"id_registro"=>abs(getParam("id")),
-		"id_usuario"=>current_user()
+		"id_usuario"=>current_user(),
+		"first"=>1
 	))).")"):""</state2>
 	<feed2bookmark eval="true">make_select_query("tbl_feeds",array(
 		"link"
-	),"id=(".make_select_query("tbl_registros_i","id_registro",make_where_query(array(
+	),"id=(".make_select_query("tbl_registros","id_registro",make_where_query(array(
 		"id_aplicacion"=>page2id("feeds"),
 		"id_registro"=>abs(getParam("id")),
-		"id_usuario"=>current_user()
+		"id_usuario"=>current_user(),
+		"first"=>1
 		))).")"
 	)</feed2bookmark>
 	<!-- FOR FILTER MODULE -->
@@ -213,12 +217,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		))).")"
 	)))</delappfolder>
 	<!-- FOR TEXTOS MODULE -->
-	<textos eval="true">"SELECT descripcion texto FROM tbl_textos a LEFT JOIN tbl_registros_i e ON e.id_aplicacion='".page2id("textos")."' AND e.id_registro=a.id LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".intval(getParam("id"))."' AND (publico='1' OR ".check_sql("textos","list").")"</textos>
+	<textos eval="true">"SELECT descripcion texto FROM tbl_textos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("textos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".intval(getParam("id"))."' AND (publico='1' OR ".check_sql("textos","list").")"</textos>
 	<!-- FOR NUMBERS MODULE -->
 	<numbers eval="true">"
 	SELECT 'number_correo' query,COUNT(*) total FROM tbl_correo WHERE state_new='1' AND id_cuenta IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario='".current_user()."') AND NOT ('".getParam("page")."'='correo' AND '".getParam("action2")."'='form' AND '".abs(getParam("id"))."'=id)
 	UNION
-	SELECT 'number_agenda' query,COUNT(*) total FROM (SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstart)+notify_delay*3600*notify_sign UNION SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros_i f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop)) a
+	SELECT 'number_agenda' query,COUNT(*) total FROM (SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.first=1 LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstart)+notify_delay*3600*notify_sign UNION SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.first=1 LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop)) a
 	UNION
 	SELECT 'number_feeds' query,COUNT(*) total FROM tbl_feeds WHERE state_new='1' AND id_feed IN (SELECT id FROM tbl_usuarios_f WHERE id_usuario='".current_user()."') AND NOT ('".getParam("page")."'='feeds' AND '".getParam("action2")."'='form' AND '".abs(getParam("id"))."'=id)
 	"</numbers>

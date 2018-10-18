@@ -2691,7 +2691,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
-			<name>tbl_registros_i</name>
+			<name>tbl_registros</name>
 			<fields>
 				<field>
 					<name>id</name>
@@ -2717,34 +2717,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>datetime</name>
 					<type>DATETIME</type>
 				</field>
-			</fields>
-		</table>
-		<table>
-			<name>tbl_registros_u</name>
-			<fields>
 				<field>
-					<name>id</name>
-					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>id_aplicacion</name>
+					<name>first</name>
 					<type>INT(11)</type>
-					<fkey>tbl_aplicaciones</fkey>
-				</field>
-				<field>
-					<name>id_registro</name>
-					<type>INT(11)</type>
-				</field>
-				<field>
-					<name>id_usuario</name>
-					<type>INT(11)</type>
-					<fkey>tbl_usuarios</fkey>
-					<fcheck>false</fcheck>
-				</field>
-				<field>
-					<name>datetime</name>
-					<type>DATETIME</type>
 				</field>
 			</fields>
 		</table>
@@ -3238,19 +3213,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</index>
 		<index>
 			<name>registros</name>
-			<table>tbl_registros_i</table>
+			<table>tbl_registros</table>
 			<fields>
 				<field>
-					<name>id_aplicacion</name>
-				</field>
-				<field>
-					<name>id_registro</name>
+					<name>id_usuario</name>
 				</field>
 			</fields>
 		</index>
 		<index>
 			<name>registros2</name>
-			<table>tbl_registros_u</table>
+			<table>tbl_registros</table>
 			<fields>
 				<field>
 					<name>id_aplicacion</name>
@@ -3262,7 +3234,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</index>
 		<index>
 			<name>registros3</name>
-			<table>tbl_registros_i</table>
+			<table>tbl_registros</table>
 			<fields>
 				<field>
 					<name>id_aplicacion</name>
@@ -3272,6 +3244,51 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_usuario</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>registros4</name>
+			<table>tbl_registros</table>
+			<fields>
+				<field>
+					<name>id_usuario</name>
+				</field>
+				<field>
+					<name>first</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>registros5</name>
+			<table>tbl_registros</table>
+			<fields>
+				<field>
+					<name>id_aplicacion</name>
+				</field>
+				<field>
+					<name>id_registro</name>
+				</field>
+				<field>
+					<name>first</name>
+				</field>
+			</fields>
+		</index>
+		<index>
+			<name>registros6</name>
+			<table>tbl_registros</table>
+			<fields>
+				<field>
+					<name>id_aplicacion</name>
+				</field>
+				<field>
+					<name>id_registro</name>
+				</field>
+				<field>
+					<name>id_usuario</name>
+				</field>
+				<field>
+					<name>first</name>
 				</field>
 			</fields>
 		</index>

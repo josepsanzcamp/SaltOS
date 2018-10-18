@@ -324,7 +324,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN a.id_registro ELSE '0' END id_proyecto,
 			CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor
 			FROM tbl_indexing a
-			LEFT JOIN tbl_registros_i e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro
+			LEFT JOIN tbl_registros e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro AND e.first=1
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 			LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
 			WHERE ".make_fulltext_query2($filtro).") z
