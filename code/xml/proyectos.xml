@@ -1664,7 +1664,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 			"id_proyecto"=>"SELECT MAX(id) FROM tbl_proyectos"
 		)):""</query>
 		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_proyectos_p",array(
-			"id_producto"=>getParam("id_producto"),
+			"id_producto"=>intval(getParam("id_producto")),
 			"concepto"=>getParam("concepto"),
 			"unidades"=>getParam("unidades"),
 			"precio"=>getParam("precio"),
@@ -1696,7 +1696,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 			"descuento"=>getParam("descuento")
 		)):""</query>
 		<query match="products_old" prefix="true" eval="true">make_update_query("tbl_proyectos_p",array(
-			"id_producto"=>getParam("id_producto"),
+			"id_producto"=>intval(getParam("id_producto")),
 			"concepto"=>getParam("concepto"),
 			"unidades"=>getParam("unidades"),
 			"precio"=>getParam("precio"),
@@ -1707,7 +1707,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		<query match="products_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_proyectos_p",make_where_query(array("id"=>getParam("id")))):""</query>
 		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_proyectos_p",array(
 			"id_proyecto"=>intval(getParam("id_proyecto")),
-			"id_producto"=>getParam("id_producto"),
+			"id_producto"=>intval(getParam("id_producto")),
 			"concepto"=>getParam("concepto"),
 			"unidades"=>getParam("unidades"),
 			"precio"=>getParam("precio"),

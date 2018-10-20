@@ -1527,7 +1527,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"id_presupuesto"=>"SELECT MAX(id) FROM tbl_presupuestos"
 		)):""</query>
 		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_presupuestos_p",array(
-			"id_producto"=>getParam("id_producto"),
+			"id_producto"=>intval(getParam("id_producto")),
 			"concepto"=>getParam("concepto"),
 			"unidades"=>getParam("unidades"),
 			"precio"=>getParam("precio"),
@@ -1572,7 +1572,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"descuento"=>getParam("descuento")
 		)):""</query>
 		<query match="products_old" prefix="true" eval="true">make_update_query("tbl_presupuestos_p",array(
-			"id_producto"=>getParam("id_producto"),
+			"id_producto"=>intval(getParam("id_producto")),
 			"concepto"=>getParam("concepto"),
 			"unidades"=>getParam("unidades"),
 			"precio"=>getParam("precio"),
@@ -1583,7 +1583,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="products_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_presupuestos_p",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
 		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_presupuestos_p",array(
 			"id_presupuesto"=>intval(getParam("id_presupuesto")),
-			"id_producto"=>getParam("id_producto"),
+			"id_producto"=>intval(getParam("id_producto")),
 			"concepto"=>getParam("concepto"),
 			"unidades"=>getParam("unidades"),
 			"precio"=>getParam("precio"),

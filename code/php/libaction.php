@@ -747,7 +747,7 @@ function __pdf_eval_pdftag($array,$row=array()) {
 					if(!$booleval) break;
 					$temp=__pdf_eval_array(__pdf_eval_explode(",",$val,6),$row);
 					if(isset($temp[5])) $pdf->StartTransform();
-					if(isset($temp[5])) $pdf->Rotate($temp[5],$temp[0],$temp[1]);
+					if(isset($temp[5])) $pdf->Rotate(floatval($temp[5]),$temp[0],$temp[1]);
 					if(!file_exists($temp[4])) $temp[4]=get_directory("dirs/filesdir").getDefault("configs/logo_file","img/deflogo.png");
 					capture_next_error(); // TO PREVENT SOME SPURIOUS BUGS
 					$pdf->Image($temp[4],$temp[0],$temp[1],$temp[2],$temp[3]);
@@ -758,7 +758,7 @@ function __pdf_eval_pdftag($array,$row=array()) {
 					if(!$booleval) break;
 					$temp=__pdf_eval_array(__pdf_eval_explode(",",$val,4),$row);
 					if(isset($temp[3])) $pdf->StartTransform();
-					if(isset($temp[3])) $pdf->Rotate($temp[3],$temp[0],$temp[1]);
+					if(isset($temp[3])) $pdf->Rotate(floatval($temp[3]),$temp[0],$temp[1]);
 					$pdf->SetXY($temp[0],$temp[1]);
 					$pdf->Cell(0,0,$temp[2]);
 					if(isset($temp[3])) $pdf->StopTransform();
@@ -767,7 +767,7 @@ function __pdf_eval_pdftag($array,$row=array()) {
 					if(!$booleval) break;
 					$temp=__pdf_eval_array(__pdf_eval_explode(",",$val,7),$row);
 					if(isset($temp[6])) $pdf->StartTransform();
-					if(isset($temp[6])) $pdf->Rotate($temp[6],$temp[0],$temp[1]);
+					if(isset($temp[6])) $pdf->Rotate(floatval($temp[6]),$temp[0],$temp[1]);
 					if($debug) {
 						$pdf->SetDrawColor(100,100,100);
 						$pdf->SetFillColor(200,200,200);

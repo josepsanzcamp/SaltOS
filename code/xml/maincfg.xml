@@ -1241,14 +1241,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<!-- general section -->
 		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("application_title")</query>
 		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_list_size")</query>
-		<query match="general" prefix="true" eval="true">setParam("plot_list_width",implode(array_slice(array("","350","475","600"),getParam("plot_list_size"),1)))</query>
+		<query match="general" prefix="true" eval="true">setParam("plot_list_width",implode(array_slice(array("","350","475","600"),intval(getParam("plot_list_size")),1)))</query>
 		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_list_width")</query>
-		<query match="general" prefix="true" eval="true">setParam("plot_list_height",implode(array_slice(array("","200","300","400"),getParam("plot_list_size"),1)))</query>
+		<query match="general" prefix="true" eval="true">setParam("plot_list_height",implode(array_slice(array("","200","300","400"),intval(getParam("plot_list_size")),1)))</query>
 		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_list_height")</query>
 		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_form_size")</query>
-		<query match="general" prefix="true" eval="true">setParam("plot_form_width",implode(array_slice(array("","350","475","600"),getParam("plot_form_size"),1)))</query>
+		<query match="general" prefix="true" eval="true">setParam("plot_form_width",implode(array_slice(array("","350","475","600"),intval(getParam("plot_form_size")),1)))</query>
 		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_form_width")</query>
-		<query match="general" prefix="true" eval="true">setParam("plot_form_height",implode(array_slice(array("","200","300","400"),getParam("plot_form_size"),1)))</query>
+		<query match="general" prefix="true" eval="true">setParam("plot_form_height",implode(array_slice(array("","200","300","400"),intval(getParam("plot_form_size")),1)))</query>
 		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("plot_form_height")</query>
 		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("agenda_interval")</query>
 		<query match="general" prefix="true" preeval="true" eval="true">preeval_update_config("inbox_interval")</query>
