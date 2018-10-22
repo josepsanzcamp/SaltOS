@@ -338,22 +338,26 @@ function __has_fulltext_index($table) {
 
 function __has_mroonga_engine() {
 	static $mroonga=null;
-	if($mroonga===null) {
-		if(getDefault("db/obj")) {
-			$query="/*MYSQL SHOW ENGINES */";
-			$result=db_query($query);
-			$mroonga=false;
-			while($row=db_fetch_row($result)) {
-				$row=array_values($row);
-				$engine=$row[0];
-				if(strtolower($engine)=="mroonga") $mroonga=true;
-			}
-			db_free($result);
-		} else {
-			$mroonga=false;
-		}
-	}
+	if($mroonga===null) $mroonga=__has_helper_engine("mroonga");
 	return $mroonga;
+}
+
+function __has_helper_engine($arg) {
+	$helper=false;
+	if(getDefault("db/obj")) {
+		$query="/*MYSQL SHOW ENGINES */";
+		$result=db_query($query);
+		while($row=db_fetch_row($result)) {
+			$row=array_values($row);
+			$engine=$row[0];
+			if(strtolower($engine)==$arg) {
+				$helper=true;
+				break;
+			}
+		}
+		db_free($result);
+	}
+	return $helper;
 }
 
 function get_engine($table) {
@@ -745,10 +749,7 @@ function make_fulltext_query2($values,$arg="") {
 		foreach($values as $value) {
 			$type=($value[0]=="-")?"-":"+";
 			while(strlen($value)>0 && in_array($value[0],array("+","-"))) $value=substr($value,1);
-			if($value!="") {
-				if(strpos($value," ")!==false) $value='"'.$value.'"';
-				$query[]=$type.$value;
-			}
+			if($value!="") $query[]=$type.'"'.$value.'"';
 		}
 		if(!count($query)) return "1=1";
 		if(count($filter)) {
