@@ -95,6 +95,13 @@ function import_file($args) {
 			if(!is_array($array)) return $array;
 			$array=__import_array2tree($array,$args["nodes"],$args["nohead"]);
 			break;
+		case "bytes":
+			$array=__import_bytes2array($args["file"],$args["map"],$args["offset"]);
+			if(!is_array($array)) return $array;
+			if($args["prefn"]) $array=$args["prefn"]($array,$args);
+			if(!is_array($array)) return $array;
+			$array=__import_array2tree($array,$args["nodes"],$args["nohead"]);
+			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
 	}
@@ -246,6 +253,32 @@ function __import_xls2array($file,$sheet) {
 	unset($objPHPExcel);
 	unset($objSheet);
 	// CONTINUE
+	$array=__import_removevoid($array);
+	return $array;
+}
+
+function __import_bytes2array($file,$map,$offset) {
+	if(!is_array($map)) {
+		$map=trim($map);
+		$map=explode("\n",$map);
+		foreach($map as $key=>$val) {
+			$val=trim($val);
+			$val=explode(";",$val);
+			$map[$key]=$val;
+		}
+	}
+	$lines=file($file,FILE_IGNORE_NEW_LINES);
+	if(isset($lines[0])) $lines[0]=__import_utf8bom($lines[0]);
+	$array=array();
+	$row=array();
+	foreach($map as $map0) $row[]=$map0[0];
+	$array[]=$row;
+	foreach($lines as $line) {
+		$line=getutf8($line);
+		$row=array();
+		foreach($map as $map0) $row[]=mb_substr($line,$map0[1]-$offset,$map0[2]);
+		$array[]=$row;
+	}
 	$array=__import_removevoid($array);
 	return $array;
 }
