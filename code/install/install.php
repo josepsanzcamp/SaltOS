@@ -500,7 +500,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 									"#attr"=>array("path"=>"default/lang","replace"=>"true")
 								));
 								set_array($config,"node",array(
-									"value"=>array("style"=>array("value"=>"ismobile()?\"$style\":\"$style\"","#attr"=>array("eval"=>"true"))),
+									"value"=>array("style"=>$style),
 									"#attr"=>array("path"=>"default/style","replace"=>"true")
 								));
 								// STEP 1

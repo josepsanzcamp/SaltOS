@@ -314,8 +314,12 @@ function sql_create_table($tablespec) {
 	$fields=implode(",",$fields);
 	if(__has_fulltext_index($table) && __has_mroonga_engine()) {
 		$post="/*MYSQL ENGINE=Mroonga CHARSET=utf8mb4 */";
-	} else {
+	} elseif(__has_innodb_engine()) {
+		$post="/*MYSQL ENGINE=InnoDB CHARSET=utf8mb4 */";
+	} elseif(__has_myisam_engine()) {
 		$post="/*MYSQL ENGINE=MyISAM CHARSET=utf8mb4 */";
+	} else {
+		$post="/*MYSQL CHARSET=utf8mb4 */";
 	}
 	$query="CREATE TABLE ${table} (${fields}) ${post}";
 	return $query;
@@ -340,6 +344,18 @@ function __has_mroonga_engine() {
 	static $mroonga=null;
 	if($mroonga===null) $mroonga=__has_helper_engine("mroonga");
 	return $mroonga;
+}
+
+function __has_innodb_engine() {
+	static $innodb=null;
+	if($innodb===null) $innodb=__has_helper_engine("innodb");
+	return $innodb;
+}
+
+function __has_myisam_engine() {
+	static $myisam=null;
+	if($myisam===null) $myisam=__has_helper_engine("myisam");
+	return $myisam;
 }
 
 function __has_helper_engine($arg) {
