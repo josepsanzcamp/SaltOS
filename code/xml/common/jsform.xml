@@ -79,6 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>viewfactura(id) { viewpdf('page=facturas&amp;id='+id); }</function>
 	<function>viewparte(id) { viewpdf('page=partes&amp;id='+id); }</function>
 	<function>viewpresupuesto(id) { viewpdf('page=presupuestos&amp;id='+id); }</function>
+	<function eval="true">"current_revision() { return '".getDefault("info/revision","SVN")."'; }"</function>
 	<!-- FOR MAIL MODULE -->
 	<function>mail2(page,id) { addcontent("cancel"); setParam("page",page); setParam("action","sendpdf"); setParam("id",id); submit1(); }</function>
 	<function>mailacta(id) { mail2("actas",id); }</function>

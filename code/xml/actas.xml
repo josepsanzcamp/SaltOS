@@ -446,7 +446,7 @@ WHERE
 							<name>dstart</name>
 							<label lang="true">dstart</label>
 							<type>datetime</type>
-							<width>150px</width>
+							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<icon>fa fa-calendar</icon>
@@ -457,7 +457,7 @@ WHERE
 							<name>dstop</name>
 							<label lang="true">dstop</label>
 							<type>datetime</type>
-							<width>150px</width>
+							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<icon>fa fa-calendar</icon>

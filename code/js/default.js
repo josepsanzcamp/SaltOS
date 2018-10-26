@@ -1456,7 +1456,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
 		});
 		// PROGRAM SELECT MENU
-		$("select",obj).each(function() {
+		$("select:not([multiple])",obj).each(function() {
 			var width=$(this).css("width");
 			// TO FIX SOME GOOGLE CHROME ISSUES
 			var width2=$(this).width();
@@ -1492,6 +1492,41 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(typeof($(this).selectmenu("instance"))!="undefined") {
 				$(this).selectmenu("refresh");
 			}
+		});
+		// PROGRAM MULTISELECT
+		$("input[ismultiselect=true]",obj).each(function() {
+			var value=explode(",",$(this).val());
+			var name=$(this).attr("name");
+			$("select[name="+name+"_all] option",obj).each(function() {
+				if(in_array($(this).attr("value"),value)) $(this).remove();
+			});
+			$("select[name="+name+"_set] option",obj).each(function() {
+				if(!in_array($(this).attr("value"),value)) $(this).remove();
+			});
+			$("a[name="+name+"_add]",obj).on("click",function() {
+				$("select[name="+name+"_all] option:selected").each(function() {
+					$("select[name="+name+"_set]").append($(this).clone());
+					$(this).remove();
+				});
+				var value=[];
+				$("select[name="+name+"_set] option").each(function() {
+					value.push($(this).val());
+				});
+				value=implode(",",value);
+				$("input[name="+name+"]").val(value);
+			});
+			$("a[name="+name+"_del]",obj).on("click",function() {
+				$("select[name="+name+"_set] option:selected").each(function() {
+					$("select[name="+name+"_all]").append($(this).clone());
+					$(this).remove();
+				});
+				var value=[];
+				$("select[name="+name+"_set] option").each(function() {
+					value.push($(this).val());
+				});
+				value=implode(",",value);
+				$("input[name="+name+"]").val(value);
+			});
 		});
 		// FOR ACTIONS LIST
 		$(".actions2",obj).each(function() {
