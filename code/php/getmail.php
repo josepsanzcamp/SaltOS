@@ -523,9 +523,9 @@ function __getmail_insert($file,$messageid,$state_new,$state_reply,$state_forwar
 			"id_usuario"=>$id_usuario,
 			"datetime"=>$datetime,
 			"fichero"=>$file["cname"],
-			"fichero_file"=>$file["chash"],
 			"fichero_size"=>$file["csize"],
-			"fichero_type"=>$file["ctype"]
+			"fichero_type"=>$file["ctype"],
+			"fichero_hash"=>$file["chash"]
 		));
 		db_query($query);
 	}

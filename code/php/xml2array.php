@@ -255,6 +255,7 @@ function eval_files() {
 			setParam($key."_file",$val["file"]);
 			setParam($key."_size",$val["size"]);
 			setParam($key."_type",$val["type"]);
+			setParam($key."_hash",md5_file($val["tmp_name"]));
 			setParam($key."_temp",$val["tmp_name"]);
 		} else {
 			if(isset($val["name"]) && $val["name"]!="") session_error(LANG("fileuploaderror").$val["name"]);

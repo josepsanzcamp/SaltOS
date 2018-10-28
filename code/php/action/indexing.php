@@ -31,7 +31,7 @@ if(getParam("action")=="indexing") {
 	// CHECK THE SEMAPHORE
 	if(!semaphore_acquire(getParam("action"),getDefault("semaphoretimeout",100000))) die();
 	// INDEXING FILES
-	$query="SELECT id,id_aplicacion,id_registro,fichero_file,retries FROM tbl_ficheros WHERE indexed=0 AND retries<3 LIMIT 1000";
+	$query="SELECT id,id_aplicacion,id_registro,fichero_file,fichero_hash,retries FROM tbl_ficheros WHERE indexed=0 AND retries<3 LIMIT 1000";
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
@@ -51,7 +51,7 @@ if(getParam("action")=="indexing") {
 				db_query($query);
 				continue;
 			}
-			$file=__getmail_getcid(__getmail_getnode("0",$decoded),$row["fichero_file"]);
+			$file=__getmail_getcid(__getmail_getnode("0",$decoded),$row["fichero_hash"]);
 			if(!$file) {
 				show_php_error(array("phperror"=>"Attachment not found","details"=>sprintr($row),"file"=>getDefault("debug/warningfile","warning.log"),"die"=>false));
 				$QUERY=make_update_query("tbl_ficheros",array("retries"=>"3"),make_where_query(array("id"=>$row["id"])));
@@ -60,7 +60,7 @@ if(getParam("action")=="indexing") {
 			}
 			$ext=strtolower(extension($file["cname"]));
 			if(!$ext) $ext=strtolower(extension2($file["ctype"]));
-			$input=get_cache_file($row["fichero_file"],$ext);
+			$input=get_cache_file($row["fichero_hash"],$ext);
 			file_put_contents($input,$file["body"]);
 		} else {
 			$input=get_directory("dirs/filesdir").$row["fichero_file"];

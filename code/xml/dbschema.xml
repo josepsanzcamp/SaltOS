@@ -1385,6 +1385,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>VARCHAR(255)</type>
 				</field>
 				<field>
+					<name>fichero_hash</name>
+					<type>VARCHAR(255)</type>
+				</field>
+				<field>
 					<name>search</name>
 					<type>MEDIUMTEXT</type>
 				</field>

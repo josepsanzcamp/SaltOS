@@ -47,7 +47,7 @@ if(getParam("action")=="download") {
 			$decoded=__getmail_getmime($id_registro);
 			if(!$decoded) show_php_error(array("phperror"=>"Email not found"));
 			if(strlen($cid)!=32) {
-				$query="SELECT fichero_file FROM tbl_ficheros WHERE id='${cid}' AND id_aplicacion='${id_aplicacion}' AND id_registro='${id_registro}'";
+				$query="SELECT fichero_hash FROM tbl_ficheros WHERE id='${cid}' AND id_aplicacion='${id_aplicacion}' AND id_registro='${id_registro}'";
 				$cid=execute_query($query);
 				if(!$cid) show_php_error(array("phperror"=>"Unknown file"));
 			}
