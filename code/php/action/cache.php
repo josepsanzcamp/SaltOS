@@ -33,46 +33,23 @@ if(getParam("action")=="cache") {
 	foreach($files as $key=>$val) $files[$key]=trim($val);
 	//if(file_exists($cache)) unlink($cache);
 	if(!cache_exists($cache,$files)) {
-		if(file_exists($cache)) unlink_protected($cache);
-		$precache=get_cache_file($cache);
-		if(file_exists($precache)) unlink_protected($precache);
-		file_put_contents($precache,"");
-		chmod_protected($precache,0666);
+		file_put_contents($cache,"");
+		chmod_protected($cache,0666);
 		foreach($files as $file) {
 			if(file_exists($file)) {
-				$buffer="";
-				$subcache=get_cache_file(array("subcache",$useimginline,$file),strtolower(extension($file)));
-				//if(file_exists($subcache)) unlink($subcache);
-				if(!cache_exists($subcache,$file)) {
-					if(file_exists($subcache)) unlink_protected($subcache);
-					$type=saltos_content_type($file);
-					if($type=="text/css") {
-						$buffer=file_get_contents($file);
-						if($buffer) {
-							$buffer=__cache_resolve_path($buffer,$file);
-							if($useimginline) $buffer=inline_images($buffer);
-							file_put_contents($subcache,$buffer);
-							chmod_protected($subcache,0666);
-						}
-					} elseif($type=="text/javascript") {
-						$buffer=file_get_contents($file);
-						if($buffer) {
-							if(substr(trim($buffer),-1,1)!=";") $buffer.=";";
-							file_put_contents($subcache,$buffer);
-							chmod_protected($subcache,0666);
-						}
-					}
-				} else {
-					$buffer=file_get_contents($subcache);
-				}
-				if($buffer) {
-					file_put_contents($precache,$buffer,FILE_APPEND);
-					chmod_protected($precache,0666);
+				$type=saltos_content_type($file);
+				if($type=="text/css") {
+					$buffer=file_get_contents($file);
+					$buffer=__cache_resolve_path($buffer,$file);
+					if($useimginline) $buffer=inline_images($buffer);
+					file_put_contents($cache,$buffer,FILE_APPEND);
+				} elseif($type=="text/javascript") {
+					$buffer=file_get_contents($file);
+					if(substr(trim($buffer),-1,1)!=";") $buffer.=";";
+					file_put_contents($cache,$buffer,FILE_APPEND);
 				}
 			}
 		}
-		rename($precache,$cache);
-		chmod_protected($cache,0666);
 	}
 	output_handler(array(
 		"file"=>$cache,
