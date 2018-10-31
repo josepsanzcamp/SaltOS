@@ -771,7 +771,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:attribute name="value"><xsl:value-of select="."/></xsl:attribute>
 					</xsl:for-each>
 				</input>
-				<xsl:variable name="width" select="concat(string((number(substring-before(width,'px'))-66)*0.5),'px')"/>
+				<xsl:variable name="width" select="concat(string(number(substring-before(width,'px'))*0.5),'px')"/>
 				<input type="text" name="{$prefix}{name}_date" id="{$prefix}{name}_date" value="{substring-before(value,' ')}" style="width:{$width}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 					<xsl:for-each select="$node/*[name()=$name]">
 						<xsl:attribute name="value"><xsl:value-of select="substring-before(.,' ')"/></xsl:attribute>
@@ -920,7 +920,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</xsl:for-each>
 				</input>
 				<xsl:variable name="width" select="concat(string((number(substring-before(width,'px'))-20)*0.5),'px')"/>
-				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<table align="left" cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td>
 							<select multiple="multiple" name="{$prefix}{name}_all" id="{$prefix}{name}_all" style="width:{$width};height:{height}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}" width2="{width}">

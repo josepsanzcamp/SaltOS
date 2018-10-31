@@ -515,7 +515,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>pubdate</name>
 							<label lang="true">pubdate</label>
 							<type>datetime</type>
-							<width>200px</width>
+							<width>150px</width>
 							<readonly>true</readonly>
 						</field>
 						<field>

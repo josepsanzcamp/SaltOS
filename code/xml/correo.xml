@@ -834,7 +834,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>datetime</name>
 							<label lang="true">datetime</label>
 							<type>datetime</type>
-							<width>200px</width>
+							<width>150px</width>
 							<readonly>true</readonly>
 							<icon>fa fa-calendar</icon>
 							<icon2>fa fa-clock-o</icon2>

@@ -541,7 +541,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>dstart</name>
 							<label lang="true">dstart</label>
 							<type>datetime</type>
-							<width>240px</width>
+							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<colspan>3</colspan>
@@ -553,7 +553,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>dstop</name>
 							<label lang="true">dstop</label>
 							<type>datetime</type>
-							<width>240px</width>
+							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<icon>fa fa-calendar</icon>
