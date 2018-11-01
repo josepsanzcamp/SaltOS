@@ -24,57 +24,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<row ifeval="!ismobile()">
-		<label>Multi Google Light</label>
-		<value>multi/google/light</value>
-		<color>#4285f4</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Multi Google Dark</label>
-		<value>multi/google/dark</value>
-		<color>#4285f4</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Multi Microsoft Light</label>
-		<value>multi/microsoft/light</value>
-		<color>#04a5f0</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Multi Microsoft Dark</label>
-		<value>multi/microsoft/dark</value>
-		<color>#04a5f0</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Multi Office 365 Light</label>
-		<value>multi/office365/light</value>
-		<color>#2c579b</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Multi Office 365 Dark</label>
-		<value>multi/office365/dark</value>
-		<color>#2c579b</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Multi Cosmo Light</label>
-		<value>multi/cosmo/light</value>
-		<color>#2780e3</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Multi Cosmo Dark</label>
-		<value>multi/cosmo/dark</value>
-		<color>#2780e3</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Multi UPC Light</label>
-		<value>multi/upc/light</value>
-		<color>#007bc0</color>
-	</row>
-	<row ifeval="!ismobile()">
-		<label>Multi UPC Dark</label>
-		<value>multi/upc/dark</value>
-		<color>#007bc0</color>
-	</row>
 	<!-- THE FOUR GOOGLE COLORS -->
+	<row ifeval="!ismobile()">
+		<label>Google Multi Light</label>
+		<value>google/multi/light</value>
+		<color>#4285f4</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Google Multi Dark</label>
+		<value>google/multi/dark</value>
+		<color>#4285f4</color>
+	</row>
 	<row>
 		<label>Google Blue Light</label>
 		<value>google/blue/light</value>
@@ -116,6 +76,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color>#fbbc05</color>
 	</row>
 	<!-- UPC OLD AND NEW BLUE COLOR -->
+	<row ifeval="!ismobile()">
+		<label>UPC Multi Light</label>
+		<value>upc/multi/light</value>
+		<color>#007bc0</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>UPC Multi Dark</label>
+		<value>upc/multi/dark</value>
+		<color>#007bc0</color>
+	</row>
 	<row>
 		<label>New UPC Light</label>
 		<value>upc/new/light</value>
@@ -137,6 +107,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color>#336699</color>
 	</row>
 	<!-- THE FOUR MICROSOFT COLORS -->
+	<row ifeval="!ismobile()">
+		<label>Microsoft Multi Light</label>
+		<value>microsoft/multi/light</value>
+		<color>#04a5f0</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Microsoft Multi Dark</label>
+		<value>microsoft/multi/dark</value>
+		<color>#04a5f0</color>
+	</row>
 	<row>
 		<label>Microsoft Blue Light</label>
 		<value>microsoft/blue/light</value>
@@ -178,6 +158,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color>#ffba07</color>
 	</row>
 	<!-- THE FOUR OFFICE 365 COLORS -->
+	<row ifeval="!ismobile()">
+		<label>Office 365 Multi Light</label>
+		<value>office365/multi/light</value>
+		<color>#2c579b</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Office 365 Multi Dark</label>
+		<value>office365/multi/dark</value>
+		<color>#2c579b</color>
+	</row>
 	<row>
 		<label>Office 365 Blue Light</label>
 		<value>office365/blue/light</value>
@@ -219,6 +209,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<color>#80397b</color>
 	</row>
 	<!-- THE SIX COSMO COLORS -->
+	<row ifeval="!ismobile()">
+		<label>Cosmo Multi Light</label>
+		<value>cosmo/multi/light</value>
+		<color>#2780e3</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>Cosmo Multi Dark</label>
+		<value>cosmo/multi/dark</value>
+		<color>#2780e3</color>
+	</row>
 	<row>
 		<label>Cosmo Blue Light</label>
 		<value>cosmo/blue/light</value>
@@ -278,6 +278,57 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<label>Cosmo Gray Dark</label>
 		<value>cosmo/gray/dark</value>
 		<color>#373a3c</color>
+	</row>
+	<!-- THE FOUR MARIADB COLORS -->
+	<row ifeval="!ismobile()">
+		<label>MariaDB Multi Light</label>
+		<value>mariadb/multi/light</value>
+		<color>#2780e3</color>
+	</row>
+	<row ifeval="!ismobile()">
+		<label>MariaDB Multi Dark</label>
+		<value>mariadb/multi/dark</value>
+		<color>#2780e3</color>
+	</row>
+	<row>
+		<label>MariaDB Blue Light</label>
+		<value>mariadb/blue/light</value>
+		<color>#4285f4</color>
+	</row>
+	<row>
+		<label>MariaDB Blue Dark</label>
+		<value>mariadb/blue/dark</value>
+		<color>#4285f4</color>
+	</row>
+	<row>
+		<label>MariaDB Gray Light</label>
+		<value>mariadb/gray/light</value>
+		<color>#34a853</color>
+	</row>
+	<row>
+		<label>MariaDB Gray Dark</label>
+		<value>mariadb/gray/dark</value>
+		<color>#34a853</color>
+	</row>
+	<row>
+		<label>MariaDB Purple Light</label>
+		<value>mariadb/purple/light</value>
+		<color>#ea4335</color>
+	</row>
+	<row>
+		<label>MariaDB Purple Dark</label>
+		<value>mariadb/purple/dark</value>
+		<color>#ea4335</color>
+	</row>
+	<row>
+		<label>MariaDB Orange Light</label>
+		<value>mariadb/orange/light</value>
+		<color>#fbbc05</color>
+	</row>
+	<row>
+		<label>MariaDB Orange Dark</label>
+		<value>mariadb/orange/dark</value>
+		<color>#fbbc05</color>
 	</row>
 	<!-- ORIGINAL THEMES -->
 	<row ifeval="!ismobile()">
