@@ -920,10 +920,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</xsl:for-each>
 				</input>
 				<xsl:variable name="width" select="concat(string((number(substring-before(width,'px'))-20)*0.5),'px')"/>
+				<xsl:variable name="height" select="concat(string(number(substring-before(height,'px'))+6),'px')"/>
 				<table align="left" cellpadding="0" cellspacing="0" border="0">
 					<tr>
 						<td>
-							<select multiple="multiple" name="{$prefix}{name}_all" id="{$prefix}{name}_all" style="width:{$width};height:{height}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}" width2="{width}">
+							<select multiple="multiple" name="{$prefix}{name}_all" id="{$prefix}{name}_all" style="width:{$width};height:{$height}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 								<xsl:if test="readonly='true'">
 									<xsl:attribute name="disabled">true</xsl:attribute>
 									<xsl:attribute name="class">ui-state-default ui-corner-all {class3} ui-state-disabled</xsl:attribute>
@@ -961,7 +962,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							</a>
 						</td>
 						<td>
-							<select multiple="multiple" name="{$prefix}{name}_set" id="{$prefix}{name}_set" style="width:{$width};height:{height}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}" width2="{width}">
+							<select multiple="multiple" name="{$prefix}{name}_set" id="{$prefix}{name}_set" style="width:{$width};height:{$height}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}">
 								<xsl:if test="readonly='true'">
 									<xsl:attribute name="disabled">true</xsl:attribute>
 									<xsl:attribute name="class">ui-state-default ui-corner-all {class3} ui-state-disabled</xsl:attribute>

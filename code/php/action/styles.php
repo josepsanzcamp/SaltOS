@@ -62,7 +62,9 @@ if(getParam("action")=="styles") {
 		echo "</style>";
 		echo "</head>";
 		echo "<body>";
+		$filter=getParam("filter");
 		foreach($styles as $row) {
+			if($filter!="" && stripos($row["value"],$filter)===false && stripos($row["label"],$filter)===false) continue;
 			echo "<iframe src='?action=styles&amp;style=${row["value"]}' frameborder='0'></iframe>";
 		}
 		echo "</body>";
