@@ -1301,6 +1301,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 
 function __make_indexing_helper($tabla) {
 	static $tables=null;
+	static $types=null;
 	static $campos=null;
 	static $fields=null;
 	if($tables===null) {
@@ -1310,7 +1311,11 @@ function __make_indexing_helper($tabla) {
 		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
 			foreach($dbschema["tables"] as $tablespec) {
 				$tables[$tablespec["name"]]=array();
-				foreach($tablespec["fields"] as $fieldspec) if(isset($fieldspec["fkey"])) $tables[$tablespec["name"]][$fieldspec["name"]]=$fieldspec["fkey"];
+				$types[$tablespec["name"]]=array();
+				foreach($tablespec["fields"] as $fieldspec) if(isset($fieldspec["fkey"])) {
+					$tables[$tablespec["name"]][$fieldspec["name"]]=$fieldspec["fkey"];
+					$types[$tablespec["name"]][$fieldspec["name"]]=get_field_type($fieldspec["type"]);
+				}
 			}
 		}
 	}
@@ -1348,7 +1353,23 @@ function __make_indexing_helper($tabla) {
 	if(isset($tables[$tabla])) {
 		foreach($tables[$tabla] as $key=>$val) {
 			if(isset($campos[$val])) {
-				$result[]="(".make_select_query($val,$campos[$val],make_where_query(array(),"AND",array("${val}.id=${key}"))).")";
+				$campo=$campos[$val];
+			} elseif(isset($fields[$val])) {
+				$campo="CONCAT(".implode(",' ',",$fields[$val]).")";
+			} else {
+				$campo="";
+			}
+			$type=$types[$tabla][$key];
+			if($type=="int") {
+				$where="${val}.id=${key}";
+			} elseif($type=="string") {
+				$where="FIND_IN_SET(${val}.id,${key})";
+				$campo="GROUP_CONCAT(${campo})";
+			} else {
+				$where="";
+			}
+			if($campo!="" && $where!="") {
+				$result[]="(".make_select_query($val,$campo,$where).")";
 			}
 		}
 	}
