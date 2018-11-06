@@ -249,6 +249,10 @@ function LANG_ESCAPE($key,$arg="") {
 	return str_replace("'","\\'",LANG($key,$arg));
 }
 
+function LANG_ENCODE($key,$arg="") {
+	return encode_bad_chars(LANG($key,$arg));
+}
+
 function CONFIG_LOADED() {
 	global $_CONFIG;
 	return isset($_CONFIG);
