@@ -25,13 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 if(!check_user()) action_denied();
 if(getParam("action")=="download") {
-	$id_aplicacion=page2id($page);
+	$id_aplicacion=page2id(getParam("page"));
 	if(!$id_aplicacion) show_php_error(array("phperror"=>"Unknown page"));
-	$id_registro=(getParam("id")=="session")?getParam("id"):abs($id);
+	$id_registro=(getParam("id")=="session")?getParam("id"):abs(getParam("id"));
 	if(!$id_registro) show_php_error(array("phperror"=>"Unknown content"));
 	$cid=getParam("cid");
 	if(!$cid) show_php_error(array("phperror"=>"Unknown file"));
-	if($page=="correo") {
+	if(getParam("page")=="correo") {
 		if($id_registro=="session") {
 			sess_init();
 			$session=$_SESSION["correo"];

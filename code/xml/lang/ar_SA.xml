@@ -180,6 +180,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<language>اللغة</language>
 		<style>التصميم</style>
 		<nodata>لايوجد نتائج لعرضها</nodata>
+		<nosearch translated="false">You must to provide a term to do a search</nosearch>
 		<prioridad>الاولوية</prioridad>
 		<sinproyecto>[بدون مشروع مرتبط]</sinproyecto>
 		<sintarea>[لايوجد مهمة مرتبطة]</sintarea>

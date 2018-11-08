@@ -180,6 +180,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<language>Langue</language>
 		<style>Design</style>
 		<nodata>Aucun résultat à afficher</nodata>
+		<nosearch translated="false">You must to provide a term to do a search</nosearch>
 		<prioridad>priorité</prioridad>
 		<sinproyecto>[Aucun projet associé]</sinproyecto>
 		<sintarea>[Aucune tâche associé]</sintarea>

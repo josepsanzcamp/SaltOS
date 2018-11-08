@@ -29,6 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<icon eval="true">ICON("list")</icon>
 		<help>true</help>
 		<actions include="xml/common/actions.xml" replace="true" />
+		<nodata path="nodata/label" replace="true">
+			<label eval="true">LANG(getParam("filtro")?"nodata":"nosearch")</label>
+		</nodata>
 		<actions path="actions" append="true">
 			<view3>
 				<label lang="true">view</label>
@@ -327,7 +330,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LEFT JOIN tbl_registros e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro AND e.first=1
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 			LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
-			WHERE ".make_fulltext_query2($filtro).") z
+			WHERE ".($filtro!=""?make_fulltext_query2($filtro):"1=0").") z
 			WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion')
 			AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
 			AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))

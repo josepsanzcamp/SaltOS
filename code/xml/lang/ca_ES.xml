@@ -180,6 +180,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<language>Idioma</language>
 		<style>Disseny</style>
 		<nodata>Sense resultats a mostrar</nodata>
+		<nosearch>Ha d'entrar algun terme per poder fer una cerca</nosearch>
 		<prioridad>Prioritat</prioridad>
 		<sinproyecto>[Sense projecte associat]</sinproyecto>
 		<sintarea>[Sense tasca associada]</sintarea>
