@@ -29,9 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<icon eval="true">ICON("list")</icon>
 		<help>true</help>
 		<actions include="xml/common/actions.xml" replace="true" />
-		<nodata path="nodata/label" replace="true">
-			<label eval="true">LANG(getParam("filtro")?"nodata":"nosearch")</label>
-		</nodata>
 		<actions path="actions" append="true">
 			<download>
 				<label lang="true">download</label>
@@ -210,36 +207,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</row>
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_usuario,id_aplicacion,filtro,fecha1,fecha2" eval="true">"SELECT * FROM (
-			SELECT a.id,
-			LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
-			a.datetime,a.fichero,a.id_aplicacion,d.id id_usuario,d.id_grupo id_grupo,
-			CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
-			(SELECT  CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
-			".make_extra_query_with_login("d.")." usuario,
-			c.id_cuenta id_cuenta,
-			".make_linktitle_query("a.")." nombre,
-			".make_actiontitle_query("a.")." action_title,
-			CASE WHEN fichero_size&gt;=1073741824 THEN  CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
-				WHEN fichero_size&gt;=1048576 THEN  CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
-				WHEN fichero_size&gt;=1024 THEN  CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
-				ELSE  CONCAT(fichero_size,' bytes')
-			END fichero_size2,
-			'true' action_download,
-			'true' action_viewpdf
-			FROM tbl_ficheros a
-			LEFT JOIN tbl_registros e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro AND e.first=1
-			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-			LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
-			LEFT JOIN tbl_indexing z USE INDEX (indexing1,indexing2) ON z.id_aplicacion=e.id_aplicacion AND z.id_registro=e.id_registro
-			WHERE ".($filtro!=""?make_fulltext_query2($filtro,"z.search"):"1=0")."
-		) z
-		WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion')
+		<query global="page,id_usuario,id_aplicacion,filtro,fecha1,fecha2" eval="true">"
+		SELECT a.id id,
+		LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
+		a.datetime,a.fichero,a.id_aplicacion,a.id_registro,d.id id_usuario,d.id_grupo id_grupo,
+		CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
+		(SELECT  CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
+		".make_extra_query_with_login("d.")." usuario,
+		c.id_cuenta id_cuenta,
+		".make_linktitle_query("a.")." nombre,
+		".make_actiontitle_query("a.")." action_title,
+		CASE WHEN fichero_size&gt;=1073741824 THEN  CONCAT(ROUND(fichero_size/1073741824.0,2),' Gbytes')
+			WHEN fichero_size&gt;=1048576 THEN  CONCAT(ROUND(fichero_size/1048576.0,2),' Mbytes')
+			WHEN fichero_size&gt;=1024 THEN  CONCAT(ROUND(fichero_size/1024.0,2),' Kbytes')
+			ELSE  CONCAT(fichero_size,' bytes')
+		END fichero_size2,
+		'true' action_download,
+		'true' action_viewpdf
+		FROM tbl_ficheros a
+		LEFT JOIN tbl_registros e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro AND e.first=1
+		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
+		LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
+		WHERE 1=1
+		AND ".($filtro!=""?"/*MYSQL (a.id_aplicacion,a.id_registro) *//*SQLITE CONCAT(a.id_aplicacion,',',a.id_registro) */ IN (SELECT /*MYSQL id_aplicacion,id_registro *//*SQLITE CONCAT(id_aplicacion,',',id_registro) */ FROM tbl_indexing WHERE ".make_fulltext_query2($filtro).")":"(1=1)")."
+		AND (a.id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion')
 		AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
 		AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
 		AND ".($fecha1?"(DATE(datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
 		AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(datetime))":"(1=1)")."
-		AND ".check_sql2("list")</query>
+		AND ".check_sql2("list","a.")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>

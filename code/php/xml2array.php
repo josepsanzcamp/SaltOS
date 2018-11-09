@@ -246,6 +246,7 @@ function eval_files() {
 			$val["file"]=time()."_".get_unique_id_md5()."_".encode_bad_chars_file($val["name"]);
 			if(!isset($val["size"])) $val["size"]=filesize($val["tmp_name"]);
 			if(!isset($val["type"])) $val["type"]=saltos_content_type($val["tmp_name"]);
+			$val["hash"]=md5_file($val["tmp_name"]);
 			// SECURITY ISSUE
 			if(substr($val["file"],-4,4)==".php") $val["file"]=substr($val["file"],0,-4).".dat";
 			// FOLDER ISSUE
@@ -255,7 +256,7 @@ function eval_files() {
 			setParam($key."_file",$val["file"]);
 			setParam($key."_size",$val["size"]);
 			setParam($key."_type",$val["type"]);
-			setParam($key."_hash",md5_file($val["tmp_name"]));
+			setParam($key."_hash",$val["hash"]);
 			setParam($key."_temp",$val["tmp_name"]);
 		} else {
 			if(isset($val["name"]) && $val["name"]!="") session_error(LANG("fileuploaderror").$val["name"]);

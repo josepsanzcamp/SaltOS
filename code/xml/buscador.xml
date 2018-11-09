@@ -29,9 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<icon eval="true">ICON("list")</icon>
 		<help>true</help>
 		<actions include="xml/common/actions.xml" replace="true" />
-		<nodata path="nodata/label" replace="true">
-			<label eval="true">LANG(getParam("filtro")?"nodata":"nosearch")</label>
-		</nodata>
 		<actions path="actions" append="true">
 			<view3>
 				<label lang="true">view</label>
@@ -246,97 +243,97 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</row>
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_usuario,id_aplicacion,filtro,fecha1,fecha2" eval="true">"SELECT * FROM (
-			SELECT a.id id,
-			LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
-			a.id_registro id_registro,
-			a.id_aplicacion id_aplicacion,
-			d.id id_usuario,
-			d.id_grupo id_grupo,
-			e.datetime datetime,
-			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) comments,
-			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) files,
-			CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
-			(SELECT CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre) FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
-			".make_extra_query_with_login("d.")." usuario,
-			c.id_cuenta id_cuenta,
-			".make_linktitle_query("a.")." nombre,
-			".make_actiontitle_query("a.")."  action_title,
-			CASE a.id_aplicacion
-				WHEN '".page2id("favoritos")."' THEN 'false'
-				ELSE 'true'
-			END action_view3,
-			CASE a.id_aplicacion
-				WHEN '".page2id("actas")."' THEN 'true'
-				WHEN '".page2id("campanyas")."' THEN 'true'
-				WHEN '".page2id("clientes")."' THEN 'true'
-				WHEN '".page2id("correo")."' THEN 'true'
-				WHEN '".page2id("facturas")."' THEN 'true'
-				WHEN '".page2id("feeds")."' THEN 'true'
-				WHEN '".page2id("partes")."' THEN 'true'
-				WHEN '".page2id("posiblescli")."' THEN 'true'
-				WHEN '".page2id("presupuestos")."' THEN 'true'
-				WHEN '".page2id("proyectos")."' THEN 'true'
-				ELSE 'false'
-			END action_pdf4,
-			CASE a.id_aplicacion
-				WHEN '".page2id("actas")."' THEN 'true'
-				WHEN '".page2id("campanyas")."' THEN 'true'
-				WHEN '".page2id("clientes")."' THEN 'true'
-				WHEN '".page2id("correo")."' THEN 'true'
-				WHEN '".page2id("facturas")."' THEN 'true'
-				WHEN '".page2id("feeds")."' THEN 'true'
-				WHEN '".page2id("partes")."' THEN 'true'
-				WHEN '".page2id("posiblescli")."' THEN 'true'
-				WHEN '".page2id("presupuestos")."' THEN 'true'
-				WHEN '".page2id("proyectos")."' THEN 'true'
-				ELSE 'false'
-			END action_view4,
-			CASE a.id_aplicacion
-				WHEN '".page2id("correo")."' THEN 'false'
-				WHEN '".page2id("feeds")."' THEN 'false'
-				WHEN '".page2id("favoritos")."' THEN 'false'
-				ELSE 'true'
-			END action_edit2,
-			CASE a.id_aplicacion
-				WHEN '".page2id("actas")."' THEN 'true'
-				WHEN '".page2id("agenda")."' THEN 'true'
-				WHEN '".page2id("facturas")."' THEN 'true'
-				WHEN '".page2id("gastos")."' THEN 'true'
-				WHEN '".page2id("partes")."' THEN 'true'
-				WHEN '".page2id("periodicas")."' THEN 'true'
-				WHEN '".page2id("presupuestos")."' THEN 'true'
-				WHEN '".page2id("proyectos")."' THEN 'true'
-				WHEN '".page2id("seguimientos")."' THEN 'true'
-				ELSE 'false'
-			END action_copy2,
-			CASE a.id_aplicacion
-				WHEN '".page2id("correo")."' THEN CASE (SELECT is_outbox FROM tbl_correo WHERE id=a.id_registro) WHEN 0 THEN 'true' ELSE 'false' END
-				ELSE 'false'
-			END action_reply2,
-			CASE a.id_aplicacion
-				WHEN '".page2id("correo")."' THEN CASE (SELECT is_outbox FROM tbl_correo WHERE id=a.id_registro) WHEN 0 THEN CASE WHEN (SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo=a.id_registro AND id_tipo IN (2,3))&gt;1 THEN 'true' ELSE 'false' END ELSE 'false' END
-				ELSE 'false'
-			END action_replyall2,
-			CASE a.id_aplicacion
-				WHEN '".page2id("correo")."' THEN 'true'
-				WHEN '".page2id("feeds")."' THEN 'true'
-				ELSE 'false'
-			END action_forward2,
-			CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN a.id_registro WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=a.id_registro) ELSE '0' END id_cliente,
-			CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN a.id_registro ELSE '0' END id_proyecto,
-			CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor
-			FROM tbl_indexing a
-			LEFT JOIN tbl_registros e ON e.id_aplicacion=a.id_aplicacion AND e.id_registro=a.id_registro AND e.first=1
-			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-			LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
-			WHERE ".($filtro!=""?make_fulltext_query2($filtro):"1=0").") z
-			WHERE (id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion')
-			AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
-			AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
-			AND ".($fecha1?"(DATE(datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
-			AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(datetime))":"(1=1)")."
-			AND ".check_sql2("list")</query>
+		<query global="page,id_usuario,id_aplicacion,filtro,fecha1,fecha2" eval="true">"
+		SELECT a.id id,
+		LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
+		a.id_registro id_registro,
+		a.id_aplicacion id_aplicacion,
+		d.id id_usuario,
+		d.id_grupo id_grupo,
+		a.datetime datetime,
+		(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) comments,
+		(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion=a.id_aplicacion AND id_registro=a.id_registro) files,
+		CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
+		(SELECT CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre) FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
+		".make_extra_query_with_login("d.")." usuario,
+		c.id_cuenta id_cuenta,
+		".make_linktitle_query("a.")." nombre,
+		".make_actiontitle_query("a.")."  action_title,
+		CASE a.id_aplicacion
+			WHEN '".page2id("favoritos")."' THEN 'false'
+			ELSE 'true'
+		END action_view3,
+		CASE a.id_aplicacion
+			WHEN '".page2id("actas")."' THEN 'true'
+			WHEN '".page2id("campanyas")."' THEN 'true'
+			WHEN '".page2id("clientes")."' THEN 'true'
+			WHEN '".page2id("correo")."' THEN 'true'
+			WHEN '".page2id("facturas")."' THEN 'true'
+			WHEN '".page2id("feeds")."' THEN 'true'
+			WHEN '".page2id("partes")."' THEN 'true'
+			WHEN '".page2id("posiblescli")."' THEN 'true'
+			WHEN '".page2id("presupuestos")."' THEN 'true'
+			WHEN '".page2id("proyectos")."' THEN 'true'
+			ELSE 'false'
+		END action_pdf4,
+		CASE a.id_aplicacion
+			WHEN '".page2id("actas")."' THEN 'true'
+			WHEN '".page2id("campanyas")."' THEN 'true'
+			WHEN '".page2id("clientes")."' THEN 'true'
+			WHEN '".page2id("correo")."' THEN 'true'
+			WHEN '".page2id("facturas")."' THEN 'true'
+			WHEN '".page2id("feeds")."' THEN 'true'
+			WHEN '".page2id("partes")."' THEN 'true'
+			WHEN '".page2id("posiblescli")."' THEN 'true'
+			WHEN '".page2id("presupuestos")."' THEN 'true'
+			WHEN '".page2id("proyectos")."' THEN 'true'
+			ELSE 'false'
+		END action_view4,
+		CASE a.id_aplicacion
+			WHEN '".page2id("correo")."' THEN 'false'
+			WHEN '".page2id("feeds")."' THEN 'false'
+			WHEN '".page2id("favoritos")."' THEN 'false'
+			ELSE 'true'
+		END action_edit2,
+		CASE a.id_aplicacion
+			WHEN '".page2id("actas")."' THEN 'true'
+			WHEN '".page2id("agenda")."' THEN 'true'
+			WHEN '".page2id("facturas")."' THEN 'true'
+			WHEN '".page2id("gastos")."' THEN 'true'
+			WHEN '".page2id("partes")."' THEN 'true'
+			WHEN '".page2id("periodicas")."' THEN 'true'
+			WHEN '".page2id("presupuestos")."' THEN 'true'
+			WHEN '".page2id("proyectos")."' THEN 'true'
+			WHEN '".page2id("seguimientos")."' THEN 'true'
+			ELSE 'false'
+		END action_copy2,
+		CASE a.id_aplicacion
+			WHEN '".page2id("correo")."' THEN CASE (SELECT is_outbox FROM tbl_correo WHERE id=a.id_registro) WHEN 0 THEN 'true' ELSE 'false' END
+			ELSE 'false'
+		END action_reply2,
+		CASE a.id_aplicacion
+			WHEN '".page2id("correo")."' THEN CASE (SELECT is_outbox FROM tbl_correo WHERE id=a.id_registro) WHEN 0 THEN CASE WHEN (SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo=a.id_registro AND id_tipo IN (2,3))&gt;1 THEN 'true' ELSE 'false' END ELSE 'false' END
+			ELSE 'false'
+		END action_replyall2,
+		CASE a.id_aplicacion
+			WHEN '".page2id("correo")."' THEN 'true'
+			WHEN '".page2id("feeds")."' THEN 'true'
+			ELSE 'false'
+		END action_forward2,
+		CASE a.id_aplicacion WHEN '".page2id("clientes")."' THEN a.id_registro WHEN '".page2id("proyectos")."' THEN (SELECT id_cliente FROM tbl_proyectos WHERE id=a.id_registro) ELSE '0' END id_cliente,
+		CASE a.id_aplicacion WHEN '".page2id("proyectos")."' THEN a.id_registro ELSE '0' END id_proyecto,
+		CASE a.id_aplicacion WHEN '".page2id("proveedores")."' THEN a.id_registro ELSE '0' END id_proveedor
+		FROM tbl_registros a
+		LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id
+		LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
+		WHERE 1=1
+		AND ".($filtro!=""?"/*MYSQL (a.id_aplicacion,a.id_registro) *//*SQLITE CONCAT(a.id_aplicacion,',',a.id_registro) */ IN (SELECT /*MYSQL id_aplicacion,id_registro *//*SQLITE CONCAT(id_aplicacion,',',id_registro) */ FROM tbl_indexing WHERE ".make_fulltext_query2($filtro).")":"(1=1)")."
+		AND (a.id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion')
+		AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
+		AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
+		AND ".($fecha1?"(DATE(datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
+		AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(datetime))":"(1=1)")."
+		AND ".check_sql2("list","a.")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
