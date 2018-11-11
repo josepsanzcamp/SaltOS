@@ -607,8 +607,8 @@ function xml_error($error,$source="",$count="",$file="") {
 	$array=array();
 	$array["xmlerror"]=$error;
 	if($count!="" && $file=="") $array["xmlerror"].=" (at line $count)";
-	if($count=="" && $file!="") $array["xmlerror"].=" (on file $file)";
-	if($count!="" && $file!="") $array["xmlerror"].=" (on file $file at line $count)";
+	if($count=="" && $file!="") $array["xmlerror"].=" (on file ".basename($file).")";
+	if($count!="" && $file!="") $array["xmlerror"].=" (on file ".basename($file)." at line $count)";
 	if(is_array($source)) $array["source"]=htmlentities(sprintr($source),ENT_COMPAT,"UTF-8");
 	elseif($source!="") $array["source"]=htmlentities($source,ENT_COMPAT,"UTF-8");
 	show_php_error($array);

@@ -3261,42 +3261,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>registros4</name>
-			<table>tbl_registros</table>
-			<fields>
-				<field>
-					<name>id_aplicacion</name>
-				</field>
-				<field>
-					<name>id_registro</name>
-				</field>
-				<field>
-					<name>id_usuario</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<name>registros5</name>
-			<table>tbl_registros</table>
-			<fields>
-				<field>
-					<name>id_aplicacion</name>
-				</field>
-				<field>
-					<name>id_registro</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<name>registros6</name>
-			<table>tbl_registros</table>
-			<fields>
-				<field>
-					<name>id_usuario</name>
-				</field>
-			</fields>
-		</index>
-		<index>
 			<name>usuarios</name>
 			<table>tbl_usuarios</table>
 			<fields>

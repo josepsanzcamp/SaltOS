@@ -934,7 +934,10 @@ function do_message_error($array,$format) {
 	$msg=array();
 	if(isset($array["phperror"])) $msg[]=array("PHP Error",$array["phperror"]);
 	if(isset($array["xmlerror"])) $msg[]=array("XML Error",$array["xmlerror"]);
-	if(isset($array["dberror"])) $msg[]=array("DB Error",$array["dberror"]);
+	if(isset($array["dberror"])) {
+		$privated=array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name"));
+		$msg[]=array("DB Error",str_replace($privated,"...",$array["dberror"]));
+	}
 	if(isset($array["jserror"])) $msg[]=array("JS Error",$array["jserror"]);
 	if(isset($array["source"])) $msg[]=array("XML Source",$array["source"]);
 	if(isset($array["exception"])) $msg[]=array("Exception",$array["exception"]);
@@ -944,7 +947,7 @@ function do_message_error($array,$format) {
 		foreach($array["backtrace"] as $key=>$item) {
 			$temp="${key} => ${item["function"]}";
 			if(isset($item["class"])) $temp.=" (in class ${item["class"]})";
-			if(isset($item["file"]) && isset($item["line"])) $temp.=" (in file ${item["file"]} at line ${item["line"]})";
+			if(isset($item["file"]) && isset($item["line"])) $temp.=" (in file ".basename($item["file"])." at line ${item["line"]})";
 			$array["backtrace"][$key]=$temp;
 		}
 		$msg[]=array("Backtrace",implode($dict[$format][2],$array["backtrace"]));
@@ -973,16 +976,6 @@ function show_php_error($array=null) {
 		if(useSession("user")) $array["debug"]["user"]=useSession("user");
 		foreach(array("page","action","id") as $item) if(getParam($item)) $array["debug"][$item]=getParam($item);
 		if(!count($array["debug"])) unset($array["debug"]);
-	}
-	// PROTECTION OF SENSITIVE DATA
-	foreach($array as $key=>$val) {
-		if(is_array($val)) {
-			foreach($val as $key2=>$val2) {
-				$array[$key][$key2]=__error_sensitive_data($val2);
-			}
-		} else {
-			$array[$key]=__error_sensitive_data($val);
-		}
 	}
 	// CREATE THE MESSAGE ERROR USING HTML ENTITIES AND PLAIN TEXT
 	$msg_html=do_message_error($array,"html");
@@ -1034,17 +1027,6 @@ function show_php_error($array=null) {
 	die();
 }
 
-function __error_sensitive_data($data) {
-	return str_replace(array(
-		getcwd(),
-		getDefault("database/host"),
-		getDefault("database/port"),
-		getDefault("database/user"),
-		getDefault("database/pass"),
-		getDefault("database/name")
-	),"...",$data);
-}
-
 function pretty_html_error($msg) {
 	$html="<!DOCTYPE html>";
 	$html.="<html>";
@@ -1080,11 +1062,11 @@ function __pretty_html_error_helper($action,$hiddens,$submit) {
 }
 
 function __error_handler($type,$message,$file,$line) {
-	show_php_error(array("phperror"=>"${message} (code ${type})","details"=>"Error on file '${file}' at line ${line}","backtrace"=>debug_backtrace()));
+	show_php_error(array("phperror"=>"${message} (code ${type})","details"=>"Error on file '".basename($file)."' at line ${line}","backtrace"=>debug_backtrace()));
 }
 
 function __exception_handler($e) {
-	show_php_error(array("exception"=>$e->getMessage()." (code ".$e->getCode().")","details"=>"Error on file '".$e->getFile()."' at line ".$e->getLine(),"backtrace"=>$e->getTrace()));
+	show_php_error(array("exception"=>$e->getMessage()." (code ".$e->getCode().")","details"=>"Error on file '".basename($e->getFile())."' at line ".$e->getLine(),"backtrace"=>$e->getTrace()));
 }
 
 function __shutdown_handler() {
@@ -1093,7 +1075,7 @@ function __shutdown_handler() {
 	$error=error_get_last();
 	$types=array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
 	if(is_array($error) && isset($error["type"]) && in_array($error["type"],$types)) {
-		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '${error["file"]}' at line ${error["line"]}","backtrace"=>debug_backtrace()));
+		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '".basename($error["file"])."' at line ${error["line"]}","backtrace"=>debug_backtrace()));
 	}
 	semaphore_shutdown();
 }
