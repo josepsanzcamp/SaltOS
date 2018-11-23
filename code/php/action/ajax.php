@@ -36,9 +36,9 @@ if(getParam("action")=="ajax") {
 	$count=0;
 	$_RESULT=array("rows"=>array());
 	while($row=db_fetch_row($result)) {
-		if(isset($row["__BASE64__"])) {
-			if(file_exists($row["__BASE64__"]) && is_file($row["__BASE64__"])) {
-				$row["__BASE64__"]=base64_encode(file_get_contents($row["__BASE64__"]));
+		foreach($row as $key=>$val) {
+			if(substr($key,-7,7)=="_base64" && file_exists($val) && is_file($val)) {
+				$row[$key]=base64_encode(file_get_contents($val));
 			}
 		}
 		$row["__ROW_NUMBER__"]=++$count;
