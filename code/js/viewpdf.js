@@ -65,7 +65,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 					}
 					// CREATE PDFDOC
 					pdfjsLib.GlobalWorkerOptions.workerSrc="lib/pdfjs/pdf.worker.min.js?r="+current_revision();
-					pdfjsLib.getDocument({data:atob(data)}).then(function(pdfDocument) {
+					pdfjsLib.getDocument({data:atob(data)}).promise.then(function(pdfDocument) {
 						unloadingcontent();
 						// CHECK FOR NUMPAGES>0
 						if(!pdfDocument.numPages) {
@@ -115,10 +115,10 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						var pdfViewer=new pdfjsViewer.PDFViewer({
 							container:container
 						});
-						container.addEventListener("pagesinit",function() {
+						document.addEventListener("pagesinit",function() {
 							pdfViewer.currentScaleValue="page-width";
 						});
-						container.addEventListener("textlayerrendered",function() {
+						document.addEventListener("textlayerrendered",function() {
 							$("a",container).each(function() {
 								if(substr($(this).attr("href"),0,15)=="http://viewpdf/") {
 									if(typeof($(this).attr("onclick"))=="undefined") {

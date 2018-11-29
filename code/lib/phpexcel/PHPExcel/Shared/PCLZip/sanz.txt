@@ -1,2 +1,0 @@
-Changed made by sanz:
-- Rename constructor from class name to __construct to prevent errors in PHP 7.0
