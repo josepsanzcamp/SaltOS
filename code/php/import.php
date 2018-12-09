@@ -276,7 +276,7 @@ function __import_bytes2array($file,$map,$offset) {
 	foreach($lines as $line) {
 		$line=getutf8($line);
 		$row=array();
-		foreach($map as $map0) $row[]=mb_substr($line,$map0[1]-$offset,$map0[2]);
+		foreach($map as $map0) $row[]=trim(mb_substr($line,$map0[1]-$offset,$map0[2]));
 		$array[]=$row;
 	}
 	$array=__import_removevoid($array);

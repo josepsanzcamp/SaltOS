@@ -63,8 +63,18 @@ if(getParam("action")=="styles") {
 		echo "</head>";
 		echo "<body>";
 		$filter=getParam("filter");
+		if($filter!="") {
+			$filter=explode("|",$filter);
+			foreach($styles as $index=>$row) {
+				$found=0;
+				foreach($filter as $filter2) {
+					if(stripos($row["label"],$filter2)!==false) $found=1;
+					if(stripos($row["value"],$filter2)!==false) $found=1;
+				}
+				if(!$found) unset($styles[$index]);
+			}
+		}
 		foreach($styles as $row) {
-			if($filter!="" && stripos($row["value"],$filter)===false && stripos($row["label"],$filter)===false) continue;
 			echo "<iframe src='?action=styles&amp;style=${row["value"]}' frameborder='0'></iframe>";
 		}
 		echo "</body>";

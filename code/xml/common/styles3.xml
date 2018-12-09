@@ -77,7 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <td class="right nowrap label ">Search</td>
 <td class="left nowrap " style="width:120px"><input value="" style="width:120px" class="ui-state-default ui-corner-all" type="text"></td>
 <td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-search"></span> Search</a></td>
-<td><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">Options</span></span></td>
+<td class="ui-button2"><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">Options</span></span></td>
 </tr></tbody></table>
 <table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="separator"></td></tr></tbody></table>
 <table class="tabla" style="width:100%" cellspacing="0" cellpadding="0" border="0">
@@ -244,11 +244,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <td class="separator " style="width:50%;height:"></td>
 <td class="left nowrap label nowrap" style="width:;height:"><span class="infopager">Page 1 of 10 (regs between 1 and 18 of 180).</span></td>
 <td class="right nowrap label ">Regs by page:</td>
-<td class="left nowrap "><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">18</span></span></td>
+<td class="left nowrap ui-button2"><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">18</span></span></td>
 <td class="separator " style="width:50%;height:"></td>
 <td class="nowrap"><a href="#" class="ui-state-default ui-corner-all ui-state-disabled"><span class="fa fa-fast-backward"></span></a></td>
 <td class="nowrap"><a href="#" class="ui-state-default ui-corner-all ui-state-disabled"><span class="fa fa-backward"></span></a></td>
-<td class="left nowrap "><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">1</span></span></td>
+<td class="left nowrap ui-button2"><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">1</span></span></td>
 <td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-forward"></span></a></td>
 <td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-fast-forward"></span></a></td>
 </tr></tbody></table>

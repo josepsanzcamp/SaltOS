@@ -588,15 +588,15 @@ img[isplot=true] {
 	line-height:0;
 }
 
-.fa-trash {
+.ui-menu-item .fa-trash {
 	color:#ea4335;
 }
 
-.fa-check {
+.ui-menu-item .fa-check {
 	color:#34a853;
 }
 
-.fa-times {
+.ui-menu-item .fa-times {
 	color:#ea4335;
 }
 
