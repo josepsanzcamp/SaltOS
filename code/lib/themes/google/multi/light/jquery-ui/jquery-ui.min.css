@@ -31,15 +31,15 @@ body{background-color:#ffffff;}
 .ui-widget-content a.ui-state-focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 
 /* SANZ FIXES */
-.ui-widget-content .ui-button2 span.ui-button{background-color:#4285f4;}
-.ui-widget-content .ui-button2 span.ui-button{color:#ffffff;}
-.ui-widget-content .ui-button2 span.ui-button .ui-icon{background-image:url("images/ui-icons_ffffff_256x240.png");}
-.ui-widget-content .ui-button2 span.ui-button:hover{background-color:#fbec88;}
-.ui-widget-content .ui-button2 span.ui-button:hover{color:#363636;}
-.ui-widget-content .ui-button2 span.ui-button:hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
-.ui-widget-content .ui-button2 span.ui-button:focus{background-color:#fbec88;}
-.ui-widget-content .ui-button2 span.ui-button:focus{color:#363636;}
-.ui-widget-content .ui-button2 span.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.helperbuttons span.ui-button{background-color:#4285f4;}
+.helperbuttons span.ui-button{color:#ffffff;}
+.helperbuttons span.ui-button .ui-icon{background-image:url("images/ui-icons_ffffff_256x240.png");}
+.helperbuttons span.ui-button:hover{background-color:#fbec88;}
+.helperbuttons span.ui-button:hover{color:#363636;}
+.helperbuttons span.ui-button:hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.helperbuttons span.ui-button:focus{background-color:#fbec88;}
+.helperbuttons span.ui-button:focus{color:#363636;}
+.helperbuttons span.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 
 /* FOR MULTICOLOR SCHEMA */
 
@@ -107,8 +107,6 @@ body{background-color:#ffffff;}
 .helperbuttons span.ui-button{background-color:#f3fbf5;}
 .helperbuttons span.ui-button{color:#184d26;}
 .helperbuttons span.ui-button .ui-icon{background-image:url("images/ui-icons_184d26_256x240.png");}
-.helperbuttons div.ui-state-default{border-color:#34a853;}
-.helperbuttons iframe.ui-state-default{border-color:#34a853;}
 .helperbuttons a.ui-state-hover{background-color:#fbec88;}
 .helperbuttons a.ui-state-hover{color:#363636;}
 .helperbuttons a.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
@@ -127,104 +125,38 @@ body{background-color:#ffffff;}
 .helperbuttons span.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 
 /* SANZ FIXES */
-.tabla tr:nth-of-type(8n+3) .ui-widget-content{border-color:#34a853;}
-.tabla tr:nth-of-type(8n+4) .ui-state-default{border-color:#34a853;}
-.tabla tr:nth-of-type(8n+4) .ui-state-default{background-color:#f3fbf5;}
-.tabla tr:nth-of-type(8n+4) .ui-state-default{color:#184d26;}
-.tabla tr:nth-of-type(8n+4) .ui-state-default a{color:#184d26;}
-.tabla tr:nth-of-type(8n+5) .ui-widget-content{border-color:#ea4335;}
-.tabla tr:nth-of-type(8n+6) .ui-state-default{border-color:#ea4335;}
-.tabla tr:nth-of-type(8n+6) .ui-state-default{background-color:#fdf2f1;}
-.tabla tr:nth-of-type(8n+6) .ui-state-default{color:#5c1009;}
-.tabla tr:nth-of-type(8n+6) .ui-state-default a{color:#5c1009;}
-.tabla tr:nth-of-type(8n+7) .ui-widget-content{border-color:#fbbc05;}
-.tabla tr:nth-of-type(8n+0) .ui-state-default{border-color:#fbbc05;}
-.tabla tr:nth-of-type(8n+0) .ui-state-default{background-color:#fefaef;}
-.tabla tr:nth-of-type(8n+0) .ui-state-default{color:#644b01;}
-.tabla tr:nth-of-type(8n+0) .ui-state-default a{color:#644b01;}
-.tabla tr:nth-of-type(8n+4) .ui-state-highlight{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+4) .ui-state-highlight{color:#363636;}
-.tabla tr:nth-of-type(8n+4) .ui-state-highlight a{color:#363636;}
-.tabla tr:nth-of-type(8n+6) .ui-state-highlight{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+6) .ui-state-highlight{color:#363636;}
-.tabla tr:nth-of-type(8n+6) .ui-state-highlight a{color:#363636;}
-.tabla tr:nth-of-type(8n+0) .ui-state-highlight{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+0) .ui-state-highlight{color:#363636;}
-.tabla tr:nth-of-type(8n+0) .ui-state-highlight a{color:#363636;}
+.helperlists tr:nth-of-type(8n+3) .ui-widget-content{border-color:#34a853;}
+.helperlists tr:nth-of-type(8n+4) .ui-state-default{border-color:#34a853;}
+.helperlists tr:nth-of-type(8n+4) .ui-state-default{background-color:#f3fbf5;}
+.helperlists tr:nth-of-type(8n+4) .ui-state-default{color:#184d26;}
+.helperlists tr:nth-of-type(8n+4) .ui-state-default a{color:#184d26;}
+.helperlists tr:nth-of-type(8n+5) .ui-widget-content{border-color:#ea4335;}
+.helperlists tr:nth-of-type(8n+6) .ui-state-default{border-color:#ea4335;}
+.helperlists tr:nth-of-type(8n+6) .ui-state-default{background-color:#fdf2f1;}
+.helperlists tr:nth-of-type(8n+6) .ui-state-default{color:#5c1009;}
+.helperlists tr:nth-of-type(8n+6) .ui-state-default a{color:#5c1009;}
+.helperlists tr:nth-of-type(8n+7) .ui-widget-content{border-color:#fbbc05;}
+.helperlists tr:nth-of-type(8n+0) .ui-state-default{border-color:#fbbc05;}
+.helperlists tr:nth-of-type(8n+0) .ui-state-default{background-color:#fefaef;}
+.helperlists tr:nth-of-type(8n+0) .ui-state-default{color:#644b01;}
+.helperlists tr:nth-of-type(8n+0) .ui-state-default a{color:#644b01;}
+.helperlists tr:nth-of-type(8n+4) .ui-state-highlight{background-color:#fbec88;}
+.helperlists tr:nth-of-type(8n+4) .ui-state-highlight{color:#363636;}
+.helperlists tr:nth-of-type(8n+4) .ui-state-highlight a{color:#363636;}
+.helperlists tr:nth-of-type(8n+6) .ui-state-highlight{background-color:#fbec88;}
+.helperlists tr:nth-of-type(8n+6) .ui-state-highlight{color:#363636;}
+.helperlists tr:nth-of-type(8n+6) .ui-state-highlight a{color:#363636;}
+.helperlists tr:nth-of-type(8n+0) .ui-state-highlight{background-color:#fbec88;}
+.helperlists tr:nth-of-type(8n+0) .ui-state-highlight{color:#363636;}
+.helperlists tr:nth-of-type(8n+0) .ui-state-highlight a{color:#363636;}
 
 /* SANZ FIXES */
-.tabla tr:nth-of-type(8n+4) .ui-widget-content{border-color:#34a853;}
-.tabla tr:nth-of-type(8n+5) .ui-state-default{border-color:#34a853;}
-.tabla tr:nth-of-type(8n+5) .ui-state-default{background-color:#f3fbf5;}
-.tabla tr:nth-of-type(8n+5) .ui-state-default{color:#184d26;}
-.tabla tr:nth-of-type(8n+5) .ui-state-default a{color:#184d26;}
-.tabla tr:nth-of-type(8n+6) .ui-widget-content{border-color:#ea4335;}
-.tabla tr:nth-of-type(8n+7) .ui-state-default{border-color:#ea4335;}
-.tabla tr:nth-of-type(8n+7) .ui-state-default{background-color:#fdf2f1;}
-.tabla tr:nth-of-type(8n+7) .ui-state-default{color:#5c1009;}
-.tabla tr:nth-of-type(8n+7) .ui-state-default a{color:#5c1009;}
-.tabla tr:nth-of-type(8n+0) .ui-widget-content{border-color:#fbbc05;}
-.tabla tr:nth-of-type(8n+1) .ui-state-default{border-color:#fbbc05;}
-.tabla tr:nth-of-type(8n+1) .ui-state-default{background-color:#fefaef;}
-.tabla tr:nth-of-type(8n+1) .ui-state-default{color:#644b01;}
-.tabla tr:nth-of-type(8n+1) .ui-state-default a{color:#644b01;}
-.tabla tr:nth-of-type(8n+5) .ui-state-highlight{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+5) .ui-state-highlight{color:#363636;}
-.tabla tr:nth-of-type(8n+5) .ui-state-highlight a{color:#363636;}
-.tabla tr:nth-of-type(8n+7) .ui-state-highlight{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+7) .ui-state-highlight{color:#363636;}
-.tabla tr:nth-of-type(8n+7) .ui-state-highlight a{color:#363636;}
-.tabla tr:nth-of-type(8n+1) .ui-state-highlight{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+1) .ui-state-highlight{color:#363636;}
-.tabla tr:nth-of-type(8n+1) .ui-state-highlight a{color:#363636;}
-
-/* SANZ FIXES */
-.tabla tr:nth-of-type(8n+4) a.ui-state-default{background-color:#34a853;}
-.tabla tr:nth-of-type(8n+4) a.ui-state-default{color:#ffffff;}
-.tabla tr:nth-of-type(8n+6) a.ui-state-default{background-color:#ea4335;}
-.tabla tr:nth-of-type(8n+6) a.ui-state-default{color:#ffffff;}
-.tabla tr:nth-of-type(8n+0) a.ui-state-default{background-color:#fbbc05;}
-.tabla tr:nth-of-type(8n+0) a.ui-state-default{color:#000000;}
-.tabla tr:nth-of-type(8n+4) a.ui-state-hover{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+4) a.ui-state-hover{color:#363636;}
-.tabla tr:nth-of-type(8n+6) a.ui-state-hover{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+6) a.ui-state-hover{color:#363636;}
-.tabla tr:nth-of-type(8n+0) a.ui-state-hover{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+0) a.ui-state-hover{color:#363636;}
-.tabla tr:nth-of-type(8n+4) a.ui-state-focus{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+4) a.ui-state-focus{color:#363636;}
-.tabla tr:nth-of-type(8n+6) a.ui-state-focus{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+6) a.ui-state-focus{color:#363636;}
-.tabla tr:nth-of-type(8n+0) a.ui-state-focus{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+0) a.ui-state-focus{color:#363636;}
-
-/* SANZ FIXES */
-.tabla tr:nth-of-type(8n+5) a.ui-state-default{background-color:#34a853;}
-.tabla tr:nth-of-type(8n+5) a.ui-state-default{color:#ffffff;}
-.tabla tr:nth-of-type(8n+7) a.ui-state-default{background-color:#ea4335;}
-.tabla tr:nth-of-type(8n+7) a.ui-state-default{color:#ffffff;}
-.tabla tr:nth-of-type(8n+1) a.ui-state-default{background-color:#fbbc05;}
-.tabla tr:nth-of-type(8n+1) a.ui-state-default{color:#000000;}
-.tabla tr:nth-of-type(8n+5) a.ui-state-hover{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+5) a.ui-state-hover{color:#363636;}
-.tabla tr:nth-of-type(8n+7) a.ui-state-hover{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+7) a.ui-state-hover{color:#363636;}
-.tabla tr:nth-of-type(8n+1) a.ui-state-hover{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+1) a.ui-state-hover{color:#363636;}
-.tabla tr:nth-of-type(8n+5) a.ui-state-focus{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+5) a.ui-state-focus{color:#363636;}
-.tabla tr:nth-of-type(8n+7) a.ui-state-focus{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+7) a.ui-state-focus{color:#363636;}
-.tabla tr:nth-of-type(8n+1) a.ui-state-focus{background-color:#fbec88;}
-.tabla tr:nth-of-type(8n+1) a.ui-state-focus{color:#363636;}
-
-/* SANZ FIXES */
-.ui-widget-content .ui-button2 span.ui-button{background-color:#34a853;}
-.ui-widget-content .ui-button2 span.ui-button{color:#ffffff;}
-.ui-widget-content .ui-button2 span.ui-button .ui-icon{background-image:url("images/ui-icons_ffffff_256x240.png");}
-.ui-widget-content .ui-button2 span.ui-button:hover{background-color:#fbec88;}
-.ui-widget-content .ui-button2 span.ui-button:hover{color:#363636;}
-.ui-widget-content .ui-button2 span.ui-button:hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
-.ui-widget-content .ui-button2 span.ui-button:focus{background-color:#fbec88;}
-.ui-widget-content .ui-button2 span.ui-button:focus{color:#363636;}
-.ui-widget-content .ui-button2 span.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.helperbuttons span.ui-button{background-color:#34a853;}
+.helperbuttons span.ui-button{color:#ffffff;}
+.helperbuttons span.ui-button .ui-icon{background-image:url("images/ui-icons_ffffff_256x240.png");}
+.helperbuttons span.ui-button:hover{background-color:#fbec88;}
+.helperbuttons span.ui-button:hover{color:#363636;}
+.helperbuttons span.ui-button:hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.helperbuttons span.ui-button:focus{background-color:#fbec88;}
+.helperbuttons span.ui-button:focus{color:#363636;}
+.helperbuttons span.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}

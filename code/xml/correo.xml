@@ -450,7 +450,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field ifeval="!ismobile()">
 					<type>menu</type>
 					<name>options</name>
-					<class>ui-button2</class>
 					<tip lang="true">optionstip</tip>
 					<option>
 						<label lang="true">options</label>

@@ -415,7 +415,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="list_table">
-	<table class="tabla" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
+	<table class="tabla helperlists" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
 		<thead>
 			<tr>
 				<xsl:call-template name="list_table_head"/>
@@ -549,9 +549,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:call-template name="list_pager"/>
 				</div>
 				<xsl:for-each select="form">
-					<xsl:call-template name="form_maker">
-						<xsl:with-param name="clase">helperbuttons</xsl:with-param>
-					</xsl:call-template>
+					<xsl:call-template name="form_maker"/>
 				</xsl:for-each>
 			</xsl:for-each>
 		</div>
@@ -1357,8 +1355,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="form_maker">
-	<xsl:param name="clase"/>
-	<form name="{name}" id="{name}" action="{action}" method="{method}" onsubmit="return false" class="{$clase}">
+	<form name="{name}" id="{name}" action="{action}" method="{method}" onsubmit="return false">
 		<!-- <xsl:if test="method='post'"><xsl:attribute name="enctype">multipart/form-data</xsl:attribute></xsl:if> -->
 		<xsl:call-template name="form_maker_1"/>
 		<xsl:call-template name="form_maker_2"/>
@@ -1547,9 +1544,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:for-each select="/root/form">
 				<xsl:call-template name="styles"/>
 				<xsl:call-template name="javascript"/>
-				<xsl:call-template name="form_maker">
-					<xsl:with-param name="clase"></xsl:with-param>
-				</xsl:call-template>
+				<xsl:call-template name="form_maker"/>
 			</xsl:for-each>
 		</div>
 	</xsl:if>

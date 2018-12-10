@@ -42,7 +42,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<field ifeval="!ismobile()">
 			<type>select</type>
 			<name>selectlimit</name>
-			<class>ui-button2</class>
 			<label lang="true">regspage</label>
 			<rows>
 				<temp global="rows" eval="true">$rows=explode(',',getDefault('regspagerlist'))</temp>
@@ -81,7 +80,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<field>
 			<type>select</type>
 			<name>selectpager</name>
-			<class>ui-button2</class>
 			<rows>
 				<row>
 					<label global="offset,limit" eval="true">intval($offset/max($limit,1))+1</label>
