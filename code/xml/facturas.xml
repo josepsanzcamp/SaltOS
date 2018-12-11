@@ -1161,6 +1161,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 					</tail>
 					<tail>
+						<class>helperbuttons</class>
 						<field>
 							<type>button</type>
 							<value lang="true">addconcept</value>
@@ -1378,6 +1379,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 					</tail>
 					<tail>
+						<class>helperbuttons</class>
 						<field>
 							<type>button</type>
 							<value lang="true">addproduct</value>
@@ -1587,6 +1589,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 					</tail>
 					<tail>
+						<class>helperbuttons</class>
 						<field>
 							<type>button</type>
 							<value lang="true">addvencimiento</value>

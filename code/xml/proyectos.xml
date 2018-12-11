@@ -1160,6 +1160,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						</field>
 					</tail>
 					<tail>
+						<class>helperbuttons</class>
 						<field>
 							<type>button</type>
 							<value lang="true">addtarea</value>
@@ -1443,6 +1444,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 						</field>
 					</tail>
 					<tail>
+						<class>helperbuttons</class>
 						<field>
 							<type>button</type>
 							<value lang="true">addproduct</value>

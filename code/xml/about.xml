@@ -734,6 +734,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 					<row>
+						<class>helperbuttons</class>
 						<field>
 							<label lang="true">vxinfo</label>
 							<type>label</type>

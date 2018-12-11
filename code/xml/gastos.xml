@@ -800,12 +800,12 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">percent</label>
+							<label eval="true">LANG("percent")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">importe</label>
+							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
@@ -905,12 +905,12 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">percent</label>
+							<label eval="true">LANG("percent")." (%)"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
 							<type>label</type>
-							<label lang="true">importe</label>
+							<label eval="true">LANG("importe")." (".CONFIG("accounting_currency").")"</label>
 							<class>center bold thead</class>
 						</field>
 						<field>
@@ -926,6 +926,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 						</field>
 					</head>
 					<row>
+						<class>none</class>
 						<field>
 							<name>id</name>
 							<type>hidden</type>
@@ -978,6 +979,22 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<icon>fa fa-calendar</icon>
 						</field>
 					</row>
+					<tail>
+						<field>
+							<type>separator</type>
+						</field>
+					</tail>
+					<tail>
+						<class>helperbuttons</class>
+						<field>
+							<type>button</type>
+							<value lang="true">addvencimiento</value>
+							<class>left</class>
+							<class2>init_additem</class2>
+							<onclick>additem(this)</onclick>
+							<icon>fa fa-plus-circle</icon>
+						</field>
+					</tail>
 				</fieldset>
 			</vencimientos_new>
 			<control include="xml/common/control.xml" />
