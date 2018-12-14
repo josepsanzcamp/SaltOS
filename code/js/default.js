@@ -1678,7 +1678,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				removePlugins:"elementspath",
 				enterMode:CKEDITOR.ENTER_BR,
 				shiftEnterMode:CKEDITOR.ENTER_BR,
-				forcePasteAsPlainText:true,
+				//~ forcePasteAsPlainText:true,
 				toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet","base64image"],["About"]],
 				language:lang_default(),
 				//~ uiColor:get_colors("ui-state-default","background-color"),
