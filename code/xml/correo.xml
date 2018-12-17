@@ -992,6 +992,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 							<required>true</required>
 							<ckeditor>true</ckeditor>
+							<ckextra>signature; blockquote div{*}</ckextra>
 						</field>
 						<field global="id" ifeval="$id&lt;0">
 							<name>message</name>

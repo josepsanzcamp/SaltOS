@@ -1678,11 +1678,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				removePlugins:"elementspath",
 				enterMode:CKEDITOR.ENTER_BR,
 				shiftEnterMode:CKEDITOR.ENTER_BR,
-				//~ forcePasteAsPlainText:true,
-				toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet","base64image"],["About"]],
+				toolbar:[["Bold","Italic","Underline","Strike"],["NumberedList","BulletedList","-","Outdent","Indent"],["Link","Unlink"],["TextColor","BGColor"],["Undo","Redo"],["Maximize","Source","CodeSnippet","base64image","HorizontalRule"],["About"]],
 				language:lang_default(),
-				//~ uiColor:get_colors("ui-state-default","background-color"),
-				//~ uiColor:"transparent",
 				autoGrow_onStartup:true,
 				autoGrow_minHeight:$(this).height()-25,
 				width:$(this).width()+10,
@@ -1691,7 +1688,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				dialog_backgroundCoverOpacity:0.3,
 				resize_enabled:false,
 				codeSnippetGeshi_url:"../../?action=geshi",
-				allowedContent:true,
+				//~ forcePasteAsPlainText:true,
+				//~ uiColor:get_colors("ui-state-default","background-color"),
+				//~ uiColor:"transparent",
+				//~ allowedContent:true,
+				extraAllowedContent:$(this).attr("ckextra"),
 			},function() {
 				var obj=$("#"+$(this).attr("name")).next();
 				$(obj).addClass("ui-state-default ui-corner-all");
