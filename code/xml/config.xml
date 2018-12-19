@@ -126,8 +126,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<wavetomp3>lame</wavetomp3><!-- for voice module -->
 		<__wavetomp3__>--quiet __INPUT__ __OUTPUT__</__wavetomp3__>
 		<translate>translate</translate><!-- for translator module -->
-		<__translate__>-s google -f __FROM__ -t __TO__ __INPUT__</__translate__>
-		<__translate_langs__>-s google -l</__translate_langs__>
+		<__translate__>-s imtranslator -f __FROM__ -t __TO__ __INPUT__</__translate__>
+		<__translate_langs__>-s imtranslator -l</__translate_langs__>
 		<aspell>aspell</aspell><!-- for translator module -->
 		<__aspell__>-a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
 		<__aspell_langs__>dump dicts</__aspell_langs__>
