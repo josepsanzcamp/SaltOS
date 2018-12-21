@@ -693,7 +693,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>state_error</name>
-					<type>VARCHAR(255)</type>
+					<type>TEXT</type>
 				</field>
 				<field>
 					<name>state_crt</name>
