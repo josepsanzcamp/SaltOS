@@ -1476,8 +1476,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					width="auto";
 				}
 			}
+			var position={my:"left top",at:"left bottom",collision:"none"};
+			if($(this).attr("dir")=="up") position={my:"left bottom",at:"left top",collision:"none"};
+			if($(this).attr("dir")=="right") position={my:"right top",at:"right bottom",collision:"none"};
+			if($(this).attr("dir")=="up right") position={my:"right bottom",at:"right top",collision:"none"};
 			$(this).selectmenu({
 				width:width,
+				position:position,
 				change:function() {
 					$(this).trigger("change");
 				},

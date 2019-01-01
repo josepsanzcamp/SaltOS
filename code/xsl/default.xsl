@@ -871,7 +871,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}" original="{value}" width2="{width}">
+				<select name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}" original="{value}" width2="{width}" dir="{dir}">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="disabled">true</xsl:attribute>
 					</xsl:if>

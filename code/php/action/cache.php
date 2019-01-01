@@ -33,23 +33,24 @@ if(getParam("action")=="cache") {
 	foreach($files as $key=>$val) $files[$key]=trim($val);
 	//if(file_exists($cache)) unlink($cache);
 	if(!cache_exists($cache,$files)) {
-		file_put_contents($cache,"");
-		chmod_protected($cache,0666);
+		$buffer="";
 		foreach($files as $file) {
 			if(file_exists($file)) {
 				$type=saltos_content_type($file);
 				if($type=="text/css") {
-					$buffer=file_get_contents($file);
-					$buffer=__cache_resolve_path($buffer,$file);
-					if($useimginline) $buffer=inline_images($buffer);
-					file_put_contents($cache,$buffer,FILE_APPEND);
+					$temp=file_get_contents($file);
+					$temp=__cache_resolve_path($temp,$file);
+					if($useimginline) $temp=inline_images($temp);
+					$buffer.=$temp;
 				} elseif($type=="text/javascript") {
-					$buffer=file_get_contents($file);
-					if(substr(trim($buffer),-1,1)!=";") $buffer.=";";
-					file_put_contents($cache,$buffer,FILE_APPEND);
+					$temp=file_get_contents($file);
+					if(substr(trim($temp),-1,1)!=";") $temp.=";";
+					$buffer.=$temp;
 				}
 			}
 		}
+		file_put_contents($cache,$buffer);
+		chmod_protected($cache,0666);
 	}
 	output_handler(array(
 		"file"=>$cache,
