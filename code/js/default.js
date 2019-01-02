@@ -65,7 +65,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var label="";
 		$("[isrequired=true]").each(function() {
 			// CHECK FOR VISIBILITY
-			if(this.type && substr(this.type,0,6)=="select") {
+			if(substr(this.type,0,6)=="select") {
 				if(!$(this).next().is(":visible")) return;
 			} else {
 				if(!$(this).is(":visible")) return;
@@ -73,7 +73,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			// CONTINUE
 			var valor=$(this).val();
 			var campo=this;
-			if(this.type && substr(this.type,0,6)=="select") {
+			if(substr(this.type,0,6)=="select") {
 				if(valor=="0") valor="";
 				campo=$(this).next().get(0);
 			}
@@ -1422,16 +1422,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					for(var i=0,len=this.form.elements.length;i<len;i++) {
 						if(this==this.form.elements[i]) break;
 					}
+					console.log(this.form.elements.length);
+					console.log(i);
 					for(var j=0,len=this.form.elements.length;j<len;j++) {
 						i=(i+1)%this.form.elements.length;
-						if(this.form.elements[i].type!="hidden") break;
+						if(this.form.elements[i].type=="text") break;
 					}
+					console.log(i);
 					$(this.form.elements[i]).trigger("focus");
-					if(this.form.elements[i].type) {
-						if(substr(this.form.elements[i].type,0,6)!="select") {
-							this.form.elements[i].select();
-						}
-					}
 				}
 			}
 		});
