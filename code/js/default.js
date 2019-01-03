@@ -1422,13 +1422,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					for(var i=0,len=this.form.elements.length;i<len;i++) {
 						if(this==this.form.elements[i]) break;
 					}
-					console.log(this.form.elements.length);
-					console.log(i);
 					for(var j=0,len=this.form.elements.length;j<len;j++) {
 						i=(i+1)%this.form.elements.length;
 						if(this.form.elements[i].type=="text") break;
 					}
-					console.log(i);
 					$(this.form.elements[i]).trigger("focus");
 				}
 			}
