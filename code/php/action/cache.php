@@ -33,6 +33,7 @@ if(getParam("action")=="cache") {
 	foreach($files as $key=>$val) $files[$key]=trim($val);
 	//if(file_exists($cache)) unlink($cache);
 	if(!cache_exists($cache,$files)) {
+		if(!semaphore_acquire(__FILE__,getDefault("cachetimeout",10000000))) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 		$buffer="";
 		foreach($files as $file) {
 			if(file_exists($file)) {
@@ -51,6 +52,7 @@ if(getParam("action")=="cache") {
 		}
 		file_put_contents($cache,$buffer);
 		chmod_protected($cache,0666);
+		semaphore_release(__FILE__);
 	}
 	output_handler(array(
 		"file"=>$cache,
