@@ -103,4 +103,12 @@ function __libsqlite_repeat($str,$count) {
 function __libsqlite_find_in_set($str,$strlist) {
 	return in_array($str,explode(",",$strlist))?1:0;
 }
+
+function __libsqlite_if($condition,$value_if_true,$value_if_false) {
+	return $condition?$value_if_true:$value_if_false;
+}
+
+function __libsqlite_pow($base,$exp) {
+	return pow($base,$exp);
+}
 ?>

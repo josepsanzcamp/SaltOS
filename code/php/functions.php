@@ -1265,7 +1265,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 	foreach($queries as $key=>$val) $queries[$key]="IFNULL((${val}),'')";
 	$search="CONCAT(".implode(",' ',",$queries).")";
 	// TO FIX THE ERROR CAUSED BY "DATA TOO LONG FOR COLUMN SEARCH"
-	$search="IF(LENGTH(${search})>=POW(2,24),SUBSTR(${search},1,POW(2,24)-1-LENGTH(${search})+CHAR_LENGTH(${search})),${search})";
+	$search="/*MYSQL IF(LENGTH(${search})>=POW(2,24),SUBSTR(${search},1,POW(2,24)-1-LENGTH(${search})+CHAR_LENGTH(${search})),${search}) *//*SQLITE ${search} */";
 	// AÑADIR A LA TABLA INDEXING
 	if($id_indexing) {
 		$query=make_update_query("tbl_indexing",array(),make_where_query(array(

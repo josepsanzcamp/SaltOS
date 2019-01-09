@@ -60,6 +60,8 @@ class database_sqlite3 {
 			$this->link->createFunction("MD5","__libsqlite_md5");
 			$this->link->createFunction("REPEAT","__libsqlite_repeat");
 			$this->link->createFunction("FIND_IN_SET","__libsqlite_find_in_set");
+			$this->link->createFunction("IF","__libsqlite_if");
+			$this->link->createFunction("POW","__libsqlite_pow");
 		}
 	}
 
