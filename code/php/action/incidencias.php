@@ -137,7 +137,7 @@ if($page=="correo") {
 				if($decoded) {
 					$info=__getmail_getinfo(__getmail_getnode("0",$decoded));
 					foreach($info["emails"] as $email) {
-						if(strpos($email_support,$email["valor"])!==false) $ok=1;
+						if($email["valor"]!="" && strpos($email_support,$email["valor"])!==false) $ok=1;
 					}
 				}
 			}
@@ -177,7 +177,7 @@ if($page=="correo") {
 		}
 		$ok=0;
 		foreach($info["emails"] as $email) {
-			if(strpos($email_support,$email["valor"])!==false) $ok=1;
+			if($email["valor"]!="" && strpos($email_support,$email["valor"])!==false) $ok=1;
 		}
 		if(!$ok) {
 			session_error(LANG("notsupportfound","correo"));
