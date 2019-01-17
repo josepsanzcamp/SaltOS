@@ -47,6 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</field>
 			<field>
 				<type>grid</type>
+				<class>helperbuttons</class>
 				<rows>
 					<row>
 						<field>
@@ -89,6 +90,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</field>
 			<field>
 				<type>grid</type>
+				<class>helperbuttons</class>
 				<rows>
 					<row>
 						<field>
