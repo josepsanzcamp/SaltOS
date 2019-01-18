@@ -1042,9 +1042,7 @@ function pretty_html_error($msg) {
 	$html.="</style>";
 	$html.="</head>";
 	$html.="<body class='phperror'>";
-	$bug=base64_encode(json_encode(array("app"=>get_name_version_revision(),"msg"=>$msg)));
 	$html.=__pretty_html_error_helper("",array("page"=>"home"),LANG_LOADED()?LANG("gotohome"):"Go to home");
-	$html.=__pretty_html_error_helper("http://bugs.saltos.org",array("bug"=>$bug),LANG_LOADED()?LANG("notifybug"):"Notify bug");
 	$html.="<h1>".get_name_version_revision()."</h1>";
 	$html.=$msg;
 	$html.="</body>";

@@ -303,7 +303,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgerrorsemaphore>S'ha produït un error de concurrència, es cancel.la l'accés a l'acció </msgerrorsemaphore>
 		<msgnotcheckbox>Heu de seleccionar algun registre de la llista per utilitzar aquesta opció</msgnotcheckbox>
 		<gotohome>Tornar a carregar</gotohome>
-		<notifybug>Notificar error</notifybug>
 		<actioncompress>Descarregar fitxers seleccionats</actioncompress>
 		<zipformat>Format ZIP</zipformat>
 		<tarformat>TAR</tarformat>
@@ -1006,7 +1005,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<title_logo>Definiu el logotip, posició, mida i colors que s'utilitzaran en els pdf's</title_logo>
 		<logo>Logotip</logo>
 		<logoleft>Posició del logo X</logoleft>
-		<logotop>I</logotop>
+		<logotop>Y</logotop>
 		<logowidth>Ample</logowidth>
 		<logoheight>Alt</logoheight>
 		<logofile>Fitxer del logotip actual</logofile>
@@ -1253,7 +1252,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logo>Logotip</logo>
 		<title_logo>Definiu el logotip, posició, mida i colors que s'utilitzarà en les factures</title_logo>
 		<logoleft>Posició del logo X</logoleft>
-		<logotop>I</logotop>
+		<logotop>Y</logotop>
 		<logowidth>Ample</logowidth>
 		<logoheight>Alt</logoheight>
 		<logofile>Fitxer del logotip actual</logofile>

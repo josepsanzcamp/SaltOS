@@ -303,7 +303,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgerrorsemaphore>Se ha producido un error de concurrencia, se cancela el acceso a la acción </msgerrorsemaphore>
 		<msgnotcheckbox>Debe seleccionar algún registro del listado para usar esta opción</msgnotcheckbox>
 		<gotohome>Volver a cargar</gotohome>
-		<notifybug>Notificar fallo</notifybug>
 		<actioncompress>Descargar ficheros seleccionados</actioncompress>
 		<zipformat>Formato ZIP</zipformat>
 		<tarformat>TAR</tarformat>
