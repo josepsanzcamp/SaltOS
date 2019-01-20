@@ -83,6 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<permissiondata>Create administer permissions for the group</permissiondata>
 		<finish>Installation Complete</finish>
 		<gotohome>Reload page</gotohome>
+		<notifybug>Report bug</notifybug>
 		<step>Step</step>
 		<lang>Language</lang>
 		<style>Style</style>

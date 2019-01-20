@@ -1121,7 +1121,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			update_style(html,html2);
 			make_draganddrop(screen2);
 			make_focus();
-			$(window).trigger("resize");
 			//~ console.timeEnd("updatecontent center fase 1");
 		},100);
 		//~ console.timeEnd("updatecontent center fase 0");
@@ -2260,29 +2259,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		})
 	}
 
-	// COPIED FROM STACK OVERFLOW
-	// http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
-	(function ($) {
-		var methods = { on: $.fn.on, bind: $.fn.bind };
-		$.each(methods, function(k){
-			$.fn[k] = function () {
-				var args = [].slice.call(arguments),
-					delay = args.pop(),
-					fn = args.pop(),
-					timer;
-				args.push(function () {
-					var self = this,
-						arg = arguments;
-					clearTimeout(timer);
-					timer = setTimeout(function(){
-						fn.apply(self, [].slice.call(arg));
-					}, delay);
-				});
-				return methods[k].apply(this, isNaN(delay) ? arguments : args);
-			};
-		});
-	}(jQuery));
-
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
 	$.ajaxSetup({ cache:true });
 
@@ -2329,7 +2305,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				//~ console.time("document_ready fase 2 center");
 				make_draganddrop(screen);
 				make_focus();
-				$(window).trigger("resize");
 				//~ console.timeEnd("document_ready fase 2 center");
 			},100);
 			unloadingcontent();

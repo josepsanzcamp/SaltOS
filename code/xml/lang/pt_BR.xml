@@ -303,6 +303,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgerrorsemaphore>Ocorreu um erro de concorrência, ação cancelada</msgerrorsemaphore>
 		<msgnotcheckbox>Deve selecionar algum registo da lista para usar esta opção</msgnotcheckbox>
 		<gotohome>Recarregar</gotohome>
+		<notifybug>Reportar falha</notifybug>
 		<actioncompress>Descarregar Arquivos selecionados</actioncompress>
 		<zipformat revised="false">Formato ZIP</zipformat>
 		<tarformat>TAR</tarformat>

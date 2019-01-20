@@ -83,6 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<permissiondata>انشاء صلاحيات مدير للمجموعة</permissiondata>
 		<finish>اكتمل التثبيت</finish>
 		<gotohome>اعادة تحميل الصفحة</gotohome>
+		<notifybug>التبليغ عن مشكلة</notifybug>
 		<step>الخطوة</step>
 		<lang>اللغة</lang>
 		<style>المظهر</style>

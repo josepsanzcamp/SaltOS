@@ -303,6 +303,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgerrorsemaphore> هناك خطأ متزامن قم بالغاء الوصول للاجراء </msgerrorsemaphore>
 		<msgnotcheckbox>يجب ان تختار سجل من القائمة  لاستخدام هذه الخاصية</msgnotcheckbox>
 		<gotohome>اعادة تحميل الصفحة</gotohome>
+		<notifybug>الابلاغ عن خطأ</notifybug>
 		<actioncompress>تنزيل الملفات المحددة</actioncompress>
 		<zipformat>صيغة ZIP</zipformat>
 		<tarformat>TAR</tarformat>

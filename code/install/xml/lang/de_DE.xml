@@ -83,6 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<permissiondata>Erstellen der Berechtigungen für die Administrator-Gruppe</permissiondata>
 		<finish>Ende der Installation</finish>
 		<gotohome>Aktualisieren</gotohome>
+		<notifybug>Fehler benachrichtigen</notifybug>
 		<step>Schritt</step>
 		<lang revised="false">Sprache</lang>
 		<style revised="false">Design</style>

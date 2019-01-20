@@ -83,6 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<permissiondata>Criar permissões para o grupo administador</permissiondata>
 		<finish>Fim da instalação</finish>
 		<gotohome>Voltar e carregar</gotohome>
+		<notifybug>Notificar falha</notifybug>
 		<step>Passo</step>
 		<lang revised="false">Linguagem</lang>
 		<style revised="false">Style</style>

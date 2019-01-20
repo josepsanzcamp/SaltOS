@@ -303,6 +303,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgerrorsemaphore>There was a concurrency error is canceled access to action </msgerrorsemaphore>
 		<msgnotcheckbox>You must select a record from the list to use this feature</msgnotcheckbox>
 		<gotohome>Reload page</gotohome>
+		<notifybug>Report bug</notifybug>
 		<actioncompress>Download selected files</actioncompress>
 		<zipformat>ZIP format</zipformat>
 		<tarformat>TAR</tarformat>

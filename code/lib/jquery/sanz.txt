@@ -13,3 +13,23 @@ By the follow simplified code:
 This change fix the bug when displays more that 1 month at the same time and the showCurrentAtPos is different of 0
 
 And then, minified!!!.
+
+========================================================================================================================
+
+Fixed a bug in jquery.autogrow:
+
+I have replaced:
+
+	appendTo(document.body);
+
+By:
+
+	appendTo(".ui-layout-center");
+
+And too, I have comment:
+
+	$(window).resize(update);
+
+This change fix the bug that causes that the body node filling up with all helper objects
+
+And then, minified!!!.

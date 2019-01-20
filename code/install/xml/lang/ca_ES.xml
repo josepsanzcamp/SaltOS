@@ -83,6 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<permissiondata>Crear permisos per al grup administrador que</permissiondata>
 		<finish>Fi de la instal·lació</finish>
 		<gotohome>Tornar a carregar</gotohome>
+		<notifybug>Notificar error</notifybug>
 		<step>Pas</step>
 		<lang>Idioma</lang>
 		<style>Diseny</style>
