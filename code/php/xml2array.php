@@ -48,67 +48,13 @@ function struct2array(&$data,$file="") {
 		if($type=="open") {
 			// CASE 1 <some>
 			$value=struct2array($data,$file);
-			$path="";
-			$action="";
-			foreach($attr as $key=>$val) {
-				$key=limpiar_key($key);
-				if($key=="path") {
-					$path=$val;
-				} elseif(in_array($key,array("before","after","replace","append","add","remove","delete"))) {
-					if($action!="") xml_error("Detected '$action' and '$key' attr in the same node",$linea,"",$file);
-					$action=$key;
-				}
-			}
-			if($path && !$action) xml_error("Detected 'path' attr without 'before', 'after' or 'replace' attr",$linea,"",$file);
-			if($action && !$path) xml_error("Detected '$action' attr without 'path' attr",$linea,"",$file);
-			if($path) unset_array($attr,"path");
-			if($action) unset_array($attr,$action);
-			if($path) $array=__set_array_recursive($array,$path,$value,$action);
 			if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
-			if(!$path) set_array($array,$name,$value);
+			set_array($array,$name,$value);
 		} elseif($type=="close") {
 			// CASE 2 </some>
 			return $array;
-		} elseif($type=="complete" && $value=="") {
+		} elseif($type=="complete") {
 			// CASE 3 <some/>
-			$include=0;
-			$replace=0;
-			foreach($attr as $key=>$val) {
-				$key=limpiar_key($key);
-				if($key=="include") {
-					$value=xml2array($val);
-					$include=1;
-				} elseif($key=="replace") {
-					$replace=eval_bool($val);
-				}
-			}
-			if($replace && !$include) xml_error("Attr 'replace' not allowed without attr 'include'",$linea,"",$file);
-			if($include) unset_array($attr,"include");
-			if($replace) unset_array($attr,"replace");
-			if(count($attr)) {
-				if($replace) {
-					if(is_array($value)) {
-						foreach($value as $key=>$val) {
-							if(is_array($val) && isset($val["value"]) && isset($val["#attr"])) {
-								$value[$key]["#attr"]=$attr;
-								foreach($val["#attr"] as $key2=>$val2) set_array($value[$key]["#attr"],$key2,$val2);
-							} else {
-								$value[$key]=array("value"=>$val,"#attr"=>$attr);
-							}
-						}
-					}
-				} else {
-					$value=array("value"=>$value,"#attr"=>$attr);
-				}
-			}
-			if($replace && is_array($value)) {
-				foreach($value as $key=>$val) {
-					set_array($array,$key,$val);
-				}
-			} else {
-				set_array($array,$name,$value);
-			}
-		} elseif($type=="complete" && $value!="") {
 			// CASE 4 <some>some</some>
 			if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
 			set_array($array,$name,$value);
@@ -121,10 +67,107 @@ function struct2array(&$data,$file="") {
 	return $array;
 }
 
+function struct2array_include($input) {
+	if(!is_array($input)) {
+		return $input;
+	} elseif(isset($input["value"]) && isset($input["#attr"])) {
+		$input["value"]=struct2array_include($input["value"]);
+		return $input;
+	} else {
+		$array=array();
+		foreach($input as $name=>$node) {
+			if(isset($node["value"]) && isset($node["#attr"])) {
+				$value=$node["value"];
+				$attr=$node["#attr"];
+				$include=0;
+				$replace=0;
+				foreach($attr as $key=>$val) {
+					$key=limpiar_key($key);
+					if($key=="include") {
+						$value=xml2array($val);
+						$include=1;
+					} elseif($key=="replace") {
+						$replace=eval_bool($val);
+					}
+				}
+				if(isset($attr["path"]) && isset($attr["replace"])) { $replace=0; $include=0; }
+				if($replace && !$include) xml_error("Attr 'replace' not allowed without attr 'include'");
+				if($include) unset_array($attr,"include");
+				if($replace) unset_array($attr,"replace");
+				if(count($attr)) {
+					if($replace) {
+						if(is_array($value)) {
+							foreach($value as $key=>$val) {
+								if(is_array($val) && isset($val["value"]) && isset($val["#attr"])) {
+									$value[$key]["#attr"]=$attr;
+									foreach($val["#attr"] as $key2=>$val2) set_array($value[$key]["#attr"],$key2,$val2);
+								} else {
+									$value[$key]=array("value"=>$val,"#attr"=>$attr);
+								}
+							}
+						}
+					} else {
+						$value=array("value"=>$value,"#attr"=>$attr);
+					}
+				}
+				if($replace && is_array($value)) {
+					foreach($value as $key=>$val) {
+						set_array($array,$key,struct2array_include($val));
+					}
+				} else {
+					set_array($array,$name,struct2array_include($value));
+				}
+			} else {
+				set_array($array,$name,struct2array_include($node));
+			}
+		}
+		return $array;
+	}
+}
+
+function struct2array_path($input) {
+	if(!is_array($input)) {
+		return $input;
+	} elseif(isset($input["value"]) && isset($input["#attr"])) {
+		$input["value"]=struct2array_path($input["value"]);
+		return $input;
+	} else {
+		$array=array();
+		foreach($input as $name=>$node) {
+			if(isset($node["value"]) && isset($node["#attr"])) {
+				$value=$node["value"];
+				$attr=$node["#attr"];
+				$path="";
+				$action="";
+				foreach($attr as $key=>$val) {
+					$key=limpiar_key($key);
+					if($key=="path") {
+						$path=$val;
+					} elseif(in_array($key,array("before","after","replace","append","add","remove","delete"))) {
+						if($action!="") xml_error("Detected '$action' and '$key' attr in the same node");
+						$action=$key;
+					}
+				}
+				if($path && !$action) xml_error("Detected 'path' attr without 'before', 'after' or 'replace' attr");
+				if($action && !$path) xml_error("Detected '$action' attr without 'path' attr");
+				if($path) unset_array($attr,"path");
+				if($action) unset_array($attr,$action);
+				if($path) $array=__set_array_recursive($array,$path,struct2array_path($value),$action);
+				if(count($attr)) $value=array("value"=>$value,"#attr"=>$attr);
+				if(!$path) set_array($array,$name,struct2array_path($value));
+			} else {
+				set_array($array,$name,struct2array_path($node));
+			}
+		}
+		return $array;
+	}
+}
+
 function __set_array_recursive($array,$keys,$value,$type) {
 	if(!is_array($keys)) $keys=explode("/",$keys);
+	$key0=array_shift($keys);
 	// RESOLVE NODE USING XPATH SYNTAX
-	$path=explode("[",str_replace("]","",$keys[0]));
+	$path=explode("[",str_replace("]","",$key0));
 	$count=count($path);
 	if($count>1) {
 		for($i=1;$i<$count;$i++) {
@@ -148,17 +191,15 @@ function __set_array_recursive($array,$keys,$value,$type) {
 			if($valid) $key[]=$key2;
 		}
 	} else {
-		$key=array($keys[0]);
+		$key=array($key0);
 	}
 	// CONTINUE
-	$count=count($keys);
-	if($count>1) {
-		$temp=array_slice($keys,1);
+	if(count($keys)>0) {
 		foreach($key as $key2) {
 			if(!isset($array[$key2])) xml_error("Undefined node: $key2");
-			$array[$key2]=__set_array_recursive($array[$key2],$temp,$value,$type);
+			$array[$key2]=__set_array_recursive($array[$key2],$keys,$value,$type);
 		}
-	} elseif($count==1) {
+	} else {
 		$temp=array();
 		$hasattr=(isset($array["value"]) && isset($array["#attr"]));
 		$array_value=$hasattr?$array["value"]:$array;
@@ -204,8 +245,6 @@ function __set_array_recursive($array,$keys,$value,$type) {
 			}
 		}
 		$array=count($array_attr)?array("value"=>$temp,"#attr"=>$array_attr):$temp;
-	} else {
-		xml_error("Error in __set_array_recursive using count 0");
 	}
 	return $array;
 }
@@ -219,7 +258,6 @@ function set_array(&$array,$name,$value) {
 		while(isset($array[$name.$count])) $count++;
 		$array[$name.$count]=$value;
 	}
-
 }
 
 function unset_array(&$array,$name) {
@@ -265,17 +303,21 @@ function eval_files() {
 	}
 }
 
+function detect_recursion($fn) {
+	$temp=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+	foreach($temp as $key=>$val) {
+		if(!isset($val["function"]) || $val["function"]!=$fn) {
+			unset($temp[$key]);
+		}
+	}
+	return count($temp);
+}
+
 function xml2array($file,$usecache=true) {
 	static $depend=array();
 	if(!file_exists($file)) xml_error("File not found: $file");
 	if($usecache) {
-		$temp=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-		foreach($temp as $key=>$val) {
-			if(!isset($val["function"]) || $val["function"]!=__FUNCTION__) {
-				unset($temp[$key]);
-			}
-		}
-		if(count($temp)==1) $depend=array();
+		if(detect_recursion(__FUNCTION__)==1) $depend=array();
 		$cache=get_cache_file($file,".json");
 		if(cache_exists($cache,$file)) {
 			$array=json_decode(file_get_contents($cache),true);
@@ -291,6 +333,8 @@ function xml2array($file,$usecache=true) {
 	$data=xml2struct($xml,$file);
 	$data=array_reverse($data);
 	$array=struct2array($data,$file);
+	$array=struct2array_include($array);
+	if(detect_recursion(__FUNCTION__)==1) $array=struct2array_path($array);
 	if($usecache) {
 		$depend[]=$file;
 		$array["depend"]=array_unique($depend);
