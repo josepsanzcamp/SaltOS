@@ -1055,7 +1055,7 @@ function __pretty_html_error_helper($action,$hiddens,$submit) {
 	$html="";
 	$html.="<form action='${action}' method='post'>";
 	foreach($hiddens as $key=>$val) {
-		$val=addslashes($val);
+		$val=htmlentities($val,ENT_COMPAT,"UTF-8");
 		$html.="<input type=\"hidden\" name=\"${key}\" value=\"${val}\"/>";
 	}
 	$html.="<input type='submit' value='${submit}'/>";
