@@ -158,6 +158,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<logfile>saltos.log</logfile>
 		<errorfile>error.log</errorfile>
 		<warningfile>warning.log</warningfile>
+		<deprecatedfile>deprecated.log</deprecatedfile>
+		<phperrorfile>phperror.log</phperrorfile>
+		<xmlerrorfile>xmlerror.log</xmlerrorfile>
+		<dberrorfile>dberror.log</dberrorfile>
+		<jserrorfile>jserror.log</jserrorfile>
 		<maxfilesize>100M</maxfilesize>
 	</debug>
 	<parser>

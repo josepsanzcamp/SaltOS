@@ -302,15 +302,15 @@ function sql_create_table($tablespec) {
 		if(isset($field["pkey"]) && eval_bool($field["pkey"])) $extra="PRIMARY KEY /*MYSQL AUTO_INCREMENT *//*SQLITE AUTOINCREMENT */";
 		$fields[]="${name} ${type} ${extra}";
 	}
-	//~ foreach($tablespec["fields"] as $field) {
-		//~ if(isset($field["fkey"])) {
-			//~ $fkey=$field["fkey"];
-			//~ if($fkey!="") {
-				//~ $name=$field["name"];
-				//~ $fields[]="FOREIGN KEY (${name}) REFERENCES ${fkey} (id)";
-			//~ }
-		//~ }
-	//~ }
+	foreach($tablespec["fields"] as $field) {
+		if(isset($field["fkey"])) {
+			$fkey=$field["fkey"];
+			if($fkey!="") {
+				$name=$field["name"];
+				$fields[]="FOREIGN KEY (${name}) REFERENCES ${fkey} (id)";
+			}
+		}
+	}
 	$fields=implode(",",$fields);
 	if(__has_fulltext_index($table) && __has_mroonga_engine()) {
 		$post="/*MYSQL ENGINE=Mroonga CHARSET=utf8mb4 */";

@@ -986,7 +986,7 @@ function show_php_error($array=null) {
 		$hash=md5($msg_text);
 		$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
 		if(is_writable($dir)) {
-			$file=isset($array["file"])?$array["file"]:getDefault("debug/warningfile","warning.log");
+			$file=isset($array["file"])?$array["file"]:getDefault("debug/deprecatedfile","deprecated.log");
 			if(checklog($hash,$file)) $msg_text="";
 			addlog("${msg_text}***** ${hash} *****",$file);
 		}
@@ -1004,6 +1004,10 @@ function show_php_error($array=null) {
 	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
 	if(is_writable($dir)) {
 		$file=isset($array["file"])?$array["file"]:getDefault("debug/errorfile","error.log");
+		if(isset($array["phperror"])) $file=getDefault("debug/phperrorfile","phperror.log");
+		if(isset($array["xmlerror"])) $file=getDefault("debug/xmlerrorfile","xmlerror.log");
+		if(isset($array["dberror"])) $file=getDefault("debug/dberrorfile","dberror.log");
+		if(isset($array["jserror"])) $file=getDefault("debug/jserrorfile","jserror.log");
 		if(checklog($hash,$file)) $msg_text="";
 		addlog("${msg_text}***** ${hash} *****",$file);
 	}

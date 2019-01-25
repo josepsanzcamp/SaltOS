@@ -1828,7 +1828,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>id_aplicacion</name>
 					<type>INT(11)</type>
-					<fkey>tbl_aplicaciones</fkey>
+					<!--<fkey>tbl_aplicaciones</fkey>-->
 				</field>
 				<field>
 					<name>id_registro</name>
