@@ -3207,15 +3207,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>ficheros3</name>
-			<table>tbl_ficheros</table>
-			<fields>
-				<field>
-					<name>id_usuario</name>
-				</field>
-			</fields>
-		</index>
-		<index>
 			<name>registros1</name>
 			<table>tbl_registros</table>
 			<fields>
@@ -3352,6 +3343,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<table>tbl_correo</table>
 			<fields>
 				<field>
+					<name>id</name>
+				</field>
+				<field>
 					<name>id_cuenta</name>
 				</field>
 			</fields>
@@ -3361,24 +3355,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<table>tbl_correo</table>
 			<fields>
 				<field>
-					<name>id</name>
-				</field>
-				<field>
-					<name>id_cuenta</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<name>correos6</name>
-			<table>tbl_correo</table>
-			<fields>
-				<field>
 					<name>uidl</name>
 				</field>
 			</fields>
 		</index>
 		<index>
-			<name>correos7</name>
+			<name>correos6</name>
 			<table>tbl_correo_a</table>
 			<fields>
 				<field>
@@ -3390,7 +3372,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos8</name>
+			<name>correos7</name>
 			<table>tbl_correo_d</table>
 			<fields>
 				<field>
@@ -3430,9 +3412,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<name>id_aplicacion</name>
 				</field>
-				<field>
-					<name>id_registro</name>
-				</field>
 			</fields>
 		</index>
 		<index>
@@ -3440,7 +3419,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<table>tbl_indexing</table>
 			<fields>
 				<field>
-					<name>id_aplicacion</name>
+					<name>id_registro</name>
 				</field>
 			</fields>
 		</index>

@@ -509,6 +509,27 @@ function db_schema() {
 		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
 			$tables1=get_tables();
 			$tables2=get_tables_from_dbschema();
+			if(isset($dbschema["indexes"]) && is_array($dbschema["indexes"])) {
+				foreach($dbschema["indexes"] as $key=>$val) {
+					foreach($val["fields"] as $key2=>$val2) $val["fields"][$key2]=$val2["name"];
+					$dbschema["indexes"][$key]["name"]=$val["table"]."_".implode("_",$val["fields"]);
+				}
+				foreach($dbschema["tables"] as $tablespec) {
+					foreach($tablespec["fields"] as $field) {
+						if(isset($field["fkey"]) && $field["fkey"]!="") {
+							set_array($dbschema["indexes"],"index",array(
+								"name"=>$tablespec["name"]."_".$field["name"],
+								"table"=>$tablespec["name"],
+								"fields"=>array(
+									"field"=>array(
+										"name"=>$field["name"]
+									)
+								)
+							));
+						}
+					}
+				}
+			}
 			if(isset($dbschema["excludes"]) && is_array($dbschema["excludes"])) {
 				foreach($dbschema["excludes"] as $exclude) {
 					foreach($tables1 as $key=>$val) if($exclude["name"]==$val) unset($tables1[$key]);

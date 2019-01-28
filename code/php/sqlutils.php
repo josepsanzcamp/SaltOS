@@ -254,10 +254,9 @@ function get_indexes($table) {
 		$column=$row["Column_name"];
 		$where=1;
 		if($index=="PRIMARY") $where=0;
-		if($index==$column) $where=0;
 		if($where) {
-			if(!isset($indexes[$index])) $indexes[$index]=array($column);
-			else $indexes[$index][]=$column;
+			if(!isset($indexes[$index])) $indexes[$index]=array();
+			$indexes[$index][]=$column;
 		}
 	}
 	return $indexes;
@@ -302,15 +301,15 @@ function sql_create_table($tablespec) {
 		if(isset($field["pkey"]) && eval_bool($field["pkey"])) $extra="PRIMARY KEY /*MYSQL AUTO_INCREMENT *//*SQLITE AUTOINCREMENT */";
 		$fields[]="${name} ${type} ${extra}";
 	}
-	foreach($tablespec["fields"] as $field) {
-		if(isset($field["fkey"])) {
-			$fkey=$field["fkey"];
-			if($fkey!="") {
-				$name=$field["name"];
-				$fields[]="FOREIGN KEY (${name}) REFERENCES ${fkey} (id)";
-			}
-		}
-	}
+	//~ foreach($tablespec["fields"] as $field) {
+		//~ if(isset($field["fkey"])) {
+			//~ $fkey=$field["fkey"];
+			//~ if($fkey!="") {
+				//~ $name=$field["name"];
+				//~ $fields[]="FOREIGN KEY (${name}) REFERENCES ${fkey} (id)";
+			//~ }
+		//~ }
+	//~ }
 	$fields=implode(",",$fields);
 	if(__has_fulltext_index($table) && __has_mroonga_engine()) {
 		$post="/*MYSQL ENGINE=Mroonga CHARSET=utf8mb4 */";
@@ -415,14 +414,7 @@ function sql_create_index($indexspec) {
 	$name=$indexspec["name"];
 	$table=$indexspec["table"];
 	$fields=array();
-	foreach($indexspec["fields"] as $field) {
-		$subname=$field["name"];
-		$array=explode(" ",$subname);
-		$count=count($array);
-		if($count==1) $fields[]="${array[0]}";
-		elseif($count==2) $fields[]="${array[0]} ${array[1]}";
-		else show_php_error(array("phperror"=>"Unknown index '${subname}' in sql_create_index"));
-	}
+	foreach($indexspec["fields"] as $field) $fields[]=$field["name"];
 	$fields=implode(",",$fields);
 	if(isset($indexspec["fulltext"]) && eval_bool($indexspec["fulltext"])) {
 		$pre="/*MYSQL FULLTEXT */";
