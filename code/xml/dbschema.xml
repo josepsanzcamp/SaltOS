@@ -3159,7 +3159,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</tables>
 	<indexes>
 		<index>
-			<name>comentarios</name>
 			<table>tbl_comentarios</table>
 			<fields>
 				<field>
@@ -3171,7 +3170,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>contactos</name>
 			<table>tbl_contactos</table>
 			<fields>
 				<field>
@@ -3183,7 +3181,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>ficheros1</name>
 			<table>tbl_ficheros</table>
 			<fields>
 				<field>
@@ -3195,7 +3192,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>ficheros2</name>
 			<table>tbl_ficheros</table>
 			<fields>
 				<field>
@@ -3207,7 +3203,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>registros1</name>
 			<table>tbl_registros</table>
 			<fields>
 				<field>
@@ -3225,7 +3220,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>registros2</name>
 			<table>tbl_registros</table>
 			<fields>
 				<field>
@@ -3240,7 +3234,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>registros3</name>
 			<table>tbl_registros</table>
 			<fields>
 				<field>
@@ -3252,7 +3245,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>usuarios</name>
 			<table>tbl_usuarios</table>
 			<fields>
 				<field>
@@ -3264,7 +3256,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>aplicaciones1</name>
 			<table>tbl_aplicaciones_i</table>
 			<fields>
 				<field>
@@ -3276,7 +3267,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>aplicaciones2</name>
 			<table>tbl_aplicaciones_p</table>
 			<fields>
 				<field>
@@ -3288,7 +3278,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>grupos</name>
 			<table>tbl_grupos_p</table>
 			<fields>
 				<field>
@@ -3300,7 +3289,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos1</name>
 			<table>tbl_correo</table>
 			<fields>
 				<field>
@@ -3315,7 +3303,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos2</name>
 			<table>tbl_correo</table>
 			<fields>
 				<field>
@@ -3327,7 +3314,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos3</name>
 			<table>tbl_correo</table>
 			<fields>
 				<field>
@@ -3339,7 +3325,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos4</name>
 			<table>tbl_correo</table>
 			<fields>
 				<field>
@@ -3351,7 +3336,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos5</name>
 			<table>tbl_correo</table>
 			<fields>
 				<field>
@@ -3360,7 +3344,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos6</name>
 			<table>tbl_correo_a</table>
 			<fields>
 				<field>
@@ -3372,7 +3355,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>correos7</name>
 			<table>tbl_correo_d</table>
 			<fields>
 				<field>
@@ -3381,7 +3363,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>feeds</name>
 			<table>tbl_feeds</table>
 			<fields>
 				<field>
@@ -3396,7 +3377,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>indexing1</name>
 			<table>tbl_indexing</table>
 			<fulltext>true</fulltext>
 			<fields>
@@ -3406,7 +3386,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>indexing2</name>
 			<table>tbl_indexing</table>
 			<fields>
 				<field>
@@ -3415,7 +3394,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>indexing3</name>
 			<table>tbl_indexing</table>
 			<fields>
 				<field>
@@ -3424,7 +3402,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
-			<name>agenda</name>
 			<table>tbl_agenda_u</table>
 			<fields>
 				<field>
