@@ -43,7 +43,7 @@ if(getParam("action")=="integrity") {
 		$tabla=$row["tabla"];
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
-			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DO NOT EXIST ON THE REGISTER TABLE
+			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE REGISTER TABLE
 			$query=make_select_query($tabla,"id",make_where_query(array(),"AND",array(
 				"id NOT IN (".make_select_query("tbl_registros","id_registro",make_where_query(array(
 					"id_aplicacion"=>$id_aplicacion,
@@ -59,7 +59,7 @@ if(getParam("action")=="integrity") {
 		}
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
-			// SEARCH IDS OF THE REGISTER TABLE, THAT DO NOT EXIST ON THE MAIN APPLICATION TABLE
+			// SEARCH IDS OF THE REGISTER TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
 			$query=make_select_query("tbl_registros","id_registro",make_where_query(array(
 				"id_aplicacion"=>$id_aplicacion,
 				"first"=>1
@@ -91,13 +91,30 @@ if(getParam("action")=="integrity") {
 		));
 		$ids=execute_query_array($query);
 		if(!count($ids)) break;
-		foreach($ids as $id) {
-			$temp=explode(",",$id["ids"]);
-			array_shift($temp);
-			$temp=implode(",",$temp);
-			$query=make_delete_query("tbl_registros","id IN (${temp})");
-			db_query($query);
+		foreach($ids as $key=>$val) {
+			$val=explode(",",$val["ids"]);
+			array_shift($val);
+			$ids[$key]=implode(",",$val);
 		}
+		$temp=implode(",",$ids);
+		$query=make_delete_query("tbl_registros","id IN (${temp})");
+		db_query($query);
+		$total+=count($ids);
+	}
+	// CHECK INTEGRITY
+	for(;;) {
+		if(time_get_usage()>getDefault("server/percentstop")) break;
+		// SEARCH IDS OF THE REGISTER TABLE THAT DOESN'T EXISTS IN THE APPLICATION TABLE
+		$query=make_select_query("tbl_registros","id",make_where_query(array(),"AND",array(
+			"id_aplicacion NOT IN (".make_select_query("tbl_aplicaciones","id").")"
+		)),array(
+			"limit"=>1000
+		));
+		$ids=execute_query_array($query);
+		if(!count($ids)) break;
+		$temp=implode(",",$ids);
+		$query=make_delete_query("tbl_registros","id IN (${temp})");
+		db_query($query);
 		$total+=count($ids);
 	}
 	// SEND RESPONSE
