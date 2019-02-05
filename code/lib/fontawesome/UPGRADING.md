@@ -8,6 +8,26 @@ As always, [submit issues](https://github.com/FortAwesome/Font-Awesome/issues/ne
 
 ---
 
+## 5.7.0 to 5.7.1
+
+The cheeseburger icon incorrectly placed the cheese _under_ the patty. This is unacceptable and we've fixed it.
+
+---
+
+## 5.6.x to 5.7.0
+
+### OTF and TTF files
+
+The PostScript name has been changed from `FontAwesome5ProSolid` to `FontAwesome5Pro-Solid`. This was done to be more compatible with tooling such as XCode.
+
+We've also update the `Version` specifier. Font files only support a MAJOR and MINOR version number so we have modifed our schema. For example, version 5.7.0 of Font Awesome is reflected as 329.472 in the individual font files.
+
+### Icon changes
+
+The calendar-alt icon has been reverted back to the previous design in versions <= 5.6.0.
+
+---
+
 ## 5.6.x to 5.6.3
 
 The fire icon has been reverted back to the previous design in versions <= 5.5.0.

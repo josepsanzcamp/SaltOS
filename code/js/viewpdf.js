@@ -89,6 +89,8 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 							$(dialog2).dialog("option","close",function() {});
 							$("*",dialog2).each(function() { $(this).remove(); });
 							while(viewpdf_history.length>0) viewpdf_history.shift();
+							document.removeEventListener("pagesinit",fn1);
+							document.removeEventListener("textlayerrendered",fn2);
 						});
 						// UPDATE SIZE AND POSITION
 						var width=getIntCookie("saltos_viewpdf_width");
@@ -115,10 +117,10 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						var pdfViewer=new pdfjsViewer.PDFViewer({
 							container:container
 						});
-						document.addEventListener("pagesinit",function() {
+						var fn1=function() {
 							pdfViewer.currentScaleValue="page-width";
-						});
-						document.addEventListener("textlayerrendered",function() {
+						};
+						var fn2=function() {
 							$("a",container).each(function() {
 								if(substr($(this).attr("href"),0,15)=="http://viewpdf/") {
 									if(typeof($(this).attr("onclick"))=="undefined") {
@@ -133,7 +135,9 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 									}
 								}
 							});
-						});
+						};
+						document.addEventListener("pagesinit",fn1);
+						document.addEventListener("textlayerrendered",fn2);
 						pdfViewer.setDocument(pdfDocument);
 						setTimeout(function() {
 							$(dialog2).scrollTop(0);
