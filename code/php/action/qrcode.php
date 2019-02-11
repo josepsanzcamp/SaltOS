@@ -66,11 +66,23 @@ if(getParam("action")=="qrcode") {
 			}
 		}
 		// ADD SALTOS LOGO
-		$xx=imagesx($im)/2-$m*$s/2+$s/2;
-		$yy=imagesy($im)/2-$m*$s/2-$s/2;
+		$matrix=array(
+			array(0,0,0,0,2,2,2,0,0,0),
+			array(0,0,0,0,2,1,2,2,2,2),
+			array(0,2,2,2,2,2,2,2,1,2),
+			array(0,2,1,1,1,1,1,1,2,2),
+			array(0,2,2,1,1,1,1,2,2,0),
+			array(0,0,2,2,1,1,1,1,2,2),
+			array(0,0,2,2,1,2,2,2,1,2),
+			array(0,2,2,1,2,2,0,2,2,2),
+			array(0,2,1,2,2,0,0,0,0,0),
+			array(0,2,2,2,0,0,0,0,0,0),
+		);
+		$ww=intval(count($matrix[0])/2)*2;
+		$hh=intval(count($matrix)/2)*2;
+		$xx=imagesx($im)/2-$ww*$s/2+$s/2;
+		$yy=imagesy($im)/2-$hh*$s/2-$s/2;
 		$cc=array(0,imagecolorallocate($im,0xb8,0x14,0x15),imagecolorallocate($im,0x00,0x00,0x00));
-		$matrix=array(array(0,0,0,0,2,2,2,0,0,0),array(0,0,0,0,2,1,2,2,2,2),array(0,2,2,2,2,2,2,2,1,2),array(0,2,1,1,1,1,1,1,2,2),array(0,2,2,1,1,1,1,2,2,0),
-			array(0,0,2,2,1,1,1,1,2,2),array(0,0,2,2,1,2,2,2,1,2),array(0,2,2,1,2,2,0,2,2,2),array(0,2,1,2,2,0,0,0,0,0),array(0,2,2,2,0,0,0,0,0,0));
 		foreach($matrix as $y=>$xz) foreach($xz as $x=>$z) if($z) imagefilledrectangle($im,$xx+$x*$s,$yy+$y*$s,$xx+($x+1)*$s-1,$yy+($y+1)*$s-1,$cc[$z]);
 		// CONTINUE
 		imagepng($im,$cache);
