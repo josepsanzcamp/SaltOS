@@ -630,6 +630,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				id_usuario,id_grupo,id_cuenta,
 				state_new,state_wait,state_spam,is_outbox,
 				CASE WHEN subject='' THEN '".LANG_ESCAPE("sinsubject")."' ELSE subject END subject,
+				body,
 				TRIM(CONCAT(
 				CASE state_sent WHEN 1 THEN '".LANG_ESCAPE("statesent")." ' ELSE '' END,
 				CASE state_error WHEN '' THEN '' ELSE '".LANG_ESCAPE("stateerror")." ' END,
