@@ -244,37 +244,29 @@ function semi_realpath($file) {
 }
 
 function ob_passthru($cmd,$expires=0) {
-	static $disableds_string=null;
-	static $disableds_array=array();
 	if($expires) {
 		$cache=get_cache_file($cmd,".out");
 		list($mtime,$error)=filemtime_protected($cache);
 		if(file_exists($cache) && !$error && time()-$expires<$mtime) return file_get_contents($cache);
 	}
 	if(!semaphore_acquire(array(__FUNCTION__,$cmd))) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
-	if($disableds_string===null) {
-		$disableds_string=ini_get("disable_functions").",".ini_get("suhosin.executor.func.blacklist");
-		$disableds_array=$disableds_string?explode(",",$disableds_string):array();
-		foreach($disableds_array as $key=>$val) $disableds_array[$key]=strtolower(trim($val));
-	}
-	if(!in_array("passthru",$disableds_array)) {
+	if(!is_disabled_function("passthru")) {
 		ob_start();
 		passthru($cmd);
 		$buffer=ob_get_clean();
-	} elseif(!in_array("system",$disableds_array)) {
+	} elseif(!is_disabled_function("system")) {
 		ob_start();
 		system($cmd);
 		$buffer=ob_get_clean();
-	} elseif(!in_array("exec",$disableds_array)) {
+	} elseif(!is_disabled_function("exec")) {
 		$buffer=array();
 		exec($cmd,$buffer);
 		$buffer=implode("\n",$buffer);
-	} elseif(!in_array("shell_exec",$disableds_array)) {
+	} elseif(!is_disabled_function("shell_exec")) {
 		ob_start();
 		$buffer=shell_exec($cmd);
 		ob_get_clean();
 	} else {
-		//~ show_php_error(array("phperror"=>"Unknown command shell","details"=>"ini_get(disable_functions)=${disableds_string}"));
 		$buffer="";
 	}
 	if($expires) {

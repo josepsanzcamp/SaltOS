@@ -186,6 +186,7 @@ function eval_iniset($array) {
 }
 
 function eval_putenv($array) {
+	if(is_disabled_function("putenv")) return;
 	if(is_array($array)) {
 		foreach($array as $key=>$val) {
 			$current=getenv($key);
@@ -1468,5 +1469,20 @@ function ICON($icon) {
 	if(!isset($_CONFIG["icons"])) $_CONFIG["icons"]=xml2array("xml/icons.xml");
 	if(isset($_CONFIG["icons"][$icon])) return $_CONFIG["icons"][$icon];
 	return "fa fa-tag";
+}
+
+function is_disabled_function($fn="") {
+	static $disableds_string=null;
+	static $disableds_array=array();
+	if($disableds_string===null) {
+		$disableds_string=ini_get("disable_functions").",".ini_get("suhosin.executor.func.blacklist");
+		$disableds_array=$disableds_string?explode(",",$disableds_string):array();
+		foreach($disableds_array as $key=>$val) {
+			$val=strtolower(trim($val));
+			if($val=="") unset($disableds_array[$key]);
+			if($val!="") $disableds_array[$key]=$val;
+		}
+	}
+	return in_array($fn,$disableds_array);
 }
 ?>
