@@ -624,14 +624,34 @@ function db_static() {
 			foreach($dbstatic as $table=>$rows) {
 				$query=make_delete_query($table);
 				db_query($query);
-				foreach($rows as $row) {
-					$query=make_insert_query($table,$row);
-					db_query($query);
-				}
+				foreach($rows as $row) __db_static_helper($table,$row);
 			}
 		}
 		setConfig($file,$hash2);
 		semaphore_release(array("db_schema","db_static"));
+	}
+}
+
+function __db_static_helper($table,$row) {
+	$fields=getDefault("db/dbfields");
+	$found="";
+	if(is_array($fields)) {
+		foreach($fields as $field) {
+			if(isset($row[$field]) && strpos($row[$field],",")!==false) {
+				$found=$field;
+				break;
+			}
+		}
+	}
+	if($found!="") {
+		$a=explode(",",$row[$field]);
+		foreach($a as $b) {
+			$row[$field]=$b;
+			__db_static_helper($table,$row);
+		}
+	} else {
+		$query=make_insert_query($table,$row);
+		db_query($query);
 	}
 }
 

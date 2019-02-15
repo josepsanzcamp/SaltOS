@@ -341,7 +341,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 								<?php foreach($temp["tbl_aplicaciones"] as $app) { ?>
 									<?php $exists=0; ?>
 									<?php foreach($temp["tbl_aplicaciones_p"] as $perm) { ?>
-										<?php if($app["id"]==$perm["id_aplicacion"]) $exists=1; ?>
+										<?php if(in_array($app["id"],explode(",",$perm["id_aplicacion"]))) $exists=1; ?>
 									<?php } ?>
 									<?php if($exists) $apps[]=array("id"=>$app["id"],"codigo"=>$app["codigo"],"nombre"=>$app["nombre"],"checked"=>in_array($app["codigo"],$layer["apps"]) || in_array("*",$layer["apps"])); ?>
 								<?php } ?>
@@ -454,7 +454,7 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 								<?php foreach($temp["tbl_aplicaciones"] as $app) { ?>
 									<?php $exists=0; ?>
 									<?php foreach($temp["tbl_aplicaciones_p"] as $perm) { ?>
-										<?php if($app["id"]==$perm["id_aplicacion"]) $exists=1; ?>
+										<?php if(in_array($app["id"],explode(",",$perm["id_aplicacion"]))) $exists=1; ?>
 									<?php } ?>
 									<?php if($exists) if(in_array($app["codigo"],$layer["apps"]) || in_array("*",$layer["apps"])) $apps[]=$app["nombre"]; ?>
 								<?php } ?>

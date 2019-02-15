@@ -52,6 +52,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<dbschema>true</dbschema>
 		<dbstatic>true</dbstatic>
 		<semaphoretimeout>10000000</semaphoretimeout><!-- in microseconds, only for SQLite -->
+		<dbfields>
+			<dbfield>id_aplicacion</dbfield>
+			<dbfield>id_registro</dbfield>
+			<dbfield>id_permiso</dbfield>
+		</dbfields>
 	</db>
 	<sess>
 		<save_path>saltos</save_path>
