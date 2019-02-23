@@ -736,18 +736,14 @@ function make_fulltext_query2($values,$arg="") {
 			if($val=="") unset($values[$key]);
 			if($val!="") $values[$key]=$val;
 		}
-		if(!count($values)) return "1=1";
+		if(!count($values) && !count($filter)) return "1=1";
 		$query=array();
-		$likes=array();
 		foreach($values as $value) {
 			$type=($value[0]=="-")?"-":"+";
 			while(isset($value[0]) && in_array($value[0],array("+","-"))) $value=substr($value,1);
-			if($value!="") {
-				if(mb_strlen($value)==1) $likes[]=$type.$value;
-				else $query[]=$type.'"'.$value.'"';
-			}
+			if($value!="") $query[]=$type.'"'.$value.'"';
 		}
-		if(!count($query)) return "1=1";
+		if(!count($query) && !count($filter)) return "1=1";
 		if(count($filter)) {
 			foreach($filter as $key=>$val) $filter[$key]="id_aplicacion:${val}";
 			$filter=implode(" ",$filter);
@@ -756,9 +752,6 @@ function make_fulltext_query2($values,$arg="") {
 		}
 		$query=implode(" ",$query);
 		$query="MATCH(${search}) AGAINST('${query}' IN BOOLEAN MODE)";
-		if(count($likes)) {
-			$query.=" AND ".make_like_query($search,implode(" ",$likes));
-		}
 	} else {
 		$query=array();
 		if(count($filter)) {
