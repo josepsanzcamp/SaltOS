@@ -6,7 +6,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2018 by Josep Sanz Campderrós
+Copyright (C) 2007-2019 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <span class="ui-accordion-header-icon ui-icon ui-icon-circle-arrow-s"></span>General</h3>
 <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content ui-accordion-content-active"><ul class="accordion-link">
 <li><a href="#" class="nowrap"><span class="fa fa-home"></span> Home</a></li>
-<li><a href="#" class="nowrap number_correo number"><span class="fa fa-envelope"></span> Email</a></li>
+<li><a href="#" class="nowrap number_correo number"><span class="fa fa-envelope"></span> Email <span class="number number1">2</span></a></li>
 <li><a href="#" class="nowrap submenu"><span class="fa fa-plus-circle"></span> New email</a></li>
 <li><a href="#" class="nowrap submenu"><span class="fa fa-tag"></span> Inbox</a></li>
 <li><a href="#" class="nowrap submenu"><span class="fa fa-tag"></span> Outbox</a></li>
