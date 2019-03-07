@@ -49,6 +49,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<time>TIME</time>
 			<datetime>DATETIME</datetime>
 		</datatypes>
+		<datasizes>
+			<TINYTEXT>255</TINYTEXT>
+			<TEXT>65535</TEXT>
+			<MEDIUMTEXT>16777215</MEDIUMTEXT>
+			<LONGTEXT>4294967295</LONGTEXT>
+		</datasizes>
 		<dbschema>true</dbschema>
 		<dbstatic>true</dbstatic>
 		<semaphoretimeout>10000000</semaphoretimeout><!-- in microseconds, only for SQLite -->

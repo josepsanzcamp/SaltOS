@@ -122,13 +122,14 @@ function preeval_insert_query($table) {
 		$list1[]=$field["name"];
 		$type=$field["type"];
 		$type2=get_field_type($type);
+		$size2=get_field_size($type);
 		if($type2=="int") $list2[]="'\".intval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="float") $list2[]="'\".floatval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="date") $list2[]="'\".dateval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="time") $list2[]="'\".timeval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="datetime") $list2[]="'\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
-		elseif($type2=="string") $list2[]="'\".addslashes(getParam(\"".$field["name"]."\")).\"'";
-		else show_php_error(array("phperror"=>"Unknown type '${type}' in preeval_insert_query"));
+		elseif($type2=="string") $list2[]="'\".addslashes(substr(getParam(\"".$field["name"]."\"),0,$size2)).\"'";
+		else show_php_error(array("phperror"=>"Unknown type '${type}' in ".__FUNCTION__));
 	}
 	$list1=implode(",",$list1);
 	$list2=implode(",",$list2);
@@ -143,13 +144,14 @@ function preeval_update_query($table) {
 		if($field["name"]=="id") continue;
 		$type=$field["type"];
 		$type2=get_field_type($type);
+		$size2=get_field_size($type);
 		if($type2=="int") $list[]=$field["name"]."='\".intval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="float") $list[]=$field["name"]."='\".floatval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="date") $list[]=$field["name"]."='\".dateval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="time") $list[]=$field["name"]."='\".timeval(getParam(\"".$field["name"]."\")).\"'";
 		elseif($type2=="datetime") $list[]=$field["name"]."='\".datetimeval(getParam(\"".$field["name"]."\")).\"'";
-		elseif($type2=="string") $list[]=$field["name"]."='\".addslashes(getParam(\"".$field["name"]."\")).\"'";
-		else show_php_error(array("phperror"=>"Unknown type '${type}' in preeval_update_query"));
+		elseif($type2=="string") $list[]=$field["name"]."='\".addslashes(substr(getParam(\"".$field["name"]."\"),0,$size2)).\"'";
+		else show_php_error(array("phperror"=>"Unknown type '${type}' in ".__FUNCTION__));
 	}
 	$list=implode(",",$list);
 	$query="\"UPDATE $table SET $list WHERE id='\".intval(getParam(\"id\")).\"'\"";
@@ -276,11 +278,19 @@ function get_tables() {
 
 function get_field_type($type) {
 	$type=parse_query($type);
-	$type=strtok($type,"(");
-	$type=strtoupper($type);
+	$type=strtoupper(strtok($type,"("));
 	$datatypes=getDefault("db/datatypes");
 	foreach($datatypes as $key=>$val) if(in_array($type,explode(",",$val))) return $key;
-	show_php_error(array("phperror"=>"Unknown type '${type}' in get_field_type"));
+	show_php_error(array("phperror"=>"Unknown type '${type}' in ".__FUNCTION__));
+}
+
+function get_field_size($type) {
+	$type=parse_query($type);
+	$type1=strtoupper(strtok($type,"("));
+	$type2=strtok(")");
+	$datasizes=getDefault("db/datasizes");
+	foreach($datasizes as $key=>$val) if($type1==$key) return $val;
+	return $type2;
 }
 
 function sql_create_table($tablespec) {
@@ -296,7 +306,7 @@ function sql_create_table($tablespec) {
 		elseif($type2=="time") $def=timeval(0);
 		elseif($type2=="datetime") $def=datetimeval(0);
 		elseif($type2=="string") $def="";
-		else show_php_error(array("phperror"=>"Unknown type '${type}' in sql_create_table"));
+		else show_php_error(array("phperror"=>"Unknown type '${type}' in ".__FUNCTION__));
 		$extra="NOT NULL DEFAULT '${def}'";
 		if(isset($field["pkey"]) && eval_bool($field["pkey"])) $extra="PRIMARY KEY /*MYSQL AUTO_INCREMENT *//*SQLITE AUTOINCREMENT */";
 		$fields[]="${name} ${type} ${extra}";
@@ -390,7 +400,7 @@ function sql_insert_from_select($dest,$orig) {
 		elseif($type2=="time") $defs[]=timeval(0);
 		elseif($type2=="datetime") $defs[]=datetimeval(0);
 		elseif($type2=="string") $defs[]="";
-		else show_php_error(array("phperror"=>"Unknown type '${type}' in sql_insert_from_select"));
+		else show_php_error(array("phperror"=>"Unknown type '${type}' in ".__FUNCTION__));
 	}
 	$keys=array();
 	$vals=array();
