@@ -35,8 +35,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		- data: the matrix to export
 		- sep: separator char used only by csv format
 		- eol: enf of line char used only by csv format
+		- encoding: charset used
+		- replace: array with two elements, from and to, used to do replacements of the matrix values
+		- escape: array with two elements, char and mode, used to specify the escape character and the escape mode
 		- title: title used only by excel format
 		- file: local filename used to store the results
+		- ext: extension used for the filename if provided
 	Output:
 		if file argument is specified, void string is returned
 		if file argument is not specified, then they will returns all data
@@ -50,6 +54,7 @@ function export_file($args) {
 	if(!isset($args["eol"])) $args["eol"]="\r\n";
 	if(!isset($args["encoding"])) $args["encoding"]="UTF-8";
 	if(!isset($args["replace"])) $args["replace"]=array("from"=>"","to"=>"");
+	if(!isset($args["escape"])) $args["escape"]=array("char"=>'"',"mode"=>"auto");
 	if(!isset($args["title"])) $args["title"]="";
 	if(!isset($args["file"])) $args["file"]="";
 	if(!isset($args["ext"])) $args["ext"]="";
@@ -59,7 +64,7 @@ function export_file($args) {
 			$buffer=__export_file_xml($args["data"]);
 			break;
 		case "csv":
-			$buffer=__export_file_csv($args["data"],$args["sep"],$args["eol"],$args["encoding"],$args["replace"]);
+			$buffer=__export_file_csv($args["data"],$args["sep"],$args["eol"],$args["encoding"],$args["replace"],$args["escape"]);
 			break;
 		case "xls":
 			$buffer=__export_file_excel($args["data"],$args["title"],"Excel5");
@@ -85,7 +90,6 @@ function export_file($args) {
 	Abstract:
 		This function is intended to export data in xml format
 	Input:
-		Array
 		- matrix: the matrix to export
 	Output:
 		They will returns all data
@@ -103,14 +107,16 @@ function __export_file_xml($matrix) {
 	Abstract:
 		This function is intended to export data in csv format
 	Input:
-		Array
 		- matrix: the matrix to export
 		- sep: separator char
 		- eol: enf of line char
+		- encoding: charset used
+		- replace: array with two elements, from and to, used to do replacements of the matrix values
+		- escape: array with two elements, char and mode, used to specify the escape character and the escape mode
 	Output:
 		They will returns all data
 */
-function __export_file_csv($matrix,$sep=";",$eol="\r\n",$encoding="UTF-8",$replace=array("from"=>"","to"=>"")) {
+function __export_file_csv($matrix,$sep=";",$eol="\r\n",$encoding="UTF-8",$replace=array("from"=>"","to"=>""),$escape=array("char"=>'"',"mode"=>"auto")) {
 	require_once("php/import.php");
 	$sep=__import_specialchars($sep);
 	$eol=__import_specialchars($eol);
@@ -122,7 +128,11 @@ function __export_file_csv($matrix,$sep=";",$eol="\r\n",$encoding="UTF-8",$repla
 			//~ $val2=str_replace($sep,$replace["to"],$val2);
 			$val2=str_replace($replace["from"],$replace["to"],$val2);
 			$val2=trim($val2);
-			if(strpos($val2,$sep)!==false) $val2='"'.$val2.'"';
+			if($escape["mode"]=="auto") {
+				if(strpos($val2,$sep)!==false) $val2=$escape["char"].$val2.$escape["char"];
+			} elseif(eval_bool($escape["mode"])) {
+				$val2=$escape["char"].$val2.$escape["char"];
+			}
 			$val[$key2]=$val2;
 		}
 		$buffer[]=implode($sep,$val);
@@ -138,7 +148,6 @@ function __export_file_csv($matrix,$sep=";",$eol="\r\n",$encoding="UTF-8",$repla
 	Abstract:
 		This function is intended to export data in excel format
 	Input:
-		Array
 		- matrix: the matrix to export
 		- title: title used in the excel file
 		- type: can be Excel5 or Excel2007
