@@ -172,7 +172,7 @@ if(typeof(__usuarios__)=="undefined" && typeof(parent.__usuarios__)=="undefined"
 							}
 						}
 					});
-				},(index+1)*100);
+				},(index+1)*1);
 			});
 			var screen=$(".ui-layout-center");
 			make_tables(screen);

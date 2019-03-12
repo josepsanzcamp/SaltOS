@@ -175,7 +175,7 @@ if(typeof(__grupos__)=="undefined" && typeof(parent.__grupos__)=="undefined") {
 							if(hasdeny) $("input[type=checkbox][name$=allow]",padre).prop("disabled",true);
 						}
 					});
-				},(index+1)*100);
+				},(index+1)*1);
 			});
 			var screen=$(".ui-layout-center");
 			make_tables(screen);
