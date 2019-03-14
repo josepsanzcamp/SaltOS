@@ -642,13 +642,12 @@ function make_insert_query($table,$array,$queries=array()) {
 }
 
 function make_update_query($table,$array,$where="",$queries=array()) {
-	if(is_string($array)) {
-		$query="UPDATE ${table} SET ${array}";
-		if($where!="") $query.=" WHERE ${where}";
-		return $query;
-	}
 	$list1=array();
-	foreach($array as $key=>$val) $list1[]=$key."='".addslashes($val)."'";
+	if(is_string($array)) {
+		if($array!="") $list1[]=$array;
+	} else {
+		foreach($array as $key=>$val) $list1[]=$key."='".addslashes($val)."'";
+	}
 	foreach($queries as $key=>$val) $list1[]=$key."=(".$val.")";
 	$list1=implode(",",$list1);
 	$query="UPDATE ${table} SET ${list1}";
