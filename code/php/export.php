@@ -67,10 +67,10 @@ function export_file($args) {
 			$buffer=__export_file_csv($args["data"],$args["sep"],$args["eol"],$args["encoding"],$args["replace"],$args["escape"]);
 			break;
 		case "xls":
-			$buffer=__export_file_excel($args["data"],$args["title"],"Excel5");
+			$buffer=__export_file_excel($args["data"],$args["title"],"Xls");
 			break;
 		case "xlsx":
-			$buffer=__export_file_excel($args["data"],$args["title"],"Excel2007");
+			$buffer=__export_file_excel($args["data"],$args["title"],"Xlsx");
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
@@ -150,17 +150,16 @@ function __export_file_csv($matrix,$sep=";",$eol="\r\n",$encoding="UTF-8",$repla
 	Input:
 		- matrix: the matrix to export
 		- title: title used in the excel file
-		- type: can be Excel5 or Excel2007
+		- type: can be Xls or Xlsx
 	Output:
 		They will returns all data
 */
-function __export_file_excel($matrix,$title="",$type="Excel5") {
-	set_include_path("lib/phpexcel".PATH_SEPARATOR.get_include_path());
-	require_once("PHPExcel.php");
-	$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
-	$cacheSettings=array("memoryCacheSize"=>"8MB");
-	PHPExcel_Settings::setCacheStorageMethod($cacheMethod,$cacheSettings);
-	$objPHPExcel=new PHPExcel();
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
+function __export_file_excel($matrix,$title="",$type="Xls") {
+	require_once("lib/phpspreadsheet/vendor/autoload.php");
+	$objPHPExcel=new Spreadsheet();
 	$objPHPExcel->getProperties()->setCreator(get_name_version_revision());
 	$objPHPExcel->getProperties()->setLastModifiedBy(current_datetime());
 	if($title!="") {
@@ -170,7 +169,6 @@ function __export_file_excel($matrix,$title="",$type="Excel5") {
 		$objPHPExcel->getProperties()->setKeywords($title);
 		$objPHPExcel->getProperties()->setCategory($title);
 	}
-	//~ $objPHPExcel->createSheet();
 	$objPHPExcel->setActiveSheetIndex(0);
 	$objPHPExcel->getActiveSheet()->fromArray($matrix,NULL,"A1");
 	require_once("php/import.php");
@@ -178,7 +176,7 @@ function __export_file_excel($matrix,$title="",$type="Excel5") {
 	if($title!="") {
 		$objPHPExcel->getActiveSheet()->setTitle(substr($title,0,31));
 	}
-	$objWriter=PHPExcel_IOFactory::createWriter($objPHPExcel,$type);
+	$objWriter=IOFactory::createWriter($objPHPExcel,$type);
 	ob_start();
 	$objWriter->save("php://output");
 	$buffer=ob_get_clean();

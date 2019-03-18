@@ -84,6 +84,7 @@ function import_file($args) {
 			if(!is_array($array)) return $array;
 			$array=__import_array2tree($array,$args["nodes"],$args["nohead"]);
 			break;
+		case "application/wps-office.xls":
 		case "application/vnd.ms-excel":
 		case "application/excel":
 		case "excel":
@@ -193,11 +194,12 @@ function __import_csv2array($file,$sep) {
 	return $array;
 }
 
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
 function __import_xls2array($file,$sheet) {
-	set_include_path("lib/phpexcel".PATH_SEPARATOR.get_include_path());
-	require_once("PHPExcel.php");
-	$objReader=PHPExcel_IOFactory::createReaderForFile($file);
-	//~ $objReader->setReadDataOnly(true);
+	require_once("lib/phpspreadsheet/vendor/autoload.php");
+	$objReader=IOFactory::createReaderForFile($file);
 	// CHECK THE SHEET PARAM
 	if(!method_exists($objReader,"listWorksheetNames")) return "Error: Sheets not found in the file";
 	$sheets=$objReader->listWorksheetNames($file);
@@ -229,7 +231,7 @@ function __import_xls2array($file,$sheet) {
 	$objPHPExcel=$objReader->load($file);
 	$objSheet=$objPHPExcel->getSheet($sheet);
 	// DETECT COLS AND ROWS WITH DATA
-	$cells=$objSheet->getCellCollection(true);
+	$cells=$objSheet->getCoordinates(true);
 	$cols=array();
 	$rows=array();
 	foreach($cells as $cell) {

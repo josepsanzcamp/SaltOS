@@ -684,6 +684,7 @@ function __pdf_eval_pdftag($array,$row=array()) {
 					$temp=__pdf_eval_array(__pdf_eval_explode(",",$val),$row);
 					$pdf=new PDF($temp[0],$temp[1],$temp[2]);
 					$pdf->SetCreator(get_name_version_revision());
+					$pdf->SetDisplayMode("fullwidth","continuous");
 					$pdf->setRTL($dir=="rtl");
 					$pdf->Init();
 					break;
