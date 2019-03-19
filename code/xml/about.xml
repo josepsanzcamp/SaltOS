@@ -529,10 +529,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://locutus.io/php/")</onclick>
 						</field>
 						<field>
-							<label>Handsontable (MIT)</label>
+							<label>Handsontable 6.2.2 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("https://handsontable.com/")</onclick>
+							<onclick>openwin("https://github.com/handsontable/handsontable/tree/6.2.2")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
