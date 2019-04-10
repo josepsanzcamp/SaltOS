@@ -117,6 +117,79 @@ if(getParam("action")=="integrity") {
 		db_query($query);
 		$total+=count($ids);
 	}
+	// CHECK FOR FILES FIRST ITERATION
+	for(;;) {
+		if(time_get_usage()>getDefault("server/percentstop")) break;
+		// SEARCH FILES THAT DON'T CONTAIN ANY DIRECTORY SEPARATOR
+		$query=make_select_query("tbl_ficheros","id,id_aplicacion,fichero_file","fichero_file!='' AND fichero_file NOT LIKE '%/%'",array(
+			"limit"=>1000
+		));
+		$rows=execute_query_array($query);
+		if(!count($rows)) break;
+		foreach($rows as $row) {
+			$row["fichero_file2"]=id2page($row["id_aplicacion"],"unknown")."/".$row["fichero_file"];
+			$row["fichero_file3"]=get_directory("dirs/filesdir").$row["fichero_file"];
+			$row["fichero_file4"]=get_directory("dirs/filesdir").$row["fichero_file2"];
+			// CREATE DIRECTORY IF NOT EXISTS
+			$dir=dirname($row["fichero_file4"]);
+			if(!file_exists($dir)) {
+				mkdir($dir);
+				chmod_protected($dir,0777);
+			}
+			// MOVE FILE
+			if(file_exists($row["fichero_file3"])) {
+				rename($row["fichero_file3"],$row["fichero_file4"]);
+				chmod_protected($row["fichero_file4"],0666);
+			}
+			// UPDATE DATABASE
+			$query=make_update_query("tbl_ficheros",array(
+				"fichero_file"=>$row["fichero_file2"]
+			),make_where_query(array(
+				"id"=>$row["id"]
+			)));
+			db_query($query);
+		}
+	}
+	// CHECK FOR FILES SECOND ITERATION
+	$checks=array(
+		array("tbl_usuarios_c","email_signature_file","correo"),
+		array("tbl_cuentas","logo_file","cuentas"),
+		array("tbl_productos","foto_file","productos"),
+	);
+	foreach($checks as $check) {
+		for(;;) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
+			// SEARCH FILES THAT DON'T CONTAIN ANY DIRECTORY SEPARATOR
+			$query=make_select_query($check[0],"id,${check[1]}","${check[1]}!='' AND ${check[1]} NOT LIKE '%/%'",array(
+				"limit"=>1000
+			));
+			$rows=execute_query_array($query);
+			if(!count($rows)) break;
+			foreach($rows as $row) {
+				$row["fichero_file2"]=$check[2]."/".$row[$check[1]];
+				$row["fichero_file3"]=get_directory("dirs/filesdir").$row[$check[1]];
+				$row["fichero_file4"]=get_directory("dirs/filesdir").$row["fichero_file2"];
+				// CREATE DIRECTORY IF NOT EXISTS
+				$dir=dirname($row["fichero_file4"]);
+				if(!file_exists($dir)) {
+					mkdir($dir);
+					chmod_protected($dir,0777);
+				}
+				// MOVE FILE
+				if(file_exists($row["fichero_file3"])) {
+					rename($row["fichero_file3"],$row["fichero_file4"]);
+					chmod_protected($row["fichero_file4"],0666);
+				}
+				// UPDATE DATABASE
+				$query=make_update_query($check[0],array(
+					$check[1]=>$row["fichero_file2"]
+				),make_where_query(array(
+					"id"=>$row["id"]
+				)));
+				db_query($query);
+			}
+		}
+	}
 	// SEND RESPONSE
 	if($total) javascript_alert($total.LANG("msgregistersindexed".min($total,2)));
 	// RELEASE SEMAPHORE

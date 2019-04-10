@@ -305,7 +305,7 @@ function current_group() {
 	return $_USER["id_grupo"];
 }
 
-function __aplicaciones($tipo,$dato) {
+function __aplicaciones($tipo,$dato,$def) {
 	static $diccionario=array();
 	if(!count($diccionario)) {
 		$query=make_select_query("tbl_aplicaciones",array("id","codigo","tabla","subtablas"));
@@ -332,45 +332,45 @@ function __aplicaciones($tipo,$dato) {
 		}
 		db_free($result);
 	}
-	if(!isset($diccionario[$tipo])) return "";
-	if(!isset($diccionario[$tipo][$dato])) return "";
+	if(!isset($diccionario[$tipo])) return $def;
+	if(!isset($diccionario[$tipo][$dato])) return $def;
 	return $diccionario[$tipo][$dato];
 }
 
-function page2id($page) {
-	return __aplicaciones(__FUNCTION__,$page);
+function page2id($page,$def="") {
+	return __aplicaciones(__FUNCTION__,$page,$def);
 }
 
-function id2page($id) {
-	return __aplicaciones(__FUNCTION__,$id);
+function id2page($id,$def="") {
+	return __aplicaciones(__FUNCTION__,$id,$def);
 }
 
-function page2table($page) {
-	return __aplicaciones(__FUNCTION__,$page);
+function page2table($page,$def="") {
+	return __aplicaciones(__FUNCTION__,$page,$def);
 }
 
-function table2page($table) {
-	return __aplicaciones(__FUNCTION__,$table);
+function table2page($table,$def="") {
+	return __aplicaciones(__FUNCTION__,$table,$def);
 }
 
-function id2table($id) {
-	return __aplicaciones(__FUNCTION__,$id);
+function id2table($id,$def="") {
+	return __aplicaciones(__FUNCTION__,$id,$def);
 }
 
-function table2id($table) {
-	return __aplicaciones(__FUNCTION__,$table);
+function table2id($table,$def="") {
+	return __aplicaciones(__FUNCTION__,$table,$def);
 }
 
-function id2subtables($id) {
-	return __aplicaciones(__FUNCTION__,$id);
+function id2subtables($id,$def="") {
+	return __aplicaciones(__FUNCTION__,$id,$def);
 }
 
-function page2subtables($page) {
-	return __aplicaciones(__FUNCTION__,$page);
+function page2subtables($page,$def="") {
+	return __aplicaciones(__FUNCTION__,$page,$def);
 }
 
-function table2subtables($table) {
-	return __aplicaciones(__FUNCTION__,$table);
+function table2subtables($table,$def="") {
+	return __aplicaciones(__FUNCTION__,$table,$def);
 }
 
 function __usuarios($tipo,$dato) {
