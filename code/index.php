@@ -77,6 +77,7 @@ $style=use_table_cookies("style","",$style);
 $stylepre=getDefault("stylepre");
 $stylepost=getDefault("stylepost");
 if(!load_style($style)) $style=getDefault("style");
+if(!load_style($style)) $style=solve_style($style);
 $style=getDefault("forcestyle",$style);
 // GET THE FLOW PARAMETERS
 $page=getParam("page",getDefault("page"));

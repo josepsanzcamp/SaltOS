@@ -701,6 +701,24 @@ function load_style($style) {
 	return false;
 }
 
+function solve_style($style) {
+	global $_CONFIG;
+	$temp1=explode("/",$style);
+	foreach($_CONFIG["styles2"] as $style2) {
+		$temp2=explode("/",$style2["value"]);
+		if($temp1[0]==$temp2[0] && $temp1[1]==$temp2[1]) return $style2["value"];
+	}
+	foreach($_CONFIG["styles2"] as $style2) {
+		$temp2=explode("/",$style2["value"]);
+		if($temp1[0]==$temp2[0] && $temp1[2]==$temp2[2]) return $style2["value"];
+	}
+	foreach($_CONFIG["styles2"] as $style2) {
+		$temp2=explode("/",$style2["value"]);
+		if($temp1[0]==$temp2[0]) return $style2["value"];
+	}
+	return $style;
+}
+
 function color_style($style) {
 	global $_CONFIG;
 	foreach($_CONFIG["styles2"] as $style2) if($style2["value"]==$style) return $style2["color"];

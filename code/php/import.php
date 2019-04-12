@@ -23,6 +23,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/*
+	Name:
+		__import_find_chars
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_find_chars($data,$pos,$chars) {
 	$result=array();
 	$len=strlen($chars);
@@ -33,6 +43,16 @@ function __import_find_chars($data,$pos,$chars) {
 	return count($result)?min($result):false;
 }
 
+/*
+	Name:
+		__import_find_query
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_find_query($data,$pos) {
 	$len=strlen($data);
 	$parentesis=0;
@@ -52,6 +72,25 @@ function __import_find_query($data,$pos) {
 	return $pos2-$pos;
 }
 
+/*
+	Name:
+		import_file
+	Abstract:
+		This function is intended to import data in the supported formats
+	Input:
+		Array
+		- file: local filename used to load the data
+		- type: can be xml, csv or excel
+		- sep: separator char used only by csv format
+		- sheet: sheet that must to be read
+		- nodes: an array with the fields that define each nodes used in the tree construction
+		- prefn: function executed between the load and the tree construction
+		- postfn: function executed after the tree construction
+		- nohead: if the first row doesn't contains the header of the data, put this field to one
+	Output:
+		This function returns an array with the loaded data from file
+		Can return a matrix or tree, depending the nodes parameter
+*/
 function import_file($args) {
 	// CHECK PARAMETERS
 	if(isset($args["data"])) {
@@ -110,11 +149,31 @@ function import_file($args) {
 	return $array;
 }
 
+/*
+	Name:
+		__import_utf8bom
+	Abstract:
+		This function remove the bom header of the string
+	Input:
+	    The data that must to be checked
+	Output:
+		The data without the bom characters
+*/
 function __import_utf8bom($data) {
 	if(substr($data,0,3)=="\xef\xbb\xbf") $data=substr($data,3);
 	return $data;
 }
 
+/*
+	Name:
+		__import_xml2array
+	Abstract:
+		This function convert an xml into an array
+	Input:
+	    The file that contains the xml
+	Output:
+		An array with the contents of the xml
+*/
 function __import_xml2array($file) {
 	$xml=file_get_contents($file);
 	$xml=__import_utf8bom($xml);
@@ -128,6 +187,16 @@ function __import_xml2array($file) {
 	return $array;
 }
 
+/*
+	Name:
+		__import_struct2array
+	Abstract:
+		This function is a helper of the __import_xml2array
+	Input:
+	    An array with all nodes of the xml file
+	Output:
+		An array with the correct structure that matches the xml structure
+*/
 function __import_struct2array(&$data) {
 	$array=array();
 	while($linea=array_pop($data)) {
@@ -162,6 +231,16 @@ function __import_struct2array(&$data) {
 	return $array;
 }
 
+/*
+	Name:
+		__import_getnode
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_getnode($path,$array) {
 	if(!is_array($path)) $path=explode("/",$path);
 	$elem=array_shift($path);
@@ -170,16 +249,46 @@ function __import_getnode($path,$array) {
 	return __import_getnode($path,__import_getvalue($array[$elem]));
 }
 
+/*
+	Name:
+		__import_getvalue
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_getvalue($array) {
 	return (is_array($array) && isset($array["value"]) && isset($array["#attr"]))?$array["value"]:$array;
 }
 
+/*
+	Name:
+		__import_specialchars
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_specialchars($arg) {
 	$orig=array("\\t","\\r","\\n");
 	$dest=array("\t","\r","\n");
 	return str_replace($orig,$dest,$arg);
 }
 
+/*
+	Name:
+		__import_csv2array
+	Abstract:
+		This function is a helper of the __import_xml2array
+	Input:
+	    An array with all nodes of the xml file
+	Output:
+		An array with the correct structure that matches the xml structure
+*/
 function __import_csv2array($file,$sep) {
 	$sep=__import_specialchars($sep);
 	$fd=fopen($file,"r");
@@ -197,6 +306,16 @@ function __import_csv2array($file,$sep) {
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
+/*
+	Name:
+		__import_xls2array
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_xls2array($file,$sheet) {
 	require_once("lib/phpspreadsheet/vendor/autoload.php");
 	$objReader=IOFactory::createReaderForFile($file);
@@ -259,6 +378,16 @@ function __import_xls2array($file,$sheet) {
 	return $array;
 }
 
+/*
+	Name:
+		__import_bytes2array
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_bytes2array($file,$map,$offset) {
 	if(!is_array($map)) {
 		$map=trim($map);
@@ -285,6 +414,16 @@ function __import_bytes2array($file,$map,$offset) {
 	return $array;
 }
 
+/*
+	Name:
+		__import_removevoid
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_removevoid($array) {
 	$count_rows=count($array);
 	$rows=array_fill(0,$count_rows,0);
@@ -310,6 +449,16 @@ function __import_removevoid($array) {
 	return $array;
 }
 
+/*
+	Name:
+		__import_array2tree
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_array2tree($array,$nodes,$nohead) {
 	if(!count($array)) return $array;
 	if($nohead) {
@@ -369,6 +518,16 @@ function __import_array2tree($array,$nodes,$nohead) {
 	return $result;
 }
 
+/*
+	Name:
+		__import_array2tree_set
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_array2tree_set(&$result,$parts) {
 	$key=key($parts);
 	$val=current($parts);
@@ -381,6 +540,16 @@ function __import_array2tree_set(&$result,$parts) {
 	}
 }
 
+/*
+	Name:
+		__import_array2tree_clean
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_array2tree_clean($array) {
 	$result=array();
 	foreach($array as $node) {
@@ -393,6 +562,16 @@ function __import_array2tree_clean($array) {
 	return $result;
 }
 
+/*
+	Name:
+		__import_tree2array
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_tree2array($array) {
 	$result=array();
 	foreach($array as $node) {
@@ -411,6 +590,16 @@ function __import_tree2array($array) {
 	return $result;
 }
 
+/*
+	Name:
+		__import_col2name
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 // COPIED FROM http://www.php.net/manual/en/function.base-convert.php#94874
 function __import_col2name($n) {
 	if(is_array($n)) {
@@ -425,6 +614,16 @@ function __import_col2name($n) {
     return $r;
 }
 
+/*
+	Name:
+		__import_name2col
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 // COPIED FROM http://www.php.net/manual/en/function.base-convert.php#94874
 function __import_name2col($a) {
 	if(is_array($a)) {
@@ -439,6 +638,16 @@ function __import_name2col($a) {
     return $r - 1;
 }
 
+/*
+	Name:
+		__import_isname
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_isname($name) {
 	$len=strlen($name);
 	for($i=0;$i<$len;$i++) {
@@ -447,6 +656,16 @@ function __import_isname($name) {
 	return true;
 }
 
+/*
+	Name:
+		__import_cell2colrow
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_cell2colrow($cell) {
 	$col="";
 	$row="";
@@ -458,6 +677,16 @@ function __import_cell2colrow($cell) {
 	return array($col,$row);
 }
 
+/*
+	Name:
+		__import_getkeys
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_getkeys($array) {
 	$result=array();
 	if(isset($array[0])) {
@@ -471,6 +700,16 @@ function __import_getkeys($array) {
 	return $result;
 }
 
+/*
+	Name:
+		__import_make_table
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_make_table($array) {
 	$result="";
 	$result.="<table class='tabla width100'>\n";
@@ -585,6 +824,16 @@ function __import_make_table($array) {
 	return $result;
 }
 
+/*
+	Name:
+		__import_make_table_width
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_make_table_width($col,$width,$extra=0) {
 	if(is_array($width)) {
 		if(!isset($width[$col])) return "";
@@ -593,6 +842,16 @@ function __import_make_table_width($col,$width,$extra=0) {
 	return ($width!=""?"style='width:".($width+$extra)."px'":"");
 }
 
+/*
+	Name:
+		__import_make_table_rowspan
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_make_table_rowspan($array) {
 	$result=0;
 	foreach($array as $node) {
@@ -605,6 +864,16 @@ function __import_make_table_rowspan($array) {
 	return $result;
 }
 
+/*
+	Name:
+		__import_make_table_trs
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_make_table_trs($action) {
 	static $open=0;
 	$result="";
@@ -619,6 +888,16 @@ function __import_make_table_trs($action) {
 	return $result;
 }
 
+/*
+	Name:
+		__import_make_table_rec
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_make_table_rec($array,$limit,$offset,$edit,$width,$class="",$depth=0,$path="") {
 	static $classes=array("ui-widget-content","ui-state-default");
 	$result="";
@@ -649,6 +928,16 @@ function __import_make_table_rec($array,$limit,$offset,$edit,$width,$class="",$d
 	return $result;
 }
 
+/*
+	Name:
+		__import_make_table_row
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_make_table_row($row,$class,$rowspan,$depth,$last,$edit,$width,$path) {
 	$result="";
 	$col=0;
@@ -690,6 +979,16 @@ function __import_make_table_row($row,$class,$rowspan,$depth,$last,$edit,$width,
 	return $result;
 }
 
+/*
+	Name:
+		__import_filter
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_filter($array,$filter,$eval=0) {
 	$result=array();
 	foreach($array as $node) {
@@ -698,6 +997,16 @@ function __import_filter($array,$filter,$eval=0) {
 	return $result;
 }
 
+/*
+	Name:
+		__import_filter_rec
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_filter_rec($node,$filter,$eval,$parent=array()) {
 	if(isset($node["row"]) && isset($node["rows"])) {
 		// NORMAL FILTER
@@ -738,6 +1047,16 @@ function __import_filter_rec($node,$filter,$eval,$parent=array()) {
 	}
 }
 
+/*
+	Name:
+		__import_apply_patch
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_apply_patch(&$array,$key,$val) {
 	$key=explode("/",$key);
 	$key=array_reverse($key);
@@ -745,6 +1064,16 @@ function __import_apply_patch(&$array,$key,$val) {
 	__import_apply_patch_rec($array,$key,$val);
 }
 
+/*
+	Name:
+		__import_apply_patch_rec
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_apply_patch_rec(&$array,$key,$val) {
 	$key0=array_pop($key);
 	$key1=array_pop($key);
