@@ -87,6 +87,7 @@ function __import_find_query($data,$pos) {
 		- prefn: function executed between the load and the tree construction
 		- postfn: function executed after the tree construction
 		- nohead: if the first row doesn't contains the header of the data, put this field to one
+		- offset: the offset added to the start position in each map field
 	Output:
 		This function returns an array with the loaded data from file
 		Can return a matrix or tree, depending the nodes parameter
@@ -105,6 +106,7 @@ function import_file($args) {
 	if(!isset($args["prefn"])) $args["prefn"]="";
 	if(!isset($args["postfn"])) $args["postfn"]="";
 	if(!isset($args["nohead"])) $args["nohead"]=0;
+	if(!isset($args["offset"])) $args["offset"]=0;
 	if(!file_exists($args["file"])) return "Error: File '${args["file"]}' not found";
 	// CONTINUE
 	switch($args["type"]) {
@@ -407,7 +409,7 @@ function __import_bytes2array($file,$map,$offset) {
 	foreach($lines as $line) {
 		$line=getutf8($line);
 		$row=array();
-		foreach($map as $map0) $row[]=trim(mb_substr($line,$map0[1]-$offset,$map0[2]));
+		foreach($map as $map0) $row[]=trim(mb_substr($line,$map0[1]+$offset,$map0[2]));
 		$array[]=$row;
 	}
 	$array=__import_removevoid($array);

@@ -1254,9 +1254,9 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 	if($id_registro===null) $id_registro=execute_query("SELECT MAX(id) FROM ${tabla}");
 	if(is_string($id_registro) && strpos($id_registro,",")!==false) $id_registro=explode(",",$id_registro);
 	if(is_array($id_registro)) {
-		$last_result=0;
-		foreach($id_registro as $id) $last_result=make_indexing($id_aplicacion,$id);
-		return $last_result;
+		$result=array();
+		foreach($id_registro as $id) $result[]=make_indexing($id_aplicacion,$id);
+		return $result;
 	}
 	// BUSCAR SI EXISTE INDEXACION
 	$query=make_select_query("tbl_indexing","id",make_where_query(array(
@@ -1354,6 +1354,8 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 }
 
 function __make_indexing_helper($tabla) {
+	static $cache=array();
+	if(isset($cache[$tabla])) return $cache[$tabla];
 	static $tables=null;
 	static $types=null;
 	static $campos=null;
@@ -1427,6 +1429,7 @@ function __make_indexing_helper($tabla) {
 			}
 		}
 	}
+	$cache[$tabla]=$result;
 	return $result;
 }
 
@@ -1440,9 +1443,9 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 	if($datetime===null) $datetime=current_datetime();
 	if(is_string($id_registro) && strpos($id_registro,",")!==false) $id_registro=explode(",",$id_registro);
 	if(is_array($id_registro)) {
-		$last_result=0;
-		foreach($id_registro as $id) $last_result=make_control($id_aplicacion,$id,$id_usuario,$datetime);
-		return $last_result;
+		$result=array();
+		foreach($id_registro as $id) $result[]=make_control($id_aplicacion,$id,$id_usuario,$datetime);
+		return $result;
 	}
 	// BUSCAR SI EXISTE REGISTRO DE CONTROL
 	$query=make_select_query("tbl_registros","id",make_where_query(array(
