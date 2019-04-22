@@ -72,6 +72,7 @@ define("__HR__","<hr style='border:0px;height:1px;background:#ccc'/>");
 define("__DEFAULT__","install/xml/tbl_*.xml");
 define("__EXAMPLE__","install/csv/example/tbl_*.csv");
 define("__STREET__","install/csv/street/tbl_*.csv.gz");
+define("__USER__",1);
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>" dir="<?php echo $dir; ?>">
@@ -607,10 +608,6 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 											foreach($rows as $row) {
 												$query=make_insert_query($table,$row);
 												db_query($query);
-												if($id_aplicacion) {
-													make_control($id_aplicacion,$row["id"],1);
-													make_indexing($id_aplicacion,$row["id"]);
-												}
 											}
 											echo __YES__.__BR__;
 										} else {
@@ -666,19 +663,39 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 												$keys=array_shift($rows);
 												$keys=trim($keys);
 												$keys=explode("|",$keys);
-												$id_aplicacion=table2id($table);
-												foreach($rows as $row) {
+												$keys="`".implode("`,`",$keys)."`";
+												foreach($rows as $index=>$row) {
 													$row=trim($row);
 													if($row!="") {
+														$row=str_replace("'","''",$row);
 														$row=explode("|",$row);
-														$row=array_combine($keys,$row);
-														$query=make_insert_query($table,$row);
-														db_query($query);
-														if($id_aplicacion) {
-															make_control($id_aplicacion,$row["id"],1);
-															make_indexing($id_aplicacion,$row["id"]);
-														}
+														$row="'".implode("','",$row)."'";
+														$rows[$index]=$row;
+													} else {
+														unset($rows[$index]);
 													}
+												}
+												$rows2=array_chunk($rows,100);
+												$error="";
+												foreach($rows2 as $row) {
+													$row=implode("),(",$row);
+													$query="INSERT INTO `$table`($keys) VALUES($row)";
+													capture_next_error();
+													db_query($query);
+													$error=get_clear_error();
+													if($error) $break;
+												}
+												if($error) {
+													capture_next_error();
+													db_query("BEGIN");
+													get_clear_error();
+													foreach($rows as $row) {
+														$query="INSERT INTO `$table`($keys) VALUES($row)";
+														db_query($query);
+													}
+													capture_next_error();
+													db_query("COMMIT");
+													get_clear_error();
 												}
 												echo __YES__.__BR__;
 											} else {
@@ -713,9 +730,9 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 														unset($rows[$index]);
 													}
 												}
-												$rows=array_chunk($rows,100);
+												$rows2=array_chunk($rows,100);
 												$error="";
-												foreach($rows as $row) {
+												foreach($rows2 as $row) {
 													$row=implode("),(",$row);
 													$query="INSERT INTO `$table`($keys) VALUES($row)";
 													capture_next_error();
@@ -728,10 +745,8 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 													db_query("BEGIN");
 													get_clear_error();
 													foreach($rows as $row) {
-														foreach($row as $temp) {
-															$query="INSERT INTO `$table`($keys) VALUES($temp)";
-															db_query($query);
-														}
+														$query="INSERT INTO `$table`($keys) VALUES($row)";
+														db_query($query);
 													}
 													capture_next_error();
 													db_query("COMMIT");
@@ -743,6 +758,37 @@ define("__STREET__","install/csv/street/tbl_*.csv.gz");
 											}
 										}
 									}
+								}
+								// CREATE CONTROL AND INDEXING REGISTERS
+								$apps=execute_query_array("SELECT * FROM tbl_aplicaciones WHERE tabla!=''");
+								$id_usuario=__USER__;
+								$datetime=current_datetime();
+								foreach($apps as $app) {
+									$id=$app["id"];
+									$tabla=$app["tabla"];
+									// CREATE CONTROL REGISTERS
+									$query="INSERT INTO tbl_registros(id_aplicacion,id_registro,id_usuario,datetime,first) SELECT '${id}' id_aplicacion,id id_registro,'${id_usuario}' id_usuario,'${datetime}' datetime,'1' first FROM ${tabla} a WHERE id NOT IN (SELECT id_registro FROM tbl_registros WHERE id_aplicacion='${id}');";
+									db_query($query);
+									// CREATE INDEXING REGISTERS
+									$campos=get_fields($tabla);
+									foreach($campos as $key=>$val) $campos[$key]=$val["name"];
+									$campos[]="IFNULL((SELECT GROUP_CONCAT(CONCAT(datetime,' ',fichero,' ',search)) FROM tbl_ficheros WHERE id_aplicacion='${id}' AND id_registro=a.id),'')";
+									$campos[]="IFNULL((SELECT GROUP_CONCAT(CONCAT(datetime,' ',comentarios)) FROM tbl_comentarios WHERE id_aplicacion='${id}' AND id_registro=a.id),'')";
+									$subtablas=$app["subtablas"];
+									if($subtablas!="") {
+										$subtablas=explode(",",$subtablas);
+										foreach($subtablas as $temp) {
+											$subtabla=strtok($temp,"(");
+											$subcampo=strtok(")");
+											$subcampos=get_fields($subtabla);
+											foreach($subcampos as $key=>$val) $subcampos[$key]=$val["name"];
+											$subcampos=implode(",' ',",$subcampos);
+											$campos[]="IFNULL((SELECT GROUP_CONCAT(CONCAT(${subcampos})) FROM ${subtabla} WHERE ${subcampo}=a.id),'')";
+										}
+									}
+									$campos=implode(",' ',",$campos);
+									$query="INSERT INTO tbl_indexing(id_aplicacion,id_registro,search) SELECT '${id}' id_aplicacion,id id_registro,CONCAT(${campos}) search FROM ${tabla} a WHERE id NOT IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='${id}');";
+									db_query($query);
 								}
 								// END OF INSTALL
 								echo current_datetime().": ".LANG("finish").__BR__;
