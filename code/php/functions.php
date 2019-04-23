@@ -1370,19 +1370,25 @@ function __make_indexing_helper($tabla) {
 	if(isset($cache[$tabla])) return $cache[$tabla];
 	static $tables=null;
 	static $types=null;
-	static $campos=null;
 	static $fields=null;
+	static $campos=null;
 	if($tables===null) {
 		$file="xml/dbschema.xml";
 		$dbschema=eval_attr(xml2array($file));
 		$tables=array();
+		$types=array();
+		$fields=array();
 		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
 			foreach($dbschema["tables"] as $tablespec) {
 				$tables[$tablespec["name"]]=array();
 				$types[$tablespec["name"]]=array();
-				foreach($tablespec["fields"] as $fieldspec) if(isset($fieldspec["fkey"])) {
-					$tables[$tablespec["name"]][$fieldspec["name"]]=$fieldspec["fkey"];
-					$types[$tablespec["name"]][$fieldspec["name"]]=get_field_type($fieldspec["type"]);
+				$fields[$tablespec["name"]]=array();
+				foreach($tablespec["fields"] as $fieldspec) {
+					if(isset($fieldspec["fkey"])) {
+						$tables[$tablespec["name"]][$fieldspec["name"]]=$fieldspec["fkey"];
+						$types[$tablespec["name"]][$fieldspec["name"]]=get_field_type($fieldspec["type"]);
+					}
+					$fields[$tablespec["name"]][]=$fieldspec["name"];
 				}
 			}
 		}
@@ -1397,17 +1403,6 @@ function __make_indexing_helper($tabla) {
 					if(substr($row["campo"],0,1)=='"' && substr($row["campo"],-1,1)=='"') $row["campo"]=eval_protected($row["campo"]);
 					$campos[$row["tabla"]]=$row["campo"];
 				}
-			}
-		}
-	}
-	if($fields===null) {
-		$file="xml/dbschema.xml";
-		$dbschema=eval_attr(xml2array($file));
-		$fields=array();
-		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
-			foreach($dbschema["tables"] as $tablespec) {
-				$fields[$tablespec["name"]]=array();
-				foreach($tablespec["fields"] as $fieldspec) $fields[$tablespec["name"]][]=$fieldspec["name"];
 			}
 		}
 	}

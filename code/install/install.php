@@ -23,6 +23,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+// PREVENT MOBILE CASE
+ismobile(false);
 // GLOBALIZE SOME VARS
 global $_CONFIG;
 global $_LANG;
@@ -39,15 +41,7 @@ $_LANG=eval_attr(xml2array("install/xml/lang/$lang.xml"));
 $_CONFIG=eval_attr($_CONFIG);
 if($_CONFIG["info"]["revision"]=="SVN") $_CONFIG["info"]["revision"]=svnversion();
 if($_CONFIG["info"]["revision"]=="GIT") $_CONFIG["info"]["revision"]=gitversion();
-$style=load_style($style)?$style:"custom.blue.light";
-// SOME ALLOWED ACTIONS
-if(getParam("action")=="themeroller") {
-	global $page;
-	global $action;
-	$page=getParam("page",getDefault("page"));
-	$action=getParam("action",getDefault("action"));
-	include("php/action/".$action.".php");
-}
+$style=load_style($style)?$style:"google/blue/light";
 // SUPPORT FOR LTR AND RTL LANGS
 $dir=$_LANG["dir"];
 $textalign=array("ltr"=>"right","rtl"=>"left");

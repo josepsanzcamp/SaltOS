@@ -63,9 +63,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<name global="row" eval="true">$row</name>
+							<name global="row" eval="true">time()."_".str_replace(array("/","."),"_",$row)</name>
 							<type>textarea</type>
-							<value global="row" eval="true">implode("\n",array_slice(array_reverse(file($row,FILE_IGNORE_NEW_LINES)),0,200))</value>
+							<value global="row" eval="true">implode("\n",array_slice(file($row,FILE_IGNORE_NEW_LINES),-200))</value>
 							<width>calc(100% - 14px)</width>
 							<height>240px</height>
 							<readonly>true</readonly>

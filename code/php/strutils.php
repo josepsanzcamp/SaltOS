@@ -299,8 +299,11 @@ function xml2html($buffer,$usecache=true) {
 	return $buffer;
 }
 
-function ismobile() {
+function ismobile($forcemobile=null) {
 	static $ismobile=null;
+	if($forcemobile!==null) {
+		$ismobile=$forcemobile;
+	}
 	if($ismobile===null) {
 		include("lib/mobiledetect/Mobile_Detect.php");
 		if(!isset($_SERVER["HTTP_ACCEPT"])) $_SERVER["HTTP_ACCEPT"]="";

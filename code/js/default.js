@@ -1628,7 +1628,20 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("make_ckeditors");
 		if(typeof(obj)=="undefined") var obj=$("body");
 		// AUTO-GROWING TEXTAREA
-		$("textarea[ckeditor!=true][codemirror!=true]",obj).autogrow();
+		$("textarea[ckeditor!=true][codemirror!=true]",obj).each(function() {
+			var textarea="#"+$(this).attr("id");
+			var interval=setInterval(function() {
+				var textarea2=$(textarea);
+				if(!$(textarea2).length) {
+					clearInterval(interval);
+					//~ console.debug("textarea "+textarea+" destroyed");
+				} else if($(textarea2).is(":visible")) {
+					clearInterval(interval);
+					//~ console.debug("textarea "+textarea+" rendered");
+					$(textarea2).autogrow();
+				}
+			},100);
+		});
 		// AUTO-GROWING IFRAMES
 		$("iframe",obj).each(function() {
 			var iframe="#"+$(this).attr("id");
