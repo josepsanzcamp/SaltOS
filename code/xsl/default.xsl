@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<div class="tabs2">
 			<ul class="headertabs">
 				<xsl:for-each select="menu/header/option">
-					<li taborder="{taborder}" class="{class2}"><a href="javascript:void(0)" onclick="{onclick}" title="{tip}" class="{class}">
+					<li class="{class2}"><a href="javascript:void(0)" onclick="{onclick}" title="{tip}" class="{class}">
 						<span class="{icon}"></span>
 						<xsl:text> </xsl:text>
 						<xsl:value-of select="label"/>
@@ -449,7 +449,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:choose>
 		<xsl:when test="count($fields/row)!=0">
 			<xsl:for-each select="$fields[title!='']">
-				<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
+				<li><xsl:if test="popup='true'"><xsl:attribute name="class">popup</xsl:attribute></xsl:if><a href="#tab{generate-id(.)}">
 					<span class="{icon}"></span>
 					<xsl:text> </xsl:text>
 					<xsl:value-of select="title"/>
@@ -468,7 +468,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:when test="count($node2/*[name()=$name2])=0">
 							<xsl:for-each select="$node2/row">
 								<xsl:for-each select="$node1/fieldset[title!='']">
-									<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
+									<li><a href="#tab{generate-id(.)}">
 										<span class="{icon}"></span>
 										<xsl:text> </xsl:text>
 										<xsl:value-of select="title"/>
@@ -478,7 +478,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</xsl:when>
 						<xsl:when test="count($node2/*[name()=$name2])=1">
 							<xsl:for-each select="$node1/fieldset[title!='']">
-								<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
+								<li><a href="#tab{generate-id(.)}">
 									<span class="{icon}"></span>
 									<xsl:text> </xsl:text>
 									<xsl:value-of select="title"/>
@@ -494,7 +494,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <xsl:template name="help">
 	<xsl:if test="help='true'">
-		<li class="help" taborder=""><a href="javascript:void(0)"><span class="ui-icon ui-icon-none"></span></a></li>
+		<li class="help"><a href="javascript:void(0)"><span class="ui-icon ui-icon-none"></span></a></li>
 	</xsl:if>
 </xsl:template>
 
@@ -516,7 +516,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<ul class="centertabs">
 				<xsl:for-each select="/root/list">
 					<xsl:if test="title!=''">
-						<li taborder="{taborder}"><a href="#tab{generate-id(.)}">
+						<li><a href="#tab{generate-id(.)}">
 							<span class="{icon}"></span>
 							<xsl:text> </xsl:text>
 							<xsl:value-of select="title"/>

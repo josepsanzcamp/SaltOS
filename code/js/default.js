@@ -798,6 +798,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function submitcontent(form,callback) {
 		//~ console.time("submitcontent");
+		if(dialog("isopen")) dialog("close");
 		if(typeof(callback)=="undefined") var callback=function() {};
 		loadingcontent(lang_sending());
 		$(form).ajaxSubmit({
@@ -1254,6 +1255,35 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					viewpdf("page="+getParam("page"));
 					return false;
 				}
+				if($(ui.newTab).hasClass("popup")) {
+					var title=$("a",ui.newTab).text();
+					var tabid=$("a",ui.newTab).attr("href");
+					var form=$(tabid).parent();
+					dialog(title);
+					var dialog2=$("#dialog");
+					$(dialog2).html("");
+					$(form).appendTo(dialog2);
+					$("div",dialog2).removeAttr("class").removeAttr("style");
+					$(dialog2).dialog("option","resizeStop",function(event,ui) {
+						setIntCookie("saltos_popup_width",$(dialog2).dialog("option","width"));
+						setIntCookie("saltos_popup_height",$(dialog2).dialog("option","height"));
+					});
+					$(dialog2).dialog("option","close",function(event,ui) {
+						$(dialog2).dialog("option","resizeStop",function() {});
+						$(dialog2).dialog("option","close",function() {});
+						$("div",form).hide();
+						$(form).appendTo(".ui-layout-center");
+					});
+					var width=getIntCookie("saltos_popup_width");
+					if(!width) width=900;
+					$(dialog2).dialog("option","width",width);
+					var height=getIntCookie("saltos_popup_height");
+					if(!height) height=600;
+					$(dialog2).dialog("option","height",height);
+					$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
+					$(dialog2).dialog("open");
+					return false;
+				}
 			},
 			beforeLoad:function(event,ui) {
 				return false;
@@ -1482,6 +1512,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				},
 				open:function() {
 					hide_tooltips();
+					if(dialog("isopen")) {
+						var zindex=$(".ui-dialog").css("z-index");
+						$(".ui-selectmenu-open").css("z-index",zindex);
+					}
 				},
 				close:function() {
 					hide_tooltips();

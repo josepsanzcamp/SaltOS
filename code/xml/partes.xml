@@ -128,6 +128,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">filter</title>
 				<icon eval="true">ICON("filter")</icon>
 				<buttons>true</buttons>
+				<popup>true</popup>
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />
 					<field>
@@ -233,6 +234,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 			</fields>
 			<fields include="xml/common/filters.xml" replace="true" />
+			<buttons include="xml/common/buttonslist.xml" />
+		</form>
+		<form>
 			<fields ifeval="!ismobile()">
 				<title lang="true">graficas</title>
 				<icon eval="true">ICON("plots")</icon>
@@ -277,7 +281,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</field>
 				</row>
 			</fields>
-			<buttons include="xml/common/buttonslist.xml" />
 		</form>
 		<quick>
 			<row>

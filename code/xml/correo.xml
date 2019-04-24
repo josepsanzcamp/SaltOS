@@ -153,6 +153,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<fields>
 				<title lang="true">filter</title>
 				<icon eval="true">ICON("filter")</icon>
+				<popup>true</popup>
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />
 					<field>
