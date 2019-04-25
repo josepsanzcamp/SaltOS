@@ -152,15 +152,16 @@ if(getParam("action")=="integrity") {
 	}
 	// CHECK FOR FILES SECOND ITERATION
 	$checks=array(
-		array("tbl_usuarios_c","email_signature_file","correo"),
-		array("tbl_cuentas","logo_file","cuentas"),
-		array("tbl_productos","foto_file","productos"),
+		array("tbl_usuarios_c","email_signature_file","correo","1=1"),
+		array("tbl_cuentas","logo_file","cuentas","1=1"),
+		array("tbl_productos","foto_file","productos","1=1"),
+		array("tbl_configuracion","valor","maincfg","clave='logo_file'"),
 	);
 	foreach($checks as $check) {
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH FILES THAT DON'T CONTAIN ANY DIRECTORY SEPARATOR
-			$query=make_select_query($check[0],"id,${check[1]}","${check[1]}!='' AND ${check[1]} NOT LIKE '%/%'",array(
+			$query=make_select_query($check[0],"id,${check[1]}","${check[1]}!='' AND ${check[1]} NOT LIKE '%/%' AND ${check[3]}",array(
 				"limit"=>1000
 			));
 			$rows=execute_query_array($query);

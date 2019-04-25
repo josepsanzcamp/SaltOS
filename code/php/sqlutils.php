@@ -113,12 +113,15 @@ function preeval_update_config($clave) {
 	return $query;
 }
 
-function preeval_insert_query($table) {
+function preeval_insert_query($table,$only="") {
 	$fields=get_fields_from_dbschema($table);
+	if(is_string($only) && $only=="") $only=array();
+	if(!is_array($only)) $only=explode(",",$only);
 	$list1=array();
 	$list2=array();
 	foreach($fields as $field) {
 		if($field["name"]=="id") continue;
+		if(count($only) && !in_array($field["name"],$only)) continue;
 		$list1[]=$field["name"];
 		$type=$field["type"];
 		$type2=get_field_type($type);
@@ -137,11 +140,14 @@ function preeval_insert_query($table) {
 	return $query;
 }
 
-function preeval_update_query($table) {
+function preeval_update_query($table,$only="") {
 	$fields=get_fields_from_dbschema($table);
+	if(is_string($only) && $only=="") $only=array();
+	if(!is_array($only)) $only=explode(",",$only);
 	$list=array();
 	foreach($fields as $field) {
 		if($field["name"]=="id") continue;
+		if(count($only) && !in_array($field["name"],$only)) continue;
 		$type=$field["type"];
 		$type2=get_field_type($type);
 		$size2=get_field_size($type);
