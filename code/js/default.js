@@ -1257,12 +1257,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 				if($(ui.newTab).hasClass("popup")) {
 					var title=$("a",ui.newTab).text();
-					var tabid=$("a",ui.newTab).attr("href");
-					var form=$(tabid).parent();
+					var tabid=$("a",ui.newTab).attr("href").substr(1);
+					var form=$("#"+tabid).parent();
 					dialog(title);
 					var dialog2=$("#dialog");
 					$(dialog2).html("");
-					$(form).appendTo(dialog2);
+					$(form).after("<div id='popup"+tabid+"'></div>");
+					$(dialog2).append(form);
 					$("div",dialog2).removeAttr("class").removeAttr("style");
 					$(dialog2).dialog("option","resizeStop",function(event,ui) {
 						setIntCookie("saltos_popup_width",$(dialog2).dialog("option","width"));
@@ -1272,7 +1273,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						$(dialog2).dialog("option","resizeStop",function() {});
 						$(dialog2).dialog("option","close",function() {});
 						$("div",form).hide();
-						$(form).appendTo(".ui-layout-center");
+						$("#popup"+tabid).replaceWith(form);
 					});
 					var width=getIntCookie("saltos_popup_width");
 					if(!width) width=900;
