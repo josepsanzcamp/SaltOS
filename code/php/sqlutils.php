@@ -752,18 +752,22 @@ function make_fulltext_query2($values,$arg="") {
 			if($val!="") $values[$key]=$val;
 		}
 		if(!count($values) && !count($filter)) return "1=1";
-		$query=array();
-		foreach($values as $value) {
-			$type=($value[0]=="-")?"-":"+";
-			while(isset($value[0]) && in_array($value[0],array("+","-"))) $value=substr($value,1);
-			if($value!="") $query[]=$type.'"'.$value.'"';
+		foreach($values as $key=>$val) {
+			$type=($val[0]=="-")?"-":"+";
+			while(isset($val[0]) && in_array($val[0],array("+","-"))) $val=substr($val,1);
+			if($val=="") unset($values[$key]);
+			if($val!="") $values[$key]=$type.'"'.$val.'"';
 		}
-		if(!count($query) && !count($filter)) return "1=1";
+		if(!count($values) && !count($filter)) return "1=1";
+		$query=array();
 		if(count($filter)) {
 			foreach($filter as $key=>$val) $filter[$key]="id_aplicacion:${val}";
 			$filter=implode(" ",$filter);
 			$filter="+(${filter})";
-			array_unshift($query,$filter);
+			$query[]=$filter;
+		}
+		if(count($values)) {
+			$query[]="+(".implode(" ",$values).")";
 		}
 		$query=implode(" ",$query);
 		$query="MATCH(${search}) AGAINST('${query}' IN BOOLEAN MODE)";
@@ -777,6 +781,23 @@ function make_fulltext_query2($values,$arg="") {
 		$query[]=make_like_query($search,$values);
 		$query=implode(" AND ",$query);
 	}
+	return $query;
+}
+
+function make_fulltext_query3($values,$arg="") {
+	$id_IN="id IN";
+	$query1=make_fulltext_query2($values,$arg);
+	$engine=strtolower(get_engine("tbl_indexing"));
+	if($engine=="mroonga") {
+		$query2=make_fulltext_query2("",$arg);
+		$count1=execute_query("SELECT COUNT(*) FROM tbl_indexing WHERE ${query1}");
+		$count2=execute_query("SELECT COUNT(*) FROM tbl_indexing WHERE ${query2}");
+		if($count1>$count2*0.5) {
+			$id_IN="id NOT IN";
+			$query1=str_replace(") +(",") -(",$query1);
+		}
+	}
+	$query="${id_IN} (SELECT id_registro FROM tbl_indexing WHERE ${query1})";
 	return $query;
 }
 
