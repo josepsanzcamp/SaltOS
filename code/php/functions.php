@@ -1003,30 +1003,44 @@ function do_message_error($array,$format) {
 		"text"=>array(array("***** "," *****\n"),array("","\n"),"\n")
 	);
 	if(!isset($dict[$format])) die("Unknown format $format");
+	static $types=array(
+		"dberror"=>"DB Error",
+		"phperror"=>"PHP Error",
+		"xmlerror"=>"XML Error",
+		"jserror"=>"JS Error",
+		"dbwarning"=>"DB Warning",
+		"phpwarning"=>"PHP Warning",
+		"xmlwarning"=>"XML Warning",
+		"jswarning"=>"JS Warning",
+		"source"=>"Source",
+		"exception"=>"Exception",
+		"details"=>"Details",
+		"query"=>"Query",
+		"backtrace"=>"Backtrace",
+		"debug"=>"Debug",
+	);
 	$msg=array();
-	if(isset($array["phperror"])) $msg[]=array("PHP Error",$array["phperror"]);
-	if(isset($array["xmlerror"])) $msg[]=array("XML Error",$array["xmlerror"]);
-	if(isset($array["dberror"])) {
-		$privated=array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name"));
-		$msg[]=array("DB Error",str_replace($privated,"...",$array["dberror"]));
-	}
-	if(isset($array["jserror"])) $msg[]=array("JS Error",$array["jserror"]);
-	if(isset($array["source"])) $msg[]=array("XML Source",$array["source"]);
-	if(isset($array["exception"])) $msg[]=array("Exception",$array["exception"]);
-	if(isset($array["details"])) $msg[]=array("Details",$array["details"]);
-	if(isset($array["query"])) $msg[]=array("Query",$array["query"]);
-	if(isset($array["backtrace"])) {
-		foreach($array["backtrace"] as $key=>$item) {
-			$temp="${key} => ${item["function"]}";
-			if(isset($item["class"])) $temp.=" (in class ${item["class"]})";
-			if(isset($item["file"]) && isset($item["line"])) $temp.=" (in file ".basename($item["file"])." at line ${item["line"]})";
-			$array["backtrace"][$key]=$temp;
+	foreach($array as $type=>$data) {
+		switch($type) {
+			case "dberror":
+				$privated=array(getDefault("db/host"),getDefault("db/port"),getDefault("db/user"),getDefault("db/pass"),getDefault("db/name"));
+				$data=str_replace($privated,"...",$data);
+				break;
+			case "backtrace":
+				foreach($data as $key=>$item) {
+					$temp=$key." => ".$item["function"];
+					if(isset($item["class"])) $temp.=" (in class ".$item["class"].")";
+					if(isset($item["file"]) && isset($item["line"])) $temp.=" (in file ".basename($item["file"])." at line ".$item["line"].")";
+					$data[$key]=$temp;
+				}
+				$data=implode($dict[$format][2],$data);
+				break;
+			case "debug":
+				foreach($data as $key=>$item) $data[$key]="${key} => ${item}";
+				$data=implode($dict[$format][2],$data);
+				break;
 		}
-		$msg[]=array("Backtrace",implode($dict[$format][2],$array["backtrace"]));
-	}
-	if(isset($array["debug"])) {
-		foreach($array["debug"] as $key=>$item) $array["debug"][$key]="${key} => ${item}";
-		$msg[]=array("Debug",implode($dict[$format][2],$array["debug"]));
+		if(isset($types[$type])) $msg[]=array($types[$type],$data);
 	}
 	foreach($msg as $key=>$item) $msg[$key]=$dict[$format][0][0].$item[0].$dict[$format][0][1].$dict[$format][1][0].$item[1].$dict[$format][1][1];
 	$msg=implode($msg);
@@ -1041,14 +1055,9 @@ function show_php_error($array=null) {
 		show_php_error($backup);
 	}
 	// ADD BACKTRACE IF NOT FOUND
-	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace();
+	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 	// ADD DEBUG IF NOT FOUND
-	if(!isset($array["debug"])) {
-		$array["debug"]=array();
-		if(useSession("user")) $array["debug"]["user"]=useSession("user");
-		foreach(array("page","action","id") as $item) if(getParam($item)) $array["debug"][$item]=getParam($item);
-		if(!count($array["debug"])) unset($array["debug"]);
-	}
+	if(!isset($array["debug"])) $array["debug"]=session_backtrace();
 	// CREATE THE MESSAGE ERROR USING HTML ENTITIES AND PLAIN TEXT
 	$msg_html=do_message_error($array,"html");
 	$msg_text=do_message_error($array,"text");
@@ -1076,10 +1085,22 @@ function show_php_error($array=null) {
 	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
 	if(is_writable($dir)) {
 		$file=isset($array["file"])?$array["file"]:getDefault("debug/errorfile","error.log");
-		if(isset($array["phperror"])) $file=getDefault("debug/phperrorfile","phperror.log");
-		if(isset($array["xmlerror"])) $file=getDefault("debug/xmlerrorfile","xmlerror.log");
-		if(isset($array["dberror"])) $file=getDefault("debug/dberrorfile","dberror.log");
-		if(isset($array["jserror"])) $file=getDefault("debug/jserrorfile","jserror.log");
+		static $types=array(
+			array("dberror","debug/dberrorfile","dberror.log"),
+			array("phperror","debug/phperrorfile","phperror.log"),
+			array("xmlerror","debug/xmlerrorfile","xmlerror.log"),
+			array("jserror","debug/jserrorfile","jserror.log"),
+			array("dbwarning","debug/dbwarningfile","dbwarning.log"),
+			array("phpwarning","debug/phpwarningfile","phpwarning.log"),
+			array("xmlwarning","debug/xmlwarningfile","xmlwarning.log"),
+			array("jswarning","debug/jswarningfile","jswarning.log"),
+		);
+		foreach($types as $type) {
+			if(isset($array[$type[0]])) {
+				$file=getDefault($type[1],$type[2]);
+				break;
+			}
+		}
 		if(checklog($hash,$file)) $msg_text="";
 		addlog("${msg_text}***** ${hash} *****",$file);
 	}
@@ -1140,7 +1161,7 @@ function __pretty_html_error_helper($action,$hiddens,$submit) {
 }
 
 function __error_handler($type,$message,$file,$line) {
-	show_php_error(array("phperror"=>"${message} (code ${type})","details"=>"Error on file '".basename($file)."' at line ${line}","backtrace"=>debug_backtrace()));
+	show_php_error(array("phperror"=>"${message} (code ${type})","details"=>"Error on file '".basename($file)."' at line ${line}","backtrace"=>debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)));
 }
 
 function __exception_handler($e) {
@@ -1153,7 +1174,7 @@ function __shutdown_handler() {
 	$error=error_get_last();
 	$types=array(E_ERROR,E_PARSE,E_CORE_ERROR,E_COMPILE_ERROR,E_USER_ERROR,E_RECOVERABLE_ERROR);
 	if(is_array($error) && isset($error["type"]) && in_array($error["type"],$types)) {
-		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '".basename($error["file"])."' at line ${error["line"]}","backtrace"=>debug_backtrace()));
+		show_php_error(array("phperror"=>"${error["message"]}","details"=>"Error on file '".basename($error["file"])."' at line ${error["line"]}","backtrace"=>debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)));
 	}
 	semaphore_shutdown();
 }

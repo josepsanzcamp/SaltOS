@@ -651,4 +651,12 @@ function upload_error2string($error) {
 	if(isset($errors[$error])) return $errors[$error];
 	return "UPLOAD_ERR_UNKWOWN";
 }
+
+function session_backtrace() {
+	$array=array();
+	if(useSession("user")) $array["user"]=useSession("user");
+	static $items=array("page","action","id");
+	foreach($items as $item) if(getParam($item)) $array[$item]=getParam($item);
+	return $array;
+}
 ?>

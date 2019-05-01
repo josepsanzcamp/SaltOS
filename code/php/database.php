@@ -38,7 +38,25 @@ function db_connect($args=null) {
 
 function db_query($query,$fetch="query") {
 	if(method_exists(getDefault("db/obj"),"db_query")) {
+		$debug=eval_bool(getDefault("debug/slowquerydebug"));
+		if($debug) {
+			$time1=microtime(true);
+		}
 		$result=getDefault("db/obj")->db_query($query,$fetch);
+		if($debug) {
+			$time2=microtime(true);
+			$curtime=$time2-$time1;
+			$maxtime=getDefault("debug/slowquerytime");
+			if($curtime>$maxtime) {
+				$array=array();
+				$array["dbwarning"]="Slow query requires $curtime seconds";
+				$array["query"]=$query;
+				$array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+				$array["debug"]=session_backtrace();
+				$msg_text=do_message_error($array,"text");
+				addlog($msg_text,getDefault("debug/dbwarningfile","dbwarning.log"));
+			}
+		}
 	} else {
 		show_php_error(array("phperror"=>"Unknown database connector"));
 		$result=array("total"=>0,"header"=>array(),"rows"=>array());

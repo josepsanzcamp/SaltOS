@@ -174,7 +174,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xmlerrorfile>xmlerror.log</xmlerrorfile>
 		<dberrorfile>dberror.log</dberrorfile>
 		<jserrorfile>jserror.log</jserrorfile>
+		<phpwarningfile>phpwarning.log</phpwarningfile>
+		<xmlwarningfile>xmlwarning.log</xmlwarningfile>
+		<dbwarningfile>dbwarning.log</dbwarningfile>
+		<jswarningfile>jswarning.log</jswarningfile>
 		<maxfilesize>100M</maxfilesize>
+		<slowquerydebug>true</slowquerydebug>
+		<slowquerytime>5</slowquerytime><!-- in seconds -->
 	</debug>
 	<parser>
 		<preevals>
