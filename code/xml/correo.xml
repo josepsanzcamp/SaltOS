@@ -1071,6 +1071,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</source>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
+			<node path="files_old/fieldset" append="true">
+				<popup>true</popup>
+			</node>
+			<node path="files_new/fieldset" append="true">
+				<popup>true</popup>
+			</node>
+			<node path="control/fieldset" append="true">
+				<popup>true</popup>
+			</node>
+			<node path="folders/fieldset" append="true">
+				<popup>true</popup>
+			</node>
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons>

@@ -468,7 +468,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:when test="count($node2/*[name()=$name2])=0">
 							<xsl:for-each select="$node2/row">
 								<xsl:for-each select="$node1/fieldset[title!='']">
-									<li><a href="#tab{generate-id(.)}">
+									<li><xsl:if test="popup='true'"><xsl:attribute name="class">popup</xsl:attribute></xsl:if><a href="#tab{generate-id(.)}">
 										<span class="{icon}"></span>
 										<xsl:text> </xsl:text>
 										<xsl:value-of select="title"/>
@@ -478,7 +478,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</xsl:when>
 						<xsl:when test="count($node2/*[name()=$name2])=1">
 							<xsl:for-each select="$node1/fieldset[title!='']">
-								<li><a href="#tab{generate-id(.)}">
+								<li><xsl:if test="popup='true'"><xsl:attribute name="class">popup</xsl:attribute></xsl:if><a href="#tab{generate-id(.)}">
 									<span class="{icon}"></span>
 									<xsl:text> </xsl:text>
 									<xsl:value-of select="title"/>

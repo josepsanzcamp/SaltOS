@@ -1258,7 +1258,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				if($(ui.newTab).hasClass("popup")) {
 					var title=$("a",ui.newTab).text();
 					var tabid=$("a",ui.newTab).attr("href").substr(1);
-					var form=$("#"+tabid).parent();
+					if(getParam("action")=="list") var form=$("#"+tabid).parent();
+					if(getParam("action")=="form") var form=$("#"+tabid);
 					dialog(title);
 					var dialog2=$("#dialog");
 					$(dialog2).html("");
@@ -1272,7 +1273,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(dialog2).dialog("option","close",function(event,ui) {
 						$(dialog2).dialog("option","resizeStop",function() {});
 						$(dialog2).dialog("option","close",function() {});
-						$("div",form).hide();
+						if(getParam("action")=="list") $("div",form).hide();
+						if(getParam("action")=="form") $(form).hide();
 						$("#popup"+tabid).replaceWith(form);
 					});
 					var width=getIntCookie("saltos_popup_width");
