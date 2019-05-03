@@ -32,6 +32,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 	// ORIGINAL IDEA FROM pdf.js/examples/components/simpleviewer.html
 	function viewpdf(data) {
 		viewpdf_history.push(data);
+		hide_popupdialog();
 		loadingcontent(lang_view2opening());
 		var data="action=viewpdf&"+data;
 		$.ajax({

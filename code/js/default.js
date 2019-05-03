@@ -421,6 +421,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(title=="isopen") {
 			return $(dialog2).dialog("isOpen");
 		}
+		if(title=="ispopup") {
+			return $("div[id^=popuptabid]").length;
+		}
 		if($(dialog2).dialog("isOpen")) {
 			return false;
 		}
@@ -798,8 +801,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function submitcontent(form,callback) {
 		//~ console.time("submitcontent");
-		if(dialog("isopen")) dialog("close");
 		if(typeof(callback)=="undefined") var callback=function() {};
+		hide_popupdialog();
 		loadingcontent(lang_sending());
 		$(form).ajaxSubmit({
 			beforeSerialize:function(jqForm,options) {
@@ -1264,7 +1267,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					var dialog2=$("#dialog");
 					$(dialog2).html("");
 					$(form).after("<div id='popup"+tabid+"'></div>");
+					$(dialog2).append("<br/>");
 					$(dialog2).append(form);
+					$(dialog2).append("<br/>");
 					$("div",dialog2).removeAttr("class").removeAttr("style");
 					$(dialog2).dialog("option","resizeStop",function(event,ui) {
 						setIntCookie("saltos_popup_width",$(dialog2).dialog("option","width"));
@@ -1299,6 +1304,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$("span",help).removeClass("ui-icon ui-icon-none").addClass(icon_help());
 		$("a",help).append("&nbsp;").append(lang_help());
 		//~ console.timeEnd("make_tabs");
+	}
+
+	function hide_popupdialog() {
+		if(dialog("isopen") && dialog("ispopup")) dialog("close");
 	}
 
 	var make_tabs2_padding=0;
