@@ -27,11 +27,8 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 	"use strict";
 	var __viewpdf__=1;
 
-	var viewpdf_history=[];
-
 	// ORIGINAL IDEA FROM pdf.js/examples/components/simpleviewer.html
 	function viewpdf(data) {
-		viewpdf_history.push(data);
 		hide_popupdialog();
 		loadingcontent(lang_view2opening());
 		var data="action=viewpdf&"+data;
@@ -89,7 +86,6 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 							$(dialog2).dialog("option","resizeStop",function() {});
 							$(dialog2).dialog("option","close",function() {});
 							$("*",dialog2).each(function() { $(this).remove(); });
-							while(viewpdf_history.length>0) viewpdf_history.shift();
 							document.removeEventListener("pagesinit",fn1);
 							document.removeEventListener("textlayerrendered",fn2);
 						});
@@ -103,16 +99,6 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 						// END OPEN DIALOG
 						$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 						$(dialog2).dialog("open");
-						// FOR THE HISTORY BUTTON
-						var titlebar=$(".ui-dialog-titlebar");
-						while($("button",titlebar).length>1) $("button:last",titlebar).remove();
-						if(viewpdf_history.length>1) {
-							$(titlebar).append("<button role='button' class='ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close' type='button'><span class='ui-button-icon-primary ui-icon ui-icon-triangle-1-w'></span><span class='ui-button-text'>Back</span></button>");
-							$("button:last",titlebar).css("margin-right","22px").on("click",function() {
-								viewpdf_history.pop();
-								viewpdf(viewpdf_history.pop());
-							});
-						}
 						// PAINT ALL PAGES
 						var container=document.getElementById("viewerContainer");
 						var pdfViewer=new pdfjsViewer.PDFViewer({

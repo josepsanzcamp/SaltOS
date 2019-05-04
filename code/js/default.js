@@ -1259,6 +1259,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					return false;
 				}
 				if($(ui.newTab).hasClass("popup")) {
+					unmake_tooltips();
 					var title=$("a",ui.newTab).text();
 					var tabid=$("a",ui.newTab).attr("href").substr(1);
 					if(getParam("action")=="list") var form=$("#"+tabid).parent();
@@ -1276,11 +1277,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						setIntCookie("saltos_popup_height",$(dialog2).dialog("option","height"));
 					});
 					$(dialog2).dialog("option","close",function(event,ui) {
+						unmake_tooltips();
 						$(dialog2).dialog("option","resizeStop",function() {});
 						$(dialog2).dialog("option","close",function() {});
 						if(getParam("action")=="list") $("div",form).hide();
 						if(getParam("action")=="form") $(form).hide();
 						$("#popup"+tabid).replaceWith(form);
+						make_tooltips();
 					});
 					var width=getIntCookie("saltos_popup_width");
 					if(!width) width=900;
@@ -1290,6 +1293,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(dialog2).dialog("option","height",height);
 					$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 					$(dialog2).dialog("open");
+					make_tooltips();
 					return false;
 				}
 			},
@@ -1926,8 +1930,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("make_tooltips");
 		$(document).tooltip({
 			items:"[title][title!=''],[title2][title2!='']",
-			show:{ effect:"none" },
-			hide:{ effect:"none" },
+			show:false,
+			hide:false,
 			tooltipClass:"ui-state-highlight",
 			//~ track:true,
 			open:function(event,ui) {
@@ -1960,6 +1964,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			}
 		});
 		//~ console.timeEnd("make_tooltips");
+	}
+
+	function unmake_tooltips() {
+		$(document).tooltip("destroy");
 	}
 
 	function hide_tooltips() {
