@@ -101,7 +101,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<onclick global="temp" eval="true">"opencontent('?page=$temp')"</onclick>
 			<icon global="temp" eval="true">ICON($temp)</icon>
 			<tip global="temp,row" eval="true">$temp?LANG("desc_$temp")." [".strtoupper($row["button"])."]":""</tip>
-			<class global="temp,row" eval="true">"nowrap".($temp=="correo"?" number_correo number":"").($temp=="agenda"?" number_agenda number":"").($temp=="feeds"?" number_feeds number":"").(" shortcut_".$row["button"])</class>
+			<class global="temp,row" eval="true">"nowrap".($temp=="correo"?" number number_correo":"").($temp=="agenda"?" number number_agenda":"").($temp=="feeds"?" number number_feeds":"").(" shortcut_".$row["button"])</class>
 			<class2>right</class2>
 		</option>
 	</header>
