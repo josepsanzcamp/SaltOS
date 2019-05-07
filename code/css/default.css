@@ -219,6 +219,9 @@ form {
 .ui-dialog {
 	padding:0!important;
 	border:0!important;
+	box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
+	-moz-box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
+	-webkit-box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
 }
 
 /* CONTINUE */
@@ -472,14 +475,6 @@ img.image {
 	margin-top:2px;
 }
 
-/* FOR NOTICE */
-.jGrowl-notification {
-	border:0!important;
-	box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
-	-moz-box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
-	-webkit-box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
-}
-
 /* FOR QRCODE */
 #dialog h1.tel {
 	margin-bottom:0;
@@ -521,10 +516,6 @@ img[isplot=true] {
 
 /* FOR TOOLTIPS */
 .ui-tooltip {
-	border:0!important;
-	box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
-	-moz-box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
-	-webkit-box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
 	padding:5px 10px!important;
 }
 
@@ -555,14 +546,6 @@ img[isplot=true] {
 
 .rtl .tabs2 span.number {
 	right:17px;
-}
-
-/* FOR BLOCKUI */
-.blockUI.blockMsg {
-	border:0!important;
-	box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
-	-moz-box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
-	-webkit-box-shadow:1px 1px 0 0 rgba(0,0,0,1)!important;
 }
 
 /* FOR BACK TO TOP FEATURE */

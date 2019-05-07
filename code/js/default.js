@@ -651,20 +651,20 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			fadeIn:0,
 			fadeOut:0,
 			overlayCSS:{
-				opacity:0.3,
-				backgroundColor:"#aaaaaa"
+				opacity:"",
+				backgroundColor:""
 			},
 			css:{
-				opacity:0.9,
-				border:"0px",
-				padding:"15px",
 				color:"",
 				backgroundColor:"",
+				border:"",
+				padding:"15px",
 				"font-family":get_colors("ui-widget","font-family"),
 				left:($(window).width()-500)/2+"px",
 				width:"500px"
 			}
 		});
+		$(".blockOverlay").addClass("ui-widget-overlay");
 		$(".blockMsg").addClass("ui-state-highlight ui-corner-all");
 		return true;
 	}
@@ -1936,6 +1936,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			//~ track:true,
 			open:function(event,ui) {
 				ui.tooltip.css("max-width",$(window).width()/2);
+				var color=get_colors("ui-state-highlight","border-bottom-color");
+				ui.tooltip.css("border-color",color);
 			},
 			content:function() {
 				// GET THE TITLE VALUE
