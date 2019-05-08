@@ -631,7 +631,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.generatedata.com/")</onclick>
 						</field>
 						<field>
-							<label>Font Awesome Free 5.7.1 (SIL OFL 1.1)</label>
+							<label>Font Awesome Free 5.8.2 (SIL OFL 1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://fontawesome.com/changelog/latest")</onclick>

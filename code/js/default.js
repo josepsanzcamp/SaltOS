@@ -1077,8 +1077,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		var header2=$(".ui-layout-north",html);
 		unmake_numbers(header);
 		if($(header).text()!=$(header2).text()) {
-			make_tabs2(header2);
 			$(header).replaceWith(header2);
+			make_tabs2(header2);
 			setTimeout(function() {
 				//~ console.time("updatecontent north fase 1");
 				make_draganddrop(header2);
@@ -1259,7 +1259,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					return false;
 				}
 				if($(ui.newTab).hasClass("popup")) {
-					unmake_tooltips();
 					var title=$("a",ui.newTab).text();
 					var tabid=$("a",ui.newTab).attr("href").substr(1);
 					if(getParam("action")=="list") var form=$("#"+tabid).parent();
@@ -1277,13 +1276,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						setIntCookie("saltos_popup_height",$(dialog2).dialog("option","height"));
 					});
 					$(dialog2).dialog("option","close",function(event,ui) {
-						unmake_tooltips();
 						$(dialog2).dialog("option","resizeStop",function() {});
 						$(dialog2).dialog("option","close",function() {});
 						if(getParam("action")=="list") $("div",form).hide();
 						if(getParam("action")=="form") $(form).hide();
 						$("#popup"+tabid).replaceWith(form);
-						make_tooltips();
+						reset_tooltips();
 					});
 					var width=getIntCookie("saltos_popup_width");
 					if(!width) width=900;
@@ -1293,7 +1291,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(dialog2).dialog("option","height",height);
 					$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 					$(dialog2).dialog("open");
-					make_tooltips();
+					reset_tooltips();
 					return false;
 				}
 			},
@@ -1314,10 +1312,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(dialog("isopen") && dialog("ispopup")) dialog("close");
 	}
 
-	var make_tabs2_padding=0;
-	var make_tabs2_margin=0;
-	var make_tabs2_border=0;
-
 	function make_tabs2(obj) {
 		//~ console.time("make_tabs2");
 		if(typeof(obj)=="undefined") var obj=$("body");
@@ -1336,13 +1330,13 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".tabs2 ul",obj).removeClass("ui-corner-all").addClass("ui-corner-bottom");
 		$(".tabs2 li",obj).removeClass("ui-tabs-active ui-state-active");
 		$(".tabs2 li",obj).removeClass("ui-corner-top").addClass("ui-corner-bottom");
-		if(!make_tabs2_padding) make_tabs2_padding=$(".tabs2 ul",obj).css("padding-top");
-		if(!make_tabs2_margin) make_tabs2_margin=$(".tabs2 li",obj).css("margin-top");
-		if(!make_tabs2_border) make_tabs2_border=$(".tabs2 li",obj).css("border-top");
-		if(!make_tabs2_border) make_tabs2_border=$(".tabs2 li",obj).css("border-top-width")+" "+$(".tabs2 li",obj).css("border-top-style")+" "+$(".tabs2 li",obj).css("border-top-color");
-		$(".tabs2 ul",obj).css("padding-top","0").css("padding-bottom",make_tabs2_padding);
-		$(".tabs2 li",obj).css("margin-top","0").css("margin-bottom",make_tabs2_margin);
-		$(".tabs2 li",obj).css("border-top","0").css("border-bottom",make_tabs2_border);
+		var padding=$(".tabs2 ul",obj).css("padding-top");
+		var margin=$(".tabs2 li",obj).css("margin-top");
+		var border=$(".tabs2 li",obj).css("border-top");
+		if(!border) border=$(".tabs2 li",obj).css("border-top-width")+" "+$(".tabs2 li",obj).css("border-top-style")+" "+$(".tabs2 li",obj).css("border-top-color");
+		$(".tabs2 ul",obj).css("padding-top","0").css("padding-bottom",padding);
+		$(".tabs2 li",obj).css("margin-top","0").css("margin-bottom",margin);
+		$(".tabs2 li",obj).css("border-top","0").css("border-bottom",border);
 		//~ console.timeEnd("make_tabs2");
 	}
 
@@ -1968,8 +1962,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.timeEnd("make_tooltips");
 	}
 
-	function unmake_tooltips() {
+	function reset_tooltips() {
 		$(document).tooltip("destroy");
+		make_tooltips();
 	}
 
 	function hide_tooltips() {
