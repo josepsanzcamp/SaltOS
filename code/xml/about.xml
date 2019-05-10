@@ -798,7 +798,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<name global="row" eval="true">$row</name>
+							<name global="row" eval="true">encode_bad_chars($row)</name>
 							<type>textarea</type>
 							<value global="directory,extension,row" eval="true">file_get_contents($directory.$row.$extension)</value>
 							<width>800px</width>

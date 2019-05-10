@@ -1935,10 +1935,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			},
 			content:function() {
 				// GET THE TITLE VALUE
-				var title=$(this).attr("title");
+				var title=trim($(this).attr("title"));
 				if(title) {
 					// CHECK IF TITLE IS THE SAME THAT THE OBJECT TEXT
-					if(title==$(this).text()) {
+					if(title==trim($(this).text())) {
 						title="";
 					}
 					// FIX SOME ISSUES
@@ -1946,7 +1946,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						title=str_replace(["<",">"],["&lt;","&gt;"],title);
 					}
 					// MOVE DATA FROM TITLE TO TITLE2
-					$(this).attr("title","");
+					$(this).removeAttr("title");
 					$(this).attr("title2",title);
 				} else {
 					title=$(this).attr("title2");
