@@ -1281,7 +1281,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						if(getParam("action")=="list") $("div",form).hide();
 						if(getParam("action")=="form") $(form).hide();
 						$("#popup"+tabid).replaceWith(form);
-						reset_tooltips();
+						unmake_focus();
 					});
 					var width=getIntCookie("saltos_popup_width");
 					if(!width) width=900;
@@ -1291,7 +1291,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(dialog2).dialog("option","height",height);
 					$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 					$(dialog2).dialog("open");
-					reset_tooltips();
 					return false;
 				}
 			},
@@ -1962,13 +1961,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.timeEnd("make_tooltips");
 	}
 
-	function reset_tooltips() {
-		$(document).tooltip("destroy");
-		make_tooltips();
-	}
-
 	function hide_tooltips() {
+		//~ console.time("hide_tooltips");
 		$(".ui-tooltip").remove();
+		//~ console.timeEnd("hide_tooltips");
 	}
 
 	var make_focus_obj=null;
@@ -1979,6 +1975,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(make_focus_obj) $(make_focus_obj).trigger("focus");
 		make_focus_obj=null;
 		//~ console.timeEnd("make_focus");
+	}
+
+	function unmake_focus() {
+		$("html").focus();
 	}
 
 	var make_tables_pos=-1;
