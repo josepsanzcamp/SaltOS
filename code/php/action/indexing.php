@@ -41,7 +41,7 @@ if(getParam("action")=="indexing") {
 		$exists=execute_query($query);
 		if(!$exists) continue;
 		// CONTINUE
-		$query=make_update_query("tbl_ficheros",array(),make_where_query(array("id"=>$row["id"])),array("retries"=>"retries+1"));
+		$query=make_update_query("tbl_ficheros",array("retries"=>$row["retries"]+1),make_where_query(array("id"=>$row["id"])));
 		db_query($query);
 		if($row["id_aplicacion"]==page2id("correo")) {
 			$decoded=__getmail_getmime($row["id_registro"]);
@@ -75,12 +75,7 @@ if(getParam("action")=="indexing") {
 	// SEND RESPONSE
 	if($total) javascript_alert($total.LANG("msgfilesindexed".min($total,2)));
 	// INDEXING UNINDEXED CONTENTS
-	$query=make_select_query("tbl_aplicaciones",array(
-		"id",
-		"tabla"
-	),make_where_query(array(
-		"tabla"=>array("!=","")
-	)));
+	$query="SELECT id,tabla FROM tbl_aplicaciones WHERE tabla!=''";
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
@@ -90,13 +85,7 @@ if(getParam("action")=="indexing") {
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE INDEXING TABLE
-			$query=make_select_query($tabla,"id",make_where_query(array(),"AND",array(
-				"id NOT IN (".make_select_query("tbl_indexing","id_registro",make_where_query(array(
-					"id_aplicacion"=>$id_aplicacion
-				))).")"
-			)),array(
-				"limit"=>1000
-			));
+			$query="SELECT a.id FROM ${tabla} a LEFT JOIN tbl_indexing b ON a.id=b.id_registro AND b.id_aplicacion=${id_aplicacion} WHERE b.id IS NULL LIMIT 1000";
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
 			make_indexing($id_aplicacion,$ids);
@@ -105,13 +94,7 @@ if(getParam("action")=="indexing") {
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE INDEXING TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
-			$query=make_select_query("tbl_indexing","id_registro",make_where_query(array(
-				"id_aplicacion"=>$id_aplicacion
-			),"AND",array(
-				"id_registro NOT IN (".make_select_query($tabla,"id").")"
-			)),array(
-				"limit"=>1000
-			));
+			$query="SELECT a.id_registro FROM tbl_indexing a LEFT JOIN ${tabla} b ON b.id=a.id_registro WHERE a.id_aplicacion=${id_aplicacion} AND b.id IS NULL LIMIT 1000";
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
 			make_indexing($id_aplicacion,$ids);
@@ -123,16 +106,7 @@ if(getParam("action")=="indexing") {
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH FOR DUPLICATED ROWS IN INDEXING TABLE
-		$query=make_select_query("tbl_indexing",array(
-			"GROUP_CONCAT(id)"=>"ids",
-			"id_aplicacion"=>"id_aplicacion",
-			"id_registro"=>"id_registro",
-			"COUNT(*)"=>"total"
-		),"",array(
-			"groupby"=>array("id_aplicacion","id_registro"),
-			"having"=>"total>1",
-			"limit"=>"1000"
-		));
+		$query="SELECT GROUP_CONCAT(id) ids, id_aplicacion, id_registro, COUNT(*) total FROM tbl_indexing GROUP BY id_aplicacion,id_registro HAVING total>1 LIMIT 1000";
 		$ids=execute_query_array($query);
 		if(!count($ids)) break;
 		foreach($ids as $key=>$val) {
@@ -149,11 +123,7 @@ if(getParam("action")=="indexing") {
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH IDS OF THE INDEXING TABLE THAT DOESN'T EXISTS IN THE APPLICATION TABLE
-		$query=make_select_query("tbl_indexing","id",make_where_query(array(),"AND",array(
-			"id_aplicacion NOT IN (".make_select_query("tbl_aplicaciones","id").")"
-		)),array(
-			"limit"=>1000
-		));
+		$query="SELECT id FROM tbl_indexing WHERE id_aplicacion NOT IN (SELECT id FROM tbl_aplicaciones) LIMIT 1000";
 		$ids=execute_query_array($query);
 		if(!count($ids)) break;
 		$temp=implode(",",$ids);

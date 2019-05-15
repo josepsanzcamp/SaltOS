@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<width>100%</width>
 		</field>
 		<field>
+			<name>buscar</name>
 			<type>button</type>
 			<value lang="true">buscar</value>
 			<tip lang="true">buscartip</tip>
@@ -38,6 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap</class>
 		</field>
 		<field>
+			<name>limpiar</name>
 			<type>button</type>
 			<value lang="true">limpiar</value>
 			<tip lang="true">limpiartip</tip>

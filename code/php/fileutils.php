@@ -88,10 +88,10 @@ function __addlog_helper($a) {
 
 function checklog($hash,$file="") {
 	$dir=get_directory("dirs/filesdir",getcwd_protected()."/files");
-	capture_next_error();
-	$buffer=file_get_contents($dir.$file);
-	$error=get_clear_error();
-	if(!$error && strpos($buffer,$hash)!==false) return 1;
+	if(file_exists($dir.$file)) {
+		$buffer=file_get_contents($dir.$file);
+		if(strpos($buffer,$hash)!==false) return 1;
+	}
 	return 0;
 }
 

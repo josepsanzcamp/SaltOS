@@ -1293,6 +1293,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</div>
 			</td>
 		</xsl:when>
+		<xsl:when test="type='copy'">
+			<td></td><td iscopy="true" copyname="{name}" onchange="{onchange}" onkeydown="{onkey}" class="{class}" focused="{focus}"></td>
+		</xsl:when>
 	</xsl:choose>
 </xsl:template>
 

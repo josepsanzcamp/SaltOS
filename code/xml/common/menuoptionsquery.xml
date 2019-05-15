@@ -26,9 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<temp global="rows,temp" eval="true">$rows=ismobile()?array():execute_query_extra(make_select_query("tbl_filters","*",make_where_query(array(
 		"id_usuario"=>current_user()
-	)),array(
-		"order"=>"nombre ASC"
-	)),array(
+	))." ORDER BY nombre ASC"),array(
 		"id_aplicacion"=>page2id($temp)
 	))</temp>
 </root>

@@ -72,15 +72,11 @@ if(getParam("action")=="feeds") {
 					session_alert(LANG($action2[1]?"msgnumsicool":"msgnumnocool","feeds").$numids.LANG("message".min($numids,2),"feeds"));
 				} elseif($action2[0]=="delete") {
 					// CREAR DATOS EN TABLA DE POSTS BORRADOS
-					$query=make_insert_query("tbl_feeds_d",make_select_query("tbl_feeds",array(
-						"id_feed",
-						"link",
-						"'".current_datetime()."'"
-					),"id IN (${ids})"),array(
-						"id_feed",
-						"link",
-						"datetime"
-					));
+					$query=make_insert_from_select_query("tbl_feeds_d","tbl_feeds",array(
+						"id_feed"=>"id_feed",
+						"link"=>"link",
+						"datetime"=>"'".current_datetime()."'",
+					),"id IN (${ids})");
 					db_query($query);
 					// BORRAR POSTS
 					$query=make_delete_query("tbl_feeds","id IN (${ids})");

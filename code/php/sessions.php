@@ -93,9 +93,7 @@ function sess_destroy_handler($id) {
 
 function sess_gc_handler($maxlifetime) {
 	$sess_time=time()-$maxlifetime;
-	$query=make_delete_query("tbl_sessions",make_where_query(array(
-		"sess_time"=>array("<",$sess_time)
-	)));
+	$query=make_delete_query("tbl_sessions","sess_time<$sess_time");
 	db_query($query);
 	return true;
 }

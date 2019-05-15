@@ -621,7 +621,98 @@ function __dbschema_helper($fn,$table) {
 	return array();
 }
 
-function make_insert_query($table,$array,$queries=array()) {
+/* ************************************************************** */
+/* ******************** DEPRECATED FUNCTIONS ******************** */
+/* ************************************************************** */
+function __deprecated_helper($a,$b,$c,$d) {
+	if($b) {
+		$a.="_new";
+	} else {
+		$array=array();
+		$array["phperror"]="Deprecated function $a with $c arguments";
+		$array["details"]=sprintr($d);
+		$array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+		$array["debug"]=session_backtrace();
+		$msg_text=do_message_error($array,"text");
+		addlog($msg_text,getDefault("debug/deprecated","deprecated.log"));
+		$a.="_old";
+	}
+	if($c==1) return $a($d[0]);
+	if($c==2) return $a($d[0],$d[1]);
+	if($c==3) return $a($d[0],$d[1],$d[2]);
+	if($c==4) return $a($d[0],$d[1],$d[2],$d[3]);
+	if($c==5) return $a($d[0],$d[1],$d[2],$d[3],$d[4]);
+}
+
+function make_insert_query() {
+	$a=__FUNCTION__;
+	$c=func_num_args();
+	$d=func_get_args();
+	$b=in_array($c,array(2));
+	if($b) {
+		if($d[0]=="") $b=0;
+		if(!is_array($d[1])) $b=0;
+		if(is_array($d[1])) if(!is_array_key_val($d[1])) $b=0;
+	}
+	return __deprecated_helper($a,$b,$c,$d);
+}
+
+function make_update_query() {
+	$a=__FUNCTION__;
+	$c=func_num_args();
+	$d=func_get_args();
+	$b=in_array($c,array(3));
+	if($b) {
+		if($d[0]=="") $b=0;
+		if(!is_array($d[1])) $b=0;
+		if(is_array($d[1])) if(!is_array_key_val($d[1])) $b=0;
+		if($d[2]=="") $b=0;
+	}
+	return __deprecated_helper($a,$b,$c,$d);
+}
+
+function make_delete_query() {
+	$a=__FUNCTION__;
+	$c=func_num_args();
+	$d=func_get_args();
+	$b=in_array($c,array(2));
+	if($b) {
+		if($d[0]=="") $b=0;
+		if($d[1]=="") $b=0;
+	}
+	return __deprecated_helper($a,$b,$c,$d);
+}
+
+function make_select_query() {
+	$a=__FUNCTION__;
+	$c=func_num_args();
+	$d=func_get_args();
+	$b=in_array($c,array(2,3));
+	if($b) {
+		if($d[0]=="") $b=0;
+		if(is_array($d[1])) if(is_array_key_val($d[1])) $b=0;
+	}
+	return __deprecated_helper($a,$b,$c,$d);
+}
+
+function make_where_query() {
+	$a=__FUNCTION__;
+	$c=func_num_args();
+	$d=func_get_args();
+	$b=in_array($c,array(1));
+	if($b) {
+		if(!is_array($d[0])) {
+			$b=0;
+		} else {
+			foreach($d[0] as $key=>$val) {
+				if(is_array($val)) $b=0;
+			}
+		}
+	}
+	return __deprecated_helper($a,$b,$c,$d);
+}
+
+function make_insert_query_old($table,$array,$queries=array()) {
 	if(is_string($array)) {
 		$query="INSERT INTO ${table}";
 		if(count($queries)>0) {
@@ -647,7 +738,7 @@ function make_insert_query($table,$array,$queries=array()) {
 	return $query;
 }
 
-function make_update_query($table,$array,$where="",$queries=array()) {
+function make_update_query_old($table,$array,$where="",$queries=array()) {
 	$list1=array();
 	if(is_string($array)) {
 		if($array!="") $list1[]=$array;
@@ -661,7 +752,7 @@ function make_update_query($table,$array,$where="",$queries=array()) {
 	return $query;
 }
 
-function make_delete_query($table,$where="") {
+function make_delete_query_old($table,$where="") {
 	if($where!="") {
 		$query="DELETE FROM ${table} WHERE ${where}";
 	} else {
@@ -670,7 +761,7 @@ function make_delete_query($table,$where="") {
 	return $query;
 }
 
-function make_select_query($table,$array="*",$where="",$extra=array()) {
+function make_select_query_old($table,$array="*",$where="",$extra=array()) {
 	static $count=1;
 	if(is_array($array)) {
 		if(is_array_key_val($array)) {
@@ -716,7 +807,7 @@ function make_select_query($table,$array="*",$where="",$extra=array()) {
 	return $query;
 }
 
-function make_where_query($array,$union="AND",$queries=array()) {
+function make_where_query_old($array,$union="AND",$queries=array()) {
 	$list1=array();
 	foreach($array as $key=>$val) {
 		$op="=";
@@ -725,6 +816,65 @@ function make_where_query($array,$union="AND",$queries=array()) {
 	}
 	foreach($queries as $key=>$val) $list1[]="(".$val.")";
 	$query="(".implode(" ".$union." ",$list1).")";
+	return $query;
+}
+
+/* ******************************************************* */
+/* ******************** NEW FUNCTIONS ******************** */
+/* ******************************************************* */
+function make_insert_query_new($table,$array) {
+	$list1=array();
+	$list2=array();
+	foreach($array as $key=>$val) {
+		$list1[]=$key;
+		$list2[]="'".addslashes($val)."'";
+	}
+	$list1=implode(",",$list1);
+	$list2=implode(",",$list2);
+	$query="INSERT INTO ${table}(${list1}) VALUES(${list2})";
+	return $query;
+}
+
+function make_update_query_new($table,$array,$where) {
+	$list1=array();
+	foreach($array as $key=>$val) {
+		$list1[]=$key."='".addslashes($val)."'";
+	}
+	$list1=implode(",",$list1);
+	$query="UPDATE ${table} SET ${list1} WHERE ${where}";
+	return $query;
+}
+
+function make_delete_query_new($table,$where) {
+	$query="DELETE FROM ${table} WHERE ${where}";
+	return $query;
+}
+
+function make_select_query_new($table,$array,$where="1=1") {
+	if(is_array($array)) $array=implode(",",$array);
+	$query="SELECT ${array} FROM ${table} WHERE ${where}";
+	return $query;
+}
+
+function make_where_query_new($array) {
+	$list1=array();
+	foreach($array as $key=>$val) {
+		$list1[]=$key."='".addslashes($val)."'";
+	}
+	$query="(".implode(" AND ",$list1).")";
+	return $query;
+}
+
+function make_insert_from_select_query($table,$table2,$array,$where) {
+	$list1=array();
+	$list2=array();
+	foreach($array as $key=>$val) {
+		$list1[]=$key;
+		$list2[]=$val;
+	}
+	$list1=implode(",",$list1);
+	$list2=implode(",",$list2);
+	$query="INSERT INTO ${table}(${list1}) SELECT ${list2} FROM ${table2} WHERE ${where}";
 	return $query;
 }
 
@@ -790,6 +940,7 @@ function make_fulltext_query3($values,$arg="") {
 	$engine=strtolower(get_engine("tbl_indexing"));
 	if($engine=="mroonga") {
 		$query2=make_fulltext_query2("",$arg);
+		if($query1==$query2) return "1=1"; // OPTIMIZATION
 		$count1=execute_query("SELECT COUNT(*) FROM tbl_indexing WHERE ${query1}");
 		$count2=execute_query("SELECT COUNT(*) FROM tbl_indexing WHERE ${query2}");
 		if($count1>$count2*0.5) {

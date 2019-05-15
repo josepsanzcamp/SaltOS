@@ -1342,6 +1342,63 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	function make_extras(obj) {
 		//~ console.time("make_extras");
 		if(typeof(obj)=="undefined") var obj=$("body");
+		// PROGRAM COPY FIELDS
+		$("td[iscopy=true]",obj).each(function() {
+			var name=$(this).attr("copyname");
+			var field=$("#"+name,obj).parent();
+			var label=$(field).prev();
+			if($(label).hasClass("label")) {
+				label=$(label).clone();
+				$(this).prev().replaceWith(label);
+			}
+			var dest=$("#"+name,field);
+			field=$(field).clone();
+			var orig=$("#"+name,field);
+			$(orig).attr("id","iscopy"+name);
+			$(orig).attr("name","iscopy"+name);
+			$(orig).on("change",function(event,extra) {
+				if(extra=="stop") return;
+				$(dest).val($(this).val());
+				$(dest).trigger("change","stop");
+			});
+			$(orig).on("keydown",function(event,extra) {
+				if(extra=="stop") return;
+				$(dest).val($(this).val());
+				$(dest).trigger("change","stop");
+			});
+			$(dest).on("change",function(event,extra) {
+				if(extra=="stop") return;
+				$(orig).val($(this).val());
+				$(orig).trigger("change","stop");
+			});
+			$(dest).on("keydown",function(event,extra) {
+				if(extra=="stop") return;
+				$(orig).val($(this).val());
+				$(orig).trigger("change","stop");
+			});
+			if($(this).is("[onchange][onchange!='']")) {
+				var fn=$(this).attr("onchange");
+				$(orig).on("change",function(event,extra) {
+					if(extra=="stop") return;
+					eval(fn);
+				});
+			}
+			if($(this).is("[onkeydown][onkeydown!='']")) {
+				var fn=$(this).attr("onkeydown");
+				$(orig).on("keydown",function(event,extra) {
+					if(extra=="stop") return;
+					eval(fn);
+				});
+			}
+			if($(this).is("[class][class!='']")) {
+				$(orig).addClass($(this).attr("class"));
+			}
+			if($(this).is("[focused][focused!='']")) {
+				$(orig).attr("focused",$(this).attr("focused"));
+				make_focus_obj=orig;
+			}
+			$(this).replaceWith(field);
+		});
 		// CREATE THE DATEPICKERS
 		$("input[isdate=true]",obj).each(function() {
 			$(this).datepicker({
@@ -1488,7 +1545,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
 			if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
 		});
-		// PROGRAM SELECT MENU
+		// PROGRAM SELECTS
 		$("select:not([multiple])",obj).each(function() {
 			var width=$(this).css("width");
 			// TO FIX SOME GOOGLE CHROME ISSUES
@@ -1535,7 +1592,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				$(this).selectmenu("refresh");
 			}
 		});
-		// PROGRAM MULTISELECT
+		// PROGRAM MULTISELECTS
 		$("input[ismultiselect=true]",obj).each(function() {
 			var value=explode(",",$(this).val());
 			var name=$(this).attr("name");
@@ -1570,7 +1627,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				$("input[name="+name+"]").val(value);
 			});
 		});
-		// FOR ACTIONS LIST
+		// PROGRAM ACTIONS LIST
 		$(".actions2",obj).each(function() {
 			var actions1=$(this).parent().find(".actions1");
 			var actions2=$(this);

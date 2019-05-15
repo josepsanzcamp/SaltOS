@@ -24,5 +24,5 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<comments_new eval="true">make_select_query("",array("'a'"=>"id"))</comments_new>
+	<comments_new eval="true">"SELECT 'a' AS id"</comments_new>
 </root>

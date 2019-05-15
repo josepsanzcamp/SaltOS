@@ -84,11 +84,7 @@ if(getParam("action")=="gcalendar") {
 	// FOR COMPATIBILITY WITH GDATA AND APIV3
 	$oldid="http://www.google.com/calendar/feeds/default/private/full/";
 	$oldidlen=strlen($oldid)+1;
-	$query=make_update_query("tbl_agenda",array(),make_where_query(array(
-		"id_gcalendar"=>array(" LIKE ","${oldid}%")
-	)),array(
-		"id_gcalendar"=>"SUBSTR(id_gcalendar,${oldidlen})"
-	));
+	$query="UPDATE tbl_agenda SET id_gcalendar=SUBSTR(id_gcalendar,${oldidlen}) WHERE id_gcalendar LIKE '${oldid}%'";
 	db_query($query);
 
 	// GET DATAS FROM GOOGLE CALENDAR AND SALTOS

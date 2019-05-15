@@ -30,39 +30,22 @@ if($page=="clientes") {
 	foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,13)=="prefix_partes") if(getParam($val."liquidar")) $prefix[]=$val;
 	if(count($prefix)) {
 		if($id_cliente) {
-			$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
-				"'".$id_cliente."'",
-				"nombre",
-				"direccion",
-				"id_pais",
-				"id_provincia",
-				"id_poblacion",
-				"id_codpostal",
-				"nombre_pais",
-				"nombre_provincia",
-				"nombre_poblacion",
-				"nombre_codpostal",
-				"cif",
-				"'".current_date()."'",
-				"'".current_date()."'"
-			),make_where_query(array(
-				"id"=>$id_cliente
-			))),array(
-				"id_cliente",
-				"nombre",
-				"direccion",
-				"id_pais",
-				"id_provincia",
-				"id_poblacion",
-				"id_codpostal",
-				"nombre_pais",
-				"nombre_provincia",
-				"nombre_poblacion",
-				"nombre_codpostal",
-				"cif",
-				"fecha",
-				"fecha2"
-			));
+			$query=make_insert_from_select_query("tbl_facturas","tbl_clientes",array(
+				"id_cliente"=>"'".$id_cliente."'",
+				"nombre"=>"nombre",
+				"direccion"=>"direccion",
+				"id_pais"=>"id_pais",
+				"id_provincia"=>"id_provincia",
+				"id_poblacion"=>"id_poblacion",
+				"id_codpostal"=>"id_codpostal",
+				"nombre_pais"=>"nombre_pais",
+				"nombre_provincia"=>"nombre_provincia",
+				"nombre_poblacion"=>"nombre_poblacion",
+				"nombre_codpostal"=>"nombre_codpostal",
+				"cif"=>"cif",
+				"fecha"=>"'".current_date()."'",
+				"fecha2"=>"'".current_date()."'",
+			),"id=${id_cliente}");
 		} else {
 			$query=make_insert_query("tbl_facturas",array(
 				"fecha"=>current_date(),
@@ -94,9 +77,8 @@ if($page=="clientes") {
 		$query=make_insert_query("tbl_facturas_c",array(
 			"concepto"=>$concepto,
 			"unidades"=>$unidades,
-			"precio"=>$precio
-		),array(
-			"id_factura"=>"SELECT MAX(id) FROM tbl_facturas"
+			"precio"=>$precio,
+			"id_factura"=>execute_query("SELECT MAX(id) FROM tbl_facturas"),
 		));
 		db_query($query);
 		$query=make_update_query("tbl_partes",array(
@@ -127,39 +109,22 @@ if($page=="partes") {
 			$result=db_query($query2);
 			if(db_num_rows($result)) {
 				if($id_cliente) {
-					$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
-						"'".$id_cliente."'",
-						"nombre",
-						"direccion",
-						"id_pais",
-						"id_provincia",
-						"id_poblacion",
-						"id_codpostal",
-						"nombre_pais",
-						"nombre_provincia",
-						"nombre_poblacion",
-						"nombre_codpostal",
-						"cif",
-						"'".current_date()."'",
-						"'".current_date()."'"
-					),make_where_query(array(
-						"id"=>$id_cliente
-					))),array(
-						"id_cliente",
-						"nombre",
-						"direccion",
-						"id_pais",
-						"id_provincia",
-						"id_poblacion",
-						"id_codpostal",
-						"nombre_pais",
-						"nombre_provincia",
-						"nombre_poblacion",
-						"nombre_codpostal",
-						"cif",
-						"fecha",
-						"fecha2"
-					));
+					$query=make_insert_from_select_query("tbl_facturas","tbl_clientes",array(
+						"id_cliente"=>"'".$id_cliente."'",
+						"nombre"=>"nombre",
+						"direccion"=>"direccion",
+						"id_pais"=>"id_pais",
+						"id_provincia"=>"id_provincia",
+						"id_poblacion"=>"id_poblacion",
+						"id_codpostal"=>"id_codpostal",
+						"nombre_pais"=>"nombre_pais",
+						"nombre_provincia"=>"nombre_provincia",
+						"nombre_poblacion"=>"nombre_poblacion",
+						"nombre_codpostal"=>"nombre_codpostal",
+						"cif"=>"cif",
+						"fecha"=>"'".current_date()."'",
+						"fecha2"=>"'".current_date()."'",
+					),"id=${id_cliente}");
 				} else {
 					$query=make_insert_query("tbl_facturas",array(
 						"fecha"=>current_date(),
@@ -191,9 +156,8 @@ if($page=="partes") {
 				$query=make_insert_query("tbl_facturas_c",array(
 					"concepto"=>$concepto,
 					"unidades"=>$unidades,
-					"precio"=>$precio
-				),array(
-					"id_factura"=>"SELECT MAX(id) FROM tbl_facturas"
+					"precio"=>$precio,
+					"id_factura"=>execute_query("SELECT MAX(id) FROM tbl_facturas"),
 				));
 				db_query($query);
 				$query=make_update_query("tbl_partes",array(
@@ -240,41 +204,23 @@ if($page=="proyectos" && getParam("extra")=="partes") {
 	foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,13)=="prefix_partes") if(getParam($val."liquidar")) $prefix[]=$val;
 	if(count($prefix)) {
 		if($id_cliente) {
-			$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
-				"'".$id_cliente."'",
-				"nombre",
-				"direccion",
-				"id_pais",
-				"id_provincia",
-				"id_poblacion",
-				"id_codpostal",
-				"nombre_pais",
-				"nombre_provincia",
-				"nombre_poblacion",
-				"nombre_codpostal",
-				"cif",
-				"'".current_date()."'",
-				"'".current_date()."'",
-				"'".$id_proyecto."'"
-			),make_where_query(array(
-				"id"=>$id_cliente
-			))),array(
-				"id_cliente",
-				"nombre",
-				"direccion",
-				"id_pais",
-				"id_provincia",
-				"id_poblacion",
-				"id_codpostal",
-				"nombre_pais",
-				"nombre_provincia",
-				"nombre_poblacion",
-				"nombre_codpostal",
-				"cif",
-				"fecha",
-				"fecha2",
-				"id_proyecto"
-			));
+			$query=make_insert_from_select_query("tbl_facturas","tbl_clientes",array(
+				"id_cliente"=>"'".$id_cliente."'",
+				"nombre"=>"nombre",
+				"direccion"=>"direccion",
+				"id_pais"=>"id_pais",
+				"id_provincia"=>"id_provincia",
+				"id_poblacion"=>"id_poblacion",
+				"id_codpostal"=>"id_codpostal",
+				"nombre_pais"=>"nombre_pais",
+				"nombre_provincia"=>"nombre_provincia",
+				"nombre_poblacion"=>"nombre_poblacion",
+				"nombre_codpostal"=>"nombre_codpostal",
+				"cif"=>"cif",
+				"fecha"=>"'".current_date()."'",
+				"fecha2"=>"'".current_date()."'",
+				"id_proyecto"=>"'".$id_proyecto."'",
+			),"id=${id_cliente}");
 		} else {
 			$query=make_insert_query("tbl_facturas",array(
 				"id_cliente"=>$id_cliente,
@@ -308,9 +254,8 @@ if($page=="proyectos" && getParam("extra")=="partes") {
 		$query=make_insert_query("tbl_facturas_c",array(
 			"concepto"=>$concepto,
 			"unidades"=>$unidades,
-			"precio"=>$precio
-		),array(
-			"id_factura"=>"SELECT MAX(id) FROM tbl_facturas"
+			"precio"=>$precio,
+			"id_factura"=>execute_query("SELECT MAX(id) FROM tbl_facturas"),
 		));
 		db_query($query);
 		$query=make_update_query("tbl_partes",array(
@@ -360,41 +305,23 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 		$result=execute_query_array($query2);
 		if(count($result)) {
 			if($id_cliente) {
-				$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
-					"'".$id_cliente."'",
-					"nombre",
-					"direccion",
-					"id_pais",
-					"id_provincia",
-					"id_poblacion",
-					"id_codpostal",
-					"nombre_pais",
-					"nombre_provincia",
-					"nombre_poblacion",
-					"nombre_codpostal",
-					"cif",
-					"'".current_date()."'",
-					"'".current_date()."'",
-					"'".$id_proyecto."'"
-				),make_where_query(array(
-					"id"=>$id_cliente
-				))),array(
-					"id_cliente",
-					"nombre",
-					"direccion",
-					"id_pais",
-					"id_provincia",
-					"id_poblacion",
-					"id_codpostal",
-					"nombre_pais",
-					"nombre_provincia",
-					"nombre_poblacion",
-					"nombre_codpostal",
-					"cif",
-					"fecha",
-					"fecha2",
-					"id_proyecto"
-				));
+				$query=make_insert_from_select_query("tbl_facturas","tbl_clientes",array(
+					"id_cliente"=>"'".$id_cliente."'",
+					"nombre"=>"nombre",
+					"direccion"=>"direccion",
+					"id_pais"=>"id_pais",
+					"id_provincia"=>"id_provincia",
+					"id_poblacion"=>"id_poblacion",
+					"id_codpostal"=>"id_codpostal",
+					"nombre_pais"=>"nombre_pais",
+					"nombre_provincia"=>"nombre_provincia",
+					"nombre_poblacion"=>"nombre_poblacion",
+					"nombre_codpostal"=>"nombre_codpostal",
+					"cif"=>"cif",
+					"fecha"=>"'".current_date()."'",
+					"fecha2"=>"'".current_date()."'",
+					"id_proyecto"=>"'".$id_proyecto."'",
+				),"id=${id_cliente}");
 			} else {
 				$query=make_insert_query("tbl_facturas",array(
 					"id_cliente"=>$id_cliente,
@@ -418,9 +345,8 @@ if($page=="proyectos" && getParam("extra")=="facturas") {
 				"concepto"=>$concepto,
 				"unidades"=>$unidades,
 				"descuento"=>$descuento,
-				"precio"=>$precio
-			),array(
-				"id_factura"=>"SELECT MAX(id) FROM tbl_facturas"
+				"precio"=>$precio,
+				"id_factura"=>execute_query("SELECT MAX(id) FROM tbl_facturas"),
 			));
 			db_query($query);
 		}
@@ -459,53 +385,29 @@ if($page=="periodicas") {
 			$result2=db_query($query2);
 			if(db_num_rows($result2)) {
 				if($id_cliente) {
-					$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
-						"'".$id_cliente."'",
-						"'".$id_epigrafe."'",
-						"nombre",
-						"direccion",
-						"id_pais",
-						"id_provincia",
-						"id_poblacion",
-						"id_codpostal",
-						"nombre_pais",
-						"nombre_provincia",
-						"nombre_poblacion",
-						"nombre_codpostal",
-						"cif",
-						"'".current_date()."'",
-						"'".$iva."'",
-						"'".$irpf."'",
-						"'".$id_cuenta."'",
-						"'".current_date()."'",
-						"'".$id_periodica."'",
-						"'".$meses."'",
-						"'".$id_formapago."'"
-					),make_where_query(array(
-						"id"=>$id_cliente
-					))),array(
-						"id_cliente",
-						"id_epigrafe",
-						"nombre",
-						"direccion",
-						"id_pais",
-						"id_provincia",
-						"id_poblacion",
-						"id_codpostal",
-						"nombre_pais",
-						"nombre_provincia",
-						"nombre_poblacion",
-						"nombre_codpostal",
-						"cif",
-						"fecha",
-						"iva",
-						"irpf",
-						"id_cuenta",
-						"fecha2",
-						"id_periodica",
-						"meses",
-						"id_formapago"
-					));
+					$query=make_insert_from_select_query("tbl_facturas","tbl_clientes",array(
+						"id_cliente"=>"'".$id_cliente."'",
+						"id_epigrafe"=>"'".$id_epigrafe."'",
+						"nombre"=>"nombre",
+						"direccion"=>"direccion",
+						"id_pais"=>"id_pais",
+						"id_provincia"=>"id_provincia",
+						"id_poblacion"=>"id_poblacion",
+						"id_codpostal"=>"id_codpostal",
+						"nombre_pais"=>"nombre_pais",
+						"nombre_provincia"=>"nombre_provincia",
+						"nombre_poblacion"=>"nombre_poblacion",
+						"nombre_codpostal"=>"nombre_codpostal",
+						"cif"=>"cif",
+						"fecha"=>"'".current_date()."'",
+						"iva"=>"'".$iva."'",
+						"irpf"=>"'".$irpf."'",
+						"id_cuenta"=>"'".$id_cuenta."'",
+						"fecha2"=>"'".current_date()."'",
+						"id_periodica"=>"'".$id_periodica."'",
+						"meses"=>"'".$meses."'",
+						"id_formapago"=>"'".$id_formapago."'",
+					),"id=${id_cliente}");
 				} else {
 					$query=make_insert_query("tbl_facturas",array(
 						"id_cliente"=>$id_cliente,
@@ -526,23 +428,14 @@ if($page=="periodicas") {
 			}
 			while($row2=db_fetch_row($result2)) {
 				$id_concepto=$row2["id"];
-				$query=make_insert_query("tbl_facturas_c",make_select_query("tbl_periodicas_c",array(
-					"(SELECT MAX(id) FROM tbl_facturas)",
-					"id_producto",
-					"concepto",
-					"unidades",
-					"descuento",
-					"precio"
-				),make_where_query(array(
-					"id"=>$id_concepto
-				))),array(
-					"id_factura",
-					"id_producto",
-					"concepto",
-					"unidades",
-					"descuento",
-					"precio"
-				));
+				$query=make_insert_from_select_query("tbl_facturas_c","tbl_periodicas_c",array(
+					"id_factura"=>"(SELECT MAX(id) FROM tbl_facturas)",
+					"id_producto"=>"id_producto",
+					"concepto"=>"concepto",
+					"unidades"=>"unidades",
+					"descuento"=>"descuento",
+					"precio"=>"precio",
+				),"id=${id_concepto}");
 				db_query($query);
 			}
 			db_free($result2);
@@ -594,41 +487,23 @@ if($page=="presupuestos") {
 		$result=execute_query_array($query2);
 		if(count($result)) {
 			if($id_cliente) {
-				$query=make_insert_query("tbl_facturas",make_select_query("tbl_clientes",array(
-					"'".$id_cliente."'",
-					"nombre",
-					"direccion",
-					"id_pais",
-					"id_provincia",
-					"id_poblacion",
-					"id_codpostal",
-					"nombre_pais",
-					"nombre_provincia",
-					"nombre_poblacion",
-					"nombre_codpostal",
-					"cif",
-					"'".current_date()."'",
-					"'".current_date()."'",
-					"'".$id_presupuesto."'"
-				),make_where_query(array(
-					"id"=>$id_cliente
-				))),array(
-					"id_cliente",
-					"nombre",
-					"direccion",
-					"id_pais",
-					"id_provincia",
-					"id_poblacion",
-					"id_codpostal",
-					"nombre_pais",
-					"nombre_provincia",
-					"nombre_poblacion",
-					"nombre_codpostal",
-					"cif",
-					"fecha",
-					"fecha2",
-					"id_presupuesto"
-				));
+				$query=make_insert_from_select_query("tbl_facturas","tbl_clientes",array(
+					"id_cliente"=>"'".$id_cliente."'",
+					"nombre"=>"nombre",
+					"direccion"=>"direccion",
+					"id_pais"=>"id_pais",
+					"id_provincia"=>"id_provincia",
+					"id_poblacion"=>"id_poblacion",
+					"id_codpostal"=>"id_codpostal",
+					"nombre_pais"=>"nombre_pais",
+					"nombre_provincia"=>"nombre_provincia",
+					"nombre_poblacion"=>"nombre_poblacion",
+					"nombre_codpostal"=>"nombre_codpostal",
+					"cif"=>"cif",
+					"fecha"=>"'".current_date()."'",
+					"fecha2"=>"'".current_date()."'",
+					"id_presupuesto"=>"'".$id_presupuesto."'",
+				),"id=${id_cliente}");
 			} else {
 				$query=make_insert_query("tbl_facturas",array(
 					"id_cliente"=>$id_cliente,
@@ -652,9 +527,8 @@ if($page=="presupuestos") {
 				"concepto"=>$concepto,
 				"unidades"=>$unidades,
 				"descuento"=>$descuento,
-				"precio"=>$precio
-			),array(
-				"id_factura"=>"SELECT MAX(id) FROM tbl_facturas"
+				"precio"=>$precio,
+				"id_factura"=>execute_query("SELECT MAX(id) FROM tbl_facturas"),
 			));
 			db_query($query);
 		}

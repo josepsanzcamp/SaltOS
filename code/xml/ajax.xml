@@ -25,46 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
 	<!-- FOR DIRECTIONS MODULE -->
-	<paises eval="true">make_select_query("tbl_paises",array(
-		"id"=>"id",
-		"nombre"=>"label"
-	),make_like_query("nombre",getParam("term")),array(
-		"order"=>"nombre ASC",
-		"limit"=>25
-	))</paises>
-	<provincias eval="true">make_select_query("tbl_provincias",array(
-		"id"=>"id",
-		"nombre"=>"label"
-	),make_where_query(array(
-		"id_pais"=>intval(getParam("filter"))
-	),"AND",array(
-		make_like_query("nombre",getParam("term"))
-	)),array(
-		"order"=>"nombre ASC",
-		"limit"=>25
-	))</provincias>
-	<poblaciones eval="true">make_select_query("tbl_poblaciones",array(
-		"id"=>"id",
-		"nombre"=>"label"
-	),make_where_query(array(
-		"id_provincia"=>intval(getParam("filter"))
-	),"AND",array(
-		make_like_query("nombre",getParam("term"))
-	)),array(
-		"order"=>"nombre ASC",
-		"limit"=>25
-	))</poblaciones>
-	<codpostales eval="true">make_select_query("tbl_codpostal",array(
-		"id"=>"id",
-		"nombre"=>"label"
-	),make_where_query(array(
-		"id_poblacion"=>intval(getParam("filter"))
-	),"AND",array(
-		make_like_query("nombre",getParam("term"))
-	)),array(
-		"order"=>"nombre ASC",
-		"limit"=>25
-	))</codpostales>
+	<paises eval="true">"SELECT id, nombre label FROM tbl_paises WHERE ".make_like_query("nombre",getParam("term"))." ORDER BY nombre ASC LIMIT 25"</paises>
+	<provincias eval="true">"SELECT id, nombre label FROM tbl_provincias WHERE id_pais=".intval(getParam("filter"))." AND ".make_like_query("nombre",getParam("term"))." ORDER BY nombre ASC LIMIT 25"</provincias>
+	<poblaciones eval="true">"SELECT id, nombre label FROM tbl_poblaciones WHERE id_provincia=".intval(getParam("filter"))." AND ".make_like_query("nombre",getParam("term"))." ORDER BY nombre ASC LIMIT 25"</poblaciones>
+	<codpostales eval="true">"SELECT id, nombre label FROM tbl_codpostal WHERE id_poblacion=".intval(getParam("filter"))." AND ".make_like_query("nombre",getParam("term"))." ORDER BY nombre ASC LIMIT 25"</codpostales>
 	<!-- FOR GENERAL APPS -->
 	<cliente eval="true">"SELECT id,nombre,nombre1,nombre2,id_tipo,cif,direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax FROM (SELECT a2.id id,a2.nombre nombre,a2.nombre1 nombre1,a2.nombre2 nombre2,a2.id_tipo id_tipo,a2.cif cif,e.id_usuario id_usuario,d.id_grupo id_grupo,direccion,id_pais,id_provincia,id_poblacion,id_codpostal,nombre_pais,nombre_provincia,nombre_poblacion,nombre_codpostal,email,web,tel_fijo,tel_movil,fax FROM tbl_clientes a2 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("clientes")."' AND e.id_registro=a2.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id) a WHERE a.id='".intval(getParam("id_cliente"))."' AND ".check_sql("clientes","list")</cliente>
 	<tipocliente eval="true">"SELECT '".LANG_ESCAPE(getParam("id_tipo")==1?"nombrecomercial":"nombre","clientes")."' nombre1,'".LANG_ESCAPE(getParam("id_tipo")==1?"nombrefiscal":"apellidos","clientes")."' nombre2,'".LANG_ESCAPE(getParam("id_tipo")==1?"cif":"nif","clientes")."' cif"</tipocliente>
@@ -203,19 +167,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		"id_folder"=>intval(getParam("id_folder")),
 		"id_aplicacion"=>page2id(getParam("page")),
 		"id_registro"=>abs(getParam("id_registro"))
-	),"AND",array(
-		"id_folder IN (".make_select_query("tbl_folders","id",make_where_query(array(
+	))." AND id_folder IN (".make_select_query("tbl_folders","id",make_where_query(array(
 			"id_usuario"=>current_user()
-		))).")"
-	)))</delregfolder>
+	))).")")</delregfolder>
 	<delappfolder eval="true">make_delete_query("tbl_folders_a",make_where_query(array(
 		"id_folder"=>intval(getParam("id_folder")),
 		"id_aplicacion"=>page2id(getParam("page"))
-	),"AND",array(
-		"id_folder IN (".make_select_query("tbl_folders","id",make_where_query(array(
-			"id_usuario"=>current_user()
-		))).")"
-	)))</delappfolder>
+	))."AND id_folder IN (".make_select_query("tbl_folders","id",make_where_query(array(
+		"id_usuario"=>current_user()
+	))).")")</delappfolder>
 	<!-- FOR TEXTOS MODULE -->
 	<textos eval="true">"SELECT descripcion texto FROM tbl_textos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("textos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".intval(getParam("id"))."' AND (publico='1' OR ".check_sql("textos","list").")"</textos>
 	<!-- FOR NUMBERS MODULE -->

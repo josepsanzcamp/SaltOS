@@ -308,7 +308,7 @@ function current_group() {
 function __aplicaciones($tipo,$dato,$def) {
 	static $diccionario=array();
 	if(!count($diccionario)) {
-		$query=make_select_query("tbl_aplicaciones",array("id","codigo","tabla","subtablas"));
+		$query=make_select_query("tbl_aplicaciones","id,codigo,tabla,subtablas");
 		$result=db_query($query);
 		$diccionario["page2id"]=array();
 		$diccionario["id2page"]=array();
@@ -376,7 +376,7 @@ function table2subtables($table,$def="") {
 function __usuarios($tipo,$dato) {
 	static $diccionario=array();
 	if(!count($diccionario)) {
-		$query=make_select_query("tbl_usuarios",array("id","login"));
+		$query=make_select_query("tbl_usuarios","id,login");
 		$result=db_query($query);
 		$diccionario["user2id"]=array();
 		$diccionario["id2user"]=array();
@@ -1367,20 +1367,11 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 	$search="/*MYSQL IF(LENGTH(${search})>=POW(2,24),SUBSTR(${search},1,POW(2,24)-1-LENGTH(${search})+CHAR_LENGTH(${search})),${search}) *//*SQLITE ${search} */";
 	// AÑADIR A LA TABLA INDEXING
 	if($id_indexing) {
-		$query=make_update_query("tbl_indexing",array(),make_where_query(array(
-			"id"=>$id_indexing
-		)),array(
-			"search"=>$search
-		));
+		$query="UPDATE tbl_indexing SET search=${search} WHERE id=${id_indexing}";
 		db_query($query);
 		return 2;
 	} else {
-		$query=make_insert_query("tbl_indexing",array(
-			"id_aplicacion"=>$id_aplicacion,
-			"id_registro"=>$id_registro
-		),array(
-			"search"=>$search
-		));
+		$query="INSERT INTO tbl_indexing(id_aplicacion,id_registro,search) VALUES(${id_aplicacion},${id_registro},${search})";
 		db_query($query);
 		return 1;
 	}

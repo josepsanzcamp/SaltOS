@@ -29,12 +29,7 @@ if(getParam("action")=="integrity") {
 	// CHECK THE SEMAPHORE
 	if(!semaphore_acquire(getParam("action"),getDefault("semaphoretimeout",100000))) die();
 	// FIXING INTEGRITY PROBLEMS
-	$query=make_select_query("tbl_aplicaciones",array(
-		"id",
-		"tabla"
-	),make_where_query(array(
-		"tabla"=>array("!=","")
-	)));
+	$query="SELECT id,tabla FROM tbl_aplicaciones WHERE tabla!=''";
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
@@ -44,14 +39,7 @@ if(getParam("action")=="integrity") {
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE REGISTER TABLE
-			$query=make_select_query($tabla,"id",make_where_query(array(),"AND",array(
-				"id NOT IN (".make_select_query("tbl_registros","id_registro",make_where_query(array(
-					"id_aplicacion"=>$id_aplicacion,
-					"first"=>1
-				))).")"
-			)),array(
-				"limit"=>1000
-			));
+			$query="SELECT a.id FROM ${tabla} a LEFT JOIN tbl_registros b ON a.id=b.id_registro AND b.id_aplicacion=${id_aplicacion} AND b.first=1 WHERE b.id IS NULL LIMIT 1000";
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
 			make_control($id_aplicacion,$ids);
@@ -60,14 +48,7 @@ if(getParam("action")=="integrity") {
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH IDS OF THE REGISTER TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
-			$query=make_select_query("tbl_registros","id_registro",make_where_query(array(
-				"id_aplicacion"=>$id_aplicacion,
-				"first"=>1
-			),"AND",array(
-				"id_registro NOT IN (".make_select_query($tabla,"id").")"
-			)),array(
-				"limit"=>1000
-			));
+			$query="SELECT a.id_registro FROM tbl_registros a LEFT JOIN ${tabla} b ON b.id=a.id_registro WHERE a.id_aplicacion=${id_aplicacion} AND a.first=1 AND b.id IS NULL LIMIT 1000";
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
 			make_control($id_aplicacion,$ids);
@@ -79,16 +60,7 @@ if(getParam("action")=="integrity") {
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH FOR DUPLICATED ROWS IN REGISTER TABLE
-		$query=make_select_query("tbl_registros",array(
-			"GROUP_CONCAT(id)"=>"ids",
-			"id_aplicacion"=>"id_aplicacion",
-			"id_registro"=>"id_registro",
-			"COUNT(*)"=>"total"
-		),"first=1",array(
-			"groupby"=>array("id_aplicacion","id_registro"),
-			"having"=>"total>1",
-			"limit"=>"1000"
-		));
+		$query="SELECT GROUP_CONCAT(id) ids, id_aplicacion, id_registro, COUNT(*) total FROM tbl_registros WHERE first=1 GROUP BY id_aplicacion,id_registro HAVING total>1 LIMIT 1000";
 		$ids=execute_query_array($query);
 		if(!count($ids)) break;
 		foreach($ids as $key=>$val) {
@@ -105,11 +77,7 @@ if(getParam("action")=="integrity") {
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH IDS OF THE REGISTER TABLE THAT DOESN'T EXISTS IN THE APPLICATION TABLE
-		$query=make_select_query("tbl_registros","id",make_where_query(array(),"AND",array(
-			"id_aplicacion NOT IN (".make_select_query("tbl_aplicaciones","id").")"
-		)),array(
-			"limit"=>1000
-		));
+		$query="SELECT id FROM tbl_registros WHERE id_aplicacion NOT IN (SELECT id FROM tbl_aplicaciones) LIMIT 1000";
 		$ids=execute_query_array($query);
 		if(!count($ids)) break;
 		$temp=implode(",",$ids);
@@ -121,9 +89,7 @@ if(getParam("action")=="integrity") {
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH FILES THAT DON'T CONTAIN ANY DIRECTORY SEPARATOR
-		$query=make_select_query("tbl_ficheros","id,id_aplicacion,fichero_file","fichero_file!='' AND fichero_file NOT LIKE '%/%'",array(
-			"limit"=>1000
-		));
+		$query="SELECT id,id_aplicacion,fichero_file FROM tbl_ficheros WHERE fichero_file!='' AND fichero_file NOT LIKE '%/%' LIMIT 1000";
 		$rows=execute_query_array($query);
 		if(!count($rows)) break;
 		foreach($rows as $row) {
@@ -161,9 +127,7 @@ if(getParam("action")=="integrity") {
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH FILES THAT DON'T CONTAIN ANY DIRECTORY SEPARATOR
-			$query=make_select_query($check[0],"id,${check[1]}","${check[1]}!='' AND ${check[1]} NOT LIKE '%/%' AND ${check[3]}",array(
-				"limit"=>1000
-			));
+			$query="SELECT id,${check[1]} FROM ${check[0]} WHERE ${check[1]}!='' AND ${check[1]} NOT LIKE '%/%' AND ${check[3]} LIMIT 1000";
 			$rows=execute_query_array($query);
 			if(!count($rows)) break;
 			foreach($rows as $row) {
