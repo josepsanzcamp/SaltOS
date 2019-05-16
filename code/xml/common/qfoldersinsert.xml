@@ -26,8 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <root>
 	<query global="page" match="folders" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_folders_a",array(
 		"id_folder"=>intval(getParam("id")),
-		"id_aplicacion"=>page2id($page)
-	),array(
-		"id_registro"=>"SELECT MAX(id) FROM ".page2table($page)
+		"id_aplicacion"=>page2id($page),
+		"id_registro"=>execute_query("SELECT MAX(id) FROM ".page2table($page)),
 	)):""</query>
 </root>

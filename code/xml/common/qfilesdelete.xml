@@ -24,9 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <root>
-	<query global="page" match="files_old" prefix="true" eval="true">getParam("fichero_del")?make_select_query("tbl_ficheros",array(
-		"fichero_file"=>"action_delete"
-	),make_where_query(array(
+	<query global="page" match="files_old" prefix="true" eval="true">getParam("fichero_del")?make_select_query("tbl_ficheros","fichero_file action_delete",make_where_query(array(
 		"id_aplicacion"=>page2id($page),
 		"id_registro"=>getParam("id_registro"),
 		"id"=>getParam("id")

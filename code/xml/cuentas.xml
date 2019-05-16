@@ -118,6 +118,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<type>copy</type>
 					<name>limpiar</name>
+					<class>contextmenu</class>
 				</field>
 			</row>
 		</quick>

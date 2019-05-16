@@ -151,6 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todoslosclientes>[Todos os clientes]</todoslosclientes>
 		<todoslosposiblescli>[Todos os possíveis clientes]</todoslosposiblescli>
 		<todoslosusuarios>[Todos os Utilizadores]</todoslosusuarios>
+		<todoslosgrupos translated="false">[All groups]</todoslosgrupos>
 		<todoslosproveedores>[Todos os fornecedores]</todoslosproveedores>
 		<mostrartodos>[Mostrar todos]</mostrartodos>
 		<sinusuario>[Sem Utilizador]</sinusuario>

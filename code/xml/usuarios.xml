@@ -99,12 +99,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true" />
 					<field>
+						<name>id_grupo</name>
+						<label lang="true">grupos</label>
+						<type>select</type>
+						<width>240px</width>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosgrupos")."' label UNION (SELECT id value, nombre label FROM tbl_grupos ORDER BY label ASC)"</query>
+						<onchange>copy_value("id_grupo2","id_grupo");buscar();</onchange>
+						<value global="id_grupo" eval="true">$id_grupo=getParam("id_grupo")</value>
+					</field>
+					<field>
+						<name>activo</name>
+						<label lang="true">activo</label>
+						<type>select</type>
+						<width>150px</width>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label UNION SELECT '1' value, '".LANG_ESCAPE("yes")."' label UNION SELECT '0' value, '".LANG_ESCAPE("no")."' label"</query>
+						<onchange>copy_value("activo2","activo");buscar();</onchange>
+						<value global="activo" eval="true">$activo=getParam("activo")</value>
+					</field>
+				</row>
+				<row>
+					<field>
 						<name>filtro</name>
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>2</colspan>
 						<speech>true</speech>
 					</field>
 				</row>
@@ -125,6 +144,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
 				</field>
 				<field>
+					<type>copy</type>
+					<name>id_grupo</name>
+					<onchange>buscar()</onchange>
+				</field>
+				<field>
+					<type>copy</type>
+					<name>activo</name>
+					<onchange>buscar()</onchange>
+				</field>
+				<field>
 					<type>separator</type>
 					<width>100%</width>
 				</field>
@@ -135,7 +164,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>''))">
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_grupo'=>'','activo'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>
@@ -155,11 +184,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<field>
 					<type>copy</type>
 					<name>limpiar</name>
+					<class>contextmenu</class>
 				</field>
 			</row>
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,filtro" eval="true">"SELECT * FROM (SELECT
+		<query global="page,filtro,activo,id_grupo" eval="true">"SELECT * FROM (SELECT
 		LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 		CONCAT('link:openapp(\'usuarios\',',-a.id,'):',a.login) login,a.login login2,
 		CONCAT('link:openapp(\'grupos\',',-a.id_grupo,'):',b.nombre) grupo,b.nombre grupo2,
@@ -187,6 +217,9 @@ SELECT id,login,id_grupo,id_aplicacion,id_registro,".make_extra_query("d.")." a_
 ) a
 LEFT JOIN tbl_grupos b ON a.id_grupo=b.id
 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
+WHERE 1=1
+AND (activo='$activo' OR ''='$activo')
+AND (id_grupo='$id_grupo' OR ''='$id_grupo' OR a.id IN (SELECT id_usuario FROM tbl_usuarios_g WHERE id_grupo='$id_grupo'))
 ) z
 WHERE 1=1
 AND ".($filtro!=""?make_fulltext_query3($filtro,page2id($page)):"(1=1)")."

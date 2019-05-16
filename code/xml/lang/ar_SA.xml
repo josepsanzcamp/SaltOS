@@ -151,6 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todoslosclientes>[جميع العملاء]</todoslosclientes>
 		<todoslosposiblescli>[جميع العملاء المحتملين]</todoslosposiblescli>
 		<todoslosusuarios>[جميع المستخدمين]</todoslosusuarios>
+		<todoslosgrupos translated="false">[All groups]</todoslosgrupos>
 		<todoslosproveedores>[جميع الموفرين]</todoslosproveedores>
 		<mostrartodos>[إظهار الكل]</mostrartodos>
 		<sinusuario>[لا يوجد مستخدم]</sinusuario>
