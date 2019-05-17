@@ -1146,9 +1146,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<xsl:when test="icon!=''">
 						<span class="{icon} {class2}" alt="{label}" title="{$label}"></span>
 					</xsl:when>
-					<xsl:otherwise>
+					<xsl:when test="label!=''">
 						<span class="{class2}" title="{tip}"><xsl:value-of select="label"/></span>
-					</xsl:otherwise>
+					</xsl:when>
 				</xsl:choose>
 			</td>
 		</xsl:when>

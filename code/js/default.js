@@ -30,8 +30,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	/* ERROR HANDLER */
 	window.onerror=function(msg,file,line) {
 		var data={"jserror":msg,"details":"Error on file "+file+" at line "+line};
-		data="array="+encodeURIComponent(btoa(JSON.stringify(data)));
-		$.ajax({ url:"index.php?action=adderror",data:data,type:"post" });
+		data="action=adderror&array="+encodeURIComponent(btoa(JSON.stringify(data)));
+		$.ajax({ url:"index.php",data:data,type:"post" });
 	};
 
 	/* GENERIC FUNCTIONS */
@@ -228,8 +228,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	/* FOR DEBUG PURPOSES */
 	function addlog(msg) {
-		var data="msg="+encodeURIComponent(btoa(utf8_encode(msg)));
-		$.ajax({ url:"index.php?action=addlog",data:data,type:"post",async:false });
+		var data="action=addlog&msg="+encodeURIComponent(btoa(utf8_encode(msg)));
+		$.ajax({ url:"index.php",data:data,type:"post",async:false });
 	}
 
 	/* FOR SECURITY ISSUES */
@@ -1345,59 +1345,64 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// PROGRAM COPY FIELDS
 		$("td[iscopy=true]",obj).each(function() {
 			var name=$(this).attr("copyname");
-			var field=$("#"+name,obj).parent();
-			var label=$(field).prev();
-			if($(label).hasClass("label")) {
-				label=$(label).clone();
-				$(this).prev().replaceWith(label);
+			var tdfield=$("#"+name,obj).parent();
+			var tdlabel=$(tdfield).prev();
+			if($(tdlabel).hasClass("label")) {
+				tdlabel=$(tdlabel).clone();
+				$(this).prev().replaceWith(tdlabel);
 			}
-			var dest=$("#"+name,field);
-			field=$(field).clone();
-			var orig=$("#"+name,field);
-			$(orig).attr("id","iscopy"+name);
-			$(orig).attr("name","iscopy"+name);
-			$(orig).on("change",function(event,extra) {
+			var oldfield=$("#"+name,tdfield);
+			tdfield=$(tdfield).clone();
+			var newfield=$("#"+name,tdfield);
+			$(newfield).attr("id","iscopy"+name);
+			$(newfield).attr("name","iscopy"+name);
+			if($(newfield).is("select")) {
+				$(tdfield).removeAttr("style");
+				$(newfield).removeAttr("style");
+				$(newfield).removeAttr("width2");
+			}
+			$(newfield).on("change",function(event,extra) {
 				if(extra=="stop") return;
-				$(dest).val($(this).val());
-				$(dest).trigger("change","stop");
+				$(oldfield).val($(this).val());
+				$(oldfield).trigger("change","stop");
 			});
-			$(orig).on("keydown",function(event,extra) {
+			$(newfield).on("keydown",function(event,extra) {
 				if(extra=="stop") return;
-				$(dest).val($(this).val());
-				$(dest).trigger("change","stop");
+				$(oldfield).val($(this).val());
+				$(oldfield).trigger("change","stop");
 			});
-			$(dest).on("change",function(event,extra) {
+			$(oldfield).on("change",function(event,extra) {
 				if(extra=="stop") return;
-				$(orig).val($(this).val());
-				$(orig).trigger("change","stop");
+				$(newfield).val($(this).val());
+				$(newfield).trigger("change","stop");
 			});
-			$(dest).on("keydown",function(event,extra) {
+			$(oldfield).on("keydown",function(event,extra) {
 				if(extra=="stop") return;
-				$(orig).val($(this).val());
-				$(orig).trigger("change","stop");
+				$(newfield).val($(this).val());
+				$(newfield).trigger("change","stop");
 			});
 			if($(this).is("[onchange][onchange!='']")) {
 				var fn=$(this).attr("onchange");
-				$(orig).on("change",function(event,extra) {
+				$(newfield).on("change",function(event,extra) {
 					if(extra=="stop") return;
 					eval(fn);
 				});
 			}
 			if($(this).is("[onkeydown][onkeydown!='']")) {
 				var fn=$(this).attr("onkeydown");
-				$(orig).on("keydown",function(event,extra) {
+				$(newfield).on("keydown",function(event,extra) {
 					if(extra=="stop") return;
 					eval(fn);
 				});
 			}
 			if($(this).is("[class][class!='']")) {
-				$(orig).addClass($(this).attr("class"));
+				$(newfield).addClass($(this).attr("class"));
 			}
 			if($(this).is("[focused][focused!='']")) {
-				$(orig).attr("focused",$(this).attr("focused"));
-				make_focus_obj=orig;
+				$(newfield).attr("focused",$(this).attr("focused"));
+				make_focus_obj=newfield;
 			}
-			$(this).replaceWith(field);
+			$(this).replaceWith(tdfield);
 		});
 		// CREATE THE DATEPICKERS
 		$("input[isdate=true]",obj).each(function() {
