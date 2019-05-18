@@ -1182,18 +1182,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</form>
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query global="id" eval="true">make_insert_query("tbl_correo_d",make_select_query("tbl_correo",array(
-			"id_cuenta",
-			"uidl",
-			"datetime"
+		<query global="id" eval="true">make_insert_from_select_query("tbl_correo_d","tbl_correo",array(
+			"id_cuenta"=>"id_cuenta",
+			"uidl"=>"uidl",
+			"datetime"=>"datetime",
 		),make_where_query(array(
 			"id"=>$id,
-			"is_outbox"=>0
-		))),array(
-			"id_cuenta",
-			"uidl",
-			"datetime"
-		))</query>
+			"is_outbox"=>0,
+		)))</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='0'"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.obj') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>

@@ -90,6 +90,7 @@ if(getParam("action")=="indexing") {
 			if(!count($ids)) break;
 			make_indexing($id_aplicacion,$ids);
 			$total+=count($ids);
+			if(count($ids)<1000) break;
 		}
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
@@ -99,6 +100,7 @@ if(getParam("action")=="indexing") {
 			if(!count($ids)) break;
 			make_indexing($id_aplicacion,$ids);
 			$total+=count($ids);
+			if(count($ids)<1000) break;
 		}
 	}
 	db_free($result);
@@ -118,6 +120,7 @@ if(getParam("action")=="indexing") {
 		$query=make_delete_query("tbl_indexing","id IN (${temp})");
 		db_query($query);
 		$total+=count($ids);
+		if(count($ids)<1000) break;
 	}
 	// CHECK INTEGRITY
 	for(;;) {
@@ -130,6 +133,7 @@ if(getParam("action")=="indexing") {
 		$query=make_delete_query("tbl_indexing","id IN (${temp})");
 		db_query($query);
 		$total+=count($ids);
+		if(count($ids)<1000) break;
 	}
 	// SEND RESPONSE
 	if($total) javascript_alert($total.LANG("msgregistersindexed".min($total,2)));

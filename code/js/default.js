@@ -31,7 +31,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	window.onerror=function(msg,file,line) {
 		var data={"jserror":msg,"details":"Error on file "+file+" at line "+line};
 		data="action=adderror&array="+encodeURIComponent(btoa(JSON.stringify(data)));
-		$.ajax({ url:"index.php",data:data,type:"post" });
+		$.ajax({
+			url:"index.php",
+			data:data,
+			type:"post",
+		});
 	};
 
 	/* GENERIC FUNCTIONS */
@@ -229,7 +233,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	/* FOR DEBUG PURPOSES */
 	function addlog(msg) {
 		var data="action=addlog&msg="+encodeURIComponent(btoa(utf8_encode(msg)));
-		$.ajax({ url:"index.php",data:data,type:"post",async:false });
+		$.ajax({
+			url:"index.php",
+			data:data,
+			type:"post",
+			async:false,
+		});
 	}
 
 	/* FOR SECURITY ISSUES */
@@ -525,7 +534,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			if(cookies_data[hash].sync) {
 				if(cookies_data[hash].val!=cookies_data[hash].orig) {
 					var data="action=cookies&name="+encodeURIComponent(cookies_data[hash].key)+"&value="+encodeURIComponent(cookies_data[hash].val);
-					var value=$.ajax({ url:"index.php",data:data,type:"post",async:false }).responseText;
+					var value=$.ajax({
+						url:"index.php",
+						data:data,
+						type:"post",
+						async:false,
+					}).responseText;
 					if(value!="") {
 						cookies_data[hash].orig=cookies_data[hash].val;
 						cookies_data[hash].sync=0;
