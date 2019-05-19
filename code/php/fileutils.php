@@ -334,26 +334,37 @@ function url_get_contents($url) {
 	$scheme=parse_url($url,PHP_URL_SCHEME);
 	if(!$scheme) $url="http://".$url;
 	// DO THE REQUEST
+	list($body,$headers,$cookies)=__url_get_contents($url);
+	// RETURN RESPONSE
+	return $body;
+}
+
+function __url_get_contents($url,$method="",$values=array(),$cookies=array(),$referer="") {
 	require_once("lib/phpclasses/httpclient/http.php");
 	$http=new http_class;
 	$http->user_agent=get_name_version_revision();
 	$http->follow_redirect=1;
+	if(count($cookies)) $http->RestoreCookies($cookies);
 	$arguments=array();
 	$error=$http->GetRequestArguments($url,$arguments);
-	if($error!="") return "";
+	if($error!="") return array("",array(),array());
 	$error=$http->Open($arguments);
-	if($error!="") return "";
+	if($error!="") return array("",array(),array());
+	if($method!="") $arguments["RequestMethod"]=strtoupper($method);
+	if(count($values)) $arguments["PostValues"]=$values;
+	if($referer!="") $arguments["Referer"]=$referer;
 	$error=$http->SendRequest($arguments);
-	if($error!="") return "";
+	if($error!="") return array("",array(),array());
 	$headers=array();
 	$error=$http->ReadReplyHeaders($headers);
-	if($error!="") return "";
+	if($error!="") return array("",array(),array());
 	$body="";
 	$error=$http->ReadWholeReplyBody($body);
-	if($error!="") return "";
+	if($error!="") return array("",array(),array());
 	$http->Close();
-	// RETURN RESPONSE
-	return $body;
+	$cookies=array();
+	$http->SaveCookies($cookies);
+	return array($body,$headers,$cookies);
 }
 
 function extension($file) {
