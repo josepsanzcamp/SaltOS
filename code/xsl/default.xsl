@@ -997,7 +997,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<xsl:attribute name="checked">checked</xsl:attribute>
 					</xsl:for-each>
 					<xsl:if test="readonly='true'">
-						<xsl:attribute name="disabled">true</xsl:attribute>
+						<xsl:attribute name="class"><xsl:value-of select="class3"/> ui-state-disabled</xsl:attribute>
 					</xsl:if>
 				</input>
 			</td>
@@ -1010,14 +1010,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							</label>
 						</xsl:when>
 						<xsl:otherwise>
-							<xsl:choose>
-								<xsl:when test="readonly='true'">
-									<span class="disabled"><xsl:value-of select="label"/></span>
-								</xsl:when>
-								<xsl:otherwise>
-									<label for="{$prefix}{name}" title="{tip}"><xsl:value-of select="label"/></label>
-								</xsl:otherwise>
-							</xsl:choose>
+							<label for="{$prefix}{name}" title="{tip}"><xsl:value-of select="label"/></label>
 						</xsl:otherwise>
 					</xsl:choose>
 				</td>

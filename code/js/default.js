@@ -1552,13 +1552,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// TO CLEAR AMBIGUOUS THINGS
 		$(".nowrap.siwrap",obj).removeClass("nowrap siwrap");
-		// TRICK FOR STYLING THE INFO NOTIFY
+		// TRICK FOR STYLING THINGS AS INFO, ERROR AND TITLE
 		$(".info",obj).addClass("ui-state-highlight ui-corner-all");
 		$(".error",obj).addClass("ui-state-error ui-corner-all");
-		// TRICK FOR STYLING THE TITLES
 		$(".title",obj).addClass("ui-widget-header ui-corner-all");
-		// TRICK FOR DISABLE BUTTONS
-		$(".disabled",obj).removeClass("disabled").addClass("ui-state-disabled");
+		// TRICK TO BLOCK CHECKBOXES
+		$("input:checkbox.ui-state-disabled").on("click",function() {
+			return false;
+		}).on("keydown",function() {
+			return false;
+		});
 		// PROGRAM SELECT MENU
 		$("select[ismenu=true]",obj).on("change",function() {
 			if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
