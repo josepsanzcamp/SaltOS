@@ -1010,7 +1010,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							</label>
 						</xsl:when>
 						<xsl:otherwise>
-							<label for="{$prefix}{name}" title="{tip}"><xsl:value-of select="label"/></label>
+							<xsl:choose>
+								<xsl:when test="readonly='true'">
+									<xsl:value-of select="label"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<label for="{$prefix}{name}" title="{tip}"><xsl:value-of select="label"/></label>
+								</xsl:otherwise>
+							</xsl:choose>
 						</xsl:otherwise>
 					</xsl:choose>
 				</td>
@@ -1472,7 +1479,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 											<xsl:call-template name="brtag"/>
 										</xsl:otherwise>
 									</xsl:choose>
-									<table class="tabla" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
+									<table class="tabla {class}" style="width:{width}" cellpadding="0" cellspacing="0" border="0">
 										<xsl:if test="quick='true'">
 											<xsl:call-template name="form_quick">
 												<xsl:with-param name="quick" select="../../../quick"/>

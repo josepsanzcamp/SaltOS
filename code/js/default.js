@@ -1557,10 +1557,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(".error",obj).addClass("ui-state-error ui-corner-all");
 		$(".title",obj).addClass("ui-widget-header ui-corner-all");
 		// TRICK TO BLOCK CHECKBOXES
-		$("input:checkbox.ui-state-disabled").on("click",function() {
-			return false;
-		}).on("keydown",function() {
-			return false;
+		$("input:checkbox.ui-state-disabled",obj).on("change",function(event) {
+			$(this).prop("checked",!$(this).prop("checked"));
 		});
 		// PROGRAM SELECT MENU
 		$("select[ismenu=true]",obj).on("change",function() {
