@@ -846,35 +846,30 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 			"id_aplicacion"=>intval(getParam("id_aplicacion")),
 			"id_permiso"=>intval(getParam("id_permiso")),
 			"allow"=>intval(getParam("allow")),
-			"deny"=>intval(getParam("deny"))
-		),array(
-			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+			"deny"=>intval(getParam("deny")),
+			"id_usuario"=>execute_query("SELECT MAX(id) FROM tbl_usuarios"),
 		)):""</query>
 		<query match="grupos" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_usuarios_g",array(
-			"id_grupo"=>intval(getParam("id_grupo"))
-		),array(
-			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+			"id_grupo"=>intval(getParam("id_grupo")),
+			"id_usuario"=>execute_query("SELECT MAX(id) FROM tbl_usuarios"),
 		)):""</query>
 		<query match="appsregs" prefix="true" eval="true">(getParam("activado") &amp;&amp; getParam("id_registro")>0)?make_insert_query("tbl_usuarios_r",array(
 			"id_aplicacion"=>intval(getParam("id_aplicacion")),
-			"id_registro"=>intval(getParam("id_registro"))
-		),array(
-			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+			"id_registro"=>intval(getParam("id_registro")),
+			"id_usuario"=>execute_query("SELECT MAX(id) FROM tbl_usuarios"),
 		)):""</query>
 		<query match="gcalendar" prefix="true" eval="true">getParam("email")||getParam("token")?make_insert_query("tbl_gcalendar",array(
 			"email"=>getParam("email"),
-			"token"=>getParam("token")
-		),array(
-			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+			"token"=>getParam("token"),
+			"id_usuario"=>execute_query("SELECT MAX(id) FROM tbl_usuarios"),
 		)):""</query>
 		<query match="feeds_new" prefix="true" eval="true">getParam("url") &amp;&amp; getParam("title")?make_insert_query("tbl_usuarios_f",array(
 			"url"=>getParam("url"),
 			"title"=>getParam("title"),
 			"description"=>getParam("description"),
 			"image"=>getParam("image"),
-			"link"=>getParam("link")
-		),array(
-			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+			"link"=>getParam("link"),
+			"id_usuario"=>execute_query("SELECT MAX(id) FROM tbl_usuarios"),
 		)):""</query>
 		<query match="correo_new" prefix="true" eval="true">getParam("email_name")||getParam("email_from")||getParam("email_signature_new")||getParam("pop3_host")||getParam("pop3_port")||getParam("pop3_extra")||getParam("pop3_user")||getParam("pop3_pass")||getParam("pop3_delete")||getParam("pop3_days")||getParam("smtp_host")||getParam("smtp_port")||getParam("smtp_extra")||getParam("smtp_user")||getParam("smtp_pass")||intval(getParam("email_disabled"))||intval(getParam("email_privated"))||intval(getParam("email_default"))||intval(getParam("email_addmetocc"))||intval(getParam("email_crt"))?make_insert_query("tbl_usuarios_c",array(
 			"email_name"=>getParam("email_name"),
@@ -899,9 +894,8 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 			"email_privated"=>intval(getParam("email_privated")),
 			"email_default"=>intval(getParam("email_default")),
 			"email_addmetocc"=>intval(getParam("email_addmetocc")),
-			"email_crt"=>intval(getParam("email_crt"))
-		),array(
-			"id_usuario"=>"SELECT MAX(id) FROM tbl_usuarios"
+			"email_crt"=>intval(getParam("email_crt")),
+			"id_usuario"=>execute_query("SELECT MAX(id) FROM tbl_usuarios"),
 		)):""</query>
 		<query global="page" match="default" prefix="true" eval="true">make_insert_query("tbl_registros",array(
 			"id_aplicacion"=>page2id($page),

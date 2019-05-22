@@ -509,9 +509,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
         <query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_incidencias_u",array(
-			"id_usuario"=>intval(getParam("id_usuario"))
-		),array(
-			"id_incidencia"=>"SELECT MAX(id) FROM tbl_incidencias"
+			"id_usuario"=>intval(getParam("id_usuario")),
+			"id_incidencia"=>execute_query("SELECT MAX(id) FROM tbl_incidencias"),
 		)):""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
 		<query>SELECT 'php/action/incidencias.php' action_include</query>

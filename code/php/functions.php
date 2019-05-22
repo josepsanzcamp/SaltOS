@@ -866,9 +866,7 @@ function check_security($action="") {
 			db_query($query);
 		} else {
 			// INCREMENTAR RETRIES EN EL REGISTRO ACTUAL
-			$query=make_update_query("tbl_security_ip",array(),"id='${id_security_ip}'",array(
-				"retries"=>"retries+1"
-			));
+			$query=make_update_query("tbl_security_ip","retries=retries+1","id='${id_security_ip}'");
 			db_query($query);
 		}
 	} elseif($action=="logout") {

@@ -668,7 +668,7 @@ function make_update_query() {
 	$b=in_array($c,array(3));
 	if($b) {
 		if($d[0]=="") $b=0;
-		if(!is_array($d[1])) $b=0;
+		//~ if(!is_array($d[1])) $b=0;
 		if(is_array($d[1])) if(!is_array_key_val($d[1])) $b=0;
 		if($d[2]=="") $b=0;
 	}
@@ -694,7 +694,7 @@ function make_select_query() {
 	$b=in_array($c,array(2,3));
 	if($b) {
 		if($d[0]=="") $b=0;
-		if(is_array($d[1])) if(is_array_key_val($d[1])) $b=0;
+		//~ if(is_array($d[1])) if(is_array_key_val($d[1])) $b=0;
 	}
 	return __deprecated_helper($a,$b,$c,$d);
 }
@@ -841,8 +841,10 @@ function make_insert_query_new($table,$array) {
 
 function make_update_query_new($table,$array,$where) {
 	$list1=array();
-	foreach($array as $key=>$val) {
-		$list1[]=$key."='".addslashes($val)."'";
+	if(is_array($array)) {
+		foreach($array as $key=>$val) $list1[]=$key."='".addslashes($val)."'";
+	} else {
+		$list1[]=$array;
 	}
 	$list1=implode(",",$list1);
 	$query="UPDATE ${table} SET ${list1} WHERE ${where}";
@@ -855,7 +857,10 @@ function make_delete_query_new($table,$where) {
 }
 
 function make_select_query_new($table,$array,$where="1=1") {
-	if(is_array($array)) $array=implode(",",$array);
+	if(is_array($array)) {
+		if(is_array_key_val($array)) foreach($array as $key=>$val) $array[$key]="${key} AS '${val}'";
+		$array=implode(",",$array);
+	}
 	$query="SELECT ${array} FROM ${table} WHERE ${where}";
 	return $query;
 }

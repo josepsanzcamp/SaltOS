@@ -416,9 +416,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"id_aplicacion"=>intval(getParam("id_aplicacion")),
 			"id_permiso"=>intval(getParam("id_permiso")),
 			"allow"=>intval(getParam("allow")),
-			"deny"=>intval(getParam("deny"))
-		),array(
-			"id_grupo"=>"SELECT MAX(id) FROM tbl_grupos"
+			"deny"=>intval(getParam("deny")),
+			"id_grupo"=>execute_query("SELECT MAX(id) FROM tbl_grupos"),
 		)):""</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>

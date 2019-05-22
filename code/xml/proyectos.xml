@@ -1651,18 +1651,16 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 			"tarea"=>getParam("tarea"),
 			"horas"=>getParam("horas"),
 			"precio"=>getParam("precio"),
-			"descuento"=>getParam("descuento")
-		),array(
-			"id_proyecto"=>"SELECT MAX(id) FROM tbl_proyectos"
+			"descuento"=>getParam("descuento"),
+			"id_proyecto"=>execute_query("SELECT MAX(id) FROM tbl_proyectos"),
 		)):""</query>
 		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_proyectos_p",array(
 			"id_producto"=>intval(getParam("id_producto")),
 			"concepto"=>getParam("concepto"),
 			"unidades"=>getParam("unidades"),
 			"precio"=>getParam("precio"),
-			"descuento"=>getParam("descuento")
-		),array(
-			"id_proyecto"=>"SELECT MAX(id) FROM tbl_proyectos"
+			"descuento"=>getParam("descuento"),
+			"id_proyecto"=>execute_query("SELECT MAX(id) FROM tbl_proyectos"),
 		)):""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>

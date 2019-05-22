@@ -1514,18 +1514,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"tarea"=>getParam("tarea"),
 			"horas"=>getParam("horas"),
 			"precio"=>getParam("precio"),
-			"descuento"=>getParam("descuento")
-		),array(
-			"id_presupuesto"=>"SELECT MAX(id) FROM tbl_presupuestos"
+			"descuento"=>getParam("descuento"),
+			"id_presupuesto"=>execute_query("SELECT MAX(id) FROM tbl_presupuestos"),
 		)):""</query>
 		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_presupuestos_p",array(
 			"id_producto"=>intval(getParam("id_producto")),
 			"concepto"=>getParam("concepto"),
 			"unidades"=>getParam("unidades"),
 			"precio"=>getParam("precio"),
-			"descuento"=>getParam("descuento")
-		),array(
-			"id_presupuesto"=>"SELECT MAX(id) FROM tbl_presupuestos"
+			"descuento"=>getParam("descuento"),
+			"id_presupuesto"=>execute_query("SELECT MAX(id) FROM tbl_presupuestos"),
 		)):""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
