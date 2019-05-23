@@ -595,6 +595,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<usersdata>Users assigned</usersdata>
 		<asignadoa>Assigned to</asignadoa>
 		<msgsendemail>has been sent an email to all those involved in the bug</msgsendemail>
+		<boolsendmail>Send email</boolsendmail>
+		<boolsendmailtip>If you enable this option, an email will be sent to all users involved in the bug</boolsendmailtip>
 	</incidencias>
 	<proyectos>
 		<list>Project list</list>

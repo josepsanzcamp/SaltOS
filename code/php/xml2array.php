@@ -143,12 +143,12 @@ function struct2array_path($input) {
 					$key=limpiar_key($key);
 					if($key=="path") {
 						$path=$val;
-					} elseif(in_array($key,array("before","after","replace","append","add","remove","delete"))) {
+					} elseif(in_array($key,array("before","after","replace","append","add","prepend","remove","delete"))) {
 						if($action!="") xml_error("Detected '$action' and '$key' attr in the same node");
 						$action=$key;
 					}
 				}
-				if($path && !$action) xml_error("Detected 'path' attr without 'before', 'after' or 'replace' attr");
+				if($path && !$action) xml_error("Detected 'path' attr without before, after, replace, append, add, prepend, remove or delete' attr");
 				if($action && !$path) xml_error("Detected '$action' attr without 'path' attr");
 				if($path) unset_array($attr,"path");
 				if($action) unset_array($attr,$action);
@@ -228,6 +228,23 @@ function __set_array_recursive($array,$keys,$value,$type) {
 							} else {
 								if(!is_array($val2)) xml_error("Can not '$type' the node '$key3' to the node '$key2'");
 								set_array($val2,limpiar_key($key3),$val3);
+							}
+						}
+						set_array($temp,limpiar_key($key2),$val2);
+						break;
+					case "prepend":
+						$hasattr=(isset($val2["value"]) && isset($val2["#attr"]));
+						foreach($value as $key3=>$val3) {
+							if($hasattr) {
+								if(!is_array($val2["value"])) xml_error("Can not '$type' the node '$key3' to the node '$key2'");
+								$val2["value"]=array_reverse($val2["value"]);
+								set_array($val2["value"],limpiar_key($key3),$val3);
+								$val2["value"]=array_reverse($val2["value"]);
+							} else {
+								if(!is_array($val2)) xml_error("Can not '$type' the node '$key3' to the node '$key2'");
+								$val2=array_reverse($val2);
+								set_array($val2,limpiar_key($key3),$val3);
+								$val2=array_reverse($val2);
 							}
 						}
 						set_array($temp,limpiar_key($key2),$val2);

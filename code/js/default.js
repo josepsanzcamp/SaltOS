@@ -1296,6 +1296,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 						if(getParam("action")=="form") $(form).hide();
 						$("#popup"+tabid).replaceWith(form);
 						unmake_focus();
+						hide_tooltips();
 					});
 					var width=getIntCookie("saltos_popup_width");
 					if(!width) width=900;
@@ -1305,6 +1306,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(dialog2).dialog("option","height",height);
 					$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 					$(dialog2).dialog("open");
+					hide_tooltips();
 					return false;
 				}
 			},

@@ -487,6 +487,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</fields>
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
+		<node path="buttons/row" prepend="true">
+			<field>
+				<name>boolsendmail</name>
+				<type>checkbox</type>
+				<label lang="true">boolsendmail</label>
+				<tip lang="true">boolsendmailtip</tip>
+				<value>1</value>
+			</field>
+		</node>
 		<node path="buttons/row/field[name=buttonupdate]/disabled" replace="true">
 			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_incidencias a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (TRIM(IFNULL((SELECT u.id_usuario FROM tbl_incidencias_u u WHERE u.id_incidencia=a.id AND u.id_usuario='".current_user()."'),0))='".current_user()."')")?"true":"false"</disabled>
 		</node>
@@ -513,7 +522,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"id_incidencia"=>execute_query("SELECT MAX(id) FROM tbl_incidencias"),
 		)):""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
-		<query>SELECT 'php/action/incidencias.php' action_include</query>
+		<query match="default" prefix="true" eval="true">getParam("boolsendmail")?"SELECT 'php/action/incidencias.php' action_include":""</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
@@ -529,7 +538,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/qfilesupdate.xml" replace="true"/>
 		<query include="xml/common/qcommentsdelete.xml" replace="true" />
 		<query include="xml/common/qcommentsinsert.xml" replace="true" />
-		<query>SELECT 'php/action/incidencias.php' action_include</query>
+		<query match="default" prefix="true" eval="true">getParam("boolsendmail")?"SELECT 'php/action/incidencias.php' action_include":""</query>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>
 	<delete>

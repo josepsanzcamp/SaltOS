@@ -595,6 +595,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<usersdata>Usuaris assignats</usersdata>
 		<asignadoa>Assignat a</asignadoa>
 		<msgsendemail>S'ha enviat un correu electrònic a tots els implicats en la incidència</msgsendemail>
+		<boolsendmail>Enviar email</boolsendmail>
+		<boolsendmailtip>Si activa aquesta opció, s'enviarà un email a tots els implicats</boolsendmailtip>
 	</incidencias>
 	<proyectos>
 		<list>Llistat de projectes</list>

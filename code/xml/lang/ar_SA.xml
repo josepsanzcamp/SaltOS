@@ -595,6 +595,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<usersdata>المستخدمين المعنيين</usersdata>
 		<asignadoa>تعيين ل</asignadoa>
 		<msgsendemail>لقد تم ارسال بريد لكل المعنيين بالحدث</msgsendemail>
+		<boolsendmail translate="false">Send email</boolsendmail>
+		<boolsendmailtip translate="false">If you enable this option, an email will be sent to all users involved in the bug</boolsendmailtip>
 	</incidencias>
 	<proyectos>
 		<list>قائمة المشاريع</list>

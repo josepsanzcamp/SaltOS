@@ -668,7 +668,7 @@ function make_update_query() {
 	$b=in_array($c,array(3));
 	if($b) {
 		if($d[0]=="") $b=0;
-		//~ if(!is_array($d[1])) $b=0;
+		if(!is_array($d[1])) $b=0;
 		if(is_array($d[1])) if(!is_array_key_val($d[1])) $b=0;
 		if($d[2]=="") $b=0;
 	}
@@ -841,11 +841,7 @@ function make_insert_query_new($table,$array) {
 
 function make_update_query_new($table,$array,$where) {
 	$list1=array();
-	if(is_array($array)) {
-		foreach($array as $key=>$val) $list1[]=$key."='".addslashes($val)."'";
-	} else {
-		$list1[]=$array;
-	}
+	foreach($array as $key=>$val) $list1[]=$key."='".addslashes($val)."'";
 	$list1=implode(",",$list1);
 	$query="UPDATE ${table} SET ${list1} WHERE ${where}";
 	return $query;
