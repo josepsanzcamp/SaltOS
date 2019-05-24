@@ -2016,9 +2016,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				var title=trim($(this).attr("title"));
 				if(title) {
 					// CHECK IF TITLE IS THE SAME THAT THE OBJECT TEXT
-					if(title==trim($(this).text())) {
-						title="";
-					}
+					var text1=trim($(this).text());
+					var text2=trim($(":not(:visible)",this).text());
+					var text3=trim(str_replace(text2,"",text1));
+					if(title==text3) title="";
 					// FIX SOME ISSUES
 					if(strpos(title,"<")!==false || strpos(title,">")!==false) {
 						title=str_replace(["<",">"],["&lt;","&gt;"],title);

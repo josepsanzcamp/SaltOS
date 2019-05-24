@@ -626,7 +626,7 @@ img[isplot=true] {
 
 .ui-menu .ui-menu-item-wrapper.ui-state-active {
 	background-color:#fbec88;
-	color:#333333;
+	color:#363636;
 	font-weight:normal;
 }
 
@@ -657,4 +657,15 @@ img[isplot=true] {
 /* FOR EXCEL */
 div.excel {
 	overflow:hidden;
+}
+
+/* FOR DATEPICKER */
+.ui-datepicker-calendar .ui-datepicker-today a {
+	background:#fbec88!important;
+	color:#363636!important;
+}
+
+.ui-datepicker-calendar .ui-datepicker-current-day a {
+	background:#fbec88!important;
+	color:#363636!important;
 }
