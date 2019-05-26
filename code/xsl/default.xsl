@@ -67,10 +67,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:value-of select="info/title"/>
 	<xsl:text> - </xsl:text>
 	<xsl:value-of select="info/name"/>
-	<xsl:text> </xsl:text>
-	v<xsl:value-of select="info/version"/>
-	<xsl:text> </xsl:text>
-	r<xsl:value-of select="info/revision"/>
+	<xsl:text> v</xsl:text>
+	<xsl:value-of select="info/version"/>
+	<xsl:text> r</xsl:text>
+	<xsl:value-of select="info/revision"/>
 </xsl:template>
 
 <xsl:template name="javascript">
