@@ -145,21 +145,13 @@ $_RESULT["info"]["usecsscache"]=getDefault("cache/usecsscache");
 $_RESULT["info"]["lang"]=$lang;
 $_RESULT["info"]["dir"]=$_LANG["dir"];
 // THE XSLT PROCESSOR CODE
-$xsl="default";
-if(file_exists("xsl/${page}.xsl")) $xsl=$page;
-if(getDefault("forcexsl")) $xsl=getDefault("forcexsl");
-$_RESULT["info"]["xslt"]="xsl/${xsl}.xsl";
-$buffer=__XML_HEADER__;
-$href=$_RESULT["info"]["xslt"]."?r=".$_RESULT["info"]["revision"];
-$buffer.="<?xml-stylesheet type='text/xsl' href='${href}' ?>\n";
-$buffer.=array2xml($_RESULT);
-$format=strtolower(getDefault("format","xml"));
-if(!in_array($format,array("xml","html"))) show_php_error(array("phperror"=>"Unknown format '$format'"));
-if($format=="html") $buffer=xml2html($buffer);
+$xsl=getDefault("forcexsl","default");
+$buffer=__XML_HEADER__.array2xml($_RESULT);
+$buffer=__HTML_DOCTYPE__.xml2html($buffer,"xsl/${xsl}.xsl");
 // FLUSH THE OUTPUT NOW
 output_handler(array(
 	"data"=>$buffer,
-	"type"=>"text/$format",
+	"type"=>"text/html",
 	"cache"=>false
 ));
 ?>

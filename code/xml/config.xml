@@ -83,7 +83,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<page>home</page>
 		<action>list</action>
 		<id>0</id>
-		<format>HTML</format><!-- output format can be XML or HTML -->
 		<lang>es_ES</lang>
 		<style eval="true">ismobile()?"google/blue/light":"google/multi/light"</style>
 		<stylepre eval="true">ismobile()?"lib/themes/":"lib/themes/"</stylepre>

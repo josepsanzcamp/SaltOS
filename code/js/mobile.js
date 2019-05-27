@@ -725,34 +725,17 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 
 	function loadcontent(xml) {
 		loadingcontent();
-		if(xml.firstChild) {
-			var xsl=$("root>info>xslt",xml).text();
-			var rev=$("root>info>revision",xml).text();
-			var url=xsl+"?r="+rev;
-			$.ajax({
-				url:url,
-				type:"get",
-				success:function(response) {
-					var html=str2html(fix4html(html2str(transformcontent(xml,response))));
-					updatecontent(html);
-				},
-				error:function(XMLHttpRequest,textStatus,errorThrown) {
-					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-				}
-			});
-		} else if(xml) {
-			var html=str2html(fix4html(xml));
-			if($("#page",html).text()!="") {
-				updatecontent(html);
+		var html=str2html(fix4html(xml));
+		if($("#page",html).text()!="") {
+			updatecontent(html);
+		} else {
+			// IF THE RETURNED HTML CONTAIN A SCRIPT NOT UNBLOCK THE UI
+			var screen=$("#page");
+			if($("script",html).length!=0) {
+				$(screen).append(html);
 			} else {
-				// IF THE RETURNED HTML CONTAIN A SCRIPT NOT UNBLOCK THE UI
-				var screen=$("#page");
-				if($("script",html).length!=0) {
-					$(screen).append(html);
-				} else {
-					unloadingcontent();
-					$(screen).html(html);
-				}
+				unloadingcontent();
+				$(screen).html(html);
 			}
 		}
 	}
@@ -781,21 +764,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 		str=str_replace("</title>","</div>",str);
 		// RETURN THE STRING
 		return str;
-	}
-
-	function transformcontent(xml,xsl) {
-		if(window.ActiveXObject) {
-			// CODE FOR FUCKED RENDERS
-			var html=xml.transformNode(xsl);
-		} else if(document.implementation && document.implementation.createDocument) {
-			// CODE FOR GECKO, WEBKIT AND OTHERS GOODS RENDERS
-			xsltProcessor=new XSLTProcessor();
-			xsltProcessor.importStylesheet(xsl);
-			var html=xsltProcessor.transformToFragment(xml,document);
-		} else {
-			var html="";
-		}
-		return html;
 	}
 
 	/* FOR RENDER THE SCREEN */

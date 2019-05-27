@@ -24,7 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<xsl:output method="html" encoding="UTF-8" indent="no" doctype-system="about:legacy-compat"/>
+<xsl:output method="html" encoding="UTF-8" indent="no"/>
 
 <xsl:template name="head">
 	<xsl:for-each select="/root">

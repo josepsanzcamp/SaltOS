@@ -31,7 +31,7 @@ if(getParam("action")=="styles") {
 		$revision=getDefault("info/revision");
 		$styles=eval_attr(xml2array("xml/styles.xml"));
 		foreach($styles as $row) if($style==$row["value"]) break;
-		echo "<!DOCTYPE html>";
+		echo __HTML_DOCTYPE__;
 		echo "<html>";
 		echo "<head>";
 		echo "<link href='${stylepre}${style}${stylepost}?r=${revision}' rel='stylesheet' type='text/css'>";
@@ -53,7 +53,7 @@ if(getParam("action")=="styles") {
 	} else {
 		$revision=getDefault("info/revision");
 		$styles=eval_attr(xml2array("xml/styles.xml"));
-		echo "<!DOCTYPE html>";
+		echo __HTML_DOCTYPE__;
 		echo "<html>";
 		echo "<head>";
 		echo "<link href='css/default.css?r=${revision}' rel='stylesheet' type='text/css'>";

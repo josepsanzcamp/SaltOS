@@ -23,10 +23,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
-<xsl:output method="html" encoding="UTF-8" indent="no" doctype-system="about:legacy-compat"/>
+<xsl:output method="html" encoding="UTF-8" indent="no"/>
 
 <xsl:template name="head">
 	<xsl:for-each select="/root">
@@ -53,7 +51,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="title_2">
-	<xsl:value-of select="info/title"/><xsl:text> - </xsl:text><xsl:value-of select="info/name"/><xsl:text> </xsl:text>v<xsl:value-of select="info/version"/><xsl:text> </xsl:text>r<xsl:value-of select="info/revision"/>
+	<xsl:value-of select="info/title"/>
+	<xsl:text> - </xsl:text>
+	<xsl:value-of select="info/name"/>
+	<xsl:text> v</xsl:text>
+	<xsl:value-of select="info/version"/>
+	<xsl:text> r</xsl:text>
+	<xsl:value-of select="info/revision"/>
 </xsl:template>
 
 <xsl:template name="javascript">

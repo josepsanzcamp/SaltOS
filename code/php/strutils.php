@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 // DEFINES
 define("__XML_HEADER__","<?xml version='1.0' encoding='UTF-8' ?>\n");
+define("__HTML_DOCTYPE__","<!DOCTYPE html>\n");
 
 // FUNCTIONS
 function getParam($index,$default="") {
@@ -261,20 +262,10 @@ function intelligence_cut($txt,$max,$end="...") {
 	return $preview;
 }
 
-function xml2html($buffer,$usecache=true) {
+function xml2html($buffer,$xslfile,$usecache=true) {
 	// SOME CHECKS
 	if(!class_exists("DomDocument")) show_php_error(array("phperror"=>"Class DomDocument not found","details"=>"Try to install php-xml package"));
 	if(!class_exists("XsltProcessor")) show_php_error(array("phperror"=>"Class XsltProcessor not found","details"=>"Try to install php-xsl package"));
-	// GET THE STYLESHEET
-	$pos1=strpos($buffer,"<?xml-stylesheet");
-	$pos2=strpos($buffer,"href=",$pos1);
-	if(substr($buffer,$pos2+5,1)=='"') $pos3=strpos($buffer,'"',$pos2+6);
-	if(substr($buffer,$pos2+5,1)=="'") $pos3=strpos($buffer,"'",$pos2+6);
-	if(!isset($pos3)) show_php_error(array("phperror"=>"Unknown XSL file","details"=>"Could not find the xml-stylesheet tag in XML"));
-	$xslfile=substr($buffer,$pos2+6,$pos3-$pos2-6);
-	$pos4=strpos($xslfile,"?");
-	if($pos4!==false) $xslfile=substr($xslfile,0,$pos4);
-	if(!file_exists($xslfile)) show_php_error(array("phperror"=>"Unknown XSL file","details"=>"File '$xslfile' not found"));
 	// CACHE MANAGEMENT
 	if($usecache) {
 		$cache=get_cache_file($buffer,".htm");

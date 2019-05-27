@@ -954,44 +954,25 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("loadcontent");
 		hide_tooltips();
 		loadingcontent();
-		if(xml.firstChild) {
-			var xsl=$("root>info>xslt",xml).text();
-			var rev=$("root>info>revision",xml).text();
-			var url=xsl+"?r="+rev;
-			$.ajax({
-				url:url,
-				type:"get",
-				success:function(response) {
-					var html=str2html(fix4html(html2str(transformcontent(xml,response))));
-					//~ console.timeEnd("loadcontent");
-					updatecontent(html);
-				},
-				error:function(XMLHttpRequest,textStatus,errorThrown) {
-					//~ console.timeEnd("loadcontent");
-					errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-				}
-			});
-		} else if(xml) {
-			var html=str2html(fix4html(xml));
-			if($(".ui-layout-center",html).text()!="") {
+		var html=str2html(fix4html(xml));
+		if($(".ui-layout-center",html).text()!="") {
+			//~ console.timeEnd("loadcontent");
+			updatecontent(html);
+		} else {
+			// IF THE RETURNED HTML CONTAIN A SCRIPT NOT UNBLOCK THE UI
+			var screen=$(".ui-layout-center");
+			if($("script",html).length!=0) {
 				//~ console.timeEnd("loadcontent");
-				updatecontent(html);
+				$(screen).append(html);
 			} else {
-				// IF THE RETURNED HTML CONTAIN A SCRIPT NOT UNBLOCK THE UI
-				var screen=$(".ui-layout-center");
-				if($("script",html).length!=0) {
-					//~ console.timeEnd("loadcontent");
-					$(screen).append(html);
+				//~ console.timeEnd("loadcontent");
+				unloadingcontent();
+				if($(".phperror",html).length!=0) {
+					$("div[type=title]",html).remove();
+					unmake_ckeditors(screen);
+					$(screen).html(html);
 				} else {
-					//~ console.timeEnd("loadcontent");
-					unloadingcontent();
-					if($(".phperror",html).length!=0) {
-						$("div[type=title]",html).remove();
-						unmake_ckeditors(screen);
-						$(screen).html(html);
-					} else {
-						$(screen).append(html);
-					}
+					$(screen).append(html);
 				}
 			}
 		}
@@ -1021,21 +1002,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		str=str_replace("</title>","</div>",str);
 		// RETURN THE STRING
 		return str;
-	}
-
-	function transformcontent(xml,xsl) {
-		if(window.ActiveXObject) {
-			// CODE FOR FUCKED RENDERS
-			var html=xml.transformNode(xsl);
-		} else if(document.implementation && document.implementation.createDocument) {
-			// CODE FOR GECKO, WEBKIT AND OTHERS GOODS RENDERS
-			xsltProcessor=new XSLTProcessor();
-			xsltProcessor.importStylesheet(xsl);
-			var html=xsltProcessor.transformToFragment(xml,document);
-		} else {
-			var html="";
-		}
-		return html;
 	}
 
 	/* FOR RENDER THE SCREEN */
