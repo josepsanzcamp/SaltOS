@@ -636,14 +636,11 @@ function __deprecated_helper($a,$b,$c,$d) {
 	if($c==4) $f=$e($d[0],$d[1],$d[2],$d[3]);
 	if($c==5) $f=$e($d[0],$d[1],$d[2],$d[3],$d[4]);
 	if(!$b) {
-		$array=array();
-		$array["phperror"]="Deprecated function $a with $c arguments";
-		$array["details"]=sprintr($d);
-		$array["query"]=$f;
-		$array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-		$array["debug"]=session_backtrace();
-		$msg_text=do_message_error($array,"text");
-		addlog($msg_text,getDefault("debug/deprecated","deprecated.log"));
+		addtrace(array(
+			"phperror"=>"Deprecated function $a with $c arguments",
+			"details"=>sprintr($d),
+			"query"=>$f,
+		),getDefault("debug/deprecated","deprecated.log"));
 	}
 	return $f;
 }

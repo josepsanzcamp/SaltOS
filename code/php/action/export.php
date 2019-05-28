@@ -34,7 +34,7 @@ if($page=="datacfg") {
 		foreach($table["fields"] as $field) $fields[]=$field["name"];
 		$fields="LENGTH(".implode(")+LENGTH(",$fields).")";
 		$table=$table["name"];
-		$query=make_delete_query($table).";\n";
+		$query=make_delete_query($table,"1=1").";\n";
 		gzwrite($fp,$query);
 		$query="SELECT COUNT(*) count FROM $table";
 		$count=execute_query($query);

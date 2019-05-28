@@ -40,21 +40,17 @@ function db_query($query,$fetch="query") {
 	if(method_exists(getDefault("db/obj"),"db_query")) {
 		$debug=eval_bool(getDefault("debug/slowquerydebug"));
 		if($debug) {
-			$time1=microtime(true);
+			$curtime=microtime(true);
 		}
 		$result=getDefault("db/obj")->db_query($query,$fetch);
 		if($debug) {
-			$time2=microtime(true);
-			$curtime=$time2-$time1;
+			$curtime=microtime(true)-$curtime;
 			$maxtime=getDefault("debug/slowquerytime");
 			if($curtime>$maxtime) {
-				$array=array();
-				$array["dbwarning"]="Slow query requires $curtime seconds";
-				$array["query"]=$query;
-				$array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-				$array["debug"]=session_backtrace();
-				$msg_text=do_message_error($array,"text");
-				addlog($msg_text,getDefault("debug/dbwarningfile","dbwarning.log"));
+				addtrace(array(
+					"dbwarning"=>"Slow query requires $curtime seconds",
+					"query"=>$query,
+				),getDefault("debug/dbwarningfile","dbwarning.log"));
 			}
 		}
 	} else {

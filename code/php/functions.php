@@ -622,7 +622,7 @@ function db_static() {
 		$dbstatic=eval_attr(xml2array($file));
 		if(is_array($dbstatic)) {
 			foreach($dbstatic as $table=>$rows) {
-				$query=make_delete_query($table);
+				$query=make_delete_query($table,"1=1");
 				db_query($query);
 				foreach($rows as $row) __db_static_helper($table,$row);
 			}

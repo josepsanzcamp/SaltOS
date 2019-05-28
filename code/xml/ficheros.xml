@@ -71,10 +71,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<sort>true</sort>
 			</field>
 			<field>
-				<name>fichero</name>
+				<name>fichero2</name>
 				<label lang="true">fichero</label>
 				<sort>true</sort>
 				<size>40</size>
+				<order>fichero</order>
 			</field>
 			<field>
 				<name>fichero_size2</name>
@@ -199,6 +200,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		SELECT a.id id,
 		LPAD(a.id_registro,".intval(CONFIG("zero_padding_digits")).",0) id2,
 		a.datetime,a.fichero,a.id_aplicacion,a.id_registro,d.id id_usuario,d.id_grupo id_grupo,
+		CONCAT('link:download2(\"',a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro,'\"):',a.fichero) fichero2,
 		CONCAT(a.id,'_',(SELECT codigo FROM tbl_aplicaciones WHERE id=a.id_aplicacion),'_',a.id_registro) action_id,
 		(SELECT  CONCAT('link:opencontent(\"?page=',codigo,'\"):',nombre)  FROM tbl_aplicaciones WHERE id=a.id_aplicacion) aplicacion,
 		".make_extra_query_with_login("d.")." usuario,

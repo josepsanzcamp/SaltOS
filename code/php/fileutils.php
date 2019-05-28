@@ -114,6 +114,13 @@ function addlog($msg,$file="") {
 	chmod_protected($dir.$file,0666);
 }
 
+function addtrace($array,$file) {
+	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+	if(!isset($array["debug"])) $array["debug"]=session_backtrace();
+	$msg_text=do_message_error($array,"text");
+	addlog($msg_text,$file);
+}
+
 function semaphore_acquire($name="",$timeout=INF) {
 	return __semaphore_helper(__FUNCTION__,$name,$timeout);
 }
