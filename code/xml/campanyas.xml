@@ -278,7 +278,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) b
 		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,page2id($page)):"(1=1)")."
+		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 		AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo=1) OR ('alldisabled'='$id_estado' AND activo=0)) AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>

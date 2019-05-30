@@ -142,7 +142,7 @@ if(getParam("action")=="purge") {
 					foreach($rows3 as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				}
 				// BORRAR DATOS DE LAS TABLAS GENERICAS
-				$tablas=array("tbl_ficheros","tbl_comentarios","tbl_registros","tbl_indexing");
+				$tablas=array("tbl_ficheros","tbl_comentarios","tbl_registros","idx_indexing");
 				foreach($tablas as $tabla) {
 					$query=make_delete_query($tabla,make_where_query(array(
 						"id_aplicacion"=>$row2["id_aplicacion"],
@@ -150,6 +150,12 @@ if(getParam("action")=="purge") {
 					)));
 					db_query($query);
 				}
+				// BORRAR DATOS DE LAS TABLAS INDEXACION
+				$page=id2page($row2["id_aplicacion"])
+				$query=make_delete_query("idx_${page}",make_where_query(array(
+					"id"=>$row2["id_registro"]
+				)));
+				db_query($query);
 				// CONTINUE
 				$total++;
 			}

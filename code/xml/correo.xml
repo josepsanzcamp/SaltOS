@@ -644,7 +644,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) z
 		WHERE ".make_like_query($campos_array[$campos],$filtro)."
-		AND ".($filtro!=""?make_fulltext_query3($filtro,page2id($page)):"(1=1)")."
+		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 		AND ".($id_usuario!=""?"id_usuario='$id_usuario'":"(1=1)")."
 		AND ".($id_cuenta!=""?"id_cuenta='$id_cuenta'":"(1=1)")."
 		AND ".$only_array[$only]."

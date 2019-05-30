@@ -75,17 +75,18 @@ if(getParam("action")=="indexing") {
 	// SEND RESPONSE
 	if($total) javascript_alert($total.LANG("msgfilesindexed".min($total,2)));
 	// INDEXING UNINDEXED CONTENTS
-	$query="SELECT id,tabla FROM tbl_aplicaciones WHERE tabla!=''";
+	$query="SELECT id,codigo,tabla FROM tbl_aplicaciones WHERE tabla!=''";
 	$result=db_query($query);
 	$total=0;
 	while($row=db_fetch_row($result)) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		$id_aplicacion=$row["id"];
+		$page=$row["codigo"];
 		$tabla=$row["tabla"];
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
-			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE INDEXING TABLE
-			$query="SELECT a.id FROM ${tabla} a LEFT JOIN tbl_indexing b ON a.id=b.id_registro AND b.id_aplicacion=${id_aplicacion} WHERE b.id IS NULL LIMIT 1000";
+			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE PARTIAL INDEXING TABLE
+			$query="SELECT a.id FROM ${tabla} a LEFT JOIN idx_${page} b ON a.id=b.id WHERE b.id IS NULL LIMIT 1000";
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
 			make_indexing($id_aplicacion,$ids);
@@ -94,8 +95,28 @@ if(getParam("action")=="indexing") {
 		}
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
-			// SEARCH IDS OF THE INDEXING TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
-			$query="SELECT a.id_registro FROM tbl_indexing a LEFT JOIN ${tabla} b ON b.id=a.id_registro WHERE a.id_aplicacion=${id_aplicacion} AND b.id IS NULL LIMIT 1000";
+			// SEARCH IDS OF THE PARTIAL INDEXING TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
+			$query="SELECT a.id FROM idx_${page} a LEFT JOIN ${tabla} b ON b.id=a.id WHERE b.id IS NULL LIMIT 1000";
+			$ids=execute_query_array($query);
+			if(!count($ids)) break;
+			make_indexing($id_aplicacion,$ids);
+			$total+=count($ids);
+			if(count($ids)<1000) break;
+		}
+		for(;;) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
+			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE GLOBAL INDEXING TABLE
+			$query="SELECT a.id FROM ${tabla} a LEFT JOIN idx_indexing b ON a.id=b.id_registro AND b.id_aplicacion=${id_aplicacion} WHERE b.id IS NULL LIMIT 1000";
+			$ids=execute_query_array($query);
+			if(!count($ids)) break;
+			make_indexing($id_aplicacion,$ids);
+			$total+=count($ids);
+			if(count($ids)<1000) break;
+		}
+		for(;;) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
+			// SEARCH IDS OF THE GLOBAL INDEXING TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
+			$query="SELECT a.id_registro FROM idx_indexing a LEFT JOIN ${tabla} b ON b.id=a.id_registro WHERE a.id_aplicacion=${id_aplicacion} AND b.id IS NULL LIMIT 1000";
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
 			make_indexing($id_aplicacion,$ids);
@@ -108,7 +129,7 @@ if(getParam("action")=="indexing") {
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH FOR DUPLICATED ROWS IN INDEXING TABLE
-		$query="SELECT GROUP_CONCAT(id) ids, id_aplicacion, id_registro, COUNT(*) total FROM tbl_indexing GROUP BY id_aplicacion,id_registro HAVING total>1 LIMIT 1000";
+		$query="SELECT GROUP_CONCAT(id) ids, id_aplicacion, id_registro, COUNT(*) total FROM idx_indexing GROUP BY id_aplicacion,id_registro HAVING total>1 LIMIT 1000";
 		$ids=execute_query_array($query);
 		if(!count($ids)) break;
 		foreach($ids as $key=>$val) {
@@ -117,7 +138,7 @@ if(getParam("action")=="indexing") {
 			$ids[$key]=implode(",",$val);
 		}
 		$temp=implode(",",$ids);
-		$query=make_delete_query("tbl_indexing","id IN (${temp})");
+		$query=make_delete_query("idx_indexing","id IN (${temp})");
 		db_query($query);
 		$total+=count($ids);
 		if(count($ids)<1000) break;
@@ -126,11 +147,11 @@ if(getParam("action")=="indexing") {
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH IDS OF THE INDEXING TABLE THAT DOESN'T EXISTS IN THE APPLICATION TABLE
-		$query="SELECT id FROM tbl_indexing WHERE id_aplicacion NOT IN (SELECT id FROM tbl_aplicaciones) LIMIT 1000";
+		$query="SELECT id FROM idx_indexing WHERE id_aplicacion NOT IN (SELECT id FROM tbl_aplicaciones) LIMIT 1000";
 		$ids=execute_query_array($query);
 		if(!count($ids)) break;
 		$temp=implode(",",$ids);
-		$query=make_delete_query("tbl_indexing","id IN (${temp})");
+		$query=make_delete_query("idx_indexing","id IN (${temp})");
 		db_query($query);
 		$total+=count($ids);
 		if(count($ids)<1000) break;

@@ -1818,29 +1818,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
-			<name>tbl_indexing</name>
-			<fields>
-				<field>
-					<name>id</name>
-					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>id_aplicacion</name>
-					<type>INT(11)</type>
-					<!--<fkey>tbl_aplicaciones</fkey>-->
-				</field>
-				<field>
-					<name>id_registro</name>
-					<type>INT(11)</type>
-				</field>
-				<field>
-					<name>search</name>
-					<type>MEDIUMTEXT</type>
-				</field>
-			</fields>
-		</table>
-		<table>
 			<name>tbl_ivas</name>
 			<fields>
 				<field>
@@ -3373,31 +3350,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<table>tbl_indexing</table>
-			<fulltext>true</fulltext>
-			<fields>
-				<field>
-					<name>search</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<table>tbl_indexing</table>
-			<fields>
-				<field>
-					<name>id_aplicacion</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<table>tbl_indexing</table>
-			<fields>
-				<field>
-					<name>id_registro</name>
 				</field>
 			</fields>
 		</index>

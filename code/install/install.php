@@ -760,6 +760,7 @@ define("__USER__",1);
 								foreach($apps as $app) {
 									$id=$app["id"];
 									$tabla=$app["tabla"];
+									$page=$app["codigo"];
 									// CREATE CONTROL REGISTERS
 									$query="INSERT INTO tbl_registros(id_aplicacion,id_registro,id_usuario,datetime,first) SELECT '${id}' id_aplicacion,id id_registro,'${id_usuario}' id_usuario,'${datetime}' datetime,'1' first FROM ${tabla} a WHERE id NOT IN (SELECT id_registro FROM tbl_registros WHERE id_aplicacion='${id}');";
 									db_query($query);
@@ -781,7 +782,9 @@ define("__USER__",1);
 										}
 									}
 									$campos=implode(",' ',",$campos);
-									$query="INSERT INTO tbl_indexing(id_aplicacion,id_registro,search) SELECT '${id}' id_aplicacion,id id_registro,CONCAT(${campos}) search FROM ${tabla} a WHERE id NOT IN (SELECT id_registro FROM tbl_indexing WHERE id_aplicacion='${id}');";
+									$query="INSERT INTO idx_indexing(id_aplicacion,id_registro,search) SELECT '${id}' id_aplicacion,id id_registro,CONCAT(${campos}) search FROM ${tabla} a WHERE id NOT IN (SELECT id_registro FROM idx_indexing WHERE id_aplicacion='${id}');";
+									db_query($query);
+									$query="INSERT INTO idx_${page}(id,search) SELECT id,CONCAT(${campos}) search FROM ${tabla} a WHERE id NOT IN (SELECT id FROM idx_${page});";
 									db_query($query);
 								}
 								// END OF INSTALL

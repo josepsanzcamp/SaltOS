@@ -253,7 +253,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_proyectos_t t ON a.id_tarea=t.id
 		) d
 		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,page2id($page)):"(1=1)")."
+		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 		AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_tarea?"(id_tarea='$id_tarea')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(fecha>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=fecha)":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>

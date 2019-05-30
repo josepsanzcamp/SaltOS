@@ -441,7 +441,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) z
 		WHERE ".($id_usuario?"id_usuario2='$id_usuario'":"(1=1)")."
-		AND ".($filtro!=""?make_fulltext_query3($filtro,page2id($page)):"(1=1)")."
+		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 		AND ".($id_feed!=""?"id_feed='$id_feed'":"(1=1)")."
 		AND ".$only_array[$only]."
 		AND ".($fecha1?"(DATE(pubdate)>=DATE('$fecha1'))":"(1=1)")."

@@ -303,8 +303,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		LEFT JOIN tbl_correo c ON a.id_registro=c.id AND a.id_aplicacion='".page2id("correo")."'
 		WHERE 1=1
-		AND ".($filtro!=""?"/*MYSQL (a.id_aplicacion,a.id_registro) *//*SQLITE CONCAT(a.id_aplicacion,',',a.id_registro) */ IN (SELECT /*MYSQL id_aplicacion,id_registro *//*SQLITE CONCAT(id_aplicacion,',',id_registro) */ FROM tbl_indexing WHERE ".make_fulltext_query2($filtro).")":"(1=1)")."
-		AND (a.id_aplicacion='$id_aplicacion' OR ''='$id_aplicacion')
+		AND ".($filtro!=""?make_fulltext_query4($filtro):"(1=1)")."
+		AND ".($id_aplicacion?"(a.id_aplicacion='$id_aplicacion')":"(1=1)")."
 		AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
 		AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
 		AND (id_folder='$id_folder')

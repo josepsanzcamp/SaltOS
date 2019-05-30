@@ -650,4 +650,10 @@ function session_backtrace() {
 	foreach($items as $item) if(getParam($item)) $array[$item]=getParam($item);
 	return $array;
 }
+
+// COPIED FROM https://stackoverflow.com/questions/1252693/using-str-replace-so-that-it-only-acts-on-the-first-match
+function str_replace_first($from, $to, $content) {
+    $from = '/'.preg_quote($from, '/').'/';
+    return preg_replace($from, $to, $content, 1);
+}
 ?>

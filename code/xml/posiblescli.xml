@@ -257,7 +257,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_estados c ON a.id_estado=c.id
 		) cc
 		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,page2id($page)):"(1=1)")."
+		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 		AND (activo2='$activo' OR ''='$activo') AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND c_activo='1') OR ('alldisabled'='$id_estado' AND c_activo='0')) AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>

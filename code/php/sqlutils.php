@@ -339,8 +339,7 @@ function sql_create_table($tablespec) {
 function __has_fulltext_index($table) {
 	static $fulltext=null;
 	if($fulltext===null) {
-		$file="xml/dbschema.xml";
-		$dbschema=eval_attr(xml2array($file));
+		$dbschema=eval_attr(__get_dbschema_with_indexing(xml2array("xml/dbschema.xml"),xml2array("xml/dbstatic.xml")));
 		$fulltext=array();
 		if(is_array($dbschema) && isset($dbschema["indexes"]) && is_array($dbschema["indexes"])) {
 			foreach($dbschema["indexes"] as $indexspec) {
@@ -353,26 +352,23 @@ function __has_fulltext_index($table) {
 
 function __has_mroonga_engine() {
 	static $mroonga=null;
-	if($mroonga===null) $mroonga=__has_helper_engine("mroonga");
-	return $mroonga;
-}
-
-function __has_helper_engine($arg) {
-	$helper=false;
-	if(getDefault("db/obj")) {
-		$query="/*MYSQL SHOW ENGINES */";
-		$result=db_query($query);
-		while($row=db_fetch_row($result)) {
-			$row=array_values($row);
-			$engine=$row[0];
-			if(strtolower($engine)==$arg) {
-				$helper=true;
-				break;
+	if($mroonga===null) {
+		$mroonga=false;
+		if(getDefault("db/obj")) {
+			$query="/*MYSQL SHOW ENGINES */";
+			$result=db_query($query);
+			while($row=db_fetch_row($result)) {
+				$row=array_values($row);
+				$engine=$row[0];
+				if(strtolower($engine)=="mroonga") {
+					$mroonga=true;
+					break;
+				}
 			}
+			db_free($result);
 		}
-		db_free($result);
 	}
-	return $helper;
+	return $mroonga;
 }
 
 function get_engine($table) {
@@ -603,8 +599,7 @@ function get_fields_from_dbschema($table) {
 function __dbschema_helper($fn,$table) {
 	static $tables=null;
 	if($tables===null) {
-		$file="xml/dbschema.xml";
-		$dbschema=eval_attr(xml2array($file));
+		$dbschema=eval_attr(__get_dbschema_with_indexing(xml2array("xml/dbschema.xml"),xml2array("xml/dbstatic.xml")));
 		$tables=array();
 		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
 			foreach($dbschema["tables"] as $tablespec) {
@@ -880,77 +875,66 @@ function make_insert_from_select_query($table,$table2,$array,$where) {
 	return $query;
 }
 
-function make_fulltext_query2($values,$arg="") {
-	if(is_array($arg)) {
-		$filter=$arg;
-		$search="search";
-	} elseif(is_numeric($arg)) {
-		$filter=array($arg);
-		$search="search";
-	} elseif($arg!="") {
-		$filter=array();
-		$search=$arg;
-	} else {
-		$filter=array();
-		$search="search";
+function make_fulltext_query2($values) {
+	$values=__make_like_query_explode(" ",$values);
+	foreach($values as $key=>$val) {
+		$val=trim($val);
+		$val=str_replace(array("'",'"',"\\","(",")"),"",$val);
+		if($val=="") unset($values[$key]);
+		if($val!="") $values[$key]=$val;
 	}
-	$engine=strtolower(get_engine("tbl_indexing"));
-	if($engine=="mroonga") {
-		$values=__make_like_query_explode(" ",$values);
-		foreach($values as $key=>$val) {
-			$val=trim($val);
-			$val=str_replace(array("'",'"',"\\","(",")"),"",$val);
-			if($val=="") unset($values[$key]);
-			if($val!="") $values[$key]=$val;
-		}
-		if(!count($values) && !count($filter)) return "1=1";
-		foreach($values as $key=>$val) {
-			$type=($val[0]=="-")?"-":"+";
-			while(isset($val[0]) && in_array($val[0],array("+","-"))) $val=substr($val,1);
-			if($val=="") unset($values[$key]);
-			if($val!="") $values[$key]=$type.'"'.$val.'"';
-		}
-		if(!count($values) && !count($filter)) return "1=1";
-		$query=array();
-		if(count($filter)) {
-			foreach($filter as $key=>$val) $filter[$key]="id_aplicacion:${val}";
-			$filter=implode(" ",$filter);
-			$filter="+(${filter})";
-			$query[]=$filter;
-		}
-		if(count($values)) {
-			$query[]="+(".implode(" ",$values).")";
-		}
-		$query=implode(" ",$query);
-		$query="MATCH(${search}) AGAINST('${query}' IN BOOLEAN MODE)";
-	} else {
-		$query=array();
-		if(count($filter)) {
-			$filter=implode(",",$filter);
-			$filter="id_aplicacion IN (${filter})";
-			$query[]=$filter;
-		}
-		$query[]=make_like_query($search,$values);
-		$query=implode(" AND ",$query);
+	if(!count($values)) return "1=1";
+	foreach($values as $key=>$val) {
+		$type=($val[0]=="-")?"-":"+";
+		while(isset($val[0]) && in_array($val[0],array("+","-"))) $val=substr($val,1);
+		if($val=="") unset($values[$key]);
+		if($val!="") $values[$key]=$type.'"'.$val.'"';
 	}
+	if(!count($values)) return "1=1";
+	$query="MATCH(search) AGAINST('+(".implode(" ",$values).")' IN BOOLEAN MODE)";
 	return $query;
 }
 
-function make_fulltext_query3($values,$arg="") {
-	$id_IN="id IN";
-	$query1=make_fulltext_query2($values,$arg);
-	$engine=strtolower(get_engine("tbl_indexing"));
+function make_fulltext_query3($values,$page) {
+	$engine=strtolower(get_engine("idx_${page}"));
 	if($engine=="mroonga") {
-		$query2=make_fulltext_query2("",$arg);
-		if($query1==$query2) return "1=1"; // OPTIMIZATION
-		$count1=execute_query("SELECT COUNT(*) FROM tbl_indexing WHERE ${query1}");
-		$count2=execute_query("SELECT COUNT(*) FROM tbl_indexing WHERE ${query2}");
-		if($count1>$count2*0.5) {
-			$id_IN="id NOT IN";
-			$query1=str_replace(") +(",") -(",$query1);
-		}
+		$where=make_fulltext_query2($values);
+	} else {
+		$where=make_like_query("search",$values);
 	}
-	$query="${id_IN} (SELECT id_registro FROM tbl_indexing WHERE ${query1})";
+	if($where=="1=1") return $where;
+	$query="id IN (SELECT id FROM idx_${page} WHERE ${where})";
+	return $query;
+}
+
+function make_fulltext_query4($values) {
+	$engine=strtolower(get_engine("idx_indexing"));
+	if($engine=="mroonga") {
+		$where=make_fulltext_query2($values);
+	} else {
+		$where=make_like_query("search",$values);
+	}
+	if($where=="1=1") return $where;
+	$query="/*MYSQL (a.id_aplicacion,a.id_registro) *//*SQLITE CONCAT(a.id_aplicacion,',',a.id_registro) */ IN (SELECT /*MYSQL id_aplicacion,id_registro *//*SQLITE CONCAT(id_aplicacion,',',id_registro) */ FROM idx_indexing WHERE ${where})";
+	return $query;
+}
+
+function make_fulltext_query4_alternative($values) {
+	$apps=execute_query("SELECT id,codigo FROM tbl_aplicaciones WHERE tabla!=''");
+	$query=array();
+	foreach($apps as $app) {
+		$id=$app["id"];
+		$page=$app["codigo"];
+		$engine=strtolower(get_engine("idx_${page}"));
+		if($engine=="mroonga") {
+			$where=make_fulltext_query2($values);
+		} else {
+			$where=make_like_query("search",$values);
+		}
+		if($where=="1=1") return $where;
+		$query[]="a.id_aplicacion=${id} AND a.id_registro IN (SELECT id FROM idx_${page} WHERE ${where})";
+	}
+	$query="((".implode(") OR (",$query)."))";
 	return $query;
 }
 
