@@ -1353,12 +1353,13 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 	// TO FIX THE ERROR CAUSED BY "DATA TOO LONG FOR COLUMN SEARCH"
 	$search="/*MYSQL IF(LENGTH(${search})>=POW(2,24),SUBSTR(${search},1,POW(2,24)-1-LENGTH(${search})+CHAR_LENGTH(${search})),${search}) *//*SQLITE ${search} */";
 	// AÑADIR A LA TABLA INDEXING
+	$timestamp=time();
 	if($id_indexing) {
-		$query="UPDATE idx_${page} SET search=${search} WHERE id=${id_indexing}";
+		$query="UPDATE idx_${page} SET timestamp=${timestamp},search=${search} WHERE id=${id_indexing}";
 		db_query($query);
 		return 2;
 	} else {
-		$query="INSERT INTO idx_${page}(id,search) VALUES(${id_registro},${search})";
+		$query="INSERT INTO idx_${page}(id,timestamp,search) VALUES(${id_registro},${timestamp},${search})";
 		db_query($query);
 		return 1;
 	}
@@ -1557,6 +1558,10 @@ function __get_dbschema_with_indexing($dbschema,$dbstatic) {
 				"type"=>"INT(11)",
 			),
 			"field#3"=>array(
+				"name"=>"timestamp",
+				"type"=>"INT(11)",
+			),
+			"field#4"=>array(
 				"name"=>"search",
 				"type"=>"MEDIUMTEXT",
 			)
@@ -1587,6 +1592,14 @@ function __get_dbschema_with_indexing($dbschema,$dbstatic) {
 			)
 		)
 	));
+	set_array($dbschema["indexes"],"index",array(
+		"table"=>"idx_indexing",
+		"fields"=>array(
+			"field"=>array(
+				"name"=>"timestamp",
+			)
+		)
+	));
 	foreach($dbstatic["tbl_aplicaciones"] as $row) {
 		if(isset($row["tabla"]) && $row["tabla"]!="") {
 			$codigo=$row["codigo"];
@@ -1599,6 +1612,10 @@ function __get_dbschema_with_indexing($dbschema,$dbstatic) {
 						"pkey"=>"true",
 					),
 					"field#1"=>array(
+						"name"=>"timestamp",
+						"type"=>"INT(11)",
+					),
+					"field#2"=>array(
 						"name"=>"search",
 						"type"=>"MEDIUMTEXT",
 					)
@@ -1610,6 +1627,14 @@ function __get_dbschema_with_indexing($dbschema,$dbstatic) {
 				"fields"=>array(
 					"field"=>array(
 						"name"=>"search",
+					)
+				)
+			));
+			set_array($dbschema["indexes"],"index",array(
+				"table"=>"idx_${codigo}",
+				"fields"=>array(
+					"field"=>array(
+						"name"=>"timestamp",
 					)
 				)
 			));

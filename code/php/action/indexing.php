@@ -103,29 +103,69 @@ if(getParam("action")=="indexing") {
 			$total+=count($ids);
 			if(count($ids)<1000) break;
 		}
+	}
+	db_free($result);
+	// REPLICATION MAINTENANCE
+	$query="SELECT id,codigo FROM tbl_aplicaciones WHERE tabla!=''";
+	$result=db_query($query);
+	while($row=db_fetch_row($result)) {
+		if(time_get_usage()>getDefault("server/percentstop")) break;
+		$id_aplicacion=$row["id"];
+		$page=$row["codigo"];
+		$timestamp=execute_query("SELECT IFNULL(MAX(timestamp),0) FROM idx_indexing WHERE id_aplicacion=${id_aplicacion}");
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
-			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE GLOBAL INDEXING TABLE
-			$query="SELECT a.id FROM ${tabla} a LEFT JOIN idx_indexing b ON a.id=b.id_registro AND b.id_aplicacion=${id_aplicacion} WHERE b.id IS NULL LIMIT 1000";
+			// SEARCH IDS OF THE GLOBAL INDEXING TABLE THAT DOESN'T EXISTS IN THE PARTIAL INDEXING TABLE
+			$query="SELECT a.id FROM idx_indexing a LEFT JOIN idx_${page} b ON b.id=a.id_registro WHERE a.id_aplicacion=${id_aplicacion} AND b.id IS NULL LIMIT 1000";
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
-			make_indexing($id_aplicacion,$ids);
+			$temp=implode(",",$ids);
+			$query=make_delete_query("idx_indexing","id IN (${temp})");
+			db_query($query);
 			$total+=count($ids);
 			if(count($ids)<1000) break;
 		}
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
-			// SEARCH IDS OF THE GLOBAL INDEXING TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
-			$query="SELECT a.id_registro FROM idx_indexing a LEFT JOIN ${tabla} b ON b.id=a.id_registro WHERE a.id_aplicacion=${id_aplicacion} AND b.id IS NULL LIMIT 1000";
+			// SEARCH IDS OF THE PARTIAL INDEXING TABLE THAT DOESN'T EXISTS IN THE GLOBAL INDEXING TABLE
+			$query="SELECT a.id FROM idx_${page} a LEFT JOIN idx_indexing b ON b.id_aplicacion=${id_aplicacion} AND b.id_registro=a.id WHERE b.id IS NULL LIMIT 1000";
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
-			make_indexing($id_aplicacion,$ids);
+			$temp=implode(",",$ids);
+			$query=make_insert_from_select_query("idx_indexing","idx_${page}",array(
+				"id_aplicacion"=>"'$id_aplicacion'",
+				"id_registro"=>"id",
+				"timestamp"=>"timestamp",
+				"search"=>"search",
+			),"id IN (${temp})");
+			db_query($query);
+			$total+=count($ids);
+			if(count($ids)<1000) break;
+		}
+		for(;;) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
+			// SEARCH IDS OF THE PARTIAL INDEXING TABLE THAT HAVE A GREATHER TIMESTAMP THAT THE LAST TIMESTAMP OF THE GLOBAL INDEXING TABLE
+			$query="SELECT id FROM idx_${page} WHERE timestamp>${timestamp} ORDER BY timestamp ASC LIMIT 1000";
+			$ids=execute_query_array($query);
+			if(!count($ids)) break;
+			foreach($ids as $id) {
+				$query=make_update_from_select_query("idx_indexing","idx_${page}",array(
+					"timestamp"=>"timestamp",
+					"search"=>"search",
+				),make_where_query(array(
+					"id"=>$id,
+				)),make_where_query(array(
+					"id_aplicacion"=>$id_aplicacion,
+					"id_registro"=>$id,
+				)));
+				db_query($query);
+			}
 			$total+=count($ids);
 			if(count($ids)<1000) break;
 		}
 	}
 	db_free($result);
-	// CHECK INTEGRITY
+	// REPLICATION INTEGRITY
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH FOR DUPLICATED ROWS IN INDEXING TABLE
@@ -143,7 +183,7 @@ if(getParam("action")=="indexing") {
 		$total+=count($ids);
 		if(count($ids)<1000) break;
 	}
-	// CHECK INTEGRITY
+	// REPLICATION INTEGRITY
 	for(;;) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SEARCH IDS OF THE INDEXING TABLE THAT DOESN'T EXISTS IN THE APPLICATION TABLE

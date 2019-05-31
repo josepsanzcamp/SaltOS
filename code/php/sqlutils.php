@@ -862,7 +862,7 @@ function make_where_query_new($array) {
 	return $query;
 }
 
-function make_insert_from_select_query($table,$table2,$array,$where) {
+function make_insert_from_select_query($table,$table2,$array,$where2) {
 	$list1=array();
 	$list2=array();
 	foreach($array as $key=>$val) {
@@ -871,7 +871,17 @@ function make_insert_from_select_query($table,$table2,$array,$where) {
 	}
 	$list1=implode(",",$list1);
 	$list2=implode(",",$list2);
-	$query="INSERT INTO ${table}(${list1}) SELECT ${list2} FROM ${table2} WHERE ${where}";
+	$query="INSERT INTO ${table}(${list1}) SELECT ${list2} FROM ${table2} WHERE ${where2}";
+	return $query;
+}
+
+function make_update_from_select_query($table,$table2,$array,$where2,$where) {
+	$list1=array();
+	foreach($array as $key=>$val) {
+		$list1[]="${key}=(SELECT ${val} FROM ${table2} WHERE ${where2})";
+	}
+	$list1=implode(",",$list1);
+	$query="UPDATE ${table} SET ${list1} WHERE ${where}";
 	return $query;
 }
 
