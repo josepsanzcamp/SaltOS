@@ -365,8 +365,12 @@ function __import_xls2array($file,$sheet) {
 	foreach($rows as $row) {
 		$temp=array();
 		foreach($cols as $col) {
-			$temp2=$objSheet->getCell($col.$row)->getFormattedValue();
-			if(in_array($temp2,array("#REF!","#VALUE!"))) $temp2=$objSheet->getCell($col.$row)->getOldCalculatedValue();
+			$temp2=$objSheet->getCell($col.$row)->getValue();
+			if(substr($temp2,0,1)=="=") {
+				$temp2=$objSheet->getCell($col.$row)->getOldCalculatedValue();
+			} else {
+				$temp2=$objSheet->getCell($col.$row)->getFormattedValue();
+			}
 			$temp[]=$temp2;
 		}
 		$array[]=$temp;
