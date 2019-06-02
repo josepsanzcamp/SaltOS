@@ -446,6 +446,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(dialog2).dialog("option","buttons",buttons);
 		$(dialog2).dialog("option","width","300px");
 		$(dialog2).dialog("option","height","auto");
+		// TRICK TO HIDE TOOLTIPS
+		$(dialog2).dialog("option","open",function(event,ui) {
+			hide_tooltips();
+		});
+		$(dialog2).dialog("option","close",function(event,ui) {
+			unmake_focus();
+			hide_tooltips();
+		});
 		// TRICK TO PREVENT THE DEFAULT FOCUS ON THE CLOSE BUTTON
 		$(dialog2).parent().find(".ui-dialog-titlebar-close").attr("tabindex","-1");
 		// IF MESSAGE EXISTS, OPEN IT
@@ -1272,7 +1280,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(dialog2).dialog("option","height",height);
 					$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
 					$(dialog2).dialog("open");
-					hide_tooltips();
 					return false;
 				}
 			},
