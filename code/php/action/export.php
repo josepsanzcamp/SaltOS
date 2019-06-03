@@ -34,9 +34,9 @@ if($page=="datacfg") {
 		foreach($table["fields"] as $field) $fields[]=$field["name"];
 		$fields="LENGTH(".implode(")+LENGTH(",$fields).")";
 		$table=$table["name"];
-		$query=make_delete_query($table,"1=1").";\n";
+		$query="DELETE FROM ${table};\n";
 		gzwrite($fp,$query);
-		$query="SELECT COUNT(*) count FROM $table";
+		$query="SELECT COUNT(*) count FROM ${table}";
 		$count=execute_query($query);
 		$offset=0;
 		while($offset<$count) {
@@ -44,14 +44,14 @@ if($page=="datacfg") {
 			$free=memory_get_free(true);
 			// LIMIT CHECK
 			for(;;) {
-				$query="SELECT $fields FROM $table ORDER BY id ASC LIMIT $offset,$limit";
+				$query="SELECT ${fields} FROM ${table} ORDER BY id ASC LIMIT ${offset},${limit}";
 				$length=array_sum(execute_query_array($query));
 				if($length>=$free/3 && $limit==1) show_php_error(array("phperror"=>"Could not get the query data"));
 				if($length>=$free/3) $limit=intval($limit/2);
 				if($length<$free/3) break;
 			}
 			// CONTINUE
-			$query="SELECT * FROM $table ORDER BY id ASC LIMIT $offset,$limit";
+			$query="SELECT * FROM ${table} ORDER BY id ASC LIMIT ${offset},${limit}";
 			$result=db_query($query);
 			while($row=db_fetch_row($result)) {
 				$query=make_insert_query($table,$row).";\n";

@@ -150,9 +150,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</group>
 	<temp global="temp" eval="true">$temp="folders"</temp>
 	<group global="temp" ifeval="$temp!='' &amp;&amp; check_user($temp,'menu')">
-		<temp eval="true">execute_query(make_select_query("tbl_folders","COUNT(*)",make_where_query(array(
-			"id_usuario"=>current_user()
-		))))==0?db_query(make_insert_query("tbl_folders",array(
+		<temp eval="true">execute_query("SELECT COUNT(*) FROM tbl_folders WHERE id_usuario='".current_user()."'")==0?db_query(make_insert_query("tbl_folders",array(
 			"id_usuario"=>current_user(),
 			"name"=>LANG_ESCAPE("defaultfolder","folders")
 		))):""</temp>

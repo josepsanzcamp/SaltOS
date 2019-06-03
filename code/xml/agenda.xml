@@ -750,7 +750,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="default" prefix="true" eval="true">setParam("notify_dstop",(execute_query("SELECT dstart FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstart") || execute_query("SELECT dstop FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstop"))?"0":getParam("notify_dstop"))</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query("tbl_agenda")</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query global="page" match="default" prefix="true" eval="true">make_delete_query("tbl_agenda_u",make_where_query(array("id_agenda"=>getParam("id"))))</query>
+		<query global="page" match="default" prefix="true" eval="true">"DELETE FROM tbl_agenda_u WHERE id_agenda='".getParam("id")."'"</query>
 		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_agenda_u",array(
 			"id_agenda"=>intval(getParam("id_agenda")),
 			"id_usuario"=>intval(getParam("id_usuario"))
@@ -764,7 +764,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="page,id" eval="true">make_delete_query("tbl_agenda_u",make_where_query(array("id_agenda"=>$id)))</query>
+		<query global="page,id" eval="true">"DELETE FROM tbl_agenda_u WHERE id_agenda='${id}'"</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>

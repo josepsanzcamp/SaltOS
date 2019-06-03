@@ -1553,7 +1553,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		),make_where_query(array(
 			"id"=>intval(getParam("id"))
 		)))</query>
-		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_presupuestos_t",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_presupuestos_t WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
 		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?make_insert_query("tbl_presupuestos_t",array(
 			"id_presupuesto"=>intval(getParam("id_presupuesto")),
 			"tarea"=>getParam("tarea"),
@@ -1570,7 +1570,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		),make_where_query(array(
 			"id"=>intval(getParam("id"))
 		)))</query>
-		<query match="products_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_presupuestos_p",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_presupuestos_p WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
 		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_presupuestos_p",array(
 			"id_presupuesto"=>intval(getParam("id_presupuesto")),
 			"id_producto"=>intval(getParam("id_producto")),
@@ -1588,8 +1588,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query eval="true">make_delete_query("tbl_presupuestos_t",make_where_query(array("id_presupuesto"=>abs(getParam("id")))))</query>
-		<query eval="true">make_delete_query("tbl_presupuestos_p",make_where_query(array("id_presupuesto"=>abs(getParam("id")))))</query>
+		<query eval="true">"DELETE FROM tbl_presupuestos_t WHERE ".make_where_query(array("id_presupuesto"=>abs(getParam("id"))))</query>
+		<query eval="true">"DELETE FROM tbl_presupuestos_p WHERE ".make_where_query(array("id_presupuesto"=>abs(getParam("id"))))</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>

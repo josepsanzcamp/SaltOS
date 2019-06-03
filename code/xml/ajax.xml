@@ -43,27 +43,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<cuentas eval="true">"SELECT id,CONCAT(email_name,' &amp;lt;',email_from,'&amp;gt;') nombre FROM tbl_usuarios_c WHERE id_usuario='".intval(getParam("id_usuario"))."' AND (email_privated='0' OR (TRIM(IFNULL(email_privated,0))='1' AND id_usuario='".current_user()."')) UNION SELECT '0' id,'".CONFIG("email_name")." &amp;lt;".CONFIG("email_from")."&amp;gt;"."' nombre ORDER BY nombre"</cuentas>
 	<state eval="true">in_array(getParam("type"),array("new","wait","spam"))?make_update_query("tbl_correo",array(
 		"state_new"=>0,
-		"state_".getParam("type")=>(
-			intval(getParam("value"))>-1?
-			intval(getParam("value")):
-			abs(1-execute_query(make_select_query("tbl_correo","state_".getParam("type"),make_where_query(array(
-				"id"=>abs(getParam("id"))
-			)))))
-		)
-	),"id=(".make_select_query("tbl_registros","id_registro",make_where_query(array(
-		"id_aplicacion"=>page2id("correo"),
-		"id_registro"=>abs(getParam("id")),
-		"id_usuario"=>current_user(),
-		"first"=>1
-	))).")"):""</state>
-	<agenda eval="true">make_update_query("tbl_agenda",array(
+		"state_".getParam("type")=>(intval(getParam("value"))>-1?intval(getParam("value")):abs(1-execute_query("SELECT state_".getParam("type")." FROM tbl_correo WHERE id='".abs(getParam("id"))."'")))
+	),"id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("correo")."' AND id_registro='".abs(getParam("id"))."' AND id_usuario='".current_user()."' AND first='1')"):""</state>
+	<agenda eval="true">in_array(getParam("type"),array("dstart","dstop"))?make_update_query("tbl_agenda",array(
 		"notify_".getParam("type")=>1
-	),"id=(".make_select_query("tbl_registros","id_registro",make_where_query(array(
-		"id_aplicacion"=>page2id("agenda"),
-		"id_registro"=>abs(getParam("id")),
-		"id_usuario"=>current_user(),
-		"first"=>1
-	))).")")</agenda>
+	),"id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("agenda")."' AND id_registro='".abs(getParam("id"))."' AND id_usuario='".current_user()."' AND first='1')"):""</agenda>
 	<emails eval="true">"SELECT
 		CASE nombre
 			WHEN '' THEN valor
@@ -91,34 +75,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<feeds eval="true">"SELECT id,CONCAT(title,' (',url,')') nombre FROM tbl_usuarios_f WHERE id_usuario='".intval(getParam("id_usuario"))."' AND id IN (SELECT id_feed FROM tbl_feeds) ORDER BY nombre"</feeds>
 	<state2 eval="true">in_array(getParam("type"),array("new","wait","cool"))?make_update_query("tbl_feeds",array(
 		"state_new"=>0,
-		"state_".getParam("type")=>(
-			intval(getParam("value"))>-1?
-			intval(getParam("value")):
-			abs(1-execute_query(make_select_query("tbl_feeds","state_".getParam("type"),make_where_query(array(
-				"id"=>abs(getParam("id"))
-			)))))
-		)
-	),"id=(".make_select_query("tbl_registros","id_registro",make_where_query(array(
-		"id_aplicacion"=>page2id("feeds"),
-		"id_registro"=>abs(getParam("id")),
-		"id_usuario"=>current_user(),
-		"first"=>1
-	))).")"):""</state2>
-	<feed2bookmark eval="true">make_select_query("tbl_feeds",array(
-		"link"
-	),"id=(".make_select_query("tbl_registros","id_registro",make_where_query(array(
-		"id_aplicacion"=>page2id("feeds"),
-		"id_registro"=>abs(getParam("id")),
-		"id_usuario"=>current_user(),
-		"first"=>1
-		))).")"
-	)</feed2bookmark>
+		"state_".getParam("type")=>(intval(getParam("value"))>-1?intval(getParam("value")):abs(1-execute_query("SELECT state_".getParam("type")." FROM tbl_feeds WHERE id='".abs(getParam("id"))."'")))
+	),"id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='".abs(getParam("id"))."' AND id_usuario='".current_user()."' AND first='1')"):""</state2>
+	<feed2bookmark eval="true">"SELECT link FROM tbl_feeds WHERE id=(SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id("feeds")."' AND id_registro='".abs(getParam("id"))."' AND id_usuario='".current_user()."' AND first='1')"</feed2bookmark>
 	<!-- FOR FILTER MODULE -->
-	<loadfilter eval="true">make_select_query("tbl_filters","querystring",make_where_query(array(
+	<loadfilter eval="true">"SELECT querystring FROM tbl_filters WHERE ".make_where_query(array(
 		"id_usuario"=>current_user(),
 		"id_aplicacion"=>page2id(getParam("page")),
 		"id"=>intval(getParam("id"))
-	)))</loadfilter>
+	))</loadfilter>
 	<updatefilter eval="true">make_update_query("tbl_filters",array(
 		"querystring"=>getParam("querystring")
 	),make_where_query(array(
@@ -126,18 +91,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		"id_aplicacion"=>page2id(getParam("page")),
 		"id"=>intval(getParam("id"))
 	)))</updatefilter>
-	<deletefilter eval="true">make_delete_query("tbl_filters",make_where_query(array(
+	<deletefilter eval="true">"DELETE FROM tbl_filters WHERE id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' AND id='".intval(getParam("id"))."'"</deletefilter>
+	<createfilter eval="true">execute_query("SELECT id FROM tbl_filters WHERE ".make_where_query(array(
 		"id_usuario"=>current_user(),
 		"id_aplicacion"=>page2id(getParam("page")),
-		"id"=>intval(getParam("id"))
-	)))</deletefilter>
-	<createfilter eval="true">execute_query(
-		make_select_query("tbl_filters","id",make_where_query(array(
-			"id_usuario"=>current_user(),
-			"id_aplicacion"=>page2id(getParam("page")),
-			"nombre"=>getParam("nombre")
-		)))
-	)?"":make_insert_query("tbl_filters",array(
+		"nombre"=>getParam("nombre")
+	)))?"":make_insert_query("tbl_filters",array(
 		"id_usuario"=>current_user(),
 		"id_aplicacion"=>page2id(getParam("page")),
 		"nombre"=>getParam("nombre"),
@@ -145,37 +104,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	))</createfilter>
 	<renamefilter eval="true">make_update_query("tbl_filters",array(
 		"nombre"=>getParam("nombre")
-	),make_where_query(array(
-		"id_usuario"=>current_user(),
-		"id_aplicacion"=>page2id(getParam("page")),
-		"id"=>intval(getParam("id"))
-	)))</renamefilter>
+	),"id_usuario='".current_user()."' AND id_aplicacion='".page2id(getParam("page"))."' AND id='".intval(getParam("id"))."'")</renamefilter>
 	<!-- FOR FOLDERS MODULE -->
-	<addregfolder eval="true">execute_query(make_select_query("tbl_folders","COUNT(*)=1",make_where_query(array(
+	<addregfolder eval="true">execute_query("SELECT COUNT(*)=1 FROM tbl_folders WHERE ".make_where_query(array(
 		"id"=>intval(getParam("id_folder")),
 		"id_usuario"=>current_user()
-	))))*execute_query(make_select_query("tbl_folders_a","COUNT(*)=0",make_where_query(array(
+	)))*execute_query("SELECT COUNT(*)=0 FROM tbl_folders_a WHERE ".make_where_query(array(
 		"id_folder"=>intval(getParam("id_folder")),
 		"id_aplicacion"=>page2id(getParam("page")),
 		"id_registro"=>abs(getParam("id_registro"))
-	))))?make_insert_query("tbl_folders_a",array(
+	)))?make_insert_query("tbl_folders_a",array(
 		"id_folder"=>intval(getParam("id_folder")),
 		"id_aplicacion"=>page2id(getParam("page")),
 		"id_registro"=>abs(getParam("id_registro"))
 	)):""</addregfolder>
-	<delregfolder eval="true">make_delete_query("tbl_folders_a",make_where_query(array(
+	<delregfolder eval="true">"DELETE FROM tbl_folders_a WHERE ".make_where_query(array(
 		"id_folder"=>intval(getParam("id_folder")),
 		"id_aplicacion"=>page2id(getParam("page")),
 		"id_registro"=>abs(getParam("id_registro"))
-	))." AND id_folder IN (".make_select_query("tbl_folders","id",make_where_query(array(
-			"id_usuario"=>current_user()
-	))).")")</delregfolder>
-	<delappfolder eval="true">make_delete_query("tbl_folders_a",make_where_query(array(
+	))." AND id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')"</delregfolder>
+	<delappfolder eval="true">"DELETE FROM tbl_folders_a WHERE ".make_where_query(array(
 		"id_folder"=>intval(getParam("id_folder")),
 		"id_aplicacion"=>page2id(getParam("page"))
-	))."AND id_folder IN (".make_select_query("tbl_folders","id",make_where_query(array(
-		"id_usuario"=>current_user()
-	))).")")</delappfolder>
+	))." AND id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')"</delappfolder>
 	<!-- FOR TEXTOS MODULE -->
 	<textos eval="true">"SELECT descripcion texto FROM tbl_textos a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("textos")."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".intval(getParam("id"))."' AND (publico='1' OR ".check_sql("textos","list").")"</textos>
 	<!-- FOR NUMBERS MODULE -->

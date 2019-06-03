@@ -626,7 +626,7 @@ define("__USER__",1);
 										}
 									}
 									$apps=implode(",",$apps);
-									$query=make_select_query("tbl_aplicaciones_p",array("id_aplicacion","id_permiso"),"id_aplicacion IN ($apps)");
+									$query="SELECT id_aplicacion,id_permiso FROM tbl_aplicaciones_p WHERE id_aplicacion IN ($apps)";
 									$result=db_query($query);
 									while($row=db_fetch_row($result)) {
 										$query=make_insert_query("tbl_grupos_p",array(

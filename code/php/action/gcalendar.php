@@ -30,13 +30,7 @@ if(getParam("action")=="gcalendar") {
 	require_once("php/libaction.php");
 
 	// GET GOOGLE CALENDAR USER ACCOUNT
-	$query=make_select_query("tbl_gcalendar",array(
-		"email",
-		"token",
-		"token2"
-	),make_where_query(array(
-		"id_usuario"=>current_user()
-	)));
+	$query="SELECT email,token,token2 FROM tbl_gcalendar WHERE id_usuario='".current_user()."'";
 	$result=execute_query($query);
 	$email=$result["email"];
 	$token=$result["token"];

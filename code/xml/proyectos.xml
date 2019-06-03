@@ -1677,7 +1677,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		),make_where_query(array(
 			"id"=>getParam("id")
 		)))</query>
-		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_proyectos_t",make_where_query(array("id"=>getParam("id")))):""</query>
+		<query match="tareas_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_t WHERE ".make_where_query(array("id"=>getParam("id"))):""</query>
 		<query match="tareas_new" prefix="true" eval="true">getParam("tarea")?make_insert_query("tbl_proyectos_t",array(
 			"id_proyecto"=>intval(getParam("id_proyecto")),
 			"tarea"=>getParam("tarea"),
@@ -1694,7 +1694,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 		),make_where_query(array(
 			"id"=>getParam("id")
 		)))</query>
-		<query match="products_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_proyectos_p",make_where_query(array("id"=>getParam("id")))):""</query>
+		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_proyectos_p WHERE ".make_where_query(array("id"=>getParam("id"))):""</query>
 		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_proyectos_p",array(
 			"id_proyecto"=>intval(getParam("id_proyecto")),
 			"id_producto"=>intval(getParam("id_producto")),
@@ -1712,8 +1712,8 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="page,id" eval="true">make_delete_query("tbl_proyectos_t",make_where_query(array("id_proyecto"=>$id)))</query>
-		<query global="page,id" eval="true">make_delete_query("tbl_proyectos_p",make_where_query(array("id_proyecto"=>$id)))</query>
+		<query global="page,id" eval="true">"DELETE FROM tbl_proyectos_t WHERE ".make_where_query(array("id_proyecto"=>$id))</query>
+		<query global="page,id" eval="true">"DELETE FROM tbl_proyectos_p WHERE ".make_where_query(array("id_proyecto"=>$id))</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>

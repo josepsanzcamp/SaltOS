@@ -71,11 +71,7 @@ if($page=="correo") {
 				session_alert(LANG($action2[1]?"msgnumsispam":"msgnumnospam","correo").$numids.LANG("message".min($numids,2),"correo"));
 			} elseif($action2[0]=="delete") {
 				// CREAR DATOS EN TABLA DE CORREOS BORRADOS (SOLO LOS DEL INBOX)
-				$query=make_insert_from_select_query("tbl_correo_d","tbl_correo",array(
-					"id_cuenta"=>"id_cuenta",
-					"uidl"=>"uidl",
-					"datetime"=>"datetime",
-				),"is_outbox=0 AND id IN (${ids})");
+				$query="INSERT INTO tbl_correo_d(id_cuenta,uidl,datetime) SELECT id_cuenta,uidl,datetime FROM tbl_correo WHERE id IN (${ids}) AND is_outbox=0";
 				db_query($query);
 				// BORRAR FICHEROS .EML.GZ DEL INBOX
 				$query="SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id IN ($ids) AND is_outbox='0'";
@@ -90,19 +86,19 @@ if($page=="correo") {
 				$result=execute_query_array($query);
 				foreach($result as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				// BORRAR CORREOS
-				$query=make_delete_query("tbl_correo","id IN (${ids})");
+				$query="DELETE FROM tbl_correo WHERE id IN (${ids})";
 				db_query($query);
 				// BORRAR DIRECCIONES DE LOS CORREOS
-				$query=make_delete_query("tbl_correo_a","id_correo IN (${ids})");
+				$query="DELETE FROM tbl_correo_a WHERE id_correo IN (${ids})";
 				db_query($query);
 				// BORRAR FICHEROS ADJUNTOS DE LOS CORREOS
-				$query=make_delete_query("tbl_ficheros","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
+				$query="DELETE FROM tbl_ficheros WHERE id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'";
 				db_query($query);
 				// BORRAR REGISTRO DE LOS CORREOS
 				make_control(page2id("correo"),$ids);
 				make_indexing(page2id("correo"),$ids);
 				// BORRAR FOLDERS RELACIONADOS
-				$query=make_delete_query("tbl_folders_a","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
+				$query="DELETE FROM tbl_folders_a WHERE id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'";
 				db_query($query);
 				// MOSTRAR RESULTADO
 				session_alert(LANG("msgnumdelete","correo").$numids.LANG("message".min($numids,2),"correo"));

@@ -1182,19 +1182,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</form>
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query global="id" eval="true">make_insert_from_select_query("tbl_correo_d","tbl_correo",array(
-			"id_cuenta"=>"id_cuenta",
-			"uidl"=>"uidl",
-			"datetime"=>"datetime",
-		),make_where_query(array(
-			"id"=>$id,
-			"is_outbox"=>0,
-		)))</query>
+		<query global="id" eval="true">"INSERT INTO tbl_correo_d(id_cuenta,uidl,datetime) SELECT id_cuenta,uidl,datetime FROM tbl_correo WHERE id='${id}' AND is_outbox=0"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='0'"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>
 		<query global="id" eval="true">"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.obj') action_delete FROM tbl_correo WHERE id='$id' AND is_outbox='1'"</query>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="page,id" eval="true">make_delete_query("tbl_correo_a",make_where_query(array("id_correo"=>$id)))</query>
+		<query global="page,id" eval="true">"DELETE FROM tbl_correo_a WHERE ".make_where_query(array("id_correo"=>$id))</query>
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query eval="true">"SELECT '".LANG_ESCAPE("msgnumdelete")."1".LANG_ESCAPE("message1")."' action_alert"</query>

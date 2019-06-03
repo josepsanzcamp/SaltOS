@@ -72,20 +72,16 @@ if(getParam("action")=="feeds") {
 					session_alert(LANG($action2[1]?"msgnumsicool":"msgnumnocool","feeds").$numids.LANG("message".min($numids,2),"feeds"));
 				} elseif($action2[0]=="delete") {
 					// CREAR DATOS EN TABLA DE POSTS BORRADOS
-					$query=make_insert_from_select_query("tbl_feeds_d","tbl_feeds",array(
-						"id_feed"=>"id_feed",
-						"link"=>"link",
-						"datetime"=>"'".current_datetime()."'",
-					),"id IN (${ids})");
+					$query="INSERT INTO tbl_feeds_d(id_feed,link,datetime) SELECT id_feed,link,'".current_datetime()."' FROM tbl_feeds WHERE id IN (${ids})";
 					db_query($query);
 					// BORRAR POSTS
-					$query=make_delete_query("tbl_feeds","id IN (${ids})");
+					$query="DELETE FROM tbl_feeds WHERE id IN (${ids})";
 					db_query($query);
 					// BORRAR REGISTRO DE LOS POSTS
 					make_control(page2id("feeds"),$ids);
 					make_indexing(page2id("feeds"),$ids);
 					// BORRAR FOLDERS RELACIONADOS
-					$query=make_delete_query("tbl_folders_a","id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'");
+					$query="DELETE FROM tbl_folders_a WHERE id_registro IN (${ids}) AND id_aplicacion='".page2id("correo")."'";
 					db_query($query);
 					// MOSTRAR RESULTADO
 					session_alert(LANG("msgnumdelete","feeds").$numids.LANG("message".min($numids,2),"feeds"));
@@ -366,7 +362,7 @@ if(getParam("action")=="feeds") {
 								// TO PREVENT SOME SPURIOUS BUG
 								if(is_array($last_id)) {
 									$last_id=array_pop($last_id);
-									$query=make_delete_query("tbl_feeds","id_feed='${id_feed}' AND link='${link}' AND id!=${last_id}");
+									$query="DELETE FROM tbl_feeds WHERE id_feed='${id_feed}' AND link='${link}' AND id!=${last_id}";
 									db_query($query);
 								}
 								// CONTINUE
@@ -385,7 +381,7 @@ if(getParam("action")=="feeds") {
 							}
 						}
 						// BORRAR REGISTROS DE LA TABLA DE FEEDS BORRADOS QUE NO EXISTEN YA
-						$query=make_delete_query("tbl_feeds_d","id_feed='${id_feed}' AND NOT link IN (${links}) AND UNIX_TIMESTAMP(datetime)<='${unixtime_d}'");
+						$query="DELETE FROM tbl_feeds_d WHERE id_feed='${id_feed}' AND NOT link IN (${links}) AND UNIX_TIMESTAMP(datetime)<='${unixtime_d}'";
 						db_query($query);
 					}
 				}

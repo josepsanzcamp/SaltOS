@@ -647,18 +647,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</insert>
 	<update>
 		<query include="xml/common/qpermupdate.xml" replace="true"/>
-		<query match="default" prefix="true" global="id" eval="true">"SELECT '".LANG_ESCAPE("changedenied")."' action_error FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='$id')+(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='$id')+(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='$id')>0 AND '".intval(getParam("activo"))."'='0'"</query>
+		<query match="default" prefix="true" global="id" eval="true">"SELECT '".LANG_ESCAPE("changedenied")."' action_error
+			FROM (SELECT 1) a
+			WHERE 1=1
+			AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='${id}')
+				+(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='${id}')
+				+(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='${id}')>0
+			AND '".intval(getParam("activo"))."'='0'"</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query(page2table($page))</query>
 		<query match="default" prefix="true" global="id" eval="true">make_update_query("tbl_posiblescli",array(
 			"activo"=>1
-		),make_where_query(array(
-			"id"=>$id
-		),"AND",array(
-			"(".make_select_query("tbl_actas","COUNT(*)",make_where_query(array("id_posiblecli"=>$id))).")+(".
-				make_select_query("tbl_agenda","COUNT(*)",make_where_query(array("id_posiblecli"=>$id))).")+(".
-				make_select_query("tbl_presupuestos","COUNT(*)",make_where_query(array("id_posiblecli"=>$id))).")>0",
-			intval(getParam("activo"))."=0"
-		)))</query>
+		),"id='${id}'
+			AND (SELECT COUNT(*) FROM tbl_actas WHERE id_posiblecli='${id}')
+				+(SELECT COUNT(*) FROM tbl_agenda WHERE id_posiblecli='${id}')
+				+(SELECT COUNT(*) FROM tbl_presupuestos WHERE id_posiblecli='${id}')>0
+			AND '".intval(getParam("activo"))."'='0'")</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
 		<query include="xml/common/qfilesdelete.xml" replace="true" />
 		<query include="xml/common/qfilesupdate.xml" replace="true"/>

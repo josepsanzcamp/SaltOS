@@ -477,7 +477,7 @@ if(getParam("action")=="getmail") {
 			// REMOVE ALL UNUSED UIDLS
 			$delete=array_diff($olduidls_d,$uidls);
 			$delete="'".implode("','",$delete)."'";
-			$query=make_delete_query("tbl_correo_d","id_cuenta='${id_cuenta}' AND uidl IN (${delete})");
+			$query="DELETE FROM tbl_correo_d WHERE id_cuenta='${id_cuenta}' AND uidl IN (${delete})";
 			db_query($query);
 		}
 		if($error!="") {

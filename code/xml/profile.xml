@@ -424,7 +424,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		))):""</query>
 		<query match="default" prefix="true" eval="true">use_table_cookies("lang",getParam("lang"))?"":""</query>
 		<query match="default" prefix="true" eval="true">use_table_cookies("style",getParam("style"))?"":""</query>
-		<query ifeval="!ismobile()" match="default" prefix="true" eval="true">make_delete_query("tbl_quick",make_where_query(array("id_usuario"=>current_user())))</query>
+		<query ifeval="!ismobile()" match="default" prefix="true" eval="true">"DELETE FROM tbl_quick WHERE id_usuario='".current_user()."'"</query>
 		<query ifeval="!ismobile()" global="i" for="i" from="1" to="12" match="default" prefix="true" eval="true">make_insert_query("tbl_quick",array(
 			"id_usuario"=>current_user(),
 			"button"=>"f${i}",
@@ -437,15 +437,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"id"=>intval(getParam("id")),
 			"id_usuario"=>current_user()
 		))):""</query>
-		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?make_delete_query("tbl_folders_a",make_where_query(array(
-			"id_folder"=>intval(getParam("id"))
-		),"AND",array(
-			make_select_query("tbl_folders","id_usuario",make_where_query(array("id"=>intval(getParam("id")))))."='".current_user()."'"
-		))):""</query>
-		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?make_delete_query("tbl_folders",make_where_query(array(
-			"id"=>intval(getParam("id")),
-			"id_usuario"=>current_user()
-		))):""</query>
+		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders_a WHERE id_folder='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_folders WHERE id='".intval(getParam("id"))."'")='".current_user()."'":""</query>
+		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>
 		<query match="folders_new" prefix="true" eval="true">getParam("name") &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id_parent='".intval(getParam("id_parent"))."' AND id_usuario='".current_user()."' AND name='".getParam("name")."'")?make_insert_query("tbl_folders",array(
 			"id_parent"=>intval(getParam("id_parent")),
 			"id_usuario"=>current_user(),
@@ -462,13 +455,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"email"=>getParam("email"),
 			"token"=>getParam("token")
 		))</query>
-		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?make_delete_query("tbl_registros","id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("feeds")."'"):""</query>
-		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?make_delete_query("tbl_feeds","id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."'"):""</query>
-		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?make_delete_query("tbl_feeds_d","id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."'"):""</query>
-		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?make_delete_query("tbl_usuarios_f",make_where_query(array(
+		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_registros WHERE id_registro IN (SELECT id FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("feeds")."'":""</query>
+		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_feeds WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."'":""</query>
+		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_feeds_d WHERE id_feed='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_f WHERE id='".intval(getParam("id"))."')='".current_user()."'":""</query>
+		<query ifeval="check_user('profile','feeds')" match="feeds_old" prefix="true" eval="true">getParam("feeds_del")?"DELETE FROM tbl_usuarios_f WHERE ".make_where_query(array(
 			"id"=>intval(getParam("id")),
 			"id_usuario"=>current_user()
-		))):make_update_query("tbl_usuarios_f",array(
+		)):make_update_query("tbl_usuarios_f",array(
 			"disabled"=>intval(getParam("disabled"))
 		),make_where_query(array(
 			"id"=>intval(getParam("id")),
@@ -492,18 +485,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"id"=>intval(getParam("id")),
 			"id_usuario"=>current_user()
 		))):""</query>
-		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_registros","id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("correo")."'"):""</query>
-		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_correo_a","id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."')"):""</query>
+		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_registros WHERE id_registro IN (SELECT id FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."') AND id_aplicacion='".page2id("correo")."'":""</query>
+		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."')":""</query>
 		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/inboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."' AND is_outbox='0'":""</query>
 		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.eml.gz') action_delete FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."' AND is_outbox='1'":""</query>
 		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT CONCAT('".get_directory("dirs/outboxdir")."',id_cuenta,'/',uidl,'.obj') action_delete FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."' AND is_outbox='1'":""</query>
-		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_correo","id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."'"):""</query>
-		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_correo_d","id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."'"):""</query>
+		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_correo WHERE id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."'":""</query>
+		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_correo_d WHERE id_cuenta='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_usuarios_c WHERE id='".intval(getParam("id"))."')='".current_user()."'":""</query>
 		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?"SELECT email_signature_file action_delete FROM tbl_usuarios_c WHERE id='".getParam("id")."' AND id_usuario='".current_user()."' AND email_signature_file!=''":""</query>
-		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_usuarios_c",make_where_query(array(
+		<query ifeval="check_user('profile','correo')" match="correo_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_usuarios_c WHERE ".make_where_query(array(
 			"id"=>intval(getParam("id")),
 			"id_usuario"=>current_user()
-		))):make_update_query("tbl_usuarios_c",array(
+		)):make_update_query("tbl_usuarios_c",array(
 			"email_name"=>getParam("email_name"),
 			"email_from"=>getParam("email_from"),
 			"pop3_host"=>getParam("pop3_host"),

@@ -33,7 +33,7 @@ if(getParam("action")=="favoritos" && getParam("id")!="") {
 		));
 		die();
 	}
-	$query=make_select_query("tbl_favoritos","url",make_where_query(array("id"=>intval(getParam("id")))));
+	$query="SELECT url FROM tbl_favoritos WHERE id='".intval(getParam("id"))."'";
 	$url=execute_query($query);
 	if(!$url) {
 		output_handler(array(
@@ -52,7 +52,7 @@ if(getParam("action")=="favoritos" && getParam("id")!="") {
 	$height2=200;
 	$cache=get_cache_file(array($url,$format,$width,$height,$colors,$delay,$useragent,$width2,$height2),$format);
 	if(!file_exists($cache)) {
-		$query=make_select_query("tbl_favoritos","preview",make_where_query(array("id"=>intval(getParam("id")))));
+		$query="SELECT preview FROM tbl_favoritos WHERE id='".intval(getParam("id"))."'";
 		$preview=execute_query($query);
 		if($preview!="") {
 			file_put_contents($cache,base64_decode($preview));
@@ -99,7 +99,7 @@ if(getParam("action")=="favoritos" && getParam("url")!="") {
 	$scheme=parse_url($url,PHP_URL_SCHEME);
 	if(!$scheme) $url="http://".$url;
 	//~ if(substr($url,-1,1)=="/") $url=substr($url,0,-1);
-	$query=make_select_query("tbl_favoritos","id",make_where_query(array("url"=>$url)));
+	$query="SELECT id FROM tbl_favoritos WHERE ".make_where_query(array("url"=>$url));
 	if(!execute_query($query)) {
 		capture_next_error();
 		$html=url_get_contents($url);

@@ -71,7 +71,7 @@ if(getParam("action")=="integrity") {
 			$ids[$key]=implode(",",$val);
 		}
 		$temp=implode(",",$ids);
-		$query=make_delete_query("tbl_registros","id IN (${temp})");
+		$query="DELETE FROM tbl_registros WHERE id IN (${temp})";
 		db_query($query);
 		$total+=count($ids);
 		if(count($ids)<1000) break;
@@ -84,7 +84,7 @@ if(getParam("action")=="integrity") {
 		$ids=execute_query_array($query);
 		if(!count($ids)) break;
 		$temp=implode(",",$ids);
-		$query=make_delete_query("tbl_registros","id IN (${temp})");
+		$query="DELETE FROM tbl_registros WHERE id IN (${temp})";
 		db_query($query);
 		$total+=count($ids);
 		if(count($ids)<1000) break;

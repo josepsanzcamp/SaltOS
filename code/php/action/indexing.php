@@ -37,11 +37,11 @@ if(getParam("action")=="indexing") {
 	while($row=db_fetch_row($result)) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// CHECK IF EXISTS
-		$query=make_select_query("tbl_ficheros","id",make_where_query(array("id"=>$row["id"])));
+		$query="SELECT id FROM tbl_ficheros WHERE id='".$row["id"]."'";
 		$exists=execute_query($query);
 		if(!$exists) continue;
 		// CONTINUE
-		$query=make_update_query("tbl_ficheros",array("retries"=>$row["retries"]+1),make_where_query(array("id"=>$row["id"])));
+		$query="UPDATE tbl_ficheros SET retries=retries+1 WHERE id='".$row["id"]."'";
 		db_query($query);
 		if($row["id_aplicacion"]==page2id("correo")) {
 			$decoded=__getmail_getmime($row["id_registro"]);
@@ -120,7 +120,7 @@ if(getParam("action")=="indexing") {
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
 			$temp=implode(",",$ids);
-			$query=make_delete_query("idx_indexing","id IN (${temp})");
+			$query="DELETE FROM idx_indexing WHERE id IN (${temp})";
 			db_query($query);
 			$total+=count($ids);
 			if(count($ids)<1000) break;
@@ -132,12 +132,7 @@ if(getParam("action")=="indexing") {
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
 			$temp=implode(",",$ids);
-			$query=make_insert_from_select_query("idx_indexing","idx_${page}",array(
-				"id_aplicacion"=>"'$id_aplicacion'",
-				"id_registro"=>"id",
-				"timestamp"=>"timestamp",
-				"search"=>"search",
-			),"id IN (${temp})");
+			$query="INSERT INTO idx_indexing(id_aplicacion,id_registro,timestamp,search) SELECT '${id_aplicacion}',id,timestamp,search FROM idx_${page} WHERE id IN (${temp})";
 			db_query($query);
 			$total+=count($ids);
 			if(count($ids)<1000) break;
@@ -149,15 +144,10 @@ if(getParam("action")=="indexing") {
 			$ids=execute_query_array($query);
 			if(!count($ids)) break;
 			foreach($ids as $id) {
-				$query=make_update_from_select_query("idx_indexing","idx_${page}",array(
-					"timestamp"=>"timestamp",
-					"search"=>"search",
-				),make_where_query(array(
-					"id"=>$id,
-				)),make_where_query(array(
-					"id_aplicacion"=>$id_aplicacion,
-					"id_registro"=>$id,
-				)));
+				$query="UPDATE idx_indexing SET
+					timestamp=(SELECT timestamp FROM idx_${page} WHERE id='${id}'),
+					search=(SELECT search FROM idx_${page} WHERE id='${id}')
+				WHERE id_aplicacion='${id_aplicacion}' AND id_registro='${id}'";
 				db_query($query);
 			}
 			$total+=count($ids);
@@ -178,7 +168,7 @@ if(getParam("action")=="indexing") {
 			$ids[$key]=implode(",",$val);
 		}
 		$temp=implode(",",$ids);
-		$query=make_delete_query("idx_indexing","id IN (${temp})");
+		$query="DELETE FROM idx_indexing WHERE id IN (${temp})";
 		db_query($query);
 		$total+=count($ids);
 		if(count($ids)<1000) break;
@@ -191,7 +181,7 @@ if(getParam("action")=="indexing") {
 		$ids=execute_query_array($query);
 		if(!count($ids)) break;
 		$temp=implode(",",$ids);
-		$query=make_delete_query("idx_indexing","id IN (${temp})");
+		$query="DELETE FROM idx_indexing WHERE id IN (${temp})";
 		db_query($query);
 		$total+=count($ids);
 		if(count($ids)<1000) break;

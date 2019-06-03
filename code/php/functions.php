@@ -29,11 +29,11 @@ function pre_datauser() {
 	$pass=useSession("pass");
 	if($user!="" && $pass!="") {
 		reset_datauser();
-		$query=make_select_query("tbl_usuarios","*",make_where_query(array(
+		$query="SELECT * FROM tbl_usuarios WHERE ".make_where_query(array(
 			"activo"=>1,
 			"login"=>$user,
 			"password"=>$pass
-		)));
+		));
 		$result=db_query($query);
 		if(db_num_rows($result)==1) {
 			$row=db_fetch_row($result);
@@ -54,7 +54,7 @@ function post_datauser() {
 	global $_USER;
 	global $_ERROR;
 	if(isset($_USER["id"])) {
-		$query=make_select_query("tbl_usuarios","*",make_where_query(array("id"=>$_USER["id"])));
+		$query="SELECT * FROM tbl_usuarios WHERE id='".$_USER["id"]."'";
 		$result=db_query($query);
 		if(db_num_rows($result)==1) {
 			$row=db_fetch_row($result);
@@ -139,8 +139,8 @@ function check_sql($aplicacion,$permiso) {
 	// CHECK FOR USER/GROUP/ALL PERMISSIONS
 	$sql=array();
 	$sql["all"]="1=1";
-	$sql["group"]="id_grupo IN (".check_ids($_USER["id_grupo"],execute_query_array(make_select_query("tbl_usuarios_g","id_grupo",make_where_query(array("id_usuario"=>$_USER["id"]))))).")";
-	$sql["user"]=make_where_query(array("id_usuario"=>$_USER["id"]));
+	$sql["group"]="id_grupo IN (".check_ids($_USER["id_grupo"],execute_query_array("SELECT id_grupo FROM tbl_usuarios_g WHERE id_usuario='".$_USER["id"]."'")).")";
+	$sql["user"]="id_usuario='".$_USER["id"]."'";
 	foreach($sql as $key=>$val) if(check_user($aplicacion,"${key}_${permiso}")) return $val;
 	return "1=0";
 }
@@ -261,7 +261,7 @@ function CONFIG_LOADED() {
 
 function CONFIG($key) {
 	$row=array();
-	$query=make_select_query("tbl_configuracion","valor",make_where_query(array("clave"=>$key)));
+	$query="SELECT valor FROM tbl_configuracion WHERE clave='${key}'";
 	capture_next_error();
 	$config=execute_query($query);
 	$error=get_clear_error();
@@ -275,7 +275,7 @@ function CONFIG($key) {
 }
 
 function setConfig($key,$val) {
-	$query=make_select_query("tbl_configuracion","valor",make_where_query(array("clave"=>$key)));
+	$query="SELECT valor FROM tbl_configuracion WHERE clave='${key}'";
 	$config=execute_query($query);
 	if($config===null) {
 		$query=make_insert_query("tbl_configuracion",array(
@@ -308,7 +308,7 @@ function current_group() {
 function __aplicaciones($tipo,$dato,$def) {
 	static $diccionario=array();
 	if(!count($diccionario)) {
-		$query=make_select_query("tbl_aplicaciones","id,codigo,tabla,subtablas");
+		$query="SELECT id,codigo,tabla,subtablas FROM tbl_aplicaciones";
 		$result=db_query($query);
 		$diccionario["page2id"]=array();
 		$diccionario["id2page"]=array();
@@ -376,7 +376,7 @@ function table2subtables($table,$def="") {
 function __usuarios($tipo,$dato) {
 	static $diccionario=array();
 	if(!count($diccionario)) {
-		$query=make_select_query("tbl_usuarios","id,login");
+		$query="SELECT id,login FROM tbl_usuarios";
 		$result=db_query($query);
 		$diccionario["user2id"]=array();
 		$diccionario["id2user"]=array();
@@ -620,7 +620,7 @@ function db_static() {
 		$dbstatic=eval_attr(xml2array("xml/dbstatic.xml"));
 		if(is_array($dbstatic)) {
 			foreach($dbstatic as $table=>$rows) {
-				$query=make_delete_query($table,"1=1");
+				$query="DELETE FROM ${table}";
 				db_query($query);
 				foreach($rows as $row) __db_static_helper($table,$row);
 			}
@@ -804,10 +804,10 @@ function check_security($action="") {
 	$id_usuario=current_user();
 	$remote_addr=getServer("REMOTE_ADDR");
 	// BUSCAR ID_SECURITY
-	$query=make_select_query("tbl_security","id",make_where_query(array("id_session"=>$id_session)));
+	$query="SELECT id FROM tbl_security WHERE id_session='${id_session}'";
 	$id_security=execute_query($query);
 	if(is_array($id_security)) {
-		$query=make_delete_query("tbl_security",make_where_query(array("id_session"=>$id_session)));
+		$query="DELETE FROM tbl_security WHERE id_session='${id_session}'";
 		db_query($query);
 		$id_security=0;
 	}
@@ -818,14 +818,14 @@ function check_security($action="") {
 			"logout"=>0
 		));
 		db_query($query);
-		$query=make_select_query("tbl_security","MAX(id)");
+		$query="SELECT MAX(id) FROM tbl_security";
 		$id_security=execute_query($query);
 	}
 	// BUSCAR ID_SECURITY_IP
 	$query="SELECT id FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
 	$id_security_ip=execute_query($query);
 	if(is_array($id_security_ip)) {
-		$query=make_delete_query("tbl_security_ip","id_session='${id_session}' AND remote_addr='${remote_addr}'");
+		$query="DELETE FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
 		db_query($query);
 		$id_security_ip=0;
 	}
@@ -835,13 +835,13 @@ function check_security($action="") {
 			"remote_addr"=>$remote_addr
 		));
 		db_query($query);
-		$query=make_select_query("tbl_security_ip","MAX(id)");
+		$query="SELECT MAX(id) FROM tbl_security_ip";
 		$id_security_ip=execute_query($query);
 	}
 	// BORRAR REGISTROS CADUCADOS
-	$query=make_delete_query("tbl_security","NOT id_session IN (SELECT id FROM tbl_sessions)");
+	$query="DELETE FROM tbl_security WHERE NOT id_session IN (SELECT id FROM tbl_sessions)";
 	db_query($query);
-	$query=make_delete_query("tbl_security_ip","NOT id_session IN (SELECT id FROM tbl_sessions)");
+	$query="DELETE FROM tbl_security_ip WHERE NOT id_session IN (SELECT id FROM tbl_sessions)";
 	db_query($query);
 	// NORMAL CODE
 	if($action=="login") {
@@ -931,10 +931,10 @@ function use_table_cookies($name,$value="",$default="") {
 	if($uid) {
 		if($value!="") {
 			if($value=="null") $value="";
-			$query="SELECT COUNT(*) FROM tbl_cookies WHERE id_usuario='$uid' AND clave='$name'";
+			$query="SELECT COUNT(*) FROM tbl_cookies WHERE id_usuario='${uid}' AND clave='${name}'";
 			$count=execute_query($query);
 			if($count>1) {
-				$query=make_delete_query("tbl_cookies","id_usuario='${uid}' AND clave='${name}'");
+				$query="DELETE FROM tbl_cookies WHERE id_usuario='${uid}' AND clave='${name}'";
 				db_query($query);
 				$count=0;
 			}
@@ -1291,20 +1291,14 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 	}
 	// BUSCAR SI EXISTE INDEXACION
 	$page=id2page($id_aplicacion);
-	$query=make_select_query("idx_${page}","id",make_where_query(array(
-		"id"=>$id_registro
-	)));
+	$query="SELECT id FROM idx_${page} WHERE id='${id_registro}'";
 	$id_indexing=execute_query($query);
 	// BUSCAR SI EXISTEN DATOS DE LA TABLA PRINCIPAL
-	$query=make_select_query($tabla,"id",make_where_query(array(
-		"id"=>$id_registro
-	)));
+	$query="SELECT id FROM ${tabla} WHERE id='${id_registro}'";
 	$id_data=execute_query($query);
 	if(!$id_data) {
 		if($id_indexing) {
-			$query=make_delete_query("idx_${page}",make_where_query(array(
-				"id"=>$id_indexing
-			)));
+			$query="DELETE FROM idx_${page} WHERE id='${id_indexing}'";
 			db_query($query);
 			return 3;
 		} else {
@@ -1317,9 +1311,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 	$campos=__make_indexing_helper($tabla);
 	foreach($campos as $key=>$val) $campos[$key]="IFNULL((${val}),'')";
 	$campos="CONCAT(".implode(",' ',",$campos).")";
-	$query=make_select_query($tabla,$campos,make_where_query(array(
-		"id"=>$id_registro
-	)));
+	$query="SELECT ${campos} FROM ${tabla} WHERE id='${id_registro}'";
 	$queries[]=$query;
 	// OBTENER DATOS DE LAS SUBTABLAS
 	if($subtablas!="") {
@@ -1329,9 +1321,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 			$campos=__make_indexing_helper($tabla);
 			foreach($campos as $key=>$val) $campos[$key]="IFNULL((${val}),'')";
 			$campos="GROUP_CONCAT(CONCAT(".implode(",' ',",$campos)."))";
-			$query=make_select_query($tabla,$campos,make_where_query(array(
-				$campo=>$id_registro
-			)));
+			$query="SELECT ${campos} FROM ${tabla} WHERE ${campo}='${id_registro}'";
 			$queries[]=$query;
 		}
 	}
@@ -1341,10 +1331,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 		$campos=__make_indexing_helper($tabla);
 		foreach($campos as $key=>$val) $campos[$key]="IFNULL((${val}),'')";
 		$campos="GROUP_CONCAT(CONCAT(".implode(",' ',",$campos)."))";
-		$query=make_select_query($tabla,$campos,make_where_query(array(
-			"id_aplicacion"=>$id_aplicacion,
-			"id_registro"=>$id_registro
-		)));
+		$query="SELECT ${campos} FROM ${tabla} WHERE id_aplicacion='${id_aplicacion}' AND id_registro='${id_registro}'";
 		$queries[]=$query;
 	}
 	// PREPARAR QUERY PRINCIPAL
@@ -1430,7 +1417,7 @@ function __make_indexing_helper($tabla) {
 				$where="";
 			}
 			if($campo!="" && $where!="") {
-				$result[]="(".make_select_query($val,$campo,$where).")";
+				$result[]="(SELECT ${campo} FROM ${val} WHERE ${where})";
 			}
 		}
 	}
@@ -1453,34 +1440,23 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 		return $result;
 	}
 	// BUSCAR SI EXISTE REGISTRO DE CONTROL
-	$query=make_select_query("tbl_registros","id",make_where_query(array(
-		"id_aplicacion"=>$id_aplicacion,
-		"id_registro"=>$id_registro,
-		"first"=>1
-	)));
+	$query="SELECT id FROM tbl_registros WHERE id_aplicacion='${id_aplicacion}' AND id_registro='${id_registro}' AND first='1'";
 	$id_control=execute_query($query);
 	// SOME CHECKS
 	if(is_array($id_control)) {
 		$temp=$id_control;
 		$id_control=array_pop($temp);
 		foreach($temp as $temp2) {
-			$query=make_delete_query("tbl_registros",make_where_query(array(
-				"id"=>$temp2
-			)));
+			$query="DELETE FROM tbl_registros WHERE id='${temp2}'";
 			db_query($query);
 		}
 	}
 	// BUSCAR SI EXISTEN DATOS DE LA TABLA PRINCIPAL
-	$query=make_select_query($tabla,"id",make_where_query(array(
-		"id"=>$id_registro
-	)));
+	$query="SELECT id FROM ${tabla} WHERE id='${id_registro}'";
 	$id_data=execute_query($query);
 	if(!$id_data) {
 		if($id_control) {
-			$query=make_delete_query("tbl_registros",make_where_query(array(
-				"id_aplicacion"=>$id_aplicacion,
-				"id_registro"=>$id_registro
-			)));
+			$query="DELETE FROM tbl_registros WHERE id_aplicacion='${id_aplicacion}' AND id_registro='${id_registro}'";
 			db_query($query);
 			return 3;
 		} else {

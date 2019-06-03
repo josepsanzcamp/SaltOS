@@ -169,7 +169,7 @@ if($page=="posiblescli") {
 	),"id_aplicacion='${id_aplicacion3}' AND id_registro='${id_posiblecli}'");
 	db_query($query);
 	// BORRAR EL POSIBLE CLIENTE
-	$query=make_delete_query("tbl_posiblescli","id='${id_posiblecli}'");
+	$query="DELETE FROM tbl_posiblescli WHERE id='${id_posiblecli}'";
 	db_query($query);
 	// AÑADIR CONTROL DEL REGISTRO
 	$id_aplicacion=page2id("clientes");

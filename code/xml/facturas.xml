@@ -1721,7 +1721,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		),make_where_query(array(
 			"id"=>intval(getParam("id"))
 		)))</query>
-		<query match="concepts_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_facturas_c",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="concepts_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
 		<query match="concepts_new" prefix="true" eval="true">getParam("concepto")?make_insert_query("tbl_facturas_c",array(
 			"id_factura"=>intval(getParam("id_factura")),
 			"concepto"=>getParam("concepto"),
@@ -1738,7 +1738,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		),make_where_query(array(
 			"id"=>intval(getParam("id"))
 		)))</query>
-		<query match="products_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_facturas_c",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="products_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
 		<query match="products_new" prefix="true" eval="true">getParam("id_producto")?make_insert_query("tbl_facturas_c",array(
 			"id_factura"=>intval(getParam("id_factura")),
 			"id_producto"=>intval(getParam("id_producto")),
@@ -1756,7 +1756,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		),make_where_query(array(
 			"id"=>intval(getParam("id"))
 		)))</query>
-		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_facturas_v",make_where_query(array("id"=>intval(getParam("id"))))):""</query>
+		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_facturas_v WHERE ".make_where_query(array("id"=>intval(getParam("id")))):""</query>
 		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_facturas_v",array(
 			"id_factura"=>intval(getParam("id_factura")),
 			"fecha"=>dateval(getParam("fecha")),
@@ -1812,8 +1812,8 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query global="id" eval="true">"SELECT '".LANG_ESCAPE("errorfac103")."' action_error,'0' action_commit FROM tbl_facturas WHERE id=$id AND cerrado=1"</query>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="id" eval="true">make_delete_query("tbl_facturas_c",make_where_query(array("id_factura"=>intval($id))))</query>
-		<query global="id" eval="true">make_delete_query("tbl_facturas_v",make_where_query(array("id_factura"=>intval($id))))</query>
+		<query global="id" eval="true">"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
+		<query global="id" eval="true">"DELETE FORM tbl_facturas_v WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>

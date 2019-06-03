@@ -1050,7 +1050,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 		),make_where_query(array(
 			"id"=>getParam("id")
 		)))</query>
-		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?make_delete_query("tbl_gastos_v",make_where_query(array("id"=>getParam("id")))):""</query>
+		<query match="vencimientos_old" prefix="true" eval="true">getParam("delete")?"DELETE FROM tbl_gastos_v WHERE ".make_where_query(array("id"=>getParam("id"))):""</query>
 		<query match="vencimientos_new" prefix="true" eval="true">getParam("fecha")?make_insert_query("tbl_gastos_v",array(
 			"id_gasto"=>intval(getParam("id_gasto")),
 			"fecha"=>dateval(getParam("fecha")),
@@ -1071,7 +1071,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
-		<query global="id" eval="true">make_delete_query("tbl_gastos_v",make_where_query(array("id_gasto"=>$id)))</query>
+		<query global="id" eval="true">"DELETE FROM tbl_gastos_v WHERE ".make_where_query(array("id_gasto"=>$id))</query>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query global="id" eval="true">"SELECT CONCAT('".LANG_ESCAPE("lastdelete")."',LPAD('$id',".intval(CONFIG("zero_padding_digits")).",0)) action_alert"</query>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>

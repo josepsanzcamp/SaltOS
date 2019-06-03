@@ -40,7 +40,7 @@ if(getParam("action")=="session") {
 		$time=execute_query($query);
 		$remain=max(getDefault("sess/timeout")-(time()-$time),0);
 		if($remain<=0) {
-			$query=make_delete_query("tbl_sessions","id='${id_session}'");
+			$query="DELETE FROM tbl_sessions WHERE id='${id_session}'";
 			db_query($query);
 		}
 		if(useCookie("remember")) $remain=max(useCookie("__remember__")-time(),$remain);

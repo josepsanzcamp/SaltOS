@@ -647,17 +647,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</form>
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
-		<query global="id" eval="true">make_insert_query("tbl_feeds_d",make_select_query("tbl_feeds",array(
-			"id_feed",
-			"link",
-			"'".current_datetime()."'"
-		),make_where_query(array(
-			"id"=>$id
-		))),array(
-			"id_feed",
-			"link",
-			"datetime"
-		))</query>
+		<query global="id" eval="true">"INSERT INTO tbl_feeds_d(id_feed,link,datetime) SELECT id_feed,link,'".current_datetime()."' FROM tbl_feeds WHERE id='${id}'"</query>
 		<query include="xml/common/qdelete.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query eval="true">"SELECT '".LANG_ESCAPE("msgnumdelete")."1".LANG_ESCAPE("message1")."' action_alert"</query>

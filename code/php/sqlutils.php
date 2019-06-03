@@ -616,30 +616,9 @@ function __dbschema_helper($fn,$table) {
 	return array();
 }
 
-/* ************************************************************** */
-/* ******************** DEPRECATED FUNCTIONS ******************** */
-/* ************************************************************** */
-function __deprecated_helper($a,$b,$c,$d) {
-	if($b) {
-		$e=$a."_new";
-	} else {
-		$e=$a."_old";
-	}
-	if($c==1) $f=$e($d[0]);
-	if($c==2) $f=$e($d[0],$d[1]);
-	if($c==3) $f=$e($d[0],$d[1],$d[2]);
-	if($c==4) $f=$e($d[0],$d[1],$d[2],$d[3]);
-	if($c==5) $f=$e($d[0],$d[1],$d[2],$d[3],$d[4]);
-	if(!$b) {
-		addtrace(array(
-			"phperror"=>"Deprecated function $a with $c arguments",
-			"details"=>sprintr($d),
-			"query"=>$f,
-		),getDefault("debug/deprecated","deprecated.log"));
-	}
-	return $f;
-}
-
+/* ************************************************************ */
+/* ******************** BEGIN DEPRECATIONS ******************** */
+/* ************************************************************ */
 function make_insert_query() {
 	$a=__FUNCTION__;
 	$c=func_num_args();
@@ -667,30 +646,6 @@ function make_update_query() {
 	return __deprecated_helper($a,$b,$c,$d);
 }
 
-function make_delete_query() {
-	$a=__FUNCTION__;
-	$c=func_num_args();
-	$d=func_get_args();
-	$b=in_array($c,array(2));
-	if($b) {
-		if($d[0]=="") $b=0;
-		if($d[1]=="") $b=0;
-	}
-	return __deprecated_helper($a,$b,$c,$d);
-}
-
-function make_select_query() {
-	$a=__FUNCTION__;
-	$c=func_num_args();
-	$d=func_get_args();
-	$b=in_array($c,array(2,3));
-	if($b) {
-		if($d[0]=="") $b=0;
-		//~ if(is_array($d[1])) if(is_array_key_val($d[1])) $b=0;
-	}
-	return __deprecated_helper($a,$b,$c,$d);
-}
-
 function make_where_query() {
 	$a=__FUNCTION__;
 	$c=func_num_args();
@@ -706,6 +661,27 @@ function make_where_query() {
 		}
 	}
 	return __deprecated_helper($a,$b,$c,$d);
+}
+
+function __deprecated_helper($a,$b,$c,$d) {
+	if($b) {
+		$e=$a."_new";
+	} else {
+		$e=$a."_old";
+	}
+	if($c==1) $f=$e($d[0]);
+	if($c==2) $f=$e($d[0],$d[1]);
+	if($c==3) $f=$e($d[0],$d[1],$d[2]);
+	if($c==4) $f=$e($d[0],$d[1],$d[2],$d[3]);
+	if($c==5) $f=$e($d[0],$d[1],$d[2],$d[3],$d[4]);
+	if(!$b) {
+		addtrace(array(
+			"phperror"=>"Deprecated function $a with $c arguments",
+			"details"=>sprintr($d),
+			"query"=>$f,
+		),getDefault("debug/deprecated","deprecated.log"));
+	}
+	return $f;
 }
 
 function make_insert_query_old($table,$array,$queries=array()) {
@@ -748,61 +724,6 @@ function make_update_query_old($table,$array,$where="",$queries=array()) {
 	return $query;
 }
 
-function make_delete_query_old($table,$where="") {
-	if($where!="") {
-		$query="DELETE FROM ${table} WHERE ${where}";
-	} else {
-		$query="/*MYSQL TRUNCATE *//*SQLITE DELETE FROM */ ${table}";
-	}
-	return $query;
-}
-
-function make_select_query_old($table,$array="*",$where="",$extra=array()) {
-	static $count=1;
-	if(is_array($array)) {
-		if(is_array_key_val($array)) {
-			foreach($array as $key=>$val) $array[$key]="${key} AS ${val}";
-		}
-		$array=implode(",",$array);
-	}
-	$query="SELECT ${array}";
-	if(substr_count($table," ")>1) {
-		$table="(${table}) a${count}";
-		$count++;
-	}
-	if($table=="" && $where!="") {
-		$table="(SELECT 1) a${count}";
-		$count++;
-	}
-	if($table!="") $query.=" FROM ${table}";
-	if($where!="") $query.=" WHERE ${where}";
-	if(isset($extra["groupby"])) {
-		$groupby=$extra["groupby"];
-		if(is_array($groupby)) $groupby=implode(",",$groupby);
-		$query.=" GROUP BY ${groupby}";
-	}
-	if(isset($extra["having"])) {
-		$having=$extra["having"];
-		if(is_array($having)) $having=implode(" AND ",$having);
-		$query.=" HAVING ${having}";
-	}
-	if(isset($extra["order"])) {
-		$order=$extra["order"];
-		if(is_array($order)) {
-			if(is_array_key_val($order)) foreach($order as $key=>$val) $order[$key]=$key." ".$val;
-			$order=implode(",",$order);
-		}
-		$query.=" ORDER BY ${order}";
-	}
-	if(isset($extra["limit"])) {
-		if(!isset($extra["offset"])) $extra["offset"]=0;
-		$limit=intval($extra["limit"]);
-		$offset=intval($extra["offset"]);
-		$query.=" LIMIT ${offset},${limit}";
-	}
-	return $query;
-}
-
 function make_where_query_old($array,$union="AND",$queries=array()) {
 	$list1=array();
 	foreach($array as $key=>$val) {
@@ -815,9 +736,9 @@ function make_where_query_old($array,$union="AND",$queries=array()) {
 	return $query;
 }
 
-/* ******************************************************* */
-/* ******************** NEW FUNCTIONS ******************** */
-/* ******************************************************* */
+/* ********************************************************** */
+/* ******************** END DEPRECATIONS ******************** */
+/* ********************************************************** */
 function make_insert_query_new($table,$array) {
 	$list1=array();
 	$list2=array();
@@ -836,20 +757,6 @@ function make_update_query_new($table,$array,$where) {
 	foreach($array as $key=>$val) $list1[]=$key."='".addslashes($val)."'";
 	$list1=implode(",",$list1);
 	$query="UPDATE ${table} SET ${list1} WHERE ${where}";
-	return $query;
-}
-
-function make_delete_query_new($table,$where) {
-	$query="DELETE FROM ${table} WHERE ${where}";
-	return $query;
-}
-
-function make_select_query_new($table,$array,$where="1=1") {
-	if(is_array($array)) {
-		if(is_array_key_val($array)) foreach($array as $key=>$val) $array[$key]="${key} AS '${val}'";
-		$array=implode(",",$array);
-	}
-	$query="SELECT ${array} FROM ${table} WHERE ${where}";
 	return $query;
 }
 
@@ -875,16 +782,6 @@ function make_insert_from_select_query($table,$table2,$array,$where2) {
 	return $query;
 }
 
-function make_update_from_select_query($table,$table2,$array,$where2,$where) {
-	$list1=array();
-	foreach($array as $key=>$val) {
-		$list1[]="${key}=(SELECT ${val} FROM ${table2} WHERE ${where2})";
-	}
-	$list1=implode(",",$list1);
-	$query="UPDATE ${table} SET ${list1} WHERE ${where}";
-	return $query;
-}
-
 function make_fulltext_query2($values) {
 	$values=__make_like_query_explode(" ",$values);
 	foreach($values as $key=>$val) {
@@ -906,6 +803,13 @@ function make_fulltext_query2($values) {
 }
 
 function make_fulltext_query3($values,$page) {
+	if(is_numeric($page)) {
+		addtrace(array(
+			"phperror"=>"Deprecated function ".__FUNCTION__." with ".func_num_args()." arguments",
+			"details"=>sprintr(func_get_args()),
+		),getDefault("debug/deprecated","deprecated.log"));
+		$page=id2page($page);
+	}
 	$engine=strtolower(get_engine("idx_${page}"));
 	if($engine=="mroonga") {
 		$where=make_fulltext_query2($values);

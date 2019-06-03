@@ -317,6 +317,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<delete>
 		<query global="id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_folders_a WHERE id='".abs($id)."' AND NOT id_folder IN (SELECT id FROM tbl_folders WHERE id_usuario='".current_user()."')"</query>
 		<query global="id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM tbl_folders_a WHERE id='".abs($id)."')=0"</query>
-		<query global="id" eval="true">make_delete_query("tbl_folders_a",make_where_query(array("id"=>$id)))</query>
+		<query global="id" eval="true">"DELETE FROM tbl_folders_a WHERE ".make_where_query(array("id"=>$id))</query>
 	</delete>
 </root>

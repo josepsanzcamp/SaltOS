@@ -88,7 +88,7 @@ if(getParam("action")=="purge") {
 				LEFT JOIN tbl_registros b ON a.id_aplicacion=b.id_aplicacion AND a.id_registro=b.id_registro AND b.first=0
 				WHERE
 					a.first=1 AND
-					(a.id_aplicacion='${row["id_aplicacion"]}' OR ''='${row["id_aplicacion"]}') AND
+					(a.id_aplicacion='".$row["id_aplicacion"]."' OR ''='".$row["id_aplicacion"]."') AND
 					(a.id_usuario='${row["id_usuario"]}' OR ''='${row["id_usuario"]}') AND
 					((a.id_aplicacion='".page2id("correo")."' AND a.id_registro IN (SELECT id FROM tbl_correo c WHERE c.id_cuenta='${row["id_cuenta"]}')) OR ''='${row["id_cuenta"]}') AND
 					((a.id_aplicacion='".page2id("feeds")."' AND a.id_registro IN (SELECT id FROM tbl_feeds d WHERE d.id_feed='${row["id_feed"]}')) OR ''='${row["id_feed"]}')
@@ -116,9 +116,7 @@ if(getParam("action")=="purge") {
 				}
 				// BORRAR DATOS DE LA TABLA PRINCIPAL
 				$tabla=id2table($row2["id_aplicacion"]);
-				$query=make_delete_query($tabla,make_where_query(array(
-					"id"=>$row2["id_registro"]
-				)));
+				$query="DELETE FROM $tabla WHERE id='".$row2["id_registro"]."'";
 				db_query($query);
 				// BORRAR DATOS DE LAS SUBTABLAS
 				$subtablas=id2subtables($row2["id_aplicacion"]);
@@ -126,35 +124,25 @@ if(getParam("action")=="purge") {
 					foreach(explode(",",$subtablas) as $subtabla) {
 						$tabla=strtok($subtabla,"(");
 						$campo=strtok(")");
-						$query=make_delete_query($tabla,make_where_query(array(
-							$campo=>$row2["id_registro"]
-						)));
+						$query="DELETE FROM $tabla WHERE ${campo}='".$row2["id_registro"]."'";
 						db_query($query);
 					}
 				}
 				// BORRAR FICHEROS DEL SISTEMA DE FICHEROS
 				if($row2["id_aplicacion"]!=page2id("correo")) {
-					$query=make_select_query("tbl_ficheros","CONCAT('".get_directory("dirs/filesdir")."',fichero_file) action_delete",make_where_query(array(
-						"id_aplicacion"=>$row2["id_aplicacion"],
-						"id_registro"=>$row2["id_registro"]
-					)));
+					$query="SELECT CONCAT('".get_directory("dirs/filesdir")."',fichero_file) action_delete FROM tbl_ficheros WHERE id_aplicacion='".$row2["id_aplicacion"]."' AND id_registro='".$row2["id_registro"]."'";
 					$rows3=execute_query_array($query);
 					foreach($rows3 as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				}
 				// BORRAR DATOS DE LAS TABLAS GENERICAS
 				$tablas=array("tbl_ficheros","tbl_comentarios","tbl_registros","idx_indexing");
 				foreach($tablas as $tabla) {
-					$query=make_delete_query($tabla,make_where_query(array(
-						"id_aplicacion"=>$row2["id_aplicacion"],
-						"id_registro"=>$row2["id_registro"]
-					)));
+					$query="DELETE FROM $tabla WHERE id_aplicacion='".$row2["id_aplicacion"]."' AND id_registro='".$row2["id_registro"]."'";
 					db_query($query);
 				}
 				// BORRAR DATOS DE LAS TABLAS INDEXACION
 				$page=id2page($row2["id_aplicacion"])
-				$query=make_delete_query("idx_${page}",make_where_query(array(
-					"id"=>$row2["id_registro"]
-				)));
+				$query="DELETE FROM idx_${page} WHERE id='".$row2["id_registro"]."'";
 				db_query($query);
 				// CONTINUE
 				$total++;
