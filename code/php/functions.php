@@ -1346,7 +1346,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 		db_query($query);
 		return 2;
 	} else {
-		$query="INSERT INTO idx_${page}(id,timestamp,search) VALUES(${id_registro},${timestamp},${search})";
+		$query="REPLACE INTO idx_${page}(id,timestamp,search) VALUES(${id_registro},${timestamp},${search})";
 		db_query($query);
 		return 1;
 	}

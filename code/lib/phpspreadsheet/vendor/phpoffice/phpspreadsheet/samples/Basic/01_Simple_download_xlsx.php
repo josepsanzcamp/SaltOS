@@ -12,7 +12,6 @@ if ($helper->isCli()) {
 
     return;
 }
-
 // Create new Spreadsheet object
 $spreadsheet = new Spreadsheet();
 
