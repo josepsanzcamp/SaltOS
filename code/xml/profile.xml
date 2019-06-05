@@ -437,7 +437,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			"id"=>intval(getParam("id")),
 			"id_usuario"=>current_user()
 		))):""</query>
-		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders_a WHERE id_folder='".intval(getParam("id"))."' AND (SELECT id_usuario FROM tbl_folders WHERE id='".intval(getParam("id"))."'")='".current_user()."'":""</query>
+		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders_a WHERE id_folder='".intval(getParam("id"))."' AND '".current_user()."'=(SELECT id_usuario FROM tbl_folders WHERE id='".intval(getParam("id"))."')":""</query>
 		<query match="folders_old" prefix="true" eval="true">getParam("folders_del")?"DELETE FROM tbl_folders WHERE id='".intval(getParam("id"))."' AND id_usuario='".current_user()."'":""</query>
 		<query match="folders_new" prefix="true" eval="true">getParam("name") &amp;&amp; !execute_query("SELECT id FROM tbl_folders WHERE id_parent='".intval(getParam("id_parent"))."' AND id_usuario='".current_user()."' AND name='".getParam("name")."'")?make_insert_query("tbl_folders",array(
 			"id_parent"=>intval(getParam("id_parent")),
