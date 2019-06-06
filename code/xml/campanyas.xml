@@ -168,7 +168,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>3</colspan>
-						<speech>true</speech>
 					</field>
 					<field>
 						<name>posiblescli</name>
@@ -390,8 +389,7 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view","a.")." ORD
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<required>true</required>
 							<colspan>3</colspan>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>id_estado</name>
 							<label lang="true">estado</label>

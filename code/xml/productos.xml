@@ -100,7 +100,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
-						<speech>true</speech>
 					</field>
 				</row>
 			</fields>
@@ -251,8 +250,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<required>true</required>
-							<speech>true</speech>
-							<colspan>4</colspan>
+								<colspan>4</colspan>
 						</field>
 						<field>
 							<type>separator</type>
@@ -345,8 +343,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-							<colspan>4</colspan>
+								<colspan>4</colspan>
 						</field>
 						<field>
 							<type>separator</type>

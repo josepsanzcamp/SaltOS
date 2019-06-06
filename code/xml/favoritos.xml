@@ -82,7 +82,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
-						<speech>true</speech>
 					</field>
 				</row>
 			</fields>
@@ -108,7 +107,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<label lang="true">url</label>
 					<type>text</type>
 					<width>240px</width>
-					<speech>true</speech>
 					<onkey>if(is_enterkey(event)) add_bookmark()</onkey>
 				</field>
 				<field>

@@ -40,7 +40,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<width>240px</width>
 			<colspan>3</colspan>
 			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<speech>true</speech>
 		</field>
 		<field>
 			<name>email_privated</name>
@@ -60,7 +59,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<width>240px</width>
 			<colspan>3</colspan>
 			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<speech>true</speech>
 		</field>
 		<field>
 			<name>email_default</name>
@@ -111,7 +109,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<width>240px</width>
 			<colspan>3</colspan>
 			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<speech>true</speech>
 		</field>
 		<field>
 			<name>smtp_host</name>
@@ -121,7 +118,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<colspan>3</colspan>
 			<colspan2>2</colspan2>
 			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<speech>true</speech>
 		</field>
 	</row>
 	<row>
@@ -215,7 +211,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<width>240px</width>
 			<colspan>3</colspan>
 			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<speech>true</speech>
 		</field>
 		<field>
 			<name>smtp_user</name>
@@ -225,7 +220,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<colspan>3</colspan>
 			<colspan2>2</colspan2>
 			<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-			<speech>true</speech>
 		</field>
 	</row>
 	<row>

@@ -191,7 +191,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>4</colspan>
-						<speech>true</speech>
 					</field>
 					<field>
 						<name>id_cuenta</name>
@@ -657,8 +656,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>cif</name>
 							<label lang="true">cif</label>
@@ -679,8 +677,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>

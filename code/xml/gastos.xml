@@ -287,7 +287,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>4</colspan>
-						<speech>true</speech>
 					</field>
 					<field>
 						<name>id_cuenta</name>
@@ -589,8 +588,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<width>240px</width>
 							<colspan>4</colspan>
 							<onchange>search_proveedor()</onchange>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>id_cliente</name>
 							<label lang="true">cliente</label>

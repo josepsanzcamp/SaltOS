@@ -145,7 +145,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>text</type>
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<speech>true</speech>
 					</field>
 					<field>
 						<name>agenda</name>
@@ -381,8 +380,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>cif</name>
 							<label lang="true">cif</label>
@@ -399,8 +397,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>cargo</name>
 							<label lang="true">cargo</label>
@@ -408,8 +405,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>
@@ -423,8 +419,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>
@@ -506,8 +501,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>tel_fijo</name>
 							<label lang="true">tel_fijo</label>
@@ -523,8 +517,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>fax</name>
 							<label lang="true">fax</label>
@@ -553,8 +546,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>
@@ -563,8 +555,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>iae_cod</name>
 							<label lang="true">iaecod</label>

@@ -238,7 +238,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>3</colspan>
-						<speech>true</speech>
 					</field>
 				</row>
 			</fields>
@@ -767,8 +766,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>12</colspan>
 							<required global="id" eval="true">$id>=0?"true":"false"</required>
-							<speech>true</speech>
-							<width2>1%</width2>
+								<width2>1%</width2>
 						</field>
 						<field global="id" ifeval="!ismobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>
@@ -788,8 +786,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>calc(100% - 14px)</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>12</colspan>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field global="id" ifeval="!ismobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>
 							<icon>fa fa-trash</icon>
@@ -807,8 +804,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>calc(100% - 14px)</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>12</colspan>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field global="id" ifeval="!ismobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>
 							<icon>fa fa-trash</icon>
@@ -951,8 +947,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>12</colspan>
 							<required global="id" eval="true">$id>=0?"true":"false"</required>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<temp global="id_extra" eval="true">$id_extra=explode("_",getParam("id"),3);</temp>
 					<temp global="id_extra" eval="true">$id_extra[1]=isset($id_extra[1])?$id_extra[1]:""</temp>

@@ -250,7 +250,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>text</type>
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<speech>true</speech>
 					</field>
 					<field>
 						<type>separator</type>
@@ -561,8 +560,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<colspan>3</colspan>
-							<speech>true</speech>
-							<onkey ifeval="!getParam('id')">var orig=this; var dest=$("textarea[name$=descripcion]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkey>
+								<onkey ifeval="!getParam('id')">var orig=this; var dest=$("textarea[name$=descripcion]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkey>
 						</field>
 						<field>
 							<name>id_tipoevento</name>
@@ -582,8 +580,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>id_estado</name>
 							<label lang="true">estado</label>

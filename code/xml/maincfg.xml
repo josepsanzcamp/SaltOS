@@ -91,8 +91,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<colspan>7</colspan>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 				</fieldset>
 				<fieldset>
@@ -300,8 +299,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">wateractas</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_actas_posx</name>
 							<label lang="true">posx</label>
@@ -333,8 +331,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">waterpartes</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_partes_posx</name>
 							<label lang="true">posx</label>
@@ -366,8 +363,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">waterfacturas</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_facturas_posx</name>
 							<label lang="true">posx</label>
@@ -399,8 +395,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">wateralbaranes</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_albaranes_posx</name>
 							<label lang="true">posx</label>
@@ -432,8 +427,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">waterpresupuestos</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_presupuestos_posx</name>
 							<label lang="true">posx</label>
@@ -465,8 +459,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">waterclientes</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_clientes_posx</name>
 							<label lang="true">posx</label>
@@ -498,8 +491,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">waterproyectos</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_proyectos_posx</name>
 							<label lang="true">posx</label>
@@ -531,8 +523,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">waterposiblescli</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_posiblescli_posx</name>
 							<label lang="true">posx</label>
@@ -564,8 +555,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">watercorreo</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_correo_posx</name>
 							<label lang="true">posx</label>
@@ -597,8 +587,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">waterfeeds</label>
 							<type>text</type>
 							<width>120px</width>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>water_feeds_posx</name>
 							<label lang="true">posx</label>
@@ -652,8 +641,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<colspan>2</colspan>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>
@@ -662,8 +650,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<colspan>2</colspan>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>
@@ -677,8 +664,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<colspan>2</colspan>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>
@@ -725,8 +711,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>text</type>
 							<width>240px</width>
 							<colspan>2</colspan>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>

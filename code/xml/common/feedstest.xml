@@ -104,7 +104,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>text</type>
 					<width>480px</width>
 					<onchange>$("#feeds_new_0_add").addClass("ui-state-disabled")</onchange>
-					<speech>true</speech>
 				</field>
 				<field>
 					<name>test</name>
@@ -122,7 +121,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>text</type>
 					<width>480px</width>
 					<readonly>false</readonly>
-					<speech>true</speech>
 				</field>
 				<field>
 					<name>add</name>

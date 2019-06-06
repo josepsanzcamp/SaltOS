@@ -83,7 +83,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
-						<speech>true</speech>
 					</field>
 				</row>
 			</fields>
@@ -247,8 +246,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores"
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<speech>true</speech>
-							<onkey ifeval="!getParam('id')">var orig=this; var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkey>
+								<onkey ifeval="!getParam('id')">var orig=this; var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig).val()); },100)</onkey>
 						</field>
 					</row>
 					<row>
@@ -259,8 +257,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores"
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>cif</name>
 							<label lang="true">cif</label>
@@ -282,8 +279,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores"
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<speech>true</speech>
-							<onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
+								<onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
 						</field>
 					</row>
 					<row>
@@ -298,8 +294,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores"
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>
@@ -381,8 +376,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores"
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>tel_fijo</name>
 							<label lang="true">tel_fijo</label>
@@ -398,8 +392,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores"
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>fax</name>
 							<label lang="true">fax</label>

@@ -141,7 +141,7 @@ if(getParam("action")=="purge") {
 					db_query($query);
 				}
 				// BORRAR DATOS DE LAS TABLAS INDEXACION
-				$page=id2page($row2["id_aplicacion"])
+				$page=id2page($row2["id_aplicacion"]);
 				$query="DELETE FROM idx_${page} WHERE id='".$row2["id_registro"]."'";
 				db_query($query);
 				// CONTINUE

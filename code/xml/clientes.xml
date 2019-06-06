@@ -115,7 +115,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
-						<speech>true</speech>
 					</field>
 					<field>
 						<type>separator</type>
@@ -425,8 +424,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-							<onkey ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkey>
+								<onkey ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkey>
 						</field>
 					</row>
 					<row>
@@ -436,8 +434,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-							<onkey ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkey>
+								<onkey ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkey>
 						</field>
 						<field>
 							<name>cif</name>
@@ -460,8 +457,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<speech>true</speech>
-							<onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
+								<onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
 						</field>
 					</row>
 					<row>
@@ -476,8 +472,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>
@@ -559,8 +554,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>tel_fijo</name>
 							<label lang="true">tel_fijo</label>
@@ -576,8 +570,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>fax</name>
 							<label lang="true">fax</label>

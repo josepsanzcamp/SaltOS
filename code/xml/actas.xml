@@ -181,7 +181,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>text</type>
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<speech>true</speech>
 					</field>
 					<field>
 						<type>separator</type>
@@ -461,8 +460,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>
@@ -471,8 +469,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>

@@ -164,7 +164,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>3</colspan>
-						<speech>true</speech>
 					</field>
 					<field>
 						<type>separator</type>

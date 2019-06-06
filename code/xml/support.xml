@@ -66,8 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<required>true</required>
 							<focus>true</focus>
-							<speech>true</speech>
-						</field>
+							</field>
 					</row>
 					<row>
 						<field>

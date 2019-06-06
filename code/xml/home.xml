@@ -83,8 +83,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onchange>copy_value("filtro","default_0_buscar");</onchange>
 							<onkey>if(is_enterkey(event)) { copy_value("filtro","default_0_buscar");buscar2(); }</onkey>
 							<focus>true</focus>
-							<speech>true</speech>
-							<class3>shortcut_ctrl_f</class3>
+								<class3>shortcut_ctrl_f</class3>
 						</field>
 					</row>
 					<row>

@@ -88,7 +88,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
 						<colspan>2</colspan>
-						<speech>true</speech>
 					</field>
 				</row>
 			</fields>
@@ -251,8 +250,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<focus global="id" eval="true">$id==0?"true":"false"</focus>
-							<speech>true</speech>
-						</field>
+							</field>
 						<field>
 							<name>id_aplicacion</name>
 							<label lang="true">aplicacion</label>
@@ -329,8 +327,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<width>240px</width>
 										<onkey>if(is_enterkey(event)) import_buscar();</onkey>
 										<focus>true</focus>
-										<speech>true</speech>
-										<class3>shortcut_ctrl_f</class3>
+														<class3>shortcut_ctrl_f</class3>
 									</field>
 									<field>
 										<type>button</type>
