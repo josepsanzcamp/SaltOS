@@ -898,10 +898,9 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 		)):""</query>
 		<query global="page" match="default" prefix="true" eval="true">make_insert_query("tbl_registros",array(
 			"id_aplicacion"=>page2id($page),
-			"datetime"=>current_datetime()
-		),array(
-			"id_registro"=>"SELECT MAX(id) FROM ".page2table($page),
-			"id_usuario"=>"SELECT MAX(id) FROM ".page2table($page),
+			"id_registro"=>execute_query("SELECT MAX(id) FROM ".page2table($page)),
+			"id_usuario"=>execute_query("SELECT MAX(id) FROM ".page2table($page)),
+			"datetime"=>current_datetime(),
 			"first"=>1
 		))</query>
 		<query global="page" match="default" prefix="true" eval="true">make_control(page2id($page))?"":""</query>

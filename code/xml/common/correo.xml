@@ -146,7 +146,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		</field>
 		<field>
 			<type>label</type>
-			<label>(25, 465)</label>
+			<label>(25, 465, 587)</label>
 			<colspan>2</colspan>
 		</field>
 	</row>

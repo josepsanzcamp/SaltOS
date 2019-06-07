@@ -472,14 +472,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query(page2table($page))</query>
 		<query match="default" prefix="true" global="page" eval="true">make_insert_query("tbl_ficheros",array(
 			"id_aplicacion"=>page2id($page),
+			"id_registro"=>execute_query("SELECT MAX(id) FROM ".page2table($page)),
 			"id_usuario"=>current_user(),
 			"datetime"=>current_datetime(),
 			"fichero"=>getParam("fichero"),
 			"fichero_file"=>getParam("fichero_file"),
 			"fichero_size"=>intval(getParam("fichero_size")),
 			"fichero_type"=>getParam("fichero_type")
-		),array(
-			"id_registro"=>"SELECT MAX(id) FROM ".page2table($page)
 		))</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>

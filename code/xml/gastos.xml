@@ -1025,11 +1025,11 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 			"fecha2"=>dateval(getParam("fecha2"))
 		)):""</query>
 		<query match="default" prefix="true" eval="true">setParam("id",execute_query("SELECT MAX(id) FROM ".page2table(getParamWithoutPrefix("page"))))</query>
-		<query match="default" prefix="true" eval="true">make_update_query("tbl_gastos",array(),make_where_query(array(
+		<query match="default" prefix="true" eval="true">make_update_query("tbl_gastos",array(
+			"liquidado"=>execute_query("SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("liquidado"))."' ELSE CASE COUNT(*)-SUM(pagado) WHEN 0 THEN 1 ELSE 0 END END liquidado FROM tbl_gastos_v WHERE id_gasto='".getParam("id")."'")
+		),make_where_query(array(
 			"id"=>intval(getParam("id"))
-		)),array(
-			"liquidado"=>"SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("liquidado"))."' ELSE CASE COUNT(*)-SUM(pagado) WHEN 0 THEN 1 ELSE 0 END END liquidado FROM tbl_gastos_v WHERE id_gasto='".getParam("id")."'"
-		))</query>
+		)))</query>
 		<query eval="true">"SELECT CONCAT('".LANG_ESCAPE("lastinsert")."',LPAD((SELECT MAX(id) FROM tbl_gastos),".intval(CONFIG("zero_padding_digits")).",0)) action_alert"</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
@@ -1057,11 +1057,11 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 			"pagado"=>intval(getParam("pagado")),
 			"fecha2"=>dateval(getParam("fecha2"))
 		)):""</query>
-		<query match="default" prefix="true" eval="true">make_update_query("tbl_gastos",array(),make_where_query(array(
+		<query match="default" prefix="true" eval="true">make_update_query("tbl_gastos",array(
+			"liquidado"=>execute_query("SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("liquidado"))."' ELSE CASE COUNT(*)-SUM(pagado) WHEN 0 THEN 1 ELSE 0 END END liquidado FROM tbl_gastos_v WHERE id_gasto='".getParam("id")."'")
+		),make_where_query(array(
 			"id"=>intval(getParam("id"))
-		)),array(
-			"liquidado"=>"SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("liquidado"))."' ELSE CASE COUNT(*)-SUM(pagado) WHEN 0 THEN 1 ELSE 0 END END liquidado FROM tbl_gastos_v WHERE id_gasto='".getParam("id")."'"
-		))</query>
+		)))</query>
 		<query eval="true">"SELECT CONCAT('".LANG_ESCAPE("lastupdate")."',LPAD(".getParam("id").",".intval(CONFIG("zero_padding_digits")).",0)) action_alert"</query>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>

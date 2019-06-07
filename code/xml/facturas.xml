@@ -1672,11 +1672,11 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		),make_where_query(array(
 			"id"=>intval(getParam("id"))
 		))):""</query>
-		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(),make_where_query(array(
+		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+			"cobrado"=>execute_query("SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'")
+		),make_where_query(array(
 			"id"=>intval(getParam("id"))
-		)),array(
-			"cobrado"=>"SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'"
-		))</query>
+		)))</query>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
 	<update>
@@ -1797,11 +1797,11 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		),make_where_query(array(
 			"id"=>intval(getParam("id"))
 		))):""</query>
-		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(),make_where_query(array(
+		<query match="default" prefix="true" eval="true">make_update_query("tbl_facturas",array(
+			"cobrado"=>execute_query("SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'")
+		),make_where_query(array(
 			"id"=>intval(getParam("id"))
-		)),array(
-			"cobrado"=>"SELECT CASE COUNT(*) WHEN 0 THEN '".intval(getParam("cobrado"))."' ELSE CASE COUNT(*)-SUM(cobrado) WHEN 0 THEN 1 ELSE 0 END END cobrado FROM tbl_facturas_v WHERE id_factura='".intval(getParam("id"))."'"
-		))</query>
+		)))</query>
 		<query match="default" prefix="true" eval="true">"SELECT '".LANG_ESCAPE("vencimientoscobrado")."' action_alert FROM tbl_facturas WHERE cobrado!='".intval(getParam("cobrado"))."' AND id='".intval(getParam("id"))."'"</query>
 		<query include="xml/common/qfoldersupdate.xml" replace="true"/>
 	</update>

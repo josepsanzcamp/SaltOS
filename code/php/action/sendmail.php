@@ -105,7 +105,7 @@ if(getParam("action")=="sendmail") {
 				if($id_extra[1]=="forward" && __getmail_processfile($disp2,$type2)) {
 					$cid2=$node2["cid"];
 					$cname2=$node2["cname"];
-					if($cid2=="" && $cname2!="") {
+					if(($cid2=="" && $cname2!="") || ($cid2==$cname2 && $cname2!="")) {
 						$chash2=$node2["chash"];
 						$delete="files_old_${chash2}_fichero_del";
 						if(!getParam($delete)) $attachs[]=__getmail_getcid(__getmail_getnode("0",$decoded),$chash2);

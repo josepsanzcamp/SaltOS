@@ -1798,7 +1798,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				//~ forcePasteAsPlainText:true,
 				//~ uiColor:get_colors("ui-state-default","background-color"),
 				//~ uiColor:"transparent",
-				//~ allowedContent:true,
+				allowedContent:true,
 				extraAllowedContent:$(this).attr("ckextra"),
 			},function() {
 				var obj=$("#"+$(this).attr("name")).next();
