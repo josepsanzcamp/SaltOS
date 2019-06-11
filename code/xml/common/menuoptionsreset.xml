@@ -29,6 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onclick global="temp" eval="true">"opencontent('?page=$temp&amp;action=limpiar')"</onclick>
 		<icon>fa fa-refresh</icon>
 		<tip lang="true">limpiartip</tip>
-		<class>nowrap submenu</class>
+		<class>nowrap depth_1</class>
 	</option>
 </root>

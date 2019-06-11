@@ -442,6 +442,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gestionproyectos>Projekte</gestionproyectos>
 		<gestioncontabilidad>Rechnungswesen</gestioncontabilidad>
 		<gestiongeneral>Allgemeines</gestiongeneral>
+		<gestionfiltros translated="false">Filters</gestionfiltros>
 		<gestionadministracion>Verwaltung</gestionadministracion>
 		<gestiontipos>Typen</gestiontipos>
 		<gestionsistema>System</gestionsistema>

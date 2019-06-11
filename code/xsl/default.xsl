@@ -154,14 +154,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:for-each select="/root/menu/group">
 		<div class="{class}" id="{name}">
 			<h3 title="{tip}"><xsl:value-of select="label"/></h3>
-			<div>
-				<ul class="accordion-link">
+			<div class="accordion-link">
+				<ul>
 					<xsl:for-each select="option">
-						<li><a href="javascript:void(0)" class="{class}" onclick="{onclick}" title="{tip}" id="{name}">
-							<span class="{icon}"></span>
-							<xsl:text> </xsl:text>
-							<xsl:value-of select="label"/>
-						</a></li>
+						<li>
+							<a href="javascript:void(0)" class="{class}" icon="{icon}" onclick="{onclick}" title="{tip}" id="{name}"><xsl:value-of select="label"/></a>
+						</li>
 					</xsl:for-each>
 				</ul>
 			</div>
@@ -827,7 +825,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
 			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
-				<textarea name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width};height:{height}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}" ckeditor="{ckeditor}" ckextra="{ckextra}" codemirror="{codemirror}" autocomplete="off">
+				<textarea name="{$prefix}{name}" id="{$prefix}{name}" style="width:{width};height:{height}" onchange="{onchange}" onkeydown="{onkey}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="ui-state-default ui-corner-all {class3}" ckeditor="{ckeditor}" ckextra="{ckextra}" codemirror="{codemirror}" isautocomplete="{autocomplete}" querycomplete="{querycomplete}" filtercomplete="{filtercomplete}" oncomplete="{oncomplete}" autocomplete="off">
 					<xsl:if test="readonly='true'">
 						<xsl:attribute name="readonly">true</xsl:attribute>
 						<xsl:attribute name="class">ui-state-default ui-corner-all ui-state-disabled <xsl:value-of select="class3"/></xsl:attribute>

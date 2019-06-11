@@ -40,7 +40,8 @@ if(getParam("action")=="styles") {
 		echo "<link href='lib/fontawesome/css/fontawesome.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<link href='lib/fontawesome/css/solid.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<link href='lib/fontawesome/css/v4-shims.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
-		echo "<script src='lib/jquery/jquery.min.js'></script>";
+		echo "<link href='lib/jstree/themes/default/style.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<script src='lib/jquery/jquery.min.js?r=${revision}'></script>";
 		echo "<script>";
 		echo "var inputs='a.ui-state-default,input.ui-state-default,li.ui-state-default,h3.ui-state-default'; $(document).on('mouseover',inputs,function() { $(this).addClass('ui-state-hover'); }).on('mouseout',inputs,function() { $(this).removeClass('ui-state-hover'); });";
 		echo "var inputs='.tabla td.tbody'; $(document).on('mouseover',inputs,function() { $(this).parent().find('td').addClass('ui-state-highlight'); }).on('mouseout',inputs,function() { $(this).parent().find('td').removeClass('ui-state-highlight'); });";

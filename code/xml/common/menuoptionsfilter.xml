@@ -29,6 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onclick global="temp,row" eval="true">"opencontent('?page=$temp&amp;".base64_decode($row["querystring"])."')"</onclick>
 		<icon>fa fa-tag</icon>
 		<tip global="row" eval="true">$row["nombre"]</tip>
-		<class>nowrap submenu</class>
+		<class>nowrap depth_1</class>
 	</option>
 </root>

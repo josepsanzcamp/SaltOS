@@ -31,5 +31,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tip global="temp" eval="true">LANG("desc_$temp")</tip>
 		<class global="temp" eval="true">"nowrap".($temp=="correo"?" number number_correo":"").($temp=="agenda"?" number number_agenda":"").($temp=="feeds"?" number number_feeds":"")</class>
 		<selected global="page,temp" eval="true">$page==$temp?"true":"false"</selected>
+		<name global="temp" eval="true">$temp</name>
 	</option>
 </root>

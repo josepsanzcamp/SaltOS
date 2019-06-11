@@ -200,6 +200,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/fontawesome/css/solid.min.css</include>
 			<include>lib/fontawesome/css/v4-shims.min.css</include>
 			<include>lib/handsontable/handsontable.full.min.css</include>
+			<include>lib/jstree/themes/default/style.min.css</include>
 		</cache>
 	</styles>
 	<javascript>
@@ -230,6 +231,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/codemirror/codemirror.min.js</include>
 			<include>lib/codemirror/codemirror.mode.min.js</include>
 			<include>lib/handsontable/handsontable.full.min.js</include>
+			<include>lib/jstree/jstree.min.js</include>
 		</cache>
 		<cache ifeval="ismobile()">
 			<include>lib/phpjs/php.saltos.min.js</include>

@@ -442,6 +442,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gestionproyectos>المشاريع</gestionproyectos>
 		<gestioncontabilidad>المحاسبة</gestioncontabilidad>
 		<gestiongeneral>عام</gestiongeneral>
+		<gestionfiltros translated="false">Filters</gestionfiltros>
 		<gestionadministracion>إدارة</gestionadministracion>
 		<gestiontipos>الانواع</gestiontipos>
 		<gestionsistema>النظام</gestionsistema>

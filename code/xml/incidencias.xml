@@ -486,7 +486,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row" prepend="true">
-			<field>
+			<field global="id" ifeval="$id&gt;=0">
 				<name>boolsendmail</name>
 				<type>checkbox</type>
 				<label lang="true">boolsendmail</label>

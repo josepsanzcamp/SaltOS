@@ -29,6 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onclick global="temp" eval="true">"opencontent('?page=$temp&amp;action=form&amp;id=0')"</onclick>
 		<icon>fa fa-plus-circle</icon>
 		<tip global="temp" eval="true">LANG("create",$temp)</tip>
-		<class>nowrap submenu</class>
+		<class>nowrap depth_1</class>
 	</option>
 </root>
