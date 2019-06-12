@@ -1,0 +1,3 @@
+
+The 32px.png file was replaced by the file provided by the follow project:
+- https://wordpress.org/plugins/tree-website-map/

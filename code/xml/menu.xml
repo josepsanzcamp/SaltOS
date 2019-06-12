@@ -168,17 +168,46 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<name global="row" eval="true">encode_bad_chars($row["name"])</name>
 		</option>
 	</group>
-	<group>
+	<temp global="temp" eval="true">$temp=execute_query("SELECT COUNT(*) FROM tbl_filters WHERE id_usuario='".current_user()."'")</temp>
+	<group global="temp" ifeval="$temp">
 		<label lang="true">gestionfiltros</label>
 		<name>gestionfiltros</name>
 		<class>menu</class>
-		<temp global="rows" eval="true">$rows=execute_query_array("SELECT * FROM tbl_filters WHERE id_usuario='".current_user()."' ORDER BY nombre ASC")</temp>
+		<temp global="rows" eval="true">$rows=execute_query_array("
+			SELECT DISTINCT
+				'0' AS pos,
+				id_aplicacion,
+				'' AS nombre,
+				'' AS querystring
+			FROM tbl_filters
+			WHERE id_usuario='".current_user()."'
+			UNION
+			SELECT DISTINCT
+				'1' AS pos,
+				id_aplicacion,
+				nombre,
+				querystring
+			FROM tbl_filters
+			WHERE id_usuario='".current_user()."'
+			UNION
+			SELECT DISTINCT
+				'2' AS pos,
+				id_aplicacion,
+				'' nombre,
+				'".base64_encode("action=limpiar")."' AS querystring
+			FROM tbl_filters
+			WHERE id_usuario='".current_user()."'
+			ORDER BY id_aplicacion,pos,nombre")</temp>
 		<option global="rows,row" foreach="rows" as="row">
+			<temp global="row" eval="true">$row["codigo"]=id2page($row["id_aplicacion"])</temp>
+			<temp global="row" eval="true">$row["nombre"]=implode(array_slice(array(LANG($row["codigo"]),$row["nombre"],LANG("limpiar")),$row["pos"],1))</temp>
+			<temp global="row" eval="true">$row["icon"]=implode(array_slice(array(ICON($row["codigo"]),"fa fa-tag","fa fa-refresh"),$row["pos"],1))</temp>
+			<temp global="row" eval="true">$row["depth"]=implode(array_slice(array(0,1,1),$row["pos"],1))</temp>
 			<label global="row" eval="true">$row["nombre"]</label>
-			<onclick global="temp,row" eval="true">"opencontent('?page=".id2page($row["id_aplicacion"])."&amp;".base64_decode($row["querystring"])."')"</onclick>
-			<icon>fa fa-tag</icon>
-			<tip global="row" eval="true">$row["nombre"]</tip>
-			<class>nowrap</class>
+			<onclick global="temp,row" eval="true">"opencontent('?page=".$row["codigo"]."&amp;".base64_decode($row["querystring"])."')"</onclick>
+			<icon global="row" eval="true">$row["icon"]</icon>
+			<class global="row" eval="true">"nowrap depth_".$row["depth"]</class>
+			<name global="row" eval="true">encode_bad_chars($row["nombre"])</name>
 		</option>
 	</group>
 	<group ifeval="(check_user('campanyas','menu') || check_user('posiblescli','menu') || check_user('presupuestos','menu') || check_user('actas','menu') || check_user('clientes','menu') || check_user('contactos','menu'))">

@@ -1284,7 +1284,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</td>
 		</xsl:when>
 		<xsl:when test="type='copy'">
-			<td></td><td iscopy="true" copyname="{name}" onchange="{onchange}" onkeydown="{onkey}" class="{class}" focused="{focus}"></td>
+			<xsl:choose>
+				<xsl:when test="label!=''">
+					<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:value-of select="label"/></td>
+				</xsl:when>
+				<xsl:otherwise>
+					<td></td>
+				</xsl:otherwise>
+			</xsl:choose>
+			<td iscopy="true" copyname="{name}" onchange="{onchange}" onkeydown="{onkey}" class="{class}" focused="{focus}"></td>
 		</xsl:when>
 	</xsl:choose>
 </xsl:template>

@@ -535,9 +535,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/handsontable/handsontable/tree/6.2.2")</onclick>
 						</field>
 						<field>
-							<type>separator</type>
+							<label>jsTree (MIT)</label>
+							<type>link</type>
 							<class>tbody</class>
-							<colspan>1</colspan>
+							<onclick>openwin("https://www.jstree.com/")</onclick>
 						</field>
 					</row>
 					<row>
