@@ -1143,9 +1143,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				}
 			});
 			exists=1;
-			// FOR JSTREE
+			// FOR MOVE NODES AS A REAL TREE
 			var obj=[];
-			var open=[];
 			$(".accordion-link li",this).each(function() {
 				var found=0;
 				for(var i=1;i<20;i++) {
@@ -1161,16 +1160,22 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					while(obj.length>0) obj.pop();
 					obj.push(this);
 				}
-				// FOR OPEN FEATURE
+			});
+			// FOR PREPARE THE OPEN NODE LIST
+			var open=[];
+			$(".accordion-link li",this).each(function() {
 				var name2=$("a",this).attr("id");
 				var active=getIntCookie("saltos_ui_menu_"+name+"_"+name2);
 				if(active) open.push("#"+name2);
 			});
+			// CREATE THE JSTREE
 			$(".accordion-link",this).jstree();
+			// NOW, OPEN THE NODES USING THE PREVIOUS NODE LIST
 			for(var i in open) {
 				var obj=$(open[i],this);
 				$(".accordion-link",this).jstree("open_node",obj);
 			}
+			// DEFINE AND EXECUTE THE FIX FOR THE ICONS
 			var fn=function(obj) {
 				$(".jstree-icon.jstree-themeicon",obj).each(function() {
 					var icon=$(this).parent().attr("icon");
@@ -1178,9 +1183,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				});
 			}
 			fn(this);
+			// PROGRAM THE BIND TO PREVENT SELECTION
 			$(".accordion-link",this).on("select_node.jstree",function(e,_data) {
 				_data.instance.deselect_node(_data.node);
 			});
+			// PROGRAM THE BIND TO STORE THE NODE'S STATES
 			$(".accordion-link",this).on("open_node.jstree",function(e,_data) {
 				fn(this);
 				var name2=_data.node.a_attr.id;
@@ -2262,14 +2269,46 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		}).on("click",function(event) {
 			if(event.button!=2) hide_contextmenu();
 		}).on("contextmenu",function(event) {
-			if(event.ctrlKey) return true;
 			hide_tooltips();
+			hide_contextmenu();
+			// CANCEL EVENTS
+			if(event.ctrlKey) return true;
+			// FOR CANCEL IN JSTREE
+			if($(event.target).is("li.jstree-node")) return false;
+			if($(event.target).is("a.jstree-anchor")) return false;
+			if($(event.target).is("i.jstree-icon")) return false;
+			// FOR CANCEL IN MENU
+			if($(event.target).is("div.ui-accordion-content")) return false;
+			if($(event.target).is("h3.ui-accordion-header")) return false;
+			// FOR CANCEL IN THEAD
+			if($(event.target).is("td.ui-widget-header")) return false;
+			if($(event.target).is("span.ui-icon")) return false;
+			// FOR CANCEL IN BUTTONS
+			if($(event.target).is("a.ui-state-default")) return false;
+			if($(event.target).parent().is("a.ui-state-default")) return false;
+			// FOR CANCEL IN TEXTBOX
+			if($(event.target).is("input.ui-state-default")) return false;
+			// FOR CANCEL IN CHECKBOX AND LABELS
+			if($(event.target).is("input[type=checkbox]")) return false;
+			if($(event.target).is("label[for]")) return false;
+			// FOR CANCEL IN SELECTMENU
+			if($(event.target).is("span.ui-selectmenu-button")) return false;
+			if($(event.target).is("span.ui-selectmenu-icon")) return false;
+			if($(event.target).is("span.ui-selectmenu-text")) return false;
+			// FOR CANCEL IN DIALOG
+			if(dialog("isopen")) return false;
+			// FOR CANCEL IN TABS
+			if($(event.target).is("a.ui-tabs-anchor")) return false;
+			if($(event.target).parent().is("a.ui-tabs-anchor")) return false;
+			// GET AND CLEAR OBJECT
 			var obj=$("#contextMenu");
 			$("li",obj).remove();
+			// PREPARE OPTIONS
 			var parent=$(event.target).parent();
 			var trs=$("tr",parent);
 			var tds=$("td.actions1",parent);
 			if($(trs).length || !$(tds).length) tds=$(".contextmenu");
+			// ADD OPTIONS
 			var hashes=[];
 			$(tds).each(function() {
 				var onclick=$(this).attr("onclick");
@@ -2295,6 +2334,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					hashes.push(hash);
 				}
 			});
+			// PLACE POPUP
 			$(obj).css("position","absolute");
 			if(typeof(event.pageX)!="undefined") {
 				if(event.pageX<$(window).width()*0.66) {
@@ -2307,6 +2347,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(obj).css("top",event.pageY);
 				}
 			}
+			// OPEN POPUP
 			$(obj).show();
 			$(obj).menu("refresh");
 			return false;
