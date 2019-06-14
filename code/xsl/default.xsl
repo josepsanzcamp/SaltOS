@@ -1629,12 +1629,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</td>
 				</tr>
 				<tr>
-					<td valign="top">
+					<td valign="top"><div>
 						<div class="ui-layout-west">
 							<xsl:call-template name="menu"/>
 							<xsl:call-template name="back2top"/>
 						</div>
-					</td>
+					</div></td>
 					<td valign="top" class="width100">
 						<div class="ui-layout-center">
 							<xsl:call-template name="list"/>

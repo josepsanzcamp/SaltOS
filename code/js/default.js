@@ -1063,7 +1063,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("updatecontent north fase 0");
 		var header=$(".ui-layout-north");
 		var header2=$(".ui-layout-north",html);
-		$(header2).attr("hash",md5($(header2).text()));
+		$(header2).attr("hash",md5($(header2).html()));
 		unmake_numbers(header);
 		if($(header).attr("hash")!=$(header2).attr("hash")) {
 			$(header).replaceWith(header2);
@@ -1078,7 +1078,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		// CHECK FOR LOGIN AND LOGOUT
 		var menu=$(".ui-layout-west");
 		var menu2=$(".ui-layout-west",html);
-		$(menu2).attr("hash",md5($(menu2).text()));
+		$(menu2).attr("hash",md5($(menu2).html()));
 		var saltos_login=(!saltos_islogin(menu) && saltos_islogin(menu2))?1:0;
 		var saltos_logout=(saltos_islogin(menu) && !saltos_islogin(menu2))?1:0;
 		// IF LOGIN
@@ -1201,22 +1201,22 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(exists) {
 			var closed=getIntCookie("saltos_ui_menu_closed");
 			if(closed) {
-				$(obj).addClass("none");
+				$(obj).parent().addClass("none");
 			} else {
-				$(obj).removeClass("none");
+				$(obj).parent().removeClass("none");
 			}
 		} else {
-			$(obj).addClass("none");
+			$(obj).parent().addClass("none");
 		}
 	}
 
 	function toggle_menu() {
 		var obj=$(".ui-layout-west");
-		if($(obj).is(":visible")) {
-			$(obj).addClass("none");
+		if($(obj).parent().is(":visible")) {
+			$(obj).parent().addClass("none");
 			setIntCookie("saltos_ui_menu_closed",1);
 		} else {
-			$(obj).removeClass("none");
+			$(obj).parent().removeClass("none");
 			setIntCookie("saltos_ui_menu_closed",0);
 		}
 	}
@@ -2466,6 +2466,20 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		})
 	}
 
+	function make_resizable(menu) {
+		var width=getIntCookie("saltos_ui_menu_width");
+		if(!width) width=200;
+		$(menu).parent().width(width).resizable({
+			minWidth:100,
+			maxWidth:400,
+			grid:10,
+			handles:"e",
+			resize:function(event,ui) {
+				setIntCookie("saltos_ui_menu_width",ui.size.width);
+			},
+		});
+	}
+
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
 	$.ajaxSetup({ cache:true });
 
@@ -2479,8 +2493,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		loadingcontent();
 		var header=$(".ui-layout-north");
 		var menu=$(".ui-layout-west");
-		$(header).attr("hash",md5($(header).text()));
-		$(menu).attr("hash",md5($(menu).text()));
+		$(header).attr("hash",md5($(header).html()));
+		$(menu).attr("hash",md5($(menu).html()));
 		setTimeout(function() {
 			//~ console.time("document_ready fase 1");
 			init_history();
@@ -2500,6 +2514,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			},100);
 			var menu=$(".ui-layout-west");
 			if(saltos_islogin(menu)) sync_cookies("start");
+			make_resizable(menu);
 			make_menu(menu);
 			setTimeout(function() {
 				//~ console.time("document_ready fase 2 west");
