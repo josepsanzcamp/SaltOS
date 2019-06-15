@@ -1087,6 +1087,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		//~ console.time("updatecontent west fase 0");
 		unmake_numbers(menu);
 		if($(menu).attr("hash")!=$(menu2).attr("hash")) {
+			make_resizable(menu2);
 			make_menu(menu2);
 			$(menu).replaceWith(menu2);
 			setTimeout(function() {
@@ -1122,7 +1123,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	function make_menu(obj) {
-		if(typeof(obj)=="undefined") var obj=$("body");
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-west");
 		// CREATE THE MENU USING THE OLD OPENED SECTION STORED IN A COOKIE
 		var exists=0;
 		$(".menu",obj).each(function() {
@@ -1144,21 +1145,21 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			});
 			exists=1;
 			// FOR MOVE NODES AS A REAL TREE
-			var obj=[];
+			var temp=[];
 			$(".accordion-link li",this).each(function() {
 				var found=0;
 				for(var i=1;i<20;i++) {
 					if($("a",this).hasClass("depth_"+i)) {
-						if($("ul",obj[i-1]).length==0) $(obj[i-1]).append("<ul></ul>");
-						$("ul",obj[i-1]).append(this);
-						while(obj.length>i) obj.pop();
-						obj.push(this);
+						if($("ul",temp[i-1]).length==0) $(temp[i-1]).append("<ul></ul>");
+						$("ul",temp[i-1]).append(this);
+						while(temp.length>i) temp.pop();
+						temp.push(this);
 						found=1;
 					}
 				}
 				if(!found) {
-					while(obj.length>0) obj.pop();
-					obj.push(this);
+					while(temp.length>0) temp.pop();
+					temp.push(this);
 				}
 			});
 			// FOR PREPARE THE OPEN NODE LIST
@@ -1172,8 +1173,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(".accordion-link",this).jstree();
 			// NOW, OPEN THE NODES USING THE PREVIOUS NODE LIST
 			for(var i in open) {
-				var obj=$(open[i],this);
-				$(".accordion-link",this).jstree("open_node",obj);
+				var temp=$(open[i],this);
+				$(".accordion-link",this).jstree("open_node",temp);
 			}
 			// DEFINE AND EXECUTE THE FIX FOR THE ICONS
 			var fn=function(obj) {
@@ -1201,29 +1202,29 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(exists) {
 			var closed=getIntCookie("saltos_ui_menu_closed");
 			if(closed) {
-				$(obj).parent().addClass("none");
+				$(obj).addClass("none");
 			} else {
-				$(obj).parent().removeClass("none");
+				$(obj).removeClass("none");
 			}
 		} else {
-			$(obj).parent().addClass("none");
+			$(obj).addClass("none");
 		}
 	}
 
 	function toggle_menu() {
 		var obj=$(".ui-layout-west");
-		if($(obj).parent().is(":visible")) {
-			$(obj).parent().addClass("none");
+		if($(obj).is(":visible")) {
+			$(obj).addClass("none");
 			setIntCookie("saltos_ui_menu_closed",1);
 		} else {
-			$(obj).parent().removeClass("none");
+			$(obj).removeClass("none");
 			setIntCookie("saltos_ui_menu_closed",0);
 		}
 	}
 
 	function make_tabs(obj) {
 		//~ console.time("make_tabs");
-		if(typeof(obj)=="undefined") var obj=$("body");
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-center");
 		// REPAIR THE DIVS THAT NOT ARE A TABS.
 		// THE CODE FIND ALL DIVS AND IF NOT IS A VALID TAB,
 		// MOVE ALL THE CONTENT TO THE PREVIOUS DIV THAT IS A VALID TAB
@@ -1358,7 +1359,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function make_tabs2(obj) {
 		//~ console.time("make_tabs2");
-		if(typeof(obj)=="undefined") var obj=$("body");
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-north");
 		// MAKE THE TABS
 		$(".tabs2",obj).tabs({
 			beforeActivate:function(event,ui) {
@@ -1386,7 +1387,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function make_extras(obj) {
 		//~ console.time("make_extras");
-		if(typeof(obj)=="undefined") var obj=$("body");
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-center");
 		// PROGRAM COPY FIELDS
 		$("td[iscopy=true]",obj).each(function() {
 			var name=$(this).attr("copyname");
@@ -1777,7 +1778,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function make_ckeditors(obj) {
 		//~ console.time("make_ckeditors");
-		if(typeof(obj)=="undefined") var obj=$("body");
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-center");
 		// AUTO-GROWING TEXTAREA
 		$("textarea[ckeditor!=true][codemirror!=true]",obj).each(function() {
 			var textarea="#"+$(this).attr("id");
@@ -2018,7 +2019,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function unmake_ckeditors(obj) {
 		//~ console.time("unmake_ckeditors");
-		if(typeof(obj)=="undefined") var obj=$("body");
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-center");
 		// REMOVE THE CKEDITORS (IMPORTANT THING!!!)
 		$("textarea[ckeditor=true]",obj).each(function() {
 			var name=$(this).attr("name");
@@ -2094,7 +2095,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function make_tables(obj) {
 		//~ console.time("make_tables");
-		if(typeof(obj)=="undefined") var obj=$("body");
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-center");
 		// SUPPORT FOR LTR AND RTL LANGS
 		var dir=$("html").attr("dir");
 		var rtl={
@@ -2466,10 +2467,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		})
 	}
 
-	function make_resizable(menu) {
-		var width=getIntCookie("saltos_ui_menu_width");
+	function make_resizable(obj) {
+		if(typeof(obj)=="undefined") var obj=$(".ui-layout-west");
+		var width=parseInt(getIntCookie("saltos_ui_menu_width")/10)*10;
 		if(!width) width=200;
-		$(menu).parent().width(width).resizable({
+		$(obj).width(width).resizable({
 			minWidth:100,
 			maxWidth:400,
 			grid:10,
