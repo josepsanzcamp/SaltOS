@@ -543,6 +543,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
+							<label>jQuery File Upload (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://github.com/blueimp/jQuery-File-Upload")</onclick>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>tbody</class>
+							<colspan>3</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
 							<type>separator</type>
 						</field>
 					</row>
