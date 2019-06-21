@@ -34,8 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		- type: can be xml, csv or excel
 		- data: the matrix to export
 		- sep: separator char used only by csv format
-		- eol: enf of line char used only by csv format
-		- encoding: charset used
+		- eol: enf of line char used by csv and xml format
+		- encoding: charset used by csv and xml format
 		- replace: array with two elements, from and to, used to do replacements of the matrix values
 		- escape: array with two elements, char and mode, used to specify the escape character and the escape mode
 		- title: title used only by excel format
@@ -51,7 +51,7 @@ function export_file($args) {
 	if(!isset($args["type"])) show_php_error(array("phperror"=>"Unknown type"));
 	if(!isset($args["data"])) show_php_error(array("phperror"=>"Unknown data"));
 	if(!isset($args["sep"])) $args["sep"]=";";
-	if(!isset($args["eol"])) $args["eol"]="\r\n";
+	if(!isset($args["eol"])) $args["eol"]="\n";
 	if(!isset($args["encoding"])) $args["encoding"]="UTF-8";
 	if(!isset($args["replace"])) $args["replace"]=array("from"=>"","to"=>"");
 	if(!isset($args["escape"])) $args["escape"]=array("char"=>'"',"mode"=>"auto");
@@ -61,7 +61,7 @@ function export_file($args) {
 	// CONTINUE
 	switch($args["type"]) {
 		case "xml":
-			$buffer=__export_file_xml($args["data"]);
+			$buffer=__export_file_xml($args["data"],$args["eol"],$args["encoding"]);
 			break;
 		case "csv":
 			$buffer=__export_file_csv($args["data"],$args["sep"],$args["eol"],$args["encoding"],$args["replace"],$args["escape"]);
@@ -91,13 +91,17 @@ function export_file($args) {
 		This function is intended to export data in xml format
 	Input:
 		- matrix: the matrix to export
+		- eol: enf of line char
+		- encoding: charset used
 	Output:
 		They will returns all data
 */
-function __export_file_xml($matrix) {
+function __export_file_xml($matrix,$eol="\n",$encoding="UTF-8") {
 	require_once("php/array2xml.php");
 	$buffer=__XML_HEADER__;
 	$buffer.=__array2xml_write_nodes($matrix,0);
+	$buffer=str_replace("\n",$eol,$buffer);
+	$buffer=mb_convert_encoding($buffer,$encoding,"UTF-8");
 	return $buffer;
 }
 
