@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value lang="true">limpiar</value>
 			<tip lang="true">limpiartip</tip>
 			<onclick>limpiar()</onclick>
-			<icon>fa fa-refresh</icon>
+			<icon>fa fa-sync</icon>
 			<class>nowrap</class>
 		</field>
 	</row>

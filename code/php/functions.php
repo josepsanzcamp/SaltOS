@@ -174,6 +174,7 @@ function eval_iniset($array) {
 						show_php_error(array("phperror"=>"mb_internal_encoding fails to set '$val'"));
 					}
 				} elseif($key=="mbstring.detect_order") {
+					$val=implode(",",array_intersect(explode(",",$val),mb_list_encodings()));
 					if(mb_detect_order($val)===false) {
 						show_php_error(array("phperror"=>"mb_detect_order fails to set '$val'"));
 					}

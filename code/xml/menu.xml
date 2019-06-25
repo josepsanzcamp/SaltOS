@@ -201,7 +201,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option global="rows,row" foreach="rows" as="row">
 			<temp global="row" eval="true">$row["codigo"]=id2page($row["id_aplicacion"])</temp>
 			<temp global="row" eval="true">$row["nombre"]=implode(array_slice(array(LANG($row["codigo"]),$row["nombre"],LANG("limpiar")),$row["pos"],1))</temp>
-			<temp global="row" eval="true">$row["icon"]=implode(array_slice(array(ICON($row["codigo"]),"fa fa-tag","fa fa-refresh"),$row["pos"],1))</temp>
+			<temp global="row" eval="true">$row["icon"]=implode(array_slice(array(ICON($row["codigo"]),"fa fa-tag","fa fa-sync"),$row["pos"],1))</temp>
 			<temp global="row" eval="true">$row["depth"]=implode(array_slice(array(0,1,1),$row["pos"],1))</temp>
 			<label global="row" eval="true">$row["nombre"]</label>
 			<onclick global="temp,row" eval="true">"opencontent('?page=".$row["codigo"]."&amp;".base64_decode($row["querystring"])."')"</onclick>

@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <li class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap depth_1" href="javascript:void(0)" ><i class="jstree-icon jstree-themeicon-custom fa fa-plus-circle"></i>New email</a></li>
 <li class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap depth_1" href="javascript:void(0)" ><i class="jstree-icon jstree-themeicon-custom fa fa-tag"></i>Inbox</a></li>
 <li class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap depth_1" href="javascript:void(0)" ><i class="jstree-icon jstree-themeicon-custom fa fa-tag"></i>Outbox</a></li>
-<li class="jstree-node  jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor  nowrap depth_1" href="javascript:void(0)"><i class="jstree-icon jstree-themeicon-custom fa fa-refresh"></i>Reset</a></li>
+<li class="jstree-node  jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor  nowrap depth_1" href="javascript:void(0)"><i class="jstree-icon jstree-themeicon-custom fa fa-sync"></i>Reset</a></li>
 </ul></li>
 <li class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap" href="javascript:void(0)"><i class="jstree-icon jstree-themeicon-custom fa fa-user-circle"></i>Profile</a></li>
 <li class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap" href="javascript:void(0)"><i class="jstree-icon jstree-themeicon-custom fa fa-question-circle"></i>Support</a></li>
@@ -80,7 +80,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <td class="left nowrap " style="width:120px"><input value="" style="width:120px" class="ui-state-default ui-corner-all" type="text"></td>
 <td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-search"></span> Search</a></td>
 <td><span class="ui-selectmenu-button ui-selectmenu-button-closed ui-corner-all ui-button ui-widget" style="width: auto;"><span class="ui-selectmenu-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-selectmenu-text">Options</span></span></td>
-<td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-refresh"></span> Reset</a></td>
+<td class="nowrap"><a href="#" class="ui-state-default ui-corner-all"><span class="fa fa-sync"></span> Reset</a></td>
 </tr></tbody></table>
 <table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="separator"></td></tr></tbody></table>
 <table class="tabla helperlists" style="width:100%" cellspacing="0" cellpadding="0" border="0">

@@ -47,9 +47,9 @@ $dir=$_LANG["dir"];
 $textalign=array("ltr"=>"right","rtl"=>"left");
 // SOME DEFINES
 define("__UI__","class='ui-state-default ui-corner-all'");
-define("__BACK__","<a href='javascript:history.back()' ".__UI__."><span class='fa fa-hand-o-left'></span>&nbsp;".LANG("back")."</a>");
+define("__BACK__","<a href='javascript:history.back()' ".__UI__."><span class='fa fa-arrow-circle-left'></span>&nbsp;".LANG("back")."</a>");
 define("__NEXT__","<a href='javascript:document.form.submit()' ".__UI__."><span class='fa fa-check-circle'></span>&nbsp;".LANG("next")."</a>");
-define("__TEST__","<a href='javascript:window.location.reload()' ".__UI__."><span class='fa fa-refresh'></span>&nbsp;".LANG("test")."</a>");
+define("__TEST__","<a href='javascript:window.location.reload()' ".__UI__."><span class='fa fa-sync'></span>&nbsp;".LANG("test")."</a>");
 define("__INSTALL__","<a href='javascript:document.form.submit()' ".__UI__."><span class='fa fa-check-circle'></span>&nbsp;".LANG("install")."</a>");
 define("__SALTOS__","<a href='javascript:document.form.submit()' ".__UI__."><span class='fa fa-check-circle'></span>&nbsp;".LANG("saltos")."</a>");
 define("__GREEN__","<span style='color:#007700'><b>");
@@ -73,7 +73,8 @@ define("__USER__",1);
 	<head>
 		<link xmlns="" href="img/favicon.ico" rel="shortcut icon">
 		<title><?php echo LANG("title")." - ".get_name_version_revision(); ?></title>
-		<link href="lib/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
+		<link href="lib/fontawesome/css/fontawesome.min.css" rel="stylesheet" type="text/css"></link>
+		<link href="lib/fontawesome/css/solid.min.css" rel="stylesheet" type="text/css"></link>
 		<link href="css/default.css" rel="stylesheet" type="text/css"></link>
 		<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
 		<link href="<?php echo getDefault("stylepre").$style.getDefault("stylepost"); ?>" rel="stylesheet" type="text/css"></link>

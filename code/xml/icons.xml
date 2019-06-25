@@ -33,13 +33,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<favoritos>fa fa-star</favoritos>
 	<agenda>fa fa-calendar</agenda>
 	<profile>fa fa-user-circle</profile>
-	<logout>fa fa-sign-out</logout>
+	<logout>fa fa-sign-out-alt</logout>
 	<importaciones>fa fa-cogs</importaciones>
 	<maincfg>fa fa-cogs</maincfg>
 	<datacfg>fa fa-database</datacfg>
 	<errorlog>fa fa-bug</errorlog>
 	<empleados>fa fa-user</empleados>
-	<usuarios>fa fa-user-o</usuarios>
+	<usuarios>fa fa-user</usuarios>
 	<grupos>fa fa-users</grupos>
 	<productos>fa fa-archive</productos>
 	<incidencias>fa fa-bug</incidencias>
@@ -47,12 +47,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<periodicas>fa fa-print</periodicas>
 	<gastos>fa fa-hotel</gastos>
 	<proveedores>fa fa-id-card</proveedores>
-	<campanyas>fa fa-id-card-o</campanyas>
+	<campanyas>fa fa-id-card</campanyas>
 	<posiblescli>fa fa-id-card</posiblescli>
 	<presupuestos>fa fa-print</presupuestos>
 	<actas>fa fa-print</actas>
 	<clientes>fa fa-id-card</clientes>
-	<contactos>fa fa-id-card-o</contactos>
+	<contactos>fa fa-id-card</contactos>
 	<proyectos>fa fa-briefcase</proyectos>
 	<seguimientos>fa fa-briefcase</seguimientos>
 	<partes>fa fa-briefcase</partes>
@@ -65,9 +65,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<textos>fa fa-tag</textos>
 	<tiposevento>fa fa-tag</tiposevento>
 	<help>fa fa-question-circle</help>
-	<list>fa fa-files-o</list>
+	<list>fa fa-copy</list>
 	<filter>fa fa-search</filter>
-	<form>fa fa-file-text-o</form>
+	<form>fa fa-file-alt</form>
 	<files>fa fa-folder-open</files>
 	<plots>fa fa-area-chart</plots>
 	<error>fa fa-exclamation-triangle</error>

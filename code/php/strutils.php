@@ -516,7 +516,7 @@ function html2text($html) {
 function getutf8($str) {
 	if(!mb_check_encoding($str,"UTF-8")) {
 		ob_start();
-		$str=mb_convert_encoding($str,"UTF-8",implode(",",mb_detect_order()));
+		$str=mb_convert_encoding($str,"UTF-8",mb_detect_order());
 		ob_get_clean();
 	}
 	return $str;

@@ -310,7 +310,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>add</name>
 							<type>button</type>
 							<value lang="true">add</value>
-							<icon>fa fa-refresh</icon>
+							<icon>fa fa-sync</icon>
 							<class>nowrap</class>
 							<class2>disabled</class2>
 							<onclick>if(!is_disabled(this)) submit1()</onclick>
