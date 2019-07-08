@@ -822,7 +822,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<width>150px</width>
 							<readonly>true</readonly>
 							<icon>fa fa-calendar</icon>
-							<icon2>fa fa-clock-o</icon2>
+							<icon2>fa fa-clock</icon2>
 						</field>
 						<field>
 							<name>msgid</name>

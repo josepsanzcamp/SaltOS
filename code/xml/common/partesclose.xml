@@ -145,7 +145,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">pdf</label>
 					<width>1px</width>
-					<icon>fa fa-file-pdf-o</icon>
+					<icon>fa fa-file-pdf</icon>
 					<class>tbody</class>
 				</field>
 				<field>
@@ -161,7 +161,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">mail</label>
 					<width>1px</width>
-					<icon>fa fa-envelope-o</icon>
+					<icon>fa fa-envelope</icon>
 					<class>tbody</class>
 				</field>
 			</row>

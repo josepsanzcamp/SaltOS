@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<pdf4>
 				<label lang="true">pdf</label>
 				<onclick>pdf4('ID')</onclick>
-				<icon>fa fa-file-pdf-o</icon>
+				<icon>fa fa-file-pdf</icon>
 			</pdf4>
 			<view4 ifeval="!ismobile()">
 				<label lang="true">view2</label>

@@ -244,7 +244,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">pdf</value>
 					<tip lang="true">pdftip</tip>
 					<onclick>pdf()</onclick>
-					<icon>fa fa-file-pdf-o</icon>
+					<icon>fa fa-file-pdf</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field ifeval="!ismobile()">
@@ -260,7 +260,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">mail</value>
 					<tip lang="true">mailtip</tip>
 					<onclick>mail()</onclick>
-					<icon>fa fa-envelope-o</icon>
+					<icon>fa fa-envelope</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -437,7 +437,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<icon>fa fa-calendar</icon>
-							<icon2>fa fa-clock-o</icon2>
+							<icon2>fa fa-clock</icon2>
 							<onchange>check_datetime("dstart","le","dstop")</onchange>
 						</field>
 						<field>
@@ -448,7 +448,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<icon>fa fa-calendar</icon>
-							<icon2>fa fa-clock-o</icon2>
+							<icon2>fa fa-clock</icon2>
 							<onchange>check_datetime("dstop","ge","dstart")</onchange>
 						</field>
 					</row>

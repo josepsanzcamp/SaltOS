@@ -277,7 +277,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">pdf</value>
 					<tip lang="true">pdftip</tip>
 					<onclick>pdf()</onclick>
-					<icon>fa fa-file-pdf-o</icon>
+					<icon>fa fa-file-pdf</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field ifeval="!ismobile()">
@@ -293,7 +293,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">mail</value>
 					<tip lang="true">mailtip</tip>
 					<onclick>mail()</onclick>
-					<icon>fa fa-envelope-o</icon>
+					<icon>fa fa-envelope</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>

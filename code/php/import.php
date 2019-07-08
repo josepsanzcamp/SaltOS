@@ -365,11 +365,17 @@ function __import_xls2array($file,$sheet) {
 	foreach($rows as $row) {
 		$temp=array();
 		foreach($cols as $col) {
-			$temp2=$objSheet->getCell($col.$row)->getValue();
-			if(substr($temp2,0,1)=="=") {
-				$temp2=$objSheet->getCell($col.$row)->getOldCalculatedValue();
+			$cell=$objSheet->getCell($col.$row);
+			if($cell->isFormula()) {
+				$temp2=$cell->getOldCalculatedValue();
+			} elseif(PhpOffice\PhpSpreadsheet\Shared\Date::isDateTime($cell)) {
+				//~ $temp2=$cell->getValue();
+				//~ $temp2=PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($temp2);
+				//~ $temp2=date("Y-m-d",$temp2);
+				$cell->getStyle()->getNumberFormat()->setFormatCode("YYYY-MM-DD");
+				$temp2=$cell->getFormattedValue();
 			} else {
-				$temp2=$objSheet->getCell($col.$row)->getFormattedValue();
+				$temp2=$cell->getFormattedValue();
 			}
 			$temp[]=$temp2;
 		}

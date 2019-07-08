@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<edit>
 			<label lang="true">edit</label>
 			<onclick>edit(ID)</onclick>
-			<icon>fa fa-pencil</icon>
+			<icon>fa fa-pencil-alt</icon>
 		</edit>
 		<copy>
 			<label lang="true">copy</label>
@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<mail>
 			<label lang="true">mail</label>
 			<onclick>mail2(ID)</onclick>
-			<icon>fa fa-envelope-o</icon>
+			<icon>fa fa-envelope</icon>
 		</mail>
 		<delete>
 			<label lang="true">delete</label>
@@ -54,7 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pdf2>
 			<label lang="true">pdf</label>
 			<onclick>pdf2(ID)</onclick>
-			<icon>fa fa-file-pdf-o</icon>
+			<icon>fa fa-file-pdf</icon>
 		</pdf2>
 		<view2 ifeval="!ismobile()">
 			<label lang="true">view2</label>
@@ -74,7 +74,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pdf2filter ifeval="!ismobile()">
 			<label lang="true">pdf</label>
 			<onclick>pdf2filter(ID)</onclick>
-			<icon>fa fa-file-pdf-o</icon>
+			<icon>fa fa-file-pdf</icon>
 		</pdf2filter>
 		<view2filter ifeval="!ismobile()">
 			<label lang="true">view2</label>

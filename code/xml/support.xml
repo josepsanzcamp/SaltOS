@@ -92,7 +92,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>button</type>
 					<value lang="true">send</value>
 					<onclick>setParam("action","support"); if(check_required()) submit1()</onclick>
-					<icon>fa fa-envelope-o</icon>
+					<icon>fa fa-envelope</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>

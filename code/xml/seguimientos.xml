@@ -214,7 +214,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">excel</value>
 					<tip lang="true">exceltip</tip>
 					<onclick>excel()</onclick>
-					<icon>fa fa-file-excel-o</icon>
+					<icon>fa fa-file-excel</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>

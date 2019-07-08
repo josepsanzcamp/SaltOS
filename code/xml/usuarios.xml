@@ -545,7 +545,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>2</colspan>
 							<required>true</required>
-							<icon>fa fa-clock-o</icon>
+							<icon>fa fa-clock</icon>
 						</field>
 						<field>
 							<name>hora_fin</name>
@@ -554,7 +554,7 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 							<width>60px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<icon>fa fa-clock-o</icon>
+							<icon>fa fa-clock</icon>
 						</field>
 					</row>
 				</fieldset>
