@@ -104,16 +104,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>select</type>
 						<width>240px</width>
 						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosgrupos")."' label UNION (SELECT id value, nombre label FROM tbl_grupos ORDER BY label ASC)"</query>
-						<onchange>copy_value("id_grupo2","id_grupo");buscar();</onchange>
 						<value global="id_grupo" eval="true">$id_grupo=getParam("id_grupo")</value>
 					</field>
+				</row>
+				<row>
 					<field>
 						<name>activo</name>
 						<label lang="true">activo</label>
 						<type>select</type>
-						<width>150px</width>
+						<width>240px</width>
 						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label UNION SELECT '1' value, '".LANG_ESCAPE("yes")."' label UNION SELECT '0' value, '".LANG_ESCAPE("no")."' label"</query>
-						<onchange>copy_value("activo2","activo");buscar();</onchange>
 						<value global="activo" eval="true">$activo=getParam("activo")</value>
 					</field>
 				</row>
@@ -524,11 +524,12 @@ FROM tbl_usuarios WHERE id=".abs($id)</default>
 					<row>
 						<field>
 							<name>activo</name>
-							<label lang="true">activo_desc</label>
+							<label lang="true">activo</label>
+							<tip lang="true">activo_desc</tip>
 							<type>checkbox</type>
 							<value>1</value>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<colspan>4</colspan>
+							<colspan2>4</colspan2>
 						</field>
 					</row>
 					<row>

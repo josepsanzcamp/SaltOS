@@ -386,6 +386,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgregisterspurged2 translated="false"> registers purged to the database</msgregisterspurged2>
 		<biglist translated="false">$limit records</biglist>
 		<biglisttip translated="false">Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
+		<activo>Aktiv</activo>
+		<activo_desc>Legt fest ob der Benutzer aktiv oder inaktiv ist</activo_desc>
 	</common>
 	<login>
 		<logintitle>Anmeldung</logintitle>
@@ -685,8 +687,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<errorpassword>Die beiden Passwörter stimmen nicht überein</errorpassword>
 		<contacto>Kontakt</contacto>
 		<sincontacto>[Kein Kontakt]</sincontacto>
-		<activo>Aktiv</activo>
-		<activo_desc>aktiv (legt fest ob der Benutzer aktiv oder inaktiv ist)</activo_desc>
 		<permdata>Anwendungs Berechtigungen</permdata>
 		<allow>Erlauben</allow>
 		<deny>Verweigern</deny>
@@ -1324,8 +1324,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<facturacion revised="false">Rechnung</facturacion>
 		<iaedesc>IAE Beschreibung</iaedesc>
 		<iaecod>IAE-Nummer</iaecod>
-		<activo>Aktiv</activo>
-		<activo_desc>aktiv (Es können Bilanzen, Berichte und Ereignisse erstellt werden)</activo_desc>
 		<contacto>Ansprechperson</contacto>
 		<changedenied revised="false">Kann nicht ausschalten Aussicht, die Minuten, Agenda und / oder Haushalte hat</changedenied>
 	</posiblescli>

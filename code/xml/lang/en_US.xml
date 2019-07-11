@@ -386,6 +386,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgregisterspurged2> registers purged to the database</msgregisterspurged2>
 		<biglist>$limit records</biglist>
 		<biglisttip>Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
+		<activo>Active</activo>
+		<activo_desc>To indicate the active user or there by inheritance</activo_desc>
 	</common>
 	<login>
 		<logintitle>Application access</logintitle>
@@ -685,8 +687,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<errorpassword>The key entries do not match</errorpassword>
 		<contacto>Contact</contacto>
 		<sincontacto>[Non-contact associated]</sincontacto>
-		<activo>Active</activo>
-		<activo_desc>Active (to indicate the active user or there by inheritance)</activo_desc>
 		<permdata>Application permissions</permdata>
 		<allow>Allow</allow>
 		<deny>Refuse</deny>
@@ -1324,8 +1324,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<facturacion>Billing</facturacion>
 		<iaedesc>Overview IAE</iaedesc>
 		<iaecod>Cod IAE</iaecod>
-		<activo>Active</activo>
-		<activo_desc>Active (to make budgets, reports and events)</activo_desc>
 		<contacto>Pers contact</contacto>
 		<changedenied>Can not turn off a prospect who has minutes, agenda and / or budgets</changedenied>
 	</posiblescli>

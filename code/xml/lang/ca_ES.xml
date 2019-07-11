@@ -386,6 +386,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgregisterspurged2> registres purgats a la base de dades</msgregisterspurged2>
 		<biglist>$limit registres</biglist>
 		<biglisttip>Atenció: s'estan mostrant $limit registres i pot ser que l'aplicació funcioni amb lentitud</biglisttip>
+		<activo>Actiu</activo>
+		<activo_desc>Per indicar a l'usuari actiu o al que existeix per herència</activo_desc>
 	</common>
 	<login>
 		<logintitle>Accés a l'aplicació</logintitle>
@@ -685,8 +687,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<errorpassword>Les claus entrades no coincideixen</errorpassword>
 		<contacto>Contacte</contacto>
 		<sincontacto>[Sense contacte associat]</sincontacto>
-		<activo>Actiu</activo>
-		<activo_desc>Actiu (per indicar a l'usuari actiu o al que existeix per herència)</activo_desc>
 		<permdata>Permisos per aplicació</permdata>
 		<allow>Permetre</allow>
 		<deny>Denegar</deny>
@@ -1324,8 +1324,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<facturacion>Facturació</facturacion>
 		<iaedesc>Descripció IAE</iaedesc>
 		<iaecod>Cod IAE</iaecod>
-		<activo>Actiu</activo>
-		<activo_desc>Actiu (per poder fer pressupostos, actes i events)</activo_desc>
 		<contacto>Pers contacte</contacto>
 		<changedenied>No es pot desactivar un possible client que té actes, agenda i/o pressupostos</changedenied>
 	</posiblescli>

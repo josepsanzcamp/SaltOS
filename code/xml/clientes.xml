@@ -43,6 +43,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<sort>true</sort>
 			</field>
 			<field>
+				<name>codigo</name>
+				<label lang="true">codigo</label>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>activo</name>
+				<label lang="true">activo</label>
+				<sort>false</sort>
+			</field>
+			<field>
 				<name>nombre</name>
 				<label lang="true">nombre</label>
 				<sort>true</sort>
@@ -109,17 +119,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<row>
 					<field include="xml/common/hiddenslist.xml" replace="true"/>
 					<field>
-						<name>filtro</name>
-						<label lang="true">filtro</label>
-						<type>text</type>
+						<name>activo</name>
+						<label lang="true">activo</label>
+						<type>select</type>
 						<width>240px</width>
-						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
-						<colspan>2</colspan>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label UNION SELECT '1' value, '".LANG_ESCAPE("yes")."' label UNION SELECT '0' value, '".LANG_ESCAPE("no")."' label"</query>
+						<value global="activo" eval="true">$activo=getParam("activo")</value>
 					</field>
-					<field>
-						<type>separator</type>
-						<width>10px</width>
-					</field>
+				</row>
+				<row>
 					<field>
 						<name>id_campanya</name>
 						<label lang="true">campanya</label>
@@ -127,6 +135,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>240px</width>
 						<query eval="true">make_extra_query_with_perms("campanyas","tbl_campanyas","nombre")." UNION SELECT '' value,'".LANG_ESCAPE("todaslascampanyas")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sincampanya")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_campanya" eval="true">$id_campanya=getParam("id_campanya")</value>
+					</field>
+				</row>
+				<row>
+					<field>
+						<name>filtro</name>
+						<label lang="true">filtro</label>
+						<type>text</type>
+						<width>240px</width>
+						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+						<colspan>2</colspan>
 					</field>
 					<field>
 						<name>contactos</name>
@@ -191,6 +209,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
 				</field>
 				<field>
+					<type>copy</type>
+					<name>activo</name>
+					<onchange>buscar()</onchange>
+				</field>
+				<field>
 					<type>separator</type>
 					<width>100%</width>
 				</field>
@@ -201,7 +224,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_campanya'=>''))">
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('filtro'=>'','id_campanya'=>'','activo'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>
@@ -226,9 +249,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</row>
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,filtro,id_campanya" eval="true">"
+		<query global="page,filtro,id_campanya,activo" eval="true">"
 		SELECT id2,id,
-			cif,
+			cif,codigo,
+			CASE activo WHEN '1' THEN '".LANG_ESCAPE("yes")."' ELSE '".LANG_ESCAPE("no")."' END activo,
 			 CONCAT('link:openapp(\'clientes\',',-id,'):',nombre)  nombre,
 			nombre nombre2,
 			 CONCAT('tel:',tel_fijo) tel_fijo,
@@ -254,6 +278,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 		) c
 		WHERE 1=1
+		AND (activo='$activo' OR ''='$activo')
 		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 		AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
@@ -265,7 +290,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<view>
 				<title lang="true">formview</title>
 				<query>
-					<query include="xml/common/qpermview.xml" replace="true"/>
+					<query include="xml/common/qpermview.xml" replace="true" />
 					<query include="xml/common/qdefaultview.xml" replace="true" />
 					<comments_old include="xml/common/qcommentsold.xml"/>
 					<files_old include="xml/common/qfilesold.xml"/>
@@ -424,7 +449,14 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-								<onkey ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkey>
+							<onkey ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkey>
+						</field>
+						<field>
+							<name>codigo</name>
+							<label lang="true">codigo</label>
+							<type>text</type>
+							<width>120px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
 					<row>
@@ -434,7 +466,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-								<onkey ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkey>
+							<onkey ifeval="!getParam('id')">var orig0=$("select[name$=id_tipo]"); var orig1=$("input[name$=nombre1]"); var orig2=$("input[name$=nombre2]"); var dest=$("input[name$=nombre]"); if(!$(dest).prop("writed")) setTimeout(function() { $(dest).val($(orig0).val()==1?$(orig1).val():$(orig1).val()+" "+$(orig2).val()); },100)</onkey>
 						</field>
 						<field>
 							<name>cif</name>
@@ -457,7 +489,15 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-								<onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
+							<onkey ifeval="!getParam('id')">$(this).prop("writed",true)</onkey>
+						</field>
+						<field>
+							<name>activo</name>
+							<label lang="true">activo</label>
+							<tip lang="true">activo_desc</tip>
+							<type>checkbox</type>
+							<value>1</value>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 						</field>
 					</row>
 					<row>
@@ -472,7 +512,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<type>text</type>
 							<width>240px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							</field>
+						</field>
 					</row>
 					<row>
 						<field>
@@ -648,10 +688,6 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 			<facturasclose include="xml/common/facturasclose.xml" replace="true"/>
 			<gastos include="xml/common/relatedgastos.xml" replace="true"/>
 			<documentos include="xml/common/relateddocumentos.xml" replace="true"/>
-			<comments_old include="xml/common/commentsold.xml"/>
-			<files_old include="xml/common/filesold.xml"/>
-			<comments_new include="xml/common/commentnew.xml"/>
-			<files_new include="xml/common/filesnew.xml"/>
 			<agenda include="xml/common/relatedagenda.xml" replace="true"/>
 			<presupuestos include="xml/common/relatedpresupuestos.xml" replace="true"/>
 			<actas include="xml/common/relatedactas.xml" replace="true"/>
@@ -681,6 +717,10 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 					</row>
 				</fieldset>
 			</graficas>
+			<comments_old include="xml/common/commentsold.xml"/>
+			<files_old include="xml/common/filesold.xml"/>
+			<comments_new include="xml/common/commentnew.xml"/>
+			<files_new include="xml/common/filesnew.xml"/>
 			<control include="xml/common/control.xml"/>
 			<folders include="xml/common/folders.xml"/>
 		</fields>

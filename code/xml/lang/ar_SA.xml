@@ -386,6 +386,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgregisterspurged2 translated="false"> registers purged to the database</msgregisterspurged2>
 		<biglist translated="false">$limit records</biglist>
 		<biglisttip translated="false">Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
+		<activo>تنشيط</activo>
+		<activo_desc>للاشارة الي المستخدم النشط ,او الموجود عن طريق الميراث</activo_desc>
 	</common>
 	<login>
 		<logintitle>الوصول للتطبيق</logintitle>
@@ -685,8 +687,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<errorpassword>كلمات المرور المدخلة غير متطابقة</errorpassword>
 		<contacto>جاهات الاتصال</contacto>
 		<sincontacto>[لايوجد جهة اتصال مرتبطة]</sincontacto>
-		<activo>تنشيط</activo>
-		<activo_desc>تنشيط (للاشارة الي المستخدم النشط ,او الموجود عن طريق الميراث)</activo_desc>
 		<permdata>إذونات التطبيق</permdata>
 		<allow>سماح</allow>
 		<deny>رفض</deny>
@@ -1324,8 +1324,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<facturacion>الفواتير</facturacion>
 		<iaedesc>نظرة عامة علي IAE</iaedesc>
 		<iaecod>رمز IAE</iaecod>
-		<activo>النشاط</activo>
-		<activo_desc>النشاط (لعمل موازنة, تغارير وأحداث)</activo_desc>
 		<contacto>عدد افراد الاتصال</contacto>
 		<changedenied>لايمكن ايقاف عميل محتمل لديه محاضر , جدول اعمال و/أو ميزانيات</changedenied>
 	</posiblescli>

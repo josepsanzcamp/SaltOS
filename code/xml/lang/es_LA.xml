@@ -386,6 +386,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgregisterspurged2> registros purgados de la base de datos</msgregisterspurged2>
 		<biglist>$limit registros</biglist>
 		<biglisttip>Atención: se estan mostrando $limit registros i puede ser que la aplicación funcione con lentitud</biglisttip>
+		<activo>Activo</activo>
+		<activo_desc>Para indicar al usuario activo o al que existe por herencia</activo_desc>
 	</common>
 	<login>
 		<logintitle>Acceso a la aplicación</logintitle>
@@ -685,8 +687,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<errorpassword>Las claves entradas no coinciden</errorpassword>
 		<contacto>Contacto</contacto>
 		<sincontacto>[Sin contacto asociado]</sincontacto>
-		<activo>Activo</activo>
-		<activo_desc>Activo (para indicar al usuario activo o al que existe por herencia)</activo_desc>
 		<permdata>Permisos por aplicación</permdata>
 		<allow>Permitir</allow>
 		<deny>Denegar</deny>
@@ -1324,8 +1324,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<facturacion>Facturación</facturacion>
 		<iaedesc>Descripción IAE</iaedesc>
 		<iaecod>Cod. IAE</iaecod>
-		<activo>Activo</activo>
-		<activo_desc>Activo (para poder hacer presupuestos, actas y eventos)</activo_desc>
 		<contacto>Pers. contacto</contacto>
 		<changedenied>No se puede desactivar un posible cliente que tiene actas, agenda y/o presupuestos</changedenied>
 	</posiblescli>

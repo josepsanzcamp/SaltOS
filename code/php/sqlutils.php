@@ -553,9 +553,9 @@ function make_select_appsregs($id=0) {
 	if(count($rows)>0) {
 		$subquery=array();
 		foreach($rows as $row) {
-			$subquery[]="SELECT CONCAT('${row["id"]}','_','-2') id,'${row["id"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
-			$subquery[]="SELECT CONCAT('${row["id"]}','_','-1') id,'${row["id"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
-			$subquery[]="SELECT CONCAT('${row["id"]}','_',a.id) id,'${row["id"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["tabla"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0";
+			$subquery[]="(SELECT CONCAT('${row["id"]}','_','-2') id,'${row["id"]}' id_aplicacion,-2 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("showdetalles")."' registro,'0' activado,-2 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0)";
+			$subquery[]="(SELECT CONCAT('${row["id"]}','_','-1') id,'${row["id"]}' id_aplicacion,-1 id_registro,'${row["nombre"]}' aplicacion,'link:appreg_details(this):".LANG_ESCAPE("hidedetalles")."' registro,'0' activado,-1 pos FROM (SELECT 1) a WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0)";
+			$subquery[]="(SELECT CONCAT('${row["id"]}','_',a.id) id,'${row["id"]}' id_aplicacion,a.id id_registro,'${row["nombre"]}' aplicacion,nombre registro,CASE WHEN ur.id IS NULL THEN 0 ELSE 1 END activado,0 pos FROM ${row["tabla"]} a LEFT JOIN tbl_usuarios_r ur ON ur.id_aplicacion='${row["id"]}' AND ur.id_registro=a.id AND ur.id_usuario='".abs($id)."' WHERE (SELECT COUNT(*) FROM ${row["tabla"]})>0 LIMIT 100)";
 		}
 		$query=implode(" UNION ",$subquery)." ORDER BY aplicacion,pos,registro";
 	} else {

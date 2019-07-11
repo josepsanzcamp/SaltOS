@@ -386,6 +386,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgregisterspurged2 translated="false"> registers purged to the database</msgregisterspurged2>
 		<biglist translated="false">$limit records</biglist>
 		<biglisttip translated="false">Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
+		<activo>Ativo</activo>
+		<activo_desc>Para indicar o Utilizador ativo ou que exista por herança</activo_desc>
 	</common>
 	<login>
 		<logintitle>Acesso a aplicação</logintitle>
@@ -685,8 +687,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<errorpassword>As senhas inseridas não coincidem</errorpassword>
 		<contacto>Contato</contacto>
 		<sincontacto>[Sem contato associado]</sincontacto>
-		<activo>Ativo</activo>
-		<activo_desc>Ativo (para indicar o Utilizador ativo ou que exista por herança)</activo_desc>
 		<permdata>Permissões por aplicação</permdata>
 		<allow revised="false">Permitir</allow>
 		<deny revised="false">Recusar</deny>
@@ -1324,8 +1324,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<facturacion>Fatura</facturacion>
 		<iaedesc>Descrição ISS/ICMS</iaedesc>
 		<iaecod>Cod. ISS/ICMS</iaecod>
-		<activo>Ativo</activo>
-		<activo_desc>Ativo (para poder fazer Orçamentos, ações e eventos)</activo_desc>
 		<contacto>Contato</contacto>
 		<changedenied>Não é possível desativar um possível cliente que tenha ações, agenda ou Orçamentos</changedenied>
 	</posiblescli>
