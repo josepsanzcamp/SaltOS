@@ -357,9 +357,14 @@ function __import_xls2array($file,$sheet) {
 	$rows=array();
 	foreach($cells as $cell) {
 		list($col,$row)=__import_cell2colrow($cell);
-		$cols[$col]=$col;
+		$cols[$col]=__import_name2col($col);
 		$rows[$row]=$row;
 	}
+	// IMPORTANT TRICK: TO ORDER THE COLS, WE NEEDED TO CONVERT IT INTO NUMBERS BEFORE TO DO THE REAL ORDER,
+	// AND WHEN THE LIST HAS THE CORRECT ORDER, THEN WE CAN CONVERT IT TO THE ORIGINAL LETTERS
+	sort($cols,SORT_NUMERIC);
+	sort($rows,SORT_NUMERIC);
+	foreach($cols as $key=>$val) $cols[$key]=__import_col2name($val);
 	// READ DATA
 	$array=array();
 	foreach($rows as $row) {
