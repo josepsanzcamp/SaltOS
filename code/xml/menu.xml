@@ -201,13 +201,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option global="rows,row" foreach="rows" as="row">
 			<temp global="row" eval="true">$row["codigo"]=id2page($row["id_aplicacion"])</temp>
 			<temp global="row" eval="true">$row["nombre"]=implode(array_slice(array(LANG($row["codigo"]),$row["nombre"],LANG("limpiar")),$row["pos"],1))</temp>
+			<temp global="row" eval="true">$row["id"]=implode(array_slice(array(LANG($row["codigo"]),$row["nombre"],""),$row["pos"],1))</temp>
 			<temp global="row" eval="true">$row["icon"]=implode(array_slice(array(ICON($row["codigo"]),"fa fa-tag","fa fa-sync"),$row["pos"],1))</temp>
 			<temp global="row" eval="true">$row["depth"]=implode(array_slice(array(0,1,1),$row["pos"],1))</temp>
 			<label global="row" eval="true">$row["nombre"]</label>
 			<onclick global="temp,row" eval="true">"opencontent('?page=".$row["codigo"]."&amp;".base64_decode($row["querystring"])."')"</onclick>
 			<icon global="row" eval="true">$row["icon"]</icon>
 			<class global="row" eval="true">"nowrap depth_".$row["depth"]</class>
-			<name global="row" eval="true">encode_bad_chars($row["nombre"])</name>
+			<name global="row" eval="true">encode_bad_chars($row["id"])</name>
 		</option>
 	</group>
 	<group ifeval="(check_user('campanyas','menu') || check_user('posiblescli','menu') || check_user('presupuestos','menu') || check_user('actas','menu') || check_user('clientes','menu') || check_user('contactos','menu'))">

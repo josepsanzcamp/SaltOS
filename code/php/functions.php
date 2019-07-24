@@ -130,7 +130,7 @@ function check_user($aplicacion="",$permiso="") {
 	return $_USER[$aplicacion][$permiso];
 }
 
-function check_sql($aplicacion,$permiso) {
+function check_sql($aplicacion,$permiso,$id_usuario="id_usuario",$id_grupo="id_grupo") {
 	// INITIAL CHECK
 	global $_ERROR;
 	if(isset($_ERROR)) return "(1=0)";
@@ -139,18 +139,18 @@ function check_sql($aplicacion,$permiso) {
 	// CHECK FOR USER/GROUP/ALL PERMISSIONS
 	$sql=array();
 	$sql["all"]="1=1";
-	$sql["group"]="id_grupo IN (".check_ids($_USER["id_grupo"],execute_query_array("SELECT id_grupo FROM tbl_usuarios_g WHERE id_usuario='".$_USER["id"]."'")).")";
-	$sql["user"]="id_usuario='".$_USER["id"]."'";
+	$sql["group"]="${id_grupo} IN (".check_ids($_USER["id_grupo"],execute_query_array("SELECT id_grupo FROM tbl_usuarios_g WHERE id_usuario='".$_USER["id"]."'")).")";
+	$sql["user"]="${id_usuario}='".$_USER["id"]."'";
 	foreach($sql as $key=>$val) if(check_user($aplicacion,"${key}_${permiso}")) return $val;
 	return "1=0";
 }
 
-function check_sql2($permiso,$prefix="") {
+function check_sql2($permiso,$id_aplicacion="id_aplicacion",$id_usuario="id_usuario",$id_grupo="id_grupo") {
 	$query="SELECT * FROM tbl_aplicaciones WHERE tabla!=''";
 	$result=db_query($query);
 	$cases=array();
 	while($row=db_fetch_row($result)) {
-		$cases[]="(${prefix}id_aplicacion='${row["id"]}' AND (".check_sql($row["codigo"],$permiso)."))";
+		$cases[]="(${id_aplicacion}='${row["id"]}' AND (".check_sql($row["codigo"],$permiso,$id_usuario,$id_grupo)."))";
 	}
 	db_free($result);
 	$cases="(".implode(" OR ",$cases).")";
