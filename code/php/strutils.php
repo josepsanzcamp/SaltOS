@@ -656,4 +656,14 @@ function str_replace_first($from, $to, $content) {
     $from = '/'.preg_quote($from, '/').'/';
     return preg_replace($from, $to, $content, 1);
 }
+
+function str_split2($a,$b) {
+	$c=array();
+	while(count($b)) {
+		$d=array_shift($b);
+		$c[]=substr($a,0,$d);
+		$a=substr($a,$d);
+	}
+	return $c;
+}
 ?>
