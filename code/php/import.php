@@ -513,10 +513,9 @@ function __import_array2tree($array,$nodes,$nohead) {
 	foreach($array as $line) {
 		$parts=array();
 		foreach($nodes as $node) {
-			$node2=array_flip($node);
-			$head2=array_intersect_key($head,$node2);
+			$head2=__import_array_intersect($head,$node);
 			if(count($head2)) {
-				$line2=array_intersect_key($line,$node2);
+				$line2=__import_array_intersect($line,$node);
 				if(count($head2)>count($line2)) {
 					$temp=array();
 					foreach($head2 as $key=>$val) {
@@ -532,6 +531,23 @@ function __import_array2tree($array,$nodes,$nohead) {
 		__import_array2tree_set($result,$parts);
 	}
 	$result=__import_array2tree_clean($result);
+	return $result;
+}
+
+/*
+	Name:
+		__import_array_intersect
+	Abstract:
+		This function returns the same result that array_intersect_key($data,array_flip($filter))
+		maintaining the order of the filter array.
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
+function __import_array_intersect($data,$filter) {
+	$result=array();
+	foreach($filter as $field) if(isset($data[$field])) $result[$field]=$data[$field];
 	return $result;
 }
 
