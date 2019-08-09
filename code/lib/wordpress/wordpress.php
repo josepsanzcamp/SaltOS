@@ -312,8 +312,9 @@ function make_clickable( $text ) {
 					)*
 				)
 				(\)?)                                                  # 3: Trailing closing parenthesis (for parethesis balancing post processing)
-			~xS'; // The regex is a non-anchored pattern and does not have a single fixed starting character.
-				  // Tell PCRE to spend more time optimizing since, when used on a page load, it will probably be used several times.
+			~xS';
+			// The regex is a non-anchored pattern and does not have a single fixed starting character.
+			// Tell PCRE to spend more time optimizing since, when used on a page load, it will probably be used several times.
 
 			$ret = preg_replace_callback( $url_clickable, '_make_url_clickable_cb', $ret );
 
@@ -490,7 +491,7 @@ function esc_url( $url, $protocols = null, $_context = 'display' ) {
 		return $url;
 	}
 
-	$url = str_replace( ' ', '%20', $url );
+	$url = str_replace( ' ', '%20', ltrim( $url ) );
 	$url = preg_replace( '|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\[\]\\x80-\\xff]|i', '', $url );
 
 	if ( '' === $url ) {
