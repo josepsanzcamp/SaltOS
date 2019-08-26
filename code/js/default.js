@@ -2305,9 +2305,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			var obj=$("#contextMenu");
 			$("li",obj).remove();
 			// PREPARE OPTIONS
-			var parent=$(event.target).parent();
-			var trs=$("tr",parent);
-			var tds=$("td.actions1",parent);
+			var parent=$(event.target); // BEGIN FIX PART
+			if($(parent).is("span")) parent=$(parent).parent(); // TO FIX WHEN EVENT IS TRIGGERED FROM A SPAN
+			if($(parent).is("a")) parent=$(parent).parent(); // TO FIX WHEN EVENT IS TRIGGERED FROM A LINK
+			parent=$(parent).parent(); // END FIX PART
+			var trs=$("tr",parent); // THIS IS USED TO DETECT A SPECIAL CASE
+			var tds=$("td.actions1",parent); // GET THE LIST OF ENTRIES
 			if($(trs).length || !$(tds).length) tds=$(".contextmenu");
 			// ADD OPTIONS
 			var hashes=[];
