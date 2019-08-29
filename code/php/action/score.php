@@ -35,7 +35,7 @@ if(getParam("action")=="score") {
 	$minscore=intval(getDefault("security/minscore"));
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
-	$hash=md5(json_encode(array($pass,$format,$width,$height,$size,$minscore)));
+	$hash=md5(serialize(array($pass,$format,$width,$height,$size,$minscore)));
 	$cache="$temp$hash.$format";
 	// FOR DEBUG PURPOSES
 	//if(file_exists($cache)) unlink($cache);

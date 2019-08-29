@@ -123,7 +123,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">view</label>
 					<width>1px</width>
-					<icon>fa fa-search</icon>
+					<icon eval="true">ICON("filter")</icon>
 					<class>tbody</class>
 				</field>
 				<field>
@@ -131,7 +131,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">pdf</label>
 					<width>1px</width>
-					<icon>fa fa-file-pdf</icon>
+					<icon eval="true">ICON("pdf")</icon>
 					<class>tbody</class>
 				</field>
 				<field>
@@ -139,7 +139,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">view2</label>
 					<width>1px</width>
-					<icon>fa fa-desktop</icon>
+					<icon eval="true">ICON("view")</icon>
 					<class>tbody</class>
 				</field>
 				<field>
@@ -147,7 +147,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">mail</label>
 					<width>1px</width>
-					<icon>fa fa-envelope</icon>
+					<icon eval="true">ICON("correo")</icon>
 					<class>tbody</class>
 				</field>
 			</row>

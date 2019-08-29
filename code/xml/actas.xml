@@ -114,7 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>date</type>
 						<width>90px</width>
 						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon>fa fa-calendar</icon>
+						<icon eval="true">ICON("calendar")</icon>
 						<onchange>check_date("fecha1","le","fecha2")</onchange>
 					</field>
 					<field>
@@ -124,7 +124,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<width>90px</width>
 						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
 						<class2>right</class2>
-						<icon>fa fa-calendar</icon>
+						<icon eval="true">ICON("calendar")</icon>
 						<onchange>check_date("fecha2","ge","fecha1")</onchange>
 					</field>
 				</row>
@@ -206,7 +206,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>fa fa-plus-circle</icon>
+					<icon eval="true">ICON("create")</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -244,7 +244,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">pdf</value>
 					<tip lang="true">pdftip</tip>
 					<onclick>pdf()</onclick>
-					<icon>fa fa-file-pdf</icon>
+					<icon eval="true">ICON("pdf")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field ifeval="!ismobile()">
@@ -252,7 +252,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">view2</value>
 					<tip lang="true">view2tip</tip>
 					<onclick>view4()</onclick>
-					<icon>fa fa-desktop</icon>
+					<icon eval="true">ICON("view")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -260,7 +260,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">mail</value>
 					<tip lang="true">mailtip</tip>
 					<onclick>mail()</onclick>
-					<icon>fa fa-envelope</icon>
+					<icon eval="true">ICON("correo")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -372,7 +372,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('campanyas',-abs(ID))</link>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 						</field>
 					</row>
 					<row>
@@ -385,7 +385,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('posiblescli',-abs(ID))</link>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 							<onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
 						</field>
 						<field>
@@ -396,7 +396,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('presupuestos',-abs(ID))</link>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 						</field>
 					</row>
 					<row>
@@ -410,7 +410,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 						</field>
 						<field>
 							<name>id_proyecto</name>
@@ -420,7 +420,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 						</field>
 					</row>
 					<row>
@@ -436,7 +436,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 							<icon2>fa fa-clock</icon2>
 							<onchange>check_datetime("dstart","le","dstop")</onchange>
 						</field>
@@ -447,7 +447,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 							<icon2>fa fa-clock</icon2>
 							<onchange>check_datetime("dstop","ge","dstart")</onchange>
 						</field>
@@ -512,7 +512,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 							<onclick>add_textos_textarea('textos_temas','temas')</onclick>
 						</field>
 					</row>
@@ -543,7 +543,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 							<onclick>add_textos_textarea('textos_aceptados','aceptados')</onclick>
 						</field>
 					</row>
@@ -574,7 +574,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 							<onclick>add_textos_textarea('textos_cancelados','cancelados')</onclick>
 						</field>
 					</row>
@@ -605,7 +605,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 							<onclick>add_textos_textarea('textos_pendientes','pendientes')</onclick>
 						</field>
 					</row>
@@ -636,7 +636,7 @@ AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli
 						<field>
 							<type>button</type>
 							<value lang="true">textos_add</value>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 							<onclick>add_textos_textarea('textos_comentarios','comentarios')</onclick>
 						</field>
 					</row>

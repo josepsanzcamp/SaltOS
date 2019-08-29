@@ -524,7 +524,7 @@ function __import_array2tree($array,$nodes,$nohead) {
 					$line2=$temp;
 				}
 				$line3=array_combine($head2,$line2);
-				$hash=md5(json_encode($line3));
+				$hash=md5(serialize($line3));
 				$parts[$hash]=$line3;
 			}
 		}

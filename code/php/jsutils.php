@@ -66,7 +66,7 @@ function javascript_location_page($page) {
 
 function javascript_alert($message,$cond="") {
 	static $cache=array();
-	$hash=md5(json_encode(array($message,$cond)));
+	$hash=md5(serialize(array($message,$cond)));
 	if(!isset($cache[$hash])) {
 		$cache[$hash]=1;
 		$title=addslashes(LANG("alert"));
@@ -81,7 +81,7 @@ function javascript_alert($message,$cond="") {
 
 function javascript_error($message,$cond="") {
 	static $cache=array();
-	$hash=md5(json_encode(array($message,$cond)));
+	$hash=md5(serialize(array($message,$cond)));
 	if(!isset($cache[$hash])) {
 		$cache[$hash]=1;
 		$title=addslashes(LANG("error"));

@@ -91,6 +91,8 @@ function struct2array_include($input) {
 					}
 				}
 				if(isset($attr["path"]) && isset($attr["replace"])) { $replace=0; $include=0; }
+				if(isset($attr["foreach"]) && isset($attr["as"]) && isset($attr["replace"])) { $replace=0; $include=0; }
+				if(isset($attr["for"]) && isset($attr["from"]) && isset($attr["to"]) && isset($attr["replace"])) { $replace=0; $include=0; }
 				if($replace && !$include) xml_error("Attr 'replace' not allowed without attr 'include'");
 				if($include) unset_array($attr,"include");
 				if($replace) unset_array($attr,"replace");
@@ -148,6 +150,8 @@ function struct2array_path($input) {
 						$action=$key;
 					}
 				}
+				if(isset($attr["foreach"]) && isset($attr["as"]) && isset($attr["replace"])) $action="";
+				if(isset($attr["for"]) && isset($attr["from"]) && isset($attr["to"]) && isset($attr["replace"])) $action="";
 				if($path && !$action) xml_error("Detected 'path' attr without before, after, replace, append, add, prepend, remove or delete' attr");
 				if($action && !$path) xml_error("Detected '$action' attr without 'path' attr");
 				if($path) unset_array($attr,"path");
@@ -335,9 +339,9 @@ function xml2array($file,$usecache=true) {
 	if(!file_exists($file)) xml_error("File not found: $file");
 	if($usecache) {
 		if(detect_recursion(__FUNCTION__)==1) $depend=array();
-		$cache=get_cache_file($file,".json");
+		$cache=get_cache_file($file,".arr");
 		if(cache_exists($cache,$file)) {
-			$array=json_decode(file_get_contents($cache),true);
+			$array=unserialize(file_get_contents($cache));
 			if(isset($array["depend"]) && isset($array["root"])) {
 				if(cache_exists($cache,$array["depend"])) {
 					$depend=array_merge($depend,$array["depend"]);
@@ -356,7 +360,7 @@ function xml2array($file,$usecache=true) {
 		$depend[]=$file;
 		$array["depend"]=array_unique($depend);
 		if(file_exists($cache)) unlink_protected($cache);
-		file_put_contents($cache,json_encode($array));
+		file_put_contents($cache,serialize($array));
 		chmod_protected($cache,0666);
 	}
 	return $array["root"];
@@ -573,6 +577,9 @@ function eval_attr($array) {
 								case "revised":
 									if(!eval_bool($val2)) $value=$value." (not revised)";
 									break;
+								case "replace":
+									if(eval_bool($val2)) $stack["replace"]=1;
+									break;
 								default:
 									xml_error("Unknown attr '$key2' with value '$val2'");
 							}
@@ -626,6 +633,8 @@ function eval_attr($array) {
 							$result[$key]=$val;
 						} elseif(isset($stack["remove"])) {
 							// NOTHING TO DO
+						} elseif(isset($stack["replace"])) {
+							foreach($value as $v) foreach($v as $key2=>$val2) set_array($result,$key2,$val2);
 						} elseif(!is_array($value)) {
 							$result[$key]=$value;
 						} elseif(!is_array($val["value"])) {

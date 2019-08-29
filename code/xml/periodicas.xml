@@ -168,7 +168,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>fa fa-plus-circle</icon>
+					<icon eval="true">ICON("create")</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -208,7 +208,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<tip lang="true">liquidar</tip>
 					<onclick>liquidar1()</onclick>
 					<width>1px</width>
-					<icon>fa fa-save</icon>
+					<icon eval="true">ICON("save")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -881,7 +881,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_factura()</onchange>
-							<icon>fa fa-trash</icon>
+							<icon eval="true">ICON("delete")</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -979,7 +979,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 						</field>
 					</tail>
 				</fieldset>
@@ -1089,7 +1089,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_factura()</onchange>
-							<icon>fa fa-trash</icon>
+							<icon eval="true">ICON("delete")</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -1198,7 +1198,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 						</field>
 					</tail>
 				</fieldset>
@@ -1244,7 +1244,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 						</field>
 						<field>
 							<name>percent</name>
@@ -1270,7 +1270,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_vencimientos(this)</onchange>
-							<icon>fa fa-trash</icon>
+							<icon eval="true">ICON("delete")</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -1315,7 +1315,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 						</field>
 						<field>
 							<name>percent</name>
@@ -1347,7 +1347,7 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 						</field>
 					</tail>
 				</fieldset>

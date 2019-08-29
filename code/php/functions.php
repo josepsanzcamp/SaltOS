@@ -503,7 +503,7 @@ function db_schema() {
 	capture_next_error();
 	$hash1=CONFIG("xml/dbschema.xml");
 	get_clear_error();
-	$hash2=md5(json_encode(__get_dbschema_with_indexing(xml2array("xml/dbschema.xml"),xml2array("xml/dbstatic.xml"))));
+	$hash2=md5(serialize(__get_dbschema_with_indexing(xml2array("xml/dbschema.xml"),xml2array("xml/dbstatic.xml"))));
 	if($hash1!=$hash2) {
 		if(!semaphore_acquire(array("db_schema","db_static"),getDefault("semaphoretimeout",100000))) return;
 		$dbschema=eval_attr(__get_dbschema_with_indexing(xml2array("xml/dbschema.xml"),xml2array("xml/dbstatic.xml")));
@@ -550,8 +550,8 @@ function db_schema() {
 				if(in_array($table,$tables1)) {
 					$fields1=get_fields($table);
 					$fields2=get_fields_from_dbschema($table);
-					$hash3=md5(json_encode($fields1));
-					$hash4=md5(json_encode($fields2));
+					$hash3=md5(serialize($fields1));
+					$hash4=md5(serialize($fields2));
 					if($hash3!=$hash4) {
 						db_query(sql_alter_table($table,$backup));
 						db_query(sql_create_table($tablespec));
@@ -561,8 +561,8 @@ function db_schema() {
 				} elseif(in_array($backup,$tables1)) {
 					$fields1=get_fields($backup);
 					$fields2=get_fields_from_dbschema($table);
-					$hash3=md5(json_encode($fields1));
-					$hash4=md5(json_encode($fields2));
+					$hash3=md5(serialize($fields1));
+					$hash4=md5(serialize($fields2));
 					if($hash3!=$hash4) {
 						db_query(sql_create_table($tablespec));
 						db_query(sql_insert_from_select($table,$backup));
@@ -593,8 +593,8 @@ function db_schema() {
 							if(array_key_exists($index,$indexes1)) {
 								$fields1=$indexes1[$index];
 								$fields2=$indexes2[$index];
-								$hash3=md5(json_encode($fields1));
-								$hash4=md5(json_encode($fields2));
+								$hash3=md5(serialize($fields1));
+								$hash4=md5(serialize($fields2));
 								if($hash3!=$hash4) {
 									db_query(sql_drop_index($index,$table));
 									db_query(sql_create_index($indexspec));
@@ -615,7 +615,7 @@ function db_schema() {
 function db_static() {
 	if(!eval_bool(getDefault("db/dbstatic"))) return;
 	$hash1=CONFIG("xml/dbstatic.xml");
-	$hash2=md5(json_encode(xml2array("xml/dbstatic.xml")));
+	$hash2=md5(serialize(xml2array("xml/dbstatic.xml")));
 	if($hash1!=$hash2) {
 		if(!semaphore_acquire(array("db_schema","db_static"),getDefault("semaphoretimeout",100000))) return;
 		$dbstatic=eval_attr(xml2array("xml/dbstatic.xml"));
@@ -1491,7 +1491,7 @@ function ICON($icon) {
 	global $_CONFIG;
 	if(!isset($_CONFIG["icons"])) $_CONFIG["icons"]=xml2array("xml/icons.xml");
 	if(isset($_CONFIG["icons"][$icon])) return $_CONFIG["icons"][$icon];
-	return "fa fa-tag";
+	return $_CONFIG["icons"]["default"];
 }
 
 function is_disabled_function($fn="") {

@@ -157,7 +157,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>date</type>
 						<width>90px</width>
 						<value global="fecha1" eval="true">$fecha1=getParam("fecha1")?dateval(getParam("fecha1")):""</value>
-						<icon>fa fa-calendar</icon>
+						<icon eval="true">ICON("calendar")</icon>
 						<onchange>check_date("fecha1","le","fecha2")</onchange>
 					</field>
 					<field>
@@ -166,7 +166,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<type>date</type>
 						<width>90px</width>
 						<value global="fecha2" eval="true">$fecha2=getParam("fecha2")?dateval(getParam("fecha2")):""</value>
-						<icon>fa fa-calendar</icon>
+						<icon eval="true">ICON("calendar")</icon>
 						<onchange>check_date("fecha2","ge","fecha1")</onchange>
 					</field>
 					<field>
@@ -259,7 +259,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>fa fa-plus-circle</icon>
+					<icon eval="true">ICON("create")</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -297,7 +297,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">excel</value>
 					<tip lang="true">exceltip</tip>
 					<onclick>excel()</onclick>
-					<icon>fa fa-file-excel</icon>
+					<icon eval="true">ICON("excel")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -305,7 +305,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">pdf</value>
 					<tip lang="true">pdftip</tip>
 					<onclick>pdf()</onclick>
-					<icon>fa fa-file-pdf</icon>
+					<icon eval="true">ICON("pdf")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field ifeval="!ismobile()">
@@ -313,7 +313,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">view2</value>
 					<tip lang="true">view2tip</tip>
 					<onclick>view4()</onclick>
-					<icon>fa fa-desktop</icon>
+					<icon eval="true">ICON("view")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -321,7 +321,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">mail</value>
 					<tip lang="true">mailtip</tip>
 					<onclick>mail()</onclick>
-					<icon>fa fa-envelope</icon>
+					<icon eval="true">ICON("correo")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -629,7 +629,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 								update_datos();
 							</oncomplete>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 						</field>
 						<field>
 							<name>id_proyecto</name>
@@ -639,7 +639,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 						</field>
 					</row>
 					<row>
@@ -822,7 +822,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<type>date</type>
 							<width>90px</width>
 							<readonly>true</readonly>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 						</field>
 						<field>
 							<name>num</name>
@@ -846,7 +846,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<type>date</type>
 							<width>90px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 							<colspan>3</colspan>
 						</field>
 					</row>
@@ -1057,7 +1057,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_factura()</onchange>
-							<icon>fa fa-trash</icon>
+							<icon eval="true">ICON("delete")</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -1155,7 +1155,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 						</field>
 					</tail>
 				</fieldset>
@@ -1264,7 +1264,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_totales_factura()</onchange>
-							<icon>fa fa-trash</icon>
+							<icon eval="true">ICON("delete")</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -1373,7 +1373,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 						</field>
 					</tail>
 				</fieldset>
@@ -1431,7 +1431,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 						</field>
 						<field>
 							<name>percent</name>
@@ -1466,7 +1466,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 						</field>
 						<field global="id" ifeval="$id>=0">
 							<name>delete</name>
@@ -1476,7 +1476,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<width>1px</width>
 							<width2>1px</width2>
 							<onchange>update_vencimientos(this)</onchange>
-							<icon>fa fa-trash</icon>
+							<icon eval="true">ICON("delete")</icon>
 							<class>tbody</class>
 							<class2>tbody</class2>
 						</field>
@@ -1532,7 +1532,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 						</field>
 						<field>
 							<name>percent</name>
@@ -1567,7 +1567,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<width>150px</width>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
-							<icon>fa fa-calendar</icon>
+							<icon eval="true">ICON("calendar")</icon>
 						</field>
 					</row>
 					<tail>
@@ -1583,7 +1583,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<class>left</class>
 							<class2>init_additem</class2>
 							<onclick>additem(this)</onclick>
-							<icon>fa fa-plus-circle</icon>
+							<icon eval="true">ICON("add")</icon>
 						</field>
 					</tail>
 				</fieldset>

@@ -101,7 +101,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>fa fa-plus-circle</icon>
+					<icon eval="true">ICON("create")</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -314,7 +314,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<tip lang="true">buttonreturn</tip>
 										<onclick>goback()</onclick>
 										<class>nowrap contextmenu</class>
-										<icon>fa fa-hand-o-left</icon>
+										<icon eval="true">ICON("back")</icon>
 									</field>
 									<field>
 										<type>separator</type>
@@ -334,7 +334,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<value lang="true">buscar</value>
 										<tip lang="true">buscartip</tip>
 										<onclick>import_buscar()</onclick>
-										<icon>fa fa-search</icon>
+										<icon eval="true">ICON("filter")</icon>
 										<class>nowrap</class>
 									</field>
 									<field>
@@ -342,7 +342,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<value lang="true">limpiar</value>
 										<tip lang="true">limpiartip</tip>
 										<onclick>import_limpiar()</onclick>
-										<icon>fa fa-sync</icon>
+										<icon eval="true">ICON("reset")</icon>
 										<class>nowrap contextmenu</class>
 									</field>
 								</row>
@@ -408,7 +408,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<tip lang="true">first</tip>
 										<label lang="true">first</label>
 										<onclick>if(!is_disabled(this)) import_first()</onclick>
-										<icon>fa fa-fast-backward</icon>
+										<icon eval="true">ICON("first")</icon>
 										<class>nowrap contextmenu</class>
 										<class2>ui-state-disabled shortcut_ctrl_home</class2>
 									</field>
@@ -418,7 +418,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<tip lang="true">previous</tip>
 										<label lang="true">previous</label>
 										<onclick>if(!is_disabled(this)) import_previous()</onclick>
-										<icon>fa fa-backward</icon>
+										<icon eval="true">ICON("previous")</icon>
 										<class>nowrap contextmenu</class>
 										<class2>ui-state-disabled shortcut_ctrl_leftArrow</class2>
 									</field>
@@ -439,7 +439,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<tip lang="true">next</tip>
 										<label lang="true">next</label>
 										<onclick>if(!is_disabled(this)) import_next()</onclick>
-										<icon>fa fa-forward</icon>
+										<icon eval="true">ICON("next")</icon>
 										<class>nowrap contextmenu</class>
 										<class2>ui-state-disabled shortcut_ctrl_rightArrow</class2>
 									</field>
@@ -449,7 +449,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<tip lang="true">last</tip>
 										<label lang="true">last</label>
 										<onclick>if(!is_disabled(this)) import_last()</onclick>
-										<icon>fa fa-fast-forward</icon>
+										<icon eval="true">ICON("last")</icon>
 										<class>nowrap contextmenu</class>
 										<class2>ui-state-disabled shortcut_ctrl_end</class2>
 									</field>

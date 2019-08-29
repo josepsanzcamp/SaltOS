@@ -143,7 +143,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>button</type>
 					<value lang="true">enter</value>
 					<onclick>if(check_required()) submit1()</onclick>
-					<icon>fa fa-check</icon>
+					<icon eval="true">ICON("accept")</icon>
 				</field>
 			</row>
 		</fields>

@@ -115,7 +115,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<label lang="true">download</label>
 				<type>link</type>
 				<width>1px</width>
-				<icon>fa fa-save</icon>
+				<icon eval="true">ICON("save")</icon>
 				<class>tbody</class>
 			</field>
 			<field>
@@ -123,7 +123,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<type>link</type>
 				<label lang="true">view2</label>
 				<width>1px</width>
-				<icon>fa fa-desktop</icon>
+				<icon eval="true">ICON("view")</icon>
 				<class>tbody</class>
 			</field>
 			<field global="id" ifeval="$id&gt;=0">
@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<value>1</value>
 				<width>1px</width>
 				<width2>1px</width2>
-				<icon>fa fa-trash</icon>
+				<icon eval="true">ICON("delete")</icon>
 				<class>tbody</class>
 				<class2>tbody</class2>
 			</field>
@@ -151,7 +151,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<tip lang="true">actioncompress</tip>
 				<class>nowrap</class>
 				<onclick>compress('zip')</onclick>
-				<icon>fa fa-save</icon>
+				<icon eval="true">ICON("save")</icon>
 				<width>1px</width>
 			</field>
 			<field>
@@ -160,7 +160,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<tip lang="true">actioncompress</tip>
 				<class>nowrap</class>
 				<onclick>compress('tar')</onclick>
-				<icon>fa fa-save</icon>
+				<icon eval="true">ICON("save")</icon>
 				<width>1px</width>
 			</field>
 			<field>
@@ -169,7 +169,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<tip lang="true">actioncompress</tip>
 				<class>nowrap</class>
 				<onclick>compress('gzip')</onclick>
-				<icon>fa fa-save</icon>
+				<icon eval="true">ICON("save")</icon>
 				<width>1px</width>
 			</field>
 			<field>
@@ -178,7 +178,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<tip lang="true">actioncompress</tip>
 				<class>left</class>
 				<onclick>compress('bzip')</onclick>
-				<icon>fa fa-save</icon>
+				<icon eval="true">ICON("save")</icon>
 			</field>
 		</tail>
 	</fieldset>
@@ -234,7 +234,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<label lang="true">download</label>
 				<type>link</type>
 				<width>1px</width>
-				<icon>fa fa-save</icon>
+				<icon eval="true">ICON("save")</icon>
 				<class>tbody</class>
 			</field>
 		</row>

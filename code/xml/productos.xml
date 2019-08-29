@@ -113,7 +113,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>fa fa-plus-circle</icon>
+					<icon eval="true">ICON("create")</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>

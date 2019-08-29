@@ -133,7 +133,7 @@ if(getParam("action")=="viewpdf") {
 		$result=array();
 		foreach($queryes as $query) $result[]=execute_query($query);
 		if(!count($result)) action_denied();
-		$hash=md5(json_encode($result));
+		$hash=md5(serialize($result));
 		// GET THE TITLE
 		$query="";
 		if($page=="facturas") $query="SELECT
@@ -201,7 +201,7 @@ if(getParam("action")=="viewpdf") {
 		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
 		include("php/action/download.php");
 		$data=ob_get_clean();
-		$hash=md5(json_encode(array(md5($data),$name,$size,$type))); // MD5 INSIDE AS MEMORY TRICK
+		$hash=md5(serialize(array(md5($data),$name,$size,$type))); // MD5 INSIDE AS MEMORY TRICK
 		// CREAR THUMBS SI ES NECESARIO
 		$temp=get_directory("dirs/cachedir");
 		$cache="$temp$hash.pdf";

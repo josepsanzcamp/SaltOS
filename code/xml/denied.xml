@@ -76,7 +76,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">buttonreturn</value>
 					<onclick>goback()</onclick>
 					<class>right contextmenu</class>
-					<icon>fa fa-hand-o-left</icon>
+					<icon eval="true">ICON("back")</icon>
 				</field>
 			</row>
 		</buttons>

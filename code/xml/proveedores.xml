@@ -116,7 +116,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>fa fa-plus-circle</icon>
+					<icon eval="true">ICON("create")</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -552,7 +552,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proveedores"
 				<onclick>setParam("page","contactos");setParam("action","form");setParam("id_proveedor",abs(getParam("id")));setParam("id","0");submit1()</onclick>
 				<disabled eval="true">check_user("contactos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>fa fa-plus-circle</icon>
+				<icon eval="true">ICON("add")</icon>
 			</field>
 		</node>
 		<javascript include="xml/common/jsform.xml"/>

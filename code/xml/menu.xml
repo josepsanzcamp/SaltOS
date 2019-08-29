@@ -28,21 +28,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option>
 			<label lang="true">menu</label>
 			<onclick>toggle_menu()</onclick>
-			<icon>fa fa-bars</icon>
+			<icon eval="true">ICON("menu")</icon>
 			<tip lang="true">menutip</tip>
 			<class>nowrap shortcut_ctrl_m</class>
 		</option>
 		<option ifeval="eval_bool(getDefault('enablecalculator'))">
 			<label lang="true">calculator</label>
 			<onclick>calculator()</onclick>
-			<icon>fa fa-calculator</icon>
+			<icon eval="true">ICON("calculator")</icon>
 			<tip lang="true">calculatortip</tip>
 			<class>nowrap shortcut_ctrl_j</class>
 		</option>
 		<option ifeval="eval_bool(getDefault('enabletranslator'))">
 			<label eval="true">LANG(check_commands(getDefault('commands/translate'),60)?"translator":"corrector")</label>
 			<onclick>translator()</onclick>
-			<icon>fa fa-flag</icon>
+			<icon eval="true">ICON("translator")</icon>
 			<tip eval="true">LANG(check_commands(getDefault('commands/translate'),60)?"translatortip":"correctortip")</tip>
 			<class>nowrap shortcut_ctrl_k</class>
 		</option>
@@ -51,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option>
 			<label lang="true">playvoice</label>
 			<onclick>play_voice()</onclick>
-			<icon>fa fa-play</icon>
+			<icon eval="true">ICON("play")</icon>
 			<tip lang="true">playvoicetip</tip>
 			<class>playvoice</class>
 			<class2>none</class2>
@@ -59,7 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option>
 			<label lang="true">stopvoice</label>
 			<onclick>stop_voice()</onclick>
-			<icon>fa fa-stop</icon>
+			<icon eval="true">ICON("stop")</icon>
 			<tip lang="true">stopvoicetip</tip>
 			<class>stopvoice</class>
 			<class2>none</class2>
@@ -67,7 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option>
 			<label lang="true">nextvoice</label>
 			<onclick>next_voice()</onclick>
-			<icon>fa fa-forward</icon>
+			<icon eval="true">ICON("next2")</icon>
 			<tip lang="true">nextvoicetip</tip>
 			<class>nextvoice</class>
 			<class2>none</class2>
@@ -75,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option>
 			<label lang="true">cancelvoice</label>
 			<onclick>cancel_voice()</onclick>
-			<icon>fa fa-eject</icon>
+			<icon eval="true">ICON("eject")</icon>
 			<tip lang="true">cancelvoicetip</tip>
 			<class>cancelvoice</class>
 			<class2>none</class2>
@@ -162,7 +162,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<option global="rows,row" foreach="rows" as="row">
 			<label global="row" eval="true">$row["name"]</label>
 			<onclick global="temp,row" eval="true">"opencontent('?page=$temp&amp;id_folder=".$row["id"]."')"</onclick>
-			<icon>fa fa-folder-open</icon>
+			<icon eval="true">ICON("files")</icon>
 			<tip global="row" eval="true">$row["name"]</tip>
 			<class global="row" eval="true">"nowrap droppable id_".$row["id"]." fn_dropregfolder depth_".$row["depth"]</class>
 			<name global="row" eval="true">encode_bad_chars($row["name"])</name>
@@ -173,43 +173,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<label lang="true">gestionfiltros</label>
 		<name>gestionfiltros</name>
 		<class>menu</class>
-		<temp global="rows" eval="true">$rows=execute_query_array("
-			SELECT DISTINCT
-				'0' AS pos,
-				id_aplicacion,
-				'' AS nombre,
-				'' AS querystring
-			FROM tbl_filters
-			WHERE id_usuario='".current_user()."'
-			UNION
-			SELECT DISTINCT
-				'1' AS pos,
-				id_aplicacion,
-				nombre,
-				querystring
-			FROM tbl_filters
-			WHERE id_usuario='".current_user()."'
-			UNION
-			SELECT DISTINCT
-				'2' AS pos,
-				id_aplicacion,
-				'' nombre,
-				'".base64_encode("action=limpiar")."' AS querystring
-			FROM tbl_filters
-			WHERE id_usuario='".current_user()."'
-			ORDER BY id_aplicacion,pos,nombre")</temp>
-		<option global="rows,row" foreach="rows" as="row">
-			<temp global="row" eval="true">$row["codigo"]=id2page($row["id_aplicacion"])</temp>
-			<temp global="row" eval="true">$row["nombre"]=implode(array_slice(array(LANG($row["codigo"]),$row["nombre"],LANG("limpiar")),$row["pos"],1))</temp>
-			<temp global="row" eval="true">$row["id"]=implode(array_slice(array(LANG($row["codigo"]),$row["nombre"],""),$row["pos"],1))</temp>
-			<temp global="row" eval="true">$row["icon"]=implode(array_slice(array(ICON($row["codigo"]),"fa fa-tag","fa fa-sync"),$row["pos"],1))</temp>
-			<temp global="row" eval="true">$row["depth"]=implode(array_slice(array(0,1,1),$row["pos"],1))</temp>
-			<label global="row" eval="true">$row["nombre"]</label>
-			<onclick global="temp,row" eval="true">"opencontent('?page=".$row["codigo"]."&amp;".base64_decode($row["querystring"])."')"</onclick>
-			<icon global="row" eval="true">$row["icon"]</icon>
-			<class global="row" eval="true">"nowrap depth_".$row["depth"]</class>
-			<name global="row" eval="true">encode_bad_chars($row["id"])</name>
-		</option>
+		<temp global="temps" eval="true">$temps=execute_query_array("SELECT codigo FROM tbl_aplicaciones WHERE id IN (SELECT id_aplicacion FROM tbl_filters WHERE id_usuario='".current_user()."') ORDER BY id")</temp>
+		<temp global="temps,temp" ifeval="count($temps)>0" foreach="temps" replace="true" as="temp">
+			<option include="xml/common/menuoptionslist.xml" replace="true"/>
+			<option include="xml/common/menuoptionsquery.xml" replace="true"/>
+			<option include="xml/common/menuoptionscreate.xml" replace="true"/>
+			<option include="xml/common/menuoptionsfilter.xml" replace="true"/>
+			<option include="xml/common/menuoptionsreset.xml" replace="true"/>
+		</temp>
 	</group>
 	<group ifeval="(check_user('campanyas','menu') || check_user('posiblescli','menu') || check_user('presupuestos','menu') || check_user('actas','menu') || check_user('clientes','menu') || check_user('contactos','menu'))">
 		<label lang="true">gestioncomercial</label>

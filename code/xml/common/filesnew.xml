@@ -68,7 +68,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<class>left</class>
 				<class2>init_additem</class2>
 				<onclick>additem(this)</onclick>
-				<icon>fa fa-plus-circle</icon>
+				<icon eval="true">ICON("add")</icon>
 			</field>
 		</tail>
 	</fieldset>

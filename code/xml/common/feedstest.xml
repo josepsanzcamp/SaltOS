@@ -73,7 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value>1</value>
 					<width>1px</width>
 					<width2>1px</width2>
-					<icon>fa fa-trash</icon>
+					<icon eval="true">ICON("delete")</icon>
 					<class>tbody</class>
 					<class2>tbody</class2>
 				</field>
@@ -109,7 +109,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>test</name>
 					<type>button</type>
 					<value lang="true">test</value>
-					<icon>fa fa-sync</icon>
+					<icon eval="true">ICON("reset")</icon>
 					<onclick>feeds_test()</onclick>
 					<class>nowrap</class>
 				</field>
@@ -126,7 +126,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>add</name>
 					<type>button</type>
 					<value lang="true">add</value>
-					<icon>fa fa-plus-circle</icon>
+					<icon eval="true">ICON("add")</icon>
 					<class>nowrap</class>
 					<class2>disabled</class2>
 					<onclick>if(!is_disabled(this)) submit1()</onclick>

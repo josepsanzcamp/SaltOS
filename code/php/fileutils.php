@@ -73,7 +73,7 @@ function cache_exists($cache,$file) {
 }
 
 function get_cache_file($data,$ext="") {
-	if(is_array($data)) $data=json_encode($data);
+	if(is_array($data)) $data=serialize($data);
 	if($ext=="") $ext=strtolower(extension($data));
 	if($ext=="") $ext=".dat";
 	if(substr($ext,0,1)!=".") $ext=".".$ext;

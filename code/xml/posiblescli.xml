@@ -173,7 +173,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>create()</onclick>
-					<icon>fa fa-plus-circle</icon>
+					<icon eval="true">ICON("create")</icon>
 					<class>nowrap contextmenu</class>
 					<class2>shortcut_ctrl_insert</class2>
 					<disabled global="page" eval="true">check_user($page,"create")?"false":"true"</disabled>
@@ -211,7 +211,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">excel</value>
 					<tip lang="true">exceltip</tip>
 					<onclick>excel()</onclick>
-					<icon>fa fa-file-excel</icon>
+					<icon eval="true">ICON("excel")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -346,7 +346,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('campanyas',-abs(ID))</link>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 						</field>
 					</row>
 					<row>
@@ -602,7 +602,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<onclick>setParam("page","agenda"); setParam("action","form"); setParam("id_campanya",getParam("default_"+abs(getParam("id"))+"_id_campanya")); setParam("id_posiblecli",abs(getParam("id"))); setParam("id","0"); submit1();</onclick>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>fa fa-plus-circle</icon>
+				<icon eval="true">ICON("add")</icon>
 			</field>
 			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
@@ -611,7 +611,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<onclick>setParam("page","actas"); setParam("action","form"); setParam("id_campanya",getParam("default_"+abs(getParam("id"))+"_id_campanya")); setParam("id_posiblecli",abs(getParam("id"))); setParam("id","0"); submit1();</onclick>
 				<disabled eval="true">check_user("seguimientos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>fa fa-plus-circle</icon>
+				<icon eval="true">ICON("add")</icon>
 			</field>
 			<field global="id" ifeval="$id&lt;0">
 				<type>button</type>
@@ -620,7 +620,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<onclick>migrar()</onclick>
 				<disabled eval="true">check_user("clientes","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
-				<icon>fa fa-plus-circle</icon>
+				<icon eval="true">ICON("add")</icon>
 			</field>
 		</node>
 		<javascript>

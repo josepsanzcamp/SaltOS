@@ -33,47 +33,47 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<view3>
 				<label lang="true">view</label>
 				<onclick>view3('ID')</onclick>
-				<icon>fa fa-search</icon>
+				<icon eval="true">ICON("filter")</icon>
 			</view3>
 			<pdf4>
 				<label lang="true">pdf</label>
 				<onclick>pdf4('ID')</onclick>
-				<icon>fa fa-file-pdf</icon>
+				<icon eval="true">ICON("pdf")</icon>
 			</pdf4>
 			<view4 ifeval="!ismobile()">
 				<label lang="true">view2</label>
 				<onclick>view4('ID')</onclick>
-				<icon>fa fa-desktop</icon>
+				<icon eval="true">ICON("view")</icon>
 			</view4>
 			<edit2>
 				<label lang="true">edit</label>
 				<onclick>edit2('ID')</onclick>
-				<icon>fa fa-pencil</icon>
+				<icon eval="true">ICON("edit")</icon>
 			</edit2>
 			<copy2>
 				<label lang="true">copy</label>
 				<onclick>copy2('ID')</onclick>
-				<icon>fa fa-clone</icon>
+				<icon eval="true">ICON("copy")</icon>
 			</copy2>
 			<reply2>
 				<label eval="true">LANG("actionreply","correo")</label>
 				<onclick>reply2('ID')</onclick>
-				<icon>fa fa-reply</icon>
+				<icon eval="true">ICON("reply")</icon>
 			</reply2>
 			<replyall2>
 				<label eval="true">LANG("actionreplyall","correo")</label>
 				<onclick>replyall2('ID')</onclick>
-				<icon>fa fa-reply-all</icon>
+				<icon eval="true">ICON("replyall")</icon>
 			</replyall2>
 			<forward2>
 				<label eval="true">LANG("actionforward","correo")</label>
 				<onclick>forward2('ID')</onclick>
-				<icon>fa fa-share</icon>
+				<icon eval="true">ICON("forward")</icon>
 			</forward2>
 			<delete2>
 				<label lang="true">deleteoffolder</label>
 				<onclick>delete2('ID')</onclick>
-				<icon>fa fa-trash</icon>
+				<icon eval="true">ICON("delete")</icon>
 			</delete2>
 		</actions>
 		<width>100%</width>

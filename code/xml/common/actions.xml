@@ -29,61 +29,61 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<view>
 			<label lang="true">view</label>
 			<onclick>view(ID)</onclick>
-			<icon>fa fa-search</icon>
+			<icon eval="true">ICON("filter")</icon>
 		</view>
 		<edit>
 			<label lang="true">edit</label>
 			<onclick>edit(ID)</onclick>
-			<icon>fa fa-pencil-alt</icon>
+			<icon eval="true">ICON("edit")</icon>
 		</edit>
 		<copy>
 			<label lang="true">copy</label>
 			<onclick>copy(ID)</onclick>
-			<icon>fa fa-clone</icon>
+			<icon eval="true">ICON("copy")</icon>
 		</copy>
 		<mail>
 			<label lang="true">mail</label>
 			<onclick>mail2(ID)</onclick>
-			<icon>fa fa-envelope</icon>
+			<icon eval="true">ICON("correo")</icon>
 		</mail>
 		<delete>
 			<label lang="true">delete</label>
 			<onclick>delete1(ID)</onclick>
-			<icon>fa fa-trash</icon>
+			<icon eval="true">ICON("delete")</icon>
 		</delete>
 		<pdf2>
 			<label lang="true">pdf</label>
 			<onclick>pdf2(ID)</onclick>
-			<icon>fa fa-file-pdf</icon>
+			<icon eval="true">ICON("pdf")</icon>
 		</pdf2>
 		<view2 ifeval="!ismobile()">
 			<label lang="true">view2</label>
 			<onclick>view2(ID)</onclick>
-			<icon>fa fa-desktop</icon>
+			<icon eval="true">ICON("view")</icon>
 		</view2>
 		<vcard>
 			<label lang="true">vcard</label>
 			<onclick>vcard(ID)</onclick>
-			<icon>fa fa-address-card</icon>
+			<icon eval="true">ICON("vcard")</icon>
 		</vcard>
 		<qrcode ifeval="!ismobile()">
 			<label lang="true">qrcode</label>
 			<onclick>qrcode(ID)</onclick>
-			<icon>fa fa-qrcode</icon>
+			<icon eval="true">ICON("qrcode")</icon>
 		</qrcode>
 		<pdf2filter ifeval="!ismobile()">
 			<label lang="true">pdf</label>
 			<onclick>pdf2filter(ID)</onclick>
-			<icon>fa fa-file-pdf</icon>
+			<icon eval="true">ICON("pdf")</icon>
 		</pdf2filter>
 		<view2filter ifeval="!ismobile()">
 			<label lang="true">view2</label>
 			<onclick>view2filter(ID)</onclick>
-			<icon>fa fa-desktop</icon>
+			<icon eval="true">ICON("view")</icon>
 		</view2filter>
 	</actions>
 	<actions2>
-		<icon>ui-icon ui-icon-triangle-1-s</icon>
+		<icon eval="true">ICON("dropdown")</icon>
 		<label lang="true">actions</label>
 	</actions2>
 	<!-- SORT HEADER FOR LIST -->

@@ -52,7 +52,7 @@ if(getParam("action")=="phpthumb") {
 	$format_output=getParam("f",getParam("amp;f","png"));
 	// PREPARE CACHE FILENAME
 	$temp=get_directory("dirs/cachedir");
-	$hash=md5(json_encode(array($src,$width,$height)));
+	$hash=md5(serialize(array($src,$width,$height)));
 	$cache="${temp}${hash}.${format_output}";
 	// FOR DEBUG PURPOSES
 	//~ if(file_exists($cache)) unlink($cache);

@@ -123,7 +123,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>link</type>
 					<label lang="true">view</label>
 					<width>1px</width>
-					<icon>fa fa-search</icon>
+					<icon eval="true">ICON("filter")</icon>
 					<class>tbody</class>
 				</field>
 			</row>

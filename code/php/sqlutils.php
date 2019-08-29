@@ -527,7 +527,7 @@ function make_extra_query($prefix="") {
 
 function make_extra_query_with_field($field,$prefix="") {
 	static $stack=array();
-	$hash=md5(json_encode(array($field,$prefix)));
+	$hash=md5(serialize(array($field,$prefix)));
 	if(!isset($stack[$hash])) {
 		$query="SELECT * FROM tbl_aplicaciones WHERE islink=1";
 		$rows=execute_query_array($query);

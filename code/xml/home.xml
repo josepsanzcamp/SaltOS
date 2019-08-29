@@ -98,7 +98,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>right nowrap contextmenu</class>
 							<class2>shortcut_ctrl_g</class2>
 							<onclick>copy_value("filtro","default_0_buscar");buscar2()</onclick>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 						</field>
 						<field>
 							<type>button</type>
@@ -106,7 +106,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>nowrap contextmenu</class>
 							<class2>shortcut_ctrl_f</class2>
 							<onclick>copy_value("filtro","default_0_buscar");buscar3()</onclick>
-							<icon>fa fa-search</icon>
+							<icon eval="true">ICON("filter")</icon>
 						</field>
 					</row>
 					<row>

@@ -114,7 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">create</value>
 					<tip lang="true">create</tip>
 					<onclick>add_bookmark()</onclick>
-					<icon>fa fa-check</icon>
+					<icon eval="true">ICON("accept")</icon>
 					<class>nowrap</class>
 				</field>
 				<field>
