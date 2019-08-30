@@ -102,7 +102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<collapse>fa fa-compress</collapse>
 	<send>fa fa-paper-plane</send>
 	<!-- PAGER -->
-	<first>fa-fast-backward</first>
+	<first>fa fa-fast-backward</first>
 	<previous>fa fa-backward</previous>
 	<next>fa fa-forward</next>
 	<last>fa fa-fast-forward</last>
