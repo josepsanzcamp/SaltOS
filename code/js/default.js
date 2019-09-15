@@ -1472,7 +1472,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				onFocusDisplay:false,
 				hoursLabel:lang_horas(),
 				minutesLabel:lang_minutos(),
-				setButtonLabel:lang_buttonaccept()
+				setButtonLabel:lang_buttonaccept(),
+				zIndex:9999,
 			});
 		});
 		$("a[istime=true]",obj).on("click",function() {
