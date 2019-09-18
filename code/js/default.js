@@ -127,8 +127,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
 		for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
 		if(temp[2]>1900) {
+			temp[2]=min(9999,max(0,temp[2]));
+			temp[1]=min(12,max(0,temp[1]));
+			temp[0]=min(__days_of_a_month(temp[2],temp[1]),max(0,temp[0]));
 			value=sprintf("%04d-%02d-%02d",temp[2],temp[1],temp[0]);
 		} else {
+			temp[0]=min(9999,max(0,temp[0]));
+			temp[1]=min(12,max(0,temp[1]));
+			temp[2]=min(__days_of_a_month(temp[0],temp[1]),max(0,temp[2]));
 			value=sprintf("%04d-%02d-%02d",temp[0],temp[1],temp[2]);
 		}
 		return value;
@@ -145,8 +151,15 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		temp=explode(" ",value);
 		for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
 		for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
+		temp[0]=min(23,max(0,temp[0]));
+		temp[1]=min(59,max(0,temp[1]));
+		temp[2]=min(59,max(0,temp[2]));
 		value=sprintf("%02d:%02d:%02d",temp[0],temp[1],temp[2]);
 		return value;
+	}
+
+	function __days_of_a_month(year,month) {
+		return date("t",strtotime(sprintf("%04d-%02d-%02d",year,month,1)));
 	}
 
 	function check_datetime(orig,comp,dest) {
@@ -1415,7 +1428,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(newfield).on("keydown",function(event,extra) {
 				if(extra=="stop") return;
 				$(oldfield).val($(this).val());
-				$(oldfield).trigger("change","stop");
+				$(oldfield).trigger("keydown","stop");
 			});
 			$(oldfield).on("change",function(event,extra) {
 				if(extra=="stop") return;
@@ -1425,7 +1438,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(oldfield).on("keydown",function(event,extra) {
 				if(extra=="stop") return;
 				$(newfield).val($(this).val());
-				$(newfield).trigger("change","stop");
+				$(newfield).trigger("keydown","stop");
 			});
 			if($(this).is("[onchange][onchange!='']")) {
 				var fn=$(this).attr("onchange");
@@ -1466,6 +1479,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$("a[isdate=true]",obj).on("click",function() {
 			if(!is_disabled(this)) $(this).prev().datepicker("show");
 		});
+		$("input[isdate=true]",obj).on("change",function() {
+			if($(this).val()!="") $(this).val(dateval($(this).val()));
+		});
 		// CREATE THE TIMEPICKERS
 		$("input[istime=true]",obj).each(function() {
 			$(this).ptTimeSelect({
@@ -1478,6 +1494,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		$("a[istime=true]",obj).on("click",function() {
 			if(!is_disabled(this)) jQuery.ptTimeSelect.openCntr($(this).prev());
+		});
+		$("input[istime=true]",obj).on("change",function() {
+			if($(this).val()!="") $(this).val(timeval($(this).val()));
 		});
 		// PROGRAM THE DATETIME JOIN
 		$("input[isdatetime=true]",obj).each(function() {
@@ -2482,8 +2501,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			handles:"e",
 			resize:function(event,ui) {
 				setIntCookie("saltos_ui_menu_width",ui.size.width);
+				$(".back2top").css("left",(ui.size.width-54)+"px");
 			},
 		});
+		$(".back2top").css("left",(width-54)+"px");
 	}
 
 	// TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE

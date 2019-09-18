@@ -3,6 +3,7 @@ Note about the php.saltos.min.js file
   - _phpCastString
   - abs
   - count
+  - date
   - explode
   - floatval
   - implode
@@ -23,6 +24,7 @@ Note about the php.saltos.min.js file
   - strncasecmp
   - strpos
   - strrpos
+  - strtotime
   - strtoupper
   - substr
   - time

@@ -721,7 +721,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label>Closure Compiler (ASL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://code.google.com/closure/compiler")</onclick>
+							<onclick>openwin("https://github.com/google/closure-compiler")</onclick>
 						</field>
 						<field>
 							<label>Tesseract OCR (ASL-2.0)</label>
