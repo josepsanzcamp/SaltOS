@@ -1801,6 +1801,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		if(typeof(obj)=="undefined") var obj=$(".ui-layout-center");
 		// AUTO-GROWING TEXTAREA
 		$("textarea[ckeditor!=true][codemirror!=true]",obj).each(function() {
+			if($(this).attr("id")=="") return;
 			var textarea="#"+$(this).attr("id");
 			var interval=setInterval(function() {
 				var textarea2=$(textarea);
@@ -1816,6 +1817,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// AUTO-GROWING IFRAMES
 		$("iframe",obj).each(function() {
+			if($(this).attr("id")=="") return;
 			var iframe="#"+$(this).attr("id");
 			var interval=setInterval(function() {
 				var iframe2=$(iframe);

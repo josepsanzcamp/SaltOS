@@ -1136,4 +1136,42 @@ function __import_apply_patch_rec(&$array,$key,$val) {
 		show_php_error(array("phperror"=>"Unknown '${key0}' for '${key1}'"));
 	}
 }
+
+function __import_make_table_ascii($array) {
+	$rows=isset($array["rows"])?$array["rows"]:array();
+	$head=isset($array["head"])?$array["head"]:1;
+	$compact=isset($array["compact"])?$array["compact"]:0;
+	$widths=array();
+	$aligns=array();
+	if($head) array_unshift($rows,array_combine(array_keys($rows[0]),array_keys($rows[0])));
+	foreach($rows as $row) {
+		foreach($row as $key=>$val) {
+			if(!isset($widths[$key])) $widths[$key]=0;
+			$widths[$key]=max(mb_strlen($val),$widths[$key]);
+			if(!isset($aligns[$key])) $aligns[$key]="L";
+			if(is_numeric($val)) $aligns[$key]="R";
+			if(substr($val,-1,1)=="%") $aligns[$key]="R";
+			if(substr($val,-1,1)=="€") $aligns[$key]="R";
+		}
+	}
+	foreach($widths as $width) echo "+".str_repeat("-",$width+($compact?0:2));
+	echo "+\n";
+	foreach($rows as $index=>$row) {
+		if($index==1 && $head) {
+			foreach($widths as $width) echo "+".str_repeat("-",$width+($compact?0:2));
+			echo "+\n";
+		}
+		foreach($row as $key=>$val) {
+			echo "|";
+			if($aligns[$key]=="R") echo str_repeat(" ",$widths[$key]-mb_strlen($val));
+			echo ($compact?"":" ").$val.($compact?"":" ");
+			if($aligns[$key]=="L") echo str_repeat(" ",$widths[$key]-mb_strlen($val));
+		}
+		echo "|\n";
+	}
+	foreach($widths as $width) echo "+".str_repeat("-",$width+($compact?0:2));
+	echo "+";
+	$buffer=ob_get_clean();
+	return $buffer;
+}
 ?>
