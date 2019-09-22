@@ -27,26 +27,33 @@ if(getParam("action")=="cache") {
 	require_once("php/libaction.php");
 	$files=trim(getParam("files",getParam("amp;files")));
 	if(substr($files,-1,1)==",") $files=substr($files,0,-1);
-	$useimginline=eval_bool(getDefault("cache/useimginline"));
-	$cache=get_cache_file(array("cache",$useimginline,$files),strtolower(extension($files)));
 	$files=explode(",",$files);
-	foreach($files as $key=>$val) $files[$key]=trim($val);
+	foreach($files as $key=>$val) {
+		$file=trim($val);
+		$ext=strtolower(extension($file));
+		if(in_array($ext,array("js","css")) && file_exists($file)) {
+			$files[$key]=$file;
+		} else {
+			unset($files[$key]);
+		}
+	}
+	if(!isset($ext)) die();
+	$useimginline=eval_bool(getDefault("cache/useimginline"));
+	$cache=get_cache_file(array("cache",$useimginline,$files),$ext);
 	//if(file_exists($cache)) unlink($cache);
 	if(!cache_exists($cache,$files)) {
 		$buffer="";
 		foreach($files as $file) {
-			if(file_exists($file)) {
-				$type=saltos_content_type($file);
-				if($type=="text/css") {
-					$temp=file_get_contents($file);
-					$temp=__cache_resolve_path($temp,$file);
-					if($useimginline) $temp=inline_images($temp);
-					$buffer.=$temp;
-				} elseif($type=="text/javascript") {
-					$temp=file_get_contents($file);
-					if(substr(trim($temp),-1,1)!=";") $temp.=";";
-					$buffer.=$temp;
-				}
+			$ext=strtolower(extension($file));
+			if($ext=="css") {
+				$temp=file_get_contents($file);
+				$temp=__cache_resolve_path($temp,$file);
+				if($useimginline) $temp=inline_images($temp);
+				$buffer.=$temp;
+			} elseif($ext=="js") {
+				$temp=file_get_contents($file);
+				if(substr(trim($temp),-1,1)!=";") $temp.=";";
+				$buffer.=$temp;
 			}
 		}
 		file_put_contents($cache,$buffer);
