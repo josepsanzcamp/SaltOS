@@ -192,7 +192,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<styles>
 		<cache ifeval="!ismobile()">
 			<include>lib/jquery/jquery.colorpicker.min.css</include>
-			<include>lib/jquery/jquery.ptTimeSelect.min.css</include>
+			<include>lib/jquery/jquery.timepicker.min.css</include>
 			<include>lib/jquery/jquery.jgrowl.min.css</include>
 			<include>lib/pdfjs/pdf_viewer.min.css</include>
 			<include>lib/codemirror/codemirror.min.css</include>
@@ -214,7 +214,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.blockUI.min.js</include>
 			<include>lib/jquery/jquery.jgrowl.min.js</include>
 			<include>lib/jquery/jquery.colorpicker.min.js</include>
-			<include>lib/jquery/jquery.ptTimeSelect.min.js</include>
+			<include>lib/jquery/jquery.timepicker.min.js</include>
 			<include>lib/jquery/jquery.favicon.min.js</include>
 			<include>lib/jquery/jquery.jplayer.min.js</include>
 			<include>lib/zlibjs/rawdeflate.min.js</include>

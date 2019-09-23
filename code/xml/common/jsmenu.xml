@@ -47,10 +47,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- FOR STYLE MANAGER -->
 	<function global="stylepre" eval="true">"default_stylepre() { return '$stylepre'; }"</function>
 	<function global="stylepost" eval="true">"default_stylepost() { return '$stylepost'; }"</function>
-	<!-- FOR TIMEPICKER -->
-	<function eval='true'>"lang_buttonaccept() { return '".LANG_ESCAPE("buttonaccept")."'; }"</function>
-	<function eval='true'>"lang_horas() { return '".LANG_ESCAPE("horas")."'; }"</function>
-	<function eval='true'>"lang_minutos() { return '".LANG_ESCAPE("minutos")."'; }"</function>
 	<!-- FOR AGENDA MODULE -->
 	<function eval="true">"config_agenda_interval() { return intval('".CONFIG('agenda_interval')."')*1000; }"</function>
 	<!-- FOR EMAIL MODULE -->

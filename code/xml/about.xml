@@ -483,10 +483,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag/blob/master/javascripts/jquery.autogrow-textarea.js")</onclick>
 						</field>
 						<field>
-							<label>ptTimeSelect (Modified by Sanz) (MIT &amp; GPL*)</label>
+							<label>Timepicker Plugin for jQuery (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://pttimeselect.sourceforge.net/")</onclick>
+							<onclick>openwin("https://github.com/jonthornton/jquery-timepicker")</onclick>
 						</field>
 					</row>
 					<row>

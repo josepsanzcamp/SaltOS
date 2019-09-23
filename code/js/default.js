@@ -1484,16 +1484,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		});
 		// CREATE THE TIMEPICKERS
 		$("input[istime=true]",obj).each(function() {
-			$(this).ptTimeSelect({
-				onFocusDisplay:false,
-				hoursLabel:lang_horas(),
-				minutesLabel:lang_minutos(),
-				setButtonLabel:lang_buttonaccept(),
-				zIndex:9999,
+			$(this).timepicker({
+				className:"ui-widget ui-state-default",
+				scrollDefault:"now",
+				showOn:"none",
+				timeFormat:"H:i:s",
+				step:15,
 			});
 		});
 		$("a[istime=true]",obj).on("click",function() {
-			if(!is_disabled(this)) jQuery.ptTimeSelect.openCntr($(this).prev());
+			if(!is_disabled(this)) $(this).prev().timepicker('show');
 		});
 		$("input[istime=true]",obj).on("change",function() {
 			if($(this).val()!="") $(this).val(timeval($(this).val()));
