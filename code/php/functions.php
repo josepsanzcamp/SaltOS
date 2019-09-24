@@ -1619,4 +1619,10 @@ function __get_dbschema_with_indexing($dbschema,$dbstatic) {
 	}
 	return $dbschema;
 }
+
+function detect_light_or_dark_from_style($style) {
+	if(stripos($style,"light")!==false) return "light";
+	if(stripos($style,"dark")!==false) return "dark";
+	return "unknown";
+}
 ?>

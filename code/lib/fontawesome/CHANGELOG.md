@@ -8,6 +8,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/) and this 
 repository that is by invitation only. You will get a 404 - Not Found if you do
 not have access**
 
+## [5.11.2](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.11.2) - 2019-09-23
+
+### Changed
+* Updated laravel brand icon
+
+### Fixed
+* New scanner-image icon was using the same unicode value as scanner causing overlapped icons
+* The film-canister icon was incorrectly spelled film-cannister
+
+---
+
+## [5.11.1](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.11.1) - 2019-09-18
+
+### Fixed
+* Duotone icons updated in 5.11.0 had incorrect attribute order which caused
+  them to fail to load for all kits
+
+---
+
+## [5.11.0](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.11.0) - 2019-09-18
+
+### Added
+* New tech, music, and western-themed icons
+* Added umbraco, swift, orcid, mdb (and one more surprise) brand icons
+
+### Fixed
+* SVG with JavaScript no longer duplicates the id attribute when in nesting mode
+* Corrected inconsistencies with the send-back and send-backward icons
+* Corrected inconsistencies with duotone icon viewBox widths that did not match
+  the solid style
+
+---
+
 ## [5.10.2](https://github.com/FortAwesome/Font-Awesome/releases/tag/5.10.2) - 2019-08-22
 
 ### Added

@@ -96,6 +96,11 @@ $_RESULT["javascript"]=getDefault("javascript");
 add_css_page($_RESULT,getDefault("forcecss","default"));
 add_js_page($_RESULT,getDefault("forcejs","default"));
 if(load_style($style)) set_array($_RESULT["styles"],"include",$stylepre.$style.$stylepost);
+// TRICK FOR JSTREE
+$jstree=detect_light_or_dark_from_style($style);
+$jstreepre=getDefault("jstreepre");
+$jstreepost=getDefault("jstreepost");
+if(load_style($style)) set_array($_RESULT["styles"],"include",$jstreepre.$jstree.$jstreepost);
 // SWITCH FOR EACH CASE
 if(!check_user()) {
 	$_LANG["default"]="login,common";

@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <tr><td colspan="2" valign="top"><div class="ui-layout-north"><div class="tabs2 ui-tabs ui-corner-all ui-widget ui-widget-content"><ul class="headertabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-bottom" style="padding-top: 0px; padding-bottom: 2.4px;">
 <li class="ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-bars"></span> Menu</a></li>
 <li class="ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-calculator"></span> Calc</a></li>
-<li class="right ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-sign-out"></span> Close</a></li>
+<li class="right ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-sign-out-alt"></span> Close</a></li>
 <li class="right ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="nowrap ui-tabs-anchor"><span class="fa fa-user-circle"></span> Profile</a></li>
 <li class="center ui-tabs-tab ui-state-default ui-tab ui-corner-bottom" style="margin-top: 0px; margin-bottom: 1px; border-top: 0px none; border-bottom: 1px;"><a href="#" class="ui-tabs-anchor"><span class="fa fa-info-circle"></span> APP_NAME</a></li>
 </ul></div></div></td></tr>
@@ -46,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <li class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap" href="javascript:void(0)"><i class="jstree-icon jstree-themeicon-custom fa fa-user-circle"></i>Profile</a></li>
 <li class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap" href="javascript:void(0)"><i class="jstree-icon jstree-themeicon-custom fa fa-question-circle"></i>Support</a></li>
 <li class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap" href="javascript:void(0)"><i class="jstree-icon jstree-themeicon-custom fa fa-info-circle"></i>About</a></li>
-<li class="jstree-node  jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap" href="javascript:void(0)"><i class="jstree-icon jstree-themeicon-custom fa fa-sign-out"></i>Close</a></li>
+<li class="jstree-node  jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor nowrap" href="javascript:void(0)"><i class="jstree-icon jstree-themeicon-custom fa fa-sign-out-alt"></i>Close</a></li>
 </ul></div>
 </div>
 <div class="menu ui-accordion ui-widget ui-helper-reset"><h3 class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons">

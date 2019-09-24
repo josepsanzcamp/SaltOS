@@ -30,6 +30,9 @@ if(getParam("action")=="styles") {
 		$stylepost=getDefault("stylepost");
 		$revision=getDefault("info/revision");
 		$styles=eval_attr(xml2array("xml/styles.xml"));
+		$jstree=detect_light_or_dark_from_style($style);
+		$jstreepre=getDefault("jstreepre");
+		$jstreepost=getDefault("jstreepost");
 		foreach($styles as $row) if($style==$row["value"]) break;
 		echo __HTML_DOCTYPE__;
 		echo "<html>";
@@ -39,8 +42,7 @@ if(getParam("action")=="styles") {
 		echo "<link href='css/correo.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<link href='lib/fontawesome/css/fontawesome.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<link href='lib/fontawesome/css/solid.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
-		echo "<link href='lib/fontawesome/css/v4-shims.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
-		echo "<link href='lib/jstree/themes/default/style.min.css?r=${revision}' rel='stylesheet' type='text/css'>";
+		echo "<link href='${jstreepre}${jstree}${jstreepost}?r=${revision}' rel='stylesheet' type='text/css'>";
 		echo "<script src='lib/jquery/jquery.min.js?r=${revision}'></script>";
 		echo "<script>";
 		echo "var inputs='a.ui-state-default,input.ui-state-default,li.ui-state-default,h3.ui-state-default'; $(document).on('mouseover',inputs,function() { $(this).addClass('ui-state-hover'); }).on('mouseout',inputs,function() { $(this).removeClass('ui-state-hover'); });";
