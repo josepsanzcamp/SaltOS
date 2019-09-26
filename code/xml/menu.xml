@@ -47,40 +47,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<class>nowrap shortcut_ctrl_k</class>
 		</option>
 	</header>
-	<header ifeval="eval_bool(getDefault('enablevoice'))">
-		<option>
-			<label lang="true">playvoice</label>
-			<onclick>play_voice()</onclick>
-			<icon eval="true">ICON("play")</icon>
-			<tip lang="true">playvoicetip</tip>
-			<class>playvoice</class>
-			<class2>none</class2>
-		</option>
-		<option>
-			<label lang="true">stopvoice</label>
-			<onclick>stop_voice()</onclick>
-			<icon eval="true">ICON("stop")</icon>
-			<tip lang="true">stopvoicetip</tip>
-			<class>stopvoice</class>
-			<class2>none</class2>
-		</option>
-		<option>
-			<label lang="true">nextvoice</label>
-			<onclick>next_voice()</onclick>
-			<icon eval="true">ICON("next2")</icon>
-			<tip lang="true">nextvoicetip</tip>
-			<class>nextvoice</class>
-			<class2>none</class2>
-		</option>
-		<option>
-			<label lang="true">cancelvoice</label>
-			<onclick>cancel_voice()</onclick>
-			<icon eval="true">ICON("eject")</icon>
-			<tip lang="true">cancelvoicetip</tip>
-			<class>cancelvoice</class>
-			<class2>none</class2>
-		</option>
-	</header>
 	<header ifeval="!ismobile()">
 		<temp global="rows" eval="true">$rows=execute_query_array("SELECT * FROM tbl_quick WHERE id_usuario='".current_user()."' ORDER BY id DESC")</temp>
 		<temp global="rows" ifeval="!count($rows)" eval="true">$rows=array_reverse(array(

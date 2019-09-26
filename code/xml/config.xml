@@ -102,7 +102,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<commandtimeout>60</commandtimeout><!-- in seconds, 60 is 1 minute -->
 		<commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
 		<nativesoffice>true</nativesoffice>
-		<enablevoice eval="true">!ismobile()</enablevoice>
 		<enablecalculator eval="true">!ismobile()</enablecalculator>
 		<enabletranslator eval="true">!ismobile()</enabletranslator>
 		<enableindexing>true</enableindexing>
@@ -132,12 +131,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<__soffice__>--headless --convert-to __FORMAT__ --outdir __OUTDIR__ __INPUT__</__soffice__>
 		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
 		<__pdftotext__>-nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
-		<text2wave>text2wave</text2wave><!-- for voice module -->
-		<__text2wave__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave__>
-		<__text2wave_es__>-eval '(voice_JuntaDeAndalucia_es_sf_diphone)' __INPUT__ -o __OUTPUT__</__text2wave_es__>
-		<__text2wave_en__>-eval '(voice_nitech_us_bdl_arctic_hts)' __INPUT__ -o __OUTPUT__</__text2wave_en__>
-		<wavetomp3>lame</wavetomp3><!-- for voice module -->
-		<__wavetomp3__>--quiet __INPUT__ __OUTPUT__</__wavetomp3__>
 		<translate>translate</translate><!-- for translator module -->
 		<__translate__>-s imtranslator -f __FROM__ -t __TO__ __INPUT__</__translate__>
 		<__translate_langs__>-s imtranslator -l</__translate_langs__>

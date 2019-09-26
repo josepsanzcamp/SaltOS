@@ -239,7 +239,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://httpd.apache.org")</onclick>
 						</field>
 						<field>
-							<label>PHP 5.2-7.2 (PHP-3.01)</label>
+							<label>PHP 5.2-7.3 (PHP-3.01)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.php.net")</onclick>
@@ -251,29 +251,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.sqlite.org")</onclick>
 						</field>
 						<field>
-							<label>HipHop VM 3.5.0-dev (PHP-3.01 &amp; ZEND-2.0)</label>
+							<label>MySQL 5.1-5.8 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("https://github.com/facebook/hhvm")</onclick>
+							<onclick>openwin("http://dev.mysql.com/")</onclick>
 						</field>
 					</row>
 					<row>
 						<field>
-							<label>MariaDB 5.5-10.3 (GPL-2.0)</label>
+							<label>MariaDB 5.5-10.4 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://mariadb.org")</onclick>
 						</field>
 						<field>
-							<label>MySQL 5.1-5.7 (GPL-2.0)</label>
+							<label>HipHop VM 3.5.0-dev (PHP-3.01 &amp; ZEND-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://dev.mysql.com/")</onclick>
+							<onclick>openwin("https://github.com/facebook/hhvm")</onclick>
+						</field>
+						<field>
+							<label>Mroonga 4.06-9.07 (LGPL-2.1)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://mroonga.org/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -447,7 +452,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>
@@ -692,31 +696,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Festival 1.96 (MIT, GPL* &amp; TCL)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.cstr.ed.ac.uk/projects/festival/")</onclick>
-						</field>
-						<field>
-							<label>Hispavoces (MIT, GPL* &amp; TCL)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://forja.guadalinex.org/projects/hispavoces/")</onclick>
-						</field>
-						<field>
-							<label>Lame (GPL-2)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://lame.sourceforge.net/")</onclick>
-						</field>
-						<field>
 							<label>Libtranslate 0.99 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.nongnu.org/libtranslate/")</onclick>
 						</field>
-					</row>
-					<row>
 						<field>
 							<label>Closure Compiler (ASL-2.0)</label>
 							<type>link</type>
@@ -730,16 +714,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://code.google.com/p/tesseract-ocr/")</onclick>
 						</field>
 						<field>
-							<label>Poppler (GPL-2.0, GPL-3.0)</label>
-							<type>link</type>
+							<type>separator</type>
 							<class>tbody</class>
-							<onclick>openwin("http://poppler.freedesktop.org/")</onclick>
-						</field>
-						<field>
-							<label>Mroonga 4.06 (LGPL-2.1)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://mroonga.org/")</onclick>
 						</field>
 					</row>
 					<row>

@@ -110,11 +110,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<menu>fa fa-bars</menu>
 	<calculator>fa fa-calculator</calculator>
 	<translator>fa fa-flag</translator>
-	<!-- VOICE -->
-	<play>fa fa-play</play>
-	<stop>fa fa-stop</stop>
-	<next2>fa fa-forward</next2>
-	<eject>fa fa-eject</eject>
 	<!-- EXTRAS -->
 	<tagnew>fa fa-tag fa-tag-new</tagnew>
 	<tagwait>fa fa-tag fa-tag-wait</tagwait>

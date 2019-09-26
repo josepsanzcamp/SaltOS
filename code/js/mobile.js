@@ -767,9 +767,7 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	/* FOR RENDER THE SCREEN */
-	function getstylesheet(html) {
-		var cad1=default_stylepre();
-		var cad2=default_stylepost();
+	function getstylesheet(html,cad1,cad2) {
 		var style=null;
 		$("link[rel=stylesheet]",html).each(function() {
 			var href=$(this).attr("href");
@@ -779,15 +777,19 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 	}
 
 	function update_style(html,html2) {
-		var style1=getstylesheet(html2);
-		var style2=getstylesheet(html);
+		var cad1=default_stylepre();
+		var cad2=default_stylepost();
+		var style1=getstylesheet(html2,cad1,cad2);
+		var style2=getstylesheet(html,cad1,cad2);
 		if(style1 && style2 && $(style1).attr("href")!=$(style2).attr("href")) {
 			$(style1).replaceWith(style2);
+			// CAMBIAR COLOR DEL META THEME-COLOR
 			var meta1=$("meta[name='theme-color']",html2);
 			var meta2=$("meta[name='theme-color']",html);
 			if($(meta1).attr("content")!=$(meta2).attr("content")) {
 				$(meta1).replaceWith(meta2);
 			}
+			// RESETEAR COLORES
 			get_colors();
 		}
 	}

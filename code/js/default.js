@@ -471,8 +471,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		$(dialog2).parent().find(".ui-dialog-titlebar-close").attr("tabindex","-1");
 		// IF MESSAGE EXISTS, OPEN IT
 		if(message=="") return false;
-		var br="<br/>";
-		$(dialog2).html(br+message+br);
+		$(dialog2).html("<br/>"+message+"<br/><br/>");
 		$(dialog2).dialog("open");
 		return true;
 	}
@@ -1026,9 +1025,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	/* FOR RENDER THE SCREEN */
-	function getstylesheet(html) {
-		var cad1=default_stylepre();
-		var cad2=default_stylepost();
+	function getstylesheet(html,cad1,cad2) {
 		var style=null;
 		$("link[rel=stylesheet]",html).each(function() {
 			var href=$(this).attr("href");
@@ -1039,15 +1036,27 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
 	function update_style(html,html2) {
 		//~ console.time("update_style");
-		var style1=getstylesheet(html2);
-		var style2=getstylesheet(html);
+		var cad1=default_stylepre();
+		var cad2=default_stylepost();
+		var style1=getstylesheet(html2,cad1,cad2);
+		var style2=getstylesheet(html,cad1,cad2);
 		if(style1 && style2 && $(style1).attr("href")!=$(style2).attr("href")) {
 			$(style1).replaceWith(style2);
+			// CAMBIAR COLOR DEL META THEME-COLOR
 			var meta1=$("meta[name='theme-color']",html2);
 			var meta2=$("meta[name='theme-color']",html);
 			if($(meta1).attr("content")!=$(meta2).attr("content")) {
 				$(meta1).replaceWith(meta2);
 			}
+			// CAMBIAR COLOR DEL JSTREE
+			var cad1=default_jstreepre();
+			var cad2=default_jstreepost();
+			var style1=getstylesheet(html2,cad1,cad2);
+			var style2=getstylesheet(html,cad1,cad2);
+			if(style1 && style2 && $(style1).attr("href")!=$(style2).attr("href")) {
+				$(style1).replaceWith(style2);
+			}
+			// RESETEAR COLORES
 			get_colors();
 		}
 		//~ console.timeEnd("update_style");
@@ -1327,7 +1336,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 					$(form).after("<div id='popup"+tabid+"'></div>");
 					$(dialog2).append("<br/>");
 					$(dialog2).append(form);
-					$(dialog2).append("<br/>");
+					$(dialog2).append("<br/><br/>");
 					$("div",dialog2).removeAttr("class").removeAttr("style");
 					$(dialog2).dialog("option","resizeStop",function(event,ui) {
 						setIntCookie("saltos_popup_width",$(dialog2).dialog("option","width"));

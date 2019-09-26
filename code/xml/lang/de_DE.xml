@@ -357,18 +357,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sentfromsaltos>E-Mail wurde mit SaltOS versandt</sentfromsaltos>
 		<foldersdata>Ordner</foldersdata>
 		<loweradd>hinzufügen</loweradd>
-		<playvoice>Wiedergabe</playvoice>
-		<playvoicetip>Wiedergabe starten</playvoicetip>
-		<stopvoice>Stopp</stopvoice>
-		<stopvoicetip>Wiedergabe stoppen</stopvoicetip>
-		<nextvoice>Nächste</nextvoice>
-		<nextvoicetip>Zur nächsten Aufnahme</nextvoicetip>
-		<cancelvoice>Abbruch</cancelvoice>
-		<cancelvoicetip>Alle Aufnahmen abbrechen</cancelvoicetip>
 		<notify>Benachrichtigungen</notify>
-		<voicetip>Voice Reader und Benachrichtigungen aktivieren (E-Mails, RSS-Feeds und Kalender)</voicetip>
-		<voicetxt>Benachrichtigungen mit Voice Reader aktiviert</voicetxt>
-		<welcometosaltos>Willkommen bei Saltos</welcometosaltos>
 		<help>Hilfe</help>
 		<desktoptip>Desktop-Benachrichtigungen aktivieren</desktoptip>
 		<desktoptxt revised="false">Desktop-Benachrichtigungen aktiviert</desktoptxt>

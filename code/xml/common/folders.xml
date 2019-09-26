@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<width>700px</width>
 		<title lang="true">foldersdata</title>
 		<icon eval="true">ICON("files")</icon>
+		<popup>true</popup>
 		<head>
 			<field>
 				<type>label</type>

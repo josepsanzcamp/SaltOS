@@ -163,16 +163,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<name>voice</name>
-							<type>checkbox</type>
-							<label lang="true">voicetip</label>
-							<value>1</value>
-							<colspan>4</colspan>
-							<onchange>checkbox_voice(this);</onchange>
-						</field>
-					</row>
-					<row>
-						<field>
 							<name>desktop</name>
 							<type>checkbox</type>
 							<label lang="true">desktoptip</label>

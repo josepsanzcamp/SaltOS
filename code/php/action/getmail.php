@@ -356,7 +356,6 @@ if(getParam("action")=="getmail") {
 	// BEGIN THE LOOP
 	$newemail=0;
 	$haserror=0;
-	$voice_ids=array();
 	foreach($result as $row) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		$error="";
@@ -449,7 +448,6 @@ if(getParam("action")=="getmail") {
 						$messageid=$id_cuenta."/".$uidls[$index];
 						$last_id=__getmail_insert($file,$messageid,1,0,0,0,0,0,0,"");
 						$newemail++;
-						$voice_ids[]=$last_id;
 					}
 				}
 			}
@@ -509,15 +507,6 @@ if(getParam("action")=="getmail") {
 			if($count) javascript_template("favicon_animate($count);");
 			javascript_history(0,$condition);
 		}
-	}
-	// VOICE FEATURES
-	if($newemail>0) {
-		javascript_template("notify_voice('".$newemail.LANG_ESCAPE("msgnewokpop3email".min($newemail,2),"correo")."')","typeof(saltos_voice)=='function' && saltos_voice()");
-	}
-	if(count($voice_ids)) {
-		$query="SELECT CONCAT(de,'. ',(CASE WHEN subject='' THEN '".LANG("sinsubject","correo")."' ELSE subject END)) reader FROM tbl_correo WHERE state_spam='0' AND id IN (".implode(",",$voice_ids).") ORDER BY id DESC";
-		$result=execute_query_array($query);
-		foreach($result as $reader) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$reader)."')","typeof(saltos_voice)=='function' && saltos_voice()");
 	}
 	// RELEASE SEMAPHORE
 	semaphore_release($semaphore);

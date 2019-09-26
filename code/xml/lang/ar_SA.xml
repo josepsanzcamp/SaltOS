@@ -357,18 +357,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sentfromsaltos>لقد تم ارسال الاميل من SaltOS</sentfromsaltos>
 		<foldersdata>الادلة</foldersdata>
 		<loweradd>إضافة</loweradd>
-		<playvoice>تشغيل</playvoice>
-		<playvoicetip>بدأ التشغيل</playvoicetip>
-		<stopvoice>ايقاف</stopvoice>
-		<stopvoicetip>ايقاف التشغيل</stopvoicetip>
-		<nextvoice>التالي</nextvoice>
-		<nextvoicetip>الانتقال للسلالة التالية</nextvoicetip>
-		<cancelvoice>الغاء</cancelvoice>
-		<cancelvoicetip>الغاء جميع النسخ</cancelvoicetip>
 		<notify>التنبيهات</notify>
-		<voicetip>تمكين قارئ الصوت والإشعارات( رسائل البريد الإلكتروني، التغذية والتقويم )</voicetip>
-		<voicetxt>الاشعارات مع تفعيل الصوت</voicetxt>
-		<welcometosaltos>مرحبا بك في SaltOS</welcometosaltos>
 		<help>مساعدة</help>
 		<desktoptip>تمكين الدمج مع اشعارات سطح المكتب</desktoptip>
 		<desktoptxt>تم تمكين دمج الاشعارات مع سطح المكتب</desktoptxt>

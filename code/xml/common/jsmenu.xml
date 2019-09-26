@@ -47,6 +47,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- FOR STYLE MANAGER -->
 	<function global="stylepre" eval="true">"default_stylepre() { return '$stylepre'; }"</function>
 	<function global="stylepost" eval="true">"default_stylepost() { return '$stylepost'; }"</function>
+	<function global="jstreepre" eval="true">"default_jstreepre() { return '$jstreepre'; }"</function>
+	<function global="jstreepost" eval="true">"default_jstreepost() { return '$jstreepost'; }"</function>
 	<!-- FOR AGENDA MODULE -->
 	<function eval="true">"config_agenda_interval() { return intval('".CONFIG('agenda_interval')."')*1000; }"</function>
 	<!-- FOR EMAIL MODULE -->
@@ -63,9 +65,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function>updatesession() { check_session("update"); }</function>
 	<!-- FOR CKEDITOR LANG -->
 	<function global="lang" eval="true">"lang_default() { return '".substr($lang,0,2)."'; }"</function>
-	<!-- FOR VOICE MODULE -->
-	<function eval="true">"lang_voicetxt() { return '".LANG_ESCAPE("voicetxt")."'; }"</function>
-	<function eval="true">"lang_welcometosaltos() { return '".LANG_ESCAPE("welcometosaltos")."'; }"</function>
 	<!-- FOR DESKTOP MODULE -->
 	<function eval="true">"lang_desktoptxt() { return '".LANG_ESCAPE("desktoptxt")."'; }"</function>
 	<!-- FOR FOLDERS MODULE -->
@@ -105,7 +104,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<include ifeval="eval_bool(getDefault('enableintegrity'))">js/checkintegrity.js</include>
 		<include ifeval="eval_bool(getDefault('enablepurge'))">js/checkpurge.js</include>
 		<include>js/favicon.js</include>
-		<include ifeval="eval_bool(getDefault('enablevoice'))">js/voice.js</include>
 		<include ifeval="eval_bool(getDefault('enabletranslator'))">js/translator.js</include>
 		<include>js/calculator.js</include>
 		<include>js/folders.js</include>

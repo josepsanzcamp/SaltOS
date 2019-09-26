@@ -357,18 +357,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sentfromsaltos>Correo enviado desde mi SaltOS</sentfromsaltos>
 		<foldersdata>Carpetas</foldersdata>
 		<loweradd>añadir</loweradd>
-		<playvoice>Reproducir</playvoice>
-		<playvoicetip>Inicia la reproducción</playvoicetip>
-		<stopvoice>Parar</stopvoice>
-		<stopvoicetip>Parar la reproducción</stopvoicetip>
-		<nextvoice>Siguiente</nextvoice>
-		<nextvoicetip>Saltar a la siguiente reproducción</nextvoicetip>
-		<cancelvoice>Cancelar</cancelvoice>
-		<cancelvoicetip>Cancela todas las reproducciones</cancelvoicetip>
 		<notify>Notificaciones</notify>
-		<voicetip>Habilitar lectura y notificaciones con voz (emails, feeds y agenda)</voicetip>
-		<voicetxt>Notificaciones con voz activadas</voicetxt>
-		<welcometosaltos>Bienvenido a SaltOS</welcometosaltos>
 		<help>Ayuda</help>
 		<desktoptip>Habilitar notificaciones integradas con el escritorio</desktoptip>
 		<desktoptxt>Notificaciones integradas con el escritorio activadas</desktoptxt>

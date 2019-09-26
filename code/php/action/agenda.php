@@ -115,13 +115,6 @@ if(getParam("action")=="agenda") {
 		if($count) javascript_template("number_agenda($count);");
 		if($count) javascript_template("favicon_animate($count);");
 	}
-	// VOICE FEATURES
-	if(count($notify_texts)) {
-		foreach($notify_texts as $text) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$text)."')","typeof(saltos_voice)=='function' && saltos_voice()");
-	}
-	if(count($reader_texts)) {
-		foreach($reader_texts as $text) javascript_template("notify_voice('".str_replace(array("'","\n","\r")," ",$text)."')","typeof(saltos_voice)=='function' && saltos_voice()");
-	}
 	javascript_headers();
 	die();
 }

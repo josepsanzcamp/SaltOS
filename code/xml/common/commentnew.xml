@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<width>700px</width>
 		<title lang="true">newcomment</title>
 		<icon eval="true">ICON("form")</icon>
+		<popup>true</popup>
 		<class>tabla</class>
 		<row>
 			<field>

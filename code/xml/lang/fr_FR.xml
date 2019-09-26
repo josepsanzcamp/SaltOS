@@ -357,18 +357,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sentfromsaltos>Courriel envoyer de mon SaltOS</sentfromsaltos>
 		<foldersdata>Dossier</foldersdata>
 		<loweradd>Ajouter</loweradd>
-		<playvoice>Jouer</playvoice>
-		<playvoicetip>Lancer la lecture</playvoicetip>
-		<stopvoice>Arrêter</stopvoice>
-		<stopvoicetip>Arrêter la lecture</stopvoicetip>
-		<nextvoice>Prochain</nextvoice>
-		<nextvoicetip>Aller à la reproduction suivante</nextvoicetip>
-		<cancelvoice>Canceller</cancelvoice>
-		<cancelvoicetip>Canceller toutes les reproductions</cancelvoicetip>
 		<notify revised="false">Notifications</notify>
-		<voicetip>Activer le lecteur de voix et les notifications (courriel, RSS et calendrier)</voicetip>
-		<voicetxt>Notifications avec voix activer</voicetxt>
-		<welcometosaltos>Bienvenue SaltOS</welcometosaltos>
 		<help>Aide</help>
 		<desktoptip>Activer intégré avec les notifications de bureau</desktoptip>
 		<desktoptxt revised="false">Notifications intégrés avec le bureau activés</desktoptxt>

@@ -357,18 +357,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sentfromsaltos>Email sent from my SaltOS</sentfromsaltos>
 		<foldersdata>Folders</foldersdata>
 		<loweradd>add</loweradd>
-		<playvoice>Play</playvoice>
-		<playvoicetip>Start playback</playvoicetip>
-		<stopvoice>Stop</stopvoice>
-		<stopvoicetip>Stop playback</stopvoicetip>
-		<nextvoice>Next</nextvoice>
-		<nextvoicetip>Jump to the next breeding</nextvoicetip>
-		<cancelvoice>Cancel</cancelvoice>
-		<cancelvoicetip>Cancels all reproductions</cancelvoicetip>
 		<notify>Notifications</notify>
-		<voicetip>Enable voice reader and notifications (emails, feeds and calendar)</voicetip>
-		<voicetxt>Notifications with voice activated</voicetxt>
-		<welcometosaltos>Welcome to SaltOS</welcometosaltos>
 		<help>Help</help>
 		<desktoptip>Enable integrated with desktop notifications</desktoptip>
 		<desktoptxt>Notifications integrated with desktop enabled</desktoptxt>

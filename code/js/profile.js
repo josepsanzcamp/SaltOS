@@ -48,25 +48,6 @@ if(typeof(__profile__)=="undefined" && typeof(parent.__profile__)=="undefined") 
 		}
 	};
 
-	function checkbox_voice(obj) {
-		if(typeof(obj)!="undefined") {
-			if(obj.checked) enable_voice();
-			if(!obj.checked) disable_voice();
-		} else {
-			if(typeof(exists_voice)=="function" && exists_voice()) {
-				if(saltos_voice()) {
-					$("#default_0_voice").prop("checked",true);
-				} else {
-					$("#default_0_voice").prop("checked",false);
-				}
-			} else {
-				$("#default_0_voice").prop("checked",false);
-				$("#default_0_voice").prop("disabled",true);
-				$("label[for=default_0_voice]").addClass("ui-state-disabled");
-			}
-		}
-	}
-
 	function update_score() {
 		var pass=$("input[name$=password_new]");
 		if($(pass).val()) {
@@ -116,6 +97,5 @@ $(function() {
 	});
 	setTimeout(function() {
 		checkbox_desktop();
-		checkbox_voice();
 	},100);
 });
