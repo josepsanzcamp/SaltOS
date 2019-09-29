@@ -101,6 +101,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<expand>fa fa-expand</expand>
 	<collapse>fa fa-compress</collapse>
 	<send>fa fa-paper-plane</send>
+	<print>fa fa-print</print>
+	<run>fa fa-cogs</run>
 	<!-- PAGER -->
 	<first>fa fa-fast-backward</first>
 	<previous>fa fa-backward</previous>
