@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<view3>
 				<label lang="true">view</label>
 				<onclick>view3('ID')</onclick>
-				<icon eval="true">ICON("filter")</icon>
+				<icon eval="true">ICON("view")</icon>
 			</view3>
 			<pdf4>
 				<label lang="true">pdf</label>
@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<view4 ifeval="!ismobile()">
 				<label lang="true">view2</label>
 				<onclick>view4('ID')</onclick>
-				<icon eval="true">ICON("view")</icon>
+				<icon eval="true">ICON("viewpdf")</icon>
 			</view4>
 			<edit2>
 				<label lang="true">edit</label>

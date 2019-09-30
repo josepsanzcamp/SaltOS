@@ -346,7 +346,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('campanyas',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>

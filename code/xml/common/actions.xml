@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<view>
 			<label lang="true">view</label>
 			<onclick>view(ID)</onclick>
-			<icon eval="true">ICON("filter")</icon>
+			<icon eval="true">ICON("view")</icon>
 		</view>
 		<edit>
 			<label lang="true">edit</label>
@@ -59,7 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<view2 ifeval="!ismobile()">
 			<label lang="true">view2</label>
 			<onclick>view2(ID)</onclick>
-			<icon eval="true">ICON("view")</icon>
+			<icon eval="true">ICON("viewpdf")</icon>
 		</view2>
 		<vcard>
 			<label lang="true">vcard</label>
@@ -79,7 +79,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<view2filter ifeval="!ismobile()">
 			<label lang="true">view2</label>
 			<onclick>view2filter(ID)</onclick>
-			<icon eval="true">ICON("view")</icon>
+			<icon eval="true">ICON("viewpdf")</icon>
 		</view2filter>
 	</actions>
 	<actions2>

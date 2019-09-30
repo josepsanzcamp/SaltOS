@@ -313,7 +313,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">view2</value>
 					<tip lang="true">view2tip</tip>
 					<onclick>view4()</onclick>
-					<icon eval="true">ICON("view")</icon>
+					<icon eval="true">ICON("viewpdf")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -629,7 +629,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 								update_datos();
 							</oncomplete>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 						<field>
 							<name>id_proyecto</name>
@@ -639,7 +639,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>

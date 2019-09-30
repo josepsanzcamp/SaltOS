@@ -619,7 +619,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 						<field>
 							<name>id_campanya</name>
@@ -630,7 +630,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('campanyas',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>
@@ -1552,7 +1552,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("proyectos").
 							<type>link</type>
 							<label lang="true">view</label>
 							<width>1px</width>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 							<class>tbody</class>
 						</field>
 					</row>

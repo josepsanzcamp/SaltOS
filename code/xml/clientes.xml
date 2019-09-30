@@ -417,7 +417,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 							<focus global="id" eval="true">$id>=0?"true":"false"</focus>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('campanyas',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>

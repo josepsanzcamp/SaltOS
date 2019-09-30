@@ -557,7 +557,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<colspan>4</colspan>
 							<focus>true</focus>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 							<required>true</required>
 						</field>
 						<field>
@@ -599,7 +599,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<onchange>update_proyectos()</onchange>
 							<colspan>4</colspan>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>
@@ -612,7 +612,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>4</colspan>
 							<link>openapp('proveedores',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 						<field>
 							<name>id_proyecto</name>
@@ -623,7 +623,7 @@ SELECT 'j' id,'$id' id_gasto,'' fecha,'0.00' percent,'0.00' importe
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>

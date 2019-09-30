@@ -470,7 +470,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>openapp('campanyas',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>
@@ -482,7 +482,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<query eval="true">make_extra_query_with_perms("posiblescli","tbl_posiblescli","nombre","SELECT id FROM tbl_posiblescli WHERE activo='1'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinposiblecli")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('posiblescli',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 							<onchange>$("select[name$=id_cliente]").val(0);update_proyectos();update_presupuestos()</onchange>
 							<colspan>3</colspan>
 						</field>
@@ -494,7 +494,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinpresupuesto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('presupuestos',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>
@@ -507,7 +507,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<onchange>$("select[name$=id_posiblecli]").val(0);update_proyectos();update_presupuestos()</onchange>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 							<colspan>3</colspan>
 						</field>
 						<field>
@@ -518,7 +518,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>

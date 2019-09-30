@@ -341,7 +341,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<value lang="true">view2</value>
 					<tip lang="true">view2tip</tip>
 					<onclick>view4()</onclick>
-					<icon eval="true">ICON("view")</icon>
+					<icon eval="true">ICON("viewpdf")</icon>
 					<class>nowrap contextmenu</class>
 				</field>
 				<field>
@@ -481,7 +481,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>3</colspan>
 							<onchange>update_proyectos()</onchange>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>
@@ -494,7 +494,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 					</row>
 					<row>

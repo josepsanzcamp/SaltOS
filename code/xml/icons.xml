@@ -81,11 +81,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<clock>fa fa-clock</clock>
 	<add>fa fa-plus-circle</add>
 	<pdf>fa fa-file-pdf</pdf>
-	<view>fa fa-desktop</view>
+	<viewpdf>fa fa-desktop</viewpdf>
 	<excel>fa fa-file-excel</excel>
-	<delete>fa fa-trash</delete>
+	<search>fa fa-search</search>
+	<view>fa fa-search</view>
 	<edit>fa fa-pencil-alt</edit>
-	<copy>fa fa-clone</copy>
+	<delete>fa fa-trash</delete>
+	<copy>fa fa-copy</copy>
 	<reply>fa fa-reply</reply>
 	<replyall>fa fa-reply-all</replyall>
 	<forward>fa fa-share</forward>

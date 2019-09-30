@@ -315,7 +315,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>3</colspan>
 							<onchange>update_proyectos();update_tareas()</onchange>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 							<required>true</required>
 						</field>
 					</row>
@@ -330,7 +330,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>3</colspan>
 							<onchange>update_tareas()</onchange>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 							<required>true</required>
 						</field>
 					</row>

@@ -334,7 +334,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 										<value lang="true">buscar</value>
 										<tip lang="true">buscartip</tip>
 										<onclick>import_buscar()</onclick>
-										<icon eval="true">ICON("filter")</icon>
+										<icon eval="true">ICON("search")</icon>
 										<class>nowrap</class>
 									</field>
 									<field>

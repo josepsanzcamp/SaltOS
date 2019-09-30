@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<viewpdf>
 				<label lang="true">view2</label>
 				<onclick>viewpdf2('ID')</onclick>
-				<icon eval="true">ICON("view")</icon>
+				<icon eval="true">ICON("viewpdf")</icon>
 			</viewpdf>
 		</actions>
 		<width>100%</width>

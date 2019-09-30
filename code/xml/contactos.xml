@@ -308,7 +308,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 								update_contacto();
 							</oncomplete>
 							<link>openapp('clientes',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 						<field>
 							<name>id_proveedor</name>
@@ -319,7 +319,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>openapp('proveedores',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 							<onchange>
 								$("input[name$=id_cliente]").val(0);
 								$("input[name$=nombre_cliente]").val("");
@@ -339,7 +339,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<query eval="true">"SELECT '' value,'".LANG_ESCAPE("sinproyecto")."' label"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<link>openapp('proyectos',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 						</field>
 						<field>
 							<name>id_empleado</name>
@@ -350,7 +350,7 @@ FROM tbl_contactos WHERE id=".abs($id).") a"</default>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<colspan>3</colspan>
 							<link>openapp('empleados',-abs(ID))</link>
-							<icon eval="true">ICON("filter")</icon>
+							<icon eval="true">ICON("view")</icon>
 							<onchange>
 								$("input[name$=id_cliente]").val(0);
 								$("input[name$=nombre_cliente]").val("");

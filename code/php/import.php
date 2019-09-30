@@ -1138,6 +1138,14 @@ function __import_apply_patch_rec(&$array,$key,$val) {
 }
 
 function __import_make_table_ascii($array) {
+	if(!is_array($array["rows"])) {
+		$array["rows"]=array(array($array["rows"]));
+		$array["head"]=0;
+	}
+	if(!count($array["rows"])) {
+		$array["rows"]=array(array(LANG("nodata")));
+		$array["head"]=0;
+	}
 	$rows=isset($array["rows"])?$array["rows"]:array();
 	$head=isset($array["head"])?$array["head"]:1;
 	$compact=isset($array["compact"])?$array["compact"]:0;
