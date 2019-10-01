@@ -135,7 +135,7 @@ if(getParam("action")=="purge") {
 					foreach($rows3 as $delete) if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
 				}
 				// BORRAR DATOS DE LAS TABLAS GENERICAS
-				$tablas=array("tbl_ficheros","tbl_comentarios","tbl_registros","idx_indexing");
+				$tablas=array("tbl_ficheros","tbl_comentarios","tbl_registros");
 				foreach($tablas as $tabla) {
 					$query="DELETE FROM $tabla WHERE id_aplicacion='".$row2["id_aplicacion"]."' AND id_registro='".$row2["id_registro"]."'";
 					db_query($query);

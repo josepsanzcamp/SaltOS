@@ -822,18 +822,6 @@ function make_fulltext_query3($values,$page) {
 }
 
 function make_fulltext_query4($values) {
-	$engine=strtolower(get_engine("idx_indexing"));
-	if($engine=="mroonga") {
-		$where=make_fulltext_query2($values);
-	} else {
-		$where=make_like_query("search",$values);
-	}
-	if($where=="1=1") return $where;
-	$query="/*MYSQL (a.id_aplicacion,a.id_registro) *//*SQLITE CONCAT(a.id_aplicacion,',',a.id_registro) */ IN (SELECT /*MYSQL id_aplicacion,id_registro *//*SQLITE CONCAT(id_aplicacion,',',id_registro) */ FROM idx_indexing WHERE ${where})";
-	return $query;
-}
-
-function make_fulltext_query4_alternative($values) {
 	$apps=execute_query("SELECT id,codigo FROM tbl_aplicaciones WHERE tabla!=''");
 	$query=array();
 	foreach($apps as $app) {
