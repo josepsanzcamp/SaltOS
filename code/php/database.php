@@ -93,4 +93,12 @@ function db_field_name($result,$index) {
 	if(!isset($result["header"][$index])) show_php_error(array("phperror"=>"Unknown field name at position ${index}"));
 	return $result["header"][$index];
 }
+
+// extra functions
+function db_query_protected($query,$fetch="query") {
+	capture_next_error();
+	$result=db_query($query,$fetch);
+	get_clear_error();
+	return $result;
+}
 ?>

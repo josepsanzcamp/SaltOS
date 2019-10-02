@@ -783,8 +783,6 @@ define("__USER__",1);
 										}
 									}
 									$campos=implode(",' ',",$campos);
-									$query="INSERT INTO idx_indexing(id_aplicacion,id_registro,search) SELECT '${id}' id_aplicacion,id id_registro,CONCAT(${campos}) search FROM ${tabla} a WHERE id NOT IN (SELECT id_registro FROM idx_indexing WHERE id_aplicacion='${id}');";
-									db_query($query);
 									$query="INSERT INTO idx_${page}(id,search) SELECT id,CONCAT(${campos}) search FROM ${tabla} a WHERE id NOT IN (SELECT id FROM idx_${page});";
 									db_query($query);
 								}

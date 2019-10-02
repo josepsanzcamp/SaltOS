@@ -1338,16 +1338,14 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 	// PREPARAR QUERY PRINCIPAL
 	foreach($queries as $key=>$val) $queries[$key]="IFNULL((${val}),'')";
 	$search="CONCAT(".implode(",' ',",$queries).")";
-	// TO FIX THE ERROR CAUSED BY "DATA TOO LONG FOR COLUMN SEARCH"
-	$search="/*MYSQL IF(LENGTH(${search})>=POW(2,24),SUBSTR(${search},1,POW(2,24)-1-LENGTH(${search})+CHAR_LENGTH(${search})),${search}) *//*SQLITE ${search} */";
 	// AÑADIR A LA TABLA INDEXING
 	if($id_indexing) {
 		$query="UPDATE idx_${page} SET search=${search} WHERE id=${id_indexing}";
-		db_query($query);
+		db_query_protected($query);
 		return 2;
 	} else {
 		$query="REPLACE INTO idx_${page}(id,search) VALUES(${id_registro},${search})";
-		db_query($query);
+		db_query_protected($query);
 		return 1;
 	}
 }

@@ -83,25 +83,31 @@ if(getParam("action")=="indexing") {
 		$id_aplicacion=$row["id"];
 		$page=$row["codigo"];
 		$tabla=$row["tabla"];
-		for(;;) {
-			if(time_get_usage()>getDefault("server/percentstop")) break;
-			// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE PARTIAL INDEXING TABLE
-			$query="SELECT a.id FROM ${tabla} a LEFT JOIN idx_${page} b ON a.id=b.id WHERE b.id IS NULL LIMIT 1000";
-			$ids=execute_query_array($query);
-			if(!count($ids)) break;
-			make_indexing($id_aplicacion,$ids);
-			$total+=count($ids);
-			if(count($ids)<1000) break;
+		$range=execute_query("SELECT MAX(id) maxim, MIN(id) minim FROM ${tabla}");
+		for($i=$range["minim"];$i<$range["maxim"];$i+=100000) {
+			for(;;) {
+				if(time_get_usage()>getDefault("server/percentstop")) break;
+				// SEARCH IDS OF THE MAIN APPLICATION TABLE, THAT DOESN'T EXISTS ON THE PARTIAL INDEXING TABLE
+				$query="SELECT a.id FROM ${tabla} a LEFT JOIN idx_${page} b ON a.id=b.id WHERE b.id IS NULL AND a.id>=$i AND a.id<$i+100000 LIMIT 1000";
+				$ids=execute_query_array($query);
+				if(!count($ids)) break;
+				make_indexing($id_aplicacion,$ids);
+				$total+=count($ids);
+				if(count($ids)<1000) break;
+			}
 		}
-		for(;;) {
-			if(time_get_usage()>getDefault("server/percentstop")) break;
-			// SEARCH IDS OF THE PARTIAL INDEXING TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
-			$query="SELECT a.id FROM idx_${page} a LEFT JOIN ${tabla} b ON b.id=a.id WHERE b.id IS NULL LIMIT 1000";
-			$ids=execute_query_array($query);
-			if(!count($ids)) break;
-			make_indexing($id_aplicacion,$ids);
-			$total+=count($ids);
-			if(count($ids)<1000) break;
+		$range=execute_query("SELECT MAX(id) maxim, MIN(id) minim FROM idx_${page}");
+		for($i=$range["minim"];$i<$range["maxim"];$i+=100000) {
+			for(;;) {
+				if(time_get_usage()>getDefault("server/percentstop")) break;
+				// SEARCH IDS OF THE PARTIAL INDEXING TABLE, THAT DOESN'T EXISTS ON THE MAIN APPLICATION TABLE
+				$query="SELECT a.id FROM idx_${page} a LEFT JOIN ${tabla} b ON b.id=a.id WHERE b.id IS NULL AND a.id>=$i AND a.id<$i+100000 LIMIT 1000";
+				$ids=execute_query_array($query);
+				if(!count($ids)) break;
+				make_indexing($id_aplicacion,$ids);
+				$total+=count($ids);
+				if(count($ids)<1000) break;
+			}
 		}
 	}
 	db_free($result);
