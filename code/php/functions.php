@@ -1309,7 +1309,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 	// CONTINUE
 	$queries=array();
 	// OBTENER DATOS DE LA TABLA PRINCIPAL
-	$campos=__make_indexing_helper($tabla);
+	$campos=__make_indexing_helper($tabla,$id_registro);
 	foreach($campos as $key=>$val) $campos[$key]="IFNULL((${val}),'')";
 	$campos="CONCAT(".implode(",' ',",$campos).")";
 	$query="SELECT ${campos} FROM ${tabla} WHERE id='${id_registro}'";
@@ -1350,7 +1350,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 	}
 }
 
-function __make_indexing_helper($tabla) {
+function __make_indexing_helper($tabla,$id="") {
 	static $cache=array();
 	if(isset($cache[$tabla])) return $cache[$tabla];
 	static $tables=null;
@@ -1407,9 +1407,17 @@ function __make_indexing_helper($tabla) {
 			}
 			$type=$types[$tabla][$key];
 			if($type=="int") {
-				$where="${val}.id=${key}";
+				if($id=="") {
+					$where="${val}.id=${key}";
+				} else {
+					$where="${val}.id=(SELECT ${key} FROM ${tabla} WHERE id=${id})";
+				}
 			} elseif($type=="string") {
-				$where="FIND_IN_SET(${val}.id,${key})";
+				if($id=="") {
+					$where="FIND_IN_SET(${val}.id,${key})";
+				} else {
+					$where="FIND_IN_SET(${val}.id,(SELECT ${key} FROM ${tabla} WHERE id=${id}))";
+				}
 				$campo="GROUP_CONCAT(${campo})";
 			} else {
 				$where="";

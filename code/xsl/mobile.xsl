@@ -176,7 +176,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:choose>
 		<xsl:when test="$size!=''">
 			<xsl:choose>
-				<xsl:when test="string-length($text)>=$size">
+				<xsl:when test="string-length($text)>$size">
 					<xsl:value-of select="substring($text,1,$size)"/><xsl:text>...</xsl:text>
 				</xsl:when>
 				<xsl:otherwise>
@@ -195,13 +195,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:param name="replace"/>
 	<xsl:param name="string"/>
 	<xsl:choose>
-		<xsl:when test="contains($string, $find)">
-			<xsl:value-of select="substring-before($string, $find)"/>
+		<xsl:when test="contains($string,$find)">
+			<xsl:value-of select="substring-before($string,$find)"/>
 			<xsl:value-of select="$replace"/>
 			<xsl:call-template name="replace_string">
 				<xsl:with-param name="find" select="$find"/>
 				<xsl:with-param name="replace" select="$replace"/>
-				<xsl:with-param name="string" select="substring-after($string, $find)"/>
+				<xsl:with-param name="string" select="substring-after($string,$find)"/>
 			</xsl:call-template>
 		</xsl:when>
 		<xsl:otherwise>

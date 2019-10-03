@@ -317,7 +317,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<xsl:choose>
 		<xsl:when test="$size!=''">
 			<xsl:choose>
-				<xsl:when test="string-length($text)>=$size">
+				<xsl:when test="string-length($text)>$size">
 					<span title="{$text}"><xsl:value-of select="substring($text,1,$size)"/><xsl:text>...</xsl:text></span>
 				</xsl:when>
 				<xsl:otherwise>
