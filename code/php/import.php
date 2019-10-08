@@ -87,6 +87,7 @@ function __import_find_query($data,$pos) {
 		- prefn: function executed between the load and the tree construction
 		- postfn: function executed after the tree construction
 		- nohead: if the first row doesn't contains the header of the data, put this field to one
+		- nohead: if you want to use numeric index instead of excel index, put this field to one
 		- offset: the offset added to the start position in each map field
 	Output:
 		This function returns an array with the loaded data from file
@@ -106,6 +107,7 @@ function import_file($args) {
 	if(!isset($args["prefn"])) $args["prefn"]="";
 	if(!isset($args["postfn"])) $args["postfn"]="";
 	if(!isset($args["nohead"])) $args["nohead"]=0;
+	if(!isset($args["noletter"])) $args["noletter"]=0;
 	if(!isset($args["offset"])) $args["offset"]=0;
 	if(!file_exists($args["file"])) return "Error: File '${args["file"]}' not found";
 	// CONTINUE
@@ -123,7 +125,7 @@ function import_file($args) {
 			if(!is_array($array)) return $array;
 			if($args["prefn"]) $array=$args["prefn"]($array,$args);
 			if(!is_array($array)) return $array;
-			$array=__import_array2tree($array,$args["nodes"],$args["nohead"]);
+			$array=__import_array2tree($array,$args["nodes"],$args["nohead"],$args["noletter"]);
 			break;
 		case "application/wps-office.xls":
 		case "application/vnd.ms-excel":
@@ -135,14 +137,14 @@ function import_file($args) {
 			if(!is_array($array)) return $array;
 			if($args["prefn"]) $array=$args["prefn"]($array,$args);
 			if(!is_array($array)) return $array;
-			$array=__import_array2tree($array,$args["nodes"],$args["nohead"]);
+			$array=__import_array2tree($array,$args["nodes"],$args["nohead"],$args["noletter"]);
 			break;
 		case "bytes":
 			$array=__import_bytes2array($args["file"],$args["map"],$args["offset"]);
 			if(!is_array($array)) return $array;
 			if($args["prefn"]) $array=$args["prefn"]($array,$args);
 			if(!is_array($array)) return $array;
-			$array=__import_array2tree($array,$args["nodes"],$args["nohead"]);
+			$array=__import_array2tree($array,$args["nodes"],$args["nohead"],$args["noletter"]);
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
@@ -476,13 +478,13 @@ function __import_removevoid($array) {
 	Output:
 		TODO
 */
-function __import_array2tree($array,$nodes,$nohead) {
+function __import_array2tree($array,$nodes,$nohead,$noletter) {
 	if(!count($array)) return $array;
 	if($nohead) {
 		$head=array();
 		$num=1;
 		foreach($array as $temp) $num=max($num,count($temp));
-		for($i=0;$i<$num;$i++) $head[]=__import_col2name($i);
+		for($i=0;$i<$num;$i++) $head[]=$noletter?$i:__import_col2name($i);
 	} else {
 		$head=array_shift($array);
 	}
