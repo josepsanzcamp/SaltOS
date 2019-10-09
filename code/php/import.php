@@ -87,7 +87,7 @@ function __import_find_query($data,$pos) {
 		- prefn: function executed between the load and the tree construction
 		- postfn: function executed after the tree construction
 		- nohead: if the first row doesn't contains the header of the data, put this field to one
-		- nohead: if you want to use numeric index instead of excel index, put this field to one
+		- noletter: if you want to use numeric index instead of excel index, put this field to one
 		- offset: the offset added to the start position in each map field
 	Output:
 		This function returns an array with the loaded data from file

@@ -128,17 +128,17 @@ function encode_bad_chars($cad,$pad="_") {
 		$replace=1;
 		if($letter>="a" && $letter<="z") $replace=0;
 		if($letter>="0" && $letter<="9") $replace=0;
-		if($replace) $cad[$i]=" ";
+		if($replace) $cad[$i]=$pad;
 	}
 	$cad=prepare_words($cad,$pad);
 	return $cad;
 }
 
 function prepare_words($cad,$pad=" ") {
-	$cad=trim($cad);
 	$count=1;
-	while($count) $cad=str_replace("  "," ",$cad,$count);
-	$cad=str_replace(" ",$pad,$cad);
+	while($count) $cad=str_replace($pad.$pad,$pad,$cad,$count);
+	if(substr($cad,0,1)==$pad) $cad=substr($cad,1);
+	if(substr($cad,-1,1)==$pad) $cad=substr($cad,0,-1);
 	return $cad;
 }
 
@@ -592,18 +592,6 @@ function remove_script_tag($temp) {
 function remove_style_tag($temp) {
 	$temp=preg_replace("@<style[^>]*?.*?</style>@siu","",$temp);
 	return $temp;
-}
-
-function multi_explode($del,$str) {
-	$del0=substr($del,0,1);
-	$del1=substr($del,1);
-	$ret0=explode($del0,$str);
-	if($del1!="") {
-		$ret2=array();
-		foreach($ret0 as $ret1) $ret2=array_merge($ret2,multi_explode($del1,$ret1));
-		$ret0=$ret2;
-	}
-	return $ret0;
 }
 
 function highlight_geshi($html,$lang="") {
