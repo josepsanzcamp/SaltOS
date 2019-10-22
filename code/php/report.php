@@ -24,13 +24,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 function __report_begin($subject) {
+	$message=__report_begin2($subject);
+	$message.=__report_begin3($subject);
+	return $message;
+}
+
+function __report_begin2($subject) {
 	$message="<!DOCTYPE html>";
 	$message.="<html>";
 	$message.="<head>";
 	$message.="<title>$subject</title>";
 	$message.="</head>";
 	$message.="<body bgcolor='".__report_config("bgbody")."'>";
-	$message.="<table cellspacing='2px' cellpadding='2px' border='0px' width='".__report_config("big")."'>";
+	return $message;
+}
+
+function __report_begin3($subject) {
+	$message="<table cellspacing='2px' cellpadding='2px' border='0px' width='".__report_config("big")."'>";
 	$message.=__report_head($subject);
 	return $message;
 }
@@ -111,9 +121,19 @@ function __report_link($label,$value,$text) {
 }
 
 function __report_end() {
-	$message="</table>";
-	$message.="</body>";
+	$message=__report_end3();
+	$message.=__report_end2();
+	return $message;
+}
+
+function __report_end2() {
+	$message="</body>";
 	$message.="</html>";
+	return $message;
+}
+
+function __report_end3() {
+	$message="</table>";
 	return $message;
 }
 

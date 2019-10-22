@@ -48,7 +48,9 @@ if($page=="incidencias") {
 		}
 		db_free($result2);
 		$subject=($action=="insert")?LANG_ESCAPE("forminsert"):LANG_ESCAPE("formupdate");
-		$body=__report_begin($subject);
+		$body=__report_begin2($subject);
+		$body.="<table cellpadding='0' cellspacing='0' border='0'><tr><td valign='top'>";
+		$body.=__report_begin3($subject);
 		// DATOS GENERALES
 		$id_aplicacion=page2id($page);
 		// DATOS INCIDENCIA
@@ -88,6 +90,9 @@ if($page=="incidencias") {
 			// BODY COMENTARIOS
 			$campos=array("username","datetime","comentarios");
 			$tipos=array("text","text","textarea");
+			$body.=__report_end3();
+			$body.="</td><td valign='top'>";
+			$body.=__report_begin3("&nbsp;");
 			while($row2=db_fetch_row($result2)) {
 				$body.=__incidencias_packreport($campos,$tipos,$row2);
 			}
@@ -111,9 +116,14 @@ if($page=="incidencias") {
 			$body.=__report_link($temp,get_base()."?page=incidencias&action=form&id=-$id_incidencia",$temp);
 			$temp=LANG("edit")." ".LANG("incidencia");
 			$body.=__report_link($temp,get_base()."?page=incidencias&action=form&id=$id_incidencia",$temp);
-			$body.=__report_end();
+			$body.=__report_end3();
+			$body.="</td></tr></table>";
+			$body.=__report_end2();
 			// PARA DEBUGAR
-			//~ echo "<pre>SUBJECT=$subject BODY=$body TO=".sprintr($to)."</pre>"; die();
+			//~ echo "<pre>SUBJECT=$subject BODY=$body TO=".sprintr($to)."</pre>";
+			//~ die();
+			//~ echo $body;
+			//~ die();
 			// ENVIAR EMAIL
 			$error=sendmail(0,$to,$subject,$body);
 			if($error) {
