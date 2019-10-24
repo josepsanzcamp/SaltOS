@@ -1709,11 +1709,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			});
 		});
 		// PROGRAM ACTIONS LIST
-		$(".actions2",obj).each(function() {
-			var actions1=$(this).parent().find(".actions1");
-			var actions2=$(this);
-			if(actions1.length<=1) {
-				$(actions1).removeClass("none");
+		$(".actions2",obj).parent().each(function() {
+			var actions1=$(this).find(".actions1");
+			var actions2=$(this).find(".actions2");
+			if(actions1.length>1) {
+				$(actions1).addClass("none");
+			} else {
 				$(actions2).addClass("none");
 			}
 		});

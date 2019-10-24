@@ -312,9 +312,8 @@ function make_clickable( $text ) {
 					)*
 				)
 				(\)?)                                                  # 3: Trailing closing parenthesis (for parethesis balancing post processing)
-			~xS';
-			// The regex is a non-anchored pattern and does not have a single fixed starting character.
-			// Tell PCRE to spend more time optimizing since, when used on a page load, it will probably be used several times.
+			~xS'; // The regex is a non-anchored pattern and does not have a single fixed starting character.
+				  // Tell PCRE to spend more time optimizing since, when used on a page load, it will probably be used several times.
 
 			$ret = preg_replace_callback( $url_clickable, '_make_url_clickable_cb', $ret );
 
@@ -491,7 +490,7 @@ function esc_url( $url, $protocols = null, $_context = 'display' ) {
 		return $url;
 	}
 
-	$url = str_replace( ' ', '%20', ltrim( $url ) );
+	$url = str_replace( ' ', '%20', $url );
 	$url = preg_replace( '|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\[\]\\x80-\\xff]|i', '', $url );
 
 	if ( '' === $url ) {
@@ -636,7 +635,6 @@ function wp_kses_normalize_entities( $string ) {
  * @since 3.3.0
  * @since 4.3.0 Added 'webcal' to the protocols array.
  * @since 4.7.0 Added 'urn' to the protocols array.
- * @since 5.3.0 Added 'sms' to the protocols array.
  *
  * @see wp_kses()
  * @see esc_url()
@@ -645,15 +643,15 @@ function wp_kses_normalize_entities( $string ) {
  *
  * @return string[] Array of allowed protocols. Defaults to an array containing 'http', 'https',
  *                  'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet',
- *                  'mms', 'rtsp', 'sms', 'svn', 'tel', 'fax', 'xmpp', 'webcal', and 'urn'.
- *                  This covers all common link protocols, except for 'javascript' which should not
- *                  be allowed for untrusted users.
+ *                  'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal', and 'urn'. This covers
+ *                  all common link protocols, except for 'javascript' which should not be
+ *                  allowed for untrusted users.
  */
 function wp_allowed_protocols() {
 	static $protocols = array();
 
 	if ( empty( $protocols ) ) {
-		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'sms', 'svn', 'tel', 'fax', 'xmpp', 'webcal', 'urn' );
+		$protocols = array( 'http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal', 'urn' );
 	}
 
 	if ( ! did_action( 'wp_loaded' ) ) {
@@ -701,18 +699,16 @@ function wp_kses_bad_protocol( $string, $allowed_protocols ) {
 }
 
 /**
- * Calls the callback functions that have been added to a filter hook.
+ * Call the functions added to a filter hook.
  *
- * The callback functions attached to the filter hook are invoked by calling
+ * The callback functions attached to filter hook $tag are invoked by calling
  * this function. This function can be used to create a new filter hook by
  * simply calling this function with the name of the new hook specified using
- * the `$tag` parameter.
+ * the $tag parameter.
  *
- * The function also allows for multiple additional arguments to be passed to hooks.
+ * The function allows for additional arguments to be added and passed to hooks.
  *
- * Example usage:
- *
- *     // The filter callback function
+ *     // Our filter callback function
  *     function example_callback( $string, $arg1, $arg2 ) {
  *         // (maybe) modify $string
  *         return $string;
@@ -720,10 +716,9 @@ function wp_kses_bad_protocol( $string, $allowed_protocols ) {
  *     add_filter( 'example_filter', 'example_callback', 10, 3 );
  *
  *     /*
- *      * Apply the filters by calling the 'example_callback()' function that's
- *      * hooked onto `example_filter` above.
- *      *
- *      * - 'example_filter' is the filter hook
+ *      * Apply the filters by calling the 'example_callback' function we
+ *      * "hooked" to 'example_filter' using the add_filter() function above.
+ *      * - 'example_filter' is the filter hook $tag
  *      * - 'filter me' is the value being filtered
  *      * - $arg1 and $arg2 are the additional arguments passed to the callback.
  *     $value = apply_filters( 'example_filter', 'filter me', $arg1, $arg2 );
@@ -734,18 +729,19 @@ function wp_kses_bad_protocol( $string, $allowed_protocols ) {
  * @global array $wp_current_filter Stores the list of current filters with the current one last.
  *
  * @param string $tag     The name of the filter hook.
- * @param mixed  $value   The value to filter.
- * @param mixed  ...$args Additional parameters to pass to the callback functions.
+ * @param mixed  $value   The value on which the filters hooked to `$tag` are applied on.
+ * @param mixed  $var,... Additional variables passed to the functions hooked to `$tag`.
  * @return mixed The filtered value after all hooked functions are applied to it.
  */
 function apply_filters( $tag, $value ) {
 	global $wp_filter, $wp_current_filter;
 
-	$args = func_get_args();
+	$args = array();
 
 	// Do 'all' actions first.
 	if ( isset( $wp_filter['all'] ) ) {
 		$wp_current_filter[] = $tag;
+		$args                = func_get_args();
 		_wp_call_all_hook( $args );
 	}
 
@@ -760,7 +756,11 @@ function apply_filters( $tag, $value ) {
 		$wp_current_filter[] = $tag;
 	}
 
-	// Don't pass the tag name to WP_Hook.
+	if ( empty( $args ) ) {
+		$args = func_get_args();
+	}
+
+	// don't pass the tag name to WP_Hook
 	array_shift( $args );
 
 	$filtered = $wp_filter[ $tag ]->apply_filters( $value, $args );
@@ -1067,9 +1067,9 @@ function wp_parse_url( $url, $component = -1 ) {
  * @link https://secure.php.net/manual/en/function.parse-url.php
  *
  * @param array|false $url_parts The parsed URL. Can be false if the URL failed to parse.
- * @param int         $component The specific component to retrieve. Use one of the PHP
- *                               predefined constants to specify which one.
- *                               Defaults to -1 (= return all parts as an array).
+ * @param int    $component The specific component to retrieve. Use one of the PHP
+ *                          predefined constants to specify which one.
+ *                          Defaults to -1 (= return all parts as an array).
  * @return mixed False on parse failure; Array of URL components on success;
  *               When a specific component has been requested: null if the component
  *               doesn't exist in the given URL; a string or - in the case of
@@ -1099,7 +1099,7 @@ function _get_component_from_parsed_url_array( $url_parts, $component = -1 ) {
  * @link https://secure.php.net/manual/en/url.constants.php
  *
  * @param int $constant PHP_URL_* constant.
- * @return string|false The named key or false.
+ * @return string|bool The named key or false.
  */
 function _wp_translate_php_url_constant_to_key( $constant ) {
 	$translation = array(

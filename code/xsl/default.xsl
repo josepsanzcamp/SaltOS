@@ -357,7 +357,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<xsl:variable name="name" select="substring(name(),8)"/>
 		<xsl:variable name="value" select="."/>
 		<xsl:for-each select="../../../actions/*[name()=$name]">
-			<td class="width1 actions1 tbody none">
+			<td class="width1 actions1 tbody">
 				<xsl:choose>
 					<xsl:when test="$value='true'">
 						<a href="javascript:void(0)">
@@ -378,12 +378,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</td>
 		</xsl:for-each>
 	</xsl:for-each>
-	<td class="width1 actions2 tbody"><a href="javascript:void(0)">
-		<xsl:attribute name="title">
-			<xsl:value-of select="../../actions2/label"/>
-		</xsl:attribute>
-		<span class="{../../actions2/icon}"></span>
-	</a></td>
+	<xsl:if test="not(../../expand) or ../../expand!='true'">
+		<td class="width1 actions2 tbody"><a href="javascript:void(0)">
+			<xsl:attribute name="title">
+				<xsl:value-of select="../../actions2/label"/>
+			</xsl:attribute>
+			<span class="{../../actions2/icon}"></span>
+		</a></td>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template name="list_quick">
