@@ -1,2 +1,0 @@
-
-Package downloaded from https://php-download.com/package/phpoffice/phpspreadsheet
