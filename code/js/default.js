@@ -50,11 +50,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	function _format_number(obj,punto) {
 		var texto=obj.value;
 		var texto2="";
+		var numero=0;
 		for(var i=0,len=texto.length;i<len;i++) {
 			var letra=substr(texto,i,1);
 			if(letra>="0" && letra<="9") {
 				texto2+=letra;
+				numero=1;
 			} else if((letra=="." || letra==",") && !punto) {
+				if(!numero) texto2+="0";
 				texto2+=".";
 				punto=1;
 			} else if(letra=="-" && texto2.length==0) {
