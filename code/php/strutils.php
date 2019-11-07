@@ -235,7 +235,7 @@ function timeval($value) {
 	$temp=explode(" ",$value);
 	foreach($temp as $key=>$val) $temp[$key]=intval($val);
 	for($i=0;$i<3;$i++) if(!isset($temp[$i])) $temp[$i]=0;
-	$temp[0]=min(23,max(0,$temp[0]));
+	$temp[0]=min(24,max(0,$temp[0]));
 	$temp[1]=min(59,max(0,$temp[1]));
 	$temp[2]=min(59,max(0,$temp[2]));
 	$value=sprintf("%02d:%02d:%02d",$temp[0],$temp[1],$temp[2]);

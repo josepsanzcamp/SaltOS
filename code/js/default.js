@@ -154,7 +154,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 		temp=explode(" ",value);
 		for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
 		for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
-		temp[0]=min(23,max(0,temp[0]));
+		temp[0]=min(24,max(0,temp[0]));
 		temp[1]=min(59,max(0,temp[1]));
 		temp[2]=min(59,max(0,temp[2]));
 		value=sprintf("%02d:%02d:%02d",temp[0],temp[1],temp[2]);
@@ -1502,6 +1502,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				showOn:"none",
 				timeFormat:"H:i:s",
 				step:15,
+				show2400:true,
 			});
 		});
 		$("a[istime=true]",obj).on("click",function() {
