@@ -124,6 +124,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
+							<colspan>1</colspan>
 							<width>25%</width>
 						</field>
 					</row>
@@ -279,6 +280,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
+							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>
@@ -412,9 +414,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://developers.google.com/api-client-library/php/")</onclick>
 						</field>
 						<field>
+							<label>EDIFACT latest (LGPL-3.0)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://github.com/php-edifact/edifact")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>2</colspan>
+							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>
@@ -452,6 +460,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
+							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>
@@ -716,6 +725,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<field>
 							<type>separator</type>
 							<class>tbody</class>
+							<colspan>1</colspan>
 						</field>
 					</row>
 					<row>

@@ -41,6 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		- title: title used only by excel format
 		- file: local filename used to store the results
 		- ext: extension used for the filename if provided
+		- wrap: boolean argument used only for edi indentation
 	Output:
 		if file argument is specified, void string is returned
 		if file argument is not specified, then they will returns all data
@@ -58,6 +59,7 @@ function export_file($args) {
 	if(!isset($args["title"])) $args["title"]="";
 	if(!isset($args["file"])) $args["file"]="";
 	if(!isset($args["ext"])) $args["ext"]="";
+	if(!isset($args["wrap"])) $args["wrap"]=false;
 	// CONTINUE
 	switch($args["type"]) {
 		case "xml":
@@ -71,6 +73,9 @@ function export_file($args) {
 			break;
 		case "xlsx":
 			$buffer=__export_file_excel($args["data"],$args["title"],"Xlsx");
+			break;
+		case "edi":
+			$buffer=__export_file_edi($args["data"],$args["wrap"]);
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
@@ -158,12 +163,9 @@ function __export_file_csv($matrix,$sep=";",$eol="\r\n",$encoding="UTF-8",$repla
 	Output:
 		They will returns all data
 */
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-
 function __export_file_excel($matrix,$title="",$type="Xls") {
 	require_once("lib/phpspreadsheet/vendor/autoload.php");
-	$objPHPExcel=new Spreadsheet();
+	$objPHPExcel=new PhpOffice\PhpSpreadsheet\Spreadsheet();
 	$objPHPExcel->getProperties()->setCreator(get_name_version_revision());
 	$objPHPExcel->getProperties()->setLastModifiedBy(current_datetime());
 	if($title!="") {
@@ -180,10 +182,47 @@ function __export_file_excel($matrix,$title="",$type="Xls") {
 	if($title!="") {
 		$objPHPExcel->getActiveSheet()->setTitle(substr($title,0,31));
 	}
-	$objWriter=IOFactory::createWriter($objPHPExcel,$type);
+	$objWriter=PhpOffice\PhpSpreadsheet\IOFactory::createWriter($objPHPExcel,$type);
 	ob_start();
 	$objWriter->save("php://output");
 	$buffer=ob_get_clean();
+	return $buffer;
+}
+
+/*
+	Name:
+		__export_file_edi
+	Abstract:
+		This function is intended to export data in edi format
+	Input:
+		- matrix: the matrix to export
+		- wrap: boolean argument to enable or disable the wrap feature
+		- encoding: charset used
+	Output:
+		They will returns all data
+*/
+function __export_file_edi($matrix,$wrap=false) {
+	// CONVERT ALL ITEMS IN STRING
+	foreach($matrix as $key=>$line) {
+		foreach($line as $key2=>$field) {
+			if(is_array($field)) {
+				foreach($field as $key3=>$subfield) {
+					if(is_array($subfield)) {
+						show_php_error(array("phperror"=>"Arrays in subfields not allowed"));
+					} else {
+						$matrix[$key][$key2][$key3]=strval($subfield);
+					}
+				}
+			} else {
+				$matrix[$key][$key2]=strval($field);
+			}
+		}
+	}
+	// CONTINUE
+	require_once("lib/edifact/vendor/autoload.php");
+	$encoder=new EDI\Encoder();
+	$encoder->encode($matrix,$wrap);
+	$buffer=$encoder->get();
 	return $buffer;
 }
 ?>

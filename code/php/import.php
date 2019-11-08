@@ -80,12 +80,13 @@ function __import_find_query($data,$pos) {
 	Input:
 		Array
 		- file: local filename used to load the data
-		- type: can be xml, csv or excel
+		- type: can be xml, csv, xls, bytes or edi
 		- sep: separator char used only by csv format
 		- sheet: sheet that must to be read
 		- nodes: an array with the fields that define each nodes used in the tree construction
 		- prefn: function executed between the load and the tree construction
 		- postfn: function executed after the tree construction
+		- notree: boolean to enable or disable the array2tree function
 		- nohead: if the first row doesn't contains the header of the data, put this field to one
 		- noletter: if you want to use numeric index instead of excel index, put this field to one
 		- offset: the offset added to the start position in each map field
@@ -106,6 +107,7 @@ function import_file($args) {
 	if(!isset($args["nodes"])) $args["nodes"]=array();
 	if(!isset($args["prefn"])) $args["prefn"]="";
 	if(!isset($args["postfn"])) $args["postfn"]="";
+	if(!isset($args["notree"])) $args["notree"]=0;
 	if(!isset($args["nohead"])) $args["nohead"]=0;
 	if(!isset($args["noletter"])) $args["noletter"]=0;
 	if(!isset($args["offset"])) $args["offset"]=0;
@@ -116,16 +118,11 @@ function import_file($args) {
 		case "text/xml":
 		case "xml":
 			$array=__import_xml2array($args["file"]);
-			if(!is_array($array)) return $array;
 			break;
 		case "text/plain":
 		case "text/csv":
 		case "csv":
 			$array=__import_csv2array($args["file"],$args["sep"]);
-			if(!is_array($array)) return $array;
-			if($args["prefn"]) $array=$args["prefn"]($array,$args);
-			if(!is_array($array)) return $array;
-			$array=__import_array2tree($array,$args["nodes"],$args["nohead"],$args["noletter"]);
 			break;
 		case "application/wps-office.xls":
 		case "application/vnd.ms-excel":
@@ -134,21 +131,20 @@ function import_file($args) {
 		case "xlsx":
 		case "xls":
 			$array=__import_xls2array($args["file"],$args["sheet"]);
-			if(!is_array($array)) return $array;
-			if($args["prefn"]) $array=$args["prefn"]($array,$args);
-			if(!is_array($array)) return $array;
-			$array=__import_array2tree($array,$args["nodes"],$args["nohead"],$args["noletter"]);
 			break;
 		case "bytes":
 			$array=__import_bytes2array($args["file"],$args["map"],$args["offset"]);
-			if(!is_array($array)) return $array;
-			if($args["prefn"]) $array=$args["prefn"]($array,$args);
-			if(!is_array($array)) return $array;
-			$array=__import_array2tree($array,$args["nodes"],$args["nohead"],$args["noletter"]);
+			break;
+		case "edi":
+			$array=__import_edi2array($args["file"]);
 			break;
 		default:
 			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
 	}
+	if(!is_array($array)) return $array;
+	if($args["prefn"]) $array=$args["prefn"]($array,$args);
+	if(!is_array($array)) return $array;
+	if(!$args["notree"]) $array=__import_array2tree($array,$args["nodes"],$args["nohead"],$args["noletter"]);
 	if($args["postfn"]) $array=$args["postfn"]($array,$args);
 	return $array;
 }
@@ -307,9 +303,6 @@ function __import_csv2array($file,$sep) {
 	return $array;
 }
 
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-
 /*
 	Name:
 		__import_xls2array
@@ -322,7 +315,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 */
 function __import_xls2array($file,$sheet) {
 	require_once("lib/phpspreadsheet/vendor/autoload.php");
-	$objReader=IOFactory::createReaderForFile($file);
+	$objReader=PhpOffice\PhpSpreadsheet\IOFactory::createReaderForFile($file);
 	// CHECK THE SHEET PARAM
 	if(!method_exists($objReader,"listWorksheetNames")) return "Error: Sheets not found in the file";
 	$sheets=$objReader->listWorksheetNames($file);
@@ -435,6 +428,24 @@ function __import_bytes2array($file,$map,$offset) {
 
 /*
 	Name:
+		__import_edi2array
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
+function __import_edi2array($file) {
+	require_once("lib/edifact/vendor/autoload.php");
+	$parser=new EDI\Parser();
+	$parser->load($file);
+	$array=$parser->get();
+	return $array;
+}
+
+/*
+	Name:
 		__import_removevoid
 	Abstract:
 		TODO
@@ -479,7 +490,30 @@ function __import_removevoid($array) {
 		TODO
 */
 function __import_array2tree($array,$nodes,$nohead,$noletter) {
+	// INITIAL CHECKS
+	if(!is_array($array)) return $array;
 	if(!count($array)) return $array;
+	// CHECK FOR DETECT REAL MATRIX OR TREES
+	$valid=1;
+	foreach($array as $key=>$val) {
+		if(!is_numeric($key)) {
+			$valid=0;
+		} elseif(!is_array($val)) {
+			$valid=0;
+		} else {
+			foreach($val as $key2=>$val2) {
+				if(!is_numeric($key2)) {
+					$valid=0;
+				} elseif(is_array($val2)) {
+					$valid=0;
+				}
+				if(!$valid) break;
+			}
+		}
+		if(!$valid) break;
+	}
+	if(!$valid) return $array;
+	// CONTINUE
 	if($nohead) {
 		$head=array();
 		$num=1;
