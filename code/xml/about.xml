@@ -679,7 +679,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>LibreOffice 6.1 (LGPL-3.0)</label>
+							<label>LibreOffice 6.1-6.3 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.libreoffice.org/")</onclick>
