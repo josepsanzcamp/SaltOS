@@ -23,9 +23,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(!check_user()) action_denied();
 if(getParam("action")=="pdf") {
-	require_once("php/libaction.php");
+	require_once("php/libpdf.php");
 	$_LANG["default"]="$page,menu,common";
 	if(!file_exists("xml/${page}.xml")) action_denied();
 	$config=xml2array("xml/${page}.xml");
@@ -37,4 +38,5 @@ if(getParam("action")=="pdf") {
 	__pdf_eval_pdftag($config);
 	if(!defined("__CANCEL_DIE__")) die();
 }
+
 ?>

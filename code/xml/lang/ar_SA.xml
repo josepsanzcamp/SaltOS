@@ -1052,6 +1052,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<server_base>خادم اساسي:</server_base>
 		<php_plugins>PHP اضافات:</php_plugins>
 		<javascript_base>Javascript اساسية:</javascript_base>
+		<bootstrap_plugins translated="false">Bootstrap plugins:</bootstrap_plugins>
 		<jquery_plugins>JQuery اضافات:</jquery_plugins>
 		<javascript_plugins>Javascript اضافات:</javascript_plugins>
 		<other_plugins>إضافات اخرى:</other_plugins>

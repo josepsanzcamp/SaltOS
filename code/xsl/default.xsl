@@ -252,7 +252,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<xsl:attribute name="onclick">qrcode2('<xsl:call-template name="replace_string">
 								<xsl:with-param name="find">'</xsl:with-param>
 								<xsl:with-param name="replace"> </xsl:with-param>
-								<xsl:with-param name="string" select="."/>
+								<xsl:with-param name="string" select="substring(.,5)"/>
 							</xsl:call-template>')</xsl:attribute>
 							<xsl:call-template name="print_string_length">
 								<xsl:with-param name="text" select="substring(.,5)"/>

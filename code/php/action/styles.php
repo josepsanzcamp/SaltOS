@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(getParam("action")=="styles") {
 	$style=getParam("style");
 	if(load_style($style)) {
@@ -85,4 +86,5 @@ if(getParam("action")=="styles") {
 	}
 	die();
 }
+
 ?>

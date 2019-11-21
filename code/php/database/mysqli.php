@@ -71,4 +71,5 @@ class database_mysqli {
 		$this->link=null;
 	}
 }
+
 ?>

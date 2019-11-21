@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(!check_user()) action_denied();
 if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 	require_once("php/getmail.php");
@@ -90,4 +91,5 @@ if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
 	javascript_location_page("correo&action=form&id=0_session_0");
 	die();
 }
+
 ?>

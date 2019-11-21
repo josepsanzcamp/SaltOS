@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(getParam("action")=="login") {
 	$user=getParam("user");
 	$pass=getParam("pass");
@@ -67,4 +68,5 @@ if(getParam("action")=="login") {
 	javascript_location_base($querystring);
 	die();
 }
+
 ?>

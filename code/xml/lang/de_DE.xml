@@ -1052,6 +1052,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<server_base>Server Basis: </server_base>
 		<php_plugins>PHP Plugins: </php_plugins>
 		<javascript_base>Javascript Basis: </javascript_base>
+		<bootstrap_plugins>Bootstrap plugins:</bootstrap_plugins>
 		<jquery_plugins>JQuery Plugins: </jquery_plugins>
 		<javascript_plugins>Javascript Plugins: </javascript_plugins>
 		<other_plugins>Andere Plugins: </other_plugins>

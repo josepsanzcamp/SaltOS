@@ -84,6 +84,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<action>list</action>
 		<id>0</id>
 		<lang>es_ES</lang>
+		<engine>jqueryui</engine>
 		<style eval="true">ismobile()?"google/blue/light":"google/multi/light"</style>
 		<stylepre eval="true">ismobile()?"lib/themes/":"lib/themes/"</stylepre>
 		<stylepost eval="true">ismobile()?"/jquery.mobile/jquery.mobile.min.css":"/jquery-ui/jquery-ui.min.css"</stylepost>
@@ -199,9 +200,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</styles>
 	<javascript>
 		<cache ifeval="!ismobile()">
-			<include>lib/phpjs/php.saltos.min.js</include>
+			<include>lib/phpjs/php.min.js</include>
 			<include>lib/jquery/jquery.min.js</include>
-			<include>lib/jquery/jquery.kookie.min.js</include>
+			<include>lib/jquery/jquery.cookie.min.js</include>
 			<include>lib/jquery/jquery.form.min.js</include>
 			<include>lib/jquery/jquery-ui.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
@@ -211,10 +212,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.timepicker.min.js</include>
 			<include>lib/jquery/jquery.favicon.min.js</include>
 			<include>lib/jquery/jquery.jplayer.min.js</include>
-			<include>lib/zlibjs/rawdeflate.min.js</include>
-			<include>lib/zlibjs/rawinflate.min.js</include>
-			<include>lib/zlibjs/stringToBytes.js</include>
-			<include>lib/zlibjs/bytesToString.js</include>
+			<include>lib/zlibjs/zlibjs.min.js</include>
 		</cache>
 		<inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<cache ifeval="!ismobile()">
@@ -229,17 +227,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/fileupload/jquery.fileupload.min.js</include>
 		</cache>
 		<cache ifeval="ismobile()">
-			<include>lib/phpjs/php.saltos.min.js</include>
+			<include>lib/phpjs/php.min.js</include>
 			<include>lib/jquery/jquery.min.js</include>
 			<include>lib/jquery/jquery-migrate.min.js</include><!-- REQUIRED ONLY BY JQUERY MOBILE -->
-			<include>lib/jquery/jquery.kookie.min.js</include>
+			<include>lib/jquery/jquery.cookie.min.js</include>
 			<include>lib/jquery/jquery.form.min.js</include>
 			<include>lib/jquery/jquery.mobile.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
-			<include>lib/zlibjs/rawdeflate.min.js</include>
-			<include>lib/zlibjs/rawinflate.min.js</include>
-			<include>lib/zlibjs/stringToBytes.js</include>
-			<include>lib/zlibjs/bytesToString.js</include>
+			<include>lib/zlibjs/zlibjs.min.js</include>
 		</cache>
 	</javascript>
 	<configs>

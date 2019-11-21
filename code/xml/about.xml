@@ -458,9 +458,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
 						</field>
 						<field>
+							<label>Bootstrap 4.3.1 (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://getbootstrap.com/")</onclick>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<label lang="true">bootstrap_plugins</label>
+							<type>label</type>
+							<class>thead</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<label>Bootswatch 4.3.1 (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://bootswatch.com/")</onclick>
+						</field>
+						<field>
 							<type>separator</type>
 							<class>tbody</class>
-							<colspan>1</colspan>
+							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>

@@ -1027,17 +1027,17 @@ function __import_make_table_row($row,$class,$rowspan,$depth,$last,$edit,$width,
 			}
 		} else {
 			if(substr($field,0,4)=="tel:") {
-				$field=explode(":",$field,2);
-				$result.="<a href='javascript:void(0)' onclick='qrcode2(\"${field[1]}\")'>${field[1]}</a>";
+				$temp=explode(":",$field,2);
+				$result.="<a href='javascript:void(0)' onclick='qrcode2(\"${temp[1]}\")'>${temp[1]}</a>";
 			} elseif(substr($field,0,7)=="mailto:") {
-				$field=explode(":",$field,2);
-				$result.="<a href='javascript:void(0)' onclick='mailto(\"${field[1]}\")'>${field[1]}</a>";
+				$temp=explode(":",$field,2);
+				$result.="<a href='javascript:void(0)' onclick='mailto(\"${temp[1]}\")'>${temp[1]}</a>";
 			} elseif(substr($field,0,5)=="href:") {
-				$field=explode(":",$field,2);
-				$result.="<a href='javascript:void(0)' onclick='openwin(\"${field[1]}\")'>${field[1]}</a>";
+				$temp=explode(":",$field,2);
+				$result.="<a href='javascript:void(0)' onclick='openwin(\"${temp[1]}\")'>${temp[1]}</a>";
 			} elseif(substr($field,0,5)=="link:") {
-				$field=explode(":",$field,3);
-				$result.="<a href='javascript:void(0)' onclick='${field[1]}'>${field[2]}</a>";
+				$temp=explode(":",$field,3);
+				$result.="<a href='javascript:void(0)' onclick='${temp[1]}'>${temp[2]}</a>";
 			} else {
 				$result.=$field;
 			}

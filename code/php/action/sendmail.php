@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(!check_user()) action_denied();
 if(getParam("action")=="sendmail") {
 	if(getParam("default_0_id")=="0") {
@@ -660,4 +661,5 @@ if(getParam("page")=="correo") {
 		"subject"=>$subject_extra,"body"=>$body_extra,
 		"state_crt"=>$state_crt,"priority"=>0,"sensitivity"=>0));
 }
+
 ?>

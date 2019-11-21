@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(!check_user()) action_denied();
 if(in_array($page,array("contactos","clientes","proveedores","empleados","posiblescli"))) {
 	$where="WHERE id='".abs(getParam("id"))."'";
@@ -159,4 +160,5 @@ if(in_array($page,array("contactos","clientes","proveedores","empleados","posibl
 		echo $buffer;
 	}
 }
+
 ?>

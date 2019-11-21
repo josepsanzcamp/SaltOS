@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(!check_user()) action_denied();
 if($page=="clientes") {
 	$id_cliente=abs(getParam("id"));
@@ -539,4 +540,5 @@ if($page=="presupuestos") {
 	javascript_history(-1);
 	die();
 }
+
 ?>

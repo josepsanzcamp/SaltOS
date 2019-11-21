@@ -137,4 +137,5 @@ class database_pdo_sqlite {
 		$this->link=null;
 	}
 }
+
 ?>

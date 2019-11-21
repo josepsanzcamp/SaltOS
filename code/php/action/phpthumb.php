@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(getParam("action")=="phpthumb") {
 	// INCLUDE HELPER LIBRARIES
 	if(!function_exists("imagebmp")) require_once("lib/phpclasses/bmpphp/BMP.php");
@@ -116,4 +117,5 @@ if(getParam("action")=="phpthumb") {
 		"cache"=>true
 	));
 }
+
 ?>

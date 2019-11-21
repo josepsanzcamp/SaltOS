@@ -76,4 +76,5 @@ class database_pdo_mssql {
 		$this->link=null;
 	}
 }
+
 ?>

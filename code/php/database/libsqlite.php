@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 function __libsqlite_group_concat_step($context,$rows,$string,$separator=",") {
 	if($context!="") $context.=$separator;
 	$context.=$string;
@@ -111,4 +112,5 @@ function __libsqlite_if($condition,$value_if_true,$value_if_false) {
 function __libsqlite_pow($base,$exp) {
 	return pow($base,$exp);
 }
+
 ?>

@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(!check_user()) action_denied();
 if(getParam("action")=="excel") {
 	require_once("php/libaction.php");
@@ -39,4 +40,5 @@ if(getParam("action")=="excel") {
 	__matrix2dump($matrix,"${page}.xls",ucfirst($page));
 	if(!defined("__CANCEL_DIE__")) die();
 }
+
 ?>

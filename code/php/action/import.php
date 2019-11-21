@@ -130,4 +130,5 @@ if($page=="datacfg") {
 	javascript_history(-1);
 	die();
 }
+
 ?>

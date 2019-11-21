@@ -72,4 +72,5 @@ class database_mssql {
 		$this->link=null;
 	}
 }
+
 ?>

@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(!check_user()) action_denied();
 if(getParam("action")=="signature") {
 	require_once("php/libaction.php");
@@ -126,4 +127,5 @@ if(getParam("action")=="signature") {
 		"extra"=>array("x-frame-options: SAMEORIGIN")
 	));
 }
+
 ?>

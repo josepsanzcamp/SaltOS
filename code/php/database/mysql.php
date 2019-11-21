@@ -73,4 +73,5 @@ class database_mysql {
 		$this->link=null;
 	}
 }
+
 ?>

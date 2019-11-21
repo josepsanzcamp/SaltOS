@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(!check_user()) action_denied();
 if(getParam("action")=="geshi") {
 	$array=json_decode(file_get_contents("php://input"),true);
@@ -30,4 +31,5 @@ if(getParam("action")=="geshi") {
 	echo highlight_geshi($array["html"],$array["lang"]);
 	die();
 }
+
 ?>

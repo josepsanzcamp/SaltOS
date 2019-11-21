@@ -74,4 +74,5 @@ if($page=="datacfg") {
 	unlink($file);
 	die();
 }
+
 ?>
