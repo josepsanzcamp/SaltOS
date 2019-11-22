@@ -105,7 +105,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">username</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1 AND id IN (SELECT DISTINCT id_usuario FROM tbl_ficheros)")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1 AND id IN (SELECT DISTINCT id_usuario FROM tbl_ficheros WHERE id_usuario='".current_user()."')")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
 					</field>
 					<field>
@@ -222,8 +222,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		AND ".($id_aplicacion?"(a.id_aplicacion='$id_aplicacion')":"(1=1)")."
 		AND ".($id_usuario?"(a.id_usuario='$id_usuario')":"(1=1)")."
 		AND (id_cuenta IS NULL OR id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'))
-		AND ".($fecha1?"(DATE(datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
-		AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(datetime))":"(1=1)")."
+		AND ".($fecha1?"(DATE(a.datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
+		AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(a.datetime))":"(1=1)")."
 		AND ".check_sql2("list","e.id_aplicacion","e.id_usuario","d.id_grupo")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
