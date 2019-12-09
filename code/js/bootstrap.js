@@ -349,6 +349,10 @@ function add_link_in_menu(option) {
 }
 
 function add_table_in_data(option) {
+	// CHECK PARAMS
+	var params=["fields","rows"];
+	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
+	// CONTINUE
 	var table=$(`
 <table class="table table-striped table-hover table-sm">
 	<thead class="thead-dark"></thead>
@@ -430,11 +434,11 @@ function add_header(menu) {
 	});
 }
 
-function remove_header() {
+function remove_header_title() {
 	$("#navbar-center *").remove();
 }
 
-function update_header(info) {
+function add_header_title(info) {
 	add_button_in_navbar({
 		"label":document.title,
 		"onclick":"opencontent('?page=about')",
@@ -480,6 +484,16 @@ function add_menu(menu) {
 	});
 }
 
+function add_alert(option) {
+	// CHECK PARAMS
+	var params=["type","data","node","prepend"];
+	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
+	// CONTINUE
+	var alert=$(`<div class="alert alert-${option.type} m-0" role="alert">${option.data}</div>`);
+	if(option.prepend) $(option.node).prepend(alert);
+	if(!option.prepend) $(option.node).append(alert);
+}
+
 /* OLD SALTOS COMPATIBILITY */
 function toggle_menu() {
 	if($("#menu").is(":visible")) {
@@ -517,8 +531,8 @@ function opencontent(url,callback) {
 		saltos.pager=$.ajax({url:"index.php?action=pagerlist&page="+saltos.page,async:false}).responseJSON;
 		// MONTAR PANTALLA
 		document.title=`${saltos.list.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-		remove_header();
-		update_header(saltos.info);
+		remove_header_title();
+		add_header_title(saltos.info);
 		$("#data *").remove();
 		add_table_in_data(saltos.list);
 	}
@@ -572,8 +586,13 @@ var saltos={};
 		document.title=`${saltos.list.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
 		add_layout();
 		add_header(saltos.menu);
-		update_header(saltos.info);
+		add_header_title(saltos.info);
 		add_menu(saltos.menu);
+		//~ add_alert({
+			//~ "type":"info",
+			//~ "data":"HOLA MUNDO",
+			//~ "node":"#data",
+		//~ });
 		add_table_in_data(saltos.list);
 		// TOOLTIPS
 		$('[data-toggle="tooltip"]').tooltip({

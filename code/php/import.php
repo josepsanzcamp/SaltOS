@@ -86,10 +86,12 @@ function __import_find_query($data,$pos) {
 		- nodes: an array with the fields that define each nodes used in the tree construction
 		- prefn: function executed between the load and the tree construction
 		- postfn: function executed after the tree construction
-		- notree: boolean to enable or disable the array2tree function
+		- notree: boolean to enable or disable the array2tree feature
 		- nohead: if the first row doesn't contains the header of the data, put this field to one
 		- noletter: if you want to use numeric index instead of excel index, put this field to one
 		- offset: the offset added to the start position in each map field
+		- nomb: boolean to disable or enable the multibyte support
+		- novoid: boolean to enable or disable the removevoid feature
 	Output:
 		This function returns an array with the loaded data from file
 		Can return a matrix or tree, depending the nodes parameter
@@ -111,6 +113,8 @@ function import_file($args) {
 	if(!isset($args["nohead"])) $args["nohead"]=0;
 	if(!isset($args["noletter"])) $args["noletter"]=0;
 	if(!isset($args["offset"])) $args["offset"]=0;
+	if(!isset($args["nomb"])) $args["nomb"]=0;
+	if(!isset($args["novoid"])) $args["novoid"]=0;
 	if(!file_exists($args["file"])) return "Error: File '${args["file"]}' not found";
 	// CONTINUE
 	switch($args["type"]) {
@@ -133,7 +137,7 @@ function import_file($args) {
 			$array=__import_xls2array($args["file"],$args["sheet"]);
 			break;
 		case "bytes":
-			$array=__import_bytes2array($args["file"],$args["map"],$args["offset"]);
+			$array=__import_bytes2array($args["file"],$args["map"],$args["offset"],$args["nomb"]);
 			break;
 		case "edi":
 			$array=__import_edi2array($args["file"]);
@@ -142,10 +146,22 @@ function import_file($args) {
 			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
 	}
 	if(!is_array($array)) return $array;
-	if($args["prefn"]) $array=$args["prefn"]($array,$args);
-	if(!is_array($array)) return $array;
-	if(!$args["notree"]) $array=__import_array2tree($array,$args["nodes"],$args["nohead"],$args["noletter"]);
-	if($args["postfn"]) $array=$args["postfn"]($array,$args);
+	if(!$args["novoid"]) {
+		$array=__import_removevoid($array);
+		if(!is_array($array)) return $array;
+	}
+	if($args["prefn"]) {
+		$array=$args["prefn"]($array,$args);
+		if(!is_array($array)) return $array;
+	}
+	if(!$args["notree"]) {
+		$array=__import_array2tree($array,$args["nodes"],$args["nohead"],$args["noletter"]);
+		if(!is_array($array)) return $array;
+	}
+	if($args["postfn"]) {
+		$array=$args["postfn"]($array,$args);
+		if(!is_array($array)) return $array;
+	}
 	return $array;
 }
 
@@ -299,7 +315,6 @@ function __import_csv2array($file,$sep) {
 	}
 	fclose($fd);
 	if(isset($array[0][0])) $array[0][0]=__import_utf8bom($array[0][0]);
-	$array=__import_removevoid($array);
 	return $array;
 }
 
@@ -386,7 +401,6 @@ function __import_xls2array($file,$sheet) {
 	unset($objPHPExcel);
 	unset($objSheet);
 	// CONTINUE
-	$array=__import_removevoid($array);
 	return $array;
 }
 
@@ -400,7 +414,7 @@ function __import_xls2array($file,$sheet) {
 	Output:
 		TODO
 */
-function __import_bytes2array($file,$map,$offset) {
+function __import_bytes2array($file,$map,$offset,$nomb) {
 	if(!is_array($map)) {
 		$map=trim($map);
 		$map=explode("\n",$map);
@@ -419,10 +433,16 @@ function __import_bytes2array($file,$map,$offset) {
 	foreach($lines as $line) {
 		$line=getutf8($line);
 		$row=array();
-		foreach($map as $map0) $row[]=trim(mb_substr($line,$map0[1]+$offset,$map0[2]));
+		foreach($map as $map0) {
+			if($nomb) {
+				$temp=substr($line,$map0[1]+$offset,$map0[2]);
+			} else {
+				$temp=mb_substr($line,$map0[1]+$offset,$map0[2]);
+			}
+			$row[]=trim($temp);
+		}
 		$array[]=$row;
 	}
-	$array=__import_removevoid($array);
 	return $array;
 }
 
@@ -446,6 +466,38 @@ function __import_edi2array($file) {
 
 /*
 	Name:
+		__import_check_real_matrix
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
+function __import_check_real_matrix($array) {
+	$valid=1;
+	foreach($array as $key=>$val) {
+		if(!is_numeric($key)) {
+			$valid=0;
+		} elseif(!is_array($val)) {
+			$valid=0;
+		} else {
+			foreach($val as $key2=>$val2) {
+				if(!is_numeric($key2)) {
+					$valid=0;
+				} elseif(is_array($val2)) {
+					$valid=0;
+				}
+				if(!$valid) break;
+			}
+		}
+		if(!$valid) break;
+	}
+	return $valid;
+}
+
+/*
+	Name:
 		__import_removevoid
 	Abstract:
 		TODO
@@ -455,6 +507,11 @@ function __import_edi2array($file) {
 		TODO
 */
 function __import_removevoid($array) {
+	// INITIAL CHECKS
+	if(!is_array($array)) return $array;
+	if(!count($array)) return $array;
+	if(!__import_check_real_matrix($array)) return $array;
+	// CONTINUE
 	$count_rows=count($array);
 	$rows=array_fill(0,$count_rows,0);
 	$count_cols=0;
@@ -493,26 +550,7 @@ function __import_array2tree($array,$nodes,$nohead,$noletter) {
 	// INITIAL CHECKS
 	if(!is_array($array)) return $array;
 	if(!count($array)) return $array;
-	// CHECK FOR DETECT REAL MATRIX OR TREES
-	$valid=1;
-	foreach($array as $key=>$val) {
-		if(!is_numeric($key)) {
-			$valid=0;
-		} elseif(!is_array($val)) {
-			$valid=0;
-		} else {
-			foreach($val as $key2=>$val2) {
-				if(!is_numeric($key2)) {
-					$valid=0;
-				} elseif(is_array($val2)) {
-					$valid=0;
-				}
-				if(!$valid) break;
-			}
-		}
-		if(!$valid) break;
-	}
-	if(!$valid) return $array;
+	if(!__import_check_real_matrix($array)) return $array;
 	// CONTINUE
 	if($nohead) {
 		$head=array();
@@ -535,7 +573,10 @@ function __import_array2tree($array,$nodes,$nohead,$noletter) {
 	} else {
 		$col=0;
 		foreach($nodes as $key=>$val) {
-			if(!is_array($val)) $val=explode(",",$val);
+			if(!is_array($val)) {
+				if($val=="") $val=array();
+				else $val=explode(",",$val);
+			}
 			$nodes[$key]=array();
 			foreach($val as $key2=>$val2) {
 				if(in_array($val2,$head)) $nodes[$key][$key2]=array_search($val2,$head);

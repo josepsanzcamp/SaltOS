@@ -102,7 +102,6 @@ function export_file($args) {
 		They will returns all data
 */
 function __export_file_xml($matrix,$eol="\n",$encoding="UTF-8") {
-	require_once("php/array2xml.php");
 	$buffer=__XML_HEADER__;
 	$buffer.=__array2xml_write_nodes($matrix,0);
 	$buffer=str_replace("\n",$eol,$buffer);
