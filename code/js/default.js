@@ -506,6 +506,14 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 	}
 
 	function notice(title,message,arg1,arg2,arg3) {
+		// PER PREVENIR REPETIR MISSATGES
+		var lista=[];
+		$(".jGrowl-notification").each(function() {
+			var text1=$(".jGrowl-header",this).text();
+			var text2=$(".jGrowl-message",this).text();
+			lista.push(text1+"|"+text2);
+		});
+		if(in_array(title+"|"+message,lista)) return;
 		// CHECK SOME PARAMETERS
 		var action=function() {};
 		var theme="ui-state-highlight";
