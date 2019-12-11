@@ -83,15 +83,16 @@ function __import_find_query($data,$pos) {
 		- type: can be xml, csv, xls, bytes or edi
 		- sep: separator char used only by csv format
 		- sheet: sheet that must to be read
-		- nodes: an array with the fields that define each nodes used in the tree construction
-		- prefn: function executed between the load and the tree construction
-		- postfn: function executed after the tree construction
-		- notree: boolean to enable or disable the array2tree feature
-		- nohead: if the first row doesn't contains the header of the data, put this field to one
-		- noletter: if you want to use numeric index instead of excel index, put this field to one
+		- map: map used as dictionary for each field, pos and length
 		- offset: the offset added to the start position in each map field
 		- nomb: boolean to disable or enable the multibyte support
 		- novoid: boolean to enable or disable the removevoid feature
+		- prefn: function executed between the load and the tree construction
+		- notree: boolean to enable or disable the array2tree feature
+		- nodes: an array with the fields that define each nodes used in the tree construction
+		- nohead: if the first row doesn't contains the header of the data, put this field to one
+		- noletter: if you want to use numeric index instead of excel index, put this field to one
+		- postfn: function executed after the tree construction
 	Output:
 		This function returns an array with the loaded data from file
 		Can return a matrix or tree, depending the nodes parameter
@@ -106,15 +107,16 @@ function import_file($args) {
 	if(!isset($args["type"])) show_php_error(array("phperror"=>"Unknown type"));
 	if(!isset($args["sep"])) $args["sep"]=";";
 	if(!isset($args["sheet"])) $args["sheet"]=0;
-	if(!isset($args["nodes"])) $args["nodes"]=array();
-	if(!isset($args["prefn"])) $args["prefn"]="";
-	if(!isset($args["postfn"])) $args["postfn"]="";
-	if(!isset($args["notree"])) $args["notree"]=0;
-	if(!isset($args["nohead"])) $args["nohead"]=0;
-	if(!isset($args["noletter"])) $args["noletter"]=0;
+	if(!isset($args["map"])) $args["map"]="";
 	if(!isset($args["offset"])) $args["offset"]=0;
 	if(!isset($args["nomb"])) $args["nomb"]=0;
 	if(!isset($args["novoid"])) $args["novoid"]=0;
+	if(!isset($args["prefn"])) $args["prefn"]="";
+	if(!isset($args["notree"])) $args["notree"]=0;
+	if(!isset($args["nodes"])) $args["nodes"]=array();
+	if(!isset($args["nohead"])) $args["nohead"]=0;
+	if(!isset($args["noletter"])) $args["noletter"]=0;
+	if(!isset($args["postfn"])) $args["postfn"]="";
 	if(!file_exists($args["file"])) return "Error: File '${args["file"]}' not found";
 	// CONTINUE
 	switch($args["type"]) {
