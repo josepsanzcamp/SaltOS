@@ -1007,8 +1007,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<colorline>Cor das linhas</colorline>
 		<colortext1>Títulos</colortext1>
 		<colortext2>Textos</colortext2>
-		<title_correo>Configure a conta de correio padrão que será usada na aplicação para enviar emails quando um usuário não tiver configurado sua conta pessoal no SaltOS</title_correo>
-		<emailhost>Servidor SMTP</emailhost>
+		<title_correo translated="false">Configure some global parameters about sending mail from SaltOS</title_correo>
+		<cuentasupport translated="false">Outbox email for support</cuentasupport>
+		<cuentaincidencias translated="false">Outbox email for issues</cuentaincidencias>
 		<water>Marcas d'água</water>
 		<title_water>Defina a marcas d'água que serão usadas nos pdf's</title_water>
 		<wateractas>Atas: Texto</wateractas>

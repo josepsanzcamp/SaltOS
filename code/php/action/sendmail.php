@@ -222,7 +222,7 @@ if(getParam("action")=="sendmail") {
 		die();
 	}
 	// BEGIN THE SPOOL OPERATION
-	$query="SELECT a.id,a.id_cuenta,a.uidl FROM tbl_correo a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id("correo")."' AND e.id_registro=a.id AND e.first=1 WHERE e.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'";
+	$query="SELECT a.id,a.id_cuenta,a.uidl FROM tbl_correo a LEFT JOIN tbl_usuarios_c c ON c.id=a.id_cuenta WHERE c.id_usuario='".current_user()."' AND a.is_outbox='1' AND a.state_sent='0'";
 	$result=execute_query_array($query);
 	if(!count($result)) {
 		if(!getParam("ajax")) {
@@ -261,21 +261,15 @@ if(getParam("action")=="sendmail") {
 					$extra=$mail->SMTPSecure;
 					$user=$mail->Username;
 					$pass=$mail->Password;
-					if($row["id_cuenta"]) {
-						$query="SELECT * FROM tbl_usuarios_c WHERE id='".$row["id_cuenta"]."'";
-						$result2=execute_query($query);
-						$current_host=$result2["smtp_host"];
-						$current_port=$result2["smtp_port"]?$result2["smtp_port"]:25;
-						$current_extra=$result2["smtp_extra"];
-						$current_user=$result2["smtp_user"];
-						$current_pass=$result2["smtp_pass"];
-					} else {
-						$current_host=CONFIG("email_host");
-						$current_port=CONFIG("email_port")?CONFIG("email_port"):25;
-						$current_extra=CONFIG("email_extra");
-						$current_user=CONFIG("email_user");
-						$current_pass=CONFIG("email_pass");
-					}
+					// FIND ACCOUNT DATA
+					$query="SELECT * FROM tbl_usuarios_c WHERE id='".$row["id_cuenta"]."'";
+					$result2=execute_query($query);
+					$current_host=$result2["smtp_host"];
+					$current_port=$result2["smtp_port"]?$result2["smtp_port"]:25;
+					$current_extra=$result2["smtp_extra"];
+					$current_user=$result2["smtp_user"];
+					$current_pass=$result2["smtp_pass"];
+					// CONTINUE
 					$idem=1;
 					if($current_host!=$host) $idem=0;
 					if($current_port!=$port) $idem=0;

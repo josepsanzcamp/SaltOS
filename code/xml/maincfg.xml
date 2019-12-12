@@ -48,7 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						water_correo_text,water_correo_posx,water_correo_posy,water_correo_size,water_correo_angle,
 						water_feeds_text,water_feeds_posx,water_feeds_posy,water_feeds_size,water_feeds_angle")</water>
 					<logo eval="true">make_select_config("logo_left,logo_top,logo_width,logo_height,logo_file,color_line,color_text1,color_text2")</logo>
-					<correo eval="true">make_select_config("email_host,email_port,email_extra,email_user,email_pass,email_name,email_from,email_async,email_support")</correo>
+					<correo eval="true">make_select_config("id_cuenta_support,id_cuenta_incidencias,email_async,email_support")</correo>
 					<accounting eval="true">make_select_config("accounting_currency,accounting_iva_name,accounting_iva_value,accounting_irpf_name,accounting_irpf_value")</accounting>
 					<applications_config eval="true">make_select_config("tab_objetivos_presupuesto,tab_funcional_presupuesto,tab_tecnica_presupuesto,tab_info_adicional_presupuesto,tab_tareas_presupuesto,tab_productos_presupuesto,tab_condiciones_presupuesto,df_estado_presupuestos,df_estado_agenda,df_tipo_evento_agenda,df_estado_incidencias,df_prioridad_incidencias,df_cuenta_facturas,df_formaspago_facturas,df_epigfrafes_facturas,df_cuenta_gastos,df_formaspago_gastos,df_epigfrafes_gastos")</applications_config>
 				</query>
@@ -618,7 +618,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<correo>
 				<fieldset>
 					<buttons>true</buttons>
-					<width>450px</width>
 					<title lang="true">correo</title>
 					<icon eval="true">ICON("correo")</icon>
 					<row>
@@ -626,7 +625,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>label</type>
 							<label lang="true">title_correo</label>
 							<class>center bold siwrap</class>
-							<colspan>3</colspan>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -636,90 +635,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<name>email_name</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<colspan>2</colspan>
-							</field>
-					</row>
-					<row>
-						<field>
-							<name>email_from</name>
-							<label lang="true">email</label>
-							<type>text</type>
-							<width>240px</width>
-							<colspan>2</colspan>
-							</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>email_host</name>
-							<label lang="true">emailhost</label>
-							<type>text</type>
-							<width>240px</width>
-							<colspan>2</colspan>
-							</field>
-					</row>
-					<row>
-						<field>
-							<name>email_port</name>
-							<label lang="true">port</label>
-							<type>text</type>
-							<width>60px</width>
-						</field>
-						<field>
-							<type>label</type>
-							<label>(25, 465, 587)</label>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>email_extra</name>
-							<label lang="true">extra</label>
+							<name>id_cuenta_support</name>
+							<label lang="true">cuentasupport</label>
 							<type>select</type>
-							<width>60px</width>
-							<rows>
-								<row>
-									<label></label>
-									<value></value>
-								</row>
-								<row>
-									<label>SSL</label>
-									<value>ssl</value>
-								</row>
-								<row>
-									<label>TLS</label>
-									<value>tls</value>
-								</row>
-							</rows>
-						</field>
-						<field>
-							<type>label</type>
-							<label>(SSL/TLS)</label>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>email_user</name>
-							<label lang="true">username</label>
-							<type>text</type>
 							<width>240px</width>
-							<colspan>2</colspan>
-							</field>
+							<query>SELECT
+							CONCAT(email_name,' &lt;',email_from,'&gt;') label,id value FROM tbl_usuarios_c WHERE email_privated=0 AND email_disabled=0 AND smtp_host!='' UNION SELECT '' label,'0' value ORDER BY label ASC</query>
+						</field>
 					</row>
 					<row>
 						<field>
-							<name>email_pass</name>
-							<label lang="true">password</label>
-							<type>password</type>
-							<width>120px</width>
-							<colspan>2</colspan>
+							<name>id_cuenta_incidencias</name>
+							<label lang="true">cuentaincidencias</label>
+							<type>select</type>
+							<width>240px</width>
+							<query>SELECT
+							CONCAT(email_name,' &lt;',email_from,'&gt;') label,id value FROM tbl_usuarios_c WHERE email_privated=0 AND email_disabled=0 AND smtp_host!='' UNION SELECT '' label,'0' value ORDER BY label ASC</query>
 						</field>
 					</row>
 					<row>
@@ -733,7 +664,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">emailasync</label>
 							<type>checkbox</type>
 							<value>1</value>
-							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -747,7 +677,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">emailsupport</label>
 							<type>text</type>
 							<width>240px</width>
-							<colspan>2</colspan>
 						</field>
 					</row>
 				</fieldset>
@@ -755,7 +684,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<accounting>
 				<fieldset>
 					<buttons>true</buttons>
-					<width>450px</width>
 					<title lang="true">accounting</title>
 					<icon eval="true">ICON("form")</icon>
 					<row>
@@ -816,7 +744,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</accounting>
 			<applications_config>
 				<fieldset>
-					<width>450px</width>
+					<width>600px</width>
 					<title lang="true">applications_config</title>
 					<icon eval="true">ICON("form")</icon>
 					<row>
@@ -1005,7 +933,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 				<fieldset>
-					<width>450px</width>
+					<width>600px</width>
 					<row>
 						<field>
 							<type>label</type>
@@ -1050,7 +978,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 				<fieldset>
-					<width>450px</width>
+					<width>600px</width>
 					<row>
 						<field>
 							<type>label</type>
@@ -1095,7 +1023,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 				<fieldset>
-					<width>450px</width>
+					<width>600px</width>
 					<row>
 						<field>
 							<type>label</type>
@@ -1149,7 +1077,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 				</fieldset>
 				<fieldset>
-					<width>450px</width>
+					<width>600px</width>
 					<buttons>true</buttons>
 					<row>
 						<field>
@@ -1307,13 +1235,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="logo" prefix="true" preeval="true" eval="true">preeval_update_config("color_text1")</query>
 		<query match="logo" prefix="true" preeval="true" eval="true">preeval_update_config("color_text2")</query>
 		<!-- correo section -->
-		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_host")</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_port")</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_extra")</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_user")</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_pass")</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_name")</query>
-		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_from")</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">setParam("id_cuenta_support",intval(getParam("id_cuenta_support")))</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("id_cuenta_support")</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">setParam("id_cuenta_incidencias",intval(getParam("id_cuenta_incidencias")))</query>
+		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("id_cuenta_incidencias")</query>
 		<query match="correo" prefix="true" preeval="true" eval="true">setParam("email_async",intval(getParam("email_async")))</query>
 		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_async")</query>
 		<query match="correo" prefix="true" preeval="true" eval="true">preeval_update_config("email_support")</query>

@@ -630,7 +630,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>valor</name>
-					<type>VARCHAR(255)</type>
+					<type>TEXT</type>
 				</field>
 			</fields>
 		</table>

@@ -30,7 +30,7 @@ if($page=="incidencias") {
 	require_once("php/sendmail.php");
 	require_once("php/libaction.php");
 	// DATOS SMPT
-	if(!CONFIG("email_host") || !CONFIG("email_user") || !CONFIG("email_pass")) {
+	if(!CONFIG("id_cuenta_incidencias")) {
 		session_error(LANG("msgnotsmtpemail"));
 		javascript_history(-1);
 		die();
@@ -126,7 +126,7 @@ if($page=="incidencias") {
 			//~ echo $body;
 			//~ die();
 			// ENVIAR EMAIL
-			$error=sendmail(0,$to,$subject,$body);
+			$error=sendmail(CONFIG("id_cuenta_incidencias"),$to,$subject,$body);
 			if($error) {
 				session_error($error);
 			} else {

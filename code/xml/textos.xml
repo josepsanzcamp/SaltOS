@@ -220,7 +220,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">aplicacion</label>
 							<type>select</type>
 							<width>120px</width>
-							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","'".page2id("actas")."','".page2id("correo")."','".page2id("presupuestos")."'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+							<query eval="true">make_extra_query_with_perms("","tbl_aplicaciones","nombre","'".page2id("actas")."','".page2id("correo")."','".page2id("presupuestos")."','".page2id("incidencias")."'")." UNION SELECT '0' value,'".LANG_ESCAPE("sinaplicacion")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>

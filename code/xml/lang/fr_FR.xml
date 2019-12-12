@@ -1007,8 +1007,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<colorline>lignes de couleur</colorline>
 		<colortext1>Titres</colortext1>
 		<colortext2>texte</colortext2>
-		<title_correo> Configurer compte courriel qui va utiliser l'application pour envoyer des courriel quand un utilisateur n'a pas configuré votre courrier personnel avec Saltos</title_correo>
-		<emailhost>Serveur SMTP</emailhost>
+		<title_correo translated="false">Configure some global parameters about sending mail from SaltOS</title_correo>
+		<cuentasupport translated="false">Outbox email for support</cuentasupport>
+		<cuentaincidencias translated="false">Outbox email for issues</cuentaincidencias>
 		<water>Filigranes</water>
 		<title_water>Réglez le filigranes à être utilisés dans le PDF</title_water>
 		<wateractas>Procès-verbal:Texte</wateractas>

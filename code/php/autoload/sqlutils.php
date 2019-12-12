@@ -808,8 +808,10 @@ function make_fulltext_query4($values) {
 			$where=make_like_query("search",$values);
 		}
 		if($where=="1=1") return $where;
-		$query[]="a.id_aplicacion=${id} AND a.id_registro IN (SELECT id FROM idx_${page} WHERE ${where})";
+		$count=execute_query("SELECT COUNT(*) FROM idx_${page} WHERE ${where}");
+		if($count) $query[]="a.id_aplicacion=${id} AND a.id_registro IN (SELECT id FROM idx_${page} WHERE ${where})";
 	}
+	if(!count($query)) return "1=0";
 	$query="((".implode(") OR (",$query)."))";
 	return $query;
 }

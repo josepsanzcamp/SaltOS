@@ -29,26 +29,16 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	require_once("src/SMTP.php");
 	require_once("php/getmail.php");
 	// FIND ACCOUNT DATA
-	if($id_cuenta) {
-		$query="SELECT * FROM tbl_usuarios_c WHERE id='$id_cuenta'";
-		$result=execute_query($query);
-		$host=$result["smtp_host"];
-		$port=$result["smtp_port"];
-		$extra=$result["smtp_extra"];
-		$user=$result["smtp_user"];
-		$pass=$result["smtp_pass"];
-		$from=$result["email_from"];
-		$fromname=$result["email_name"];
-	} else {
-		$host=CONFIG("email_host");
-		$port=CONFIG("email_port");
-		$extra=CONFIG("email_extra");
-		$user=CONFIG("email_user");
-		$pass=CONFIG("email_pass");
-		$from=CONFIG("email_from");
-		$fromname=CONFIG("email_name");
-	}
-
+	$query="SELECT * FROM tbl_usuarios_c WHERE id='$id_cuenta'";
+	$result=execute_query($query);
+	$host=$result["smtp_host"];
+	$port=$result["smtp_port"];
+	$extra=$result["smtp_extra"];
+	$user=$result["smtp_user"];
+	$pass=$result["smtp_pass"];
+	$from=$result["email_from"];
+	$fromname=$result["email_name"];
+	// CONTINUE
 	$mail=new PHPMailer();
 	if(!$mail->set("XMailer",get_name_version_revision())) return $mail->ErrorInfo;
 	if(!$mail->AddCustomHeader("X-Originating-IP",getServer("REMOTE_ADDR"))) if($mail->ErrorInfo) return $mail->ErrorInfo;

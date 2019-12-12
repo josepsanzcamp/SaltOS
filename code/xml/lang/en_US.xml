@@ -1007,8 +1007,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<colorline>color lines</colorline>
 		<colortext1>Titles</colortext1>
 		<colortext2>Text</colortext2>
-		<title_correo>Configure email account which will use the application to send emails when a user does not have configured your personal mail with SaltOS</title_correo>
-		<emailhost>Server SMTP</emailhost>
+		<title_correo>Configure some global parameters about sending mail from SaltOS</title_correo>
+		<cuentasupport>Outbox email for support</cuentasupport>
+		<cuentaincidencias>Outbox email for issues</cuentaincidencias>
 		<water>Watermarks</water>
 		<title_water>Set the watermarks to be used in the pdf's</title_water>
 		<wateractas>Minutes: Text</wateractas>

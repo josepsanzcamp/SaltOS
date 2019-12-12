@@ -1007,8 +1007,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<colorline>Color de les línies</colorline>
 		<colortext1>Títols</colortext1>
 		<colortext2>Textos</colortext2>
-		<title_correo>Configureu el compte de correu que usarà l'aplicació per enviar correus quan un usuari no tingui configurat el seu correu personal amb Dreceres</title_correo>
-		<emailhost>Servidor SMTP</emailhost>
+		<title_correo>Configureu alguns paràmetres globals sobre l'enviament de correus des de SaltOS</title_correo>
+		<cuentasupport>Correu sortint suport</cuentasupport>
+		<cuentaincidencias>Correu sortint incidències</cuentaincidencias>
 		<water>Marques d'aigua</water>
 		<title_water>Definiu les marques d'aigua que es faran servir en els pdf's</title_water>
 		<wateractas>Actes: Text</wateractas>

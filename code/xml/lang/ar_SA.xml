@@ -1007,8 +1007,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<colorline>لون الخطوط</colorline>
 		<colortext1>العناوين</colortext1>
 		<colortext2>نص</colortext2>
-		<title_correo>تهيئة حساب البريد الإلكتروني الذي سيستخدم التطبيق لإرسال رسائل البريد الإلكتروني عندما لايقوم المستخدم بتهيئة بريدك الشخصي   مع SaltOS</title_correo>
-		<emailhost>خادم SMTP</emailhost>
+		<title_correo translated="false">Configure some global parameters about sending mail from SaltOS</title_correo>
+		<cuentasupport translated="false">Outbox email for support</cuentasupport>
+		<cuentaincidencias translated="false">Outbox email for issues</cuentaincidencias>
 		<water>العلامات المائية</water>
 		<title_water>ضبط العلامات المائية المستخدمة علي ال pdf's</title_water>
 		<wateractas>المحاضر</wateractas>

@@ -29,7 +29,7 @@ if(getParam("action")=="support") {
 	require_once("php/report.php");
 	require_once("php/sendmail.php");
 	// DATOS SMPT
-	if(!CONFIG("email_host") || !CONFIG("email_user") || !CONFIG("email_pass")) {
+	if(!CONFIG("id_cuenta_support")) {
 		session_error(LANG("msgnotsmtpemail","support"));
 		javascript_history(-1);
 		die();
@@ -66,7 +66,7 @@ if(getParam("action")=="support") {
 		// PARA DEBUGAR
 		//~ echo $body;die();
 		// ENVIAR EMAIL
-		$send=sendmail(0,$to,$contact.": ".$subject,$body);
+		$send=sendmail(CONFIG("id_cuenta_support"),$to,$contact.": ".$subject,$body);
 		if($send!="") {
 			session_error($send);
 		} else {
