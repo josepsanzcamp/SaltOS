@@ -644,15 +644,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		) z
 		WHERE ".make_like_query($campos_array[$campos],$filtro)."
 		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".($id_usuario!=""?"id_usuario='$id_usuario'":"(1=1)")."
+		AND ".($id_usuario!=""?"id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario!='$id_usuario')":"(1=1)")."
 		AND ".($id_cuenta!=""?"id_cuenta='$id_cuenta'":"(1=1)")."
+		AND id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."')
 		AND ".$only_array[$only]."
 		AND ".($hidespam?"state_spam='0'":"(1=1)")."
 		AND ".($withfiles?"files&gt;0":"(1=1)")."
 		AND ".($withoutfiles?"files=0":"(1=1)")."
 		AND ".($onlyinbox?"is_outbox=0":"(1=1)")."
 		AND ".($onlyoutbox?"is_outbox=1":"(1=1)")."
-		AND id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."')
 		AND ".($fecha1?"(DATE(datetime)&gt;=DATE('$fecha1'))":"(1=1)")."
 		AND ".($fecha2?"(DATE('$fecha2')&gt;=DATE(datetime))":"(1=1)")."
 		AND ".$fecha3_array[$fecha3]."

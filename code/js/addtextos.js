@@ -40,8 +40,8 @@ if(typeof(__addtextos__)=="undefined" && typeof(parent.__addtextos__)=="undefine
 				var objto=$("textarea[name$="+to+"]");
 				var extra=$(objto).val().length>0?"\n\n":"";
 				var texto=response["rows"][0]["texto"];
-				$(objto).val($(objto).val()+extra+texto);
-				$(objfrom).val("");
+				$(objto).val($(objto).val()+extra+texto).trigger("change");
+				$(objfrom).val("").trigger("refresh");
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
@@ -62,7 +62,7 @@ if(typeof(__addtextos__)=="undefined" && typeof(parent.__addtextos__)=="undefine
 				var objto=$("textarea[name$="+to+"]");
 				var texto=response["rows"][0]["texto"];
 				objto.ckeditorGet().insertHtml(nl2br(texto));
-				$(objfrom).val("");
+				$(objfrom).val("").trigger("refresh");
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {
 				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);

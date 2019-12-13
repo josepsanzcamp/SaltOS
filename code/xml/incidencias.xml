@@ -495,6 +495,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<comments_old include="xml/common/commentsold.xml"/>
 			<files_old include="xml/common/filesold.xml" />
 			<comments_new include="xml/common/commentnew.xml"/>
+			<node path="comments_new/fieldset" append="true">
+				<row global="id" ifeval="$id>=0">
+					<field>
+						<type>separator</type>
+					</field>
+				</row>
+				<row global="id" ifeval="$id>=0">
+					<field ifeval="!ismobile()">
+						<name>textos_comentarios</name>
+						<label lang="true">textos</label>
+						<type>select</type>
+						<width>240px</width>
+						<query include="xml/common/qtextos.xml" replace="true"/>
+						<value></value>
+					</field>
+					<field>
+						<type>button</type>
+						<value lang="true">textos_add</value>
+						<icon eval="true">ICON("add")</icon>
+						<onclick>add_textos_textarea('comments_new_a_textos_comentarios','comments_new_a_comentarios')</onclick>
+						<class>left</class>
+					</field>
+				</row>
+			</node>
 			<files_new include="xml/common/filesnew.xml"/>
 			<control include="xml/common/control.xml" />
 			<folders include="xml/common/folders.xml" />
