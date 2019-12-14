@@ -31,6 +31,8 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	// FIND ACCOUNT DATA
 	$query="SELECT * FROM tbl_usuarios_c WHERE id='$id_cuenta'";
 	$result=execute_query($query);
+	if(!isset($result["id"])) return "id not found";
+	if($result["email_disabled"]) return "email disabled";
 	$host=$result["smtp_host"];
 	$port=$result["smtp_port"];
 	$extra=$result["smtp_extra"];
