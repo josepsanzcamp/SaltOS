@@ -24,6 +24,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// GET ACTIONS
+$action=getParam("action");
+if(file_exists("php/action/_${action}.php")) include("php/action/_${action}.php");
+if(file_exists("php/action/${action}.php")) include("php/action/${action}.php");
+
+// CONTINUE
 $array=eval_attr(xml2array("xml/bootstrap.xml"));
 
 // SOME CHECKS

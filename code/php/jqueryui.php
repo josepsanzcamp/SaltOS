@@ -24,6 +24,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// GET THE FLOW PARAMETERS
+$page=getParam("page",getDefault("page"));
+$action=getParam("action",getDefault("action"));
+$id=intval(getParam("id",getDefault("id")));
+if(file_exists("php/action/${action}.php")) include("php/action/${action}.php");
+
 // DEFAULT ACTIONS
 $page=getParam("page");
 if(!file_exists("xml/${page}.xml")) $page="";

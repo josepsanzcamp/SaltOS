@@ -26,44 +26,46 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 if(!check_user()) action_denied();
 
+$page=getParam("page");
+
 require_once("php/libaction.php");
 $_LANG["default"]="${page},menu,common";
 $_CONFIG[$page]=xml2array("xml/${page}.xml");
 $page=lastpage($page);
 history($page);
 
-$config=getDefault("$page/form");
+require_once("php/listsim.php");
+$config=getDefault("$page/list");
 $config=eval_attr($config);
 $_RESULT=$config;
-unset($_RESULT["views"]);
-if($id==0) {
-	if(isset($config["views"]["insert"]["title"])) $_RESULT["title"]=$config["views"]["insert"]["title"];
-	if(isset($config["views"]["insert"]["query"])) $query=$config["views"]["insert"]["query"];
-} else {
-	if($id>0) {
-		if(isset($config["views"]["update"]["title"])) $_RESULT["title"]=$config["views"]["update"]["title"];
-		if(isset($config["views"]["update"]["query"])) $query=$config["views"]["update"]["query"];
-	} else {
-		if(isset($config["views"]["view"]["title"])) $_RESULT["title"]=$config["views"]["view"]["title"];
-		if(isset($config["views"]["view"]["query"])) $query=$config["views"]["view"]["query"];
-	}
+// GET AND REMOVE THE NEEDED XML NODES
+foreach(array("query","order","limit","offset") as $node) {
+	if(!isset($config[$node])) show_php_error(array("xmlerror"=>"&lt;$node&gt; not found for &lt;list&gt;"));
+	unset($_RESULT[$node]);
 }
-$fixquery=is_array($query)?0:1;
-$go=0;
-$commit=1;
-if($fixquery) $query=array("default"=>$query);
-$rows=__default_process_querytag($query,$go,$commit);
-if($fixquery) $rows=$rows["default"];
-set_array($_RESULT,"rows",$rows);
-if($go) {
-	if(is_numeric($go)) {
-		//~ javascript_history($go);
-	} else {
-		//~ javascript_history("update");
-		//~ javascript_location_page($go);
-	}
-	die();
+$query0=$config["query"];
+$limit=$config["limit"];
+$offset=$config["offset"];
+// CHECK ORDER
+list($order,$array)=list_check_order($config["order"],$config["fields"]);
+// MARK THE SELECTED ORDER FIELD
+foreach($_RESULT["fields"] as $key=>$val) {
+	$selected=0;
+	if(isset($val["name"]) && $val["name"]==$array[0][0]) $selected=1;
+	if(isset($val["order"]) && $val["order"]==$array[0][0]) $selected=1;
+	if(isset($val["order".$array[0][1]]) && $val["order".$array[0][1]]==$array[0][0]) $selected=1;
+	if($selected) $_RESULT["fields"][$key]["selected"]=$array[0][1];
 }
+// EXECUTE THE QUERY TO GET THE ROWS WITH LIMIT AND OFFSET
+$query="$query0 ORDER BY $order LIMIT $offset,$limit";
+$result=db_query($query);
+$count=0;
+while($row=db_fetch_row($result)) {
+	$row["__ROW_NUMBER__"]=++$count;
+	set_array($_RESULT["rows"],"row",$row);
+}
+db_free($result);
+// CONTINUE WITH NORMAL OPERATION
 $_RESULT=__default_eval_querytag($_RESULT);
 $_RESULT=__remove_temp_nodes($_RESULT);
 

@@ -68,12 +68,6 @@ post_datauser();
 check_time();
 check_postlimit();
 
-// GET THE FLOW PARAMETERS
-$page=getParam("page",getDefault("page"));
-$action=getParam("action",getDefault("action"));
-$id=intval(getParam("id",getDefault("id")));
-if(file_exists("php/action/${action}.php")) include("php/action/${action}.php");
-
 // LOAD THE USER INTERFACE
 $engine=getDefault("engine");
 if(!file_exists("php/${engine}.php")) $engine="jqueryui";

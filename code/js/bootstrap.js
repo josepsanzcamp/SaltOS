@@ -518,26 +518,43 @@ function translator() {
 }
 
 function opencontent(url,callback) {
+	// CHECK PARAMS
+	if(!isset(url)) url="";
+	if(!isset(callback)) callback=function() {};
+	// CONTINUE
 	var url2=parse_url(url);
 	var array=querystring2array(url2.query);
-	if(!isset(array["action"])) array["action"]="getlist";
-	if(array["action"]=="list") array["action"]="getlist";
-	if(array["action"]=="form") array["action"]="getform";
-	if(array["action"]=="limpiar") [array["action"],array["limpiar"]]=["getlist","1"];
+	if(!isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
+		var temp=$.ajax({url:"index.php?action=default",async:false}).responseJSON;
+		array["page"]=temp.page;
+		array["action"]=temp.action;
+		array["id"]=temp.id;
+	}
+	if(isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
+		var temp=$.ajax({url:"index.php?action=default&page="+array["page"],async:false}).responseJSON;
+		array["action"]=temp.action;
+		array["id"]=temp.id;
+	}
+	if(array["action"]=="limpiar") [array["action"],array["limpiar"]]=["list","1"];
+	if(!isset(saltos.default)) saltos.default={};
+	if(isset(array["page"])) saltos.default.page=array["page"];
+	if(isset(array["action"])) saltos.default.action=array["action"];
+	if(isset(array["id"])) saltos.default.id=array["id"];
 	var querystring=array2querystring(array);
-	saltos.page=array["page"];
-	if(array["action"]=="getlist") {
+	if(array["action"]=="list") {
 		saltos.list=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON;
-		saltos.pager=$.ajax({url:"index.php?action=pagerlist&page="+saltos.page,async:false}).responseJSON;
-		// MONTAR PANTALLA
 		document.title=`${saltos.list.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
 		remove_header_title();
 		add_header_title(saltos.info);
 		$("#data *").remove();
 		add_table_in_data(saltos.list);
 	}
-	if(array["action"]=="getform") {
+	if(array["action"]=="form") {
 		saltos.form=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON;
+		document.title=`${saltos.form.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+		remove_header_title();
+		add_header_title(saltos.info);
+		$("#data *").remove();
 		console.log(saltos.form);
 	}
 }
@@ -555,7 +572,7 @@ function openapp(page,id) {
 }
 
 function qrcode(id) {
-	qrcode2(saltos.page,id);
+	qrcode2(saltos.default.page,id);
 }
 
 function qrcode2(page,id) {
@@ -576,24 +593,25 @@ var saltos={};
 	if(saltos.islogin) {
 		// CARGAR DATOS
 		sync_cookies("start");
-		saltos.info=$.ajax({url:"index.php?action=getinfo",async:false}).responseJSON;
-		saltos.menu=$.ajax({url:"index.php?action=getmenu",async:false}).responseJSON;
-		saltos.page=$.ajax({url:"index.php?action=getlastpage",async:false}).responseJSON;
-		saltos.list=$.ajax({url:"index.php?action=getlist&page="+saltos.page,async:false}).responseJSON;
-		saltos.pager=$.ajax({url:"index.php?action=pagerlist&page="+saltos.page,async:false}).responseJSON;
-		saltos.numbers=$.ajax({url:"index.php?action=ajax&query=numbers",async:false}).responseJSON;
+		saltos.info=$.ajax({url:"index.php?action=info",async:false}).responseJSON;
+		saltos.menu=$.ajax({url:"index.php?action=menu",async:false}).responseJSON;
+
 		// MONTAR PANTALLA
-		document.title=`${saltos.list.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+		document.title=`${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
 		add_layout();
 		add_header(saltos.menu);
 		add_header_title(saltos.info);
 		add_menu(saltos.menu);
+
+		// CARGAR PRIMER CONTENIDO
+		opencontent();
+
 		//~ add_alert({
 			//~ "type":"info",
 			//~ "data":"HOLA MUNDO",
 			//~ "node":"#data",
 		//~ });
-		add_table_in_data(saltos.list);
+
 		// TOOLTIPS
 		$('[data-toggle="tooltip"]').tooltip({
 			"container":"body",

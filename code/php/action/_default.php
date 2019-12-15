@@ -26,8 +26,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 if(!check_user()) action_denied();
 
-$page=lastpage("");
-$json=json_encode($page);
+if(getParam("page")) {
+	$page=getParam("page");
+} else {
+	$page=lastpage("");
+}
+
+$_CONFIG[$page]=xml2array("xml/${page}.xml");
+$action="list";
+$_RESULT=array();
+if(getDefault("$page/default")) {
+	$config=getDefault("$page/default");
+	$config=eval_attr($config);
+	$_RESULT=$config;
+}
+if(!isset($_RESULT["page"])) $_RESULT["page"]=$page;
+if(!isset($_RESULT["action"])) $_RESULT["action"]="list";
+if(!isset($_RESULT["id"])) $_RESULT["id"]="0";
+
+$json=json_encode($_RESULT);
 output_handler(array(
 	"data"=>$json,
 	"type"=>"application/json",
