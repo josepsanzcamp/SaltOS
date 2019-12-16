@@ -29,9 +29,8 @@ function history($page) {
 	if(!$id_usuario) return;
 	$id_aplicacion=page2id($page);
 	if(!$id_aplicacion) return;
-	$numget=count(array_merge($_POST,$_GET));
-	$limpiar=getParam("limpiar");
-	if($numget>2 || $limpiar) {
+	$numget=count(array_diff_key(array_merge($_POST,$_GET),array_flip(array("page","action","id"))));
+	if($numget>0) {
 		save_history($id_usuario,$id_aplicacion);
 	} else {
 		load_history($id_usuario,$id_aplicacion);

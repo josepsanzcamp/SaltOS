@@ -484,15 +484,15 @@ function add_menu(menu) {
 	});
 }
 
-function add_alert(option) {
-	// CHECK PARAMS
-	var params=["type","data","node","prepend"];
-	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
-	// CONTINUE
-	var alert=$(`<div class="alert alert-${option.type} m-0" role="alert">${option.data}</div>`);
-	if(option.prepend) $(option.node).prepend(alert);
-	if(!option.prepend) $(option.node).append(alert);
-}
+//~ function add_alert(option) {
+	//~ // CHECK PARAMS
+	//~ var params=["type","data","node","prepend"];
+	//~ for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
+	//~ // CONTINUE
+	//~ var alert=$(`<div class="alert alert-${option.type} m-0" role="alert">${option.data}</div>`);
+	//~ if(option.prepend) $(option.node).prepend(alert);
+	//~ if(!option.prepend) $(option.node).append(alert);
+//~ }
 
 /* OLD SALTOS COMPATIBILITY */
 function toggle_menu() {
@@ -518,6 +518,7 @@ function translator() {
 }
 
 function opencontent(url,callback) {
+	history_push_hash(url);
 	// CHECK PARAMS
 	if(!isset(url)) url="";
 	if(!isset(callback)) callback=function() {};
@@ -535,7 +536,10 @@ function opencontent(url,callback) {
 		array["action"]=temp.action;
 		array["id"]=temp.id;
 	}
-	if(array["action"]=="limpiar") [array["action"],array["limpiar"]]=["list","1"];
+	if(isset(array["page"]) && isset(array["action"]) && array["action"]=="limpiar") {
+		array["action"]="list";
+		array["limpiar"]="1";
+	}
 	if(!isset(saltos.default)) saltos.default={};
 	if(isset(array["page"])) saltos.default.page=array["page"];
 	if(isset(array["action"])) saltos.default.action=array["action"];
@@ -585,9 +589,49 @@ function mailto(mail) {
 	opencontent(`index.php?page=correo&action=form&id=0_mailto_${mail}`);
 }
 
-var saltos={};
+/* FOR HISTORY MANAGEMENT */
+function current_hash() {
+	var url=window.location.hash;
+	var pos=strpos(url,"#");
+	if(pos!==false) url=substr(url,pos+1);
+	return url;
+}
+
+function history_push_hash(hash) {
+	var pos=strpos(hash,"?");
+	if(pos!==false) hash=substr(hash,pos+1);
+	if(hash!=current_hash()) {
+		history.pushState(null,null,"#"+hash);
+	}
+}
+
+function history_replace_hash(hash) {
+	var pos=strpos(hash,"?");
+	if(pos!==false) hash=substr(hash,pos+1);
+	if(hash!=current_hash()) {
+		history.replaceState(null,null,"#"+hash);
+	}
+}
+
+function opencontent_hash() {
+	var hash=current_hash();
+	if(hash!="") hash="?"+hash;
+	opencontent(hash);
+}
+
+function init_history() {
+	$(window).on("hashchange",opencontent_hash);
+	var hash=current_hash();
+	if(hash=="") {
+		var temp=$.ajax({url:"index.php?action=default",async:false}).responseJSON;
+		history_replace_hash("page="+temp.page);
+	}
+	opencontent_hash();
+}
 
 /* MAIN CODE */
+var saltos={};
+
 (function($) {
 	saltos.islogin=$.ajax({url:"index.php?action=islogin",async:false}).responseJSON;
 	if(saltos.islogin) {
@@ -604,7 +648,7 @@ var saltos={};
 		add_menu(saltos.menu);
 
 		// CARGAR PRIMER CONTENIDO
-		opencontent();
+		init_history();
 
 		//~ add_alert({
 			//~ "type":"info",
@@ -613,7 +657,8 @@ var saltos={};
 		//~ });
 
 		// TOOLTIPS
-		$('[data-toggle="tooltip"]').tooltip({
+		$("body").tooltip({
+			"selector":"[data-toggle='tooltip']",
 			"container":"body",
 			"trigger":"hover",
 		});
