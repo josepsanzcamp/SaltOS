@@ -349,10 +349,6 @@ function add_link_in_menu(option) {
 }
 
 function add_table_in_data(option) {
-	// CHECK PARAMS
-	var params=["fields","rows"];
-	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
-	// CONTINUE
 	var table=$(`
 <table class="table table-striped table-hover table-sm">
 	<thead class="thead-dark"></thead>
@@ -415,6 +411,155 @@ function get_filtered_field(field,size) {
 		$(field).on("click",function() { eval(temp[1]); });
 	}
 	return field;
+}
+
+/* FUNCIONES PARA EL PROCESADO DE FORMULARIOS */
+function add_form_in_data(option) {
+	for(var key in option) {
+		if(limpiar_key(key)=="hiddens") {
+			__form_by_row_1(option[key]);
+		}
+	}
+	if(isset(option.fields.row)) {
+		// CASO 1
+		for(var key in option) {
+			if(limpiar_key(key)=="fields") {
+				if(isset(option[key].quick) && option[key].quick=="true") {
+					for(var key2 in option.quick) {
+						if(limpiar_key(key2)=="row") {
+							__form_by_row_2(option.quick[key2]);
+						}
+					}
+				}
+				for(var key2 in option[key]) {
+					if(limpiar_key(key2)=="row") {
+						__form_by_row_2(option[key][key2]);
+					}
+				}
+				if(isset(option[key].buttons) && option[key].buttons=="true") {
+					for(var key2 in option.buttons) {
+						if(limpiar_key(key2)=="row") {
+							__form_by_row_2(option.buttons[key2]);
+						}
+					}
+				}
+			}
+		}
+	} else {
+		for(var key in option) {
+			if(limpiar_key(key)=="fields") {
+				for(var key2 in option[key]) {
+					var name1=limpiar_key(key2);
+					var node1=option[key][key2];
+					for(var key3 in option) {
+						if(limpiar_key(key3)=="rows") {
+							for(var key4 in option[key3]) {
+								var name2=limpiar_key(key4);
+								var node2=option[key3][key4];
+								if(name1==name2) {
+									if(isset(node2.row)) {
+										// CASO 2
+										for(var key5 in node2) {
+											if(limpiar_key(key5)=="row") {
+												var node3=node2[key5];
+												var prefix=name2+"_"+node3.id+"_";
+												for(var key6 in node1) {
+													if(limpiar_key(key6)=="fieldset") {
+														if(isset(node1[key6].quick) && node1[key6].quick=="true") {
+															for(var key7 in option.quick) {
+																if(limpiar_key(key7)=="row") {
+																	__form_by_row_2(option.quick[key7],prefix);
+																}
+															}
+														}
+														for(var key7 in node1[key6]) {
+															if(limpiar_key(key7)=="row") {
+																__form_by_row_2(node1[key6][key7],prefix,node3);
+															}
+														}
+														if(isset(node1[key6].buttons) && node1[key6].buttons=="true") {
+															for(var key7 in option.buttons) {
+																if(limpiar_key(key7)=="row") {
+																	__form_by_row_2(option.buttons[key7],prefix);
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									} else if(isset(node2[name2].row)) {
+										// CASO 3
+										for(var key6 in node1) {
+											if(limpiar_key(key6)=="fieldset") {
+												if(isset(node1[key6].quick) && node1[key6].quick=="true") {
+													for(var key7 in option.quick) {
+														if(limpiar_key(key7)=="row") {
+															__form_by_row_2(option.quick[key7]);
+														}
+													}
+												}
+												for(var key7 in node1[key6]) {
+													if(limpiar_key(key7)=="head") {
+														__form_by_row_2(node1[key6][key7]);
+													} else if(limpiar_key(key7)=="row") {
+														for(var key5 in node2[name2]) {
+															if(limpiar_key(key5)=="row") {
+																var node3=node2[name2][key5];
+																var prefix=name2+"_"+node3.id+"_";
+																__form_by_row_2(node1[key6][key7],prefix,node3);
+															}
+														}
+													} else if(limpiar_key(key7)=="tail") {
+														__form_by_row_2(node1[key6][key7]);
+													}
+												}
+												if(isset(node1[key6].buttons) && node1[key6].buttons=="true") {
+													for(var key7 in option.buttons) {
+														if(limpiar_key(key7)=="row") {
+															__form_by_row_2(option.buttons[key7]);
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+function __form_by_row_1(fields,prefix,values) {
+	if(!count(fields)) return;
+	for(var key in fields) {
+		if(limpiar_key(key)=="field") {
+			var field=JSON.parse(JSON.stringify(fields[key]));
+			if(isset(field.name) && isset(values)) {
+				for(var key in values) {
+					if(key==field.name) {
+						field.value=values[key];
+					}
+				}
+			}
+			if(isset(field.name) && isset(prefix)) {
+				field.name=prefix+field.name;
+			}
+			console.log(field);
+		}
+	}
+}
+
+function __form_by_row_2(fields,prefix,values) {
+	if(!count(fields)) return;
+	console.log("open row");
+	__form_by_row_1(fields,prefix,values);
+	console.log("close row");
 }
 
 /* FUNCIONES PARA TAREAS DEL USER INTERFACE */
@@ -552,6 +697,7 @@ function opencontent(url,callback) {
 		add_header_title(saltos.info);
 		$("#data *").remove();
 		add_table_in_data(saltos.list);
+		add_form_in_data(saltos.list.form);
 	}
 	if(array["action"]=="form") {
 		saltos.form=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON;
@@ -559,7 +705,7 @@ function opencontent(url,callback) {
 		remove_header_title();
 		add_header_title(saltos.info);
 		$("#data *").remove();
-		console.log(saltos.form);
+		add_form_in_data(saltos.form);
 	}
 }
 
@@ -647,6 +793,13 @@ var saltos={};
 		add_header_title(saltos.info);
 		add_menu(saltos.menu);
 
+		// TOOLTIPS
+		$("body").tooltip({
+			"selector":"[data-toggle='tooltip']",
+			"container":"body",
+			"trigger":"hover",
+		});
+
 		// CARGAR PRIMER CONTENIDO
 		init_history();
 
@@ -656,14 +809,7 @@ var saltos={};
 			//~ "node":"#data",
 		//~ });
 
-		// TOOLTIPS
-		$("body").tooltip({
-			"selector":"[data-toggle='tooltip']",
-			"container":"body",
-			"trigger":"hover",
-		});
 		//~ feather.replace();
-		//~ $("#data").append(page);
 	} else {
 		// TODO
 	}

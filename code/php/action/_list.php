@@ -35,12 +35,12 @@ $page=lastpage($page);
 history($page);
 
 require_once("php/listsim.php");
-$config=getDefault("$page/list");
+$config=getDefault("$page/$action");
 $config=eval_attr($config);
 $_RESULT=$config;
 // GET AND REMOVE THE NEEDED XML NODES
 foreach(array("query","order","limit","offset") as $node) {
-	if(!isset($config[$node])) show_php_error(array("xmlerror"=>"&lt;$node&gt; not found for &lt;list&gt;"));
+	if(!isset($config[$node])) show_php_error(array("xmlerror"=>"&lt;$node&gt; not found for &lt;$action&gt;"));
 	unset($_RESULT[$node]);
 }
 $query0=$config["query"];

@@ -35,7 +35,7 @@ $_CONFIG[$page]=xml2array("xml/${page}.xml");
 $page=lastpage($page);
 history($page);
 
-$config=getDefault("$page/form");
+$config=getDefault("$page/$action");
 $config=eval_attr($config);
 $_RESULT=$config;
 unset($_RESULT["views"]);
@@ -51,6 +51,8 @@ if($id==0) {
 		if(isset($config["views"]["view"]["query"])) $query=$config["views"]["view"]["query"];
 	}
 }
+if(!isset($query)) show_php_error(array("xmlerror"=>"&lt;query&gt; not found for &lt;$action&gt;"));
+if(!isset($_RESULT["title"])) show_php_error(array("xmlerror"=>"&lt;title&gt; not found for &lt;$action&gt;"));
 $fixquery=is_array($query)?0:1;
 $go=0;
 $commit=1;
