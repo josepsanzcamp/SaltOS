@@ -103,7 +103,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">grupos</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosgrupos")."' label UNION (SELECT id value, nombre label FROM tbl_grupos ORDER BY label ASC)"</query>
+						<query eval="true">"SELECT '' value,'".LANG_ESCAPE("todoslosgrupos")."' label UNION SELECT id value, nombre label FROM tbl_grupos ORDER BY label ASC"</query>
 						<value global="id_grupo" eval="true">$id_grupo=getParam("id_grupo")</value>
 					</field>
 				</row>
