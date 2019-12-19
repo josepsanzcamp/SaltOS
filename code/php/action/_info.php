@@ -24,8 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$info=getDefault("info");
-$json=json_encode($info);
+$_RESULT[$action]=getDefault("info");
+$json=json_encode($_RESULT);
 output_handler(array(
 	"data"=>$json,
 	"type"=>"application/json",

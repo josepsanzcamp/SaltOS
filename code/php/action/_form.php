@@ -37,29 +37,30 @@ history($page);
 
 $config=getDefault("$page/$action");
 $config=eval_attr($config);
-$_RESULT=$config;
-unset($_RESULT["views"]);
+$_RESULT[$action]=$config;
+unset($_RESULT[$action]["views"]);
 if($id==0) {
-	if(isset($config["views"]["insert"]["title"])) $_RESULT["title"]=$config["views"]["insert"]["title"];
+	if(isset($config["views"]["insert"]["title"])) $_RESULT[$action]["title"]=$config["views"]["insert"]["title"];
 	if(isset($config["views"]["insert"]["query"])) $query=$config["views"]["insert"]["query"];
 } else {
 	if($id>0) {
-		if(isset($config["views"]["update"]["title"])) $_RESULT["title"]=$config["views"]["update"]["title"];
+		if(isset($config["views"]["update"]["title"])) $_RESULT[$action]["title"]=$config["views"]["update"]["title"];
 		if(isset($config["views"]["update"]["query"])) $query=$config["views"]["update"]["query"];
 	} else {
-		if(isset($config["views"]["view"]["title"])) $_RESULT["title"]=$config["views"]["view"]["title"];
+		if(isset($config["views"]["view"]["title"])) $_RESULT[$action]["title"]=$config["views"]["view"]["title"];
 		if(isset($config["views"]["view"]["query"])) $query=$config["views"]["view"]["query"];
 	}
 }
 if(!isset($query)) show_php_error(array("xmlerror"=>"&lt;query&gt; not found for &lt;$action&gt;"));
-if(!isset($_RESULT["title"])) show_php_error(array("xmlerror"=>"&lt;title&gt; not found for &lt;$action&gt;"));
+if(!isset($_RESULT[$action]["title"])) show_php_error(array("xmlerror"=>"&lt;title&gt; not found for &lt;$action&gt;"));
+
 $fixquery=is_array($query)?0:1;
 $go=0;
 $commit=1;
 if($fixquery) $query=array("default"=>$query);
 $rows=__default_process_querytag($query,$go,$commit);
 if($fixquery) $rows=$rows["default"];
-set_array($_RESULT,"rows",$rows);
+set_array($_RESULT[$action],"rows",$rows);
 if($go) {
 	if(is_numeric($go)) {
 		//~ javascript_history($go);
@@ -69,8 +70,8 @@ if($go) {
 	}
 	die();
 }
-$_RESULT=__default_eval_querytag($_RESULT);
-$_RESULT=__remove_temp_nodes($_RESULT);
+$_RESULT[$action]=__default_eval_querytag($_RESULT[$action]);
+$_RESULT[$action]=__remove_temp_nodes($_RESULT[$action]);
 
 $json=json_encode($_RESULT);
 output_handler(array(

@@ -104,7 +104,6 @@ __JS__
 		<include>lib/popper/popper.min.js</include>
 		<include>lib/bootstrap/js/bootstrap.min.js</include>
 		<include>lib/jquery/jquery.cookie.min.js</include>
-		<include>lib/feather/feather.min.js</include>
 		<include>js/bootstrap.js</include>
 <!--
 		<include>lib/masonry/masonry.pkgd.min.js</include>

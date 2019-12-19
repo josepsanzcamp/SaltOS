@@ -266,22 +266,22 @@ saltos.get_class_hash=function(clase) {
 // BOOTSTRAP WIDGETS
 saltos.add_layout=function() {
 	var layout=$(`
-<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse">
-<div class="btn-group mr-auto" id="navbar-left"></div>
-<div class="btn-group mx-auto" id="navbar-center"></div>
-<div class="btn-group ml-auto" id="navbar-right"></div>
-</div>
-</nav>
-<div class="container-fluid">
-<div class="row">
-<div class="col-lg-2 p-0" id="menu"></div>
-<div class="col-lg-10 p-0" id="data"></div>
-</div>
-</div>
+		<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse">
+				<div class="btn-group mr-auto" id="navbar-left"></div>
+				<div class="btn-group mx-auto" id="navbar-center"></div>
+				<div class="btn-group ml-auto" id="navbar-right"></div>
+			</div>
+		</nav>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-2 p-0" id="menu"></div>
+				<div class="col-lg-10 p-0" id="data"></div>
+			</div>
+		</div>
 	`);
 	$("body").append(layout);
 };
@@ -292,7 +292,9 @@ saltos.add_button_in_navbar=function(option) {
 	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
 	// CONTINUE
 	var button=$(`
-<button type="button" class="btn btn-primary ${option.class}" data-toggle="tooltip" title="${option.tip}"><span class="${option.icon}"></span> ${option.label}</button>
+		<button type="button" class="btn btn-primary ${option.class}" data-toggle="tooltip" title="${option.tip}">
+			<span class="${option.icon}"></span> ${option.label}
+		</button>
 	`);
 	$(button).on("click",function() {
 		if(typeof option.onclick=="string") eval(option.onclick);
@@ -309,10 +311,12 @@ saltos.add_group_in_menu=function(option) {
 	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
 	// CONTINUE
 	var group=$(`
-<div class="list-group list-group-flush">
-<button type="button" class="list-group-item list-group-item-action list-group-item-primary" data-toggle="collapse" data-target="#${option.name}"><span class="${option.icon}"></span> ${option.label}</button>
-</div>
-<div class="list-group list-group-flush collapse ${option.show}" id="${option.name}"></div>
+		<div class="list-group list-group-flush">
+			<button type="button" class="list-group-item list-group-item-action list-group-item-primary" data-toggle="collapse" data-target="#${option.name}">
+				<span class="${option.icon}"></span> ${option.label}
+			</button>
+		</div>
+		<div class="list-group list-group-flush collapse ${option.show}" id="${option.name}"></div>
 	`);
 	$("button",group).on("click",function() {
 		if(typeof option.onclick=="string") eval(option.onclick);
@@ -321,13 +325,15 @@ saltos.add_group_in_menu=function(option) {
 	$("#menu").append(group);
 };
 
-saltos.add_link_in_menu=function(option) {
+saltos.add_link_in_group=function(option) {
 	// CHECK PARAMS
 	var params=["class","tip","icon","label","onclick"];
 	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
 	// CONTINUE
 	var link=$(`
-<button type="button" class="list-group-item list-group-item-action ${option.class} list-group-item-secondary" data-toggle="tooltip" title="${option.tip}"><span class="${option.icon}"></span> ${option.label}</button>
+		<button type="button" class="list-group-item list-group-item-action ${option.class} list-group-item-secondary" data-toggle="tooltip" title="${option.tip}">
+			<span class="${option.icon}"></span> ${option.label}
+		</button>
 	`);
 	// CHECK DEPTH
 	var depth=intval(saltos.get_class_key_val(option.class,"depth_"));
@@ -340,12 +346,36 @@ saltos.add_link_in_menu=function(option) {
 	$("#menu .list-group:last").append(link);
 };
 
-saltos.add_table_in_data=function(option) {
+saltos.make_tabs=function(array) {
+	var card=$(`
+		<div class="card">
+			<div class="card-header">
+				<ul class="nav nav-tabs card-header-tabs"></ul>
+			</div>
+			<div class="card-body">
+				<div class="tab-content"></div>
+			</div>
+		</div>
+	`);
+	for(var key in array) {
+		var temp=(key==0)?"active":"";
+		$(".nav-tabs",card).append(`
+			<li class="nav-item">
+				<a class="nav-link ${temp}" data-toggle="tab" href="#tab-pane-${key}">${array[key].title}</a>
+			</li>
+		`);
+		$(".tab-content",card).append(`<div class="tab-pane ${temp}" id="tab-pane-${key}"></div>`);
+		$(".tab-pane:last",card).append(array[key].obj);
+	}
+	return card;
+};
+
+saltos.make_table=function(option) {
 	var table=$(`
-<table class="table table-striped table-hover table-sm">
-	<thead class="thead-dark"></thead>
-	<tbody></tbody>
-</table>
+		<table class="table table-striped table-hover table-sm">
+			<thead class="thead-dark"></thead>
+			<tbody></tbody>
+		</table>
 	`);
 	$("thead",table).append("<tr></tr>");
 	for(var key in option.fields) {
@@ -362,7 +392,7 @@ saltos.add_table_in_data=function(option) {
 			$("tbody tr:last td:last",table).append(saltos.get_filtered_field(row[field.name],field.size));
 		}
 	}
-	$("#data").append(table);
+	return table;
 };
 
 /* FUNCIONES PARA AYUDAR CON EL MODELO DE DATOS DE SALTOS */
@@ -406,7 +436,7 @@ saltos.get_filtered_field=function(field,size) {
 };
 
 /* FUNCIONES PARA EL PROCESADO DE FORMULARIOS */
-saltos.add_form_in_data=function(option) {
+saltos.make_form=function(option) {
 	var array=[];
 	var title="";
 	var obj=$("<div></div>");
@@ -564,17 +594,7 @@ saltos.add_form_in_data=function(option) {
 		});
 		obj=$("<div></div>");
 	}
-	var nav=$(`<nav class="nav nav-pills"></nav>`);
-	var div=$(`<div class="tab-content"></div>`);
-	for(var key in array) {
-		var temp=(key==0)?"active":"";
-		$(nav).append(`<a class="nav-link ${temp}" data-toggle="tab" href="#tab-pane-${key}"></a>`);
-		$("a:last",nav).append(array[key].title);
-		$(div).append(`<div class="tab-pane ${temp}" id="tab-pane-${key}"></div>`);
-		$("div:last",div).append(array[key].obj);
-	}
-	$("#data").append(nav);
-	$("#data").append(div);
+	return array;
 };
 
 saltos.form_by_row_1=function(fields,prefix,values) {
@@ -607,7 +627,22 @@ saltos.form_by_row_2=function(fields,prefix,values) {
 };
 
 saltos.form_field=function(field) {
-	return $(`<input type="text" value="${field.name} - ${field.type}"/>`);
+	var obj=$(`<div class="form-group"></div>`);
+	if(in_array(field.type,["text","textarea","iframe"])) {
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+	}
+	if(in_array(field.type,["text"])) {
+		var input=$(`<input type="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		$(obj).append(input);
+	}
+	if(field.type=="iframe") {
+		var input=$(`<iframe class="form-control" id="${field.name}" name="${field.name}" src="${field.value}"></iframe>`);
+		$(obj).append(input);
+	}
+	return obj;
 }
 
 /* FUNCIONES PARA TAREAS DEL USER INTERFACE */
@@ -664,7 +699,7 @@ saltos.add_menu=function(menu) {
 			saltos.add_group_in_menu(menu[key]);
 			for(var key2 in menu[key]) {
 				if(saltos.limpiar_key(key2)=="option") {
-					saltos.add_link_in_menu(menu[key][key2]);
+					saltos.add_link_in_group(menu[key][key2]);
 				}
 			}
 		}
@@ -686,106 +721,6 @@ saltos.add_menu=function(menu) {
 	//~ if(option.prepend) $(option.node).prepend(alert);
 	//~ if(!option.prepend) $(option.node).append(alert);
 //~ };
-
-/* OLD SALTOS COMPATIBILITY */
-function toggle_menu() {
-	if($("#menu").is(":visible")) {
-		$("#menu").hide();
-		$("#data").removeClass("col-lg-10");
-		$("#data").addClass("col-lg-12");
-		saltos.setIntCookie("saltos_ui_menu_closed",1);
-	} else {
-		$("#data").removeClass("col-lg-12");
-		$("#data").addClass("col-lg-10");
-		$("#menu").show();
-		saltos.setIntCookie("saltos_ui_menu_closed",0);
-	}
-};
-
-function calculator() {
-	console.log("calculator");
-};
-
-function translator() {
-	console.log("translator");
-};
-
-function opencontent(url,callback) {
-	saltos.history_push_hash(url);
-	// CHECK PARAMS
-	if(!isset(url)) url="";
-	if(!isset(callback)) callback=function() {};
-	// CONTINUE
-	var url2=parse_url(url);
-	var array=saltos.querystring2array(url2.query);
-	if(!isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
-		var temp=$.ajax({url:"index.php?action=default",async:false}).responseJSON;
-		array["page"]=temp.page;
-		array["action"]=temp.action;
-		array["id"]=temp.id;
-	}
-	if(isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
-		var temp=$.ajax({url:"index.php?action=default&page="+array["page"],async:false}).responseJSON;
-		array["action"]=temp.action;
-		array["id"]=temp.id;
-	}
-	if(isset(array["page"]) && isset(array["action"]) && array["action"]=="limpiar") {
-		array["action"]="list";
-		array["limpiar"]="1";
-	}
-	if(!isset(saltos.default)) saltos.default={};
-	if(isset(array["page"])) saltos.default.page=array["page"];
-	if(isset(array["action"])) saltos.default.action=array["action"];
-	if(isset(array["id"])) saltos.default.id=array["id"];
-	var querystring=saltos.array2querystring(array);
-	if(array["action"]=="list") {
-		saltos.list=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON;
-		document.title=`${saltos.list.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-		saltos.remove_header_title();
-		saltos.add_header_title(saltos.info);
-		$("#data *").remove();
-		saltos.add_table_in_data(saltos.list);
-		for(var key in saltos.list) {
-			if(saltos.limpiar_key(key)=="form") {
-				saltos.add_form_in_data(saltos.list[key]);
-			}
-		}
-	}
-	if(array["action"]=="form") {
-		saltos.form=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON;
-		document.title=`${saltos.form.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-		saltos.remove_header_title();
-		saltos.add_header_title(saltos.info);
-		$("#data *").remove();
-		saltos.add_form_in_data(saltos.form);
-	}
-};
-
-function openwin(url) {
-	window.open(url);
-};
-
-function openurl(url) {
-	window.location.href=url;
-};
-
-function openapp(page,id) {
-	opencontent(`index.php?page=${page}&action=form&id=${id}`);
-};
-
-function qrcode(id) {
-	qrcode2(saltos.default.page,id);
-};
-
-function qrcode2(page,id) {
-	console.log("qrcode2");
-	console.log(page);
-	console.log(id);
-};
-
-function mailto(mail) {
-	opencontent(`index.php?page=correo&action=form&id=0_mailto_${mail}`);
-};
 
 /* FOR HISTORY MANAGEMENT */
 saltos.current_hash=function() {
@@ -821,21 +756,130 @@ saltos.init_history=function() {
 	window.onhashchange=saltos.opencontent_hash;
 	var hash=saltos.current_hash();
 	if(hash=="") {
-		var temp=$.ajax({url:"index.php?action=default",async:false}).responseJSON;
+		var temp=$.ajax({url:"index.php?action=default",async:false}).responseJSON.default;
 		saltos.history_replace_hash("page="+temp.page);
 	}
 	saltos.opencontent_hash();
 };
 
+/* OLD SALTOS COMPATIBILITY */
+function toggle_menu() {
+	if($("#menu").is(":visible")) {
+		$("#menu").hide();
+		$("#data").removeClass("col-lg-10");
+		$("#data").addClass("col-lg-12");
+		saltos.setIntCookie("saltos_ui_menu_closed",1);
+	} else {
+		$("#data").removeClass("col-lg-12");
+		$("#data").addClass("col-lg-10");
+		$("#menu").show();
+		saltos.setIntCookie("saltos_ui_menu_closed",0);
+	}
+};
+
+function calculator() {
+	console.log("calculator");
+};
+
+function translator() {
+	console.log("translator");
+};
+
+function opencontent(url,callback) {
+	$(".tooltip").remove();
+	$(window).scrollTop(0);
+	saltos.history_push_hash(url);
+	// CHECK PARAMS
+	if(!isset(url)) url="";
+	if(!isset(callback)) callback=function() {};
+	// CONTINUE
+	var url2=parse_url(url);
+	var array=saltos.querystring2array(url2.query);
+	if(!isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
+		var temp=$.ajax({url:"index.php?action=default",async:false}).responseJSON.default;
+		array["page"]=temp.page;
+		array["action"]=temp.action;
+		array["id"]=temp.id;
+	}
+	if(isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
+		var temp=$.ajax({url:"index.php?action=default&page="+array["page"],async:false}).responseJSON.default;
+		array["action"]=temp.action;
+		array["id"]=temp.id;
+	}
+	if(isset(array["page"]) && isset(array["action"]) && array["action"]=="limpiar") {
+		array["action"]="list";
+		array["limpiar"]="1";
+	}
+	if(!isset(saltos.default)) saltos.default={};
+	if(isset(array["page"])) saltos.default.page=array["page"];
+	if(isset(array["action"])) saltos.default.action=array["action"];
+	if(isset(array["id"])) saltos.default.id=array["id"];
+	var querystring=saltos.array2querystring(array);
+	if(array["action"]=="list") {
+		saltos.list=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON.list;
+		document.title=`${saltos.list.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+		saltos.remove_header_title();
+		saltos.add_header_title(saltos.info);
+		var array=[{
+			title:saltos.list.title,
+			obj:saltos.make_table(saltos.list),
+		}];
+		for(var key in saltos.list) {
+			if(saltos.limpiar_key(key)=="form") {
+				array=array_merge(array,saltos.make_form(saltos.list[key]));
+			}
+		}
+		var tabs=saltos.make_tabs(array);
+		$("#data > *").remove();
+		$("#data").append(tabs);
+	}
+	if(array["action"]=="form") {
+		saltos.form=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON.form;
+		document.title=`${saltos.form.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+		saltos.remove_header_title();
+		saltos.add_header_title(saltos.info);
+		var array=saltos.make_form(saltos.form);
+		var tabs=saltos.make_tabs(array);
+		$("#data > *").remove();
+		$("#data").append(tabs);
+	}
+};
+
+function openwin(url) {
+	window.open(url);
+};
+
+function openurl(url) {
+	window.location.href=url;
+};
+
+function openapp(page,id) {
+	opencontent(`index.php?page=${page}&action=form&id=${id}`);
+};
+
+function qrcode(id) {
+	qrcode2(saltos.default.page,id);
+};
+
+function qrcode2(page,id) {
+	console.log("qrcode2");
+	console.log(page);
+	console.log(id);
+};
+
+function mailto(mail) {
+	opencontent(`index.php?page=correo&action=form&id=0_mailto_${mail}`);
+};
+
 /* MAIN CODE */
 (function($) {
 	saltos.init_error();
-	saltos.islogin=$.ajax({url:"index.php?action=islogin",async:false}).responseJSON;
+	saltos.islogin=$.ajax({url:"index.php?action=islogin",async:false}).responseJSON.islogin;
 	if(saltos.islogin) {
 		// CARGAR DATOS
 		saltos.sync_cookies("start");
-		saltos.info=$.ajax({url:"index.php?action=info",async:false}).responseJSON;
-		saltos.menu=$.ajax({url:"index.php?action=menu",async:false}).responseJSON;
+		saltos.info=$.ajax({url:"index.php?action=info",async:false}).responseJSON.info;
+		saltos.menu=$.ajax({url:"index.php?action=menu",async:false}).responseJSON.menu;
 
 		// MONTAR PANTALLA
 		document.title=`${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
@@ -859,8 +903,6 @@ saltos.init_history=function() {
 			//~ "data":"HOLA MUNDO",
 			//~ "node":"#data",
 		//~ });
-
-		//~ feather.replace();
 	} else {
 		// TODO
 	}

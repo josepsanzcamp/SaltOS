@@ -24,8 +24,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$bool=check_user()?1:0;
-$json=json_encode($bool);
+$_RESULT[$action]=check_user()?1:0;
+$json=json_encode($_RESULT);
 output_handler(array(
 	"data"=>$json,
 	"type"=>"application/json",

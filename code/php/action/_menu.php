@@ -27,12 +27,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user()) action_denied();
 
 $_LANG["default"]="menu,common";
-$menu=eval_attr(xml2array("xml/menu.xml"));
+$_RESULT[$action]=eval_attr(xml2array("xml/menu.xml"));
 
 require_once("php/libaction.php");
-$menu=__remove_temp_nodes($menu);
+$_RESULT[$action]=__default_eval_querytag($_RESULT[$action]);
+$_RESULT[$action]=__remove_temp_nodes($_RESULT[$action]);
 
-$json=json_encode($menu);
+$json=json_encode($_RESULT);
 output_handler(array(
 	"data"=>$json,
 	"type"=>"application/json",

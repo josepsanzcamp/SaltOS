@@ -1,5 +1,28 @@
 # PHPMailer Change Log
 
+## Version 6.1.4 (December 10th, 2019)
+* Clean up hostname handling
+* Avoid IDN error on older PHP versions, prep for PHP 8.0
+* Don't force RFC2047 folding unnecessarily
+* Enable tests on full release of PHP 7.4
+
+## Version 6.1.3 (November 21st, 2019) 
+* Fix an issue preventing injected debug handlers from working
+* Fix an issue relating to connection timeout
+* Add `SMTP::MAX_REPLY_LENGTH` constant
+* Remove some dev dependencies; phpdoc no longer included
+* Fix an issue where non-compliant servers returning bare codes caused an SMTP hang
+
+## Version 6.1.2 (November 13th, 2019) 
+* Substantial revision of DKIM header generation
+* Use shorter hashes for auto-generated CID values
+* Fix format of content-id headers, and only use them for inline attachments
+* Remove all use of XHTML
+* Lots of coding standards cleanup
+* API docs are now auto-updated via GitHub actions
+* Fix header separation bug created in 6.1.1
+* Fix misidentification of background attributes in SVG images in msgHTML
+
 ## Version 6.1.1 (September 27th 2019)
 * Fix misordered version tag
 

@@ -34,15 +34,15 @@ if(getParam("page")) {
 
 $_CONFIG[$page]=xml2array("xml/${page}.xml");
 $action="list";
-$_RESULT=array();
+$_RESULT["default"]=array();
 if(getDefault("$page/default")) {
 	$config=getDefault("$page/default");
 	$config=eval_attr($config);
-	$_RESULT=$config;
+	$_RESULT["default"]=$config;
 }
-if(!isset($_RESULT["page"])) $_RESULT["page"]=$page;
-if(!isset($_RESULT["action"])) $_RESULT["action"]="list";
-if(!isset($_RESULT["id"])) $_RESULT["id"]="0";
+if(!isset($_RESULT["default"]["page"])) $_RESULT["default"]["page"]=$page;
+if(!isset($_RESULT["default"]["action"])) $_RESULT["default"]["action"]="list";
+if(!isset($_RESULT["default"]["id"])) $_RESULT["default"]["id"]="0";
 
 $json=json_encode($_RESULT);
 output_handler(array(
