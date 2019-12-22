@@ -371,28 +371,37 @@ saltos.make_tabs=function(array) {
 };
 
 saltos.make_table=function(option) {
-	var table=$(`
-		<table class="table table-striped table-hover table-sm">
-			<thead class="thead-dark"></thead>
-			<tbody></tbody>
-		</table>
-	`);
-	$("thead",table).append("<tr></tr>");
-	for(var key in option.fields) {
-		var field=option.fields[key];
-		$("thead tr",table).append("<th></th>");
-		$("thead tr th:last",table).append(field.label);
-	}
-	for(var key in option.rows) {
-		var row=option.rows[key];
-		$("tbody",table).append("<tr></tr>");
-		for(var key2 in option.fields) {
-			var field=option.fields[key2];
-			$("tbody tr:last",table).append("<td></td>");
-			$("tbody tr:last td:last",table).append(saltos.get_filtered_field(row[field.name],field.size));
+	if(count(option.rows)) {
+		var table=$(`
+			<table class="table table-striped table-hover table-sm">
+				<thead class="thead-dark"></thead>
+				<tbody></tbody>
+			</table>
+		`);
+		$("thead",table).append("<tr></tr>");
+		for(var key in option.fields) {
+			var field=option.fields[key];
+			$("thead tr",table).append("<th></th>");
+			$("thead tr th:last",table).append(field.label);
 		}
+		for(var key in option.rows) {
+			var row=option.rows[key];
+			$("tbody",table).append("<tr></tr>");
+			for(var key2 in option.fields) {
+				var field=option.fields[key2];
+				$("tbody tr:last",table).append("<td></td>");
+				field.value=saltos.get_filtered_field(row[field.name],field.size);
+				$("tbody tr:last td:last",table).append(field.value);
+			}
+		}
+		return table;
+	} else {
+		var alert=saltos.make_alert({
+			"type":"warning",
+			"data":option.nodata.label,
+		});
+		return alert;
 	}
-	return table;
 };
 
 /* FUNCIONES PARA AYUDAR CON EL MODELO DE DATOS DE SALTOS */
@@ -627,22 +636,152 @@ saltos.form_by_row_2=function(fields,prefix,values) {
 };
 
 saltos.form_field=function(field) {
-	var obj=$(`<div class="form-group"></div>`);
-	if(in_array(field.type,["text","textarea","iframe"])) {
+	// CHECK PARAMS
+	var params=["label","type","name","value"];
+	for(var key in params) if(!isset(field[params[key]])) field[params[key]]="";
+	// CONTINUE
+	if(field.type=="hidden") {
+		var obj=$(`<input type="${field.type}" name="${field.name}" id="${field.name}" value="${field.value}">`);
+		return obj;
+	} else if(field.type=="text") {
+		var obj=$(`<div class="form-group"></div>`);
 		if(field.label!="") {
 			var label=$(`<label for="${field.name}">${field.label}</label>`);
 			$(obj).append(label);
 		}
-	}
-	if(in_array(field.type,["text"])) {
 		var input=$(`<input type="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
 		$(obj).append(input);
-	}
-	if(field.type=="iframe") {
+		return obj;
+	} else if(field.type=="integer") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		$(obj).append(input);
+		return obj;
+	} else if(field.type=="float") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		$(obj).append(input);
+		return obj;
+	} else if(field.type=="color") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		$(obj).append(input);
+		return obj;
+	} else if(field.type=="date") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		$(obj).append(input);
+		return obj;
+	} else if(field.type=="time") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		$(obj).append(input);
+		return obj;
+	} else if(field.type=="datetime") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		$(obj).append(input);
+		return obj;
+	} else if(field.type=="textarea") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+		var input=$(`<textarea class="form-control" id="${field.name}" name="${field.name}">${field.value}</textarea>`);
+		$(obj).append(input);
+		return obj;
+	} else if(field.type=="iframe") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
 		var input=$(`<iframe class="form-control" id="${field.name}" name="${field.name}" src="${field.value}"></iframe>`);
 		$(obj).append(input);
+		return obj;
+	} else if(field.type=="select") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+		var input=$(`<select class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"></select>`);
+		$(obj).append(input);
+		return obj;
+	} else if(field.type=="multiselect") {
+		var obj=$(`<span>[MULTISELECT]</span>`);
+		return obj;
+	} else if(field.type=="checkbox") {
+		var obj=$(`<div class="form-group"></div>`);
+		if(field.label!="") {
+			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			$(obj).append(label);
+		}
+		var input=$(`<input type="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		$(obj).append(input);
+		return obj;
+	} else if(field.type=="button") {
+		var obj=$(`<span>[BUTTON]</span>`);
+		return obj;
+	} else if(field.type=="password") {
+		var obj=$(`<div>[PASSWORD]</div>`);
+		return obj;
+	} else if(field.type=="file") {
+		var obj=$(`<div>[FILE]</div>`);
+		return obj;
+	} else if(field.type=="link") {
+		var obj=$(`<div>[LINK]</div>`);
+		return obj;
+	} else if(field.type=="separator") {
+		var obj=$(`<span>[SEPARATOR]</span>`);
+		return obj;
+	} else if(field.type=="label") {
+		var obj=$(`<span>[LABEL]</span>`);
+		return obj;
+	} else if(field.type=="image") {
+		var obj=$(`<span>[IMAGE]</span>`);
+		return obj;
+	} else if(field.type=="plot") {
+		var obj=$(`<span>[PLOT]</span>`);
+		return obj;
+	} else if(field.type=="menu") {
+		var obj=$(`<span>[MENU]</span>`);
+		return obj;
+	} else if(field.type=="grid") {
+		var obj=$(`<span>[GRID]</span>`);
+		return obj;
+	} else if(field.type=="excel") {
+		var obj=$(`<span>[EXCEL]</span>`);
+		return obj;
+	} else if(field.type=="copy") {
+		var obj=$(`<span>[COPY]</span>`);
+		return obj;
 	}
-	return obj;
 }
 
 /* FUNCIONES PARA TAREAS DEL USER INTERFACE */
@@ -712,15 +851,14 @@ saltos.add_menu=function(menu) {
 	});
 };
 
-//~ saltos.add_alert=function(option) {
-	//~ // CHECK PARAMS
-	//~ var params=["type","data","node","prepend"];
-	//~ for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
-	//~ // CONTINUE
-	//~ var alert=$(`<div class="alert alert-${option.type} m-0" role="alert">${option.data}</div>`);
-	//~ if(option.prepend) $(option.node).prepend(alert);
-	//~ if(!option.prepend) $(option.node).append(alert);
-//~ };
+saltos.make_alert=function(option) {
+	// CHECK PARAMS
+	var params=["type","data"];
+	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
+	// CONTINUE
+	var alert=$(`<div class="alert alert-${option.type} m-0" role="alert">${option.data}</div>`);
+	return alert;
+};
 
 /* FOR HISTORY MANAGEMENT */
 saltos.current_hash=function() {
@@ -897,12 +1035,6 @@ function mailto(mail) {
 
 		// CARGAR PRIMER CONTENIDO
 		saltos.init_history();
-
-		//~ add_alert({
-			//~ "type":"info",
-			//~ "data":"HOLA MUNDO",
-			//~ "node":"#data",
-		//~ });
 	} else {
 		// TODO
 	}
