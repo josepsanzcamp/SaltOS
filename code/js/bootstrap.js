@@ -370,6 +370,7 @@ saltos.make_tabs=function(array) {
 	return card;
 };
 
+/* FUNCIONES PARA EL PROCESADO DE LISTADOS */
 saltos.make_table=function(option) {
 	if(count(option.rows)) {
 		var table=$(`
@@ -404,7 +405,6 @@ saltos.make_table=function(option) {
 	}
 };
 
-/* FUNCIONES PARA AYUDAR CON EL MODELO DE DATOS DE SALTOS */
 saltos.__get_filtered_field_helper=function(field,size) {
 	if(typeof size!="undefined") {
 		var len=strlen(field);
@@ -443,6 +443,39 @@ saltos.get_filtered_field=function(field,size) {
 	}
 	return field;
 };
+
+saltos.make_list=function(option) {
+	var obj=$("<div></div>");
+	for(var key in option) {
+		if(saltos.limpiar_key(key)=="quick") {
+			for(var key2 in option[key]) {
+				if(saltos.limpiar_key(key2)=="row") {
+					$(obj).append(saltos.form_by_row_2(option[key][key2]));
+				}
+			}
+		}
+	}
+	$(obj).append(saltos.make_table(option));
+	for(var key in option) {
+		if(saltos.limpiar_key(key)=="pager") {
+			for(var key2 in option[key]) {
+				if(saltos.limpiar_key(key2)=="row") {
+					$(obj).append(saltos.form_by_row_2(option[key][key2]));
+				}
+			}
+		}
+	}
+	var array=[{
+		title:option.title,
+		obj:obj,
+	}];
+	for(var key in option) {
+		if(saltos.limpiar_key(key)=="form") {
+			array=array_merge(array,saltos.make_form(option[key]));
+		}
+	}
+	return array;
+}
 
 /* FUNCIONES PARA EL PROCESADO DE FORMULARIOS */
 saltos.make_form=function(option) {
@@ -958,16 +991,8 @@ function opencontent(url,callback) {
 		document.title=`${saltos.list.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
 		saltos.remove_header_title();
 		saltos.add_header_title(saltos.info);
-		var array=[{
-			title:saltos.list.title,
-			obj:saltos.make_table(saltos.list),
-		}];
-		for(var key in saltos.list) {
-			if(saltos.limpiar_key(key)=="form") {
-				array=array_merge(array,saltos.make_form(saltos.list[key]));
-			}
-		}
-		var tabs=saltos.make_tabs(array);
+		var temp=saltos.make_list(saltos.list);
+		var tabs=saltos.make_tabs(temp);
 		$("#data > *").remove();
 		$("#data").append(tabs);
 	}
@@ -976,8 +1001,8 @@ function opencontent(url,callback) {
 		document.title=`${saltos.form.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
 		saltos.remove_header_title();
 		saltos.add_header_title(saltos.info);
-		var array=saltos.make_form(saltos.form);
-		var tabs=saltos.make_tabs(array);
+		var temp=saltos.make_form(saltos.form);
+		var tabs=saltos.make_tabs(temp);
 		$("#data > *").remove();
 		$("#data").append(tabs);
 	}
