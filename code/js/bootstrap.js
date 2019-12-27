@@ -372,37 +372,36 @@ saltos.make_tabs=function(array) {
 
 /* FUNCIONES PARA EL PROCESADO DE LISTADOS */
 saltos.make_table=function(option) {
-	if(count(option.rows)) {
-		var table=$(`
-			<table class="table table-striped table-hover table-sm">
-				<thead class="thead-dark"></thead>
-				<tbody></tbody>
-			</table>
-		`);
-		$("thead",table).append("<tr></tr>");
-		for(var key in option.fields) {
-			var field=option.fields[key];
-			$("thead tr",table).append("<th></th>");
-			$("thead tr th:last",table).append(field.label);
-		}
-		for(var key in option.rows) {
-			var row=option.rows[key];
-			$("tbody",table).append("<tr></tr>");
-			for(var key2 in option.fields) {
-				var field=option.fields[key2];
-				$("tbody tr:last",table).append("<td></td>");
-				field.value=saltos.get_filtered_field(row[field.name],field.size);
-				$("tbody tr:last td:last",table).append(field.value);
-			}
-		}
-		return table;
-	} else {
+	if(!count(option.rows)) {
 		var alert=saltos.make_alert({
 			"type":"warning",
 			"data":option.nodata.label,
 		});
 		return alert;
 	}
+	var table=$(`
+		<table class="table table-striped table-hover table-sm">
+			<thead class="thead-dark"></thead>
+			<tbody></tbody>
+		</table>
+	`);
+	$("thead",table).append("<tr></tr>");
+	for(var key in option.fields) {
+		var field=option.fields[key];
+		$("thead tr",table).append("<th></th>");
+		$("thead tr th:last",table).append(field.label);
+	}
+	for(var key in option.rows) {
+		var row=option.rows[key];
+		$("tbody",table).append("<tr></tr>");
+		for(var key2 in option.fields) {
+			var field=option.fields[key2];
+			$("tbody tr:last",table).append("<td></td>");
+			field.value=saltos.get_filtered_field(row[field.name],field.size);
+			$("tbody tr:last td:last",table).append(field.value);
+		}
+	}
+	return table;
 };
 
 saltos.__get_filtered_field_helper=function(field,size) {
