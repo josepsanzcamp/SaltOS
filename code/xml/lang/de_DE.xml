@@ -377,6 +377,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<biglisttip translated="false">Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
 		<activo>Aktiv</activo>
 		<activo_desc>Legt fest ob der Benutzer aktiv oder inaktiv ist</activo_desc>
+		<print translated="false">Print</print>
 	</common>
 	<login>
 		<logintitle>Anmeldung</logintitle>

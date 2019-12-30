@@ -31,6 +31,10 @@ body {
     max-width: 350px;
 }
 
-#data > .card {
-	border:none!important;
+.card {
+	border:none;
+}
+
+.table {
+	margin-bottom:0;
 }

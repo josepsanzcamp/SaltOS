@@ -454,7 +454,9 @@ saltos.make_list=function(option) {
 			}
 		}
 	}
+	$(obj).append("<br/>");
 	$(obj).append(saltos.make_table(option));
+	$(obj).append("<br/>");
 	for(var key in option) {
 		if(saltos.limpiar_key(key)=="pager") {
 			for(var key2 in option[key]) {
@@ -662,8 +664,8 @@ saltos.form_by_row_1=function(fields,prefix,values) {
 
 saltos.form_by_row_2=function(fields,prefix,values) {
 	if(!count(fields)) return null;
-	var obj=$("<div></div>");
-	$(obj).append(saltos.form_by_row_1(fields,prefix,values));
+	var obj=saltos.form_by_row_1(fields,prefix,values);
+	$(obj).addClass("form-row");
 	return obj;
 };
 
@@ -676,7 +678,7 @@ saltos.form_field=function(field) {
 		var obj=$(`<input type="${field.type}" name="${field.name}" id="${field.name}" value="${field.value}">`);
 		return obj;
 	} else if(field.type=="text") {
-		var obj=$(`<div class="form-group"></div>`);
+		var obj=$(`<div class="input-group"></div>`);
 		if(field.label!="") {
 			var label=$(`<label for="${field.name}">${field.label}</label>`);
 			$(obj).append(label);
@@ -685,60 +687,37 @@ saltos.form_field=function(field) {
 		$(obj).append(input);
 		return obj;
 	} else if(field.type=="integer") {
-		var obj=$(`<div class="form-group"></div>`);
-		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
-		}
-		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		$(obj).append(input);
+		var obj=$(`<div>[INTEGER]</div>`);
 		return obj;
 	} else if(field.type=="float") {
-		var obj=$(`<div class="form-group"></div>`);
-		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
-		}
-		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		$(obj).append(input);
+		var obj=$(`<div>[FLOAT]</div>`);
 		return obj;
 	} else if(field.type=="color") {
-		var obj=$(`<div class="form-group"></div>`);
-		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
-		}
-		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		$(obj).append(input);
+		var obj=$(`<div>[COLOR]</div>`);
 		return obj;
 	} else if(field.type=="date") {
-		var obj=$(`<div class="form-group"></div>`);
-		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
-		}
-		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		$(obj).append(input);
+		var obj=$(`<div>[DATE]</div>`);
 		return obj;
 	} else if(field.type=="time") {
-		var obj=$(`<div class="form-group"></div>`);
-		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
-		}
-		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		$(obj).append(input);
+		var obj=$(`<div>[TIME]</div>`);
 		return obj;
 	} else if(field.type=="datetime") {
-		var obj=$(`<div class="form-group"></div>`);
+		var obj=$(`<div class="input-group"></div>`);
 		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			var label=$(`
+				<div class="input-group-prepend">
+					<span class="input-group-text">${field.label}</span>
+				</div>
+			`);
 			$(obj).append(label);
 		}
-		var input=$(`<input type="text" subtype="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		var input=$(`<input type="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
 		$(obj).append(input);
 		return obj;
 	} else if(field.type=="textarea") {
+		var obj=$(`<div>[TEXTAREA]</div>`);
+		return obj;
+
 		var obj=$(`<div class="form-group"></div>`);
 		if(field.label!="") {
 			var label=$(`<label for="${field.name}">${field.label}</label>`);
@@ -747,7 +726,11 @@ saltos.form_field=function(field) {
 		var input=$(`<textarea class="form-control" id="${field.name}" name="${field.name}">${field.value}</textarea>`);
 		$(obj).append(input);
 		return obj;
+
 	} else if(field.type=="iframe") {
+		var obj=$(`<div>[IFRAME]</div>`);
+		return obj;
+
 		var obj=$(`<div class="form-group"></div>`);
 		if(field.label!="") {
 			var label=$(`<label for="${field.name}">${field.label}</label>`);
@@ -756,7 +739,11 @@ saltos.form_field=function(field) {
 		var input=$(`<iframe class="form-control" id="${field.name}" name="${field.name}" src="${field.value}"></iframe>`);
 		$(obj).append(input);
 		return obj;
+
 	} else if(field.type=="select") {
+		var obj=$(`<div>[SELECT]</div>`);
+		return obj;
+
 		var obj=$(`<div class="form-group"></div>`);
 		if(field.label!="") {
 			var label=$(`<label for="${field.name}">${field.label}</label>`);
@@ -765,20 +752,34 @@ saltos.form_field=function(field) {
 		var input=$(`<select class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"></select>`);
 		$(obj).append(input);
 		return obj;
+
 	} else if(field.type=="multiselect") {
 		var obj=$(`<span>[MULTISELECT]</span>`);
 		return obj;
 	} else if(field.type=="checkbox") {
-		var obj=$(`<div class="form-group"></div>`);
+		var obj=$(`<div class="custom-control custom-switch"></div>`);
+		var input=$(`<input type="${field.type}" class="custom-control-input" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		if(isset(field.checked)) {
+			if(field.checked=="true") {
+				$(input).attr("checked","checked");
+			}
+		} else if(isset(field.value)) {
+			if(field.value=="1") {
+				$(input).attr("checked","checked");
+			}
+		}
+		$(obj).append(input);
 		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
+			var label=$(`<label class="custom-control-label" for="${field.name}">${field.label}</label>`);
 			$(obj).append(label);
 		}
-		var input=$(`<input type="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		$(obj).append(input);
 		return obj;
 	} else if(field.type=="button") {
-		var obj=$(`<span>[BUTTON]</span>`);
+		var obj=$(`
+			<button type="button" class="btn btn-primary" data-toggle="tooltip" title="${field.tip}">
+				<span class="${field.icon}"></span> ${field.value}
+			</button>
+		`);
 		return obj;
 	} else if(field.type=="password") {
 		var obj=$(`<div>[PASSWORD]</div>`);

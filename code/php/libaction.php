@@ -868,4 +868,33 @@ function __remove_temp_nodes($array) {
 	}
 	return $array;
 }
+
+function __pdfview_output_handler($_RESULT) {
+	// CHECK FOR SHORTCUTS
+	if(getParam("download")) {
+		output_handler(array(
+			"data"=>$_RESULT["data"],
+			"type"=>"application/pdf",
+			"cache"=>false,
+			"name"=>encode_bad_chars($_RESULT["title"]).".pdf",
+		));
+	}
+	if(getParam("print")) {
+		output_handler(array(
+			"data"=>$_RESULT["data"],
+			"type"=>"application/pdf",
+			"cache"=>false,
+		));
+	}
+	// PREPARE THE OUTPUT
+	if(isset($_RESULT["data"])) $_RESULT["data"]=base64_encode($_RESULT["data"]);
+	$buffer=json_encode($_RESULT);
+	// CONTINUE
+	output_handler(array(
+		"data"=>$buffer,
+		"type"=>"application/json",
+		"cache"=>false
+	));
+}
+
 ?>

@@ -26,9 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 if(!check_user()) action_denied();
 if(getParam("action")=="viewpdf") {
-	// CREATE REPORT FROM DATABASE
-	$_RESULT=array("rows"=>array());
 	if(getParam("page") && !getParam("id") && !getParam("cid")) {
+		// CREATE REPORT FROM HELP
 		$file="doc/${lang}/${page}.pdf";
 		if(!file_exists($file)) {
 			$files=glob("doc/*/${page}.pdf");
@@ -44,9 +43,11 @@ if(getParam("action")=="viewpdf") {
 		}
 		$data=file_get_contents($file);
 		$hash=md5($data);
-		$data=base64_encode($data);
-		set_array($_RESULT["rows"],"row",array("title"=>LANG("help"),"hash"=>$hash,"data"=>$data));
+		$_RESULT=array("title"=>LANG("help"),"hash"=>$hash,"data"=>$data);
+		require_once("php/libaction.php");
+		__pdfview_output_handler($_RESULT);
 	} elseif(getParam("page") && getParam("id") && !getParam("cid")) {
+		// CREATE REPORT FROM DATABASE
 		// DATOS FACTURA/ACTA/PARTE/PRESUPUESTO
 		$where="WHERE id IN (".check_ids(getParam("id")).")";
 		// CALCULAR EL HASH
@@ -192,8 +193,10 @@ if(getParam("action")=="viewpdf") {
 			file_put_contents($cache,$pdf);
 		}
 		// PREPARAR REPORT
-		$data=base64_encode(file_get_contents($cache));
-		set_array($_RESULT["rows"],"row",array("title"=>$subject,"hash"=>$hash,"data"=>$data));
+		$data=file_get_contents($cache);
+		$_RESULT=array("title"=>$subject,"hash"=>$hash,"data"=>$data);
+		require_once("php/libaction.php");
+		__pdfview_output_handler($_RESULT);
 	} elseif(getParam("page") && getParam("id") && getParam("cid")) {
 		// CREATE REPORT FROM DOWNLOAD
 		$action="download";
@@ -216,19 +219,13 @@ if(getParam("action")=="viewpdf") {
 		}
 		// PREPARAR REPORT
 		if(file_exists($cache)) {
-			$data=base64_encode(file_get_contents($cache));
-			set_array($_RESULT["rows"],"row",array("title"=>$name,"hash"=>$hash,"data"=>$data));
+			$data=file_get_contents($cache);
+			$_RESULT=array("title"=>$name,"hash"=>$hash,"data"=>$data);
+			require_once("php/libaction.php");
+			__pdfview_output_handler($_RESULT);
 		}
 	}
-	// PREPARE THE OUTPUT
-	$_RESULT["rows"]=array_values($_RESULT["rows"]);
-	$buffer=json_encode($_RESULT);
-	// CONTINUE
-	output_handler(array(
-		"data"=>$buffer,
-		"type"=>"application/json",
-		"cache"=>false
-	));
+	die();
 }
 
 ?>

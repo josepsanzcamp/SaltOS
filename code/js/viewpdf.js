@@ -31,109 +31,123 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 	function viewpdf(data) {
 		hide_popupdialog();
 		loadingcontent(lang_view2opening());
-		var data="action=viewpdf&"+data;
+		var data2="action=viewpdf&"+data;
 		$.ajax({
 			url:"index.php",
-			data:data,
+			data:data2,
 			type:"get",
 			beforeSend:function(XMLHttpRequest) {
 				make_abort_obj=XMLHttpRequest;
 			},
 			success:function(response) {
-				// CHECK FOR VALID XML STRUCTURE
-				if(response["rows"].length==0) {
+				// CHECK FOR VALID JSON STRUCTURE
+				if(!is_array(response) || !count(response) || !isset(response["title"]) || !isset(response["hash"]) || !isset(response["data"])) {
 					var hash=md5(0);
 					unloadingcontent();
 					var br="<br/>";
 					dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+hash,{});
 					return;
 				}
-				// CONTINUE
-				$(response["rows"]).each(function() {
-					// GET REQUESTED DATA
-					var title=this["title"];
-					var hash=this["hash"];
-					var data=this["data"];
-					// CHECK FOR VALID DATA
-					if(!strlen(data)) {
-						unloadingcontent();
+				// GET REQUESTED DATA
+				var title=response["title"];
+				var hash=response["hash"];
+				var data3=response["data"];
+				// CHECK FOR VALID DATA
+				if(!strlen(data3)) {
+					unloadingcontent();
+					var br="<br/>";
+					dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+hash,{});
+					return;
+				}
+				// CREATE PDFDOC
+				pdfjsLib.GlobalWorkerOptions.workerSrc="lib/pdfjs/pdf.worker.min.js?r="+current_revision();
+				pdfjsLib.getDocument({data:atob(data3)}).promise.then(function(pdfDocument) {
+					unloadingcontent();
+					// CHECK FOR NUMPAGES>0
+					if(!pdfDocument.numPages) {
 						var br="<br/>";
 						dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+hash,{});
 						return;
 					}
-					// CREATE PDFDOC
-					pdfjsLib.GlobalWorkerOptions.workerSrc="lib/pdfjs/pdf.worker.min.js?r="+current_revision();
-					pdfjsLib.getDocument({data:atob(data)}).promise.then(function(pdfDocument) {
-						unloadingcontent();
-						// CHECK FOR NUMPAGES>0
-						if(!pdfDocument.numPages) {
-							var br="<br/>";
-							dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+hash,{});
-							return;
+					// BEGIN OPEN DIALOG
+					dialog(lang_view2()+" - "+title,"",[{
+						text:lang_download(),
+						icon:icon_download(),
+						click:function() {
+							openurl("index.php?"+data2+"&download=1");
 						}
-						// BEGIN OPEN DIALOG
-						dialog(lang_view2()+" - "+title);
-						var dialog2=$("#dialog");
-						$(dialog2).html("<div id='viewerContainer'><div id='viewer' class='pdfViewer'></div></div>");
-						// PROGRAM RESIZE EVENT
-						$(dialog2).dialog("option","resizeStop",function(event,ui) {
-							setIntCookie("saltos_viewpdf_width",$(dialog2).dialog("option","width"));
-							setIntCookie("saltos_viewpdf_height",$(dialog2).dialog("option","height"));
-							pdfViewer.currentScaleValue="page-width";
-						});
-						// PROGRAM CLOSE EVENT
-						$(dialog2).dialog("option","close",function(event,ui) {
-							$(dialog2).dialog("option","resizeStop",function() {});
-							$(dialog2).dialog("option","close",function() {});
-							$("*",dialog2).each(function() { $(this).remove(); });
-							document.removeEventListener("pagesinit",fn1);
-							document.removeEventListener("textlayerrendered",fn2);
-							unmake_focus();
-							hide_tooltips();
-						});
-						// UPDATE SIZE AND POSITION
-						var width=getIntCookie("saltos_viewpdf_width");
-						if(!width) width=900;
-						$(dialog2).dialog("option","width",width);
-						var height=getIntCookie("saltos_viewpdf_height");
-						if(!height) height=600;
-						$(dialog2).dialog("option","height",height);
-						// END OPEN DIALOG
-						$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
-						$(dialog2).dialog("open");
-						// PAINT ALL PAGES
-						var container=document.getElementById("viewerContainer");
-						var pdfViewer=new pdfjsViewer.PDFViewer({
-							container:container
-						});
-						var fn1=function() {
-							pdfViewer.currentScaleValue="page-width";
-						};
-						var fn2=function() {
-							$("a",container).each(function() {
-								if(substr($(this).attr("href"),0,15)=="http://viewpdf/") {
-									if(typeof($(this).attr("onclick"))=="undefined") {
-										$(this).attr("onclick","viewpdf('"+substr($(this).attr("href"),15)+"');return false");
-									}
-								} else {
-									if(typeof($(this).attr("target"))=="undefined") {
-										$(this).attr("target","_blank");
-									}
-									if($(this).attr("target")=="") {
-										$(this).attr("target","_blank");
-									}
-								}
-							});
-						};
-						document.addEventListener("pagesinit",fn1);
-						document.addEventListener("textlayerrendered",fn2);
-						pdfViewer.setDocument(pdfDocument);
-						setTimeout(function() {
-							$(dialog2).scrollTop(0);
-						},100);
-					},function(message,exception) {
-						errorcontent(0,message);
+					},{
+						text:lang_print(),
+						icon:icon_print(),
+						click:function() {
+							openwin("index.php?"+data2+"&print=1");
+						}
+					}]);
+					// TO PREVENT FOCUS IN THE BUTTONS
+					$(dialog).find(".fa.ui-icon").parent().attr("tabindex","-1");
+					// TO ALLOW FONT AWESOME INSTEOAD OF JQUERY UI ICONS
+					$(dialog).find(".fa.ui-icon").removeClass("ui-icon");
+					// CONTINUE
+					var dialog2=$("#dialog");
+					$(dialog2).html("<div id='viewerContainer'><div id='viewer' class='pdfViewer'></div></div>");
+					// PROGRAM RESIZE EVENT
+					$(dialog2).dialog("option","resizeStop",function(event,ui) {
+						setIntCookie("saltos_viewpdf_width",$(dialog2).dialog("option","width"));
+						setIntCookie("saltos_viewpdf_height",$(dialog2).dialog("option","height"));
+						pdfViewer.currentScaleValue="page-width";
 					});
+					// PROGRAM CLOSE EVENT
+					$(dialog2).dialog("option","close",function(event,ui) {
+						$(dialog2).dialog("option","resizeStop",function() {});
+						$(dialog2).dialog("option","close",function() {});
+						$("*",dialog2).each(function() { $(this).remove(); });
+						document.removeEventListener("pagesinit",fn1);
+						document.removeEventListener("textlayerrendered",fn2);
+						unmake_focus();
+						hide_tooltips();
+					});
+					// UPDATE SIZE AND POSITION
+					var width=getIntCookie("saltos_viewpdf_width");
+					if(!width) width=900;
+					$(dialog2).dialog("option","width",width);
+					var height=getIntCookie("saltos_viewpdf_height");
+					if(!height) height=600;
+					$(dialog2).dialog("option","height",height);
+					// END OPEN DIALOG
+					$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
+					$(dialog2).dialog("open");
+					// PAINT ALL PAGES
+					var container=document.getElementById("viewerContainer");
+					var pdfViewer=new pdfjsViewer.PDFViewer({
+						container:container
+					});
+					var fn1=function() {
+						pdfViewer.currentScaleValue="page-width";
+					};
+					var fn2=function() {
+						$("a",container).each(function() {
+							if(substr($(this).attr("href"),0,15)=="http://viewpdf/") {
+								if(typeof($(this).attr("onclick"))=="undefined") {
+									$(this).attr("onclick","viewpdf('"+substr($(this).attr("href"),15)+"');return false");
+								}
+							} else {
+								if(typeof($(this).attr("target"))=="undefined") {
+									$(this).attr("target","_blank");
+								}
+								if($(this).attr("target")=="") {
+									$(this).attr("target","_blank");
+								}
+							}
+						});
+					};
+					document.addEventListener("pagesinit",fn1);
+					document.addEventListener("textlayerrendered",fn2);
+					pdfViewer.setDocument(pdfDocument);
+					setTimeout(function() {
+						$(dialog2).scrollTop(0);
+					},100);
+				},function(message,exception) {
+					errorcontent(0,message);
 				});
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown) {

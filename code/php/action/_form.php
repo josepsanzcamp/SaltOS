@@ -33,7 +33,6 @@ require_once("php/libaction.php");
 $_LANG["default"]="${page},menu,common";
 $_CONFIG[$page]=xml2array("xml/${page}.xml");
 $page=lastpage($page);
-history($page);
 
 $config=getDefault("$page/$action");
 $config=eval_attr($config);

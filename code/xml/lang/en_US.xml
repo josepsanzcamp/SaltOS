@@ -377,6 +377,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<biglisttip>Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
 		<activo>Active</activo>
 		<activo_desc>To indicate the active user or there by inheritance</activo_desc>
+		<print>Print</print>
 	</common>
 	<login>
 		<logintitle>Application access</logintitle>

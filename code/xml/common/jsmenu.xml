@@ -87,6 +87,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- FOR HELP MODULE -->
 	<function eval="true">"lang_help() { return '".LANG_ESCAPE("help")."'; }"</function>
 	<function eval="true">"icon_help() { return '".ICON("help")."'; }"</function>
+	<function eval="true">"lang_download() { return '".LANG_ESCAPE("download")."'; }"</function>
+	<function eval="true">"icon_download() { return '".ICON("download")."'; }"</function>
+	<function eval="true">"lang_print() { return '".LANG_ESCAPE("print")."'; }"</function>
+	<function eval="true">"icon_print() { return '".ICON("print")."'; }"</function>
 	<!-- FOR CALCULATOR MODULE -->
 	<function eval="true">"lang_calculator() { return '".LANG_ESCAPE("calculator")."'; }"</function>
 	<!-- FOR TRANSLATOR MODULE -->

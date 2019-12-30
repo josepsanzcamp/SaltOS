@@ -377,6 +377,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<biglisttip>Atenció: s'estan mostrant $limit registres i pot ser que l'aplicació funcioni amb lentitud</biglisttip>
 		<activo>Actiu</activo>
 		<activo_desc>Per indicar a l'usuari actiu o al que existeix per herència</activo_desc>
+		<print>Imprimir</print>
 	</common>
 	<login>
 		<logintitle>Accés a l'aplicació</logintitle>

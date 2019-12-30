@@ -105,6 +105,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<send>fa fa-paper-plane</send>
 	<print>fa fa-print</print>
 	<run>fa fa-cogs</run>
+	<print>fa fa-print</print>
 	<!-- PAGER -->
 	<first>fa fa-fast-backward</first>
 	<previous>fa fa-backward</previous>
