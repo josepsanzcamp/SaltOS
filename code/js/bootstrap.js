@@ -445,26 +445,14 @@ saltos.get_filtered_field=function(field,size) {
 
 saltos.make_list=function(option) {
 	var obj=$("<div></div>");
-	for(var key in option) {
-		if(saltos.limpiar_key(key)=="quick") {
-			for(var key2 in option[key]) {
-				if(saltos.limpiar_key(key2)=="row") {
-					$(obj).append(saltos.form_by_row_2(option[key][key2]));
-				}
-			}
-		}
+	if(isset(option.quick)) {
+		$(obj).append(saltos.form_by_row_3(option,"quick","row"));
+		$(obj).append("<br/>");
 	}
-	$(obj).append("<br/>");
 	$(obj).append(saltos.make_table(option));
-	$(obj).append("<br/>");
-	for(var key in option) {
-		if(saltos.limpiar_key(key)=="pager") {
-			for(var key2 in option[key]) {
-				if(saltos.limpiar_key(key2)=="row") {
-					$(obj).append(saltos.form_by_row_2(option[key][key2]));
-				}
-			}
-		}
+	if(isset(option.pager)) {
+		$(obj).append("<br/>");
+		$(obj).append(saltos.form_by_row_3(option,"pager","row"));
 	}
 	var array=[{
 		title:option.title,
@@ -494,32 +482,21 @@ saltos.make_form=function(option) {
 			if(saltos.limpiar_key(key)=="fields") {
 				if(isset(option[key].title) && option[key].title!="") {
 					if(title!="") {
-						array.push({
-							"title":title,
-							"obj":obj,
-						});
+						array.push({ "title":title, "obj":obj });
 						obj=$("<div></div>");
 					}
 					title=option[key].title;
+				} else {
+					$(obj).append("<br/>");
 				}
 				if(isset(option[key].quick) && option[key].quick=="true") {
-					for(var key2 in option.quick) {
-						if(saltos.limpiar_key(key2)=="row") {
-							$(obj).append(saltos.form_by_row_2(option.quick[key2]));
-						}
-					}
+					$(obj).append(saltos.form_by_row_3(option,"quick","row"));
+					$(obj).append("<br/>");
 				}
-				for(var key2 in option[key]) {
-					if(saltos.limpiar_key(key2)=="row") {
-						$(obj).append(saltos.form_by_row_2(option[key][key2]));
-					}
-				}
+				$(obj).append(saltos.form_by_row_2(option[key],"row"));
 				if(isset(option[key].buttons) && option[key].buttons=="true") {
-					for(var key2 in option.buttons) {
-						if(saltos.limpiar_key(key2)=="row") {
-							$(obj).append(saltos.form_by_row_2(option.buttons[key2]));
-						}
-					}
+					$(obj).append("<br/>");
+					$(obj).append(saltos.form_by_row_3(option,"buttons","row"));
 				}
 			}
 		}
@@ -545,32 +522,24 @@ saltos.make_form=function(option) {
 													if(saltos.limpiar_key(key6)=="fieldset") {
 														if(isset(node1[key6].title) && node1[key6].title!="") {
 															if(title!="") {
-																array.push({
-																	"title":title,
-																	"obj":obj,
-																});
+																array.push({ "title":title, "obj":obj });
 																obj=$("<div></div>");
 															}
 															title=node1[key6].title;
+														} else {
+															$(obj).append("<br/>");
 														}
 														if(isset(node1[key6].quick) && node1[key6].quick=="true") {
-															for(var key7 in option.quick) {
-																if(saltos.limpiar_key(key7)=="row") {
-																	$(obj).append(saltos.form_by_row_2(option.quick[key7],prefix));
-																}
-															}
+															var temp=saltos.form_prepare_fields_3(option,"quick","row",prefix);
+															$(obj).append(saltos.form_by_row_3(temp,"quick","row"));
+															$(obj).append("<br/>");
 														}
-														for(var key7 in node1[key6]) {
-															if(saltos.limpiar_key(key7)=="row") {
-																$(obj).append(saltos.form_by_row_2(node1[key6][key7],prefix,node3));
-															}
-														}
+														var temp=saltos.form_prepare_fields_2(node1[key6],"row",prefix,node3);
+														$(obj).append(saltos.form_by_row_2(temp,"row"));
 														if(isset(node1[key6].buttons) && node1[key6].buttons=="true") {
-															for(var key7 in option.buttons) {
-																if(saltos.limpiar_key(key7)=="row") {
-																	$(obj).append(saltos.form_by_row_2(option.buttons[key7],prefix));
-																}
-															}
+															$(obj).append("<br/>");
+															var temp=saltos.form_prepare_fields_3(option,"buttons","row",prefix);
+															$(obj).append(saltos.form_by_row_3(temp,"buttons","row"));
 														}
 													}
 												}
@@ -582,42 +551,24 @@ saltos.make_form=function(option) {
 											if(saltos.limpiar_key(key6)=="fieldset") {
 												if(isset(node1[key6].title) && node1[key6].title!="") {
 													if(title!="") {
-														array.push({
-															"title":title,
-															"obj":obj,
-														});
+														array.push({ "title":title, "obj":obj });
 														obj=$("<div></div>");
 													}
 													title=node1[key6].title;
+												} else {
+													$(obj).append("<br/>");
 												}
 												if(isset(node1[key6].quick) && node1[key6].quick=="true") {
-													for(var key7 in option.quick) {
-														if(saltos.limpiar_key(key7)=="row") {
-															$(obj).append(saltos.form_by_row_2(option.quick[key7]));
-														}
-													}
+													$(obj).append(saltos.form_by_row_3(option,"quick","row"));
+													$(obj).append("<br/>");
 												}
-												for(var key7 in node1[key6]) {
-													if(saltos.limpiar_key(key7)=="head") {
-														$(obj).append(saltos.form_by_row_2(node1[key6][key7]));
-													} else if(saltos.limpiar_key(key7)=="row") {
-														for(var key5 in node2[name2]) {
-															if(saltos.limpiar_key(key5)=="row") {
-																var node3=node2[name2][key5];
-																var prefix=name2+"_"+node3.id+"_";
-																$(obj).append(saltos.form_by_row_2(node1[key6][key7],prefix,node3));
-															}
-														}
-													} else if(saltos.limpiar_key(key7)=="tail") {
-														$(obj).append(saltos.form_by_row_2(node1[key6][key7]));
-													}
-												}
+												$(obj).append(saltos.form_by_row_2(node1[key6],"head"));
+												var temp=saltos.form_prepare_fields_4(node1,key6,"row",node2,name2,"row");
+												$(obj).append(saltos.form_by_row_2(temp,"row"));
+												$(obj).append(saltos.form_by_row_2(node1[key6],"tail"));
 												if(isset(node1[key6].buttons) && node1[key6].buttons=="true") {
-													for(var key7 in option.buttons) {
-														if(saltos.limpiar_key(key7)=="row") {
-															$(obj).append(saltos.form_by_row_2(option.buttons[key7]));
-														}
-													}
+													$(obj).append("<br/>");
+													$(obj).append(saltos.form_by_row_3(option,"buttons","row"));
 												}
 											}
 										}
@@ -630,191 +581,202 @@ saltos.make_form=function(option) {
 			}
 		}
 	}
+	// ULTIMO CASO
 	if(title!="") {
-		array.push({
-			"title":title,
-			"obj":obj,
-		});
-		obj=$("<div></div>");
+		array.push({ "title":title, "obj":obj });
 	}
 	return array;
 };
 
-saltos.form_by_row_1=function(fields,prefix,values) {
+saltos.form_prepare_fields_1=function(fields,prefix,values) {
 	if(!count(fields)) return null;
-	var obj=$("<div></div>");
-	for(var key in fields) {
+	var fields2=JSON.parse(JSON.stringify(fields));
+	for(var key in fields2) {
 		if(saltos.limpiar_key(key)=="field") {
-			var field=JSON.parse(JSON.stringify(fields[key]));
+			var field=fields2[key];
 			if(isset(field.name) && isset(values)) {
-				for(var key in values) {
-					if(key==field.name) {
-						field.value=values[key];
+				for(var key2 in values) {
+					if(key2==field.name) {
+						fields2[key].value=values[key2];
 					}
 				}
 			}
 			if(isset(field.name) && isset(prefix)) {
-				field.name=prefix+field.name;
+				fields2[key].name=prefix+field.name;
 			}
-			$(obj).append(saltos.form_field(field));
+		}
+	}
+	return fields2;
+};
+
+saltos.form_prepare_fields_2=function(fields,filter,prefix,values) {
+	if(!count(fields)) return null;
+	var obj={};
+	for(var key in fields) {
+		if(saltos.limpiar_key(key)==filter) {
+			obj[key]=saltos.form_prepare_fields_1(fields[key],prefix,values);
+		}
+	}
+	return obj;
+}
+
+saltos.form_prepare_fields_3=function(fields,filter,filter2,prefix,values) {
+	if(!count(fields)) return null;
+	var obj={};
+	for(var key in fields) {
+		if(saltos.limpiar_key(key)==filter) {
+			obj[key]=saltos.form_prepare_fields_2(fields[key],filter2,prefix,values);
+		}
+	}
+	return obj;
+}
+
+saltos.form_prepare_fields_4=function(node1,name1,filter1,node2,name2,filter2) {
+	if(!count(node1)) return null;
+	if(!count(node2)) return null;
+	var obj={};
+	for(var key1 in node1[name1]) {
+		if(saltos.limpiar_key(key1)==filter1) {
+			for(var key2 in node2[name2]) {
+				if(saltos.limpiar_key(key2)==filter2) {
+					var node3=node2[name2][key2];
+					var prefix=name2+"_"+node3.id+"_";
+					obj[key1+"#"+key2]=saltos.form_prepare_fields_1(node1[name1][key1],prefix,node3);
+				}
+			}
+		}
+	}
+	return obj;
+}
+
+saltos.form_by_row_1=function(fields) {
+	if(!count(fields)) return null;
+	var obj=[];
+	for(var key in fields) {
+		if(saltos.limpiar_key(key)=="field") {
+			var field=fields[key];
+			var temp=saltos.form_field(field);
+			while(count(temp)) {
+				obj.push(temp.shift());
+			}
 		}
 	}
 	return obj;
 };
 
-saltos.form_by_row_2=function(fields,prefix,values) {
+saltos.form_by_row_2=function(fields,filter) {
 	if(!count(fields)) return null;
-	var obj=saltos.form_by_row_1(fields,prefix,values);
-	$(obj).addClass("form-row");
+	var obj=[];
+	for(var key in fields) {
+		if(saltos.limpiar_key(key)==filter) {
+			var temp=saltos.form_by_row_1(fields[key]);
+			var temp2=count(temp);
+			while(count(temp)) {
+				obj.push(temp.shift());
+			}
+			if(temp2) {
+				obj.push($("<br/>"));
+			}
+		}
+	}
 	return obj;
-};
+}
+
+saltos.form_by_row_3=function(fields,filter,filter2) {
+	if(!count(fields)) return null;
+	var obj=[];
+	for(var key in fields) {
+		if(saltos.limpiar_key(key)==filter) {
+			var temp=saltos.form_by_row_2(fields[key],filter2);
+			while(count(temp)) {
+				obj.push(temp.shift());
+			}
+		}
+	}
+	return obj;
+}
 
 saltos.form_field=function(field) {
 	// CHECK PARAMS
 	var params=["label","type","name","value"];
 	for(var key in params) if(!isset(field[params[key]])) field[params[key]]="";
 	// CONTINUE
+	var obj=[];
 	if(field.type=="hidden") {
-		var obj=$(`<input type="${field.type}" name="${field.name}" id="${field.name}" value="${field.value}">`);
-		return obj;
+		obj.push($(`<input type="${field.type}" name="${field.name}" id="${field.name}" value="${field.value}">`));
 	} else if(field.type=="text") {
-		var obj=$(`<div class="input-group"></div>`);
 		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
+			obj.push($(`<label for="${field.name}">${field.label}</label>`));
 		}
-		var input=$(`<input type="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		$(obj).append(input);
-		return obj;
+		obj.push($(`<input type="${field.type}" id="${field.name}" name="${field.name}" value="${field.value}"/>`));
 	} else if(field.type=="integer") {
-		var obj=$(`<div>[INTEGER]</div>`);
-		return obj;
+		obj.push($(`<span>[INTEGER]</span>`));
 	} else if(field.type=="float") {
-		var obj=$(`<div>[FLOAT]</div>`);
-		return obj;
+		obj.push($(`<span>[FLOAT]</span>`));
 	} else if(field.type=="color") {
-		var obj=$(`<div>[COLOR]</div>`);
-		return obj;
+		obj.push($(`<span>[COLOR]</span>`));
 	} else if(field.type=="date") {
-		var obj=$(`<div>[DATE]</div>`);
-		return obj;
+		obj.push($(`<span>[DATE]</span>`));
 	} else if(field.type=="time") {
-		var obj=$(`<div>[TIME]</div>`);
-		return obj;
+		obj.push($(`<span>[TIME]</span>`));
 	} else if(field.type=="datetime") {
-		var obj=$(`<div class="input-group"></div>`);
-		if(field.label!="") {
-			var label=$(`
-				<div class="input-group-prepend">
-					<span class="input-group-text">${field.label}</span>
-				</div>
-			`);
-			$(obj).append(label);
-		}
-		var input=$(`<input type="${field.type}" class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		$(obj).append(input);
-		return obj;
+		obj.push($(`<span>[DATETIME]</span>`));
 	} else if(field.type=="textarea") {
-		var obj=$(`<div>[TEXTAREA]</div>`);
-		return obj;
-
-		var obj=$(`<div class="form-group"></div>`);
-		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
-		}
-		var input=$(`<textarea class="form-control" id="${field.name}" name="${field.name}">${field.value}</textarea>`);
-		$(obj).append(input);
-		return obj;
-
+		obj.push($(`<span>[TEXTAREA]</span>`));
 	} else if(field.type=="iframe") {
-		var obj=$(`<div>[IFRAME]</div>`);
-		return obj;
-
-		var obj=$(`<div class="form-group"></div>`);
-		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
-		}
-		var input=$(`<iframe class="form-control" id="${field.name}" name="${field.name}" src="${field.value}"></iframe>`);
-		$(obj).append(input);
-		return obj;
-
+		obj.push($(`<span>[IFRAME]</span>`));
 	} else if(field.type=="select") {
-		var obj=$(`<div>[SELECT]</div>`);
-		return obj;
-
-		var obj=$(`<div class="form-group"></div>`);
-		if(field.label!="") {
-			var label=$(`<label for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
-		}
-		var input=$(`<select class="form-control" id="${field.name}" name="${field.name}" value="${field.value}"></select>`);
-		$(obj).append(input);
-		return obj;
-
+		obj.push($(`<span>[SELECT]</span>`));
 	} else if(field.type=="multiselect") {
-		var obj=$(`<span>[MULTISELECT]</span>`);
-		return obj;
+		obj.push($(`<span>[MULTISELECT]</span>`));
 	} else if(field.type=="checkbox") {
-		var obj=$(`<div class="custom-control custom-switch"></div>`);
-		var input=$(`<input type="${field.type}" class="custom-control-input" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		if(isset(field.checked)) {
-			if(field.checked=="true") {
-				$(input).attr("checked","checked");
-			}
-		} else if(isset(field.value)) {
-			if(field.value=="1") {
-				$(input).attr("checked","checked");
-			}
-		}
-		$(obj).append(input);
-		if(field.label!="") {
-			var label=$(`<label class="custom-control-label" for="${field.name}">${field.label}</label>`);
-			$(obj).append(label);
-		}
-		return obj;
+		obj.push($(`<span>[CHECKBOX]</span>`));
+		//~ obj.push($(`<div class="custom-control custom-switch"></div>`);
+		//~ var input=$(`<input type="${field.type}" class="custom-control-input" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+		//~ if(isset(field.checked)) {
+			//~ if(field.checked=="true") {
+				//~ $(input).attr("checked","checked");
+			//~ }
+		//~ } else if(isset(field.value)) {
+			//~ if(field.value=="1") {
+				//~ $(input).attr("checked","checked");
+			//~ }
+		//~ }
+		//~ $(obj).append(input);
+		//~ if(field.label!="") {
+			//~ var label=$(`<label class="custom-control-label" for="${field.name}">${field.label}</label>`);
+			//~ $(obj).append(label);
+		//~ }
 	} else if(field.type=="button") {
-		var obj=$(`
+		obj.push($(`
 			<button type="button" class="btn btn-primary" data-toggle="tooltip" title="${field.tip}">
 				<span class="${field.icon}"></span> ${field.value}
 			</button>
-		`);
-		return obj;
+		`));
 	} else if(field.type=="password") {
-		var obj=$(`<div>[PASSWORD]</div>`);
-		return obj;
+		obj.push($(`<span>[PASSWORD]</span>`));
 	} else if(field.type=="file") {
-		var obj=$(`<div>[FILE]</div>`);
-		return obj;
+		obj.push($(`<span>[FILE]</span>`));
 	} else if(field.type=="link") {
-		var obj=$(`<div>[LINK]</div>`);
-		return obj;
+		obj.push($(`<span>[LINK]</span>`));
 	} else if(field.type=="separator") {
-		var obj=$(`<span>[SEPARATOR]</span>`);
-		return obj;
+		obj.push($(`<span>[SEPARATOR]</span>`));
 	} else if(field.type=="label") {
-		var obj=$(`<span>[LABEL]</span>`);
-		return obj;
+		obj.push($(`<span>[LABEL]</span>`));
 	} else if(field.type=="image") {
-		var obj=$(`<span>[IMAGE]</span>`);
-		return obj;
+		obj.push($(`<span>[IMAGE]</span>`));
 	} else if(field.type=="plot") {
-		var obj=$(`<span>[PLOT]</span>`);
-		return obj;
+		obj.push($(`<span>[PLOT]</span>`));
 	} else if(field.type=="menu") {
-		var obj=$(`<span>[MENU]</span>`);
-		return obj;
+		obj.push($(`<span>[MENU]</span>`));
 	} else if(field.type=="grid") {
-		var obj=$(`<span>[GRID]</span>`);
-		return obj;
+		obj.push($(`<span>[GRID]</span>`));
 	} else if(field.type=="excel") {
-		var obj=$(`<span>[EXCEL]</span>`);
-		return obj;
+		obj.push($(`<span>[EXCEL]</span>`));
 	} else if(field.type=="copy") {
-		var obj=$(`<span>[COPY]</span>`);
-		return obj;
+		obj.push($(`<span>[COPY]</span>`));
 	}
+	return obj;
 }
 
 /* FUNCIONES PARA TAREAS DEL USER INTERFACE */

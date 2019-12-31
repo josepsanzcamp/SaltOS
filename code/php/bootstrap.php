@@ -24,6 +24,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// TO DO COMPATIBLE WITH OLD LINKS
+if(getServer("HTTP_REFERER")=="" && getServer("QUERY_STRING")!="") {
+	$url=get_base()."#".getServer("QUERY_STRING");
+	_javascript_location($url);
+	die();
+}
+
 // GET ACTIONS
 $action=getParam("action");
 if(file_exists("php/action/_${action}.php")) include("php/action/_${action}.php");

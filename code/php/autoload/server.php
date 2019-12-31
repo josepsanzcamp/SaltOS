@@ -55,4 +55,33 @@ function getServer($index,$default="") {
 	return isset($_SERVER[$index])?$_SERVER[$index]:$default;
 }
 
+function get_base() {
+	// MAIN VARIABLES
+	$protocol="http://";
+	$servername=getDefault("server/hostname",getServer("SERVER_NAME"));
+	$addedport="";
+	$scriptname=getDefault("server/pathname",getServer("SCRIPT_NAME"));
+	// SOME CHECKS
+	if(substr($scriptname,0,1)!="/") $scriptname="/".$scriptname;
+	if(basename($scriptname)==getDefault("server/dirindex","index.php")) {
+		$scriptname=dirname($scriptname);
+		if(substr($scriptname,-1,1)!="/") $scriptname.="/";
+	}
+	// SOME CHECKS
+	$serverport=getServer("SERVER_PORT");
+	$porthttp=getDefault("server/porthttp",80);
+	$porthttps=getDefault("server/porthttps",443);
+	if($serverport==$porthttp) {
+		$protocol="http://";
+		if($porthttp!=80) $addedport=":$serverport";
+	}
+	if($serverport==$porthttps) {
+		$protocol="https://";
+		if($porthttp!=443) $addedport=":$serverport";
+	}
+	// CONTINUE
+	$url=$protocol.$servername.$addedport.$scriptname;
+	return $url;
+}
+
 ?>
