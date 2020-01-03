@@ -446,13 +446,17 @@ saltos.get_filtered_field=function(field,size) {
 saltos.make_list=function(option) {
 	var obj=$("<div></div>");
 	if(isset(option.quick)) {
-		$(obj).append(saltos.form_by_row_3(option,"quick","row"));
-		$(obj).append("<br/>");
+		var table=saltos.form_table();
+		$(obj).append(table);
+		$(table).append(saltos.form_by_row_3(option,"quick","row"));
+		$(table).append(saltos.form_brtag_2());
 	}
 	$(obj).append(saltos.make_table(option));
 	if(isset(option.pager)) {
-		$(obj).append("<br/>");
-		$(obj).append(saltos.form_by_row_3(option,"pager","row"));
+		var table=saltos.form_table();
+		$(obj).append(table);
+		$(table).append(saltos.form_brtag_2());
+		$(table).append(saltos.form_by_row_3(option,"pager","row"));
 	}
 	var array=[{
 		title:option.title,
@@ -487,16 +491,18 @@ saltos.make_form=function(option) {
 					}
 					title=option[key].title;
 				} else {
-					$(obj).append("<br/>");
+					$(obj).append(saltos.form_brtag_1());
 				}
+				var table=saltos.form_table();
+				$(obj).append(table);
 				if(isset(option[key].quick) && option[key].quick=="true") {
-					$(obj).append(saltos.form_by_row_3(option,"quick","row"));
-					$(obj).append("<br/>");
+					$(table).append(saltos.form_by_row_3(option,"quick","row"));
+					$(table).append(saltos.form_brtag_2());
 				}
-				$(obj).append(saltos.form_by_row_2(option[key],"row"));
+				$(table).append(saltos.form_by_row_2(option[key],"row"));
 				if(isset(option[key].buttons) && option[key].buttons=="true") {
-					$(obj).append("<br/>");
-					$(obj).append(saltos.form_by_row_3(option,"buttons","row"));
+					$(table).append(saltos.form_brtag_2());
+					$(table).append(saltos.form_by_row_3(option,"buttons","row"));
 				}
 			}
 		}
@@ -527,19 +533,21 @@ saltos.make_form=function(option) {
 															}
 															title=node1[key6].title;
 														} else {
-															$(obj).append("<br/>");
+															$(obj).append(saltos.form_brtag_1());
 														}
+														var table=saltos.form_table();
+														$(obj).append(table);
 														if(isset(node1[key6].quick) && node1[key6].quick=="true") {
 															var temp=saltos.form_prepare_fields_3(option,"quick","row",prefix);
-															$(obj).append(saltos.form_by_row_3(temp,"quick","row"));
-															$(obj).append("<br/>");
+															$(table).append(saltos.form_by_row_3(temp,"quick","row"));
+															$(table).append(saltos.form_brtag_2());
 														}
 														var temp=saltos.form_prepare_fields_2(node1[key6],"row",prefix,node3);
-														$(obj).append(saltos.form_by_row_2(temp,"row"));
+														$(table).append(saltos.form_by_row_2(temp,"row"));
 														if(isset(node1[key6].buttons) && node1[key6].buttons=="true") {
-															$(obj).append("<br/>");
+															$(table).append(saltos.form_brtag_2());
 															var temp=saltos.form_prepare_fields_3(option,"buttons","row",prefix);
-															$(obj).append(saltos.form_by_row_3(temp,"buttons","row"));
+															$(table).append(saltos.form_by_row_3(temp,"buttons","row"));
 														}
 													}
 												}
@@ -556,19 +564,21 @@ saltos.make_form=function(option) {
 													}
 													title=node1[key6].title;
 												} else {
-													$(obj).append("<br/>");
+													$(obj).append(saltos.form_brtag_1());
 												}
+												var table=saltos.form_table();
+												$(obj).append(table);
 												if(isset(node1[key6].quick) && node1[key6].quick=="true") {
-													$(obj).append(saltos.form_by_row_3(option,"quick","row"));
-													$(obj).append("<br/>");
+													$(table).append(saltos.form_by_row_3(option,"quick","row"));
+													$(table).append(saltos.form_brtag_2());
 												}
-												$(obj).append(saltos.form_by_row_2(node1[key6],"head"));
+												$(table).append(saltos.form_by_row_2(node1[key6],"head"));
 												var temp=saltos.form_prepare_fields_4(node1,key6,"row",node2,name2,"row");
-												$(obj).append(saltos.form_by_row_2(temp,"row"));
-												$(obj).append(saltos.form_by_row_2(node1[key6],"tail"));
+												$(table).append(saltos.form_by_row_2(temp,"row"));
+												$(table).append(saltos.form_by_row_4(node1[key6],"tail"));
 												if(isset(node1[key6].buttons) && node1[key6].buttons=="true") {
-													$(obj).append("<br/>");
-													$(obj).append(saltos.form_by_row_3(option,"buttons","row"));
+													$(table).append(saltos.form_brtag_2());
+													$(table).append(saltos.form_by_row_3(option,"buttons","row"));
 												}
 											}
 										}
@@ -670,12 +680,12 @@ saltos.form_by_row_2=function(fields,filter) {
 	for(var key in fields) {
 		if(saltos.limpiar_key(key)==filter) {
 			var temp=saltos.form_by_row_1(fields[key]);
-			var temp2=count(temp);
-			while(count(temp)) {
-				obj.push(temp.shift());
-			}
-			if(temp2) {
-				obj.push($("<br/>"));
+			if(count(temp)) {
+				var tr=$("<tr></tr>");
+				for(var key2 in temp) {
+					$(tr).append(temp[key2]);
+				}
+				obj.push(tr);
 			}
 		}
 	}
@@ -688,49 +698,128 @@ saltos.form_by_row_3=function(fields,filter,filter2) {
 	for(var key in fields) {
 		if(saltos.limpiar_key(key)==filter) {
 			var temp=saltos.form_by_row_2(fields[key],filter2);
-			while(count(temp)) {
-				obj.push(temp.shift());
+			if(count(temp)) {
+				var table=$("<table class='w-100' cellpadding='0' cellspacing='0' border='0'></table>");
+				for(var key2 in temp) {
+					$(table).append(temp[key2]);
+				}
+				var td=$("<td colspan='100'></td>");
+				$(td).append(table);
+				var tr=$("<tr></tr>");
+				$(tr).append(td);
+				obj.push(tr);
 			}
 		}
 	}
 	return obj;
 }
 
+saltos.form_by_row_4=function(fields,filter) {
+	if(!count(fields)) return null;
+	var temp=saltos.form_by_row_2(fields,filter);
+	var table=$("<table class='w-100' cellpadding='0' cellspacing='0' border='0'></table>");
+	for(var key in temp) {
+		$(table).append(temp[key]);
+	}
+	var td=$("<td colspan='100'></td>");
+	$(td).append(table);
+	var tr=$("<tr></tr>");
+	$(tr).append(td);
+	return tr;
+}
+
+saltos.form_brtag_1=function() {
+	return $("<br/>");
+}
+
+saltos.form_brtag_2=function() {
+	return $("<tr><td><br/></td></tr>");
+}
+
+saltos.form_table=function() {
+	return $("<table class='w-100' cellpadding='0' cellspacing='0' border='0'></table>");
+}
+
 saltos.form_field=function(field) {
 	// CHECK PARAMS
-	var params=["label","type","name","value"];
+	var params=[
+		"name","value",
+		"onchange","onkey",
+		"class","class2","class3",
+		"colspan","colspan2",
+		"rowspan","rowspan2",
+		"width","width2",
+		"required",
+		"focus",
+		"label","label2",
+		"tip",
+		"autocomplete","querycomplete","filtercomplete","oncomplete",
+	];
 	for(var key in params) if(!isset(field[params[key]])) field[params[key]]="";
 	// CONTINUE
 	var obj=[];
 	if(field.type=="hidden") {
-		obj.push($(`<input type="${field.type}" name="${field.name}" id="${field.name}" value="${field.value}">`));
+		var input=$(`<input type="hidden" autocomplete="off">`);
+		if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+		if(field.value!="") $(input).attr("value",field.value);
+		if(field.onchange!="") $(input).on("change",field.onchange);
+		if(field.class!="") $(input).addClass(field.class);
+		obj.push(input);
 	} else if(field.type=="text") {
 		if(field.label!="") {
-			obj.push($(`<label for="${field.name}">${field.label}</label>`));
+			var td=$(`<td class="text-right text-nowrap"></td>`);
+			if(field.class2!="") $(td).addClass(field.class2);
+			if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+			if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+			if(field.width2!="") $(td).attr("style","width:"+field.width2);
+			if(field.required=="true") $(td).append("(*) ");
+			if(field.label!="") $(td).append(field.label);
+			obj.push(td);
 		}
-		obj.push($(`<input type="${field.type}" id="${field.name}" name="${field.name}" value="${field.value}"/>`));
+		var td=$(`<td class="text-left text-nowrap"></td>`);
+		if(field.class!="") $(td).addClass(field.class);
+		if(field.colspan!="") $(td).attr("colspan",field.colspan);
+		if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+		if(field.width!="") $(td).attr("style","width:"+field.width);
+		var input=$(`<input type="text" autocomplete="off">`);
+		if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+		if(field.value!="") $(input).attr("value",field.value);
+		if(field.width!="") $(input).attr("style","width:"+field.width);
+		if(field.onchange!="") $(input).on("change",field.onchange);
+		if(field.onkey!="") $(input).on("keydown",field.onkey);
+		if(field.focus!="") $(input).attr("focused",field.focus);
+		if(field.required!="") $(input).attr("isrequired",field.required);
+		if(field.label2!="") $(input).attr("labeled",field.label+field.label2);
+		if(field.tip!="") $(input).attr("title",field.tip);
+		if(field.class3!="") $(input).addClass(field.class3);
+		if(field.autocomplete!="") $(input).attr("isautocomplete",field.autocomplete);
+		if(field.querycomplete!="") $(input).attr("querycomplete",field.querycomplete);
+		if(field.filtercomplete!="") $(input).attr("filtercomplete",field.filtercomplete);
+		if(field.oncomplete!="") $(input).attr("oncomplete",field.oncomplete);
+		$(td).append(input);
+		obj.push(td);
 	} else if(field.type=="integer") {
-		obj.push($(`<span>[INTEGER]</span>`));
+		obj.push($(`<td>[INTEGER]</td>`));
 	} else if(field.type=="float") {
-		obj.push($(`<span>[FLOAT]</span>`));
+		obj.push($(`<td>[FLOAT]</td>`));
 	} else if(field.type=="color") {
-		obj.push($(`<span>[COLOR]</span>`));
+		obj.push($(`<td>[COLOR]</td>`));
 	} else if(field.type=="date") {
-		obj.push($(`<span>[DATE]</span>`));
+		obj.push($(`<td>[DATE]</td>`));
 	} else if(field.type=="time") {
-		obj.push($(`<span>[TIME]</span>`));
+		obj.push($(`<td>[TIME]</td>`));
 	} else if(field.type=="datetime") {
-		obj.push($(`<span>[DATETIME]</span>`));
+		obj.push($(`<td>[DATETIME]</td>`));
 	} else if(field.type=="textarea") {
-		obj.push($(`<span>[TEXTAREA]</span>`));
+		obj.push($(`<td>[TEXTAREA]</td>`));
 	} else if(field.type=="iframe") {
-		obj.push($(`<span>[IFRAME]</span>`));
+		obj.push($(`<td>[IFRAME]</td>`));
 	} else if(field.type=="select") {
-		obj.push($(`<span>[SELECT]</span>`));
+		obj.push($(`<td>[SELECT]</td>`));
 	} else if(field.type=="multiselect") {
-		obj.push($(`<span>[MULTISELECT]</span>`));
+		obj.push($(`<td>[MULTISELECT]</td>`));
 	} else if(field.type=="checkbox") {
-		obj.push($(`<span>[CHECKBOX]</span>`));
+		obj.push($(`<td>[CHECKBOX]</td>`));
 		//~ obj.push($(`<div class="custom-control custom-switch"></div>`);
 		//~ var input=$(`<input type="${field.type}" class="custom-control-input" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
 		//~ if(isset(field.checked)) {
@@ -749,32 +838,36 @@ saltos.form_field=function(field) {
 		//~ }
 	} else if(field.type=="button") {
 		obj.push($(`
-			<button type="button" class="btn btn-primary" data-toggle="tooltip" title="${field.tip}">
-				<span class="${field.icon}"></span> ${field.value}
-			</button>
+			<td>
+				<button type="button" class="btn btn-primary text-nowrap" data-toggle="tooltip" title="${field.tip}">
+					<span class="${field.icon}"></span> ${field.value}
+				</button>
+			</td>
 		`));
 	} else if(field.type=="password") {
-		obj.push($(`<span>[PASSWORD]</span>`));
+		obj.push($(`<td>[PASSWORD]</td>`));
 	} else if(field.type=="file") {
-		obj.push($(`<span>[FILE]</span>`));
+		obj.push($(`<td>[FILE]</td>`));
 	} else if(field.type=="link") {
-		obj.push($(`<span>[LINK]</span>`));
+		obj.push($(`<td>[LINK]</td>`));
 	} else if(field.type=="separator") {
-		obj.push($(`<span>[SEPARATOR]</span>`));
+		obj.push($(`
+			<td class="separator ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width};height:${field.height}" id="${field.name}"></td>
+		`));
 	} else if(field.type=="label") {
-		obj.push($(`<span>[LABEL]</span>`));
+		obj.push($(`<td>[LABEL]</td>`));
 	} else if(field.type=="image") {
-		obj.push($(`<span>[IMAGE]</span>`));
+		obj.push($(`<td>[IMAGE]</td>`));
 	} else if(field.type=="plot") {
-		obj.push($(`<span>[PLOT]</span>`));
+		obj.push($(`<td>[PLOT]</td>`));
 	} else if(field.type=="menu") {
-		obj.push($(`<span>[MENU]</span>`));
+		obj.push($(`<td>[MENU]</td>`));
 	} else if(field.type=="grid") {
-		obj.push($(`<span>[GRID]</span>`));
+		obj.push($(`<td>[GRID]</td>`));
 	} else if(field.type=="excel") {
-		obj.push($(`<span>[EXCEL]</span>`));
+		obj.push($(`<td>[EXCEL]</td>`));
 	} else if(field.type=="copy") {
-		obj.push($(`<span>[COPY]</span>`));
+		obj.push($(`<td>[COPY]</td>`));
 	}
 	return obj;
 }
