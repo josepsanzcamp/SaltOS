@@ -405,12 +405,13 @@ img[isplot=true] {
 
 /* FOR VIEWPDF */
 .pdfViewer {
-	margin-top:10px;
-	margin-bottom:20px;
+	margin-top:25px;
+	margin-bottom:25px;
 }
 
 .pdfViewer .page {
-	margin-bottom:1px;
+	margin-bottom:25px;
+	border:1px solid #777;
 }
 
 /* FOR HELP */
