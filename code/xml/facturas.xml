@@ -1810,7 +1810,7 @@ SELECT 'j' id,'$id' id_factura,'' fecha,'0.00' percent,'0.00' importe
 		<query global="id" eval="true">"SELECT '".LANG_ESCAPE("errorfac103")."' action_error,'0' action_commit FROM tbl_facturas WHERE id=$id AND cerrado=1"</query>
 		<query include="xml/common/qdelete.xml" replace="true" />
 		<query global="id" eval="true">"DELETE FROM tbl_facturas_c WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
-		<query global="id" eval="true">"DELETE FORM tbl_facturas_v WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
+		<query global="id" eval="true">"DELETE FROM tbl_facturas_v WHERE ".make_where_query(array("id_factura"=>intval($id)))</query>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>

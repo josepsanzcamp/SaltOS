@@ -585,7 +585,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Alta d'una nova incidència</forminsert>
 		<formupdate>Modificació de la incidència</formupdate>
 		<defaultdata>Dades de la incidència</defaultdata>
-		<usersdata>Usuaris assignats</usersdata>
+		<usersdata>Usuaris</usersdata>
+		<implicados>Implicats</implicados>
 		<asignadoa>Assignat a</asignadoa>
 		<msgsendemail>S'ha enviat un correu electrònic a tots els implicats en la incidència</msgsendemail>
 		<boolsendmail>Enviar email</boolsendmail>

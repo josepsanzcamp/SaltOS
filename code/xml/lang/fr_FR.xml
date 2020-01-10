@@ -585,7 +585,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Ajout d'un nouvel effet</forminsert>
 		<formupdate>l'incidence Changement</formupdate>
 		<defaultdata>Données de l'incidence</defaultdata>
-		<usersdata>Utilisateurs assigné</usersdata>
+		<usersdata translated="false">Users</usersdata>
+		<implicados translated="false">Involved</implicados>
 		<asignadoa>Assigné à</asignadoa>
 		<msgsendemail>a été envoyé un courriel à tous ceux qui sont impliqués dans l'incidence</msgsendemail>
 		<boolsendmail translated="false">Send email</boolsendmail>

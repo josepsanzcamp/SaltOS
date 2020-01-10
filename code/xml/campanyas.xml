@@ -521,7 +521,7 @@ WHERE a.id_campanya='".abs($id)."' AND ".check_sql("clientes","view")." ORDER BY
 			<relatedclientes include="xml/common/relatedclientespdf.xml" replace="true" />
 			<!-- EVENTOS DE LA CAMPANYA -->
 			<query>"SELECT a.*,'".LANG_ESCAPE("agendadata","campanyas")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
-			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_agenda_u iu WHERE iu.id_agenda=a.id)) asignadoa
+			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,ids_asignados)) asignadoa
 			FROM tbl_agenda a WHERE a.id_campanya='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
 			<relatedagenda include="xml/common/relatedagendapdf.xml" replace="true" />
 			<!-- PRESUPUESTOS DE LA CAMPANYA -->

@@ -29,34 +29,13 @@ function db_schema() {
 	capture_next_error();
 	$hash1=CONFIG("xml/dbschema.xml");
 	get_clear_error();
-	$hash2=md5(serialize(__get_dbschema_with_indexing(xml2array("xml/dbschema.xml"),xml2array("xml/dbstatic.xml"))));
+	$hash2=md5(serialize(array(xml2array("xml/dbschema.xml"),xml2array("xml/dbstatic.xml"))));
 	if($hash1!=$hash2) {
 		if(!semaphore_acquire(array("db_schema","db_static"),getDefault("semaphoretimeout",100000))) return;
-		$dbschema=eval_attr(__get_dbschema_with_indexing(xml2array("xml/dbschema.xml"),xml2array("xml/dbstatic.xml")));
+		$dbschema=__get_dbschema_with_indexing(eval_attr(xml2array("xml/dbschema.xml")),eval_attr(xml2array("xml/dbstatic.xml")));
 		if(is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
 			$tables1=get_tables();
 			$tables2=get_tables_from_dbschema();
-			if(isset($dbschema["indexes"]) && is_array($dbschema["indexes"])) {
-				foreach($dbschema["indexes"] as $key=>$val) {
-					foreach($val["fields"] as $key2=>$val2) $val["fields"][$key2]=$val2["name"];
-					$dbschema["indexes"][$key]["name"]=$val["table"]."_".implode("_",$val["fields"]);
-				}
-				foreach($dbschema["tables"] as $tablespec) {
-					foreach($tablespec["fields"] as $field) {
-						if(isset($field["fkey"]) && $field["fkey"]!="") {
-							set_array($dbschema["indexes"],"index",array(
-								"name"=>$tablespec["name"]."_".$field["name"],
-								"table"=>$tablespec["name"],
-								"fields"=>array(
-									"field"=>array(
-										"name"=>$field["name"]
-									)
-								)
-							));
-						}
-					}
-				}
-			}
 			if(isset($dbschema["excludes"]) && is_array($dbschema["excludes"])) {
 				foreach($dbschema["excludes"] as $exclude) {
 					foreach($tables1 as $key=>$val) if($exclude["name"]==$val) unset($tables1[$key]);
@@ -215,6 +194,26 @@ function __get_dbschema_with_indexing($dbschema,$dbstatic) {
 					)
 				)
 			));
+		}
+	}
+	if(!isset($dbschema["indexes"])) return $dbschema;
+	if(!is_array($dbschema["indexes"])) return $dbschema;
+	foreach($dbschema["indexes"] as $key=>$val) {
+		$dbschema["indexes"][$key]["name"]=$val["table"]."_".implode("_",array_column($val["fields"],"name"));
+	}
+	foreach($dbschema["tables"] as $tablespec) {
+		foreach($tablespec["fields"] as $field) {
+			if(isset($field["fkey"]) && $field["fkey"]!="") {
+				set_array($dbschema["indexes"],"index",array(
+					"name"=>$tablespec["name"]."_".$field["name"],
+					"table"=>$tablespec["name"],
+					"fields"=>array(
+						"field"=>array(
+							"name"=>$field["name"]
+						)
+					)
+				));
+			}
 		}
 	}
 	return $dbschema;

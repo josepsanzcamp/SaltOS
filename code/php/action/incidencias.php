@@ -38,9 +38,8 @@ if($page=="incidencias") {
 	// DATOS EMAIL
 	$id_incidencia=intval(($action=="insert")?execute_query("SELECT MAX(id) FROM tbl_incidencias"):getParam("id"));
 	$query="SELECT ".make_extra_query_with_field("email","d.")." mailto,".make_extra_query_with_login("d.")." usuario
-			FROM tbl_incidencias_u a
-			LEFT JOIN tbl_usuarios d ON a.id_usuario=d.id
-			WHERE a.id_incidencia='$id_incidencia'";
+			FROM tbl_incidencias a,tbl_usuarios d
+			WHERE a.id='$id_incidencia' AND (FIND_IN_SET(d.id,a.ids_implicados) OR FIND_IN_SET(d.id,a.ids_asignados))";
 	$result2=db_query($query);
 	if(db_num_rows($result2)) {
 		$to=array();
@@ -99,14 +98,24 @@ if($page=="incidencias") {
 			}
 			db_free($result2);
 			// DATOS USUARIOS
-			$query="SELECT
-					REPLACE(GROUP_CONCAT(".make_extra_query_with_login("b.")."),',','; ') usersdata
-				FROM tbl_incidencias_u a
-				LEFT JOIN tbl_usuarios b ON a.id_usuario=b.id
-				WHERE id_incidencia='$id_incidencia'";
+			$query="SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("d.")."),',','; ') implicados
+				FROM tbl_incidencias a,tbl_usuarios d
+				WHERE a.id='$id_incidencia' AND FIND_IN_SET(d.id,a.ids_implicados)";
 			$result2=db_query($query);
 			// BODY USUARIOS
-			$campos=array("usersdata");
+			$campos=array("implicados");
+			$tipos=array("text");
+			while($row2=db_fetch_row($result2)) {
+				$body.=__incidencias_packreport($campos,$tipos,$row2);
+			}
+			db_free($result2);
+			// DATOS USUARIOS
+			$query="SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("d.")."),',','; ') asignadoa
+				FROM tbl_incidencias a,tbl_usuarios d
+				WHERE a.id='$id_incidencia' AND FIND_IN_SET(d.id,a.ids_asignados)";
+			$result2=db_query($query);
+			// BODY USUARIOS
+			$campos=array("asignadoa");
 			$tipos=array("text");
 			while($row2=db_fetch_row($result2)) {
 				$body.=__incidencias_packreport($campos,$tipos,$row2);

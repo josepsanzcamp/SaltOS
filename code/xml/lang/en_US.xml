@@ -585,7 +585,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Added a new bug</forminsert>
 		<formupdate>Change bug</formupdate>
 		<defaultdata>Data of the bug</defaultdata>
-		<usersdata>Users assigned</usersdata>
+		<usersdata>Users</usersdata>
+		<implicados>Involved</implicados>
 		<asignadoa>Assigned to</asignadoa>
 		<msgsendemail>has been sent an email to all those involved in the bug</msgsendemail>
 		<boolsendmail>Send email</boolsendmail>

@@ -585,7 +585,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Alta de una nueva incidencia</forminsert>
 		<formupdate>Modificación de la incidencia</formupdate>
 		<defaultdata>Datos de la incidencia</defaultdata>
-		<usersdata>Usuarios asignados</usersdata>
+		<usersdata>Usuarios</usersdata>
+		<implicados>Implicados</implicados>
 		<asignadoa>Asignado a</asignadoa>
 		<msgsendemail>Se ha enviado un correo electrónico a todos los implicados en la incidencia</msgsendemail>
 		<boolsendmail>Enviar email</boolsendmail>

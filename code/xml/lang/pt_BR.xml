@@ -585,7 +585,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Inserir nova incidência</forminsert>
 		<formupdate>Modificar a incidência</formupdate>
 		<defaultdata>Dados da incidência</defaultdata>
-		<usersdata>Utilizadores envolvidos</usersdata>
+		<usersdata translated="false">Users</usersdata>
+		<implicados translated="false">Involved</implicados>
 		<asignadoa>Assinado a</asignadoa>
 		<msgsendemail>Foi enviado um email a todos os envolvidos na incidência</msgsendemail>
 		<boolsendmail translated="false">Send email</boolsendmail>

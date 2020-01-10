@@ -114,7 +114,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">username</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_usuario" eval="true">$id_usuario=getParam("id_usuario")</value>
 					</field>
 					<field>
@@ -147,7 +147,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">asignadoa</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_asignado" eval="true">$id_asignado=getParam("id_asignado")</value>
 					</field>
 					<field>
@@ -364,12 +364,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				CASE id_tipoevento WHEN '0' THEN '".LANG_ESCAPE("sintipoevento")."' ELSE e.nombre END tipoevento,
 				CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
 				a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
-				CASE ((".check_sql($page,"view").") OR ((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."')>0)) WHEN 1 THEN 'true' ELSE 'false' END action_view,
-				CASE ((".check_sql($page,"edit").") OR ((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."')>0)) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+				CASE ((".check_sql($page,"view").") OR FIND_IN_SET('".current_user()."',ids_asignados)) WHEN 1 THEN 'true' ELSE 'false' END action_view,
+				CASE ((".check_sql($page,"edit").") OR FIND_IN_SET('".current_user()."',ids_asignados)) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 				CASE (".check_user($page,"create")." AND (".check_sql($page,"view")." OR ".check_sql($page,"edit").")) WHEN 1 THEN 'true' ELSE 'false' END action_copy,
 				CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
 				id_usuario,a.descripcion descripcion,id_tipoevento,d.id_grupo id_grupo,c.activo activo,
-				a.id_estado id_estado,a.id_cliente id_cliente,a.id_proyecto id_proyecto,
+				a.id_estado,a.id_cliente,a.id_proyecto,a.ids_asignados,
 				a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya
 			FROM (SELECT a2.*,b1.nombre b1_nombre,b2.nombre b2_nombre,p.nombre p_nombre FROM tbl_agenda a2
 			LEFT JOIN tbl_clientes b1 ON b1.id=a2.id_cliente
@@ -389,7 +389,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				".($fecha3key=="MNTH"?"(YEAR('$fecha3val')>=YEAR(dstart) AND MONTH('$fecha3val')>=MONTH(dstart) AND YEAR(dstop)>=YEAR('$fecha3val') AND MONTH(dstop)>=MONTH('$fecha3val'))":"(1=0)")." OR
 				".($fecha3key=="YEAR"?"(YEAR('$fecha3val')>=YEAR(dstart) AND YEAR(dstop)>=YEAR('$fecha3val'))":"(1=0)")."
 			)
-			AND (((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=z.id AND u.id_usuario='".intval(getParam("id_asignado"))."')>0 OR ''='".getParam("id_asignado")."')) AND (".check_sql($page,"list")." OR ((SELECT COUNT(*) FROM tbl_agenda_u u WHERE u.id_agenda=z.id AND u.id_usuario='".current_user()."')>0))"</query>
+			AND (FIND_IN_SET('".getParam("id_asignado")."',ids_asignados) OR ''='".getParam("id_asignado")."')
+			AND (".check_sql($page,"list")." OR FIND_IN_SET('".current_user()."',ids_asignados))"</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>
 		<offset global="offset" eval="true">$offset</offset>
@@ -399,11 +400,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<view>
 				<title lang="true">formview</title>
 				<query>
-					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id  AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (TRIM(IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0))='".current_user()."')"</query>
+					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id  AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)"</query>
 					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<usuarios>
-						<usuarios global="id" eval="true">"SELECT a.id id,a.id id_usuario,'".abs($id)."' id_agenda,".make_extra_query_with_login("a.")." nombre,(CASE WHEN b.id IS NULL THEN 0 ELSE 1 END) activado FROM tbl_usuarios a LEFT JOIN tbl_agenda_u b ON b.id_agenda='".abs($id)."' AND a.id=b.id_usuario WHERE a.activo='1' ORDER BY nombre"</usuarios>
-					</usuarios>
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
 					<control include="xml/common/qcontrol.xml"/>
@@ -414,10 +412,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<title lang="true">forminsert</title>
 				<query>
 					<query include="xml/common/qpermcreate.xml" replace="true" />
-					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'' id_gcalendar,'' sync_gcalendar FROM tbl_agenda WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_presupuesto"))."' id_presupuesto,'".getParam("dstart",current_datetime())."' dstart,'".getParam("dstop",current_datetime())."' dstop,'".CONFIG('df_tipo_evento_agenda')."' id_tipoevento,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'".intval(getParam("id_campanya"))."' id_campanya"</default>
-					<usuarios>
-						<usuarios eval="true">"SELECT id,id id_usuario,'0' id_agenda,".make_extra_query_with_login("a.")." nombre,CASE id WHEN '".current_user()."' THEN '1' ELSE '0' END activado FROM tbl_usuarios a WHERE a.activo='1' ORDER BY nombre"</usuarios>
-					</usuarios>
+					<default eval="true">substr(getParam("id"),0,7)=="0_copy_"?"SELECT *,'0' id,'".current_datetime()."' dstart,'".current_datetime()."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'' id_gcalendar,'' sync_gcalendar FROM tbl_agenda WHERE id='".substr(getParam("id"),7)."'":"SELECT '0' id,'".intval(getParam("id_cliente"))."' id_cliente,'".intval(getParam("id_proyecto"))."' id_proyecto,'".intval(getParam("id_posiblecli"))."' id_posiblecli,'".intval(getParam("id_presupuesto"))."' id_presupuesto,'".getParam("dstart",current_datetime())."' dstart,'".getParam("dstop",current_datetime())."' dstop,'".current_user()."' ids_asignados,'".CONFIG('df_tipo_evento_agenda')."' id_tipoevento,'".CONFIG('df_estado_agenda')."' id_estado,'0' notify_delay,'-1' notify_sign,'0' notify_dstart,'0' notify_dstop,'".intval(getParam("id_campanya"))."' id_campanya"</default>
 					<files_new include="xml/common/qfilesnew.xml" replace="true"/>
 					<folders include="xml/common/qfolders.xml" />
 				</query>
@@ -425,11 +420,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<update>
 				<title lang="true">formupdate</title>
 				<query>
-					<query include="xml/common/qpermupdate.xml" replace="true" />
+					<query global="page,id" eval="true">"SELECT '".LANG_ESCAPE("permdenied")."' action_error,'0' action_commit,'-1' action_go FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"edit")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)"</query>
 					<query include="xml/common/qdefaultview.xml" replace="true" />
-					<usuarios>
-						<usuarios global="id" eval="true">"SELECT a.id id,a.id id_usuario,'".abs($id)."' id_agenda,".make_extra_query_with_login("a.")." nombre,(CASE WHEN b.id IS NULL THEN 0 ELSE 1 END) activado FROM tbl_usuarios a LEFT JOIN tbl_agenda_u b ON b.id_agenda='".abs($id)."' AND a.id=b.id_usuario WHERE a.activo='1' ORDER BY nombre"</usuarios>
-					</usuarios>
 					<comments_old include="xml/common/qcommentsold.xml" />
 					<files_old include="xml/common/qfilesold.xml" />
 					<comments_new include="xml/common/qcommentnew.xml" replace="true"/>
@@ -657,53 +649,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-			</default>
-			<usuarios>
 				<fieldset>
 					<width>700px</width>
 					<title lang="true">usersdata</title>
 					<icon eval="true">ICON("form")</icon>
 					<popup>true</popup>
-					<head>
-						<field>
-							<type>label</type>
-							<label lang="true">username</label>
-							<class>thead</class>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>thead</class>
-							<colspan>100</colspan>
-						</field>
-					</head>
+					<class>tabla</class>
 					<row>
 						<field>
-							<type>hidden</type>
-							<name>id_agenda</name>
-						</field>
-						<field>
-							<type>hidden</type>
-							<name>id_usuario</name>
-						</field>
-						<field>
-							<type>label</type>
-							<name>nombre</name>
-							<class>tbody</class>
-							<width>100%</width>
-						</field>
-						<field>
-							<type>checkbox</type>
-							<name>activado</name>
-							<label lang="true">activar</label>
-							<value>1</value>
+							<name>ids_asignados</name>
+							<label lang="true">asignadoa</label>
+							<type>multiselect</type>
+							<width>600px</width>
+							<height>120px</height>
+							<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
+							<colspan>6</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<width>1px</width>
 							<class>tbody</class>
-							<class2>tbody</class2>
+							<class2>thead</class2>
 						</field>
 					</row>
 				</fieldset>
-			</usuarios>
+			</default>
 			<comments_old include="xml/common/commentsold.xml"/>
 			<files_old include="xml/common/filesold.xml" />
 			<comments_new include="xml/common/commentnew.xml"/>
@@ -714,13 +681,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick include="xml/common/quickform.xml" />
 		<buttons include="xml/common/buttonsform.xml" />
 		<node path="buttons/row/field[name=buttonupdate]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (TRIM(IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0))='".current_user()."')")?"true":"false"</disabled>
+			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)")?"true":"false"</disabled>
 		</node>
 		<node path="buttons/row/field[name=buttonupdatereturnhere]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (TRIM(IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0))='".current_user()."')")?"true":"false"</disabled>
+			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)")?"true":"false"</disabled>
 		</node>
 		<node path="buttons/row/field[name=edit]/disabled" replace="true">
-			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT (TRIM(IFNULL((SELECT u.id_usuario FROM tbl_agenda_u u WHERE u.id_agenda=a.id AND u.id_usuario='".current_user()."'),0))='".current_user()."')")?"true":"false"</disabled>
+			<disabled global="page,id" eval="true">execute_query("SELECT '1' denied FROM tbl_agenda a LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1 LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id WHERE a.id='".abs($id)."' AND NOT ".check_sql($page,"view")." AND NOT FIND_IN_SET('".current_user()."',ids_asignados)")?"true":"false"</disabled>
 		</node>
 		<javascript>
 			<javascript include="xml/common/jsform.xml" replace="true"/>
@@ -735,10 +702,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/autonombre.xml" replace="true"/>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_insert_query("tbl_agenda")</query>
 		<query include="xml/common/qcontrolinsert.xml" replace="true"/>
-		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_agenda_u",array(
-			"id_agenda"=>execute_query("SELECT MAX(id) FROM tbl_agenda"),
-			"id_usuario"=>intval(getParam("id_usuario")),
-		)):""</query>
 		<query include="xml/common/qfilesinsert.xml" replace="true"/>
 		<query include="xml/common/qfoldersinsert.xml" replace="true"/>
 	</insert>
@@ -748,11 +711,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="default" prefix="true" eval="true">setParam("notify_dstop",(execute_query("SELECT dstart FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstart") || execute_query("SELECT dstop FROM tbl_agenda WHERE id='".intval(getParam("id"))."'")!=getParam("dstop"))?"0":getParam("notify_dstop"))</query>
 		<query match="default" prefix="true" global="page" preeval="true" eval="true">preeval_update_query("tbl_agenda")</query>
         <query include="xml/common/qcontrolupdate.xml" replace="true"/>
-		<query global="page" match="default" prefix="true" eval="true">"DELETE FROM tbl_agenda_u WHERE id_agenda='".getParam("id")."'"</query>
-		<query global="page" match="usuarios" prefix="true" eval="true">getParam("activado")?make_insert_query("tbl_agenda_u",array(
-			"id_agenda"=>intval(getParam("id_agenda")),
-			"id_usuario"=>intval(getParam("id_usuario"))
-		)):""</query>
 		<query include="xml/common/qfilesdelete.xml" replace="true" />
 		<query include="xml/common/qfilesupdate.xml" replace="true"/>
 		<query include="xml/common/qcommentsdelete.xml" replace="true" />
@@ -762,7 +720,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query global="page,id" eval="true">"DELETE FROM tbl_agenda_u WHERE id_agenda='${id}'"</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>

@@ -585,7 +585,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>اضافة تأثير جديد</forminsert>
 		<formupdate>تغيير الحدث</formupdate>
 		<defaultdata>البيانات في الحدث</defaultdata>
-		<usersdata>المستخدمين المعنيين</usersdata>
+		<usersdata translated="false">Users</usersdata>
+		<implicados translated="false">Involved</implicados>
 		<asignadoa>تعيين ل</asignadoa>
 		<msgsendemail>لقد تم ارسال بريد لكل المعنيين بالحدث</msgsendemail>
 		<boolsendmail translated="false">Send email</boolsendmail>

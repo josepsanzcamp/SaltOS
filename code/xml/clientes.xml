@@ -820,12 +820,12 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 			<relatedcontacts include="xml/common/relatedcontactspdf.xml" replace="true"/>
 			<!-- INCIDENCIAS ABIERTAS CLIENTE -->
 			<query>"SELECT a.*,
-			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_incidencias_u iu WHERE iu.id_incidencia=a.id)) asignadoa,
+			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,ids_asignados)) asignadoa,
 			'".LANG_ESCAPE("incidentopen")."' title,'".page2id("incidencias")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,(SELECT nombre FROM tbl_proyectos WHERE id=a.id_proyecto) proyecto,(SELECT nombre FROM tbl_prioridades WHERE id=a.id_prioridad) prioridad FROM tbl_incidencias a WHERE a.id_cliente='".$row["id"]."' AND a.id_estado IN (SELECT id FROM tbl_estados WHERE activo='1') AND '".getParam("incidencias")."'='1' ORDER BY a.id ASC"</query>
 			<relatedincidencias include="xml/common/relatedincidenciaspdf.xml" replace="true"/>
 			<!-- INCIDENCIAS CERRADAS CLIENTE -->
 			<query>"SELECT a.*,
-			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_incidencias_u iu WHERE iu.id_incidencia=a.id)) asignadoa,
+			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,ids_asignados)) asignadoa,
 			'".LANG_ESCAPE("incidentclose")."' title,'".page2id("incidencias")."' id_aplicacion,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,(SELECT nombre FROM tbl_proyectos WHERE id=a.id_proyecto) proyecto,(SELECT nombre FROM tbl_prioridades WHERE id=a.id_prioridad) prioridad FROM tbl_incidencias a WHERE a.id_cliente='".$row["id"]."' AND a.id_estado IN (SELECT id FROM tbl_estados WHERE activo='0') AND '".getParam("incidencias")."'='1' ORDER BY a.id ASC"</query>
 			<relatedincidencias include="xml/common/relatedincidenciaspdf.xml" replace="true"/>
 			<!-- PROYECTOS ACTIVOS CLIENTE -->
@@ -854,7 +854,7 @@ WHERE ((a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("clientes").
 			<relatedgastos include="xml/common/relatedgastospdf.xml" replace="true"/>
 			<!-- EVENTOS DEL CLIENTE -->
 			<query>"SELECT a.*,'".LANG_ESCAPE("agendadata","clientes")."' title,'".page2id("agenda")."' id_aplicacion,(SELECT nombre FROM tbl_campanyas WHERE id=a.id_campanya) campanya,(SELECT nombre FROM tbl_proyectos WHERE id=a.id_proyecto) proyecto,(SELECT nombre FROM tbl_presupuestos WHERE id=a.id_presupuesto) presupuesto,(SELECT nombre FROM tbl_tiposevento WHERE id=a.id_tipoevento) tipoevento,(SELECT nombre FROM tbl_estados WHERE id=a.id_estado) estado,
-			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE uu.id IN (SELECT iu.id_usuario FROM tbl_agenda_u iu WHERE iu.id_agenda=a.id)) asignadoa
+			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,ids_asignados)) asignadoa
 			FROM tbl_agenda a WHERE a.id_cliente='".$row["id"]."' AND '".getParam("agenda")."'='1' ORDER BY a.dstart ASC"</query>
 			<relatedagenda include="xml/common/relatedagendapdf.xml" replace="true"/>
 			<!-- PRESUPUESTOS DEL CLIENTE -->

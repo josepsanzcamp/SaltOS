@@ -184,13 +184,8 @@ if(getParam("action")=="gcalendar") {
 				"lugar"=>$gevent["where"],
 				"descripcion"=>$gevent["content"],
 				"id_gcalendar"=>$gevent["id"],
-				"sync_gcalendar"=>1
-			));
-			db_query($query2);
-			$query2=make_insert_query("tbl_agenda_u",array(
-				"id_usuario"=>current_user()
-			),array(
-				"id_agenda"=>"SELECT MAX(id) FROM tbl_agenda"
+				"sync_gcalendar"=>1,
+				"ids_asignados"=>current_user(),
 			));
 			db_query($query2);
 			make_control(page2id("agenda"));

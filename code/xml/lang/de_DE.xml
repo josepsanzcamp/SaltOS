@@ -585,7 +585,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Neue Reklamation erstellen</forminsert>
 		<formupdate>Reklamation bearbeiten</formupdate>
 		<defaultdata>Reklamations Daten</defaultdata>
-		<usersdata>Zugewiesene Mitarbeiter</usersdata>
+		<usersdata translated="false">Users</usersdata>
+		<implicados translated="false">Involved</implicados>
 		<asignadoa>Zugewiesen zu</asignadoa>
 		<msgsendemail>Alle der Reklamation zugewiesenen Mitarbeiter wurden per E-Mail benachrichtigt</msgsendemail>
 		<boolsendmail translated="false">Send email</boolsendmail>

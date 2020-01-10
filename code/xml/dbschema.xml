@@ -187,26 +187,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<name>sync_gcalendar</name>
 					<type>INT(11)</type>
 				</field>
-			</fields>
-		</table>
-		<table>
-			<name>tbl_agenda_u</name>
-			<fields>
 				<field>
-					<name>id</name>
-					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>id_agenda</name>
-					<type>INT(11)</type>
-					<fkey>tbl_agenda</fkey>
-					<fcheck>false</fcheck>
-				</field>
-				<field>
-					<name>id_usuario</name>
-					<type>INT(11)</type>
+					<name>ids_asignados</name>
+					<type>VARCHAR(255)</type>
 					<fkey>tbl_usuarios</fkey>
+					<fcheck>false</fcheck>
 				</field>
 			</fields>
 		</table>
@@ -1814,26 +1799,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<fkey>tbl_correo</fkey>
 					<fcheck>false</fcheck>
 				</field>
-			</fields>
-		</table>
-		<table>
-			<name>tbl_incidencias_u</name>
-			<fields>
 				<field>
-					<name>id</name>
-					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
-					<pkey>true</pkey>
-				</field>
-				<field>
-					<name>id_incidencia</name>
-					<type>INT(11)</type>
-					<fkey>tbl_incidencias</fkey>
+					<name>ids_implicados</name>
+					<type>VARCHAR(255)</type>
+					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
-					<name>id_usuario</name>
-					<type>INT(11)</type>
+					<name>ids_asignados</name>
+					<type>VARCHAR(255)</type>
 					<fkey>tbl_usuarios</fkey>
+					<fcheck>false</fcheck>
 				</field>
 			</fields>
 		</table>
@@ -3378,17 +3354,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id</name>
-				</field>
-			</fields>
-		</index>
-		<index>
-			<table>tbl_agenda_u</table>
-			<fields>
-				<field>
-					<name>id_agenda</name>
-				</field>
-				<field>
-					<name>id_usuario</name>
 				</field>
 			</fields>
 		</index>
