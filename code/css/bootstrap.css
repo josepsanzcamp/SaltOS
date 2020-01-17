@@ -38,3 +38,16 @@ body {
 .table {
 	margin-bottom:0;
 }
+
+.label {
+	padding:0 5px;
+}
+
+.button {
+	margin:1px;
+}
+
+table {
+	margin-left:auto;
+	margin-right:auto;
+}

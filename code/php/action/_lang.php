@@ -24,29 +24,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$_RESULT["default"]=array();
-
 if(check_user()) {
-	if(getParam("page")) {
-		$page=getParam("page");
-	} else {
-		$page=lastpage("");
-	}
+	$page=getParam("page");
 } else {
 	$page="login";
 }
 
-$_CONFIG[$page]=xml2array("xml/${page}.xml");
-$action="list";
-if(getDefault("$page/default")) {
-	$config=getDefault("$page/default");
-	$config=eval_attr($config);
-	$_RESULT["default"]=$config;
+if($page!="") $page.=",";
+$default=explode(",",$page.$_LANG["default"]);
+$_RESULT["lang"]=array();
+foreach($default as $d) {
+	foreach($_LANG[$d] as $key=>$val) {
+		if(!isset($_RESULT["lang"][$key])) {
+			$_RESULT["lang"][$key]=$val;
+		}
+	}
 }
-
-if(!isset($_RESULT["default"]["page"])) $_RESULT["default"]["page"]=$page;
-if(!isset($_RESULT["default"]["action"])) $_RESULT["default"]["action"]="list";
-if(!isset($_RESULT["default"]["id"])) $_RESULT["default"]["id"]="0";
 
 $json=json_encode($_RESULT);
 output_handler(array(

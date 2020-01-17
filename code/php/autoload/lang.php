@@ -29,11 +29,11 @@ function LANG_LOADED() {
 	return isset($_LANG);
 }
 
-function LANG($key,$arg="") {
+function LANG($key,$page="") {
 	global $_LANG;
 	if(!LANG_LOADED()) return "$key not load";
-	if($arg) $arg="$arg,";
-	$default=explode(",",$arg.$_LANG["default"]);
+	if($page!="") $page.=",";
+	$default=explode(",",$page.$_LANG["default"]);
 	foreach($default as $d) {
 		if(isset($_LANG[$d][$key])) {
 			return eval_bool(getDefault("debug/langdebug"))?"LANG(".$_LANG[$d][$key].")":$_LANG[$d][$key];
@@ -42,12 +42,12 @@ function LANG($key,$arg="") {
 	return "$key (not found)";
 }
 
-function LANG_ESCAPE($key,$arg="") {
-	return addslashes(LANG($key,$arg));
+function LANG_ESCAPE($key,$page="") {
+	return addslashes(LANG($key,$page));
 }
 
-function LANG_ENCODE($key,$arg="") {
-	return encode_bad_chars(LANG($key,$arg));
+function LANG_ENCODE($key,$page="") {
+	return encode_bad_chars(LANG($key,$page));
 }
 
 function load_lang($lang) {

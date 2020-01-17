@@ -389,4 +389,8 @@ function action_denied() {
 	die();
 }
 
+function _action_denied() {
+	die();
+}
+
 ?>

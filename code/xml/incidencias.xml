@@ -173,7 +173,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">asignadoa</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sinusuario")."' label,'-2' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_asignado" eval="true">$id_asignado=getParam("id_asignado")</value>
 					</field>
 					<field>
@@ -184,7 +184,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						<label lang="true">implicados</label>
 						<type>select</type>
 						<width>240px</width>
-						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos ORDER BY pos ASC,label ASC,value ASC"</query>
+						<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ UNION SELECT '' value,'".LANG_ESCAPE("todoslosusuarios")."' label,'-1' pos UNION SELECT '0' value,'".LANG_ESCAPE("sinusuario")."' label,'-2' pos ORDER BY pos ASC,label ASC,value ASC"</query>
 						<value global="id_asignado" eval="true">$id_implicado=getParam("id_implicado")</value>
 						<colspan>3</colspan>
 					</field>
@@ -309,8 +309,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")."
 		AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")."
 		AND (id_prioridad='$id_prioridad' OR ''='$id_prioridad')
-		AND (FIND_IN_SET('".getParam("id_asignado")."',ids_asignados) OR ''='".getParam("id_asignado")."')
-		AND (FIND_IN_SET('".getParam("id_implicado")."',ids_implicados) OR ''='".getParam("id_implicado")."')
+		AND (FIND_IN_SET('".getParam("id_asignado")."',ids_asignados) OR ''='".getParam("id_asignado")."' OR ('0'='".getParam("id_asignado")."' AND ids_asignados=''))
+		AND (FIND_IN_SET('".getParam("id_implicado")."',ids_implicados) OR ''='".getParam("id_implicado")."' OR ('0'='".getParam("id_implicado")."' AND ids_implicados=''))
 		AND (".check_sql($page,"list")." OR FIND_IN_SET('".current_user()."',ids_asignados) OR FIND_IN_SET('".current_user()."',ids_implicados))"</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>

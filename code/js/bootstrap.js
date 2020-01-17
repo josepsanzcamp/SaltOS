@@ -446,14 +446,14 @@ saltos.get_filtered_field=function(field,size) {
 saltos.make_list=function(option) {
 	var obj=$("<div></div>");
 	if(isset(option.quick)) {
-		var table=saltos.form_table();
+		var table=saltos.form_table("100%");
 		$(obj).append(table);
 		$(table).append(saltos.form_by_row_3(option,"quick","row"));
 		$(table).append(saltos.form_brtag_2());
 	}
 	$(obj).append(saltos.make_table(option));
 	if(isset(option.pager)) {
-		var table=saltos.form_table();
+		var table=saltos.form_table("100%");
 		$(obj).append(table);
 		$(table).append(saltos.form_brtag_2());
 		$(table).append(saltos.form_by_row_3(option,"pager","row"));
@@ -535,7 +535,7 @@ saltos.make_form=function(option) {
 														} else {
 															$(obj).append(saltos.form_brtag_1());
 														}
-														var table=saltos.form_table();
+														var table=saltos.form_table(node1[key6].width);
 														$(obj).append(table);
 														if(isset(node1[key6].quick) && node1[key6].quick=="true") {
 															var temp=saltos.form_prepare_fields_3(option,"quick","row",prefix);
@@ -566,7 +566,7 @@ saltos.make_form=function(option) {
 												} else {
 													$(obj).append(saltos.form_brtag_1());
 												}
-												var table=saltos.form_table();
+												var table=saltos.form_table(node1[key6].width);
 												$(obj).append(table);
 												if(isset(node1[key6].quick) && node1[key6].quick=="true") {
 													$(table).append(saltos.form_by_row_3(option,"quick","row"));
@@ -699,11 +699,11 @@ saltos.form_by_row_3=function(fields,filter,filter2) {
 		if(saltos.limpiar_key(key)==filter) {
 			var temp=saltos.form_by_row_2(fields[key],filter2);
 			if(count(temp)) {
-				var table=$("<table class='w-100' cellpadding='0' cellspacing='0' border='0'></table>");
+				var table=$(`<table class="w-100" cellpadding="0" cellspacing="0" border="0"></table>`);
 				for(var key2 in temp) {
 					$(table).append(temp[key2]);
 				}
-				var td=$("<td colspan='100'></td>");
+				var td=$(`<td colspan="100"></td>`);
 				$(td).append(table);
 				var tr=$("<tr></tr>");
 				$(tr).append(td);
@@ -717,11 +717,11 @@ saltos.form_by_row_3=function(fields,filter,filter2) {
 saltos.form_by_row_4=function(fields,filter) {
 	if(!count(fields)) return null;
 	var temp=saltos.form_by_row_2(fields,filter);
-	var table=$("<table class='w-100' cellpadding='0' cellspacing='0' border='0'></table>");
+	var table=$(`<table class="w-100" cellpadding="0" cellspacing="0" border="0"></table>`);
 	for(var key in temp) {
 		$(table).append(temp[key]);
 	}
-	var td=$("<td colspan='100'></td>");
+	var td=$(`<td colspan="100"></td>`);
 	$(td).append(table);
 	var tr=$("<tr></tr>");
 	$(tr).append(td);
@@ -736,30 +736,29 @@ saltos.form_brtag_2=function() {
 	return $("<tr><td><br/></td></tr>");
 }
 
-saltos.form_table=function() {
-	return $("<table class='w-100' cellpadding='0' cellspacing='0' border='0'></table>");
+saltos.form_table=function(arg) {
+	if(arg!="") arg=`width:${arg}`;
+	return $(`<table style="${arg}" cellpadding="0" cellspacing="0" border="0"></table>`);
 }
 
 saltos.form_field=function(field) {
 	// CHECK PARAMS
 	var params=[
 		"name","value",
-		"onchange","onkey",
+		"onchange","onkey","onclick",
 		"class","class2","class3",
 		"colspan","colspan2",
 		"rowspan","rowspan2",
-		"width","width2",
-		"required",
-		"focus",
-		"label","label2",
-		"tip",
+		"width","width2","height",
+		"required","focus","disabled",
+		"label","label2","tip","icon",
 		"autocomplete","querycomplete","filtercomplete","oncomplete",
 	];
 	for(var key in params) if(!isset(field[params[key]])) field[params[key]]="";
 	// CONTINUE
 	var obj=[];
 	if(field.type=="hidden") {
-		var input=$(`<input type="hidden" autocomplete="off">`);
+		var input=$(`<input type="hidden" autocomplete="off"/>`);
 		if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
 		if(field.value!="") $(input).attr("value",field.value);
 		if(field.onchange!="") $(input).on("change",field.onchange);
@@ -767,7 +766,7 @@ saltos.form_field=function(field) {
 		obj.push(input);
 	} else if(field.type=="text") {
 		if(field.label!="") {
-			var td=$(`<td class="text-right text-nowrap"></td>`);
+			var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
 			if(field.class2!="") $(td).addClass(field.class2);
 			if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
 			if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
@@ -776,20 +775,20 @@ saltos.form_field=function(field) {
 			if(field.label!="") $(td).append(field.label);
 			obj.push(td);
 		}
-		var td=$(`<td class="text-left text-nowrap"></td>`);
+		var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
 		if(field.class!="") $(td).addClass(field.class);
 		if(field.colspan!="") $(td).attr("colspan",field.colspan);
 		if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
 		if(field.width!="") $(td).attr("style","width:"+field.width);
-		var input=$(`<input type="text" autocomplete="off">`);
+		var input=$(`<input type="text" autocomplete="off" class="form-control"/>`);
 		if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
 		if(field.value!="") $(input).attr("value",field.value);
 		if(field.width!="") $(input).attr("style","width:"+field.width);
-		if(field.onchange!="") $(input).on("change",field.onchange);
-		if(field.onkey!="") $(input).on("keydown",field.onkey);
+		if(field.onchange!="") $(input).on("change",function() { field.onchange(); });
+		if(field.onkey!="") $(input).on("keydown",function() { field.onkey(); });
 		if(field.focus!="") $(input).attr("focused",field.focus);
 		if(field.required!="") $(input).attr("isrequired",field.required);
-		if(field.label2!="") $(input).attr("labeled",field.label+field.label2);
+		if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
 		if(field.tip!="") $(input).attr("title",field.tip);
 		if(field.class3!="") $(input).addClass(field.class3);
 		if(field.autocomplete!="") $(input).attr("isautocomplete",field.autocomplete);
@@ -837,23 +836,67 @@ saltos.form_field=function(field) {
 			//~ $(obj).append(label);
 		//~ }
 	} else if(field.type=="button") {
-		obj.push($(`
-			<td>
-				<button type="button" class="btn btn-primary text-nowrap" data-toggle="tooltip" title="${field.tip}">
-					<span class="${field.icon}"></span> ${field.value}
-				</button>
-			</td>
-		`));
+		var td=$(`<td class="text-left text-nowrap"></td>`);
+		if(field.colspan!="") $(td).attr("colspan",field.colspan);
+		if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+		if(field.class!="") $(td).addClass(field.class);
+		if(field.width!="") $(td).attr("style","width:"+field.width);
+		var button=$(`<button type="button" class="button btn btn-primary text-nowrap"/>`);
+		if(field.onclick!="") $(button).on("click",{event:field.onclick},saltos.__form_event);
+		if(field.focus!="") $(button).attr("focused",field.focus);
+		if(field.label!="") $(button).attr("labeled",field.label);
+		if(field.width2!="") $(button).attr("style","width:"+field.width2);
+		if(field.tip!="") $(button).attr("title",field.tip).attr("data-toggle","tooltip");
+		if(field.class2!="") $(button).addClass(field.class2);
+		if(field.name!="") $(button).attr("id",field.name);
+		if(field.icon!="") $(button).append(`<span class="${field.icon}"></span>`);
+		if(field.icon!="" && field.value!="") $(button).append("&nbsp;");
+		if(field.value!="") $(button).append(field.value);
+		$(td).append(button);
+		obj.push(td);
 	} else if(field.type=="password") {
-		obj.push($(`<td>[PASSWORD]</td>`));
+		if(field.label!="") {
+			var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
+			if(field.class2!="") $(td).addClass(field.class2);
+			if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+			if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+			if(field.width2!="") $(td).attr("style","width:"+field.width2);
+			if(field.required=="true") $(td).append("(*) ");
+			if(field.label!="") $(td).append(field.label);
+			obj.push(td);
+		}
+		var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
+		if(field.class!="") $(td).addClass(field.class);
+		if(field.colspan!="") $(td).attr("colspan",field.colspan);
+		if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+		if(field.width!="") $(td).attr("style","width:"+field.width);
+		var input=$(`<input type="password" autocomplete="off" class="form-control"/>`);
+		if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+		if(field.value!="") $(input).attr("value",field.value);
+		if(field.width!="") $(input).attr("style","width:"+field.width);
+		if(field.onchange!="") $(input).on("change",{event:field.onchange},saltos.__form_event);
+		if(field.onkey!="") $(input).on("keydown",{event:field.onkey},saltos.__form_event);
+		if(field.focus!="") $(input).attr("focused",field.focus);
+		if(field.required!="") $(input).attr("isrequired",field.required);
+		if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
+		if(field.tip!="") $(input).attr("title",field.tip);
+		if(field.class3!="") $(input).addClass(field.class3);
+		$(td).append(input);
+		obj.push(td);
 	} else if(field.type=="file") {
 		obj.push($(`<td>[FILE]</td>`));
 	} else if(field.type=="link") {
 		obj.push($(`<td>[LINK]</td>`));
 	} else if(field.type=="separator") {
-		obj.push($(`
-			<td class="separator ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width};height:${field.height}" id="${field.name}"></td>
-		`));
+		var td=$(`<td class="separator"></td>`);
+		if(field.class!="") $(td).addClass(field.class);
+		if(field.colspan!="") $(td).attr("colspan",field.colspan);
+		if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+		if(field.width!="" && field.height!="") $(td).attr("style","width:"+field.width+";height:"+field.height);
+		else if(field.width!="") $(td).attr("style","width:"+field.width);
+		else if(field.height!="") $(td).attr("style","height:"+field.height);
+		if(field.name!="") $(td).attr("id",field.name);
+		obj.push(td);
 	} else if(field.type=="label") {
 		obj.push($(`<td>[LABEL]</td>`));
 	} else if(field.type=="image") {
@@ -870,6 +913,15 @@ saltos.form_field=function(field) {
 		obj.push($(`<td>[COPY]</td>`));
 	}
 	return obj;
+}
+
+saltos.__form_event=function(obj) {
+	if(typeof obj.data.event=="string") {
+		eval(obj.data.event);
+	}
+	if(typeof obj.data.event=="function") {
+		obj.data.event();
+	}
 }
 
 /* FUNCIONES PARA TAREAS DEL USER INTERFACE */
@@ -988,7 +1040,20 @@ saltos.init_history=function() {
 	saltos.opencontent_hash();
 };
 
-/* OLD SALTOS COMPATIBILITY */
+/* FOR LANG MANAGEMENT */
+saltos.lang_define=function(arg) {
+	for(var key in arg) {
+		var fn="lang_"+key;
+		var val=arg[key];
+		if(!isset(window[fn])) {
+			(function(a,b) {
+				window[a]=function() { return b; }
+			})(fn,val);
+		}
+	}
+}
+
+/* OLD SALTOS ACTION FUNCTIONS */
 function toggle_menu() {
 	if($("#menu").is(":visible")) {
 		$("#menu").hide();
@@ -1089,6 +1154,238 @@ function mailto(mail) {
 	opencontent(`index.php?page=correo&action=form&id=0_mailto_${mail}`);
 };
 
+function submit1() {
+	alert(1);
+}
+
+function alerta(msg,callback) {
+	if(typeof callback=='undefined') callback=function() {};
+	dialog(lang_alert(),msg,[{
+		label:lang_buttoncontinue(),
+		callback:function() {
+			setTimeout(function() {
+				callback();
+			},100);
+		},
+	}]);
+}
+
+function dialog(title,message,buttons) {
+	bootbox.dialog({
+		title:title,
+		message:message,
+		buttons:buttons,
+	});
+}
+
+/* OLD SALTOS DEFAULT FUNCTIONS */
+function floatval2(obj) {
+	_format_number(obj,0);
+}
+
+function intval2(obj) {
+	_format_number(obj,1);
+}
+
+function _format_number(obj,punto) {
+	var texto=obj.value;
+	var texto2="";
+	var numero=0;
+	for(var i=0,len=texto.length;i<len;i++) {
+		var letra=substr(texto,i,1);
+		if(letra>="0" && letra<="9") {
+			texto2+=letra;
+			numero=1;
+		} else if((letra=="." || letra==",") && !punto) {
+			if(!numero) texto2+="0";
+			texto2+=".";
+			punto=1;
+		} else if(letra=="-" && texto2.length==0) {
+			texto2+="-";
+		}
+	}
+	if(texto!=texto2) obj.value=texto2;
+}
+
+function check_required() {
+	var field=null;
+	var label="";
+	$("[isrequired=true]").each(function() {
+		// CHECK FOR VISIBILITY
+		if(substr(this.type,0,6)=="select") {
+			if(!$(this).next().is(":visible")) return;
+		} else {
+			if(!$(this).is(":visible")) return;
+		}
+		// CONTINUE
+		var valor=$(this).val();
+		var campo=this;
+		if(substr(this.type,0,6)=="select") {
+			if(valor=="0") valor="";
+			campo=$(this).next().get(0);
+		}
+		if(!valor) {
+			$(campo).addClass("ui-state-error");
+		} else {
+			$(campo).removeClass("ui-state-error");
+		}
+		if(!valor && !field) {
+			field=campo;
+			label=$(this).attr("labeled");
+		}
+	});
+	if(field) {
+		var requiredfield=lang_requiredfield();
+		alerta(requiredfield+": "+label,function() { $(field).trigger("focus"); });
+	}
+	return field==null;
+}
+
+function copy_value(dest,src) {
+	$("#"+dest).val($("#"+src).val());
+}
+
+function intelligence_cut(txt,max) {
+	var len=strlen(txt);
+	if(len>max) {
+		while(max>0 && substr(txt,max,1)!=" ") max--;
+		if(max==0) while(max<len && substr(txt,max,1)!=" ") max++;
+		if(max>0) if(in_array(substr(txt,max-1,1),[",",".","-","("])) max--;
+		var preview=(max==len)?txt:substr(txt,0,max)+"...";
+	} else {
+		var preview=txt;
+	}
+	return preview;
+}
+
+function dateval(value) {
+	value=str_replace("-"," ",value);
+	value=str_replace(":"," ",value);
+	value=str_replace(","," ",value);
+	value=str_replace("."," ",value);
+	value=str_replace("/"," ",value);
+	var temp="";
+	while(temp!=(value=str_replace("  "," ",value))) temp=value;
+	temp=explode(" ",value);
+	for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
+	for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
+	if(temp[2]>1900) {
+		temp[2]=min(9999,max(0,temp[2]));
+		temp[1]=min(12,max(0,temp[1]));
+		temp[0]=min(__days_of_a_month(temp[2],temp[1]),max(0,temp[0]));
+		value=sprintf("%04d-%02d-%02d",temp[2],temp[1],temp[0]);
+	} else {
+		temp[0]=min(9999,max(0,temp[0]));
+		temp[1]=min(12,max(0,temp[1]));
+		temp[2]=min(__days_of_a_month(temp[0],temp[1]),max(0,temp[2]));
+		value=sprintf("%04d-%02d-%02d",temp[0],temp[1],temp[2]);
+	}
+	return value;
+}
+
+function timeval(value) {
+	value=str_replace("-"," ",value);
+	value=str_replace(":"," ",value);
+	value=str_replace(","," ",value);
+	value=str_replace("."," ",value);
+	value=str_replace("/"," ",value);
+	var temp="";
+	while(temp!=(value=str_replace("  "," ",value))) temp=value;
+	temp=explode(" ",value);
+	for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
+	for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
+	temp[0]=min(24,max(0,temp[0]));
+	temp[1]=min(59,max(0,temp[1]));
+	temp[2]=min(59,max(0,temp[2]));
+	value=sprintf("%02d:%02d:%02d",temp[0],temp[1],temp[2]);
+	return value;
+}
+
+function __days_of_a_month(year,month) {
+	return date("t",strtotime(sprintf("%04d-%02d-%02d",year,month,1)));
+}
+
+function check_datetime(orig,comp,dest) {
+	var orig_obj_date=("input[name$="+orig+"_date]");
+	var orig_obj_time=("input[name$="+orig+"_time]");
+	var dest_obj_date=("input[name$="+dest+"_date]");
+	var dest_obj_time=("input[name$="+dest+"_time]");
+	if($(orig_obj_date).val()=="") return;
+	if($(orig_obj_time).val()=="") return;
+	if($(dest_obj_date).val()=="") return;
+	if($(dest_obj_time).val()=="") return;
+	var orig_date=explode("-",dateval($(orig_obj_date).val()));
+	var orig_time=explode(":",timeval($(orig_obj_time).val()));
+	var dest_date=explode("-",dateval($(dest_obj_date).val()));
+	var dest_time=explode(":",timeval($(dest_obj_time).val()));
+	var orig_unix=mktime(orig_time[0],orig_time[1],orig_time[2],orig_date[1],orig_date[2],orig_date[0]);
+	var dest_unix=mktime(dest_time[0],dest_time[1],dest_time[2],dest_date[1],dest_date[2],dest_date[0]);
+	var dest_unix2=dest_unix;
+	if(comp=="le" && dest_unix<orig_unix) dest_unix2=orig_unix;
+	if(comp=="ge" && dest_unix>orig_unix) dest_unix2=orig_unix;
+	if(dest_unix!=dest_unix2) {
+		$(dest_obj_date).val(implode("-",orig_date));
+		$(dest_obj_time).val(implode(":",orig_time));
+		$(dest_obj_time).trigger("change");
+	}
+}
+
+function check_date(orig,comp,dest) {
+	var orig_obj_date=("input[name$="+orig+"]");
+	var dest_obj_date=("input[name$="+dest+"]");
+	if($(orig_obj_date).val()=="") return;
+	if($(dest_obj_date).val()=="") return;
+	var orig_date=explode("-",dateval($(orig_obj_date).val()));
+	var dest_date=explode("-",dateval($(dest_obj_date).val()));
+	var orig_unix=mktime(12,0,0,orig_date[1],orig_date[2],orig_date[0]);
+	var dest_unix=mktime(12,0,0,dest_date[1],dest_date[2],dest_date[0]);
+	var dest_unix2=dest_unix;
+	if(comp=="le" && dest_unix<orig_unix) dest_unix2=orig_unix;
+	if(comp=="ge" && dest_unix>orig_unix) dest_unix2=orig_unix;
+	if(dest_unix!=dest_unix2) {
+		$(dest_obj_date).val(implode("-",orig_date));
+		$(dest_obj_date).trigger("change");
+	}
+}
+
+function check_time(orig,comp,dest) {
+	var orig_obj_time=("input[name$="+orig+"]");
+	var dest_obj_time=("input[name$="+dest+"]");
+	if($(orig_obj_time).val()=="") return;
+	if($(dest_obj_time).val()=="") return;
+	var orig_time=explode(":",timeval($(orig_obj_time).val()));
+	var dest_time=explode(":",timeval($(dest_obj_time).val()));
+	var orig_unix=mktime(orig_time[0],orig_time[1],orig_time[2],1,1,1970);
+	var dest_unix=mktime(dest_time[0],dest_time[1],dest_time[2],1,1,1970);
+	var dest_unix2=dest_unix;
+	if(comp=="le" && dest_unix<orig_unix) dest_unix2=orig_unix;
+	if(comp=="ge" && dest_unix>orig_unix) dest_unix2=orig_unix;
+	if(dest_unix!=dest_unix2) {
+		$(dest_obj_time).val(implode(":",orig_time));
+		$(dest_obj_time).trigger("change");
+	}
+}
+
+function get_keycode(event) {
+	var keycode=0;
+	if(event.keyCode) keycode=event.keyCode;
+	else if(event.which) keycode=event.which;
+	else keycode=event.charCode;
+	return keycode;
+}
+
+function is_enterkey(event) {
+	return get_keycode(event)==13;
+}
+
+function is_escapekey(event) {
+	return get_keycode(event)==27;
+}
+
+function is_disabled(obj) {
+	return $(obj).hasClass("ui-state-disabled");
+}
+
 /* MAIN CODE */
 (function($) {
 	saltos.init_error();
@@ -1116,6 +1413,21 @@ function mailto(mail) {
 		// CARGAR PRIMER CONTENIDO
 		saltos.init_history();
 	} else {
-		// TODO
+		// CARGAR DATOS
+		saltos.info=$.ajax({url:"index.php?action=info",async:false}).responseJSON.info;
+		saltos.lang=$.ajax({url:"index.php?action=lang",async:false}).responseJSON.lang;
+
+		// PROCESAR LANG
+		saltos.lang_define(saltos.lang);
+
+		// MONTAR PANTALLA
+		document.title=`${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+		saltos.add_layout();
+		saltos.add_header(saltos.menu);
+		saltos.add_header_title(saltos.info);
+		saltos.add_menu(saltos.menu);
+
+		// CARGAR PRIMER CONTENIDO
+		saltos.init_history();
 	}
 }(jQuery));
