@@ -54,7 +54,7 @@ semaphore_release(__FILE__);
 
 // GET THE LANGUAGE
 $lang=getDefault("lang");
-$lang=useCookie("lang","",$lang);
+$lang=getCookie2("lang",$lang);
 $lang=use_table_cookies("lang","",$lang);
 if(!load_lang($lang)) $lang=getDefault("lang");
 $lang=getDefault("forcelang",$lang);

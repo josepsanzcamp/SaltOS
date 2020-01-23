@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>checkbox</type>
 					<name>remember</name>
 					<value>1</value>
-					<checked eval="true">useCookie("remember")?"true":"false"</checked>
+					<checked eval="true">getCookie2("remember")?"true":"false"</checked>
 				</field>
 			</row>
 		</fields>

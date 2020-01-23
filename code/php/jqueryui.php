@@ -46,7 +46,7 @@ add_js_page($_RESULT,getDefault("forcejs","default"));
 
 // GET THE STYLES
 $style=getDefault("style");
-$style=useCookie("style","",$style);
+$style=getCookie2("style",$style);
 $style=use_table_cookies("style","",$style);
 if(!load_style($style)) $style=getDefault("style");
 if(!load_style($style)) $style=solve_style($style);

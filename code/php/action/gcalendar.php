@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user()) action_denied();
 if(getParam("action")=="gcalendar") {
 	// EXTERNAL LIBRARIES
-	require_once("lib/google/autoload.php");
+	require_once("lib/google/vendor/autoload.php");
 	require_once("php/libaction.php");
 
 	// GET GOOGLE CALENDAR USER ACCOUNT

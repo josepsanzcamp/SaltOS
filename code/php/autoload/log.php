@@ -63,6 +63,14 @@ function addtrace($array,$file) {
 	addlog($msg_text,$file);
 }
 
+function gettrace() {
+	$array=array();
+	$array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+	$array["debug"]=session_backtrace();
+	$msg_text=do_message_error($array,"text");
+	return $msg_text;
+}
+
 function debug_dump($die=true) {
 	global $config;
 	echo "<pre>"; echo "GET ".sprintr($_GET)."</pre>";

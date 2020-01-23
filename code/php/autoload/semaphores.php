@@ -46,15 +46,14 @@ function __semaphore_helper($fn,$name,$timeout) {
 		if($name=="") $name=__FUNCTION__;
 		$file=get_cache_file($name,".sem");
 		if(!is_writable(dirname($file))) return false;
-		$hash=md5($file);
-		if(!isset($stack[$hash])) $stack[$hash]=null;
-		if($stack[$hash]) return false;
+		if(!isset($stack[$file])) $stack[$file]=null;
+		if($stack[$file]) return false;
 		init_random();
 		while($timeout>=0) {
 			capture_next_error();
-			$stack[$hash]=fopen($file,"a");
+			$stack[$file]=fopen($file,"a");
 			get_clear_error();
-			if($stack[$hash]) break;
+			if($stack[$file]) break;
 			$timeout-=__semaphore_usleep(rand(0,1000));
 		}
 		if($timeout<0) {
@@ -64,47 +63,52 @@ function __semaphore_helper($fn,$name,$timeout) {
 		touch_protected($file);
 		while($timeout>=0) {
 			capture_next_error();
-			$result=flock($stack[$hash],LOCK_EX|LOCK_NB);
+			$result=flock($stack[$file],LOCK_EX|LOCK_NB);
 			get_clear_error();
 			if($result) break;
 			$timeout-=__semaphore_usleep(rand(0,1000));
 		}
 		if($timeout<0) {
-			if($stack[$hash]) {
+			if($stack[$file]) {
 				capture_next_error();
-				fclose($stack[$hash]);
+				fclose($stack[$file]);
 				get_clear_error();
-				$stack[$hash]=null;
+				$stack[$file]=null;
 			}
 			return false;
 		}
-		ftruncate($stack[$hash],0);
-		fwrite($stack[$hash],getmypid());
+		ftruncate($stack[$file],0);
+		fwrite($stack[$file],gettrace());
 		return true;
 	} elseif(stripos($fn,"release")!==false) {
 		if($name=="") $name=__FUNCTION__;
 		$file=get_cache_file($name,".sem");
-		$hash=md5($file);
-		if(!isset($stack[$hash])) $stack[$hash]=null;
-		if(!$stack[$hash]) return false;
+		if(!isset($stack[$file])) $stack[$file]=null;
+		if(!$stack[$file]) return false;
 		capture_next_error();
-		flock($stack[$hash],LOCK_UN);
+		flock($stack[$file],LOCK_UN);
 		get_clear_error();
 		capture_next_error();
-		fclose($stack[$hash]);
+		fclose($stack[$file]);
 		get_clear_error();
-		$stack[$hash]=null;
+		capture_next_error();
+		unlink($file);
+		get_clear_error();
+		$stack[$file]=null;
 		return true;
 	} elseif(stripos($fn,"shutdown")!==false) {
-		foreach($stack as $hash=>$val) {
-			if($stack[$hash]) {
+		foreach($stack as $file=>$val) {
+			if($stack[$file]) {
 				capture_next_error();
-				flock($stack[$hash],LOCK_UN);
+				flock($stack[$file],LOCK_UN);
 				get_clear_error();
 				capture_next_error();
-				fclose($stack[$hash]);
+				fclose($stack[$file]);
 				get_clear_error();
-				$stack[$hash]=null;
+				capture_next_error();
+				unlink($file);
+				get_clear_error();
+				$stack[$file]=null;
 			}
 		}
 		return true;

@@ -61,15 +61,23 @@ function use_table_cookies($name,$value="",$default="") {
 }
 
 function useCookie($name,$value="",$default="") {
-	if($value!="") __useCookie_setcookie($name,$value=="null"?"":$value,time()+getDefault("security/cookietimeout"));
+	if($value!="") setCookie2($name,$value=="null"?"":$value);
 	elseif(isset($_COOKIE[$name]) && $_COOKIE[$name]!="") $value=$_COOKIE[$name];
 	else $value=$default;
 	return $value;
 }
 
-function __useCookie_setcookie($name,$value,$expire) {
-	setcookie($name,$value,$expire,dirname(getDefault("server/pathname",getServer("SCRIPT_NAME"))),"",eval_bool(getDefault("server/forcessl")),false);
-	setcookie("__".$name."__",$value==""?"":$expire,$expire,dirname(getDefault("server/pathname",getServer("SCRIPT_NAME"))),"",eval_bool(getDefault("server/forcessl")),false);
+function getCookie2($index,$default="") {
+	if(isset($_COOKIE[$index])) return $_COOKIE[$index];
+	return $default;
+}
+
+function setCookie2($index,$value="") {
+	$expire=time()+getDefault("security/cookietimeout");
+	$path=dirname(getDefault("server/pathname",getServer("SCRIPT_NAME")));
+	$secure=eval_bool(getDefault("server/forcessl"));
+	setcookie($index,$value,$expire,$path,"",$secure,false);
+	setcookie("__".$index."__",$value==""?"":$expire,$expire,$path,"",$secure,false);
 }
 
 ?>

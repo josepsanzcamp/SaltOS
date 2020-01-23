@@ -408,10 +408,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/GeSHi/geshi-1.0/")</onclick>
 						</field>
 						<field>
-							<label>Google APIv3 Client (ASL-2.0)</label>
+							<label>Google API PHP Client v2.4 (ASL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("https://developers.google.com/api-client-library/php/")</onclick>
+							<onclick>openwin("https://github.com/googleapis/google-api-php-client")</onclick>
 						</field>
 						<field>
 							<label>EDIFACT latest (LGPL-3.0)</label>

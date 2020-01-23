@@ -738,7 +738,7 @@ saltos.form_brtag_2=function() {
 
 saltos.form_table=function(arg) {
 	if(arg!="") arg=`width:${arg}`;
-	return $(`<table style="${arg}" cellpadding="0" cellspacing="0" border="0"></table>`);
+	return $(`<table class="mx-auto" style="${arg}" cellpadding="0" cellspacing="0" border="0"></table>`);
 }
 
 saltos.form_field=function(field) {

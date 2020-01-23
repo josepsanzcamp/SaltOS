@@ -40,28 +40,28 @@ if(getParam("action")=="login") {
 		}
 		$pass=remake_password($user,$pass);
 		sess_init();
-		useSession("user",$user);
-		useSession("pass",$pass);
+		setSession("user",$user);
+		setSession("pass",$pass);
 		sess_close();
 		pre_datauser();
 		check_security("login");
 		if(eval_bool(getDefault("security/allowremember"))) {
 			if($remember) {
-				useCookie("user",$user);
-				useCookie("pass",$pass);
-				useCookie("remember",$remember);
+				setCookie2("user",$user);
+				setCookie2("pass",$pass);
+				setCookie2("remember",$remember);
 			} else {
-				useCookie("user","null");
-				useCookie("pass","null");
-				useCookie("remember","null");
+				setCookie2("user","");
+				setCookie2("pass","");
+				setCookie2("remember","");
 			}
 		}
 		if(!$check1 && $check2) {
 			check_security("captcha");
 		}
 	}
-	useCookie("lang",$lang);
-	useCookie("style",$style);
+	setCookie2("lang",$lang);
+	setCookie2("style",$style);
 	$querystring=getParam("querystring");
 	$querystring=html_entity_decode($querystring,ENT_COMPAT,"UTF-8");
 	$querystring=$querystring?"?${querystring}":"";

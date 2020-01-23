@@ -51,7 +51,7 @@ if(getParam("action")=="captcha") {
 	if($type=="number") {
 		$code=str_pad(rand(0,pow(10,$length)-1),$length,"0",STR_PAD_LEFT);
 		sess_init();
-		useSession($id,$code);
+		setSession($id,$code);
 		sess_close();
 	} elseif($type=="math") {
 		$max=pow(10,round($length/2))-1;
@@ -67,7 +67,7 @@ if(getParam("action")=="captcha") {
 		} while($oper=="-" && $num1<$num2);
 		$real=eval("return $code;");
 		sess_init();
-		useSession($id,$real);
+		setSession($id,$real);
 		sess_close();
 	} else {
 		action_denied();

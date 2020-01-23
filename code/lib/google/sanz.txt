@@ -1,3 +1,2 @@
 Some SaltOS changes:
-- Removed examples, style and tests
 - Added client_secret_467364534451-o3pvr9vfepjr68ktrq0k94kpjgnvvp4b.apps.googleusercontent.com.json as saltos.json

@@ -27,19 +27,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(getParam("action")=="logout") {
 	check_security("logout");
 	sess_init();
-	useSession("user","null");
-	useSession("pass","null");
+	setSession("user","");
+	setSession("pass","");
 	sess_close();
 	if(eval_bool(getDefault("security/allowremember"))) {
-		$remember=useCookie("remember");
+		$remember=getCookie2("remember");
 		if($remember) {
-			useCookie("user","null");
-			useCookie("pass","null");
-			useCookie("remember",$remember);
+			setCookie2("user","");
+			setCookie2("pass","");
+			setCookie2("remember",$remember);
 		} else {
-			useCookie("user","null");
-			useCookie("pass","null");
-			useCookie("remember","null");
+			setCookie2("user","");
+			setCookie2("pass","");
+			setCookie2("remember","");
 		}
 	}
 	$querystring=getParam("querystring");

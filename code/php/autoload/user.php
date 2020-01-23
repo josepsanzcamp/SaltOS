@@ -26,8 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function pre_datauser() {
 	global $_USER;
-	$user=useSession("user");
-	$pass=useSession("pass");
+	$user=getSession("user");
+	$pass=getSession("pass");
 	if($user!="" && $pass!="") {
 		reset_datauser();
 		$query="SELECT * FROM tbl_usuarios WHERE ".make_where_query(array(
@@ -198,18 +198,18 @@ function id2user($id) {
 
 function check_remember() {
 	if(!eval_bool(getDefault("security/allowremember"))) return;
-	if(useSession("user")) return;
-	if(useSession("pass")) return;
-	if(!useCookie("remember")) return;
-	if(!useCookie("user")) return;
-	if(!useCookie("pass")) return;
+	if(getSession("user")) return;
+	if(getSession("pass")) return;
+	if(!getCookie2("remember")) return;
+	if(!getCookie2("user")) return;
+	if(!getCookie2("pass")) return;
 	if(!check_security("retries") && !check_security("logouts")) {
 		sess_close();
 		setParam("action","logout");
 		include("php/action/logout.php");
 	}
-	useSession("user",useCookie("user"));
-	useSession("pass",useCookie("pass"));
+	setSession("user",getCookie2("user"));
+	setSession("pass",getCookie2("pass"));
 	pre_datauser();
 	check_security("login");
 	return;
@@ -239,8 +239,8 @@ function remake_password($user,$pass) {
 
 function check_basicauth() {
 	if(!eval_bool(getDefault("security/allowbasicauth"))) return;
-	if(useSession("user")) return;
-	if(useSession("pass")) return;
+	if(getSession("user")) return;
+	if(getSession("pass")) return;
 	if(!getServer("PHP_AUTH_USER")) return;
 	if(!getServer("PHP_AUTH_PW")) return;
 	if(!check_security("retries") && !check_security("logouts")) {
@@ -248,8 +248,8 @@ function check_basicauth() {
 		setParam("action","logout");
 		include("php/action/logout.php");
 	}
-	useSession("user",getServer("PHP_AUTH_USER"));
-	useSession("pass",remake_password(getServer("PHP_AUTH_USER"),getServer("PHP_AUTH_PW")));
+	setSession("user",getServer("PHP_AUTH_USER"));
+	setSession("pass",remake_password(getServer("PHP_AUTH_USER"),getServer("PHP_AUTH_PW")));
 	pre_datauser();
 	check_security("login");
 	return;
@@ -372,8 +372,8 @@ function check_captcha($captcha="") {
 	$valid=1;
 	// CHECK VALUE
 	$captcha1=$captcha;
-	$captcha2=useSession($id);
-	if($captcha!="") useSession($id,"null");
+	$captcha2=getSession($id);
+	if($captcha!="") setSession($id,"");
 	if(strlen($captcha1)==0) $valid=0;
 	if(strlen($captcha2)==0) $valid=0;
 	if($captcha1=="null") $valid=0;

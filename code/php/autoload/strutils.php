@@ -590,29 +590,6 @@ function words_exists($words,$buffer) {
 	return true;
 }
 
-function upload_error2string($error) {
-	static $errors=array(
-		UPLOAD_ERR_OK=>"UPLOAD_ERR_OK",					// 0
-		UPLOAD_ERR_INI_SIZE=>"UPLOAD_ERR_INI_SIZE",		// 1
-		UPLOAD_ERR_FORM_SIZE=>"UPLOAD_ERR_FORM_SIZE",	// 2
-		UPLOAD_ERR_PARTIAL=>"UPLOAD_ERR_PARTIAL",		// 3
-		UPLOAD_ERR_NO_FILE=>"UPLOAD_ERR_NO_FILE",		// 4
-		UPLOAD_ERR_NO_TMP_DIR=>"UPLOAD_ERR_NO_TMP_DIR",	// 6
-		UPLOAD_ERR_CANT_WRITE=>"UPLOAD_ERR_CANT_WRITE",	// 7
-		UPLOAD_ERR_EXTENSION=>"UPLOAD_ERR_EXTENSION"	// 8
-	);
-	if(isset($errors[$error])) return $errors[$error];
-	return "UPLOAD_ERR_UNKWOWN";
-}
-
-function session_backtrace() {
-	$array=array();
-	if(useSession("user")) $array["user"]=useSession("user");
-	static $items=array("page","action","id");
-	foreach($items as $item) if(getParam($item)) $array[$item]=getParam($item);
-	return $array;
-}
-
 // COPIED FROM https://stackoverflow.com/questions/1252693/using-str-replace-so-that-it-only-acts-on-the-first-match
 function str_replace_first($from, $to, $content) {
     $from = '/'.preg_quote($from, '/').'/';

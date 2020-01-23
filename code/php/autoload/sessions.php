@@ -130,6 +130,22 @@ function current_session() {
 	return $id;
 }
 
+function useSession($name,$value="",$default="") {
+	if(strval($value)!="") $_SESSION[$name]=($value=="null")?"":$value;
+	elseif(isset($_SESSION[$name]) && strval($_SESSION[$name])!="") $value=$_SESSION[$name];
+	else $value=$default;
+	return $value;
+}
+
+function getSession($index,$default="") {
+	if(isset($_SESSION[$index])) return $_SESSION[$index];
+	return $default;
+}
+
+function setSession($index,$value="") {
+	$_SESSION[$index]=$value;
+}
+
 function session_error($error) {
 	sess_init();
 	$hashs=array();
@@ -148,11 +164,14 @@ function session_alert($alert) {
 	sess_close();
 }
 
-function useSession($name,$value="",$default="") {
-	if(strval($value)!="") $_SESSION[$name]=($value=="null")?"":$value;
-	elseif(isset($_SESSION[$name]) && strval($_SESSION[$name])!="") $value=$_SESSION[$name];
-	else $value=$default;
-	return $value;
+function session_backtrace() {
+	$array=array();
+	$array["pid"]=getmypid();
+	$array["sessid"]=session_id();
+	$array["time"]=current_datetime_decimals();
+	if(getSession("user")) $array["user"]=getSession("user");
+	foreach(array("page","action","id") as $item) if(getParam($item)) $array[$item]=getParam($item);
+	return $array;
 }
 
 ?>
