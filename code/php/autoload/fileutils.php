@@ -250,4 +250,15 @@ function fsockopen_protected($hostname,$port,&$errno=0,&$errstr="",$timeout=null
 		)
 	);
 }
+
+function encode_bad_chars_file($file) {
+	$file=strrev($file);
+	$file=explode(".",$file,2);
+	// EXISTS MULTIPLE STRREV TO PREVENT UTF8 DATA LOST
+	foreach($file as $key=>$val) $file[$key]=strrev(encode_bad_chars(strrev($val)));
+	$file=implode(".",$file);
+	$file=strrev($file);
+	return $file;
+}
+
 ?>

@@ -63,38 +63,6 @@ function setParam($index,$value="") {
 	else $_POST[$index]=$value;
 }
 
-function current_datetime($offset=0) {
-	return current_date($offset)." ".current_time($offset);
-}
-
-function current_date($offset=0) {
-	return date("Y-m-d",time()+$offset);
-}
-
-function current_time($offset=0) {
-	return date("H:i:s",time()+$offset);
-}
-
-function current_decimals($offset=0) {
-	$decimals=microtime(true)+$offset;
-	$decimals-=intval($decimals);
-	return substr($decimals,2,4);
-}
-
-function current_datetime_decimals($offset=0) {
-	return current_datetime($offset).".".current_decimals($offset);
-}
-
-function encode_bad_chars_file($file) {
-	$file=strrev($file);
-	$file=explode(".",$file,2);
-	// EXISTS MULTIPLE STRREV TO PREVENT UTF8 DATA LOST
-	foreach($file as $key=>$val) $file[$key]=strrev(encode_bad_chars(strrev($val)));
-	$file=implode(".",$file);
-	$file=strrev($file);
-	return $file;
-}
-
 function encode_bad_chars($cad,$pad="_") {
 	static $orig=array(
 		"á","à","ä","é","è","ë","í","ì","ï","ó","ò","ö","ú","ù","ü","ñ","ç",
@@ -154,72 +122,6 @@ function color2dec($color,$component) {
 	static $offset=array("R"=>1,"G"=>3,"B"=>5);
 	if(!isset($offset[$component])) show_php_error(array("phperror"=>"Unknown component on color2dec function"));
 	return hexdec(substr($color,$offset[$component],2));
-}
-
-function dateval($value) {
-	static $expr=array("-",":",",",".","/");
-	$value=str_replace($expr," ",$value);
-	$value=prepare_words($value);
-	$temp=explode(" ",$value);
-	foreach($temp as $key=>$val) $temp[$key]=intval($val);
-	for($i=0;$i<3;$i++) if(!isset($temp[$i])) $temp[$i]=0;
-	if($temp[2]>1900) {
-		$temp[2]=min(9999,max(0,$temp[2]));
-		$temp[1]=min(12,max(0,$temp[1]));
-		$temp[0]=min(__days_of_a_month($temp[2],$temp[1]),max(0,$temp[0]));
-		$value=sprintf("%04d-%02d-%02d",$temp[2],$temp[1],$temp[0]);
-	} else {
-		$temp[0]=min(9999,max(0,$temp[0]));
-		$temp[1]=min(12,max(0,$temp[1]));
-		$temp[2]=min(__days_of_a_month($temp[0],$temp[1]),max(0,$temp[2]));
-		$value=sprintf("%04d-%02d-%02d",$temp[0],$temp[1],$temp[2]);
-	}
-	return $value;
-}
-
-function __days_of_a_month($year,$month) {
-	return date("t",strtotime(sprintf("%04d-%02d-%02d",$year,$month,1)));
-}
-
-function timeval($value) {
-	static $expr=array("-",":",",",".","/");
-	$value=str_replace($expr," ",$value);
-	$value=prepare_words($value);
-	$temp=explode(" ",$value);
-	foreach($temp as $key=>$val) $temp[$key]=intval($val);
-	for($i=0;$i<3;$i++) if(!isset($temp[$i])) $temp[$i]=0;
-	$temp[0]=min(24,max(0,$temp[0]));
-	$temp[1]=min(59,max(0,$temp[1]));
-	$temp[2]=min(59,max(0,$temp[2]));
-	$value=sprintf("%02d:%02d:%02d",$temp[0],$temp[1],$temp[2]);
-	return $value;
-}
-
-function datetimeval($value) {
-	static $expr=array("-",":",",",".","/");
-	$value=str_replace($expr," ",$value);
-	$value=prepare_words($value);
-	$temp=explode(" ",$value);
-	foreach($temp as $key=>$val) $temp[$key]=intval($val);
-	for($i=0;$i<6;$i++) if(!isset($temp[$i])) $temp[$i]=0;
-	if($temp[2]>1900) {
-		$temp[2]=min(9999,max(0,$temp[2]));
-		$temp[1]=min(12,max(0,$temp[1]));
-		$temp[0]=min(__days_of_a_month($temp[2],$temp[1]),max(0,$temp[0]));
-		$temp[3]=min(23,max(0,$temp[3]));
-		$temp[4]=min(59,max(0,$temp[4]));
-		$temp[5]=min(59,max(0,$temp[5]));
-		$value=sprintf("%04d-%02d-%02d %02d:%02d:%02d",$temp[2],$temp[1],$temp[0],$temp[3],$temp[4],$temp[5]);
-	} else {
-		$temp[0]=min(9999,max(0,$temp[0]));
-		$temp[1]=min(12,max(0,$temp[1]));
-		$temp[2]=min(__days_of_a_month($temp[0],$temp[1]),max(0,$temp[2]));
-		$temp[3]=min(23,max(0,$temp[3]));
-		$temp[4]=min(59,max(0,$temp[4]));
-		$temp[5]=min(59,max(0,$temp[5]));
-		$value=sprintf("%04d-%02d-%02d %02d:%02d:%02d",$temp[0],$temp[1],$temp[2],$temp[3],$temp[4],$temp[5]);
-	}
-	return $value;
 }
 
 function get_unique_id_md5() {
@@ -396,64 +298,6 @@ function inline_images($buffer) {
 		$pos=strpos($buffer,"url(",$pos2+1);
 	}
 	return $buffer;
-}
-
-function svnversion($dir=".") {
-	if($dir=="." && file_exists("../code")) $dir="../code";
-	// USING REGULAR FILE
-	if(file_exists("${dir}/svnversion")) {
-		return intval(file_get_contents("${dir}/svnversion"));
-	}
-	// USING SVNVERSION
-	if(check_commands("svnversion",getDefault("default/commandexpires",60))) {
-		return intval(ob_passthru("cd ${dir}; svnversion",getDefault("default/commandexpires",60)));
-	}
-	// NOTHING TO DO
-	return 0;
-}
-
-function gitversion($dir=".") {
-	if($dir=="." && file_exists("../code")) $dir="../code";
-	// USING REGULAR FILE
-	if(file_exists("${dir}/gitversion")) {
-		return intval(file_get_contents("${dir}/gitversion"));
-	}
-	// USING GIT
-	if(check_commands("git",getDefault("default/commandexpires",60))) {
-		return intval(ob_passthru("cd ${dir}; git rev-list HEAD --count",getDefault("default/commandexpires",60)));
-	}
-	// NOTHING TO DO
-	return 0;
-}
-
-function check_password($pass,$hash) {
-	require_once("lib/phpass/PasswordHash.php");
-	$t_hasher=new PasswordHash(8,true);
-	$result=$t_hasher->CheckPassword($pass,$hash);
-	unset($t_hasher);
-	return $result;
-}
-
-function hash_password($pass) {
-	require_once("lib/phpass/PasswordHash.php");
-	$t_hasher=new PasswordHash(8,true);
-	// TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
-	capture_next_error();
-	$result=$t_hasher->HashPassword($pass);
-	// TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
-	get_clear_error();
-	unset($t_hasher);
-	return $result;
-}
-
-function password_strength($pass) {
-	require_once("lib/wolfsoftware/password_strength.class.php");
-	$ps=new Password_Strength();
-	$ps->set_password($pass);
-	$ps->calculate();
-	$score=round($ps->get_score(),0);
-	unset($ps);
-	return $score;
 }
 
 function isphp($version) {

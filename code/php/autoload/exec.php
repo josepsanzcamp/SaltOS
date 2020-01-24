@@ -30,7 +30,6 @@ function ob_passthru($cmd,$expires=0) {
 		list($mtime,$error)=filemtime_protected($cache);
 		if(file_exists($cache) && !$error && time()-$expires<$mtime) return file_get_contents($cache);
 	}
-	if(!semaphore_acquire(array(__FUNCTION__,$cmd))) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 	if(!is_disabled_function("passthru")) {
 		ob_start();
 		passthru($cmd);
@@ -54,7 +53,6 @@ function ob_passthru($cmd,$expires=0) {
 		file_put_contents($cache,$buffer);
 		chmod_protected($cache,0666);
 	}
-	semaphore_release(array(__FUNCTION__,$cmd));
 	return $buffer;
 }
 
