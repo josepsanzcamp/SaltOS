@@ -30,10 +30,10 @@ function cache_gc() {
 	if(rand(0,intval(getDefault("cache/cachegcdivisor")))>intval(getDefault("cache/cachegcprobability"))) return;
 	if(!semaphore_acquire(__FUNCTION__,getDefault("semaphoretimeout",100000))) return;
 	$cachedir=get_directory("dirs/cachedir");
-	$files=array();
-	$files=array_merge($files,glob_protected($cachedir."*"));
-	$files=array_merge($files,glob_protected($cachedir.".*"));
-	$files=array_diff($files,array($cachedir.".",$cachedir."..",$cachedir.".htaccess"));
+	$files1=glob_protected($cachedir."*"); // FICHEROS VISIBLES
+	$files2=glob_protected($cachedir.".*"); // FICHEROS OCULTOS
+	$files2=array_diff($files2,array($cachedir.".",$cachedir."..",$cachedir.".htaccess")); // QUITAR EXCEPCIONES
+	$files=array_merge($files1,$files2);
 	$delta=time()-intval(getDefault("cache/cachegctimeout"));
 	foreach($files as $file) {
 		list($mtime,$error)=filemtime_protected($file);

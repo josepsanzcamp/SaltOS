@@ -590,130 +590,7 @@ function __dbschema_helper($fn,$table) {
 	return array();
 }
 
-/* ************************************************************ */
-/* ******************** BEGIN DEPRECATIONS ******************** */
-/* ************************************************************ */
-function make_insert_query() {
-	$a=__FUNCTION__;
-	$c=func_num_args();
-	$d=func_get_args();
-	$b=in_array($c,array(2));
-	if($b) {
-		if($d[0]=="") $b=0;
-		if(!is_array($d[1])) $b=0;
-		if(is_array($d[1])) if(!is_array_key_val($d[1])) $b=0;
-	}
-	return __deprecated_helper($a,$b,$c,$d);
-}
-
-function make_update_query() {
-	$a=__FUNCTION__;
-	$c=func_num_args();
-	$d=func_get_args();
-	$b=in_array($c,array(3));
-	if($b) {
-		if($d[0]=="") $b=0;
-		if(!is_array($d[1])) $b=0;
-		if(is_array($d[1])) if(!is_array_key_val($d[1])) $b=0;
-		if($d[2]=="") $b=0;
-	}
-	return __deprecated_helper($a,$b,$c,$d);
-}
-
-function make_where_query() {
-	$a=__FUNCTION__;
-	$c=func_num_args();
-	$d=func_get_args();
-	$b=in_array($c,array(1));
-	if($b) {
-		if(!is_array($d[0])) {
-			$b=0;
-		} else {
-			foreach($d[0] as $key=>$val) {
-				if(is_array($val)) $b=0;
-			}
-		}
-	}
-	return __deprecated_helper($a,$b,$c,$d);
-}
-
-function __deprecated_helper($a,$b,$c,$d) {
-	if($b) {
-		$e=$a."_new";
-	} else {
-		$e=$a."_old";
-	}
-	if($c==1) $f=$e($d[0]);
-	if($c==2) $f=$e($d[0],$d[1]);
-	if($c==3) $f=$e($d[0],$d[1],$d[2]);
-	if($c==4) $f=$e($d[0],$d[1],$d[2],$d[3]);
-	if($c==5) $f=$e($d[0],$d[1],$d[2],$d[3],$d[4]);
-	if(!$b) {
-		addtrace(array(
-			"phperror"=>"Deprecated function $a with $c arguments",
-			"details"=>sprintr($d),
-			"query"=>$f,
-		),getDefault("debug/deprecated","deprecated.log"));
-	}
-	return $f;
-}
-
-function make_insert_query_old($table,$array,$queries=array()) {
-	if(is_string($array)) {
-		$query="INSERT INTO ${table}";
-		if(count($queries)>0) {
-			$queries=implode(",",$queries);
-			$query.="(${queries})";
-		}
-		$query.=" ${array}";
-		return $query;
-	}
-	$list1=array();
-	$list2=array();
-	foreach($array as $key=>$val) {
-		$list1[]=$key;
-		$list2[]="'".addslashes($val)."'";
-	}
-	foreach($queries as $key=>$val) {
-		$list1[]=$key;
-		$list2[]="(".$val.")";
-	}
-	$list1=implode(",",$list1);
-	$list2=implode(",",$list2);
-	$query="INSERT INTO ${table}(${list1}) VALUES(${list2})";
-	return $query;
-}
-
-function make_update_query_old($table,$array,$where="",$queries=array()) {
-	$list1=array();
-	if(is_string($array)) {
-		if($array!="") $list1[]=$array;
-	} else {
-		foreach($array as $key=>$val) $list1[]=$key."='".addslashes($val)."'";
-	}
-	foreach($queries as $key=>$val) $list1[]=$key."=(".$val.")";
-	$list1=implode(",",$list1);
-	$query="UPDATE ${table} SET ${list1}";
-	if($where!="") $query.=" WHERE ${where}";
-	return $query;
-}
-
-function make_where_query_old($array,$union="AND",$queries=array()) {
-	$list1=array();
-	foreach($array as $key=>$val) {
-		$op="=";
-		if(is_array($val)) list($op,$val)=array($val[0],$val[1]);
-		$list1[]=$key.$op."'".addslashes($val)."'";
-	}
-	foreach($queries as $key=>$val) $list1[]="(".$val.")";
-	$query="(".implode(" ".$union." ",$list1).")";
-	return $query;
-}
-
-/* ********************************************************** */
-/* ******************** END DEPRECATIONS ******************** */
-/* ********************************************************** */
-function make_insert_query_new($table,$array) {
+function make_insert_query($table,$array) {
 	$list1=array();
 	$list2=array();
 	foreach($array as $key=>$val) {
@@ -726,7 +603,7 @@ function make_insert_query_new($table,$array) {
 	return $query;
 }
 
-function make_update_query_new($table,$array,$where) {
+function make_update_query($table,$array,$where) {
 	$list1=array();
 	foreach($array as $key=>$val) $list1[]=$key."='".addslashes($val)."'";
 	$list1=implode(",",$list1);
@@ -734,7 +611,7 @@ function make_update_query_new($table,$array,$where) {
 	return $query;
 }
 
-function make_where_query_new($array) {
+function make_where_query($array) {
 	$list1=array();
 	foreach($array as $key=>$val) {
 		$list1[]=$key."='".addslashes($val)."'";
