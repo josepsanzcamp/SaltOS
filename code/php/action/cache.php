@@ -38,7 +38,9 @@ if(getParam("action")=="cache") {
 			unset($files[$key]);
 		}
 	}
-	if(!isset($ext)) die();
+	if(!count($files)) die();
+	$files=array_values($files);
+	$ext=strtolower(extension($files[0]));
 	$useimginline=eval_bool(getDefault("cache/useimginline"));
 	$cache=get_cache_file(array("cache",$useimginline,$files),$ext);
 	//if(file_exists($cache)) unlink($cache);
