@@ -36,6 +36,7 @@ if(check_user()) {
 	$config=getDefault("$page/$action");
 	$config=eval_attr($config);
 	$_RESULT[$action]=$config;
+	add_css_js_page($_RESULT[$action],$page);
 	unset($_RESULT[$action]["views"]);
 	if($id==0) {
 		if(isset($config["views"]["insert"]["title"])) $_RESULT[$action]["title"]=$config["views"]["insert"]["title"];

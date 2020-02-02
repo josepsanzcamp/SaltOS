@@ -38,6 +38,7 @@ require_once("php/listsim.php");
 $config=getDefault("$page/$action");
 $config=eval_attr($config);
 $_RESULT[$action]=$config;
+add_css_js_page($_RESULT[$action],$page);
 // GET AND REMOVE THE NEEDED XML NODES
 foreach(array("query","order","limit","offset") as $node) {
 	if(!isset($config[$node])) show_php_error(array("xmlerror"=>"&lt;$node&gt; not found for &lt;$action&gt;"));

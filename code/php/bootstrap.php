@@ -42,7 +42,7 @@ $array=eval_attr(xml2array("xml/bootstrap.xml"));
 // SOME CHECKS
 if(!is_array($array["metas"])) $array["metas"]=array();
 if(!is_array($array["css"])) $array["css"]=array();
-if(!is_array($array["js"])) $array["css"]=array();
+if(!is_array($array["js"])) $array["js"]=array();
 
 // GET DATA
 $template=trim($array["template"]);

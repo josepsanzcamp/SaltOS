@@ -1045,7 +1045,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<xsl:if test="label!=''">
 				<td class="right nowrap label {class2}" colspan="{colspan2}" rowspan="{rowspan2}" style="width:{width2}"><xsl:if test="required='true'"><xsl:text>(*) </xsl:text></xsl:if><xsl:value-of select="label"/></td>
 			</xsl:if>
-			<td class="left {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}" nowrap="nowrap">
+			<td class="left nowrap {class}" colspan="{colspan}" rowspan="{rowspan}" style="width:{width}">
 				<input type="{type}" name="{$prefix}{name}" id="{$prefix}{name}" value="{value}" style="width:{width}" size="{size}" focused="{focus}" isrequired="{required}" labeled="{label}{label2}" title="{tip}" class="{class3}" autocomplete="off"/>
 			</td>
 		</xsl:when>

@@ -46,3 +46,16 @@ body {
 .button {
 	margin:1px;
 }
+
+/* FOR NUMBERS */
+.navbar span.number {
+	position:absolute;
+	left:2px;
+	top:1px;
+}
+
+.list-group-item span.number {
+	position:absolute;
+	left:12px;
+	top:7px;
+}

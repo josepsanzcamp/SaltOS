@@ -752,165 +752,361 @@ saltos.form_field=function(field) {
 		"width","width2","height",
 		"required","focus","disabled",
 		"label","label2","tip","icon",
+		"link","tip2",
 		"autocomplete","querycomplete","filtercomplete","oncomplete",
 	];
 	for(var key in params) if(!isset(field[params[key]])) field[params[key]]="";
 	// CONTINUE
 	var obj=[];
-	if(field.type=="hidden") {
-		var input=$(`<input type="hidden" autocomplete="off"/>`);
-		if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
-		if(field.value!="") $(input).attr("value",field.value);
-		if(field.onchange!="") $(input).on("change",field.onchange);
-		if(field.class!="") $(input).addClass(field.class);
-		obj.push(input);
-	} else if(field.type=="text") {
-		if(field.label!="") {
-			var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
-			if(field.class2!="") $(td).addClass(field.class2);
-			if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
-			if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
-			if(field.width2!="") $(td).attr("style","width:"+field.width2);
-			if(field.required=="true") $(td).append("(*) ");
-			if(field.label!="") $(td).append(field.label);
+	switch(field.type) {
+		case "hidden":
+			var input=$(`<input type="hidden" autocomplete="off"/>`);
+			if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+			if(field.value!="") $(input).attr("value",field.value);
+			if(field.onchange!="") $(input).on("change",field.onchange);
+			if(field.class!="") $(input).addClass(field.class);
+			obj.push(input);
+			break;
+		case "text":
+			if(field.label!="") {
+				var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
+				if(field.class2!="") $(td).addClass(field.class2);
+				if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+				if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+				if(field.width2!="") $(td).attr("style","width:"+field.width2);
+				if(field.required=="true") $(td).append("(*) ");
+				if(field.label!="") $(td).append(field.label);
+				obj.push(td);
+			}
+			var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.width!="") $(td).attr("style","width:"+field.width);
+			var input=$(`<input type="text" autocomplete="off" class="form-control"/>`);
+			if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+			if(field.value!="") $(input).attr("value",field.value);
+			if(field.width!="") $(input).attr("style","width:"+field.width);
+			if(field.onchange!="") $(input).on("change",function() { field.onchange(); });
+			if(field.onkey!="") $(input).on("keydown",function() { field.onkey(); });
+			if(field.focus!="") $(input).attr("focused",field.focus);
+			if(field.required!="") $(input).attr("isrequired",field.required);
+			if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
+			if(field.tip!="") $(input).attr("title",field.tip);
+			if(field.class3!="") $(input).addClass(field.class3);
+			if(field.autocomplete!="") $(input).attr("isautocomplete",field.autocomplete);
+			if(field.querycomplete!="") $(input).attr("querycomplete",field.querycomplete);
+			if(field.filtercomplete!="") $(input).attr("filtercomplete",field.filtercomplete);
+			if(field.oncomplete!="") $(input).attr("oncomplete",field.oncomplete);
+			$(td).append(input);
 			obj.push(td);
-		}
-		var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
-		if(field.class!="") $(td).addClass(field.class);
-		if(field.colspan!="") $(td).attr("colspan",field.colspan);
-		if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
-		if(field.width!="") $(td).attr("style","width:"+field.width);
-		var input=$(`<input type="text" autocomplete="off" class="form-control"/>`);
-		if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
-		if(field.value!="") $(input).attr("value",field.value);
-		if(field.width!="") $(input).attr("style","width:"+field.width);
-		if(field.onchange!="") $(input).on("change",function() { field.onchange(); });
-		if(field.onkey!="") $(input).on("keydown",function() { field.onkey(); });
-		if(field.focus!="") $(input).attr("focused",field.focus);
-		if(field.required!="") $(input).attr("isrequired",field.required);
-		if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
-		if(field.tip!="") $(input).attr("title",field.tip);
-		if(field.class3!="") $(input).addClass(field.class3);
-		if(field.autocomplete!="") $(input).attr("isautocomplete",field.autocomplete);
-		if(field.querycomplete!="") $(input).attr("querycomplete",field.querycomplete);
-		if(field.filtercomplete!="") $(input).attr("filtercomplete",field.filtercomplete);
-		if(field.oncomplete!="") $(input).attr("oncomplete",field.oncomplete);
-		$(td).append(input);
-		obj.push(td);
-	} else if(field.type=="integer") {
-		obj.push($(`<td>[INTEGER]</td>`));
-	} else if(field.type=="float") {
-		obj.push($(`<td>[FLOAT]</td>`));
-	} else if(field.type=="color") {
-		obj.push($(`<td>[COLOR]</td>`));
-	} else if(field.type=="date") {
-		obj.push($(`<td>[DATE]</td>`));
-	} else if(field.type=="time") {
-		obj.push($(`<td>[TIME]</td>`));
-	} else if(field.type=="datetime") {
-		obj.push($(`<td>[DATETIME]</td>`));
-	} else if(field.type=="textarea") {
-		obj.push($(`<td>[TEXTAREA]</td>`));
-	} else if(field.type=="iframe") {
-		obj.push($(`<td>[IFRAME]</td>`));
-	} else if(field.type=="select") {
-		obj.push($(`<td>[SELECT]</td>`));
-	} else if(field.type=="multiselect") {
-		obj.push($(`<td>[MULTISELECT]</td>`));
-	} else if(field.type=="checkbox") {
-		obj.push($(`<td>[CHECKBOX]</td>`));
-		//~ obj.push($(`<div class="custom-control custom-switch"></div>`);
-		//~ var input=$(`<input type="${field.type}" class="custom-control-input" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
-		//~ if(isset(field.checked)) {
-			//~ if(field.checked=="true") {
-				//~ $(input).attr("checked","checked");
-			//~ }
-		//~ } else if(isset(field.value)) {
-			//~ if(field.value=="1") {
-				//~ $(input).attr("checked","checked");
-			//~ }
-		//~ }
-		//~ $(obj).append(input);
-		//~ if(field.label!="") {
-			//~ var label=$(`<label class="custom-control-label" for="${field.name}">${field.label}</label>`);
-			//~ $(obj).append(label);
-		//~ }
-	} else if(field.type=="button") {
-		var td=$(`<td class="text-left text-nowrap"></td>`);
-		if(field.colspan!="") $(td).attr("colspan",field.colspan);
-		if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
-		if(field.class!="") $(td).addClass(field.class);
-		if(field.width!="") $(td).attr("style","width:"+field.width);
-		var button=$(`<button type="button" class="button btn btn-primary text-nowrap"/>`);
-		if(field.onclick!="") $(button).on("click",{event:field.onclick},saltos.__form_event);
-		if(field.focus!="") $(button).attr("focused",field.focus);
-		if(field.label!="") $(button).attr("labeled",field.label);
-		if(field.width2!="") $(button).attr("style","width:"+field.width2);
-		if(field.tip!="") $(button).attr("title",field.tip).attr("data-toggle","tooltip");
-		if(field.class2!="") $(button).addClass(field.class2);
-		if(field.name!="") $(button).attr("id",field.name);
-		if(field.icon!="") $(button).append(`<span class="${field.icon}"></span>`);
-		if(field.icon!="" && field.value!="") $(button).append("&nbsp;");
-		if(field.value!="") $(button).append(field.value);
-		$(td).append(button);
-		obj.push(td);
-	} else if(field.type=="password") {
-		if(field.label!="") {
-			var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
-			if(field.class2!="") $(td).addClass(field.class2);
-			if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
-			if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
-			if(field.width2!="") $(td).attr("style","width:"+field.width2);
-			if(field.required=="true") $(td).append("(*) ");
-			if(field.label!="") $(td).append(field.label);
+			// TODO: FALTA AÑADIR EL BOTON DE LINK
+			break;
+		case "integer":
+			if(field.label!="") {
+				var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
+				if(field.class2!="") $(td).addClass(field.class2);
+				if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+				if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+				if(field.width2!="") $(td).attr("style","width:"+field.width2);
+				if(field.required=="true") $(td).append("(*) ");
+				if(field.label!="") $(td).append(field.label);
+				obj.push(td);
+			}
+			var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.width!="") $(td).attr("style","width:"+field.width);
+			var input=$(`<input type="text" autocomplete="off" class="form-control"/>`);
+			if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+			if(field.value!="") $(input).attr("value",field.value);
+			if(field.width!="") $(input).attr("style","width:"+field.width);
+			if(field.onchange!="") $(input).on("change",function() { field.onchange(); });
+			if(field.onkey!="") $(input).on("keydown",function() { field.onkey(); });
+			if(field.focus!="") $(input).attr("focused",field.focus);
+			if(field.required!="") $(input).attr("isrequired",field.required);
+			if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
+			if(field.tip!="") $(input).attr("title",field.tip);
+			if(field.class3!="") $(input).addClass(field.class3);
+			$(td).append(input);
 			obj.push(td);
-		}
-		var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
-		if(field.class!="") $(td).addClass(field.class);
-		if(field.colspan!="") $(td).attr("colspan",field.colspan);
-		if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
-		if(field.width!="") $(td).attr("style","width:"+field.width);
-		var input=$(`<input type="password" autocomplete="off" class="form-control"/>`);
-		if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
-		if(field.value!="") $(input).attr("value",field.value);
-		if(field.width!="") $(input).attr("style","width:"+field.width);
-		if(field.onchange!="") $(input).on("change",{event:field.onchange},saltos.__form_event);
-		if(field.onkey!="") $(input).on("keydown",{event:field.onkey},saltos.__form_event);
-		if(field.focus!="") $(input).attr("focused",field.focus);
-		if(field.required!="") $(input).attr("isrequired",field.required);
-		if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
-		if(field.tip!="") $(input).attr("title",field.tip);
-		if(field.class3!="") $(input).addClass(field.class3);
-		$(td).append(input);
-		obj.push(td);
-	} else if(field.type=="file") {
-		obj.push($(`<td>[FILE]</td>`));
-	} else if(field.type=="link") {
-		obj.push($(`<td>[LINK]</td>`));
-	} else if(field.type=="separator") {
-		var td=$(`<td class="separator"></td>`);
-		if(field.class!="") $(td).addClass(field.class);
-		if(field.colspan!="") $(td).attr("colspan",field.colspan);
-		if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
-		if(field.width!="" && field.height!="") $(td).attr("style","width:"+field.width+";height:"+field.height);
-		else if(field.width!="") $(td).attr("style","width:"+field.width);
-		else if(field.height!="") $(td).attr("style","height:"+field.height);
-		if(field.name!="") $(td).attr("id",field.name);
-		obj.push(td);
-	} else if(field.type=="label") {
-		obj.push($(`<td>[LABEL]</td>`));
-	} else if(field.type=="image") {
-		obj.push($(`<td>[IMAGE]</td>`));
-	} else if(field.type=="plot") {
-		obj.push($(`<td>[PLOT]</td>`));
-	} else if(field.type=="menu") {
-		obj.push($(`<td>[MENU]</td>`));
-	} else if(field.type=="grid") {
-		obj.push($(`<td>[GRID]</td>`));
-	} else if(field.type=="excel") {
-		obj.push($(`<td>[EXCEL]</td>`));
-	} else if(field.type=="copy") {
-		obj.push($(`<td>[COPY]</td>`));
+			// TODO: FALTA PROGRAMAR PARTE ISINTEGER
+			break;
+		case "float":
+			if(field.label!="") {
+				var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
+				if(field.class2!="") $(td).addClass(field.class2);
+				if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+				if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+				if(field.width2!="") $(td).attr("style","width:"+field.width2);
+				if(field.required=="true") $(td).append("(*) ");
+				if(field.label!="") $(td).append(field.label);
+				obj.push(td);
+			}
+			var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.width!="") $(td).attr("style","width:"+field.width);
+			var input=$(`<input type="text" autocomplete="off" class="form-control"/>`);
+			if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+			if(field.value!="") $(input).attr("value",field.value);
+			if(field.width!="") $(input).attr("style","width:"+field.width);
+			if(field.onchange!="") $(input).on("change",function() { field.onchange(); });
+			if(field.onkey!="") $(input).on("keydown",function() { field.onkey(); });
+			if(field.focus!="") $(input).attr("focused",field.focus);
+			if(field.required!="") $(input).attr("isrequired",field.required);
+			if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
+			if(field.tip!="") $(input).attr("title",field.tip);
+			if(field.class3!="") $(input).addClass(field.class3);
+			$(td).append(input);
+			obj.push(td);
+			// TODO: FALTA PROGRAMAR PARTE ISFLOAT
+			break;
+		case "color":
+			if(field.label!="") {
+				var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
+				if(field.class2!="") $(td).addClass(field.class2);
+				if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+				if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+				if(field.width2!="") $(td).attr("style","width:"+field.width2);
+				if(field.required=="true") $(td).append("(*) ");
+				if(field.label!="") $(td).append(field.label);
+				obj.push(td);
+			}
+			var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.width!="") $(td).attr("style","width:"+field.width);
+			var input=$(`<input type="text" autocomplete="off" class="form-control"/>`);
+			if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+			if(field.value!="") $(input).attr("value",field.value);
+			if(field.width!="") $(input).attr("style","width:"+field.width);
+			if(field.onchange!="") $(input).on("change",function() { field.onchange(); });
+			if(field.onkey!="") $(input).on("keydown",function() { field.onkey(); });
+			if(field.focus!="") $(input).attr("focused",field.focus);
+			if(field.required!="") $(input).attr("isrequired",field.required);
+			if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
+			if(field.tip!="") $(input).attr("title",field.tip);
+			if(field.class3!="") $(input).addClass(field.class3);
+			$(td).append(input);
+			obj.push(td);
+			// TODO: FALTA PROGRAMAR PARTE ISCOLOR
+			break;
+		case "date":
+			if(field.label!="") {
+				var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
+				if(field.class2!="") $(td).addClass(field.class2);
+				if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+				if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+				if(field.width2!="") $(td).attr("style","width:"+field.width2);
+				if(field.required=="true") $(td).append("(*) ");
+				if(field.label!="") $(td).append(field.label);
+				obj.push(td);
+			}
+			var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.width!="") $(td).attr("style","width:"+field.width);
+			var input=$(`<input type="text" autocomplete="off" class="form-control"/>`);
+			if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+			if(field.value!="") $(input).attr("value",field.value);
+			if(field.width!="") $(input).attr("style","width:"+field.width);
+			if(field.onchange!="") $(input).on("change",function() { field.onchange(); });
+			if(field.onkey!="") $(input).on("keydown",function() { field.onkey(); });
+			if(field.focus!="") $(input).attr("focused",field.focus);
+			if(field.required!="") $(input).attr("isrequired",field.required);
+			if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
+			if(field.tip!="") $(input).attr("title",field.tip);
+			if(field.class3!="") $(input).addClass(field.class3);
+			$(td).append(input);
+			obj.push(td);
+			// TODO: FALTA PROGRAMAR PARTE ISDATE
+			break;
+		case "time":
+			if(field.label!="") {
+				var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
+				if(field.class2!="") $(td).addClass(field.class2);
+				if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+				if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+				if(field.width2!="") $(td).attr("style","width:"+field.width2);
+				if(field.required=="true") $(td).append("(*) ");
+				if(field.label!="") $(td).append(field.label);
+				obj.push(td);
+			}
+			var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.width!="") $(td).attr("style","width:"+field.width);
+			var input=$(`<input type="text" autocomplete="off" class="form-control"/>`);
+			if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+			if(field.value!="") $(input).attr("value",field.value);
+			if(field.width!="") $(input).attr("style","width:"+field.width);
+			if(field.onchange!="") $(input).on("change",function() { field.onchange(); });
+			if(field.onkey!="") $(input).on("keydown",function() { field.onkey(); });
+			if(field.focus!="") $(input).attr("focused",field.focus);
+			if(field.required!="") $(input).attr("isrequired",field.required);
+			if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
+			if(field.tip!="") $(input).attr("title",field.tip);
+			if(field.class3!="") $(input).addClass(field.class3);
+			$(td).append(input);
+			obj.push(td);
+			// TODO: FALTA PROGRAMAR PARTE ISTIME
+			break;
+		case "datetime":
+			if(field.label!="") {
+				var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
+				if(field.class2!="") $(td).addClass(field.class2);
+				if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+				if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+				if(field.width2!="") $(td).attr("style","width:"+field.width2);
+				if(field.required=="true") $(td).append("(*) ");
+				if(field.label!="") $(td).append(field.label);
+				obj.push(td);
+			}
+			var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.width!="") $(td).attr("style","width:"+field.width);
+			var input=$(`<input type="text" autocomplete="off" class="form-control"/>`);
+			if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+			if(field.value!="") $(input).attr("value",field.value);
+			if(field.width!="") $(input).attr("style","width:"+field.width);
+			if(field.onchange!="") $(input).on("change",function() { field.onchange(); });
+			if(field.onkey!="") $(input).on("keydown",function() { field.onkey(); });
+			if(field.focus!="") $(input).attr("focused",field.focus);
+			if(field.required!="") $(input).attr("isrequired",field.required);
+			if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
+			if(field.tip!="") $(input).attr("title",field.tip);
+			if(field.class3!="") $(input).addClass(field.class3);
+			$(td).append(input);
+			obj.push(td);
+			// TODO: FALTA PROGRAMAR PARTE ISDATETIME
+			break;
+		case "textarea":
+			obj.push($(`<td>[TEXTAREA]</td>`));
+			break;
+		case "iframe":
+			obj.push($(`<td>[IFRAME]</td>`));
+			break;
+		case "select":
+			obj.push($(`<td>[SELECT]</td>`));
+			break;
+		case "multiselect":
+			obj.push($(`<td>[MULTISELECT]</td>`));
+			break;
+		case "checkbox":
+			obj.push($(`<td>[CHECKBOX]</td>`));
+			break;
+			//~ obj.push($(`<div class="custom-control custom-switch"></div>`);
+			//~ var input=$(`<input type="${field.type}" class="custom-control-input" id="${field.name}" name="${field.name}" value="${field.value}"/>`);
+			//~ if(isset(field.checked)) {
+				//~ if(field.checked=="true") {
+					//~ $(input).attr("checked","checked");
+				//~ }
+			//~ } else if(isset(field.value)) {
+				//~ if(field.value=="1") {
+					//~ $(input).attr("checked","checked");
+				//~ }
+			//~ }
+			//~ $(obj).append(input);
+			//~ if(field.label!="") {
+				//~ var label=$(`<label class="custom-control-label" for="${field.name}">${field.label}</label>`);
+				//~ $(obj).append(label);
+			//~ }
+		case "button":
+			var td=$(`<td class="text-left text-nowrap"></td>`);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.width!="") $(td).attr("style","width:"+field.width);
+			var button=$(`<button type="button" class="button btn btn-primary text-nowrap"/>`);
+			if(field.onclick!="") $(button).on("click",{event:field.onclick},saltos.__form_event);
+			if(field.focus!="") $(button).attr("focused",field.focus);
+			if(field.label!="") $(button).attr("labeled",field.label);
+			if(field.width2!="") $(button).attr("style","width:"+field.width2);
+			if(field.tip!="") $(button).attr("title",field.tip).attr("data-toggle","tooltip");
+			if(field.class2!="") $(button).addClass(field.class2);
+			if(field.name!="") $(button).attr("id",field.name);
+			if(field.icon!="") $(button).append(`<span class="${field.icon}"></span>`);
+			if(field.icon!="" && field.value!="") $(button).append("&nbsp;");
+			if(field.value!="") $(button).append(field.value);
+			$(td).append(button);
+			obj.push(td);
+			break;
+		case "password":
+			if(field.label!="") {
+				var td=$(`<td class="right nowrap label text-right text-nowrap"></td>`);
+				if(field.class2!="") $(td).addClass(field.class2);
+				if(field.colspan2!="") $(td).attr("colspan",field.colspan2);
+				if(field.rowspan2!="") $(td).attr("rowspan",field.rowspan2);
+				if(field.width2!="") $(td).attr("style","width:"+field.width2);
+				if(field.required=="true") $(td).append("(*) ");
+				if(field.label!="") $(td).append(field.label);
+				obj.push(td);
+			}
+			var td=$(`<td class="left nowrap text-left text-nowrap"></td>`);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.width!="") $(td).attr("style","width:"+field.width);
+			var input=$(`<input type="password" autocomplete="off" class="form-control"/>`);
+			if(field.name!="") $(input).attr("name",field.name).attr("id",field.name);
+			if(field.value!="") $(input).attr("value",field.value);
+			if(field.width!="") $(input).attr("style","width:"+field.width);
+			if(field.onchange!="") $(input).on("change",{event:field.onchange},saltos.__form_event);
+			if(field.onkey!="") $(input).on("keydown",{event:field.onkey},saltos.__form_event);
+			if(field.focus!="") $(input).attr("focused",field.focus);
+			if(field.required!="") $(input).attr("isrequired",field.required);
+			if(field.label!="" || field.label2!="") $(input).attr("labeled",field.label+field.label2);
+			if(field.tip!="") $(input).attr("title",field.tip);
+			if(field.class3!="") $(input).addClass(field.class3);
+			$(td).append(input);
+			obj.push(td);
+			break;
+		case "file":
+			obj.push($(`<td>[FILE]</td>`));
+			break;
+		case "link":
+			obj.push($(`<td>[LINK]</td>`));
+			break;
+		case "separator":
+			var td=$(`<td class="separator"></td>`);
+			if(field.class!="") $(td).addClass(field.class);
+			if(field.colspan!="") $(td).attr("colspan",field.colspan);
+			if(field.rowspan!="") $(td).attr("rowspan",field.rowspan);
+			if(field.width!="" && field.height!="") $(td).attr("style","width:"+field.width+";height:"+field.height);
+			else if(field.width!="") $(td).attr("style","width:"+field.width);
+			else if(field.height!="") $(td).attr("style","height:"+field.height);
+			if(field.name!="") $(td).attr("id",field.name);
+			obj.push(td);
+			break;
+		case "label":
+			obj.push($(`<td>[LABEL]</td>`));
+			break;
+		case "image":
+			obj.push($(`<td>[IMAGE]</td>`));
+			break;
+		case "plot":
+			obj.push($(`<td>[PLOT]</td>`));
+			break;
+		case "menu":
+			obj.push($(`<td>[MENU]</td>`));
+			break;
+		case "grid":
+			obj.push($(`<td>[GRID]</td>`));
+			break;
+		case "excel":
+			obj.push($(`<td>[EXCEL]</td>`));
+			break;
+		case "copy":
+			obj.push($(`<td>[COPY]</td>`));
+			break;
 	}
 	return obj;
 }
@@ -1040,145 +1236,161 @@ saltos.init_history=function() {
 	saltos.opencontent_hash();
 };
 
-/* FOR LANG MANAGEMENT */
-saltos.lang_define=function(arg) {
+/* FOR OLD JS AND CSS MANAGEMENT */
+saltos.add_js=function(arg) {
 	for(var key in arg) {
-		var fn="lang_"+key;
-		var val=arg[key];
-		if(!isset(window[fn])) {
-			(function(a,b) {
-				window[a]=function() { return b; }
-			})(fn,val);
+		if(saltos.limpiar_key(key)=="javascript") {
+			for(var key2 in arg[key]) {
+				switch(saltos.limpiar_key(key2)) {
+					case "function":
+						saltos.add_js_code("function "+arg[key][key2]);
+						break;
+					case "include":
+						saltos.add_js_file(arg[key][key2]);
+						break;
+					case "inline":
+						saltos.add_js_code(arg[key][key2]);
+						break;
+					case "cache":
+						for(var key3 in arg[key][key2]) {
+							if(saltos.limpiar_key(key3)=="include") {
+								saltos.add_js_file(arg[key][key2][key3]);
+							}
+						}
+						break;
+				}
+			}
 		}
 	}
+};
+
+saltos.add_js_code=function(arg) {
+	$("body").append(`<script type="text/javascript">${arg}</script>`);
 }
 
-/* OLD SALTOS ACTION FUNCTIONS */
-function toggle_menu() {
-	if($("#menu").is(":visible")) {
-		$("#menu").hide();
-		$("#data").removeClass("col-lg-10");
-		$("#data").addClass("col-lg-12");
-		saltos.setIntCookie("saltos_ui_menu_closed",1);
+saltos.add_js_file=function(arg) {
+	$("body").append(`<script type="text/javascript" src="${arg}"></script>`);
+}
+
+saltos.add_css=function(arg) {
+	for(var key in arg) {
+		if(saltos.limpiar_key(key)=="styles") {
+			for(var key2 in arg[key]) {
+				switch(saltos.limpiar_key(key2)) {
+					case "include":
+						saltos.add_css_file(arg[key][key2]);
+						break;
+					case "inline":
+						saltos.add_css_code(arg[key][key2]);
+						break;
+					case "cache":
+						for(var key3 in arg[key][key2]) {
+							if(saltos.limpiar_key(key3)=="include") {
+								saltos.add_css_file(arg[key][key2][key3]);
+							}
+						}
+						break;
+				}
+			}
+		}
+	}
+};
+
+saltos.add_css_code=function(arg) {
+	$("body").append(`<style type="text/css">${arg}</style>`);
+}
+
+saltos.add_css_file=function(arg) {
+	$("body").append(`<link href="${arg}" rel="stylesheet" type="text/css"></link>`);
+}
+
+/* OLD SALTOS FUNCTIONS */
+
+//~ function alerta(msg,callback) {
+	//~ if(typeof callback=='undefined') callback=function() {};
+	//~ dialog(lang_alert(),msg,[{
+		//~ label:lang_buttoncontinue(),
+		//~ callback:function() {
+			//~ setTimeout(function() {
+				//~ callback();
+			//~ },100);
+		//~ },
+	//~ }]);
+//~ }
+
+/* TO PREVENT ERRORS WITH OTHER USER INTERFACES */
+$.datepicker={
+	regional:function() {},
+	setDefaults:function() {},
+};
+
+/* FOR ZOOM FEATURE */
+saltos.zoom_index=5;
+saltos.zoom_valors=[30,50,67,80,90,100,110,120,133,150,170,200,240,300];
+saltos.zoom=function(arg) {
+	switch(arg) {
+		case "+1":
+			saltos.zoom_index++;
+			if(saltos.zoom_index>count(saltos.zoom_valors)-1) saltos.zoom_index=count(saltos.zoom_valors)-1;
+			break;
+		case "-1":
+			saltos.zoom_index--;
+			if(saltos.zoom_index<0) saltos.zoom_index=0;
+			break;
+		default:
+			if(isset(saltos.zoom_valors[arg])) saltos.zoom_index=arg;
+			if(array_search(arg,saltos.zoom_valors)) saltos.zoom_index=array_search(arg,saltos.zoom_valors);
+			break;
+	}
+	$("html").css("font-size",saltos.zoom_valors[saltos.zoom_index]+"%");
+};
+
+/* MAIN CODE */
+(function($) {
+	saltos.init_error();
+	saltos.islogin=$.ajax({url:"index.php?action=islogin",async:false}).responseJSON.islogin;
+	if(saltos.islogin) {
+		// CARGAR DATOS
+		saltos.sync_cookies("start");
+		saltos.info=$.ajax({url:"index.php?action=info",async:false}).responseJSON.info;
+		saltos.menu=$.ajax({url:"index.php?action=menu",async:false}).responseJSON.menu;
+
+		// ZOOM AL 80%
+		saltos.zoom(80);
+
+		// MONTAR PANTALLA
+		document.title=`${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+		saltos.add_layout();
+		saltos.add_header(saltos.menu);
+		saltos.add_header_title(saltos.info);
+		saltos.add_menu(saltos.menu);
+
+		// TOOLTIPS
+		$("body").tooltip({
+			"selector":"[data-toggle='tooltip']",
+			"container":"body",
+			"trigger":"hover",
+		});
+
+		// CARGAR PRIMER CONTENIDO
+		saltos.init_history();
 	} else {
-		$("#data").removeClass("col-lg-12");
-		$("#data").addClass("col-lg-10");
-		$("#menu").show();
-		saltos.setIntCookie("saltos_ui_menu_closed",0);
+		// CARGAR DATOS
+		//~ saltos.info=$.ajax({url:"index.php?action=info",async:false}).responseJSON.info;
+
+		// MONTAR PANTALLA
+		//~ document.title=`${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+		//~ saltos.add_layout();
+		//~ saltos.add_header(saltos.menu);
+		//~ saltos.add_header_title(saltos.info);
+		//~ saltos.add_menu(saltos.menu);
+
+		// CARGAR PRIMER CONTENIDO
+		//~ saltos.init_history();
 	}
-};
+}(jQuery));
 
-function calculator() {
-	console.log("calculator");
-};
-
-function translator() {
-	console.log("translator");
-};
-
-function opencontent(url,callback) {
-	$(".tooltip").remove();
-	$(window).scrollTop(0);
-	saltos.history_push_hash(url);
-	// CHECK PARAMS
-	if(!isset(url)) url="";
-	if(!isset(callback)) callback=function() {};
-	// CONTINUE
-	var url2=parse_url(url);
-	var array=saltos.querystring2array(url2.query);
-	if(!isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
-		var temp=$.ajax({url:"index.php?action=default",async:false}).responseJSON.default;
-		array["page"]=temp.page;
-		array["action"]=temp.action;
-		array["id"]=temp.id;
-	}
-	if(isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
-		var temp=$.ajax({url:"index.php?action=default&page="+array["page"],async:false}).responseJSON.default;
-		array["action"]=temp.action;
-		array["id"]=temp.id;
-	}
-	if(isset(array["page"]) && isset(array["action"]) && array["action"]=="limpiar") {
-		array["action"]="list";
-		array["limpiar"]="1";
-	}
-	if(!isset(saltos.default)) saltos.default={};
-	if(isset(array["page"])) saltos.default.page=array["page"];
-	if(isset(array["action"])) saltos.default.action=array["action"];
-	if(isset(array["id"])) saltos.default.id=array["id"];
-	var querystring=saltos.array2querystring(array);
-	if(array["action"]=="list") {
-		saltos.list=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON.list;
-		document.title=`${saltos.list.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-		saltos.remove_header_title();
-		saltos.add_header_title(saltos.info);
-		var temp=saltos.make_list(saltos.list);
-		var tabs=saltos.make_tabs(temp);
-		$("#data > *").remove();
-		$("#data").append(tabs);
-	}
-	if(array["action"]=="form") {
-		saltos.form=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON.form;
-		document.title=`${saltos.form.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-		saltos.remove_header_title();
-		saltos.add_header_title(saltos.info);
-		var temp=saltos.make_form(saltos.form);
-		var tabs=saltos.make_tabs(temp);
-		$("#data > *").remove();
-		$("#data").append(tabs);
-	}
-};
-
-function openwin(url) {
-	window.open(url);
-};
-
-function openurl(url) {
-	window.location.href=url;
-};
-
-function openapp(page,id) {
-	opencontent(`index.php?page=${page}&action=form&id=${id}`);
-};
-
-function qrcode(id) {
-	qrcode2(saltos.default.page,id);
-};
-
-function qrcode2(page,id) {
-	console.log("qrcode2");
-	console.log(page);
-	console.log(id);
-};
-
-function mailto(mail) {
-	opencontent(`index.php?page=correo&action=form&id=0_mailto_${mail}`);
-};
-
-function submit1() {
-	alert(1);
-}
-
-function alerta(msg,callback) {
-	if(typeof callback=='undefined') callback=function() {};
-	dialog(lang_alert(),msg,[{
-		label:lang_buttoncontinue(),
-		callback:function() {
-			setTimeout(function() {
-				callback();
-			},100);
-		},
-	}]);
-}
-
-function dialog(title,message,buttons) {
-	bootbox.dialog({
-		title:title,
-		message:message,
-		buttons:buttons,
-	});
-}
-
-/* OLD SALTOS DEFAULT FUNCTIONS */
+/* OLD DEFAULT FUNCTIONS */
 function floatval2(obj) {
 	_format_number(obj,0);
 }
@@ -1386,48 +1598,324 @@ function is_disabled(obj) {
 	return $(obj).hasClass("ui-state-disabled");
 }
 
-/* MAIN CODE */
-(function($) {
-	saltos.init_error();
-	saltos.islogin=$.ajax({url:"index.php?action=islogin",async:false}).responseJSON.islogin;
-	if(saltos.islogin) {
-		// CARGAR DATOS
-		saltos.sync_cookies("start");
-		saltos.info=$.ajax({url:"index.php?action=info",async:false}).responseJSON.info;
-		saltos.menu=$.ajax({url:"index.php?action=menu",async:false}).responseJSON.menu;
+function addlog(msg) {
 
-		// MONTAR PANTALLA
-		document.title=`${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-		saltos.add_layout();
-		saltos.add_header(saltos.menu);
-		saltos.add_header_title(saltos.info);
-		saltos.add_menu(saltos.menu);
+}
 
-		// TOOLTIPS
-		$("body").tooltip({
-			"selector":"[data-toggle='tooltip']",
-			"container":"body",
-			"trigger":"hover",
-		});
+function security_iframe(obj) {
 
-		// CARGAR PRIMER CONTENIDO
-		saltos.init_history();
-	} else {
-		// CARGAR DATOS
-		saltos.info=$.ajax({url:"index.php?action=info",async:false}).responseJSON.info;
-		saltos.lang=$.ajax({url:"index.php?action=lang",async:false}).responseJSON.lang;
+}
 
-		// PROCESAR LANG
-		saltos.lang_define(saltos.lang);
+function make_dialog() {
 
-		// MONTAR PANTALLA
-		document.title=`${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-		saltos.add_layout();
-		saltos.add_header(saltos.menu);
-		saltos.add_header_title(saltos.info);
-		saltos.add_menu(saltos.menu);
+}
 
-		// CARGAR PRIMER CONTENIDO
-		saltos.init_history();
+function dialog(title,message,buttons) {
+	bootbox.dialog({
+		title:title,
+		message:message,
+		buttons:buttons,
+	});
+}
+
+function make_notice() {
+
+}
+
+function hide_popupnotice() {
+
+}
+
+function notice(title,message,arg1,arg2,arg3) {
+
+}
+
+function __sync_cookies_helper() {
+
+}
+
+function sync_cookies(cmd) {
+
+}
+
+function getCookie(name) {
+
+}
+
+function getIntCookie(name) {
+
+}
+
+function getBoolCookie(name) {
+
+}
+
+function setCookie(name,value) {
+
+}
+
+function setIntCookie(name,value) {
+
+}
+
+function setBoolCookie(name,value) {
+
+}
+
+function loadingcontent(message) {
+
+}
+
+function unloadingcontent() {
+
+}
+
+function isloadingcontent() {
+
+}
+
+function hash_encode(url) {
+
+}
+
+function hash_decode(hash) {
+
+}
+
+function current_href() {
+
+}
+
+function current_hash() {
+
+}
+
+function history_pushState(url) {
+
+}
+
+function history_replaceState(url) {
+
+}
+
+function init_history() {
+
+}
+
+function addcontent(url) {
+
+}
+
+function submitcontent(form,callback) {
+
+}
+
+function opencontent(url,callback) {
+	$(".tooltip").remove();
+	$(window).scrollTop(0);
+	saltos.history_push_hash(url);
+	// CHECK PARAMS
+	if(!isset(url)) url="";
+	if(!isset(callback)) callback=function() {};
+	// CONTINUE
+	var url2=parse_url(url);
+	var array=saltos.querystring2array(url2.query);
+	if(!isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
+		var temp=$.ajax({url:"index.php?action=default",async:false}).responseJSON.default;
+		array["page"]=temp.page;
+		array["action"]=temp.action;
+		array["id"]=temp.id;
 	}
-}(jQuery));
+	if(isset(array["page"]) && !isset(array["action"]) && !isset(array["id"])) {
+		var temp=$.ajax({url:"index.php?action=default&page="+array["page"],async:false}).responseJSON.default;
+		array["action"]=temp.action;
+		array["id"]=temp.id;
+	}
+	if(isset(array["page"]) && isset(array["action"]) && array["action"]=="limpiar") {
+		array["action"]="list";
+		array["limpiar"]="1";
+	}
+	if(!isset(saltos.default)) saltos.default={};
+	if(isset(array["page"])) saltos.default.page=array["page"];
+	if(isset(array["action"])) saltos.default.action=array["action"];
+	if(isset(array["id"])) saltos.default.id=array["id"];
+	var querystring=saltos.array2querystring(array);
+	if(array["action"]=="list") {
+		saltos.list=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON.list;
+		document.title=`${saltos.list.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+		saltos.remove_header_title();
+		saltos.add_header_title(saltos.info);
+		var temp=saltos.make_list(saltos.list);
+		var tabs=saltos.make_tabs(temp);
+		$("#data > *").remove();
+		$("#data").append(tabs);
+		saltos.add_js(saltos.list);
+		saltos.add_css(saltos.list);
+	}
+	if(array["action"]=="form") {
+		saltos.form=$.ajax({url:"index.php?"+querystring,async:false}).responseJSON.form;
+		document.title=`${saltos.form.title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+		saltos.remove_header_title();
+		saltos.add_header_title(saltos.info);
+		var temp=saltos.make_form(saltos.form);
+		var tabs=saltos.make_tabs(temp);
+		$("#data > *").remove();
+		$("#data").append(tabs);
+		saltos.add_js(saltos.form);
+		saltos.add_css(saltos.form);
+	}
+};
+
+function errorcontent(code,text) {
+
+}
+
+function loadcontent(xml) {
+
+}
+
+function html2str(html) {
+
+}
+
+function str2html(str) {
+
+}
+
+function fix4html(str) {
+
+}
+
+function getstylesheet(html,cad1,cad2) {
+
+}
+
+function update_style(html,html2) {
+
+}
+
+function updatecontent(html) {
+
+}
+
+function make_menu(obj) {
+
+}
+
+function toggle_menu() {
+	if($("#menu").is(":visible")) {
+		$("#menu").hide();
+		$("#data").removeClass("col-lg-10");
+		$("#data").addClass("col-lg-12");
+		saltos.setIntCookie("saltos_ui_menu_closed",1);
+	} else {
+		$("#data").removeClass("col-lg-12");
+		$("#data").addClass("col-lg-10");
+		$("#menu").show();
+		saltos.setIntCookie("saltos_ui_menu_closed",0);
+	}
+};
+
+function make_tabs(obj) {
+
+}
+
+function hide_popupdialog() {
+
+}
+
+function make_tabs2(obj) {
+
+}
+
+function make_extras(obj) {
+
+}
+
+function make_draganddrop(obj) {
+
+}
+
+function get_class_key_val(obj,param) {
+
+}
+
+function get_class_id(obj) {
+
+}
+
+function get_class_fn(obj) {
+
+}
+
+function get_class_hash(obj) {
+
+}
+
+function make_hovers() {
+
+}
+
+function make_ckeditors(obj) {
+
+}
+
+function unmake_ckeditors(obj) {
+
+}
+
+function make_tooltips() {
+
+}
+
+function hide_tooltips() {
+
+}
+
+function make_focus() {
+
+}
+
+function unmake_focus() {
+
+}
+
+function make_tables(obj) {
+
+}
+
+function make_contextmenu() {
+
+}
+
+function hide_contextmenu() {
+
+}
+
+function get_colors(clase,param) {
+
+}
+
+function rgb2hex(color) {
+
+}
+
+function make_shortcuts() {
+
+}
+
+function make_abort() {
+
+}
+
+function saltos_islogin(obj) {
+	return saltos.islogin;
+}
+
+function make_back2top() {
+
+}
+
+function make_resizable(obj) {
+
+}
