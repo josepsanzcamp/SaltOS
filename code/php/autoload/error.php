@@ -95,9 +95,8 @@ function show_php_error($array=null) {
 		while($_ERROR_HANDLER["level"]>0) get_clear_error();
 		show_php_error($backup);
 	}
-	// ADD BACKTRACE IF NOT FOUND
+	// ADD BACKTRACE AND DEBUG IF NOT FOUND
 	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-	// ADD DEBUG IF NOT FOUND
 	if(!isset($array["debug"])) $array["debug"]=session_backtrace();
 	// CREATE THE MESSAGE ERROR USING HTML ENTITIES AND PLAIN TEXT
 	$msg_html=do_message_error($array,"html");

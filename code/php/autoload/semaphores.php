@@ -69,7 +69,7 @@ function __semaphore_helper($fn,$name,$timeout) {
 			}
 		}
 		ftruncate($fds[$file],0);
-		fwrite($fds[$file],gettrace());
+		fwrite($fds[$file],gettrace(array(),true));
 		return true;
 	} elseif(stripos($fn,"release")!==false) {
 		if($name=="") $name=__FUNCTION__;

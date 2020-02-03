@@ -120,7 +120,7 @@ function __unoconv_convert($input,$output,$format) {
 		$input2=get_cache_file($input);
 		if(!file_exists($input2)) symlink(realpath($input),$input2);
 		ob_passthru(__unoconv_timeout(getDefault("commands/soffice")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTDIR__"),array($format,$input2,dirname($input2)),getDefault("commands/__soffice__"))));
-		unlink($input2);
+		//~ if(file_exists($input2)) unlink($input2);
 		$output2=str_replace(".".extension($input2),".".$format,$input2);
 		if(!file_exists($output2)) return;
 		if($output!=$output2) rename($output2,$output);

@@ -164,14 +164,4 @@ function session_alert($alert) {
 	sess_close();
 }
 
-function session_backtrace() {
-	$array=array();
-	$array["pid"]=getmypid();
-	$array["sessid"]=session_id();
-	$array["time"]=current_datetime_decimals();
-	if(getSession("user")) $array["user"]=getSession("user");
-	foreach(array("page","action","id") as $item) if(getParam($item)) $array[$item]=getParam($item);
-	return $array;
-}
-
 ?>

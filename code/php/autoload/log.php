@@ -57,18 +57,26 @@ function addlog($msg,$file="") {
 }
 
 function addtrace($array,$file) {
-	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-	if(!isset($array["debug"])) $array["debug"]=session_backtrace();
-	$msg_text=do_message_error($array,"text");
-	addlog($msg_text,$file);
+	addlog(gettrace($array),$file);
 }
 
-function gettrace() {
-	$array=array();
-	$array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-	$array["debug"]=session_backtrace();
+function gettrace($array,$verbose=false) {
+	if(!isset($array["backtrace"])) $array["backtrace"]=debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+	if(!isset($array["debug"])) $array["debug"]=session_backtrace($verbose);
 	$msg_text=do_message_error($array,"text");
 	return $msg_text;
+}
+
+function session_backtrace($verbose=false) {
+	$array=array();
+	if($verbose) {
+		$array["pid"]=getmypid();
+		$array["sessid"]=session_id();
+		$array["time"]=current_datetime_decimals();
+	}
+	if(getSession("user")) $array["user"]=getSession("user");
+	foreach(array("page","action","id") as $item) if(getParam($item)) $array[$item]=getParam($item);
+	return $array;
 }
 
 function debug_dump($die=true) {
