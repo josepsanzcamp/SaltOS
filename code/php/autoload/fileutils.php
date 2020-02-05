@@ -252,4 +252,10 @@ function encode_bad_chars_file($file) {
 	return $file;
 }
 
+function realpath_protected($path) {
+	// REALPATH NO RETORNA RES SI EL PATH NO EXISTEIX
+	// ES FA SERVIR QUAN ES VOL EL REALPATH D'UN FITXER QUE ENCARA NO EXISTEIX
+	// PER EXEMPLE, PER LA SORTIDA D'UNA COMANDA
+	return realpath(dirname($path))."/".basename($path);
+}
 ?>

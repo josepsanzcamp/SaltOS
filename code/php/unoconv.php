@@ -117,10 +117,14 @@ function __unoconv_all2pdf($input,$output) {
 function __unoconv_convert($input,$output,$format) {
 	if(eval_bool(getDefault("nativesoffice"))) {
 		if(!check_commands(getDefault("commands/soffice"),60)) return;
+		$input=realpath($input);
+		$output=realpath_protected($output);
 		$input2=get_cache_file($input);
-		if(!file_exists($input2)) symlink(realpath($input),$input2);
+		$fix=(dirname($input)!=dirname($input2));
+		if($fix) symlink($input,$input2);
+		if(!$fix) $input2=$input;
 		ob_passthru(__unoconv_timeout(getDefault("commands/soffice")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTDIR__"),array($format,$input2,dirname($input2)),getDefault("commands/__soffice__"))));
-		//~ if(file_exists($input2)) unlink($input2);
+		if($fix) unlink($input2);
 		$output2=str_replace(".".extension($input2),".".$format,$input2);
 		if(!file_exists($output2)) return;
 		if($output!=$output2) rename($output2,$output);
