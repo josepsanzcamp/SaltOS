@@ -315,6 +315,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<tabla>tbl_ivas</tabla>
 			<campo>nombre</campo>
 		</row>
+		<row>
+			<id>44</id>
+			<codigo>categorias</codigo>
+			<nombre>Categorias</nombre>
+			<tabla>tbl_categorias</tabla>
+			<campo>nombre</campo>
+		</row>
 	</tbl_aplicaciones>
 	<tbl_aplicaciones_i>
 		<row>
@@ -326,7 +333,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</tbl_aplicaciones_i>
 	<tbl_aplicaciones_p>
 		<row>
-			<id_aplicacion>22,1,2,6,9,12,7,15,8,14,3,5,16,21,4,25,11,17,28,29,31,32,33,34,35,36,37,43</id_aplicacion>
+			<id_aplicacion>22,1,2,6,9,12,7,15,8,14,3,5,16,21,4,25,11,17,28,29,31,32,33,34,35,36,37,43,44</id_aplicacion>
 			<id_permiso>10,3,1,8,4,5,11,12,13,14,2,9,6,7</id_permiso>
 		</row>
 		<row>
@@ -362,6 +369,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<id_permiso>10,3,1,11,2,5,14,7</id_permiso>
 		</row>
 	</tbl_aplicaciones_p>
+	<tbl_categorias_a>
+		<row>
+			<id_aplicacion>3</id_aplicacion>
+		</row>
+	</tbl_categorias_a>
 	<tbl_estados_a>
 		<row>
 			<id_aplicacion>3</id_aplicacion>

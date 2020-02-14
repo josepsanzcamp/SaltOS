@@ -40,9 +40,9 @@ if(file_exists("php/action/${action}.php")) include("php/action/${action}.php");
 $array=eval_attr(xml2array("xml/bootstrap.xml"));
 
 // SOME CHECKS
-if(!is_array($array["metas"])) $array["metas"]=array();
-if(!is_array($array["css"])) $array["css"]=array();
-if(!is_array($array["js"])) $array["js"]=array();
+if(!isset($array["metas"]) || !is_array($array["metas"])) $array["metas"]=array();
+if(!isset($array["css"]) || !is_array($array["css"])) $array["css"]=array();
+if(!isset($array["js"]) || !is_array($array["js"])) $array["js"]=array();
 
 // GET DATA
 $template=trim($array["template"]);

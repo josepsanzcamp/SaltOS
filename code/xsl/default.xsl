@@ -180,9 +180,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </xsl:template>
 
 <xsl:template name="list_table_head">
-	<td class="width1 thead shortcut_ctrl_a" oldwidth=""><input type="checkbox" class="master" name="master" id="master" value="1" autocomplete="off"/></td>
+	<td class="width1 thead shortcut_ctrl_a"><input type="checkbox" class="master" name="master" id="master" value="1" autocomplete="off"/></td>
 	<xsl:for-each select="fields/field">
-		<td class="thead" style="width:{width}" oldwidth="{width}">
+		<td class="thead" style="width:{width}">
 			<xsl:choose>
 				<xsl:when test="tip!=''">
 					<span title="{tip}"><xsl:value-of select="label"/></span>
@@ -229,7 +229,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</xsl:if>
 		</td>
 	</xsl:for-each>
-	<td class=" width1 thead" colspan="100" oldwidth=""><span class="ui-icon ui-icon-none"></span></td>
+	<td class=" width1 thead" colspan="100"><span class="ui-icon ui-icon-none"></span></td>
 </xsl:template>
 
 <xsl:template name="list_table_data">
@@ -419,25 +419,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<xsl:call-template name="list_table_head"/>
 			</tr>
 		</thead>
-		<xsl:choose>
-			<xsl:when test="count(rows/row)=0">
-				<tr>
-					<td colspan="{1+count(fields/field)+100}" class="nodata italic"><xsl:value-of select="nodata/label"/></td>
-				</tr>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:for-each select="rows/row">
+		<tbody>
+			<xsl:choose>
+				<xsl:when test="count(rows/row)=0">
 					<tr>
-						<xsl:call-template name="list_table_data"/>
-						<xsl:call-template name="list_table_actions"/>
+						<td colspan="{1+count(fields/field)+100}" class="nodata italic"><xsl:value-of select="nodata/label"/></td>
 					</tr>
-				</xsl:for-each>
-				<xsl:call-template name="math_row">
-					<xsl:with-param name="iter" select="fields"/>
-					<xsl:with-param name="checkbox">true</xsl:with-param>
-				</xsl:call-template>
-			</xsl:otherwise>
-		</xsl:choose>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:for-each select="rows/row">
+						<tr>
+							<xsl:call-template name="list_table_data"/>
+							<xsl:call-template name="list_table_actions"/>
+						</tr>
+					</xsl:for-each>
+					<xsl:call-template name="math_row">
+						<xsl:with-param name="iter" select="fields"/>
+						<xsl:with-param name="checkbox">true</xsl:with-param>
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+		</tbody>
 	</table>
 </xsl:template>
 

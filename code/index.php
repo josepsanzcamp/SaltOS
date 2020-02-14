@@ -69,8 +69,8 @@ check_time();
 check_postlimit();
 
 // LOAD THE USER INTERFACE
-$engine=getDefault("engine");
-if(!file_exists("php/${engine}.php")) $engine="jqueryui";
+$engine=getDefault("engine","default");
+if(!file_exists("php/${engine}.php")) $engine="default";
 include("php/${engine}.php");
 
 ?>

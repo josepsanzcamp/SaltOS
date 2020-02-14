@@ -99,7 +99,8 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 
 function __make_indexing_helper($tabla,$id="") {
 	static $cache=array();
-	if(isset($cache[$tabla])) return $cache[$tabla];
+	$hash=implode(",",array($tabla,$id));
+	if(isset($cache[$hash])) return $cache[$hash];
 	static $tables=null;
 	static $types=null;
 	static $fields=null;
@@ -174,7 +175,7 @@ function __make_indexing_helper($tabla,$id="") {
 			}
 		}
 	}
-	$cache[$tabla]=$result;
+	$cache[$hash]=$result;
 	return $result;
 }
 

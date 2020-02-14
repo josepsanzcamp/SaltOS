@@ -309,6 +309,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</table>
 		<table>
+			<name>tbl_categorias</name>
+			<fields>
+				<field>
+					<name>id</name>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>nombre</name>
+					<type>VARCHAR(255)</type>
+				</field>
+				<field>
+					<name>descripcion</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>pos</name>
+					<type>INT(11)</type>
+				</field>
+				<field>
+					<name>id_aplicacion</name>
+					<type>INT(11)</type>
+					<fkey>tbl_aplicaciones</fkey>
+				</field>
+			</fields>
+		</table>
+		<table>
+			<name>tbl_categorias_a</name>
+			<fields>
+				<field>
+					<name>id</name>
+					<type>/*MYSQL INT(11) *//*SQLITE INTEGER */</type>
+					<pkey>true</pkey>
+				</field>
+				<field>
+					<name>id_aplicacion</name>
+					<type>INT(11)</type>
+					<fkey>tbl_aplicaciones</fkey>
+				</field>
+			</fields>
+		</table>
+		<table>
 			<name>tbl_clientes</name>
 			<fields>
 				<field>
@@ -1810,6 +1852,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>VARCHAR(255)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
+				</field>
+				<field>
+					<name>id_categoria</name>
+					<type>INT(11)</type>
+					<fkey>tbl_categorias</fkey>
 				</field>
 			</fields>
 		</table>

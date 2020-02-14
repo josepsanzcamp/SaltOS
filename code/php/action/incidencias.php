@@ -57,11 +57,12 @@ if($page=="incidencias") {
 		$query="SELECT a.nombre nombre,
 				a.descripcion descripcion,
 				CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b.nombre END cliente,
-				CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE c.nombre END proyecto,
+				CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE c.nombre END proyecto,
 				d.nombre estado,
 				".make_extra_query_with_login("f.")." username,
 				e.datetime datetime,
-				g.nombre prioridad
+				g.nombre prioridad,
+				CASE a.id_categoria WHEN '0' THEN '".LANG_ESCAPE("sincategoria")."' ELSE h.nombre END categoria
 			FROM tbl_incidencias a
 			LEFT JOIN tbl_clientes b ON a.id_cliente=b.id
 			LEFT JOIN tbl_proyectos c ON a.id_proyecto=c.id
@@ -69,6 +70,7 @@ if($page=="incidencias") {
 			LEFT JOIN tbl_registros e ON e.id_aplicacion='$id_aplicacion' AND e.id_registro=a.id AND e.first=1
 			LEFT JOIN tbl_usuarios f ON e.id_usuario=f.id
 			LEFT JOIN tbl_prioridades g ON g.id=a.id_prioridad
+			LEFT JOIN tbl_categorias h ON h.id=a.id_categoria
 			WHERE a.id='$id_incidencia'";
 		$result2=db_query($query);
 		if(db_num_rows($result2)) {
@@ -77,8 +79,8 @@ if($page=="incidencias") {
 			// MEJORAR SUBJECT REAL
 			$subject.=": ".$row2["nombre"];
 			// BODY INCIDENCIAS
-			$campos=array("username","datetime","cliente","proyecto","nombre","estado","prioridad","descripcion");
-			$tipos=array("text","text","text","text","text","text","text","textarea");
+			$campos=array("username","datetime","cliente","proyecto","nombre","estado","prioridad","categoria","descripcion");
+			$tipos=array("text","text","text","text","text","text","text","text","textarea");
 			$body.=__incidencias_packreport($campos,$tipos,$row2);
 			// DATOS COMENTARIOS
 			$query="SELECT comentarios,datetime,

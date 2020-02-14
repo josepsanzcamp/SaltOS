@@ -43,6 +43,218 @@ saltos.addlog=function(msg) {
 	$.ajax({ url:"index.php?action=addlog",data:data,type:"post" });
 };
 
+/* NUMERIC FUNCTIONS */
+saltos.floatval2=function(obj) {
+	saltos._format_number(obj,0);
+};
+
+saltos.intval2=function(obj) {
+	saltos._format_number(obj,1);
+};
+
+saltos._format_number=function(obj,punto) {
+	var texto=obj.value;
+	var texto2="";
+	var numero=0;
+	for(var i=0,len=texto.length;i<len;i++) {
+		var letra=substr(texto,i,1);
+		if(letra>="0" && letra<="9") {
+			texto2+=letra;
+			numero=1;
+		} else if((letra=="." || letra==",") && !punto) {
+			if(!numero) texto2+="0";
+			texto2+=".";
+			punto=1;
+		} else if(letra=="-" && texto2.length==0) {
+			texto2+="-";
+		}
+	}
+	if(texto!=texto2) obj.value=texto2;
+};
+
+/* REQUIRED FUNCTIONS */
+saltos.check_required=function() {
+	var field=null;
+	var label="";
+	$("[isrequired=true]").each(function() {
+		// CHECK FOR VISIBILITY
+		if(substr(this.type,0,6)=="select") {
+			if(!$(this).next().is(":visible")) return;
+		} else {
+			if(!$(this).is(":visible")) return;
+		}
+		// CONTINUE
+		var valor=$(this).val();
+		var campo=this;
+		if(substr(this.type,0,6)=="select") {
+			if(valor=="0") valor="";
+			campo=$(this).next().get(0);
+		}
+		if(!valor) {
+			$(campo).addClass("ui-state-error");
+		} else {
+			$(campo).removeClass("ui-state-error");
+		}
+		if(!valor && !field) {
+			field=campo;
+			label=$(this).attr("labeled");
+		}
+	});
+	if(field) {
+		var requiredfield=lang_requiredfield();
+		alerta(requiredfield+": "+label,function() { $(field).trigger("focus"); });
+	}
+	return field==null;
+};
+
+saltos.copy_value=function(orig,dest) {
+	$("#"+dest).val($("#"+orig).val());
+};
+
+/* STRING FUNCTIONS */
+saltos.intelligence_cut=function(txt,max) {
+	var len=strlen(txt);
+	if(len>max) {
+		while(max>0 && substr(txt,max,1)!=" ") max--;
+		if(max==0) while(max<len && substr(txt,max,1)!=" ") max++;
+		if(max>0) if(in_array(substr(txt,max-1,1),[",",".","-","("])) max--;
+		var preview=(max==len)?txt:substr(txt,0,max)+"...";
+	} else {
+		var preview=txt;
+	}
+	return preview;
+};
+
+/* DATETIME FUNCTIONS */
+saltos.dateval=function(value) {
+	value=str_replace("-"," ",value);
+	value=str_replace(":"," ",value);
+	value=str_replace(","," ",value);
+	value=str_replace("."," ",value);
+	value=str_replace("/"," ",value);
+	var temp="";
+	while(temp!=(value=str_replace("  "," ",value))) temp=value;
+	temp=explode(" ",value);
+	for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
+	for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
+	if(temp[2]>1900) {
+		temp[2]=min(9999,max(0,temp[2]));
+		temp[1]=min(12,max(0,temp[1]));
+		temp[0]=min(saltos.__days_of_a_month(temp[2],temp[1]),max(0,temp[0]));
+		value=sprintf("%04d-%02d-%02d",temp[2],temp[1],temp[0]);
+	} else {
+		temp[0]=min(9999,max(0,temp[0]));
+		temp[1]=min(12,max(0,temp[1]));
+		temp[2]=min(saltos.__days_of_a_month(temp[0],temp[1]),max(0,temp[2]));
+		value=sprintf("%04d-%02d-%02d",temp[0],temp[1],temp[2]);
+	}
+	return value;
+};
+
+saltos.timeval=function(value) {
+	value=str_replace("-"," ",value);
+	value=str_replace(":"," ",value);
+	value=str_replace(","," ",value);
+	value=str_replace("."," ",value);
+	value=str_replace("/"," ",value);
+	var temp="";
+	while(temp!=(value=str_replace("  "," ",value))) temp=value;
+	temp=explode(" ",value);
+	for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
+	for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
+	temp[0]=min(24,max(0,temp[0]));
+	temp[1]=min(59,max(0,temp[1]));
+	temp[2]=min(59,max(0,temp[2]));
+	value=sprintf("%02d:%02d:%02d",temp[0],temp[1],temp[2]);
+	return value;
+};
+
+saltos.__days_of_a_month=function(year,month) {
+	return date("t",strtotime(sprintf("%04d-%02d-%02d",year,month,1)));
+};
+
+saltos.check_datetime=function(orig,comp,dest) {
+	var orig_obj_date=("input[name$="+orig+"_date]");
+	var orig_obj_time=("input[name$="+orig+"_time]");
+	var dest_obj_date=("input[name$="+dest+"_date]");
+	var dest_obj_time=("input[name$="+dest+"_time]");
+	if($(orig_obj_date).val()=="") return;
+	if($(orig_obj_time).val()=="") return;
+	if($(dest_obj_date).val()=="") return;
+	if($(dest_obj_time).val()=="") return;
+	var orig_date=explode("-",dateval($(orig_obj_date).val()));
+	var orig_time=explode(":",timeval($(orig_obj_time).val()));
+	var dest_date=explode("-",dateval($(dest_obj_date).val()));
+	var dest_time=explode(":",timeval($(dest_obj_time).val()));
+	var orig_unix=mktime(orig_time[0],orig_time[1],orig_time[2],orig_date[1],orig_date[2],orig_date[0]);
+	var dest_unix=mktime(dest_time[0],dest_time[1],dest_time[2],dest_date[1],dest_date[2],dest_date[0]);
+	var dest_unix2=dest_unix;
+	if(comp=="le" && dest_unix<orig_unix) dest_unix2=orig_unix;
+	if(comp=="ge" && dest_unix>orig_unix) dest_unix2=orig_unix;
+	if(dest_unix!=dest_unix2) {
+		$(dest_obj_date).val(implode("-",orig_date));
+		$(dest_obj_time).val(implode(":",orig_time));
+		$(dest_obj_time).trigger("change");
+	}
+};
+
+saltos.check_date=function(orig,comp,dest) {
+	var orig_obj_date=("input[name$="+orig+"]");
+	var dest_obj_date=("input[name$="+dest+"]");
+	if($(orig_obj_date).val()=="") return;
+	if($(dest_obj_date).val()=="") return;
+	var orig_date=explode("-",dateval($(orig_obj_date).val()));
+	var dest_date=explode("-",dateval($(dest_obj_date).val()));
+	var orig_unix=mktime(12,0,0,orig_date[1],orig_date[2],orig_date[0]);
+	var dest_unix=mktime(12,0,0,dest_date[1],dest_date[2],dest_date[0]);
+	var dest_unix2=dest_unix;
+	if(comp=="le" && dest_unix<orig_unix) dest_unix2=orig_unix;
+	if(comp=="ge" && dest_unix>orig_unix) dest_unix2=orig_unix;
+	if(dest_unix!=dest_unix2) {
+		$(dest_obj_date).val(implode("-",orig_date));
+		$(dest_obj_date).trigger("change");
+	}
+};
+
+saltos.check_time=function(orig,comp,dest) {
+	var orig_obj_time=("input[name$="+orig+"]");
+	var dest_obj_time=("input[name$="+dest+"]");
+	if($(orig_obj_time).val()=="") return;
+	if($(dest_obj_time).val()=="") return;
+	var orig_time=explode(":",timeval($(orig_obj_time).val()));
+	var dest_time=explode(":",timeval($(dest_obj_time).val()));
+	var orig_unix=mktime(orig_time[0],orig_time[1],orig_time[2],1,1,1970);
+	var dest_unix=mktime(dest_time[0],dest_time[1],dest_time[2],1,1,1970);
+	var dest_unix2=dest_unix;
+	if(comp=="le" && dest_unix<orig_unix) dest_unix2=orig_unix;
+	if(comp=="ge" && dest_unix>orig_unix) dest_unix2=orig_unix;
+	if(dest_unix!=dest_unix2) {
+		$(dest_obj_time).val(implode(":",orig_time));
+		$(dest_obj_time).trigger("change");
+	}
+};
+
+/* KEYBOARD FUNCTIONS */
+saltos.get_keycode=function(event) {
+	var keycode=0;
+	if(event.keyCode) keycode=event.keyCode;
+	else if(event.which) keycode=event.which;
+	else keycode=event.charCode;
+	return keycode;
+};
+
+saltos.is_enterkey=function(event) {
+	return saltos.get_keycode(event)==13;
+};
+
+saltos.is_escapekey=function(event) {
+	return saltos.get_keycode(event)==27;
+};
+
+saltos.is_disabled=function(obj) {
+	return $(obj).hasClass("ui-state-disabled");
+};
+
 /* COOKIES MANAGEMENT */
 saltos.cookies={};
 saltos.cookies.data={};
@@ -263,157 +475,556 @@ saltos.get_class_hash=function(clase) {
 	return saltos.get_class_key_val(clase,"hash_");
 };
 
-// BOOTSTRAP WIDGETS
-saltos.add_layout=function() {
+// TODO FUNCTIONS
+saltos.security_iframe=function(obj) {
+	console.log("call to unimplemented function security_iframe");
+}
+
+saltos.make_dialog=function() {
+	console.log("call to unimplemented function make_dialog");
+}
+
+saltos.dialog=function(title,message,buttons) {
+	console.log("call to unimplemented function dialog");
+}
+
+saltos.make_notice=function() {
+	console.log("call to unimplemented function make_notice");
+}
+
+saltos.hide_popupnotice=function() {
+	console.log("call to unimplemented function hide_popupnotice");
+}
+
+saltos.notice=function(title,message,arg1,arg2,arg3) {
+	console.log("call to unimplemented function notice");
+}
+
+saltos.loadingcontent=function(message) {
+	console.log("call to unimplemented function loadingcontent");
+}
+
+saltos.unloadingcontent=function() {
+	console.log("call to unimplemented function unloadingcontent");
+}
+
+saltos.isloadingcontent=function() {
+	console.log("call to unimplemented function isloadingcontent");
+}
+
+saltos.hash_encode=function(url) {
+	console.log("call to unimplemented function hash_encode");
+}
+
+saltos.hash_decode=function(hash) {
+	console.log("call to unimplemented function hash_decode");
+}
+
+saltos.current_href=function() {
+	console.log("call to unimplemented function current_href");
+}
+
+saltos.history_pushState=function(url) {
+	console.log("call to unimplemented function history_pushState");
+}
+
+saltos.history_replaceState=function(url) {
+	console.log("call to unimplemented function history_replaceState");
+}
+
+saltos.addcontent=function(url) {
+	console.log("call to unimplemented function addcontent");
+}
+
+saltos.submitcontent=function(form,callback) {
+	console.log("call to unimplemented function submitcontent");
+}
+
+saltos.errorcontent=function(code,text) {
+	console.log("call to unimplemented function errorcontent");
+}
+
+saltos.loadcontent=function(xml) {
+	console.log("call to unimplemented function loadcontent");
+}
+
+saltos.html2str=function(html) {
+	console.log("call to unimplemented function html2str");
+}
+
+saltos.str2html=function(str) {
+	console.log("call to unimplemented function str2html");
+}
+
+saltos.fix4html=function(str) {
+	console.log("call to unimplemented function fix4html");
+}
+
+saltos.getstylesheet=function(html,cad1,cad2) {
+	console.log("call to unimplemented function getstylesheet");
+}
+
+saltos.update_style=function(html,html2) {
+	console.log("call to unimplemented function update_style");
+}
+
+saltos.updatecontent=function(html) {
+	console.log("call to unimplemented function updatecontent");
+}
+
+saltos.make_menu=function(obj) {
+	console.log("call to unimplemented function make_menu");
+}
+
+saltos.toggle_menu=function() {
+	console.log("call to unimplemented function toggle_menu");
+}
+
+saltos.hide_popupdialog=function() {
+	console.log("call to unimplemented function hide_popupdialog");
+}
+
+saltos.make_tabs2=function(obj) {
+	console.log("call to unimplemented function make_tabs2");
+}
+
+saltos.make_extras=function(obj) {
+	console.log("call to unimplemented function make_extras");
+}
+
+saltos.make_draganddrop=function(obj) {
+	console.log("call to unimplemented function make_draganddrop");
+}
+
+saltos.make_hovers=function() {
+	console.log("call to unimplemented function make_hovers");
+}
+
+saltos.make_ckeditors=function(obj) {
+	console.log("call to unimplemented function make_ckeditors");
+}
+
+saltos.unmake_ckeditors=function(obj) {
+	console.log("call to unimplemented function unmake_ckeditors");
+}
+
+saltos.make_focus=function() {
+	console.log("call to unimplemented function make_focus");
+}
+
+saltos.unmake_focus=function() {
+	console.log("call to unimplemented function unmake_focus");
+}
+
+saltos.make_tables=function(obj) {
+	console.log("call to unimplemented function make_tables");
+}
+
+saltos.make_contextmenu=function() {
+	console.log("call to unimplemented function make_contextmenu");
+}
+
+saltos.hide_contextmenu=function() {
+	console.log("call to unimplemented function hide_contextmenu");
+}
+
+saltos.make_shortcuts=function() {
+	console.log("call to unimplemented function make_shortcuts");
+}
+
+saltos.make_abort=function() {
+	console.log("call to unimplemented function make_abort");
+}
+
+saltos.make_back2top=function() {
+	console.log("call to unimplemented function make_back2top");
+}
+
+saltos.make_resizable=function(obj) {
+	console.log("call to unimplemented function make_resizable");
+}
+
+// JQUERYUI WIDGETS
+saltos.add_layout=function(info) {
 	var layout=$(`
-		<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse">
-				<div class="btn-group mr-auto" id="navbar-left"></div>
-				<div class="btn-group mx-auto" id="navbar-center"></div>
-				<div class="btn-group ml-auto" id="navbar-right"></div>
-			</div>
-		</nav>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-2 p-0" id="menu"></div>
-				<div class="col-lg-10 p-0" id="data"></div>
-			</div>
-		</div>
+		<table class="width100 none" cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td valign="top" colspan="2">
+					<div class="ui-layout-north">
+						<div class="tabs2">
+							<ul class="headertabs"></ul>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					<div class="ui-layout-west"></div>
+				</td>
+				<td valign="top" class="width100">
+					<div class="ui-layout-center"></div>
+				</td>
+			</tr>
+		</table>
 	`);
 	$("body").append(layout);
+	$("html").attr("lang",info.lang);
+	$("html").attr("dir",info.dir);
+	// RESIZABLE CODE
+	setTimeout(function() {
+		var width=parseInt(saltos.getIntCookie("saltos_ui_menu_width")/10)*10;
+		if(!width) width=200;
+		$(".ui-layout-west").width(width).resizable({
+			minWidth:100,
+			maxWidth:400,
+			grid:10,
+			handles:"e",
+			resize:function(event,ui) {
+				setIntCookie("saltos_ui_menu_width",ui.size.width);
+				$(".back2top").css("left",(ui.size.width-54)+"px");
+			},
+		});
+		$(".back2top").css("left",(width-54)+"px");
+		// REMOVE NONE CLASS
+		$(layout).removeClass("none");
+	},100);
 };
 
+saltos.tabs2_padding="";
+saltos.tabs2_margin="";
+saltos.tabs2_border="";
+
 saltos.add_button_in_navbar=function(option) {
-	// CHECK PARAMS
-	var params=["class","tip","icon","label","onclick"];
-	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
-	// CONTINUE
+	saltos.check_params(option,["class","tip","icon","label","onclick","class2"]);
 	var button=$(`
-		<button type="button" class="btn btn-primary ${option.class}" data-toggle="tooltip" title="${option.tip}">
-			<span class="${option.icon}"></span> ${option.label}
-		</button>
+		<li class="${option.class2}"><a href="javascript:void(0)" title="${option.tip}" class="${option.class}">
+			<span class="${option.icon}"></span>
+			${option.label}
+		</a></li>
 	`);
 	$(button).on("click",function() {
 		if(typeof option.onclick=="string") eval(option.onclick);
 		if(typeof option.onclick=="function") option.onclick();
 	});
-	if(option.class2=="right") $("#navbar-right").append(button);
-	else if(option.class2=="center") $("#navbar-center").append(button);
-	else $("#navbar-left").append(button);
+	$(".tabs2 ul").append(button);
+	if($(".tabs2").hasClass("ui-tabs")) {
+		$(".tabs2").tabs("refresh");
+	} else {
+		$(".tabs2").tabs({
+			beforeActivate:function(event,ui) {
+				return false;
+			},
+			beforeLoad:function(event,ui) {
+				return false;
+			}
+		});
+		// CHANGE TABS FROM TOP TO BOTTOM
+		saltos.tabs2_padding=$(".tabs2 ul").css("padding-top");
+		saltos.tabs2_margin=$(".tabs2 li").css("margin-top");
+		saltos.tabs2_border=$(".tabs2 li").css("border-top");
+		if(!saltos.tabs2_border) saltos.tabs2_border=$(".tabs2 li").css("border-top-width")+" "+$(".tabs2 li").css("border-top-style")+" "+$(".tabs2 li").css("border-top-color");
+	}
+	// FIX FOR A VOID TABS
+	$(".tabs2 div").remove();
+	// CHANGE TABS FROM TOP TO BOTTOM
+	$(".tabs2 ul").removeClass("ui-corner-all").addClass("ui-corner-bottom");
+	$(".tabs2 li").removeClass("ui-tabs-active ui-state-active");
+	$(".tabs2 li").removeClass("ui-corner-top").addClass("ui-corner-bottom");
+	$(".tabs2 ul").css("padding-top","0").css("padding-bottom",saltos.tabs2_padding);
+	$(".tabs2 li").css("margin-top","0").css("margin-bottom",saltos.tabs2_margin);
+	$(".tabs2 li").css("border-top","0").css("border-bottom",saltos.tabs2_border);
 };
 
 saltos.add_group_in_menu=function(option) {
-	// CHECK PARAMS
-	var params=["name","icon","label","show","onclick"];
-	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
-	// CONTINUE
+	saltos.check_params(option,["name","label","show","class","tip"]);
 	var group=$(`
-		<div class="list-group list-group-flush">
-			<button type="button" class="list-group-item list-group-item-action list-group-item-primary" data-toggle="collapse" data-target="#${option.name}">
-				<span class="${option.icon}"></span> ${option.label}
-			</button>
+		<div class="${option.class} none" id="${option.name}">
+			<h3 title="${option.tip}">${option.label}</h3>
+			<div class="accordion-link">
+				<ul></ul>
+			</div>
 		</div>
-		<div class="list-group list-group-flush collapse ${option.show}" id="${option.name}"></div>
 	`);
-	$("button",group).on("click",function() {
-		if(typeof option.onclick=="string") eval(option.onclick);
-		if(typeof option.onclick=="function") option.onclick();
-	});
-	$("#menu").append(group);
+	$(".ui-layout-west").append(group);
+	setTimeout(function() {
+		$(group).accordion({
+			collapsible:true,
+			heightStyle:"content",
+			active:option.active,
+			activate:function(event,ui) {
+				var name=$(this).attr("id");
+				var active=ui.newHeader.length;
+				setIntCookie("saltos_ui_menu_"+name,active);
+			},
+			icons:{
+				header:"ui-icon-circle-arrow-e",
+				activeHeader:"ui-icon-circle-arrow-s"
+			}
+		});
+		// FOR MOVE NODES AS A REAL TREE
+		var temp=[];
+		$(".accordion-link li",group).each(function() {
+			var found=0;
+			for(var i=1;i<20;i++) {
+				if($("a",this).hasClass("depth_"+i)) {
+					if($("ul",temp[i-1]).length==0) $(temp[i-1]).append("<ul></ul>");
+					$("ul",temp[i-1]).append(this);
+					while(temp.length>i) temp.pop();
+					temp.push(this);
+					found=1;
+				}
+			}
+			if(!found) {
+				while(temp.length>0) temp.pop();
+				temp.push(this);
+			}
+		});
+		// FOR PREPARE THE OPEN NODE LIST
+		var open=[];
+		var name=$(group).attr("id");
+		$(".accordion-link li",group).each(function() {
+			var name2=$("a",this).attr("id");
+			var active=saltos.getIntCookie("saltos_ui_menu_"+name+"_"+name2);
+			if(active) open.push("#"+name2);
+		});
+		// CREATE THE JSTREE
+		$(".accordion-link",group).jstree();
+		// NOW, OPEN THE NODES USING THE PREVIOUS NODE LIST
+		for(var i in open) {
+			var temp=$(open[i],group);
+			$(".accordion-link",group).jstree("open_node",temp);
+		}
+		// DEFINE AND EXECUTE THE FIX FOR THE ICONS
+		var fn=function(obj) {
+			$(".jstree-icon.jstree-themeicon",obj).each(function() {
+				var icon=$(this).parent().attr("icon");
+				$(this).removeClass("jstree-themeicon").addClass("jstree-themeicon-custom").addClass(icon);
+			});
+		}
+		fn(group);
+		// PROGRAM THE BIND TO PREVENT SELECTION
+		$(".accordion-link",group).on("select_node.jstree",function(e,_data) {
+			_data.instance.deselect_node(_data.node);
+		});
+		// PROGRAM THE BIND TO STORE THE NODE'S STATES
+		$(".accordion-link",group).on("open_node.jstree",function(e,_data) {
+			fn(this);
+			var name2=_data.node.a_attr.id;
+			setIntCookie("saltos_ui_menu_"+name+"_"+name2,1);
+		});
+		$(".accordion-link",group).on("close_node.jstree",function(e,_data) {
+			var name2=_data.node.a_attr.id;
+			setIntCookie("saltos_ui_menu_"+name+"_"+name2,0);
+		});
+		// REMOVE NONE CLASS
+		$(group).removeClass("none");
+	},100);
 };
 
 saltos.add_link_in_group=function(option) {
-	// CHECK PARAMS
-	var params=["class","tip","icon","label","onclick"];
-	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
-	// CONTINUE
+	saltos.check_params(option,["class","tip","icon","label","onclick","name"]);
 	var link=$(`
-		<button type="button" class="list-group-item list-group-item-action ${option.class} list-group-item-secondary" data-toggle="tooltip" title="${option.tip}">
-			<span class="${option.icon}"></span> ${option.label}
-		</button>
+		<li>
+			<a href="javascript:void(0)" class="${option.class}" icon="${option.icon}" title="${option.tip}" id="${option.name}">${option.label}</a>
+		</li>
 	`);
-	// CHECK DEPTH
-	var depth=intval(saltos.get_class_key_val(option.class,"depth_"));
-	$("span",link).css("margin-left",(depth*16)+"px");
 	// CONTINUE
-	$(link).on("click",function() {
+	$("a",link).on("click",function() {
 		if(typeof option.onclick=="string") eval(option.onclick);
 		if(typeof option.onclick=="function") option.onclick();
 	});
-	$("#menu .list-group:last").append(link);
+	$(".ui-layout-west ul:last").append(link);
 };
+
+saltos.make_focus_obj=null;
 
 saltos.make_tabs=function(array) {
 	var card=$(`
-		<div class="card">
-			<div class="card-header">
-				<ul class="nav nav-tabs card-header-tabs"></ul>
-			</div>
-			<div class="card-body">
-				<div class="tab-content"></div>
-			</div>
+		<div class="tabs none">
+			<ul class="centertabs"></ul>
+			<div class="centertabs2"></div>
 		</div>
 	`);
 	for(var key in array) {
-		var temp=(key==0)?"active":"";
-		$(".nav-tabs",card).append(`
-			<li class="nav-item">
-				<a class="nav-link ${temp}" data-toggle="tab" href="#tab-pane-${key}">${array[key].title}</a>
+		$(".centertabs",card).append(`
+			<li>
+				<a href="#tab-${key}"><span class="${array[key].icon}"></span> ${array[key].title}</a>
 			</li>
 		`);
-		$(".tab-content",card).append(`<div class="tab-pane ${temp}" id="tab-pane-${key}"></div>`);
-		$(".tab-pane:last",card).append(array[key].obj);
+		$(".centertabs2",card).append(`<div id="tab-${key}"></div>`);
+		$(`#tab-${key}`,card).append(array[key].obj);
 	}
+	setTimeout(function() {
+		// THIS CODE ADD THE ACCESSKEY FEATURE FOR EACH TAB
+		var accesskeys="1234567890";
+		var accesskey=0;
+		var tabs=$("ul > li",card);
+		$(tabs).each(function() {
+			if($(this).hasClass("help")) {
+				$("a",this).attr("title","[CTRL] + [H]");
+				$("a",this).addClass("shortcut_ctrl_h");
+			} else if(accesskey<accesskeys.length) {
+				$("a",this).attr("title","[CTRL] + ["+substr(accesskeys,accesskey,1)+"]");
+				$("a",this).addClass("shortcut_ctrl_"+substr(accesskeys,accesskey,1));
+				accesskey++;
+			}
+		});
+		// THIS CODE SEARCH THE TAB USING THE OLD OPENED TAB STORED IN A COOKIE
+		// TOO, FIND ALL OBJECTS FROM THE FORM AND IF EXIST THE FOCUSED ATTRIBUTE,
+		// SEARCH THE INDEX OF THE TAB THAT CONTAIN THE OBJECT
+		var active=0;
+		$("[focused=true]:first",card).each(function() {
+			saltos.make_focus_obj=this;
+			var thetab=$(this).parent();
+			while(thetab) {
+				if(substr($(thetab).attr("id"),0,4)=="tab-") {
+					var index=0;
+					$("[id^=tab-]",card).each(function() {
+						if($(this).attr("id")==$(thetab).attr("id")) active=index;
+						index++;
+					});
+					break;
+				}
+				thetab=$(thetab).parent();
+			}
+		});
+		// TRUE, CREATE THE TABS
+		$(card).tabs({
+			active:0,
+			beforeActivate:function(event,ui) {
+				if($(ui.newTab).hasClass("help")) {
+					viewpdf("page="+getParam("page"));
+					return false;
+				}
+				if($(ui.newTab).hasClass("popup")) {
+					var title=$("a",ui.newTab).text();
+					var tabid=$("a",ui.newTab).attr("href").substr(1);
+					if(getParam("action")=="list") var form=$("#"+tabid).parent();
+					if(getParam("action")=="form") var form=$("#"+tabid);
+					dialog(title);
+					var dialog2=$("#dialog");
+					$(dialog2).html("");
+					$(form).after("<div id='popup"+tabid+"'></div>");
+					$(dialog2).append("<br/>");
+					$(dialog2).append(form);
+					$(dialog2).append("<br/><br/>");
+					$("div",dialog2).removeAttr("class").removeAttr("style");
+					$(dialog2).dialog("option","resizeStop",function(event,ui) {
+						setIntCookie("saltos_popup_width",$(dialog2).dialog("option","width"));
+						setIntCookie("saltos_popup_height",$(dialog2).dialog("option","height"));
+					});
+					$(dialog2).dialog("option","close",function(event,ui) {
+						$(dialog2).dialog("option","resizeStop",function() {});
+						$(dialog2).dialog("option","close",function() {});
+						if(getParam("action")=="list") $("div",form).hide();
+						if(getParam("action")=="form") $(form).hide();
+						$("#popup"+tabid).replaceWith(form);
+						unmake_focus();
+						hide_tooltips();
+					});
+					var width=getIntCookie("saltos_popup_width");
+					if(!width) width=900;
+					$(dialog2).dialog("option","width",width);
+					var height=getIntCookie("saltos_popup_height");
+					if(!height) height=600;
+					$(dialog2).dialog("option","height",height);
+					$(dialog2).dialog("option","position",{ my:"center",at:"center",of:window });
+					$(dialog2).dialog("open");
+					return false;
+				}
+			},
+			beforeLoad:function(event,ui) {
+				return false;
+			}
+		});
+		// CHANGE TABS FROM ALL TO TOP
+		$("ul",card).removeClass("ui-corner-all").addClass("ui-corner-top");
+		// TUNNING THE HELP TAB
+		var help=$("ul li.help",card);
+		$("span",help).removeClass("ui-icon ui-icon-none").addClass(icon_help());
+		$("a",help).append("&nbsp;").append(lang_help());
+		// REMOVE NONE CLASS
+		$(card).removeClass("none");
+	},100);
 	return card;
+};
+
+/* FUNCIONES PARA EL PROCESADO DE PARAMETROS */
+saltos.check_params=function(obj,params) {
+	for(var key in params) if(!isset(obj[params[key]])) obj[params[key]]="";
 };
 
 /* FUNCIONES PARA EL PROCESADO DE LISTADOS */
 saltos.make_table=function(option) {
-	if(!count(option.rows)) {
-		var alert=saltos.make_alert({
-			"type":"warning",
-			"data":option.nodata.label,
-		});
-		return alert;
-	}
+	saltos.check_params(option,["width"]);
 	var table=$(`
-		<table class="table table-striped table-hover table-sm">
-			<thead class="thead-dark"></thead>
+		<table class="tabla helperlists" cellpadding="0" cellspacing="0" border="0">
+			<thead></thead>
 			<tbody></tbody>
 		</table>
 	`);
+	if(option.width!="") $(table).attr("style",`width:${option.width}`);
 	$("thead",table).append("<tr></tr>");
+	$("thead tr",table).append(`<td class="width1 thead ui-widget-header shortcut_ctrl_a"><input type="checkbox" class="master" name="master" id="master" value="1" autocomplete="off"/></td>`);
 	for(var key in option.fields) {
 		var field=option.fields[key];
-		$("thead tr",table).append("<th></th>");
-		$("thead tr th:last",table).append(field.label);
+		saltos.check_params(field,["width","tip","label","sort"]);
+		var td=$(`<td class="thead ui-widget-header"></td>`);
+		$("thead tr:last",table).append(td);
+		if(field.width!="") $(td).attr("style",`width:${field.width}`);
+		if(field.tip!="") $(td).append(`<span title="${field.tip}">${field.label}</span>`);
+		if(field.tip=="") $(td).append(field.label);
 	}
+	$("thead tr",table).append(`<td class=" width1 thead ui-widget-header" colspan="100"><span class="ui-icon ui-icon-none"></span></td>`);
+	var count=0;
 	for(var key in option.rows) {
 		var row=option.rows[key];
 		$("tbody",table).append("<tr></tr>");
+		$("tbody tr:last",table).append(`<td class="width1 tbody"><input type="checkbox" class="slave id_${row.id}" name="slave_${row.id}" id="slave_${row.id}" value="1" autocomplete="off"/></td>`);
 		for(var key2 in option.fields) {
 			var field=option.fields[key2];
-			$("tbody tr:last",table).append("<td></td>");
+			var td=$(`<td class="tbody"></td>`);
+			$("tbody tr:last",table).append(td);
+			saltos.check_params(field,["name","size"]);
 			field.value=saltos.get_filtered_field(row[field.name],field.size);
-			$("tbody tr:last td:last",table).append(field.value);
+			$(td).append(field.value);
 		}
+		$("tbody tr:last",table).append(`<td class="tbody"></td>`);
+		if(count%2==0) $("tbody tr:last td",table).addClass("ui-widget-content");
+		if(count%2==1) $("tbody tr:last td",table).addClass("ui-state-default");
+		if(count>0) $("tbody tr:last td",table).addClass("notop");
+		count++;
 	}
+	if(!count) {
+		$("tbody",table).append("<tr></tr>");
+		$("tbody tr:last",table).append(`<td colspan="100" class="tbody ui-widget-content notop nodata italic">${option.nodata.label}</td>`);
+	}
+	// SUPPORT FOR LTR AND RTL LANGS
+	var dir=$("html").attr("dir");
+	var rtl={
+		"ltr":{"ui-corner-tl":"ui-corner-tl","ui-corner-tr":"ui-corner-tr","ui-corner-bl":"ui-corner-bl","ui-corner-br":"ui-corner-br"},
+		"rtl":{"ui-corner-tl":"ui-corner-tr","ui-corner-tr":"ui-corner-tl","ui-corner-bl":"ui-corner-br","ui-corner-br":"ui-corner-bl"}
+	};
+	$("tr:first td:first",table).addClass(rtl[dir]["ui-corner-tl"]);
+	$("tr:first td:last",table).addClass(rtl[dir]["ui-corner-tr"]);
+	$("tr:last td:first",table).addClass(rtl[dir]["ui-corner-bl"]);
+	$("tr:last td:last",table).addClass(rtl[dir]["ui-corner-br"]);
 	return table;
 };
 
 saltos.__get_filtered_field_helper=function(field,size) {
-	if(typeof size!="undefined") {
+	if(size!="") {
 		var len=strlen(field);
-		var size2=intval(size);
-		if(len>size2) {
-			var field2=htmlentities(substr(field,0,size2))+"...";
-			field=`<span data-toggle="tooltip" title="${field}">${field2}</span>`;
+		size=intval(size);
+		if(len>size) {
+			var field2=str_replace('"',"'",field);
+			var field3=htmlentities(substr(field,0,size))+"...";
+			field=`<span title="${field2}">${field3}</span>`;
 		} else {
 			field=htmlentities(field);
 		}
+	} else {
+		field=htmlentities(field);
 	}
 	return field;
 };
@@ -439,6 +1050,8 @@ saltos.get_filtered_field=function(field,size) {
 		temp[2]=saltos.__get_filtered_field_helper(temp[2],size);
 		field=$(`<a href="javascript:void(0)">${temp[2]}</a>`)
 		$(field).on("click",function() { eval(temp[1]); });
+	} else {
+		field=saltos.__get_filtered_field_helper(field,size)
 	}
 	return field;
 };
@@ -446,20 +1059,21 @@ saltos.get_filtered_field=function(field,size) {
 saltos.make_list=function(option) {
 	var obj=$("<div></div>");
 	if(isset(option.quick)) {
-		var table=saltos.form_table("100%");
+		var table=saltos.form_table(option.width);
 		$(obj).append(table);
 		$(table).append(saltos.form_by_row_3(option,"quick","row"));
 		$(table).append(saltos.form_brtag_2());
 	}
 	$(obj).append(saltos.make_table(option));
 	if(isset(option.pager)) {
-		var table=saltos.form_table("100%");
+		var table=saltos.form_table(option.width);
 		$(obj).append(table);
 		$(table).append(saltos.form_brtag_2());
 		$(table).append(saltos.form_by_row_3(option,"pager","row"));
 	}
 	var array=[{
 		title:option.title,
+		icon:option.icon,
 		obj:obj,
 	}];
 	for(var key in option) {
@@ -474,6 +1088,7 @@ saltos.make_list=function(option) {
 saltos.make_form=function(option) {
 	var array=[];
 	var title="";
+	var icon="";
 	var obj=$("<div></div>");
 	for(var key in option) {
 		if(saltos.limpiar_key(key)=="hiddens") {
@@ -486,10 +1101,11 @@ saltos.make_form=function(option) {
 			if(saltos.limpiar_key(key)=="fields") {
 				if(isset(option[key].title) && option[key].title!="") {
 					if(title!="") {
-						array.push({ "title":title, "obj":obj });
+						array.push({ "title":title, "icon":icon, "obj":obj });
 						obj=$("<div></div>");
 					}
 					title=option[key].title;
+					icon=option[key].icon;
 				} else {
 					$(obj).append(saltos.form_brtag_1());
 				}
@@ -528,10 +1144,11 @@ saltos.make_form=function(option) {
 													if(saltos.limpiar_key(key6)=="fieldset") {
 														if(isset(node1[key6].title) && node1[key6].title!="") {
 															if(title!="") {
-																array.push({ "title":title, "obj":obj });
+																array.push({ "title":title, "icon":icon, "obj":obj });
 																obj=$("<div></div>");
 															}
 															title=node1[key6].title;
+															icon=node1[key6].icon;
 														} else {
 															$(obj).append(saltos.form_brtag_1());
 														}
@@ -559,10 +1176,11 @@ saltos.make_form=function(option) {
 											if(saltos.limpiar_key(key6)=="fieldset") {
 												if(isset(node1[key6].title) && node1[key6].title!="") {
 													if(title!="") {
-														array.push({ "title":title, "obj":obj });
+														array.push({ "title":title, "icon":icon, "obj":obj });
 														obj=$("<div></div>");
 													}
 													title=node1[key6].title;
+													icon=node1[key6].icon;
 												} else {
 													$(obj).append(saltos.form_brtag_1());
 												}
@@ -593,7 +1211,7 @@ saltos.make_form=function(option) {
 	}
 	// ULTIMO CASO
 	if(title!="") {
-		array.push({ "title":title, "obj":obj });
+		array.push({ "title":title, "icon":icon, "obj":obj });
 	}
 	return array;
 };
@@ -742,8 +1360,7 @@ saltos.form_table=function(arg) {
 }
 
 saltos.form_field=function(field) {
-	// CHECK PARAMS
-	var params=[
+	saltos.check_params(field,[
 		"name","value",
 		"onchange","onkey","onclick",
 		"class","class2","class3",
@@ -754,8 +1371,7 @@ saltos.form_field=function(field) {
 		"label","label2","tip","icon",
 		"link","tip2",
 		"autocomplete","querycomplete","filtercomplete","oncomplete",
-	];
-	for(var key in params) if(!isset(field[params[key]])) field[params[key]]="";
+	]);
 	// CONTINUE
 	var obj=[];
 	switch(field.type) {
@@ -1131,20 +1747,16 @@ saltos.add_header=function(menu) {
 			}
 		}
 	}
-	// ARREGLAR FALLO RIGHT
-	$("#navbar-right button").each(function() {
-		$(this).parent().prepend(this);
-	});
 };
 
 saltos.remove_header_title=function() {
-	$("#navbar-center *").remove();
+	$(".tabs2 li.center").remove();
 };
 
 saltos.add_header_title=function(info) {
 	saltos.add_button_in_navbar({
 		"label":document.title,
-		"onclick":"opencontent('?page=about')",
+		"onclick":"saltos.opencontent('?page=about')",
 		"icon":info.icon,
 		"tip":document.title,
 		"class":"nowrap",
@@ -1162,15 +1774,10 @@ saltos.add_menu=function(menu) {
 		if(saltos.limpiar_key(key)=="group") {
 			var visible=saltos.getIntCookie("saltos_ui_menu_"+menu[key].name)
 			if(visible) {
-				menu[key].icon="fa fa-arrow-alt-circle-down";
-				menu[key].show="show";
+				menu[key].active=0;
 			} else {
-				menu[key].icon="fa fa-arrow-alt-circle-right";
-				menu[key].show="";
+				menu[key].active=1;
 			}
-			menu[key].onclick=function() {
-				saltos.setIntCookie("saltos_ui_menu_"+this.name,(saltos.getIntCookie("saltos_ui_menu_"+this.name)+1)%2);
-			};
 			saltos.add_group_in_menu(menu[key]);
 			for(var key2 in menu[key]) {
 				if(saltos.limpiar_key(key2)=="option") {
@@ -1179,19 +1786,13 @@ saltos.add_menu=function(menu) {
 			}
 		}
 	}
-	$("#menu .collapse").on("show.bs.collapse",function() {
-		$(this).prev().find("span").attr("class","fa fa-arrow-alt-circle-down");
-	});
-	$("#menu .collapse").on("hide.bs.collapse",function() {
-		$(this).prev().find("span").attr("class","fa fa-arrow-alt-circle-right");
-	});
+
+
+
 };
 
 saltos.make_alert=function(option) {
-	// CHECK PARAMS
-	var params=["type","data"];
-	for(var key in params) if(!isset(option[params[key]])) option[params[key]]="";
-	// CONTINUE
+	saltos.check_params(option,["type","data"]);
 	var alert=$(`<div class="alert alert-${option.type} m-0" role="alert">${option.data}</div>`);
 	return alert;
 };
@@ -1223,7 +1824,7 @@ saltos.history_replace_hash=function(hash) {
 saltos.opencontent_hash=function() {
 	var hash=saltos.current_hash();
 	if(hash!="") hash="?"+hash;
-	opencontent(hash);
+	saltos.opencontent(hash);
 };
 
 saltos.init_history=function() {
@@ -1305,7 +1906,6 @@ saltos.add_css_file=function(arg) {
 }
 
 /* LOAD AND SAVE FUNCTIONS */
-
 saltos.opencontent=function(url,callback) {
 	$(".tooltip").remove();
 	$(window).scrollTop(0);
@@ -1343,8 +1943,8 @@ saltos.opencontent=function(url,callback) {
 		saltos.add_header_title(saltos.info);
 		var temp=saltos.make_list(saltos.list);
 		var tabs=saltos.make_tabs(temp);
-		$("#data > *").remove();
-		$("#data").append(tabs);
+		$(".ui-layout-center > *").remove();
+		$(".ui-layout-center").append(tabs);
 		saltos.add_js(saltos.list);
 		saltos.add_css(saltos.list);
 	}
@@ -1355,31 +1955,57 @@ saltos.opencontent=function(url,callback) {
 		saltos.add_header_title(saltos.info);
 		var temp=saltos.make_form(saltos.form);
 		var tabs=saltos.make_tabs(temp);
-		$("#data > *").remove();
-		$("#data").append(tabs);
+		$(".ui-layout-center > *").remove();
+		$(".ui-layout-center").append(tabs);
 		saltos.add_js(saltos.form);
 		saltos.add_css(saltos.form);
 	}
 };
 
-/* OLD SALTOS FUNCTIONS */
+/* FOR TOOLTIPS */
+saltos.make_tooltips=function() {
+	$(document).tooltip({
+		items:"[title][title!=''],[title2][title2!='']",
+		show:false,
+		hide:false,
+		tooltipClass:"ui-state-highlight",
+		//~ track:true,
+		open:function(event,ui) {
+			ui.tooltip.css("max-width",$(window).width()/2);
+			var color=get_colors("ui-state-highlight","border-bottom-color");
+			ui.tooltip.css("border-color",color);
+		},
+		content:function() {
+			// GET THE TITLE VALUE
+			var title=trim($(this).attr("title"));
+			if(title) {
+				// CHECK IF TITLE IS THE SAME THAT THE OBJECT TEXT
+				var text1=trim($(this).text());
+				var text2=trim($(":not(:visible)",this).text());
+				var text3=trim(str_replace(text2,"",text1));
+				if(title==text3) title="";
+				// FIX SOME ISSUES
+				if(strpos(title,"<")!==false || strpos(title,">")!==false) {
+					title=str_replace(["<",">"],["&lt;","&gt;"],title);
+				}
+				// MOVE DATA FROM TITLE TO TITLE2
+				$(this).removeAttr("title");
+				$(this).attr("title2",title);
+			} else {
+				title=$(this).attr("title2");
+			}
+			// CHECK IF OBJECT IS DISABLED
+			if($(this).hasClass("ui-state-disabled")) {
+				title="";
+			}
+			// CREATE THE TOOLTIP
+			return title;
+		}
+	});
+};
 
-//~ function alerta(msg,callback) {
-	//~ if(typeof callback=='undefined') callback=function() {};
-	//~ dialog(lang_alert(),msg,[{
-		//~ label:lang_buttoncontinue(),
-		//~ callback:function() {
-			//~ setTimeout(function() {
-				//~ callback();
-			//~ },100);
-		//~ },
-	//~ }]);
-//~ }
-
-/* TO PREVENT ERRORS WITH OTHER USER INTERFACES */
-$.datepicker={
-	regional:function() {},
-	setDefaults:function() {},
+saltos.hide_tooltips=function() {
+	$(".ui-tooltip").remove();
 };
 
 /* FOR ZOOM FEATURE */
@@ -1403,9 +2029,70 @@ saltos.zoom=function(arg) {
 	$("html").css("font-size",saltos.zoom_valors[saltos.zoom_index]+"%");
 };
 
+/* FOR COMPATIBILITY */
+saltos.make_compat=function() {
+	// GENERAL CASES
+	var fns=["floatval2(obj)","intval2(obj)","_format_number(obj,punto)","check_required()","intelligence_cut(txt,max)","dateval(value)","timeval(value)","__days_of_a_month(year,month)","check_datetime(orig,comp,dest)","check_date(orig,comp,dest)","check_time(orig,comp,dest)","get_keycode(event)","is_enterkey(event)","is_escapekey(event)","is_disabled(obj)","addlog(msg)","security_iframe(obj)","make_dialog()","dialog(title,message,buttons)","make_notice()","hide_popupnotice()","notice(title,message,arg1,arg2,arg3)","__sync_cookies_helper()","sync_cookies(cmd)","getCookie(name)","getIntCookie(name)","getBoolCookie(name)","setCookie(name,value)","setIntCookie(name,value)","setBoolCookie(name,value)","loadingcontent(message)","unloadingcontent()","isloadingcontent()","hash_encode(url)","hash_decode(hash)","current_href()","current_hash()","history_pushState(url)","history_replaceState(url)","init_history()","addcontent(url)","submitcontent(form,callback)","opencontent(url,callback)","errorcontent(code,text)","loadcontent(xml)","html2str(html)","str2html(str)","fix4html(str)","getstylesheet(html,cad1,cad2)","update_style(html,html2)","updatecontent(html)","make_menu(obj)","toggle_menu()","make_tabs(obj)","hide_popupdialog()","make_tabs2(obj)","make_extras(obj)","make_draganddrop(obj)","make_hovers()","make_ckeditors(obj)","unmake_ckeditors(obj)","make_tooltips()","hide_tooltips()","make_focus()","unmake_focus()","make_tables(obj)","make_contextmenu()","hide_contextmenu()","get_colors(clase,param)","rgb2hex(color)","make_shortcuts()","make_abort()","make_back2top()","make_resizable()"];
+	for(var i in fns) {
+		var name=strtok(fns[i],"(");
+		var args=strtok(")");
+		if(!args) args="";
+		if(!isset(saltos[name])) {
+			console.log(`unimplemented function ${name}`);
+			saltos.add_js_code(`
+				saltos.${name}=function(${args}) {
+					console.log("call to unimplemented function saltos.${name}");
+				}
+			`);
+		}
+		if(isset(window[name])) {
+			console.log(`overwriting an implemented function ${name}`);
+		}
+		saltos.add_js_code(`
+			function ${name}(${args}) {
+				console.log("call to deprecated function ${name}");
+				return saltos.${name}(${args});
+			}
+		`);
+	}
+	// SPECIAL CASES WHERE OBJ MUST TO BE TRANSLATED TO CLASS
+	var fns=["get_class_key_val(obj,param)","get_class_id(obj)","get_class_fn(obj)","get_class_hash(obj)"];
+	for(var i in fns) {
+		var name=strtok(fns[i],"(");
+		var args=strtok(")");
+		var temp=str_replace("obj",'$(obj).attr("class")',args);
+		saltos.add_js_code(`
+			function ${name}(${args}) {
+				console.log("call to deprecated function ${name}");
+				return saltos.${name}(${temp});
+			}
+		`);
+	}
+	// ISLOGIN CASE THAT NOW IS A VARIABLE AND NOT A FUNCTION
+	var name="saltos_islogin";
+	var args="obj";
+	saltos.add_js_code(`
+		function ${name}(${args}) {
+			console.log("call to deprecated function ${name}");
+			return saltos.${name};
+		}
+	`);
+	// COPY_VALUE CASE WHERE SWAP THE ARGS
+	var name="copy_value";
+	var args="dest,src";
+	var temp="src,dest";
+	saltos.add_js_code(`
+		function ${name}(${args}) {
+			console.log("call to deprecated function ${name}");
+			return saltos.${name}(${temp});
+		}
+	`);
+};
+
 /* MAIN CODE */
 (function($) {
 	saltos.init_error();
+	saltos.make_compat();
 	saltos.islogin=$.ajax({url:"index.php?action=islogin",async:false}).responseJSON.islogin;
 	if(saltos.islogin) {
 		// CARGAR DATOS
@@ -1413,22 +2100,15 @@ saltos.zoom=function(arg) {
 		saltos.info=$.ajax({url:"index.php?action=info",async:false}).responseJSON.info;
 		saltos.menu=$.ajax({url:"index.php?action=menu",async:false}).responseJSON.menu;
 
-		// ZOOM AL 80%
-		saltos.zoom(80);
-
 		// MONTAR PANTALLA
 		document.title=`${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-		saltos.add_layout();
+		saltos.add_layout(saltos.info);
 		saltos.add_header(saltos.menu);
 		saltos.add_header_title(saltos.info);
 		saltos.add_menu(saltos.menu);
 
 		// TOOLTIPS
-		$("body").tooltip({
-			"selector":"[data-toggle='tooltip']",
-			"container":"body",
-			"trigger":"hover",
-		});
+		saltos.make_tooltips();
 
 		// CARGAR PRIMER CONTENIDO
 		saltos.init_history();
@@ -1438,7 +2118,7 @@ saltos.zoom=function(arg) {
 
 		// MONTAR PANTALLA
 		//~ document.title=`${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-		//~ saltos.add_layout();
+		//~ saltos.add_layout(saltos.info);
 		//~ saltos.add_header(saltos.menu);
 		//~ saltos.add_header_title(saltos.info);
 		//~ saltos.add_menu(saltos.menu);
@@ -1447,481 +2127,3 @@ saltos.zoom=function(arg) {
 		//~ saltos.init_history();
 	}
 }(jQuery));
-
-/* OLD DEFAULT FUNCTIONS */
-function floatval2(obj) {
-	_format_number(obj,0);
-}
-
-function intval2(obj) {
-	_format_number(obj,1);
-}
-
-function _format_number(obj,punto) {
-	var texto=obj.value;
-	var texto2="";
-	var numero=0;
-	for(var i=0,len=texto.length;i<len;i++) {
-		var letra=substr(texto,i,1);
-		if(letra>="0" && letra<="9") {
-			texto2+=letra;
-			numero=1;
-		} else if((letra=="." || letra==",") && !punto) {
-			if(!numero) texto2+="0";
-			texto2+=".";
-			punto=1;
-		} else if(letra=="-" && texto2.length==0) {
-			texto2+="-";
-		}
-	}
-	if(texto!=texto2) obj.value=texto2;
-}
-
-function check_required() {
-	var field=null;
-	var label="";
-	$("[isrequired=true]").each(function() {
-		// CHECK FOR VISIBILITY
-		if(substr(this.type,0,6)=="select") {
-			if(!$(this).next().is(":visible")) return;
-		} else {
-			if(!$(this).is(":visible")) return;
-		}
-		// CONTINUE
-		var valor=$(this).val();
-		var campo=this;
-		if(substr(this.type,0,6)=="select") {
-			if(valor=="0") valor="";
-			campo=$(this).next().get(0);
-		}
-		if(!valor) {
-			$(campo).addClass("ui-state-error");
-		} else {
-			$(campo).removeClass("ui-state-error");
-		}
-		if(!valor && !field) {
-			field=campo;
-			label=$(this).attr("labeled");
-		}
-	});
-	if(field) {
-		var requiredfield=lang_requiredfield();
-		alerta(requiredfield+": "+label,function() { $(field).trigger("focus"); });
-	}
-	return field==null;
-}
-
-function copy_value(dest,src) {
-	$("#"+dest).val($("#"+src).val());
-}
-
-function intelligence_cut(txt,max) {
-	var len=strlen(txt);
-	if(len>max) {
-		while(max>0 && substr(txt,max,1)!=" ") max--;
-		if(max==0) while(max<len && substr(txt,max,1)!=" ") max++;
-		if(max>0) if(in_array(substr(txt,max-1,1),[",",".","-","("])) max--;
-		var preview=(max==len)?txt:substr(txt,0,max)+"...";
-	} else {
-		var preview=txt;
-	}
-	return preview;
-}
-
-function dateval(value) {
-	value=str_replace("-"," ",value);
-	value=str_replace(":"," ",value);
-	value=str_replace(","," ",value);
-	value=str_replace("."," ",value);
-	value=str_replace("/"," ",value);
-	var temp="";
-	while(temp!=(value=str_replace("  "," ",value))) temp=value;
-	temp=explode(" ",value);
-	for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
-	for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
-	if(temp[2]>1900) {
-		temp[2]=min(9999,max(0,temp[2]));
-		temp[1]=min(12,max(0,temp[1]));
-		temp[0]=min(__days_of_a_month(temp[2],temp[1]),max(0,temp[0]));
-		value=sprintf("%04d-%02d-%02d",temp[2],temp[1],temp[0]);
-	} else {
-		temp[0]=min(9999,max(0,temp[0]));
-		temp[1]=min(12,max(0,temp[1]));
-		temp[2]=min(__days_of_a_month(temp[0],temp[1]),max(0,temp[2]));
-		value=sprintf("%04d-%02d-%02d",temp[0],temp[1],temp[2]);
-	}
-	return value;
-}
-
-function timeval(value) {
-	value=str_replace("-"," ",value);
-	value=str_replace(":"," ",value);
-	value=str_replace(","," ",value);
-	value=str_replace("."," ",value);
-	value=str_replace("/"," ",value);
-	var temp="";
-	while(temp!=(value=str_replace("  "," ",value))) temp=value;
-	temp=explode(" ",value);
-	for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
-	for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
-	temp[0]=min(24,max(0,temp[0]));
-	temp[1]=min(59,max(0,temp[1]));
-	temp[2]=min(59,max(0,temp[2]));
-	value=sprintf("%02d:%02d:%02d",temp[0],temp[1],temp[2]);
-	return value;
-}
-
-function __days_of_a_month(year,month) {
-	return date("t",strtotime(sprintf("%04d-%02d-%02d",year,month,1)));
-}
-
-function check_datetime(orig,comp,dest) {
-	var orig_obj_date=("input[name$="+orig+"_date]");
-	var orig_obj_time=("input[name$="+orig+"_time]");
-	var dest_obj_date=("input[name$="+dest+"_date]");
-	var dest_obj_time=("input[name$="+dest+"_time]");
-	if($(orig_obj_date).val()=="") return;
-	if($(orig_obj_time).val()=="") return;
-	if($(dest_obj_date).val()=="") return;
-	if($(dest_obj_time).val()=="") return;
-	var orig_date=explode("-",dateval($(orig_obj_date).val()));
-	var orig_time=explode(":",timeval($(orig_obj_time).val()));
-	var dest_date=explode("-",dateval($(dest_obj_date).val()));
-	var dest_time=explode(":",timeval($(dest_obj_time).val()));
-	var orig_unix=mktime(orig_time[0],orig_time[1],orig_time[2],orig_date[1],orig_date[2],orig_date[0]);
-	var dest_unix=mktime(dest_time[0],dest_time[1],dest_time[2],dest_date[1],dest_date[2],dest_date[0]);
-	var dest_unix2=dest_unix;
-	if(comp=="le" && dest_unix<orig_unix) dest_unix2=orig_unix;
-	if(comp=="ge" && dest_unix>orig_unix) dest_unix2=orig_unix;
-	if(dest_unix!=dest_unix2) {
-		$(dest_obj_date).val(implode("-",orig_date));
-		$(dest_obj_time).val(implode(":",orig_time));
-		$(dest_obj_time).trigger("change");
-	}
-}
-
-function check_date(orig,comp,dest) {
-	var orig_obj_date=("input[name$="+orig+"]");
-	var dest_obj_date=("input[name$="+dest+"]");
-	if($(orig_obj_date).val()=="") return;
-	if($(dest_obj_date).val()=="") return;
-	var orig_date=explode("-",dateval($(orig_obj_date).val()));
-	var dest_date=explode("-",dateval($(dest_obj_date).val()));
-	var orig_unix=mktime(12,0,0,orig_date[1],orig_date[2],orig_date[0]);
-	var dest_unix=mktime(12,0,0,dest_date[1],dest_date[2],dest_date[0]);
-	var dest_unix2=dest_unix;
-	if(comp=="le" && dest_unix<orig_unix) dest_unix2=orig_unix;
-	if(comp=="ge" && dest_unix>orig_unix) dest_unix2=orig_unix;
-	if(dest_unix!=dest_unix2) {
-		$(dest_obj_date).val(implode("-",orig_date));
-		$(dest_obj_date).trigger("change");
-	}
-}
-
-function check_time(orig,comp,dest) {
-	var orig_obj_time=("input[name$="+orig+"]");
-	var dest_obj_time=("input[name$="+dest+"]");
-	if($(orig_obj_time).val()=="") return;
-	if($(dest_obj_time).val()=="") return;
-	var orig_time=explode(":",timeval($(orig_obj_time).val()));
-	var dest_time=explode(":",timeval($(dest_obj_time).val()));
-	var orig_unix=mktime(orig_time[0],orig_time[1],orig_time[2],1,1,1970);
-	var dest_unix=mktime(dest_time[0],dest_time[1],dest_time[2],1,1,1970);
-	var dest_unix2=dest_unix;
-	if(comp=="le" && dest_unix<orig_unix) dest_unix2=orig_unix;
-	if(comp=="ge" && dest_unix>orig_unix) dest_unix2=orig_unix;
-	if(dest_unix!=dest_unix2) {
-		$(dest_obj_time).val(implode(":",orig_time));
-		$(dest_obj_time).trigger("change");
-	}
-}
-
-function get_keycode(event) {
-	var keycode=0;
-	if(event.keyCode) keycode=event.keyCode;
-	else if(event.which) keycode=event.which;
-	else keycode=event.charCode;
-	return keycode;
-}
-
-function is_enterkey(event) {
-	return get_keycode(event)==13;
-}
-
-function is_escapekey(event) {
-	return get_keycode(event)==27;
-}
-
-function is_disabled(obj) {
-	return $(obj).hasClass("ui-state-disabled");
-}
-
-function addlog(msg) {
-
-}
-
-function security_iframe(obj) {
-
-}
-
-function make_dialog() {
-
-}
-
-function dialog(title,message,buttons) {
-	bootbox.dialog({
-		title:title,
-		message:message,
-		buttons:buttons,
-	});
-}
-
-function make_notice() {
-
-}
-
-function hide_popupnotice() {
-
-}
-
-function notice(title,message,arg1,arg2,arg3) {
-
-}
-
-function __sync_cookies_helper() {
-	// UNUSED
-}
-
-function sync_cookies(cmd) {
-	saltos.sync_cookies(cmd);
-}
-
-function getCookie(name) {
-	return saltos.getCookie(name);
-}
-
-function getIntCookie(name) {
-	return saltos.getIntCookie(name);
-}
-
-function getBoolCookie(name) {
-	return saltos.getBoolCookie(name);
-}
-
-function setCookie(name,value) {
-	saltos.setCookie(name,value);
-}
-
-function setIntCookie(name,value) {
-	saltos.setIntCookie(name,value);
-}
-
-function setBoolCookie(name,value) {
-	saltos.setBoolCookie(name,value);
-}
-
-function loadingcontent(message) {
-
-}
-
-function unloadingcontent() {
-
-}
-
-function isloadingcontent() {
-
-}
-
-function hash_encode(url) {
-
-}
-
-function hash_decode(hash) {
-
-}
-
-function current_href() {
-
-}
-
-function current_hash() {
-
-}
-
-function history_pushState(url) {
-
-}
-
-function history_replaceState(url) {
-
-}
-
-function init_history() {
-
-}
-
-function addcontent(url) {
-
-}
-
-function submitcontent(form,callback) {
-
-}
-
-function opencontent(url,callback) {
-
-};
-
-function errorcontent(code,text) {
-
-}
-
-function loadcontent(xml) {
-
-}
-
-function html2str(html) {
-
-}
-
-function str2html(str) {
-
-}
-
-function fix4html(str) {
-
-}
-
-function getstylesheet(html,cad1,cad2) {
-
-}
-
-function update_style(html,html2) {
-
-}
-
-function updatecontent(html) {
-
-}
-
-function make_menu(obj) {
-
-}
-
-function toggle_menu() {
-	if($("#menu").is(":visible")) {
-		$("#menu").hide();
-		$("#data").removeClass("col-lg-10");
-		$("#data").addClass("col-lg-12");
-		saltos.setIntCookie("saltos_ui_menu_closed",1);
-	} else {
-		$("#data").removeClass("col-lg-12");
-		$("#data").addClass("col-lg-10");
-		$("#menu").show();
-		saltos.setIntCookie("saltos_ui_menu_closed",0);
-	}
-};
-
-function make_tabs(obj) {
-
-}
-
-function hide_popupdialog() {
-
-}
-
-function make_tabs2(obj) {
-
-}
-
-function make_extras(obj) {
-
-}
-
-function make_draganddrop(obj) {
-
-}
-
-function get_class_key_val(obj,param) {
-	return saltos.get_class_key_val($(obj).attr("class"),param);
-}
-
-function get_class_id(obj) {
-	return saltos.get_class_id($(obj).attr("class"));
-}
-
-function get_class_fn(obj) {
-	return saltos.get_class_fn($(obj).attr("class"));
-}
-
-function get_class_hash(obj) {
-	return saltos.get_class_hash($(obj).attr("class"));
-}
-
-function make_hovers() {
-
-}
-
-function make_ckeditors(obj) {
-
-}
-
-function unmake_ckeditors(obj) {
-
-}
-
-function make_tooltips() {
-
-}
-
-function hide_tooltips() {
-
-}
-
-function make_focus() {
-
-}
-
-function unmake_focus() {
-
-}
-
-function make_tables(obj) {
-
-}
-
-function make_contextmenu() {
-
-}
-
-function hide_contextmenu() {
-
-}
-
-function get_colors(clase,param) {
-	return saltos.get_colors(clase,param);
-}
-
-function rgb2hex(color) {
-	return saltos.rgb2hex(color);
-}
-
-function make_shortcuts() {
-
-}
-
-function make_abort() {
-
-}
-
-function saltos_islogin(obj) {
-	return saltos.islogin;
-}
-
-function make_back2top() {
-
-}
-
-function make_resizable(obj) {
-
-}

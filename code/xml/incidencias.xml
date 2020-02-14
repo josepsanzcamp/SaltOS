@@ -62,6 +62,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<order>proyecto2</order>
 			</field>
 			<field>
+				<name>categoria</name>
+				<label lang="true">categoria</label>
+				<sort>true</sort>
+				<size>20</size>
+				<order>categoria2</order>
+			</field>
+			<field>
 				<name>nombre</name>
 				<label lang="true">incidencia</label>
 				<sort>true</sort>
@@ -213,11 +220,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</row>
 				<row>
 					<field>
+						<name>id_categoria</name>
+						<label lang="true">categoria</label>
+						<type>select</type>
+						<width>240px</width>
+						<query global="page" eval="true">make_extra_query_with_perms("categorias","tbl_categorias","nombre","SELECT id FROM tbl_categorias WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '-1' value,'".LANG_ESCAPE("sincategoria")."' label,-1 pos UNION SELECT '' value,'".LANG_ESCAPE("allcategorias")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+						<value global="id_categoria" eval="true">$id_categoria=getParam("id_categoria")</value>
+					</field>
+					<field>
+						<type>separator</type>
+					</field>
+					<field>
 						<name>filtro</name>
 						<label lang="true">filtro</label>
 						<type>text</type>
 						<width>240px</width>
 						<value global="filtro" eval="true">$filtro=getParam("filtro")</value>
+						<colspan>3</colspan>
 					</field>
 				</row>
 			</fields>
@@ -247,7 +266,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<class>nowrap</class>
 					<class2>info</class2>
 				</field>
-				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_cliente'=>'','id_estado'=>'', 'id_proyecto'=>'','id_prioridad'=>'','filtro'=>'','id_asignado'=>''))">
+				<field ifeval="!ismobile() &amp;&amp; check_filter(array('id_usuario'=>'','fecha1'=>'','fecha2'=>'','id_cliente'=>'','id_estado'=>'', 'id_categoria'=>'', 'id_proyecto'=>'','id_prioridad'=>'','filtro'=>'','id_asignado'=>''))">
 					<type>label</type>
 					<label lang="true">usedfilter</label>
 					<class>nowrap</class>
@@ -272,7 +291,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</row>
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_estado,id_usuario,fecha1,fecha2,filtro,id_prioridad,id_proyecto,id_asignado" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,estado,action_id,action_title,action_view,action_edit,action_delete,id_usuario,id_estado,id_cliente,id_proyecto,id_grupo,activo,prioridad,id_prioridad,asignadoa FROM (
+		<query global="page,id_cliente,id_estado,id_categoria,id_usuario,fecha1,fecha2,filtro,id_prioridad,id_proyecto,id_asignado" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,estado,categoria,action_id,action_title,action_view,action_edit,action_delete,id_usuario,id_estado,id_categoria,id_cliente,id_proyecto,id_grupo,activo,prioridad,id_prioridad,asignadoa FROM (
 		SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 			".make_extra_query_with_login("d.")." usuario,
 			e.datetime datetime,
@@ -283,28 +302,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			a.nombre nombre2,
 			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
 			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
-			CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c.nombre END estado,
+			CASE a.id_estado WHEN '0' THEN '".LANG_ESCAPE("sinestado")."' ELSE c_nombre END estado,
+			CASE a.id_categoria WHEN '0' THEN '".LANG_ESCAPE("sincategoria")."' ELSE g_nombre END categoria,
 			a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
 			CASE ((".check_sql($page,"view").") OR FIND_IN_SET('".current_user()."',ids_asignados) OR FIND_IN_SET('".current_user()."',ids_implicados)) WHEN 1 THEN 'true' ELSE 'false' END action_view,
 			CASE ((".check_sql($page,"edit").") OR FIND_IN_SET('".current_user()."',ids_asignados) OR FIND_IN_SET('".current_user()."',ids_implicados)) WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
-			e.id_usuario id_usuario,a.id_estado id_estado,a.id_cliente id_cliente,id_proyecto,d.id_grupo id_grupo,c.activo activo,
+			e.id_usuario id_usuario,a.id_estado id_estado,a.id_categoria id_categoria,a.id_cliente id_cliente,id_proyecto,d.id_grupo id_grupo,c_activo activo,
 			CASE id_prioridad WHEN '0' THEN '".LANG_ESCAPE("sinprioridad")."' ELSE f_nombre END prioridad,
 			a.id_prioridad,a.ids_asignados,a.ids_implicados,
 			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_asignados)) asignadoa
-		FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre FROM tbl_incidencias a2
+		FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre,c.nombre c_nombre,c.activo c_activo,g.nombre g_nombre FROM tbl_incidencias a2
 		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
 		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto
-		LEFT JOIN tbl_prioridades f ON f.id=a2.id_prioridad) a
+		LEFT JOIN tbl_prioridades f ON f.id=a2.id_prioridad
+		LEFT JOIN tbl_estados c ON a2.id_estado=c.id
+		LEFT JOIN tbl_categorias g ON a2.id_categoria=g.id
+		) a
 		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
-		LEFT JOIN tbl_estados c ON a.id_estado=c.id
 		) z
 		WHERE 1=1
 		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 		AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")."
 		AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")."
 		AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0'))
+		AND (id_categoria='$id_categoria' OR ''='$id_categoria')
 		AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")."
 		AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")."
 		AND ".($fecha2?"(DATE('$fecha2')>=DATE(datetime))":"(1=1)")."
@@ -381,8 +404,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<link>openapp('clientes',-abs(ID))</link>
 							<icon eval="true">ICON("view")</icon>
 						</field>
-					</row>
-					<row>
 						<field>
 							<name>id_proyecto</name>
 							<label lang="true">proyecto</label>
@@ -393,6 +414,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<link>openapp('proyectos',-abs(ID))</link>
 							<icon eval="true">ICON("view")</icon>
 						</field>
+					</row>
+					<row>
 						<field>
 							<name>id_prioridad</name>
 							<label lang="true">prioridad</label>
@@ -402,16 +425,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 						</field>
-					</row>
-					<row>
-						<field>
-							<name>nombre</name>
-							<label lang="true">nombre</label>
-							<type>text</type>
-							<width>240px</width>
-							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
-							<required>true</required>
-							</field>
 						<field>
 							<name>id_estado</name>
 							<label lang="true">estado</label>
@@ -424,7 +437,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
+							<name>id_categoria</name>
+							<label lang="true">categoria</label>
+							<type>select</type>
+							<width>240px</width>
+							<query global="page" eval="true">make_extra_query_with_perms("categorias","tbl_categorias","nombre","SELECT id FROM tbl_categorias WHERE id_aplicacion='".page2id($page)."'",true)." UNION SELECT '0' value,'".LANG_ESCAPE("sincategoria")."' label,-1 pos ORDER BY pos ASC,label ASC,value ASC"</query>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+						</field>
+					</row>
+					<row>
+						<field>
 							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>nombre</name>
+							<label lang="true">nombre</label>
+							<type>text</type>
+							<width>240px</width>
+							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
+							<required>true</required>
 						</field>
 					</row>
 					<row>
@@ -469,7 +502,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>multiselect</type>
 							<width>600px</width>
 							<height>120px</height>
-							<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
+							<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1
+								AND ".(CONFIG("filtro_grupo_usuarios_implicados_incidencias")!=""?"(
+									id_grupo=".CONFIG("filtro_grupo_usuarios_implicados_incidencias")."
+									OR
+									id IN (SELECT id_usuario FROM tbl_usuarios_g WHERE id_grupo=".CONFIG("filtro_grupo_usuarios_implicados_incidencias").")
+								)":"1=1"))." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
 							<colspan>6</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>
@@ -488,7 +526,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<type>multiselect</type>
 							<width>600px</width>
 							<height>120px</height>
-							<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1")." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
+							<query eval="true">make_extra_query_with_perms("usuarios","tbl_usuarios",array(make_extra_query_with_login(),"id_aplicacion,id_registro,login"),"SELECT id FROM tbl_usuarios WHERE activo=1
+								AND ".(CONFIG("filtro_grupo_usuarios_asignados_incidencias")!=""?"(
+									id_grupo=".CONFIG("filtro_grupo_usuarios_asignados_incidencias")."
+									OR
+									id IN (SELECT id_usuario FROM tbl_usuarios_g WHERE id_grupo=".CONFIG("filtro_grupo_usuarios_asignados_incidencias").")
+								)":"1=1"))." /*MYSQL HAVING label!='' */ ORDER BY label ASC,value ASC"</query>
 							<colspan>6</colspan>
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<class>tbody</class>

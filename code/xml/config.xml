@@ -84,7 +84,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<action>list</action>
 		<id>0</id>
 		<lang>es_ES</lang>
-		<engine>jqueryui</engine>
+		<engine>default</engine>
 		<style eval="true">ismobile()?"google/blue/light":"google/multi/light"</style>
 		<stylepre eval="true">ismobile()?"lib/themes/":"lib/themes/"</stylepre>
 		<stylepost eval="true">ismobile()?"/jquery.mobile/jquery.mobile.min.css":"/jquery-ui/jquery-ui.min.css"</stylepost>

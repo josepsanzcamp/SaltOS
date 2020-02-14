@@ -50,7 +50,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<logo eval="true">make_select_config("logo_left,logo_top,logo_width,logo_height,logo_file,color_line,color_text1,color_text2")</logo>
 					<correo eval="true">make_select_config("id_cuenta_support,id_cuenta_incidencias,email_async,email_support")</correo>
 					<accounting eval="true">make_select_config("accounting_currency,accounting_iva_name,accounting_iva_value,accounting_irpf_name,accounting_irpf_value")</accounting>
-					<applications_config eval="true">make_select_config("tab_objetivos_presupuesto,tab_funcional_presupuesto,tab_tecnica_presupuesto,tab_info_adicional_presupuesto,tab_tareas_presupuesto,tab_productos_presupuesto,tab_condiciones_presupuesto,df_estado_presupuestos,df_estado_agenda,df_tipo_evento_agenda,df_estado_incidencias,df_prioridad_incidencias,df_cuenta_facturas,df_formaspago_facturas,df_epigfrafes_facturas,df_cuenta_gastos,df_formaspago_gastos,df_epigfrafes_gastos")</applications_config>
+					<applications_config eval="true">make_select_config("tab_objetivos_presupuesto,tab_funcional_presupuesto,tab_tecnica_presupuesto,tab_info_adicional_presupuesto,tab_tareas_presupuesto,tab_productos_presupuesto,tab_condiciones_presupuesto,df_estado_presupuestos,df_estado_agenda,df_tipo_evento_agenda,df_estado_incidencias,df_prioridad_incidencias,filtro_grupo_usuarios_implicados_incidencias,filtro_grupo_usuarios_asignados_incidencias,df_cuenta_facturas,df_formaspago_facturas,df_epigfrafes_facturas,df_cuenta_gastos,df_formaspago_gastos,df_epigfrafes_gastos")</applications_config>
 				</query>
 			</update>
 		</views>
@@ -1021,6 +1021,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_prioridades"</query>
 						</field>
 					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>label</type>
+							<label lang="true">filtro_grupo_usuarios_incidencias</label>
+							<class>center bold siwrap</class>
+							<colspan>4</colspan>
+						</field>
+					</row>
+					<row>
+						<field>
+							<type>separator</type>
+						</field>
+					</row>
+					<row>
+						<field>
+							<name>filtro_grupo_usuarios_implicados_incidencias</name>
+							<label lang="true">filtro_grupo_usuarios_implicados_incidencias</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_grupos"</query>
+						</field>
+						<field>
+							<name>filtro_grupo_usuarios_asignados_incidencias</name>
+							<label lang="true">filtro_grupo_usuarios_asignados_incidencias</label>
+							<width>110px</width>
+							<type>select</type>
+							<query eval="true">"SELECT '' value, '".LANG("sin_configurar")."' label UNION SELECT id value, nombre label FROM tbl_grupos"</query>
+						</field>
+					</row>
 				</fieldset>
 				<fieldset>
 					<width>600px</width>
@@ -1261,6 +1295,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_tipo_evento_agenda")</query>
 		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_estado_incidencias")</query>
 		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_prioridad_incidencias")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("filtro_grupo_usuarios_implicados_incidencias")</query>
+		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("filtro_grupo_usuarios_asignados_incidencias")</query>
 		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_cuenta_facturas")</query>
 		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_formaspago_facturas")</query>
 		<query match="applications_config" prefix="true" preeval="true" eval="true">preeval_update_config("df_epigfrafes_facturas")</query>

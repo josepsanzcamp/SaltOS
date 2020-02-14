@@ -1047,6 +1047,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<show_tab_tareas_presupuesto revised="false">Show Tasks</show_tab_tareas_presupuesto>
 		<show_tab_productos_presupuesto revised="false">Show products</show_tab_productos_presupuesto>
 		<sin_configurar revised="false">[Not configured]</sin_configurar>
+		<filtro_grupo_usuarios_incidencias>Show users of a group in the user list</filtro_grupo_usuarios_incidencias>
+		<filtro_grupo_usuarios_implicados_incidencias>Group of involved</filtro_grupo_usuarios_implicados_incidencias>
+		<filtro_grupo_usuarios_asignados_incidencias>Group of assigned</filtro_grupo_usuarios_asignados_incidencias>
 	</maincfg>
 	<about>
 		<formupdate>About SaltOS</formupdate>

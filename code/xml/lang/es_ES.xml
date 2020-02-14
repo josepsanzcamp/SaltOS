@@ -164,8 +164,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<userinsert>Creado por</userinsert>
 		<userupdate>Modificado por</userupdate>
 		<allstates>[Todos los estados]</allstates>
-		<allenabled>Todos los activos</allenabled>
-		<alldisabled>Todos los no activos</alldisabled>
+		<allenabled>[Todos los activos}</allenabled>
+		<alldisabled>[Todos los no activos}</alldisabled>
 		<lastinsert>Se ha creado un registro con el código: </lastinsert>
 		<lastupdate>Se ha modificado el registro con el código: </lastupdate>
 		<lastdelete>Se ha borrado el registro con el código: </lastdelete>
@@ -441,6 +441,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folders>Carpetas</folders>
 		<buscador>Buscador</buscador>
 		<errorlog>Logs de error</errorlog>
+		<categorias>Categorias</categorias>
 		<desc_clientes>Gestione los clientes de su empresa</desc_clientes>
 		<desc_contactos>Para acceder a los contactos de un cliente</desc_contactos>
 		<desc_incidencias>Gestione desde aquí las incidencias de sus clientes</desc_incidencias>
@@ -483,6 +484,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_importaciones>Importe datos a las principales aplicaciones desde aquí</desc_importaciones>
 		<desc_buscador>Para buscar en toda la base de datos</desc_buscador>
 		<desc_errorlog>Para ver el registro de errores de SaltOS</desc_errorlog>
+		<desc_categorias>Para ver las categorias de ciertas aplicaciones</desc_categorias>
 		<quick_home>Inicio</quick_home>
 		<quick_correo>Correo</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
@@ -525,6 +527,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_importaciones>Importaciones</quick_importaciones>
 		<quick_buscador>Buscador</quick_buscador>
 		<quick_errorlog>Errores</quick_errorlog>
+		<quick_categorias>Categorias</quick_categorias>
 		<translator>Traductor</translator>
 		<translatortip>Para hacer traducciones de textos</translatortip>
 		<corrector>Corrector</corrector>
@@ -591,6 +594,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgsendemail>Se ha enviado un correo electrónico a todos los implicados en la incidencia</msgsendemail>
 		<boolsendmail>Enviar email</boolsendmail>
 		<boolsendmailtip>Si activa esta opción, se enviará un email a todos los implicados</boolsendmailtip>
+		<categoria>Categoria</categoria>
+		<sincategoria>[Sin categoria]</sincategoria>
+		<allcategorias>[Todas las categorias]</allcategorias>
 	</incidencias>
 	<proyectos>
 		<list>Listado de proyectos</list>
@@ -1047,6 +1053,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<show_tab_tareas_presupuesto>Mostrar tareas</show_tab_tareas_presupuesto>
 		<show_tab_productos_presupuesto>Mostrar productos</show_tab_productos_presupuesto>
 		<sin_configurar>[Sin configurar]</sin_configurar>
+		<filtro_grupo_usuarios_incidencias>Mostrar usuarios de un grupo en los listados de usuarios</filtro_grupo_usuarios_incidencias>
+		<filtro_grupo_usuarios_implicados_incidencias>Grupo implicados</filtro_grupo_usuarios_implicados_incidencias>
+		<filtro_grupo_usuarios_asignados_incidencias>Grupo asignados</filtro_grupo_usuarios_asignados_incidencias>
 	</maincfg>
 	<about>
 		<formupdate>Acerca de SaltOS</formupdate>
@@ -1534,4 +1543,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate eval="true">"Modificacion del ".CONFIG("accounting_iva_name")</formupdate>
 		<defaultdata eval="true">"Datos del ".CONFIG("accounting_iva_name")</defaultdata>
 	</ivas>
+	<categorias>
+		<list>Listado de categorias</list>
+		<create>Nueva categoria</create>
+		<formview>Detalle de la categoria</formview>
+		<forminsert>Alta de una nueva categoria</forminsert>
+		<formupdate>Modificación de la categoria</formupdate>
+		<defaultdata>Datos de la categoria</defaultdata>
+	</categorias>
 </root>
