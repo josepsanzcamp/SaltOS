@@ -99,7 +99,7 @@ function make_indexing($id_aplicacion=null,$id_registro=null) {
 
 function __make_indexing_helper($tabla,$id="") {
 	static $cache=array();
-	$hash=implode(",",array($tabla,$id));
+	$hash=md5(serialize(array($tabla,$id)));
 	if(isset($cache[$hash])) return $cache[$hash];
 	static $tables=null;
 	static $types=null;

@@ -73,7 +73,7 @@ if(getParam("action")=="agenda") {
 		$fecha.=", ".$horaini;
 		if($horaini!=$horafin) $fecha.="-".$horafin;
 		if($lugar) $lugar=", ${lugar}";
-		$hash=md5(json_encode(array($id,$type,$title,$nombre,$lugar,$descripcion,$fecha)));
+		$hash=md5(serialize(array($id,$type,$title,$nombre,$lugar,$descripcion,$fecha)));
 		$msg=intelligence_cut("<b>${nombre}</b> (${fecha}${lugar}) ${descripcion}",90);
 		$urlview="opencontent(\"?page=agenda&action=form&id=-$id\")";
 		$urledit="opencontent(\"?page=agenda&action=form&id=$id\")";

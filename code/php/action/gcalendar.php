@@ -106,7 +106,7 @@ if(getParam("action")=="gcalendar") {
 			"dstop"=>$row["dstop"],
 			"id_gcalendar"=>$row["id_gcalendar"],
 			"sync_gcalendar"=>$row["sync_gcalendar"],
-			"hash"=>md5(json_encode(array($row["nombre"],$row["descripcion"],$row["lugar"],$row["dstart"],$row["dstop"])))
+			"hash"=>md5(serialize(array($row["nombre"],$row["descripcion"],$row["lugar"],$row["dstart"],$row["dstop"])))
 		);
 	}
 	db_free($result);

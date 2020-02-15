@@ -332,7 +332,7 @@ function __feeds_fetchitems($array) {
 			$pubdate=__feeds_getnode("dc:date",$item);
 			if(is_array($pubdate)) $pubdate=array_shift($pubdate);
 			if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
-			$hash=md5(json_encode(array($title,$pubdate,$description,$link)));
+			$hash=md5(serialize(array($title,$pubdate,$description,$link)));
 			if(!$pubdate) $pubdate=current_datetime();
 			if($title!="" && $link!="") $items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
 			$count++;
@@ -358,7 +358,7 @@ function __feeds_fetchitems($array) {
 			$pubdate=__feeds_getnode("pubDate",$item);
 			if(is_array($pubdate)) $pubdate=array_shift($pubdate);
 			if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
-			$hash=md5(json_encode(array($title,$pubdate,$description,$link)));
+			$hash=md5(serialize(array($title,$pubdate,$description,$link)));
 			if(!$pubdate) $pubdate=current_datetime();
 			if($title!="" && $link!="") $items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
 			$count++;
@@ -421,7 +421,7 @@ function __feeds_fetchitems($array) {
 			$pubdate=__feeds_getnode("updated",$item);
 			if(is_array($pubdate)) $pubdate=array_shift($pubdate);
 			if($pubdate) $pubdate=date("Y-m-d H:i:s",strtotime($pubdate));
-			$hash=md5(json_encode(array($title,$pubdate,$description,$link)));
+			$hash=md5(serialize(array($title,$pubdate,$description,$link)));
 			if(!$pubdate) $pubdate=current_datetime();
 			if($title!="" && $link!="") $items[]=array("title"=>$title,"link"=>$link,"description"=>$description,"pubdate"=>$pubdate,"hash"=>$hash);
 			$count++;
@@ -527,7 +527,7 @@ function __gcalendar_feed($client) {
 				"dstop"=>__gcalendar_unformat($event->getEnd()->getDateTime())
 			);
 			foreach($temp as $key=>$val) $temp[$key]=str_replace("\r","",trim($val));
-			$temp["hash"]=md5(json_encode(array($temp["title"],$temp["content"],$temp["where"],$temp["dstart"],$temp["dstop"])));
+			$temp["hash"]=md5(serialize(array($temp["title"],$temp["content"],$temp["where"],$temp["dstart"],$temp["dstop"])));
 			$result[]=$temp;
 		}
 		$pageToken=$events->getNextPageToken();

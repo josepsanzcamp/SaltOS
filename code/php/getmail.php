@@ -182,7 +182,7 @@ function __getmail_getfiles($array,$level=0) {
 			if($cname!="") {
 				$csize=__getmail_getnode("BodyLength",$array);
 				$hsize=__getmail_gethumansize($csize);
-				$chash=md5(json_encode(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
+				$chash=md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
 				$result[]=array("disp"=>$disp,"type"=>$type,"ctype"=>$ctype,"cid"=>$cid,"cname"=>$cname,"csize"=>$csize,"hsize"=>$hsize,"chash"=>$chash,"body"=>$temp);
 			}
 		}
@@ -380,7 +380,7 @@ function __getmail_getfullbody($array) {
 			if($cid!="" || $cname!="") {
 				$csize=__getmail_getnode("BodyLength",$array);
 				$hsize=__getmail_gethumansize($csize);
-				$chash=md5(json_encode(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
+				$chash=md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
 				$result[]=array("disp"=>$disp,"type"=>$type,"ctype"=>$ctype,"cid"=>$cid,"cname"=>$cname,"csize"=>$csize,"hsize"=>$hsize,"chash"=>$chash,"body"=>$temp);
 			}
 		}
@@ -434,7 +434,7 @@ function __getmail_getcid($array,$hash) {
 			if(strpos($ctype,";")!==false) $ctype=strtok($ctype,";");
 			if($cid=="" && $cname=="" && __getmail_processfile($disp,$type)) $cname=encode_bad_chars($ctype).".eml";
 			$csize=__getmail_getnode("BodyLength",$array);
-			$chash=md5(json_encode(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
+			$chash=md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))); // MD5 INSIDE AS MEMORY TRICK
 			if($chash==$hash) {
 				$hsize=__getmail_gethumansize($csize);
 				return array("disp"=>$disp,"type"=>$type,"ctype"=>$ctype,"cid"=>$cid,"cname"=>$cname,"csize"=>$csize,"hsize"=>$hsize,"chash"=>$chash,"body"=>$temp);
@@ -444,6 +444,7 @@ function __getmail_getcid($array,$hash) {
 				md5(md5($temp).md5($cid).md5($cname).md5($ctype).md5($csize)),
 				md5(serialize(array($temp,$cid,$cname,$ctype,$csize))),
 				md5(serialize(array(md5($temp),$cid,$cname,$ctype,$csize))),
+				md5(json_encode(array(md5($temp),$cid,$cname,$ctype,$csize))),
 			))) {
 				$hsize=__getmail_gethumansize($csize);
 				return array("disp"=>$disp,"type"=>$type,"ctype"=>$ctype,"cid"=>$cid,"cname"=>$cname,"csize"=>$csize,"hsize"=>$hsize,"chash"=>$chash,"body"=>$temp);
