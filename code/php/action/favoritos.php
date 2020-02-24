@@ -94,7 +94,7 @@ if(getParam("action")=="favoritos" && getParam("id")!="") {
 	die();
 }
 
-if(getParam("action")=="favoritos" && getParam("url")!="") {
+if(getParam("action")=="favoritos") {
 	require_once("php/libaction.php");
 	$url=getParam("url");
 	$scheme=parse_url($url,PHP_URL_SCHEME);

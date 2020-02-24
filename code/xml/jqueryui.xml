@@ -78,10 +78,10 @@ __JS__
 		<include>lib/fontawesome/css/solid.min.css</include>
 		<include>lib/handsontable/handsontable.full.min.css</include>
 		<include>lib/fileupload/jquery.fileupload.min.css</include>
-<!--
 		<include>lib/themes/google/multi/light/jquery-ui/jquery-ui.min.css</include>
--->
+<!--
 		<include>lib/themes/original/redmond/light/jquery-ui/jquery-ui.min.css</include>
+-->
 		<include>lib/jstree/themes/light/style.min.css</include>
 		<include>css/jqueryui.css</include>
 	</css>

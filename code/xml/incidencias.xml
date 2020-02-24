@@ -66,7 +66,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<label lang="true">categoria</label>
 				<sort>true</sort>
 				<size>20</size>
-				<order>categoria2</order>
 			</field>
 			<field>
 				<name>nombre</name>
@@ -296,9 +295,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			".make_extra_query_with_login("d.")." usuario,
 			e.datetime datetime,
 			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',b_nombre) END cliente,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',p_nombre) END proyecto,
-			CONCAT('link:openapp(\'incidencias\',',-a.id,'):',a.nombre) nombre,CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
+			CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE CONCAT('link:openapp(\'proyectos\',',-a.id_proyecto,'):',p_nombre) END proyecto,
+			CONCAT('link:openapp(\'incidencias\',',-a.id,'):',a.nombre) nombre,
+			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
+			CASE a.id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
 			a.nombre nombre2,
 			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
 			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,

@@ -115,9 +115,4 @@ function javascript_template($temp,$cond="") {
 	echo "</script>";
 }
 
-function _javascript_location($url,$cond="") {
-	$temp="window.location.href='${url}';";
-	javascript_template($temp,$cond);
-}
-
 ?>

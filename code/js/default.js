@@ -2021,7 +2021,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			});
 		});
 		// FOR EXCEL
-		$("div.excel").each(function() {
+		$("div.excel",obj).each(function() {
 			var data=$(this).attr("data");
 			if(data!="") data=eval(data);
 			else data=JSON.parse($(this).attr("rows"));

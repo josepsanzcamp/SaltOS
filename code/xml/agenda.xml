@@ -528,7 +528,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<required>true</required>
 							<colspan>3</colspan>
 							<icon eval="true">ICON("calendar")</icon>
-							<icon2>fa fa-clock</icon2>
+							<icon2 eval="true">ICON("clock")</icon2>
 							<onchange>check_datetime("dstart","le","dstop")</onchange>
 						</field>
 						<field>
@@ -539,7 +539,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<readonly global="id" eval="true">$id>=0?"false":"true"</readonly>
 							<required>true</required>
 							<icon eval="true">ICON("calendar")</icon>
-							<icon2>fa fa-clock</icon2>
+							<icon2 eval="true">ICON("clock")</icon2>
 							<onchange>check_datetime("dstop","ge","dstart")</onchange>
 						</field>
 					</row>

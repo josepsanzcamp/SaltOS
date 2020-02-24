@@ -80,7 +80,7 @@ function saltos_context($newpage="",$newaction="") {
 	static $oldpage="";
 	static $oldaction="";
 	static $oldlang="";
-	if($newpage && $newaction && !$oldpage && !$oldaction) {
+	if($newpage.$newaction!="" && $oldpage.$oldaction=="") {
 		// SAVE CONTEXT
 		$oldget=$_GET;
 		$_GET=array();
@@ -94,7 +94,7 @@ function saltos_context($newpage="",$newaction="") {
 		setParam("action",$action);
 		$oldlang=$_LANG["default"];
 		$_LANG["default"]="$page,menu,common";
-	} elseif(!$newpage && !$newaction && $oldpage && $oldaction) {
+	} elseif($newpage.$newaction=="" && $oldpage.$oldaction!="") {
 		// RESTORE CONTEXT
 		$_GET=$oldget;
 		$oldget=array();

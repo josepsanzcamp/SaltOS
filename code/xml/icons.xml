@@ -95,7 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<cancel>fa fa-times</cancel>
 	<save>fa fa-save</save>
 	<download>fa fa-download</download>
-	<color>fa fa-thumb-tack</color>
+	<color>fa fa-thumbtack</color>
 	<vcard>fa fa-address-card</vcard>
 	<qrcode>fa fa-qrcode</qrcode>
 	<dropdown>ui-icon ui-icon-triangle-1-s</dropdown>
