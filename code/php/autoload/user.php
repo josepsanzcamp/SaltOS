@@ -390,7 +390,18 @@ function action_denied() {
 }
 
 function _action_denied() {
-	die();
+	global $_LANG,$_CONFIG,$_RESULT,$_ERROR;
+	$_LANG["default"]="denied,menu,common";
+	$_CONFIG["denied"]=eval_attr(xml2array("xml/denied.xml"));
+	$_RESULT["form"]=getDefault("denied/form");
+	add_css_js_page($_RESULT["form"],"denied");
+	set_array($_ERROR,"error",LANG("permdenied"));
+	$json=json_encode($_RESULT);
+	output_handler(array(
+		"data"=>$json,
+		"type"=>"application/json",
+		"cache"=>false
+	));
 }
 
 ?>

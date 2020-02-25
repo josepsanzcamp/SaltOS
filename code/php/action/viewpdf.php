@@ -26,7 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 if(!check_user()) action_denied();
 if(getParam("action")=="viewpdf") {
-	$page=getParam("page");
 	if(getParam("page") && !getParam("id") && !getParam("cid")) {
 		// CREATE REPORT FROM HELP
 		$file="doc/${lang}/${page}.pdf";

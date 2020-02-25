@@ -26,8 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 if(!check_user()) action_denied();
 if(getParam("action")=="quickform") {
-	$page=getParam("page");
-	$id=getParam("id");
 	require_once("php/listsim.php");
 	$pagesim=$page;
 	if(getParam("is_fichero")) $pagesim="ficheros";

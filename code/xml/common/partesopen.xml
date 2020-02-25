@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<head>
 				<field>
 					<type>checkbox</type>
-					<class3>master</class3>
+					<class3>master shortcut_ctrl_a</class3>
 					<class2>thead shortcut_ctrl_a</class2>
 					<width>1px</width>
 					<value>1</value>

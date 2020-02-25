@@ -53,6 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value global="limit" eval="true">$limit</value>
 			<onchange>limit1(this.value)</onchange>
 			<dir>up</dir>
+			<class3>nofilter</class3>
 		</field>
 		<field>
 			<type>separator</type>
@@ -89,6 +90,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</rows>
 			<onchange>page1(this.value)</onchange>
 			<dir>up right</dir>
+			<class3>nofilter</class3>
 		</field>
 		<field ifeval="!ismobile()">
 			<name>nextpager</name>

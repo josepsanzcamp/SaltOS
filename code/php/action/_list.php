@@ -28,6 +28,8 @@ if(!check_user()) _action_denied();
 
 $page=getParam("page");
 
+if(!check_user($page,"menu")) _action_denied();
+
 require_once("php/libaction.php");
 $_LANG["default"]="${page},menu,common";
 $_CONFIG[$page]=xml2array("xml/${page}.xml");

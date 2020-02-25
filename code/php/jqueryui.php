@@ -32,7 +32,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //~ }
 
 // GET ACTIONS
+$page=getParam("page");
 $action=getParam("action");
+$id=intval(getParam("id"));
 if(file_exists("php/action/_${action}.php")) include("php/action/_${action}.php");
 if(file_exists("php/action/${action}.php")) include("php/action/${action}.php");
 

@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<id global="id" eval="true">$id=current_user()</id>
 	</default>
 	<form>
+		<title lang="true">title</title>
 		<name>form</name>
 		<action></action>
 		<method>post</method>
