@@ -888,7 +888,7 @@ saltos.make_resizable=function(obj) {
 	console.log("call to unimplemented function make_resizable");
 };
 
-/* HELPERS */
+/* HELPERS DEL SALTOS ORIGINAL */
 saltos.toggle_menu=function() {
 	var obj=$(".ui-layout-west");
 	if($(obj).is(":visible")) {
@@ -1163,7 +1163,7 @@ saltos.unmake_focus=function() {
 	$("html").focus();
 };
 
-saltos.unmake_ckeditors=function(obj) {
+saltos.unmake_ckeditors=function() {
 	// REMOVE THE CKEDITORS (IMPORTANT THING!!!)
 	$("textarea[ckeditor=true]").each(function() {
 		var name=$(this).attr("name");
@@ -1186,7 +1186,11 @@ saltos.add_layout=function(info) {
 			</tr>
 			<tr>
 				<td valign="top">
-					<div class="ui-layout-west"></div>
+					<div class="ui-layout-west">
+						<a href="#" class="back2top ui-widget-header ui-corner-all">
+							<span class="fa fa-arrow-circle-up"></span>
+						</a>
+					</div>
 				</td>
 				<td valign="top" class="width100">
 					<div class="ui-layout-center"></div>
@@ -1197,8 +1201,8 @@ saltos.add_layout=function(info) {
 	$("body").append(layout);
 	$("html").attr("lang",info.lang);
 	$("html").attr("dir",info.dir);
-	// RESIZABLE CODE
 	setTimeout(function() {
+		// RESIZABLE CODE
 		var width=parseInt(saltos.getIntCookie("saltos_ui_menu_width")/10)*10;
 		if(!width) width=200;
 		$(".ui-layout-west").width(width).resizable({
@@ -1212,6 +1216,19 @@ saltos.add_layout=function(info) {
 			},
 		});
 		$(".back2top").css("left",(width-54)+"px");
+		// OLD MAKE_BACK2TOP
+		$(window).scroll(function() {
+			if($(this).scrollTop()>300) {
+				$(".back2top").show();
+			} else {
+				$(".back2top").hide();
+			}
+		});
+		$(".back2top").on("click",function(event) {
+			event.preventDefault();
+			$("html,body").animate({ scrollTop:0 },"fast");
+			return false;
+		})
 		// REMOVE NONE CLASS
 		$(layout).removeClass("none");
 	},100);
@@ -1495,10 +1512,32 @@ saltos.make_tabs=function(array) {
 	return card;
 };
 
-/* FUNCIONES PARA EL PROCESADO DE PARAMETROS */
+/* HELPERS DEL NUEVO SALTOS */
 saltos.check_params=function(obj,params,valor) {
 	if(!isset(valor)) valor="";
 	for(var key in params) if(!isset(obj[params[key]])) obj[params[key]]=valor;
+};
+
+saltos.when_visible=function(obj,fn,args) {
+	if(!$(obj).is("[id]")) $(obj).attr("id","fix"+saltos.uniqid());
+	var id="#"+$(obj).attr("id");
+	var interval=setInterval(function() {
+		var obj2=$(id);
+		if(!$(obj2).length) {
+			clearInterval(interval);
+		} else if($(obj2).is(":visible")) {
+			clearInterval(interval);
+			fn(args);
+		}
+	},100);
+};
+
+saltos.form_fix_width=function(obj,ref) {
+	saltos.when_visible(obj,function(args) {
+		if(args.ref=="next") var obj2=$(args.obj).next();
+		if(args.ref=="prev") var obj2=$(args.obj).prev();
+		$(args.obj).width($(obj2).width());
+	},{"obj":obj,"ref":ref});
 };
 
 /* FUNCIONES PARA EL PROCESADO DE LISTADOS */
@@ -1773,6 +1812,16 @@ saltos.get_filtered_field=function(field,size,id) {
 };
 
 saltos.make_list=function(option) {
+	// CLEAR THE FIELDS CACHE
+	saltos.form_field_cache={};
+	// CONTINUE
+	var array=[];
+	for(var key in option) {
+		if(saltos.limpiar_key(key)=="form") {
+			array=array_merge(array,saltos.make_form(option[key]));
+		}
+	}
+	// TRICK TO POPULATE THE FIELDS CACHE BEFORE THE USAGE OF THE FIELD OF TYPE=COPY
 	var obj=$("<div></div>");
 	if(isset(option.quick)) {
 		var table=saltos.form_table(option.width,"helperbuttons");
@@ -1787,17 +1836,13 @@ saltos.make_list=function(option) {
 		$(table).append(saltos.form_brtag_2());
 		$(table).append(saltos.form_by_row_3(option,"pager","row"));
 	}
-	var array=[{
+	array.unshift({
 		"title":option.title,
 		"icon":option.icon,
 		"popup":"",
 		"obj":obj,
-	}];
-	for(var key in option) {
-		if(saltos.limpiar_key(key)=="form") {
-			array=array_merge(array,saltos.make_form(option[key]));
-		}
-	}
+	});
+	// CONTINUE
 	if(isset(option.help)) array.push({ "help":option.help });
 	return array;
 };
@@ -1839,6 +1884,7 @@ saltos.make_form=function(option) {
 					$(obj).append(table);
 					$(table).append(saltos.form_by_row_3(option,"quick","row"));
 					$(table).append(saltos.form_brtag_2());
+					saltos.form_fix_width(table,"next");
 				}
 				var table=saltos.form_table(option[key].width,option[key].class);
 				$(obj).append(table);
@@ -1848,6 +1894,7 @@ saltos.make_form=function(option) {
 					$(obj).append(table);
 					$(table).append(saltos.form_brtag_2());
 					$(table).append(saltos.form_by_row_3(option,"buttons","row"));
+					saltos.form_fix_width(table,"prev");
 				}
 			}
 		}
@@ -1888,6 +1935,7 @@ saltos.make_form=function(option) {
 															var temp=saltos.form_prepare_fields_3(option,"quick","row"); // NO PREFIX
 															$(table).append(saltos.form_by_row_3(temp,"quick","row"));
 															$(table).append(saltos.form_brtag_2());
+															saltos.form_fix_width(table,"next");
 														}
 														var table=saltos.form_table(node1[key6].width,node1[key6].class);
 														$(obj).append(table);
@@ -1899,6 +1947,7 @@ saltos.make_form=function(option) {
 															$(table).append(saltos.form_brtag_2());
 															var temp=saltos.form_prepare_fields_3(option,"buttons","row"); // NO PREFIX
 															$(table).append(saltos.form_by_row_3(temp,"buttons","row"));
+															saltos.form_fix_width(table,"prev");
 														}
 													}
 												}
@@ -1924,6 +1973,7 @@ saltos.make_form=function(option) {
 													$(obj).append(table);
 													$(table).append(saltos.form_by_row_3(option,"quick","row"));
 													$(table).append(saltos.form_brtag_2());
+													saltos.form_fix_width(table,"next");
 												}
 												var table=saltos.form_table(node1[key6].width,"tabla "+node1[key6].class);
 												$(obj).append(table);
@@ -1936,6 +1986,7 @@ saltos.make_form=function(option) {
 													$(obj).append(table);
 													$(table).append(saltos.form_brtag_2());
 													$(table).append(saltos.form_by_row_3(option,"buttons","row"));
+													saltos.form_fix_width(table,"prev");
 												}
 											}
 										}
@@ -2108,10 +2159,14 @@ saltos.form_table=function(width,clase) {
 	return $(`<table class="${clase}" style="width:${width}" cellpadding="0" cellspacing="0" border="0"></table>`);
 };
 
+// FORM FIELDS CACHE USED ONLY FOR OBJECTS OF TYPE=COPY
+saltos.form_field_cache={};
+
 saltos.form_field=function(field) {
-	saltos.check_params(field,["type"]);
+	saltos.check_params(field,["type","name"]);
 	if(field.type=="textarea" && isset(field.ckeditor) && field.ckeditor=="true") field.type="ckeditor";
 	if(field.type=="textarea" && isset(field.codemirror) && field.codemirror=="true") field.type="codemirror";
+	if(field.type!="copy" && field.name!="" && !isset(saltos.form_field_cache[field.name])) saltos.form_field_cache[field.name]=field;
 	return eval(`saltos.form_field_${field.type}(field)`);
 };
 
@@ -3434,6 +3489,10 @@ saltos.form_field_excel=function(field) {
 };
 
 saltos.form_field_copy=function(field) {
+	saltos.check_params(field,["name"]);
+	if(!isset(saltos.form_field_cache[field.name])) {
+		return [];
+	}
 	saltos.check_params(field,["label",
 		"class2","colspan2","rowspan2","width2",
 		"name","onchange","onkey","class","focus"]);
@@ -3444,82 +3503,58 @@ saltos.form_field_copy=function(field) {
 				${field.label}</td>
 		`);
 		obj.push(td);
-	} else {
-		var td=$("<td></td>");
-		obj.push(td);
 	}
-	var td=$(`
-		<td iscopy="true" copyname="${field.name}" class="${field.class}" focused="${field.focus}"></td>
-	`);
-	//~ if(field.onchange!="") $(td).on("change",{event:field.onchange},saltos.__form_event);
-	//~ if(field.onkey!="") $(td).on("keydown",{event:field.onkey},saltos.__form_event);
-	if(field.onchange!="") $(td).attr("onchange",field.onchange);
-	if(field.onkey!="") $(td).attr("onkeydown",field.onkey);
-	obj.push(td);
+	var field2=saltos.form_field_cache[field.name];
+	if(field.label!="") field2.label="";
+	field2.oldname=field2.name;
+	field2.name="iscopy"+field2.name;
+	if(field2.type=="select") field2.width="";
+	obj=array_merge(obj,saltos.form_field(field2));
 	setTimeout(function() {
-		// PROGRAM COPY FIELDS
-		$(td).each(function() {
-			var name=$(this).attr("copyname");
-			var tdfield=$("#"+name).parent();
-			var tdlabel=$(tdfield).prev();
-			if($(tdlabel).hasClass("label")) {
-				tdlabel=$(tdlabel).clone();
-				$(this).prev().replaceWith(tdlabel);
-			}
-			var oldfield=$("#"+name,tdfield);
-			tdfield=$(tdfield).clone();
-			var newfield=$("#"+name,tdfield);
-			$(newfield).attr("id","iscopy"+name);
-			$(newfield).attr("name","iscopy"+name);
-			$(newfield).addClass("nofilter");
-			if($(newfield).is("select")) {
-				$(tdfield).removeAttr("style");
-				$(newfield).removeAttr("style");
-				$(newfield).removeAttr("width2");
-			}
+		var oldfield="#"+field2.oldname;
+		var newfield="#"+field2.name;
+		$(newfield).addClass("nofilter");
+		// CREATE THE EVENT LINKS BETWEEN THE OLD AND NEW FIELDS
+		$(newfield).on("change",function(event,extra) {
+			if(extra=="stop") return;
+			$(oldfield).val($(this).val());
+			$(oldfield).trigger("change","stop");
+		});
+		$(newfield).on("keydown",function(event,extra) {
+			if(extra=="stop") return;
+			$(oldfield).val($(this).val());
+			$(oldfield).trigger("keydown","stop");
+		});
+		$(oldfield).on("change",function(event,extra) {
+			if(extra=="stop") return;
+			$(newfield).val($(this).val());
+			$(newfield).trigger("change","stop");
+		});
+		$(oldfield).on("keydown",function(event,extra) {
+			if(extra=="stop") return;
+			$(newfield).val($(this).val());
+			$(newfield).trigger("keydown","stop");
+		});
+		// PROGRAM EVENTS OF THE ORIGINAL FIELD TYPE=COPY
+		if(field.onchange!="") {
 			$(newfield).on("change",function(event,extra) {
 				if(extra=="stop") return;
-				$(oldfield).val($(this).val());
-				$(oldfield).trigger("change","stop");
+				eval(field.onchange);
 			});
+		}
+		if(field.onkey!="") {
 			$(newfield).on("keydown",function(event,extra) {
 				if(extra=="stop") return;
-				$(oldfield).val($(this).val());
-				$(oldfield).trigger("keydown","stop");
+				eval(field.onkey);
 			});
-			$(oldfield).on("change",function(event,extra) {
-				if(extra=="stop") return;
-				$(newfield).val($(this).val());
-				$(newfield).trigger("change","stop");
-			});
-			$(oldfield).on("keydown",function(event,extra) {
-				if(extra=="stop") return;
-				$(newfield).val($(this).val());
-				$(newfield).trigger("keydown","stop");
-			});
-			if($(this).is("[onchange][onchange!='']")) {
-				var fn=$(this).attr("onchange");
-				$(newfield).on("change",function(event,extra) {
-					if(extra=="stop") return;
-					eval(fn);
-				});
-			}
-			if($(this).is("[onkeydown][onkeydown!='']")) {
-				var fn=$(this).attr("onkeydown");
-				$(newfield).on("keydown",function(event,extra) {
-					if(extra=="stop") return;
-					eval(fn);
-				});
-			}
-			if($(this).is("[class][class!='']")) {
-				$(newfield).addClass($(this).attr("class"));
-			}
-			if($(this).is("[focused][focused!='']")) {
-				$(newfield).attr("focused",$(this).attr("focused"));
-				saltos.make_focus_obj=newfield;
-			}
-			$(this).replaceWith(tdfield);
-		});
+		}
+		if(field.class!="") {
+			$(newfield).addClass(field.class);
+		}
+		if(field.focus=="true") {
+			$(newfield).attr("focused",field.focus);
+			saltos.make_focus_obj=newfield;
+		}
 	},100);
 	return obj;
 };
@@ -3854,6 +3889,7 @@ saltos.submitcontent=function(form,callback) {
 saltos.updatecontent_pre=function() {
 	saltos.unloadingcontent();
 	saltos.hide_tooltips();
+	saltos.unmake_ckeditors();
 	$(window).scrollTop(0);
 };
 
@@ -3877,7 +3913,6 @@ saltos.updatecontent=function(data) {
 	}
 	if(!isset(data.temp1)) return;
 	saltos.add_js(data.temp1);
-	saltos.add_css(data.temp1);
 	saltos.update_header_title(data.temp1.title);
 	if(isset(data.list)) {
 		data.temp2=saltos.make_list(data.list);
@@ -3889,6 +3924,7 @@ saltos.updatecontent=function(data) {
 	saltos.updatecontent_pre();
 	$(".ui-layout-center > *").remove();
 	$(".ui-layout-center").append(tabs);
+	saltos.add_css(data.temp1);
 	saltos.updatecontent_post();
 };
 
@@ -3911,13 +3947,10 @@ saltos.addcontent=function(hash) {
 		return;
 	}
 	if(hash=="reload") {
-		// TODO
 		$(window).trigger("hashchange");
 		return;
 	}
 	if(hash=="error") {
-		// TODO
-		//~ ignore_hashchange=1;
 		history.go(-1);
 		return;
 	}
@@ -4461,6 +4494,8 @@ $.ajaxSetup({ cache:true });
 
 		// CARGAR PRIMER CONTENIDO
 		saltos.opencontent(saltos.current_hash());
+
+		// TODO HAY QUE ACABAR LA PARTE DE LOGIN Y LOGOUT
 	}
 }(jQuery));
 
