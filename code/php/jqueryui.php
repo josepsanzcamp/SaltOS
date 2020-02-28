@@ -24,12 +24,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// TO DO COMPATIBLE WITH OLD LINKS
-//~ if(getServer("HTTP_REFERER")=="" && getServer("QUERY_STRING")!="") {
-	//~ $url=get_base()."#".getServer("QUERY_STRING");
-	//~ javascript_location($url);
-	//~ die();
-//~ }
+// TODO COMPATIBLE WITH OLD LINKS
+// TODO COMPARE THE REFERERS TO BE MORE EXHAUST
+if(getServer("HTTP_REFERER")=="" && getServer("QUERY_STRING")!="") {
+	$url=get_base()."#".getServer("QUERY_STRING");
+	javascript_location($url);
+	die();
+}
 
 // GET ACTIONS
 $page=getParam("page");

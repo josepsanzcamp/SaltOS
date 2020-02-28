@@ -115,4 +115,17 @@ function javascript_template($temp,$cond="") {
 	echo "</script>";
 }
 
+function _javascript_location($url,$cond="") {
+	javascript_template("window.location.href='${url}';",$cond);
+}
+
+function _javascript_history($go,$cond="") {
+	if($go) javascript_template("history.go(${go})",$cond);
+	else javascript_template("window.location.reload()",$cond);
+}
+
+function _javascript_opencontent($url,$cond="") {
+	javascript_template("saltos.opencontent('${url}');",$cond);
+}
+
 ?>

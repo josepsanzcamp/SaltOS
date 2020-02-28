@@ -102,7 +102,7 @@ function post_datauser() {
 function check_time() {
 	global $_USER;
 	global $_ERROR;
-	if(isset($_ERROR)) return false;
+	//~ if(isset($_ERROR)) return false;
 	if(!isset($_USER["id"])) return false;
 	if(!$_USER["id"]) return false;
 	$hora=current_time();
@@ -121,8 +121,8 @@ function check_time() {
 
 function check_user($aplicacion="",$permiso="") {
 	global $_USER;
-	global $_ERROR;
-	if(isset($_ERROR)) return 0;
+	//~ global $_ERROR;
+	//~ if(isset($_ERROR)) return 0;
 	if(!isset($_USER["id"])) return 0;
 	if(!$_USER["id"]) return 0;
 	if($aplicacion=="") return 1;
@@ -133,8 +133,8 @@ function check_user($aplicacion="",$permiso="") {
 
 function check_sql($aplicacion,$permiso,$id_usuario="id_usuario",$id_grupo="id_grupo") {
 	// INITIAL CHECK
-	global $_ERROR;
-	if(isset($_ERROR)) return "(1=0)";
+	//~ global $_ERROR;
+	//~ if(isset($_ERROR)) return "(1=0)";
 	// BEGIN NORMAL CODE
 	global $_USER;
 	// CHECK FOR USER/GROUP/ALL PERMISSIONS
@@ -384,6 +384,8 @@ function check_captcha($captcha="") {
 }
 
 function action_denied() {
+	// TODO FIXED IN THE FUTURE
+	if(getDefault("engine")!="default") die();
 	session_error(LANG("permdenied")." (".getParam("action").")");
 	javascript_location_page("");
 	die();
@@ -391,17 +393,32 @@ function action_denied() {
 
 function _action_denied() {
 	global $_LANG,$_CONFIG,$_RESULT,$_ERROR;
-	$_LANG["default"]="denied,menu,common";
+	$_LANG["default"]="denied,common";
 	$_CONFIG["denied"]=eval_attr(xml2array("xml/denied.xml"));
 	$_RESULT["form"]=getDefault("denied/form");
 	add_css_js_page($_RESULT["form"],"denied");
-	set_array($_ERROR,"error",LANG("permdenied"));
+	//~ set_array($_ERROR,"error",LANG("permdenied"));
 	$json=json_encode($_RESULT);
 	output_handler(array(
 		"data"=>$json,
 		"type"=>"application/json",
 		"cache"=>false
 	));
+}
+
+function _action_login() {
+	global $_LANG,$_CONFIG,$_RESULT,$_ERROR;
+	$_LANG["default"]="login,common";
+	$_CONFIG["login"]=eval_attr(xml2array("xml/login.xml"));
+	$_RESULT["form"]=getDefault("login/form");
+	add_css_js_page($_RESULT["form"],"login");
+	$json=json_encode($_RESULT);
+	output_handler(array(
+		"data"=>$json,
+		"type"=>"application/json",
+		"cache"=>false
+	));
+	die();
 }
 
 ?>

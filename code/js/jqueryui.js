@@ -77,19 +77,15 @@ saltos.check_required=function() {
 	var field=null;
 	var label="";
 	$("[isrequired=true]").each(function() {
-		// CHECK FOR VISIBILITY
-		if(substr(this.type,0,6)=="select") {
-			if(!$(this).next().is(":visible")) return;
-		} else {
-			if(!$(this).is(":visible")) return;
-		}
-		// CONTINUE
 		var valor=$(this).val();
 		var campo=this;
-		if(substr(this.type,0,6)=="select") {
+		if($(this).is("select")) {
 			if(valor=="0") valor="";
 			campo=$(this).next().get(0);
 		}
+		// CHECK FOR VISIBILITY
+		if(!$(campo).is(":visible")) return;
+		// CONTINUE
 		if(!valor) {
 			$(campo).addClass("ui-state-error");
 		} else {
@@ -101,8 +97,9 @@ saltos.check_required=function() {
 		}
 	});
 	if(field) {
-		var requiredfield=lang_requiredfield();
-		alerta(requiredfield+": "+label,function() { $(field).trigger("focus"); });
+		alerta(lang_requiredfield()+": "+label,function() {
+			$(field).trigger("focus");
+		});
 	}
 	return field==null;
 };
@@ -253,30 +250,8 @@ saltos.cookies.data={};
 saltos.cookies.interval=null;
 saltos.cookies.counter=0;
 
-saltos.__sync_cookies_helper=function() {
-	for(var hash in saltos.cookies.data) {
-		if(saltos.cookies.data[hash].sync) {
-			if(saltos.cookies.data[hash].val!=saltos.cookies.data[hash].orig) {
-				var data="action=cookies&name="+encodeURIComponent(saltos.cookies.data[hash].key)+"&value="+encodeURIComponent(saltos.cookies.data[hash].val);
-				var value=$.ajax({
-					url:"index.php",
-					data:data,
-					type:"post",
-					async:false,
-				}).responseText;
-				if(value!="") {
-					saltos.cookies.data[hash].orig=saltos.cookies.data[hash].val;
-					saltos.cookies.data[hash].sync=0;
-				}
-			} else {
-				saltos.cookies.data[hash].sync=0;
-			}
-		}
-	}
-};
-
 saltos.sync_cookies=function(cmd) {
-	if(typeof cmd=="undefined") var cmd="";
+	if(!isset(cmd)) var cmd="start";
 	if(cmd=="stop") {
 		if(saltos.cookies.interval!=null) {
 			clearInterval(saltos.cookies.interval);
@@ -316,6 +291,28 @@ saltos.sync_cookies=function(cmd) {
 				saltos.cookies.counter=0;
 			}
 		},100);
+	}
+};
+
+saltos.__sync_cookies_helper=function() {
+	for(var hash in saltos.cookies.data) {
+		if(saltos.cookies.data[hash].sync) {
+			if(saltos.cookies.data[hash].val!=saltos.cookies.data[hash].orig) {
+				var data="action=cookies&name="+encodeURIComponent(saltos.cookies.data[hash].key)+"&value="+encodeURIComponent(saltos.cookies.data[hash].val);
+				var value=$.ajax({
+					url:"index.php",
+					data:data,
+					type:"post",
+					async:false,
+				}).responseText;
+				if(value!="") {
+					saltos.cookies.data[hash].orig=saltos.cookies.data[hash].val;
+					saltos.cookies.data[hash].sync=0;
+				}
+			} else {
+				saltos.cookies.data[hash].sync=0;
+			}
+		}
 	}
 };
 
@@ -423,6 +420,7 @@ saltos.limpiar_key=function(arg) {
 };
 
 saltos.querystring2array=function(querystring) {
+	if(querystring=="") return {};
 	var items=explode("&",querystring);
 	var result={};
 	for(var key in items) {
@@ -815,79 +813,6 @@ saltos.isloadingcontent=function() {
 	return $(".blockUI").length>0;
 };
 
-/* UNIMPLEMENTED FUNCTIONS */
-saltos.hash_encode=function(url) {
-	console.log("call to unimplemented function hash_encode");
-};
-
-saltos.hash_decode=function(hash) {
-	console.log("call to unimplemented function hash_decode");
-};
-
-saltos.current_href=function() {
-	console.log("call to unimplemented function current_href");
-};
-
-saltos.history_pushState=function(url) {
-	console.log("call to unimplemented function history_pushState");
-};
-
-saltos.history_replaceState=function(url) {
-	console.log("call to unimplemented function history_replaceState");
-};
-
-saltos.loadcontent=function(xml) {
-	console.log("call to unimplemented function loadcontent");
-};
-
-saltos.html2str=function(html) {
-	console.log("call to unimplemented function html2str");
-};
-
-saltos.str2html=function(str) {
-	console.log("call to unimplemented function str2html");
-};
-
-saltos.fix4html=function(str) {
-	console.log("call to unimplemented function fix4html");
-};
-
-saltos.getstylesheet=function(html,cad1,cad2) {
-	console.log("call to unimplemented function getstylesheet");
-};
-
-saltos.update_style=function(html,html2) {
-	console.log("call to unimplemented function update_style");
-};
-
-saltos.make_menu=function(obj) {
-	console.log("call to unimplemented function make_menu");
-};
-
-saltos.make_tabs2=function(obj) {
-	console.log("call to unimplemented function make_tabs2");
-};
-
-saltos.make_extras=function(obj) {
-	console.log("call to unimplemented function make_extras");
-};
-
-saltos.make_draganddrop=function(obj) {
-	console.log("call to unimplemented function make_draganddrop");
-};
-
-saltos.make_ckeditors=function(obj) {
-	console.log("call to unimplemented function make_ckeditors");
-};
-
-saltos.make_back2top=function() {
-	console.log("call to unimplemented function make_back2top");
-};
-
-saltos.make_resizable=function(obj) {
-	console.log("call to unimplemented function make_resizable");
-};
-
 /* HELPERS DEL SALTOS ORIGINAL */
 saltos.toggle_menu=function() {
 	var obj=$(".ui-layout-west");
@@ -1154,7 +1079,12 @@ saltos.make_tables=function(obj) {
 saltos.make_focus=function() {
 	// FOCUS THE OBJECT WITH FOCUSED ATTRIBUTE
 	setTimeout(function() {
-		if(saltos.make_focus_obj) $(saltos.make_focus_obj).trigger("focus");
+		if(saltos.make_focus_obj) {
+			if($(saltos.make_focus_obj).is("select")) {
+				saltos.make_focus_obj=$(saltos.make_focus_obj).next();
+			}
+			$(saltos.make_focus_obj).trigger("focus");
+		}
 		saltos.make_focus_obj=null;
 	},100);
 };
@@ -1168,6 +1098,63 @@ saltos.unmake_ckeditors=function() {
 	$("textarea[ckeditor=true]").each(function() {
 		var name=$(this).attr("name");
 		if(CKEDITOR.instances[name]) CKEDITOR.instances[name].destroy();
+	});
+};
+
+saltos.make_enters=function() {
+	$(document).on("keydown",function(event) {
+		if($(".ui-autocomplete").is(":visible")) {
+			// DETECTED AN OPEN AUTOCOMPLETE WIDGET
+			return;
+		}
+		if(is_enterkey(event)) {
+			var id=$(event.target).attr("id");
+			if(substr(id,-7,7)=="-button") id=substr(id,0,-7);
+			var div=$(event.target);
+			for(;;) {
+				if(!$(div).length) break;
+				if(substr($(div).attr("id"),0,5)=="tabid") break;
+				div=$(div).parent();
+			}
+			var found=0;
+			var focus="";
+			var first="";
+			for(var key in saltos.form_field_cache) {
+				var field=saltos.form_field_cache[key];
+				var valid=in_array(field.type,["text","integer","float","color","date","time","datetime","select","checkbox","password"]);
+				if($("#"+field.name).is("select")) {
+					var visible=$("#"+field.name).next().is(":visible");
+				} else {
+					var visible=$("#"+field.name).is(":visible");
+				}
+				var indiv=$(div).has("#"+field.name).length;
+				var filter=$("#"+field.name).hasClass("nofilter");
+				if(valid && visible && indiv && !filter) {
+					if(found) {
+						focus=field.name;
+						found=0;
+						break;
+					}
+					if(field.name==id) {
+						found=1;
+					}
+					if(!first) {
+						first=field.name;
+					}
+				}
+			}
+			if(found) {
+				focus=first;
+			}
+			if(focus!="") {
+				if($("#"+focus).is("select")) {
+					$("#"+focus).next().trigger("focus");
+				} else {
+					$("#"+focus).trigger("focus");
+					$("#"+focus).trigger("select");
+				}
+			}
+		}
 	});
 };
 
@@ -1234,11 +1221,23 @@ saltos.add_layout=function(info) {
 	},100);
 };
 
+saltos.add_header=function(menu) {
+	for(var key in menu) {
+		if(saltos.limpiar_key(key)=="header") {
+			for(var key2 in menu[key]) {
+				if(saltos.limpiar_key(key2)=="option") {
+					saltos.add_header_button(menu[key][key2]);
+				}
+			}
+		}
+	}
+};
+
 saltos.tabs2_padding="";
 saltos.tabs2_margin="";
 saltos.tabs2_border="";
 
-saltos.add_button_in_navbar=function(option) {
+saltos.add_header_button=function(option) {
 	saltos.check_params(option,["class","tip","icon","label","onclick","class2"]);
 	var button=$(`
 		<li class="${option.class2}"><a href="javascript:void(0)" title="${option.tip}" class="${option.class}">
@@ -1279,7 +1278,53 @@ saltos.add_button_in_navbar=function(option) {
 	$(".tabs2 li").css("border-top","0").css("border-bottom",saltos.tabs2_border);
 };
 
-saltos.add_group_in_menu=function(option) {
+saltos.update_header_title=function(title) {
+	$(".tabs2 li.center").remove();
+	if(!isset(title)) title=lang_loading();
+	document.title=`${title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
+	saltos.add_header_button({
+		"label":document.title,
+		"onclick":"saltos.opencontent('#page=about')",
+		"icon":saltos.info.icon,
+		"tip":document.title,
+		"class":"nowrap",
+		"class2":"center",
+	});
+};
+
+saltos.add_menu=function(menu) {
+	var exists=0;
+	for(var key in menu) {
+		if(saltos.limpiar_key(key)=="group") {
+			exists=1;
+			var visible=saltos.getIntCookie("saltos_ui_menu_"+menu[key].name)
+			if(visible) {
+				menu[key].active=0;
+			} else {
+				menu[key].active=1;
+			}
+			saltos.add_menu_group(menu[key]);
+			for(var key2 in menu[key]) {
+				if(saltos.limpiar_key(key2)=="option") {
+					saltos.add_menu_link(menu[key][key2]);
+				}
+			}
+		}
+	}
+	var obj=$(".ui-layout-west");
+	if(exists) {
+		var closed=getIntCookie("saltos_ui_menu_closed");
+		if(closed) {
+			$(obj).addClass("none");
+		} else {
+			$(obj).removeClass("none");
+		}
+	} else {
+		$(obj).addClass("none");
+	}
+};
+
+saltos.add_menu_group=function(option) {
 	saltos.check_params(option,["name","label","show","class","tip"]);
 	var group=$(`
 		<div class="${option.class} none" id="${option.name}">
@@ -1365,7 +1410,7 @@ saltos.add_group_in_menu=function(option) {
 	},100);
 };
 
-saltos.add_link_in_group=function(option) {
+saltos.add_menu_link=function(option) {
 	saltos.check_params(option,["class","tip","icon","label","onclick","name"]);
 	var link=$(`
 		<li>
@@ -1380,10 +1425,6 @@ saltos.add_link_in_group=function(option) {
 	$("a",link).attr("onclick",option.onclick);
 	// CONTINUE
 	$(".ui-layout-west ul:last").append(link);
-};
-
-saltos.uniqid=function() {
-	return "id"+Math.floor(Math.random()*1000000);
 };
 
 saltos.make_focus_obj=null;
@@ -1516,6 +1557,10 @@ saltos.make_tabs=function(array) {
 saltos.check_params=function(obj,params,valor) {
 	if(!isset(valor)) valor="";
 	for(var key in params) if(!isset(obj[params[key]])) obj[params[key]]=valor;
+};
+
+saltos.uniqid=function() {
+	return "id"+Math.floor(Math.random()*1000000);
 };
 
 saltos.when_visible=function(obj,fn,args) {
@@ -1812,9 +1857,6 @@ saltos.get_filtered_field=function(field,size,id) {
 };
 
 saltos.make_list=function(option) {
-	// CLEAR THE FIELDS CACHE
-	saltos.form_field_cache={};
-	// CONTINUE
 	var array=[];
 	for(var key in option) {
 		if(saltos.limpiar_key(key)=="form") {
@@ -1916,6 +1958,7 @@ saltos.make_form=function(option) {
 											if(saltos.limpiar_key(key5)=="row") {
 												var node3=node2[key5];
 												var prefix=name2+"_"+node3.id+"_";
+												// TODO HIDDEN
 												for(var key6 in node1) {
 													if(saltos.limpiar_key(key6)=="fieldset") {
 														if(isset(node1[key6].title) && node1[key6].title!="") {
@@ -2039,6 +2082,13 @@ saltos.form_prepare_fields_2=function(fields,filter,prefix,values) {
 	for(var key in fields) {
 		if(saltos.limpiar_key(key)==filter) {
 			obj[key]=saltos.form_prepare_fields_1(fields[key],prefix,values);
+			if(is_array(obj[key])) {
+				obj[key]["field#prefix"]={
+					"type":"hidden",
+					"name":"prefix_"+prefix,
+					"value":prefix,
+				};
+			}
 		}
 	}
 	return obj;
@@ -2066,6 +2116,13 @@ saltos.form_prepare_fields_4=function(node1,name1,filter1,node2,name2,filter2) {
 					var node3=node2[name2][key2];
 					var prefix=name2+"_"+node3.id+"_";
 					obj[key1+"#"+key2]=saltos.form_prepare_fields_1(node1[name1][key1],prefix,node3);
+					if(is_array(obj[key1+"#"+key2])) {
+						obj[key1+"#"+key2]["field#prefix"]={
+							"type":"hidden",
+							"name":"prefix_"+prefix,
+							"value":prefix,
+						};
+					}
 				}
 			}
 		}
@@ -2159,14 +2216,42 @@ saltos.form_table=function(width,clase) {
 	return $(`<table class="${clase}" style="width:${width}" cellpadding="0" cellspacing="0" border="0"></table>`);
 };
 
-// FORM FIELDS CACHE USED ONLY FOR OBJECTS OF TYPE=COPY
-saltos.form_field_cache={};
+/*
+ * LIST OF SUPPORTED TYPES:
+ * - hidden
+ * - text
+ * - integer
+ * - float
+ * - color
+ * - date
+ * - time
+ * - datetime
+ * - textarea
+ * - ckeditor
+ * - codemirror
+ * - iframe
+ * - select
+ * - multiselect
+ * - checkbox
+ * - button
+ * - password
+ * - file
+ * - link
+ * - separator
+ * - label
+ * - image
+ * - plot
+ * - menu
+ * - grid
+ * - excel
+ * - copy
+ */
 
 saltos.form_field=function(field) {
-	saltos.check_params(field,["type","name"]);
+	saltos.check_params(field,["type"]);
 	if(field.type=="textarea" && isset(field.ckeditor) && field.ckeditor=="true") field.type="ckeditor";
 	if(field.type=="textarea" && isset(field.codemirror) && field.codemirror=="true") field.type="codemirror";
-	if(field.type!="copy" && field.name!="" && !isset(saltos.form_field_cache[field.name])) saltos.form_field_cache[field.name]=field;
+	if(field.type!="copy" && isset(field.name) && field.name!="") saltos.form_field_cache[field.name]=field;
 	return eval(`saltos.form_field_${field.type}(field)`);
 };
 
@@ -2222,17 +2307,67 @@ saltos.form_field_text=function(field) {
 	}
 	obj.push(td);
 	// PROGRAM LINKS OF SELECTS
-	saltos.form_field_text_helper(td);
+	saltos.form_field_islink_helper(td);
+	// PROGRAM AUTOCOMPLETE FIELDS
+	saltos.form_field_autocomplete_helper(td);
 	return obj;
 };
 
-saltos.form_field_text_helper=function(td) {
+saltos.form_field_islink_helper=function(td) {
 	// PROGRAM LINKS OF SELECTS
 	$("a[islink=true]",td).on("click",function() {
 		var id=str_replace("nombre","id",$(this).attr("forlink"));
 		var val=intval($("#"+id).val());
 		var fn=$(this).attr("fnlink");
 		if(val) eval(str_replace("ID",val,fn));
+	});
+};
+
+saltos.form_field_autocomplete_helper=function(td) {
+	// PROGRAM AUTOCOMPLETE FIELDS
+	$("input[isautocomplete=true],textarea[isautocomplete=true]",td).each(function() {
+		var key=$(this).attr("name");
+		var prefix="";
+		$("input[name^=prefix_]").each(function() {
+			var val=$(this).val();
+			if(key.substr(0,val.length)==val) prefix=val;
+		});
+		var query=$(this).attr("querycomplete");
+		var filter=$(this).attr("filtercomplete");
+		var fn=$(this).attr("oncomplete");
+		$(this).autocomplete({
+			delay:300,
+			source:function(request,response) {
+				var term=request.term;
+				var input=this.element;
+				var data="action=ajax&query="+query+"&term="+encodeURIComponent(term);
+				if(typeof($("#"+prefix+filter).val())!="undefined") data+="&filter="+$("#"+prefix+filter).val();
+				$.ajax({
+					url:"index.php",
+					data:data,
+					type:"get",
+					success:function(data) {
+						// TO CANCEL OLD REQUESTS
+						var term2=$(input).val();
+						if(term==term2) response(data["rows"]);
+					},
+					error:function(XMLHttpRequest,textStatus,errorThrown) {
+						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+					}
+				});
+			},
+			search:function() {
+				return this.value.length>0;
+			},
+			focus:function() {
+				return false;
+			},
+			select:function(event,ui) {
+				this.value=ui.item.label;
+				if(typeof(fn)!="undefined") eval(fn);
+				return false;
+			}
+		});
 	});
 };
 
@@ -2597,7 +2732,6 @@ saltos.form_field_textarea=function(field) {
 		"class2","colspan2","rowspan2","width2","required",
 		"class","colspan","rowspan","width","height",
 		"name","value","onchange","onkey","focus","label2","tip","class3",
-		"ckeditor","ckextra","codemirror",
 		"autocomplete","querycomplete","filtercomplete","oncomplete",
 		"readonly"]);
 	var obj=[];
@@ -2614,11 +2748,10 @@ saltos.form_field_textarea=function(field) {
 			<textarea name="${field.name}" id="${field.name}" style="width:${field.width};height:${field.height}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"
-				ckeditor="${field.ckeditor}" ckextra="${field.ckextra}" codemirror="${field.codemirror}"
 				isautocomplete="${field.autocomplete}" querycomplete="${field.querycomplete}"
 				filtercomplete="${field.filtercomplete}" oncomplete="${field.oncomplete}"></textarea></td>
 	`);
-	$("textarea",td).append(field.value);
+	$("textarea",td).val(field.value);
 	//~ if(field.onchange!="") $("textarea",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("textarea",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("textarea",td).attr("onchange",field.onchange);
@@ -2643,6 +2776,8 @@ saltos.form_field_textarea=function(field) {
 			}
 		},100);
 	});
+	// PROGRAM AUTOCOMPLETE FIELDS
+	saltos.form_field_autocomplete_helper(td);
 	return obj;
 };
 
@@ -2651,9 +2786,7 @@ saltos.form_field_ckeditor=function(field) {
 		"class2","colspan2","rowspan2","width2","required",
 		"class","colspan","rowspan","width","height",
 		"name","value","onchange","onkey","focus","label2","tip","class3",
-		"ckeditor","ckextra","codemirror",
-		"autocomplete","querycomplete","filtercomplete","oncomplete",
-		"readonly"]);
+		"ckeditor","ckextra","readonly"]);
 	var obj=[];
 	if(field.label!="") {
 		var td=$(`
@@ -2668,11 +2801,9 @@ saltos.form_field_ckeditor=function(field) {
 			<textarea name="${field.name}" id="${field.name}" style="width:${field.width};height:${field.height}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"
-				ckeditor="${field.ckeditor}" ckextra="${field.ckextra}" codemirror="${field.codemirror}"
-				isautocomplete="${field.autocomplete}" querycomplete="${field.querycomplete}"
-				filtercomplete="${field.filtercomplete}" oncomplete="${field.oncomplete}"></textarea></td>
+				ckeditor="${field.ckeditor}" ckextra="${field.ckextra}"></textarea></td>
 	`);
-	$("textarea",td).append(field.value);
+	$("textarea",td).val(field.value);
 	//~ if(field.onchange!="") $("textarea",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("textarea",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("textarea",td).attr("onchange",field.onchange);
@@ -2729,9 +2860,7 @@ saltos.form_field_codemirror=function(field) {
 		"class2","colspan2","rowspan2","width2","required",
 		"class","colspan","rowspan","width","height",
 		"name","value","onchange","onkey","focus","label2","tip","class3",
-		"ckeditor","ckextra","codemirror",
-		"autocomplete","querycomplete","filtercomplete","oncomplete",
-		"readonly"]);
+		"codemirror","readonly"]);
 	var obj=[];
 	if(field.label!="") {
 		var td=$(`
@@ -2746,11 +2875,9 @@ saltos.form_field_codemirror=function(field) {
 			<textarea name="${field.name}" id="${field.name}" style="width:${field.width};height:${field.height}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"
-				ckeditor="${field.ckeditor}" ckextra="${field.ckextra}" codemirror="${field.codemirror}"
-				isautocomplete="${field.autocomplete}" querycomplete="${field.querycomplete}"
-				filtercomplete="${field.filtercomplete}" oncomplete="${field.oncomplete}"></textarea></td>
+				codemirror="${field.codemirror}"></textarea></td>
 	`);
-	$("textarea",td).append(field.value);
+	$("textarea",td).val(field.value);
 	//~ if(field.onchange!="") $("textarea",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("textarea",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("textarea",td).attr("onchange",field.onchange);
@@ -2908,7 +3035,7 @@ saltos.form_field_select=function(field) {
 	// PROGRAM SELECTS
 	saltos.form_field_select_helper(td);
 	// PROGRAM LINKS OF SELECTS
-	saltos.form_field_text_helper(td);
+	saltos.form_field_islink_helper(td);
 	return obj;
 };
 
@@ -3093,6 +3220,20 @@ saltos.form_field_checkbox=function(field) {
 			`);
 		}
 		obj.push(td);
+		// TRICK TO HOVER CHECKBOXES
+		$("label",td).on("mouseover",function() {
+			if($(this).hasClass("ui-state-disabled")) return;
+			$(this).parent().addClass("checkbox-focused").prev().addClass("checkbox-focused");
+		}).on("mouseout",function() {
+			if($(this).hasClass("ui-state-disabled")) return;
+			$(this).parent().removeClass("checkbox-focused").prev().removeClass("checkbox-focused");
+		}).on("focus",function() {
+			if($(this).hasClass("ui-state-disabled")) return;
+			$(this).parent().addClass("checkbox-focused").prev().addClass("checkbox-focused");
+		}).on("blur",function() {
+			if($(this).hasClass("ui-state-disabled")) return;
+			$(this).parent().removeClass("checkbox-focused").prev().removeClass("checkbox-focused");
+		});
 	}
 	var td=$(`
 		<td class="right ${field.class2}" colspan="${field.colspan2}" rowspan="${field.rowspan2}" style="width:${field.width}">
@@ -3106,6 +3247,20 @@ saltos.form_field_checkbox=function(field) {
 	if(field.onchange!="") $("input",td).attr("onchange",field.onchange);
 	if(field.onkey!="") $("input",td).attr("onkeydown",field.onkey);
 	obj.unshift(td);
+	// TRICK TO HOVER CHECKBOXES
+	$("input",td).on("mouseover",function() {
+		if($(this).hasClass("ui-state-disabled")) return;
+		$(this).parent().addClass("checkbox-focused").next().addClass("checkbox-focused");
+	}).on("mouseout",function() {
+		if($(this).hasClass("ui-state-disabled")) return;
+		$(this).parent().removeClass("checkbox-focused").next().removeClass("checkbox-focused");
+	}).on("focus",function() {
+		if($(this).hasClass("ui-state-disabled")) return;
+		$(this).parent().addClass("checkbox-focused").next().addClass("checkbox-focused");
+	}).on("blur",function() {
+		if($(this).hasClass("ui-state-disabled")) return;
+		$(this).parent().removeClass("checkbox-focused").next().removeClass("checkbox-focused");
+	});
 	// TRICK TO BLOCK CHECKBOXES
 	$("input:checkbox.ui-state-disabled",td).on("change",function(event) {
 		$(this).prop("checked",!$(this).prop("checked"));
@@ -3488,6 +3643,9 @@ saltos.form_field_excel=function(field) {
 	return obj;
 };
 
+// FORM FIELDS USED ONLY IN THE COPY TYPE
+saltos.form_field_cache={};
+
 saltos.form_field_copy=function(field) {
 	saltos.check_params(field,["name"]);
 	if(!isset(saltos.form_field_cache[field.name])) {
@@ -3504,7 +3662,7 @@ saltos.form_field_copy=function(field) {
 		`);
 		obj.push(td);
 	}
-	var field2=saltos.form_field_cache[field.name];
+	var field2=JSON.parse(JSON.stringify(saltos.form_field_cache[field.name]));
 	if(field.label!="") field2.label="";
 	field2.oldname=field2.name;
 	field2.name="iscopy"+field2.name;
@@ -3564,56 +3722,6 @@ saltos.__form_event=function(obj) {
 	if(typeof obj.data.event=="function") obj.data.event();
 };
 
-/* FUNCIONES PARA TAREAS DEL USER INTERFACE */
-saltos.add_header=function(menu) {
-	for(var key in menu) {
-		if(saltos.limpiar_key(key)=="header") {
-			for(var key2 in menu[key]) {
-				if(saltos.limpiar_key(key2)=="option") {
-					saltos.add_button_in_navbar(menu[key][key2]);
-				}
-			}
-		}
-	}
-};
-
-saltos.update_header_title=function(title) {
-	$(".tabs2 li.center").remove();
-	saltos.add_header_title(title);
-}
-
-saltos.add_header_title=function(title) {
-	if(!isset(title)) title=lang_loading();
-	document.title=`${title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
-	saltos.add_button_in_navbar({
-		"label":document.title,
-		"onclick":"saltos.opencontent('#page=about')",
-		"icon":saltos.info.icon,
-		"tip":document.title,
-		"class":"nowrap",
-		"class2":"center",
-	});
-};
-
-saltos.add_menu=function(menu) {
-	for(var key in menu) {
-		if(saltos.limpiar_key(key)=="group") {
-			var visible=saltos.getIntCookie("saltos_ui_menu_"+menu[key].name)
-			if(visible) {
-				menu[key].active=0;
-			} else {
-				menu[key].active=1;
-			}
-			saltos.add_group_in_menu(menu[key]);
-			for(var key2 in menu[key]) {
-				if(saltos.limpiar_key(key2)=="option") {
-					saltos.add_link_in_group(menu[key][key2]);
-				}
-			}
-		}
-	}
-};
-
 /* FOR HISTORY MANAGEMENT */
 saltos.current_hash=function() {
 	var hash=window.location.hash;
@@ -3644,12 +3752,6 @@ saltos.init_history=function() {
 	window.onhashchange=function() {
 		saltos.opencontent(saltos.current_hash());
 	};
-	var hash=saltos.current_hash();
-	if(hash=="") {
-		var temp=saltos.json_sync_request("index.php?action=default","default");
-		if(!isset(temp.page)) return;
-		saltos.history_replace_hash("page="+temp.page);
-	}
 };
 
 /* FOR OLD JS AND CSS MANAGEMENT */
@@ -3774,7 +3876,7 @@ saltos.opencontent=function(url,callback) {
 		data:querystring,
 		type:type,
 		beforeSend:function(XMLHttpRequest) {
-			saltos.addcontent(hash);
+			saltos.addcontent(querystring);
 			saltos.make_abort_obj=XMLHttpRequest;
 		},
 		success:function(data,textStatus,XMLHttpRequest) {
@@ -3886,23 +3988,20 @@ saltos.submitcontent=function(form,callback) {
 	});
 };
 
-saltos.updatecontent_pre=function() {
-	saltos.unloadingcontent();
-	saltos.hide_tooltips();
-	saltos.unmake_ckeditors();
-	$(window).scrollTop(0);
-};
-
-saltos.updatecontent_post=function() {
-	saltos.make_tables();
-	saltos.make_focus();
-};
-
 saltos.updatecontent=function(data) {
 	if(!is_array(data)) {
 		saltos.updatecontent_pre();
 		$(".ui-layout-center").append(data);
 		saltos.updatecontent_post();
+		return;
+	}
+	if(isset(data.login)) {
+		if(data.login) saltos.addcontent("restart");
+		if(!data.login) saltos.addcontent("reload");
+		return;
+	}
+	if(isset(data.logout)) {
+		saltos.addcontent("restart");
 		return;
 	}
 	if(isset(data.list)) {
@@ -3915,9 +4014,11 @@ saltos.updatecontent=function(data) {
 	saltos.add_js(data.temp1);
 	saltos.update_header_title(data.temp1.title);
 	if(isset(data.list)) {
+		saltos.form_field_cache={};
 		data.temp2=saltos.make_list(data.list);
 	}
 	if(isset(data.form)) {
+		saltos.form_field_cache={};
 		data.temp2=saltos.make_form(data.form);
 	}
 	var tabs=saltos.make_tabs(data.temp2);
@@ -3928,6 +4029,18 @@ saltos.updatecontent=function(data) {
 	saltos.updatecontent_post();
 };
 
+saltos.updatecontent_pre=function() {
+	saltos.unloadingcontent();
+	saltos.hide_tooltips();
+	saltos.unmake_ckeditors();
+	$(window).scrollTop(0);
+};
+
+saltos.updatecontent_post=function() {
+	saltos.make_tables();
+	saltos.make_focus();
+};
+
 saltos.errorcontent=function(code,text) {
 	saltos.unloadingcontent();
 	if(text=="") text=lang_unknownerror();
@@ -3936,22 +4049,32 @@ saltos.errorcontent=function(code,text) {
 
 saltos.addcontent_action="";
 
-saltos.addcontent=function(hash) {
+saltos.addcontent=function(url) {
 	// DETECT SOME ACTIONS
-	if(hash=="cancel") {
-		saltos.addcontent_action=hash;
+	if(url=="cancel") {
+		saltos.addcontent_action=url;
 		return;
 	}
-	if(hash=="update") {
-		saltos.addcontent_action=hash;
+	if(url=="update") {
+		saltos.addcontent_action=url;
 		return;
 	}
-	if(hash=="reload") {
+	if(url=="reload") {
 		$(window).trigger("hashchange");
 		return;
 	}
-	if(hash=="error") {
+	if(url=="restart") {
+		window.location.reload();
+		return;
+	}
+	if(url=="error") {
 		history.go(-1);
+		return;
+	}
+	// BLOCK SOME OPERATIVE ACTIONS
+	var hash=saltos.parse_hash(url);
+	var array=saltos.querystring2array(hash);
+	if(isset(array.action) && in_array(array.action,["login","logout","insert","update","delete"])) {
 		return;
 	}
 	// IF ACTION CANCEL
@@ -4034,6 +4157,83 @@ saltos.zoom=function(arg) {
 			break;
 	}
 	$("html").css("font-size",saltos.zoom_valors[saltos.zoom_index]+"%");
+};
+
+saltos.islogin=function() {
+	return saltos.json_sync_request("index.php?action=islogin","islogin");
+};
+
+/* UNIMPLEMENTED FUNCTIONS */
+saltos.hash_encode=function(url) {
+	console.log("call to unimplemented function hash_encode");
+};
+
+saltos.hash_decode=function(hash) {
+	console.log("call to unimplemented function hash_decode");
+};
+
+saltos.current_href=function() {
+	console.log("call to unimplemented function current_href");
+};
+
+saltos.history_pushState=function(url) {
+	console.log("call to unimplemented function history_pushState");
+};
+
+saltos.history_replaceState=function(url) {
+	console.log("call to unimplemented function history_replaceState");
+};
+
+saltos.loadcontent=function(xml) {
+	console.log("call to unimplemented function loadcontent");
+};
+
+saltos.html2str=function(html) {
+	console.log("call to unimplemented function html2str");
+};
+
+saltos.str2html=function(str) {
+	console.log("call to unimplemented function str2html");
+};
+
+saltos.fix4html=function(str) {
+	console.log("call to unimplemented function fix4html");
+};
+
+saltos.getstylesheet=function(html,cad1,cad2) {
+	console.log("call to unimplemented function getstylesheet");
+};
+
+saltos.update_style=function(html,html2) {
+	console.log("call to unimplemented function update_style");
+};
+
+saltos.make_menu=function(obj) {
+	console.log("call to unimplemented function make_menu");
+};
+
+saltos.make_tabs2=function(obj) {
+	console.log("call to unimplemented function make_tabs2");
+};
+
+saltos.make_extras=function(obj) {
+	console.log("call to unimplemented function make_extras");
+};
+
+saltos.make_draganddrop=function(obj) {
+	console.log("call to unimplemented function make_draganddrop");
+};
+
+saltos.make_ckeditors=function(obj) {
+	console.log("call to unimplemented function make_ckeditors");
+};
+
+saltos.make_back2top=function() {
+	console.log("call to unimplemented function make_back2top");
+};
+
+saltos.make_resizable=function(obj) {
+	console.log("call to unimplemented function make_resizable");
 };
 
 /* FOR COMPATIBILITY */
@@ -4428,8 +4628,8 @@ function get_class_hash(obj) {
 }
 
 function saltos_islogin(obj) {
-	//~ //~ console.log("call to deprecated function saltos_islogin");
-	return saltos_islogin;
+	//~ console.log("call to deprecated function saltos_islogin");
+	return saltos.islogin(obj);
 }
 
 function copy_value(dest,src) {
@@ -4448,54 +4648,30 @@ $.ajaxSetup({ cache:true });
 /* MAIN CODE */
 (function($) {
 	saltos.init_error();
-	saltos.islogin=saltos.json_sync_request("index.php?action=islogin","islogin");
-	if(saltos.islogin) {
-		// CARGAR DATOS
-		saltos.sync_cookies("start");
-		saltos.info=saltos.json_sync_request("index.php?action=info","info");
-		saltos.menu=saltos.json_sync_request("index.php?action=menu","menu");
 
-		// MONTAR PANTALLA
-		saltos.add_layout(saltos.info);
-		saltos.add_header(saltos.menu);
-		saltos.add_header_title();
-		saltos.add_menu(saltos.menu);
+	// CARGAR DATOS
+	saltos.sync_cookies();
+	saltos.info=saltos.json_sync_request("index.php?action=info","info");
+	saltos.menu=saltos.json_sync_request("index.php?action=menu","menu");
 
-		// MULTIPLES INITS
-		saltos.init_history();
-		saltos.make_notice();
-		saltos.make_dialog();
-		saltos.make_contextmenu();
-		saltos.make_shortcuts();
-		saltos.make_abort();
-		saltos.make_tooltips();
-		saltos.make_hovers();
+	// MONTAR PANTALLA
+	saltos.add_layout(saltos.info);
+	saltos.add_header(saltos.menu);
+	saltos.add_menu(saltos.menu);
 
-		// CARGAR PRIMER CONTENIDO
-		saltos.opencontent(saltos.current_hash());
-	} else {
-		// CARGAR DATOS
-		saltos.info=saltos.json_sync_request("index.php?action=info","info");
+	// MULTIPLES INITS
+	saltos.init_history();
+	saltos.make_notice();
+	saltos.make_dialog();
+	saltos.make_contextmenu();
+	saltos.make_shortcuts();
+	saltos.make_abort();
+	saltos.make_tooltips();
+	saltos.make_hovers();
+	saltos.make_enters();
 
-		// MONTAR PANTALLA
-		saltos.add_layout(saltos.info);
-		saltos.add_header(saltos.menu);
-		saltos.add_header_title();
+	// CARGAR PRIMER CONTENIDO
+	saltos.opencontent(saltos.current_hash());
 
-		// MULTIPLES INITS
-		saltos.init_history();
-		saltos.make_notice();
-		saltos.make_dialog();
-		saltos.make_contextmenu();
-		saltos.make_shortcuts();
-		saltos.make_abort();
-		saltos.make_tooltips();
-		saltos.make_hovers();
-
-		// CARGAR PRIMER CONTENIDO
-		saltos.opencontent(saltos.current_hash());
-
-		// TODO HAY QUE ACABAR LA PARTE DE LOGIN Y LOGOUT
-	}
 }(jQuery));
 

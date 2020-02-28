@@ -24,18 +24,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) {
-	$_LANG["default"]="login,common";
-	$_CONFIG["login"]=eval_attr(xml2array("xml/login.xml"));
-	$_RESULT["form"]=getDefault("login/form");
-	$json=json_encode($_RESULT);
-	output_handler(array(
-		"data"=>$json,
-		"type"=>"application/json",
-		"cache"=>false
-	));
-	die();
-}
+if(!check_user()) _action_login();
 
 $page=getParam("page");
 $id=intval(getParam("id"));
@@ -76,10 +65,10 @@ if($fixquery) $rows=$rows["default"];
 set_array($_RESULT[$action],"rows",$rows);
 if($go) {
 	if(is_numeric($go)) {
-		//~ javascript_history($go);
+		javascript_history($go);
 	} else {
-		//~ javascript_history("update");
-		//~ javascript_location_page($go);
+		javascript_history("update");
+		javascript_location_page($go);
 	}
 	die();
 }

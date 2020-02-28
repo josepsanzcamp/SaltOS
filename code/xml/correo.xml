@@ -753,6 +753,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 							<query eval="true">"SELECT
 							CONCAT(email_name,' &lt;',email_from,'&gt;') label,id value,email_default,(SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta=a.id AND is_outbox=1) AND id_tipo IN (1,2,3,4)) contador FROM tbl_usuarios_c a WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC, contador DESC"</query>
+							<focus>true</focus>
 							<required>true</required>
 							<onchange>update_signature(1)</onchange>
 						</field>
@@ -767,7 +768,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<colspan>12</colspan>
 							<required global="id" eval="true">$id>=0?"true":"false"</required>
 							<width2>1%</width2>
-							<focus>true</focus>
 						</field>
 						<field global="id" ifeval="!ismobile() &amp;&amp; $id&gt;=0">
 							<type>button</type>

@@ -28,9 +28,11 @@ if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") 
 	var __numbers__=1;
 
 	function update_numbers() {
-		if(!saltos_islogin()) return;
-		// LOAD AJAX COUNTS
-		var data="action=ajax&query=numbers&page="+getParam("page")+"&action2="+getParam("action")+"&id="+getParam("id");
+		var page=getParam("page");
+		var action=getParam("action");
+		var id=getParam("id");
+		if(!isset(page) || !isset(action) || !isset(id)) return;
+		var data="action=ajax&query=numbers&page="+page+"&action2="+action+"&id="+id;
 		$.ajax({
 			url:"index.php",
 			data:data,
