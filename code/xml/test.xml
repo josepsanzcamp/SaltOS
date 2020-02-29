@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2020 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<default>
+		<action global="action" eval="true">($action=="list")?$action="form":$action</action>
+		<id global="id" eval="true">$id=current_user()</id>
+	</default>
+	<form>
+		<views>
+			<update>
+				<title lang="true">formupdate</title>
+				<query>
+					<default>SELECT '0' id</default>
+				</query>
+			</update>
+		</views>
+		<name>form</name>
+		<action></action>
+		<method>get</method>
+		<hiddens include="xml/common/hiddensform.xml"/>
+		<help>true</help>
+		<fields>
+			<default>
+				<fieldset>
+					<title lang="true">formupdate</title>
+					<icon eval="true">ICON("home")</icon>
+					<width>100%</width>
+					<row>
+						<field>
+							<type>grid</type>
+							<class>top</class>
+							<rows>
+								<row>
+									<field>
+										<label>Text</label>
+										<type>text</type>
+										<name>text</name>
+										<width>240px</width>
+										<value>asd</value>
+										<focus>true</focus>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Integer</label>
+										<type>integer</type>
+										<name>integer</name>
+										<width>120px</width>
+										<value>123</value>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Float</label>
+										<type>float</type>
+										<name>float</name>
+										<width>120px</width>
+										<value>123.456</value>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Color</label>
+										<type>color</type>
+										<name>color</name>
+										<width>90px</width>
+										<value>#336699</value>
+										<icon eval="true">ICON("color")</icon>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Date</label>
+										<type>date</type>
+										<name>date</name>
+										<width>90px</width>
+										<value eval="true">current_date()</value>
+										<icon eval="true">ICON("calendar")</icon>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Time</label>
+										<type>time</type>
+										<name>time</name>
+										<width>90px</width>
+										<value eval="true">current_time()</value>
+										<icon eval="true">ICON("clock")</icon>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Datetime</label>
+										<type>datetime</type>
+										<name>datetime</name>
+										<width>180px</width>
+										<value eval="true">current_datetime()</value>
+										<icon eval="true">ICON("calendar")</icon>
+										<icon2 eval="true">ICON("clock")</icon2>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Select</label>
+										<type>select</type>
+										<name>select</name>
+										<value>2</value>
+										<width>240px</width>
+										<rows>
+											<row>
+												<label>Uno</label>
+												<value>1</value>
+											</row>
+											<row>
+												<label>Dos</label>
+												<value>2</value>
+											</row>
+											<row>
+												<label>Tres</label>
+												<value>3</value>
+											</row>
+										</rows>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Multiselect</label>
+										<type>multiselect</type>
+										<name>multiselect</name>
+										<value>2</value>
+										<width>240px</width>
+										<height>60px</height>
+										<rows>
+											<row>
+												<label>Uno</label>
+												<value>1</value>
+											</row>
+											<row>
+												<label>Dos</label>
+												<value>2</value>
+											</row>
+											<row>
+												<label>Tres</label>
+												<value>3</value>
+											</row>
+										</rows>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Checkbox</label>
+										<type>checkbox</type>
+										<name>checkbox</name>
+										<value>1</value>
+									</field>
+								</row>
+								<row>
+									<field>
+										<type>separator</type>
+									</field>
+									<field>
+										<type>button</type>
+										<name>button</name>
+										<value>Button</value>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Password</label>
+										<type>password</type>
+										<name>password</name>
+										<width>240px</width>
+										<value>asd</value>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>File</label>
+										<type>file</type>
+										<name>file</name>
+										<width>240px</width>
+									</field>
+								</row>
+								<row>
+									<height>22px</height>
+									<field>
+										<label2>Link</label2>
+										<type>link</type>
+										<name>link</name>
+										<width>240px</width>
+										<label>http://www.saltos.org</label>
+									</field>
+								</row>
+								<row>
+									<field>
+										<type>separator</type>
+									</field>
+									<field>
+										<label>Label</label>
+										<type>label</type>
+										<name>label</name>
+										<width>240px</width>
+										<class>title</class>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Image</label>
+										<type>image</type>
+										<name>image</name>
+										<image>img/saltos2.png</image>
+										<width>200px</width>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Menu</label>
+										<type>menu</type>
+										<name>menu</name>
+										<width>240px</width>
+										<option>
+											<label>Seleccione...</label>
+											<onclick></onclick>
+										</option>
+										<group>
+											<label>Grupo 1</label>
+											<option>
+												<label>Opcion 1</label>
+												<onclick></onclick>
+											</option>
+											<option>
+												<label>Opcion 2</label>
+												<onclick></onclick>
+											</option>
+											<option>
+												<label>Opcion 3</label>
+												<onclick></onclick>
+											</option>
+										</group>
+										<group>
+											<label>Grupo 2</label>
+											<option>
+												<label>Opcion 1</label>
+												<onclick></onclick>
+											</option>
+											<option>
+												<label>Opcion 2</label>
+												<onclick></onclick>
+											</option>
+											<option>
+												<label>Opcion 3</label>
+												<onclick></onclick>
+											</option>
+										</group>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Excel</label>
+										<type>excel</type>
+										<name>excel</name>
+										<data>[
+											[1,2,3,4,5,6,7,8,9,10],
+											[11,12,13,14,15,16,17,18,19,20],
+											[21,22,23,24,25,26,27,28,29,30],
+											[31,32,33,34,35,36,37,38,39,40],
+											[41,42,43,44,45,46,47,48,49,50],
+											[51,52,53,54,55,56,57,58,59,60],
+											[61,62,63,64,65,66,67,68,69,70],
+											[71,72,73,74,75,76,77,78,79,80],
+											[81,82,83,84,85,86,87,88,89,90],
+											[91,92,93,94,95,96,97,98,99,100]
+										]</data>
+									</field>
+								</row>
+							</rows>
+						</field>
+						<field>
+							<type>grid</type>
+							<class>top</class>
+							<rows>
+								<row>
+									<field>
+										<label>Textarea</label>
+										<type>textarea</type>
+										<name>textarea</name>
+										<width>600px</width>
+										<height>120px</height>
+										<value>Texto 1</value>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>CKeditor</label>
+										<type>textarea</type>
+										<name>ckeditor</name>
+										<width>600px</width>
+										<height>120px</height>
+										<ckeditor>true</ckeditor>
+										<ckextra>signature; blockquote div{*}</ckextra>
+										<value>Texto 2</value>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Codemirror</label>
+										<type>textarea</type>
+										<name>codemirror</name>
+										<width>600px</width>
+										<height>120px</height>
+										<codemirror>true</codemirror>
+										<value>Texto 3</value>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Iframe</label>
+										<type>iframe</type>
+										<name>iframe</name>
+										<value>http://127.0.0.1/caca</value>
+										<width>600px</width>
+										<height>120px</height>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>OHLC plot</label>
+										<type>plot</type>
+										<name>plot</name>
+										<width>600px</width>
+										<height>240px</height>
+										<vars>4</vars>
+										<graph>ohlc</graph>
+										<title>Plot asd</title>
+										<rows>
+											<row><y0>2020-01</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>101</y4></row>
+											<row><y0>2020-02</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>99</y4></row>
+											<row><y0>2020-03</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>111</y4></row>
+											<row><y0>2020-04</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>109</y4></row>
+											<row><y0>2020-05</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>101</y4></row>
+											<row><y0>2020-06</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>99</y4></row>
+											<row><y0>2020-07</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>111</y4></row>
+											<row><y0>2020-08</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>109</y4></row>
+											<row><y0>2020-09</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>101</y4></row>
+											<row><y0>2020-10</y0><y1>100</y1><y2>110</y2><y3>95</y3><y4>99</y4></row>
+											<row><y0>2020-11</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>111</y4></row>
+											<row><y0>2020-12</y0><y1>110</y1><y2>120</y2><y3>100</y3><y4>109</y4></row>
+										</rows>
+									</field>
+								</row>
+							</rows>
+						</field>
+						<field>
+							<type>grid</type>
+							<class>top</class>
+							<rows>
+								<row>
+									<field>
+										<label>Bars plot</label>
+										<type>plot</type>
+										<name>plot</name>
+										<width>480px</width>
+										<height>180px</height>
+										<vars>1</vars>
+										<graph>bars</graph>
+										<title>Plot asd</title>
+										<rows>
+											<row><y0>2020-01</y0><y1>100</y1></row>
+											<row><y0>2020-02</y0><y1>50</y1></row>
+											<row><y0>2020-03</y0><y1>70</y1></row>
+											<row><y0>2020-04</y0><y1>90</y1></row>
+											<row><y0>2020-05</y0><y1>120</y1></row>
+											<row><y0>2020-06</y0><y1>130</y1></row>
+											<row><y0>2020-07</y0><y1>180</y1></row>
+											<row><y0>2020-08</y0><y1>140</y1></row>
+											<row><y0>2020-09</y0><y1>120</y1></row>
+											<row><y0>2020-10</y0><y1>80</y1></row>
+											<row><y0>2020-11</y0><y1>90</y1></row>
+											<row><y0>2020-12</y0><y1>100</y1></row>
+										</rows>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Pie plot</label>
+										<type>plot</type>
+										<name>plot</name>
+										<width>480px</width>
+										<height>180px</height>
+										<vars>1</vars>
+										<graph>pie</graph>
+										<title>Plot asd</title>
+										<rows>
+											<row><y0>2020-01</y0><y1>100</y1></row>
+											<row><y0>2020-02</y0><y1>50</y1></row>
+											<row><y0>2020-03</y0><y1>70</y1></row>
+											<row><y0>2020-04</y0><y1>90</y1></row>
+											<row><y0>2020-05</y0><y1>120</y1></row>
+											<row><y0>2020-06</y0><y1>130</y1></row>
+											<row><y0>2020-07</y0><y1>180</y1></row>
+											<row><y0>2020-08</y0><y1>140</y1></row>
+											<row><y0>2020-09</y0><y1>120</y1></row>
+											<row><y0>2020-10</y0><y1>80</y1></row>
+											<row><y0>2020-11</y0><y1>90</y1></row>
+											<row><y0>2020-12</y0><y1>100</y1></row>
+										</rows>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Points plot</label>
+										<type>plot</type>
+										<name>plot</name>
+										<width>480px</width>
+										<height>180px</height>
+										<vars>1</vars>
+										<graph>lines</graph>
+										<title>Plot asd</title>
+										<rows>
+											<row><y0>2020-01</y0><y1>100</y1></row>
+											<row><y0>2020-02</y0><y1>50</y1></row>
+											<row><y0>2020-03</y0><y1>70</y1></row>
+											<row><y0>2020-04</y0><y1>90</y1></row>
+											<row><y0>2020-05</y0><y1>120</y1></row>
+											<row><y0>2020-06</y0><y1>130</y1></row>
+											<row><y0>2020-07</y0><y1>180</y1></row>
+											<row><y0>2020-08</y0><y1>140</y1></row>
+											<row><y0>2020-09</y0><y1>120</y1></row>
+											<row><y0>2020-10</y0><y1>80</y1></row>
+											<row><y0>2020-11</y0><y1>90</y1></row>
+											<row><y0>2020-12</y0><y1>100</y1></row>
+										</rows>
+									</field>
+								</row>
+								<row>
+									<field>
+										<label>Points plot</label>
+										<type>plot</type>
+										<name>plot</name>
+										<width>480px</width>
+										<height>180px</height>
+										<vars>1</vars>
+										<graph>points</graph>
+										<title>Plot asd</title>
+										<rows>
+											<row><y0>2020-01</y0><y1>100</y1></row>
+											<row><y0>2020-02</y0><y1>50</y1></row>
+											<row><y0>2020-03</y0><y1>70</y1></row>
+											<row><y0>2020-04</y0><y1>90</y1></row>
+											<row><y0>2020-05</y0><y1>120</y1></row>
+											<row><y0>2020-06</y0><y1>130</y1></row>
+											<row><y0>2020-07</y0><y1>180</y1></row>
+											<row><y0>2020-08</y0><y1>140</y1></row>
+											<row><y0>2020-09</y0><y1>120</y1></row>
+											<row><y0>2020-10</y0><y1>80</y1></row>
+											<row><y0>2020-11</y0><y1>90</y1></row>
+											<row><y0>2020-12</y0><y1>100</y1></row>
+										</rows>
+									</field>
+								</row>
+							</rows>
+						</field>
+					</row>
+				</fieldset>
+			</default>
+		</fields>
+		<javascript include="xml/common/jsform.xml"/>
+	</form>
+</root>

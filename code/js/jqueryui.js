@@ -1101,6 +1101,9 @@ saltos.unmake_ckeditors=function() {
 	});
 };
 
+/* LIST OF TYPES THAT CAN USE THIS FEATURE */
+saltos.make_enters_list=["text","integer","float","color","date","time","datetime","select","checkbox","password"];
+
 saltos.make_enters=function() {
 	$(document).on("keydown",function(event) {
 		if($(".ui-autocomplete").is(":visible")) {
@@ -1109,7 +1112,15 @@ saltos.make_enters=function() {
 		}
 		if(is_enterkey(event)) {
 			var id=$(event.target).attr("id");
-			if(substr(id,-7,7)=="-button") id=substr(id,0,-7);
+			// TRICK TO DETECT DATETIME FIELDS AND JUMP FROM DATE TO TIME
+			if(substr(id,-5,5)=="_date" && isset(saltos.form_field_cache[substr(id,0,-5)]) && saltos.form_field_cache[substr(id,0,-5)].type=="datetime") {
+				$("#"+substr(id,0,-5)+"_time").trigger("focus");
+				$("#"+substr(id,0,-5)+"_time").trigger("select");
+				return;
+			}
+			// CONTINUE
+			if(substr(id,-7,7)=="-button" && isset(saltos.form_field_cache[substr(id,0,-7)]) && saltos.form_field_cache[substr(id,0,-7)].type=="select") id=substr(id,0,-7);
+			if(substr(id,-5,5)=="_time" && isset(saltos.form_field_cache[substr(id,0,-5)]) && saltos.form_field_cache[substr(id,0,-5)].type=="datetime") id=substr(id,0,-5);
 			var div=$(event.target);
 			for(;;) {
 				if(!$(div).length) break;
@@ -1121,9 +1132,11 @@ saltos.make_enters=function() {
 			var first="";
 			for(var key in saltos.form_field_cache) {
 				var field=saltos.form_field_cache[key];
-				var valid=in_array(field.type,["text","integer","float","color","date","time","datetime","select","checkbox","password"]);
+				var valid=in_array(field.type,saltos.make_enters_list);
 				if($("#"+field.name).is("select")) {
 					var visible=$("#"+field.name).next().is(":visible");
+				} else if($("#"+field.name).is(":hidden")) {
+					var visible=true;
 				} else {
 					var visible=$("#"+field.name).is(":visible");
 				}
@@ -1147,8 +1160,11 @@ saltos.make_enters=function() {
 				focus=first;
 			}
 			if(focus!="") {
-				if($("#"+focus).is("select")) {
-					$("#"+focus).next().trigger("focus");
+				if(saltos.form_field_cache[focus].type=="select") {
+					$("#"+focus+"-button").trigger("focus");
+				} else if(saltos.form_field_cache[focus].type=="datetime") {
+					$("#"+focus+"_date").trigger("focus");
+					$("#"+focus+"_date").trigger("select");
 				} else {
 					$("#"+focus).trigger("focus");
 					$("#"+focus).trigger("select");
@@ -1810,21 +1826,18 @@ saltos.make_table=function(option) {
 };
 
 saltos.__get_filtered_field_helper=function(field,size) {
+	var title="";
 	if(size!="") {
-		var len=strlen(field);
 		size=intval(size);
-		if(len>size) {
-			var span=$("<span></span>");
-			span.attr("title",field);
-			span.append(htmlentities(substr(field,0,size))+"...");
-			field=span;
-		} else {
-			field=htmlentities(field);
+		if(strlen(field)>size) {
+			title=field;
+			field=substr(field,0,size)+"...";
 		}
-	} else {
-		field=htmlentities(field);
 	}
-	return field;
+	var span=$("<span></span>");
+	if(title!="") $(span).attr("title",title);
+	$(span).text(field);
+	return span;
 };
 
 saltos.get_filtered_field=function(field,size,id) {
@@ -2259,8 +2272,9 @@ saltos.form_field_hidden=function(field) {
 	saltos.check_params(field,["name","value","onchange","class"]);
 	var obj=[];
 	var input=$(`
-		<input type="hidden" name="${field.name}" id="${field.name}" value="${field.value}" class="${field.class}" autocomplete="off">
+		<input type="hidden" name="${field.name}" id="${field.name}" value="" class="${field.class}" autocomplete="off">
 	`);
+	$(input).val(field.value);
 	//~ if(field.onchange!="") $(input).on("change",{event:field.onchange},saltos.__form_event);
 	if(field.onchange!="") $(input).attr("onchange",field.onchange);
 	obj.push(input);
@@ -2285,12 +2299,13 @@ saltos.form_field_text=function(field) {
 	}
 	var td=$(`
 		<td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<input type="text" name="${field.name}" id="${field.name}" value="${field.value}" style="width:${field.width}"
+			<input type="text" name="${field.name}" id="${field.name}" value="" style="width:${field.width}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"
 				isautocomplete="${field.autocomplete}" querycomplete="${field.querycomplete}"
 				filtercomplete="${field.filtercomplete}" oncomplete="${field.oncomplete}"/></td>
 	`);
+	$("input",td).val(field.value);
 	//~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("input",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("input",td).attr("onchange",field.onchange);
@@ -2388,10 +2403,11 @@ saltos.form_field_integer=function(field) {
 	}
 	var td=$(`
 		<td class="left ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<input type="text" name="${field.name}" id="${field.name}" value="${field.value}" style="width:${field.width}"
+			<input type="text" name="${field.name}" id="${field.name}" value="" style="width:${field.width}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"/></td>
 	`);
+	$("input",td).val(field.value);
 	//~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("input",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("input",td).attr("onchange",field.onchange);
@@ -2426,10 +2442,11 @@ saltos.form_field_float=function(field) {
 	}
 	var td=$(`
 		<td class="left ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<input type="text" name="${field.name}" id="${field.name}" value="${field.value}" style="width:${field.width}"
+			<input type="text" name="${field.name}" id="${field.name}" value="" style="width:${field.width}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"/></td>
 	`);
+	$("input",td).val(field.value);
 	//~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("input",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("input",td).attr("onchange",field.onchange);
@@ -2464,10 +2481,11 @@ saltos.form_field_color=function(field) {
 	}
 	var td=$(`
 		<td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<input type="text" name="${field.name}" id="${field.name}" value="${field.value}" style="width:${field.width}"
+			<input type="text" name="${field.name}" id="${field.name}" value="" style="width:${field.width}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"/></td>
 	`);
+	$("input",td).val(field.value);
 	//~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("input",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("input",td).attr("onchange",field.onchange);
@@ -2530,10 +2548,11 @@ saltos.form_field_date=function(field) {
 	}
 	var td=$(`
 		<td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<input type="text" name="${field.name}" id="${field.name}" value="${field.value}" style="width:${field.width}"
+			<input type="text" name="${field.name}" id="${field.name}" value="" style="width:${field.width}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"/></td>
 	`);
+	$("input",td).val(field.value);
 	//~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("input",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("input",td).attr("onchange",field.onchange);
@@ -2594,10 +2613,11 @@ saltos.form_field_time=function(field) {
 	}
 	var td=$(`
 		<td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<input type="text" name="${field.name}" id="${field.name}" value="${field.value}" style="width:${field.width}"
+			<input type="text" name="${field.name}" id="${field.name}" value="" style="width:${field.width}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"/></td>
 	`);
+	$("input",td).val(field.value);
 	//~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("input",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("input",td).attr("onchange",field.onchange);
@@ -2656,8 +2676,9 @@ saltos.form_field_datetime=function(field) {
 	}
 	var td=$(`
 		<td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<input type="hidden" name="${field.name}" id="${field.name}" value="${field.value}" autocomplete="off"/></td>
+			<input type="hidden" name="${field.name}" id="${field.name}" value="" autocomplete="off"/></td>
 	`);
+	$("input",td).val(field.value);
 	//~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
 	if(field.onchange!="") $("input",td).attr("onchange",field.onchange);
 	if(field.readonly!="true") {
@@ -2926,9 +2947,10 @@ saltos.form_field_iframe=function(field) {
 	}
 	var td=$(`
 		<td class="left ${field.class3}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<iframe src="" url="${field.value}" name="${field.name}" id="${field.name}" style="width:${field.width};height:${field.height}"
+			<iframe src="" url="" name="${field.name}" id="${field.name}" style="width:${field.width};height:${field.height}"
 				focused="${field.focus}" frameborder="0" title="${field.tip}" class="${field.class}"></iframe></td>
 	`);
+	$("iframe",td).attr("url",field.value);
 	if(field.class=="") $("iframe",td).addClass("ui-state-default ui-corner-all iframe");
 	//~ if(field.onchange!="") $("iframe",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("iframe",td).on("keydown",{event:field.onkey},saltos.__form_event);
@@ -3000,8 +3022,9 @@ saltos.form_field_select=function(field) {
 			<select name="${field.name}" id="${field.name}" style="width:${field.width}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"
-				original="${field.value}" width2="${field.width}" dir="${field.dir}"></select></td>
+				original="" width2="${field.width}" dir="${field.dir}"></select></td>
 	`);
+	$("select",td).attr("original",field.value);
 	//~ if(field.onchange!="") $("select",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("select",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("select",td).attr("onchange",field.onchange);
@@ -3011,8 +3034,10 @@ saltos.form_field_select=function(field) {
 		var row=field.rows[key];
 		saltos.check_params(row,["label","value"]);
 		var option=$(`
-			<option value="${row.value}">${row.label}</option>
+			<option value=""></option>
 		`);
+		$(option).val(row.value);
+		$(option).text(row.label);
 		if(field.value==row.value) $(option).attr("selected","true");
 		$("select",td).append(option);
 	}
@@ -3025,8 +3050,9 @@ saltos.form_field_select=function(field) {
 	}
 	if(field.readonly=="true") {
 		var input=$(`
-			<input type="hidden" name="${field.name}" id="${field.name}" value="${field.value}" class="${field.class}" autocomplete="off">
+			<input type="hidden" name="${field.name}" id="${field.name}" value="" class="${field.class}" autocomplete="off">
 		`);
+		$(input).val(field.value);
 		$(td).append(input);
 		//~ if(field.onchange!="") $(input).on("change",{event:field.onchange},saltos.__form_event);
 		if(field.onchange!="") $(input).attr("onchange",field.onchange);
@@ -3109,7 +3135,7 @@ saltos.form_field_multiselect=function(field) {
 	var height=(intval(field.height)+6)+"px";
 	var td=$(`
 		<td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width};height:${field.height}">
-			<input type="hidden" name="${field.name}" id="${field.name}" value="${field.value}" ismultiselect="true" autocomplete="off"/>
+			<input type="hidden" name="${field.name}" id="${field.name}" value="" ismultiselect="true" autocomplete="off"/>
 			<table align="left" cellpadding="0" cellspacing="0" border="0">
 				<tr>
 					<td>
@@ -3137,6 +3163,7 @@ saltos.form_field_multiselect=function(field) {
 			</table>
 		</td>
 	`);
+	$("input",td).val(field.value);
 	//~ if(field.onchange!="") $("input,select",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("select",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("input,select",td).attr("onchange",field.onchange);
@@ -3149,8 +3176,10 @@ saltos.form_field_multiselect=function(field) {
 		var row=field.rows[key];
 		saltos.check_params(row,["label","value"]);
 		var option=$(`
-			<option value="${row.value}">${row.label}</option>
+			<option value=""></option>
 		`);
+		$(option).val(row.value);
+		$(option).text(row.label);
 		if(field.value==row.value) $(option).attr("selected","true");
 		$("select",td).append(option);
 	}
@@ -3237,9 +3266,10 @@ saltos.form_field_checkbox=function(field) {
 	}
 	var td=$(`
 		<td class="right ${field.class2}" colspan="${field.colspan2}" rowspan="${field.rowspan2}" style="width:${field.width}">
-			<input type="checkbox" name="${field.name}" id="${field.name}" value="${field.value}" focused="${field.focus}"
+			<input type="checkbox" name="${field.name}" id="${field.name}" value="" focused="${field.focus}"
 				labeled="${field.label}${field.label2}" title="${field.tip}" class="${field.class3}" autocomplete="off"/></td>
 	`);
+	$("input",td).val(field.value);
 	if(field.checked=="true") $("input",td).attr("checked","checked");
 	if(field.readonly=="true") $("input",td).addClass("ui-state-disabled");
 	//~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
@@ -3277,8 +3307,9 @@ saltos.form_field_button=function(field) {
 		<td colspan="${field.colspan}" rowspan="${field.rowspan}" class="${field.class}" style="width:${field.width}">
 			<a href="javascript:void(0)" focused="${field.focus}" labeled="${field.label}" style="width:${field.width2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class2}" id="${field.name}">
-				<span class="${field.icon}"></span> ${field.value}</a></td>
+				<span class="${field.icon}"></span></a></td>
 	`);
+	$("a",td).append(" "+field.value);
 	if(field.disabled=="true") {
 		$("a",td).addClass("ui-state-disabled");
 	} else {
@@ -3306,10 +3337,11 @@ saltos.form_field_password=function(field) {
 	}
 	var td=$(`
 		<td class="left ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<input type="password" name="${field.name}" id="${field.name}" value="${field.value}" style="width:${field.width}"
+			<input type="password" name="${field.name}" id="${field.name}" value="" style="width:${field.width}"
 				focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"/></td>
 	`);
+	$("input",td).val(field.value);
 	//~ if(field.onchange!="") $("input",td).on("change",{event:field.onchange},saltos.__form_event);
 	//~ if(field.onkey!="") $("input",td).on("keydown",{event:field.onkey},saltos.__form_event);
 	if(field.onchange!="") $("input",td).attr("onchange",field.onchange);
@@ -3335,10 +3367,11 @@ saltos.form_field_file=function(field) {
 	}
 	var td=$(`
 		<td class="left ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
-			<input type="file" name="${field.name}" id="${field.name}" value="${field.value}" style="width:${field.width}"
+			<input type="file" name="${field.name}" id="${field.name}" value="" style="width:${field.width}"
 				size="${field.size}" focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
 				title="${field.tip}" class="${field.class3}" autocomplete="off"/></td>
 	`);
+	$("input",td).val(field.value);
 	obj.push(td);
 	return obj;
 };
@@ -3535,19 +3568,33 @@ saltos.form_field_menu=function(field) {
 		if(saltos.limpiar_key(key)=="option") {
 			var field2=field[key];
 			saltos.check_params(field2,["onclick","class","label","disabled"]);
-			$("select",td).append(`<option value="${field2.onclick}" class="${field2.class}">${field2.label}</option>`);
-			if(field2.disabled=="true") $("option:last",td).attr("disabled","disabled");
+			var option=$(`
+				<option value="" class="${field2.class}"></option>
+			`);
+			$(option).val(field2.onclick);
+			$(option).text(field2.label);
+			if(field2.disabled=="true") $(option).attr("disabled","disabled");
+			$("select",td).append(option);
 		}
 		if(saltos.limpiar_key(key)=="group") {
 			var field2=field[key];
 			saltos.check_params(field2,["label","class"]);
-			$("select",td).append(`<optgroup label="${field2.label}" class="${field2.class}"></optgroup>`);
+			var option=$(`
+				<optgroup label="" class="${field2.class}"></optgroup>
+			`);
+			$(option).attr("label",field2.label);
+			$("select",td).append(option);
 			for(var key2 in field[key]) {
 				if(saltos.limpiar_key(key2)=="option") {
 					var field3=field[key][key2];
 					saltos.check_params(field3,["onclick","class","label","disabled"]);
-					$("optgroup:last",td).append(`<option value="${field3.onclick}" class="${field3.class}">${field3.label}</option>`);
-					if(field3.disabled=="true") $("option:last",td).attr("disabled","disabled");
+					var option=$(`
+						<option value="" class="${field3.class}"></option>
+					`);
+					$(option).val(field3.onclick);
+					$(option).text(field3.label);
+					if(field3.disabled=="true") $(option).attr("disabled","disabled");
+					$("optgroup:last",td).append(option);
 				}
 			}
 		}
@@ -3853,14 +3900,20 @@ saltos.opencontent=function(url,callback) {
 	loadingcontent(lang_loading());
 	if(!isset(array.page) && !isset(array.action) && !isset(array.id)) {
 		var temp=saltos.json_sync_request("index.php?action=default","default");
-		if(!isset(temp.page)) return;
+		if(!isset(temp.page)) {
+			unloadingcontent();
+			return;
+		}
 		array.page=temp.page;
 		array.action=temp.action;
 		array.id=temp.id;
 	}
 	if(isset(array.page) && !isset(array.action) && !isset(array.id)) {
 		var temp=saltos.json_sync_request("index.php?action=default&page="+array.page,"default");
-		if(!isset(temp.action)) return;
+		if(!isset(temp.action)) {
+			unloadingcontent();
+			return;
+		}
 		array.action=temp.action;
 		array.id=temp.id;
 	}
@@ -3990,9 +4043,15 @@ saltos.submitcontent=function(form,callback) {
 
 saltos.updatecontent=function(data) {
 	if(!is_array(data)) {
-		saltos.updatecontent_pre();
-		$(".ui-layout-center").append(data);
-		saltos.updatecontent_post();
+		saltos.unloadingcontent();
+		var html=saltos.str2html(saltos.fix4html(data));
+		if($(".phperror",html).length) {
+			saltos.unmake_ckeditors();
+			$("div[type=title]",html).remove();
+			$(".ui-layout-center").html(html);
+		} else {
+			$(".ui-layout-center").append(html);
+		}
 		return;
 	}
 	if(isset(data.login)) {
@@ -4010,7 +4069,10 @@ saltos.updatecontent=function(data) {
 	if(isset(data.form)) {
 		data.temp1=data.form;
 	}
-	if(!isset(data.temp1)) return;
+	if(!isset(data.temp1)) {
+		unloadingcontent();
+		return;
+	}
 	saltos.add_js(data.temp1);
 	saltos.update_header_title(data.temp1.title);
 	if(isset(data.list)) {
@@ -4022,21 +4084,13 @@ saltos.updatecontent=function(data) {
 		data.temp2=saltos.make_form(data.form);
 	}
 	var tabs=saltos.make_tabs(data.temp2);
-	saltos.updatecontent_pre();
+	saltos.unloadingcontent();
+	saltos.unmake_ckeditors();
+	saltos.hide_tooltips();
+	$(window).scrollTop(0);
 	$(".ui-layout-center > *").remove();
 	$(".ui-layout-center").append(tabs);
 	saltos.add_css(data.temp1);
-	saltos.updatecontent_post();
-};
-
-saltos.updatecontent_pre=function() {
-	saltos.unloadingcontent();
-	saltos.hide_tooltips();
-	saltos.unmake_ckeditors();
-	$(window).scrollTop(0);
-};
-
-saltos.updatecontent_post=function() {
 	saltos.make_tables();
 	saltos.make_focus();
 };
@@ -4047,7 +4101,11 @@ saltos.errorcontent=function(code,text) {
 	alerta("Error: "+code+": "+text);
 };
 
+/* TEMPORARY VARIABLE TO STORE TEMPORARY ACTIONS */
 saltos.addcontent_action="";
+
+/* LIST OF ACTIONS BLOCKED TO USE THE HISTORY FEATURE */
+saltos.addcontent_list=["login","logout","insert","update","delete"];
 
 saltos.addcontent=function(url) {
 	// DETECT SOME ACTIONS
@@ -4074,7 +4132,7 @@ saltos.addcontent=function(url) {
 	// BLOCK SOME OPERATIVE ACTIONS
 	var hash=saltos.parse_hash(url);
 	var array=saltos.querystring2array(hash);
-	if(isset(array.action) && in_array(array.action,["login","logout","insert","update","delete"])) {
+	if(isset(array.action) && in_array(array.action,saltos.addcontent_list)) {
 		return;
 	}
 	// IF ACTION CANCEL
@@ -4189,15 +4247,29 @@ saltos.loadcontent=function(xml) {
 };
 
 saltos.html2str=function(html) {
-	console.log("call to unimplemented function html2str");
+	var div=$("<div></div>");
+	$(div).html(html);
+	return $(div).html();
 };
 
 saltos.str2html=function(str) {
-	console.log("call to unimplemented function str2html");
+	var div=$("<div></div>");
+	$(div).html(str);
+	return $(div).get(0);
 };
 
 saltos.fix4html=function(str) {
-	console.log("call to unimplemented function fix4html");
+	// REPLACE HTML, HEAD, BODY AND TITLE BY DIV ELEMENTS
+	str=str_replace("<html","<div type='html'",str);
+	str=str_replace("</html>","</div>",str);
+	str=str_replace("<head","<div type='head'",str);
+	str=str_replace("</head>","</div>",str);
+	str=str_replace("<body","<div type='body'",str);
+	str=str_replace("</body>","</div>",str);
+	str=str_replace("<title","<div type='title'",str);
+	str=str_replace("</title>","</div>",str);
+	// RETURN THE STRING
+	return str;
 };
 
 saltos.getstylesheet=function(html,cad1,cad2) {
