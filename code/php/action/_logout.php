@@ -24,27 +24,25 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(getParam("action")=="logout") {
-	check_security("logout");
-	sess_init();
-	setSession("user","");
-	setSession("pass","");
-	sess_close();
-	reset_datauser();
-	if(eval_bool(getDefault("security/allowremember"))) {
-		$remember=getCookie2("remember");
-		if($remember) {
-			setCookie2("user","");
-			setCookie2("pass","");
-			setCookie2("remember",$remember);
-		} else {
-			setCookie2("user","");
-			setCookie2("pass","");
-			setCookie2("remember","");
-		}
+check_security("logout");
+sess_init();
+setSession("user","");
+setSession("pass","");
+sess_close();
+reset_datauser();
+if(eval_bool(getDefault("security/allowremember"))) {
+	$remember=getCookie2("remember");
+	if($remember) {
+		setCookie2("user","");
+		setCookie2("pass","");
+		setCookie2("remember",$remember);
+	} else {
+		setCookie2("user","");
+		setCookie2("pass","");
+		setCookie2("remember","");
 	}
-	include("php/action/_islogin.php");
-	die();
 }
+include("php/action/_islogin.php");
+die();
 
 ?>

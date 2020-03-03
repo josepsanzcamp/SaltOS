@@ -250,14 +250,14 @@ saltos.cookies.data={};
 saltos.cookies.interval=null;
 saltos.cookies.counter=0;
 
-saltos.sync_cookies=function(cmd) {
+saltos.cookies.sync=function(cmd) {
 	if(!isset(cmd)) var cmd="start";
 	if(cmd=="stop") {
 		if(saltos.cookies.interval!=null) {
 			clearInterval(saltos.cookies.interval);
 			saltos.cookies.interval=null;
 		}
-		saltos.__sync_cookies_helper();
+		saltos.cookies.__sync_helper();
 		for(var hash in saltos.cookies.data) delete saltos.cookies.data[hash];
 	}
 	if(cmd=="start") {
@@ -285,16 +285,16 @@ saltos.sync_cookies=function(cmd) {
 		});
 		saltos.cookies.counter=0;
 		saltos.cookies.interval=setInterval(function() {
-			saltos.cookies.counter=saltos.cookies.counter+100;
-			if(saltos.cookies.counter>=1000) {
-				saltos.__sync_cookies_helper();
+			saltos.cookies.counter=saltos.cookies.counter+1;
+			if(saltos.cookies.counter>=3) {
+				saltos.cookies.__sync_helper();
 				saltos.cookies.counter=0;
 			}
-		},100);
+		},1000);
 	}
 };
 
-saltos.__sync_cookies_helper=function() {
+saltos.cookies.__sync_helper=function() {
 	for(var hash in saltos.cookies.data) {
 		if(saltos.cookies.data[hash].sync) {
 			if(saltos.cookies.data[hash].val!=saltos.cookies.data[hash].orig) {
@@ -316,7 +316,7 @@ saltos.__sync_cookies_helper=function() {
 	}
 };
 
-saltos.getCookie=function(name) {
+saltos.cookies.getCookie=function(name) {
 	var hash=md5(name);
 	if(typeof saltos.cookies.data[hash]=="undefined") {
 		var value=$.cookie(name);
@@ -326,15 +326,15 @@ saltos.getCookie=function(name) {
 	return value;
 };
 
-saltos.getIntCookie=function(name) {
-	return intval(saltos.getCookie(name));
+saltos.cookies.getIntCookie=function(name) {
+	return intval(saltos.cookies.getCookie(name));
 };
 
-saltos.getBoolCookie=function(name) {
-	return saltos.getIntCookie(name)?true:false;
+saltos.cookies.getBoolCookie=function(name) {
+	return saltos.cookies.getIntCookie(name)?true:false;
 };
 
-saltos.setCookie=function(name,value) {
+saltos.cookies.setCookie=function(name,value) {
 	var hash=md5(name);
 	if(typeof saltos.cookies.data[hash]=="undefined") {
 		if(saltos.cookies.interval!=null) {
@@ -357,12 +357,12 @@ saltos.setCookie=function(name,value) {
 	}
 };
 
-saltos.setIntCookie=function(name,value) {
-	saltos.setCookie(name,intval(value));
+saltos.cookies.setIntCookie=function(name,value) {
+	saltos.cookies.setCookie(name,intval(value));
 };
 
-saltos.setBoolCookie=function(name,value) {
-	saltos.setIntCookie(name,value?1:0);
+saltos.cookies.setBoolCookie=function(name,value) {
+	saltos.cookies.setIntCookie(name,value?1:0);
 };
 
 /* COLOR MANAGEMENT */
@@ -1101,6 +1101,36 @@ saltos.unmake_ckeditors=function() {
 	});
 };
 
+saltos.islogin=function() {
+	return saltos.json_sync_request("index.php?action=islogin","islogin");
+};
+
+saltos.html2str=function(html) {
+	var div=$("<div></div>");
+	$(div).html(html);
+	return $(div).html();
+};
+
+saltos.str2html=function(str) {
+	var div=$("<div></div>");
+	$(div).html(str);
+	return $(div).get(0);
+};
+
+saltos.fix4html=function(str) {
+	// REPLACE HTML, HEAD, BODY AND TITLE BY DIV ELEMENTS
+	str=str_replace("<html","<div type='html'",str);
+	str=str_replace("</html>","</div>",str);
+	str=str_replace("<head","<div type='head'",str);
+	str=str_replace("</head>","</div>",str);
+	str=str_replace("<body","<div type='body'",str);
+	str=str_replace("</body>","</div>",str);
+	str=str_replace("<title","<div type='title'",str);
+	str=str_replace("</title>","</div>",str);
+	// RETURN THE STRING
+	return str;
+};
+
 /* LIST OF TYPES THAT CAN USE THIS FEATURE */
 saltos.make_enters_list=["text","integer","float","color","date","time","datetime","select","checkbox","password"];
 
@@ -1175,7 +1205,7 @@ saltos.make_enters=function() {
 };
 
 // JQUERYUI WIDGETS
-saltos.add_layout=function(info) {
+saltos.add_layout=function() {
 	var layout=$(`
 		<table class="width100 none" cellpadding="0" cellspacing="0" border="0">
 			<tr>
@@ -1202,11 +1232,9 @@ saltos.add_layout=function(info) {
 		</table>
 	`);
 	$("body").append(layout);
-	$("html").attr("lang",info.lang);
-	$("html").attr("dir",info.dir);
 	setTimeout(function() {
 		// RESIZABLE CODE
-		var width=parseInt(saltos.getIntCookie("saltos_ui_menu_width")/10)*10;
+		var width=parseInt(saltos.cookies.getIntCookie("saltos_ui_menu_width")/10)*10;
 		if(!width) width=200;
 		$(".ui-layout-west").width(width).resizable({
 			minWidth:100,
@@ -1313,7 +1341,7 @@ saltos.add_menu=function(menu) {
 	for(var key in menu) {
 		if(saltos.limpiar_key(key)=="group") {
 			exists=1;
-			var visible=saltos.getIntCookie("saltos_ui_menu_"+menu[key].name)
+			var visible=saltos.cookies.getIntCookie("saltos_ui_menu_"+menu[key].name)
 			if(visible) {
 				menu[key].active=0;
 			} else {
@@ -1389,7 +1417,7 @@ saltos.add_menu_group=function(option) {
 		var name=$(group).attr("id");
 		$(".accordion-link li",group).each(function() {
 			var name2=$("a",this).attr("id");
-			var active=saltos.getIntCookie("saltos_ui_menu_"+name+"_"+name2);
+			var active=saltos.cookies.getIntCookie("saltos_ui_menu_"+name+"_"+name2);
 			if(active) open.push("#"+name2);
 		});
 		// CREATE THE JSTREE
@@ -3972,7 +4000,9 @@ saltos.submitcontent=function(form,callback) {
 					setTimeout(function() {
 						var fix_input_vars=[];
 						$("input[type=hidden]",jqForm).each(function() {
-							if(total_input_vars>=max_input_vars) {
+							if(in_array($(this).attr("name"),["page","action","id"])) {
+								// NOTHING TO DO
+							} else if(total_input_vars>=max_input_vars) {
 								var temp=$(this).attr("name")+"="+encodeURIComponent($(this).val());
 								fix_input_vars.push(temp);
 								$(this).remove();
@@ -4043,13 +4073,16 @@ saltos.submitcontent=function(form,callback) {
 
 saltos.updatecontent=function(data) {
 	if(!is_array(data)) {
-		saltos.unloadingcontent();
 		var html=saltos.str2html(saltos.fix4html(data));
 		if($(".phperror",html).length) {
+			saltos.unloadingcontent();
 			saltos.unmake_ckeditors();
 			$("div[type=title]",html).remove();
 			$(".ui-layout-center").html(html);
+		} else if($("script",html).length!=0) {
+			$(".ui-layout-center").append(html);
 		} else {
+			saltos.unloadingcontent();
 			$(".ui-layout-center").append(html);
 		}
 		return;
@@ -4217,8 +4250,42 @@ saltos.zoom=function(arg) {
 	$("html").css("font-size",saltos.zoom_valors[saltos.zoom_index]+"%");
 };
 
-saltos.islogin=function() {
-	return saltos.json_sync_request("index.php?action=islogin","islogin");
+/* FOR PUSH FEATURE */
+saltos.push={};
+saltos.push.executing=0;
+saltos.push.timestamp=time();
+
+saltos.push.fn=function() {
+	if(!saltos.push.executing) {
+		saltos.push.executing=1;
+		$.ajax({
+			url:"index.php",
+			data:"action=push&timestamp="+saltos.push.timestamp,
+			type:"get",
+			success:function(response) {
+				if(is_array(response) && isset(response.messages)) {
+					for(var key in response.messages) {
+						var message=response.messages[key];
+						if(message.type=="alert") notice(lang_alert(),message.message,false,"ui-state-highlight");
+						if(message.type=="error") notice(lang_error(),message.message,false,"ui-state-error");
+						saltos.push.timestamp=max(saltos.push.timestamp,message.timestamp);
+					}
+				}
+				saltos.push.executing=0;
+			},
+			error:function(XMLHttpRequest,textStatus,errorThrown) {
+				saltos.push.executing=0;
+			}
+		});
+	}
+};
+
+saltos.push.start=function() {
+	saltos.push.interval=setInterval(saltos.push.fn,1000);
+};
+
+saltos.push.stop=function() {
+	clearInterval(saltos.push.interval);
 };
 
 /* UNIMPLEMENTED FUNCTIONS */
@@ -4244,32 +4311,6 @@ saltos.history_replaceState=function(url) {
 
 saltos.loadcontent=function(xml) {
 	console.log("call to unimplemented function loadcontent");
-};
-
-saltos.html2str=function(html) {
-	var div=$("<div></div>");
-	$(div).html(html);
-	return $(div).html();
-};
-
-saltos.str2html=function(str) {
-	var div=$("<div></div>");
-	$(div).html(str);
-	return $(div).get(0);
-};
-
-saltos.fix4html=function(str) {
-	// REPLACE HTML, HEAD, BODY AND TITLE BY DIV ELEMENTS
-	str=str_replace("<html","<div type='html'",str);
-	str=str_replace("</html>","</div>",str);
-	str=str_replace("<head","<div type='head'",str);
-	str=str_replace("</head>","</div>",str);
-	str=str_replace("<body","<div type='body'",str);
-	str=str_replace("</body>","</div>",str);
-	str=str_replace("<title","<div type='title'",str);
-	str=str_replace("</title>","</div>",str);
-	// RETURN THE STRING
-	return str;
 };
 
 saltos.getstylesheet=function(html,cad1,cad2) {
@@ -4421,42 +4462,42 @@ function notice(title,message,arg1,arg2,arg3) {
 
 function __sync_cookies_helper() {
 	//~ console.log("call to deprecated function __sync_cookies_helper");
-	return saltos.__sync_cookies_helper();
+	return saltos.cookies.__sync_helper();
 }
 
 function sync_cookies(cmd) {
 	//~ console.log("call to deprecated function sync_cookies");
-	return saltos.sync_cookies(cmd);
+	return saltos.cookies.sync(cmd);
 }
 
 function getCookie(name) {
 	//~ console.log("call to deprecated function getCookie");
-	return saltos.getCookie(name);
+	return saltos.cookies.getCookie(name);
 }
 
 function getIntCookie(name) {
 	//~ console.log("call to deprecated function getIntCookie");
-	return saltos.getIntCookie(name);
+	return saltos.cookies.getIntCookie(name);
 }
 
 function getBoolCookie(name) {
 	//~ console.log("call to deprecated function getBoolCookie");
-	return saltos.getBoolCookie(name);
+	return saltos.cookies.getBoolCookie(name);
 }
 
 function setCookie(name,value) {
 	//~ console.log("call to deprecated function setCookie");
-	return saltos.setCookie(name,value);
+	return saltos.cookies.setCookie(name,value);
 }
 
 function setIntCookie(name,value) {
 	//~ console.log("call to deprecated function setIntCookie");
-	return saltos.setIntCookie(name,value);
+	return saltos.cookies.setIntCookie(name,value);
 }
 
 function setBoolCookie(name,value) {
 	//~ console.log("call to deprecated function setBoolCookie");
-	return saltos.setBoolCookie(name,value);
+	return saltos.cookies.setBoolCookie(name,value);
 }
 
 function loadingcontent(message) {
@@ -4722,12 +4763,12 @@ $.ajaxSetup({ cache:true });
 	saltos.init_error();
 
 	// CARGAR DATOS
-	saltos.sync_cookies();
+	saltos.cookies.sync();
 	saltos.info=saltos.json_sync_request("index.php?action=info","info");
 	saltos.menu=saltos.json_sync_request("index.php?action=menu","menu");
 
 	// MONTAR PANTALLA
-	saltos.add_layout(saltos.info);
+	saltos.add_layout();
 	saltos.add_header(saltos.menu);
 	saltos.add_menu(saltos.menu);
 
@@ -4741,6 +4782,7 @@ $.ajaxSetup({ cache:true });
 	saltos.make_tooltips();
 	saltos.make_hovers();
 	saltos.make_enters();
+	saltos.push.start();
 
 	// CARGAR PRIMER CONTENIDO
 	saltos.opencontent(saltos.current_hash());

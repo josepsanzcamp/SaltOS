@@ -80,4 +80,30 @@ function detect_light_or_dark_from_style($style) {
 	return "unknown";
 }
 
+function get_style() {
+	$style=getDefault("style");
+	$style=getCookie2("style",$style);
+	$style=use_table_cookies("style","",$style);
+	if(!load_style($style)) $style=getDefault("style");
+	if(!load_style($style)) $style=solve_style($style);
+	$style=getDefault("forcestyle",$style);
+	return $style;
+}
+
+function get_css_files() {
+	$result=array();
+	// GET THE STYLES
+	$style=get_style();
+	$stylepre=getDefault("stylepre");
+	$stylepost=getDefault("stylepost");
+	if(load_style($style)) $result[]=$stylepre.$style.$stylepost;
+	// TRICK FOR JSTREE
+	$jstree=detect_light_or_dark_from_style($style);
+	$jstreepre=getDefault("jstreepre");
+	$jstreepost=getDefault("jstreepost");
+	if(load_style($style)) $result[]=$jstreepre.$jstree.$jstreepost;
+	// CONTINUE
+	return $result;
+}
+
 ?>

@@ -29,6 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<type>select</type>
 	<width>120px</width>
 	<rows include="xml/styles.xml"/>
-	<value global="style" eval="true">$style</value>
+	<value eval="true">get_style()</value>
 	<onchange>submit1()</onchange>
 </root>

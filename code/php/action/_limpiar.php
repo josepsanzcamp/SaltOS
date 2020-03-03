@@ -25,16 +25,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(!check_user()) action_login();
-if(getParam("action")=="limpiar") {
-	$id_usuario=current_user();
-	$id_folder=intval(getParam("id_folder"));
-	$arguments=array("page=$page","limpiar=1");
-	if($page=="correo") $arguments[]="id_usuario=$id_usuario";
-	if($page=="agenda") $arguments[]="id_asignado=$id_usuario";
-	if($page=="feeds") $arguments[]="id_usuario=$id_usuario";
-	if($page=="folders") $arguments[]="id_folder=$id_folder";
-	$arguments=implode("&",$arguments);
-	_javascript_opencontent($arguments);
-	die();
-}
+$id_usuario=current_user();
+$id_folder=intval(getParam("id_folder"));
+$arguments=array("page=$page","limpiar=1");
+if($page=="correo") $arguments[]="id_usuario=$id_usuario";
+if($page=="agenda") $arguments[]="id_asignado=$id_usuario";
+if($page=="feeds") $arguments[]="id_usuario=$id_usuario";
+if($page=="folders") $arguments[]="id_folder=$id_folder";
+$arguments=implode("&",$arguments);
+_javascript_opencontent($arguments);
+die();
+
 ?>

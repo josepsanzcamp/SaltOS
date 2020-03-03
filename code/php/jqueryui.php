@@ -25,8 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 // TODO COMPATIBLE WITH OLD LINKS
-// TODO COMPARE THE REFERERS TO BE MORE EXHAUST
-if(getServer("HTTP_REFERER")=="" && getServer("QUERY_STRING")!="") {
+if(getServer("HTTP_REFERER")!=get_base() && getServer("QUERY_STRING")!=""
+	&& getParam("page")!="" && getParam("action")!="" && getParam("id")!="") {
+	//getServer("HTTP_X_REQUESTED_WITH")==""
 	$url=get_base()."#".getServer("QUERY_STRING");
 	javascript_location($url);
 	die();
@@ -51,12 +52,16 @@ if(!isset($array["js"]) || !is_array($array["js"])) $array["js"]=array();
 $template=trim($array["template"]);
 $rev=getDefault("info/revision");
 
+// PUT LANG AND DIR IN HTML TAG
+$template=str_replace("__LANG__",$_LANG["lang"],$template);
+$template=str_replace("__DIR__",$_LANG["dir"],$template);
+
 // COMPUTE METAS
 $metas=array();
 foreach($array["metas"] as $key=>$val) {
 	$key=limpiar_key($key);
 	if($key=="meta") $metas[]="<meta ".$val.">";
-	if($key=="icon") $metas[]="<link href='${val}?r=${rev}' rel='icon'>";
+	if($key=="icon") $metas[]="<link href='${val}' rel='icon'>";
 	if($key=="title") $metas[]="<title>${val}</title>";
 }
 $metas=implode("\n",$metas);
