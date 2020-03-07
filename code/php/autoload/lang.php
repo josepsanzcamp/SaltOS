@@ -54,4 +54,19 @@ function load_lang($lang) {
 	return file_exists("xml/lang/${lang}.xml");
 }
 
+function get_lang() {
+	$lang=getDefault("lang");
+	$lang=getCookie2("lang",$lang);
+	$lang=use_table_cookies("lang","",$lang);
+	if(!load_lang($lang)) $lang=getDefault("lang");
+	$lang=getDefault("forcelang",$lang);
+	return $lang;
+}
+
+function get_dir() {
+	global $_LANG;
+	if(isset($_LANG["dir"])) return $_LANG["dir"];
+	return "";
+}
+
 ?>

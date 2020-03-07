@@ -53,11 +53,7 @@ check_security("main");
 semaphore_release(__FILE__);
 
 // GET THE LANGUAGE
-$lang=getDefault("lang");
-$lang=getCookie2("lang",$lang);
-$lang=use_table_cookies("lang","",$lang);
-if(!load_lang($lang)) $lang=getDefault("lang");
-$lang=getDefault("forcelang",$lang);
+$lang=get_lang();
 $_LANG=eval_attr(xml2Array("xml/lang/${lang}.xml"));
 $_CONFIG=eval_attr($_CONFIG);
 if(getDefault("info/revision")=="SVN") $_CONFIG["info"]["revision"]=svnversion();

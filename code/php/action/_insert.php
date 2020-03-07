@@ -40,11 +40,11 @@ eval_files();
 $config=getDefault("$page/$action");
 
 $commit=1;
-if($action=="insert") $go=-1;
-if($action=="update") $go=-1;
-if($action=="delete") $go=0;
-if(eval_bool(intval(getParam("returnhere"))?"true":"false")) $go=0;
-if(eval_bool(intval(getParam("returnback"))?"true":"false")) $go=-1;
+if($action=="insert") $go=-2;
+if($action=="update") $go=-2;
+if($action=="delete") $go=-1;
+if(eval_bool(intval(getParam("returnhere"))?"true":"false")) $go=-1;
+if(eval_bool(intval(getParam("returnback"))?"true":"false")) $go=-2;
 $semaphore=array($page,$action);
 if(!semaphore_acquire($semaphore)) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
 foreach($config as $query) {
@@ -97,10 +97,11 @@ foreach($config as $query) {
 }
 semaphore_release($semaphore);
 if(is_numeric($go)) {
-	javascript_history($go);
+	$go++;
+	_javascript_history($go);
 } else {
-	javascript_history("update");
-	javascript_location_page($go);
+	_javascript_addcontent("update");
+	_javascript_opencontent($go);
 }
 die();
 

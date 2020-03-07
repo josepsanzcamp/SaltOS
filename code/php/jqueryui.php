@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // TODO COMPATIBLE WITH OLD LINKS
 if(getServer("HTTP_REFERER")!=get_base() && getServer("QUERY_STRING")!=""
 	&& getParam("page")!="" && getParam("action")!="" && getParam("id")!="") {
-	//getServer("HTTP_X_REQUESTED_WITH")==""
 	$url=get_base()."#".getServer("QUERY_STRING");
 	javascript_location($url);
 	die();
@@ -53,8 +52,9 @@ $template=trim($array["template"]);
 $rev=getDefault("info/revision");
 
 // PUT LANG AND DIR IN HTML TAG
-$template=str_replace("__LANG__",$_LANG["lang"],$template);
-$template=str_replace("__DIR__",$_LANG["dir"],$template);
+$template=str_replace("__LANG__",get_lang(),$template);
+$template=str_replace("__DIR__",get_dir(),$template);
+$template=str_replace("__STYLE__",get_style(),$template);
 
 // COMPUTE METAS
 $metas=array();

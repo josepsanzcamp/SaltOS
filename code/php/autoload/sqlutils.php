@@ -653,14 +653,7 @@ function make_fulltext_query2($values) {
 	return $query;
 }
 
-function make_fulltext_query3($values,$page) {
-	if(is_numeric($page)) {
-		addtrace(array(
-			"phperror"=>"Deprecated function ".__FUNCTION__." with ".func_num_args()." arguments",
-			"details"=>sprintr(func_get_args()),
-		),getDefault("debug/deprecated","deprecated.log"));
-		$page=id2page($page);
-	}
+function make_fulltext_query3($values,$page,$prefix="") {
 	$engine=strtolower(get_engine("idx_${page}"));
 	if($engine=="mroonga") {
 		$where=make_fulltext_query2($values);
@@ -668,7 +661,7 @@ function make_fulltext_query3($values,$page) {
 		$where=make_like_query("search",$values);
 	}
 	if($where=="1=1") return $where;
-	$query="id IN (SELECT id FROM idx_${page} WHERE ${where})";
+	$query="${prefix}id IN (SELECT id FROM idx_${page} WHERE ${where})";
 	return $query;
 }
 

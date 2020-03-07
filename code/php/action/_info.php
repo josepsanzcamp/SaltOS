@@ -25,6 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 $_RESULT[$action]=getDefault("info");
+$_RESULT[$action]["lang"]=get_lang();
+$_RESULT[$action]["dir"]=get_dir();
+$_RESULT[$action]["style"]=get_style();
 $json=json_encode($_RESULT);
 output_handler(array(
 	"data"=>$json,
