@@ -1047,11 +1047,19 @@ saltos.make_abort=function() {
 };
 
 saltos.make_tables=function(obj) {
+	// SUPPORT FOR LTR AND RTL LANGS
+	var dir=$("html").attr("dir");
+	var rtl={
+		"ltr":{"ui-corner-tl":"ui-corner-tl","ui-corner-tr":"ui-corner-tr","ui-corner-bl":"ui-corner-bl","ui-corner-br":"ui-corner-br"},
+		"rtl":{"ui-corner-tl":"ui-corner-tr","ui-corner-tr":"ui-corner-tl","ui-corner-bl":"ui-corner-br","ui-corner-br":"ui-corner-bl"}
+	};
+	// CONTINUE
 	$(".tabla").each(function() {
 		if($(".thead.ui-widget-header,.tbody.ui-widget-content,.tbody.ui-state-default",this).length) return;
 		$(".thead",this).addClass("ui-widget-header");
 		$(".nodata",this).addClass("ui-widget-content");
 		var total=0;
+		var row=null;
 		$("tr",this).each(function() {
 			if($(".tbody",this).length) {
 				if(total%2==0) $(".tbody",this).addClass("ui-widget-content");
@@ -1062,17 +1070,31 @@ saltos.make_tables=function(obj) {
 			if($(".separator",this).length) {
 				total=0;
 			}
+			// THIS PART OF CODE IS FOR THE ROUNDED CORNERS ONLY
+			if($(".thead,.tbody",this).length) {
+				if(row==null) {
+					console.log(this);
+					$("td:first",this).addClass(rtl[dir]["ui-corner-tl"]);
+					$("td:last",this).addClass(rtl[dir]["ui-corner-tr"]);
+				}
+				row=this;
+			}
+			if($(".separator",this).length) {
+				if(row!=null) {
+					$("td:first",row).addClass(rtl[dir]["ui-corner-bl"]);
+					$("td:last",row).addClass(rtl[dir]["ui-corner-br"]);
+				}
+				row=null;
+			}
+			// CONTINUE
 		});
-		// SUPPORT FOR LTR AND RTL LANGS
-		var dir=$("html").attr("dir");
-		var rtl={
-			"ltr":{"ui-corner-tl":"ui-corner-tl","ui-corner-tr":"ui-corner-tr","ui-corner-bl":"ui-corner-bl","ui-corner-br":"ui-corner-br"},
-			"rtl":{"ui-corner-tl":"ui-corner-tr","ui-corner-tr":"ui-corner-tl","ui-corner-bl":"ui-corner-br","ui-corner-br":"ui-corner-bl"}
-		};
-		$("tr:first td:first",this).addClass(rtl[dir]["ui-corner-tl"]);
-		$("tr:first td:last",this).addClass(rtl[dir]["ui-corner-tr"]);
-		$("tr:last td:first",this).addClass(rtl[dir]["ui-corner-bl"]);
-		$("tr:last td:last",this).addClass(rtl[dir]["ui-corner-br"]);
+		// THIS PART OF CODE IS FOR THE ROUNDED CORNERS ONLY
+		if(row!=null) {
+			$("td:first",row).addClass(rtl[dir]["ui-corner-bl"]);
+			$("td:last",row).addClass(rtl[dir]["ui-corner-br"]);
+		}
+		row=null;
+		// CONTINUE
 	});
 };
 

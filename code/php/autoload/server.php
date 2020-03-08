@@ -77,7 +77,7 @@ function get_base() {
 	}
 	if($serverport==$porthttps) {
 		$protocol="https://";
-		if($porthttp!=443) $addedport=":$serverport";
+		if($porthttps!=443) $addedport=":$serverport";
 	}
 	// CONTINUE
 	$url=$protocol.$servername.$addedport.$scriptname;
