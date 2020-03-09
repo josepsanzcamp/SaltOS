@@ -24,15 +24,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// TO DO COMPATIBLE WITH OLD LINKS
-//~ if(getServer("HTTP_REFERER")=="" && getServer("QUERY_STRING")!="") {
-	//~ $url=get_base()."#".getServer("QUERY_STRING");
-	//~ javascript_location($url);
-	//~ die();
-//~ }
+// TODO COMPATIBLE WITH OLD LINKS
+if(getServer("HTTP_REFERER")!=get_base() && getServer("QUERY_STRING")!=""
+	&& getParam("page")!="" && getParam("action")!="" && getParam("id")!="") {
+	$url=get_base()."#".getServer("QUERY_STRING");
+	javascript_location($url);
+	die();
+}
 
 // GET ACTIONS
+$page=getParam("page");
 $action=getParam("action");
+$id=intval(getParam("id"));
 if(file_exists("php/action/_${action}.php")) include("php/action/_${action}.php");
 if(file_exists("php/action/${action}.php")) include("php/action/${action}.php");
 
@@ -48,12 +51,17 @@ if(!isset($array["js"]) || !is_array($array["js"])) $array["js"]=array();
 $template=trim($array["template"]);
 $rev=getDefault("info/revision");
 
+// PUT LANG AND DIR IN HTML TAG
+$template=str_replace("__LANG__",get_lang(),$template);
+$template=str_replace("__DIR__",get_dir(),$template);
+$template=str_replace("__STYLE__",get_style(),$template);
+
 // COMPUTE METAS
 $metas=array();
 foreach($array["metas"] as $key=>$val) {
 	$key=limpiar_key($key);
 	if($key=="meta") $metas[]="<meta ".$val.">";
-	if($key=="icon") $metas[]="<link href='${val}?r=${rev}' rel='icon'>";
+	if($key=="icon") $metas[]="<link href='${val}' rel='icon'>";
 	if($key=="title") $metas[]="<title>${val}</title>";
 }
 $metas=implode("\n",$metas);

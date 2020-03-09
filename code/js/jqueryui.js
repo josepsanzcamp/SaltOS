@@ -1232,20 +1232,12 @@ saltos.add_layout=function() {
 		<table class="width100 none" cellpadding="0" cellspacing="0" border="0">
 			<tr>
 				<td valign="top" colspan="2">
-					<div class="ui-layout-north">
-						<div class="tabs2">
-							<ul class="headertabs"></ul>
-						</div>
-					</div>
+					<div class="ui-layout-north"></div>
 				</td>
 			</tr>
 			<tr>
 				<td valign="top">
-					<div class="ui-layout-west">
-						<a href="#" class="back2top ui-widget-header ui-corner-all">
-							<span class="fa fa-arrow-circle-up"></span>
-						</a>
-					</div>
+					<div class="ui-layout-west"></div>
 				</td>
 				<td valign="top" class="width100">
 					<div class="ui-layout-center"></div>
@@ -1255,6 +1247,25 @@ saltos.add_layout=function() {
 	`);
 	$("body").append(layout);
 	setTimeout(function() {
+		// APPEND BACK2TOP
+		$(".ui-layout-west").append(`
+			<a href="#" class="back2top ui-widget-header ui-corner-all">
+				<span class="fa fa-arrow-circle-up"></span>
+			</a>
+		`);
+		// OLD MAKE_BACK2TOP
+		$(window).scroll(function() {
+			if($(this).scrollTop()>300) {
+				$(".back2top").show();
+			} else {
+				$(".back2top").hide();
+			}
+		});
+		$(".back2top").on("click",function(event) {
+			event.preventDefault();
+			$("html,body").animate({ scrollTop:0 },"fast");
+			return false;
+		})
 		// RESIZABLE CODE
 		var width=parseInt(saltos.cookies.getIntCookie("saltos_ui_menu_width")/10)*10;
 		if(!width) width=200;
@@ -1269,25 +1280,17 @@ saltos.add_layout=function() {
 			},
 		});
 		$(".back2top").css("left",(width-54)+"px");
-		// OLD MAKE_BACK2TOP
-		$(window).scroll(function() {
-			if($(this).scrollTop()>300) {
-				$(".back2top").show();
-			} else {
-				$(".back2top").hide();
-			}
-		});
-		$(".back2top").on("click",function(event) {
-			event.preventDefault();
-			$("html,body").animate({ scrollTop:0 },"fast");
-			return false;
-		})
 		// REMOVE NONE CLASS
 		$(layout).removeClass("none");
 	},100);
 };
 
 saltos.add_header=function(menu) {
+	$(".ui-layout-north").append(`
+		<div class="tabs2">
+			<ul class="headertabs"></ul>
+		</div>
+	`);
 	for(var key in menu) {
 		if(saltos.limpiar_key(key)=="header") {
 			for(var key2 in menu[key]) {
@@ -2021,7 +2024,6 @@ saltos.make_form=function(option) {
 											if(saltos.limpiar_key(key5)=="row") {
 												var node3=node2[key5];
 												var prefix=name2+"_"+node3.id+"_";
-												// TODO HIDDEN
 												for(var key6 in node1) {
 													if(saltos.limpiar_key(key6)=="fieldset") {
 														if(isset(node1[key6].title) && node1[key6].title!="") {

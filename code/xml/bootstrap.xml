@@ -50,7 +50,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html>
+<html lang="__LANG__" dir="__DIR__" style="__STYLE__">
 <head>
 __METAS__
 __CSS__
@@ -61,11 +61,14 @@ __JS__
 </html>
 	]]></template>
 	<metas>
-		<meta>charset='utf-8'</meta>
-		<meta>http-equiv='X-UA-Compatible' content='IE=edge'</meta>
-		<meta>name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'</meta>
+		<meta>charset="utf-8"</meta>
+		<meta>http-equiv="X-UA-Compatible" content="IE=edge"</meta>
+		<meta>name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"</meta>
 		<meta eval="true">"name='copyright' content='".get_name_version_revision(true)."'"</meta>
-		<icon>img/favicon.png</icon>
+		<meta eval="true">"name='msapplication-TileColor' content='".getDefault("info/color")."'"</meta>
+		<meta eval="true">"name='msapplication-TileImage' content='".getDefault("info/favicon")."'"</meta>
+		<meta eval="true">"name='theme-color' content='".getDefault("info/color")."'"</meta>
+		<icon eval="true">getDefault("info/favicon")</icon>
 		<title eval="true">get_name_version_revision()</title>
 	</metas>
 	<css>
