@@ -104,10 +104,14 @@ __JS__
 	<js>
 		<include>lib/phpjs/php.min.js</include>
 		<include>lib/jquery/jquery.min.js</include>
+		<include>lib/jquery/jquery.cookie.min.js</include>
+		<include>lib/jquery/jquery.form.min.js</include>
 		<include>lib/popper/popper.min.js</include>
 		<include>lib/bootstrap/js/bootstrap.min.js</include>
-		<include>lib/jquery/jquery.cookie.min.js</include>
 		<include>lib/bootbox/bootbox.min.js</include>
+		<inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
+		<include>lib/ckeditor/ckeditor.js</include>
+		<include>lib/ckeditor/adapters/jquery.js</include>
 <!--
 		<include>lib/masonry/masonry.pkgd.min.js</include>
 		<include>lib/datepicker/js/bootstrap-datepicker.min.js</include>
@@ -118,9 +122,6 @@ __JS__
 		<include>lib/tokenfield/bootstrap-tokenfield.min.js</include>
 		<include>lib/tokenfield/typeahead.jquery.min.js</include>
 		<include>lib/grab-bag/jquery.autogrow-textarea.min.js</include>
-		<inline>window.CKEDITOR_BASEPATH="core/lib/ckeditor/";</inline>
-		<include>lib/ckeditor/ckeditor.js</include>
-		<include>lib/ckeditor/adapters/jquery.js</include>
 		<include>lib/codemirror/codemirror.min.js</include>
 		<include>lib/codemirror/codemirror.mode.min.js</include>
 		<include>lib/notify/bootstrap-notify.min.js</include>

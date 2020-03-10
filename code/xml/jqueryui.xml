@@ -96,8 +96,6 @@ __JS__
 		<include>lib/jquery/jquery.colorpicker.min.js</include>
 		<include>lib/jquery/jquery.timepicker.min.js</include>
 		<include>lib/jquery/jquery.favicon.min.js</include>
-		<include>lib/jquery/jquery.jplayer.min.js</include>
-		<include>lib/zlibjs/zlibjs.min.js</include>
 		<inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<include>lib/ckeditor/ckeditor.js</include>
 		<include>lib/ckeditor/adapters/jquery.js</include>

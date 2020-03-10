@@ -1135,10 +1135,6 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 				// NOTHING TO DO
 			}
 		});
-		// JQUERY JPLAYER
-		$.fn.jPlayer=function() {
-			// NOTHING TO DO
-		};
 	})(jQuery);
 
 	// WHEN DOCUMENT IS READY

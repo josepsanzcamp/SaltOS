@@ -557,12 +557,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>jPlayer 2.9.2 (MIT &amp; GPL-3.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.jplayer.org/")</onclick>
-						</field>
-						<field>
 							<label>Locutus latest (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
@@ -580,18 +574,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<class>tbody</class>
 							<onclick>openwin("https://www.jstree.com/")</onclick>
 						</field>
-					</row>
-					<row>
 						<field>
 							<label>jQuery File Upload latest (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/blueimp/jQuery-File-Upload")</onclick>
-						</field>
-						<field>
-							<type>separator</type>
-							<class>tbody</class>
-							<colspan>3</colspan>
 						</field>
 					</row>
 					<row>

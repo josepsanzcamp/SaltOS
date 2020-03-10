@@ -32,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<title config="true">application_title</title>
 		<favicon>img/favicon.png</favicon>
 		<icon eval="true">ICON("about")</icon>
+		<time eval="true">time()</time>
 	</info>
 	<db>
 		<type>pdo_sqlite</type>
@@ -211,7 +212,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.colorpicker.min.js</include>
 			<include>lib/jquery/jquery.timepicker.min.js</include>
 			<include>lib/jquery/jquery.favicon.min.js</include>
-			<include>lib/jquery/jquery.jplayer.min.js</include>
 			<include>lib/zlibjs/zlibjs.min.js</include>
 		</cache>
 		<inline ifeval="!ismobile()">window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>

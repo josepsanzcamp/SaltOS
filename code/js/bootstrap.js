@@ -642,6 +642,13 @@ saltos.make_dialog=function() {
 };
 
 saltos.dialog=function(title,message,buttons) {
+	//~ bootbox.dialog({
+		//~ title:title,
+		//~ message:message,
+		//~ buttons:buttons,
+	//~ });
+	// TODO
+	return;
 	// CHECK SOME PARAMETERS
 	if(typeof(message)=="undefined") var message="";
 	if(typeof(buttons)=="undefined") var buttons=function() {};
@@ -717,6 +724,8 @@ saltos.hide_popupnotice=function() {
 };
 
 saltos.notice=function(title,message,arg1,arg2,arg3) {
+	// TODO
+	return;
 	// PER PREVENIR REPETIR MISSATGES
 	var lista=[];
 	$(".jGrowl-notification").each(function() {
@@ -768,6 +777,8 @@ saltos.notice=function(title,message,arg1,arg2,arg3) {
 
 /* FOR BLOCK THE UI AND NOT PERMIT 2 REQUESTS AT THE SAME TIME */
 saltos.loadingcontent=function(message) {
+	// TODO
+	return;
 	// CHECK PARAMETERS
 	if(typeof(message)=="undefined") {
 		var message=lang_loading();
@@ -806,6 +817,8 @@ saltos.loadingcontent=function(message) {
 };
 
 saltos.unloadingcontent=function() {
+	// TODO
+	return;
 	$.unblockUI();
 };
 
@@ -815,13 +828,16 @@ saltos.isloadingcontent=function() {
 
 /* HELPERS DEL SALTOS ORIGINAL */
 saltos.toggle_menu=function() {
-	var obj=$(".ui-layout-west");
-	if($(obj).is(":visible")) {
-		$(obj).addClass("none");
-		setIntCookie("saltos_ui_menu_closed",1);
+	if($(".ui-layout-west").is(":visible")) {
+		$(".ui-layout-west").hide();
+		$(".ui-layout-center").removeClass("col-lg-10");
+		$(".ui-layout-center").addClass("col-lg-12");
+		saltos.cookies.setIntCookie("saltos_ui_menu_closed",1);
 	} else {
-		$(obj).removeClass("none");
-		setIntCookie("saltos_ui_menu_closed",0);
+		$(".ui-layout-center").removeClass("col-lg-12");
+		$(".ui-layout-center").addClass("col-lg-10");
+		$(".ui-layout-west").show();
+		saltos.cookies.setIntCookie("saltos_ui_menu_closed",0);
 	}
 };
 
@@ -1229,68 +1245,27 @@ saltos.make_enters=function() {
 // BOOTSTRAP WIDGETS
 saltos.add_layout=function() {
 	var layout=$(`
-		<table class="width100 none" cellpadding="0" cellspacing="0" border="0">
-			<tr>
-				<td valign="top" colspan="2">
-					<div class="ui-layout-north"></div>
-				</td>
-			</tr>
-			<tr>
-				<td valign="top">
-					<div class="ui-layout-west"></div>
-				</td>
-				<td valign="top" class="width100">
-					<div class="ui-layout-center"></div>
-				</td>
-			</tr>
-		</table>
+		<nav class="navbar navbar-expand-lg navbar-primary bg-primary ui-layout-north">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse">
+				<div class="btn-group mr-auto" id="navbar-left"></div>
+				<div class="btn-group mx-auto" id="navbar-center"></div>
+				<div class="btn-group ml-auto" id="navbar-right"></div>
+			</div>
+		</nav>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-2 p-0 ui-layout-west"></div>
+				<div class="col-lg-10 p-0 ui-layout-center"></div>
+			</div>
+		</div>
 	`);
 	$("body").append(layout);
-	setTimeout(function() {
-		// APPEND BACK2TOP
-		$(".ui-layout-west").append(`
-			<a href="#" class="back2top ui-widget-header ui-corner-all">
-				<span class="fa fa-arrow-circle-up"></span>
-			</a>
-		`);
-		// OLD MAKE_BACK2TOP
-		$(window).scroll(function() {
-			if($(this).scrollTop()>300) {
-				$(".back2top").show();
-			} else {
-				$(".back2top").hide();
-			}
-		});
-		$(".back2top").on("click",function(event) {
-			event.preventDefault();
-			$("html,body").animate({ scrollTop:0 },"fast");
-			return false;
-		})
-		// RESIZABLE CODE
-		var width=parseInt(saltos.cookies.getIntCookie("saltos_ui_menu_width")/10)*10;
-		if(!width) width=200;
-		$(".ui-layout-west").width(width).resizable({
-			minWidth:100,
-			maxWidth:400,
-			grid:10,
-			handles:"e",
-			resize:function(event,ui) {
-				setIntCookie("saltos_ui_menu_width",ui.size.width);
-				$(".back2top").css("left",(ui.size.width-54)+"px");
-			},
-		});
-		$(".back2top").css("left",(width-54)+"px");
-		// REMOVE NONE CLASS
-		$(layout).removeClass("none");
-	},100);
 };
 
 saltos.add_header=function(menu) {
-	$(".ui-layout-north").append(`
-		<div class="tabs2">
-			<ul class="headertabs"></ul>
-		</div>
-	`);
 	for(var key in menu) {
 		if(saltos.limpiar_key(key)=="header") {
 			for(var key2 in menu[key]) {
@@ -1300,6 +1275,10 @@ saltos.add_header=function(menu) {
 			}
 		}
 	}
+	// ARREGLAR FALLO RIGHT
+	$("#navbar-right button").each(function() {
+		$(this).parent().prepend(this);
+	});
 };
 
 saltos.tabs2_padding="";
@@ -1309,46 +1288,21 @@ saltos.tabs2_border="";
 saltos.add_header_button=function(option) {
 	saltos.check_params(option,["class","tip","icon","label","onclick","class2"]);
 	var button=$(`
-		<li class="${option.class2}"><a href="javascript:void(0)" title="${option.tip}" class="${option.class}">
-			<span class="${option.icon}"></span>
-			${option.label}
-		</a></li>
+		<button type="button" class="btn btn-primary ${option.class}" data-toggle="tooltip" title="${option.tip}">
+			<span class="${option.icon}"></span> ${option.label}
+		</button>
 	`);
 	$(button).on("click",function() {
 		if(typeof option.onclick=="string") eval(option.onclick);
 		if(typeof option.onclick=="function") option.onclick();
 	});
-	$(".tabs2 ul").append(button);
-	if($(".tabs2").hasClass("ui-tabs")) {
-		$(".tabs2").tabs("refresh");
-	} else {
-		$(".tabs2").tabs({
-			beforeActivate:function(event,ui) {
-				return false;
-			},
-			beforeLoad:function(event,ui) {
-				return false;
-			}
-		});
-		// CHANGE TABS FROM TOP TO BOTTOM
-		saltos.tabs2_padding=$(".tabs2 ul").css("padding-top");
-		saltos.tabs2_margin=$(".tabs2 li").css("margin-top");
-		saltos.tabs2_border=$(".tabs2 li").css("border-top");
-		if(!saltos.tabs2_border) saltos.tabs2_border=$(".tabs2 li").css("border-top-width")+" "+$(".tabs2 li").css("border-top-style")+" "+$(".tabs2 li").css("border-top-color");
-	}
-	// FIX FOR A VOID TABS
-	$(".tabs2 div").remove();
-	// CHANGE TABS FROM TOP TO BOTTOM
-	$(".tabs2 ul").removeClass("ui-corner-all").addClass("ui-corner-bottom");
-	$(".tabs2 li").removeClass("ui-tabs-active ui-state-active");
-	$(".tabs2 li").removeClass("ui-corner-top").addClass("ui-corner-bottom");
-	$(".tabs2 ul").css("padding-top","0").css("padding-bottom",saltos.tabs2_padding);
-	$(".tabs2 li").css("margin-top","0").css("margin-bottom",saltos.tabs2_margin);
-	$(".tabs2 li").css("border-top","0").css("border-bottom",saltos.tabs2_border);
+	if(option.class2=="right") $("#navbar-right").append(button);
+	else if(option.class2=="center") $("#navbar-center").append(button);
+	else $("#navbar-left").append(button);
 };
 
 saltos.update_header_title=function(title) {
-	$(".tabs2 li.center").remove();
+	$("#navbar-center *").remove();
 	if(!isset(title)) title=lang_loading();
 	document.title=`${title} - ${saltos.info.title} - ${saltos.info.name} v${saltos.info.version} r${saltos.info.revision}`;
 	saltos.add_header_button({
@@ -1368,10 +1322,16 @@ saltos.add_menu=function(menu) {
 			exists=1;
 			var visible=saltos.cookies.getIntCookie("saltos_ui_menu_"+menu[key].name)
 			if(visible) {
-				menu[key].active=0;
+				menu[key].icon="fa fa-arrow-alt-circle-down";
+				menu[key].show="show";
 			} else {
-				menu[key].active=1;
+				menu[key].icon="fa fa-arrow-alt-circle-right";
+				menu[key].show="";
 			}
+			menu[key].onclick=function() {
+				var temp=saltos.cookies.getIntCookie("saltos_ui_menu_"+this.name);
+				saltos.cookies.setIntCookie("saltos_ui_menu_"+this.name,(temp+1)%2);
+			};
 			saltos.add_menu_group(menu[key]);
 			for(var key2 in menu[key]) {
 				if(saltos.limpiar_key(key2)=="option") {
@@ -1382,7 +1342,7 @@ saltos.add_menu=function(menu) {
 	}
 	var obj=$(".ui-layout-west");
 	if(exists) {
-		var closed=getIntCookie("saltos_ui_menu_closed");
+		var closed=saltos.cookies.getIntCookie("saltos_ui_menu_closed");
 		if(closed) {
 			$(obj).addClass("none");
 		} else {
@@ -1391,130 +1351,73 @@ saltos.add_menu=function(menu) {
 	} else {
 		$(obj).addClass("none");
 	}
+	$(".collapse",obj).on("show.bs.collapse",function() {
+		$(this).prev().find("span").attr("class","fa fa-arrow-alt-circle-down");
+	});
+	$(".collapse",obj).on("hide.bs.collapse",function() {
+		$(this).prev().find("span").attr("class","fa fa-arrow-alt-circle-right");
+	});
 };
 
 saltos.add_menu_group=function(option) {
 	saltos.check_params(option,["name","label","show","class","tip"]);
 	var group=$(`
-		<div class="${option.class} none" id="${option.name}">
-			<h3 title="${option.tip}">${option.label}</h3>
-			<div class="accordion-link">
-				<ul></ul>
-			</div>
+		<div class="list-group list-group-flush">
+			<button type="button" class="list-group-item list-group-item-action list-group-item-primary" data-toggle="collapse" data-target="#${option.name}">
+				<span class="${option.icon}"></span> ${option.label}
+			</button>
 		</div>
+		<div class="list-group list-group-flush collapse ${option.show}" id="${option.name}"></div>
 	`);
+	$("button",group).on("click",function() {
+		if(typeof option.onclick=="string") eval(option.onclick);
+		if(typeof option.onclick=="function") option.onclick();
+	});
 	$(".ui-layout-west").append(group);
-	setTimeout(function() {
-		$(group).accordion({
-			collapsible:true,
-			heightStyle:"content",
-			active:option.active,
-			activate:function(event,ui) {
-				var name=$(this).attr("id");
-				var active=ui.newHeader.length;
-				setIntCookie("saltos_ui_menu_"+name,active);
-			},
-			icons:{
-				header:"ui-icon-circle-arrow-e",
-				activeHeader:"ui-icon-circle-arrow-s"
-			}
-		});
-		// FOR MOVE NODES AS A REAL TREE
-		var temp=[];
-		$(".accordion-link li",group).each(function() {
-			var found=0;
-			for(var i=1;i<20;i++) {
-				if($("a",this).hasClass("depth_"+i)) {
-					if($("ul",temp[i-1]).length==0) $(temp[i-1]).append("<ul></ul>");
-					$("ul",temp[i-1]).append(this);
-					while(temp.length>i) temp.pop();
-					temp.push(this);
-					found=1;
-				}
-			}
-			if(!found) {
-				while(temp.length>0) temp.pop();
-				temp.push(this);
-			}
-		});
-		// FOR PREPARE THE OPEN NODE LIST
-		var open=[];
-		var name=$(group).attr("id");
-		$(".accordion-link li",group).each(function() {
-			var name2=$("a",this).attr("id");
-			var active=saltos.cookies.getIntCookie("saltos_ui_menu_"+name+"_"+name2);
-			if(active) open.push("#"+name2);
-		});
-		// CREATE THE JSTREE
-		$(".accordion-link",group).jstree();
-		// NOW, OPEN THE NODES USING THE PREVIOUS NODE LIST
-		for(var i in open) {
-			var temp=$(open[i],group);
-			$(".accordion-link",group).jstree("open_node",temp);
-		}
-		// DEFINE AND EXECUTE THE FIX FOR THE ICONS
-		var fn=function(obj) {
-			$(".jstree-icon.jstree-themeicon",obj).each(function() {
-				var icon=$(this).parent().attr("icon");
-				$(this).removeClass("jstree-themeicon").addClass("jstree-themeicon-custom").addClass(icon);
-			});
-		}
-		fn(group);
-		// PROGRAM THE BIND TO PREVENT SELECTION
-		$(".accordion-link",group).on("select_node.jstree",function(e,_data) {
-			_data.instance.deselect_node(_data.node);
-		});
-		// PROGRAM THE BIND TO STORE THE NODE'S STATES
-		$(".accordion-link",group).on("open_node.jstree",function(e,_data) {
-			fn(this);
-			var name2=_data.node.a_attr.id;
-			setIntCookie("saltos_ui_menu_"+name+"_"+name2,1);
-		});
-		$(".accordion-link",group).on("close_node.jstree",function(e,_data) {
-			var name2=_data.node.a_attr.id;
-			setIntCookie("saltos_ui_menu_"+name+"_"+name2,0);
-		});
-		// REMOVE NONE CLASS
-		$(group).removeClass("none");
-	},100);
 };
 
 saltos.add_menu_link=function(option) {
 	saltos.check_params(option,["class","tip","icon","label","onclick","name"]);
 	var link=$(`
-		<li>
-			<a href="javascript:void(0)" class="${option.class}" icon="${option.icon}" title="${option.tip}" id="${option.name}">${option.label}</a>
-		</li>
+		<button type="button" class="list-group-item list-group-item-action ${option.class} list-group-item-secondary" data-toggle="tooltip" title="${option.tip}">
+			<span class="${option.icon}"></span> ${option.label}
+		</button>
 	`);
-	//~ $("a",link).on("click",function() {
-		//~ if(typeof option.onclick=="string") eval(option.onclick);
-		//~ if(typeof option.onclick=="function") option.onclick();
-	//~ });
-	// TRICK BECAUSE EVENT DOESN'T WORKS
-	$("a",link).attr("onclick",option.onclick);
+	// CHECK DEPTH
+	var depth=intval(saltos.get_class_key_val(option.class,"depth_"));
+	$("span",link).css("margin-left",(depth*16)+"px");
+	$(link).on("click",function() {
+		if(typeof option.onclick=="string") eval(option.onclick);
+		if(typeof option.onclick=="function") option.onclick();
+	});
 	// CONTINUE
-	$(".ui-layout-west ul:last").append(link);
+	$(".ui-layout-west .list-group:last").append(link);
 };
 
 saltos.make_focus_obj=null;
 
 saltos.make_tabs=function(array) {
 	var card=$(`
-		<div class="tabs none">
-			<ul class="centertabs"></ul>
-			<form onsubmit="return false"></form>
+		<div class="card">
+			<div class="card-header">
+				<ul class="nav nav-tabs card-header-tabs"></ul>
+			</div>
+			<div class="card-body">
+				<div class="tab-content"></div>
+			</div>
 		</div>
 	`);
 	for(var key in array) {
 		if(isset(array[key].title)) {
 			var uniqid=saltos.uniqid();
-			$(".centertabs",card).append(`
-				<li>
-					<a href="#tab${uniqid}"><span class="${array[key].icon}"></span> ${array[key].title}</a>
+			var temp=(key==0)?"active":"";
+			$(".nav-tabs",card).append(`
+				<li class="nav-item">
+					<a class="nav-link ${temp}" data-toggle="tab" href="#tab${uniqid}">${array[key].title}</a>
 				</li>
 			`);
-			if(array[key].popup=="true") $(".centertabs li:last",card).addClass("popup");
-			$("form",card).append(`<div id="tab${uniqid}"></div>`);
+			if(array[key].popup=="true") $(".nav-tabs li:last",card).addClass("popup");
+			$(".tab-content",card).append(`<div class="tab-pane ${temp}" id="tab${uniqid}"></div>`);
 			$(`#tab${uniqid}`,card).append(array[key].obj);
 		}
 		if(isset(array[key].name)) {
@@ -1529,6 +1432,8 @@ saltos.make_tabs=function(array) {
 			`);
 		}
 	}
+	// TODO
+	return card;
 	// THIS CODE ADD THE ACCESSKEY FEATURE FOR EACH TAB
 	var accesskeys="1234567890";
 	var accesskey=0;
@@ -1584,8 +1489,8 @@ saltos.make_tabs=function(array) {
 				$(dialog2).append("<br/><br/>");
 				$("div",dialog2).removeAttr("class").removeAttr("style");
 				$(dialog2).dialog("option","resizeStop",function(event,ui) {
-					setIntCookie("saltos_popup_width",$(dialog2).dialog("option","width"));
-					setIntCookie("saltos_popup_height",$(dialog2).dialog("option","height"));
+					saltos.cookies.setIntCookie("saltos_popup_width",$(dialog2).dialog("option","width"));
+					saltos.cookies.setIntCookie("saltos_popup_height",$(dialog2).dialog("option","height"));
 				});
 				$(dialog2).dialog("option","close",function(event,ui) {
 					$(dialog2).dialog("option","resizeStop",function() {});
@@ -1657,7 +1562,6 @@ saltos.form_fix_width=function(obj,ref) {
 /* FUNCIONES PARA EL PROCESADO DE LISTADOS */
 saltos.make_table=function(option) {
 	saltos.check_params(option,["width","expand","checkbox"]);
-	if(option.checkbox=="") option.checkbox="true"; // TO BE FIXED IN THE FUTURE
 	saltos.check_params(option,["rows","fields","actions"],[]);
 	var table=$(`
 		<table class="tabla helperlists" cellpadding="0" cellspacing="0" border="0">
@@ -1937,6 +1841,7 @@ saltos.make_list=function(option) {
 		$(table).append(saltos.form_by_row_3(option,"quick","row"));
 		$(table).append(saltos.form_brtag_2());
 	}
+	option.checkbox="true";
 	$(obj).append(saltos.make_table(option));
 	if(isset(option.pager)) {
 		var table=saltos.form_table(option.width,"helperbuttons");
@@ -2627,6 +2532,8 @@ saltos.form_field_date=function(field) {
 };
 
 saltos.form_field_date_helper=function(td) {
+	// TODO
+	return;
 	// CREATE THE DATEPICKERS
 	$("input[isdate=true]",td).each(function() {
 		$(this).datepicker({
@@ -3143,27 +3050,28 @@ saltos.form_field_select_helper=function(td) {
 		if($(this).attr("dir")=="up") position={my:"left bottom",at:"left top",collision:"none"};
 		if($(this).attr("dir")=="right") position={my:"right top",at:"right bottom",collision:"none"};
 		if($(this).attr("dir")=="up right") position={my:"right bottom",at:"right top",collision:"none"};
-		$(this).selectmenu({
-			width:width,
-			position:position,
-			change:function() {
-				$(this).trigger("change");
-			},
-			open:function() {
-				saltos.hide_tooltips();
-				if(dialog("isopen")) {
-					var zindex=$(".ui-dialog").css("z-index");
-					$(".ui-selectmenu-open").css("z-index",zindex);
-				}
-			},
-			close:function() {
-				saltos.hide_tooltips();
-			}
-		});
+		// TODO
+		//~ $(this).selectmenu({
+			//~ width:width,
+			//~ position:position,
+			//~ change:function() {
+				//~ $(this).trigger("change");
+			//~ },
+			//~ open:function() {
+				//~ saltos.hide_tooltips();
+				//~ if(dialog("isopen")) {
+					//~ var zindex=$(".ui-dialog").css("z-index");
+					//~ $(".ui-selectmenu-open").css("z-index",zindex);
+				//~ }
+			//~ },
+			//~ close:function() {
+				//~ saltos.hide_tooltips();
+			//~ }
+		//~ });
 	}).on("refresh change",function() {
-		if(typeof($(this).selectmenu("instance"))!="undefined") {
-			$(this).selectmenu("refresh");
-		}
+		//~ if(typeof($(this).selectmenu("instance"))!="undefined") {
+			//~ $(this).selectmenu("refresh");
+		//~ }
 	});
 };
 
@@ -4209,6 +4117,13 @@ saltos.addcontent=function(url) {
 
 /* FOR TOOLTIPS */
 saltos.make_tooltips=function() {
+	$("body").tooltip({
+		"selector":"[data-toggle='tooltip']",
+		"container":"body",
+		"trigger":"hover",
+	});
+	// TODO
+	return;
 	$(document).tooltip({
 		items:"[title][title!=''],[title2][title2!='']",
 		show:false,
@@ -4277,7 +4192,7 @@ saltos.zoom=function(arg) {
 /* FOR PUSH FEATURE */
 saltos.push={};
 saltos.push.executing=0;
-saltos.push.timestamp=time();
+saltos.push.timestamp=0;
 
 saltos.push.fn=function() {
 	if(!saltos.push.executing) {
@@ -4305,6 +4220,7 @@ saltos.push.fn=function() {
 };
 
 saltos.push.start=function() {
+	saltos.push.timestamp=saltos.info.time;
 	saltos.push.interval=setInterval(saltos.push.fn,1000);
 };
 
@@ -4801,18 +4717,24 @@ $.ajaxSetup({ cache:true });
 
 	// MULTIPLES INITS
 	saltos.init_history();
-	saltos.make_notice();
-	saltos.make_dialog();
-	saltos.make_contextmenu();
-	saltos.make_shortcuts();
-	saltos.make_abort();
-	saltos.make_tooltips();
-	saltos.make_hovers();
-	saltos.make_enters();
-	saltos.push.start();
+	//~ saltos.make_notice();
+	//~ saltos.make_dialog();
+	//~ saltos.make_contextmenu();
+	//~ saltos.make_shortcuts();
+	//~ saltos.make_abort();
+	//~ saltos.make_tooltips();
+	//~ saltos.make_hovers();
+	//~ saltos.make_enters();
+	//~ saltos.push.start();
 
 	// CARGAR PRIMER CONTENIDO
 	saltos.opencontent(saltos.current_hash());
 
 }(jQuery));
+
+/* TO PREVENT ERRORS WITH OTHER USER INTERFACES */
+$.datepicker={
+	regional:function() {},
+	setDefaults:function() {},
+};
 
