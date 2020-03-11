@@ -911,8 +911,8 @@ saltos.make_contextmenu=function() {
 		if($(event.target).is("div.ui-accordion-content")) return false;
 		if($(event.target).is("h3.ui-accordion-header")) return false;
 		// FOR CANCEL IN THEAD
-		if($(event.target).is("td.ui-widget-header")) return false;
-		if($(event.target).is("span.ui-icon")) return false;
+		if($(event.target).is("td.thead")) return false;
+		if($(event.target).is("span.fa")) return false;
 		// FOR CANCEL IN BUTTONS
 		if($(event.target).is("a.ui-state-default")) return false;
 		if($(event.target).parent().is("a.ui-state-default")) return false;
@@ -1073,7 +1073,6 @@ saltos.make_tables=function(obj) {
 			// THIS PART OF CODE IS FOR THE ROUNDED CORNERS ONLY
 			if($(".thead,.tbody",this).length) {
 				if(row==null) {
-					console.log(this);
 					$("td:first",this).addClass(rtl[dir]["ui-corner-tl"]);
 					$("td:last",this).addClass(rtl[dir]["ui-corner-tr"]);
 				}
@@ -1525,14 +1524,14 @@ saltos.make_tabs=function(array) {
 		}
 		if(isset(array[key].help)) {
 			$(".centertabs",card).append(`
-				<li class="help"><a href="javascript:void(0)"><span class="ui-icon ui-icon-none"></span></a></li>
+				<li class="help"><a href="javascript:void(0)"><span class=""></span></a></li>
 			`);
 		}
 	}
 	// THIS CODE ADD THE ACCESSKEY FEATURE FOR EACH TAB
 	var accesskeys="1234567890";
 	var accesskey=0;
-	var tabs=$("ul > li",card);
+	var tabs=$(".centertabs > li",card);
 	$(tabs).each(function() {
 		if($(this).hasClass("help")) {
 			$("a",this).attr("title","[CTRL] + [H]");
@@ -1615,7 +1614,7 @@ saltos.make_tabs=function(array) {
 	$("ul",card).removeClass("ui-corner-all").addClass("ui-corner-top");
 	// TUNNING THE HELP TAB
 	var help=$("ul li.help",card);
-	$("span",help).removeClass("ui-icon ui-icon-none").addClass(icon_help());
+	$("span",help).addClass(icon_help());
 	$("a",help).append("&nbsp;").append(lang_help());
 	// REMOVE NONE CLASS
 	$(card).removeClass("none");
@@ -1728,8 +1727,7 @@ saltos.make_table=function(option) {
 	}
 	if(count(option.actions)) {
 		$("thead tr",table).append(`
-			<td class="width1 thead ui-widget-header" colspan="100">
-				<span class="ui-icon ui-icon-none"></span></td>
+			<td class="width1 thead ui-widget-header" colspan="100"></td>
 		`);
 	}
 	// BODY
@@ -1846,6 +1844,7 @@ saltos.make_table=function(option) {
 	if(found) {
 		$("tbody",table).append("<tr></tr>");
 		$("tbody tr:last",table).append(`<td class="separator"></td>`);
+		// HEADER
 		$("tbody",table).append("<tr></tr>");
 		if(option.checkbox) {
 			$("tbody tr:last",table).append(`<td class="width1 thead ui-widget-header"></td>`);
@@ -1855,20 +1854,21 @@ saltos.make_table=function(option) {
 			if(isset(math_row[key].label)) $("tbody tr:last td:last",table).append(math_row[key].label);
 		}
 		if(count(option.actions)) {
-			$("tbody tr:last",table).append(`<td class="width1 thead ui-widget-header"></td>`);
+			$("tbody tr:last",table).append(`<td class="width1 thead ui-widget-header" colspan="100"></td>`);
 		}
 		$("tr:last td:first",table).addClass(rtl[dir]["ui-corner-tl"]);
 		$("tr:last td:last",table).addClass(rtl[dir]["ui-corner-tr"]);
+		// BODY
 		$("tbody",table).append("<tr></tr>");
 		if(option.checkbox) {
-			$("tbody tr:last",table).append(`<td class="width1 thead ui-widget-content"></td>`);
+			$("tbody tr:last",table).append(`<td class="width1 tbody ui-widget-content"></td>`);
 		}
 		for(var key in math_row) {
-			$("tbody tr:last",table).append(`<td class="thead ui-widget-content"></td>`);
+			$("tbody tr:last",table).append(`<td class="tbody ui-widget-content"></td>`);
 			if(isset(math_row[key].value)) $("tbody tr:last td:last",table).append(math_row[key].value);
 		}
 		if(count(option.actions)) {
-			$("tbody tr:last",table).append(`<td class="width1 thead ui-widget-content"></td>`);
+			$("tbody tr:last",table).append(`<td class="width1 tbody ui-widget-content" colspan="100"></td>`);
 		}
 		$("tbody tr:last td",table).addClass("notop");
 		$("tr:last td:first",table).addClass(rtl[dir]["ui-corner-bl"]);
@@ -2548,7 +2548,7 @@ saltos.form_field_color=function(field) {
 		$("input",td).attr("iscolor","true");
 		var link=$(`
 			<a href="javascript:void(0)" class="ui-state-default ui-corner-all" iscolor="true" style="background-color:${field.value}">
-				<span class="ui-icon ui-icon-none" title="${field.tip2}"></span></a>
+				<span class="" title="${field.tip2}"></span></a>
 		`)
 		if(field.icon!="") $("span",link).attr("class",field.icon);
 		$(td).append(link);
@@ -2615,7 +2615,7 @@ saltos.form_field_date=function(field) {
 		$("input",td).attr("isdate","true");
 		var link=$(`
 			<a href="javascript:void(0)" class="ui-state-default ui-corner-all" isdate="true">
-				<span class="ui-icon ui-icon-none" title="${field.tip2}"></span></a>
+				<span class="" title="${field.tip2}"></span></a>
 		`)
 		if(field.icon!="") $("span",link).attr("class",field.icon);
 		$(td).append(link);
@@ -2680,7 +2680,7 @@ saltos.form_field_time=function(field) {
 		$("input",td).attr("istime","true");
 		var link=$(`
 			<a href="javascript:void(0)" class="ui-state-default ui-corner-all" istime="true">
-				<span class="ui-icon ui-icon-none" title="${field.tip2}"></span></a>
+				<span class="" title="${field.tip2}"></span></a>
 		`)
 		if(field.icon!="") $("span",link).attr("class",field.icon);
 		$(td).append(link);
@@ -2753,7 +2753,7 @@ saltos.form_field_datetime=function(field) {
 		$(date).attr("isdate","true");
 		var link=$(`
 			<a href="javascript:void(0)" class="ui-state-default ui-corner-all" isdate="true">
-				<span class="ui-icon ui-icon-none" title="${field.tip2}"></span></a>
+				<span class="" title="${field.tip2}"></span></a>
 		`)
 		if(field.icon!="") $("span",link).attr("class",field.icon);
 		$(td).append(link);
@@ -2772,7 +2772,7 @@ saltos.form_field_datetime=function(field) {
 		$(time).attr("istime","true");
 		var link=$(`
 			<a href="javascript:void(0)" class="ui-state-default ui-corner-all" istime="true">
-				<span class="ui-icon ui-icon-none" title="${field.tip2}"></span></a>
+				<span class="" title="${field.tip2}"></span></a>
 		`)
 		if(field.icon2!="") $("span",link).attr("class",field.icon2);
 		$(td).append(link);
@@ -4378,407 +4378,407 @@ saltos.make_resizable=function(obj) {
 function floatval2(obj) {
 	//~ console.log("call to deprecated function floatval2");
 	return saltos.floatval2(obj);
-}
+};
 
 function intval2(obj) {
 	//~ console.log("call to deprecated function intval2");
 	return saltos.intval2(obj);
-}
+};
 
 function _format_number(obj,punto) {
 	//~ console.log("call to deprecated function _format_number");
 	return saltos._format_number(obj,punto);
-}
+};
 
 function check_required() {
 	//~ console.log("call to deprecated function check_required");
 	return saltos.check_required();
-}
+};
 
 function intelligence_cut(txt,max) {
 	//~ console.log("call to deprecated function intelligence_cut");
 	return saltos.intelligence_cut(txt,max);
-}
+};
 
 function dateval(value) {
 	//~ console.log("call to deprecated function dateval");
 	return saltos.dateval(value);
-}
+};
 
 function timeval(value) {
 	//~ console.log("call to deprecated function timeval");
 	return saltos.timeval(value);
-}
+};
 
 function __days_of_a_month(year,month) {
 	//~ console.log("call to deprecated function __days_of_a_month");
 	return saltos.__days_of_a_month(year,month);
-}
+};
 
 function check_datetime(orig,comp,dest) {
 	//~ console.log("call to deprecated function check_datetime");
 	return saltos.check_datetime(orig,comp,dest);
-}
+};
 
 function check_date(orig,comp,dest) {
 	//~ console.log("call to deprecated function check_date");
 	return saltos.check_date(orig,comp,dest);
-}
+};
 
 function check_time(orig,comp,dest) {
 	//~ console.log("call to deprecated function check_time");
 	return saltos.check_time(orig,comp,dest);
-}
+};
 
 function get_keycode(event) {
 	//~ console.log("call to deprecated function get_keycode");
 	return saltos.get_keycode(event);
-}
+};
 
 function is_enterkey(event) {
 	//~ console.log("call to deprecated function is_enterkey");
 	return saltos.is_enterkey(event);
-}
+};
 
 function is_escapekey(event) {
 	//~ console.log("call to deprecated function is_escapekey");
 	return saltos.is_escapekey(event);
-}
+};
 
 function is_disabled(obj) {
 	//~ console.log("call to deprecated function is_disabled");
 	return saltos.is_disabled(obj);
-}
+};
 
 function addlog(msg) {
 	//~ console.log("call to deprecated function addlog");
 	return saltos.addlog(msg);
-}
+};
 
 function security_iframe(obj) {
 	//~ console.log("call to deprecated function security_iframe");
 	return saltos.security_iframe(obj);
-}
+};
 
 function make_dialog() {
 	//~ console.log("call to deprecated function make_dialog");
 	return saltos.make_dialog();
-}
+};
 
 function dialog(title,message,buttons) {
 	//~ console.log("call to deprecated function dialog");
 	return saltos.dialog(title,message,buttons);
-}
+};
 
 function make_notice() {
 	//~ console.log("call to deprecated function make_notice");
 	return saltos.make_notice();
-}
+};
 
 function hide_popupnotice() {
 	//~ console.log("call to deprecated function hide_popupnotice");
 	return saltos.hide_popupnotice();
-}
+};
 
 function notice(title,message,arg1,arg2,arg3) {
 	//~ console.log("call to deprecated function notice");
 	return saltos.notice(title,message,arg1,arg2,arg3);
-}
+};
 
 function __sync_cookies_helper() {
 	//~ console.log("call to deprecated function __sync_cookies_helper");
 	return saltos.cookies.__sync_helper();
-}
+};
 
 function sync_cookies(cmd) {
 	//~ console.log("call to deprecated function sync_cookies");
 	return saltos.cookies.sync(cmd);
-}
+};
 
 function getCookie(name) {
 	//~ console.log("call to deprecated function getCookie");
 	return saltos.cookies.getCookie(name);
-}
+};
 
 function getIntCookie(name) {
 	//~ console.log("call to deprecated function getIntCookie");
 	return saltos.cookies.getIntCookie(name);
-}
+};
 
 function getBoolCookie(name) {
 	//~ console.log("call to deprecated function getBoolCookie");
 	return saltos.cookies.getBoolCookie(name);
-}
+};
 
 function setCookie(name,value) {
 	//~ console.log("call to deprecated function setCookie");
 	return saltos.cookies.setCookie(name,value);
-}
+};
 
 function setIntCookie(name,value) {
 	//~ console.log("call to deprecated function setIntCookie");
 	return saltos.cookies.setIntCookie(name,value);
-}
+};
 
 function setBoolCookie(name,value) {
 	//~ console.log("call to deprecated function setBoolCookie");
 	return saltos.cookies.setBoolCookie(name,value);
-}
+};
 
 function loadingcontent(message) {
 	//~ console.log("call to deprecated function loadingcontent");
 	return saltos.loadingcontent(message);
-}
+};
 
 function unloadingcontent() {
 	//~ console.log("call to deprecated function unloadingcontent");
 	return saltos.unloadingcontent();
-}
+};
 
 function isloadingcontent() {
 	//~ console.log("call to deprecated function isloadingcontent");
 	return saltos.isloadingcontent();
-}
+};
 
 function hash_encode(url) {
 	//~ console.log("call to deprecated function hash_encode");
 	return saltos.hash_encode(url);
-}
+};
 
 function hash_decode(hash) {
 	//~ console.log("call to deprecated function hash_decode");
 	return saltos.hash_decode(hash);
-}
+};
 
 function current_href() {
 	//~ console.log("call to deprecated function current_href");
 	return saltos.current_href();
-}
+};
 
 function current_hash() {
 	//~ console.log("call to deprecated function current_hash");
 	return saltos.current_hash();
-}
+};
 
 function history_pushState(url) {
 	//~ console.log("call to deprecated function history_pushState");
 	return saltos.history_pushState(url);
-}
+};
 
 function history_replaceState(url) {
 	//~ console.log("call to deprecated function history_replaceState");
 	return saltos.history_replaceState(url);
-}
+};
 
 function init_history() {
 	//~ console.log("call to deprecated function init_history");
 	return saltos.init_history();
-}
+};
 
 function addcontent(url) {
 	//~ console.log("call to deprecated function addcontent");
 	return saltos.addcontent(url);
-}
+};
 
 function submitcontent(form,callback) {
 	//~ console.log("call to deprecated function submitcontent");
 	return saltos.submitcontent(form,callback);
-}
+};
 
 function opencontent(url,callback) {
 	//~ console.log("call to deprecated function opencontent");
 	return saltos.opencontent(url,callback);
-}
+};
 
 function errorcontent(code,text) {
 	//~ console.log("call to deprecated function errorcontent");
 	return saltos.errorcontent(code,text);
-}
+};
 
 function loadcontent(xml) {
 	console.log("call to deprecated function loadcontent");
 	//~ return saltos.loadcontent(xml);
-}
+};
 
 function html2str(html) {
 	//~ console.log("call to deprecated function html2str");
 	return saltos.html2str(html);
-}
+};
 
 function str2html(str) {
 	//~ console.log("call to deprecated function str2html");
 	return saltos.str2html(str);
-}
+};
 
 function fix4html(str) {
 	//~ console.log("call to deprecated function fix4html");
 	return saltos.fix4html(str);
-}
+};
 
 function getstylesheet(html,cad1,cad2) {
 	//~ console.log("call to deprecated function getstylesheet");
 	return saltos.getstylesheet(html,cad1,cad2);
-}
+};
 
 function update_style(html,html2) {
 	//~ console.log("call to deprecated function update_style");
 	return saltos.update_style(html,html2);
-}
+};
 
 function updatecontent(html) {
 	console.log("call to deprecated function updatecontent");
 	//~ return saltos.updatecontent(html);
-}
+};
 
 function make_menu(obj) {
 	//~ console.log("call to deprecated function make_menu");
 	return saltos.make_menu(obj);
-}
+};
 
 function toggle_menu() {
 	//~ console.log("call to deprecated function toggle_menu");
 	return saltos.toggle_menu();
-}
+};
 
 function make_tabs(obj) {
 	//~ console.log("call to deprecated function make_tabs");
 	return saltos.make_tabs(obj);
-}
+};
 
 function hide_popupdialog() {
 	//~ console.log("call to deprecated function hide_popupdialog");
 	return saltos.hide_popupdialog();
-}
+};
 
 function make_tabs2(obj) {
 	//~ console.log("call to deprecated function make_tabs2");
 	return saltos.make_tabs2(obj);
-}
+};
 
 function make_extras(obj) {
 	//~ console.log("call to deprecated function make_extras");
 	return saltos.make_extras(obj);
-}
+};
 
 function make_draganddrop(obj) {
 	//~ console.log("call to deprecated function make_draganddrop");
 	return saltos.make_draganddrop(obj);
-}
+};
 
 function make_hovers() {
 	//~ console.log("call to deprecated function make_hovers");
 	return saltos.make_hovers();
-}
+};
 
 function make_ckeditors(obj) {
 	//~ console.log("call to deprecated function make_ckeditors");
 	return saltos.make_ckeditors(obj);
-}
+};
 
 function unmake_ckeditors(obj) {
 	//~ console.log("call to deprecated function unmake_ckeditors");
 	return saltos.unmake_ckeditors(obj);
-}
+};
 
 function make_tooltips() {
 	//~ console.log("call to deprecated function make_tooltips");
 	return saltos.make_tooltips();
-}
+};
 
 function hide_tooltips() {
 	//~ console.log("call to deprecated function hide_tooltips");
 	return saltos.hide_tooltips();
-}
+};
 
 function make_focus() {
 	//~ console.log("call to deprecated function make_focus");
 	return saltos.make_focus();
-}
+};
 
 function unmake_focus() {
 	//~ console.log("call to deprecated function unmake_focus");
 	return saltos.unmake_focus();
-}
+};
 
 function make_tables(obj) {
 	//~ console.log("call to deprecated function make_tables");
 	return saltos.make_tables(obj);
-}
+};
 
 function make_contextmenu() {
 	//~ console.log("call to deprecated function make_contextmenu");
 	return saltos.make_contextmenu();
-}
+};
 
 function hide_contextmenu() {
 	//~ console.log("call to deprecated function hide_contextmenu");
 	return saltos.hide_contextmenu();
-}
+};
 
 function get_colors(clase,param) {
 	//~ console.log("call to deprecated function get_colors");
 	return saltos.get_colors(clase,param);
-}
+};
 
 function rgb2hex(color) {
 	//~ console.log("call to deprecated function rgb2hex");
 	return saltos.rgb2hex(color);
-}
+};
 
 function make_shortcuts() {
 	//~ console.log("call to deprecated function make_shortcuts");
 	return saltos.make_shortcuts();
-}
+};
 
 function make_abort() {
 	//~ console.log("call to deprecated function make_abort");
 	return saltos.make_abort();
-}
+};
 
 function make_back2top() {
 	//~ console.log("call to deprecated function make_back2top");
 	return saltos.make_back2top();
-}
+};
 
 function make_resizable() {
 	//~ console.log("call to deprecated function make_resizable");
 	return saltos.make_resizable();
-}
+};
 
 function get_class_key_val(obj,param) {
 	//~ console.log("call to deprecated function get_class_key_val");
 	return saltos.get_class_key_val($(obj).attr("class"),param);
-}
+};
 
 function get_class_id(obj) {
 	//~ console.log("call to deprecated function get_class_id");
 	return saltos.get_class_id($(obj).attr("class"));
-}
+};
 
 function get_class_fn(obj) {
 	//~ console.log("call to deprecated function get_class_fn");
 	return saltos.get_class_fn($(obj).attr("class"));
-}
+};
 
 function get_class_hash(obj) {
 	//~ console.log("call to deprecated function get_class_hash");
 	return saltos.get_class_hash($(obj).attr("class"));
-}
+};
 
 function saltos_islogin(obj) {
 	//~ console.log("call to deprecated function saltos_islogin");
 	return saltos.islogin(obj);
-}
+};
 
 function copy_value(dest,src) {
 	//~ console.log("call to deprecated function copy_value");
 	return saltos.copy_value(src,dest);
-}
+};
 
 function lang_loading() {
 	// TODO FIXED IN A FUTURE
 	return "Loading contents...";
-}
+};
 
 // TO PREVENT JQUERY THE ADD _=[TIMESTAMP] FEATURE
 $.ajaxSetup({ cache:true });

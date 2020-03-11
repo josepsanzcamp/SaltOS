@@ -516,14 +516,15 @@ img[isplot=true] {
 
 /* FOR SORT ICONS */
 .ui-icon-asc {
-	position:relative;
-	left:3px;
-	top:1px;
+	font-size:1em;
+	margin-left:6px;
+	vertical-align:0px;
 }
 
 .ui-icon-desc {
-	position:relative;
-	left:-3px;
+	font-size:1em;
+	margin-left:3px;
+	vertical-align:1px;
 }
 
 .ui-icon-in {
@@ -532,10 +533,6 @@ img[isplot=true] {
 
 .ui-icon-out {
 	opacity:0.5!important;
-}
-
-.ui-icon-none {
-	background-position:-240px -240px;
 }
 
 /* FOR EXCEL */
@@ -564,4 +561,12 @@ div.excel {
 .checkbox-focused {
 	background:#fbec88!important;
 	color:#363636!important;
+}
+
+/* FOR ACTIONS2 */
+.actions2 span {
+	font-size:1em;
+	vertical-align:1px;
+	padding:0 0.33em;
+	text-align:center;
 }

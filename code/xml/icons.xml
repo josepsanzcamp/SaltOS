@@ -98,7 +98,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<color>fa fa-thumbtack</color>
 	<vcard>fa fa-address-card</vcard>
 	<qrcode>fa fa-qrcode</qrcode>
-	<dropdown>ui-icon ui-icon-triangle-1-s</dropdown>
+	<dropdown>fa fa-caret-down</dropdown>
+	<sortdesc>fa fa-caret-down</sortdesc>
+	<sortasc>fa fa-caret-up</sortasc>
 	<upload>fa fa-cloud-upload-alt</upload>
 	<expand>fa fa-expand</expand>
 	<collapse>fa fa-compress</collapse>

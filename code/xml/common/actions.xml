@@ -90,11 +90,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<sort>
 		<onclick>sort('FIELD')</onclick>
 		<labelasc lang="true">sortasc</labelasc>
-		<iconascin>ui-icon ui-icon-triangle-1-n ui-icon-asc ui-icon-in</iconascin>
-		<iconascout>ui-icon ui-icon-triangle-1-n ui-icon-asc ui-icon-out</iconascout>
+		<iconascin eval="true">ICON("sortasc")." ui-icon-asc ui-icon-in"</iconascin>
+		<iconascout eval="true">ICON("sortasc")." ui-icon-asc ui-icon-out"</iconascout>
 		<labeldesc lang="true">sortdesc</labeldesc>
-		<icondescin>ui-icon ui-icon-triangle-1-s ui-icon-desc ui-icon-in</icondescin>
-		<icondescout>ui-icon ui-icon-triangle-1-s ui-icon-desc ui-icon-out</icondescout>
+		<icondescin eval="true">ICON("sortdesc")." ui-icon-desc ui-icon-in"</icondescin>
+		<icondescout eval="true">ICON("sortdesc")." ui-icon-desc ui-icon-out"</icondescout>
 	</sort>
 	<!-- NODATA TEXT FOR LIST -->
 	<nodata>
