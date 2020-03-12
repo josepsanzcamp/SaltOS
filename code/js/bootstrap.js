@@ -1366,15 +1366,9 @@ saltos.make_focus_obj=null;
 
 saltos.make_tabs=function(array) {
 	var card=$(`
-		<div class="card">
-			<div class="card-header">
-				<ul class="centertabs nav nav-tabs card-header-tabs"></ul>
-			</div>
-			<form onsubmit="return false">
-				<div class="card-body">
-					<div class="tab-content"></div>
-				</div>
-			</form>
+		<div class="tabs">
+			<ul class="centertabs nav nav-tabs" role="tablist"></ul>
+			<form class="tab-content" onsubmit="return false"></form>
 		</div>
 	`);
 	for(var key in array) {
@@ -1382,11 +1376,11 @@ saltos.make_tabs=function(array) {
 			var uniqid=saltos.uniqid();
 			$(".centertabs",card).append(`
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#tab${uniqid}"><span class="${array[key].icon}"></span> ${array[key].title}</a>
+					<a class="nav-link" data-toggle="tab" href="#tab${uniqid}" role="tab"><span class="${array[key].icon}"></span> ${array[key].title}</a>
 				</li>
 			`);
 			if(array[key].popup=="true") $(".centertabs li:last",card).addClass("popup");
-			$(".tab-content",card).append(`<div class="tab-pane" id="tab${uniqid}"></div>`);
+			$("form",card).append(`<div class="tab-pane" id="tab${uniqid}"></div>`);
 			$(`#tab${uniqid}`,card).append(array[key].obj);
 		}
 		if(isset(array[key].name)) {
@@ -1398,7 +1392,7 @@ saltos.make_tabs=function(array) {
 		if(isset(array[key].help)) {
 			var uniqid=saltos.uniqid();
 			$(".centertabs",card).append(`
-				<li class="help nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)"><span class=""></span></a></li>
+				<li class="help nav-item ml-auto"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" role="tab"><span class=""></span></a></li>
 			`);
 		}
 	}
@@ -1435,8 +1429,9 @@ saltos.make_tabs=function(array) {
 			thetab=$(thetab).parent();
 		}
 	});
-	$(".centertabs > li:eq("+active+")",card).find("a").addClass("active");
-	$(".tab-content > div:eq("+active+")",card).addClass("active");
+	setTimeout(function() {
+		$(".centertabs li:eq("+active+") a",card).tab("show");
+	},100);
 	//~ // TRUE, CREATE THE TABS
 	//~ $(card).tabs({
 		//~ active:active,
@@ -1487,7 +1482,7 @@ saltos.make_tabs=function(array) {
 		//~ }
 	//~ });
 	// TUNNING THE HELP TAB
-	var help=$("ul li.help",card);
+	var help=$("li.help",card);
 	$("span",help).addClass(icon_help());
 	$("a",help).append("&nbsp;").append(lang_help());
 	return card;
@@ -4686,9 +4681,24 @@ $.ajaxSetup({ cache:true });
 
 }(jQuery));
 
-/* TO PREVENT ERRORS WITH OTHER USER INTERFACES */
-$.datepicker={
-	regional:function() {},
-	setDefaults:function() {},
+// JQUERY UI TABS
+$.fn.tabs=function(a,b,c) {
+	if(a=="option" && b=="active") $(".centertabs li:eq("+c+") a").tab("show");
+};
+// JQUERY UI DATEPICKER
+$.datepicker=function() {
+	//~ console.log("Executed $.datepicker");
+};
+$.extend($.datepicker,{
+	regional:function () {
+		//~ console.log("Executed $.extend datepicker regional");
+	},
+	setDefaults:function (a) {
+		//~ console.log("Executed $.extend datepicker setDefaults");
+	}
+});
+// JQUERY UI AUTOCOMPLETE
+$.fn.autocomplete=function() {
+	console.log("Executed $.fn.autocomplete");
 };
 

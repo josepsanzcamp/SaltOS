@@ -1613,7 +1613,7 @@ saltos.make_tabs=function(array) {
 	// CHANGE TABS FROM ALL TO TOP
 	$("ul",card).removeClass("ui-corner-all").addClass("ui-corner-top");
 	// TUNNING THE HELP TAB
-	var help=$("ul li.help",card);
+	var help=$("li.help",card);
 	$("span",help).addClass(icon_help());
 	$("a",help).append("&nbsp;").append(lang_help());
 	// REMOVE NONE CLASS

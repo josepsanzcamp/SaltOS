@@ -34,8 +34,12 @@ body {
 }
 
 /* FOR TABS */
-.card {
-	border:none;
+.tabs > ul {
+	padding:15px 15px 0 15px;
+}
+
+.tabs > form {
+	padding:15px;
 }
 
 /* FOR TABLES */
@@ -45,6 +49,11 @@ body {
 
 .table td.thead {
 	font-weight:bold;
+}
+
+/* FOR BUTTONS */
+button {
+	margin:1px;
 }
 
 /* FOR NUMBERS */
@@ -170,7 +179,7 @@ body {
 
 /* EXTRAS */
 .separator {
-	height:10px;
+	height:15px;
 }
 
 .info {
@@ -197,5 +206,13 @@ body {
 
 .title {
 	padding:3px 5px;
+}
+
+/* FOR ACTIONS2 */
+.actions2 span {
+	font-size:1em;
+	vertical-align:1px;
+	padding:0 0.25em;
+	text-align:center;
 }
 
