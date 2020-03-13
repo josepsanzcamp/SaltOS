@@ -28,8 +28,8 @@ if(typeof(__agenda__)=="undefined" && typeof(parent.__agenda__)=="undefined") {
 	var __agenda__=1;
 
 	function update_tabs() {
-		if(getParam("action")!="list") return;
 		setTimeout(function() {
+			if(getParam("action")!="list") return;
 			var active=getIntCookie("saltos_agenda_tab");
 			$(".tabs").tabs("option","active",active);
 			$(".tabs").on("tabsactivate",function(event,ui) {

@@ -47,13 +47,14 @@ body {
 	margin-bottom:0;
 }
 
-.table td.thead {
+.tabla td.thead {
 	font-weight:bold;
 }
 
-/* FOR BUTTONS */
-button {
-	margin:1px;
+.tabla td.nodata {
+	font-weight:bold;
+	text-align:center;
+	line-height:44px;
 }
 
 /* FOR NUMBERS */
@@ -214,5 +215,10 @@ button {
 	vertical-align:1px;
 	padding:0 0.25em;
 	text-align:center;
+}
+
+/* FOR EXCEL */
+div.excel {
+	overflow:hidden;
 }
 

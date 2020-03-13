@@ -322,10 +322,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<tabla>tbl_categorias</tabla>
 			<campo>nombre</campo>
 		</row>
+		<row>
+			<id>45</id>
+			<codigo>test</codigo>
+			<nombre>Test</nombre>
+		</row>
 	</tbl_aplicaciones>
 	<tbl_aplicaciones_i>
 		<row>
-			<id_aplicacion>10,23,18,13,19,38,20,30</id_aplicacion>
+			<id_aplicacion>10,23,18,13,19,38,20,30,45</id_aplicacion>
 			<id_permiso>10</id_permiso>
 			<allow>1</allow>
 			<deny>0</deny>

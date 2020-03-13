@@ -74,8 +74,12 @@ __JS__
 	<css>
 		<include>lib/bootstrap/css/bootstrap.min.css</include>
 		<!--<include>lib/bootswatch/css/cosmo.min.css</include>-->
+		<include>lib/pdfjs/pdf_viewer.min.css</include>
+		<include>lib/codemirror/codemirror.min.css</include>
 		<include>lib/fontawesome/css/fontawesome.min.css</include>
 		<include>lib/fontawesome/css/solid.min.css</include>
+		<include>lib/handsontable/handsontable.full.min.css</include>
+		<include>css/bootstrap.css</include>
 <!--
 		<include>lib/datepicker/css/bootstrap-datepicker3.min.css</include>
 		<include>lib/checkbox/awesome-bootstrap-checkbox.min.css</include>
@@ -99,7 +103,6 @@ __JS__
 		<include>lib/tabdrop/tabdrop.min.css</include>
 		<include>lib/clockpicker/bootstrap-clockpicker.min.css</include>
 -->
-		<include>css/bootstrap.css</include>
 	</css>
 	<js>
 		<include>lib/phpjs/php.min.js</include>
@@ -108,11 +111,18 @@ __JS__
 		<include>lib/jquery/jquery.form.min.js</include>
 		<include>lib/popper/popper.min.js</include>
 		<include>lib/bootstrap/js/bootstrap.min.js</include>
+		<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
 		<include>lib/bootbox/bootbox.min.js</include>
 		<include>lib/jquery/jquery.favicon.min.js</include>
 		<inline>window.CKEDITOR_BASEPATH="lib/ckeditor/";</inline>
 		<include>lib/ckeditor/ckeditor.js</include>
 		<include>lib/ckeditor/adapters/jquery.js</include>
+		<include>lib/pdfjs/pdf.min.js</include>
+		<include>lib/pdfjs/pdf_viewer.min.js</include>
+		<include>lib/codemirror/codemirror.min.js</include>
+		<include>lib/codemirror/codemirror.mode.min.js</include>
+		<include>lib/handsontable/handsontable.full.min.js</include>
+		<include>js/bootstrap.js</include>
 <!--
 		<include>lib/masonry/masonry.pkgd.min.js</include>
 		<include>lib/datepicker/js/bootstrap-datepicker.min.js</include>
@@ -149,6 +159,5 @@ __JS__
 		<include>lib/tabdrop/bootstrap-tabdrop.min.js</include>
 		<include>lib/clockpicker/bootstrap-clockpicker.min.js</include>
 -->
-		<include>js/bootstrap.js</include>
 	</js>
 </root>
