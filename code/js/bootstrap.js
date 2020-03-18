@@ -2699,10 +2699,8 @@ saltos.form_field_textarea=function(field) {
 			var textarea2=$(textarea);
 			if(!$(textarea2).length) {
 				clearInterval(interval);
-				//~ console.debug("textarea "+textarea+" destroyed");
 			} else if($(textarea2).is(":visible")) {
 				clearInterval(interval);
-				//~ console.debug("textarea "+textarea+" rendered");
 				$(textarea2).autogrow();
 			}
 		},100);
@@ -2876,12 +2874,9 @@ saltos.form_field_iframe=function(field) {
 		var interval=setInterval(function() {
 			var iframe2=$(iframe);
 			if(!$(iframe2).length) {
-				//~ console.debug("iframe "+iframe+" destroyed");
 				clearInterval(interval);
 			} else if($(iframe2).is(":visible")) {
-				//~ console.debug("iframe "+iframe+" visible");
 				if(typeof($(iframe2).prop("isloaded"))=="undefined") {
-					//~ console.debug("iframe "+iframe+" init");
 					$(iframe2).each(function() {
 						$(this).prop("isloaded","false");
 						$(this).on("load",function() {
@@ -2893,7 +2888,6 @@ saltos.form_field_iframe=function(field) {
 						if(!url) clearInterval(interval);
 					});
 				} else if($(iframe2).prop("isloaded")=="true") {
-					//~ console.debug("iframe "+iframe+" loaded");
 					clearInterval(interval);
 					if(security_iframe(iframe2)) {
 						var minheight=$(iframe2).height();
@@ -3816,6 +3810,11 @@ saltos.opencontent=function(url,callback) {
 		logout();
 		return;
 	}
+	if(isset(array.page) && isset(array.action) && isset(array.id) && array.page=="login" && array.action=="form" && array.id=="0" && saltos.islogin()) {
+		delete array.page;
+		delete array.action;
+		delete array.id;
+	}
 	loadingcontent(lang_loading());
 	if(!isset(array.page) && !isset(array.action) && !isset(array.id)) {
 		var temp=saltos.json_sync_request("index.php?action=default","default");
@@ -3836,10 +3835,6 @@ saltos.opencontent=function(url,callback) {
 		array.action=temp.action;
 		array.id=temp.id;
 	}
-	if(!isset(saltos.default)) saltos.default={};
-	if(isset(array.page)) saltos.default.page=array.page;
-	if(isset(array.action)) saltos.default.action=array.action;
-	if(isset(array.id)) saltos.default.id=array.id;
 	var querystring=saltos.array2querystring(array);
 	// TO FIX ERROR 414: REQUEST URI TOO LONG
 	var type=(strlen(querystring)>1024)?"post":"get";
@@ -3852,13 +3847,10 @@ saltos.opencontent=function(url,callback) {
 			saltos.make_abort_obj=XMLHttpRequest;
 		},
 		success:function(data,textStatus,XMLHttpRequest) {
-			//~ console.timeEnd("opencontent");
 			callback();
 			saltos.updatecontent(data);
 		},
 		error:function(XMLHttpRequest,textStatus,errorThrown) {
-			//~ console.timeEnd("opencontent");
-			saltos.addcontent("error");
 			callback();
 			saltos.errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 		}
@@ -3885,9 +3877,6 @@ saltos.submitcontent=function(form,callback) {
 			if(max_input_vars>0) {
 				var total_input_vars=$("input,select,textarea",jqForm).length;
 				if(total_input_vars>max_input_vars) {
-					//~ console.debug("max="+max_input_vars);
-					//~ console.debug("total="+total_input_vars);
-					//~ console.time("fix_input_vars");
 					setTimeout(function() {
 						var fix_input_vars=[];
 						$("input[type=hidden]",jqForm).each(function() {
@@ -3928,13 +3917,8 @@ saltos.submitcontent=function(form,callback) {
 								total_input_vars--;
 							}
 						});
-						//~ console.debug("length="+fix_input_vars.length);
-						//~ console.debug("total="+total_input_vars);
 						fix_input_vars=btoa(utf8_encode(implode("&",fix_input_vars)));
 						$(jqForm).append("<input type='hidden' name='fix_input_vars' value='"+fix_input_vars+"'/>");
-						//~ console.debug("real="+$("input,select,textarea",jqForm).length);
-						//~ console.debug("real="+$(jqForm).serializeArray().length);
-						//~ console.timeEnd("fix_input_vars");
 						saltos.submitcontent(form,callback);
 					},100);
 					return false;
@@ -3955,7 +3939,6 @@ saltos.submitcontent=function(form,callback) {
 			saltos.updatecontent(data);
 		},
 		error:function(XMLHttpRequest,textStatus,errorThrown) {
-			saltos.addcontent("error");
 			callback();
 			saltos.errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
 		}
@@ -4047,10 +4030,6 @@ saltos.addcontent=function(url) {
 	}
 	if(url=="restart") {
 		window.location.reload();
-		return;
-	}
-	if(url=="error") {
-		history.go(-1);
 		return;
 	}
 	// BLOCK SOME OPERATIVE ACTIONS
