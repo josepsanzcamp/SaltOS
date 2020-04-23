@@ -516,14 +516,15 @@ img[isplot=true] {
 
 /* FOR SORT ICONS */
 .ui-icon-asc {
-	position:relative;
-	left:3px;
-	top:1px;
+	font-size:1em;
+	margin-left:6px;
+	vertical-align:0px;
 }
 
 .ui-icon-desc {
-	position:relative;
-	left:-3px;
+	font-size:1em;
+	margin-left:3px;
+	vertical-align:1px;
 }
 
 .ui-icon-in {
@@ -558,4 +559,12 @@ div.excel {
 .jstree-hovered {
 	background:#fbec88!important;
 	color:#363636!important;
+}
+
+/* FOR ACTIONS2 */
+.actions2 span {
+	font-size:1em;
+	vertical-align:1px;
+	padding:0 0.25em;
+	text-align:center;
 }
