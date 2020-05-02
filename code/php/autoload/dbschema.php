@@ -199,7 +199,7 @@ function __get_dbschema_with_indexing($dbschema,$dbstatic) {
 	if(!isset($dbschema["indexes"])) return $dbschema;
 	if(!is_array($dbschema["indexes"])) return $dbschema;
 	foreach($dbschema["indexes"] as $key=>$val) {
-		$dbschema["indexes"][$key]["name"]=$val["table"]."_".implode("_",array_column($val["fields"],"name"));
+		$dbschema["indexes"][$key]["name"]=substr($val["table"]."_".implode("_",array_column($val["fields"],"name")),0,64);
 	}
 	foreach($dbschema["tables"] as $tablespec) {
 		foreach($tablespec["fields"] as $field) {
