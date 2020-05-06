@@ -198,8 +198,11 @@ function __import_xml2array($file) {
 	capture_next_error();
 	$data=xml2struct($xml);
 	$error=get_clear_error();
-	// TO PREVENT A MEMORY LEAK IN LIBXML
-	if($error!="" && !words_exists("error no memory",$error)) return "Error: XML not well-formed";
+	if($error!="") {
+		$temp=parse_error2array($error);
+		if(isset($temp[1])) return $temp[1];
+		return $error;
+	}
 	$data=array_reverse($data);
 	$array=__import_struct2array($data);
 	return $array;

@@ -247,4 +247,26 @@ function upload_error2string($error) {
 	return "UPLOAD_ERR_UNKWOWN";
 }
 
+function parse_error2array($error) {
+	$array=array();
+	$pos=0;
+	$len=strlen($error);
+	while($pos<$len) {
+		if(substr($error,$pos,4)=="<h3>") {
+			$pos=$pos+4;
+			$pos2=strpos($error,"</h3>",$pos);
+			$array[]=substr($error,$pos,$pos2-$pos);
+			$pos=$pos2+5;
+		} elseif(substr($error,$pos,5)=="<pre>") {
+			$pos=$pos+5;
+			$pos2=strpos($error,"</pre>",$pos);
+			$array[]=substr($error,$pos,$pos2-$pos);
+			$pos=$pos2+6;
+		} else {
+			break;
+		}
+	}
+	return $array;
+}
+
 ?>

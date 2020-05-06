@@ -397,7 +397,12 @@ function xml2struct($xml,$file="") {
 	xml_parser_set_option($parser,XML_OPTION_TARGET_ENCODING,"UTF-8");
 	$array=array();
 	$index=array();
-	xml_parse_into_struct($parser,$xml,$array,$index);
+	// TO PREVENT A MEMORY LEAK IN LIBXML
+	if(strlen($xml)>9000000) {
+		__xml_parse_into_struct_chunk($parser,$xml,$array,$index);
+	} else {
+		xml_parse_into_struct($parser,$xml,$array,$index);
+	}
 	$code=xml_get_error_code($parser);
 	if($code) {
 		$error=xml_error_string($code);
@@ -407,6 +412,96 @@ function xml2struct($xml,$file="") {
 	}
 	xml_parser_free($parser);
 	return $array;
+}
+
+function __xml_parse_into_struct_chunk($parser, $data, &$values, &$index="") {
+	__xml_parse_into_struct_array("values","set",$values);
+	__xml_parse_into_struct_array("index","set",$index);
+	xml_set_element_handler($parser,"__xml_parse_into_struct_start","__xml_parse_into_struct_end");
+	xml_set_character_data_handler($parser,"__xml_parse_into_struct_cdata");
+	$data=str_split($data,9000000);
+	while($part=array_shift($data)) {
+		$estado=xml_parse($parser,$part,count($data)==0);
+		if(!$estado) break;
+	}
+	$values=__xml_parse_into_struct_array("values","get");
+	$index=__xml_parse_into_struct_array("index","get");
+	return $estado;
+}
+
+function __xml_parse_into_struct_start($parser, $tag, $attr) {
+	__xml_parse_into_struct_array("index","push",$tag);
+	$level=__xml_parse_into_struct_array("index","count");
+	$temp=array(
+		"tag"=>$tag,
+		"type"=>"open",
+		"level"=>$level,
+	);
+	if(count($attr)) $temp["attributes"]=$attr;
+	__xml_parse_into_struct_array("values","push",$temp);
+}
+
+function __xml_parse_into_struct_end($parser, $tag) {
+	$level=__xml_parse_into_struct_array("index","count");
+	$temp=__xml_parse_into_struct_array("values","pop");
+	if($temp["tag"]==$tag && $temp["type"]=="open") {
+		$temp["type"]="complete";
+		__xml_parse_into_struct_array("values","push",$temp);
+	} else {
+		__xml_parse_into_struct_array("values","push",$temp);
+		$temp=array(
+			"tag"=>$tag,
+			"type"=>"close",
+			"level"=>$level,
+		);
+		__xml_parse_into_struct_array("values","push",$temp);
+	}
+	__xml_parse_into_struct_array("index","pop");
+}
+
+function __xml_parse_into_struct_cdata($parser, $data) {
+	$tag=__xml_parse_into_struct_array("index","end");
+	$level=__xml_parse_into_struct_array("index","count");
+	$temp=__xml_parse_into_struct_array("values","pop");
+	if($temp["tag"]==$tag && $temp["level"]==$level) {
+		if(isset($temp["value"])) {
+			$temp["value"].=$data;
+		} else {
+			$temp["value"]=$data;
+		}
+		__xml_parse_into_struct_array("values","push",$temp);
+	} else {
+		__xml_parse_into_struct_array("values","push",$temp);
+		$temp=array(
+			"tag"=>$tag,
+			"value"=>$data,
+			"type"=>"cdata",
+			"level"=>$level,
+		);
+		__xml_parse_into_struct_array("values","push",$temp);
+	}
+}
+
+function __xml_parse_into_struct_array($key,$op,$val="") {
+	static $cache=array();
+	if(!isset($cache[$key])) $cache[$key]=array();
+	switch($op) {
+		case "set":
+			$cache[$key]=$val;
+			break;
+		case "get":
+			return $cache[$key];
+		case "count":
+			return count($cache[$key]);
+		case "end":
+			return end($cache[$key]);
+		case "push":
+			array_push($cache[$key],$val);
+			break;
+		case "pop":
+			return array_pop($cache[$key]);
+			break;
+	}
 }
 
 //~ function check_xml_option_skip_white() {
