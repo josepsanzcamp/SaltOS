@@ -134,7 +134,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<otroscampos>مجالات اخرى</otroscampos>
 		<excel>اكسل</excel>
 		<exceltip>تحميل ملف إكسل مع البيانات الحالية</exceltip>
-		<pdf translated="false">Download PDF</pdf>
+		<pdf>Download PDF</pdf>
 		<pdftip>تحميل ملف PDF مع البيانات الحالية</pdftip>
 		<epigrafe>عنوان</epigrafe>
 		<campoauto>(*) حقل تلقائي</campoauto>
@@ -152,7 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todoslosclientes>[جميع العملاء]</todoslosclientes>
 		<todoslosposiblescli>[جميع العملاء المحتملين]</todoslosposiblescli>
 		<todoslosusuarios>[جميع المستخدمين]</todoslosusuarios>
-		<todoslosgrupos translated="false">[All groups]</todoslosgrupos>
+		<todoslosgrupos>[All groups]</todoslosgrupos>
 		<todoslosproveedores>[جميع الموفرين]</todoslosproveedores>
 		<mostrartodos>[إظهار الكل]</mostrartodos>
 		<sinusuario>[لا يوجد مستخدم]</sinusuario>
@@ -182,7 +182,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<language>اللغة</language>
 		<style>التصميم</style>
 		<nodata>لايوجد نتائج لعرضها</nodata>
-		<nosearch translated="false">You must to provide a term to do a search</nosearch>
+		<nosearch>You must to provide a term to do a search</nosearch>
 		<prioridad>الاولوية</prioridad>
 		<sinproyecto>[بدون مشروع مرتبط]</sinproyecto>
 		<sintarea>[لايوجد مهمة مرتبطة]</sintarea>
@@ -367,25 +367,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formapago>دفع</formapago>
 		<todaslasformasdepago>[جميع أشكال الدفع]</todaslasformasdepago>
 		<sinformapago>[لايوجد مدفوعات]</sinformapago>
-		<actions translated="false">Options of this register</actions>
-		<msgfilesindexed1 translated="false"> file indexed to the database</msgfilesindexed1>
-		<msgfilesindexed2 translated="false"> files indexed to the database</msgfilesindexed2>
-		<msgregistersindexed1 translated="false"> register indexed to the database</msgregistersindexed1>
-		<msgregistersindexed2 translated="false"> registers indexed to the database</msgregistersindexed2>
-		<msgregisterspurged1 translated="false"> register purged to the database</msgregisterspurged1>
-		<msgregisterspurged2 translated="false"> registers purged to the database</msgregisterspurged2>
-		<biglist translated="false">$limit records</biglist>
-		<biglisttip translated="false">Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
+		<actions>Options of this register</actions>
+		<msgfilesindexed1> file indexed to the database</msgfilesindexed1>
+		<msgfilesindexed2> files indexed to the database</msgfilesindexed2>
+		<msgregistersindexed1> register indexed to the database</msgregistersindexed1>
+		<msgregistersindexed2> registers indexed to the database</msgregistersindexed2>
+		<msgregisterspurged1> register purged to the database</msgregisterspurged1>
+		<msgregisterspurged2> registers purged to the database</msgregisterspurged2>
+		<biglist>$limit records</biglist>
+		<biglisttip>Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
 		<activo>تنشيط</activo>
 		<activo_desc>للاشارة الي المستخدم النشط ,او الموجود عن طريق الميراث</activo_desc>
-		<print translated="false">Print</print>
+		<print>Print</print>
 	</common>
 	<login>
 		<logintitle>الوصول للتطبيق</logintitle>
 		<remember>تذكر كلمة المرور علي هذا الجهاز</remember>
 		<enter>دخول</enter>
-		<captcha1 translated="false">Security code</captcha1>
-		<captcha2 translated="false">Enter the code here</captcha2>
+		<captcha1>Security code</captcha1>
+		<captcha2>Enter the code here</captcha2>
 		<captcha3>اعادة تحميل الصورة</captcha3>
 		<mobileaccess>الدخول عن طريق الجوال</mobileaccess>
 	</login>
@@ -428,20 +428,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<textos>نصوص محددة مسبقا</textos>
 		<ficheros>المرفقات</ficheros>
 		<feeds>RSS قارئ موجز</feeds>
-		<favoritos translated="false">المفضلات</favoritos>
+		<favoritos>المفضلات</favoritos>
 		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
 		<importaciones>استيراد</importaciones>
 		<gestioncomercial>المبيعات</gestioncomercial>
 		<gestionproyectos>المشاريع</gestionproyectos>
 		<gestioncontabilidad>المحاسبة</gestioncontabilidad>
 		<gestiongeneral>عام</gestiongeneral>
-		<gestionfiltros translated="false">Filters</gestionfiltros>
+		<gestionfiltros>Filters</gestionfiltros>
 		<gestionadministracion>إدارة</gestionadministracion>
 		<gestiontipos>الانواع</gestiontipos>
 		<gestionsistema>النظام</gestionsistema>
 		<folders>الأدلة</folders>
 		<buscador>بحث</buscador>
 		<errorlog>Error logs</errorlog>
+		<categorias>Categories</categorias>
 		<desc_clientes>إدارة عملاء الشركة</desc_clientes>
 		<desc_contactos>للوصول إلى جهات اتصال العميل</desc_contactos>
 		<desc_incidencias>ادر من هنا التأثير بعملائها</desc_incidencias>
@@ -479,11 +480,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_textos>إنشاء نصوص معرفة مسبقا للاستخدام في تطبيقات أخرى</desc_textos>
 		<desc_ficheros>الوصول إلى جميع ملفات التطبيق بالكامل</desc_ficheros>
 		<desc_feeds>تتبع خلاصات RSS و اتوم من هذا التطبيق</desc_feeds>
-		<desc_favoritos translated="false">إدارة المفضلة من هنا</desc_favoritos>
-		<desc_ivas translated="false">Manage the taxes from here</desc_ivas>
+		<desc_favoritos>إدارة المفضلة من هنا</desc_favoritos>
+		<desc_ivas>Manage the taxes from here</desc_ivas>
 		<desc_importaciones>استيراد البيانات للتطبيقات الرئيسية من هنا</desc_importaciones>
 		<desc_buscador>للبحث في جميع محتويات قاعدة البيانات</desc_buscador>
 		<desc_errorlog>لمشاهدة سجلات الخطأ في SaltOS</desc_errorlog>
+		<desc_categorias>To see the categories of specific applications</desc_categorias>
 		<quick_home>الرئيسية</quick_home>
 		<quick_correo>البريد</quick_correo>
 		<quick_agenda>الاجندة</quick_agenda>
@@ -522,16 +524,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_textos>النصوص</quick_textos>
 		<quick_ficheros>المرفقات</quick_ficheros>
 		<quick_feeds>تغذيات RSS </quick_feeds>
-		<quick_favoritos translated="false">المفضلات</quick_favoritos>
+		<quick_favoritos>المفضلات</quick_favoritos>
 		<quick_importaciones>الواردات</quick_importaciones>
 		<quick_buscador>بحث</quick_buscador>
 		<quick_errorlog>الاخطاء</quick_errorlog>
+		<quick_categorias>Categories</quick_categorias>
 		<translator>المترجم</translator>
-		<translatortip translated="false">To do text's translations</translatortip>
-		<corrector translated="false">Spell checker</corrector>
-		<correctortip translated="false">To do text's corrections</correctortip>
+		<translatortip>To do text's translations</translatortip>
+		<corrector>Spell checker</corrector>
+		<correctortip>To do text's corrections</correctortip>
 		<calculator>الحاسبة</calculator>
-		<calculatortip translated="false">To do mathematical calculations</calculatortip>
+		<calculatortip>To do mathematical calculations</calculatortip>
 		<menu>القائمة</menu>
 		<menutip>لاظهار واخفاء قائمة التطبيق</menutip>
 	</menu>
@@ -586,12 +589,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>اضافة تأثير جديد</forminsert>
 		<formupdate>تغيير الحدث</formupdate>
 		<defaultdata>البيانات في الحدث</defaultdata>
-		<usersdata translated="false">Users</usersdata>
-		<implicados translated="false">Involved</implicados>
+		<usersdata>Users</usersdata>
+		<implicados>Involved</implicados>
 		<asignadoa>تعيين ل</asignadoa>
 		<msgsendemail>لقد تم ارسال بريد لكل المعنيين بالحدث</msgsendemail>
-		<boolsendmail translated="false">Send email</boolsendmail>
-		<boolsendmailtip translated="false">If you enable this option, an email will be sent to all users involved in the bug</boolsendmailtip>
+		<boolsendmail>Send email</boolsendmail>
+		<boolsendmailtip>If you enable this option, an email will be sent to all users involved in the bug</boolsendmailtip>
+		<categoria>Category</categoria>
+		<sincategoria>[Without category]</sincategoria>
+		<allcategorias>[All categories]</allcategorias>
 	</incidencias>
 	<proyectos>
 		<list>قائمة المشاريع</list>
@@ -700,7 +706,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<prefgcalendar>خدمة مزامنة التقويم مع تقويم Google </prefgcalendar>
 		<prefgcalendar2>مع هذا الخيار، يمكنك استخدام التقويم من تقويم Google من SaltOS، والحفاظ على البيانات المحدثة تلقائيا دون الحاجة إلى القلق حول الحاجة إلى تكرار البيانات من التقويم إلى أخر</prefgcalendar2>
 		<emailgcalendar>حساب بريد gmail</emailgcalendar>
-		<tokengcalendar translated="false">Access token</tokengcalendar>
+		<tokengcalendar>Access token</tokengcalendar>
 		<feedstitle>قم بتهيئة التغذيات التي تود قرائتها من SaltOS ( RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>العنوان</title>
@@ -866,7 +872,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendartip>مزامنة التقويم بين تقويم Google و تقويم SaltOS</gcalendartip>
 		<notgcalendaremail>لم تقم بتهيئة حساب الافضليات لتقويم Google</notgcalendaremail>
 		<invalidgcalendartoken>البيانات الواصلة لحسابتقويم قوقل لديك غير صحيحة</invalidgcalendartoken>
-		<requestgcalendartoken translated="false">Click here to obtain an access token</requestgcalendartoken>
+		<requestgcalendartoken>Click here to obtain an access token</requestgcalendartoken>
 		<insertgcalendar>أحداث SaltOS المنشئة علي تقويم Google :</insertgcalendar>
 		<updategcalendar>أحداث SaltOS المحدثة علي تقويم Google :</updategcalendar>
 		<insertsaltos>أحداث تقويم Google التي تم إنشائها علي SaltOS:</insertsaltos>
@@ -939,7 +945,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<prefgcalendar>مزامنة التقويم مع خدمة تقويم قوقل</prefgcalendar>
 		<prefgcalendar2>بهذا الخيار يمكنك استخدام التقويم من Google  و SaltOS لمعالجة التحديثات تلقائيا بدون الانزعاج بتكرار البيانات من تقويم لاخر </prefgcalendar2>
 		<emailgcalendar>حساب بريدي علي gmail </emailgcalendar>
-		<tokengcalendar translated="false">Access token</tokengcalendar>
+		<tokengcalendar>Access token</tokengcalendar>
 		<addmetocc>اضف الي الCC الخاص بي جميع رسائل البريد المرسلة</addmetocc>
 		<defaultcrt>افتح المعرف الخاص بالتطبيق الافتراضي</defaultcrt>
 		<feedstitle>اضبط التغذيات التي تود قرائتها من  SaltOS (RSS 1.0, RSS 2.0 and Atom 1.0)</feedstitle>
@@ -971,10 +977,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folderstab>مجلدات المستخدم</folderstab>
 		<folderspref>قم بتهيئة مجلدات المستخدم هنا ثم اترك ما تريد</folderspref>
 		<newfolder>مجلد مستخدم جديد</newfolder>
-		<withoutparent translated="false">[Without folder]</withoutparent>
-		<inparentfolder translated="false">and is hanging in the folder</inparentfolder>
-		<namefolder translated="false">Name of the folder</namefolder>
-		<parentfolder translated="false">Hanging in the folder</parentfolder>
+		<withoutparent>[Without folder]</withoutparent>
+		<inparentfolder>and is hanging in the folder</inparentfolder>
+		<namefolder>Name of the folder</namefolder>
+		<parentfolder>Hanging in the folder</parentfolder>
 	</profile>
 	<maincfg>
 		<formupdate>الاعدادات</formupdate>
@@ -993,9 +999,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<feedstimeout>نسيان التغذيات المحذوفة</feedstimeout>
 		<sessioninterval>تحقق من تسجيل الدخول كل</sessioninterval>
 		<sessionwarning>تحذيز الخروج قبل</sessionwarning>
-		<indexinginterval translated="false">Index new files every</indexinginterval>
-		<integrityinterval translated="false">Check integrity every</integrityinterval>
-		<purgeinterval translated="false">Purge data every</purgeinterval>
+		<indexinginterval>Index new files every</indexinginterval>
+		<integrityinterval>Check integrity every</integrityinterval>
+		<purgeinterval>Purge data every</purgeinterval>
 		<emailsupport>بريد الدعم الفني</emailsupport>
 		<segundos>ثواني</segundos>
 		<dias>ايام</dias>
@@ -1010,9 +1016,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<colorline>لون الخطوط</colorline>
 		<colortext1>العناوين</colortext1>
 		<colortext2>نص</colortext2>
-		<title_correo translated="false">Configure some global parameters about sending mail from SaltOS</title_correo>
-		<cuentasupport translated="false">Outbox email for support</cuentasupport>
-		<cuentaincidencias translated="false">Outbox email for issues</cuentaincidencias>
+		<title_correo>Configure some global parameters about sending mail from SaltOS</title_correo>
+		<cuentasupport>Outbox email for support</cuentasupport>
+		<cuentaincidencias>Outbox email for issues</cuentaincidencias>
 		<water>العلامات المائية</water>
 		<title_water>ضبط العلامات المائية المستخدمة علي ال pdf's</title_water>
 		<wateractas>المحاضر</wateractas>
@@ -1024,7 +1030,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<waterproyectos>المشاريع</waterproyectos>
 		<waterposiblescli>الزبائن المحتملين</waterposiblescli>
 		<watercorreo>البريد</watercorreo>
-		<waterfeeds translated="false">Feeds: Texto</waterfeeds>
+		<waterfeeds>Feeds: Texto</waterfeeds>
 		<emailasync>استخدام الارسال المتزامن (سريع)</emailasync>
 		<accounting>الحسابات</accounting>
 		<title_accounting>قم بتهيئة البيانات المحاسبية العامة</title_accounting>
@@ -1032,25 +1038,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_iva_name>اسم الضريبة (المضافة)</accounting_iva_name>
 		<accounting_irpf_name>اسم الضريبة (سيتم نقصها)</accounting_irpf_name>
 		<accounting_value>القيمة الافتراضية (فقط اذا تم استخدامها)</accounting_value>
-		<applications_config translated="false">Applications</applications_config>
-		<config_tabs translated="false">Setting tabs</config_tabs>
-		<default_values translated="false">Default values</default_values>
-		<configuracion_presupuestos translated="false">Budget Settings</configuracion_presupuestos>
-		<configuracion_agenda translated="false">Schedule settings</configuracion_agenda>
-		<configuracion_incidencias translated="false">Event settings</configuracion_incidencias>
-		<configuracion_facturas translated="false">Invoice settings</configuracion_facturas>
-		<configuracion_gastos translated="false">Spending settings</configuracion_gastos>
-		<show_tab_objetivos_presupuesto translated="false">Show Goals</show_tab_objetivos_presupuesto>
-		<show_tab_condiciones_presupuesto translated="false">Show conditions</show_tab_condiciones_presupuesto>
-		<show_tab_funcional_presupuesto translated="false">Show functional proposal</show_tab_funcional_presupuesto>
-		<show_tab_tecnica_presupuesto translated="false">Show technical proposal</show_tab_tecnica_presupuesto>
-		<show_tab_info_adicional_presupuesto translated="false">Show additional information</show_tab_info_adicional_presupuesto>
-		<show_tab_tareas_presupuesto translated="false">Show Tasks</show_tab_tareas_presupuesto>
-		<show_tab_productos_presupuesto translated="false">Show products</show_tab_productos_presupuesto>
-		<sin_configurar translated="false">[Not configured]</sin_configurar>
-		<filtro_grupo_usuarios_incidencias translated="false">Show users of a group in the user list</filtro_grupo_usuarios_incidencias>
-		<filtro_grupo_usuarios_implicados_incidencias translated="false">Group of involved</filtro_grupo_usuarios_implicados_incidencias>
-		<filtro_grupo_usuarios_asignados_incidencias translated="false">Group of assigned</filtro_grupo_usuarios_asignados_incidencias>
+		<applications_config>Applications</applications_config>
+		<config_tabs>Setting tabs</config_tabs>
+		<default_values>Default values</default_values>
+		<configuracion_presupuestos>Budget Settings</configuracion_presupuestos>
+		<configuracion_agenda>Schedule settings</configuracion_agenda>
+		<configuracion_incidencias>Event settings</configuracion_incidencias>
+		<configuracion_facturas>Invoice settings</configuracion_facturas>
+		<configuracion_gastos>Spending settings</configuracion_gastos>
+		<show_tab_objetivos_presupuesto>Show Goals</show_tab_objetivos_presupuesto>
+		<show_tab_condiciones_presupuesto>Show conditions</show_tab_condiciones_presupuesto>
+		<show_tab_funcional_presupuesto>Show functional proposal</show_tab_funcional_presupuesto>
+		<show_tab_tecnica_presupuesto>Show technical proposal</show_tab_tecnica_presupuesto>
+		<show_tab_info_adicional_presupuesto>Show additional information</show_tab_info_adicional_presupuesto>
+		<show_tab_tareas_presupuesto>Show Tasks</show_tab_tareas_presupuesto>
+		<show_tab_productos_presupuesto>Show products</show_tab_productos_presupuesto>
+		<sin_configurar>[Not configured]</sin_configurar>
+		<filtro_grupo_usuarios_incidencias>Show users of a group in the user list</filtro_grupo_usuarios_incidencias>
+		<filtro_grupo_usuarios_implicados_incidencias>Group of involved</filtro_grupo_usuarios_implicados_incidencias>
+		<filtro_grupo_usuarios_asignados_incidencias>Group of assigned</filtro_grupo_usuarios_asignados_incidencias>
 	</maincfg>
 	<about>
 		<formupdate>عن SaltOS</formupdate>
@@ -1059,7 +1065,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<server_base>خادم اساسي:</server_base>
 		<php_plugins>PHP اضافات:</php_plugins>
 		<javascript_base>Javascript اساسية:</javascript_base>
-		<bootstrap_plugins translated="false">Bootstrap plugins:</bootstrap_plugins>
+		<bootstrap_plugins>Bootstrap plugins:</bootstrap_plugins>
 		<jquery_plugins>JQuery اضافات:</jquery_plugins>
 		<javascript_plugins>Javascript اضافات:</javascript_plugins>
 		<other_plugins>إضافات اخرى:</other_plugins>
@@ -1086,8 +1092,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</support>
 	<home>
 		<formupdate>الرئيسية</formupdate>
-		<buscar2 translated="false">Search in SaltOS</buscar2>
-		<buscar3 translated="false">Search in files</buscar3>
+		<buscar2>Search in SaltOS</buscar2>
+		<buscar3>Search in files</buscar3>
 	</home>
 	<seguimientos>
 		<list>قائمة المتابعة</list>
@@ -1111,7 +1117,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc3_import>مهم: الاستيراد يقوم بحذف البيانات الموجودة حاليا علي التطبيق</desc3_import>
 		<filenotfound>غير قادر علي قرائة محتويات الملف الراد استيراده</filenotfound>
 		<filefoundok>لقد تم جلب بيانات ال backup بنجاح</filefoundok>
-		<fileimporterror translated="false">Error when trying to import the file </fileimporterror>
+		<fileimporterror>Error when trying to import the file </fileimporterror>
 	</datacfg>
 	<correo>
 		<list>قائمة البريد</list>
@@ -1197,7 +1203,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyoutbox>فقط الصادر</onlyoutbox>
 		<options>خيارات</options>
 		<optionstip>عرض خيارات اضافية من القائمة</optionstip>
-		<pdfoptions translated="false">PDF options</pdfoptions>
+		<pdfoptions>PDF options</pdfoptions>
 		<sinsubject>(ليوجد عنوان)</sinsubject>
 		<msgfromkosendmail>الاعدادات لحقل المرسل غير موجودة</msgfromkosendmail>
 		<msgsendoksendmail>لقد تم ارسال الرسالة بنجاح</msgsendoksendmail>
@@ -1235,14 +1241,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sensitivitypersonal>شخصي</sensitivitypersonal>
 		<sensitivityprivate>خاص</sensitivityprivate>
 		<sensitivityconfidential>سري</sensitivityconfidential>
-		<addincidencia translated="false">Add bug</addincidencia>
-		<addincidenciatip translated="false">Create a new bug using this email as initial report</addincidenciatip>
-		<addincidenciamsg translated="false">Do you want to create a new bug using this email as initial report?</addincidenciamsg>
-		<addincidenciaok translated="false">Bug created with the code: </addincidenciaok>
-		<notsupportdefined translated="false">Support email account not defined in SaltOS</notsupportdefined>
-		<notsupportfound translated="false">This email doesn't contain the support email account</notsupportfound>
-		<incidenciaexists translated="false">Bug found with the code: </incidenciaexists>
-		<interrorsendmail translated="false">This email was not sent by an internal error</interrorsendmail>
+		<addincidencia>Add bug</addincidencia>
+		<addincidenciatip>Create a new bug using this email as initial report</addincidenciatip>
+		<addincidenciamsg>Do you want to create a new bug using this email as initial report?</addincidenciamsg>
+		<addincidenciaok>Bug created with the code: </addincidenciaok>
+		<notsupportdefined>Support email account not defined in SaltOS</notsupportdefined>
+		<notsupportfound>This email doesn't contain the support email account</notsupportfound>
+		<incidenciaexists>Bug found with the code: </incidenciaexists>
+		<interrorsendmail>This email was not sent by an internal error</interrorsendmail>
 	</correo>
 	<cuentas>
 		<list>قائمة الحسابات</list>
@@ -1331,13 +1337,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>إضافة منتج جديد</forminsert>
 		<formupdate>تغيير في المنتج</formupdate>
 		<defaultdata>بيانات المنتج</defaultdata>
-		<ref translated="false">Ref.</ref>
-		<peso translated="false">Weight</peso>
-		<volumen translated="false">Volume</volumen>
-		<dimensiones translated="false">Dimensions</dimensiones>
-		<fotofile translated="false">Current photo</fotofile>
-		<fotofilenew translated="false">New photo</fotofilenew>
-		<siniva eval="true" translated="false">"[Without ".CONFIG("accounting_iva_name")."]"</siniva>
+		<ref>Ref.</ref>
+		<peso>Weight</peso>
+		<volumen>Volume</volumen>
+		<dimensiones>Dimensions</dimensiones>
+		<fotofile>Current photo</fotofile>
+		<fotofilenew>New photo</fotofilenew>
+		<siniva eval="true">"[Without ".CONFIG("accounting_iva_name")."]"</siniva>
 	</productos>
 	<presupuestos>
 		<list>قائمة بالميزانيات</list>
@@ -1373,10 +1379,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tecnicapdf>التقني</tecnicapdf>
 		<extraspdf>معلومات</extraspdf>
 		<condicionespdf>الشروط</condicionespdf>
-		<actionfacturar translated="false">Bill</actionfacturar>
-		<msgfacturar translated="false">Want to check the budget?</msgfacturar>
-		<errorfacturar translated="false">There is already a bill of this budget</errorfacturar>
-		<okfacturar translated="false">Has billed the budget properly</okfacturar>
+		<actionfacturar>Bill</actionfacturar>
+		<msgfacturar>Want to check the budget?</msgfacturar>
+		<errorfacturar>There is already a bill of this budget</errorfacturar>
+		<okfacturar>Has billed the budget properly</okfacturar>
 	</presupuestos>
 	<campanyas>
 		<list>قائمة الحملات</list>
@@ -1445,7 +1451,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlywait>فقط المؤجلة</onlywait>
 		<options>خيارات</options>
 		<optionstip>اظهر المزيد من الخيارات من القائمة</optionstip>
-		<pdfoptions translated="false">PDF options</pdfoptions>
+		<pdfoptions>PDF options</pdfoptions>
 		<stateall>الكل</stateall>
 		<today>اليوم</today>
 		<yesterday>أمس</yesterday>
@@ -1483,7 +1489,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgcool>هل تريد تعليم  جميع المشاركاتب كرائعة/غير رائعة؟</msgcool>
 		<msgnumsicool>تم تعليمها كرائعة: </msgnumsicool>
 		<msgnumnocool>تم تعليمها كرائعة:  </msgnumnocool>
-		<actionfavoritos translated="false">Add to bookmarks</actionfavoritos>
+		<actionfavoritos>Add to bookmarks</actionfavoritos>
 	</feeds>
 	<importaciones>
 		<list>قائمة الاستيرادات</list>
@@ -1493,7 +1499,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate>تغير استيراد</formupdate>
 		<defaultdata>استيراد بيانات</defaultdata>
 		<sinaplicacion>[بدون تطبيق]</sinaplicacion>
-		<importdata translated="false">Contents of the file</importdata>
+		<importdata>Contents of the file</importdata>
 	</importaciones>
 	<folders>
 		<notfound>الدليل غير موجود</notfound>
@@ -1522,20 +1528,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<defaultdata>محتويات الملف </defaultdata>
 	</errorlog>
 	<favoritos>
-		<list translated="false">قائمة المفضلة</list>
-		<create translated="false">مفضلة جديدة</create>
-		<url translated="false">URL</url>
-		<bookmarkexists translated="false">عنوان URL الذي تحاول حفظه موجود مسبقا في قائمة المفضلة لديط.</bookmarkexists>
-		<invalidurl translated="false">عنوان URL غير صالح،الرجاء  التحقق من عنوان الويب: </invalidurl>
-		<bookmarkadded translated="false">The url was successfully added to bookmarks</bookmarkadded>
-		<previews translated="false">Previews</previews>
+		<list>قائمة المفضلة</list>
+		<create>مفضلة جديدة</create>
+		<url>URL</url>
+		<bookmarkexists>عنوان URL الذي تحاول حفظه موجود مسبقا في قائمة المفضلة لديط.</bookmarkexists>
+		<invalidurl>عنوان URL غير صالح،الرجاء  التحقق من عنوان الويب: </invalidurl>
+		<bookmarkadded>The url was successfully added to bookmarks</bookmarkadded>
+		<previews>Previews</previews>
 	</favoritos>
 	<ivas>
-		<list eval="true" translated="false">"List of ".CONFIG("accounting_iva_name")</list>
-		<create eval="true" translated="false">"New ".CONFIG("accounting_iva_name")</create>
-		<formview eval="true" translated="false">"Details of the ".CONFIG("accounting_iva_name")</formview>
-		<forminsert eval="true" translated="false">"Added a new ".CONFIG("accounting_iva_name")</forminsert>
-		<formupdate eval="true" translated="false">"Changing the ".CONFIG("accounting_iva_name")</formupdate>
-		<defaultdata eval="true" translated="false">"Data of the ".CONFIG("accounting_iva_name")</defaultdata>
+		<list eval="true">"List of ".CONFIG("accounting_iva_name")</list>
+		<create eval="true">"New ".CONFIG("accounting_iva_name")</create>
+		<formview eval="true">"Details of the ".CONFIG("accounting_iva_name")</formview>
+		<forminsert eval="true">"Added a new ".CONFIG("accounting_iva_name")</forminsert>
+		<formupdate eval="true">"Changing the ".CONFIG("accounting_iva_name")</formupdate>
+		<defaultdata eval="true">"Data of the ".CONFIG("accounting_iva_name")</defaultdata>
 	</ivas>
+	<categorias>
+		<list>List of categories</list>
+		<create>New category</create>
+		<formview>Detail of the category</formview>
+		<forminsert>Added a new category</forminsert>
+		<formupdate>Modify the category</formupdate>
+		<defaultdata>Data of the category</defaultdata>
+	</categorias>
 </root>

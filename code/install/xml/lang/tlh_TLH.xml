@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2020 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<dir>tlh_tlh</dir>
+	<default>common</default>
+	<common>
+		<title>Programa de instalación de SaltOS</title>
+		<yes>Hija'</yes>
+		<no>Qo'</no>
+		<language>Hol selection, chut lulajpu'bogh 'ej icons</language>
+		<welcome_message>MajQa' saltos Installation ghun</welcome_message>
+		<lang_message>Hol wiv</lang_message>
+		<style_message>Chut lulajpu'bogh wiv</style_message>
+		<begin_message></begin_message>
+		<back>Previous</back>
+		<next>Pab</next>
+		<test>Check</test>
+		<install>Saltos jom</install>
+		<saltos>Start saltos</saltos>
+		<is_writable>Ghitlh chohwi' wiling checking</is_writable>
+		<is_executable>External ghun checking</is_executable>
+		<directory>Directory</directory>
+		<file>Teywi'</file>
+		<executable>Executable</executable>
+		<database_link>Database connection</database_link>
+		<select_dbtype>Sgbd wIv</select_dbtype>
+		<select_prefered>(chup)</select_prefered>
+		<selected_dbtype>WIv sgbd</selected_dbtype>
+		<dbfile>Database teywi'</dbfile>
+		<dbtest>Wah connection qap</dbtest>
+		<dbvoid>Database chim</dbvoid>
+		<dbhost>Bbdd jabwI'</dbhost>
+		<dbport>Rut mutlha'tah</dbport>
+		<dbuser>User</dbuser>
+		<dbpass>Ngaqha'mohwi'mey</dbpass>
+		<dbname>Database pong</dbname>
+		<admin_account>Administrator account naw' de'</admin_account>
+		<user>User</user>
+		<pass>Ngaqha'mohwi'mey</pass>
+		<email>Email</email>
+		<optional>Optional</optional>
+		<server_config>Jabwi' configuration</server_config>
+		<timezone>Poh mich</timezone>
+		<hostname>'ej bebvo' jabwi'</hostname>
+		<pathname>Jabwi' path</pathname>
+		<automatic>Automatic</automatic>
+		<forcessl>RaD ssl (https)</forcessl>
+		<porthttp>Rut mutlha'tah http</porthttp>
+		<porthttps>Rut mutlha'tah https</porthttps>
+		<initial_data>Pimchugh chuqmey pohmey de' upload</initial_data>
+		<exampledata>Sample de' dughajmoh</exampledata>
+		<undefined>Undefine</undefined>
+		<install_input>Installation summary confirmation 'ej</install_input>
+		<install_output>Installation ghot'e'</install_output>
+		<config>Database naw' settings tod</config>
+		<dbschema>Ras chenmoh neh database</dbschema>
+		<dbstatic>Internal de' dughajmoh</dbstatic>
+		<streetdata>Street de' dughajmoh</streetdata>
+		<defaultdata>Generic de' dughajmoh</defaultdata>
+		<permissiondata>Chohwi' wiling admin ghom chenmoh</permissiondata>
+		<finish>Installation 'er'in</finish>
+		<gotohome>Reload</gotohome>
+		<notifybug>Ja' failure</notifybug>
+		<step>Miw</step>
+		<lang>Hol</lang>
+		<style>Chut lulajpu'bogh</style>
+		<env_vars>Environment chah</env_vars>
+		<env_path>PATH</env_path>
+		<env_lang>LANG</env_lang>
+		<applications>Application</applications>
+		<select_layer>Qoghdu'dajdaq wiv</select_layer>
+		<selected_layer>Wiv qoghdu'dajdaq</selected_layer>
+		<layer_all>Hoch apps</layer_all>
+		<layer_personal>Personal lo' apps</layer_personal>
+		<select_apps>Apps wiv</select_apps>
+		<selected_apps>Wiv apps</selected_apps>
+	</common>
+</root>

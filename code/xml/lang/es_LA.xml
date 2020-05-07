@@ -152,7 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todoslosclientes>[Todos los clientes]</todoslosclientes>
 		<todoslosposiblescli>[Todos los posibles clientes]</todoslosposiblescli>
 		<todoslosusuarios>[Todos los usuarios]</todoslosusuarios>
-		<todoslosgrupos translated="false">[All groups]</todoslosgrupos>
+		<todoslosgrupos>[Todos los grupos]</todoslosgrupos>
 		<todoslosproveedores>[Todos los proveedores]</todoslosproveedores>
 		<mostrartodos>[Mostrar todos]</mostrartodos>
 		<sinusuario>[Sin usuario]</sinusuario>
@@ -442,6 +442,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folders>Carpetas</folders>
 		<buscador>Buscador</buscador>
 		<errorlog>Logs de error</errorlog>
+		<categorias>Categorias</categorias>
 		<desc_clientes>Gestione los clientes de su empresa</desc_clientes>
 		<desc_contactos>Para acceder a los contactos de un cliente</desc_contactos>
 		<desc_incidencias>Gestione desde aquí las incidencias de sus clientes</desc_incidencias>
@@ -484,6 +485,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_importaciones>Importe datos a las principales aplicaciones desde aquí</desc_importaciones>
 		<desc_buscador>Para buscar en toda la base de datos</desc_buscador>
 		<desc_errorlog>Para ver el registro de errores de SaltOS</desc_errorlog>
+		<desc_categorias>Para ver las categorias de ciertas aplicaciones</desc_categorias>
 		<quick_home>Inicio</quick_home>
 		<quick_correo>Correo</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
@@ -526,6 +528,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_importaciones>Importaciones</quick_importaciones>
 		<quick_buscador>Buscador</quick_buscador>
 		<quick_errorlog>Errores</quick_errorlog>
+		<quick_categorias>Categorias</quick_categorias>
 		<translator>Traductor</translator>
 		<translatortip>Para hacer traducciones de textos</translatortip>
 		<corrector>Corrector</corrector>
@@ -592,6 +595,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgsendemail>Se ha enviado un correo electrónico a todos los implicados en la incidencia</msgsendemail>
 		<boolsendmail>Enviar email</boolsendmail>
 		<boolsendmailtip>Si activa esta opción, se enviará un email a todos los implicados</boolsendmailtip>
+		<categoria>Categoria</categoria>
+		<sincategoria>[Sin categoria]</sincategoria>
+		<allcategorias>[Todas las categorias]</allcategorias>
 	</incidencias>
 	<proyectos>
 		<list>Listado de proyectos</list>
@@ -1538,4 +1544,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate eval="true">"Modificacion del ".CONFIG("accounting_iva_name")</formupdate>
 		<defaultdata eval="true">"Datos del ".CONFIG("accounting_iva_name")</defaultdata>
 	</ivas>
+	<categorias>
+		<list>Listado de categorias</list>
+		<create>Nueva categoria</create>
+		<formview>Detalle de la categoria</formview>
+		<forminsert>Alta de una nueva categoria</forminsert>
+		<formupdate>Modificación de la categoria</formupdate>
+		<defaultdata>Datos de la categoria</defaultdata>
+	</categorias>
 </root>

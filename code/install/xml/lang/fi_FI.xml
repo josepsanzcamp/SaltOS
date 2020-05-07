@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2020 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<dir>fi_fi</dir>
+	<default>common</default>
+	<common>
+		<title>Programa de instalación de SaltOS</title>
+		<yes>Jos</yes>
+		<no>Ei</no>
+		<language>Kielen valinta, suunnittelu ja kuvakkeet</language>
+		<welcome_message>Tervetuloa SaltOS-asennusohjelmaan</welcome_message>
+		<lang_message>Valitse kieli</lang_message>
+		<style_message>Valitse malli</style_message>
+		<begin_message>Napsauta "Seuraava" ja asenna SaltOS viidessä helpossa vaiheessa</begin_message>
+		<back>Edellinen</back>
+		<next>Seuraava</next>
+		<test>Tarkistaa</test>
+		<install>Asenna SaltOS</install>
+		<saltos>Käynnistä SaltOS</saltos>
+		<is_writable>Tarkista kirjoitusoikeudet</is_writable>
+		<is_executable>Ulkoisten ohjelmien tarkistaminen</is_executable>
+		<directory>Hakemisto</directory>
+		<file>Tiedosto</file>
+		<executable>Suoritettavan</executable>
+		<database_link>Yhteys tietokantaan</database_link>
+		<select_dbtype>Valitse SGBD</select_dbtype>
+		<select_prefered>Suositus)</select_prefered>
+		<selected_dbtype>SGBD valittu</selected_dbtype>
+		<dbfile>Tietokantatiedosto</dbfile>
+		<dbtest>Testiyhteys toimi</dbtest>
+		<dbvoid>Tietokanta on tyhjä</dbvoid>
+		<dbhost>Tietokantapalvelin</dbhost>
+		<dbport>Portti</dbport>
+		<dbuser>Käyttäjä</dbuser>
+		<dbpass>Avain</dbpass>
+		<dbname>Tietokannan nimi</dbname>
+		<admin_account>Käytä tietoja järjestelmänvalvojan tilille</admin_account>
+		<user>Käyttäjä</user>
+		<pass>Avain</pass>
+		<email>Sähköposti</email>
+		<optional>Valinnainen</optional>
+		<server_config>Palvelimen kokoonpano</server_config>
+		<timezone>Aikavyöhyke</timezone>
+		<hostname>Web-palvelin</hostname>
+		<pathname>Palvelimen polku</pathname>
+		<automatic>Automaattinen</automatic>
+		<forcessl>Pakota SSL (https)</forcessl>
+		<porthttp>Http-portti</porthttp>
+		<porthttps>Https-portti</porthttps>
+		<initial_data>Alkuperäinen tietojen lataus</initial_data>
+		<exampledata>Tuo näytteen tiedot</exampledata>
+		<undefined>Määrittelemätön</undefined>
+		<install_input>Asennuksen yhteenveto ja vahvistus</install_input>
+		<install_output>Asennuksen tulos</install_output>
+		<config>Tallenna tietokannan käyttöasetukset</config>
+		<dbschema>Luo taulukot tietokantaan</dbschema>
+		<dbstatic>Tuo sisäisiä tietoja</dbstatic>
+		<streetdata>Tuo kadutiedot</streetdata>
+		<defaultdata>Tuo yleinen tieto</defaultdata>
+		<permissiondata>Luo käyttöoikeudet järjestelmänvalvojaryhmälle</permissiondata>
+		<finish>Asennuksen loppu</finish>
+		<gotohome>Lataa</gotohome>
+		<notifybug>Ilmoita virheestä</notifybug>
+		<step>Vaihe</step>
+		<lang>Kieli</lang>
+		<style>Suunnittelu</style>
+		<env_vars>Ympäristömuuttujat</env_vars>
+		<env_path>PATH</env_path>
+		<env_lang>LANG</env_lang>
+		<applications>Sovellukset</applications>
+		<select_layer>Valitse profiili</select_layer>
+		<selected_layer>Valittu profiili</selected_layer>
+		<layer_all>Kaikki sovellukset</layer_all>
+		<layer_personal>Henkilökohtaiseen käyttöön tarkoitetut sovellukset</layer_personal>
+		<select_apps>Valitse sovellukset</select_apps>
+		<selected_apps>Valitut sovellukset</selected_apps>
+	</common>
+</root>

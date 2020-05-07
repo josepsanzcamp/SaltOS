@@ -442,6 +442,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folders>Folders</folders>
 		<buscador>Search</buscador>
 		<errorlog>Error logs</errorlog>
+		<categorias>Categories</categorias>
 		<desc_clientes>Manage your company's customers</desc_clientes>
 		<desc_contactos>To access a customer contacts</desc_contactos>
 		<desc_incidencias>Manage from here the impact of its clients</desc_incidencias>
@@ -484,6 +485,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_importaciones>Import data for major applications from here</desc_importaciones>
 		<desc_buscador>To search in all contents of the database</desc_buscador>
 		<desc_errorlog>To see the error logs of SaltOS</desc_errorlog>
+		<desc_categorias>To see the categories of specific applications</desc_categorias>
 		<quick_home>Home</quick_home>
 		<quick_correo>Email</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
@@ -526,6 +528,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_importaciones>Imports</quick_importaciones>
 		<quick_buscador>Search</quick_buscador>
 		<quick_errorlog>Errors</quick_errorlog>
+		<quick_categorias>Categories</quick_categorias>
 		<translator>Translator</translator>
 		<translatortip>To do text's translations</translatortip>
 		<corrector>Spell checker</corrector>
@@ -592,6 +595,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgsendemail>has been sent an email to all those involved in the bug</msgsendemail>
 		<boolsendmail>Send email</boolsendmail>
 		<boolsendmailtip>If you enable this option, an email will be sent to all users involved in the bug</boolsendmailtip>
+		<categoria>Category</categoria>
+		<sincategoria>[Without category]</sincategoria>
+		<allcategorias>[All categories]</allcategorias>
 	</incidencias>
 	<proyectos>
 		<list>Project list</list>
@@ -1032,22 +1038,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_iva_name>Name of tax (is added)</accounting_iva_name>
 		<accounting_irpf_name>Name of tax (is subtracted)</accounting_irpf_name>
 		<accounting_value>Default value (only if it's used)</accounting_value>
-		<applications_config revised="false">Applications</applications_config>
-		<config_tabs revised="false">Setting tabs</config_tabs>
-		<default_values revised="false">Default values</default_values>
-		<configuracion_presupuestos revised="false">Budget Settings</configuracion_presupuestos>
-		<configuracion_agenda revised="false">Schedule settings</configuracion_agenda>
-		<configuracion_incidencias revised="false">Event settings</configuracion_incidencias>
-		<configuracion_facturas revised="false">Invoice settings</configuracion_facturas>
-		<configuracion_gastos revised="false">Spending settings</configuracion_gastos>
-		<show_tab_objetivos_presupuesto revised="false">Show Goals</show_tab_objetivos_presupuesto>
-		<show_tab_condiciones_presupuesto revised="false">Show conditions</show_tab_condiciones_presupuesto>
-		<show_tab_funcional_presupuesto revised="false">Show functional proposal</show_tab_funcional_presupuesto>
-		<show_tab_tecnica_presupuesto revised="false">Show technical proposal</show_tab_tecnica_presupuesto>
-		<show_tab_info_adicional_presupuesto revised="false">Show additional information</show_tab_info_adicional_presupuesto>
-		<show_tab_tareas_presupuesto revised="false">Show Tasks</show_tab_tareas_presupuesto>
-		<show_tab_productos_presupuesto revised="false">Show products</show_tab_productos_presupuesto>
-		<sin_configurar revised="false">[Not configured]</sin_configurar>
+		<applications_config>Applications</applications_config>
+		<config_tabs>Setting tabs</config_tabs>
+		<default_values>Default values</default_values>
+		<configuracion_presupuestos>Budget Settings</configuracion_presupuestos>
+		<configuracion_agenda>Schedule settings</configuracion_agenda>
+		<configuracion_incidencias>Event settings</configuracion_incidencias>
+		<configuracion_facturas>Invoice settings</configuracion_facturas>
+		<configuracion_gastos>Spending settings</configuracion_gastos>
+		<show_tab_objetivos_presupuesto>Show Goals</show_tab_objetivos_presupuesto>
+		<show_tab_condiciones_presupuesto>Show conditions</show_tab_condiciones_presupuesto>
+		<show_tab_funcional_presupuesto>Show functional proposal</show_tab_funcional_presupuesto>
+		<show_tab_tecnica_presupuesto>Show technical proposal</show_tab_tecnica_presupuesto>
+		<show_tab_info_adicional_presupuesto>Show additional information</show_tab_info_adicional_presupuesto>
+		<show_tab_tareas_presupuesto>Show Tasks</show_tab_tareas_presupuesto>
+		<show_tab_productos_presupuesto>Show products</show_tab_productos_presupuesto>
+		<sin_configurar>[Not configured]</sin_configurar>
 		<filtro_grupo_usuarios_incidencias>Show users of a group in the user list</filtro_grupo_usuarios_incidencias>
 		<filtro_grupo_usuarios_implicados_incidencias>Group of involved</filtro_grupo_usuarios_implicados_incidencias>
 		<filtro_grupo_usuarios_asignados_incidencias>Group of assigned</filtro_grupo_usuarios_asignados_incidencias>
@@ -1538,4 +1544,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate eval="true">"Changing the ".CONFIG("accounting_iva_name")</formupdate>
 		<defaultdata eval="true">"Data of the ".CONFIG("accounting_iva_name")</defaultdata>
 	</ivas>
+	<categorias>
+		<list>List of categories</list>
+		<create>New category</create>
+		<formview>Detail of the category</formview>
+		<forminsert>Added a new category</forminsert>
+		<formupdate>Modify the category</formupdate>
+		<defaultdata>Data of the category</defaultdata>
+	</categorias>
 </root>

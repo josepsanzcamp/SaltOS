@@ -30,10 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<title>Installationsprogramm für SaltOS</title>
 		<yes>Ja</yes>
 		<no>Nein</no>
-		<language revised="false">Sprache Auswahl, Gestaltung und Symbole</language>
+		<language>Sprache Auswahl, Gestaltung und Symbole</language>
 		<welcome_message>Willkommen beim Installationsprogramm für SaltOS</welcome_message>
-		<lang_message revised="false">Wählen Sie die Sprache</lang_message>
-		<style_message revised="false">Wählen Sie das Design</style_message>
+		<lang_message>Wählen Sie die Sprache</lang_message>
+		<style_message>Wählen Sie das Design</style_message>
 		<begin_message>Klicken Sie auf "Weiter" um SaltOS in 5 einfachen Schritten zu installieren</begin_message>
 		<back>Zurück</back>
 		<next>Weiter</next>
@@ -51,9 +51,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<selected_dbtype>Ausgewähltes Datenbankmanagementsystem</selected_dbtype>
 		<dbfile>Datenbankdatei</dbfile>
 		<dbtest>Datenbanktestverbindung funktionierte</dbtest>
-		<dbvoid translated="false">The database is empty</dbvoid>
+		<dbvoid>Die datenbank ist leer</dbvoid>
 		<dbhost>Host</dbhost>
-		<dbport revised="false">Port</dbport>
+		<dbport>Port</dbport>
 		<dbuser>Benutzer</dbuser>
 		<dbpass>Passwort</dbpass>
 		<dbname>Datenbankname</dbname>
@@ -62,15 +62,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pass>Passwort</pass>
 		<email>E-Mail-Adresse</email>
 		<optional>Optional</optional>
-		<server_config translated="false">Server configuration</server_config>
-		<timezone revised="false">Zeitzone</timezone>
-		<hostname translated="false">Web server</hostname>
-		<pathname translated="false">Server path</pathname>
-		<automatic translated="false">Automatic</automatic>
+		<server_config>Serverkonfiguration</server_config>
+		<timezone>Zeitzone</timezone>
+		<hostname>Webserver</hostname>
+		<pathname>Serverpfad</pathname>
+		<automatic>Automatisch</automatic>
 		<forcessl>Obligatorische Verbindung via SSL (https)</forcessl>
-		<porthttp translated="false">Http port</porthttp>
-		<porthttps translated="false">Https port</porthttps>
-		<initial_data translated="false">Initial import data</initial_data>
+		<porthttp>Http-port</porthttp>
+		<porthttps>Http-port</porthttps>
+		<initial_data>Erstimportdaten</initial_data>
 		<exampledata>Beispieldaten importieren</exampledata>
 		<undefined>Undefiniert</undefined>
 		<install_input>Zusammenfassung und Bestätigung der Installation</install_input>
@@ -79,23 +79,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<dbschema>Erstellen von Tabellen in der Datenbank</dbschema>
 		<dbstatic>Externe Daten importieren</dbstatic>
 		<streetdata>Addressen importieren</streetdata>
-		<defaultdata revised="false">Importieren Sie generische Daten</defaultdata>
+		<defaultdata>Importieren Sie generische Daten</defaultdata>
 		<permissiondata>Erstellen der Berechtigungen für die Administrator-Gruppe</permissiondata>
 		<finish>Ende der Installation</finish>
 		<gotohome>Aktualisieren</gotohome>
 		<notifybug>Fehler benachrichtigen</notifybug>
 		<step>Schritt</step>
-		<lang revised="false">Sprache</lang>
-		<style revised="false">Design</style>
-		<env_vars revised="false">Environment-Variablen</env_vars>
+		<lang>Sprache</lang>
+		<style>Design</style>
+		<env_vars>Environment-Variablen</env_vars>
 		<env_path>PATH</env_path>
 		<env_lang>LANG</env_lang>
-		<applications translated="false">Applications</applications>
-		<select_layer translated="false">Select the layer</select_layer>
-		<selected_layer translated="false">Layer selected</selected_layer>
-		<layer_all translated="false">All applications</layer_all>
-		<layer_personal translated="false">Personal applications</layer_personal>
-		<select_apps translated="false">Select the applications</select_apps>
-		<selected_apps translated="false">Applications selected</selected_apps>
+		<applications>Anwendungen</applications>
+		<select_layer>Wählen sie die ebene aus</select_layer>
+		<selected_layer>Ebene ausgewählt</selected_layer>
+		<layer_all>Alle anwendungen</layer_all>
+		<layer_personal>Persönliche bewerbungen</layer_personal>
+		<select_apps>Wählen sie die anwendungen aus</select_apps>
+		<selected_apps>Anwendungen ausgewählt</selected_apps>
 	</common>
 </root>

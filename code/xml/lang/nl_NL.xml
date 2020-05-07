@@ -1,0 +1,1555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2020 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<lang>nl_NL</lang>
+	<dir>ltr</dir>
+	<default>common</default>
+	<common>
+		<nopage>Selecteer een applicatie om te beginnen met werken</nopage>
+		<nocheckuser>Onjuiste gebruikersnaam of wachtwoord</nocheckuser>
+		<nochecktime>Gebruiker buiten kantooruren</nochecktime>
+		<nocheckday>Gebruiker is niet op werkdagen</nocheckday>
+		<view>Zie</view>
+		<edit>Bewerken</edit>
+		<copy>Kopieer</copy>
+		<delete>Verwijderen</delete>
+		<first>Eerste pagina</first>
+		<previous>Vorige pagina</previous>
+		<next>Volgende pagina</next>
+		<last>Laatste pagina</last>
+		<id>Code</id>
+		<codigo>Code</codigo>
+		<cif>C.I.F.</cif>
+		<nombre>Naam</nombre>
+		<apellidos>Achternaam</apellidos>
+		<tel_fijo>Opgelost</tel_fijo>
+		<tel_movil>Mobiel</tel_movil>
+		<telefono>Telefoon</telefono>
+		<fax>Fax</fax>
+		<email>E-mail</email>
+		<web>Web</web>
+		<filter>Filter opties</filter>
+		<loadsavefilter>Vooraf gedefinieerde filters laden en opslaan</loadsavefilter>
+		<filtro>Alles doorzoeken</filtro>
+		<buscar>Zoeken</buscar>
+		<buscartip>Zoek met de geselecteerde filters</buscartip>
+		<limpiar>Reset</limpiar>
+		<limpiartip>Maak het filter schoon en toon alle gegevens</limpiartip>
+		<username>Gebruiker</username>
+		<datetime>Datum en tijd</datetime>
+		<direccion>Adres</direccion>
+		<codpostal>Postcode</codpostal>
+		<poblacion>Bevolking</poblacion>
+		<provincia>Provincie</provincia>
+		<pais>Land</pais>
+		<comentarios>Feedback</comentarios>
+		<descripcion>Beschrijving</descripcion>
+		<buttoncreate>Creëer</buttoncreate>
+		<buttoncreatereturnhere>Maak en kom hier terug</buttoncreatereturnhere>
+		<buttonupdate>Vernieuwen</buttonupdate>
+		<buttonupdatereturnhere>Update en kom hier terug</buttonupdatereturnhere>
+		<buttoncancel>Annuleren</buttoncancel>
+		<buttonreturn>Terug</buttonreturn>
+		<date>Datum</date>
+		<incidencia>Incidentie</incidencia>
+		<estado>Staat</estado>
+		<parte>Deel</parte>
+		<tarea>Huiswerk</tarea>
+		<tareas>Taken</tareas>
+		<liquidado>Vereffend</liquidado>
+		<base>Basis</base>
+		<total>Totaal</total>
+		<cerrado>Gesloten</cerrado>
+		<cobrado>Geladen</cobrado>
+		<empresa>Bedrijf</empresa>
+		<msgdelete>Wilt u dit record verwijderen?</msgdelete>
+		<permdenied>U bent niet gemachtigd om deze actie uit te voeren</permdenied>
+		<sinnombre>Geen naam</sinnombre>
+		<deldenied>Het kan niet worden verwijderd omdat het in een andere applicatie wordt gebruikt</deldenied>
+		<yes>Ja</yes>
+		<no>Nee</no>
+		<cliente>Cliënt</cliente>
+		<posiblecli>Mogelijke klant</posiblecli>
+		<password>Sleutel</password>
+		<numfac>N.Fac.</numfac>
+		<numc>NC</numc>
+		<numctip>Aantal reacties</numctip>
+		<numf>NF</numf>
+		<numftip>Aantal bestanden</numftip>
+		<numt>NT</numt>
+		<numttip>Aantal taken</numttip>
+		<numv>NV</numv>
+		<numvtip>Aantal looptijden</numvtip>
+		<nums>NS</nums>
+		<numstip>Aantal vervolgacties</numstip>
+		<nump>NP</nump>
+		<numptip>Aantal producten</numptip>
+		<fechaini>Voer datum in</fechaini>
+		<fechafin>y</fechafin>
+		<commentdel>Deze opmerking verwijderen</commentdel>
+		<attachments>Bijgevoegde bestanden</attachments>
+		<shortattachments>Bijlagen</shortattachments>
+		<userdatetime>Gebruiker, datum en tijd</userdatetime>
+		<fileandsize>Bestand en grootte</fileandsize>
+		<download>Downloaden</download>
+		<activar>Activeer</activar>
+		<newcomment>Nieuwe opmerking</newcomment>
+		<newattachments>Nieuwe bijlagen</newattachments>
+		<proyecto>Project</proyecto>
+		<documento>Document</documento>
+		<hora>Tijd</hora>
+		<horas>Uren</horas>
+		<minutos>Minuten</minutos>
+		<precio>Prijs</precio>
+		<liq>Liq.</liq>
+		<aplicacion>Toepassing</aplicacion>
+		<rol>Rol</rol>
+		<permiso>Toestemming</permiso>
+		<pos>Pos.</pos>
+		<posicion>Positie</posicion>
+		<trimestre>Kwart</trimestre>
+		<otroscampos>Andere velden</otroscampos>
+		<excel>Excel</excel>
+		<exceltip>Download een Excel-bestand met de huidige gegevens</exceltip>
+		<pdf>Download PDF</pdf>
+		<pdftip>Download een PDF-bestand met de huidige gegevens</pdftip>
+		<epigrafe>Rubriek</epigrafe>
+		<campoauto>(*) Automatisch veld</campoauto>
+		<cerr>Gesloten.</cerr>
+		<cobr>Cobr.</cobr>
+		<concepto>Concept</concepto>
+		<unid>Unid</unid>
+		<unidades>Stuks.</unidades>
+		<unidadestotal>Totaal eenheden</unidadestotal>
+		<prun>Pr./Un.</prun>
+		<dto>Korting</dto>
+		<importe>Bedrag</importe>
+		<percent>Percentage</percent>
+		<todos>[Alle]</todos>
+		<todoslosclientes>[Alle klanten]</todoslosclientes>
+		<todoslosposiblescli>[Alle potentiële klanten]</todoslosposiblescli>
+		<todoslosusuarios>[Alle gebruikers]</todoslosusuarios>
+		<todoslosgrupos>[Alle groepen]</todoslosgrupos>
+		<todoslosproveedores>[Alle providers]</todoslosproveedores>
+		<mostrartodos>[Alles weergeven]</mostrartodos>
+		<sinusuario>[Geen gebruiker]</sinusuario>
+		<paginaspc>Pagina</paginaspc>
+		<regsfrom>verslagen van</regsfrom>
+		<spcdespc>Van</spcdespc>
+		<spcalspc>Aan</spcalspc>
+		<regspage>Records per pagina:</regspage>
+		<registerdata>Registratiegegevens</registerdata>
+		<userinsert>Gemaakt door</userinsert>
+		<userupdate>Gewijzigd door</userupdate>
+		<allstates>[Alle staten]</allstates>
+		<allenabled>[Alle items}</allenabled>
+		<alldisabled>[Allemaal niet actief}</alldisabled>
+		<lastinsert>Er is een record gemaakt met de code:</lastinsert>
+		<lastupdate>Het register is gewijzigd met de code:</lastupdate>
+		<lastdelete>Het record met de code is verwijderd:</lastdelete>
+		<proveedor>Aanbieder</proveedor>
+		<acta>Minuten</acta>
+		<presupuesto>Budget</presupuesto>
+		<newfichero>Nieuw bestand</newfichero>
+		<fichero>Bestand</fichero>
+		<size>Grootte</size>
+		<mime>Mimetype</mime>
+		<grupo>Groep</grupo>
+		<ficheroactual>Huidig bestand</ficheroactual>
+		<language>Taal</language>
+		<style>Design</style>
+		<nodata>Geen resultaten om weer te geven</nodata>
+		<nosearch>U moet een term invoeren om te kunnen zoeken</nosearch>
+		<prioridad>Prioriteit</prioridad>
+		<sinproyecto>[Zonder bijbehorend project]</sinproyecto>
+		<sintarea>[Geen bijbehorende taak]</sintarea>
+		<todoslosproyectos>[Alle projecten]</todoslosproyectos>
+		<todaslastareas>[Alle taken]</todaslastareas>
+		<todaslascuentas>[Alle]</todaslascuentas>
+		<graficas>Grafieken en statistieken</graficas>
+		<mail>Stuur PDF</mail>
+		<mailtip>Stuur de pdf naar uw e-mailaccount</mailtip>
+		<view2>PDF-viewer</view2>
+		<view2tip>Bekijk het document met de interne SaltOS-viewer</view2tip>
+		<view2error>Er is een fout opgetreden bij het openen van de PDF-viewer</view2error>
+		<view2hash>Als het probleem zich blijft voordoen, neem dan contact op met de technische dienst met vermelding van de volgende code:</view2hash>
+		<view2opening>Vizier openen, wacht even ...</view2opening>
+		<msgnotuseremail>Je hebt geen e-mailadres geconfigureerd</msgnotuseremail>
+		<msgnotsmtpemail>Uitgaande mailserver is niet geconfigureerd</msgnotsmtpemail>
+		<sincliente>[Zonder geassocieerde klant]</sincliente>
+		<sinposiblecli>[Zonder mogelijke geassocieerde klant]</sinposiblecli>
+		<sinepigrafe>[Zonder bijbehorende kop]</sinepigrafe>
+		<sinprioridad>[Geen prioriteit]</sinprioridad>
+		<sinestado>[Staatloos]</sinestado>
+		<dstart>Home</dstart>
+		<dstop>Einde</dstop>
+		<evento>Evenement</evento>
+		<sincuenta>[Zonder account]</sincuenta>
+		<cuenta>Account</cuenta>
+		<sindia>[Geen dag]</sindia>
+		<sinmes>[Geen maand]</sinmes>
+		<mes>Maand</mes>
+		<factura>Factuur</factura>
+		<albaran>Afleverbon</albaran>
+		<msglogout>Wilt u de applicatie afsluiten?</msglogout>
+		<mostrarcomo>Toon als</mostrarcomo>
+		<nif>N.I.F.</nif>
+		<vcard>VCard</vcard>
+		<cargo>Lading</cargo>
+		<empleado>Medewerker</empleado>
+		<sinproveedor>[Zonder geassocieerde provider]</sinproveedor>
+		<sinempleado>[Geen medewerker]</sinempleado>
+		<port>Poort</port>
+		<extra>Beveiliging</extra>
+		<requiredfield>Verplicht veld</requiredfield>
+		<sinpais>[Geen land geselecteerd]</sinpais>
+		<sinprovincia>[Geen provincie geselecteerd]</sinprovincia>
+		<sinpoblacion>[Geen populatie geselecteerd]</sinpoblacion>
+		<sincodpostal>[Geen selectie]</sincodpostal>
+		<usedfilter>Filter geactiveerd</usedfilter>
+		<suma>Som</suma>
+		<average>Gemiddeld</average>
+		<posx>X-positie</posx>
+		<posy>Y-positie</posy>
+		<angle>Hoek</angle>
+		<withoutinfo>Geen informatie om te vertegenwoordigen</withoutinfo>
+		<sinproducto>[Zonder bijbehorend product]</sinproducto>
+		<preview>Voorbeeld</preview>
+		<sortasc>Oplopend sorteren (A-Z)</sortasc>
+		<sortdesc>Aflopend sorteren (Z-A)</sortdesc>
+		<confirm>Bevestiging</confirm>
+		<alert>Opgelet!</alert>
+		<error>Fout</error>
+		<buttonaccept>Accepteren</buttonaccept>
+		<buttoncontinue>Ga verder</buttoncontinue>
+		<enero>Januari</enero>
+		<febrero>Februari</febrero>
+		<marzo>Maart</marzo>
+		<abril>April</abril>
+		<mayo>Mei</mayo>
+		<junio>Juni</junio>
+		<julio>Juli</julio>
+		<agosto>Augustus</agosto>
+		<setiembre>September</setiembre>
+		<octubre>Oktober</octubre>
+		<noviembre>November</noviembre>
+		<diciembre>December</diciembre>
+		<lunes>Maandag</lunes>
+		<martes>Dinsdag</martes>
+		<miercoles>Woensdag</miercoles>
+		<jueves>Donderdag</jueves>
+		<viernes>Vrijdag</viernes>
+		<sabado>Zaterdag</sabado>
+		<domingo>Zondag</domingo>
+		<sabadoydomingo>Zaterdag en zondag</sabadoydomingo>
+		<sinpresupuesto>[Geen bijbehorend budget]</sinpresupuesto>
+		<todoslospresupuestos>[Alle budgetten]</todoslospresupuestos>
+		<unknownerror>Er is een verbindingsfout opgetreden (controleer of de netwerktoegang correct werkt en neem contact op met de toepassingsbeheerder als het probleem aanhoudt)</unknownerror>
+		<qrcode>QR-code</qrcode>
+		<lugar>Plaats</lugar>
+		<loading>Gegevens laden, wacht even ...</loading>
+		<sending>Gegevens verzenden, wacht even ...</sending>
+		<prod>Prod.</prod>
+		<addfile>Bestand toevoegen</addfile>
+		<addproduct>Product toevoegen</addproduct>
+		<addconcept>Concept toevoegen</addconcept>
+		<addvencimiento>Vervaldatum toevoegen</addvencimiento>
+		<addtarea>Taak toevoegen</addtarea>
+		<send>Verzenden</send>
+		<notas>Opmerkingen</notas>
+		<sincampanya>[Geen bijbehorende campagne]</sincampanya>
+		<campanya>Campagne</campanya>
+		<todaslascampanyas>[Alle campagnes]</todaslascampanyas>
+		<numpc>NPC</numpc>
+		<numpctip>Aantal potentiële klanten</numpctip>
+		<numcl>NCL</numcl>
+		<numcltip>Aantal klanten</numcltip>
+		<numag>NAG</numag>
+		<numagtip>Aantal evenementen op de agenda</numagtip>
+		<numpr>NPR</numpr>
+		<numprtip>Aantal budgetten</numprtip>
+		<numpy>NPY</numpy>
+		<numpytip>Aantal projecten</numpytip>
+		<tipoevento>Soort evenement</tipoevento>
+		<sintipoevento>[Zonder type evenement]</sintipoevento>
+		<fileuploaderror>Er is een fout opgetreden bij het verzenden van het bestand:</fileuploaderror>
+		<postlimiterror>Er is een fout opgetreden bij het verzenden van gegevens naar de server</postlimiterror>
+		<resumeneconomico>Economische samenvatting</resumeneconomico>
+		<pdf2filter_title>PDF-exportfilter</pdf2filter_title>
+		<pdf2filter_message>Selecteer de gegevens die u in de pdf wilt opnemen:</pdf2filter_message>
+		<view2filter_title>PDF-viewerfilter</view2filter_title>
+		<view2filter_message>Selecteer de gegevens die u in de pdf wilt zien:</view2filter_message>
+		<msgerrorsemaphore>Er is een gelijktijdigheidsfout opgetreden, de toegang tot de actie is geannuleerd</msgerrorsemaphore>
+		<msgnotcheckbox>U moet een record uit de lijst selecteren om deze optie te gebruiken</msgnotcheckbox>
+		<gotohome>Herladen</gotohome>
+		<notifybug>Mislukking melden</notifybug>
+		<actioncompress>Download geselecteerde bestanden</actioncompress>
+		<zipformat>ZIP-formaat</zipformat>
+		<tarformat>TAR</tarformat>
+		<gzipformat>GZIP</gzipformat>
+		<bzipformat>BZIP2</bzipformat>
+		<temporalfiles>Tijdelijke bestanden</temporalfiles>
+		<sessionexpire>De sessie wordt afgesloten over</sessionexpire>
+		<sessionupdate>klik hier om te voorkomen dat het sluit</sessionupdate>
+		<sessionupdated>Sessie is geüpdatet</sessionupdated>
+		<link>Link</link>
+		<importacion>Importeren</importacion>
+		<todaslasimportaciones>[Alle invoer]</todaslasimportaciones>
+		<sinimportacion>[Geen bijbehorende import]</sinimportacion>
+		<textos_select>Selecteer een tekst en druk op Toevoegen</textos_select>
+		<textos_add>Toevoegen</textos_add>
+		<selectall>Alles selecteren</selectall>
+		<selectnone>Duidelijke selectie</selectnone>
+		<addtofolder>Weergeven in deze map</addtofolder>
+		<addtofolderok>Deze inhoud is toegevoegd aan de map</addtofolderok>
+		<delfromfolderok>Deze mapinhoud is verborgen</delfromfolderok>
+		<savedfilters>Opgeslagen filters</savedfilters>
+		<optionfilter>Selecteer een opgeslagen filter</optionfilter>
+		<newfilter>Naam van het nieuwe filter</newfilter>
+		<loadfilter>Laden</loadfilter>
+		<loadfiltertip>Klik hier om het geselecteerde filter te laden</loadfiltertip>
+		<updatefilter>Vernieuwen</updatefilter>
+		<updatefiltertip>Klik hier om het geselecteerde filter bij te werken</updatefiltertip>
+		<deletefilter>Verwijderen</deletefilter>
+		<deletefiltertip>Klik hier om het geselecteerde filter te verwijderen</deletefiltertip>
+		<createfilter>Creëer</createfilter>
+		<createfiltertip>Klik hier om een nieuw filter te maken</createfiltertip>
+		<createfilterok>Het nieuwe filter is met succes gemaakt</createfilterok>
+		<createfilterko>Filternaam moet worden gedefinieerd</createfilterko>
+		<loadfilterok>Filter succesvol geladen</loadfilterok>
+		<loadfilterko>U moet een filter selecteren om te kunnen laden</loadfilterko>
+		<updatefilterok>Filter is succesvol bijgewerkt</updatefilterok>
+		<updatefilterko>U moet een filter selecteren om het te kunnen wijzigen</updatefilterko>
+		<deletefilterok>Filter is verwijderd</deletefilterok>
+		<deletefilterko>U moet een filter selecteren om het te kunnen verwijderen</deletefilterko>
+		<renamefilter>Hernoemen</renamefilter>
+		<renamefiltertip>Klik hier om een bestaand filter te hernoemen</renamefiltertip>
+		<renamefilterok>De naam van het bestaande filter is gewijzigd</renamefilterok>
+		<renamefilterko1>U moet een filter selecteren om de naam te wijzigen</renamefilterko1>
+		<renamefilterko2>Rest nog om de nieuwe naam van het te hernoemen filter te definiëren</renamefilterko2>
+		<showmenu>Menu weergeven</showmenu>
+		<hidemenu>Menu verbergen</hidemenu>
+		<showtools>Tools weergeven</showtools>
+		<hidetools>Verberg tools</hidetools>
+		<inbackground>Deze actie wordt op de achtergrond uitgevoerd, wacht even</inbackground>
+		<sentfromsaltos>E-mail verzonden vanaf mijn SaltOS</sentfromsaltos>
+		<foldersdata>Mappen</foldersdata>
+		<loweradd>toevoegen</loweradd>
+		<notify>Kennisgevingen</notify>
+		<help>Help</help>
+		<desktoptip>Schakel geïntegreerde bureaubladmeldingen in</desktoptip>
+		<desktoptxt>Geïntegreerde bureaubladmeldingen ingeschakeld</desktoptxt>
+		<selectallcheckbox>Selecteer alle records</selectallcheckbox>
+		<selectonecheckbox>Selecteer dit record</selectonecheckbox>
+		<formapago>Betaalwijze</formapago>
+		<todaslasformasdepago>[Alle vormen van betaling]</todaslasformasdepago>
+		<sinformapago>[Zonder betaalmethode]</sinformapago>
+		<actions>Acties op dit record</actions>
+		<msgfilesindexed1>Bestand geïndexeerd in de database</msgfilesindexed1>
+		<msgfilesindexed2>Bestanden geïndexeerd in de database</msgfilesindexed2>
+		<msgregistersindexed1>Record geïndexeerd in de database</msgregistersindexed1>
+		<msgregistersindexed2>Records geïndexeerd in de database</msgregistersindexed2>
+		<msgregisterspurged1>Record verwijderd uit de database</msgregisterspurged1>
+		<msgregisterspurged2>Records verwijderd uit de database</msgregisterspurged2>
+		<biglist>$ limietrecords</biglist>
+		<biglisttip>Let op: $ limit records worden weergegeven en de applicatie werkt mogelijk langzaam</biglisttip>
+		<activo>Actief</activo>
+		<activo_desc>Om de actieve of bestaande gebruiker door overerving aan te geven</activo_desc>
+		<print>Afdrukken</print>
+	</common>
+	<login>
+		<logintitle>Toegang tot de applicatie</logintitle>
+		<remember>Onthoud het wachtwoord op deze computer</remember>
+		<enter>Log in</enter>
+		<captcha1>Beveiligingscode</captcha1>
+		<captcha2>Voer hier de code in</captcha2>
+		<captcha3>Herlaad afbeelding</captcha3>
+		<mobileaccess>Toegang vanaf mobiel apparaat</mobileaccess>
+	</login>
+	<menu>
+		<home>Home</home>
+		<clientes>Klanten</clientes>
+		<contactos>Contacten</contactos>
+		<incidencias>Incidenten</incidencias>
+		<proyectos>Projecten</proyectos>
+		<partes>Werkende onderdelen</partes>
+		<documentos>Documenten</documentos>
+		<facturas>Rekeningen</facturas>
+		<proveedores>Aanbieders</proveedores>
+		<gastos>Uitgaven</gastos>
+		<epigrafes>Opschriften</epigrafes>
+		<estados>Staten</estados>
+		<formaspago>Betaalmethoden</formaspago>
+		<roles>Rollen</roles>
+		<usuarios>Gebruikers</usuarios>
+		<grupos>Groepen</grupos>
+		<prioridades>Prioriteiten</prioridades>
+		<agenda>Agenda en evenementen</agenda>
+		<actas>Vergadering notulen</actas>
+		<profile>Mijn profiel</profile>
+		<maincfg>Installatie</maincfg>
+		<about>Over SaltOS</about>
+		<support>Technische ondersteuning</support>
+		<logout>Log uit</logout>
+		<seguimientos>Taak volgen</seguimientos>
+		<datacfg>Database</datacfg>
+		<correo>E-mail</correo>
+		<cuentas>Accounts</cuentas>
+		<periodicas>Periodieke facturen</periodicas>
+		<empleados>Medewerkers</empleados>
+		<productos>Producten</productos>
+		<presupuestos>Budgetten</presupuestos>
+		<posiblescli>Mogelijke klanten</posiblescli>
+		<campanyas>Commerciële campagnes</campanyas>
+		<tiposevento>Soorten evenementen</tiposevento>
+		<textos>Voorgedefinieerde teksten</textos>
+		<ficheros>Bijgevoegde bestanden</ficheros>
+		<feeds>RSS-feedlezer</feeds>
+		<favoritos>Favorieten</favoritos>
+		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
+		<importaciones>Invoer</importaciones>
+		<gestioncomercial>Commercieel</gestioncomercial>
+		<gestionproyectos>Projecten</gestionproyectos>
+		<gestioncontabilidad>Boekhouding</gestioncontabilidad>
+		<gestiongeneral>Algemeen</gestiongeneral>
+		<gestionfiltros>Filters</gestionfiltros>
+		<gestionadministracion>Administratie</gestionadministracion>
+		<gestiontipos>Soorten</gestiontipos>
+		<gestionsistema>Systeem</gestionsistema>
+		<folders>Mappen</folders>
+		<buscador>Zoekmachine</buscador>
+		<errorlog>Foutlogboeken</errorlog>
+		<categorias>Categorieën</categorias>
+		<desc_clientes>Beheer de klanten van uw bedrijf</desc_clientes>
+		<desc_contactos>Om toegang te krijgen tot de contacten van een klant</desc_contactos>
+		<desc_incidencias>Beheer vanaf hier de incidenten van uw klanten</desc_incidencias>
+		<desc_proyectos>Volg uw projecten met deze applicatie</desc_proyectos>
+		<desc_partes>Registreer al het werk dat u doet met timesheets</desc_partes>
+		<desc_facturas>Beheer alle facturen (afleverbonnen, kosten, enz ...)</desc_facturas>
+		<desc_proveedores>Beheer de leveranciers van uw bedrijf</desc_proveedores>
+		<desc_gastos>Beheers de uitgaven en weet of ze zijn verrekend</desc_gastos>
+		<desc_documentos>Zorg dat alle documentatie van uw bedrijf gegroepeerd is</desc_documentos>
+		<desc_agenda>Zet alle bezoeken en vergaderingen op de agenda</desc_agenda>
+		<desc_actas>Houd een record bij wanneer u vergaderingen houdt voor meer controle</desc_actas>
+		<desc_usuarios>Gebruikers registreren, afmelden of wijzigen</desc_usuarios>
+		<desc_grupos>Maak werkgroepen voor gebruikers</desc_grupos>
+		<desc_epigrafes>Definieer de rubrieken voor facturen en uitgaven</desc_epigrafes>
+		<desc_formaspago>Definieer betalingsmethoden om uitgaven te beheren</desc_formaspago>
+		<desc_estados>Definieer de mogelijke toestanden van een incident, project, enz ...</desc_estados>
+		<desc_prioridades>Definieer prioriteiten voor agenda-items</desc_prioridades>
+		<desc_profile>Wijzig uw gebruikersvoorkeuren</desc_profile>
+		<desc_maincfg>Wijzig de algemene toepassingsvoorkeuren</desc_maincfg>
+		<desc_seguimientos>Beheer projecttaken met tracking</desc_seguimientos>
+		<desc_datacfg>Maak back-ups en herstel ze eenvoudig</desc_datacfg>
+		<desc_correo>Lees en verstuur hier e-mails naar uw klanten en leveranciers</desc_correo>
+		<desc_cuentas>Definieer grootboekrekeningen voor boekhouding</desc_cuentas>
+		<desc_periodicas>Plan terugkerende facturen met vervaldatums</desc_periodicas>
+		<desc_empleados>Medewerkers registreren, annuleren of wijzigen</desc_empleados>
+		<desc_posiblescli>Beheer de potentiële klanten die u mogelijk heeft</desc_posiblescli>
+		<desc_presupuestos>Maak snel en gemakkelijk budgetten</desc_presupuestos>
+		<desc_productos>Definieer hier uw producten om ze te kunnen verkopen</desc_productos>
+		<desc_about>Ken de credits van deze applicatie</desc_about>
+		<desc_logout>Klik hier wanneer u uw werksessie wilt beëindigen</desc_logout>
+		<desc_home>Ga naar het hoofdscherm van de applicatie</desc_home>
+		<desc_support>Neem contact op met technische ondersteuning</desc_support>
+		<desc_campanyas>Doe marketingcampagnes met follow-ups</desc_campanyas>
+		<desc_tiposevento>Definieer de soorten evenementen die u nodig heeft</desc_tiposevento>
+		<desc_textos>Maak vooraf gedefinieerde teksten voor gebruik in andere toepassingen</desc_textos>
+		<desc_ficheros>Toegang tot alle bestanden van de hele applicatie</desc_ficheros>
+		<desc_feeds>Volg uw RSS- en Atom-feeds van deze applicatie</desc_feeds>
+		<desc_favoritos>Beheer uw favorieten vanaf hier</desc_favoritos>
+		<desc_ivas>Beheer de belastingtarieven vanaf hier</desc_ivas>
+		<desc_importaciones>Importeer vanaf hier gegevens naar de belangrijkste toepassingen</desc_importaciones>
+		<desc_buscador>Om de hele database te doorzoeken</desc_buscador>
+		<desc_errorlog>Om het SaltOS-foutenlogboek te bekijken</desc_errorlog>
+		<desc_categorias>Om de categorieën van bepaalde applicaties te zien</desc_categorias>
+		<quick_home>Home</quick_home>
+		<quick_correo>Mail</quick_correo>
+		<quick_agenda>Agenda</quick_agenda>
+		<quick_profile>Profiel</quick_profile>
+		<quick_support>Ondersteuning</quick_support>
+		<quick_about>Over</quick_about>
+		<quick_logout>Sluiten</quick_logout>
+		<quick_clientes>Klanten</quick_clientes>
+		<quick_contactos>Contacten</quick_contactos>
+		<quick_incidencias>Incidenten</quick_incidencias>
+		<quick_proyectos>Projecten</quick_proyectos>
+		<quick_partes>Partijen</quick_partes>
+		<quick_documentos>Documenten</quick_documentos>
+		<quick_facturas>Rekeningen</quick_facturas>
+		<quick_proveedores>Aanbieders</quick_proveedores>
+		<quick_gastos>Uitgaven</quick_gastos>
+		<quick_epigrafes>Opschriften</quick_epigrafes>
+		<quick_estados>Staten</quick_estados>
+		<quick_formaspago>F. betaling</quick_formaspago>
+		<quick_roles>Rollen</quick_roles>
+		<quick_usuarios>Gebruikers</quick_usuarios>
+		<quick_grupos>Groepen</quick_grupos>
+		<quick_prioridades>Prioriteiten</quick_prioridades>
+		<quick_actas>Minuten</quick_actas>
+		<quick_maincfg>Installatie</quick_maincfg>
+		<quick_seguimientos>Vervolgacties</quick_seguimientos>
+		<quick_datacfg>BBDD</quick_datacfg>
+		<quick_cuentas>Accounts</quick_cuentas>
+		<quick_periodicas>Periodiek</quick_periodicas>
+		<quick_empleados>Medewerkers</quick_empleados>
+		<quick_productos>Producten</quick_productos>
+		<quick_presupuestos>Budgetten</quick_presupuestos>
+		<quick_posiblescli>P.clientes</quick_posiblescli>
+		<quick_campanyas>Campagnes</quick_campanyas>
+		<quick_tiposevento>T. evenementen</quick_tiposevento>
+		<quick_textos>Teksten</quick_textos>
+		<quick_ficheros>Bestanden</quick_ficheros>
+		<quick_feeds>RSS</quick_feeds>
+		<quick_favoritos>Favorieten</quick_favoritos>
+		<quick_importaciones>Invoer</quick_importaciones>
+		<quick_buscador>Zoekmachine</quick_buscador>
+		<quick_errorlog>Fouten</quick_errorlog>
+		<quick_categorias>Categorieën</quick_categorias>
+		<translator>Vertaler</translator>
+		<translatortip>Om tekstvertalingen te doen</translatortip>
+		<corrector>Concealer</corrector>
+		<correctortip>Tekstcorrecties aanbrengen</correctortip>
+		<calculator>Rekenmachine</calculator>
+		<calculatortip>Wiskundige berekeningen uitvoeren</calculatortip>
+		<menu>Menu</menu>
+		<menutip>Om het toepassingsmenu te tonen en te verbergen</menutip>
+	</menu>
+	<clientes>
+		<list>Klantenlijst</list>
+		<create>Nieuwe klant</create>
+		<formview>Klantendetail</formview>
+		<forminsert>Registratie van een nieuwe klant</forminsert>
+		<formupdate>Klant modificatie</formupdate>
+		<defaultdata>Klantgegevens</defaultdata>
+		<contactdata>Klantencontacten</contactdata>
+		<projectopen>Actieve projecten</projectopen>
+		<projectclose>Afgesloten projecten</projectclose>
+		<incidentopen>Actieve incidenten</incidentopen>
+		<incidentclose>Gesloten incidenten</incidentclose>
+		<partesopen>Onrustige onderdelen</partesopen>
+		<partesclose>Vereffende onderdelen</partesclose>
+		<albaranes>Afleverbonnen</albaranes>
+		<facturaopen>Niet-geïnde facturen</facturaopen>
+		<facturaclose>Facturen verzameld</facturaclose>
+		<gastosdata>Uitgaven verbonden aan de klant</gastosdata>
+		<documentdata>Klantdocumenten</documentdata>
+		<agendadata>Klantevenementen</agendadata>
+		<actasdata>Client minuten</actasdata>
+		<actionliquidar>Bepaal geselecteerde onderdelen</actionliquidar>
+		<msgliquidar>Wilt u de geselecteerde onderdelen liquideren?</msgliquidar>
+		<plotseguimiento12meses>Facturering van klant vorig jaar</plotseguimiento12meses>
+		<cuentacorriente>Account controleren</cuentacorriente>
+		<diapago>Betaal dag</diapago>
+		<cuentacontable>Boekhoudkundige rekening</cuentacontable>
+		<nombrecomercial>Naam eten.</nombrecomercial>
+		<nombrefiscal>Fiscale naam</nombrefiscal>
+		<tipocliente>Clienttype</tipocliente>
+		<clientefiscal>Aanklager</clientefiscal>
+		<clientejuridico>Juridisch</clientejuridico>
+		<add>Klant toevoegen</add>
+		<presupuestosdata>Klantenbudgetten</presupuestosdata>
+	</clientes>
+	<contactos>
+		<list>Contactenlijst</list>
+		<create>Nieuw contact</create>
+		<formview>Contactdetails</formview>
+		<forminsert>Een nieuw contact registreren</forminsert>
+		<formupdate>Contact wijziging</formupdate>
+		<defaultdata>Contactgegevens</defaultdata>
+		<add>Contact toevoegen</add>
+	</contactos>
+	<incidencias>
+		<list>Lijst met incidenten</list>
+		<create>Nieuwe incidentie</create>
+		<formview>Details van incident</formview>
+		<forminsert>Registratie van een nieuw incident</forminsert>
+		<formupdate>Wijziging van de incidentie</formupdate>
+		<defaultdata>Incidentie gegevens</defaultdata>
+		<usersdata>Gebruikers</usersdata>
+		<implicados>Betrokken</implicados>
+		<asignadoa>Toegewezen aan</asignadoa>
+		<msgsendemail>Alle betrokkenen bij het incident hebben een e-mail ontvangen</msgsendemail>
+		<boolsendmail>E-mail verzenden</boolsendmail>
+		<boolsendmailtip>Als u deze optie activeert, wordt er een e-mail gestuurd naar alle betrokkenen</boolsendmailtip>
+		<categoria>Categorie</categoria>
+		<sincategoria>[Zonder categorie]</sincategoria>
+		<allcategorias>[Alle categorieën]</allcategorias>
+	</incidencias>
+	<proyectos>
+		<list>Lijst met projecten</list>
+		<create>Nieuw project</create>
+		<formview>Projectdetail</formview>
+		<forminsert>Een nieuw project registreren</forminsert>
+		<formupdate>Wijziging van het project</formupdate>
+		<defaultdata>Projectgegevens</defaultdata>
+		<tareasproyecto>Projecttaken</tareasproyecto>
+		<desctareas>Beschrijving van taken</desctareas>
+		<horastotal>Totaal aantal uren</horastotal>
+		<preciomedio>Gemiddelde prijs</preciomedio>
+		<preciototal>Totale prijs</preciototal>
+		<plotseguimientotareas>Projectafwijking</plotseguimientotareas>
+		<legendseguimientotareas>Gebudgetteerde uren | Werkzame uren</legendseguimientotareas>
+		<real>Echt</real>
+		<diferencia>Verschil</diferencia>
+		<partesopen>Onrustige onderdelen</partesopen>
+		<partesclose>Vereffende onderdelen</partesclose>
+		<relatedseguimientos>Gerelateerde vervolgacties</relatedseguimientos>
+		<relatedincidencias>Gerelateerde incidenten</relatedincidencias>
+		<actionliquidar>Bepaal geselecteerde onderdelen</actionliquidar>
+		<msgliquidar>Wilt u de geselecteerde onderdelen liquideren?</msgliquidar>
+		<agendadata>Gerelateerde evenementen</agendadata>
+		<actasdata>Gerelateerde handelingen</actasdata>
+		<contactdata>Klantencontacten</contactdata>
+		<incidentopen>Actieve incidenten</incidentopen>
+		<incidentclose>Gesloten incidenten</incidentclose>
+		<albaranes>Afleverbonnen</albaranes>
+		<facturaopen>Niet-geïnde facturen</facturaopen>
+		<facturaclose>Facturen verzameld</facturaclose>
+		<gastosdata>Uitgaven verbonden aan de klant</gastosdata>
+		<documentdata>Klantdocumenten</documentdata>
+		<plotseguimientoestados>Groeperen van projecten per staat</plotseguimientoestados>
+		<productosproyecto>Producten van het project</productosproyecto>
+		<descproductos>Producten beschrijving</descproductos>
+		<actionfacturar>Bill</actionfacturar>
+		<msgfacturar>Wilt u het project factureren?</msgfacturar>
+		<errorfacturar>Er is al een factuur voor dit project</errorfacturar>
+		<okfacturar>Het project is correct gefactureerd</okfacturar>
+		<addseguimientos>Volgen</addseguimientos>
+		<addactas>Minuten</addactas>
+		<addcontactos>Contact opnemen</addcontactos>
+		<addagenda>Evenement</addagenda>
+		<resumentareasproductos>Overzicht van taken en producten</resumentareasproductos>
+		<presupuestosdata>Projectbudgetten</presupuestosdata>
+	</proyectos>
+	<documentos>
+		<list>Lijst met documenten</list>
+		<create>Nieuw document</create>
+		<formview>Documentdetail</formview>
+		<forminsert>Een nieuw document registreren</forminsert>
+		<formupdate>Documentwijziging</formupdate>
+		<defaultdata>Documentgegevens</defaultdata>
+	</documentos>
+	<partes>
+		<list>Onderdelenlijst</list>
+		<create>Nieuw onderdeel</create>
+		<formview>Gedeeltelijk detail</formview>
+		<forminsert>Registratie van een nieuw onderdeel</forminsert>
+		<formupdate>Wijziging van onderdelen</formupdate>
+		<defaultdata>Onderdeelgegevens</defaultdata>
+		<horasfact>Factureringstijden</horasfact>
+		<preciohora>Prijs / uur</preciohora>
+		<liquidar>Liquideren</liquidar>
+		<dateliq>Datum liq.</dateliq>
+		<msgliquidar>Wilt u de geselecteerde onderdelen liquideren?</msgliquidar>
+		<msgerror>U moet in de lijst de onderdelen selecteren die u wilt regelen</msgerror>
+		<fechainiliq>Afgewikkelde datum</fechainiliq>
+		<plotseguimientotop10>De 10 klanten met meer delen van het afgelopen jaar</plotseguimientotop10>
+		<plotseguimiento12meses>Facturering in delen van het afgelopen jaar</plotseguimiento12meses>
+	</partes>
+	<usuarios>
+		<list>Lijst met gebruikers</list>
+		<create>Nieuwe gebruiker</create>
+		<formview>Gebruikersdetail</formview>
+		<forminsert>Registratie van een nieuwe gebruiker</forminsert>
+		<formupdate>Gebruikersaanpassing</formupdate>
+		<personaldata>Gebruikersgegevens</personaldata>
+		<entrada>Entree</entrada>
+		<salida>Vertrek</salida>
+		<dias>Dagen</dias>
+		<logged>Verbonden</logged>
+		<password2>Herhaal toets</password2>
+		<errorpassword>De ingevoerde sleutels komen niet overeen</errorpassword>
+		<contacto>Contact opnemen</contacto>
+		<sincontacto>[Geen geassocieerd contact]</sincontacto>
+		<permdata>Toestemmingen per applicatie</permdata>
+		<allow>Sta toe</allow>
+		<deny>Weigeren</deny>
+		<groupsdata>Gebruikersgroepen</groupsdata>
+		<pop3host>POP3-server</pop3host>
+		<pop3delete>Verwijder eerdere serverberichten</pop3delete>
+		<pop3days>dagen</pop3days>
+		<smtphost>SMTP-server</smtphost>
+		<emailprivated>Dit account is privé (alleen ik heb toegang)</emailprivated>
+		<emaildefault>Standaardaccount (degene die ik het meest gebruik)</emaildefault>
+		<emaildisabled>Deactiveer dit e-mailaccount</emaildisabled>
+		<emaildelete>Verwijder dit e-mailaccount (gegevens gaan voor altijd verloren)</emaildelete>
+		<emailsignatureold>Huidige handtekening</emailsignatureold>
+		<emailsignaturenew>Nieuwe handtekening</emailsignaturenew>
+		<correonew>Nieuwe mail</correonew>
+		<addmetocc>Voeg mij toe als CC in alle e-mails die ik verstuur</addmetocc>
+		<defaultcrt>Activeer standaard het bevestigingsverzoek van de receptie</defaultcrt>
+		<gcalendar>Google Agenda</gcalendar>
+		<prefgcalendar>Synchronisatie van de agenda met de Google Agenda-service</prefgcalendar>
+		<prefgcalendar2>Met deze optie kunt u de kalender van SaltOS en van Google Agenda gebruiken, waardoor de gegevens automatisch worden bijgewerkt en u zich geen zorgen hoeft te maken dat u de gegevens van de ene kalender naar de andere moet repliceren</prefgcalendar2>
+		<emailgcalendar>Gmail-e-mailaccount</emailgcalendar>
+		<tokengcalendar>Toegangstoken</tokengcalendar>
+		<feedstitle>Configureer de feeds die u uit SaltOS wilt lezen (RSS 1.0, RSS 2.0 en Atom 1.0)</feedstitle>
+		<url>URL</url>
+		<title>Titel</title>
+		<description>Beschrijving</description>
+		<image>Afbeelding</image>
+		<test>Test</test>
+		<add>Toevoegen</add>
+		<feedslist>Lijst met geconfigureerde RSS-feeds</feedslist>
+		<feeds_old>Geconfigureerde feeds</feeds_old>
+		<feeds_new>Nieuwe feed</feeds_new>
+		<lowerdisabled>gedeactiveerd</lowerdisabled>
+		<singrupo>[Zonder groep]</singrupo>
+		<sinaplicacion>[Zonder aanvraag]</sinaplicacion>
+		<registro>Registratie</registro>
+		<sinregistro>[Zonder registratie]</sinregistro>
+		<showdetalles>[Zie details]</showdetalles>
+		<hidedetalles>[Verberg details]</hidedetalles>
+		<appsregsdata>Registratievergunningen</appsregsdata>
+	</usuarios>
+	<epigrafes>
+		<list>Lijst met rubrieken</list>
+		<create>Nieuwe kop</create>
+		<formview>Detail van de titel</formview>
+		<forminsert>Registratie van een nieuwe rubriek</forminsert>
+		<formupdate>Wijziging van de titel</formupdate>
+		<defaultdata>Details van de rubriek</defaultdata>
+	</epigrafes>
+	<estados>
+		<list>Lijst van staten</list>
+		<create>Nieuwe staat</create>
+		<formview>Staat detail</formview>
+		<forminsert>Registratie van een nieuwe staat</forminsert>
+		<formupdate>Statuswijziging</formupdate>
+		<defaultdata>Staatsgegevens</defaultdata>
+		<activo>Actief</activo>
+	</estados>
+	<grupos>
+		<list>Groepsvermelding</list>
+		<create>Nieuwe groep</create>
+		<formview>Groepsdetail</formview>
+		<forminsert>Registratie van een nieuwe groep</forminsert>
+		<formupdate>Groepswijziging</formupdate>
+		<defaultdata>Groepsgegevens</defaultdata>
+		<permdata>Toestemmingen per applicatie</permdata>
+		<allow>Sta toe</allow>
+		<deny>Weigeren</deny>
+		<showdetalles>[Zie details]</showdetalles>
+		<hidedetalles>[Verberg details]</hidedetalles>
+	</grupos>
+	<formaspago>
+		<list>Lijst met betaalmethoden</list>
+		<create>Nieuwe betalingsmethode</create>
+		<formview>Betalingsmethode detail</formview>
+		<forminsert>Registratie van een nieuwe betalingsmethode</forminsert>
+		<formupdate>Wijziging van de betalingsmethode</formupdate>
+		<defaultdata>Betaalmethode gegevens</defaultdata>
+	</formaspago>
+	<gastos>
+		<list>Lijst van uitgaven</list>
+		<create>Nieuwe kosten</create>
+		<formview>Detailuitgaven</formview>
+		<forminsert>Registratie van een nieuwe uitgave</forminsert>
+		<formupdate>Kostenwijziging</formupdate>
+		<defaultdata>Gegevens besteden</defaultdata>
+		<pagadopor>Betaler</pagadopor>
+		<liquidar>Liquideren</liquidar>
+		<dateliq>Datum liq.</dateliq>
+		<msgliquidar>Wilt u de geselecteerde kosten verrekenen?</msgliquidar>
+		<msgerror>U moet in de lijst de uitgaven selecteren die u wilt verrekenen</msgerror>
+		<trimestrereg>Trimmen. entree</trimestrereg>
+		<fechainireg>Incheckdatum</fechainireg>
+		<trimestreliq>Trimmen. geliquideerd</trimestreliq>
+		<fechainiliq>Afgewikkelde datum</fechainiliq>
+		<totalliquidar>De geliquideerde kosten bedragen in totaal:</totalliquidar>
+		<plotseguimientotop10>De 10 leveranciers met de hoogste omzet van het afgelopen jaar</plotseguimientotop10>
+		<plotseguimiento12meses>Kosten van vorig jaar</plotseguimiento12meses>
+		<sinpagador>[Zonder betaler]</sinpagador>
+		<vencimientos_old>Looptijd</vencimientos_old>
+		<vencimientos_new>Nieuwe looptijden</vencimientos_new>
+		<fechavencimiento>Vervaldatum</fechavencimiento>
+		<pagado>Betaald</pagado>
+		<fechapagado>Datum betaald</fechapagado>
+	</gastos>
+	<facturas>
+		<list>Lijst met facturen</list>
+		<create>Nieuwe factuur</create>
+		<formview>Factuurgegevens</formview>
+		<forminsert>Registratie van een nieuwe factuur</forminsert>
+		<formupdate>Factuurwijziging</formupdate>
+		<defaultdata>Factuurgegevens</defaultdata>
+		<errorfac101>Alleen de laatste factuur kan worden geopend</errorfac101>
+		<errorfac103>Kan een gesloten factuur niet verwijderen</errorfac103>
+		<numfacxxx>Factuurnummer</numfacxxx>
+		<numalbxxx>Nummer van afleverbon</numalbxxx>
+		<fechaemision>Uitgiftedatum</fechaemision>
+		<titular>Houder</titular>
+		<baseimponible>Belastbare basis</baseimponible>
+		<totalapagar>Totaal te betalen</totalapagar>
+		<plotseguimientotop10>De 10 klanten met de hoogste omzet van het afgelopen jaar</plotseguimientotop10>
+		<plotseguimiento12meses>Facturering vorig jaar</plotseguimiento12meses>
+		<concepts_old>Concepten</concepts_old>
+		<concepts_new>Nieuwe concepten</concepts_new>
+		<products_old>Producten</products_old>
+		<products_new>Nieuwe producten</products_new>
+		<vencimientos_old>Looptijd</vencimientos_old>
+		<vencimientos_new>Nieuwe looptijden</vencimientos_new>
+		<fechavencimiento>Vervaldatum</fechavencimiento>
+		<fechacobrado>Afhaaldatum</fechacobrado>
+		<clientdata>Klantgegevens</clientdata>
+		<vencimientosfactura>Looptijd van deze factuur</vencimientosfactura>
+		<vencimientosalbaran>Looptijd van deze leveringsbon</vencimientosalbaran>
+		<vencimientoscobrado>Het verzamelde veld is aangepast met behulp van de volwassenheidsgegevens</vencimientoscobrado>
+	</facturas>
+	<prioridades>
+		<list>Prioriteitsvermelding</list>
+		<create>Nieuwe prioriteit</create>
+		<formview>Prioriteitsdetail</formview>
+		<forminsert>Een nieuwe prioriteit toevoegen</forminsert>
+		<formupdate>Prioriteitswijziging</formupdate>
+		<defaultdata>Prioriteitsgegevens</defaultdata>
+	</prioridades>
+	<agenda>
+		<list>Lijst met evenementen</list>
+		<create>Nieuw evenement</create>
+		<formview>Evenementdetail</formview>
+		<forminsert>Registratie van een nieuw evenement</forminsert>
+		<formupdate>Event wijziging</formupdate>
+		<defaultdata>Gebeurtenisgegevens</defaultdata>
+		<otrasfechas>Andere data</otrasfechas>
+		<todoseventos>[Alle evenementen]</todoseventos>
+		<todoayer>Gebeurtenissen van gisteren</todoayer>
+		<todohoy>Evenementen van vandaag</todohoy>
+		<todomanana>Morgen's evenementen</todomanana>
+		<todosemana>Evenementen van de week</todosemana>
+		<todomes>Evenementen van de maand</todomes>
+		<todoano>Evenementen van het jaar</todoano>
+		<usersdata>Toegewezen gebruikers</usersdata>
+		<asignadoa>Toegewezen aan</asignadoa>
+		<notifydelay>Melden</notifydelay>
+		<notifysign>uur / s</notifysign>
+		<notifydstart>Startmelding ontvangen</notifydstart>
+		<notifydstop>Laatste melding ontvangen</notifydstop>
+		<notifyantes>Voorheen</notifyantes>
+		<notifydespues>Na</notifydespues>
+		<notifyprev>Melding voorafgaand aan de gebeurtenis</notifyprev>
+		<notifypost>Melding van voltooiing van evenement</notifypost>
+		<notifyclear>Kennisgevingen</notifyclear>
+		<notifytip>Duidelijke meldingen</notifytip>
+		<notifyclearok>Herstartte evenementen:</notifyclearok>
+		<notifyclearko>Geen openstaande gebeurtenissen om opnieuw op te starten</notifyclearko>
+		<calendar>Evenementen kalender</calendar>
+		<prevmonth>Vorige maand</prevmonth>
+		<currentmonth>Huidige maand</currentmonth>
+		<nextmonth>Volgende maand</nextmonth>
+		<today>Vandaag</today>
+		<yesterday>Gisteren</yesterday>
+		<tomorrow>Morgen</tomorrow>
+		<continue>Vervolg ...</continue>
+		<by>door</by>
+		<calendarinfo>Toont informatie tot nu toe:</calendarinfo>
+		<add>Evenement toevoegen</add>
+		<gcalendar>Google Agenda</gcalendar>
+		<gcalendartip>Synchroniseer evenementen tussen SaltOS en Google Agenda</gcalendartip>
+		<notgcalendaremail>Je hebt je Google Agenda-account niet ingesteld in voorkeuren</notgcalendaremail>
+		<invalidgcalendartoken>De toegangsgegevens tot uw Google Agenda-account zijn onjuist</invalidgcalendartoken>
+		<requestgcalendartoken>Klik hier om een toegangstoken te krijgen</requestgcalendartoken>
+		<insertgcalendar>SaltOS-evenementen gemaakt in Google Agenda:</insertgcalendar>
+		<updategcalendar>SaltOS-evenementen bijgewerkt op Google Agenda:</updategcalendar>
+		<insertsaltos>Google Agenda-evenementen gemaakt in SaltOS:</insertsaltos>
+		<updatesaltos>Bijgewerkte Google Agenda-evenementen in SaltOS:</updatesaltos>
+		<notinsertupdate>Er zijn geen evenementen om bij te werken</notinsertupdate>
+		<expand>Breid uit</expand>
+		<expandtip>Vouw uit om de details van alle agenda-afspraken weer te geven</expandtip>
+		<collapse>Samenvouwen</collapse>
+		<collapsetip>Vouw samen om de details van alle agenda-afspraken te verbergen</collapsetip>
+		<loadingsmall>Bezig met laden ...</loadingsmall>
+	</agenda>
+	<proveedores>
+		<list>Provider lijst</list>
+		<create>Nieuwe provider</create>
+		<formview>Details leverancier</formview>
+		<forminsert>Registratie van een nieuwe provider</forminsert>
+		<formupdate>Wijziging van leverancier</formupdate>
+		<defaultdata>Leveranciersgegevens</defaultdata>
+		<plotseguimiento12meses>Provider's kosten van vorig jaar</plotseguimiento12meses>
+		<cuentacorriente>Account controleren</cuentacorriente>
+		<cuentacontable>Boekhoudkundige rekening</cuentacontable>
+		<diapago>Betaal dag</diapago>
+		<gastosdata>Provider-gerelateerde kosten</gastosdata>
+		<contactdata>Contacten van leverancier</contactdata>
+		<nombrecomercial>Handelsnaam</nombrecomercial>
+		<nombrefiscal>Fiscale naam</nombrefiscal>
+		<add>Provider toevoegen</add>
+	</proveedores>
+	<actas>
+		<list>Lijst met minuten</list>
+		<create>Nieuw record</create>
+		<formview>Minuten detail</formview>
+		<forminsert>Registratie van een nieuw record</forminsert>
+		<formupdate>Wijziging van de notulen</formupdate>
+		<defaultdata>Minuten gegevens</defaultdata>
+		<dstart>Home</dstart>
+		<dstop>Einde</dstop>
+		<asistentes>Assistenten</asistentes>
+		<temas>Thema's</temas>
+		<aceptados>Geaccepteerd</aceptados>
+		<cancelados>Geannuleerd</cancelados>
+		<pendientes>Oorbellen</pendientes>
+		<add>Voeg minuten toe</add>
+	</actas>
+	<profile>
+		<formupdate>Mijn profiel</formupdate>
+		<oldpassword>Oude sleutel</oldpassword>
+		<newpassword>Nieuw wachtwoord</newpassword>
+		<newpassword2>Herhaal toets</newpassword2>
+		<erroroldpassword>De oude sleutel is verkeerd</erroroldpassword>
+		<errornewpassword>De ingevoerde sleutels komen niet overeen</errornewpassword>
+		<errornewpassword2>De nieuwe sleutel moet complexer zijn</errornewpassword2>
+		<prefgeneral>Algemene voorkeuren</prefgeneral>
+		<cambioclave>Verander uw persoonlijk wachtwoord</cambioclave>
+		<general>Algemeen</general>
+		<title_correo_old>Stel het POP3-e-mailaccount in voor uw gebruiker</title_correo_old>
+		<pop3host>POP3-server</pop3host>
+		<pop3delete>Verwijder eerdere serverberichten</pop3delete>
+		<pop3days>dagen</pop3days>
+		<smtphost>SMTP-server</smtphost>
+		<emailprivated>Dit account is privé (alleen ik heb toegang)</emailprivated>
+		<emaildefault>Standaardaccount (degene die ik het meest gebruik)</emaildefault>
+		<emaildisabled>Deactiveer dit e-mailaccount</emaildisabled>
+		<emaildelete>Verwijder dit e-mailaccount (gegevens gaan voor altijd verloren)</emaildelete>
+		<emailsignatureold>Huidige handtekening</emailsignatureold>
+		<emailsignaturenew>Nieuwe handtekening</emailsignaturenew>
+		<correonew>Nieuwe mail</correonew>
+		<title_correo_new>Stel een nieuw POP3-e-mailaccount in voor uw gebruiker</title_correo_new>
+		<gcalendar>Google Agenda</gcalendar>
+		<prefgcalendar>Synchronisatie van de agenda met de Google Agenda-service</prefgcalendar>
+		<prefgcalendar2>Met deze optie kunt u de kalender van SaltOS en van Google Agenda gebruiken, waardoor de gegevens automatisch worden bijgewerkt en u zich geen zorgen hoeft te maken dat u de gegevens van de ene kalender naar de andere moet repliceren</prefgcalendar2>
+		<emailgcalendar>Gmail-e-mailaccount</emailgcalendar>
+		<tokengcalendar>Toegangstoken</tokengcalendar>
+		<addmetocc>Voeg mij toe als CC in alle e-mails die ik verstuur</addmetocc>
+		<defaultcrt>Activeer standaard het bevestigingsverzoek van de receptie</defaultcrt>
+		<feedstitle>Configureer de feeds die u uit SaltOS wilt lezen (RSS 1.0, RSS 2.0 en Atom 1.0)</feedstitle>
+		<url>URL</url>
+		<title>Titel</title>
+		<description>Beschrijving</description>
+		<image>Afbeelding</image>
+		<test>Test</test>
+		<add>Toevoegen</add>
+		<feedslist>Lijst met geconfigureerde RSS-feeds</feedslist>
+		<feeds_old>Geconfigureerde feeds</feeds_old>
+		<feeds_new>Nieuwe feed</feeds_new>
+		<lowerdisabled>gedeactiveerd</lowerdisabled>
+		<quick>Snel menu</quick>
+		<prefquick>Configureer hier het snelmenu in het bovenste gedeelte</prefquick>
+		<sinaplicacion>[Zonder aanvraag]</sinaplicacion>
+		<quick_button_f1>Eerste knop (F1)</quick_button_f1>
+		<quick_button_f2>Tweede knop (F2)</quick_button_f2>
+		<quick_button_f3>Derde knop (F3)</quick_button_f3>
+		<quick_button_f4>Vierde knop (F4)</quick_button_f4>
+		<quick_button_f5>Vijfde knop (F5)</quick_button_f5>
+		<quick_button_f6>Zesde knop (F6)</quick_button_f6>
+		<quick_button_f7>Zevende knop (F7)</quick_button_f7>
+		<quick_button_f8>Achtste knop (F8)</quick_button_f8>
+		<quick_button_f9>Negende knop (F9)</quick_button_f9>
+		<quick_button_f10>Tiende knop (F10)</quick_button_f10>
+		<quick_button_f11>Elfde knop (F11)</quick_button_f11>
+		<quick_button_f12>Twaalfde knop (F12)</quick_button_f12>
+		<folderstab>Gebruikersmappen</folderstab>
+		<folderspref>Stel hier gebruikersboxen in en laat dan wat u wilt</folderspref>
+		<newfolder>Nieuwe gebruikersbox</newfolder>
+		<withoutparent>[Zonder map]</withoutparent>
+		<inparentfolder>en hangt aan de map</inparentfolder>
+		<namefolder>Mapnaam</namefolder>
+		<parentfolder>Hang aan de map</parentfolder>
+	</profile>
+	<maincfg>
+		<formupdate>Installatie</formupdate>
+		<general>Algemeen</general>
+		<title_general>Configureer enkele algemene toepassingsparameters</title_general>
+		<applicationtitle>Toepassingstitel</applicationtitle>
+		<plotlistsize>Grootte van de afbeeldingen in de aanbiedingen</plotlistsize>
+		<plotformsize>Grootte van afbeeldingen in formulieren</plotformsize>
+		<small>Klein</small>
+		<medium>Gemiddeld</medium>
+		<big>Groot</big>
+		<agendainterval>Zoek elke kalendermeldingen</agendainterval>
+		<inboxinterval>Controleer elke keer op nieuwe e-mails</inboxinterval>
+		<outboxinterval>Controleer de uitvoerlade elke keer</outboxinterval>
+		<feedsinterval>Zoek elke keer naar nieuwe berichten</feedsinterval>
+		<feedstimeout>Vergeet eerdere verwijderde feeds</feedstimeout>
+		<sessioninterval>Controleer elke uitlogmelding</sessioninterval>
+		<sessionwarning>Waarschuwing voor afmelden</sessionwarning>
+		<indexinginterval>Indexeer elke keer nieuwe bestanden</indexinginterval>
+		<integrityinterval>Controleer elke integriteit</integrityinterval>
+		<purgeinterval>Verwijder elke data</purgeinterval>
+		<emailsupport>E-mail voor technische ondersteuning</emailsupport>
+		<segundos>seconden</segundos>
+		<dias>dagen</dias>
+		<title_logo>Definieer het logo, de positie, de grootte en de kleuren die in de pdf's moeten worden gebruikt</title_logo>
+		<logo>Logo</logo>
+		<logoleft>Logo X-positie</logoleft>
+		<logotop>Y</logotop>
+		<logowidth>Breedte</logowidth>
+		<logoheight>Hoog</logoheight>
+		<logofile>Huidig logobestand</logofile>
+		<logofilenew>Nieuw bestand (alleen JPEG)</logofilenew>
+		<colorline>Kleur van de lijnen</colorline>
+		<colortext1>Titels</colortext1>
+		<colortext2>Teksten</colortext2>
+		<title_correo>Configureer enkele algemene parameters voor het verzenden van e-mails van SaltOS</title_correo>
+		<cuentasupport>Ondersteuning voor uitgaande e-mail</cuentasupport>
+		<cuentaincidencias>Uitgaande e-mailincidenten</cuentaincidencias>
+		<water>Watermerken</water>
+		<title_water>Definieer de te gebruiken watermerken in de pdf's</title_water>
+		<wateractas>Notulen: tekst</wateractas>
+		<waterpartes>Onderdelen: tekst</waterpartes>
+		<waterfacturas>Facturen: tekst</waterfacturas>
+		<wateralbaranes>Afleverbonnen: Tekst</wateralbaranes>
+		<waterpresupuestos>Budgetten: tekst</waterpresupuestos>
+		<waterclientes>Klanten: tekst</waterclientes>
+		<waterproyectos>Projecten: Tekst</waterproyectos>
+		<waterposiblescli>Potentiële klanten: tekst</waterposiblescli>
+		<watercorreo>E-mail: tekst</watercorreo>
+		<waterfeeds>Feeds: tekst</waterfeeds>
+		<emailasync>Gebruik asynchrone verzending (sneller)</emailasync>
+		<accounting>Boekhouding</accounting>
+		<title_accounting>Configureer hier algemene boekhoudgegevens</title_accounting>
+		<accounting_currency>Valuta</accounting_currency>
+		<accounting_iva_name>Belastingnaam (toegevoegd)</accounting_iva_name>
+		<accounting_irpf_name>Belastingnaam (afgetrokken)</accounting_irpf_name>
+		<accounting_value>Standaardwaarde (alleen indien gebruikt)</accounting_value>
+		<applications_config>Toepassingen</applications_config>
+		<config_tabs>Instellingen tabbladen</config_tabs>
+		<default_values>Standaardwaarden</default_values>
+		<configuracion_presupuestos>Configuratie van budgetten</configuracion_presupuestos>
+		<configuracion_agenda>Plan configuratie</configuracion_agenda>
+		<configuracion_incidencias>Incidentinstellingen</configuracion_incidencias>
+		<configuracion_facturas>Factuurconfiguratie</configuracion_facturas>
+		<configuracion_gastos>Onkostenconfiguratie</configuracion_gastos>
+		<show_tab_objetivos_presupuesto>Toon doelen</show_tab_objetivos_presupuesto>
+		<show_tab_condiciones_presupuesto>Toon voorwaarden</show_tab_condiciones_presupuesto>
+		<show_tab_funcional_presupuesto>Functioneel voorstel weergeven</show_tab_funcional_presupuesto>
+		<show_tab_tecnica_presupuesto>Toon technisch voorstel</show_tab_tecnica_presupuesto>
+		<show_tab_info_adicional_presupuesto>Geef aanvullende informatie weer</show_tab_info_adicional_presupuesto>
+		<show_tab_tareas_presupuesto>Taken weergeven</show_tab_tareas_presupuesto>
+		<show_tab_productos_presupuesto>Toon producten</show_tab_productos_presupuesto>
+		<sin_configurar>[Niet geconfigureerd]</sin_configurar>
+		<filtro_grupo_usuarios_incidencias>Toon gebruikers van een groep in gebruikerslijsten</filtro_grupo_usuarios_incidencias>
+		<filtro_grupo_usuarios_implicados_incidencias>Betrokken groep</filtro_grupo_usuarios_implicados_incidencias>
+		<filtro_grupo_usuarios_asignados_incidencias>Toegewezen groep</filtro_grupo_usuarios_asignados_incidencias>
+	</maincfg>
+	<about>
+		<formupdate>Over SaltOS</formupdate>
+		<copyright>Deze software wordt gedistribueerd onder de voorwaarden van de GPL-3.0- licentie:</copyright>
+		<components>Deze software gebruikt de volgende componenten:</components>
+		<server_base>Basisserver:</server_base>
+		<php_plugins>PHP-plug-ins:</php_plugins>
+		<javascript_base>Javascript-basis:</javascript_base>
+		<bootstrap_plugins>Bootstrap-plug-ins:</bootstrap_plugins>
+		<jquery_plugins>JQuery-plug-ins:</jquery_plugins>
+		<javascript_plugins>Javascript-plug-ins:</javascript_plugins>
+		<other_plugins>Andere plug-ins:</other_plugins>
+		<server_plugins>Server plug-ins:</server_plugins>
+		<vxinfo>Opmerking: (*) Sommige projecten specificeren niet de specifieke versie van de licentie die ze gebruiken</vxinfo>
+		<ooformats>Ondersteunde formaten</ooformats>
+		<license>Licentie</license>
+		<game>Spel</game>
+		<ootitle>Dit is de lijst met formaten die door OpenOffice worden ondersteund en die kan worden geraadpleegd met de PDF-viewer.</ootitle>
+		<licensetitle>Hieronder vindt u de juridische tekst van de licentie</licensetitle>
+		<gametitle>Als je dit scherm hebt bereikt, verdien je een pauze. Je kunt een beetje spelen !!!</gametitle>
+		<translators>Vertalingen</translators>
+		<developers>Ontwikkelaars</developers>
+		<unavailable>Contactgegevens niet beschikbaar. Neem contact op met een ontwikkelaar voor vragen of suggesties.</unavailable>
+	</about>
+	<support>
+		<formupdate>Technische ondersteuning</formupdate>
+		<contact>Technische ondersteuning</contact>
+		<subject>Zakelijk</subject>
+		<msgsendemail>Er is een e-mail gestuurd naar technische ondersteuning</msgsendemail>
+		<msgnotemailsupport>Er is geen e-mailadres opgegeven voor technische ondersteuning</msgnotemailsupport>
+		<msgnotsubject>Er is niets ingevoerd</msgnotsubject>
+		<msgnotcomments>Er is geen commentaar ingevoerd</msgnotcomments>
+	</support>
+	<home>
+		<formupdate>Home</formupdate>
+		<buscar2>Doorzoek alle SaltOS</buscar2>
+		<buscar3>Zoek alleen in bestanden</buscar3>
+	</home>
+	<seguimientos>
+		<list>Trackinglijst</list>
+		<create>Nieuwe follow-up</create>
+		<formview>Bijhouden van details</formview>
+		<forminsert>Registratie van een nieuwe follow-up</forminsert>
+		<formupdate>Wijziging bijhouden</formupdate>
+		<defaultdata>Gegevens bijhouden</defaultdata>
+		<add>Voeg tracking toe</add>
+	</seguimientos>
+	<datacfg>
+		<formupdate>Acties op de database</formupdate>
+		<export>Exporteren</export>
+		<title_export>Exporteer de volledige database in SQL-indeling</title_export>
+		<desc_export>Hiermee kunt u een back-up van de hele database opslaan</desc_export>
+		<desc2_export>Este ordenador</desc2_export>
+		<import>Importeren</import>
+		<title_import>Importeer de volledige database in SQL-indeling</title_import>
+		<desc_import>Hiermee kunt u alle gegevens van een back-up importeren</desc_import>
+		<desc2_import>Selecteer het te importeren bestand door op de knop [Bladeren] te drukken en vervolgens op de knop [Importeren] om de nieuwe gegevens van de back-up te laden</desc2_import>
+		<desc3_import>Belangrijk: bij het importeren worden de huidige gegevens in de applicatie gewist</desc3_import>
+		<filenotfound>De inhoud van het importbestand kon niet worden gelezen</filenotfound>
+		<filefoundok>Back-up succesvol geïmporteerd</filefoundok>
+		<fileimporterror>Er is een fout opgetreden bij het importeren van het bestand</fileimporterror>
+	</datacfg>
+	<correo>
+		<list>Mailinglijst</list>
+		<create>Stuur nieuwe mail</create>
+		<formview>Mail detail</formview>
+		<forminsert>Stuur een nieuwe e-mail</forminsert>
+		<formupdate>Stuur een e-mail door</formupdate>
+		<defaultdata>Mail gegevens</defaultdata>
+		<from>Van</from>
+		<to>Aan</to>
+		<cc>CC</cc>
+		<bcc>BCC</bcc>
+		<subject>Zakelijk</subject>
+		<attachments>Bijlagen</attachments>
+		<message>Bericht</message>
+		<recibir>Ontvang</recibir>
+		<recibirtip>Klik hier om nieuwe e-mails te ontvangen</recibirtip>
+		<enviar>Verzenden</enviar>
+		<enviartip>Klik hier om e-mails te verzenden vanuit de outbox</enviartip>
+		<msgnotpop3email>Er is geen e-mailaccount geconfigureerd of geactiveerd</msgnotpop3email>
+		<msgnotpop3host>POP3-server is niet geconfigureerd</msgnotpop3host>
+		<msgerrorpop3email>De volgende fout is opgetreden:</msgerrorpop3email>
+		<msgnewokpop3email1>Nieuwe e-mail ontvangen in de inbox</msgnewokpop3email1>
+		<msgnewokpop3email2>Nieuwe e-mails ontvangen in de inbox</msgnewokpop3email2>
+		<msggotoemail>ga naar de mail</msggotoemail>
+		<msgnewkopop3email>Er zijn geen nieuwe e-mails</msgnewkopop3email>
+		<msgconnrefusedpop3email>Verbinding geweigerd door server</msgconnrefusedpop3email>
+		<msgconnerrorpop3email>Kan geen verbinding maken met de server</msgconnerrorpop3email>
+		<msgopenerrorpop3email>Het bestand met het bericht is niet gevonden</msgopenerrorpop3email>
+		<msgpropietario>Alleen de eigenaar van de e-mails kan deze functies gebruiken</msgpropietario>
+		<msgnotfound>Geen geselecteerde e-mails gevonden, filter wijzigen</msgnotfound>
+		<msgnumsileidos>Ze zijn gemarkeerd als gelezen:</msgnumsileidos>
+		<msgnumsiwait>Ze zijn gemarkeerd als in behandeling:</msgnumsiwait>
+		<msgnumsispam>Ze zijn gemarkeerd als SPAM:</msgnumsispam>
+		<msgnumnoleidos>Ze zijn gemarkeerd als ongelezen:</msgnumnoleidos>
+		<msgnumnowait>Ze zijn gemarkeerd als niet in behandeling:</msgnumnowait>
+		<msgnumnospam>Ze zijn gemarkeerd als niet-SPAM:</msgnumnospam>
+		<msgnumdelete>Het volgende is verwijderd:</msgnumdelete>
+		<statenew>Nieuw</statenew>
+		<actionnew>Nieuw</actionnew>
+		<stateread>Lees</stateread>
+		<statereply>Beantwoord</statereply>
+		<stateforward>Doorgestuurd</stateforward>
+		<statewait>In afwachting</statewait>
+		<statespam>SPAM</statespam>
+		<statesent>Verzonden</statesent>
+		<statenotsent>Niet verzonden</statenotsent>
+		<stateerror>Fout</stateerror>
+		<stateall>Allemaal</stateall>
+		<todaslascuentas>[Alle accounts]</todaslascuentas>
+		<buttonsend>Verzenden</buttonsend>
+		<buttonsendreturnhere>Verzend en kom hier terug</buttonsendreturnhere>
+		<onlynew>Gewoon nieuw</onlynew>
+		<onlywait>Alleen in behandeling</onlywait>
+		<hidespam>SPAM verbergen</hidespam>
+		<withfiles>Met bijlagen</withfiles>
+		<onlyspam>Alleen SPAM</onlyspam>
+		<withoutfiles>Geen bijlagen</withoutfiles>
+		<actionwait>In afwachting</actionwait>
+		<actionspam>SPAM</actionspam>
+		<actionreply>Antwoord</actionreply>
+		<actionreplyall>Beantwoord iedereen</actionreplyall>
+		<actionforward>Vooruit</actionforward>
+		<messageid>Id-bericht</messageid>
+		<fulldata>Mail zoom</fulldata>
+		<sourcedata>E-mailbron</sourcedata>
+		<leidos>Lees</leidos>
+		<wait>In afwachting</wait>
+		<spam>SPAM</spam>
+		<borrar>Verwijderen</borrar>
+		<borrartip>Verwijder alle geselecteerde e-mails</borrartip>
+		<msgleidos>Wilt u alle geselecteerde e-mails markeren als gelezen / ongelezen?</msgleidos>
+		<msgwait>Wilt u alle geselecteerde e-mails markeren als in behandeling / niet in behandeling?</msgwait>
+		<msgspam>Wilt u alle geselecteerde e-mails markeren als SPAM / niet-SPAM?</msgspam>
+		<msgdelete2>Wil je alle geselecteerde e-mails verwijderen?</msgdelete2>
+		<msgnotsendfound>Er zijn geen berichten in behandeling om te verzenden</msgnotsendfound>
+		<msgerrorsendmail>De volgende fout is opgetreden:</msgerrorsendmail>
+		<msgtotalsendmail1>E-mail verzonden vanuit de outbox</msgtotalsendmail1>
+		<msgtotalsendmail2>E-mails verzonden vanuit de outbox</msgtotalsendmail2>
+		<stateinbox>Entree</stateinbox>
+		<stateoutbox>Vertrek</stateoutbox>
+		<onlyinbox>Alleen voorgerechten</onlyinbox>
+		<onlyoutbox>Alleen uitgaand</onlyoutbox>
+		<options>Opties</options>
+		<optionstip>Meer vermeldingsopties weergeven</optionstip>
+		<pdfoptions>PDF-opties</pdfoptions>
+		<sinsubject>(geen onderwerp)</sinsubject>
+		<msgfromkosendmail>Configuratie voor vereist Van: niet gevonden</msgfromkosendmail>
+		<msgsendoksendmail>E-mail is succesvol verzonden</msgsendoksendmail>
+		<replysubject>Re:</replysubject>
+		<replyallsubject>Re:</replyallsubject>
+		<forwardsubject>Vooruit:</forwardsubject>
+		<embeddedmessage>De # datetime #, # fromname # schreef:</embeddedmessage>
+		<actionreplytip>Om de afzender van dit bericht te beantwoorden</actionreplytip>
+		<actionreplyalltip>Om alle gebruikers van dit bericht te beantwoorden</actionreplyalltip>
+		<actionforwardtip>Om deze e-mail door te sturen naar andere gebruikers</actionforwardtip>
+		<noleidos>Ongelezen</noleidos>
+		<nowait>Niet in behandeling</nowait>
+		<nospam>Geen SPAM</nospam>
+		<today>Vandaag</today>
+		<yesterday>Gisteren</yesterday>
+		<week>Week</week>
+		<month>Maand</month>
+		<confirmreadingto>Vraag bevestiging van ontvangst aan</confirmreadingto>
+		<marcarcorreos>Markeren als</marcarcorreos>
+		<message0>Berichten</message0>
+		<message1>Bericht</message1>
+		<message2>Berichten</message2>
+		<campos>Velden</campos>
+		<allcampos>[Alle velden]</allcampos>
+		<onlyemail>Alleen in richtingen</onlyemail>
+		<onlysubject>Alleen in de kwestie</onlysubject>
+		<onlybody>Alleen in het bericht</onlybody>
+		<filtrarcorreos>Filteren op</filtrarcorreos>
+		<priority>Prioriteit</priority>
+		<priorityhigh>Hoog</priorityhigh>
+		<prioritynormal>Normaal</prioritynormal>
+		<prioritylow>Laag</prioritylow>
+		<sensitivity>Gevoeligheid</sensitivity>
+		<sensitivitynormal>Normaal</sensitivitynormal>
+		<sensitivitypersonal>Persoonlijk</sensitivitypersonal>
+		<sensitivityprivate>Privé</sensitivityprivate>
+		<sensitivityconfidential>Vertrouwelijk</sensitivityconfidential>
+		<addincidencia>Creëer incidentie</addincidencia>
+		<addincidenciatip>Maak een incident vanuit deze e-mail</addincidenciatip>
+		<addincidenciamsg>Wil je een incident creëren vanuit deze e-mail?</addincidenciamsg>
+		<addincidenciaok>Het incident is gemaakt met de code:</addincidenciaok>
+		<notsupportdefined>E-mailaccount voor ondersteuning niet gedefinieerd</notsupportdefined>
+		<notsupportfound>Deze e-mail bevat niet het e-mailaccount voor ondersteuning</notsupportfound>
+		<incidenciaexists>Dit incident bestaat al en heeft de code:</incidenciaexists>
+		<interrorsendmail>Deze e-mail is niet verzonden vanwege een interne fout</interrorsendmail>
+	</correo>
+	<cuentas>
+		<list>Lijst met accounts</list>
+		<create>Nieuw account</create>
+		<formview>Accountgegevens</formview>
+		<forminsert>Registratie van een nieuw account</forminsert>
+		<formupdate>Accountwijziging</formupdate>
+		<defaultdata>Accountgegevens</defaultdata>
+		<logo>Logo</logo>
+		<title_logo>Definieer het logo, de positie, de grootte en de kleuren die op facturen moeten worden gebruikt</title_logo>
+		<logoleft>Logo X-positie</logoleft>
+		<logotop>Y</logotop>
+		<logowidth>Breedte</logowidth>
+		<logoheight>Hoog</logoheight>
+		<logofile>Huidig logobestand</logofile>
+		<logofilenew>Nieuw bestand (alleen JPEG)</logofilenew>
+		<colorline>Kleur van de lijnen</colorline>
+		<colortext1>Titels</colortext1>
+		<colortext2>Teksten</colortext2>
+		<title_facturas>Definieer bepaalde parameters die moeten worden gebruikt voor het opstellen van facturen</title_facturas>
+		<facturabool>Gebruik</facturabool>
+		<facturavalue>Standaardwaarde (alleen indien gebruikt)</facturavalue>
+		<facturapie1>Eerste lijns voet</facturapie1>
+		<facturapie2>Tweede lijns voet</facturapie2>
+	</cuentas>
+	<periodicas>
+		<list>Lijst met periodieke facturen</list>
+		<create>Nieuwe periodieke factuur</create>
+		<formview>Detail van de periodieke factuur</formview>
+		<forminsert>Registratie van een nieuwe periodieke factuur</forminsert>
+		<formupdate>Wijziging van de periodieke factuur</formupdate>
+		<defaultdata>Periodieke factuurgegevens</defaultdata>
+		<concepts_old>Concepten</concepts_old>
+		<concepts_new>Nieuwe concepten</concepts_new>
+		<products_old>Producten</products_old>
+		<products_new>Nieuwe producten</products_new>
+		<vencimientos_old>Looptijd</vencimientos_old>
+		<vencimientos_new>Nieuwe looptijden</vencimientos_new>
+		<fechavencimiento>Vervaldatum</fechavencimiento>
+		<diaemision>Uitgiftedag</diaemision>
+		<diaini>Tussen dag</diaini>
+		<dia>Dag</dia>
+		<meses>Maanden</meses>
+		<liquidar>Genereer</liquidar>
+		<totalliquidar>Totaal aantal gegenereerde facturen:</totalliquidar>
+		<msgerror>U moet de facturen selecteren die u wilt genereren in de lijst en de maand die u wilt gebruiken</msgerror>
+		<msgliquidar>Wilt u de geselecteerde facturen genereren?</msgliquidar>
+	</periodicas>
+	<empleados>
+		<list>Lijst van werknemers</list>
+		<create>Nieuwe medewerker</create>
+		<formview>Detail van de werknemer</formview>
+		<forminsert>Registratie van een nieuwe medewerker</forminsert>
+		<formupdate>Wijziging van de werknemer</formupdate>
+		<defaultdata>Informatie over werknemers</defaultdata>
+		<contactdata>Medewerkerscontacten</contactdata>
+	</empleados>
+	<denied>
+		<title>Toegang geweigerd</title>
+		<short>U bent niet gemachtigd om deze actie uit te voeren</short>
+		<large>Het systeem heeft de toepassing geblokkeerd omdat er onvoldoende rechten zijn om dit deel van de toepassing uit te voeren. Neem contact op met de applicatiebeheerder als u denkt dat het een fout is</large>
+	</denied>
+	<posiblescli>
+		<list>Lijst met mogelijke klanten</list>
+		<create>Nieuwe potentiële klant</create>
+		<formview>Detail van de mogelijke klant</formview>
+		<forminsert>Registratie van een nieuwe potentiële klant</forminsert>
+		<formupdate>Wijziging van de mogelijke klant</formupdate>
+		<defaultdata>Gegevens van de mogelijke klant</defaultdata>
+		<crearcliente>Klant creëren</crearcliente>
+		<clientcreatedok>De nieuwe klant is succesvol aangemaakt</clientcreatedok>
+		<msgcrear>Wilt u de prospect omzetten in een klant?</msgcrear>
+		<agendadata>Toekomstige klantevenementen</agendadata>
+		<actasdata>Minuten van de potentiële klant</actasdata>
+		<presupuestosdata>Budgetten van de mogelijke klant</presupuestosdata>
+		<facturacion>Facturering</facturacion>
+		<iaedesc>Beschrijving IAE</iaedesc>
+		<iaecod>Cod. IAE</iaecod>
+		<contacto>Contact pers</contacto>
+		<changedenied>U kunt een potentiële klant met minuten, agenda en / of budgetten niet deactiveren</changedenied>
+	</posiblescli>
+	<productos>
+		<list>Productvermelding</list>
+		<create>Nieuw product</create>
+		<formview>Productdetail</formview>
+		<forminsert>Registratie van een nieuw product</forminsert>
+		<formupdate>Product modificatie</formupdate>
+		<defaultdata>Productgegevens</defaultdata>
+		<ref>Ref.</ref>
+		<peso>Gewicht</peso>
+		<volumen>Volume</volumen>
+		<dimensiones>Afmetingen</dimensiones>
+		<fotofile>Huidige foto</fotofile>
+		<fotofilenew>Nieuwe foto</fotofilenew>
+		<siniva eval="true">"[Zonder ".CONFIG("accounting_iva_name")."]"</siniva>
+	</productos>
+	<presupuestos>
+		<list>Budgetlijst</list>
+		<create>Nieuwe quote</create>
+		<formview>Budgetdetail</formview>
+		<forminsert>Een nieuw budget toevoegen</forminsert>
+		<formupdate>Budgetwijziging</formupdate>
+		<defaultdata>Budgetgegevens</defaultdata>
+		<tareaspresupuesto>Budget taken</tareaspresupuesto>
+		<desctareas>Beschrijving van taken</desctareas>
+		<horastotal>Totaal aantal uren</horastotal>
+		<preciomedio>Gemiddelde prijs</preciomedio>
+		<preciototal>Totale prijs</preciototal>
+		<productospresupuesto>Budgetproducten</productospresupuesto>
+		<descproductos>Producten beschrijving</descproductos>
+		<objetivos>Begrotingsdoelstellingen</objetivos>
+		<funcional>Functioneel voorstel</funcional>
+		<tecnica>Technisch voorstel</tecnica>
+		<extras>Extra informatie</extras>
+		<condiciones>Budgetvoorwaarden</condiciones>
+		<valoracion>Economische waardering</valoracion>
+		<crearproyecto>Creëer project</crearproyecto>
+		<projectexists>Dit budget is al gerelateerd aan een project</projectexists>
+		<clientnotexists>Je moet een relatie hebben met een klant (als je gerelateerd bent aan een potentiële klant, maak hem dan eerst een klant)</clientnotexists>
+		<projectcreatedok>Het nieuwe project is met succes gemaakt</projectcreatedok>
+		<msgcrear>Wil je vanuit dit budget een project maken?</msgcrear>
+		<agendadata>Budget evenementen</agendadata>
+		<actasdata>Budget minuten</actasdata>
+		<plotseguimientoestados>Budgetten groeperen op staat</plotseguimientoestados>
+		<resumentareasproductos>Overzicht van taken en producten</resumentareasproductos>
+		<objetivospdf>Doelstellingen</objetivospdf>
+		<funcionalpdf>Functioneel</funcionalpdf>
+		<tecnicapdf>Techniek</tecnicapdf>
+		<extraspdf>Info</extraspdf>
+		<condicionespdf>Voorwaarden</condicionespdf>
+		<actionfacturar>Bill</actionfacturar>
+		<msgfacturar>Wilt u het project factureren?</msgfacturar>
+		<errorfacturar>Er is al een factuur voor deze offerte</errorfacturar>
+		<okfacturar>Het budget is correct gefactureerd</okfacturar>
+	</presupuestos>
+	<campanyas>
+		<list>Campagnelijst</list>
+		<create>Nieuwe campagne</create>
+		<formview>Campagnedetail</formview>
+		<forminsert>Registratie van een nieuwe campagne</forminsert>
+		<formupdate>Campagnewijziging</formupdate>
+		<defaultdata>Campagnegegevens</defaultdata>
+		<agendadata>Campagne-evenementen</agendadata>
+		<presupuestosdata>Campagnebudgetten</presupuestosdata>
+		<projectopen>Actieve projecten</projectopen>
+		<projectclose>Afgesloten projecten</projectclose>
+		<clientesdata>Gerekruteerde klanten</clientesdata>
+		<posiblesclidata>Mogelijke klanten</posiblesclidata>
+	</campanyas>
+	<tiposevento>
+		<list>Lijst met soorten evenementen</list>
+		<create>Nieuw type evenement</create>
+		<formview>Details van gebeurtenistype</formview>
+		<forminsert>Registratie van een nieuw type evenement</forminsert>
+		<formupdate>Het gebeurtenistype wijzigen</formupdate>
+		<defaultdata>Gegevens over het gebeurtenistype</defaultdata>
+	</tiposevento>
+	<textos>
+		<list>Lijst met voorgedefinieerde teksten</list>
+		<publico>Openbaar</publico>
+		<publico_desc>Iedereen kan deze voorgedefinieerde tekst gebruiken</publico_desc>
+		<create>Nieuwe voorgedefinieerde tekst</create>
+		<formview>Voorgedefinieerd tekstdetail</formview>
+		<forminsert>Een nieuwe vooraf gedefinieerde tekst toevoegen</forminsert>
+		<formupdate>De vooraf gedefinieerde tekst wijzigen</formupdate>
+		<defaultdata>Voorgedefinieerde tekstgegevens</defaultdata>
+		<sinaplicacion>[Zonder aanvraag]</sinaplicacion>
+	</textos>
+	<ficheros>
+		<list>Lijst met bijgevoegde bestanden</list>
+		<todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
+	</ficheros>
+	<feeds>
+		<list>Lijst met RSS-feeds</list>
+		<msgnewfeedsok1>Nieuwe post gedownload</msgnewfeedsok1>
+		<msgnewfeedsok2>Nieuwe gedownloade berichten</msgnewfeedsok2>
+		<msgnewfeedsko>Geen nieuwe berichten gevonden</msgnewfeedsko>
+		<msgmodifiedfeedsok1>Bijgewerkte post</msgmodifiedfeedsok1>
+		<msgmodifiedfeedsok2>Bijgewerkte berichten</msgmodifiedfeedsok2>
+		<msgnotfeeds>Er is geen RSS-feed geconfigureerd of geactiveerd</msgnotfeeds>
+		<feed>RSS-feed</feed>
+		<title>Titel</title>
+		<pubdate>Pub datum</pubdate>
+		<recibir>Ontvang</recibir>
+		<recibirtip>Klik hier om nieuwe berichten te ontvangen</recibirtip>
+		<todoslosfeeds>[Alle RSS-feeds]</todoslosfeeds>
+		<defaultdata>Details plaatsen</defaultdata>
+		<fulldata>Zoom plaatsen</fulldata>
+		<actionwait>In afwachting</actionwait>
+		<statenew>Nieuw</statenew>
+		<actionnew>Nieuw</actionnew>
+		<statemodified>Gewijzigd</statemodified>
+		<statewait>In afwachting</statewait>
+		<stateread>Lees</stateread>
+		<actionforward>Vooruit</actionforward>
+		<actionforwardtip>Om dit bericht per e-mail door te sturen</actionforwardtip>
+		<formview>Details plaatsen</formview>
+		<msggotofeeds>ga naar RSS-feeds</msggotofeeds>
+		<onlynew>Gewoon nieuw</onlynew>
+		<onlywait>Alleen in behandeling</onlywait>
+		<options>Opties</options>
+		<optionstip>Meer vermeldingsopties weergeven</optionstip>
+		<pdfoptions>PDF-opties</pdfoptions>
+		<stateall>Allemaal</stateall>
+		<today>Vandaag</today>
+		<yesterday>Gisteren</yesterday>
+		<week>Week</week>
+		<month>Maand</month>
+		<marcarfeeds>Markeren als</marcarfeeds>
+		<leidos>Lees</leidos>
+		<wait>In afwachting</wait>
+		<borrar>Verwijderen</borrar>
+		<borrartip>Verwijder alle geselecteerde berichten</borrartip>
+		<noleidos>Ongelezen</noleidos>
+		<nowait>Niet in behandeling</nowait>
+		<msgleidos>Wil je alle geselecteerde berichten markeren als gelezen / ongelezen?</msgleidos>
+		<msgwait>Wil je alle geselecteerde berichten markeren als in behandeling / niet in behandeling?</msgwait>
+		<msgdelete2>Wil je alle geselecteerde berichten verwijderen?</msgdelete2>
+		<msgpropietario>Alleen de eigenaar van de berichten kan deze functies gebruiken</msgpropietario>
+		<msgnotfound>Geen geselecteerde berichten gevonden, pas het filter aan</msgnotfound>
+		<msgnumsileidos>Ze zijn gemarkeerd als gelezen:</msgnumsileidos>
+		<msgnumsiwait>Ze zijn gemarkeerd als in behandeling:</msgnumsiwait>
+		<msgnumnoleidos>Ze zijn gemarkeerd als ongelezen:</msgnumnoleidos>
+		<msgnumnowait>Ze zijn gemarkeerd als niet in behandeling:</msgnumnowait>
+		<msgnumdelete>Het volgende is verwijderd:</msgnumdelete>
+		<message0>Berichten</message0>
+		<message1>Bericht</message1>
+		<message2>Berichten</message2>
+		<msgerrorfeed>Er is een fout opgetreden met de volgende feed:</msgerrorfeed>
+		<sintitle>(zonder titel)</sintitle>
+		<post>RSS-bericht</post>
+		<filtrarfeeds>Filteren op</filtrarfeeds>
+		<actioncool>Interessant</actioncool>
+		<statecool>Interessant</statecool>
+		<onlycool>Gewoon interessant</onlycool>
+		<cool>Interessant</cool>
+		<nocool>Niet interessant</nocool>
+		<msgcool>Wil je alle geselecteerde berichten markeren als interessant / niet interessant?</msgcool>
+		<msgnumsicool>Ze zijn gemarkeerd als interessant:</msgnumsicool>
+		<msgnumnocool>Ze zijn gemarkeerd als niet interessant:</msgnumnocool>
+		<actionfavoritos>Toevoegen aan favorieten</actionfavoritos>
+	</feeds>
+	<importaciones>
+		<list>Vermelding importeren</list>
+		<create>Nieuwe import</create>
+		<formview>Importeer details</formview>
+		<forminsert>Registratie van een nieuwe import</forminsert>
+		<formupdate>Wijziging importeren</formupdate>
+		<defaultdata>Gegevens importeren</defaultdata>
+		<sinaplicacion>[Zonder aanvraag]</sinaplicacion>
+		<importdata>Bestandsgegevens</importdata>
+	</importaciones>
+	<folders>
+		<notfound>Map niet gevonden</notfound>
+		<todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
+		<deleteoffolder>Verwijderen uit deze map</deleteoffolder>
+		<defaultfolder>Persoonlijke map</defaultfolder>
+	</folders>
+	<translator>
+		<translator>Vertaler</translator>
+		<corrector>Concealer</corrector>
+		<es>Spaans</es>
+		<ca>Catalaans</ca>
+		<en>Engels</en>
+		<pt>Portugees</pt>
+		<eu>Baskisch</eu>
+		<gl>Galicisch</gl>
+		<fr>Frans</fr>
+		<ar>Arab</ar>
+	</translator>
+	<buscador>
+		<list>Zoekmachine</list>
+		<todaslasaplicaciones>[Alle toepassingen]</todaslasaplicaciones>
+	</buscador>
+	<errorlog>
+		<formupdate>Foutlogboeken</formupdate>
+		<defaultdata>Bestandsinhoud</defaultdata>
+	</errorlog>
+	<favoritos>
+		<list>Favorietenlijst</list>
+		<create>Nieuwe favoriet</create>
+		<url>URL</url>
+		<bookmarkexists>De url die u probeert op te slaan, bestaat al als favoriet.</bookmarkexists>
+		<invalidurl>De url is niet geldig, controleer het webadres:</invalidurl>
+		<bookmarkadded>De url is succesvol toegevoegd aan favorieten</bookmarkadded>
+		<previews>Voorvertoningen</previews>
+	</favoritos>
+	<ivas>
+		<list eval="true">"Lijst van ".CONFIG("accounting_iva_name")</list>
+		<create eval="true">"Nieuw ".CONFIG("accounting_iva_name")</create>
+		<formview eval="true">"Detail van de ".CONFIG("accounting_iva_name")</formview>
+		<forminsert eval="true">"Nieuwe registratie ".CONFIG("accounting_iva_name")</forminsert>
+		<formupdate eval="true">"Wijziging van ".CONFIG("accounting_iva_name")</formupdate>
+		<defaultdata eval="true">"Gegevens van ".CONFIG("accounting_iva_name")</defaultdata>
+	</ivas>
+	<categorias>
+		<list>Lijst met categorieën</list>
+		<create>Nieuwe categorie</create>
+		<formview>Categorie detail</formview>
+		<forminsert>Registratie van een nieuwe categorie</forminsert>
+		<formupdate>Wijziging van de categorie</formupdate>
+		<defaultdata>Categoriegegevens</defaultdata>
+	</categorias>
+</root>

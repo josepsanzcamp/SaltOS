@@ -58,12 +58,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<value>fr_FR</value>
 		</row>
 		<row>
+			<label>Italiano (Italia)</label>
+			<value>it_IT</value>
+		</row>
+		<row>
+			<label>Klingon (Klingon)</label>
+			<value>tlh_TLH</value>
+		</row>
+		<row>
+			<label>Nederlands (Nederland))</label>
+			<value>nl_NL</value>
+		</row>
+		<row>
+			<label>Nynorsk (Noreg)</label>
+			<value>nn_NO</value>
+		</row>
+		<row>
 			<label>Português (Brasil)</label>
 			<value>pt_BR</value>
 		</row>
 		<row>
 			<label>Português (Portugal)</label>
 			<value>pt_PT</value>
+		</row>
+		<row>
+			<label>Suomi (Suomi)</label>
+			<value>fi_FI</value>
+		</row>
+		<row>
+			<label>Svenska (Sverige)</label>
+			<value>sv_SE</value>
 		</row>
 	</rows>
 	<value global="lang" eval="true">$lang</value>

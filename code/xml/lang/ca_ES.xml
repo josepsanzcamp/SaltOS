@@ -442,6 +442,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<folders>Carpetes</folders>
 		<buscador>Cercador</buscador>
 		<errorlog>Logs d'error</errorlog>
+		<categorias>Categories</categorias>
 		<desc_clientes>Gestioni els clients de la seva empresa</desc_clientes>
 		<desc_contactos>Per accedir als contactes d'un client</desc_contactos>
 		<desc_incidencias>Gestioni des d'aquí les incidències dels seus clients</desc_incidencias>
@@ -484,6 +485,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_importaciones>Import dades a les principals aplicacions des d'aquí</desc_importaciones>
 		<desc_buscador>Per cercar a tota la base de dades</desc_buscador>
 		<desc_errorlog>Per veure el registre d'errors de SaltOS</desc_errorlog>
+		<desc_categorias>Per veure les categories de certes aplicacions</desc_categorias>
 		<quick_home>Inici</quick_home>
 		<quick_correo>Correu</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
@@ -526,6 +528,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_importaciones>Importacions</quick_importaciones>
 		<quick_buscador>Cercador</quick_buscador>
 		<quick_errorlog>Errors</quick_errorlog>
+		<quick_categorias>Categories</quick_categorias>
 		<translator>Traductor</translator>
 		<translatortip>Per fer traduccions de textos</translatortip>
 		<corrector>Corrector</corrector>
@@ -592,6 +595,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<msgsendemail>S'ha enviat un correu electrònic a tots els implicats en la incidència</msgsendemail>
 		<boolsendmail>Enviar email</boolsendmail>
 		<boolsendmailtip>Si activa aquesta opció, s'enviarà un email a tots els implicats</boolsendmailtip>
+		<categoria>Categoria</categoria>
+		<sincategoria>[Sense categoria]</sincategoria>
+		<allcategorias>[Totes les categories]</allcategorias>
 	</incidencias>
 	<proyectos>
 		<list>Llistat de projectes</list>
@@ -1538,4 +1544,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate eval="true">"Modificació del ".CONFIG("accounting_iva_name")</formupdate>
 		<defaultdata eval="true">"Dades del ".CONFIG("accounting_iva_name")</defaultdata>
 	</ivas>
+	<categorias>
+		<list>Llistat de categories</list>
+		<create>Nova categoria</create>
+		<formview>Detall de la categoria</formview>
+		<forminsert>Alta d'una nova categoria</forminsert>
+		<formupdate>Modificació de la categoria</formupdate>
+		<defaultdata>Dades de la categoria</defaultdata>
+	</categorias>
 </root>

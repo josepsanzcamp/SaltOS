@@ -30,10 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<title>SaltOS programme d'installation</title>
 		<yes>Oui</yes>
 		<no>Non</no>
-		<language revised="false">Sélection de la langue, la conception et icônes</language>
+		<language>Sélection de la langue, la conception et icônes</language>
 		<welcome_message>Bienvenue sur le programme d'installation de SaltOS</welcome_message>
 		<lang_message>Sélectionner la langue</lang_message>
-		<style_message revised="false">Sélectionnez la conception</style_message>
+		<style_message>Sélectionnez la conception</style_message>
 		<begin_message>Appuyer "Prochain" afin de débuter l'installation de SaltOS seulement 5 étapes</begin_message>
 		<back>Retour</back>
 		<next>Prochain</next>
@@ -51,9 +51,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<selected_dbtype>Sélectionner DBMS</selected_dbtype>
 		<dbfile>fichiers base de données</dbfile>
 		<dbtest>Tester la connexion</dbtest>
-		<dbvoid translated="false">The database is empty</dbvoid>
+		<dbvoid>La base de données est vide</dbvoid>
 		<dbhost>Host</dbhost>
-		<dbport revised="false">Port</dbport>
+		<dbport>Port</dbport>
 		<dbuser>Usager</dbuser>
 		<dbpass>Mot passe</dbpass>
 		<dbname>Nom base de donnée</dbname>
@@ -62,15 +62,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pass>Mot de passe</pass>
 		<email>Courriel</email>
 		<optional>Optionnel</optional>
-		<server_config translated="false">Server configuration</server_config>
+		<server_config>Configuration du serveur</server_config>
 		<timezone>Zone géographique</timezone>
-		<hostname translated="false">Web server</hostname>
-		<pathname translated="false">Server path</pathname>
-		<automatic translated="false">Automatic</automatic>
+		<hostname>Serveur web</hostname>
+		<pathname>Chemin du serveur</pathname>
+		<automatic>Automatique</automatic>
 		<forcessl>Forcer SSL (https)</forcessl>
-		<porthttp translated="false">Http port</porthttp>
-		<porthttps translated="false">Https port</porthttps>
-		<initial_data translated="false">Initial import data</initial_data>
+		<porthttp>Port http</porthttp>
+		<porthttps>Port http</porthttps>
+		<initial_data>Données d'importation initiales</initial_data>
 		<exampledata>Importation de données en exemple</exampledata>
 		<undefined>Indéfini</undefined>
 		<install_input>Summaire et confirmation de l'installation</install_input>
@@ -79,23 +79,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<dbschema>Créer des tables dans la base de données</dbschema>
 		<dbstatic>Importer des données internes</dbstatic>
 		<streetdata>Importer des données</streetdata>
-		<defaultdata revised="false">Importer des données génériques</defaultdata>
+		<defaultdata>Importer des données génériques</defaultdata>
 		<permissiondata>Créer administrer les permissions pour les groupes administer</permissiondata>
 		<finish>Installation Complété</finish>
 		<gotohome>Rafraîchir la page</gotohome>
 		<notifybug>Rapporter un bug</notifybug>
 		<step>Étape</step>
 		<lang>Langue</lang>
-		<style revised="false">Conception</style>
+		<style>Conception</style>
 		<env_vars>Environnements variables</env_vars>
 		<env_path>PATH</env_path>
 		<env_lang>LANG</env_lang>
-		<applications translated="false">Applications</applications>
-		<select_layer translated="false">Select the layer</select_layer>
-		<selected_layer translated="false">Layer selected</selected_layer>
-		<layer_all translated="false">All applications</layer_all>
-		<layer_personal translated="false">Personal applications</layer_personal>
-		<select_apps translated="false">Select the applications</select_apps>
-		<selected_apps translated="false">Applications selected</selected_apps>
+		<applications>Applications</applications>
+		<select_layer>Sélectionnez le calque</select_layer>
+		<selected_layer>Calque sélectionné</selected_layer>
+		<layer_all>Toutes les applications</layer_all>
+		<layer_personal>Applications personnelles</layer_personal>
+		<select_apps>Sélectionnez les applications</select_apps>
+		<selected_apps>Applications sélectionnées</selected_apps>
 	</common>
 </root>

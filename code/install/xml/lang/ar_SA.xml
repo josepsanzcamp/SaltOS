@@ -51,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<selected_dbtype>DBMS المختار</selected_dbtype>
 		<dbfile>ملف قاعدة البيانات</dbfile>
 		<dbtest>تشيل اختبار الاتصال</dbtest>
-		<dbvoid translated="false">The database is empty</dbvoid>
+		<dbvoid>The database is empty</dbvoid>
 		<dbhost>المضيف</dbhost>
 		<dbport>الميناء</dbport>
 		<dbuser>المستخدم</dbuser>
@@ -62,15 +62,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<pass>كلمة المرور</pass>
 		<email>بريد</email>
 		<optional>اختياري</optional>
-		<server_config translated="false">Server configuration</server_config>
+		<server_config>Server configuration</server_config>
 		<timezone> المنطقة الزمني</timezone>
-		<hostname translated="false">Web server</hostname>
-		<pathname translated="false">Server path</pathname>
-		<automatic translated="false">Automatic</automatic>
+		<hostname>Web server</hostname>
+		<pathname>Server path</pathname>
+		<automatic>Automatic</automatic>
 		<forcessl>اجبار استخدام SSL (https)</forcessl>
-		<porthttp translated="false">Http port</porthttp>
-		<porthttps translated="false">Https port</porthttps>
-		<initial_data translated="false">Initial import data</initial_data>
+		<porthttp>Http port</porthttp>
+		<porthttps>Https port</porthttps>
+		<initial_data>Initial import data</initial_data>
 		<exampledata>استيراد عينة بيانات</exampledata>
 		<undefined>غير معرف</undefined>
 		<install_input>ملخص وتأكيد التثبيت</install_input>
@@ -90,12 +90,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<env_vars>متغيرات بيئة النظام</env_vars>
 		<env_path>المسار</env_path>
 		<env_lang>الغة</env_lang>
-		<applications translated="false">Applications</applications>
-		<select_layer translated="false">Select the layer</select_layer>
-		<selected_layer translated="false">Layer selected</selected_layer>
-		<layer_all translated="false">All applications</layer_all>
-		<layer_personal translated="false">Personal applications</layer_personal>
-		<select_apps translated="false">Select the applications</select_apps>
-		<selected_apps translated="false">Applications selected</selected_apps>
+		<applications>Applications</applications>
+		<select_layer>Select the layer</select_layer>
+		<selected_layer>Layer selected</selected_layer>
+		<layer_all>All applications</layer_all>
+		<layer_personal>Personal applications</layer_personal>
+		<select_apps>Select the applications</select_apps>
+		<selected_apps>Applications selected</selected_apps>
 	</common>
 </root>

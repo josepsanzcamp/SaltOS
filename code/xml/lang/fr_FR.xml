@@ -134,7 +134,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<otroscampos>Autres domaines</otroscampos>
 		<excel>Excel</excel>
 		<exceltip>Télécharger un fichier Excel avec les données actuelles</exceltip>
-		<pdf translated="false">Download PDF</pdf>
+		<pdf>Télécharger le PDF</pdf>
 		<pdftip>Télécharger un fichier PDF avec les données actuelles</pdftip>
 		<epigrafe>rubrique</epigrafe>
 		<campoauto>Champ automatique</campoauto>
@@ -152,7 +152,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<todoslosclientes>[Tous les clients]</todoslosclientes>
 		<todoslosposiblescli>[Tous les clients potentiels]</todoslosposiblescli>
 		<todoslosusuarios>[Tous les utilisateurs]</todoslosusuarios>
-		<todoslosgrupos translated="false">[All groups]</todoslosgrupos>
+		<todoslosgrupos>[Tous les groupes]</todoslosgrupos>
 		<todoslosproveedores>[Tous les fournisseurs]</todoslosproveedores>
 		<mostrartodos>[Voir tout]</mostrartodos>
 		<sinusuario>[Aucun utilisateur]</sinusuario>
@@ -182,7 +182,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<language>Langue</language>
 		<style>Design</style>
 		<nodata>Aucun résultat à afficher</nodata>
-		<nosearch translated="false">You must to provide a term to do a search</nosearch>
+		<nosearch>Vous devez fournir un terme pour effectuer une recherche</nosearch>
 		<prioridad>priorité</prioridad>
 		<sinproyecto>[Aucun projet associé]</sinproyecto>
 		<sintarea>[Aucune tâche associé]</sintarea>
@@ -274,10 +274,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sending>Envoi de données, s'il vous plaît d'attendre l'envoi de ...</sending>
 		<prod>Prod</prod>
 		<addfile>Ajouter un fichier</addfile>
-		<addproduct revised="false">Ajouter le produit</addproduct>
-		<addconcept revised="false">Ajouter notion</addconcept>
-		<addvencimiento revised="false">Ajouter la maturité</addvencimiento>
-		<addtarea revised="false">Ajouter tâche</addtarea>
+		<addproduct>Ajouter le produit</addproduct>
+		<addconcept>Ajouter notion</addconcept>
+		<addvencimiento>Ajouter la maturité</addvencimiento>
+		<addtarea>Ajouter tâche</addtarea>
 		<send>Soumettre</send>
 		<notas>Notes</notas>
 		<sincampanya>[Aucune campagne partenaire]</sincampanya>
@@ -345,11 +345,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<updatefilterko>Vous devez sélectionner un filtre pour l'édition</updatefilterko>
 		<deletefilterok>Il a supprimé le filtre</deletefilterok>
 		<deletefilterko>Vous devez sélectionner un filtre pour supprimer</deletefilterko>
-		<renamefilter revised="false">Renommer</renamefilter>
-		<renamefiltertip revised="false">Cliquez ici pour renommer un filtre existant</renamefiltertip>
-		<renamefilterok revised="false">Rebaptisé filtre existant correctement</renamefilterok>
-		<renamefilterko1 revised="false">Vous devez sélectionner un filtre à renommer</renamefilterko1>
-		<renamefilterko2 revised="false">Nécessité de définir le nouveau nom du filtre à renommer</renamefilterko2>
+		<renamefilter>Renommer</renamefilter>
+		<renamefiltertip>Cliquez ici pour renommer un filtre existant</renamefiltertip>
+		<renamefilterok>Rebaptisé filtre existant correctement</renamefilterok>
+		<renamefilterko1>Vous devez sélectionner un filtre à renommer</renamefilterko1>
+		<renamefilterko2>Nécessité de définir le nouveau nom du filtre à renommer</renamefilterko2>
 		<showmenu>Afficher le menu</showmenu>
 		<hidemenu>Cacher le menu</hidemenu>
 		<showtools>Voir les outils</showtools>
@@ -358,35 +358,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sentfromsaltos>Courriel envoyer de mon SaltOS</sentfromsaltos>
 		<foldersdata>Dossier</foldersdata>
 		<loweradd>Ajouter</loweradd>
-		<notify revised="false">Notifications</notify>
+		<notify>Notifications</notify>
 		<help>Aide</help>
 		<desktoptip>Activer intégré avec les notifications de bureau</desktoptip>
-		<desktoptxt revised="false">Notifications intégrés avec le bureau activés</desktoptxt>
-		<selectallcheckbox revised="false">Sélectionner tous les enregistrements</selectallcheckbox>
-		<selectonecheckbox revised="false">Sélectionnez ce dossier</selectonecheckbox>
+		<desktoptxt>Notifications intégrés avec le bureau activés</desktoptxt>
+		<selectallcheckbox>Sélectionner tous les enregistrements</selectallcheckbox>
+		<selectonecheckbox>Sélectionnez ce dossier</selectonecheckbox>
 		<formapago> paiement</formapago>
 		<todaslasformasdepago>[Toutes les formes de paiement]</todaslasformasdepago>
 		<sinformapago>[Aucun paiement]</sinformapago>
-		<actions translated="false">Options of this register</actions>
-		<msgfilesindexed1 translated="false"> file indexed to the database</msgfilesindexed1>
-		<msgfilesindexed2 translated="false"> files indexed to the database</msgfilesindexed2>
-		<msgregistersindexed1 translated="false"> register indexed to the database</msgregistersindexed1>
-		<msgregistersindexed2 translated="false"> registers indexed to the database</msgregistersindexed2>
-		<msgregisterspurged1 translated="false"> register purged to the database</msgregisterspurged1>
-		<msgregisterspurged2 translated="false"> registers purged to the database</msgregisterspurged2>
-		<biglist translated="false">$limit records</biglist>
-		<biglisttip translated="false">Warning: please note that are showing $limit records and the application might run slowly</biglisttip>
+		<actions>Options de ce registre</actions>
+		<msgfilesindexed1>Fichier indexé dans la base de données</msgfilesindexed1>
+		<msgfilesindexed2>Fichiers indexés dans la base de données</msgfilesindexed2>
+		<msgregistersindexed1>Registre indexé dans la base de données</msgregistersindexed1>
+		<msgregistersindexed2>Registres indexés dans la base de données</msgregistersindexed2>
+		<msgregisterspurged1>Registre purgé dans la base de données</msgregisterspurged1>
+		<msgregisterspurged2>Registres purgés dans la base de données</msgregisterspurged2>
+		<biglist>$ limit records</biglist>
+		<biglisttip>Attention: veuillez noter que les enregistrements $ limit sont affichés et que l'application peut s'exécuter lentement</biglisttip>
 		<activo>Active</activo>
 		<activo_desc>pour indiquer à l'utilisateur active ou là par héritage</activo_desc>
-		<print translated="false">Print</print>
+		<print>Impression</print>
 	</common>
 	<login>
 		<logintitle>Accès application</logintitle>
 		<remember>Rappelez-vous mot de passe sur cet ordinateur</remember>
 		<enter>Entrée</enter>
-		<captcha1 translated="false">Security code</captcha1>
-		<captcha2 translated="false">Enter the code here</captcha2>
-		<captcha3 revised="false">Recharger l'image</captcha3>
+		<captcha1>Code de sécurité</captcha1>
+		<captcha2>Entrez le code ici</captcha2>
+		<captcha3>Recharger l'image</captcha3>
 		<mobileaccess>Accès à partir de périphériques mobiles</mobileaccess>
 	</login>
 	<menu>
@@ -428,20 +428,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<textos>Textes prédéfinis</textos>
 		<ficheros>Attachements</ficheros>
 		<feeds>Flux RSS Reader</feeds>
-		<favoritos translated="false">Favoritos</favoritos>
+		<favoritos>Favoritos</favoritos>
 		<ivas eval="true">CONFIG("accounting_iva_name")</ivas>
 		<importaciones>Importer</importaciones>
 		<gestioncomercial>Ventes</gestioncomercial>
 		<gestionproyectos>Projets</gestionproyectos>
 		<gestioncontabilidad>comptabilité</gestioncontabilidad>
 		<gestiongeneral>Général</gestiongeneral>
-		<gestionfiltros translated="false">Filters</gestionfiltros>
+		<gestionfiltros>Show more     filtres</gestionfiltros>
 		<gestionadministracion>Gestion administration</gestionadministracion>
 		<gestiontipos>Types</gestiontipos>
 		<gestionsistema>Système</gestionsistema>
 		<folders>Dossiers</folders>
 		<buscador>Recherche</buscador>
-		<errorlog revised="false">Les journaux d'erreurs</errorlog>
+		<errorlog>Les journaux d'erreurs</errorlog>
+		<categorias>Les catégories</categorias>
 		<desc_clientes>Gérer les clients de votre entreprise</desc_clientes>
 		<desc_contactos>Pour accéder à un contact avec la clientèle</desc_contactos>
 		<desc_incidencias>Gérer d'ici l'impact de ses clients</desc_incidencias>
@@ -479,12 +480,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc_textos>Créer des textes prédéfinis pour une utilisation dans d'autres applications </desc_textos>
 		<desc_ficheros>accès à tous les fichiers de l'application entière</desc_ficheros>
 		<desc_feeds>Suivez vos flux RSS et Atom de cette application</desc_feeds>
-		<desc_favoritos translated="false">Gestione sus favoritos desde aquí</desc_favoritos>
-		<desc_ivas translated="false">Manage the taxes from here</desc_ivas>
+		<desc_favoritos>Gestione sus favoritos desde aquí</desc_favoritos>
+		<desc_ivas>Gérez les taxes d'ici</desc_ivas>
 		<desc_importaciones>Importer des données pour les applications majeurs d'ici</desc_importaciones>
-		<desc_buscador revised="false">Pour chercher dans tous les contenus de la base de données</desc_buscador>
-		<desc_errorlog revised="false">Pour voir les journaux d'erreurs de Saltos</desc_errorlog>
-		<quick_home translated="false">Home</quick_home>
+		<desc_buscador>Pour chercher dans tous les contenus de la base de données</desc_buscador>
+		<desc_errorlog>Pour voir les journaux d'erreurs de Saltos</desc_errorlog>
+		<desc_categorias>Pour voir les catégories d'applications spécifiques</desc_categorias>
+		<quick_home>Accueil</quick_home>
 		<quick_correo>Courriel</quick_correo>
 		<quick_agenda>Agenda</quick_agenda>
 		<quick_profile>Profil</quick_profile>
@@ -522,18 +524,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_textos>Textes</quick_textos>
 		<quick_ficheros>Attachements</quick_ficheros>
 		<quick_feeds>RSS</quick_feeds>
-		<quick_favoritos translated="false">Favoritos</quick_favoritos>
+		<quick_favoritos>Favoritos</quick_favoritos>
 		<quick_importaciones>Importations</quick_importaciones>
 		<quick_buscador>Recherche</quick_buscador>
-		<quick_errorlog revised="false">Erreurs</quick_errorlog>
+		<quick_errorlog>Erreurs</quick_errorlog>
+		<quick_categorias>Les catégories</quick_categorias>
 		<translator>Traducteur</translator>
-		<translatortip translated="false">To do text's translations</translatortip>
+		<translatortip>Pour faire des traductions de texte</translatortip>
 		<corrector>Orthographe</corrector>
-		<correctortip translated="false">To do text's corrections</correctortip>
+		<correctortip>Pour faire des corrections de texte</correctortip>
 		<calculator>Calculateur</calculator>
-		<calculatortip translated="false">To do mathematical calculations</calculatortip>
-		<menu revised="false">Menu</menu>
-		<menutip revised="false">Pour afficher et masquer le menu de l'application</menutip>
+		<calculatortip>Pour faire des calculs mathématiques</calculatortip>
+		<menu>Menu</menu>
+		<menutip>Pour afficher et masquer le menu de l'application</menutip>
 	</menu>
 	<clientes>
 		<list>Liste des clients</list>
@@ -586,12 +589,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Ajout d'un nouvel effet</forminsert>
 		<formupdate>l'incidence Changement</formupdate>
 		<defaultdata>Données de l'incidence</defaultdata>
-		<usersdata translated="false">Users</usersdata>
-		<implicados translated="false">Involved</implicados>
+		<usersdata>Utilisatrices      (feminine)     utilisateurs      (masculine)</usersdata>
+		<implicados>Impliqué</implicados>
 		<asignadoa>Assigné à</asignadoa>
 		<msgsendemail>a été envoyé un courriel à tous ceux qui sont impliqués dans l'incidence</msgsendemail>
-		<boolsendmail translated="false">Send email</boolsendmail>
-		<boolsendmailtip translated="false">If you enable this option, an email will be sent to all users involved in the bug</boolsendmailtip>
+		<boolsendmail>Envoyer un e-mail</boolsendmail>
+		<boolsendmailtip>Si vous activez cette option, un email sera envoyé à tous les utilisateurs impliqués dans le bug</boolsendmailtip>
+		<categoria>Catégorie</categoria>
+		<sincategoria>[Sans catégorie]</sincategoria>
+		<allcategorias>[Toutes catégories]</allcategorias>
 	</incidencias>
 	<proyectos>
 		<list>liste Projet</list>
@@ -605,7 +611,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<horastotal>Heures Total</horastotal>
 		<preciomedio>Moyenne</preciomedio>
 		<preciototal>Prix total</preciototal>
-		<plotseguimientotareas revised="false">Diversion du projet</plotseguimientotareas>
+		<plotseguimientotareas>Diversion du projet</plotseguimientotareas>
 		<legendseguimientotareas>Heures  budgétisé | Heures employés</legendseguimientotareas>
 		<real>réel</real>
 		<diferencia>Différence</diferencia>
@@ -674,15 +680,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<entrada>Entrée</entrada>
 		<salida>sortie</salida>
 		<dias>Jours</dias>
-		<logged revised="false">Lié</logged>
+		<logged>Lié</logged>
 		<password2>Répétez clés</password2>
 		<errorpassword>Les entrées principales ne correspondent pas</errorpassword>
 		<contacto> Contact </contacto>
 		<sincontacto>[non-contact associé]</sincontacto>
 		<permdata>Autorisations de l'application</permdata>
-		<allow revised="false">Permettre</allow>
-		<deny revised="false">Refuser</deny>
-		<groupsdata revised="false">Groupes de l'utilisateur</groupsdata>
+		<allow>Permettre</allow>
+		<deny>Refuser</deny>
+		<groupsdata>Groupes de l'utilisateur</groupsdata>
 		<pop3host>serveur POP3</pop3host>
 		<pop3delete>Supprimer les messages sur le dernier serveur</pop3delete>
 		<pop3days>jour</pop3days>
@@ -700,7 +706,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<prefgcalendar>Sync calendrier avec Google Calendar service</prefgcalendar>
 		<prefgcalendar2>Avec cette option, vous pouvez utiliser le calendrier à partir de Google Agenda Saltos, le maintien des données mises à jour automatiquement sans vous soucier d'avoir à dupliquer les données d'un calendrier à l'autre</prefgcalendar2>
 		<emailgcalendar>compte de messagerie Gmail</emailgcalendar>
-		<tokengcalendar translated="false">Access token</tokengcalendar>
+		<tokengcalendar>Jeton d'accès</tokengcalendar>
 		<feedstitle>Configurez le flux que vous voulez lire de Saltos (RSS 1.0, RSS 2.0 et Atom 1.0)</feedstitle>
 		<url>URL</url>
 		<title>Titre</title>
@@ -712,13 +718,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<feeds_old>Flux configuré</feeds_old>
 		<feeds_new> Nouveau RSS</feeds_new>
 		<lowerdisabled>off</lowerdisabled>
-		<singrupo revised="false">[Sans le groupe]</singrupo>
-		<sinaplicacion revised="false">[Sans l'application]</sinaplicacion>
-		<registro revised="false">Record</registro>
-		<sinregistro revised="false">[Sans registre]</sinregistro>
-		<showdetalles revised="false">[Afficher les détails]</showdetalles>
-		<hidedetalles revised="false">[Hide details]</hidedetalles>
-		<appsregsdata revised="false">Autorisations d'enregistrement</appsregsdata>
+		<singrupo>[Sans le groupe]</singrupo>
+		<sinaplicacion>[Sans l'application]</sinaplicacion>
+		<registro>Record</registro>
+		<sinregistro>[Sans registre]</sinregistro>
+		<showdetalles>[Afficher les détails]</showdetalles>
+		<hidedetalles>[Hide details]</hidedetalles>
+		<appsregsdata>Autorisations d'enregistrement</appsregsdata>
 	</usuarios>
 	<epigrafes>
 		<list>Liste des entrées</list>
@@ -745,10 +751,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<formupdate> Changer le groupe </formupdate>
 		<defaultdata> Information sur le groupe </defaultdata>
 		<permdata>Autorisations de l'application</permdata>
-		<allow revised="false">Permettre</allow>
-		<deny revised="false">Refuser</deny>
-		<showdetalles revised="false">[Afficher les détails]</showdetalles>
-		<hidedetalles revised="false">[Hide details]</hidedetalles>
+		<allow>Permettre</allow>
+		<deny>Refuser</deny>
+		<showdetalles>[Afficher les détails]</showdetalles>
+		<hidedetalles>[Hide details]</hidedetalles>
 	</grupos>
 	<formaspago>
 		<list>Liste des formes de paiement</list>
@@ -866,7 +872,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<gcalendartip>des événements de synchronisation entre Google Agenda et Saltos</gcalendartip>
 		<notgcalendaremail>Vous n'avez pas configuré les préférences de compte Google Agenda</notgcalendaremail>
 		<invalidgcalendartoken>Données accéder à votre compte Google Agenda est incorrect</invalidgcalendartoken>
-		<requestgcalendartoken translated="false">Click here to obtain an access token</requestgcalendartoken>
+		<requestgcalendartoken>Cliquez ici pour obtenir un jeton d'accès</requestgcalendartoken>
 		<insertgcalendar>évènements Saltos créé dans Google Agenda:</insertgcalendar>
 		<updategcalendar>évènements Saltos à jour dans Google Agenda:</updategcalendar>
 		<insertsaltos>Google événements de calendrier créé en Saltos:</insertsaltos>
@@ -918,7 +924,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<newpassword2>Répétez clés</newpassword2>
 		<erroroldpassword>Le vieux mot de passe est incorrect</erroroldpassword>
 		<errornewpassword>Les entrées principales ne correspondent pas</errornewpassword>
-		<errornewpassword2 revised="false">La nouvelle clé doit être plus complexe</errornewpassword2>
+		<errornewpassword2>La nouvelle clé doit être plus complexe</errornewpassword2>
 		<prefgeneral>Préférences générales</prefgeneral>
 		<cambioclave> Changer votre mot de passe personnels </cambioclave>
 		<general>Général</general>
@@ -939,7 +945,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<prefgcalendar>Sync calendrier avec Google Calendar service</prefgcalendar>
 		<prefgcalendar2>Avec cette option, vous pouvez utiliser le calendrier de Google Agenda et Saltos de maintenir les données mises à jour automatiquement sans vous soucier d'avoir à dupliquer les données d'un calendrier à l'autre</prefgcalendar2>
 		<emailgcalendar>compte de messagerie Gmail</emailgcalendar>
-		<tokengcalendar translated="false">Access token</tokengcalendar>
+		<tokengcalendar>Jeton d'accès</tokengcalendar>
 		<addmetocc>Ajouter à mon CC tous les emails que j'envoie</addmetocc>
 		<defaultcrt>Sur la reconnaissance d'application par défaut</defaultcrt>
 		<feedstitle>Configurez le flux que vous voulez lire de Saltos (RSS 1.0, RSS 2.0 et Atom 1.0)</feedstitle>
@@ -966,15 +972,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<quick_button_f8>Huitième bouton (F8)</quick_button_f8>
 		<quick_button_f9>Neuvième bouton (F9)</quick_button_f9>
 		<quick_button_f10>Dixième bouton (F10)</quick_button_f10>
-		<quick_button_f11 revised="false">Onzième bouton (F11)</quick_button_f11>
-		<quick_button_f12 revised="false">Douzième bouton (F12)</quick_button_f12>
+		<quick_button_f11>Onzième bouton (F11)</quick_button_f11>
+		<quick_button_f12>Douzième bouton (F12)</quick_button_f12>
 		<folderstab>Dossier utilisateur</folderstab>
 		<folderspref>Configurer les dossiers utilisateur ici, puis inscrivez ce que vous semble pertinent</folderspref>
 		<newfolder>Nouveau dossier utilisateur</newfolder>
-		<withoutparent translated="false">[Without folder]</withoutparent>
-		<inparentfolder translated="false">and is hanging in the folder</inparentfolder>
-		<namefolder translated="false">Name of the folder</namefolder>
-		<parentfolder translated="false">Hanging in the folder</parentfolder>
+		<withoutparent>[Sans dossier]</withoutparent>
+		<inparentfolder>et est suspendu dans le dossier</inparentfolder>
+		<namefolder>Nom du dossier</namefolder>
+		<parentfolder>Accrocher dans le dossier</parentfolder>
 	</profile>
 	<maincfg>
 		<formupdate>Paramètres</formupdate>
@@ -993,9 +999,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<feedstimeout>oublier le passé nourrit effacés</feedstimeout>
 		<sessioninterval>Vérifiez alerte journal toutes les</sessioninterval>
 		<sessionwarning>Prévenez déconnexion avant</sessionwarning>
-		<indexinginterval translated="false">Index new files every</indexinginterval>
-		<integrityinterval translated="false">Check integrity every</integrityinterval>
-		<purgeinterval translated="false">Purge data every</purgeinterval>
+		<indexinginterval>Indexer de nouveaux fichiers tous les</indexinginterval>
+		<integrityinterval>Vérifier l'intégrité tous les</integrityinterval>
+		<purgeinterval>Purger les données tous les</purgeinterval>
 		<emailsupport>Courriel pour le soutien technique</emailsupport>
 		<segundos>secondes</segundos>
 		<dias>jour</dias>
@@ -1010,9 +1016,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<colorline>lignes de couleur</colorline>
 		<colortext1>Titres</colortext1>
 		<colortext2>texte</colortext2>
-		<title_correo translated="false">Configure some global parameters about sending mail from SaltOS</title_correo>
-		<cuentasupport translated="false">Outbox email for support</cuentasupport>
-		<cuentaincidencias translated="false">Outbox email for issues</cuentaincidencias>
+		<title_correo>Configurer certains paramètres globaux sur l'envoi de courrier à partir de SaltOS</title_correo>
+		<cuentasupport>E-mail d'envoi pour l'assistance</cuentasupport>
+		<cuentaincidencias>E-mail d'envoi pour les problèmes</cuentaincidencias>
 		<water>Filigranes</water>
 		<title_water>Réglez le filigranes à être utilisés dans le PDF</title_water>
 		<wateractas>Procès-verbal:Texte</wateractas>
@@ -1024,7 +1030,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<waterproyectos>Projets: texte</waterproyectos>
 		<waterposiblescli>clients potentiels: Texte</waterposiblescli>
 		<watercorreo>Mail: Texte</watercorreo>
-		<waterfeeds translated="false">Feeds: Texte</waterfeeds>
+		<waterfeeds>Flux: Texte</waterfeeds>
 		<emailasync>Utilisation de la synchrones envoyés (plus rapide)</emailasync>
 		<accounting>comptabilité</accounting>
 		<title_accounting>Configurez ici les données comptables mondiales</title_accounting>
@@ -1032,25 +1038,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<accounting_iva_name>Nom d'impôt (est ajouté)</accounting_iva_name>
 		<accounting_irpf_name>Nom d'impôt (soit soustrait)</accounting_irpf_name>
 		<accounting_value>La valeur par défaut (seulement si elle est utilisée)</accounting_value>
-		<applications_config translated="false">Applications</applications_config>
-		<config_tabs translated="false">Setting tabs</config_tabs>
-		<default_values translated="false">Default values</default_values>
-		<configuracion_presupuestos translated="false">Budget Settings</configuracion_presupuestos>
-		<configuracion_agenda translated="false">Schedule settings</configuracion_agenda>
-		<configuracion_incidencias translated="false">Event settings</configuracion_incidencias>
-		<configuracion_facturas translated="false">Invoice settings</configuracion_facturas>
-		<configuracion_gastos translated="false">Spending settings</configuracion_gastos>
-		<show_tab_objetivos_presupuesto translated="false">Show Goals</show_tab_objetivos_presupuesto>
-		<show_tab_condiciones_presupuesto translated="false">Show conditions</show_tab_condiciones_presupuesto>
-		<show_tab_funcional_presupuesto translated="false">Show functional proposal</show_tab_funcional_presupuesto>
-		<show_tab_tecnica_presupuesto translated="false">Show technical proposal</show_tab_tecnica_presupuesto>
-		<show_tab_info_adicional_presupuesto translated="false">Show additional information</show_tab_info_adicional_presupuesto>
-		<show_tab_tareas_presupuesto translated="false">Show Tasks</show_tab_tareas_presupuesto>
-		<show_tab_productos_presupuesto translated="false">Show products</show_tab_productos_presupuesto>
-		<sin_configurar translated="false">[Not configured]</sin_configurar>
-		<filtro_grupo_usuarios_incidencias translated="false">Show users of a group in the user list</filtro_grupo_usuarios_incidencias>
-		<filtro_grupo_usuarios_implicados_incidencias translated="false">Group of involved</filtro_grupo_usuarios_implicados_incidencias>
-		<filtro_grupo_usuarios_asignados_incidencias translated="false">Group of assigned</filtro_grupo_usuarios_asignados_incidencias>
+		<applications_config>Applications</applications_config>
+		<config_tabs>Définition des onglets</config_tabs>
+		<default_values>Les valeurs par défaut</default_values>
+		<configuracion_presupuestos>Paramètres budgétaires</configuracion_presupuestos>
+		<configuracion_agenda>Paramètres de planification</configuracion_agenda>
+		<configuracion_incidencias>Paramètres d'événement</configuracion_incidencias>
+		<configuracion_facturas>Paramètres de facturation</configuracion_facturas>
+		<configuracion_gastos>Paramètres de dépenses</configuracion_gastos>
+		<show_tab_objetivos_presupuesto>Montrer les objectifs</show_tab_objetivos_presupuesto>
+		<show_tab_condiciones_presupuesto>Afficher les conditions</show_tab_condiciones_presupuesto>
+		<show_tab_funcional_presupuesto>Afficher la proposition fonctionnelle</show_tab_funcional_presupuesto>
+		<show_tab_tecnica_presupuesto>Afficher la proposition technique</show_tab_tecnica_presupuesto>
+		<show_tab_info_adicional_presupuesto>Afficher des informations supplémentaires</show_tab_info_adicional_presupuesto>
+		<show_tab_tareas_presupuesto>Afficher les tâches</show_tab_tareas_presupuesto>
+		<show_tab_productos_presupuesto>Afficher les produits</show_tab_productos_presupuesto>
+		<sin_configurar>[Pas configuré]</sin_configurar>
+		<filtro_grupo_usuarios_incidencias>Afficher les utilisateurs d'un groupe dans la liste des utilisateurs</filtro_grupo_usuarios_incidencias>
+		<filtro_grupo_usuarios_implicados_incidencias>Groupe de participants</filtro_grupo_usuarios_implicados_incidencias>
+		<filtro_grupo_usuarios_asignados_incidencias>Groupe d'affectés</filtro_grupo_usuarios_asignados_incidencias>
 	</maincfg>
 	<about>
 		<formupdate>propos Saltos</formupdate>
@@ -1062,7 +1068,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<bootstrap_plugins>Bootstrap plugins:</bootstrap_plugins>
 		<jquery_plugins>JQuery extensions:</jquery_plugins>
 		<javascript_plugins>Javascript plugins:</javascript_plugins>
-		<other_plugins revised="false">D'autres plugins:</other_plugins>
+		<other_plugins>D'autres plugins:</other_plugins>
 		<server_plugins>Extensions Serveurs:</server_plugins>
 		<vxinfo>Note: (*) Certains projets ne précisent pas la version spécifique de la licence d'utilisation</vxinfo>
 		<ooformats>Formats supportés </ooformats>
@@ -1086,8 +1092,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</support>
 	<home>
 		<formupdate>Accueil </formupdate>
-		<buscar2 translated="false">Search in SaltOS</buscar2>
-		<buscar3 translated="false">Search in files</buscar3>
+		<buscar2>Rechercher dans SaltOS</buscar2>
+		<buscar3>Rechercher dans les fichiers</buscar3>
 	</home>
 	<seguimientos>
 		<list>liste de suivi</list>
@@ -1110,8 +1116,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<desc2_import>Sélectionnez le fichier à importer en cliquant sur [Parcourir], puis appuyez sur [Importer] pour télécharger les nouvelles données de la sauvegarde</desc2_import>
 		<desc3_import>Important: La suppression d'importer les données actuelles que vous avez dans l'application</desc3_import>
 		<filenotfound>Impossible de lire le contenu de fichier d'importation</filenotfound>
-		<filefoundok revised="false">Il a importé correctement la sauvegarde </filefoundok>
-		<fileimporterror translated="false">Error when trying to import the file </fileimporterror>
+		<filefoundok>Il a importé correctement la sauvegarde </filefoundok>
+		<fileimporterror>Erreur lors de la tentative d'importation du fichier</fileimporterror>
 	</datacfg>
 	<correo>
 		<list>Liste d'envoi par courriel</list>
@@ -1197,7 +1203,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlyoutbox> seuls sortants </onlyoutbox>
 		<options>Options</options>
 		<optionstip>Afficher plus d'options de la liste</optionstip>
-		<pdfoptions translated="false">PDF options</pdfoptions>
+		<pdfoptions>Options PDF</pdfoptions>
 		<sinsubject>(aucun sujet)</sinsubject>
 		<msgfromkosendmail>pas trouvé le réglage de la De: requis</msgfromkosendmail>
 		<msgsendoksendmail>Il a été envoyé avec succès le courriel</msgsendoksendmail>
@@ -1224,25 +1230,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<allcampos>[tous les champs]</allcampos>
 		<onlyemail>que dans les directions</onlyemail>
 		<onlysubject>Seulement dans le cas</onlysubject>
-		<onlybody revised="false">Seul dans le message</onlybody>
+		<onlybody>Seul dans le message</onlybody>
 		<filtrarcorreos>Filtrer par</filtrarcorreos>
-		<priority revised="false">Priorité</priority>
-		<priorityhigh revised="false">Haut</priorityhigh>
-		<prioritynormal revised="false">Normal</prioritynormal>
-		<prioritylow revised="false">Faible</prioritylow>
-		<sensitivity revised="false">Sensibilité</sensitivity>
-		<sensitivitynormal revised="false">Normal</sensitivitynormal>
-		<sensitivitypersonal revised="false">Personnel</sensitivitypersonal>
-		<sensitivityprivate revised="false">Privé</sensitivityprivate>
-		<sensitivityconfidential revised="false">Confidentiel</sensitivityconfidential>
-		<addincidencia translated="false">Add bug</addincidencia>
-		<addincidenciatip translated="false">Create a new bug using this email as initial report</addincidenciatip>
-		<addincidenciamsg translated="false">Do you want to create a new bug using this email as initial report?</addincidenciamsg>
-		<addincidenciaok translated="false">Bug created with the code: </addincidenciaok>
-		<notsupportdefined translated="false">Support email account not defined in SaltOS</notsupportdefined>
-		<notsupportfound translated="false">This email doesn't contain the support email account</notsupportfound>
-		<incidenciaexists translated="false">Bug found with the code: </incidenciaexists>
-		<interrorsendmail translated="false">This email was not sent by an internal error</interrorsendmail>
+		<priority>Priorité</priority>
+		<priorityhigh>Haut</priorityhigh>
+		<prioritynormal>Normal</prioritynormal>
+		<prioritylow>Faible</prioritylow>
+		<sensitivity>Sensibilité</sensitivity>
+		<sensitivitynormal>Normal</sensitivitynormal>
+		<sensitivitypersonal>Personnel</sensitivitypersonal>
+		<sensitivityprivate>Privé</sensitivityprivate>
+		<sensitivityconfidential>Confidentiel</sensitivityconfidential>
+		<addincidencia>Ajouter un bug</addincidencia>
+		<addincidenciatip>Créer un nouveau bogue en utilisant cet e-mail comme rapport initial</addincidenciatip>
+		<addincidenciamsg>Voulez-vous créer un nouveau bogue en utilisant cet e-mail comme rapport initial?</addincidenciamsg>
+		<addincidenciaok>Bug créé avec le code:</addincidenciaok>
+		<notsupportdefined>Compte e-mail de support non défini dans SaltOS</notsupportdefined>
+		<notsupportfound>Cet e-mail ne contient pas le compte de messagerie d'assistance</notsupportfound>
+		<incidenciaexists>Bug trouvé avec le code:</incidenciaexists>
+		<interrorsendmail>Cet e-mail n'a pas été envoyé par une erreur interne</interrorsendmail>
 	</correo>
 	<cuentas>
 		<list>Liste des comptes</list>
@@ -1331,13 +1337,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Ajout d'un nouveau produit</forminsert>
 		<formupdate>Modifications dans le produit</formupdate>
 		<defaultdata>Produit Data</defaultdata>
-		<ref translated="false">Ref.</ref>
-		<peso translated="false">Weight</peso>
-		<volumen translated="false">Volume</volumen>
-		<dimensiones translated="false">Dimensions</dimensiones>
-		<fotofile translated="false">Current photo</fotofile>
-		<fotofilenew translated="false">New photo</fotofilenew>
-		<siniva eval="true" translated="false">"[Without ".CONFIG("accounting_iva_name")."]"</siniva>
+		<ref>Réf.</ref>
+		<peso>Poids</peso>
+		<volumen>Le volume</volumen>
+		<dimensiones>Dimensions</dimensiones>
+		<fotofile>Photo actuelle</fotofile>
+		<fotofilenew>Nouvelle photo</fotofilenew>
+		<siniva eval="true">"[Sans".CONFIG("accounting_iva_name")."]"</siniva>
 	</productos>
 	<presupuestos>
 		<list>Liste  des budgets</list>
@@ -1373,10 +1379,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<tecnicapdf>Technologie</tecnicapdf>
 		<extraspdf>information</extraspdf>
 		<condicionespdf>Conditions</condicionespdf>
-		<actionfacturar translated="false">Bill</actionfacturar>
-		<msgfacturar translated="false">Want to check the budget?</msgfacturar>
-		<errorfacturar translated="false">There is already a bill of this budget</errorfacturar>
-		<okfacturar translated="false">Has billed the budget properly</okfacturar>
+		<actionfacturar>Facture</actionfacturar>
+		<msgfacturar>Vous voulez vérifier le budget?</msgfacturar>
+		<errorfacturar>Il y a déjà un projet de loi de ce budget</errorfacturar>
+		<okfacturar>A correctement facturé le budget</okfacturar>
 	</presupuestos>
 	<campanyas>
 		<list>Liste des campagnes</list>
@@ -1409,7 +1415,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Ajout d'un texte par défaut de nouvelles</forminsert>
 		<formupdate>Changer le texte par défaut</formupdate>
 		<defaultdata>données des textes par défaut</defaultdata>
-		<sinaplicacion revised="false">[Sans l'application]</sinaplicacion>
+		<sinaplicacion>[Sans l'application]</sinaplicacion>
 	</textos>
 	<ficheros>
 		<list>Liste des pièces jointes</list>
@@ -1445,7 +1451,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<onlywait>Seuls  attente</onlywait>
 		<options>Options </options>
 		<optionstip>Afficher plus d'options de la liste</optionstip>
-		<pdfoptions translated="false">PDF options</pdfoptions>
+		<pdfoptions>Options PDF</pdfoptions>
 		<stateall>Tous</stateall>
 		<today>Aujourd'hui</today>
 		<yesterday>hier</yesterday>
@@ -1475,15 +1481,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<sintitle>(sans titre)</sintitle>
 		<post>RSS Post</post>
 		<filtrarfeeds>Filtrer par</filtrarfeeds>
-		<actioncool revised="false">Intéressant</actioncool>
-		<statecool revised="false">Intéressant</statecool>
-		<onlycool revised="false">Seulement intéressant</onlycool>
-		<cool revised="false">Intéressant</cool>
-		<nocool revised="false">Desintéressant</nocool>
-		<msgcool revised="false">Souhaitez marquer comme intéressant / inintéressant tous les messages sélectionnés?</msgcool>
-		<msgnumsicool revised="false">Ont été marqués comme intéressant: </msgnumsicool>
-		<msgnumnocool revised="false">Ont été marquées aussi intéressant: </msgnumnocool>
-		<actionfavoritos translated="false">Add to bookmarks</actionfavoritos>
+		<actioncool>Intéressant</actioncool>
+		<statecool>Intéressant</statecool>
+		<onlycool>Seulement intéressant</onlycool>
+		<cool>Intéressant</cool>
+		<nocool>Desintéressant</nocool>
+		<msgcool>Souhaitez marquer comme intéressant / inintéressant tous les messages sélectionnés?</msgcool>
+		<msgnumsicool>Ont été marqués comme intéressant: </msgnumsicool>
+		<msgnumnocool>Ont été marquées aussi intéressant: </msgnumnocool>
+		<actionfavoritos>Ajouter aux favoris</actionfavoritos>
 	</feeds>
 	<importaciones>
 		<list>Liste des importations</list>
@@ -1492,8 +1498,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<forminsert>Ajout d'une nouvelle importation</forminsert>
 		<formupdate>l'importation  Changement</formupdate>
 		<defaultdata>Importer des données</defaultdata>
-		<sinaplicacion revised="false">[Sans l'application]</sinaplicacion>
-		<importdata translated="false">Contents of the file</importdata>
+		<sinaplicacion>[Sans l'application]</sinaplicacion>
+		<importdata>Contenu du dossier</importdata>
 	</importaciones>
 	<folders>
 		<notfound>Dossier non trouvé</notfound>
@@ -1511,31 +1517,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<eu>Euskera</eu>
 		<gl>Gallego</gl>
 		<fr>French</fr>
-		<ar translated="false">Arabic</ar>
+		<ar>Show more     arabe</ar>
 	</translator>
 	<buscador>
-		<list revised="false">Rechercher</list>
+		<list>Rechercher</list>
 		<todaslasaplicaciones>[Toutes les demandes]</todaslasaplicaciones>
 	</buscador>
 	<errorlog>
-		<formupdate revised="false">Les journaux d'erreurs</formupdate>
-		<defaultdata revised="false">Le contenu des fichiers </defaultdata>
+		<formupdate>Les journaux d'erreurs</formupdate>
+		<defaultdata>Le contenu des fichiers </defaultdata>
 	</errorlog>
 	<favoritos>
-		<list translated="false">Listado de favoritos</list>
-		<create translated="false">Nuevo favorito</create>
-		<url translated="false">URL</url>
-		<bookmarkexists translated="false">La url que inteta guardar ya existe como favorito.</bookmarkexists>
-		<invalidurl translated="false">La url no es válida, verifique la dirección web: </invalidurl>
-		<bookmarkadded translated="false">The url was successfully added to bookmarks</bookmarkadded>
-		<previews translated="false">Previews</previews>
+		<list>Listado de favoritos</list>
+		<create>Nuevo favorito</create>
+		<url>URL</url>
+		<bookmarkexists>La url que inteta guardar ya existe como favorito.</bookmarkexists>
+		<invalidurl>La url no es válida, verifique la dirección web:</invalidurl>
+		<bookmarkadded>L'url a bien été ajoutée aux favoris</bookmarkadded>
+		<previews>Show more     aperçus</previews>
 	</favoritos>
 	<ivas>
-		<list eval="true" translated="false">"List of ".CONFIG("accounting_iva_name")</list>
-		<create eval="true" translated="false">"New ".CONFIG("accounting_iva_name")</create>
-		<formview eval="true" translated="false">"Details of the ".CONFIG("accounting_iva_name")</formview>
-		<forminsert eval="true" translated="false">"Added a new ".CONFIG("accounting_iva_name")</forminsert>
-		<formupdate eval="true" translated="false">"Changing the ".CONFIG("accounting_iva_name")</formupdate>
-		<defaultdata eval="true" translated="false">"Data of the ".CONFIG("accounting_iva_name")</defaultdata>
+		<list eval="true">"Liste de".CONFIG("accounting_iva_name")</list>
+		<create eval="true">"Nouveau".CONFIG("accounting_iva_name")</create>
+		<formview eval="true">"Détails du".CONFIG("accounting_iva_name")</formview>
+		<forminsert eval="true">"Ajout d'un nouveau".CONFIG("accounting_iva_name")</forminsert>
+		<formupdate eval="true">"Modification du".CONFIG("accounting_iva_name")</formupdate>
+		<defaultdata eval="true">"Données du".CONFIG("accounting_iva_name")</defaultdata>
 	</ivas>
+	<categorias>
+		<list>Liste des catégories</list>
+		<create>Nouvelle catégorie</create>
+		<formview>Détail de la catégorie</formview>
+		<forminsert>Ajout d'une nouvelle catégorie</forminsert>
+		<formupdate>Modifier la catégorie</formupdate>
+		<defaultdata>Données de la catégorie</defaultdata>
+	</categorias>
 </root>

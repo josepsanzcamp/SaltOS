@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ ____        _ _    ___  ____
+/ ___|  __ _| | |_ / _ \/ ___|
+\___ \ / _` | | __| | | \___ \
+ ___) | (_| | | |_| |_| |___) |
+|____/ \__,_|_|\__|\___/|____/
+
+SaltOS: Framework to develop Rich Internet Applications
+Copyright (C) 2007-2020 by Josep Sanz Campderrós
+More information in http://www.saltos.org or info@saltos.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<root>
+	<dir>it_it</dir>
+	<default>common</default>
+	<common>
+		<title>Programa de instalación de SaltOS</title>
+		<yes>Se</yes>
+		<no>Non</no>
+		<language>Selezione lingua, design e icone</language>
+		<welcome_message>Benvenuti nel programma di installazione di SaltOS</welcome_message>
+		<lang_message>Seleziona la lingua</lang_message>
+		<style_message>Seleziona il design</style_message>
+		<begin_message>Fai clic su "Avanti" per installare SaltOS in 5 semplici passaggi</begin_message>
+		<back>Precedente</back>
+		<next>Seguente</next>
+		<test>Controllare</test>
+		<install>Installa SaltOS</install>
+		<saltos>Avvia SaltOS</saltos>
+		<is_writable>Controlla le autorizzazioni di scrittura</is_writable>
+		<is_executable>Verifica dei programmi esterni</is_executable>
+		<directory>Elenco</directory>
+		<file>File</file>
+		<executable>Eseguibile</executable>
+		<database_link>Connessione al database</database_link>
+		<select_dbtype>Seleziona l'SGBD</select_dbtype>
+		<select_prefered>Consigliata)</select_prefered>
+		<selected_dbtype>SGBD selezionato</selected_dbtype>
+		<dbfile>File di database</dbfile>
+		<dbtest>La connessione di prova ha funzionato</dbtest>
+		<dbvoid>Il database è vuoto</dbvoid>
+		<dbhost>Server di database</dbhost>
+		<dbport>Porto</dbport>
+		<dbuser>Utente</dbuser>
+		<dbpass>Chiave</dbpass>
+		<dbname>Nome del database</dbname>
+		<admin_account>Accedi ai dati all'account amministratore</admin_account>
+		<user>Utente</user>
+		<pass>Chiave</pass>
+		<email>Posta elettronica</email>
+		<optional>Opzionale</optional>
+		<server_config>Configurazione del server</server_config>
+		<timezone>Fuso orario</timezone>
+		<hostname>Server web</hostname>
+		<pathname>Percorso del server</pathname>
+		<automatic>Automatico</automatic>
+		<forcessl>Forza SSL (https)</forcessl>
+		<porthttp>Porta http</porthttp>
+		<porthttps>Porta https</porthttps>
+		<initial_data>Caricamento iniziale dei dati</initial_data>
+		<exampledata>Importa dati di esempio</exampledata>
+		<undefined>Indefinito</undefined>
+		<install_input>Riepilogo e conferma dell'installazione</install_input>
+		<install_output>Risultato dell'installazione</install_output>
+		<config>Salva le impostazioni di accesso al database</config>
+		<dbschema>Creare tabelle nel database</dbschema>
+		<dbstatic>Importa dati interni</dbstatic>
+		<streetdata>Importa dati stradali</streetdata>
+		<defaultdata>Importa dati generici</defaultdata>
+		<permissiondata>Creare autorizzazioni per il gruppo di amministratori</permissiondata>
+		<finish>Fine dell'installazione</finish>
+		<gotohome>Ricarica</gotohome>
+		<notifybug>Segnala errore</notifybug>
+		<step>Passo</step>
+		<lang>Lingua</lang>
+		<style>Disegno</style>
+		<env_vars>Variabili d'ambiente</env_vars>
+		<env_path>PERCORSO</env_path>
+		<env_lang>LANG</env_lang>
+		<applications>Applicazioni</applications>
+		<select_layer>Seleziona profilo</select_layer>
+		<selected_layer>Profilo selezionato</selected_layer>
+		<layer_all>Tutte le applicazioni</layer_all>
+		<layer_personal>Applicazioni per uso personale</layer_personal>
+		<select_apps>Seleziona le applicazioni</select_apps>
+		<selected_apps>Applicazioni selezionate</selected_apps>
+	</common>
+</root>
