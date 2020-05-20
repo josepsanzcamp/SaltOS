@@ -3231,6 +3231,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</fields>
 		</index>
 		<index>
+			<table>tbl_ficheros</table>
+			<fields>
+				<field>
+					<name>fichero_file</name>
+				</field>
+			</fields>
+		</index>
+		<index>
 			<table>tbl_registros</table>
 			<fields>
 				<field>
