@@ -129,20 +129,22 @@ function url_get_contents($url) {
 	return $body;
 }
 
-function __url_get_contents($url,$method="",$values=array(),$cookies=array(),$referer="") {
+function __url_get_contents($url,$args=array()) {
 	require_once("lib/phpclasses/httpclient/http.php");
 	$http=new http_class;
 	$http->user_agent=get_name_version_revision();
 	$http->follow_redirect=1;
-	if(count($cookies)) $http->RestoreCookies($cookies);
+	if(isset($args["cookies"])) $http->RestoreCookies($args["cookies"]);
 	$arguments=array();
 	$error=$http->GetRequestArguments($url,$arguments);
 	if($error!="") return array("",array(),array());
 	$error=$http->Open($arguments);
 	if($error!="") return array("",array(),array());
-	if($method!="") $arguments["RequestMethod"]=strtoupper($method);
-	if(count($values)) $arguments["PostValues"]=$values;
-	if($referer!="") $arguments["Referer"]=$referer;
+	if(isset($args["method"])) $arguments["RequestMethod"]=strtoupper($args["method"]);
+	if(isset($args["values"])) $arguments["PostValues"]=$args["values"];
+	if(isset($args["referer"])) $arguments["Referer"]=$args["referer"];
+	if(isset($args["headers"])) foreach($args["headers"] as $key=>$val) $arguments["Headers"][$key]=$val;
+	if(isset($args["body"])) $arguments["Body"]=$args["body"];
 	$error=$http->SendRequest($arguments);
 	if($error!="") return array("",array(),array());
 	$headers=array();
