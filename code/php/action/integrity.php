@@ -97,36 +97,39 @@ if(getParam("action")=="integrity") {
 		if(count($ids)<1000) break;
 	}
 	// CHECK FOR FILES FIRST ITERATION
-	for(;;) {
-		if(time_get_usage()>getDefault("server/percentstop")) break;
-		// SEARCH FILES THAT DON'T CONTAIN ANY DIRECTORY SEPARATOR
-		$query="SELECT id,id_aplicacion,fichero_file FROM tbl_ficheros WHERE fichero_file!='' AND fichero_file NOT LIKE '%/%' LIMIT 1000";
-		$rows=execute_query_array($query);
-		if(!count($rows)) break;
-		foreach($rows as $row) {
-			$row["fichero_file2"]=id2page($row["id_aplicacion"],"unknown")."/".$row["fichero_file"];
-			$row["fichero_file3"]=get_directory("dirs/filesdir").$row["fichero_file"];
-			$row["fichero_file4"]=get_directory("dirs/filesdir").$row["fichero_file2"];
-			// CREATE DIRECTORY IF NOT EXISTS
-			$dir=dirname($row["fichero_file4"]);
-			if(!file_exists($dir)) {
-				mkdir($dir);
-				chmod_protected($dir,0777);
+	$range=execute_query("SELECT MAX(id) maxim, MIN(id) minim FROM tbl_ficheros");
+	for($i=$range["minim"];$i<$range["maxim"];$i+=100000) {
+		for(;;) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
+			// SEARCH FILES THAT DON'T CONTAIN ANY DIRECTORY SEPARATOR
+			$query="SELECT id,id_aplicacion,fichero_file FROM tbl_ficheros WHERE fichero_file!='' AND fichero_file AND id>=$i AND id<$i+100000 NOT LIKE '%/%' LIMIT 1000";
+			$rows=execute_query_array($query);
+			if(!count($rows)) break;
+			foreach($rows as $row) {
+				$row["fichero_file2"]=id2page($row["id_aplicacion"],"unknown")."/".$row["fichero_file"];
+				$row["fichero_file3"]=get_directory("dirs/filesdir").$row["fichero_file"];
+				$row["fichero_file4"]=get_directory("dirs/filesdir").$row["fichero_file2"];
+				// CREATE DIRECTORY IF NOT EXISTS
+				$dir=dirname($row["fichero_file4"]);
+				if(!file_exists($dir)) {
+					mkdir($dir);
+					chmod_protected($dir,0777);
+				}
+				// MOVE FILE
+				if(file_exists($row["fichero_file3"])) {
+					rename($row["fichero_file3"],$row["fichero_file4"]);
+					chmod_protected($row["fichero_file4"],0666);
+				}
+				// UPDATE DATABASE
+				$query=make_update_query("tbl_ficheros",array(
+					"fichero_file"=>$row["fichero_file2"]
+				),make_where_query(array(
+					"id"=>$row["id"]
+				)));
+				db_query($query);
 			}
-			// MOVE FILE
-			if(file_exists($row["fichero_file3"])) {
-				rename($row["fichero_file3"],$row["fichero_file4"]);
-				chmod_protected($row["fichero_file4"],0666);
-			}
-			// UPDATE DATABASE
-			$query=make_update_query("tbl_ficheros",array(
-				"fichero_file"=>$row["fichero_file2"]
-			),make_where_query(array(
-				"id"=>$row["id"]
-			)));
-			db_query($query);
+			if(count($rows)<1000) break;
 		}
-		if(count($rows)<1000) break;
 	}
 	// CHECK FOR FILES SECOND ITERATION
 	$checks=array(
