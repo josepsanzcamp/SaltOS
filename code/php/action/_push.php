@@ -41,46 +41,49 @@ $semaphore=array("session_id"=>session_id());
 $_RESULT=array();
 for(;;) {
 	if(time_get_usage(true)>300) break;
-	if(semaphore_acquire($semaphore)) {
-		sess_init();
-		if(isset($_SESSION["alerts"])) {
-			foreach($_SESSION["alerts"] as $key=>$val) {
-				set_array($_SESSION["messages"],"message",array(
-					"type"=>"alert",
-					"message"=>$val,
-					"timestamp"=>time(),
-				));
-				unset($_SESSION["alerts"][$key]);
-			}
+	if(!semaphore_acquire($semaphore)) break;
+	sess_init();
+	if(isset($_SESSION["alerts"])) {
+		foreach($_SESSION["alerts"] as $key=>$val) {
+			set_array($_SESSION["messages"],"message",array(
+				"type"=>"alert",
+				"message"=>$val,
+				"timestamp"=>time(),
+			));
+			unset($_SESSION["alerts"][$key]);
 		}
-		if(isset($_SESSION["errors"])) {
-			foreach($_SESSION["errors"] as $key=>$val) {
-				set_array($_SESSION["messages"],"message",array(
-					"type"=>"error",
-					"message"=>$val,
-					"timestamp"=>time(),
-				));
-				unset($_SESSION["errors"][$key]);
-			}
-		}
-		if(isset($_SESSION["messages"])) {
-			foreach($_SESSION["messages"] as $key=>$val) {
-				if($val["timestamp"]<time()-300) {
-					unset($_SESSION["messages"][$key]);
-				}
-			}
-			foreach($_SESSION["messages"] as $key=>$val) {
-				if($val["timestamp"]>$timestamp) {
-					if(!isset($_RESULT["messages"])) $_RESULT["messages"]=array();
-					set_array($_RESULT["messages"],"message",$val);
-				}
-			}
-		}
-		sess_close();
-		semaphore_release($semaphore);
 	}
+	if(isset($_SESSION["errors"])) {
+		foreach($_SESSION["errors"] as $key=>$val) {
+			set_array($_SESSION["messages"],"message",array(
+				"type"=>"error",
+				"message"=>$val,
+				"timestamp"=>time(),
+			));
+			unset($_SESSION["errors"][$key]);
+		}
+	}
+	if(isset($_SESSION["messages"])) {
+		foreach($_SESSION["messages"] as $key=>$val) {
+			if($val["timestamp"]<time()-300) {
+				unset($_SESSION["messages"][$key]);
+			}
+		}
+		foreach($_SESSION["messages"] as $key=>$val) {
+			if($val["timestamp"]>$timestamp) {
+				if(!isset($_RESULT["messages"])) $_RESULT["messages"]=array();
+				set_array($_RESULT["messages"],"message",$val);
+			}
+		}
+	}
+	sess_close();
+	semaphore_release($semaphore);
 	if(count($_RESULT)) break;
+	// TRICK TO DETECT SERVER RESTART
+	$time1=microtime(true);
 	sleep(1);
+	$time2=microtime(true);
+	if($time2-$time1<1) break;
 }
 
 $json=json_encode($_RESULT);
