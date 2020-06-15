@@ -118,8 +118,10 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 					$(dialog2).dialog("open");
 					// PAINT ALL PAGES
 					var container=document.getElementById("viewerContainer");
+					var eventBus=new pdfjsViewer.EventBus();
 					var pdfViewer=new pdfjsViewer.PDFViewer({
-						container:container
+						container:container,
+						eventBus:eventBus,
 					});
 					var fn1=function() {
 						pdfViewer.currentScaleValue="page-width";
@@ -140,8 +142,8 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 							}
 						});
 					};
-					document.addEventListener("pagesinit",fn1);
-					document.addEventListener("textlayerrendered",fn2);
+					eventBus.on("pagesinit",fn1);
+					eventBus.on("textlayerrendered",fn2);
 					pdfViewer.setDocument(pdfDocument);
 					setTimeout(function() {
 						$(dialog2).scrollTop(0);

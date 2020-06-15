@@ -2,7 +2,7 @@
 /*
  * mime_parser.php
  *
- * @(#) $Id: mime_parser.php,v 1.91 2016/08/27 22:11:07 mlemos Exp $
+ * @(#) $Id: mime_parser.php,v 1.93 2020/04/22 17:32:33 mlemos Exp $
  *
  */
 
@@ -30,8 +30,8 @@ define('MIME_ADDRESS_FIRST',            2);
 
 	<package>net.manuellemos.mimeparser</package>
 
-	<version>@(#) $Id: mime_parser.php,v 1.91 2016/08/27 22:11:07 mlemos Exp $</version>
-	<copyright>Copyright © (C) Manuel Lemos 2006 - 2008</copyright>
+	<version>@(#) $Id: mime_parser.php,v 1.93 2020/04/22 17:32:33 mlemos Exp $</version>
+	<copyright>Copyright (C) Manuel Lemos 2006 - 2020</copyright>
 	<title>MIME parser</title>
 	<author>Manuel Lemos</author>
 	<authoraddress>mlemos-at-acm.org</authoraddress>
@@ -365,6 +365,7 @@ class mime_parser_class
 	var $last_carriage_return = 0;
 	var $header_name_characters = '!"#$%&\'()*+,-./0123456789;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}';
 	var $message_position = 0;
+	var $warn_unexpected_quoted_printable_characters = 0;
 
 	/* Private functions */
 
@@ -1318,17 +1319,18 @@ class mime_parser_class
 								continue;
 							}
 							$decoded .= substr($this->body_buffer, $position, $equal - $position);
-							$h = HexDec($hex=strtolower(substr($this->body_buffer, $next, 2)));
-							if(strcmp(sprintf('%02x', $h), $hex))
+							$hex=strtolower(substr($this->body_buffer, $next, 2));
+							if(!preg_match('/^[0-9a-f]{2}$/', $hex))
 							{
-								if(!$this->SetPositionedWarning('the body specified an invalid quoted-printable encoded character', $this->body_offset + $next))
+								if($this->warn_unexpected_quoted_printable_characters
+								&& !$this->SetPositionedWarning('the body specified an invalid quoted-printable encoded character', $this->body_offset + $next))
 									return(0);
 								$decoded.='=';
 								$position=$next;
 							}
 							else
 							{
-								$decoded .= Chr($h);
+								$decoded .= Chr(HexDec($hex));
 								$position = $equal + 3;
 							}
 						}
@@ -2183,7 +2185,7 @@ class mime_parser_class
 		$results = array();
 		if(!IsSet($message['Headers']['content-type:']))
 			$content_type = 'text/plain';
-		elseif(count($message['Headers']['content-type:']) == 1)
+		elseif(gettype($message['Headers']['content-type:']) == 'string')
 			$content_type = $message['Headers']['content-type:'];
 		else
 		{

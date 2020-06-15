@@ -1,5 +1,21 @@
 # PHPMailer Change Log
 
+## Version 6.1.6 (May 27th, 2020)
+* **SECURITY** Fix insufficient output escaping bug in file attachment names. CVE-2020-13625. Reported by Elar Lang of Clarified Security.
+* Correct Armenian ISO language code from `am` to `hy`, add mapping for fallback
+* Use correct timeout property in debug output
+
+## Version 6.1.5 (March 14th, 2020)
+* Reject invalid custom headers that are empty or contain breaks
+* Various fixes for DKIM issues, especially when using `mail()` transport
+* Drop the `l=` length tag from DKIM signatures; it's a mild security risk
+* Ensure CRLF is used explicitly when needed, rather than `static::$LE`
+* Add a method for trimming header content consistently
+* Some minor tweaks to resolve static analyser complaints
+* Check that attachment files are readable both when adding *and* when sending
+* Work around Outlook bug in mishandling MIME preamble
+* Danish translation improvements
+
 ## Version 6.1.4 (December 10th, 2019)
 * Clean up hostname handling
 * Avoid IDN error on older PHP versions, prep for PHP 8.0

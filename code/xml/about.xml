@@ -298,19 +298,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.3.2 (LGPL-3.0)</label>
+							<label>TCPDF 6.3.5 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
 						</field>
 						<field>
-							<label>PHPMailer 6.1.4 (LGPL-2.1)</label>
+							<label>PHPMailer 6.1.6 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
 						</field>
 						<field>
-							<label>PHPSpreadsheet 1.10.1 (LGPL-2.1)</label>
+							<label>PHPSpreadsheet 1.13 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
@@ -330,7 +330,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://code.google.com/p/php-mobile-detect/")</onclick>
 						</field>
 						<field>
-							<label>MimeParser 1.91 (BSD)</label>
+							<label>MimeParser 1.93 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html")</onclick>
@@ -440,7 +440,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>JQuery 3.4.1 (MIT)</label>
+							<label>JQuery 3.5.1 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jquery.com/")</onclick>
@@ -458,7 +458,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
 						</field>
 						<field>
-							<label>Bootstrap 4.4.1 (MIT)</label>
+							<label>Bootstrap 4.5.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://getbootstrap.com/")</onclick>
@@ -479,7 +479,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Bootswatch 4.4.1 (MIT)</label>
+							<label>Bootswatch 4.5.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://bootswatch.com/")</onclick>
@@ -523,7 +523,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag/blob/master/javascripts/jquery.autogrow-textarea.js")</onclick>
 						</field>
 						<field>
-							<label>Timepicker Plugin for jQuery 1.13.0 (MIT)</label>
+							<label>Timepicker Plugin for jQuery 1.13.10 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/jonthornton/jquery-timepicker")</onclick>
@@ -537,7 +537,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/carhartl/jquery-cookie")</onclick>
 						</field>
 						<field>
-							<label>Form 4.2.2 (MIT &amp; LGPL-2.1)</label>
+							<label>Form 4.3.0 (MIT &amp; LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
@@ -569,7 +569,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/handsontable/handsontable/tree/6.2.2")</onclick>
 						</field>
 						<field>
-							<label>jsTree (MIT)</label>
+							<label>jsTree 3.3.9 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://www.jstree.com/")</onclick>
@@ -614,7 +614,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 4.13.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 4.14.0 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>
@@ -672,7 +672,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.generatedata.com/")</onclick>
 						</field>
 						<field>
-							<label>Font Awesome Free 5.12.0 (SIL OFL 1.1)</label>
+							<label>Font Awesome Free 5.13.0 (SIL OFL 1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://fontawesome.com/changelog/latest")</onclick>

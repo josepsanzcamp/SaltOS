@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
     'abede361264e2ae69ec1eee813a101af' => $vendorDir . '/markbaker/complex/classes/src/functions/abs.php',
     '21a5860fbef5be28db5ddfbc3cca67c4' => $vendorDir . '/markbaker/complex/classes/src/functions/acos.php',
     '1546e3f9d127f2a9bb2d1b6c31c26ef1' => $vendorDir . '/markbaker/complex/classes/src/functions/acosh.php',
