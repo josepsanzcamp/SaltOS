@@ -39,7 +39,9 @@ function current_time($offset=0) {
 function current_decimals($offset=0) {
 	$decimals=microtime(true)+$offset;
 	$decimals-=intval($decimals);
-	return substr($decimals,2,4);
+	$decimals=sprintf("%.04f",$decimals);
+	$decimals=substr($decimals,2,4);
+	return $decimals;
 }
 
 function current_datetime_decimals($offset=0) {
