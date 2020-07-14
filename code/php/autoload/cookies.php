@@ -77,7 +77,9 @@ function setCookie2($index,$value="") {
 	$path=dirname(getDefault("server/pathname",getServer("SCRIPT_NAME")));
 	$secure=eval_bool(getDefault("server/forcessl"));
 	setcookie($index,$value,$expire,$path,"",$secure,false);
-	setcookie("__".$index."__",$value==""?"":$expire,$expire,$path,"",$secure,false);
+	$index="__".$index."__";
+	if($value!="") $value=$expire;
+	setcookie($index,$value,$expire,$path,"",$secure,false);
 }
 
 ?>

@@ -44,7 +44,9 @@ if(getParam("action")=="session") {
 			$query="DELETE FROM tbl_sessions WHERE id='${id_session}'";
 			db_query($query);
 		}
-		if(getCookie2("remember")) $remain=max(getCookie2("__remember__")-time(),$remain);
+		if(getCookie2("remember")) {
+			$remain=max(intval(getCookie2("__remember__"))-time(),$remain);
+		}
 		if($remain<CONFIG("session_warning")) {
 			$remain=array(0,0,$remain);
 			if($remain[2]>60) {
