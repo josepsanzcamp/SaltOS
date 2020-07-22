@@ -4,13 +4,9 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit81970202f03c99f1d17b66920f4d4902
+class ComposerStaticInitced4e70fafcf83289b41d85290bbd01f
 {
     public static $files = array (
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'abede361264e2ae69ec1eee813a101af' => __DIR__ . '/..' . '/markbaker/complex/classes/src/functions/abs.php',
         '21a5860fbef5be28db5ddfbc3cca67c4' => __DIR__ . '/..' . '/markbaker/complex/classes/src/functions/acos.php',
@@ -93,12 +89,6 @@ class ComposerStaticInit81970202f03c99f1d17b66920f4d4902
             'MyCLabs\\Enum\\' => 13,
             'Matrix\\' => 7,
         ),
-        'G' => 
-        array (
-            'GuzzleHttp\\Psr7\\' => 16,
-            'GuzzleHttp\\Promise\\' => 19,
-            'GuzzleHttp\\' => 11,
-        ),
         'C' => 
         array (
             'Complex\\' => 8,
@@ -120,7 +110,8 @@ class ComposerStaticInit81970202f03c99f1d17b66920f4d4902
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -138,18 +129,6 @@ class ComposerStaticInit81970202f03c99f1d17b66920f4d4902
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
         ),
-        'GuzzleHttp\\Psr7\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'GuzzleHttp\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
-        ),
-        'GuzzleHttp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-        ),
         'Complex\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
@@ -159,8 +138,8 @@ class ComposerStaticInit81970202f03c99f1d17b66920f4d4902
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit81970202f03c99f1d17b66920f4d4902::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit81970202f03c99f1d17b66920f4d4902::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitced4e70fafcf83289b41d85290bbd01f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitced4e70fafcf83289b41d85290bbd01f::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

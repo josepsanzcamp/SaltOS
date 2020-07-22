@@ -304,13 +304,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
 						</field>
 						<field>
-							<label>PHPMailer 6.1.6 (LGPL-2.1)</label>
+							<label>PHPMailer 6.1.7 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
 						</field>
 						<field>
-							<label>PHPSpreadsheet 1.14 (LGPL-2.1)</label>
+							<label>PHPSpreadsheet 1.14.1 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
@@ -543,7 +543,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://malsup.com/jquery/form/")</onclick>
 						</field>
 						<field>
-							<label>jGrowl 1.4.2 (MIT &amp; GPL*)</label>
+							<label>jGrowl 1.4.7 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://stanlemon.net/projects/jgrowl.html")</onclick>
@@ -622,7 +622,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>CodeMirror v5.55.0 (MIT)</label>
+							<label>CodeMirror v5.56.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://codemirror.net/")</onclick>
@@ -672,7 +672,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.generatedata.com/")</onclick>
 						</field>
 						<field>
-							<label>Font Awesome Free 5.13.1 (SIL OFL 1.1)</label>
+							<label>Font Awesome Free 5.14.0 (SIL OFL 1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://fontawesome.com/changelog/latest")</onclick>
