@@ -57,7 +57,16 @@ function list_simulator($newpage,$ids="string") {
 		if($ids=="string") $result=count($result)?implode(",",$result):"0";
 	} elseif($ids=="excel") {
 		$fields=array();
-		foreach($config["fields"] as $key=>$val) $fields[]=(isset($val["excel"])?$val["excel"]:$val["name"])." '".$val["label"]."'";
+		$numbers=array();
+		foreach($config["fields"] as $key=>$val) {
+			$name=$val["name"];
+			$label=$val["label"];
+			if(isset($val["excel"])) $name=$val["excel"];
+			if(!isset($numbers[$label])) $numbers[$label]=0;
+			$numbers[$label]++;
+			if(isset($fields[$label])) $label=$label." (".$numbers[$label].")";
+			$fields[$label]="${name} '${label}'";
+		}
 		$fields=implode(",",$fields);
 		$result="SELECT ${fields} FROM ($query0) __a__ ORDER BY ${order}";
 	} else {
