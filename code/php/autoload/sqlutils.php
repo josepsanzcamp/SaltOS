@@ -476,7 +476,8 @@ function make_like_query($keys,$values) {
 
 function make_extra_query_with_login($prefix="") {
 	$query=make_extra_query($prefix);
-	return "REPLACE(CONCAT(${prefix}login,' (',$query,')'),'()','')";
+	$query="CONCAT(${prefix}login,REPLACE(CONCAT(' (',$query,')'),' ()',''))";
+	return $query;
 }
 
 function make_extra_query($prefix="") {
@@ -490,6 +491,7 @@ function make_extra_query($prefix="") {
 			foreach($rows as $row) {
 				$cases[]="WHEN '${row["id"]}' THEN (SELECT ${row["campo"]} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
 			}
+			$cases[]="ELSE ''";
 			$cases[]="END";
 			$stack[$hash]=implode(" ",$cases);
 		} else {
@@ -512,6 +514,7 @@ function make_extra_query_with_field($field,$prefix="") {
 				foreach($fields as $key=>$val) $fields[$key]=$val["name"];
 				if(in_array($field,$fields)) $cases[]="WHEN '${row["id"]}' THEN (SELECT ${field} FROM ${row["tabla"]} WHERE id=${prefix}id_registro)";
 			}
+			$cases[]="ELSE ''";
 			$cases[]="END";
 			$stack[$hash]=implode(" ",$cases);
 		} else {
