@@ -216,7 +216,10 @@ function check_remember() {
 }
 
 function remake_password($user,$pass) {
-	$query="SELECT * FROM tbl_usuarios WHERE activo='1' AND login='${user}'";
+	$query="SELECT * FROM tbl_usuarios WHERE ".make_where_query(array(
+		"activo"=>1,
+		"login"=>$user,
+	));
 	$result=db_query($query);
 	if(db_num_rows($result)==1) {
 		$row=db_fetch_row($result);

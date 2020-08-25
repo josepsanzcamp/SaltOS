@@ -48,9 +48,23 @@ function getParam($index,$default="") {
 }
 
 function __getParam_helper($index,$default="") {
-	if(isset($_POST[$index])) return $_POST[$index];
-	if(isset($_GET[$index])) return $_GET[$index];
+	if(isset($_POST[$index])) return __getParam_sanitize($_POST[$index]);
+	if(isset($_GET[$index])) return __getParam_sanitize($_GET[$index]);
 	return $default;
+}
+
+function remove_bad_chars($temp,$pad="") {
+	static $bad_chars=null;
+	if($bad_chars===null) {
+		$bad_chars=array(0,1,2,3,4,5,6,7,8,11,12,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
+		foreach($bad_chars as $key=>$val) $bad_chars[$key]=chr($val);
+	}
+	$temp=str_replace($bad_chars,$pad,$temp);
+	return $temp;
+}
+
+function __getParam_sanitize($value) {
+	return remove_bad_chars($value);
 }
 
 function getParamWithoutPrefix($index,$default="") {
