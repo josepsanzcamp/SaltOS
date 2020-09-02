@@ -85,4 +85,10 @@ function make_control($id_aplicacion=null,$id_registro=null,$id_usuario=null,$da
 	}
 }
 
+function get_id_control($id_aplicacion,$id_registro) {
+	$query="SELECT id FROM tbl_registros WHERE id_aplicacion='${id_aplicacion}' AND id_registro='${id_registro}' AND first='1'";
+	$id_control=execute_query($query);
+	return $id_control;
+}
+
 ?>
