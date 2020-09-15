@@ -137,7 +137,11 @@ function __export_file_csv($matrix,$sep=";",$eol="\r\n",$encoding="UTF-8",$repla
 			$val2=str_replace($replace["from"],$replace["to"],$val2);
 			$val2=trim($val2);
 			if($escape["mode"]=="auto") {
-				if(strpos($val2,$sep)!==false) $val2=$escape["char"].$val2.$escape["char"];
+				$has_sep=strpos($val2,$sep)!==false?1:0;
+				$has_new=strpos($val2,"\n")!==false?1:0;
+				$has_ret=strpos($val2,"\r")!==false?1:0;
+				$has_tab=strpos($val2,"\t")!==false?1:0;
+				if($has_sep+$has_new+$has_ret+$has_tab) $val2=$escape["char"].$val2.$escape["char"];
 			} elseif(eval_bool($escape["mode"])) {
 				$val2=$escape["char"].$val2.$escape["char"];
 			}

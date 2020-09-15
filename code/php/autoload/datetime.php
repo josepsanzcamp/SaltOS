@@ -114,4 +114,15 @@ function datetimeval($value) {
 	return $value;
 }
 
+function __time2secs($time) {
+	$time=explode(":",$time);
+	$secs=intval($time[0])*3600+intval($time[1])*60+intval($time[2]);
+	return $secs;
+}
+
+function __secs2time($secs) {
+	$time=sprintf("%02d:%02d:%02d",intval($secs/3600),intval(($secs/60)%60),intval($secs%60));
+	return $time;
+}
+
 ?>
