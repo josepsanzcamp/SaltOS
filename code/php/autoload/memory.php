@@ -52,4 +52,12 @@ function __time_get_helper($fn,$secs) {
 	return $diff;
 }
 
+function max_memory_limit() {
+	ini_set("memory_limit",getDefault("server/maxmemorylimit"));
+}
+
+function max_execution_time() {
+	ini_set("max_execution_time",getDefault("server/maxexecutiontime"));
+}
+
 ?>

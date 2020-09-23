@@ -36,6 +36,7 @@ if(getParam("action")=="excel") {
 	$config=eval_attr($config);
 	if(eval_bool(getDefault("debug/actiondebug"))) debug_dump();
 	$query=$config["query"];
+	max_memory_limit();
 	$matrix=__query2matrix($query);
 	__matrix2dump($matrix,"${page}.xls",ucfirst($page));
 	if(!defined("__CANCEL_DIE__")) die();

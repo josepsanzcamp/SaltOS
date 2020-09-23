@@ -91,6 +91,11 @@ function do_message_error($array,$format) {
 function show_php_error($array=null) {
 	global $_ERROR_HANDLER;
 	static $backup=null;
+	// TRICK FOR EXHAUSTED MEMORY ERROR
+	if(isset($array["phperror"]) && words_exists("allowed memory size bytes exhausted tried allocate",$array["phperror"])) {
+		max_memory_limit();
+	}
+	// CONTINUE
 	if($array===null && $backup!==null) {
 		while($_ERROR_HANDLER["level"]>0) get_clear_error();
 		show_php_error($backup);

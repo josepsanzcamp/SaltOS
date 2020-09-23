@@ -79,6 +79,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<porthttps>443</porthttps>
 		<dirindex>index.php</dirindex>
 		<percentstop>90</percentstop><!-- long actions stop when reached the 90% of max_execution_time -->
+		<maxmemorylimit>1G</maxmemorylimit><!-- to be used in some actions that requires more memory -->
+		<maxexecutiontime>3600</maxexecutiontime><!-- to be used in some actions that requires more time -->
 	</server>
 	<default>
 		<page>home</page>
@@ -365,7 +367,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<ini_set>
 		<session.bug_compat_42 ifeval="!isphp(5.4)">On</session.bug_compat_42>
 		<register_globals ifeval="!isphp(5.4)">Off</register_globals>
-		<memory_limit>192M</memory_limit>
+		<memory_limit>128M</memory_limit>
 		<max_execution_time>600</max_execution_time><!-- in seconds, 600 are 10 minutes -->
 		<date.timezone>Europe/Madrid</date.timezone>
 		<default_charset>UTF-8</default_charset>
