@@ -125,6 +125,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 					});
 					var fn1=function() {
 						pdfViewer.currentScaleValue="page-width";
+						$("#viewerContainer").scrollTop(0);
 					};
 					var fn2=function() {
 						$("a",container).each(function() {
@@ -145,9 +146,6 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
 					eventBus.on("pagesinit",fn1);
 					eventBus.on("textlayerrendered",fn2);
 					pdfViewer.setDocument(pdfDocument);
-					setTimeout(function() {
-						$(dialog2).scrollTop(0);
-					},100);
 				},function(message,exception) {
 					errorcontent(0,message);
 				});
