@@ -304,13 +304,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.tcpdf.org")</onclick>
 						</field>
 						<field>
-							<label>PHPMailer 6.1.7 (LGPL-2.1)</label>
+							<label>PHPMailer 6.1.8 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
 						</field>
 						<field>
-							<label>PHPSpreadsheet 1.14.1 (LGPL-2.1)</label>
+							<label>PHPSpreadsheet 1.15.0 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
@@ -672,7 +672,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.generatedata.com/")</onclick>
 						</field>
 						<field>
-							<label>Font Awesome Free 5.14.0 (SIL OFL 1.1)</label>
+							<label>Font Awesome Free 5.15.1 (SIL OFL 1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://fontawesome.com/changelog/latest")</onclick>

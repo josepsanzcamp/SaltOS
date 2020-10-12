@@ -1,8 +1,22 @@
 # PHPMailer Change Log
 
+## Version 6.1.8 (October 9th, 2020)
+* Mark `ext-hash` as required in composer.json. This has long been required, but now it will cause an error at install time rather than runtime, making it easier to diagnose
+* Make file upload examples safer
+* Update links to SMTP testing servers
+* Avoid errors when set_time_limit is disabled (you need better hosting!)
+* Allow overriding auth settings for local tests; makes it easy to run tests using HELO
+* Recover gracefully from errors during keepalive sessions
+* Add AVIF MIME type mapping
+* Prevent duplicate `To` headers in BCC-only messages when using `mail()`
+* Avoid file function problems when attaching files from Windows UNC paths
+* Improve German, Bahasa Indonesian, Filipino translations
+* Add Javascript-based example
+* Increased test coverage
+
 ## Version 6.1.7 (July 14th, 2020)
 * Split SMTP connection into two separate methods
-* Undo BC break in PHP vesions 5.2.3 - 7.0.0 introduced in 6.1.2 when injecting callables for address validation and HTML to text conversion
+* Undo BC break in PHP versions 5.2.3 - 7.0.0 introduced in 6.1.2 when injecting callables for address validation and HTML to text conversion
 * Save response to SMTP welcome banner as other responses are saved
 * Retry stream_select if interrupted by a signal
 
