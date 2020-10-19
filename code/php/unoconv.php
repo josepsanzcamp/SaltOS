@@ -80,23 +80,8 @@ function unoconv2txt($input) {
 }
 
 function __unoconv_list() {
-	if(!check_commands(getDefault("commands/unoconv"),60)) return array();
-	$abouts=ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),getDefault("default/commandexpires",60));
-	$abouts=explode("\n",$abouts);
-	$exts=array();
-	foreach($abouts as $about) {
-		$pos1=strpos($about,"[");
-		$pos2=strpos($about,"]");
-		if($pos1!==false && $pos2!==false) {
-			$ext=substr($about,$pos1+1,$pos2-$pos1-1);
-			if($ext[0]==".") $ext=substr($ext,1);
-			// TRICK TO DETECT XLSX
-			if(stripos($about,"ooxml")!==false && stripos($about,"microsoft")!==false && stripos($about,"excel")!==false) $ext="xlsx";
-			// CONTINUE
-			if(!in_array($ext,$exts)) $exts[]=$ext;
-		}
-	}
-	return $exts;
+	if(!check_commands(getDefault("commands/soffice"),60)) return array();
+	return explode(",",getDefault("commands/__soffice_formats__"));
 }
 
 function __unoconv_pdf2txt($input,$output) {
@@ -115,23 +100,18 @@ function __unoconv_all2pdf($input,$output) {
 }
 
 function __unoconv_convert($input,$output,$format) {
-	if(eval_bool(getDefault("nativesoffice"))) {
-		if(!check_commands(getDefault("commands/soffice"),60)) return;
-		$input=realpath($input);
-		$output=realpath_protected($output);
-		$input2=get_cache_file($input);
-		$fix=(dirname($input)!=dirname($input2));
-		if($fix) symlink($input,$input2);
-		if(!$fix) $input2=$input;
-		ob_passthru(__unoconv_timeout(getDefault("commands/soffice")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTDIR__"),array($format,$input2,dirname($input2)),getDefault("commands/__soffice__"))));
-		if($fix) unlink($input2);
-		$output2=str_replace(".".extension($input2),".".$format,$input2);
-		if(!file_exists($output2)) return;
-		if($output!=$output2) rename($output2,$output);
-	} else {
-		if(!check_commands(getDefault("commands/unoconv"),60)) return;
-		ob_passthru(__unoconv_timeout(getDefault("commands/unoconv")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTPUT__"),array($format,$input,$output),getDefault("commands/__unoconv__"))));
-	}
+	if(!check_commands(getDefault("commands/soffice"),60)) return;
+	$input=realpath($input);
+	$output=realpath_protected($output);
+	$input2=get_cache_file($input);
+	$fix=(dirname($input)!=dirname($input2));
+	if($fix) symlink($input,$input2);
+	if(!$fix) $input2=$input;
+	ob_passthru(__unoconv_timeout(getDefault("commands/soffice")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTDIR__"),array($format,$input2,dirname($input2)),getDefault("commands/__soffice__"))));
+	if($fix) unlink($input2);
+	$output2=str_replace(".".extension($input2),".".$format,$input2);
+	if(!file_exists($output2)) return;
+	if($output!=$output2) rename($output2,$output);
 }
 
 function __unoconv_timeout($cmd) {

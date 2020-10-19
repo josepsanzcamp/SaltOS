@@ -1071,10 +1071,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<other_plugins>إضافات اخرى:</other_plugins>
 		<server_plugins>اضافات الخادم:</server_plugins>
 		<vxinfo>ملحوظة: (*) بعض المشاريع لاتستخدم رخصة معينة</vxinfo>
-		<ooformats>الاشكال المدعومة</ooformats>
 		<license>الرخصة </license>
 		<game>لعبة</game>
-		<ootitle>ستجد هنا لائحة من أشكال الدعم من قبل أوبن أوفيس ويمكن الاطلاع عليها باستخدام عارض PDF.</ootitle>
 		<licensetitle>أدناه النص القانوني للترخيص </licensetitle>
 		<gametitle>إذا كنت قد وصلت هذه الشاشة، فأنت تستحق استراحة. يمكنك ان تلعب قليلا!!!</gametitle>
 		<translators>الترجمات</translators>

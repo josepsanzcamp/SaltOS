@@ -105,7 +105,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<cachetimeout>10000000</cachetimeout><!-- in microseconds -->
 		<commandtimeout>60</commandtimeout><!-- in seconds, 60 is 1 minute -->
 		<commandexpires>3600</commandexpires><!-- in seconds, 3600 is 1 hour -->
-		<nativesoffice>true</nativesoffice>
 		<enablecalculator eval="true">!ismobile()</enablecalculator>
 		<enabletranslator eval="true">!ismobile()</enabletranslator>
 		<enableindexing>true</enableindexing>
@@ -128,11 +127,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<useimginline>true</useimginline>
 	</cache>
 	<commands>
-		<unoconv>unoconv</unoconv><!-- for unoconv module -->
-		<__unoconv__>-f __FORMAT__ -o __OUTPUT__ __INPUT__</__unoconv__>
-		<__unoconv_about__>--show 2&gt;&amp;1</__unoconv_about__>
 		<soffice>soffice</soffice><!-- for unoconv module -->
 		<__soffice__>--headless --convert-to __FORMAT__ --outdir __OUTDIR__ __INPUT__</__soffice__>
+		<__soffice_formats__>bib,doc,xml,docx,fodt,html,ltx,txt,odt,ott,pdb,pdf,psw,rtf,sdw,stw,sxw,uot,vor,wps,bmp,emf,eps,fodg,gif,jpg,met,odd,otg,pbm,pct,pgm,png,ppm,ras,std,svg,svm,swf,sxd,tiff,wmf,xhtml,xpm,fodp,odg,odp,otp,potm,pot,pptx,pps,ppt,pwp,sda,sdd,sti,sxi,uop,csv,dbf,dif,fods,ods,xlsx,ots,pxl,sdc,slk,stc,sxc,uos,xls,xlt</__soffice_formats__>
 		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
 		<__pdftotext__>-nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
 		<translate>translate</translate><!-- for translator module -->

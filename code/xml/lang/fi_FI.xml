@@ -1071,10 +1071,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<other_plugins>Muut laajennukset:</other_plugins>
 		<server_plugins>Palvelimen laajennukset:</server_plugins>
 		<vxinfo>Huomaa: (*) Jotkut projektit eivät määrittele käyttämänsä käyttöoikeuden tiettyä versiota</vxinfo>
-		<ooformats>Tuetut muodot</ooformats>
 		<license>Lisenssi</license>
 		<game>Peli</game>
-		<ootitle>Tämä on luettelo formaateista, joita OpenOffice tukee ja joita voi tutustua PDF- katseluohjelmassa.</ootitle>
 		<licensetitle>Alla on lisenssin laillinen teksti</licensetitle>
 		<gametitle>Jos olet saavuttanut tämän näytön, ansaitset tauon. Voit pelata vähän !!!</gametitle>
 		<translators>Käännökset</translators>

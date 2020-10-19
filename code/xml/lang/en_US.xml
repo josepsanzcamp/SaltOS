@@ -1071,10 +1071,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<other_plugins>Other plugins:</other_plugins>
 		<server_plugins>Server plugins:</server_plugins>
 		<vxinfo>Note: (*) Some projects do not specify the specific version of the license to use</vxinfo>
-		<ooformats>Formats Supported</ooformats>
 		<license>License </license>
 		<game>Game</game>
-		<ootitle>Here is the list of formats supported by OpenOffice and can be retrieved using the PDF viewer.</ootitle>
 		<licensetitle>Below shows the legal text of the license </licensetitle>
 		<gametitle>If you have reached this screen, you deserve a break. You can play a little!!!</gametitle>
 		<translators>translations</translators>

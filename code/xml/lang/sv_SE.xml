@@ -1071,10 +1071,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<other_plugins>Andra plugins:</other_plugins>
 		<server_plugins>Server plugins:</server_plugins>
 		<vxinfo>Obs: (*) Vissa projekt anger inte den specifika versionen av den licens de använder</vxinfo>
-		<ooformats>Stödda format</ooformats>
 		<license>Licens</license>
 		<game>Spel</game>
-		<ootitle>Detta är listan över format som stöds av OpenOffice och som kan konsulteras med PDF-visaren.</ootitle>
 		<licensetitle>Nedan visas den lagliga texten på licensen</licensetitle>
 		<gametitle>Om du har nått den här skärmen förtjänar du en paus. Du kan spela lite !!!</gametitle>
 		<translators>översättningar</translators>

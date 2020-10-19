@@ -764,33 +764,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 						</field>
 					</row>
 				</fieldset>
-				<fieldset ifeval="!ismobile() &amp;&amp; check_commands(getDefault('commands/unoconv'),60)">
-					<title lang="true">ooformats</title>
-					<icon eval="true">ICON("about")</icon>
-					<row>
-						<field>
-							<label lang="true">ootitle</label>
-							<type>label</type>
-							<class>left bold</class>
-						</field>
-					</row>
-					<row>
-						<field>
-							<type>separator</type>
-						</field>
-					</row>
-					<row>
-						<field>
-							<name>ooformats</name>
-							<type>textarea</type>
-							<value eval="true">ob_passthru(getDefault("commands/unoconv")." ".getDefault("commands/__unoconv_about__"),getDefault("default/commandexpires",60))</value>
-							<width>800px</width>
-							<height>240px</height>
-							<readonly>true</readonly>
-							<class3>ascii</class3>
-						</field>
-					</row>
-				</fieldset>
 				<temp global="directory" eval="true">$directory="lib/licenses/"</temp>
 				<temp global="extension" eval="true">$extension=".txt"</temp>
 				<temp global="directory,extension,files" eval="true">$files=glob_protected($directory."*".$extension)</temp>

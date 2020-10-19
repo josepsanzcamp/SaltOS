@@ -1,4 +1,0 @@
-Options +FollowSymLinks
-AddDefaultCharset UTF-8
-RedirectMatch 404 /\\.svn(/|$)
-php_flag magic_quotes_gpc off
