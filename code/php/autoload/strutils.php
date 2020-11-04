@@ -464,4 +464,17 @@ function str_split2($a,$b) {
 	return $c;
 }
 
+function remove_utf8mb4_chars($cad) {
+	$len=mb_strlen($cad);
+	for($i=0;$i<$len;$i++) {
+		$char=mb_substr($cad,$i,1);
+		if(strlen($char)==4) {
+			$cad=mb_substr($cad,0,$i).mb_substr($cad,$i+1);
+			$len--;
+			$i--;
+		}
+	}
+	return $cad;
+}
+
 ?>
