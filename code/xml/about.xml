@@ -458,7 +458,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
 						</field>
 						<field>
-							<label>Bootstrap 4.5.0 (MIT)</label>
+							<label>Bootstrap 4.5.3 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://getbootstrap.com/")</onclick>
@@ -479,7 +479,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Bootswatch 4.5.0 (MIT)</label>
+							<label>Bootswatch 4.5.3 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://bootswatch.com/")</onclick>
@@ -614,7 +614,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
 						</field>
 						<field>
-							<label>CKEditor 4.14.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
+							<label>CKEditor 4.15.1 (GPL-2.0, LGPL-2.1 &amp; MPL-1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://ckeditor.com/")</onclick>
@@ -622,7 +622,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>CodeMirror v5.56.0 (MIT)</label>
+							<label>CodeMirror v5.58.2 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://codemirror.net/")</onclick>

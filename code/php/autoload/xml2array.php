@@ -398,7 +398,7 @@ function xml2struct($xml,$file="") {
 	$array=array();
 	$index=array();
 	// TO PREVENT A MEMORY LEAK IN LIBXML
-	if(strlen($xml)>9000000) {
+	if(strlen($xml)>1048576) {
 		__xml_parse_into_struct_chunk($parser,$xml,$array,$index);
 	} else {
 		xml_parse_into_struct($parser,$xml,$array,$index);
@@ -419,7 +419,7 @@ function __xml_parse_into_struct_chunk($parser, $data, &$values, &$index="") {
 	__xml_parse_into_struct_array("index","set",$index);
 	xml_set_element_handler($parser,"__xml_parse_into_struct_start","__xml_parse_into_struct_end");
 	xml_set_character_data_handler($parser,"__xml_parse_into_struct_cdata");
-	$data=str_split($data,9000000);
+	$data=str_split($data,1048576);
 	while($part=array_shift($data)) {
 		$estado=xml_parse($parser,$part,count($data)==0);
 		if(!$estado) break;
