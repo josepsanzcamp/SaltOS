@@ -53,6 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<sort>true</sort>
 				<size>20</size>
 				<order>cliente2</order>
+				<excel>cliente2</excel>
 			</field>
 			<field>
 				<name>proyecto</name>
@@ -60,6 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<sort>true</sort>
 				<size>20</size>
 				<order>proyecto2</order>
+				<excel>proyecto2</excel>
 			</field>
 			<field>
 				<name>categoria</name>
@@ -72,6 +74,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<label lang="true">incidencia</label>
 				<sort>true</sort>
 				<order>nombre2</order>
+				<excel>nombre2</excel>
 			</field>
 			<field>
 				<name>estado</name>
@@ -86,6 +89,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<field>
 				<name>asignadoa</name>
 				<label lang="true">asignadoa</label>
+				<sort>true</sort>
+			</field>
+			<field>
+				<name>implicados</name>
+				<label lang="true">implicados</label>
 				<sort>true</sort>
 			</field>
 			<field>
@@ -282,6 +290,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>copy</type>
 					<name>buscar</name>
 				</field>
+				<field ifeval="!ismobile()">
+					<type>button</type>
+					<value lang="true">excel</value>
+					<tip lang="true">exceltip</tip>
+					<onclick>excel()</onclick>
+					<icon eval="true">ICON("excel")</icon>
+					<class>nowrap contextmenu</class>
+				</field>
 				<field>
 					<type>copy</type>
 					<name>limpiar</name>
@@ -290,7 +306,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</row>
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_estado,id_categoria,id_usuario,fecha1,fecha2,filtro,id_prioridad,id_proyecto,id_asignado" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,estado,categoria,action_id,action_title,action_view,action_edit,action_delete,id_usuario,id_estado,id_categoria,id_cliente,id_proyecto,id_grupo,activo,prioridad,id_prioridad,asignadoa FROM (
+		<query global="page,id_cliente,id_estado,id_categoria,id_usuario,fecha1,fecha2,filtro,id_prioridad,id_proyecto,id_asignado" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,estado,categoria,action_id,action_title,action_view,action_edit,action_delete,id_usuario,id_estado,id_categoria,id_cliente,id_proyecto,id_grupo,activo,prioridad,id_prioridad,asignadoa,implicados FROM (
 		SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 			".make_extra_query_with_login("d.")." usuario,
 			e.datetime datetime,
@@ -311,7 +327,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			e.id_usuario id_usuario,a.id_estado id_estado,a.id_categoria id_categoria,a.id_cliente id_cliente,id_proyecto,d.id_grupo id_grupo,c_activo activo,
 			CASE id_prioridad WHEN '0' THEN '".LANG_ESCAPE("sinprioridad")."' ELSE f_nombre END prioridad,
 			a.id_prioridad,a.ids_asignados,a.ids_implicados,
-			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_asignados)) asignadoa
+			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_asignados)) asignadoa,
+			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_implicados)) implicados
 		FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre,c.nombre c_nombre,c.activo c_activo,g.nombre g_nombre FROM tbl_incidencias a2
 		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
 		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto
@@ -627,4 +644,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>
+	<excel>
+		<query require="php/listsim.php" global="page" eval="true">list_simulator($page,"excel")</query>
+	</excel>
 </root>
