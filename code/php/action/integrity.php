@@ -102,7 +102,7 @@ if(getParam("action")=="integrity") {
 		for(;;) {
 			if(time_get_usage()>getDefault("server/percentstop")) break;
 			// SEARCH FILES THAT DON'T CONTAIN ANY DIRECTORY SEPARATOR
-			$query="SELECT id,id_aplicacion,fichero_file FROM tbl_ficheros WHERE fichero_file!='' AND fichero_file AND id>=$i AND id<$i+100000 NOT LIKE '%/%' LIMIT 1000";
+			$query="SELECT id,id_aplicacion,fichero_file FROM tbl_ficheros WHERE fichero_file!='' AND fichero_file NOT LIKE '%/%' AND id>=$i AND id<$i+100000 LIMIT 1000";
 			$rows=execute_query_array($query);
 			if(!count($rows)) break;
 			foreach($rows as $row) {
