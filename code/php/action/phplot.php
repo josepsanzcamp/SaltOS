@@ -126,6 +126,7 @@ if(getParam("action")=="phplot") {
 		$plot->SetFailureImage(false);
 		$plot->SetPrintImage(false);
 		$plot->SetImageBorderType("plain");
+		if(!isset($values)) $values=array();
 		capture_next_error();
 		$plot->SetDataValues($values);
 		$graph=get_clear_error()?"error":$graph;

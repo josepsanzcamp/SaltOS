@@ -33,6 +33,11 @@ if(getParam("action")=="gcalendar") {
 	// GET GOOGLE CALENDAR USER ACCOUNT
 	$query="SELECT email,token,token2 FROM tbl_gcalendar WHERE id_usuario='".current_user()."'";
 	$result=execute_query($query);
+	if(!is_array($result)) {
+		session_error(LANG("notgcalendaremail",$page));
+		javascript_history(-1);
+		die();
+	}
 	$email=$result["email"];
 	$token=$result["token"];
 	$token2=base64_decode($result["token2"]);
