@@ -88,7 +88,7 @@ if(getParam("action")=="getmail") {
 	}
 	// CHECK FOR CID REQUEST
 	if(getParam("id") && getParam("cid")) {
-		$id=abs(getParam("id"));
+		$id=abs(intval(getParam("id")));
 		if(!__getmail_checkperm($id)) action_denied();
 		$decoded=__getmail_getmime($id);
 		if(!$decoded) {
@@ -515,7 +515,7 @@ if(getParam("action")=="getmail") {
 	die();
 }
 if(getParam("page")=="correo") {
-	$id_correo=abs(getParam("id"));
+	$id_correo=abs(intval(getParam("id")));
 	$id_extra=explode("_",getParam("id"),3);
 	if(isset($id_extra[1]) && isset($id_extra[2]) && $id_extra[1]=="forward") $id_correo=$id_extra[2];
 	if($id_correo) {

@@ -28,7 +28,7 @@ if(!check_user()) action_denied();
 if(getParam("action")=="download") {
 	$id_aplicacion=page2id(getParam("page"));
 	if(!$id_aplicacion) show_php_error(array("phperror"=>"Unknown page"));
-	$id_registro=(getParam("id")=="session")?getParam("id"):abs(getParam("id"));
+	$id_registro=(getParam("id")=="session")?getParam("id"):abs(intval(getParam("id")));
 	if(!$id_registro) show_php_error(array("phperror"=>"Unknown content"));
 	$cid=getParam("cid");
 	if(!$cid) show_php_error(array("phperror"=>"Unknown file"));

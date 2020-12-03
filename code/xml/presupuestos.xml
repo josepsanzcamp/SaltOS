@@ -1584,8 +1584,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query eval="true">"DELETE FROM tbl_presupuestos_t WHERE ".make_where_query(array("id_presupuesto"=>abs(getParam("id"))))</query>
-		<query eval="true">"DELETE FROM tbl_presupuestos_p WHERE ".make_where_query(array("id_presupuesto"=>abs(getParam("id"))))</query>
+		<query eval="true">"DELETE FROM tbl_presupuestos_t WHERE ".make_where_query(array("id_presupuesto"=>abs(intval(getParam("id")))))</query>
+		<query eval="true">"DELETE FROM tbl_presupuestos_p WHERE ".make_where_query(array("id_presupuesto"=>abs(intval(getParam("id")))))</query>
 		<query include="xml/common/qdeletecomments.xml" replace="true" />
 		<query include="xml/common/qdeletefiles.xml" replace="true" />
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>

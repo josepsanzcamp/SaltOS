@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 if(!check_user()) action_denied();
 if($page=="clientes") {
-	$id_cliente=abs(getParam("id"));
+	$id_cliente=abs(intval(getParam("id")));
 	$prefix=array();
 	foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,13)=="prefix_partes") if(getParam($val."liquidar")) $prefix[]=$val;
 	if(count($prefix)) {
@@ -199,7 +199,7 @@ if($page=="gastos") {
 	die();
 }
 if($page=="proyectos" && getParam("extra")=="partes") {
-	$id_proyecto=abs(getParam("id"));
+	$id_proyecto=abs(intval(getParam("id")));
 	$id_cliente=execute_query("SELECT id_cliente FROM tbl_proyectos WHERE id='$id_proyecto'");
 	$prefix=array();
 	foreach(array_merge($_POST,$_GET) as $key=>$val) if(substr($key,0,13)=="prefix_partes") if(getParam($val."liquidar")) $prefix[]=$val;
@@ -269,7 +269,7 @@ if($page=="proyectos" && getParam("extra")=="partes") {
 	die();
 }
 if($page=="proyectos" && getParam("extra")=="facturas") {
-	$id_proyecto=abs(getParam("id"));
+	$id_proyecto=abs(intval(getParam("id")));
 	$id_cliente=execute_query("SELECT id_cliente FROM tbl_proyectos WHERE id='$id_proyecto'");
 	$query2="SELECT id FROM tbl_facturas WHERE id_proyecto='$id_proyecto' AND cerrado='0'";
 	$id_factura=execute_query($query2);
@@ -451,7 +451,7 @@ if($page=="periodicas") {
 	die();
 }
 if($page=="presupuestos") {
-	$id_presupuesto=abs(getParam("id"));
+	$id_presupuesto=abs(intval(getParam("id")));
 	$id_cliente=execute_query("SELECT id_cliente FROM tbl_presupuestos WHERE id='$id_presupuesto'");
 	$query2="SELECT id FROM tbl_facturas WHERE id_presupuesto='$id_presupuesto' AND cerrado='0'";
 	$id_factura=execute_query($query2);

@@ -838,7 +838,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">statenew</label>
 							<type>checkbox</type>
 							<value>1</value>
-							<onchange>if(!$(this).prop("writed")) $(this).prop("checked",true); $(this).prop("writed",true); update_state(abs(getParam('id')),'new',this.checked?1:0)</onchange>
+							<onchange>if(!$(this).prop("writed")) $(this).prop("checked",true); $(this).prop("writed",true); update_state(abs(intval(getParam('id'))),'new',this.checked?1:0)</onchange>
 							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND first=1 AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>100px</width>
 							<width2>100px</width2>
@@ -875,7 +875,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">statewait</label>
 							<type>checkbox</type>
 							<value>1</value>
-							<onchange>update_state(abs(getParam('id')),'wait',this.checked?1:0)</onchange>
+							<onchange>update_state(abs(intval(getParam('id'))),'wait',this.checked?1:0)</onchange>
 							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND first=1 AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
 							<width2>100px</width2>
@@ -918,7 +918,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<label lang="true">statespam</label>
 							<type>checkbox</type>
 							<value>1</value>
-							<onchange>update_state(abs(getParam('id')),'spam',this.checked?1:0)</onchange>
+							<onchange>update_state(abs(intval(getParam('id'))),'spam',this.checked?1:0)</onchange>
 							<readonly global="page,id" eval="true">execute_query("SELECT id_registro FROM tbl_registros WHERE id_aplicacion='".page2id($page)."' AND id_registro='".abs($id)."' AND first=1 AND id_usuario='".current_user()."'")?"false":"true"</readonly>
 							<width>1px</width>
 							<width2>100px</width2>
@@ -1152,9 +1152,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				<include>js/addtextos.js</include>
 			</cache>
 			<function>sendmail(returnhere) { addcontent("cancel"); setParam("returnhere",returnhere); setParam("action","sendmail"); submit1(); }</function>
-			<function>reply() { setParam("id","0_reply_"+abs(getParam("id"))); submit1(); }</function>
-			<function>replyall() { setParam("id","0_replyall_"+abs(getParam("id"))); submit1(); }</function>
-			<function>forward() { setParam("id","0_forward_"+abs(getParam("id"))); submit1(); }</function>
+			<function>reply() { setParam("id","0_reply_"+abs(intval(getParam("id")))); submit1(); }</function>
+			<function>replyall() { setParam("id","0_replyall_"+abs(intval(getParam("id")))); submit1(); }</function>
+			<function>forward() { setParam("id","0_forward_"+abs(intval(getParam("id")))); submit1(); }</function>
 			<function eval="true">"lang_msgnumsileidos() { return '".LANG_ESCAPE("msgnumsileidos")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumnoleidos() { return '".LANG_ESCAPE("msgnumnoleidos")."1".LANG_ESCAPE("message1")."'; }"</function>
 			<function eval="true">"lang_msgnumsiwait() { return '".LANG_ESCAPE("msgnumsiwait")."1".LANG_ESCAPE("message1")."'; }"</function>

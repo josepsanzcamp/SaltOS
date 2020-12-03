@@ -1467,8 +1467,8 @@ SELECT 'j' id,'$id' id_periodica,'' fecha,'0.00' percent,'0.00' importe
 	<delete>
 		<query include="xml/common/qpermdelete.xml" replace="true"/>
 		<query include="xml/common/qdelete.xml" replace="true" />
-		<query eval="true">"DELETE FROM tbl_periodicas_c WHERE ".make_where_query(array("id_periodica"=>abs(getParam("id"))))</query>
-		<query eval="true">"DELETE FROM tbl_periodicas_v WHERE ".make_where_query(array("id_periodica"=>abs(getParam("id"))))</query>
+		<query eval="true">"DELETE FROM tbl_periodicas_c WHERE ".make_where_query(array("id_periodica"=>abs(intval(getParam("id")))))</query>
+		<query eval="true">"DELETE FROM tbl_periodicas_v WHERE ".make_where_query(array("id_periodica"=>abs(intval(getParam("id")))))</query>
 		<query include="xml/common/qcontroldelete.xml" replace="true"/>
 		<query include="xml/common/qfoldersdelete.xml" replace="true"/>
 	</delete>

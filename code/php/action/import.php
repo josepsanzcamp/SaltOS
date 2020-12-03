@@ -26,9 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if(!check_user($page,"import")) action_denied();
 if($page=="importaciones") {
 	include("php/import.php");
-	$id_importacion=abs(getParam("id"));
+	$id_importacion=abs(intval(getParam("id")));
 	// GET FILE DATA
-	$query="SELECT * FROM tbl_ficheros WHERE id_aplicacion='".page2id("importaciones")."' AND id_registro='".abs($id_importacion)."'";
+	$query="SELECT * FROM tbl_ficheros WHERE id_aplicacion='".page2id("importaciones")."' AND id_registro='${id_importacion}'";
 	$row=execute_query($query);
 	if($row===null) show_php_error(array("phperror"=>"Unknown fichero (id_importacion='${id_importacion}')"));
 	// GET SPECIFIC DATA

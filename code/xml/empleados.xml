@@ -507,7 +507,7 @@ WHERE (a.id_registro='".abs($id)."' AND a.id_aplicacion='".page2id("empleados").
 				<type>button</type>
 				<value eval="true">LANG("add","contactos")</value>
 				<tip eval="true">LANG("add","contactos")</tip>
-				<onclick>setParam("page","contactos");setParam("action","form");setParam("id_empleado",abs(getParam("id")));setParam("id","0");submit1()</onclick>
+				<onclick>setParam("page","contactos");setParam("action","form");setParam("id_empleado",abs(intval(getParam("id"))));setParam("id","0");submit1()</onclick>
 				<disabled eval="true">check_user("contactos","create")?"false":"true"</disabled>
 				<class>nowrap contextmenu</class>
 				<icon eval="true">ICON("add")</icon>

@@ -155,7 +155,7 @@ function preeval_dependencies_query($table,$label) {
 		foreach($deps as $dep) {
 			$deptable=$dep["table"];
 			$depfield=$dep["field"];
-			$count[]="(SELECT COUNT(*) FROM $deptable WHERE $depfield='\".abs(getParam(\"id\")).\"')";
+			$count[]="(SELECT COUNT(*) FROM $deptable WHERE $depfield='\".abs(intval(getParam(\"id\"))).\"')";
 		}
 		$count=implode("+",$count);
 		if($count=="") $count="0";

@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 if(!check_user()) action_denied();
 if(in_array($page,array("contactos","clientes","proveedores","empleados","posiblescli"))) {
-	$where="WHERE id='".abs(getParam("id"))."'";
+	$where="WHERE id='".abs(intval(getParam("id")))."'";
 	$id_aplicacion=page2id($page);
 	if($page=="contactos") {
 		$query="SELECT * FROM tbl_contactos $where";

@@ -101,10 +101,10 @@ function check_ids() {
 			if($val[0]=="'" && substr($val,-1,1)=="'") $val=substr($val,1,-1);
 			$val=explode("_",$val);
 			$val[1]=id2page(page2id($val[1]));
-			$val[2]=abs($val[2]);
+			$val[2]=abs(intval($val[2]));
 			$value[$key]="'".implode("_",$val)."'";
 		} else {
-			$value[$key]=abs($val);
+			$value[$key]=abs(intval($val));
 		}
 	}
 	$value=count($value)?implode(",",$value):"0";
