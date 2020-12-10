@@ -3962,6 +3962,7 @@ saltos.opencontent=function(url,callback) {
 		array.page=temp.page;
 		array.action=temp.action;
 		array.id=temp.id;
+		hash=saltos.array2querystring(array);
 	}
 	if(isset(array.page) && !isset(array.action) && !isset(array.id)) {
 		var temp=saltos.json_sync_request("index.php?action=default&page="+array.page,"default");
@@ -3971,16 +3972,16 @@ saltos.opencontent=function(url,callback) {
 		}
 		array.action=temp.action;
 		array.id=temp.id;
+		hash=saltos.array2querystring(array);
 	}
-	var querystring=saltos.array2querystring(array);
 	// TO FIX ERROR 414: REQUEST URI TOO LONG
-	var type=(strlen(querystring)>1024)?"post":"get";
+	var type=(strlen(hash)>1024)?"post":"get";
 	$.ajax({
 		url:"index.php",
-		data:querystring,
+		data:hash,
 		type:type,
 		beforeSend:function(XMLHttpRequest) {
-			saltos.addcontent(querystring);
+			saltos.addcontent(hash);
 			saltos.make_abort_obj=XMLHttpRequest;
 		},
 		success:function(data,textStatus,XMLHttpRequest) {
