@@ -101,6 +101,16 @@ function unlink_protected($file) {
 	return $error1.$error2;
 }
 
+function truncate_protected($file) {
+	capture_next_error();
+	ob_start();
+	$fp=fopen($file,"w");
+	if($fp) fclose($fp);
+	$error1=ob_get_clean();
+	$error2=get_clear_error();
+	return $error1.$error2;
+}
+
 function filemtime_protected($file) {
 	capture_next_error();
 	ob_start();

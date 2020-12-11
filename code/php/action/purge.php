@@ -30,16 +30,18 @@ if(getParam("action")=="purge") {
 	// CHECK THE SEMAPHORE
 	if(!semaphore_acquire(getParam("action"),getDefault("semaphoretimeout",100000))) die();
 	// GET THE PURGE CONFIGURATION
-	$rows=xml2array("xml/purge.xml");
+	$purge=xml2array("xml/purge.xml");
+	// APPS SECTION
 	$fields=array(
 		"id_aplicacion",
 		"id_usuario",
 		"id_cuenta",
 		"id_feed",
-		"days"
+		"days",
     );
+    $rows=$purge["apps"];
 	if(!is_array($rows)) $rows=array();
-	$total=0;
+	$total_apps=0;
 	foreach($rows as $row) {
 		if(time_get_usage()>getDefault("server/percentstop")) break;
 		// SOME CHECKS
@@ -146,12 +148,69 @@ if(getParam("action")=="purge") {
 				$query="DELETE FROM idx_${page} WHERE id='".$row2["id_registro"]."'";
 				db_query($query);
 				// CONTINUE
-				$total++;
+				$total_apps++;
+			}
+		}
+	}
+	// TABLES SECTION
+	$fields=array(
+		"table",
+		"field",
+		"days",
+    );
+    $rows=$purge["tables"];
+	if(!is_array($rows)) $rows=array();
+	$total_tables=0;
+	foreach($rows as $row) {
+		if(time_get_usage()>getDefault("server/percentstop")) break;
+		// SOME CHECKS
+		if(!is_array($row)) $row=array();
+		foreach($fields as $field) if(!isset($row[$field])) $row[$field]="";
+		if(!$row["table"]) show_php_error(array("phperror"=>"table needed by purge action"));
+		if(!$row["field"]) show_php_error(array("phperror"=>"field needed by purge action"));
+		if(!$row["days"]) show_php_error(array("phperror"=>"days needed by purge action"));
+		// CONTINUE
+		$datetime=current_datetime(-$row["days"]*86400);
+		$query="SELECT COUNT(*) FROM ".$row["table"]." WHERE ".$row["field"]."<'".$datetime."'";
+		$total_tables+=execute_query($query);
+		$query="DELETE FROM ".$row["table"]." WHERE ".$row["field"]."<'".$datetime."'";
+		db_query($query);
+	}
+	// FILES SECTION
+	$fields=array(
+		"glob",
+		"action",
+		"days",
+    );
+    $rows=$purge["files"];
+	if(!is_array($rows)) $rows=array();
+	$total_files=0;
+	foreach($rows as $row) {
+		if(time_get_usage()>getDefault("server/percentstop")) break;
+		// SOME CHECKS
+		if(!is_array($row)) $row=array();
+		foreach($fields as $field) if(!isset($row[$field])) $row[$field]="";
+		if(!$row["glob"]) show_php_error(array("phperror"=>"glob needed by purge action"));
+		if(!$row["action"]) show_php_error(array("phperror"=>"action needed by purge action"));
+		if(!in_array($row["action"],array("delete","truncate"))) show_php_error(array("phperror"=>"action only can be delete or truncate"));
+		if(!$row["days"]) show_php_error(array("phperror"=>"days needed by purge action"));
+		$rows2=glob($row["glob"]);
+		//~ echo "<pre>".sprintr($rows2)."</pre>";
+		//~ die();
+		$datetime=strtotime(current_datetime(-$row["days"]*86400));
+		foreach($rows2 as $file) {
+			if(time_get_usage()>getDefault("server/percentstop")) break;
+			if(file_exists($file) && is_file($file) && filemtime($file)<$datetime) {
+				if($row["action"]=="delete") unlink_protected($file);
+				if($row["action"]=="truncate" && filesize($file)>0) truncate_protected($file);
+				$total_files++;
 			}
 		}
 	}
 	// SEND RESPONSE
-	if($total) javascript_alert($total.LANG("msgregisterspurged".min($total,2)));
+	if($total_apps) javascript_alert($total_apps.LANG("msgregisterspurged".min($total_apps,2)));
+	if($total_tables) javascript_alert($total_tables.LANG("msgregisterspurged".min($total_tables,2)));
+	if($total_files) javascript_alert($total_files.LANG("msgregisterspurged".min($total_files,2)));
 	// RELEASE SEMAPHORE
 	semaphore_release(getParam("action"));
 	javascript_headers();
