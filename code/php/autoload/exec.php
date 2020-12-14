@@ -24,11 +24,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+define("__WHICH__","which __INPUT__");
+
 function ob_passthru($cmd,$expires=0) {
 	if($expires) {
 		$cache=get_cache_file($cmd,".out");
-		list($mtime,$error)=filemtime_protected($cache);
-		if(file_exists($cache) && !$error && time()-$expires<$mtime) return file_get_contents($cache);
+		if(file_exists($cache)) {
+			list($mtime,$error)=filemtime_protected($cache);
+			if(!$error && time()-$expires<$mtime) return file_get_contents($cache);
+		}
 	}
 	if(!is_disabled_function("passthru")) {
 		ob_start();
@@ -59,7 +63,7 @@ function ob_passthru($cmd,$expires=0) {
 function check_commands($commands,$expires=0) {
 	if(!is_array($commands)) $commands=explode(",",$commands);
 	$result=1;
-	foreach($commands as $command) $result&=ob_passthru(getDefault("commands/which","which")." ".str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__","__INPUT__")),$expires)?1:0;
+	foreach($commands as $command) $result&=ob_passthru(str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__",__WHICH__)),$expires)?1:0;
 	return $result;
 }
 
@@ -76,6 +80,14 @@ function is_disabled_function($fn="") {
 		}
 	}
 	return in_array($fn,$disableds_array);
+}
+
+
+function __exec_timeout($cmd) {
+	if(check_commands(getDefault("commands/timeout"),60)) {
+		$cmd=str_replace(array("__TIMEOUT__","__COMMAND__"),array(getDefault("commandtimeout",60),$cmd),getDefault("commands/__timeout__"));
+	}
+	return $cmd;
 }
 
 ?>

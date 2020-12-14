@@ -63,8 +63,8 @@ if(getParam("action")=="favoritos" && getParam("id")!="") {
 	if(!file_exists($cache)) {
 		if(!semaphore_acquire(getParam("action"))) die();
 		if(!file_exists($cache)) {
-			$preview=getDefault("commands/preview")." ".str_replace(array("__FORMAT__","__WIDTH__","__HEIGHT__","__DELAY__","__USER_AGENT__","__INPUT__","__OUTPUT__"),array($format,$width,$height,$delay,$useragent,$url,$cache),getDefault("commands/__preview__"));
-			$xserver=getDefault("commands/xserver")." ".str_replace(array("__WIDTH__","__HEIGHT__","__COLORS__","__COMMAND__"),array($width,$height,$colors,$preview),getDefault("commands/__xserver__"));
+			$preview=str_replace(array("__FORMAT__","__WIDTH__","__HEIGHT__","__DELAY__","__USER_AGENT__","__INPUT__","__OUTPUT__"),array($format,$width,$height,$delay,$useragent,$url,$cache),getDefault("commands/__preview__"));
+			$xserver=str_replace(array("__WIDTH__","__HEIGHT__","__COLORS__","__COMMAND__"),array($width,$height,$colors,$preview),getDefault("commands/__xserver__"));
 			ob_passthru($xserver);
 			semaphore_release(getParam("action"));
 			if(!file_exists($cache)) {

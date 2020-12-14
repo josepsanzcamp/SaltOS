@@ -86,7 +86,7 @@ function __unoconv_list() {
 
 function __unoconv_pdf2txt($input,$output) {
 	if(!check_commands(getDefault("commands/pdftotext"),60)) return;
-	ob_passthru(getDefault("commands/pdftotext")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
+	ob_passthru(str_replace(array("__INPUT__","__OUTPUT__"),array($input,$output),getDefault("commands/__pdftotext__")));
 	if(file_exists($output)) {
 		$freq=count_chars(file_get_contents($output));
 		$freq=array(array_sum(array_slice($freq,33,128-33)),array_sum(array_slice($freq,128)));
@@ -107,18 +107,11 @@ function __unoconv_convert($input,$output,$format) {
 	$fix=(dirname($input)!=dirname($input2));
 	if($fix) symlink($input,$input2);
 	if(!$fix) $input2=$input;
-	ob_passthru(__unoconv_timeout(getDefault("commands/soffice")." ".str_replace(array("__FORMAT__","__INPUT__","__OUTDIR__"),array($format,$input2,dirname($input2)),getDefault("commands/__soffice__"))));
+	ob_passthru(__exec_timeout(str_replace(array("__FORMAT__","__INPUT__","__OUTDIR__"),array($format,$input2,dirname($input2)),getDefault("commands/__soffice__"))));
 	if($fix) unlink($input2);
 	$output2=str_replace(".".extension($input2),".".$format,$input2);
 	if(!file_exists($output2)) return;
 	if($output!=$output2) rename($output2,$output);
-}
-
-function __unoconv_timeout($cmd) {
-	if(check_commands(getDefault("commands/timeout"),60)) {
-		$cmd=getDefault("commands/timeout")." ".str_replace(array("__TIMEOUT__","__COMMAND__"),array(getDefault("commandtimeout",60),$cmd),getDefault("commands/__timeout__"));
-	}
-	return $cmd;
 }
 
 function __unoconv_img2ocr($file) {
@@ -128,7 +121,7 @@ function __unoconv_img2ocr($file) {
 		$tiff=get_cache_file($file,".tif");
 		//~ if(file_exists($tiff)) unlink($tiff);
 		if(!file_exists($tiff)) {
-			ob_passthru(getDefault("commands/convert")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tiff),getDefault("commands/__convert__")));
+			ob_passthru(str_replace(array("__INPUT__","__OUTPUT__"),array($file,$tiff),getDefault("commands/__convert__")));
 			if(!file_exists($tiff)) return "";
 		}
 		$file=$tiff;
@@ -140,7 +133,7 @@ function __unoconv_img2ocr($file) {
 	//~ if(file_exists($hocr)) unlink($hocr);
 	if(!file_exists($hocr)) {
 		$base=str_replace(array(".hocr",".html"),"",$hocr);
-		ob_passthru(__unoconv_timeout(getDefault("commands/tesseract")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($file,$base),getDefault("commands/__tesseract__"))));
+		ob_passthru(__exec_timeout(str_replace(array("__INPUT__","__OUTPUT__"),array($file,$base),getDefault("commands/__tesseract__"))));
 		if(file_exists($html)) $hocr=$html;
 		if(file_exists($txt)) unlink($txt);
 	}
@@ -157,7 +150,7 @@ function __unoconv_pdf2ocr($pdf) {
 	$root=get_directory("dirs/cachedir").md5_file($pdf);
 	$files=glob("${root}-*");
 	//~ foreach($files as $file) unlink(array_pop($files));
-	if(!count($files)) ob_passthru(getDefault("commands/pdftoppm")." ".str_replace(array("__INPUT__","__OUTPUT__"),array($pdf,$root),getDefault("commands/__pdftoppm__")));
+	if(!count($files)) ob_passthru(str_replace(array("__INPUT__","__OUTPUT__"),array($pdf,$root),getDefault("commands/__pdftoppm__")));
 	// EXTRACT ALL TEXT FROM TIFF
 	$files=glob("${root}-*");
 	$result=array();

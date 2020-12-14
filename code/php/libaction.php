@@ -685,7 +685,7 @@ function __translator_get_options($filter="") {
 
 function __translator_get_aspell_langs() {
 	if(!check_commands(getDefault("commands/aspell"),60)) return array();
-	$langs=ob_passthru(getDefault("commands/aspell")." ".getDefault("commands/__aspell_langs__"),getDefault("default/commandexpires",60));
+	$langs=ob_passthru(getDefault("commands/__aspell_langs__"),getDefault("default/commandexpires",60));
 	$langs=explode("\n",$langs);
 	foreach($langs as $key=>$val) {
 		$val=trim($val);
@@ -701,7 +701,7 @@ function __translator_get_aspell_langs() {
 
 function __translator_get_langs() {
 	if(!check_commands(getDefault("commands/translate"),60)) return array();
-	$langs=ob_passthru(getDefault("commands/translate")." ".getDefault("commands/__translate_langs__"),getDefault("default/commandexpires",60));
+	$langs=ob_passthru(getDefault("commands/__translate_langs__"),getDefault("default/commandexpires",60));
 	$langs=explode("\n",$langs);
 	foreach($langs as $key=>$val) {
 		if(strpos($val,"->")!==false) {
@@ -731,7 +731,7 @@ function __translator_detect_aspell_langs($text,$length=50) {
 	$langs=__translator_get_aspell_langs();
 	$counts=array();
 	foreach($langs as $lang) {
-		$aspell=ob_passthru(getDefault("commands/aspell")." ".str_replace(array("__LANG__","__INPUT__"),array($lang,$input),getDefault("commands/__aspell__")));
+		$aspell=ob_passthru(str_replace(array("__LANG__","__INPUT__"),array($lang,$input),getDefault("commands/__aspell__")));
 		$counts[$lang]=substr_count($aspell,"*");
 	}
 	unlink($input);
@@ -747,7 +747,7 @@ function __translator_aspell($text,$lang) {
 	if(!check_commands(getDefault("commands/aspell"),60)) return $text;
 	$input=get_temp_file(".in");
 	file_put_contents($input,$text);
-	$aspell=ob_passthru(getDefault("commands/aspell")." ".str_replace(array("__LANG__","__INPUT__"),array($lang,$input),getDefault("commands/__aspell__")));
+	$aspell=ob_passthru(str_replace(array("__LANG__","__INPUT__"),array($lang,$input),getDefault("commands/__aspell__")));
 	unlink($input);
 	$aspell=trim($aspell);
 	$aspell=explode("\n",$aspell);
@@ -782,7 +782,7 @@ function __translator($text,$langs) {
 	$input=get_temp_file(".in");
 	file_put_contents($input,$text);
 	$langs=explode("-",$langs);
-	$text=ob_passthru(getDefault("commands/translate")." ".str_replace(array("__FROM__","__TO__","__INPUT__"),array($langs[0],$langs[1],$input),getDefault("commands/__translate__")));
+	$text=ob_passthru(str_replace(array("__FROM__","__TO__","__INPUT__"),array($langs[0],$langs[1],$input),getDefault("commands/__translate__")));
 	unlink($input);
 	return $text;
 }

@@ -128,30 +128,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</cache>
 	<commands>
 		<soffice>soffice</soffice><!-- for unoconv module -->
-		<__soffice__>--headless --convert-to __FORMAT__ --outdir __OUTDIR__ __INPUT__</__soffice__>
+		<__soffice__>soffice --headless --convert-to __FORMAT__ --outdir __OUTDIR__ __INPUT__</__soffice__>
 		<__soffice_formats__>bib,doc,xml,docx,fodt,html,ltx,txt,odt,ott,pdb,pdf,psw,rtf,sdw,stw,sxw,uot,vor,wps,bmp,emf,eps,fodg,gif,jpg,met,odd,otg,pbm,pct,pgm,png,ppm,ras,std,svg,svm,swf,sxd,tiff,wmf,xhtml,xpm,fodp,odg,odp,otp,potm,pot,pptx,pps,ppt,pwp,sda,sdd,sti,sxi,uop,csv,dbf,dif,fods,ods,xlsx,ots,pxl,sdc,slk,stc,sxc,uos,xls,xlt</__soffice_formats__>
 		<pdftotext>pdftotext</pdftotext><!-- for unoconv module -->
-		<__pdftotext__>-nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
+		<__pdftotext__>pdftotext -nopgbrk -layout __INPUT__ __OUTPUT__</__pdftotext__>
 		<translate>translate</translate><!-- for translator module -->
-		<__translate__>-s imtranslator -f __FROM__ -t __TO__ __INPUT__</__translate__>
-		<__translate_langs__>-s imtranslator -l</__translate_langs__>
+		<__translate__>translate -s imtranslator -f __FROM__ -t __TO__ __INPUT__</__translate__>
+		<__translate_langs__>translate -s imtranslator -l</__translate_langs__>
 		<aspell>aspell</aspell><!-- for translator module -->
-		<__aspell__>-a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
-		<__aspell_langs__>dump dicts</__aspell_langs__>
+		<__aspell__>aspell -a --mode=none --sug-mode=ultra -l __LANG__ &lt; __INPUT__</__aspell__>
+		<__aspell_langs__>aspell dump dicts</__aspell_langs__>
 		<which>which</which><!-- for check commands -->
-		<__which__>__INPUT__</__which__>
+		<__which__>which __INPUT__</__which__>
 		<pdftoppm>pdftoppm</pdftoppm><!-- for ocr module included in unoconv -->
-		<__pdftoppm__>-r 300 -l 1000 __INPUT__ __OUTPUT__</__pdftoppm__>
+		<__pdftoppm__>pdftoppm -r 300 -l 1000 __INPUT__ __OUTPUT__</__pdftoppm__>
 		<convert>convert</convert><!-- for ocr module included in unoconv -->
-		<__convert__>__INPUT__ -quality 100 __OUTPUT__</__convert__>
+		<__convert__>convert __INPUT__ -quality 100 __OUTPUT__</__convert__>
 		<tesseract>tesseract</tesseract><!-- for ocr module included in unoconv -->
-		<__tesseract__>__INPUT__ __OUTPUT__ -psm 1 hocr</__tesseract__>
+		<__tesseract__>tesseract __INPUT__ __OUTPUT__ -psm 1 hocr</__tesseract__>
 		<timeout>timeout</timeout><!-- for ocr module -->
-		<__timeout__>__TIMEOUT__ __COMMAND__</__timeout__>
+		<__timeout__>timeout __TIMEOUT__ __COMMAND__</__timeout__>
 		<preview>wkhtmltoimage</preview><!-- for favoritos application -->
-		<__preview__>--load-error-handling ignore --format __FORMAT__ --width __WIDTH__ --height __HEIGHT__ --javascript-delay __DELAY__ --custom-header "User-Agent" "__USER_AGENT__" --custom-header-propagation --quiet "__INPUT__" __OUTPUT__</__preview__>
+		<__preview__>wkhtmltoimage --load-error-handling ignore --format __FORMAT__ --width __WIDTH__ --height __HEIGHT__ --javascript-delay __DELAY__ --custom-header "User-Agent" "__USER_AGENT__" --custom-header-propagation --quiet "__INPUT__" __OUTPUT__</__preview__>
 		<xserver>xvfb-run</xserver><!-- for favoritos application -->
-		<__xserver__>-a -s "-screen 0 __WIDTH__x__HEIGHT__x__COLORS__" __COMMAND__</__xserver__>
+		<__xserver__>xvfb-run -a -s "-screen 0 __WIDTH__x__HEIGHT__x__COLORS__" __COMMAND__</__xserver__>
+		<xlsx2csv>xlsxio_xlsx2csv</xlsx2csv><!-- for import optimization -->
+		<__xlsx2csv__>cd __DIR__; xlsxio_xlsx2csv __INPUT__</__xlsx2csv__>
+		<svnversion>svnversion</svnversion>
+		<__svnversion__>cd __DIR__; svnversion</__svnversion__>
+		<gitversion>git</gitversion>
+		<__gitversion__>cd __DIR__; git rev-list HEAD --count</__gitversion__>
 	</commands>
 	<debug>
 		<actiondebug>false</actiondebug>
@@ -200,7 +206,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	</styles>
 	<javascript>
 		<cache ifeval="!ismobile()">
-			<include>lib/phpjs/php.min.js</include>
+			<include>lib/locutus/php.min.js</include>
 			<include>lib/jquery/jquery.min.js</include>
 			<include>lib/jquery/jquery.cookie.min.js</include>
 			<include>lib/jquery/jquery.form.min.js</include>
@@ -226,7 +232,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/fileupload/jquery.fileupload.min.js</include>
 		</cache>
 		<cache ifeval="ismobile()">
-			<include>lib/phpjs/php.min.js</include>
+			<include>lib/locutus/php.min.js</include>
 			<include>lib/jquery/jquery.min.js</include>
 			<include>lib/jquery/jquery-migrate.min.js</include><!-- REQUIRED ONLY BY JQUERY MOBILE -->
 			<include>lib/jquery/jquery.cookie.min.js</include>

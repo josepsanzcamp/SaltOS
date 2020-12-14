@@ -342,24 +342,38 @@ function __import_xls2array($file,$sheet) {
 	if(is_numeric($sheet)) {
 		if(!isset($sheets[$sheet])) return "Error: Sheet number '${sheet}' not found";
 	} else {
-		foreach($sheets as $sheet2=>$name2) {
-			if($sheet==$name2) {
-				$sheet=$sheet2;
+		foreach($sheets as $key=>$val) {
+			if($sheet==$val) {
+				$sheet=$key;
 				break;
 			}
 		}
 		if(!is_numeric($sheet)) return "Error: Sheet named '${sheet}' not found";
 	}
 	// TRICK FOR A BIG FILES
-	if(count($sheets)==1 && filesize($file)>1048576) { // filesize>1Mb
-		require_once("php/unoconv.php");
-		$temp=get_cache_file(file_get_contents($file),"csv");
-		if(!file_exists($temp)) {
-			__unoconv_convert($file,$temp,"csv");
+	if(filesize($file)>1048576 && check_commands(getDefault("commands/xlsx2csv"),60)) { // filesize>1Mb
+		$csv=get_cache_file($file,"csv");
+		if(!file_exists($csv)) {
+			$xlsx=get_cache_file($file,"xlsx");
+			$fix=(dirname(realpath($file))!=dirname($xlsx));
+			if($fix) symlink($file,$xlsx);
+			if(!$fix) $xlsx=$file;
+			ob_passthru(str_replace(array("__DIR__","__INPUT__"),array(dirname($xlsx),basename($xlsx)),getDefault("commands/__xlsx2csv__")));
+			if($fix) unlink($xlsx);
+			foreach($sheets as $key=>$val) {
+				$temp=$xlsx.".".$val.".csv";
+				if(file_exists($temp)) {
+					if($key==$sheet) {
+						rename($temp,$csv);
+					} else {
+						unlink($xlsx.".".$val.".csv");
+					}
+				}
+			}
 		}
-		if(file_exists($temp)) {
+		if(file_exists($csv)) {
 			unset($objReader);
-			$array=__import_csv2array($temp,",");
+			$array=__import_csv2array($csv,",");
 			return $array;
 		}
 	}

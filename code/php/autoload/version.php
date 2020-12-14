@@ -24,6 +24,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+define("__SVNVERSION__","cd __DIR__; svnversion");
+define("__GITVERSION__","cd __DIR__; git rev-list HEAD --count");
+
 function svnversion($dir=".") {
 	if($dir=="." && file_exists("../code")) $dir="../code";
 	// USING REGULAR FILE
@@ -31,8 +34,8 @@ function svnversion($dir=".") {
 		return intval(file_get_contents("${dir}/svnversion"));
 	}
 	// USING SVNVERSION
-	if(check_commands("svnversion",getDefault("default/commandexpires",60))) {
-		return intval(ob_passthru("cd ${dir}; svnversion",getDefault("default/commandexpires",60)));
+	if(check_commands(getDefault("commands/svnversion","svnversion"),getDefault("default/commandexpires",60))) {
+		return intval(ob_passthru(str_replace(array("__DIR__"),array($dir),getDefault("commands/__svnversion__",__SVNVERSION__)),getDefault("default/commandexpires",60)));
 	}
 	// NOTHING TO DO
 	return 0;
@@ -45,8 +48,8 @@ function gitversion($dir=".") {
 		return intval(file_get_contents("${dir}/gitversion"));
 	}
 	// USING GIT
-	if(check_commands("git",getDefault("default/commandexpires",60))) {
-		return intval(ob_passthru("cd ${dir}; git rev-list HEAD --count",getDefault("default/commandexpires",60)));
+	if(check_commands(getDefault("commands/gitversion","git"),getDefault("default/commandexpires",60))) {
+		return intval(ob_passthru(str_replace(array("__DIR__"),array($dir),getDefault("commands/__gitversion__",__GITVERSION__)),getDefault("default/commandexpires",60)));
 	}
 	// NOTHING TO DO
 	return 0;
