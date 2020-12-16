@@ -356,7 +356,6 @@ function getutf8($str) {
 
 // USING WORDPRESS FEATURES
 function saltos_make_clickable($temp) {
-	global $allowedentitynames;
 	require_once("lib/wordpress/wordpress.php");
 	$temp=make_clickable($temp);
 	return $temp;

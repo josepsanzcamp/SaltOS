@@ -356,7 +356,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.phpclasses.org/package/945-PHP-Create-tar-gzip-bzip2-zip-extract-tar-gzip-bzip2-.html")</onclick>
 						</field>
 						<field>
-							<label>WordPress 5.2.5 (GPL-2.0)</label>
+							<label>WordPress 2.9 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://wordpress.org/download/")</onclick>
