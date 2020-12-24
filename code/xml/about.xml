@@ -660,22 +660,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.dafont.com/gorrisans.font")</onclick>
 						</field>
 						<field>
-							<label>Códigos Postales (Free Soft.)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://codigos-postales.albin.es/")</onclick>
-						</field>
-						<field>
-							<label>GenerateData.com (GPL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://www.generatedata.com/")</onclick>
-						</field>
-						<field>
 							<label>Font Awesome Free 5.15.1 (SIL OFL 1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://fontawesome.com/changelog/latest")</onclick>
+						</field>
+						<field>
+							<type>separator</type>
+							<class>tbody</class>
+							<colspan>2</colspan>
 						</field>
 					</row>
 					<row>
@@ -693,16 +686,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>LibreOffice 6.1-6.3 (LGPL-3.0)</label>
+							<label>LibreOffice 7.0 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.libreoffice.org/")</onclick>
-						</field>
-						<field>
-							<label>Unoconv (GPL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("http://dag.wieers.com/home-made/unoconv/")</onclick>
 						</field>
 						<field>
 							<label>ImageMagick 6.4 (ImageMagick)</label>
@@ -711,35 +698,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.imagemagick.org/")</onclick>
 						</field>
 						<field>
-							<label>Aspell 0.60.6 (GPL-2.0, LGPL-2.0 &amp; MIT)</label>
+							<label>Aspell 0.60.6 (GPL-2.0, LGPL-2.0 &amp; BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://aspell.net/")</onclick>
 						</field>
-					</row>
-					<row>
 						<field>
 							<label>Libtranslate 0.99 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.nongnu.org/libtranslate/")</onclick>
 						</field>
-						<field>
-							<label>Closure Compiler (ASL-2.0)</label>
-							<type>link</type>
-							<class>tbody</class>
-							<onclick>openwin("https://github.com/google/closure-compiler")</onclick>
-						</field>
+					</row>
+					<row>
 						<field>
 							<label>Tesseract OCR (ASL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("https://code.google.com/p/tesseract-ocr/")</onclick>
+							<onclick>openwin("https://github.com/tesseract-ocr/tesseract")</onclick>
 						</field>
 						<field>
-							<type>separator</type>
+							<label>Poppler (GPL-2.0, LGPL-2.0 &amp; MIT)</label>
+							<type>link</type>
 							<class>tbody</class>
-							<colspan>1</colspan>
+							<onclick>openwin("http://poppler.freedesktop.org/")</onclick>
+						</field>
+						<field>
+							<label>wkhtmltopdf (GPLv3+)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("http://wkhtmltopdf.org/")</onclick>
+						</field>
+						<field>
+							<label>xlsxio (MIT)</label>
+							<type>link</type>
+							<class>tbody</class>
+							<onclick>openwin("https://github.com/brechtsanders/xlsxio/")</onclick>
 						</field>
 					</row>
 					<row>
