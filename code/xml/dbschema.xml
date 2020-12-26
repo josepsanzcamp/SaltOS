@@ -189,7 +189,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>ids_asignados</name>
-					<type>VARCHAR(255)</type>
+					<type>VARCHAR(250)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
@@ -1843,13 +1843,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>ids_implicados</name>
-					<type>VARCHAR(255)</type>
+					<type>VARCHAR(250)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
 				<field>
 					<name>ids_asignados</name>
-					<type>VARCHAR(255)</type>
+					<type>VARCHAR(250)</type>
 					<fkey>tbl_usuarios</fkey>
 					<fcheck>false</fcheck>
 				</field>
