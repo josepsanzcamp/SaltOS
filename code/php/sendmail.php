@@ -7,7 +7,7 @@
 |____/ \__,_|_|\__|\___/|____/
 
 SaltOS: Framework to develop Rich Internet Applications
-Copyright (C) 2007-2020 by Josep Sanz Campderrós
+Copyright (C) 2007-2021 by Josep Sanz Campderrós
 More information in http://www.saltos.org or info@saltos.org
 
 This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	set_include_path("lib/phpmailer".PATH_SEPARATOR.get_include_path());
 	require_once("src/PHPMailer.php");
@@ -188,4 +189,5 @@ function __sendmail_objsaver($mail,$messageid) {
 	file_put_contents($file,serialize($mail));
 	chmod_protected($file,0666);
 }
+
 ?>
