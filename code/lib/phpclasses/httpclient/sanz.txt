@@ -3,3 +3,4 @@ Code downloaded from:
 
 Some changes:
 - lib/phpclasses/httpclient/http.php: replaced the fsockopen by fsockopen_protected
+- lib/phpclasses/httpclient/http.php: add the allow_self_signed option to the stream_context_create
