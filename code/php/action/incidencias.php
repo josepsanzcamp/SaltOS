@@ -48,9 +48,7 @@ if($page=="incidencias") {
 		}
 		db_free($result2);
 		$subject=($action=="insert")?LANG_ESCAPE("forminsert"):LANG_ESCAPE("formupdate");
-		$body=__report_begin2($subject);
-		$body.="<table cellpadding='0' cellspacing='0' border='0'><tr><td valign='top'>";
-		$body.=__report_begin3($subject);
+		$body=__report_begin3($subject);
 		// DATOS GENERALES
 		$id_aplicacion=page2id($page);
 		// DATOS INCIDENCIA
@@ -82,6 +80,7 @@ if($page=="incidencias") {
 			$campos=array("username","datetime","cliente","proyecto","nombre","estado","prioridad","categoria","descripcion");
 			$tipos=array("text","text","text","text","text","text","text","text","textarea");
 			$body.=__incidencias_packreport($campos,$tipos,$row2);
+			$lastmsg=$row2["descripcion"];
 			// DATOS COMENTARIOS
 			$query="SELECT comentarios,datetime,
 					".make_extra_query_with_login("b.")." username
@@ -92,11 +91,9 @@ if($page=="incidencias") {
 			// BODY COMENTARIOS
 			$campos=array("username","datetime","comentarios");
 			$tipos=array("text","text","textarea");
-			$body.=__report_end3();
-			$body.="</td><td valign='top'>";
-			$body.=__report_begin3("&nbsp;");
 			while($row2=db_fetch_row($result2)) {
 				$body.=__incidencias_packreport($campos,$tipos,$row2);
+				$lastmsg=$row2["comentarios"];
 			}
 			db_free($result2);
 			// DATOS USUARIOS
@@ -129,8 +126,8 @@ if($page=="incidencias") {
 			$temp=LANG("edit")." ".LANG("incidencia");
 			$body.=__report_link($temp,get_base()."?page=incidencias&action=form&id=$id_incidencia",$temp);
 			$body.=__report_end3();
-			$body.="</td></tr></table>";
-			$body.=__report_end2();
+			// AÑADIR HTML EXTERNO + LASTMSG ANTES DE LA TABLA PARA DESTACARLO
+			$body=__report_begin2($subject).$lastmsg."<br/><br/>".$body.__report_end2();
 			// PARA DEBUGAR
 			//~ echo "<pre>SUBJECT=$subject BODY=$body TO=".sprintr($to)."</pre>";
 			//~ die();
