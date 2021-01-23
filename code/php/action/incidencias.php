@@ -127,7 +127,7 @@ if($page=="incidencias") {
 			$body.=__report_link($temp,get_base()."?page=incidencias&action=form&id=$id_incidencia",$temp);
 			$body.=__report_end3();
 			// AÑADIR HTML EXTERNO + LASTMSG ANTES DE LA TABLA PARA DESTACARLO
-			$body=__report_begin2($subject).$lastmsg."<br/><br/>".$body.__report_end2();
+			$body=__report_begin2($subject).str_replace("\n","<br/>",$lastmsg)."<br/><br/>".$body.__report_end2();
 			// PARA DEBUGAR
 			//~ echo "<pre>SUBJECT=$subject BODY=$body TO=".sprintr($to)."</pre>";
 			//~ die();

@@ -458,7 +458,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
 						</field>
 						<field>
-							<label>Bootstrap 4.5.3 (MIT)</label>
+							<label>Bootstrap 4.6.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://getbootstrap.com/")</onclick>
@@ -479,7 +479,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Bootswatch 4.5.3 (MIT)</label>
+							<label>Bootswatch 4.6.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://bootswatch.com/")</onclick>
@@ -622,7 +622,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>CodeMirror v5.58.3 (MIT)</label>
+							<label>CodeMirror v5.59.2 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://codemirror.net/")</onclick>
@@ -660,7 +660,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.dafont.com/gorrisans.font")</onclick>
 						</field>
 						<field>
-							<label>Font Awesome Free 5.15.1 (SIL OFL 1.1)</label>
+							<label>Font Awesome Free 5.15.2 (SIL OFL 1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://fontawesome.com/changelog/latest")</onclick>
