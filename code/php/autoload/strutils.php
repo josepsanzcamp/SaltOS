@@ -281,6 +281,15 @@ function output_handler($array) {
 		header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0, no-transform");
 		header("Pragma: no-cache");
 	}
+	// EXCEPTION WHEN TYPE IS EXCEL AND NAME DENOTES CSV
+	if($name!="") {
+		if(strtolower(extension($name))=="csv") {
+			if($type=="application/vnd.ms-excel") {
+				$type="text/csv";
+			}
+		}
+	}
+	// CONTINUE
 	header("Content-Type: ${type}");
 	header("Content-Length: ${size}");
 	if($name!="") header("Content-disposition: attachment; filename=\"${name}\"");
