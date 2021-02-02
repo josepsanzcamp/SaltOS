@@ -145,8 +145,13 @@ function import_file($args) {
 		case "edi":
 			$array=__import_edi2array($args["file"]);
 			break;
+		case "application/json":
+		case "text/json":
+		case "json":
+			$array=__import_json2array($args["file"]);
+			break;
 		default:
-			show_php_error(array("phperror"=>"Unknown type '${args["type"]}' for file '${args["file"]}'"));
+			return "Unknown type '${args["type"]}' for file '${args["file"]}'";
 	}
 	if(!is_array($array)) return $array;
 	if(!$args["novoid"]) {
@@ -481,6 +486,21 @@ function __import_edi2array($file) {
 	$parser=new EDI\Parser();
 	$parser->load($file);
 	$array=$parser->get();
+	return $array;
+}
+
+/*
+	Name:
+		__import_json2array
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
+function __import_json2array($file) {
+	$array=json_decode(file_get_contents($file),true);
 	return $array;
 }
 
@@ -1234,6 +1254,16 @@ function __import_apply_patch_rec(&$array,$key,$val) {
 	}
 }
 
+/*
+	Name:
+		__import_make_table_ascii
+	Abstract:
+		TODO
+	Input:
+	    TODO
+	Output:
+		TODO
+*/
 function __import_make_table_ascii($array) {
 	if(!is_array($array["rows"])) {
 		$array["rows"]=array(array($array["rows"]));
