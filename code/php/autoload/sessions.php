@@ -37,11 +37,12 @@ function sess_read_handler($id) {
 	$sess_file=session_save_path()."/".$id;
 	$query="SELECT sess_data FROM tbl_sessions WHERE sess_file='${sess_file}'";
 	$sess_data=execute_query($query);
-	if($sess_data!==null) {
-		$sess_data=base64_decode($sess_data);
-	} else {
+	if(is_array($sess_data)) {
+		$query="DELETE FROM tbl_sessions WHERE sess_file='${sess_file}'";
+		db_query($query);
 		$sess_data="";
 	}
+	$sess_data=base64_decode($sess_data);
 	$_CONFIG["sess"]["hash"]=md5($sess_data);
 	return($sess_data);
 }
@@ -54,13 +55,14 @@ function sess_write_handler($id,$sess_data) {
 	$query="SELECT id FROM tbl_sessions WHERE sess_file='${sess_file}'";
 	$exists=execute_query($query);
 	if($exists) {
-		$query=make_update_query("tbl_sessions",array(
-			"sess_data"=>$sess_data,
-			"sess_time"=>$sess_time
-		),make_where_query(array(
-			"sess_file"=>$sess_file
-		)));
-		if(getDefault("sess/hash")==$sess_hash) {
+		if(getDefault("sess/hash")!=$sess_hash) {
+			$query=make_update_query("tbl_sessions",array(
+				"sess_data"=>$sess_data,
+				"sess_time"=>$sess_time
+			),make_where_query(array(
+				"sess_file"=>$sess_file
+			)));
+		} else {
 			$query=make_update_query("tbl_sessions",array(
 				"sess_time"=>$sess_time
 			),make_where_query(array(
@@ -124,7 +126,7 @@ function current_session() {
 			"sess_time"=>$sess_time
 		));
 		db_query($query);
-		$query="SELECT MAX(id) maximo FROM tbl_sessions";
+		$query="SELECT id FROM tbl_sessions WHERE sess_file='${sess_file}'";
 		$id=execute_query($query);
 	}
 	return $id;

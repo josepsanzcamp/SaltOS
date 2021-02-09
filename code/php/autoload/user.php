@@ -278,7 +278,7 @@ function check_security($action="") {
 			"logout"=>0
 		));
 		db_query($query);
-		$query="SELECT MAX(id) FROM tbl_security";
+		$query="SELECT id FROM tbl_security WHERE id_session='${id_session}'";
 		$id_security=execute_query($query);
 	}
 	// BUSCAR ID_SECURITY_IP
@@ -295,7 +295,7 @@ function check_security($action="") {
 			"remote_addr"=>$remote_addr
 		));
 		db_query($query);
-		$query="SELECT MAX(id) FROM tbl_security_ip";
+		$query="SELECT id FROM tbl_security_ip WHERE id_session='${id_session}' AND remote_addr='${remote_addr}'";
 		$id_security_ip=execute_query($query);
 	}
 	// BORRAR REGISTROS CADUCADOS
