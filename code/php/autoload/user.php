@@ -53,7 +53,6 @@ function reset_datauser() {
 
 function post_datauser() {
 	global $_USER;
-	global $_ERROR;
 	if(isset($_USER["id"])) {
 		$query="SELECT * FROM tbl_usuarios WHERE id='".$_USER["id"]."'";
 		$result=db_query($query);
@@ -93,7 +92,7 @@ function post_datauser() {
 			}
 			db_free($result2);
 		} else {
-			set_array($_ERROR,"error",LANG("nocheckuser"));
+			session_error(LANG("nocheckuser"));
 		}
 		db_free($result);
 	}
@@ -101,8 +100,6 @@ function post_datauser() {
 
 function check_time() {
 	global $_USER;
-	global $_ERROR;
-	//~ if(isset($_ERROR)) return false;
 	if(!isset($_USER["id"])) return false;
 	if(!$_USER["id"]) return false;
 	$hora=current_time();
@@ -111,18 +108,16 @@ function check_time() {
 	$check_hora2=($_USER["hora_ini"]>$_USER["hora_fin"] && $hora<$_USER["hora_ini"] && $hora>$_USER["hora_fin"]);
 	$check_dia=($_USER["dias_sem"][$dia]=="0");
 	if($check_hora1 || $check_hora2) {
-		set_array($_ERROR,"error",LANG("nochecktime"));
+		session_error(LANG("nochecktime"));
 		reset_datauser();
 	} elseif($check_dia) {
-		set_array($_ERROR,"error",LANG("nocheckday"));
+		session_error(LANG("nocheckday"));
 		reset_datauser();
 	}
 }
 
 function check_user($aplicacion="",$permiso="") {
 	global $_USER;
-	//~ global $_ERROR;
-	//~ if(isset($_ERROR)) return 0;
 	if(!isset($_USER["id"])) return 0;
 	if(!$_USER["id"]) return 0;
 	if($aplicacion=="") return 1;
@@ -132,10 +127,6 @@ function check_user($aplicacion="",$permiso="") {
 }
 
 function check_sql($aplicacion,$permiso,$id_usuario="id_usuario",$id_grupo="id_grupo") {
-	// INITIAL CHECK
-	//~ global $_ERROR;
-	//~ if(isset($_ERROR)) return "(1=0)";
-	// BEGIN NORMAL CODE
 	global $_USER;
 	// CHECK FOR USER/GROUP/ALL PERMISSIONS
 	$sql=array();
@@ -395,12 +386,11 @@ function action_denied() {
 }
 
 function _action_denied() {
-	global $_LANG,$_CONFIG,$_RESULT,$_ERROR;
+	global $_LANG,$_CONFIG,$_RESULT;
 	$_LANG["default"]="denied,common";
 	$_CONFIG["denied"]=eval_attr(xml2array("xml/denied.xml"));
 	$_RESULT["form"]=getDefault("denied/form");
 	add_css_js_page($_RESULT["form"],"denied");
-	//~ set_array($_ERROR,"error",LANG("permdenied"));
 	$json=json_encode($_RESULT);
 	output_handler(array(
 		"data"=>$json,
@@ -410,7 +400,7 @@ function _action_denied() {
 }
 
 function _action_login() {
-	global $_LANG,$_CONFIG,$_RESULT,$_ERROR;
+	global $_LANG,$_CONFIG,$_RESULT;
 	$_LANG["default"]="login,common";
 	$_CONFIG["login"]=eval_attr(xml2array("xml/login.xml"));
 	$_RESULT["form"]=getDefault("login/form");

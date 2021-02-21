@@ -82,7 +82,7 @@ if(!check_user()) {
 			$_CONFIG["denied"]=eval_attr(xml2array("xml/denied.xml"));
 			$_RESULT["form"]=getDefault("denied/form");
 			add_css_js_page($_RESULT["form"],"denied");
-			set_array($_ERROR,"error","Unknown action '$action'");
+			session_error("Unknown action '$action'");
 			$action="";
 		}
 		switch($action) {
@@ -240,7 +240,7 @@ if(!check_user()) {
 					$_CONFIG["denied"]=eval_attr(xml2array("xml/denied.xml"));
 					$_RESULT["form"]=getDefault("denied/form");
 					add_css_js_page($_RESULT["form"],"denied");
-					set_array($_ERROR,"error","Unknown action '$action'");
+					session_error("Unknown action '$action'");
 				}
 				$_RESULT[$action]=__default_eval_querytag($_RESULT[$action]);
 				break;
@@ -250,11 +250,11 @@ if(!check_user()) {
 				$_CONFIG["denied"]=eval_attr(xml2array("xml/denied.xml"));
 				$_RESULT["form"]=getDefault("denied/form");
 				add_css_js_page($_RESULT["form"],"denied");
-				set_array($_ERROR,"error","Unknown action '$action'");
+				session_error("Unknown action '$action'");
 				break;
 		}
 	} else {
-		set_array($_ERROR,"error",LANG("permdenied"));
+		session_error(LANG("permdenied"));
 	}
 } else {
 	$_LANG["default"]="denied,menu,common";
@@ -263,7 +263,7 @@ if(!check_user()) {
 	$_CONFIG["denied"]=eval_attr(xml2array("xml/denied.xml"));
 	$_RESULT["form"]=getDefault("denied/form");
 	add_css_js_page($_RESULT["form"],"denied");
-	set_array($_ERROR,"error",LANG("permdenied"));
+	session_error(LANG("permdenied"));
 }
 
 // GET ALERTS AND ERRORS FROM SESSION
