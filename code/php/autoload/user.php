@@ -385,33 +385,4 @@ function action_denied() {
 	die();
 }
 
-function _action_denied() {
-	global $_LANG,$_CONFIG,$_RESULT;
-	$_LANG["default"]="denied,common";
-	$_CONFIG["denied"]=eval_attr(xml2array("xml/denied.xml"));
-	$_RESULT["form"]=getDefault("denied/form");
-	add_css_js_page($_RESULT["form"],"denied");
-	$json=json_encode($_RESULT);
-	output_handler(array(
-		"data"=>$json,
-		"type"=>"application/json",
-		"cache"=>false
-	));
-}
-
-function _action_login() {
-	global $_LANG,$_CONFIG,$_RESULT;
-	$_LANG["default"]="login,common";
-	$_CONFIG["login"]=eval_attr(xml2array("xml/login.xml"));
-	$_RESULT["form"]=getDefault("login/form");
-	add_css_js_page($_RESULT["form"],"login");
-	$json=json_encode($_RESULT);
-	output_handler(array(
-		"data"=>$json,
-		"type"=>"application/json",
-		"cache"=>false
-	));
-	die();
-}
-
 ?>

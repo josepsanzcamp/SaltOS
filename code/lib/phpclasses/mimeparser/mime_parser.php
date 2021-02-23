@@ -2,7 +2,7 @@
 /*
  * mime_parser.php
  *
- * @(#) $Id: mime_parser.php,v 1.93 2020/04/22 17:32:33 mlemos Exp $
+ * @(#) $Id: mime_parser.php,v 1.94 2021/02/22 16:02:28 mlemos Exp $
  *
  */
 
@@ -30,7 +30,7 @@ define('MIME_ADDRESS_FIRST',            2);
 
 	<package>net.manuellemos.mimeparser</package>
 
-	<version>@(#) $Id: mime_parser.php,v 1.93 2020/04/22 17:32:33 mlemos Exp $</version>
+	<version>@(#) $Id: mime_parser.php,v 1.94 2021/02/22 16:02:28 mlemos Exp $</version>
 	<copyright>Copyright (C) Manuel Lemos 2006 - 2020</copyright>
 	<title>MIME parser</title>
 	<author>Manuel Lemos</author>
@@ -834,7 +834,10 @@ class mime_parser_class
 								$line_break++;
 								$this->buffer_position -= strlen($data) - $line_break;
 								$data = substr($data, 0, $line_break);
-							}
+							}  else {
+                                                                $this->buffer_position -= strlen($data);
+                                                                $data = '';
+                                                        }
 						}
 						$part=array(
 							'Type'=>'BodyData',
