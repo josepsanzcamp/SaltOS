@@ -440,7 +440,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>JQuery 3.5.1 (MIT)</label>
+							<label>JQuery 3.6.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.jquery.com/")</onclick>
