@@ -82,7 +82,6 @@ function is_disabled_function($fn="") {
 	return in_array($fn,$disableds_array);
 }
 
-
 function __exec_timeout($cmd) {
 	if(check_commands(getDefault("commands/timeout"),60)) {
 		$cmd=str_replace(array("__TIMEOUT__","__COMMAND__"),array(getDefault("commandtimeout",60),$cmd),getDefault("commands/__timeout__"));
