@@ -584,17 +584,12 @@ if(getParam("page")=="correo") {
 	}
 	if(isset($id_extra[1]) && $id_extra[1]=="mailto") {
 		require_once("php/getmail.php");
-		if(strpos($id_extra[2],"?")!==false) {
-			$temp=explode("?",$id_extra[2],2);
-			$to_extra=__getmail_rawurldecode($temp[0])."; ";
-			$temp=explode("=",$temp[1],2);
-			if(isset($temp[1])) $_GET[$temp[0]]=$temp[1];
-			foreach($_GET as $key2=>$val2) {
-				$key2=strtolower($key2);
-				if($key2=="subject") $subject_extra=__getmail_rawurldecode($val2);
-			}
-		} else {
-			$to_extra=__getmail_rawurldecode($id_extra[2])."; ";
+		$to_extra=__getmail_rawurldecode($id_extra[2])."; ";
+		foreach($_GET as $key2=>$val2) {
+			$key2=strtolower($key2);
+			if($key2=="to") $to_extra=__getmail_rawurldecode($val2)."; ";
+			if($key2=="subject") $subject_extra=__getmail_rawurldecode($val2);
+			if($key2=="body") $body_extra=__getmail_rawurldecode($val2).$body_extra;
 		}
 	}
 	if(isset($id_extra[1]) && $id_extra[1]=="feed") {
