@@ -298,10 +298,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>TCPDF 6.3.5 (LGPL-3.0)</label>
+							<label>WarnockPDF 7.0.0 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("http://www.tcpdf.org")</onclick>
+							<onclick>openwin("https://github.com/code-lts/WarnockPDF")</onclick>
 						</field>
 						<field>
 							<label>PHPMailer 6.3.0 (LGPL-2.1)</label>

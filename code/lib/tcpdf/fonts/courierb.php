@@ -1,5 +1,5 @@
 <?php
-// TCPDF FONT FILE DESCRIPTION
+// LIBRARY FONT FILE DESCRIPTION
 $type='core';
 $name='Courier-Bold';
 $up=-100;

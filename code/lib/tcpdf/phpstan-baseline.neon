@@ -1,0 +1,581 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_001.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_002.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_003.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_004.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_005.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_006.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_007.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_008.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_009.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_010.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_011.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_012.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_013.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_014.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_015.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_016.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_017.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_020.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_021.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_022.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_023.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_024.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_025.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_026.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_027.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_028.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_029.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_030.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_031.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_032.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_033.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_034.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_035.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_036.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_037.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_038.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_039.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_040.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_041.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_042.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_043.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_044.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_045.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_046.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_047.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_048.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_049.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_050.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_051.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_052.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_053.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_054.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_055.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_056.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_057.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_058.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_059.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_060.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_061.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_062.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_063.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_064.php
+
+		-
+			message: "#^Variable \\$l might not be defined\\.$#"
+			count: 1
+			path: examples/example_065.php
+
+		-
+			message: "#^Variable \\$params might not be defined\\.$#"
+			count: 22
+			path: include/barcodes/datamatrix.php
+
+		-
+			message: "#^Variable \\$cw might not be defined\\.$#"
+			count: 1
+			path: include/barcodes/datamatrix.php
+
+		-
+			message: "#^Variable \\$L might not be defined\\.$#"
+			count: 2
+			path: include/barcodes/pdf417.php
+
+		-
+			message: "#^Variable \\$frameYM might not be defined\\.$#"
+			count: 4
+			path: include/barcodes/qrcode.php
+
+		-
+			message: "#^Variable \\$subHeaderKeys might not be defined\\.$#"
+			count: 2
+			path: include/tcpdf_fonts.php
+
+		-
+			message: "#^Variable \\$glyphIndexArray might not be defined\\.$#"
+			count: 4
+			path: include/tcpdf_fonts.php
+
+		-
+			message: "#^Variable \\$ctg might not be defined\\.$#"
+			count: 2
+			path: include/tcpdf_fonts.php
+
+		-
+			message: "#^Constructor of class TCPDF has an unused parameter \\$diskcache\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$prev_FontFamily might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$prev_FontSizePt might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$prev_FontStyle might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$font_ascent might not be defined\\.$#"
+			count: 2
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$fmid might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$cborder might not be defined\\.$#"
+			count: 2
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$tmp_shy_replacement_width might not be defined\\.$#"
+			count: 3
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$tmp_shy_replacement_char might not be defined\\.$#"
+			count: 2
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$info might not be defined\\.$#"
+			count: 4
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$iccobj might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$outline_k might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$x1 might not be defined\\.$#"
+			count: 8
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$x2 might not be defined\\.$#"
+			count: 6
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$y1 might not be defined\\.$#"
+			count: 8
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$y2 might not be defined\\.$#"
+			count: 8
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$fc might not be defined\\.$#"
+			count: 2
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$ft might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$shading_transparency might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$fontsize might not be defined\\.$#"
+			count: 2
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$fontname might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$fontstyle might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$wfill might not be defined\\.$#"
+			count: 3
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$cellspacingx might not be defined\\.$#"
+			count: 4
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$cellspacing might not be defined\\.$#"
+			count: 4
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$colid might not be defined\\.$#"
+			count: 5
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$table_columns_width might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$trsid might not be defined\\.$#"
+			count: 5
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$pfontname might not be defined\\.$#"
+			count: 3
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$pfontsize might not be defined\\.$#"
+			count: 3
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$pfontstyle might not be defined\\.$#"
+			count: 3
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$hb might not be defined\\.$#"
+			count: 19
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$hbz might not be defined\\.$#"
+			count: 19
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$hbc might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$endpage might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$startpage might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$xmax might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$img might not be defined\\.$#"
+			count: 15
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$rawparams might not be defined\\.$#"
+			count: 3
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$tmpx might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$tmpy might not be defined\\.$#"
+			count: 1
+			path: tcpdf.php
+
+		-
+			message: "#^Variable \\$bar might not be defined\\.$#"
+			count: 2
+			path: tcpdf_barcodes_1d.php
+
+		-
+			message: "#^Variable \\$startid might not be defined\\.$#"
+			count: 2
+			path: tcpdf_barcodes_1d.php
+
+		-
+			message: "#^Variable \\$h might not be defined\\.$#"
+			count: 3
+			path: tcpdf_barcodes_1d.php
+
+		-
+			message: "#^Variable \\$p might not be defined\\.$#"
+			count: 3
+			path: tcpdf_barcodes_1d.php
+
+		-
+			message: "#^Variable \\$bar might not be defined\\.$#"
+			count: 2
+			path: tcpdf_barcodes_2d.php

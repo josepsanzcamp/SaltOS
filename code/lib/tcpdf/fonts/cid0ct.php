@@ -1,5 +1,5 @@
 <?php
-// TCPDF FONT FILE DESCRIPTION
+// LIBRARY FONT FILE DESCRIPTION
 $type='cidfont0';
 $name='cid0ct';
 $up=-100;

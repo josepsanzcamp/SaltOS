@@ -1,54 +1,34 @@
 <?php
-//============================================================+
-// File name   : pdf417.php
-// Version     : 1.0.005
-// Begin       : 2010-06-03
-// Last Update : 2014-04-25
-// Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
-// License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
-// Copyright (C) 2010-2013  Nicola Asuni - Tecnick.com LTD
-//
-// This file is part of TCPDF software library.
-//
-// TCPDF is free software: you can redistribute it and/or modify it
-// under the terms of the GNU Lesser General Public License as
-// published by the Free Software Foundation, either version 3 of the
-// License, or (at your option) any later version.
-//
-// TCPDF is distributed in the hope that it will be useful, but
-// WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-// See the GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with TCPDF.  If not, see <http://www.gnu.org/licenses/>.
-//
-// See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
-// DESCRIPTION :
-//
-// Class to create PDF417 barcode arrays for TCPDF class.
-// PDF417 (ISO/IEC 15438:2006) is a 2-dimensional stacked bar code created by Symbol Technologies in 1991.
-// It is one of the most popular 2D codes because of its ability to be read with slightly modified handheld laser or linear CCD scanners.
-// TECHNICAL DATA / FEATURES OF PDF417:
-//		Encodable Character Set:     All 128 ASCII Characters (including extended)
-//		Code Type:                   Continuous, Multi-Row
-//		Symbol Height:               3 - 90 Rows
-//		Symbol Width:                90X - 583X
-//		Bidirectional Decoding:      Yes
-//		Error Correction Characters: 2 - 512
-//		Maximum Data Characters:     1850 text, 2710 digits, 1108 bytes
-//
-//============================================================+
+/**
+ * This file is part of the WarnockPDF library.
+ *
+ * Class to create PDF417 barcode arrays for WarnockPDF class.
+ * PDF417 (ISO/IEC 15438:2006) is a 2-dimensional stacked bar code created by Symbol Technologies in 1991.
+ * It is one of the most popular 2D codes because of its ability to be read with
+ * slightly modified handheld laser or linear CCD scanners.
+ * TECHNICAL DATA / FEATURES OF PDF417:
+ *		Encodable Character Set:     All 128 ASCII Characters (including extended)
+ *		Code Type:                   Continuous, Multi-Row
+ *		Symbol Height:               3 - 90 Rows
+ *		Symbol Width:                90X - 583X
+ *		Bidirectional Decoding:      Yes
+ *		Error Correction Characters: 2 - 512
+ *		Maximum Data Characters:     1850 text, 2710 digits, 1108 bytes
+ *
+ * @author Nicola Asuni - Tecnick.com LTD <info@tecnick.com>
+ * @license LGPL-3.0
+ * @copyright 2010-2013 Nicola Asuni - Tecnick.com LTD
+ * @description Two columns composed by MultiCell of different
+ *
+ * @php-extension bcmath for bcadd
+ */
 
 /**
  * @file
- * Class to create PDF417 barcode arrays for TCPDF class.
+ * Class to create PDF417 barcode arrays for WarnockPDF class.
  * PDF417 (ISO/IEC 15438:2006) is a 2-dimensional stacked bar code created by Symbol Technologies in 1991.
  * (requires PHP bcmath extension)
- * @package com.tecnick.tcpdf
+ *
  * @author Nicola Asuni
  * @version 1.0.005
  */
@@ -83,17 +63,17 @@ if (!defined('PDF417DEFS')) {
 // #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#
 
 /**
- * @class PDF417
- * Class to create PDF417 barcode arrays for TCPDF class.
+ *
+ * Class to create PDF417 barcode arrays for WarnockPDF class.
  * PDF417 (ISO/IEC 15438:2006) is a 2-dimensional stacked bar code created by Symbol Technologies in 1991.
- * @package com.tecnick.tcpdf
+ *
  * @author Nicola Asuni
  * @version 1.0.003
  */
 class PDF417 {
 
 	/**
-	 * Barcode array to be returned which is readable by TCPDF.
+	 * Barcode array to be returned which is readable by WarnockPDF.
 	 * @protected
 	 */
 	protected $barcode_array = array();
@@ -523,15 +503,15 @@ class PDF417 {
 	/**
 	 * This is the class constructor.
 	 * Creates a PDF417 object
-	 * @param $code (string) code to represent using PDF417
-	 * @param $ecl (int) error correction level (0-8); default -1 = automatic correction level
-	 * @param $aspectratio (float) the width to height of the symbol (excluding quiet zones)
-	 * @param $macro (array) information for macro block
+	 * @param string $code code to represent using PDF417
+	 * @param int $ecl error correction level (0-8); default -1 = automatic correction level
+	 * @param float $aspectratio the width to height of the symbol (excluding quiet zones)
+	 * @param array $macro information for macro block
 	 * @public
 	 */
 	public function __construct($code, $ecl=-1, $aspectratio=2, $macro=array()) {
 		$barcode_array = array();
-		if ((is_null($code)) OR ($code == '\0') OR ($code == '')) {
+		if (($code === null) OR ($code == '\0') OR ($code == '')) {
 			return false;
 		}
 		// get the input sequence array
@@ -724,8 +704,8 @@ class PDF417 {
 	}
 
 	/**
-	 * Returns a barcode array which is readable by TCPDF
-	 * @return array barcode array readable by TCPDF;
+	 * Returns a barcode array which is readable by WarnockPDF
+	 * @return array barcode array readable by WarnockPDF;
 	 * @public
 	 */
 	public function getBarcodeArray() {
@@ -734,12 +714,13 @@ class PDF417 {
 
 	/**
 	 * Returns the error correction level (0-8) to be used
-	 * @param $ecl (int) error correction level
-	 * @param $numcw (int) number of data codewords
+	 * @param int $ecl error correction level
+	 * @param int $numcw number of data codewords
 	 * @return int error correction level
 	 * @protected
 	 */
 	protected function getErrorCorrectionLevel($ecl, $numcw) {
+		$maxecl = 8; // starting error level
 		// check for automatic levels
 		if (($ecl < 0) OR ($ecl > 8)) {
 			if ($numcw < 41) {
@@ -755,7 +736,6 @@ class PDF417 {
 			}
 		}
 		// get maximum correction level
-		$maxecl = 8; // starting error level
 		$maxerrsize = (928 - $numcw); // available codewords for error
 		while ($maxecl > 0) {
 			$errsize = (2 << $ecl);
@@ -772,8 +752,8 @@ class PDF417 {
 
 	/**
 	 * Returns the error correction codewords
-	 * @param $cw (array) array of codewords including Symbol Length Descriptor and pad
-	 * @param $ecl (int) error correction level 0-8
+	 * @param array $cw array of codewords including Symbol Length Descriptor and pad
+	 * @param int $ecl error correction level 0-8
 	 * @return array of error correction codewords
 	 * @protected
 	 */
@@ -809,7 +789,7 @@ class PDF417 {
 
 	/**
 	 * Create array of sequences from input
-	 * @param $code (string) code
+	 * @param string $code code
 	 * @return bidimensional array containing characters and classification
 	 * @protected
 	 */
@@ -864,9 +844,9 @@ class PDF417 {
 
 	/**
 	 * Compact data by mode.
-	 * @param $mode (int) compaction mode number
-	 * @param $code (string) data to compact
-	 * @param $addmode (boolean) if true add the mode codeword at first position
+	 * @param int $mode compaction mode number
+	 * @param string $code data to compact
+	 * @param boolean $addmode if true add the mode codeword at first position
 	 * @return array of codewords
 	 * @protected
 	 */
@@ -990,7 +970,3 @@ class PDF417 {
 	}
 
 } // end PDF417 class
-
-//============================================================+
-// END OF FILE
-//============================================================+

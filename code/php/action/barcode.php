@@ -38,9 +38,8 @@ if(getParam("action")=="barcode") {
 	$m=intval(getParam("m",10));
 	$s=intval(getParam("s",8));
 	$t=getParam("t","C39");
-	$l=intval(getParam("l",1));
 	// BEGIN THE BARCODE WRAPPER
-	$cache=get_cache_file(array($msg,$w,$h,$m,$s,$t,$l),".png");
+	$cache=get_cache_file(array($msg,$w,$h,$m,$s,$t),".png");
 	//~ if(file_exists($cache)) unlink($cache);
 	if(!file_exists($cache)) {
 		require_once("lib/tcpdf/tcpdf_barcodes_1d.php");
@@ -49,9 +48,15 @@ if(getParam("action")=="barcode") {
 		if(!isset($array["maxw"])) action_denied();
 		$width=$array["maxw"]*$w;
 		$height=$h;
-		$im=imagecreatetruecolor($width+2*$m,$height+2*$m+$s);
+		$extra=$s;
+		if($s) {
+			$font=getcwd()."/lib/fonts/DejaVuSans.ttf";
+			$bbox=imagettfbbox($s,0,$font,$msg);
+			$extra=abs($bbox[5]-$bbox[1])+$m;
+		}
+		$im=imagecreatetruecolor($width+2*$m,$height+2*$m+$extra);
 		$bgcol=imagecolorallocate($im,255,255,255);
-		imagefilledrectangle($im,0,0,$width+2*$m,$height+2*$m+$s,$bgcol);
+		imagefilledrectangle($im,0,0,$width+2*$m,$height+2*$m+$extra,$bgcol);
 		$fgcol=imagecolorallocate($im,0,0,0);
 		$x=0;
 		foreach($array["bcode"] as $key=>$val) {
@@ -63,12 +68,10 @@ if(getParam("action")=="barcode") {
 			}
 			$x+=$bw;
 		}
-		if($l) {
+		if($s) {
 			// ADD MSG TO THE IMAGE FOOTER
-			$font=getcwd()."/lib/fonts/DejaVuSans.ttf";
-			$bbox=imagettfbbox($s,0,$font,$msg);
 			$px=($width+2*$m)/2-($bbox[4]-$bbox[0])/2;
-			$py=$m+$h+$s+$w;
+			$py=$m+$h+1+$m+$s;
 			imagettftext($im,$s,0,$px,$py,$fgcol,$font,$msg);
 		}
 		// CONTINUE

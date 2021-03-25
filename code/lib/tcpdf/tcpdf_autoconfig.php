@@ -1,42 +1,17 @@
 <?php
-//============================================================+
-// File name   : tcpdf_autoconfig.php
-// Version     : 1.1.1
-// Begin       : 2013-05-16
-// Last Update : 2014-12-18
-// Authors     : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
-// License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
-// Copyright (C) 2011-2014 Nicola Asuni - Tecnick.com LTD
-//
-// This file is part of TCPDF software library.
-//
-// TCPDF is free software: you can redistribute it and/or modify it
-// under the terms of the GNU Lesser General Public License as
-// published by the Free Software Foundation, either version 3 of the
-// License, or (at your option) any later version.
-//
-// TCPDF is distributed in the hope that it will be useful, but
-// WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-// See the GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the License
-// along with TCPDF. If not, see
-// <http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT>.
-//
-// See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
-// Description : Try to automatically configure some TCPDF
-//               constants if not defined.
-//
-//============================================================+
+/**
+ * This file is part of the WarnockPDF library.
+ *
+ * @author Nicola Asuni - Tecnick.com LTD <info@tecnick.com>
+ * @license LGPL-3.0
+ * @copyright 2011-2014 Nicola Asuni - Tecnick.com LTD
+ * @description Try to automatically configure some TCPDF constants if not defined.
+ */
 
 /**
  * @file
  * Try to automatically configure some TCPDF constants if not defined.
- * @package com.tecnick.tcpdf
+ *
  * @version 1.1.1
  */
 
@@ -235,7 +210,3 @@ if (!defined('K_TCPDF_THROW_EXCEPTION_ERROR')) {
 if (!defined('K_TIMEZONE')) {
 	define('K_TIMEZONE', @date_default_timezone_get());
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

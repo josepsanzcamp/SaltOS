@@ -1,47 +1,24 @@
 <?php
-//============================================================+
-// File name   : tcpdf_colors.php
-// Version     : 1.0.004
-// Begin       : 2002-04-09
-// Last Update : 2014-04-25
-// Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
-// License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
-// Copyright (C) 2002-2013  Nicola Asuni - Tecnick.com LTD
-//
-// This file is part of TCPDF software library.
-//
-// TCPDF is free software: you can redistribute it and/or modify it
-// under the terms of the GNU Lesser General Public License as
-// published by the Free Software Foundation, either version 3 of the
-// License, or (at your option) any later version.
-//
-// TCPDF is distributed in the hope that it will be useful, but
-// WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-// See the GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with TCPDF.  If not, see <http://www.gnu.org/licenses/>.
-//
-// See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
-// Description : Array of WEB safe colors
-//
-//============================================================+
-
 /**
- * @file
- * PHP color class for TCPDF
- * @author Nicola Asuni
- * @package com.tecnick.tcpdf
+ * This file is part of the WarnockPDF library.
+ *
+ * @author Nicola Asuni - Tecnick.com LTD <info@tecnick.com>
+ * @license LGPL-3.0
+ * @copyright 2002-2013  Nicola Asuni - Tecnick.com LTD
+ * @description Array of WEB safe colors
  */
 
 /**
- * @class TCPDF_COLORS
- * PHP color class for TCPDF
- * @package com.tecnick.tcpdf
+ * @file
+ * PHP color class for WarnockPDF
+ * @author Nicola Asuni
+ *
+ */
+
+/**
+ *
+ * PHP color class for WarnockPDF
+ *
  * @version 1.0.004
  * @author Nicola Asuni - info@tecnick.com
  */
@@ -240,9 +217,9 @@ class TCPDF_COLORS {
 
 	/**
 	 * Return the Spot color array.
-	 * @param $name (string) Name of the spot color.
-	 * @param $spotc (array) Reference to an array of spot colors.
-	 * @return (array) Spot color array or false if not defined.
+	 * @param string $name Name of the spot color.
+	 * @param array $spotc Reference to an array of spot colors.
+	 * @return array Spot color array or false if not defined.
 	 * @since 5.9.125 (2011-10-03)
 	 * @public static
 	 */
@@ -264,9 +241,9 @@ class TCPDF_COLORS {
 
 	/**
 	 * Returns an array (RGB or CMYK) from an html color name, or a six-digit (i.e. #3FE5AA), or three-digit (i.e. #7FF) hexadecimal color, or a javascript color array, or javascript color name.
-	 * @param $hcolor (string) HTML color.
-	 * @param $spotc (array) Reference to an array of spot colors.
-	 * @param $defcol (array) Color to return in case of error.
+	 * @param string $hcolor HTML color.
+	 * @param array $spotc Reference to an array of spot colors.
+	 * @param array $defcol Color to return in case of error.
 	 * @return array RGB or CMYK color, or false in case of error.
 	 * @public static
 	 */
@@ -407,8 +384,8 @@ class TCPDF_COLORS {
 
 	/**
 	 * Convert a color array into a string representation.
-	 * @param $c (array) Array of colors.
-	 * @return (string) The color array representation.
+	 * @param array $c Array of colors.
+	 * @return string The color array representation.
 	 * @since 5.9.137 (2011-12-01)
 	 * @public static
 	 */
@@ -438,7 +415,7 @@ class TCPDF_COLORS {
 
 	/**
 	 * Convert color to javascript color.
-	 * @param $color (string) color name or "#RRGGBB"
+	 * @param string $color color name or "#RRGGBB"
 	 * @protected
 	 * @since 2.1.002 (2008-02-12)
 	 * @public static
@@ -449,14 +426,10 @@ class TCPDF_COLORS {
 		}
 		if (!in_array($color, self::$jscolor)) {
 			// default transparent color
-			$color = $jscolor[0];
+			$color = self::$jscolor[0];
 		}
 		return 'color.'.$color;
 	}
 
 
 } // END OF TCPDF_COLORS CLASS
-
-//============================================================+
-// END OF FILE
-//============================================================+

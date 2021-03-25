@@ -1,7 +1,12 @@
 
-I removed for security reasons the:
-- lib/tcpdf/doc
-- lib/tcpdf/examples
+I have replaced TCPDF by WarnockPDF because TCPDF project is obsolete:
+- https://github.com/tecnickcom/TCPDF
+- https://github.com/code-lts/WarnockPDF
 
-I created the images directory
-- lib/tcpdf/images
+I removed for security reasons the follow directories:
+- tests
+- tools
+- scripts
+- examples
+
+
