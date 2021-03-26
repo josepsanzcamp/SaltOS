@@ -6,6 +6,8 @@
     <arg name="colors"/>
     <!-- Make sniff report relative -->
     <arg name="basepath" value="."/>
+    <!-- Store results in a cache file -->
+    <arg name="cache" value=".php_cs.cache"/>
 
     <file>.</file>
     <exclude-pattern>*/tmp/*</exclude-pattern>
@@ -15,53 +17,33 @@
 
     <rule ref="Wdes">
         <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing"/>
-        <exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
-        <exclude name="Generic.Functions.FunctionCallArgumentSpacing.NoSpaceAfterComma"/>
         <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
-        <exclude name="Generic.WhiteSpace.DisallowTabIndent.NonIndentTabsUsed"/>
         <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact"/>
-        <exclude name="Generic.Functions.FunctionCallArgumentSpacing.SpaceBeforeComma"/>
-        <exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma"/>
         <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedElseif"/>
         <exclude name="Generic.Metrics.NestingLevel.MaxExceeded"/>
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing.SpaceAfterIncrement"/><!-- To be fixed -->
-        <exclude name="Generic.PHP.LowerCaseKeyword.Found"/><!-- To be fixed -->
-        <exclude name="Generic.PHP.LowerCaseConstant.Found"/><!-- To be fixed -->
         <exclude name="Generic.Formatting.SpaceAfterCast.NoSpace"/><!-- To be fixed -->
 
         <exclude name="Squiz.PHP.DisallowSizeFunctionsInLoops.Found"/>
         <exclude name="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
         <exclude name="Squiz.Strings.ConcatenationSpacing.PaddingFound"/>
-        <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfter"/>
-        <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceBefore"/>
-        <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingBefore"/>
-        <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingAfter"/>
         <exclude name="Squiz.WhiteSpace.FunctionSpacing.After"/>
         <exclude name="Squiz.WhiteSpace.FunctionSpacing.Before"/>
         <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.Indent"/>
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine"/>
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpaceBeforeEquals"/><!-- To be fixed -->
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpaceAfterEquals"/><!-- To be fixed -->
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.NoSpaceBeforeArg"/><!-- To be fixed -->
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
         <exclude name="Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace"/>
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
         <exclude name="Squiz.ControlStructures.ForLoopDeclaration.SpacingBeforeFirst"/>
+        <exclude name="Squiz.WhiteSpace.FunctionSpacing.BeforeFirst"/>
         <exclude name="Squiz.WhiteSpace.FunctionSpacing.AfterLast"/>
         <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen"/>
         <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
         <exclude name="Squiz.WhiteSpace.ScopeClosingBrace.Indent"/>
-        <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
-        <exclude name="Squiz.WhiteSpace.SemicolonSpacing.Incorrect"/><!-- To be fixed -->
-        <exclude name="Squiz.WhiteSpace.LogicalOperatorSpacing.TooMuchSpaceBefore"/>
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.CloseBracketLine"/>
         <exclude name="Squiz.PHP.NonExecutableCode.Unreachable"/><!-- To be fixed -->
 
-        <exclude name="SlevomatCodingStandard.TypeHints.LongTypeHints.UsedLongTypeHint"/><!-- To be fixed -->
-
-        <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceBefore"/>
-        <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter"/>
         <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
         <exclude name="PSR12.Classes.ClosingBrace.StatementAfter"/>
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine"/>
@@ -73,8 +55,6 @@
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.SpaceBeforeCloseBrace"/>
 
         <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
-        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
-        <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/><!-- To be fixed -->
 
         <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpaceBeforeCloseBrace"/>
         <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
@@ -82,10 +62,8 @@
         <exclude name="PSR2.Methods.FunctionCallSignature.SpaceBeforeOpenBracket"/>
         <exclude name="PSR2.ControlStructures.SwitchDeclaration.WrongOpenercase"/>
         <exclude name="PSR2.ControlStructures.SwitchDeclaration.WrongOpenerdefault"/>
-        <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
         <exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
         <exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose"/>
-        <exclude name="PSR2.Files.EndFileNewline.NoneFound"/><!-- To be fixed -->
         <exclude name="PSR2.ControlStructures.SwitchDeclaration.SpaceBeforeColonCASE"/>
         <exclude name="PSR2.ControlStructures.SwitchDeclaration.TerminatingComment"/><!-- Investigate -->
 
@@ -103,10 +81,7 @@
         <exclude name="PEAR.ControlStructures.MultiLineCondition.CloseBracketNewLine"/>
         <exclude name="PEAR.ControlStructures.MultiLineCondition.StartWithBoolean"/>
         <exclude name="PEAR.ControlStructures.MultiLineCondition.Alignment"/>
-        <exclude name="PEAR.Classes.ClassDeclaration.OpenBraceNewLine"/>
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket"/>
-        <exclude name="PEAR.NamingConventions.ValidClassName.StartWithCapital"/><!-- To be fixed -->
-        <exclude name="PEAR.NamingConventions.ValidClassName.Invalid"/><!-- To be fixed -->
 
         <!-- Warnings -->
         <exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning"/>
@@ -114,9 +89,35 @@
         <exclude name="Generic.Files.LineLength.TooLong"/>
         <exclude name="Generic.PHP.NoSilencedErrors.Discouraged"/>
         <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
-        <exclude name="Generic.Classes.DuplicateClassName.Found"/>
         <exclude name="Generic.Metrics.NestingLevel.TooHigh"/>
         <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedIf"/>
+    </rule>
+
+    <rule ref="Generic.Classes.DuplicateClassName.Found">
+        <exclude-pattern>*/examples/example_011.php</exclude-pattern>
+        <exclude-pattern>*/examples/example_051.php</exclude-pattern>
+        <exclude-pattern>*/examples/example_020.php</exclude-pattern>
+        <exclude-pattern>*/examples/example_021.php</exclude-pattern>
+    </rule>
+
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent.TabsUsed">
+        <exclude-pattern>*/tcpdf.php</exclude-pattern>
+    </rule>
+
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent.NonIndentTabsUsed">
+        <exclude-pattern>*/tcpdf.php</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>*/include/*</exclude-pattern>
+        <exclude-pattern>*/examples/*</exclude-pattern>
+        <exclude-pattern>*/tcpdf_barcodes_*.php</exclude-pattern>
+        <exclude-pattern>*/tcpdf.php</exclude-pattern>
+        <exclude-pattern>*/tests/coverage.php</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
+        <exclude-pattern>*/tests/coverage.php</exclude-pattern>
     </rule>
 
 </ruleset>
