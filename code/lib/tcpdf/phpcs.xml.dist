@@ -7,16 +7,15 @@
     <!-- Make sniff report relative -->
     <arg name="basepath" value="."/>
     <!-- Store results in a cache file -->
-    <arg name="cache" value=".php_cs.cache"/>
+    <arg name="cache" value=".phpcs.cache"/>
 
     <file>.</file>
     <exclude-pattern>*/tmp/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/build/*</exclude-pattern>
-    <exclude-pattern>*/fonts/*</exclude-pattern>
 
     <rule ref="Wdes">
-        <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing"/><!-- PHP 5 not compatible -->
         <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
         <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact"/>
         <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedElseif"/>
@@ -44,15 +43,9 @@
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.CloseBracketLine"/>
         <exclude name="Squiz.PHP.NonExecutableCode.Unreachable"/><!-- To be fixed -->
 
-        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
-        <exclude name="PSR12.Classes.ClosingBrace.StatementAfter"/>
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine"/>
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.CloseParenthesisLine"/>
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.LineIndent"/>
-        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
-        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.SpacingBeforeOpenBrace"/>
-        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.SpaceAfterCloseBrace"/>
-        <exclude name="PSR12.ControlStructures.ControlStructureSpacing.SpaceBeforeCloseBrace"/>
 
         <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
 
@@ -81,7 +74,6 @@
         <exclude name="PEAR.ControlStructures.MultiLineCondition.CloseBracketNewLine"/>
         <exclude name="PEAR.ControlStructures.MultiLineCondition.StartWithBoolean"/>
         <exclude name="PEAR.ControlStructures.MultiLineCondition.Alignment"/>
-        <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket"/>
 
         <!-- Warnings -->
         <exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning"/>
@@ -91,21 +83,9 @@
         <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
         <exclude name="Generic.Metrics.NestingLevel.TooHigh"/>
         <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedIf"/>
-    </rule>
-
-    <rule ref="Generic.Classes.DuplicateClassName.Found">
-        <exclude-pattern>*/examples/example_011.php</exclude-pattern>
-        <exclude-pattern>*/examples/example_051.php</exclude-pattern>
-        <exclude-pattern>*/examples/example_020.php</exclude-pattern>
-        <exclude-pattern>*/examples/example_021.php</exclude-pattern>
-    </rule>
-
-    <rule ref="Generic.WhiteSpace.DisallowTabIndent.TabsUsed">
-        <exclude-pattern>*/tcpdf.php</exclude-pattern>
-    </rule>
-
-    <rule ref="Generic.WhiteSpace.DisallowTabIndent.NonIndentTabsUsed">
-        <exclude-pattern>*/tcpdf.php</exclude-pattern>
+        <!-- PHP 5 not compatible rule, it requires PHP 7.1 -->
+        <exclude name="SlevomatCodingStandard.Classes.ClassConstantVisibility.MissingConstantVisibility"/>
+        <exclude name="PSR12.Properties.ConstantVisibility.NotFound"/>
     </rule>
 
     <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">

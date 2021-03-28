@@ -10,12 +10,14 @@
 - Cleaned up and update links of the LICENSE
 - Adjusted the php composer version
 - Cleaned up the headers of source files
+- Renamed `tools/tcpdf_addfont.php` to `tools/addfont.php` (this is a CLI only file)
 
 ### Improvements
 
 - Added a testing and coverage script
 - Added GitHub actions to cover all PHP versions supported
 - Applied a coding-standard: wdes/coding-standard
+- Improved the phpdoc blocks
 
 ### Fixes
 
@@ -31,6 +33,7 @@
 - TCPDF_IMPORT class (it was not finished since 2013 and under development in 2013)
 - TCPDF_PARSER class (it was used by TCPDF_IMPORT)
 - TCPDF_FILTERS class (it was used by TCPDF_PARSER, and created in 2013, and never really changed)
+- Drop PHP 4 polyfill for `str_split` function in `include/barcodes/qrcode.php`
 
 ## [6.3.5] - 2020-02-14
 

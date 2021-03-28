@@ -58,6 +58,7 @@ if(getParam("action")=="compress") {
 			file_put_contents($file,$data);
 			$todelete[]=$file;
 		}
+		if(getParam("format")=="zip") $name=utf8_decode($name); // FIX ONLY FOR ZIP FORMAT
 		$files[]=array("file"=>$file,"name"=>$name);
 	}
 	require_once("lib/phpclasses/archive/archive.php");
