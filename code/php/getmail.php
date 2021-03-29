@@ -253,7 +253,7 @@ function __getmail_getinfo($array) {
 				$name=getutf8(__getmail_getnode("name",$a));
 				$addr=getutf8(__getmail_getnode("address",$a));
 				$result["emails"][]=array("id_tipo"=>$key,"tipo"=>$val,"nombre"=>$name,"valor"=>$addr);
-				$temp[]=($name!="")?$name."<".$addr.">":$addr;
+				$temp[]=($name!="")?$name." <".$addr.">":$addr;
 			}
 			$temp=implode("; ",$temp);
 			if(array_key_exists($val,$result)) $result[$val]=$temp;

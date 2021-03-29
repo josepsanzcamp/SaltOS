@@ -7046,11 +7046,6 @@ parameters:
 			path: src/WarnockPDF.php
 
 		-
-			message: "#^Call to function method_exists\\(\\) with 'Images' and string will always evaluate to false\\.$#"
-			count: 1
-			path: src/WarnockPDF.php
-
-		-
 			message: "#^Trying to invoke string but it might not be a callable\\.$#"
 			count: 1
 			path: src/WarnockPDF.php
