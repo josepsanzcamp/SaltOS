@@ -77,7 +77,7 @@ function setParam($index,$value="") {
 	else $_POST[$index]=$value;
 }
 
-function encode_bad_chars($cad,$pad="_") {
+function encode_bad_chars($cad,$pad="_",$extra="") {
 	static $orig=array(
 		"á","à","ä","â","é","è","ë","ê","í","ì","ï","î","ó","ò","ö","ô","ú","ù","ü","û","ñ","ç",
 		"Á","À","Ä","Â","É","È","Ë","Ê","Í","Ì","Ï","Î","Ó","Ò","Ö","Ô","Ú","Ù","Ü","Û","Ñ","Ç");
@@ -92,6 +92,7 @@ function encode_bad_chars($cad,$pad="_") {
 		$replace=1;
 		if($letter>="a" && $letter<="z") $replace=0;
 		if($letter>="0" && $letter<="9") $replace=0;
+		if(strpos($extra,$letter)!==false) $replace=0;
 		if($replace) $cad[$i]=$pad;
 	}
 	$cad=prepare_words($cad,$pad);
@@ -101,8 +102,9 @@ function encode_bad_chars($cad,$pad="_") {
 function prepare_words($cad,$pad=" ") {
 	$count=1;
 	while($count) $cad=str_replace($pad.$pad,$pad,$cad,$count);
-	if(substr($cad,0,1)==$pad) $cad=substr($cad,1);
-	if(substr($cad,-1,1)==$pad) $cad=substr($cad,0,-1);
+	$len=strlen($pad);
+	if(substr($cad,0,$len)==$pad) $cad=substr($cad,$len);
+	if(substr($cad,-$len,$len)==$pad) $cad=substr($cad,0,-$len);
 	return $cad;
 }
 

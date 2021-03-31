@@ -416,27 +416,6 @@ function sql_drop_index($index,$table) {
 	return $query;
 }
 
-function __make_like_query_explode($separator,$str) {
-	$result=array();
-	$len=strlen($str);
-	$ini=0;
-	$open=array("'"=>0,'"'=>0);
-	for($i=0;$i<$len;$i++) {
-		$letter=$str[$i];
-		if(isset($open[$letter])) {
-			$open[$letter]=($open[$letter]+1)%2;
-		}
-		if($letter==$separator && array_sum($open)==0) {
-			$result[]=substr($str,$ini,$i-$ini);
-			$ini=$i+1;
-		}
-	}
-	if($i!=$ini) {
-		$result[]=substr($str,$ini,$i-$ini);
-	}
-	return $result;
-}
-
 function make_like_query($keys,$values) {
 	$keys=explode(",",$keys);
 	foreach($keys as $key=>$val) {
@@ -445,31 +424,30 @@ function make_like_query($keys,$values) {
 		if($val!="") $keys[$key]=$val;
 	}
 	if(!count($keys)) return "1=1";
-	$values=__make_like_query_explode(" ",$values);
+	$values=explode(" ",encode_bad_chars($values," ","+-"));
+	$types=array();
 	foreach($values as $key=>$val) {
-		$val=trim($val);
-		$val=str_replace(array("'",'"',"@","%","*","_","?"),array("","","@@","@%","%","@_","_"),$val);
+		$types[$key]="+";
+		while(isset($val[0]) && in_array($val[0],array("+","-"))) {
+			$types[$key]=$val[0];
+			$val=substr($val,1);
+		}
 		if($val=="") unset($values[$key]);
 		if($val!="") $values[$key]=$val;
 	}
 	if(!count($values)) return "1=1";
 	$query=array();
-	foreach($values as $value) {
-		$type=($value[0]=="-")?"-":"+";
-		while(isset($value[0]) && in_array($value[0],array("+","-"))) $value=substr($value,1);
-		if($value!="") {
-			if($type=="-") {
-				$query2=array();
-				foreach($keys as $key) $query2[]="$key NOT LIKE '%$value%' ESCAPE '@'";
-				$query[]="(".implode(" AND ",$query2).")";
-			} else {
-				$query2=array();
-				foreach($keys as $key) $query2[]="$key LIKE '%$value%' ESCAPE '@'";
-				$query[]="(".implode(" OR ",$query2).")";
-			}
+	foreach($values as $key=>$val) {
+		if($types[$key]=="+") {
+			$query2=array();
+			foreach($keys as $key2) $query2[]="${key2} LIKE '%${val}%'";
+			$query[]="(".implode(" OR ",$query2).")";
+		} else {
+			$query2=array();
+			foreach($keys as $key2) $query2[]="${key2} NOT LIKE '%${val}%'";
+			$query[]="(".implode(" AND ",$query2).")";
 		}
 	}
-	if(!count($query)) return "1=1";
 	$query="(".implode(" AND ",$query).")";
 	return $query;
 }
@@ -637,17 +615,13 @@ function make_insert_from_select_query($table,$table2,$array,$where2) {
 }
 
 function make_fulltext_query2($values) {
-	$values=__make_like_query_explode(" ",$values);
+	$values=explode(" ",encode_bad_chars($values," ","+-"));
 	foreach($values as $key=>$val) {
-		$val=trim($val);
-		$val=str_replace(array("'",'"',"\\","(",")"),"",$val);
-		if($val=="") unset($values[$key]);
-		if($val!="") $values[$key]=$val;
-	}
-	if(!count($values)) return "1=1";
-	foreach($values as $key=>$val) {
-		$type=($val[0]=="-")?"-":"+";
-		while(isset($val[0]) && in_array($val[0],array("+","-"))) $val=substr($val,1);
+		$type="+";
+		while(isset($val[0]) && in_array($val[0],array("+","-"))) {
+			$type=$val[0];
+			$val=substr($val,1);
+		}
 		if($val=="") unset($values[$key]);
 		if($val!="") $values[$key]=$type.'"'.$val.'"';
 	}
