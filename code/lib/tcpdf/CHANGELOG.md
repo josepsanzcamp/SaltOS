@@ -35,12 +35,12 @@
 - TCPDF_FILTERS class (it was used by TCPDF_PARSER, and created in 2013, and never really changed)
 - Drop PHP 4 polyfill for `str_split` function in `include/barcodes/qrcode.php`
 
-## [6.3.5] - 2020-02-14
+## [6.3.5] - 2021-02-14
 
 - Fixed curly braces in pdf417
 - Fixed a syntax error issue when accessing an index of a casted variable
 
-## [6.3.4] - 2020-02-12
+## [6.3.4] - 2021-02-12
 
 - Check if imagekeys exist
 - Unlink only images in cache
