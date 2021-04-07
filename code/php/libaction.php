@@ -143,6 +143,41 @@ function __query2matrix($query) {
 	return $matrix;
 }
 
+function __query2dump($query,$file) {
+	require_once("php/export.php");
+	$offset=0;
+	$limit=100000;
+	$buffer="";
+	while(1) {
+		$result=db_query("$query LIMIT $offset,$limit");
+		if(!db_num_rows($result)) {
+			db_free($result);
+			break;
+		}
+		$matrix=array(array());
+		if(!$offset) {
+			for($i=0;$i<db_num_fields($result);$i++) $matrix[0][]=db_field_name($result,$i);
+		}
+		while($row=db_fetch_row($result)) $matrix[]=array_values($row);
+		db_free($result);
+		$buffer.=export_file(array(
+			"type"=>"csv",
+			"data"=>$matrix,
+		));
+		$offset+=$limit;
+	}
+	if(!defined("__CANCEL_DIE__")) {
+		output_handler(array(
+			"data"=>$buffer,
+			"type"=>"text/csv",
+			"cache"=>false,
+			"name"=>$file
+		));
+	} else {
+		echo $buffer;
+	}
+}
+
 function __favicon_color2dec($color,$component) {
 	$offset=array("R"=>0,"G"=>2,"B"=>4);
 	if(!isset($offset[$component])) show_php_error(array("phperror"=>"Unknown component"));

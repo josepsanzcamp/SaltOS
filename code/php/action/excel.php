@@ -37,8 +37,12 @@ if(getParam("action")=="excel") {
 	if(eval_bool(getDefault("debug/actiondebug"))) debug_dump();
 	$query=$config["query"];
 	max_memory_limit();
-	$matrix=__query2matrix($query);
-	__matrix2dump($matrix,"${page}.xls",ucfirst($page));
+	$total=execute_query("SELECT COUNT(*) FROM ($query) __b__");
+	if($total<=100000) {
+		__matrix2dump(__query2matrix($query),"${page}.xls",ucfirst($page));
+	} else {
+		__query2dump($query,"${page}.csv",ucfirst($page));
+	}
 	if(!defined("__CANCEL_DIE__")) die();
 }
 
