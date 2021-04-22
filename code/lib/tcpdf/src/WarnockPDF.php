@@ -6641,13 +6641,10 @@ class WarnockPDF
             switch ($align) {
                 case 'J':
                 case 'C': {
-                    $w = $w;
                     break;
                 }
                 case 'L': {
-                    if ($this->rtl) {
-                        $w = $w;
-                    } else {
+                    if (! $this->rtl) {
                         $w = $l;
                     }
                     break;
@@ -6655,8 +6652,6 @@ class WarnockPDF
                 case 'R': {
                     if ($this->rtl) {
                         $w = $l;
-                    } else {
-                        $w = $w;
                     }
                     break;
                 }
