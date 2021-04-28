@@ -1289,6 +1289,7 @@ function __import_make_table_ascii($array) {
 			if(substr($val,-1,1)=="€") $aligns[$key]="R";
 		}
 	}
+	ob_start();
 	foreach($widths as $width) echo "+".str_repeat("-",$width+($compact?0:2));
 	echo "+\n";
 	foreach($rows as $index=>$row) {
