@@ -1265,6 +1265,7 @@ function __import_apply_patch_rec(&$array,$key,$val) {
 		TODO
 */
 function __import_make_table_ascii($array) {
+	// PREPARAR DATOS
 	if(!is_array($array["rows"])) {
 		$array["rows"]=array(array($array["rows"]));
 		$array["head"]=0;
@@ -1273,22 +1274,34 @@ function __import_make_table_ascii($array) {
 		$array["rows"]=array(array(LANG("nodata")));
 		$array["head"]=0;
 	}
+	// INICIALIZAR VARIABLES LOCALES
 	$rows=isset($array["rows"])?$array["rows"]:array();
 	$head=isset($array["head"])?$array["head"]:1;
 	$compact=isset($array["compact"])?$array["compact"]:0;
-	$widths=array();
+	// CALCULAR ALINEACIONES
 	$aligns=array();
+	foreach($rows as $row) {
+		foreach($row as $key=>$val) {
+			if(!isset($aligns[$key])) $aligns[$key]=array("L"=>0,"R"=>0);
+			if(is_numeric($val)) $aligns[$key]["R"]++;
+			elseif(substr($val,-1,1)=="%") $aligns[$key]["R"]++;
+			elseif(substr($val,-1,1)=="€") $aligns[$key]["R"]++;
+			else $aligns[$key]["L"]++;
+		}
+	}
+	foreach($aligns as $key=>$val) {
+		$aligns[$key]=($val["R"]>$val["L"])?"R":"L";
+	}
+	// CALCULAR MEDIDAS
+	$widths=array();
 	if($head) array_unshift($rows,array_combine(array_keys($rows[0]),array_keys($rows[0])));
 	foreach($rows as $row) {
 		foreach($row as $key=>$val) {
 			if(!isset($widths[$key])) $widths[$key]=0;
 			$widths[$key]=max(mb_strlen($val),$widths[$key]);
-			if(!isset($aligns[$key])) $aligns[$key]="L";
-			if(is_numeric($val)) $aligns[$key]="R";
-			if(substr($val,-1,1)=="%") $aligns[$key]="R";
-			if(substr($val,-1,1)=="€") $aligns[$key]="R";
 		}
 	}
+	// PINTAR TABLA
 	ob_start();
 	foreach($widths as $width) echo "+".str_repeat("-",$width+($compact?0:2));
 	echo "+\n";
@@ -1308,6 +1321,7 @@ function __import_make_table_ascii($array) {
 	foreach($widths as $width) echo "+".str_repeat("-",$width+($compact?0:2));
 	echo "+";
 	$buffer=ob_get_clean();
+	// BYE BYE
 	return $buffer;
 }
 
