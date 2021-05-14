@@ -1,2 +1,14 @@
 Code downloaded from:
 - http://www.phpclasses.org/package/3169-PHP-Decode-MIME-e-mail-messages.html
+
+Fixed a bug when the CR+NL at the end of a part is break by a chunk
+-------------------------------------------------------------------
+// BEGIN TO SOLVE THE CHUNK PROBLEM WHEN BREAK A PART CR+NL BY SANZ
+if(!$end_of_data && substr($data,-1,1)=="\r") {
+	$data.=@fread($this->file,1);
+	if(GetType($data)!='string')
+		return($this->SetPHPError('could not read the message file', $php_errormsg));
+	$end_of_data = feof($this->file);
+}
+// END TO SOLVE THE CHUNK PROBLEM WHEN BREAK A PART CR+NL BY SANZ
+

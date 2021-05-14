@@ -296,7 +296,7 @@ class mime_parser_class
 {/metadocument}
 */
 	var $track_lines = 0;
-	
+
 /*
 {metadocument}
 	<variable>
@@ -902,7 +902,7 @@ class mime_parser_class
 		}
 		return($return_value);
 	}
-	
+
 	Function ParseBody($data, $end, $offset)
 	{
 		$success = $this->body_parser->Parse($data, $end);
@@ -1387,6 +1387,14 @@ class mime_parser_class
 					if(GetType($data)!='string')
 						return($this->SetPHPError('could not read the message file', $php_errormsg));
 					$end_of_data = feof($this->file);
+					// BEGIN TO SOLVE THE CHUNK PROBLEM WHEN BREAK A PART CR+NL BY SANZ
+					if(!$end_of_data && substr($data,-1,1)=="\r") {
+						$data.=@fread($this->file,1);
+						if(GetType($data)!='string')
+							return($this->SetPHPError('could not read the message file', $php_errormsg));
+						$end_of_data = feof($this->file);
+					}
+					// END TO SOLVE THE CHUNK PROBLEM WHEN BREAK A PART CR+NL BY SANZ
 				}
 				else
 				{
