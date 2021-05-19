@@ -1150,6 +1150,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			make_focus();
 			//~ console.timeEnd("updatecontent center fase 1");
 		},100);
+		bold_menu();
 		//~ console.timeEnd("updatecontent center fase 0");
 		//~ console.timeEnd("updatecontent");
 	}
@@ -1252,6 +1253,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			$(obj).removeClass("none");
 			setIntCookie("saltos_ui_menu_closed",0);
 		}
+	}
+
+	function bold_menu() {
+		$(".ui-layout-west .bold").removeClass("bold");
+		$(".ui-layout-west a[id="+getParam("page")+"]").addClass("bold");
 	}
 
 	function make_tabs(obj) {
@@ -2585,6 +2591,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 			},100);
 			unloadingcontent();
 			make_back2top();
+			bold_menu();
 			//~ console.timeEnd("document_ready fase 1");
 		},100);
 		//~ console.timeEnd("document_ready fase 0");

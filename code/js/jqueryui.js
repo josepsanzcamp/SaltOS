@@ -825,6 +825,11 @@ saltos.toggle_menu=function() {
 	}
 };
 
+saltos.bold_menu=function() {
+	$(".ui-layout-west .bold").removeClass("bold");
+	$(".ui-layout-west a[id="+getParam("page")+"]").addClass("bold");
+};
+
 saltos.hide_popupdialog=function() {
 	if(dialog("isopen") && dialog("ispopup")) dialog("close");
 };
@@ -4138,6 +4143,7 @@ saltos.updatecontent=function(data) {
 	saltos.add_css(data.temp1);
 	saltos.make_tables();
 	saltos.make_focus();
+	saltos.bold_menu();
 };
 
 saltos.errorcontent=function(code,text) {
@@ -4622,6 +4628,11 @@ function make_menu(obj) {
 function toggle_menu() {
 	//~ console.log("call to deprecated function toggle_menu");
 	return saltos.toggle_menu();
+};
+
+function bold_menu() {
+	//~ console.log("call to deprecated function bold_menu");
+	return saltos.bold_menu();
 };
 
 function make_tabs(obj) {
