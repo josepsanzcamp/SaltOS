@@ -1895,7 +1895,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 				language:lang_default(),
 				autoGrow_onStartup:true,
 				autoGrow_minHeight:$(this).height()-25,
-				//~ width:$(this).width()+10,
+				width:$(this).width()+10,
 				disableNativeSpellChecker:false,
 				dialog_backgroundCoverColor:"#aaa",
 				dialog_backgroundCoverOpacity:0.3,

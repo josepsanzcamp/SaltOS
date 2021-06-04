@@ -63,39 +63,39 @@ private static $installed = array (
     ),
     'markbaker/complex' => 
     array (
-      'pretty_version' => '2.0.0',
-      'version' => '2.0.0.0',
+      'pretty_version' => '2.0.3',
+      'version' => '2.0.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9999f1432fae467bc93c53f357105b4c31bb994c',
+      'reference' => '6f724d7e04606fd8adaa4e3bb381c3e9db09c946',
     ),
     'markbaker/matrix' => 
     array (
-      'pretty_version' => '2.0.0',
-      'version' => '2.0.0.0',
+      'pretty_version' => '2.1.3',
+      'version' => '2.1.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9567d9c4c519fbe40de01dbd1e4469dbbb66f46a',
+      'reference' => '174395a901b5ba0925f1d790fa91bab531074b61',
     ),
     'myclabs/php-enum' => 
     array (
-      'pretty_version' => '1.7.7',
-      'version' => '1.7.7.0',
+      'pretty_version' => '1.8.0',
+      'version' => '1.8.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd178027d1e679832db9f38248fcc7200647dc2b7',
+      'reference' => '46cf3d8498b095bd33727b13fd5707263af99421',
     ),
     'phpoffice/phpspreadsheet' => 
     array (
-      'pretty_version' => '1.16.1',
-      'version' => '1.16.1.0',
+      'pretty_version' => '1.18.0',
+      'version' => '1.18.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '76d4323b85129d0c368149c831a07a3e258b2b50',
+      'reference' => '418cd304e8e6b417ea79c3b29126a25dc4b1170c',
     ),
     'psr/http-client' => 
     array (
@@ -135,12 +135,12 @@ private static $installed = array (
     ),
     'symfony/polyfill-mbstring' => 
     array (
-      'pretty_version' => 'v1.20.0',
-      'version' => '1.20.0.0',
+      'pretty_version' => 'v1.23.0',
+      'version' => '1.23.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '39d483bdf39be819deabf04ec872eb0b2410b531',
+      'reference' => '2df51500adbaebdc4c38dea4c89a2e131c45c8a1',
     ),
   ),
 );
