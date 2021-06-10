@@ -29,7 +29,15 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	require_once("src/PHPMailer.php");
 	require_once("src/SMTP.php");
 	require_once("php/getmail.php");
+	// CHECK FOR SPECIAL ID_CUENTA CASE
+	if(is_array($id_cuenta)) {
+		if(count($id_cuenta)!=2) return "id_cuenta error1";
+		list($id_cuenta0,$id_cuenta1)=array_values($id_cuenta);
+		if(is_numeric($id_cuenta1) && is_string($id_cuenta0)) list($id_cuenta0,$id_cuenta1)=array($id_cuenta1,$id_cuenta0);
+		if(!is_numeric($id_cuenta0) || !is_string($id_cuenta1)) return "id_cuenta error2";
+	}
 	// FIND ACCOUNT DATA
+	if(isset($id_cuenta0)) $id_cuenta=$id_cuenta0;
 	$query="SELECT * FROM tbl_usuarios_c WHERE id='$id_cuenta'";
 	$result=execute_query($query);
 	if(!isset($result["id"])) return "id not found";
@@ -47,6 +55,7 @@ function sendmail($id_cuenta,$to,$subject,$body,$files="") {
 	if(!$mail->AddCustomHeader("X-Originating-IP",getServer("REMOTE_ADDR"))) if($mail->ErrorInfo) return $mail->ErrorInfo;
 	if(!$mail->SetLanguage("es","lib/phpmailer/language/")) return $mail->ErrorInfo;
 	if(!$mail->set("CharSet","UTF-8")) return $mail->ErrorInfo;
+	if(isset($id_cuenta1)) $fromname=$id_cuenta1;
 	if(!$mail->SetFrom($from,$fromname)) return $mail->ErrorInfo;
 	if(!$mail->set("WordWrap",50)) return $mail->ErrorInfo;
 	if(!$mail->set("SMTPOptions",array("ssl"=>array("verify_peer"=>false,"verify_peer_name"=>false,"allow_self_signed"=>true)))) return $mail->ErrorInfo;
