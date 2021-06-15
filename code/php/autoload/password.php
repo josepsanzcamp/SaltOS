@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,34 +25,35 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function check_password($pass,$hash) {
-	require_once("lib/phpass/PasswordHash.php");
-	$t_hasher=new PasswordHash(8,true);
-	$result=$t_hasher->CheckPassword($pass,$hash);
-	unset($t_hasher);
-	return $result;
+function check_password($pass, $hash)
+{
+    require_once "lib/phpass/PasswordHash.php";
+    $t_hasher = new PasswordHash(8, true);
+    $result = $t_hasher->CheckPassword($pass, $hash);
+    unset($t_hasher);
+    return $result;
 }
 
-function hash_password($pass) {
-	require_once("lib/phpass/PasswordHash.php");
-	$t_hasher=new PasswordHash(8,true);
-	// TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
-	capture_next_error();
-	$result=$t_hasher->HashPassword($pass);
-	// TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
-	get_clear_error();
-	unset($t_hasher);
-	return $result;
+function hash_password($pass)
+{
+    require_once "lib/phpass/PasswordHash.php";
+    $t_hasher = new PasswordHash(8, true);
+    // TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
+    capture_next_error();
+    $result = $t_hasher->HashPassword($pass);
+    // TO PREVENT /DEV/URANDOM RESTRICTION ACCESS ERRORS
+    get_clear_error();
+    unset($t_hasher);
+    return $result;
 }
 
-function password_strength($pass) {
-	require_once("lib/wolfsoftware/password_strength.class.php");
-	$ps=new Password_Strength();
-	$ps->set_password($pass);
-	$ps->calculate();
-	$score=round($ps->get_score(),0);
-	unset($ps);
-	return $score;
+function password_strength($pass)
+{
+    require_once "lib/wolfsoftware/password_strength.class.php";
+    $ps = new Password_Strength();
+    $ps->set_password($pass);
+    $ps->calculate();
+    $score = round($ps->get_score(), 0);
+    unset($ps);
+    return $score;
 }
-
-?>

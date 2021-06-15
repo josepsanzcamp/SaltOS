@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,21 +25,25 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) action_denied();
-if(getParam("action")=="calculator") {
-	if(!eval_bool(getDefault("enablecalculator"))) die();
-	include("lib/phpclasses/evalmath/evalmath.class.php");
-	$text=getParam("text");
-	$m=new EvalMath;
-	capture_next_error();
-	$text=$m->evaluate($text);
-	$error=get_clear_error();
-	if($error) $text="error";
-	output_handler(array(
-		"data"=>$text,
-		"type"=>"text/plain",
-		"cache"=>false
-	));
+if (!check_user()) {
+    action_denied();
 }
-
-?>
+if (getParam("action") == "calculator") {
+    if (!eval_bool(getDefault("enablecalculator"))) {
+        die();
+    }
+    require "lib/phpclasses/evalmath/evalmath.class.php";
+    $text = getParam("text");
+    $m = new EvalMath();
+    capture_next_error();
+    $text = $m->evaluate($text);
+    $error = get_clear_error();
+    if ($error) {
+        $text = "error";
+    }
+    output_handler(array(
+        "data" => $text,
+        "type" => "text/plain",
+        "cache" => false
+    ));
+}

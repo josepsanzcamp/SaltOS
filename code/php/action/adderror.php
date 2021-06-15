@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,13 +25,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(getParam("action")=="adderror") {
-	$array=json_decode(base64_decode(getParam("array")),true);
-	if(!is_array($array)) action_denied();
-	$array=array_intersect_key($array,array("jserror"=>"","details"=>""));
-	if(!isset($array["jserror"]) || !isset($array["details"])) action_denied();
-	show_php_error($array);
-	die();
+if (getParam("action") == "adderror") {
+    $array = json_decode(base64_decode(getParam("array")), true);
+    if (!is_array($array)) {
+        action_denied();
+    }
+    $array = array_intersect_key($array, array("jserror" => "","details" => ""));
+    if (!isset($array["jserror"]) || !isset($array["details"])) {
+        action_denied();
+    }
+    show_php_error($array);
+    die();
 }
-
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,11 +25,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function init_random() {
-	static $init=false;
-	if($init) return;
-	srand(intval(microtime(true)*1000000));
-	$init=true;
+function init_random()
+{
+    static $init = false;
+    if ($init) {
+        return;
+    }
+    srand(intval(microtime(true) * 1000000));
+    $init = true;
 }
-
-?>

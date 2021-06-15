@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,10 +25,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) action_denied();
-if($page=="profile") {
-	require_once("php/libaction.php");
-	__folders_update_tree(current_user());
+if (!check_user()) {
+    action_denied();
 }
-
-?>
+if ($page == "profile") {
+    require_once "php/libaction.php";
+    __folders_update_tree(current_user());
+}

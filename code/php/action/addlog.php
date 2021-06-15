@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,7 +25,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) action_denied();
+if (!check_user()) {
+    action_denied();
+}
 addlog(base64_decode(getParam("msg")));
 die();
-?>

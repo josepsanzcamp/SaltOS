@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,49 +25,62 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function LANG_LOADED() {
-	global $_LANG;
-	return isset($_LANG);
+function LANG_LOADED()
+{
+    global $_LANG;
+    return isset($_LANG);
 }
 
-function LANG($key,$page="") {
-	global $_LANG;
-	if(!LANG_LOADED()) return "$key not load";
-	if($page!="") $page.=",";
-	$default=explode(",",$page.$_LANG["default"]);
-	foreach($default as $d) {
-		if(isset($_LANG[$d][$key])) {
-			return eval_bool(getDefault("debug/langdebug"))?"LANG(".$_LANG[$d][$key].")":$_LANG[$d][$key];
-		}
-	}
-	return "$key (not found)";
+function LANG($key, $page = "")
+{
+    global $_LANG;
+    if (!LANG_LOADED()) {
+        return "$key not load";
+    }
+    if ($page != "") {
+        $page .= ",";
+    }
+    $default = explode(",", $page . $_LANG["default"]);
+    foreach ($default as $d) {
+        if (isset($_LANG[$d][$key])) {
+            return eval_bool(getDefault("debug/langdebug")) ? "LANG(" . $_LANG[$d][$key] . ")" : $_LANG[$d][$key];
+        }
+    }
+    return "$key (not found)";
 }
 
-function LANG_ESCAPE($key,$page="") {
-	return addslashes(LANG($key,$page));
+function LANG_ESCAPE($key, $page = "")
+{
+    return addslashes(LANG($key, $page));
 }
 
-function LANG_ENCODE($key,$page="") {
-	return encode_bad_chars(LANG($key,$page));
+function LANG_ENCODE($key, $page = "")
+{
+    return encode_bad_chars(LANG($key, $page));
 }
 
-function load_lang($lang) {
-	return file_exists("xml/lang/${lang}.xml");
+function load_lang($lang)
+{
+    return file_exists("xml/lang/${lang}.xml");
 }
 
-function get_lang() {
-	$lang=getDefault("lang");
-	$lang=getCookie2("lang",$lang);
-	$lang=use_table_cookies("lang","",$lang);
-	if(!load_lang($lang)) $lang=getDefault("lang");
-	$lang=getDefault("forcelang",$lang);
-	return $lang;
+function get_lang()
+{
+    $lang = getDefault("lang");
+    $lang = getCookie2("lang", $lang);
+    $lang = use_table_cookies("lang", "", $lang);
+    if (!load_lang($lang)) {
+        $lang = getDefault("lang");
+    }
+    $lang = getDefault("forcelang", $lang);
+    return $lang;
 }
 
-function get_dir() {
-	global $_LANG;
-	if(isset($_LANG["dir"])) return $_LANG["dir"];
-	return "";
+function get_dir()
+{
+    global $_LANG;
+    if (isset($_LANG["dir"])) {
+        return $_LANG["dir"];
+    }
+    return "";
 }
-
-?>

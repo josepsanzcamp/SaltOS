@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,69 +25,89 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define("__WHICH__","which __INPUT__");
+define("__WHICH__", "which __INPUT__");
 
-function ob_passthru($cmd,$expires=0) {
-	if($expires) {
-		$cache=get_cache_file($cmd,".out");
-		if(file_exists($cache)) {
-			list($mtime,$error)=filemtime_protected($cache);
-			if(!$error && time()-$expires<$mtime) return file_get_contents($cache);
-		}
-	}
-	if(!is_disabled_function("passthru")) {
-		ob_start();
-		passthru($cmd);
-		$buffer=ob_get_clean();
-	} elseif(!is_disabled_function("system")) {
-		ob_start();
-		system($cmd);
-		$buffer=ob_get_clean();
-	} elseif(!is_disabled_function("exec")) {
-		$buffer=array();
-		exec($cmd,$buffer);
-		$buffer=implode("\n",$buffer);
-	} elseif(!is_disabled_function("shell_exec")) {
-		ob_start();
-		$buffer=shell_exec($cmd);
-		ob_get_clean();
-	} else {
-		$buffer="";
-	}
-	if($expires) {
-		file_put_contents($cache,$buffer);
-		chmod_protected($cache,0666);
-	}
-	return $buffer;
+function ob_passthru($cmd, $expires = 0)
+{
+    if ($expires) {
+        $cache = get_cache_file($cmd, ".out");
+        if (file_exists($cache)) {
+            list($mtime,$error) = filemtime_protected($cache);
+            if (!$error && time() - $expires < $mtime) {
+                return file_get_contents($cache);
+            }
+        }
+    }
+    if (!is_disabled_function("passthru")) {
+        ob_start();
+        passthru($cmd);
+        $buffer = ob_get_clean();
+    } elseif (!is_disabled_function("system")) {
+        ob_start();
+        system($cmd);
+        $buffer = ob_get_clean();
+    } elseif (!is_disabled_function("exec")) {
+        $buffer = array();
+        exec($cmd, $buffer);
+        $buffer = implode("\n", $buffer);
+    } elseif (!is_disabled_function("shell_exec")) {
+        ob_start();
+        $buffer = shell_exec($cmd);
+        ob_get_clean();
+    } else {
+        $buffer = "";
+    }
+    if ($expires) {
+        file_put_contents($cache, $buffer);
+        chmod_protected($cache, 0666);
+    }
+    return $buffer;
 }
 
-function check_commands($commands,$expires=0) {
-	if(!is_array($commands)) $commands=explode(",",$commands);
-	$result=1;
-	foreach($commands as $command) $result&=ob_passthru(str_replace(array("__INPUT__"),array($command),getDefault("commands/__which__",__WHICH__)),$expires)?1:0;
-	return $result;
+function check_commands($commands, $expires = 0)
+{
+    if (!is_array($commands)) {
+        $commands = explode(",", $commands);
+    }
+    $result = 1;
+    foreach ($commands as $command) {
+        $result &= ob_passthru(str_replace(
+            array("__INPUT__"),
+            array($command),
+            getDefault("commands/__which__", __WHICH__)
+        ), $expires) ? 1 : 0;
+    }
+    return $result;
 }
 
-function is_disabled_function($fn="") {
-	static $disableds_string=null;
-	static $disableds_array=array();
-	if($disableds_string===null) {
-		$disableds_string=ini_get("disable_functions").",".ini_get("suhosin.executor.func.blacklist");
-		$disableds_array=$disableds_string?explode(",",$disableds_string):array();
-		foreach($disableds_array as $key=>$val) {
-			$val=strtolower(trim($val));
-			if($val=="") unset($disableds_array[$key]);
-			if($val!="") $disableds_array[$key]=$val;
-		}
-	}
-	return in_array($fn,$disableds_array);
+function is_disabled_function($fn = "")
+{
+    static $disableds_string = null;
+    static $disableds_array = array();
+    if ($disableds_string === null) {
+        $disableds_string = ini_get("disable_functions") . "," . ini_get("suhosin.executor.func.blacklist");
+        $disableds_array = $disableds_string ? explode(",", $disableds_string) : array();
+        foreach ($disableds_array as $key => $val) {
+            $val = strtolower(trim($val));
+            if ($val == "") {
+                unset($disableds_array[$key]);
+            }
+            if ($val != "") {
+                $disableds_array[$key] = $val;
+            }
+        }
+    }
+    return in_array($fn, $disableds_array);
 }
 
-function __exec_timeout($cmd) {
-	if(check_commands(getDefault("commands/timeout"),60)) {
-		$cmd=str_replace(array("__TIMEOUT__","__COMMAND__"),array(getDefault("commandtimeout",60),$cmd),getDefault("commands/__timeout__"));
-	}
-	return $cmd;
+function __exec_timeout($cmd)
+{
+    if (check_commands(getDefault("commands/timeout"), 60)) {
+        $cmd = str_replace(
+            array("__TIMEOUT__","__COMMAND__"),
+            array(getDefault("commandtimeout", 60),$cmd),
+            getDefault("commands/__timeout__")
+        );
+    }
+    return $cmd;
 }
-
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,57 +25,83 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class database_pdo_mssql {
-	private $link=null;
+// phpcs:disable PSR1.Classes.ClassDeclaration
+// phpcs:disable Squiz.Classes.ValidClassName
+// phpcs:disable PSR1.Methods.CamelCapsMethodName
 
-	function __construct($args) {
-		if(!class_exists("PDO")) { show_php_error(array("phperror"=>"Class PDO not found","details"=>"Try to install php-pdo package")); return; }
-		try {
-			$this->link=new PDO("dblib:host=".$args["host"].":".$args["port"].";dbname=".$args["name"],$args["user"],$args["pass"]);
-		} catch(PDOException $e) {
-			show_php_error(array("dberror"=>$e->getMessage()));
-		}
-		if($this->link) {
-			$this->link->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		}
-	}
+class database_pdo_mssql
+{
+    private $link = null;
 
-	function db_query($query,$fetch="query") {
-		$query=parse_query($query,"MSSQL");
-		$result=array("total"=>0,"header"=>array(),"rows"=>array());
-		if(!strlen(trim($query))) return $result;
-		// DO QUERY
-		$query=utf8_decode($query);
-		try {
-			$stmt=$this->link->query($query);
-		} catch(PDOException $e) {
-			show_php_error(array("dberror"=>$e->getMessage(),"query"=>$query));
-		}
-		unset($query); // TRICK TO RELEASE MEMORY
-		// DUMP RESULT TO MATRIX
-		if(isset($stmt) && $stmt && $stmt->columnCount()>0) {
-			if($fetch=="auto") {
-				$fetch=$stmt->columnCount()>1?"query":"column";
-			}
-			if($fetch=="query") {
-				$result["rows"]=$stmt->fetchAll(PDO::FETCH_ASSOC);
-				foreach($result["rows"] as $key=>$val) foreach($val as $key2=>$val2) $result["rows"][$key][$key2]=utf8_encode($val2);
-				$result["total"]=count($result["rows"]);
-				if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
-			}
-			if($fetch=="column") {
-				$result["rows"]=$stmt->fetchAll(PDO::FETCH_COLUMN);
-				foreach($result["rows"] as $key=>$val) $result["rows"][$key]=utf8_encode($val);
-				$result["total"]=count($result["rows"]);
-				$result["header"]=array("__a__");
-			}
-		}
-		return $result;
-	}
+    public function __construct($args)
+    {
+        if (!class_exists("PDO")) {
+            show_php_error(array(
+                "phperror" => "Class PDO not found",
+                "details" => "Try to install php-pdo package"
+            ));
+            return;
+        }
+        try {
+            $this->link = new PDO(
+                "dblib:host=" . $args["host"] . ":" . $args["port"] . ";dbname=" . $args["name"],
+                $args["user"],
+                $args["pass"]
+            );
+        } catch (PDOException $e) {
+            show_php_error(array("dberror" => $e->getMessage()));
+        }
+        if ($this->link) {
+            $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+    }
 
-	function db_disconnect() {
-		$this->link=null;
-	}
+    public function db_query($query, $fetch = "query")
+    {
+        $query = parse_query($query, "MSSQL");
+        $result = array("total" => 0,"header" => array(),"rows" => array());
+        if (!strlen(trim($query))) {
+            return $result;
+        }
+        // DO QUERY
+        $query = utf8_decode($query);
+        try {
+            $stmt = $this->link->query($query);
+        } catch (PDOException $e) {
+            show_php_error(array("dberror" => $e->getMessage(),"query" => $query));
+        }
+        unset($query); // TRICK TO RELEASE MEMORY
+        // DUMP RESULT TO MATRIX
+        if (isset($stmt) && $stmt && $stmt->columnCount() > 0) {
+            if ($fetch == "auto") {
+                $fetch = $stmt->columnCount() > 1 ? "query" : "column";
+            }
+            if ($fetch == "query") {
+                $result["rows"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($result["rows"] as $key => $val) {
+                    foreach ($val as $key2 => $val2) {
+                        $result["rows"][$key][$key2] = utf8_encode($val2);
+                    }
+                }
+                $result["total"] = count($result["rows"]);
+                if ($result["total"] > 0) {
+                    $result["header"] = array_keys($result["rows"][0]);
+                }
+            }
+            if ($fetch == "column") {
+                $result["rows"] = $stmt->fetchAll(PDO::FETCH_COLUMN);
+                foreach ($result["rows"] as $key => $val) {
+                    $result["rows"][$key] = utf8_encode($val);
+                }
+                $result["total"] = count($result["rows"]);
+                $result["header"] = array("__a__");
+            }
+        }
+        return $result;
+    }
+
+    public function db_disconnect()
+    {
+        $this->link = null;
+    }
 }
-
-?>

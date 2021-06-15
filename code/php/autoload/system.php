@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,49 +25,63 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function check_system() {
-	// GENERAL CHECK
-	if(headers_sent()) show_php_error(array("phperror"=>"Has been detected previous headers sent"));
-	// PACKAGE CHECKS
-	$array=array(
-		array("class_exists","DomElement","Class","php-xml"),
-		array("function_exists","imagecreatetruecolor","Function","php-gd"),
-		array("function_exists","imagecreatefrompng","Function","php-gd"),
-		array("function_exists","mb_check_encoding","Function","php-mbstring"),
-		array("function_exists","mb_convert_encoding","Function","php-mbstring"),
-		array("function_exists","mb_strlen","Function","php-mbstring"),
-		array("function_exists","mb_substr","Function","php-mbstring"),
-		array("function_exists","mb_strpos","Function","php-mbstring"));
-	foreach($array as $a) if(!$a[0]($a[1])) show_php_error(array("phperror"=>"$a[2] $a[1] not found","details"=>"Try to install $a[3] package"));
-	// INSTALL CHECK
-	if(!file_exists("files/config.xml")) { include("install/install.php"); die(); }
+function check_system()
+{
+    // GENERAL CHECK
+    if (headers_sent()) {
+        show_php_error(array("phperror" => "Has been detected previous headers sent"));
+    }
+    // PACKAGE CHECKS
+    $array = array(
+        array("class_exists","DomElement","Class","php-xml"),
+        array("function_exists","imagecreatetruecolor","Function","php-gd"),
+        array("function_exists","imagecreatefrompng","Function","php-gd"),
+        array("function_exists","mb_check_encoding","Function","php-mbstring"),
+        array("function_exists","mb_convert_encoding","Function","php-mbstring"),
+        array("function_exists","mb_strlen","Function","php-mbstring"),
+        array("function_exists","mb_substr","Function","php-mbstring"),
+        array("function_exists","mb_strpos","Function","php-mbstring"));
+    foreach ($array as $a) {
+        if (!$a[0]($a[1])) {
+            show_php_error(array("phperror" => "$a[2] $a[1] not found","details" => "Try to install $a[3] package"));
+        }
+    }
+    // INSTALL CHECK
+    if (!file_exists("files/config.xml")) {
+        require "install/install.php";
+        die();
+    }
 }
 
-function check_postlimit() {
-	$content_length=getServer("CONTENT_LENGTH");
-	if($content_length) {
-		$post_max_size=ini_get("post_max_size");
-		if(!$post_max_size && ishhvm()) $post_max_size=ini_get("hhvm.server.max_post_size");
-		$post_max_size=normalize_value($post_max_size);
-		if($content_length>$post_max_size) session_error(LANG("postlimiterror"));
-	}
+function check_postlimit()
+{
+    $content_length = getServer("CONTENT_LENGTH");
+    if ($content_length) {
+        $post_max_size = ini_get("post_max_size");
+        if (!$post_max_size && ishhvm()) {
+            $post_max_size = ini_get("hhvm.server.max_post_size");
+        }
+        $post_max_size = normalize_value($post_max_size);
+        if ($content_length > $post_max_size) {
+            session_error(LANG("postlimiterror"));
+        }
+    }
 }
 
-function fix_input_vars() {
-	if(intval(ini_get("max_input_vars"))>0) {
-		$temp=getParam("fix_input_vars");
-		if($temp!="") {
-			$temp=querystring2array(base64_decode($temp));
-			if(isset($_GET["fix_input_vars"])) {
-				unset($_GET["fix_input_vars"]);
-				$_GET=array_merge($_GET,$temp);
-			}
-			if(isset($_POST["fix_input_vars"])) {
-				unset($_POST["fix_input_vars"]);
-				$_POST=array_merge($_POST,$temp);
-			}
-		}
-	}
+function fix_input_vars()
+{
+    if (intval(ini_get("max_input_vars")) > 0) {
+        $temp = getParam("fix_input_vars");
+        if ($temp != "") {
+            $temp = querystring2array(base64_decode($temp));
+            if (isset($_GET["fix_input_vars"])) {
+                unset($_GET["fix_input_vars"]);
+                $_GET = array_merge($_GET, $temp);
+            }
+            if (isset($_POST["fix_input_vars"])) {
+                unset($_POST["fix_input_vars"]);
+                $_POST = array_merge($_POST, $temp);
+            }
+        }
+    }
 }
-
-?>

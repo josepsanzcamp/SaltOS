@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -26,23 +27,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 check_security("logout");
 sess_init();
-setSession("user","");
-setSession("pass","");
+setSession("user", "");
+setSession("pass", "");
 sess_close();
 reset_datauser();
-if(eval_bool(getDefault("security/allowremember"))) {
-	$remember=getCookie2("remember");
-	if($remember) {
-		setCookie2("user","");
-		setCookie2("pass","");
-		setCookie2("remember",$remember);
-	} else {
-		setCookie2("user","");
-		setCookie2("pass","");
-		setCookie2("remember","");
-	}
+if (eval_bool(getDefault("security/allowremember"))) {
+    $remember = getCookie2("remember");
+    if ($remember) {
+        setCookie2("user", "");
+        setCookie2("pass", "");
+        setCookie2("remember", $remember);
+    } else {
+        setCookie2("user", "");
+        setCookie2("pass", "");
+        setCookie2("remember", "");
+    }
 }
-include("php/action/_islogin.php");
+require "php/action/_islogin.php";
 die();
-
-?>

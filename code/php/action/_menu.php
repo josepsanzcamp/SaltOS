@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,20 +25,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) _action_denied();
+if (!check_user()) {
+    _action_denied();
+}
 
-$_LANG["default"]="menu,common";
-$_RESULT[$action]=eval_attr(xml2array("xml/menu.xml"));
+$_LANG["default"] = "menu,common";
+$_RESULT[$action] = eval_attr(xml2array("xml/menu.xml"));
 
-require_once("php/libaction.php");
-$_RESULT[$action]=__default_eval_querytag($_RESULT[$action]);
-$_RESULT[$action]=__remove_temp_nodes($_RESULT[$action]);
+require_once "php/libaction.php";
+$_RESULT[$action] = __default_eval_querytag($_RESULT[$action]);
+$_RESULT[$action] = __remove_temp_nodes($_RESULT[$action]);
 
-$json=json_encode($_RESULT);
+$json = json_encode($_RESULT);
 output_handler(array(
-	"data"=>$json,
-	"type"=>"application/json",
-	"cache"=>false
+    "data" => $json,
+    "type" => "application/json",
+    "cache" => false
 ));
-
-?>

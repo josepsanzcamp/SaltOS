@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,53 +25,79 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class database_mssql {
-	private $link=null;
+// phpcs:disable PSR1.Classes.ClassDeclaration
+// phpcs:disable Squiz.Classes.ValidClassName
+// phpcs:disable PSR1.Methods.CamelCapsMethodName
 
-	function __construct($args) {
-		if(!function_exists("mssql_connect")) { show_php_error(array("phperror"=>"mssql_connect not found","details"=>"Try to install php-mssql package")); return; }
-		$this->link=mssql_connect($args["host"].":".$args["port"],$args["user"],$args["pass"]);
-		if($this->link===false) show_php_error(array("dberror"=>mssql_get_last_message()));
-		if(!mssql_select_db($args["name"],$this->link)) show_php_error(array("dberror"=>mssql_get_last_message()));
-	}
+class database_mssql
+{
+    private $link = null;
 
-	function db_query($query,$fetch="query") {
-		$query=parse_query($query,"MSSQL");
-		$result=array("total"=>0,"header"=>array(),"rows"=>array());
-		if(!strlen(trim($query))) return $result;
-		// DO QUERY
-		$query=utf8_decode($query);
-		$stmt=mssql_query($query,$this->link);
-		if($stmt===false) show_php_error(array("dberror"=>mssql_get_last_message(),"query"=>$query));
-		unset($query); // TRICK TO RELEASE MEMORY
-		// DUMP RESULT TO MATRIX
-		if(!is_bool($stmt) && mssql_num_fields($stmt)) {
-			if($fetch=="auto") {
-				$fetch=mssql_num_fields($stmt)>1?"query":"column";
-			}
-			if($fetch=="query") {
-				while($row=mssql_fetch_assoc($stmt)) {
-					foreach($row as $key=>$val) $row[$key]=utf8_encode($val);
-					$result["rows"][]=$row;
-				}
-				$result["total"]=count($result["rows"]);
-				if($result["total"]>0) $result["header"]=array_keys($result["rows"][0]);
-				mssql_free_result($stmt);
-			}
-			if($fetch=="column") {
-				while($row=mssql_fetch_row($stmt)) $result["rows"][]=utf8_encode($row[0]);
-				$result["total"]=count($result["rows"]);
-				$result["header"]=array("__a__");
-				mssql_free_result($stmt);
-			}
-		}
-		return $result;
-	}
+    public function __construct($args)
+    {
+        if (!function_exists("mssql_connect")) {
+            show_php_error(array(
+                "phperror" => "mssql_connect not found",
+                "details" => "Try to install php-mssql package"
+            ));
+            return;
+        }
+        $this->link = mssql_connect($args["host"] . ":" . $args["port"], $args["user"], $args["pass"]);
+        if ($this->link === false) {
+            show_php_error(array("dberror" => mssql_get_last_message()));
+        }
+        if (!mssql_select_db($args["name"], $this->link)) {
+            show_php_error(array("dberror" => mssql_get_last_message()));
+        }
+    }
 
-	function db_disconnect() {
-		mssql_close($this->link);
-		$this->link=null;
-	}
+    public function db_query($query, $fetch = "query")
+    {
+        $query = parse_query($query, "MSSQL");
+        $result = array("total" => 0,"header" => array(),"rows" => array());
+        if (!strlen(trim($query))) {
+            return $result;
+        }
+        // DO QUERY
+        $query = utf8_decode($query);
+        $stmt = mssql_query($query, $this->link);
+        if ($stmt === false) {
+            show_php_error(array("dberror" => mssql_get_last_message(),"query" => $query));
+        }
+        unset($query); // TRICK TO RELEASE MEMORY
+        // DUMP RESULT TO MATRIX
+        if (!is_bool($stmt) && mssql_num_fields($stmt)) {
+            if ($fetch == "auto") {
+                $fetch = mssql_num_fields($stmt) > 1 ? "query" : "column";
+            }
+            if ($fetch == "query") {
+                while ($row = mssql_fetch_assoc($stmt)) {
+                    foreach ($row as $key => $val) {
+                        $row[$key] = utf8_encode($val);
+                    }
+                    $result["rows"][] = $row;
+                }
+                $result["total"] = count($result["rows"]);
+                if ($result["total"] > 0) {
+                    $result["header"] = array_keys($result["rows"][0]);
+                }
+                mssql_free_result($stmt);
+            }
+            if ($fetch == "column") {
+                while ($row = mssql_fetch_row($stmt)) {
+                    $result["rows"][] = utf8_encode($row[0]);
+                }
+                $result["total"] = count($result["rows"]);
+                $result["header"] = array("__a__");
+                mssql_free_result($stmt);
+            }
+        }
+        return $result;
+    }
+
+    public function db_disconnect()
+    {
+        mssql_close($this->link);
+        $this->link = null;
+    }
 }
-
-?>

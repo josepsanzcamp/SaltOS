@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,12 +25,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) action_denied();
-if(getParam("action")=="geshi") {
-	$array=json_decode(file_get_contents("php://input"),true);
-	if(!is_array($array)) action_denied();
-	echo highlight_geshi($array["html"],$array["lang"]);
-	die();
+if (!check_user()) {
+    action_denied();
 }
-
-?>
+if (getParam("action") == "geshi") {
+    $array = json_decode(file_get_contents("php://input"), true);
+    if (!is_array($array)) {
+        action_denied();
+    }
+    echo highlight_geshi($array["html"], $array["lang"]);
+    die();
+}

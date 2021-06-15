@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,104 +25,128 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function semaphore_acquire($name="",$timeout=INF) {
-	return __semaphore_helper(__FUNCTION__,$name,$timeout);
+function semaphore_acquire($name = "", $timeout = INF)
+{
+    return __semaphore_helper(__FUNCTION__, $name, $timeout);
 }
 
-function semaphore_release($name="") {
-	return __semaphore_helper(__FUNCTION__,$name,null);
+function semaphore_release($name = "")
+{
+    return __semaphore_helper(__FUNCTION__, $name, null);
 }
 
-function semaphore_shutdown() {
-	return __semaphore_helper(__FUNCTION__,null,null);
+function semaphore_shutdown()
+{
+    return __semaphore_helper(__FUNCTION__, null, null);
 }
 
-function semaphore_file($name="") {
-	return __semaphore_helper(__FUNCTION__,$name,null);
+function semaphore_file($name = "")
+{
+    return __semaphore_helper(__FUNCTION__, $name, null);
 }
 
-function __semaphore_helper($fn,$name,$timeout) {
-	static $fds=array();
-	if(stripos($fn,"acquire")!==false) {
-		if($name=="") $name=__FUNCTION__;
-		$file=get_cache_file($name,".sem");
-		if(!is_writable(dirname($file))) return false;
-		if(!isset($fds[$file])) $fds[$file]=null;
-		if($fds[$file]) return false;
-		capture_next_error();
-		$fds[$file]=fopen($file,"a");
-		get_clear_error();
-		if(!$fds[$file]) return false;
-		chmod_protected($file,0666);
-		init_random();
-		for(;;) {
-			capture_next_error();
-			$result=flock($fds[$file],LOCK_EX|LOCK_NB);
-			get_clear_error();
-			if($result) break;
-			$timeout-=__semaphore_usleep(rand(0,1000));
-			if($timeout<0) {
-				capture_next_error();
-				fclose($fds[$file]);
-				get_clear_error();
-				$fds[$file]=null;
-				return false;
-			}
-		}
-		ftruncate($fds[$file],0);
-		fwrite($fds[$file],gettrace(array(),true));
-		return true;
-	} elseif(stripos($fn,"release")!==false) {
-		if($name=="") $name=__FUNCTION__;
-		$file=get_cache_file($name,".sem");
-		if(!isset($fds[$file])) $fds[$file]=null;
-		if(!$fds[$file]) return false;
-		capture_next_error();
-		flock($fds[$file],LOCK_UN);
-		get_clear_error();
-		capture_next_error();
-		fclose($fds[$file]);
-		get_clear_error();
-		$fds[$file]=null;
-		return true;
-	} elseif(stripos($fn,"shutdown")!==false) {
-		foreach($fds as $file=>$fd) {
-			if($fds[$file]) {
-				capture_next_error();
-				flock($fds[$file],LOCK_UN);
-				get_clear_error();
-				capture_next_error();
-				fclose($fds[$file]);
-				get_clear_error();
-				$fds[$file]=null;
-			}
-		}
-		return true;
-	} elseif(stripos($fn,"file")!==false) {
-		if($name=="") $name=__FUNCTION__;
-		$file=get_cache_file($name,".sem");
-		return $file;
-	}
-	return false;
+function __semaphore_helper($fn, $name, $timeout)
+{
+    static $fds = array();
+    if (stripos($fn, "acquire") !== false) {
+        if ($name == "") {
+            $name = __FUNCTION__;
+        }
+        $file = get_cache_file($name, ".sem");
+        if (!is_writable(dirname($file))) {
+            return false;
+        }
+        if (!isset($fds[$file])) {
+            $fds[$file] = null;
+        }
+        if ($fds[$file]) {
+            return false;
+        }
+        capture_next_error();
+        $fds[$file] = fopen($file, "a");
+        get_clear_error();
+        if (!$fds[$file]) {
+            return false;
+        }
+        chmod_protected($file, 0666);
+        init_random();
+        for (;;) {
+            capture_next_error();
+            $result = flock($fds[$file], LOCK_EX | LOCK_NB);
+            get_clear_error();
+            if ($result) {
+                break;
+            }
+            $timeout -= __semaphore_usleep(rand(0, 1000));
+            if ($timeout < 0) {
+                capture_next_error();
+                fclose($fds[$file]);
+                get_clear_error();
+                $fds[$file] = null;
+                return false;
+            }
+        }
+        ftruncate($fds[$file], 0);
+        fwrite($fds[$file], gettrace(array(), true));
+        return true;
+    } elseif (stripos($fn, "release") !== false) {
+        if ($name == "") {
+            $name = __FUNCTION__;
+        }
+        $file = get_cache_file($name, ".sem");
+        if (!isset($fds[$file])) {
+            $fds[$file] = null;
+        }
+        if (!$fds[$file]) {
+            return false;
+        }
+        capture_next_error();
+        flock($fds[$file], LOCK_UN);
+        get_clear_error();
+        capture_next_error();
+        fclose($fds[$file]);
+        get_clear_error();
+        $fds[$file] = null;
+        return true;
+    } elseif (stripos($fn, "shutdown") !== false) {
+        foreach ($fds as $file => $fd) {
+            if ($fds[$file]) {
+                capture_next_error();
+                flock($fds[$file], LOCK_UN);
+                get_clear_error();
+                capture_next_error();
+                fclose($fds[$file]);
+                get_clear_error();
+                $fds[$file] = null;
+            }
+        }
+        return true;
+    } elseif (stripos($fn, "file") !== false) {
+        if ($name == "") {
+            $name = __FUNCTION__;
+        }
+        $file = get_cache_file($name, ".sem");
+        return $file;
+    }
+    return false;
 }
 
-function __semaphore_usleep($usec) {
-	if(function_exists("socket_create")) {
-		$socket=socket_create(AF_UNIX,SOCK_STREAM,0);
-		$read=null;
-		$write=null;
-		$except=array($socket);
-		capture_next_error();
-		$time1=microtime(true);
-		socket_select($read,$write,$except,intval($usec/1000000),intval($usec%1000000));
-		$time2=microtime(true);
-		get_clear_error();
-		return ($time2-$time1)*1000000;
-	}
-	$time1=microtime(true);
-	usleep($usec);
-	$time2=microtime(true);
-	return ($time2-$time1)*1000000;
+function __semaphore_usleep($usec)
+{
+    if (function_exists("socket_create")) {
+        $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
+        $read = null;
+        $write = null;
+        $except = array($socket);
+        capture_next_error();
+        $time1 = microtime(true);
+        socket_select($read, $write, $except, intval($usec / 1000000), intval($usec % 1000000));
+        $time2 = microtime(true);
+        get_clear_error();
+        return ($time2 - $time1) * 1000000;
+    }
+    $time1 = microtime(true);
+    usleep($usec);
+    $time2 = microtime(true);
+    return ($time2 - $time1) * 1000000;
 }
-
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,29 +25,27 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(getParam("action")=="logout") {
-	check_security("logout");
-	sess_init();
-	setSession("user","");
-	setSession("pass","");
-	sess_close();
-	if(eval_bool(getDefault("security/allowremember"))) {
-		$remember=getCookie2("remember");
-		if($remember) {
-			setCookie2("user","");
-			setCookie2("pass","");
-			setCookie2("remember",$remember);
-		} else {
-			setCookie2("user","");
-			setCookie2("pass","");
-			setCookie2("remember","");
-		}
-	}
-	$querystring=getParam("querystring");
-	$querystring=html_entity_decode($querystring,ENT_COMPAT,"UTF-8");
-	$querystring=$querystring?"?${querystring}":"";
-	javascript_location_base($querystring);
-	die();
+if (getParam("action") == "logout") {
+    check_security("logout");
+    sess_init();
+    setSession("user", "");
+    setSession("pass", "");
+    sess_close();
+    if (eval_bool(getDefault("security/allowremember"))) {
+        $remember = getCookie2("remember");
+        if ($remember) {
+            setCookie2("user", "");
+            setCookie2("pass", "");
+            setCookie2("remember", $remember);
+        } else {
+            setCookie2("user", "");
+            setCookie2("pass", "");
+            setCookie2("remember", "");
+        }
+    }
+    $querystring = getParam("querystring");
+    $querystring = html_entity_decode($querystring, ENT_COMPAT, "UTF-8");
+    $querystring = $querystring ? "?${querystring}" : "";
+    javascript_location_base($querystring);
+    die();
 }
-
-?>

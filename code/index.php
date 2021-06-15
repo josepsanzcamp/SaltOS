@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -25,7 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 // BEGIN INCLUDING ALL CORE FILES
-foreach(glob("php/autoload/*.php") as $file) include($file);
+foreach (glob("php/autoload/*.php") as $file) {
+    require $file;
+}
 
 // SOME IMPORTANT ITEMS
 program_handlers();
@@ -33,9 +36,13 @@ check_system();
 fix_input_vars();
 
 // NORMAL OPERATION
-$_CONFIG=eval_attr(xml2array("files/config.xml"));
-if(getDefault("ini_set")) eval_iniset(getDefault("ini_set"));
-if(getDefault("putenv")) eval_putenv(getDefault("putenv"));
+$_CONFIG = eval_attr(xml2array("files/config.xml"));
+if (getDefault("ini_set")) {
+    eval_iniset(getDefault("ini_set"));
+}
+if (getDefault("putenv")) {
+    eval_putenv(getDefault("putenv"));
+}
 
 // EXECUTE SOME ITEMS
 force_ssl();
@@ -43,7 +50,9 @@ cache_gc();
 db_connect();
 db_schema();
 db_static();
-if(!semaphore_acquire(__FILE__)) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
+if (!semaphore_acquire(__FILE__)) {
+    show_php_error(array("phperror" => "Could not acquire the semaphore"));
+}
 sess_init();
 check_remember();
 check_basicauth();
@@ -53,11 +62,15 @@ check_security("main");
 semaphore_release(__FILE__);
 
 // GET THE LANGUAGE
-$lang=get_lang();
-$_LANG=eval_attr(xml2Array("xml/lang/${lang}.xml"));
-$_CONFIG=eval_attr($_CONFIG);
-if(getDefault("info/revision")=="SVN") $_CONFIG["info"]["revision"]=svnversion();
-if(getDefault("info/revision")=="GIT") $_CONFIG["info"]["revision"]=gitversion();
+$lang = get_lang();
+$_LANG = eval_attr(xml2Array("xml/lang/${lang}.xml"));
+$_CONFIG = eval_attr($_CONFIG);
+if (getDefault("info/revision") == "SVN") {
+    $_CONFIG["info"]["revision"] = svnversion();
+}
+if (getDefault("info/revision") == "GIT") {
+    $_CONFIG["info"]["revision"] = gitversion();
+}
 
 // EXECUTE MORE ITEMS
 post_datauser();
@@ -65,8 +78,8 @@ check_time();
 check_postlimit();
 
 // LOAD THE USER INTERFACE
-$engine=getDefault("engine","default");
-if(!file_exists("php/${engine}.php")) $engine="default";
-include("php/${engine}.php");
-
-?>
+$engine = getDefault("engine", "default");
+if (!file_exists("php/${engine}.php")) {
+    $engine = "default";
+}
+require "php/${engine}.php";

@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,35 +25,39 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$_RESULT["default"]=array();
+$_RESULT["default"] = array();
 
-if(check_user()) {
-	if(getParam("page")) {
-		$page=getParam("page");
-	} else {
-		$page=lastpage("");
-	}
+if (check_user()) {
+    if (getParam("page")) {
+        $page = getParam("page");
+    } else {
+        $page = lastpage("");
+    }
 } else {
-	$page="login";
+    $page = "login";
 }
 
-$_CONFIG[$page]=xml2array("xml/${page}.xml");
-$action="list";
-if(getDefault("$page/default")) {
-	$config=getDefault("$page/default");
-	$config=eval_attr($config);
-	$_RESULT["default"]=$config;
+$_CONFIG[$page] = xml2array("xml/${page}.xml");
+$action = "list";
+if (getDefault("$page/default")) {
+    $config = getDefault("$page/default");
+    $config = eval_attr($config);
+    $_RESULT["default"] = $config;
 }
 
-if(!isset($_RESULT["default"]["page"])) $_RESULT["default"]["page"]=$page;
-if(!isset($_RESULT["default"]["action"])) $_RESULT["default"]["action"]="list";
-if(!isset($_RESULT["default"]["id"])) $_RESULT["default"]["id"]="0";
+if (!isset($_RESULT["default"]["page"])) {
+    $_RESULT["default"]["page"] = $page;
+}
+if (!isset($_RESULT["default"]["action"])) {
+    $_RESULT["default"]["action"] = "list";
+}
+if (!isset($_RESULT["default"]["id"])) {
+    $_RESULT["default"]["id"] = "0";
+}
 
-$json=json_encode($_RESULT);
+$json = json_encode($_RESULT);
 output_handler(array(
-	"data"=>$json,
-	"type"=>"application/json",
-	"cache"=>false
+    "data" => $json,
+    "type" => "application/json",
+    "cache" => false
 ));
-
-?>

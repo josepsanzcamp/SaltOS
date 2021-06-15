@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,85 +25,113 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) _action_login();
+if (!check_user()) {
+    _action_login();
+}
 
-$page=getParam("page");
-$id=intval(getParam("id"));
+$page = getParam("page");
+$id = intval(getParam("id"));
 
-if(!check_user($page,"menu")) _action_denied();
+if (!check_user($page, "menu")) {
+    _action_denied();
+}
 
-require_once("php/libaction.php");
-$_LANG["default"]="${page},menu,common";
-$_CONFIG[$page]=xml2array("xml/${page}.xml");
-$page=lastpage($page);
+require_once "php/libaction.php";
+$_LANG["default"] = "${page},menu,common";
+$_CONFIG[$page] = xml2array("xml/${page}.xml");
+$page = lastpage($page);
 
 eval_files();
-$config=getDefault("$page/$action");
+$config = getDefault("$page/$action");
 
-$commit=1;
-if($action=="insert") $go=-2;
-if($action=="update") $go=-2;
-if($action=="delete") $go=-1;
-if(eval_bool(intval(getParam("returnhere"))?"true":"false")) $go=-1;
-if(eval_bool(intval(getParam("returnback"))?"true":"false")) $go=-2;
-$semaphore=array($page,$action);
-if(!semaphore_acquire($semaphore)) show_php_error(array("phperror"=>"Could not acquire the semaphore"));
-foreach($config as $query) {
-	$inline=eval_attr($query);
-	foreach($inline as $query) {
-		$query=trim($query);
-		if($query=="") continue;
-		$is_select=strtoupper(substr($query,0,6))=="SELECT";
-		if($is_select) {
-			$result=db_query($query);
-			$count=0;
-			while($row=db_fetch_row($result)) {
-				$row["__ROW_NUMBER__"]=++$count;
-				if(isset($row["action_delete"])) {
-					$delete=$row["action_delete"];
-					if(substr($delete,0,1)!="/") $delete=get_directory("dirs/filesdir").$delete;
-					if(file_exists($delete) && is_file($delete)) unlink_protected($delete);
-				}
-				if(isset($row["action_error"])) {
-					$error=$row["action_error"];
-					session_error($error);
-				}
-				if(isset($row["action_alert"])) {
-					$alert=$row["action_alert"];
-					session_alert($alert);
-				}
-				if(isset($row["action_commit"])) {
-					$commit=$row["action_commit"];
-				}
-				if(isset($row["action_go"])) {
-					$go=$row["action_go"];
-				}
-				if(isset($row["action_include"])) {
-					$include=$row["action_include"];
-					$include=explode(",",$include);
-					foreach($include as $file) {
-						if(!file_exists($file)) show_php_error(array("xmlerror"=>"Include '$file' not found"));
-						include($file);
-					}
-				}
-				if(!$commit) break;
-			}
-			db_free($result);
-		} else {
-			db_query($query);
-		}
-		if(!$commit) break;
-	}
-	if(!$commit) break;
+$commit = 1;
+if ($action == "insert") {
+    $go = -2;
+}
+if ($action == "update") {
+    $go = -2;
+}
+if ($action == "delete") {
+    $go = -1;
+}
+if (eval_bool(intval(getParam("returnhere")) ? "true" : "false")) {
+    $go = -1;
+}
+if (eval_bool(intval(getParam("returnback")) ? "true" : "false")) {
+    $go = -2;
+}
+$semaphore = array($page,$action);
+if (!semaphore_acquire($semaphore)) {
+    show_php_error(array("phperror" => "Could not acquire the semaphore"));
+}
+foreach ($config as $query) {
+    $inline = eval_attr($query);
+    foreach ($inline as $query) {
+        $query = trim($query);
+        if ($query == "") {
+            continue;
+        }
+        $is_select = strtoupper(substr($query, 0, 6)) == "SELECT";
+        if ($is_select) {
+            $result = db_query($query);
+            $count = 0;
+            while ($row = db_fetch_row($result)) {
+                $row["__ROW_NUMBER__"] = ++$count;
+                if (isset($row["action_delete"])) {
+                    $delete = $row["action_delete"];
+                    if (substr($delete, 0, 1) != "/") {
+                        $delete = get_directory("dirs/filesdir") . $delete;
+                    }
+                    if (file_exists($delete) && is_file($delete)) {
+                        unlink_protected($delete);
+                    }
+                }
+                if (isset($row["action_error"])) {
+                    $error = $row["action_error"];
+                    session_error($error);
+                }
+                if (isset($row["action_alert"])) {
+                    $alert = $row["action_alert"];
+                    session_alert($alert);
+                }
+                if (isset($row["action_commit"])) {
+                    $commit = $row["action_commit"];
+                }
+                if (isset($row["action_go"])) {
+                    $go = $row["action_go"];
+                }
+                if (isset($row["action_include"])) {
+                    $include = $row["action_include"];
+                    $include = explode(",", $include);
+                    foreach ($include as $file) {
+                        if (!file_exists($file)) {
+                            show_php_error(array("xmlerror" => "Include '$file' not found"));
+                        }
+                        require $file;
+                    }
+                }
+                if (!$commit) {
+                    break;
+                }
+            }
+            db_free($result);
+        } else {
+            db_query($query);
+        }
+        if (!$commit) {
+            break;
+        }
+    }
+    if (!$commit) {
+        break;
+    }
 }
 semaphore_release($semaphore);
-if(is_numeric($go)) {
-	$go++;
-	_javascript_history($go);
+if (is_numeric($go)) {
+    $go++;
+    _javascript_history($go);
 } else {
-	_javascript_addcontent("update");
-	_javascript_opencontent($go);
+    _javascript_addcontent("update");
+    _javascript_opencontent($go);
 }
 die();
-
-?>

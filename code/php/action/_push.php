@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -25,73 +26,81 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 // FOR TEST PURPOSES
-if(getParam("alert")!="") {
-	session_alert(getParam("alert"));
-	die();
+if (getParam("alert") != "") {
+    session_alert(getParam("alert"));
+    die();
 }
 
 // FOR TEST PURPOSES
-if(getParam("error")!="") {
-	session_error(getParam("error"));
-	die();
+if (getParam("error") != "") {
+    session_error(getParam("error"));
+    die();
 }
 
-$timestamp=getParam("timestamp",time());
-$semaphore=array("session_id"=>session_id());
-$_RESULT=array();
-for(;;) {
-	if(time_get_usage(true)>300) break;
-	if(!semaphore_acquire($semaphore)) break;
-	sess_init();
-	if(isset($_SESSION["alerts"])) {
-		foreach($_SESSION["alerts"] as $key=>$val) {
-			set_array($_SESSION["messages"],"message",array(
-				"type"=>"alert",
-				"message"=>$val,
-				"timestamp"=>time(),
-			));
-			unset($_SESSION["alerts"][$key]);
-		}
-	}
-	if(isset($_SESSION["errors"])) {
-		foreach($_SESSION["errors"] as $key=>$val) {
-			set_array($_SESSION["messages"],"message",array(
-				"type"=>"error",
-				"message"=>$val,
-				"timestamp"=>time(),
-			));
-			unset($_SESSION["errors"][$key]);
-		}
-	}
-	if(isset($_SESSION["messages"])) {
-		foreach($_SESSION["messages"] as $key=>$val) {
-			if($val["timestamp"]<time()-300) {
-				unset($_SESSION["messages"][$key]);
-			}
-		}
-		foreach($_SESSION["messages"] as $key=>$val) {
-			if($val["timestamp"]>$timestamp) {
-				if(!isset($_RESULT["messages"])) $_RESULT["messages"]=array();
-				set_array($_RESULT["messages"],"message",$val);
-			}
-		}
-	}
-	sess_close();
-	semaphore_release($semaphore);
-	if(count($_RESULT)) break;
-	// TRICK TO DETECT SERVER RESTART
-	$time1=microtime(true);
-	sleep(1);
-	$time2=microtime(true);
-	if($time2-$time1<1) break;
+$timestamp = getParam("timestamp", time());
+$semaphore = array("session_id" => session_id());
+$_RESULT = array();
+for (;;) {
+    if (time_get_usage(true) > 300) {
+        break;
+    }
+    if (!semaphore_acquire($semaphore)) {
+        break;
+    }
+    sess_init();
+    if (isset($_SESSION["alerts"])) {
+        foreach ($_SESSION["alerts"] as $key => $val) {
+            set_array($_SESSION["messages"], "message", array(
+                "type" => "alert",
+                "message" => $val,
+                "timestamp" => time(),
+            ));
+            unset($_SESSION["alerts"][$key]);
+        }
+    }
+    if (isset($_SESSION["errors"])) {
+        foreach ($_SESSION["errors"] as $key => $val) {
+            set_array($_SESSION["messages"], "message", array(
+                "type" => "error",
+                "message" => $val,
+                "timestamp" => time(),
+            ));
+            unset($_SESSION["errors"][$key]);
+        }
+    }
+    if (isset($_SESSION["messages"])) {
+        foreach ($_SESSION["messages"] as $key => $val) {
+            if ($val["timestamp"] < time() - 300) {
+                unset($_SESSION["messages"][$key]);
+            }
+        }
+        foreach ($_SESSION["messages"] as $key => $val) {
+            if ($val["timestamp"] > $timestamp) {
+                if (!isset($_RESULT["messages"])) {
+                    $_RESULT["messages"] = array();
+                }
+                set_array($_RESULT["messages"], "message", $val);
+            }
+        }
+    }
+    sess_close();
+    semaphore_release($semaphore);
+    if (count($_RESULT)) {
+        break;
+    }
+    // TRICK TO DETECT SERVER RESTART
+    $time1 = microtime(true);
+    sleep(1);
+    $time2 = microtime(true);
+    if ($time2 - $time1 < 1) {
+        break;
+    }
 }
 
-$json=json_encode($_RESULT);
+$json = json_encode($_RESULT);
 output_handler(array(
-	"data"=>$json,
-	"type"=>"application/json",
-	"cache"=>false
+    "data" => $json,
+    "type" => "application/json",
+    "cache" => false
 ));
 die();
-
-?>

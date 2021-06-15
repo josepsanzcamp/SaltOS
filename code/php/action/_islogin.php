@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,12 +25,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$_RESULT[$action]=check_user()?1:0;
-$json=json_encode($_RESULT);
+$_RESULT[$action] = check_user() ? 1 : 0;
+$json = json_encode($_RESULT);
 output_handler(array(
-	"data"=>$json,
-	"type"=>"application/json",
-	"cache"=>false
+    "data" => $json,
+    "type" => "application/json",
+    "cache" => false
 ));
-
-?>

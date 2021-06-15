@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,32 +25,39 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function saltos_content_type($file) {
-	static $mimes=array(
-		"css"=>"text/css",
-		"js"=>"text/javascript",
-		"xml"=>"text/xml",
-		"htm"=>"text/html",
-		"html"=>"text/html",
-		"png"=>"image/png",
-		"bmp"=>"image/bmp",
-		"json"=>"application/json"
-	);
-	$ext=strtolower(extension($file));
-	if(isset($mimes[$ext])) return $mimes[$ext];
-	if(function_exists("mime_content_type")) return mime_content_type($file);
-	if(function_exists("finfo_file")) return finfo_file(finfo_open(FILEINFO_MIME_TYPE),$file);
-	return "application/octet-stream";
+function saltos_content_type($file)
+{
+    static $mimes = array(
+        "css" => "text/css",
+        "js" => "text/javascript",
+        "xml" => "text/xml",
+        "htm" => "text/html",
+        "html" => "text/html",
+        "png" => "image/png",
+        "bmp" => "image/bmp",
+        "json" => "application/json"
+    );
+    $ext = strtolower(extension($file));
+    if (isset($mimes[$ext])) {
+        return $mimes[$ext];
+    }
+    if (function_exists("mime_content_type")) {
+        return mime_content_type($file);
+    }
+    if (function_exists("finfo_file")) {
+        return finfo_file(finfo_open(FILEINFO_MIME_TYPE), $file);
+    }
+    return "application/octet-stream";
 }
 
-function saltos_content_type0($mime) {
-	$mime=explode("/",$mime);
-	return array_shift($mime);
+function saltos_content_type0($mime)
+{
+    $mime = explode("/", $mime);
+    return array_shift($mime);
 }
 
-function saltos_content_type1($mime) {
-	$mime=explode("/",$mime);
-	return array_pop($mime);
+function saltos_content_type1($mime)
+{
+    $mime = explode("/", $mime);
+    return array_pop($mime);
 }
-
-?>

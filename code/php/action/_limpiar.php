@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,16 +25,24 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) action_login();
-$id_usuario=current_user();
-$id_folder=intval(getParam("id_folder"));
-$arguments=array("page=$page","limpiar=1");
-if($page=="correo") $arguments[]="id_usuario=$id_usuario";
-if($page=="agenda") $arguments[]="id_asignado=$id_usuario";
-if($page=="feeds") $arguments[]="id_usuario=$id_usuario";
-if($page=="folders") $arguments[]="id_folder=$id_folder";
-$arguments=implode("&",$arguments);
+if (!check_user()) {
+    action_login();
+}
+$id_usuario = current_user();
+$id_folder = intval(getParam("id_folder"));
+$arguments = array("page=$page","limpiar=1");
+if ($page == "correo") {
+    $arguments[] = "id_usuario=$id_usuario";
+}
+if ($page == "agenda") {
+    $arguments[] = "id_asignado=$id_usuario";
+}
+if ($page == "feeds") {
+    $arguments[] = "id_usuario=$id_usuario";
+}
+if ($page == "folders") {
+    $arguments[] = "id_folder=$id_folder";
+}
+$arguments = implode("&", $arguments);
 _javascript_opencontent($arguments);
 die();
-
-?>

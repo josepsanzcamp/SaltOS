@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,72 +25,98 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) action_denied();
-if(in_array($page,array("facturas","actas","partes","presupuestos"))) {
-	require_once("php/getmail.php");
-	// DATOS FACTURA/ACTA/PARTE/PRESUPUESTO
-	$where="WHERE id IN (".check_ids(getParam("id")).")";
-	if($page=="facturas") $query="
+// phpcs:disable PSR1.Files.SideEffects
+
+if (!check_user()) {
+    action_denied();
+}
+if (in_array($page, array("facturas","actas","partes","presupuestos"))) {
+    require_once "php/getmail.php";
+    // DATOS FACTURA/ACTA/PARTE/PRESUPUESTO
+    $where = "WHERE id IN (" . check_ids(getParam("id")) . ")";
+    if ($page == "facturas") {
+        $query = "
 		SELECT
 			CASE num WHEN '' THEN
-				CONCAT('".LANG("albaran")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre)
+				CONCAT('" . LANG("albaran") . "',' ',LPAD(id," .
+                    intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre)
 			ELSE
-				CONCAT('".LANG("factura")."',' ',num,' ',nombre)
+				CONCAT('" . LANG("factura") . "',' ',num,' ',nombre)
 			END subject,id
 		FROM tbl_facturas $where";
-	if($page=="actas") $query="
+    }
+    if ($page == "actas") {
+        $query = "
 		SELECT
-			CONCAT('".LANG("acta")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject,id
+			CONCAT('" . LANG("acta") . "',' ',LPAD(id," .
+                intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject,id
 		FROM tbl_actas $where";
-	if($page=="partes") $query="
+    }
+    if ($page == "partes") {
+        $query = "
 		SELECT
-			CONCAT('".LANG("parte")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',tarea) subject,id
+			CONCAT('" . LANG("parte") . "',' ',LPAD(id," .
+                intval(CONFIG("zero_padding_digits")) . ",0),' ',tarea) subject,id
 		FROM tbl_partes $where";
-	if($page=="presupuestos") $query="
+    }
+    if ($page == "presupuestos") {
+        $query = "
 		SELECT
-			CONCAT('".LANG("presupuesto")."',' ',LPAD(id,".intval(CONFIG("zero_padding_digits")).",0),' ',nombre) subject,id
+			CONCAT('" . LANG("presupuesto") . "',' ',LPAD(id," .
+                intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject,id
 		FROM tbl_presupuestos $where";
-	$result=db_query($query);
-	$numrows=db_num_rows($result);
-	if(!$numrows) action_denied();
-	$ids=array();
-	$body=array();
-	while($row=db_fetch_row($result)) {
-		$ids[]=$row["id"];
-		$body[]=$row["subject"];
-	}
-	if($numrows==1) $subject=$body[0];
-	if($numrows!=1) $subject=LANG($page,"menu");
-	db_free($result);
-	if($numrows!=1) array_unshift($ids,implode(",",$ids));
-	if($numrows!=1) array_unshift($body,LANG($page,"menu"));
-	$files=array();
-	foreach($ids as $key=>$val) {
-		// PDF FACTURA/ACTA/PARTE/PRESUPUESTO
-		$action="pdf";
-		setParam("action",$action);
-		$_GET["id"]=$val;
-		ob_start();
-		if(!defined("__CANCEL_DIE__")) define("__CANCEL_DIE__",1);
-		include("php/action/pdf.php");
-		$pdf=ob_get_clean();
-		$file=get_temp_file(".pdf");
-		file_put_contents($file,$pdf);
-		$name=$body[$key].".pdf";
-		$name=encode_bad_chars_file($name);
-		$mime="application/pdf";
-		$size=strlen($pdf);
-		$files["pdf_${key}"]=array("file"=>$file,"name"=>$name,"mime"=>$mime,"size"=>$size);
-	}
-	$body=implode("<br/>",$body);
-	//require_once("php/getmail.php");
-	//$body=__HTML_TEXT_OPEN__.$body.__HTML_TEXT_CLOSE__;
-	sess_init();
-	$_SESSION["correo"]=array("subject"=>$subject,"body"=>$body,"files"=>$files);
-	sess_close();
-	// REBOTAR AL FORMULARIO DE REDACCION
-	javascript_location_page("correo&action=form&id=0_session_0");
-	die();
+    }
+    $result = db_query($query);
+    $numrows = db_num_rows($result);
+    if (!$numrows) {
+        action_denied();
+    }
+    $ids = array();
+    $body = array();
+    while ($row = db_fetch_row($result)) {
+        $ids[] = $row["id"];
+        $body[] = $row["subject"];
+    }
+    if ($numrows == 1) {
+        $subject = $body[0];
+    }
+    if ($numrows != 1) {
+        $subject = LANG($page, "menu");
+    }
+    db_free($result);
+    if ($numrows != 1) {
+        array_unshift($ids, implode(",", $ids));
+    }
+    if ($numrows != 1) {
+        array_unshift($body, LANG($page, "menu"));
+    }
+    $files = array();
+    foreach ($ids as $key => $val) {
+        // PDF FACTURA/ACTA/PARTE/PRESUPUESTO
+        $action = "pdf";
+        setParam("action", $action);
+        $_GET["id"] = $val;
+        ob_start();
+        if (!defined("__CANCEL_DIE__")) {
+            define("__CANCEL_DIE__", 1);
+        }
+        require "php/action/pdf.php";
+        $pdf = ob_get_clean();
+        $file = get_temp_file(".pdf");
+        file_put_contents($file, $pdf);
+        $name = $body[$key] . ".pdf";
+        $name = encode_bad_chars_file($name);
+        $mime = "application/pdf";
+        $size = strlen($pdf);
+        $files["pdf_${key}"] = array("file" => $file,"name" => $name,"mime" => $mime,"size" => $size);
+    }
+    $body = implode("<br/>", $body);
+    //require_once "php/getmail.php";
+    //$body=__HTML_TEXT_OPEN__.$body.__HTML_TEXT_CLOSE__;
+    sess_init();
+    $_SESSION["correo"] = array("subject" => $subject,"body" => $body,"files" => $files);
+    sess_close();
+    // REBOTAR AL FORMULARIO DE REDACCION
+    javascript_location_page("correo&action=form&id=0_session_0");
+    die();
 }
-
-?>

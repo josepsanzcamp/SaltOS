@@ -1,4 +1,5 @@
 <?php
+
 /*
  ____        _ _    ___  ____
 / ___|  __ _| | |_ / _ \/ ___|
@@ -24,42 +25,63 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(!check_user()) action_denied();
-if($page=="agenda") {
-	$restarted=0;
-	// REINICIAR LOS NOTIFY_DSTART
-	$query="SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.first=1 LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_delay!='0' AND notify_dstart='1' AND UNIX_TIMESTAMP('".current_datetime()."')+0.0 > UNIX_TIMESTAMP(dstart)+notify_delay*3600.0*notify_sign AND UNIX_TIMESTAMP('".current_datetime()."') < UNIX_TIMESTAMP(dstop)";
-	$result=db_query($query);
-	while($row=db_fetch_row($result)) {
-		$id=$row["id"];
-		$query=make_update_query("tbl_agenda",array(
-			"notify_dstart"=>0
-		),"id='${id}'");
-		db_query($query);
-		$restarted++;
-	}
-	db_free($result);
-	// REINICIAR LOS NOTIFY_DSTOP
-	$query="SELECT a.id FROM tbl_agenda a LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id("agenda")."' AND f.id_registro=a.id AND f.first=1 LEFT JOIN tbl_estados c ON a.id_estado=c.id WHERE f.id_usuario='".current_user()."' AND activo='1' AND notify_dstop='1' AND UNIX_TIMESTAMP('".current_datetime()."') > UNIX_TIMESTAMP(dstop)";
-	$result=db_query($query);
-	while($row=db_fetch_row($result)) {
-		$id=$row["id"];
-		$query=make_update_query("tbl_agenda",array(
-			"notify_dstop"=>0
-		),"id='${id}'");
-		db_query($query);
-		$restarted++;
-	}
-	db_free($result);
-	// VOLVER ATRAS
-	if($restarted) {
-		session_alert(LANG("notifyclearok","agenda")." ".$restarted);
-		javascript_template("check_agenda();");
-	} else {
-		session_alert(LANG("notifyclearko","agenda"));
-	}
-	javascript_history(-1);
-	die();
+if (!check_user()) {
+    action_denied();
 }
-
-?>
+if ($page == "agenda") {
+    $restarted = 0;
+    // REINICIAR LOS NOTIFY_DSTART
+    $query = "SELECT a.id
+        FROM tbl_agenda a
+        LEFT JOIN tbl_registros f ON f.id_aplicacion='" . page2id("agenda") . "'
+            AND f.id_registro=a.id
+            AND f.first=1
+        LEFT JOIN tbl_estados c ON a.id_estado=c.id
+        WHERE f.id_usuario='" . current_user() . "'
+            AND activo='1'
+            AND notify_delay!='0'
+            AND notify_dstart='1'
+            AND UNIX_TIMESTAMP('" . current_datetime() . "')+0.0 >
+                UNIX_TIMESTAMP(dstart)+notify_delay*3600.0*notify_sign
+            AND UNIX_TIMESTAMP('" . current_datetime() . "') < UNIX_TIMESTAMP(dstop)";
+    $result = db_query($query);
+    while ($row = db_fetch_row($result)) {
+        $id = $row["id"];
+        $query = make_update_query("tbl_agenda", array(
+            "notify_dstart" => 0
+        ), "id='${id}'");
+        db_query($query);
+        $restarted++;
+    }
+    db_free($result);
+    // REINICIAR LOS NOTIFY_DSTOP
+    $query = "SELECT a.id
+        FROM tbl_agenda a
+        LEFT JOIN tbl_registros f ON f.id_aplicacion='" . page2id("agenda") . "'
+            AND f.id_registro=a.id
+            AND f.first=1
+        LEFT JOIN tbl_estados c ON a.id_estado=c.id
+        WHERE f.id_usuario='" . current_user() . "'
+            AND activo='1'
+            AND notify_dstop='1'
+            AND UNIX_TIMESTAMP('" . current_datetime() . "') > UNIX_TIMESTAMP(dstop)";
+    $result = db_query($query);
+    while ($row = db_fetch_row($result)) {
+        $id = $row["id"];
+        $query = make_update_query("tbl_agenda", array(
+            "notify_dstop" => 0
+        ), "id='${id}'");
+        db_query($query);
+        $restarted++;
+    }
+    db_free($result);
+    // VOLVER ATRAS
+    if ($restarted) {
+        session_alert(LANG("notifyclearok", "agenda") . " " . $restarted);
+        javascript_template("check_agenda();");
+    } else {
+        session_alert(LANG("notifyclearko", "agenda"));
+    }
+    javascript_history(-1);
+    die();
+}
