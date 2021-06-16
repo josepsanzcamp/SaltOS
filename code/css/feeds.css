@@ -24,35 +24,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 .estado.state_new {
-	color:#ffffff!important;
-	background:#34a853!important;
+    color:#ffffff!important;
+    background:#34a853!important;
 }
 
 .estado.state_wait {
-	color:#ffffff!important;
-	background:#4285f4!important;
+    color:#ffffff!important;
+    background:#4285f4!important;
 }
 
 .estado.state_cool {
-	color:#000000!important;
-	background:#fbbc05!important;
+    color:#000000!important;
+    background:#fbbc05!important;
 }
 
 .enlace {
-	display:block;
-	overflow:hidden;
-	width:800px;
+    display:block;
+    overflow:hidden;
+    width:800px;
 }
 
 /* FOR FONT AWESOME */
 .fa-tag-new {
-	color:#34a853;
+    color:#34a853;
 }
 
 .fa-tag-wait {
-	color:#4285f4;
+    color:#4285f4;
 }
 
 .fa-tag-cool {
-	color:#fbbc05;
+    color:#fbbc05;
 }

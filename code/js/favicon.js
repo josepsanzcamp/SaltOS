@@ -24,39 +24,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__favicon__)=="undefined" && typeof(parent.__favicon__)=="undefined") {
-	"use strict";
-	var __favicon__=1;
+    "use strict";
+    var __favicon__=1;
 
-	var favicon_running=0;
+    var favicon_running=0;
 
-	function favicon_animate(num) {
-		if(num>0) {
-			jQuery.favicon.animate(
-				"img/favicon2.png",
-				"img/favicon3.png",
-				{
-					frames:[0,1],
-					interval:1000,
-					onDraw:function() {
-						favicon_running=1;
-					},
-					onStop:function() {
-						jQuery.favicon("img/favicon.png");
-						favicon_running=0;
-					}
-				}
-			);
-		} else {
-			jQuery.favicon.unanimate();
-		}
-	}
+    function favicon_animate(num) {
+        if(num>0) {
+            jQuery.favicon.animate(
+                "img/favicon2.png",
+                "img/favicon3.png",
+                {
+                    frames:[0,1],
+                    interval:1000,
+                    onDraw:function() {
+                        favicon_running=1;
+                    },
+                    onStop:function() {
+                        jQuery.favicon("img/favicon.png");
+                        favicon_running=0;
+                    }
+                }
+            );
+        } else {
+            jQuery.favicon.unanimate();
+        }
+    }
 
-	$(function() {
-		$(document).on("mouseover",function() {
-			if(favicon_running) favicon_animate(0);
-		}).on("keydown",function() {
-			if(favicon_running) favicon_animate(0);
-		});
-	});
+    $(function() {
+        $(document).on("mouseover",function() {
+            if(favicon_running) favicon_animate(0);
+        }).on("keydown",function() {
+            if(favicon_running) favicon_animate(0);
+        });
+    });
 
 }

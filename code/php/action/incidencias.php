@@ -67,23 +67,23 @@ if ($page == "incidencias") {
         $id_aplicacion = page2id($page);
         // DATOS INCIDENCIA
         $query = "SELECT a.nombre nombre,
-				a.descripcion descripcion,
-				CASE a.id_cliente WHEN '0' THEN '" . LANG_ESCAPE("sincliente") . "' ELSE b.nombre END cliente,
-				CASE a.id_proyecto WHEN '0' THEN '" . LANG_ESCAPE("sinproyecto") . "' ELSE c.nombre END proyecto,
-				d.nombre estado,
-				" . make_extra_query_with_login("f.") . " username,
-				e.datetime datetime,
-				g.nombre prioridad,
-				CASE a.id_categoria WHEN '0' THEN '" . LANG_ESCAPE("sincategoria") . "' ELSE h.nombre END categoria
-			FROM tbl_incidencias a
-			LEFT JOIN tbl_clientes b ON a.id_cliente=b.id
-			LEFT JOIN tbl_proyectos c ON a.id_proyecto=c.id
-			LEFT JOIN tbl_estados d ON a.id_estado=d.id
-			LEFT JOIN tbl_registros e ON e.id_aplicacion='$id_aplicacion' AND e.id_registro=a.id AND e.first=1
-			LEFT JOIN tbl_usuarios f ON e.id_usuario=f.id
-			LEFT JOIN tbl_prioridades g ON g.id=a.id_prioridad
-			LEFT JOIN tbl_categorias h ON h.id=a.id_categoria
-			WHERE a.id='$id_incidencia'";
+                a.descripcion descripcion,
+                CASE a.id_cliente WHEN '0' THEN '" . LANG_ESCAPE("sincliente") . "' ELSE b.nombre END cliente,
+                CASE a.id_proyecto WHEN '0' THEN '" . LANG_ESCAPE("sinproyecto") . "' ELSE c.nombre END proyecto,
+                d.nombre estado,
+                " . make_extra_query_with_login("f.") . " username,
+                e.datetime datetime,
+                g.nombre prioridad,
+                CASE a.id_categoria WHEN '0' THEN '" . LANG_ESCAPE("sincategoria") . "' ELSE h.nombre END categoria
+            FROM tbl_incidencias a
+            LEFT JOIN tbl_clientes b ON a.id_cliente=b.id
+            LEFT JOIN tbl_proyectos c ON a.id_proyecto=c.id
+            LEFT JOIN tbl_estados d ON a.id_estado=d.id
+            LEFT JOIN tbl_registros e ON e.id_aplicacion='$id_aplicacion' AND e.id_registro=a.id AND e.first=1
+            LEFT JOIN tbl_usuarios f ON e.id_usuario=f.id
+            LEFT JOIN tbl_prioridades g ON g.id=a.id_prioridad
+            LEFT JOIN tbl_categorias h ON h.id=a.id_categoria
+            WHERE a.id='$id_incidencia'";
         $result2 = db_query($query);
         if (db_num_rows($result2)) {
             $row2 = db_fetch_row($result2);
@@ -98,10 +98,10 @@ if ($page == "incidencias") {
             $lastmsg = $row2["descripcion"];
             // DATOS COMENTARIOS
             $query = "SELECT comentarios,datetime,
-					" . make_extra_query_with_login("b.") . " username
-				FROM tbl_comentarios a
-				LEFT JOIN tbl_usuarios b ON a.id_usuario=b.id
-				WHERE a.id_aplicacion='$id_aplicacion' AND a.id_registro='$id_incidencia'";
+                    " . make_extra_query_with_login("b.") . " username
+                FROM tbl_comentarios a
+                LEFT JOIN tbl_usuarios b ON a.id_usuario=b.id
+                WHERE a.id_aplicacion='$id_aplicacion' AND a.id_registro='$id_incidencia'";
             $result2 = db_query($query);
             // BODY COMENTARIOS
             $campos = array("username","datetime","comentarios");
@@ -113,8 +113,8 @@ if ($page == "incidencias") {
             db_free($result2);
             // DATOS USUARIOS
             $query = "SELECT REPLACE(GROUP_CONCAT(" . make_extra_query_with_login("d.") . "),',','; ') implicados
-				FROM tbl_incidencias a,tbl_usuarios d
-				WHERE a.id='$id_incidencia' AND FIND_IN_SET(d.id,a.ids_implicados)";
+                FROM tbl_incidencias a,tbl_usuarios d
+                WHERE a.id='$id_incidencia' AND FIND_IN_SET(d.id,a.ids_implicados)";
             $result2 = db_query($query);
             // BODY USUARIOS
             $campos = array("implicados");
@@ -125,8 +125,8 @@ if ($page == "incidencias") {
             db_free($result2);
             // DATOS USUARIOS
             $query = "SELECT REPLACE(GROUP_CONCAT(" . make_extra_query_with_login("d.") . "),',','; ') asignadoa
-				FROM tbl_incidencias a,tbl_usuarios d
-				WHERE a.id='$id_incidencia' AND FIND_IN_SET(d.id,a.ids_asignados)";
+                FROM tbl_incidencias a,tbl_usuarios d
+                WHERE a.id='$id_incidencia' AND FIND_IN_SET(d.id,a.ids_asignados)";
             $result2 = db_query($query);
             // BODY USUARIOS
             $campos = array("asignadoa");

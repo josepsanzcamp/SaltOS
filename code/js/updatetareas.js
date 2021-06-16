@@ -24,40 +24,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__updatetareas__)=="undefined" && typeof(parent.__updatetareas__)=="undefined") {
-	"use strict";
-	var __updatetareas__=1;
+    "use strict";
+    var __updatetareas__=1;
 
-	function update_tareas() {
-		if(typeof(proyectos_init)=="undefined") {
-			setTimeout(function() { update_tareas(); },100);
-			return;
-		}
-		if(!proyectos_init) {
-			setTimeout(function() { update_tareas(); },100);
-			return;
-		}
-		var proyecto=$("select[name$=id_proyecto]");
-		var tarea=$("select[name$=id_tarea]");
-		if(tareas_defaults=="") tareas_defaults=$(tarea).html();
-		var data="action=ajax&query=tareas&id_proyecto="+$(proyecto).val();
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				var options=tareas_defaults;
-				var original=$(tarea).attr("original");
-				$(response["rows"]).each(function() {
-					var selected=(this["id"]==original)?"selected='selected'":"";
-					options+="<option value='"+this["id"]+"' "+selected+">"+this["tarea"]+"</option>";
-				});
-				$(tarea).html(options).trigger("refresh");
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
-		});
-	}
+    function update_tareas() {
+        if(typeof(proyectos_init)=="undefined") {
+            setTimeout(function() { update_tareas(); },100);
+            return;
+        }
+        if(!proyectos_init) {
+            setTimeout(function() { update_tareas(); },100);
+            return;
+        }
+        var proyecto=$("select[name$=id_proyecto]");
+        var tarea=$("select[name$=id_tarea]");
+        if(tareas_defaults=="") tareas_defaults=$(tarea).html();
+        var data="action=ajax&query=tareas&id_proyecto="+$(proyecto).val();
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                var options=tareas_defaults;
+                var original=$(tarea).attr("original");
+                $(response["rows"]).each(function() {
+                    var selected=(this["id"]==original)?"selected='selected'":"";
+                    options+="<option value='"+this["id"]+"' "+selected+">"+this["tarea"]+"</option>";
+                });
+                $(tarea).html(options).trigger("refresh");
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+            }
+        });
+    }
 
 }
 

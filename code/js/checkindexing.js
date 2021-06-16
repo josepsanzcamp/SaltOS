@@ -24,46 +24,46 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__checkindexing__)=="undefined" && typeof(parent.__checkindexing__)=="undefined") {
-	"use strict";
-	var __checkindexing__=1;
+    "use strict";
+    var __checkindexing__=1;
 
-	var indexing_executing=0;
+    var indexing_executing=0;
 
-	function check_indexing() {
-		if(indexing_executing) return;
-		indexing_executing=1;
-		// SOME CHECKS
-		if($(".ui-layout-west").text()=="") {
-			indexing_executing=0;
-			return;
-		}
-		// NORMAL USAGE
-		var data="action=indexing";
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				$(".ui-layout-center").append(response);
-				indexing_executing=0;
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				indexing_executing=0;
-			}
-		});
-	}
+    function check_indexing() {
+        if(indexing_executing) return;
+        indexing_executing=1;
+        // SOME CHECKS
+        if($(".ui-layout-west").text()=="") {
+            indexing_executing=0;
+            return;
+        }
+        // NORMAL USAGE
+        var data="action=indexing";
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                $(".ui-layout-center").append(response);
+                indexing_executing=0;
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                indexing_executing=0;
+            }
+        });
+    }
 
-	$(function() {
-		if(config_indexing_interval()>0) {
-			var indexing_counter=config_indexing_interval();
-			setInterval(function() {
-				indexing_counter=indexing_executing?0:indexing_counter+100;
-				if(indexing_counter>=config_indexing_interval()) {
-					check_indexing();
-					indexing_counter=0;
-				}
-			},100);
-		}
-	});
+    $(function() {
+        if(config_indexing_interval()>0) {
+            var indexing_counter=config_indexing_interval();
+            setInterval(function() {
+                indexing_counter=indexing_executing?0:indexing_counter+100;
+                if(indexing_counter>=config_indexing_interval()) {
+                    check_indexing();
+                    indexing_counter=0;
+                }
+            },100);
+        }
+    });
 
 }

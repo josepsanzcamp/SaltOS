@@ -25,382 +25,382 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* GENERAL SETTINGS */
 body {
-	border:0;
-	padding:0;
-	margin:0;
-	overflow-y:scroll;
+    border:0;
+    padding:0;
+    margin:0;
+    overflow-y:scroll;
 }
 
 img {
-	border:0;
+    border:0;
 }
 
 form {
-	display:inline;
+    display:inline;
 }
 
 /* FOR STYLING JQUERY */
 .ui-layout-north {
-	padding:0 0 0 0;
+    padding:0 0 0 0;
 }
 
 .ui-layout-north .headertabs {
-	text-align:center;
+    text-align:center;
 }
 
 .ui-layout-north .center {
-	float:none!important;
-	display:inline-block!important;
-	margin-bottom:0px!important;
+    float:none!important;
+    display:inline-block!important;
+    margin-bottom:0px!important;
 }
 
 .ui-layout-north .right {
-	float:right!important;
+    float:right!important;
 }
 
 .rtl .ui-layout-north .right {
-	float:left!important;
+    float:left!important;
 }
 
 .ui-layout-west {
-	padding:0 0 2px 2px;
+    padding:0 0 2px 2px;
 }
 
 .rtl .ui-layout-west {
-	padding:0 2px 2px 0;
+    padding:0 2px 2px 0;
 }
 
 .ui-layout-center {
-	padding:2px 2px 2px 2px;
+    padding:2px 2px 2px 2px;
 }
 
 .accordion-link {
-	padding:1em 0!important;
+    padding:1em 0!important;
 }
 
 .ui-tabs {
-	border:none!important;
-	padding:0!important;
+    border:none!important;
+    padding:0!important;
 }
 
 .ui-tabs-nav {
-	line-height:1em!important;
+    line-height:1em!important;
 }
 
 .ui-tabs-nav li {
-	margin-right:2px!important;
+    margin-right:2px!important;
 }
 
 .rtl .ui-tabs-nav li {
-	float:right!important;
-	margin-right:0!important;
-	margin-left:2px!important;
+    float:right!important;
+    margin-right:0!important;
+    margin-left:2px!important;
 }
 
 .ui-dialog .ui-dialog-buttonpane {
-	padding:0.3em 0.3em 0.2em 0.3em!important;
+    padding:0.3em 0.3em 0.2em 0.3em!important;
 }
 
 .ui-dialog {
-	padding:0!important;
-	border:0!important;
-	box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
-	-moz-box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
-	-webkit-box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
+    padding:0!important;
+    border:0!important;
+    box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
+    -moz-box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
+    -webkit-box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
 }
 
 /* CONTINUE */
 a.ui-state-default {
-	padding:3px 5px;
-	margin:1px;
-	text-decoration:none;
-	display:inline-block;
+    padding:3px 5px;
+    margin:1px;
+    text-decoration:none;
+    display:inline-block;
 }
 
 span.ui-state-default {
-	padding:3px 5px;
-	margin:1px;
+    padding:3px 5px;
+    margin:1px;
 }
 
 input.ui-state-default {
-	padding:3px 5px;
-	margin:1px;
+    padding:3px 5px;
+    margin:1px;
 }
 
 input.ui-state-error {
-	padding:3px 5px;
-	margin:1px;
+    padding:3px 5px;
+    margin:1px;
 }
 
 input.ui-state-disabled {
-	opacity:0.85!important;
-	pointer-events:auto;
+    opacity:0.85!important;
+    pointer-events:auto;
 }
 
 textarea.ui-state-default {
-	padding:3px 5px;
-	margin:1px;
+    padding:3px 5px;
+    margin:1px;
 }
 
 textarea.ui-state-error {
-	padding:3px 5px;
-	margin:1px;
+    padding:3px 5px;
+    margin:1px;
 }
 
 textarea.ui-state-disabled {
-	opacity:0.85!important;
-	pointer-events:auto;
+    opacity:0.85!important;
+    pointer-events:auto;
 }
 
 select.ui-state-default {
-	padding:2px 5px;
-	margin:1px;
+    padding:2px 5px;
+    margin:1px;
 }
 
 select.ui-state-error {
-	padding:2px 5px;
-	margin:1px;
+    padding:2px 5px;
+    margin:1px;
 }
 
 select.ui-state-disabled {
-	opacity:0.85!important;
-	pointer-events:auto;
+    opacity:0.85!important;
+    pointer-events:auto;
 }
 
 iframe.ui-state-default {
-	padding:3px 5px;
-	margin:1px;
-	background:#ffffff!important;
+    padding:3px 5px;
+    margin:1px;
+    background:#ffffff!important;
 }
 
 img.ui-state-default {
-	margin:0 1px;
+    margin:0 1px;
 }
 
 /* FOR TABLES */
 .tabla tr td.thead {
-	white-space:nowrap;
-	padding:0 3px;
-	height:22px;
-	border-left:none;
-	border-right:none;
+    white-space:nowrap;
+    padding:0 3px;
+    height:22px;
+    border-left:none;
+    border-right:none;
 }
 
 .tabla tr td.tbody {
-	font-weight:normal;
-	padding:0 3px;
-	height:22px;
-	border-left:none;
-	border-right:none;
+    font-weight:normal;
+    padding:0 3px;
+    height:22px;
+    border-left:none;
+    border-right:none;
 }
 
 .tabla tr td.tbody a {
-	text-decoration:underline;
+    text-decoration:underline;
 }
 
 .tabla tr td.nodata {
-	font-weight:bold;
-	text-align:center;
-	height:44px;
-	border-left:none;
-	border-right:none;
+    font-weight:bold;
+    text-align:center;
+    height:44px;
+    border-left:none;
+    border-right:none;
 }
 
 .tabla tr td.notop {
-	border-top:0;
+    border-top:0;
 }
 
 .tabla tr td.noright {
-	border-right:0;
+    border-right:0;
 }
 
 .tabla tr td.noleft {
-	border-left:0;
+    border-left:0;
 }
 
 /* FOR ALIGNMENTS AND STYLES */
 .left{
-	text-align:left;
+    text-align:left;
 }
 
 .rtl .left{
-	text-align:right;
+    text-align:right;
 }
 
 .center{
-	text-align:center;
+    text-align:center;
 }
 
 .right{
-	text-align:right;
+    text-align:right;
 }
 
 .rtl .right{
-	text-align:left;
+    text-align:left;
 }
 
 .top {
-	vertical-align:top;
+    vertical-align:top;
 }
 
 .middle {
-	vertical-align:middle;
+    vertical-align:middle;
 }
 
 .bottom {
-	vertical-align:bottom;
+    vertical-align:bottom;
 }
 
 .bold {
-	font-weight:bold;
+    font-weight:bold;
 }
 
 .italic {
-	font-style:italic;
+    font-style:italic;
 }
 
 .normal {
-	font-weight:normal;
-	font-style:normal;
+    font-weight:normal;
+    font-style:normal;
 }
 
 .label {
-	padding:0 5px;
+    padding:0 5px;
 }
 
 .block {
-	display:block;
+    display:block;
 }
 
 .none {
-	display:none!important;
+    display:none!important;
 }
 
 .inline {
-	display:inline;
+    display:inline;
 }
 
 /* FOR WIDTHS */
 .width1 {
-	width:1%;
+    width:1%;
 }
 
 .width25 {
-	width:25%;
+    width:25%;
 }
 
 .width33 {
-	width:33%;
+    width:33%;
 }
 
 .width50 {
-	width:50%;
+    width:50%;
 }
 
 .width90 {
-	width:90%;
+    width:90%;
 }
 
 .width100 {
-	width:100%;
+    width:100%;
 }
 
 /* EXTRAS */
 .separator {
-	height:10px;
+    height:10px;
 }
 
 .info {
-	padding:3px 5px;
-	font-weight:bold;
+    padding:3px 5px;
+    font-weight:bold;
 }
 
 .error {
-	padding:3px 5px;
-	font-weight:bold;
+    padding:3px 5px;
+    font-weight:bold;
 }
 
 .nowrap {
-	white-space:nowrap!important;
+    white-space:nowrap!important;
 }
 
 .siwrap {
-	white-space:normal!important;
+    white-space:normal!important;
 }
 
 .notabs {
-	display:none;
+    display:none;
 }
 
 .title {
-	padding:3px 5px;
+    padding:3px 5px;
 }
 
 /* FOR GENERAL TABLES */
 table {
-	margin-left:auto;
-	margin-right:auto;
-	border-spacing:0;
+    margin-left:auto;
+    margin-right:auto;
+    border-spacing:0;
 }
 
 td.title {
-	white-space:nowrap;
-	padding:0 3px;
-	height:22px;
+    white-space:nowrap;
+    padding:0 3px;
+    height:22px;
 }
 
 /* FOR IMAGE OBJECT */
 img.image {
-	padding:5px;
+    padding:5px;
 }
 
 /* FOR DIALOG */
 #dialog {
-	text-align:center;
-	margin-top:2px;
+    text-align:center;
+    margin-top:2px;
 }
 
 /* FOR QRCODE */
 #dialog h1.tel {
-	margin-bottom:0;
+    margin-bottom:0;
 }
 
 /* FOR NUMBERS */
 a.number {
-	position:relative;
+    position:relative;
 }
 
 span.number {
-	position:absolute;
-	left:12px;
-	z-index:100;
-	font-size:10px;
-	line-height:11px;
-	color:#ffffff;
-	background-color:#ea4335;
-	border-radius:50%;
+    position:absolute;
+    left:12px;
+    z-index:100;
+    font-size:10px;
+    line-height:11px;
+    color:#ffffff;
+    background-color:#ea4335;
+    border-radius:50%;
 }
 
 .number1 {
-	padding:1px 3px;
+    padding:1px 3px;
 }
 
 .number2 {
-	padding:1px 1px;
+    padding:1px 1px;
 }
 
 .rtl span.number {
-	right:6px;
+    right:6px;
 }
 
 /* FOR PLOTS */
 img[isplot=true] {
-	margin:2px;
+    margin:2px;
 }
 
 /* FOR TOOLTIPS */
 .ui-tooltip {
-	padding:5px 10px!important;
+    padding:5px 10px!important;
 }
 
 /* FOR VIEWPDF */
@@ -413,158 +413,158 @@ img[isplot=true] {
 
 /* FOR HELP */
 .tabs .help {
-	float:right!important;
+    float:right!important;
 }
 
 .rtl .tabs .help {
-	float:left!important;
+    float:left!important;
 }
 
 /* FOR HEADER */
 .tabs2 span.number {
-	top:1px;
-	left:17px;
+    top:1px;
+    left:17px;
 }
 
 .rtl .tabs2 span.number {
-	right:17px;
+    right:17px;
 }
 
 /* FOR BACK TO TOP FEATURE */
 .back2top {
-	position:fixed;
-	bottom:2px;
-	left:146px;
-	width:34px;
-	height:34px;
-	z-index:100;
-	display:none;
-	padding:10px;
+    position:fixed;
+    bottom:2px;
+    left:146px;
+    width:34px;
+    height:34px;
+    z-index:100;
+    display:none;
+    padding:10px;
 }
 
 .back2top .fa {
-	font-size:34px;
-	line-height:34px;
+    font-size:34px;
+    line-height:34px;
 }
 
 /* FOR REMOVE DEFAULT CHROME FOCUS HIGHLIGHT */
 :focus {
-	outline:none;
+    outline:none;
 }
 
 /* FOR FONT AWESOME */
 .fa {
-	font-size:13px;
-	line-height:0;
+    font-size:13px;
+    line-height:0;
 }
 
 .ui-menu-item .fa-trash {
-	color:#ea4335;
+    color:#ea4335;
 }
 
 .ui-menu-item .fa-check {
-	color:#34a853;
+    color:#34a853;
 }
 
 .ui-menu-item .fa-times {
-	color:#ea4335;
+    color:#ea4335;
 }
 
 /* FOR SELECT MENU */
 .ui-selectmenu-button.ui-button {
-	padding:3px 0 3px 5px;
-	margin:1px;
+    padding:3px 0 3px 5px;
+    margin:1px;
 }
 
 .ui-selectmenu-button.ui-button .ui-icon {
-	position:absolute; /* FIX FOR BUTTON SIZE */
-	top:1px; /* FIX FOR BUTTON SIZE */
-	right:1px; /* FIX FOR BUTTON SIZE */
+    position:absolute; /* FIX FOR BUTTON SIZE */
+    top:1px; /* FIX FOR BUTTON SIZE */
+    right:1px; /* FIX FOR BUTTON SIZE */
 }
 
 .ui-selectmenu-button.ui-button.ui-state-disabled {
-	opacity:0.85!important;
+    opacity:0.85!important;
 }
 
 .ui-selectmenu-menu .ui-menu {
-	min-width:150px;
-	max-width:300px;
-	max-height:300px;
+    min-width:150px;
+    max-width:300px;
+    max-height:300px;
 }
 
 /* FOR CONTEXT MENU */
 #contextMenu {
-	min-width:150px;
+    min-width:150px;
 }
 
 #contextMenu .ui-menu-item-wrapper {
-	padding:5px 7px;
+    padding:5px 7px;
 }
 
 /* FOR SELECT MENU AND CONTEXT MENU */
 .ui-menu .ui-menu-item-wrapper {
-	font-weight:normal;
+    font-weight:normal;
 }
 
 .ui-menu .ui-menu-item-wrapper.ui-state-active {
-	background-color:#fbec88;
-	color:#363636;
-	font-weight:normal;
+    background-color:#fbec88;
+    color:#363636;
+    font-weight:normal;
 }
 
 /* FOR SORT ICONS */
 .ui-icon-asc {
-	font-size:1em;
-	margin-left:6px;
-	vertical-align:0px;
+    font-size:1em;
+    margin-left:6px;
+    vertical-align:0px;
 }
 
 .ui-icon-desc {
-	font-size:1em;
-	margin-left:3px;
-	vertical-align:1px;
+    font-size:1em;
+    margin-left:3px;
+    vertical-align:1px;
 }
 
 .ui-icon-in {
-	opacity:1.0!important;
+    opacity:1.0!important;
 }
 
 .ui-icon-out {
-	opacity:0.5!important;
+    opacity:0.5!important;
 }
 
 /* FOR EXCEL */
 div.excel {
-	overflow:hidden;
+    overflow:hidden;
 }
 
 /* FOR DATEPICKER */
 .ui-datepicker-calendar .ui-datepicker-today a {
-	background:#fbec88!important;
-	color:#363636!important;
+    background:#fbec88!important;
+    color:#363636!important;
 }
 
 .ui-datepicker-calendar .ui-datepicker-current-day a {
-	background:#fbec88!important;
-	color:#363636!important;
+    background:#fbec88!important;
+    color:#363636!important;
 }
 
 /* FOR JSTREE */
 .jstree-hovered {
-	background:#fbec88!important;
-	color:#363636!important;
+    background:#fbec88!important;
+    color:#363636!important;
 }
 
 /* FOR CHECKBOXES */
 .checkbox-focused {
-	background:#fbec88!important;
-	color:#363636!important;
+    background:#fbec88!important;
+    color:#363636!important;
 }
 
 /* FOR ACTIONS2 */
 .actions2 span {
-	font-size:1em;
-	vertical-align:1px;
-	padding:0 0.25em;
-	text-align:center;
+    font-size:1em;
+    vertical-align:1px;
+    padding:0 0.25em;
+    text-align:center;
 }

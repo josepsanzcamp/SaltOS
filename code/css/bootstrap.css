@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* GENERAL SETTINGS */
 body {
-	overflow-y:scroll;
+    overflow-y:scroll;
 }
 
 /* FOR TOOLTIPS */
@@ -35,190 +35,190 @@ body {
 
 /* FOR TABS */
 .tabs > ul {
-	padding:15px 15px 0 15px;
+    padding:15px 15px 0 15px;
 }
 
 .tabs > form {
-	padding:15px;
+    padding:15px;
 }
 
 /* FOR TABLES */
 .table {
-	margin-bottom:0;
+    margin-bottom:0;
 }
 
 .tabla td.thead {
-	font-weight:bold;
+    font-weight:bold;
 }
 
 .tabla td.nodata {
-	font-weight:bold;
-	text-align:center;
-	line-height:44px;
+    font-weight:bold;
+    text-align:center;
+    line-height:44px;
 }
 
 /* FOR NUMBERS */
 .navbar span.number {
-	position:absolute;
-	left:2px;
-	top:1px;
+    position:absolute;
+    left:2px;
+    top:1px;
 }
 
 .list-group-item span.number {
-	position:absolute;
-	left:12px;
-	top:7px;
+    position:absolute;
+    left:12px;
+    top:7px;
 }
 
 /* FOR SORT ICONS */
 .ui-icon-asc {
-	font-size:1em;
-	margin-left:6px;
-	vertical-align:0px;
+    font-size:1em;
+    margin-left:6px;
+    vertical-align:0px;
 }
 
 .ui-icon-desc {
-	font-size:1em;
-	margin-left:3px;
-	vertical-align:1px;
+    font-size:1em;
+    margin-left:3px;
+    vertical-align:1px;
 }
 
 .ui-icon-in {
-	opacity:1.0!important;
+    opacity:1.0!important;
 }
 
 .ui-icon-out {
-	opacity:0.5!important;
+    opacity:0.5!important;
 }
 
 /* FOR ALIGNMENTS AND STYLES */
 .left{
-	text-align:left;
+    text-align:left;
 }
 
 .rtl .left{
-	text-align:right;
+    text-align:right;
 }
 
 .center{
-	text-align:center;
+    text-align:center;
 }
 
 .right{
-	text-align:right;
+    text-align:right;
 }
 
 .rtl .right{
-	text-align:left;
+    text-align:left;
 }
 
 .top {
-	vertical-align:top;
+    vertical-align:top;
 }
 
 .middle {
-	vertical-align:middle;
+    vertical-align:middle;
 }
 
 .bottom {
-	vertical-align:bottom;
+    vertical-align:bottom;
 }
 
 .bold {
-	font-weight:bold;
+    font-weight:bold;
 }
 
 .italic {
-	font-style:italic;
+    font-style:italic;
 }
 
 .normal {
-	font-weight:normal;
-	font-style:normal;
+    font-weight:normal;
+    font-style:normal;
 }
 
 .label {
-	padding:0 5px;
+    padding:0 5px;
 }
 
 .block {
-	display:block;
+    display:block;
 }
 
 .none {
-	display:none!important;
+    display:none!important;
 }
 
 .inline {
-	display:inline;
+    display:inline;
 }
 
 /* FOR WIDTHS */
 .width1 {
-	width:1%;
+    width:1%;
 }
 
 .width25 {
-	width:25%;
+    width:25%;
 }
 
 .width33 {
-	width:33%;
+    width:33%;
 }
 
 .width50 {
-	width:50%;
+    width:50%;
 }
 
 .width90 {
-	width:90%;
+    width:90%;
 }
 
 .width100 {
-	width:100%;
+    width:100%;
 }
 
 /* EXTRAS */
 .separator {
-	height:15px;
+    height:15px;
 }
 
 .info {
-	padding:3px 5px;
-	font-weight:bold;
+    padding:3px 5px;
+    font-weight:bold;
 }
 
 .error {
-	padding:3px 5px;
-	font-weight:bold;
+    padding:3px 5px;
+    font-weight:bold;
 }
 
 .nowrap {
-	white-space:nowrap!important;
+    white-space:nowrap!important;
 }
 
 .siwrap {
-	white-space:normal!important;
+    white-space:normal!important;
 }
 
 .notabs {
-	display:none;
+    display:none;
 }
 
 .title {
-	padding:3px 5px;
+    padding:3px 5px;
 }
 
 /* FOR ACTIONS2 */
 .actions2 span {
-	font-size:1em;
-	vertical-align:1px;
-	padding:0 0.25em;
-	text-align:center;
+    font-size:1em;
+    vertical-align:1px;
+    padding:0 0.25em;
+    text-align:center;
 }
 
 /* FOR EXCEL */
 div.excel {
-	overflow:hidden;
+    overflow:hidden;
 }
 

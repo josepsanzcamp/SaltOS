@@ -110,16 +110,16 @@ if ($page == "partes") {
         while ($row2 = db_fetch_row($result2)) {
             $id_cliente = $row2["id_cliente"];
             $query2 = "SELECT id,usuario,cliente,tarea,comentarios,fecha,horas,precio,total,
-						(SELECT nombre FROM tbl_proyectos WHERE id=id_proyecto) proyecto
-				FROM (SELECT a.*,
-					" . make_extra_query_with_login("b.") . " usuario,
-					c.nombre cliente,e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
-					FROM tbl_partes a
-					LEFT JOIN tbl_registros e ON e.id_aplicacion='" . page2id("partes") . "'
+                        (SELECT nombre FROM tbl_proyectos WHERE id=id_proyecto) proyecto
+                FROM (SELECT a.*,
+                    " . make_extra_query_with_login("b.") . " usuario,
+                    c.nombre cliente,e.datetime,e.id_usuario id_usuario,b.id_grupo id_grupo
+                    FROM tbl_partes a
+                    LEFT JOIN tbl_registros e ON e.id_aplicacion='" . page2id("partes") . "'
                         AND e.id_registro=a.id and e.first=1
-					LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
+                    LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
                     LEFT JOIN tbl_clientes c ON a.id_cliente=c.id) d
-				WHERE ROUND(id) IN ($ids) AND id_cliente='$id_cliente' AND liquidado='0'";
+                WHERE ROUND(id) IN ($ids) AND id_cliente='$id_cliente' AND liquidado='0'";
             $result = db_query($query2);
             if (db_num_rows($result)) {
                 if ($id_cliente) {
@@ -339,12 +339,12 @@ if ($page == "proyectos" && getParam("extra") == "facturas") {
         }
         // CONTINUE WITH NORMAL OPERATION
         $query2 = "SELECT id_producto,concepto,unidades,descuento,precio
-					FROM tbl_proyectos_p
-					WHERE id_proyecto='$id_proyecto' and id IN ($ids_productos)
-				UNION
-				SELECT '0' id_producto,tarea concepto,horas unidades,descuento,precio
-					FROM tbl_proyectos_t
-					WHERE id_proyecto='$id_proyecto' and id IN ($ids_tareas)";
+                    FROM tbl_proyectos_p
+                    WHERE id_proyecto='$id_proyecto' and id IN ($ids_productos)
+                UNION
+                SELECT '0' id_producto,tarea concepto,horas unidades,descuento,precio
+                    FROM tbl_proyectos_t
+                    WHERE id_proyecto='$id_proyecto' and id IN ($ids_tareas)";
         $result = execute_query_array($query2);
         if (count($result)) {
             if ($id_cliente) {
@@ -420,8 +420,8 @@ if ($page == "periodicas") {
             $irpf = $row["irpf"];
             // CHECK
             $query2 = "SELECT *
-				FROM tbl_facturas
-				WHERE id_periodica='$id_periodica'
+                FROM tbl_facturas
+                WHERE id_periodica='$id_periodica'
                     AND mes_periodica='$meses'
                     AND SUBSTR(fecha,1,7)='" . substr(current_date(), 0, 7) . "'";
             $result2 = db_query($query2);
@@ -544,12 +544,12 @@ if ($page == "presupuestos") {
         }
         // CONTINUE WITH NORMAL OPERATION
         $query2 = "SELECT id_producto,concepto,unidades,descuento,precio
-					FROM tbl_presupuestos_p
-					WHERE id_presupuesto='$id_presupuesto' and id IN ($ids_productos)
-				UNION
-				SELECT '0' id_producto,tarea concepto,horas unidades,descuento,precio
-					FROM tbl_presupuestos_t
-					WHERE id_presupuesto='$id_presupuesto' and id IN ($ids_tareas)";
+                    FROM tbl_presupuestos_p
+                    WHERE id_presupuesto='$id_presupuesto' and id IN ($ids_productos)
+                UNION
+                SELECT '0' id_producto,tarea concepto,horas unidades,descuento,precio
+                    FROM tbl_presupuestos_t
+                    WHERE id_presupuesto='$id_presupuesto' and id IN ($ids_tareas)";
         $result = execute_query_array($query2);
         if (count($result)) {
             if ($id_cliente) {

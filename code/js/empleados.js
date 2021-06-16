@@ -25,13 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 "use strict";
 $(function() {
-	$("#feeds_new_0_add").on("click",function() {
-		if(!is_disabled(this)) update(1);
-	});
-	var checkbox="input[type=checkbox][name$=email_default]";
-	$(checkbox).on("change",function() {
-		var value=$(this).prop("checked");
-		$(checkbox).prop("checked",false);
-		$(this).prop("checked",value);
-	});
+    $("#feeds_new_0_add").on("click",function() {
+        if(!is_disabled(this)) update(1);
+    });
+    var checkbox="input[type=checkbox][name$=email_default]";
+    $(checkbox).on("change",function() {
+        var value=$(this).prop("checked");
+        $(checkbox).prop("checked",false);
+        $(this).prop("checked",value);
+    });
 });

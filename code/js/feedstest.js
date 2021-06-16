@@ -24,38 +24,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__feedstest__)=="undefined" && typeof(parent.__feedstest__)=="undefined") {
-	"use strict";
-	var __feedstest__=1;
+    "use strict";
+    var __feedstest__=1;
 
-	function feeds_test() {
-		var url=$("#feeds_new_0_url").val();
-		if(url=="") url="null";
-		loadingcontent();
-		var data="action=feeds&url="+encodeURIComponent(url);
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				$(response["rows"]).each(function() {
-					$("#feeds_new_0_url").val(this["url"]);
-					$("#feeds_new_0_title").val(this["title"]);
-					$("#feeds_new_0_description").val(this["description"]);
-					$("#feeds_new_0_iframe").attr("src",this["image"]);
-					$("#feeds_new_0_image").val(this["image"]);
-					$("#feeds_new_0_link").val(this["link"]);
-				});
-				if($("#feeds_new_0_title").val()!="") {
-					$("#feeds_new_0_add").removeClass("ui-state-disabled");
-				} else {
-					$("#feeds_new_0_add").addClass("ui-state-disabled");
-				}
-				unloadingcontent();
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
-		});
-	}
+    function feeds_test() {
+        var url=$("#feeds_new_0_url").val();
+        if(url=="") url="null";
+        loadingcontent();
+        var data="action=feeds&url="+encodeURIComponent(url);
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                $(response["rows"]).each(function() {
+                    $("#feeds_new_0_url").val(this["url"]);
+                    $("#feeds_new_0_title").val(this["title"]);
+                    $("#feeds_new_0_description").val(this["description"]);
+                    $("#feeds_new_0_iframe").attr("src",this["image"]);
+                    $("#feeds_new_0_image").val(this["image"]);
+                    $("#feeds_new_0_link").val(this["link"]);
+                });
+                if($("#feeds_new_0_title").val()!="") {
+                    $("#feeds_new_0_add").removeClass("ui-state-disabled");
+                } else {
+                    $("#feeds_new_0_add").addClass("ui-state-disabled");
+                }
+                unloadingcontent();
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+            }
+        });
+    }
 
 }

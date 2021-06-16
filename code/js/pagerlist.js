@@ -24,35 +24,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefined") {
-	"use strict";
-	var __pagerlist__=1;
+    "use strict";
+    var __pagerlist__=1;
 
-	function update_pagerlist() {
-		if(!$("#selectpager").length) return;
-		var data="action=pagerlist&page="+getParam("page");
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function (response) {
-				var value2=response["value"];
-				var options="";
-				$(response["rows"]).each(function() {
-					var selected=(this["value"]==value2)?"selected='selected'":"";
-					options+="<option value='"+this["value"]+"' "+selected+">"+this["label"]+"</option>";
-				});
-				$("#selectpager").html(options).trigger("refresh");
-				if(response["first"]) $("#firstpager").removeClass("ui-state-disabled");
-				if(response["previous"]) $("#previouspager").removeClass("ui-state-disabled");
-				if(response["next"]) $("#nextpager").removeClass("ui-state-disabled");
-				if(response["last"]) $("#lastpager").removeClass("ui-state-disabled");
-				$(".infopager").html(response["info"]);
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
-		});
-	}
+    function update_pagerlist() {
+        if(!$("#selectpager").length) return;
+        var data="action=pagerlist&page="+getParam("page");
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function (response) {
+                var value2=response["value"];
+                var options="";
+                $(response["rows"]).each(function() {
+                    var selected=(this["value"]==value2)?"selected='selected'":"";
+                    options+="<option value='"+this["value"]+"' "+selected+">"+this["label"]+"</option>";
+                });
+                $("#selectpager").html(options).trigger("refresh");
+                if(response["first"]) $("#firstpager").removeClass("ui-state-disabled");
+                if(response["previous"]) $("#previouspager").removeClass("ui-state-disabled");
+                if(response["next"]) $("#nextpager").removeClass("ui-state-disabled");
+                if(response["last"]) $("#lastpager").removeClass("ui-state-disabled");
+                $(".infopager").html(response["info"]);
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+            }
+        });
+    }
 
 }
 

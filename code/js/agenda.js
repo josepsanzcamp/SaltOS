@@ -24,21 +24,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__agenda__)=="undefined" && typeof(parent.__agenda__)=="undefined") {
-	"use strict";
-	var __agenda__=1;
+    "use strict";
+    var __agenda__=1;
 
-	function update_tabs() {
-		setTimeout(function() {
-			if(getParam("action")!="list") return;
-			var active=getIntCookie("saltos_agenda_tab");
-			$(".tabs").tabs("option","active",active);
-			$(".tabs").on("tabsactivate",function(event,ui) {
-				var active=$(".tabs").tabs("option","active");
-				if(!in_array(active,[0,2])) return;
-				setIntCookie("saltos_agenda_tab",active);
-			});
-		},100);
-	}
+    function update_tabs() {
+        setTimeout(function() {
+            if(getParam("action")!="list") return;
+            var active=getIntCookie("saltos_agenda_tab");
+            $(".tabs").tabs("option","active",active);
+            $(".tabs").on("tabsactivate",function(event,ui) {
+                var active=$(".tabs").tabs("option","active");
+                if(!in_array(active,[0,2])) return;
+                setIntCookie("saltos_agenda_tab",active);
+            });
+        },100);
+    }
 }
 
 "use strict";

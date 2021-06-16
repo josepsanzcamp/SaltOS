@@ -24,32 +24,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__updateregistros__)=="undefined" && typeof(parent.__updateregistros__)=="undefined") {
-	"use strict";
-	var __updateregistros__=1;
+    "use strict";
+    var __updateregistros__=1;
 
-	function update_registros() {
-		var aplicacion=$("select[name$=id_aplicacion]");
-		var registro=$("select[name$=id_registro]");
-		if(registros_defaults=="") registros_defaults=$(registro).html();
-		var data="action=ajax&query=registros&id_aplicacion="+$(aplicacion).val();
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				var options=registros_defaults;
-				var original=$(registro).attr("original");
-				$(response["rows"]).each(function() {
-					var selected=(this["id"]==original)?"selected='selected'":"";
-					options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
-				});
-				$(registro).html(options).trigger("refresh");
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
-		});
-	}
+    function update_registros() {
+        var aplicacion=$("select[name$=id_aplicacion]");
+        var registro=$("select[name$=id_registro]");
+        if(registros_defaults=="") registros_defaults=$(registro).html();
+        var data="action=ajax&query=registros&id_aplicacion="+$(aplicacion).val();
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                var options=registros_defaults;
+                var original=$(registro).attr("original");
+                $(response["rows"]).each(function() {
+                    var selected=(this["id"]==original)?"selected='selected'":"";
+                    options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
+                });
+                $(registro).html(options).trigger("refresh");
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+            }
+        });
+    }
 
 }
 

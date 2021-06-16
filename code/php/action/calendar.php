@@ -185,19 +185,19 @@ if (getParam("action") == "calendar") {
     }
     // BUSCAR EVENTOS EN LA AGENDA
     $query = "SELECT a.*,
-				CASE a.id_estado WHEN '0' THEN '" . LANG("sinestado") . "' ELSE c.nombre END estado,
-				c.activo activo,
-				CASE f.id_usuario WHEN '" . current_user() . "' THEN 1 ELSE 0 END propietario,
-				" . make_extra_query_with_login("d.") . " usuario
-			FROM tbl_agenda a
-			LEFT JOIN tbl_estados c ON a.id_estado=c.id
-			LEFT JOIN tbl_registros f ON f.id_aplicacion='" . page2id("agenda") . "'
+                CASE a.id_estado WHEN '0' THEN '" . LANG("sinestado") . "' ELSE c.nombre END estado,
+                c.activo activo,
+                CASE f.id_usuario WHEN '" . current_user() . "' THEN 1 ELSE 0 END propietario,
+                " . make_extra_query_with_login("d.") . " usuario
+            FROM tbl_agenda a
+            LEFT JOIN tbl_estados c ON a.id_estado=c.id
+            LEFT JOIN tbl_registros f ON f.id_aplicacion='" . page2id("agenda") . "'
                 AND f.id_registro=a.id
                 AND f.first=1
-			LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id
-			WHERE a.id IN ($ids) AND UNIX_TIMESTAMP(dstop)>=$dstart
+            LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id
+            WHERE a.id IN ($ids) AND UNIX_TIMESTAMP(dstop)>=$dstart
                 AND UNIX_TIMESTAMP(dstart)<=$dstop
-			ORDER BY dstart ASC, a.id ASC";
+            ORDER BY dstart ASC, a.id ASC";
     $result = db_query($query);
     $current = current_datetime();
     while ($row = db_fetch_row($result)) {

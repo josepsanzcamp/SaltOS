@@ -145,32 +145,32 @@ if (getParam("action") == "purge") {
                 break;
             }
             $query = "
-				SELECT a.id_aplicacion,a.id_registro,a.id_usuario,
+                SELECT a.id_aplicacion,a.id_registro,a.id_usuario,
                     IFNULL(MAX(b.datetime),a.datetime) datetime2
-				FROM tbl_registros a
-				LEFT JOIN tbl_registros b ON a.id_aplicacion=b.id_aplicacion
+                FROM tbl_registros a
+                LEFT JOIN tbl_registros b ON a.id_aplicacion=b.id_aplicacion
                     AND a.id_registro=b.id_registro
                     AND b.first=0
-				WHERE
-					a.first=1 AND
-					(a.id_aplicacion='" . $row["id_aplicacion"] . "' OR ''='" . $row["id_aplicacion"] . "') AND
-					(a.id_usuario='${row["id_usuario"]}' OR ''='${row["id_usuario"]}') AND
-					(
+                WHERE
+                    a.first=1 AND
+                    (a.id_aplicacion='" . $row["id_aplicacion"] . "' OR ''='" . $row["id_aplicacion"] . "') AND
+                    (a.id_usuario='${row["id_usuario"]}' OR ''='${row["id_usuario"]}') AND
+                    (
                         (
                             a.id_aplicacion='" . page2id("correo") . "' AND
                             a.id_registro IN (SELECT id FROM tbl_correo c WHERE c.id_cuenta='${row["id_cuenta"]}')
                         ) OR ''='${row["id_cuenta"]}'
                     ) AND
-					(
+                    (
                         (
                             a.id_aplicacion='" . page2id("feeds") . "' AND
                             a.id_registro IN (SELECT id FROM tbl_feeds d WHERE d.id_feed='${row["id_feed"]}')
                         ) OR ''='${row["id_feed"]}'
                     )
-				GROUP BY id_aplicacion,id_registro
-				HAVING
-					(datetime2<'" . current_datetime(-$row["days"] * 86400) . "')
-				LIMIT 1000";
+                GROUP BY id_aplicacion,id_registro
+                HAVING
+                    (datetime2<'" . current_datetime(-$row["days"] * 86400) . "')
+                LIMIT 1000";
             $rows2 = execute_query_array($query);
             //~ echo "<pre>".sprintr($query)."</pre>";
             //~ echo "<pre>".sprintr($rows2)."</pre>";
@@ -185,17 +185,17 @@ if (getParam("action") == "purge") {
                 // BORRAR FICHEROS DEL SISTEMA DE FICHEROS
                 if ($row2["id_aplicacion"] == page2id("correo")) {
                     $query = "
-					SELECT CONCAT('" . get_directory("dirs/inboxdir") . "',id_cuenta,'/',uidl,'.eml.gz') action_delete
+                    SELECT CONCAT('" . get_directory("dirs/inboxdir") . "',id_cuenta,'/',uidl,'.eml.gz') action_delete
                     FROM tbl_correo
                     WHERE id='${row2["id_registro"]}'
                         AND is_outbox='0'
-					UNION
-					SELECT CONCAT('" . get_directory("dirs/outboxdir") . "',id_cuenta,'/',uidl,'.eml.gz') action_delete
+                    UNION
+                    SELECT CONCAT('" . get_directory("dirs/outboxdir") . "',id_cuenta,'/',uidl,'.eml.gz') action_delete
                     FROM tbl_correo
                     WHERE id='${row2["id_registro"]}'
                         AND is_outbox='1'
-					UNION
-					SELECT CONCAT('" . get_directory("dirs/outboxdir") . "',id_cuenta,'/',uidl,'.obj') action_delete
+                    UNION
+                    SELECT CONCAT('" . get_directory("dirs/outboxdir") . "',id_cuenta,'/',uidl,'.obj') action_delete
                     FROM tbl_correo
                     WHERE id='${row2["id_registro"]}'
                         AND is_outbox='1'";

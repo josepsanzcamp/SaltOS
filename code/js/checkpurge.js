@@ -24,46 +24,46 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__checkpurge__)=="undefined" && typeof(parent.__checkpurge__)=="undefined") {
-	"use strict";
-	var __checkpurge__=1;
+    "use strict";
+    var __checkpurge__=1;
 
-	var purge_executing=0;
+    var purge_executing=0;
 
-	function check_purge() {
-		if(purge_executing) return;
-		purge_executing=1;
-		// SOME CHECKS
-		if($(".ui-layout-west").text()=="") {
-			purge_executing=0;
-			return;
-		}
-		// NORMAL USAGE
-		var data="action=purge";
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				$(".ui-layout-center").append(response);
-				purge_executing=0;
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				purge_executing=0;
-			}
-		});
-	}
+    function check_purge() {
+        if(purge_executing) return;
+        purge_executing=1;
+        // SOME CHECKS
+        if($(".ui-layout-west").text()=="") {
+            purge_executing=0;
+            return;
+        }
+        // NORMAL USAGE
+        var data="action=purge";
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                $(".ui-layout-center").append(response);
+                purge_executing=0;
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                purge_executing=0;
+            }
+        });
+    }
 
-	$(function() {
-		if(config_purge_interval()>0) {
-			var purge_counter=config_purge_interval();
-			setInterval(function() {
-				purge_counter=purge_executing?0:purge_counter+100;
-				if(purge_counter>=config_purge_interval()) {
-					check_purge();
-					purge_counter=0;
-				}
-			},100);
-		}
-	});
+    $(function() {
+        if(config_purge_interval()>0) {
+            var purge_counter=config_purge_interval();
+            setInterval(function() {
+                purge_counter=purge_executing?0:purge_counter+100;
+                if(purge_counter>=config_purge_interval()) {
+                    check_purge();
+                    purge_counter=0;
+                }
+            },100);
+        }
+    });
 
 }

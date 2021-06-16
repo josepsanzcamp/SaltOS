@@ -24,25 +24,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__aplicaciones__)=="undefined" && typeof(parent.__aplicaciones__)=="undefined") {
-	"use strict";
-	var __aplicaciones__=1;
+    "use strict";
+    var __aplicaciones__=1;
 
-	function todo_aplicaciones() {
-		var valor;
-		var inicializado=0;
+    function todo_aplicaciones() {
+        var valor;
+        var inicializado=0;
 
-		for(var i=0,len=document.form.elements.length;i<len;i++) {
-			obj=document.form.elements[i];
-			if(obj.type) {
-				if(obj.name.substr(obj.name.length-8,8)=="activado") {
-					if(!inicializado) {
-						valor=!obj.checked;
-						inicializado=1;
-					}
-					obj.checked=valor;
-				}
-			}
-		}
-	}
+        for(var i=0,len=document.form.elements.length;i<len;i++) {
+            obj=document.form.elements[i];
+            if(obj.type) {
+                if(obj.name.substr(obj.name.length-8,8)=="activado") {
+                    if(!inicializado) {
+                        valor=!obj.checked;
+                        inicializado=1;
+                    }
+                    obj.checked=valor;
+                }
+            }
+        }
+    }
 
 }

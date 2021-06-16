@@ -234,67 +234,67 @@ if (getParam("action") == "viewpdf") {
         $query = "";
         if ($page == "facturas") {
             $query = "SELECT
-				CASE num WHEN '' THEN
-					CONCAT('" . LANG("albaran") . "',' ',LPAD(id," .
+                CASE num WHEN '' THEN
+                    CONCAT('" . LANG("albaran") . "',' ',LPAD(id," .
                         intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre)
-				ELSE
-					CONCAT('" . LANG("factura") . "',' ',num,' ',nombre)
-				END subject
-			FROM tbl_facturas $where";
+                ELSE
+                    CONCAT('" . LANG("factura") . "',' ',num,' ',nombre)
+                END subject
+            FROM tbl_facturas $where";
         }
         if ($page == "actas") {
             $query = "SELECT
-				CONCAT('" . LANG("acta") . "',' ',LPAD(id," .
+                CONCAT('" . LANG("acta") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject
-			FROM tbl_actas $where";
+            FROM tbl_actas $where";
         }
         if ($page == "partes") {
             $query = "SELECT
-				CONCAT('" . LANG("parte") . "',' ',LPAD(id," .
+                CONCAT('" . LANG("parte") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',tarea) subject
-			FROM tbl_partes $where";
+            FROM tbl_partes $where";
         }
         if ($page == "presupuestos") {
             $query = "SELECT
-				CONCAT('" . LANG("presupuesto") . "',' ',LPAD(id," .
+                CONCAT('" . LANG("presupuesto") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject
-			FROM tbl_presupuestos $where";
+            FROM tbl_presupuestos $where";
         }
         if ($page == "clientes") {
             $query = "SELECT
-				CONCAT('" . LANG("cliente") . "',' ',LPAD(id," .
+                CONCAT('" . LANG("cliente") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject
-			FROM tbl_clientes $where";
+            FROM tbl_clientes $where";
         }
         if ($page == "proyectos") {
             $query = "SELECT
-				CONCAT('" . LANG("proyecto") . "',' ',LPAD(id," .
+                CONCAT('" . LANG("proyecto") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject
-			FROM tbl_proyectos $where";
+            FROM tbl_proyectos $where";
         }
         if ($page == "posiblescli") {
             $query = "SELECT
-				CONCAT('" . LANG("posiblecli") . "',' ',LPAD(id," .
+                CONCAT('" . LANG("posiblecli") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject
-			FROM tbl_posiblescli $where";
+            FROM tbl_posiblescli $where";
         }
         if ($page == "campanyas") {
             $query = "SELECT
-				CONCAT('" . LANG("campanya") . "',' ',LPAD(id," .
+                CONCAT('" . LANG("campanya") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject
-			FROM tbl_campanyas $where";
+            FROM tbl_campanyas $where";
         }
         if ($page == "correo") {
             $query = "SELECT
-				CONCAT('" . LANG("correo", "menu") . "',' ',LPAD(id," .
+                CONCAT('" . LANG("correo", "menu") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',subject) subject
-			FROM tbl_correo $where";
+            FROM tbl_correo $where";
         }
         if ($page == "feeds") {
             $query = "SELECT
-				CONCAT('" . LANG("feed", "feeds") . "',' ',LPAD(id," .
+                CONCAT('" . LANG("feed", "feeds") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',title) subject
-			FROM tbl_feeds $where";
+            FROM tbl_feeds $where";
         }
         if ($query == "") {
             action_denied();

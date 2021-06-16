@@ -24,34 +24,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__updatefeeds__)=="undefined" && typeof(parent.__updatefeeds__)=="undefined") {
-	"use strict";
-	var __updatefeeds__=1;
+    "use strict";
+    var __updatefeeds__=1;
 
-	function update_feeds() {
-		var usuario=$("select[name$=id_usuario]");
-		var feed=$("select[name$=id_feed]");
-		var feed2=$("select[name$=id_feed2]");
-		if(feeds_defaults=="") feeds_defaults=$(feed).html();
-		var data="action=ajax&query=feeds&id_usuario="+$(usuario).val();
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				var options=feeds_defaults;
-				var original=$(feed).attr("original");
-				$(response["rows"]).each(function() {
-					var selected=(this["id"]==original)?"selected='selected'":"";
-					options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
-				});
-				$(feed).html(options).trigger("refresh");
-				$(feed2).html(options).trigger("refresh");
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
-		});
-	}
+    function update_feeds() {
+        var usuario=$("select[name$=id_usuario]");
+        var feed=$("select[name$=id_feed]");
+        var feed2=$("select[name$=id_feed2]");
+        if(feeds_defaults=="") feeds_defaults=$(feed).html();
+        var data="action=ajax&query=feeds&id_usuario="+$(usuario).val();
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                var options=feeds_defaults;
+                var original=$(feed).attr("original");
+                $(response["rows"]).each(function() {
+                    var selected=(this["id"]==original)?"selected='selected'":"";
+                    options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
+                });
+                $(feed).html(options).trigger("refresh");
+                $(feed2).html(options).trigger("refresh");
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+            }
+        });
+    }
 
 }
 

@@ -24,82 +24,82 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__feeds__)=="undefined" && typeof(parent.__feeds__)=="undefined") {
-	"use strict";
-	var __feeds__=1;
+    "use strict";
+    var __feeds__=1;
 
-	function update_state2(id,type,value) {
-		if(!id) return;
-		var data="action=ajax&query=state2&id="+id+"&type="+type+"&value="+value;
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				if(type=="new") {
-					if(value==1) notice(lang_alert(),lang_msgnumnoleidos());
-					if(value==0) notice(lang_alert(),lang_msgnumsileidos());
-				}
-				if(type=="wait") {
-					if(value==1) notice(lang_alert(),lang_msgnumsiwait());
-					if(value==0) notice(lang_alert(),lang_msgnumnowait());
-				}
-				if(type=="cool") {
-					if(value==1) notice(lang_alert(),lang_msgnumsicool());
-					if(value==0) notice(lang_alert(),lang_msgnumnocool());
-				}
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
-		});
-	}
+    function update_state2(id,type,value) {
+        if(!id) return;
+        var data="action=ajax&query=state2&id="+id+"&type="+type+"&value="+value;
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                if(type=="new") {
+                    if(value==1) notice(lang_alert(),lang_msgnumnoleidos());
+                    if(value==0) notice(lang_alert(),lang_msgnumsileidos());
+                }
+                if(type=="wait") {
+                    if(value==1) notice(lang_alert(),lang_msgnumsiwait());
+                    if(value==0) notice(lang_alert(),lang_msgnumnowait());
+                }
+                if(type=="cool") {
+                    if(value==1) notice(lang_alert(),lang_msgnumsicool());
+                    if(value==0) notice(lang_alert(),lang_msgnumnocool());
+                }
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+            }
+        });
+    }
 
-	function feed2bookmark(id) {
-		if(!id) return;
-		var data="action=ajax&query=feed2bookmark&id="+id;
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				var data='action=favoritos&url='+encodeURIComponent(response["rows"][0]["link"]);
-				$.ajax({
-					url:'',
-					data:data,
-					type:"post",
-					success:function(response) {
-						$(".ui-layout-center").append(response);
-					},
-					error:function(XMLHttpRequest,textStatus,errorThrown) {
-						errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-					}
-				});
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
-		});
-	}
+    function feed2bookmark(id) {
+        if(!id) return;
+        var data="action=ajax&query=feed2bookmark&id="+id;
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                var data='action=favoritos&url='+encodeURIComponent(response["rows"][0]["link"]);
+                $.ajax({
+                    url:'',
+                    data:data,
+                    type:"post",
+                    success:function(response) {
+                        $(".ui-layout-center").append(response);
+                    },
+                    error:function(XMLHttpRequest,textStatus,errorThrown) {
+                        errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+                    }
+                });
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+            }
+        });
+    }
 
-	function update_checkbox2() {
-		if(getParam("action")!="form") return;
-		var checkbox="input[name="+$("input[name$=state_new]").attr("name")+"]";
-		if($(checkbox).prop("checked")) {
-			var interval=setInterval(function() {
-				if(!$(checkbox).length) {
-					clearInterval(interval);
-				} else if($(checkbox).prop("writed")) {
-					clearInterval(interval);
-				} else {
-					$(checkbox).prop("checked",!$(checkbox).prop("checked"));
-				}
-			},1000);
-		}
-	}
+    function update_checkbox2() {
+        if(getParam("action")!="form") return;
+        var checkbox="input[name="+$("input[name$=state_new]").attr("name")+"]";
+        if($(checkbox).prop("checked")) {
+            var interval=setInterval(function() {
+                if(!$(checkbox).length) {
+                    clearInterval(interval);
+                } else if($(checkbox).prop("writed")) {
+                    clearInterval(interval);
+                } else {
+                    $(checkbox).prop("checked",!$(checkbox).prop("checked"));
+                }
+            },1000);
+        }
+    }
 
 }
 
 "use strict";
 $(function() {
-	update_checkbox2();
+    update_checkbox2();
 });

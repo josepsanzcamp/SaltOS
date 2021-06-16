@@ -24,11 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 .estado.style_pending {
-	color:#ffffff!important;
-	background:#4285f4!important;
+    color:#ffffff!important;
+    background:#4285f4!important;
 }
 
 .estado.style_alarm {
-	color:#ffffff!important;
-	background:#ea4335!important;
+    color:#ffffff!important;
+    background:#ea4335!important;
 }

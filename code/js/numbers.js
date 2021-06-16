@@ -24,48 +24,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__numbers__)=="undefined" && typeof(parent.__numbers__)=="undefined") {
-	"use strict";
-	var __numbers__=1;
+    "use strict";
+    var __numbers__=1;
 
-	function update_numbers() {
-		var page=getParam("page");
-		var action=getParam("action");
-		var id=getParam("id");
-		if(!isset(page) || !isset(action) || !isset(id)) return;
-		var data="action=ajax&query=numbers&page="+page+"&action2="+action+"&id="+id;
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				$(response["rows"]).each(function() {
-					eval(this["query"]+"("+this["total"]+")");
-				});
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
-		});
-	}
+    function update_numbers() {
+        var page=getParam("page");
+        var action=getParam("action");
+        var id=getParam("id");
+        if(!isset(page) || !isset(action) || !isset(id)) return;
+        var data="action=ajax&query=numbers&page="+page+"&action2="+action+"&id="+id;
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                $(response["rows"]).each(function() {
+                    eval(this["query"]+"("+this["total"]+")");
+                });
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+            }
+        });
+    }
 
-	function make_numbers(obj,num) {
-		unmake_numbers(obj);
-		var clase="none d-none";
-		num=max(min(num,99),0)
-		if(num>0) clase="number"+Math.ceil(Math.log10(num+1));
-		var span="<span class='number "+clase+" badge badge-danger'>"+num+"</span>";
-		$(obj).append(span);
-	}
+    function make_numbers(obj,num) {
+        unmake_numbers(obj);
+        var clase="none d-none";
+        num=max(min(num,99),0)
+        if(num>0) clase="number"+Math.ceil(Math.log10(num+1));
+        var span="<span class='number "+clase+" badge badge-danger'>"+num+"</span>";
+        $(obj).append(span);
+    }
 
-	function unmake_numbers(obj) {
-		if(typeof(obj)=="undefined") var obj=$("body");
-		// CONVERT THE IMAGES TO NUMBERS
-		$("span.number",obj).remove();
-	}
+    function unmake_numbers(obj) {
+        if(typeof(obj)=="undefined") var obj=$("body");
+        // CONVERT THE IMAGES TO NUMBERS
+        $("span.number",obj).remove();
+    }
 
 }
 
 "use strict";
 $(function() {
-	update_numbers();
+    update_numbers();
 });

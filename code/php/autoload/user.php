@@ -69,32 +69,32 @@ function post_datauser()
             $_USER["hora_fin"] = $row["hora_fin"];
             $_USER["dias_sem"] = $row["dias_sem"];
             $query2 = "SELECT a.codigo aplicacion,p.codigo permiso,x.allow allow,x.deny deny
-				FROM (
-					SELECT ai.id_aplicacion id_aplicacion,ai.id_permiso id_permiso,ai.allow allow,ai.deny deny
-					FROM tbl_aplicaciones_i ai
-					UNION
-					SELECT gp.id_aplicacion id_aplicacion,gp.id_permiso id_permiso,gp.allow allow,gp.deny deny
-					FROM tbl_grupos_p gp,tbl_usuarios u,tbl_aplicaciones_p ap
-					WHERE u.id='${_USER["id"]}'
+                FROM (
+                    SELECT ai.id_aplicacion id_aplicacion,ai.id_permiso id_permiso,ai.allow allow,ai.deny deny
+                    FROM tbl_aplicaciones_i ai
+                    UNION
+                    SELECT gp.id_aplicacion id_aplicacion,gp.id_permiso id_permiso,gp.allow allow,gp.deny deny
+                    FROM tbl_grupos_p gp,tbl_usuarios u,tbl_aplicaciones_p ap
+                    WHERE u.id='${_USER["id"]}'
                         AND u.id_grupo=gp.id_grupo
                         AND gp.id_aplicacion=ap.id_aplicacion
                         AND gp.id_permiso=ap.id_permiso
-					UNION
-					SELECT gp.id_aplicacion id_aplicacion,gp.id_permiso id_permiso,gp.allow allow,gp.deny deny
-					FROM tbl_grupos_p gp,tbl_usuarios_g ug,tbl_aplicaciones_p ap
-					WHERE ug.id_usuario='${_USER["id"]}'
+                    UNION
+                    SELECT gp.id_aplicacion id_aplicacion,gp.id_permiso id_permiso,gp.allow allow,gp.deny deny
+                    FROM tbl_grupos_p gp,tbl_usuarios_g ug,tbl_aplicaciones_p ap
+                    WHERE ug.id_usuario='${_USER["id"]}'
                         AND ug.id_grupo=gp.id_grupo
                         AND gp.id_aplicacion=ap.id_aplicacion
                         AND gp.id_permiso=ap.id_permiso
-					UNION
-					SELECT up.id_aplicacion id_aplicacion,up.id_permiso id_permiso,up.allow allow,up.deny deny
-					FROM tbl_usuarios_p up,tbl_aplicaciones_p ap
-					WHERE up.id_usuario='${_USER["id"]}'
+                    UNION
+                    SELECT up.id_aplicacion id_aplicacion,up.id_permiso id_permiso,up.allow allow,up.deny deny
+                    FROM tbl_usuarios_p up,tbl_aplicaciones_p ap
+                    WHERE up.id_usuario='${_USER["id"]}'
                         AND up.id_aplicacion=ap.id_aplicacion
                         AND up.id_permiso=ap.id_permiso
-				) x
-				LEFT JOIN tbl_aplicaciones a ON a.id=x.id_aplicacion
-				LEFT JOIN tbl_permisos p ON p.id=x.id_permiso";
+                ) x
+                LEFT JOIN tbl_aplicaciones a ON a.id=x.id_aplicacion
+                LEFT JOIN tbl_permisos p ON p.id=x.id_permiso";
             $result2 = db_query($query2);
             while ($row2 = db_fetch_row($result2)) {
                 $aplicacion = $row2["aplicacion"];

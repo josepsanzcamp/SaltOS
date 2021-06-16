@@ -24,38 +24,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if(typeof(__updateproyectos__)=="undefined" && typeof(parent.__updateproyectos__)=="undefined") {
-	"use strict";
-	var __updateproyectos__=1;
+    "use strict";
+    var __updateproyectos__=1;
 
-	function update_proyectos() {
-		var cliente=$("*[name$=id_cliente]");
-		var posiblecli=$("select[name$=id_posiblecli]");
-		var proyecto=$("select[name$=id_proyecto]");
-		if(proyectos_defaults=="") proyectos_defaults=$(proyecto).html();
-		if(typeof($(posiblecli).val())=="undefined") {
-			var data="action=ajax&query=proyectos&id_cliente="+$(cliente).val();
-		} else {
-			var data="action=ajax&query=proyectos&id_cliente="+$(cliente).val()+"&id_posiblecli="+$(posiblecli).val();
-		}
-		$.ajax({
-			url:"index.php",
-			data:data,
-			type:"get",
-			success:function(response) {
-				var options=proyectos_defaults;
-				var original=$(proyecto).attr("original");
-				$(response["rows"]).each(function() {
-					var selected=(this["id"]==original)?"selected='selected'":"";
-					options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
-				});
-				$(proyecto).html(options).trigger("refresh");
-				proyectos_init=1;
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown) {
-				errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
-			}
-		});
-	}
+    function update_proyectos() {
+        var cliente=$("*[name$=id_cliente]");
+        var posiblecli=$("select[name$=id_posiblecli]");
+        var proyecto=$("select[name$=id_proyecto]");
+        if(proyectos_defaults=="") proyectos_defaults=$(proyecto).html();
+        if(typeof($(posiblecli).val())=="undefined") {
+            var data="action=ajax&query=proyectos&id_cliente="+$(cliente).val();
+        } else {
+            var data="action=ajax&query=proyectos&id_cliente="+$(cliente).val()+"&id_posiblecli="+$(posiblecli).val();
+        }
+        $.ajax({
+            url:"index.php",
+            data:data,
+            type:"get",
+            success:function(response) {
+                var options=proyectos_defaults;
+                var original=$(proyecto).attr("original");
+                $(response["rows"]).each(function() {
+                    var selected=(this["id"]==original)?"selected='selected'":"";
+                    options+="<option value='"+this["id"]+"' "+selected+">"+this["nombre"]+"</option>";
+                });
+                $(proyecto).html(options).trigger("refresh");
+                proyectos_init=1;
+            },
+            error:function(XMLHttpRequest,textStatus,errorThrown) {
+                errorcontent(XMLHttpRequest.status,XMLHttpRequest.statusText);
+            }
+        });
+    }
 
 }
 

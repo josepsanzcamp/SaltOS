@@ -24,16 +24,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 .cerrado.style_opened {
-	color:#ffffff!important;
-	background:#4285f4!important;
+    color:#ffffff!important;
+    background:#4285f4!important;
 }
 
 .cobrado.style_closed {
-	color:#ffffff!important;
-	background:#4285f4!important;
+    color:#ffffff!important;
+    background:#4285f4!important;
 }
 
 .cobrado.style_alarm {
-	color:#ffffff!important;
-	background:#ea4335!important;
+    color:#ffffff!important;
+    background:#ea4335!important;
 }

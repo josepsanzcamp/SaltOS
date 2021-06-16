@@ -36,35 +36,35 @@ if (in_array($page, array("facturas","actas","partes","presupuestos"))) {
     $where = "WHERE id IN (" . check_ids(getParam("id")) . ")";
     if ($page == "facturas") {
         $query = "
-		SELECT
-			CASE num WHEN '' THEN
-				CONCAT('" . LANG("albaran") . "',' ',LPAD(id," .
+        SELECT
+            CASE num WHEN '' THEN
+                CONCAT('" . LANG("albaran") . "',' ',LPAD(id," .
                     intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre)
-			ELSE
-				CONCAT('" . LANG("factura") . "',' ',num,' ',nombre)
-			END subject,id
-		FROM tbl_facturas $where";
+            ELSE
+                CONCAT('" . LANG("factura") . "',' ',num,' ',nombre)
+            END subject,id
+        FROM tbl_facturas $where";
     }
     if ($page == "actas") {
         $query = "
-		SELECT
-			CONCAT('" . LANG("acta") . "',' ',LPAD(id," .
+        SELECT
+            CONCAT('" . LANG("acta") . "',' ',LPAD(id," .
                 intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject,id
-		FROM tbl_actas $where";
+        FROM tbl_actas $where";
     }
     if ($page == "partes") {
         $query = "
-		SELECT
-			CONCAT('" . LANG("parte") . "',' ',LPAD(id," .
+        SELECT
+            CONCAT('" . LANG("parte") . "',' ',LPAD(id," .
                 intval(CONFIG("zero_padding_digits")) . ",0),' ',tarea) subject,id
-		FROM tbl_partes $where";
+        FROM tbl_partes $where";
     }
     if ($page == "presupuestos") {
         $query = "
-		SELECT
-			CONCAT('" . LANG("presupuesto") . "',' ',LPAD(id," .
+        SELECT
+            CONCAT('" . LANG("presupuesto") . "',' ',LPAD(id," .
                 intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject,id
-		FROM tbl_presupuestos $where";
+        FROM tbl_presupuestos $where";
     }
     $result = db_query($query);
     $numrows = db_num_rows($result);
