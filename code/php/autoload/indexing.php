@@ -142,7 +142,13 @@ function __make_indexing_helper($tabla, $id = "")
                 $types[$tablespec["name"]] = array();
                 $fields[$tablespec["name"]] = array();
                 foreach ($tablespec["fields"] as $fieldspec) {
-                    if (isset($fieldspec["fkey"])) {
+                    if (!isset($fieldspec["fkey"])) {
+                        $fieldspec["fkey"] = "";
+                    }
+                    if (!isset($fieldspec["fcheck"])) {
+                        $fieldspec["fcheck"] = "true";
+                    }
+                    if ($fieldspec["fkey"] != "" && eval_bool($fieldspec["fcheck"])) {
                         $tables[$tablespec["name"]][$fieldspec["name"]] = $fieldspec["fkey"];
                         $types[$tablespec["name"]][$fieldspec["name"]] = get_field_type($fieldspec["type"]);
                     }

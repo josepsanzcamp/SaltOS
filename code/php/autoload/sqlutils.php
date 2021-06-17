@@ -188,7 +188,7 @@ function preeval_update_query($table, $only = "")
 function preeval_dependencies_query($table, $label)
 {
     $dbschema = xml2array("xml/dbschema.xml");
-    if (isset($dbschema["tables"])) {
+    if (is_array($dbschema) && isset($dbschema["tables"]) && is_array($dbschema["tables"])) {
         $deps = array();
         foreach ($dbschema["tables"] as $tablespec) {
             foreach ($tablespec["fields"] as $field) {

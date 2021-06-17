@@ -728,7 +728,12 @@ function __getmail_insert(
     unset($body); // TRICK TO RELEASE MEMORY
     db_query($query);
     // GET LAST_ID
-    $query = "SELECT MAX(id) FROM tbl_correo WHERE id_cuenta='${id_cuenta}' AND is_outbox='${is_outbox}'";
+    $query = "SELECT id
+        FROM tbl_correo
+        WHERE id_cuenta='${id_cuenta}'
+            AND is_outbox='${is_outbox}'
+        ORDER BY id DESC
+        LIMIT 1";
     $last_id = execute_query($query);
     semaphore_release(__FUNCTION__);
     // INSERT ALL ADDRESS

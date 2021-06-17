@@ -294,25 +294,19 @@ function __sendmail_messageid($id_cuenta, $from)
         mkdir($prefix);
         chmod_protected($prefix, 0777);
     }
-    $uidl2 = sprintf("%08X", crc32($from));
-    $query = "select MAX(SUBSTR(uidl,1,8))
-        FROM tbl_correo
-        WHERE is_outbox=1
-            AND id_cuenta='0'
-            AND SUBSTR(uidl,9,8)='$uidl2'";
+    $query = "SELECT MAX(id) FROM tbl_correo";
     $count = execute_query($query);
     if (!$count) {
-        $count = 0;
-    } else {
-        $count = hexdec($count);
-        $count++;
+        $count = 1;
     }
-    $uidl1 = sprintf("%08X", $count);
-    $file = $prefix . "/" . $uidl1 . $uidl2 . ".eml.gz";
-    while (file_exists($file)) {
-        $count++;
+    $uidl2 = sprintf("%08X", crc32($from));
+    for (;;) {
         $uidl1 = sprintf("%08X", $count);
         $file = $prefix . "/" . $uidl1 . $uidl2 . ".eml.gz";
+        if (!file_exists($file)) {
+            break;
+        }
+        $count++;
     }
     return $id_cuenta . "/" . $uidl1 . $uidl2;
 }
