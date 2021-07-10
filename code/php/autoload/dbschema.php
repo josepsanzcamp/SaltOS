@@ -157,6 +157,29 @@ function db_static()
                 }
             }
         }
+        // CHECK THE APPS INTETRITY
+        $query = "SELECT id FROM tbl_aplicaciones WHERE id NOT IN (
+                SELECT id_aplicacion FROM tbl_aplicaciones_i
+                UNION
+                SELECT id_aplicacion FROM tbl_aplicaciones_p)";
+        $ids = execute_query_array($query);
+        if (count($ids)) {
+            show_php_error(array(
+                "phperror" => "Found the following apps without permissions: " . implode(", ", $ids)
+            ));
+        }
+        $query = "SELECT id_aplicacion FROM tbl_aplicaciones_i
+            WHERE id_aplicacion NOT IN (SELECT id FROM tbl_aplicaciones)
+            UNION
+            SELECT id_aplicacion FROM tbl_aplicaciones_p
+            WHERE id_aplicacion NOT IN (SELECT id FROM tbl_aplicaciones)";
+        $ids = execute_query_array($query);
+        if (count($ids)) {
+            show_php_error(array(
+                "phperror" => "Found the following permissions without apps: " . implode(", ", $ids)
+            ));
+        }
+        // CONTINUE
         setConfig("xml/dbstatic.xml", $hash2);
         semaphore_release(array("db_schema","db_static"));
     }

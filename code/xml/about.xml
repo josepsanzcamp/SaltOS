@@ -240,7 +240,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://httpd.apache.org")</onclick>
 						</field>
 						<field>
-							<label>PHP 5.2-7.3 (PHP-3.01)</label>
+							<label>PHP 5.2-8.0 (PHP-3.01)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.php.net")</onclick>
@@ -260,7 +260,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>MariaDB 5.5-10.4 (GPL-2.0)</label>
+							<label>MariaDB 5.5-10.5 (GPL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://mariadb.org")</onclick>
@@ -272,7 +272,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/facebook/hhvm")</onclick>
 						</field>
 						<field>
-							<label>Mroonga 4.06-9.07 (LGPL-2.1)</label>
+							<label>Mroonga 4.06-11.04 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://mroonga.org/")</onclick>
@@ -310,7 +310,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
 						</field>
 						<field>
-							<label>PHPSpreadsheet 1.15.0 (LGPL-2.1)</label>
+							<label>PHPSpreadsheet 1.18 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>
@@ -362,7 +362,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://wordpress.org/download/")</onclick>
 						</field>
 						<field>
-							<label>EvalMath (BSD)</label>
+							<label>EvalMath 2005 (BSD)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/2695-PHP-Safely-evaluate-mathematical-expressions.html")</onclick>
@@ -382,13 +382,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://www.wolf-software.com/downloads/php-classes/security-classes/password-strength-class/")</onclick>
 						</field>
 						<field>
-							<label>RoundCubeMail latest (GPL-3.0)</label>
+							<label>RoundCubeMail 1.5-rc (GPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/roundcube/roundcubemail")</onclick>
 						</field>
 						<field>
-							<label>BMP-PHP (MIT)</label>
+							<label>BMP-PHP 07.02.2010 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.phpclasses.org/package/5991-PHP-Load-and-save-images-in-the-BMP-format.html")</onclick>
@@ -414,7 +414,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/googleapis/google-api-php-client")</onclick>
 						</field>
 						<field>
-							<label>EDIFACT latest (LGPL-3.0)</label>
+							<label>EDIFACT 0.4.1 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/php-edifact/edifact")</onclick>
@@ -458,7 +458,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
 						</field>
 						<field>
-							<label>Bootstrap 5.0.0 (MIT)</label>
+							<label>Bootstrap 5.0.2 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://getbootstrap.com/")</onclick>
@@ -479,7 +479,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Bootswatch 5.0.0 (MIT)</label>
+							<label>Bootswatch 5.0.2 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://bootswatch.com/")</onclick>
@@ -511,13 +511,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://malsup.com/jquery/block/")</onclick>
 						</field>
 						<field>
-							<label>Color picker (MIT &amp; GPL*)</label>
+							<label>Color picker 23.05.2009 (MIT &amp; GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.eyecon.ro/colorpicker/")</onclick>
 						</field>
 						<field>
-							<label>Auto-Growing Textarea (MIT)</label>
+							<label>Auto-Growing Textarea 24 May 2016 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/jaz303/jquery-grab-bag/blob/master/javascripts/jquery.autogrow-textarea.js")</onclick>
@@ -557,7 +557,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Locutus latest (MIT)</label>
+							<label>Locutus 2.0.15 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://locutus.io/php/")</onclick>
@@ -575,7 +575,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://www.jstree.com/")</onclick>
 						</field>
 						<field>
-							<label>jQuery File Upload latest (MIT)</label>
+							<label>jQuery File Upload 10.31.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/blueimp/jQuery-File-Upload")</onclick>
@@ -602,13 +602,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/mozilla/pdf.js")</onclick>
 						</field>
 						<field>
-							<label>Bouncing Beholder (ZLib/LibPNG)</label>
+							<label>Bouncing Beholder 2012 (ZLib/LibPNG)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://marijn.haverbeke.nl/js1k.html")</onclick>
 						</field>
 						<field>
-							<label>timbre.js latest (MIT)</label>
+							<label>timbre.js 14.11.25 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://mohayonao.github.com/timbre/")</onclick>
@@ -622,7 +622,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>CodeMirror v5.61.1 (MIT)</label>
+							<label>CodeMirror v5.62.0 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://codemirror.net/")</onclick>
@@ -654,16 +654,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Gorri Sans (GPL*)</label>
+							<label>Gorri Sans 1.00 February 3, 2009 (GPL*)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.dafont.com/gorrisans.font")</onclick>
 						</field>
 						<field>
-							<label>Font Awesome Free 5.15.2 (SIL OFL 1.1)</label>
+							<label>Font Awesome Free 5.15.3 (SIL OFL 1.1)</label>
 							<type>link</type>
 							<class>tbody</class>
-							<onclick>openwin("https://fontawesome.com/changelog/latest")</onclick>
+							<onclick>openwin("https://fontawesome.com/")</onclick>
 						</field>
 						<field>
 							<type>separator</type>
@@ -686,13 +686,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>LibreOffice 7.0 (LGPL-3.0)</label>
+							<label>LibreOffice 7.1.4.2 (LGPL-3.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.libreoffice.org/")</onclick>
 						</field>
 						<field>
-							<label>ImageMagick 6.4 (ImageMagick)</label>
+							<label>ImageMagick 6.9.11 (ImageMagick)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://www.imagemagick.org/")</onclick>
@@ -712,25 +712,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>Tesseract OCR (ASL-2.0)</label>
+							<label>Tesseract OCR 3.04 (ASL-2.0)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/tesseract-ocr/tesseract")</onclick>
 						</field>
 						<field>
-							<label>Poppler (GPL-2.0, LGPL-2.0 &amp; MIT)</label>
+							<label>Poppler 0.26.5 (GPL-2.0, LGPL-2.0 &amp; MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://poppler.freedesktop.org/")</onclick>
 						</field>
 						<field>
-							<label>wkhtmltopdf (GPLv3+)</label>
+							<label>wkhtmltopdf 0.12.4 (GPLv3+)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://wkhtmltopdf.org/")</onclick>
 						</field>
 						<field>
-							<label>xlsxio (MIT)</label>
+							<label>xlsxio 0.2.29 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/brechtsanders/xlsxio/")</onclick>
