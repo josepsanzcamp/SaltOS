@@ -58,12 +58,13 @@ function list_simulator($newpage, $ids = "string")
         $query = "SELECT COUNT(*) FROM ($query0) __a__";
         $count = execute_query($query);
         $result = array("count" => $count,"limit" => $limit,"offset" => $offset);
-    } elseif ($ids == "string" || $ids == "array") {
+    } elseif ($ids == "array") {
         $query = "SELECT action_id FROM ($query0) __a__ ORDER BY $order";
         $result = execute_query_array($query);
-        if ($ids == "string") {
-            $result = count($result) ? implode(",", $result) : "0";
-        }
+    } elseif ($ids == "string") {
+        $query = "SELECT action_id FROM ($query0) __a__ ORDER BY $order";
+        $result = execute_query_array($query);
+        $result = count($result) ? implode(",", $result) : "0";
     } elseif ($ids == "excel") {
         $fields = array();
         $numbers = array();
