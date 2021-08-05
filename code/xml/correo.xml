@@ -645,9 +645,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 		) z
 		WHERE ".make_like_query($campos_array[$campos],$filtro)."
 		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
-		AND ".($id_usuario!=""?"id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE id_usuario!='$id_usuario')":"(1=1)")."
+		AND ".($id_usuario!=""?"id_cuenta IN (".check_ids(execute_query_array("SELECT id FROM tbl_usuarios_c WHERE id_usuario='$id_usuario'")).")":"(1=1)")."
 		AND ".($id_cuenta!=""?"id_cuenta='$id_cuenta'":"(1=1)")."
-		AND id_cuenta NOT IN (SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."')
+		AND id_cuenta NOT IN (".check_ids(execute_query_array("SELECT id FROM tbl_usuarios_c WHERE email_privated='1' AND id_usuario!='".current_user()."'")).")
 		AND ".$only_array[$only]."
 		AND ".($hidespam?"state_spam='0'":"(1=1)")."
 		AND ".($withfiles?"files&gt;0":"(1=1)")."

@@ -40,18 +40,18 @@ function current_time($offset = 0)
     return date("H:i:s", time() + $offset);
 }
 
-function current_decimals($offset = 0)
+function current_decimals($offset = 0, $size = 4)
 {
     $decimals = microtime(true) + $offset;
     $decimals -= intval($decimals);
-    $decimals = sprintf("%.04f", $decimals);
-    $decimals = substr($decimals, 2, 4);
+    $decimals = substr($decimals, 2, $size);
+    $decimals = str_pad($decimals, $size, "0");
     return $decimals;
 }
 
-function current_datetime_decimals($offset = 0)
+function current_datetime_decimals($offset = 0, $size = 4)
 {
-    return current_datetime($offset) . "." . current_decimals($offset);
+    return current_datetime($offset) . "." . current_decimals($offset, $size);
 }
 
 function dateval($value)
