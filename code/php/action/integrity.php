@@ -32,10 +32,12 @@ if (getParam("action") == "integrity") {
     if (!eval_bool(getDefault("enableintegrity"))) {
         die();
     }
+
     // CHECK THE SEMAPHORE
     if (!semaphore_acquire(getParam("action"), getDefault("semaphoretimeout", 100000))) {
         die();
     }
+
     // FIXING INTEGRITY PROBLEMS
     $query = "SELECT id,tabla FROM tbl_aplicaciones WHERE tabla!=''";
     $result = db_query($query);
@@ -105,13 +107,14 @@ if (getParam("action") == "integrity") {
         }
     }
     db_free($result);
+
     // CHECK INTEGRITY
     for (;;) {
         if (time_get_usage() > getDefault("server/percentstop")) {
             break;
         }
         // SEARCH FOR DUPLICATED ROWS IN REGISTER TABLE
-        $query = "SELECT GROUP_CONCAT(id) ids, id_aplicacion, id_registro, COUNT(*) total
+        $query = "SELECT id_aplicacion, id_registro, COUNT(*) total
             FROM tbl_registros
             WHERE first=1
             GROUP BY id_aplicacion,id_registro
@@ -122,18 +125,24 @@ if (getParam("action") == "integrity") {
             break;
         }
         foreach ($ids as $key => $val) {
-            $val = explode(",", $val["ids"]);
-            array_shift($val);
-            $ids[$key] = implode(",", $val);
+            $query="SELECT id
+                FROM tbl_registros
+                WHERE " . make_where_query(array(
+                    "id_aplicacion" => $val["id_aplicacion"],
+                    "id_registro" => $val["id_registro"],
+                )). " ORDER BY id ASC";
+            $temp = execute_query_array($query);
+            array_shift($temp);
+            $temp = implode(",", $temp);
+            $query = "DELETE FROM tbl_registros WHERE id IN (${temp})";
+            db_query($query);
         }
-        $temp = implode(",", $ids);
-        $query = "DELETE FROM tbl_registros WHERE id IN (${temp})";
-        db_query($query);
         $total += count($ids);
         if (count($ids) < 1000) {
             break;
         }
     }
+
     // CHECK INTEGRITY
     for (;;) {
         if (time_get_usage() > getDefault("server/percentstop")) {
@@ -159,6 +168,7 @@ if (getParam("action") == "integrity") {
             break;
         }
     }
+
     // CHECK FOR FILES FIRST ITERATION
     $range = execute_query("SELECT MAX(id) maxim, MIN(id) minim FROM tbl_ficheros");
     for ($i = $range["minim"]; $i < $range["maxim"]; $i += 100000) {
@@ -206,6 +216,7 @@ if (getParam("action") == "integrity") {
             }
         }
     }
+
     // CHECK FOR FILES SECOND ITERATION
     $checks = array(
         array("tbl_usuarios_c","email_signature_file","correo","1=1"),
@@ -257,10 +268,12 @@ if (getParam("action") == "integrity") {
             }
         }
     }
+
     // SEND RESPONSE
     if ($total) {
         javascript_alert($total . LANG("msgregistersindexed" . min($total, 2)));
     }
+
     // RELEASE SEMAPHORE
     semaphore_release(getParam("action"));
     javascript_headers();
