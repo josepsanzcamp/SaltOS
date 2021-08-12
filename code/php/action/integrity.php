@@ -125,12 +125,12 @@ if (getParam("action") == "integrity") {
             break;
         }
         foreach ($ids as $key => $val) {
-            $query="SELECT id
+            $query = "SELECT id
                 FROM tbl_registros
                 WHERE " . make_where_query(array(
                     "id_aplicacion" => $val["id_aplicacion"],
                     "id_registro" => $val["id_registro"],
-                )). " ORDER BY id ASC";
+                )) . " ORDER BY id ASC";
             $temp = execute_query_array($query);
             array_shift($temp);
             $temp = implode(",", $temp);

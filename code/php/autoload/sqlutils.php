@@ -401,8 +401,10 @@ function sql_create_table($tablespec)
         //~ }
     //~ }
     $fields = implode(",", $fields);
-    if (__has_fulltext_index($table) && __has_mroonga_engine()) {
+    if (__has_fulltext_index($table) && __has_engine("mroonga")) {
         $post = "/*MYSQL ENGINE=Mroonga CHARSET=utf8mb4 */";
+    } elseif (__has_engine("aria")) {
+        $post = "/*MYSQL ENGINE=Aria CHARSET=utf8mb4 */";
     } else {
         $post = "/*MYSQL ENGINE=MyISAM CHARSET=utf8mb4 */";
     }
@@ -430,26 +432,23 @@ function __has_fulltext_index($table)
     return isset($fulltext[$table]);
 }
 
-function __has_mroonga_engine()
+function __has_engine($engine)
 {
-    static $mroonga = null;
-    if ($mroonga === null) {
-        $mroonga = false;
+    static $engines = null;
+    if ($engines === null) {
+        $engines = false;
         if (getDefault("db/obj")) {
             $query = "/*MYSQL SHOW ENGINES */";
             $result = db_query($query);
             while ($row = db_fetch_row($result)) {
                 $row = array_values($row);
-                $engine = $row[0];
-                if (strtolower($engine) == "mroonga") {
-                    $mroonga = true;
-                    break;
-                }
+                $temp = strtolower($row[0]);
+                $engines[$temp] = $temp;
             }
             db_free($result);
         }
     }
-    return $mroonga;
+    return isset($engines[strtolower($engine)]);
 }
 
 function get_engine($table)
@@ -550,11 +549,10 @@ function make_like_query($keys, $values)
     $keys = explode(",", $keys);
     foreach ($keys as $key => $val) {
         $val = trim($val);
-        if ($val == "") {
-            unset($keys[$key]);
-        }
         if ($val != "") {
             $keys[$key] = $val;
+        } else {
+            unset($keys[$key]);
         }
     }
     if (!count($keys)) {
@@ -568,11 +566,10 @@ function make_like_query($keys, $values)
             $types[$key] = $val[0];
             $val = substr($val, 1);
         }
-        if ($val == "") {
-            unset($values[$key]);
-        }
-        if ($val != "") {
+        if (strlen($val) >= 3) {
             $values[$key] = $val;
+        } else {
+            unset($values[$key]);
         }
     }
     if (!count($values)) {
@@ -836,11 +833,10 @@ function make_fulltext_query2($values)
             $type = $val[0];
             $val = substr($val, 1);
         }
-        if ($val == "") {
-            unset($values[$key]);
-        }
-        if ($val != "") {
+        if (strlen($val) >= 3) {
             $values[$key] = $type . '"' . $val . '"';
+        } else {
+            unset($values[$key]);
         }
     }
     if (!count($values)) {
@@ -861,7 +857,8 @@ function make_fulltext_query3($values, $page, $prefix = "")
     if ($where == "1=1") {
         return $where;
     }
-    $query = "${prefix}id IN (SELECT id FROM idx_${page} WHERE ${where})";
+    $query = "/*SQLITE ${prefix}id IN (SELECT id FROM idx_${page} WHERE ${where}) */";
+    $query .= "/*MYSQL EXISTS (SELECT * FROM idx_${page} WHERE ${where} AND idx_${page}.id=${prefix}id) */";
     return $query;
 }
 

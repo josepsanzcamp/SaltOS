@@ -302,16 +302,17 @@ SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
 	id_usuario,pendientes,cancelados,aceptados,temas,asistentes,b.id_grupo id_grupo,a.id_cliente id_cliente,a.id_proyecto id_proyecto,
 	a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya
 FROM (
-	SELECT a2.*,c1.nombre c1_nombre,c2.nombre c2_nombre,p.nombre p_nombre FROM tbl_actas a2
+	SELECT a2.*,c1.nombre c1_nombre,c2.nombre c2_nombre,p.nombre p_nombre
+	FROM tbl_actas a2
 	LEFT JOIN tbl_clientes c1 ON c1.id=a2.id_cliente
 	LEFT JOIN tbl_posiblescli c2 ON c2.id=a2.id_posiblecli
 	LEFT JOIN tbl_proyectos p ON a2.id_proyecto=p.id
+	WHERE ".($filtro!=""?make_fulltext_query3($filtro,$page,"a2."):"(1=1)")."
 ) a
 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
 LEFT JOIN tbl_usuarios b ON e.id_usuario=b.id
 ) z
 WHERE 1=1
-AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_presupuesto?"(id_presupuesto='$id_presupuesto')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>

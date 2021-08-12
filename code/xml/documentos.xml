@@ -214,33 +214,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			</row>
 		</quick>
 		<pager include="xml/common/pagerlist.xml"/>
-		<query global="page,id_cliente,id_usuario,fecha1,fecha2,filtro,id_proyecto" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,action_id,action_title,action_view,action_edit,action_delete,id_cliente,id_usuario,id_grupo,id_proyecto,descripcion FROM (
-		SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
-			".make_extra_query_with_login("d.")." usuario,
-			e.datetime datetime,
-			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
-				CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',b_nombre) END cliente,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
-				CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',p_nombre) END proyecto,
-			CONCAT('link:openapp(\'documentos\',',-a.id,'):',a.nombre) nombre,
-			CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
-			CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
-			a.nombre nombre2,
-			(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
-			(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
-			a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
-			CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
-			CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
-			CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
-			a.id_cliente id_cliente,e.id_usuario id_usuario,d.id_grupo id_grupo,id_proyecto,a.descripcion descripcion
-		FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre FROM tbl_documentos a2
-			LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
-			LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto) a
+		<query global="page,id_cliente,id_usuario,fecha1,fecha2,filtro,id_proyecto" eval="true">"SELECT id2,id,usuario,datetime,cliente,proyecto,nombre,cliente2,proyecto2,nombre2,comentarios,ficheros,action_id,action_title,action_view,action_edit,action_delete,id_cliente,id_usuario,id_grupo,id_proyecto,descripcion
+		FROM (
+			SELECT LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0) id2,a.id id,
+				".make_extra_query_with_login("d.")." usuario,
+				e.datetime datetime,
+				CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE
+					CONCAT('link:openapp(\'clientes\',',-a.id_cliente,'):',b_nombre) END cliente,
+				CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE
+					CONCAT('link:openapp(\'proyectos\',',-id_proyecto,'):',p_nombre) END proyecto,
+				CONCAT('link:openapp(\'documentos\',',-a.id,'):',a.nombre) nombre,
+				CASE a.id_cliente WHEN '0' THEN '".LANG_ESCAPE("sincliente")."' ELSE b_nombre END cliente2,
+				CASE id_proyecto WHEN '0' THEN '".LANG_ESCAPE("sinproyecto")."' ELSE p_nombre END proyecto2,
+				a.nombre nombre2,
+				(SELECT COUNT(*) FROM tbl_comentarios WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) comentarios,
+				(SELECT COUNT(*) FROM tbl_ficheros WHERE id_aplicacion='".page2id($page)."' AND id_registro=a.id) ficheros,
+				a.id action_id,CONCAT(LPAD(a.id,".intval(CONFIG("zero_padding_digits")).",0),' - ',a.nombre) action_title,
+				CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view,
+				CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
+				CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
+				a.id_cliente id_cliente,e.id_usuario id_usuario,d.id_grupo id_grupo,id_proyecto,a.descripcion descripcion
+			FROM (
+				SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre
+				FROM tbl_documentos a2
+				LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
+				LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto
+				WHERE ".($filtro!=""?make_fulltext_query3($filtro,$page,"a2."):"(1=1)")."
+			) a
 			LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
 			LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) z
 	WHERE 1=1
-	AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 	AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(datetime)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE(datetime)>=DATE('$fecha2'))":"(1=1)")." AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>

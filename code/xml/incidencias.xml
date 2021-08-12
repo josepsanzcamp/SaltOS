@@ -329,18 +329,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			a.id_prioridad,a.ids_asignados,a.ids_implicados,
 			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_asignados)) asignadoa,
 			(SELECT REPLACE(GROUP_CONCAT(".make_extra_query_with_login("uu.")."),',','; ') FROM tbl_usuarios uu WHERE FIND_IN_SET(uu.id,a.ids_implicados)) implicados
-		FROM (SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre,c.nombre c_nombre,c.activo c_activo,g.nombre g_nombre FROM tbl_incidencias a2
-		LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
-		LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto
-		LEFT JOIN tbl_prioridades f ON f.id=a2.id_prioridad
-		LEFT JOIN tbl_estados c ON a2.id_estado=c.id
-		LEFT JOIN tbl_categorias g ON a2.id_categoria=g.id
+		FROM (
+			SELECT a2.*,b.nombre b_nombre,p.nombre p_nombre,f.nombre f_nombre,c.nombre c_nombre,c.activo c_activo,g.nombre g_nombre
+			FROM tbl_incidencias a2
+			LEFT JOIN tbl_clientes b ON b.id=a2.id_cliente
+			LEFT JOIN tbl_proyectos p ON p.id=a2.id_proyecto
+			LEFT JOIN tbl_prioridades f ON f.id=a2.id_prioridad
+			LEFT JOIN tbl_estados c ON a2.id_estado=c.id
+			LEFT JOIN tbl_categorias g ON a2.id_categoria=g.id
+			WHERE ".($filtro!=""?make_fulltext_query3($filtro,$page,"a2."):"(1=1)")."
 		) a
 		LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
 		LEFT JOIN tbl_usuarios d ON e.id_usuario=d.id
 		) z
 		WHERE 1=1
-		AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 		AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")."
 		AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")."
 		AND (id_estado='$id_estado' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0'))
