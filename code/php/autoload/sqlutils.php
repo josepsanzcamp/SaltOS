@@ -544,7 +544,7 @@ function sql_drop_index($index, $table)
     return $query;
 }
 
-function make_like_query($keys, $values)
+function make_like_query($keys, $values, $minsize = 3)
 {
     $keys = explode(",", $keys);
     foreach ($keys as $key => $val) {
@@ -566,7 +566,7 @@ function make_like_query($keys, $values)
             $types[$key] = $val[0];
             $val = substr($val, 1);
         }
-        if (strlen($val) >= 3) {
+        if (strlen($val) >= $minsize) {
             $values[$key] = $val;
         } else {
             unset($values[$key]);
@@ -824,7 +824,7 @@ function make_insert_from_select_query($table, $table2, $array, $where2)
     return $query;
 }
 
-function make_fulltext_query2($values)
+function make_fulltext_query2($values, $minsize = 3)
 {
     $values = explode(" ", encode_bad_chars($values, " ", "+-"));
     foreach ($values as $key => $val) {
@@ -833,7 +833,7 @@ function make_fulltext_query2($values)
             $type = $val[0];
             $val = substr($val, 1);
         }
-        if (strlen($val) >= 3) {
+        if (strlen($val) >= $minsize) {
             $values[$key] = $type . '"' . $val . '"';
         } else {
             unset($values[$key]);
@@ -846,19 +846,18 @@ function make_fulltext_query2($values)
     return $query;
 }
 
-function make_fulltext_query3($values, $page, $prefix = "")
+function make_fulltext_query3($values, $page, $prefix = "", $minsize = 3)
 {
     $engine = strtolower(get_engine("idx_${page}"));
     if ($engine == "mroonga") {
-        $where = make_fulltext_query2($values);
+        $where = make_fulltext_query2($values, $minsize);
     } else {
-        $where = make_like_query("search", $values);
+        $where = make_like_query("search", $values, $minsize);
     }
     if ($where == "1=1") {
         return $where;
     }
-    $query = "/*SQLITE ${prefix}id IN (SELECT id FROM idx_${page} WHERE ${where}) */";
-    $query .= "/*MYSQL EXISTS (SELECT * FROM idx_${page} WHERE ${where} AND idx_${page}.id=${prefix}id) */";
+    $query = "${prefix}id IN (SELECT id FROM idx_${page} WHERE ${where})";
     return $query;
 }
 

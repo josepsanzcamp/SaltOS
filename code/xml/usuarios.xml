@@ -212,9 +212,7 @@ CASE ".check_sql($page,"view")." WHEN 1 THEN 'true' ELSE 'false' END action_view
 CASE ".check_sql($page,"edit")." WHEN 1 THEN 'true' ELSE 'false' END action_edit,
 CASE ".check_sql($page,"delete")." WHEN 1 THEN 'true' ELSE 'false' END action_delete,
 e.id_usuario id_usuario,id_grupo id_grupo FROM (
-SELECT id,login,id_grupo,id_aplicacion,id_registro,".make_extra_query("d.")." a_nombre,".make_extra_query_with_field("email","d.")." email,activo,hora_ini,hora_fin,dias_sem
-FROM tbl_usuarios d
-WHERE ".($filtro!=""?make_fulltext_query3($filtro,$page,"d."):"(1=1)")."
+SELECT id,login,id_grupo,id_aplicacion,id_registro,".make_extra_query("d.")." a_nombre,".make_extra_query_with_field("email","d.")." email,activo,hora_ini,hora_fin,dias_sem FROM tbl_usuarios d
 ) a
 LEFT JOIN tbl_grupos b ON a.id_grupo=b.id
 LEFT JOIN tbl_registros e ON e.id_aplicacion='".page2id($page)."' AND e.id_registro=a.id AND e.first=1
@@ -223,6 +221,7 @@ AND (activo='$activo' OR ''='$activo')
 AND (id_grupo='$id_grupo' OR ''='$id_grupo' OR a.id IN (SELECT id_usuario FROM tbl_usuarios_g WHERE id_grupo='$id_grupo'))
 ) z
 WHERE 1=1
+AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 AND ".check_sql($page,"list")</query>
 		<order global="order" eval="true">$order</order>
 		<limit global="limit" eval="true">$limit</limit>

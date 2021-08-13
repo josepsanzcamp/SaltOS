@@ -371,20 +371,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				id_usuario,a.descripcion descripcion,id_tipoevento,d.id_grupo id_grupo,c.activo activo,
 				a.id_estado,a.id_cliente,a.id_proyecto,a.ids_asignados,
 				a.id_posiblecli id_posiblecli,a.id_presupuesto id_presupuesto,a.id_campanya id_campanya
-			FROM (
-				SELECT a2.*,b1.nombre b1_nombre,b2.nombre b2_nombre,p.nombre p_nombre
-				FROM tbl_agenda a2
-				LEFT JOIN tbl_clientes b1 ON b1.id=a2.id_cliente
-				LEFT JOIN tbl_posiblescli b2 ON b2.id=a2.id_posiblecli
-				LEFT JOIN tbl_proyectos p ON a2.id_proyecto=p.id
-				WHERE ".($filtro!=""?make_fulltext_query3($filtro,$page,"a2."):"(1=1)")."
-			) a
+			FROM (SELECT a2.*,b1.nombre b1_nombre,b2.nombre b2_nombre,p.nombre p_nombre FROM tbl_agenda a2
+			LEFT JOIN tbl_clientes b1 ON b1.id=a2.id_cliente
+			LEFT JOIN tbl_posiblescli b2 ON b2.id=a2.id_posiblecli
+			LEFT JOIN tbl_proyectos p ON a2.id_proyecto=p.id) a
 			LEFT JOIN tbl_estados c ON a.id_estado=c.id
 			LEFT JOIN tbl_tiposevento e ON e.id=id_tipoevento
 			LEFT JOIN tbl_registros f ON f.id_aplicacion='".page2id($page)."' AND f.id_registro=a.id AND f.first=1
 			LEFT JOIN tbl_usuarios d ON f.id_usuario=d.id
 			) z
 			WHERE 1=1
+			AND ".($filtro!=""?make_fulltext_query3($filtro,$page):"(1=1)")."
 			AND ".($id_cliente?"(id_cliente='$id_cliente')":"(1=1)")." AND ".($id_campanya?"(id_campanya='$id_campanya')":"(1=1)")." AND ".($id_posiblecli?"(id_posiblecli='$id_posiblecli')":"(1=1)")." AND ".($id_proyecto?"(id_proyecto='$id_proyecto')":"(1=1)")." AND ".($id_presupuesto?"(id_presupuesto='$id_presupuesto')":"(1=1)")." AND (id_estado='".intval($id_estado)."' OR ''='$id_estado' OR ('allenabled'='$id_estado' AND activo='1') OR ('alldisabled'='$id_estado' AND activo='0')) AND ".($id_tipoevento?"(id_tipoevento='$id_tipoevento')":"(1=1)")." AND ".($id_usuario?"(id_usuario='$id_usuario')":"(1=1)")." AND ".($fecha1?"(DATE(dstart)>=DATE('$fecha1') OR DATE(dstop)>=DATE('$fecha1'))":"(1=1)")." AND ".($fecha2?"(DATE('$fecha2')>=DATE(dstart) OR DATE('$fecha2')>=DATE(dstop))":"(1=1)")."
 			AND (''='$fecha3' OR
 				".($fecha3key=="DATE"?"(DATE('$fecha3val')>=DATE(dstart) AND DATE(dstop)>=DATE('$fecha3val'))":"(1=0)")." OR
