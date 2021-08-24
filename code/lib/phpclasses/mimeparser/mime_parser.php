@@ -1008,7 +1008,10 @@ class mime_parser_class
 										switch($value[$position])
 										{
 											case '=':
-												$h = HexDec($hex = strtolower(substr($value, $position+1, 2)));
+												$hex = strtolower(substr($value, $position+1, 2));
+												// BEGIN TO SOLVE THE PROBLEM WHEN HEX CONTAINS NON HEXADECIMAL CHARS BY SANZ
+												$h = ctype_xdigit($hex) ? HexDec($hex) : -1;
+												// END TO SOLVE THE PROBLEM WHEN HEX CONTAINS NON HEXADECIMAL CHARS BY SANZ
 												if($end - $position < 3
 												|| strcmp(sprintf('%02x', $h), $hex))
 												{
