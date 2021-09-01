@@ -153,7 +153,7 @@ if (getParam("action") == "captcha") {
         $posx += $widths[$i];
     }
     // COPY THE CODE TO BACKGROUND USING WAVE TRANSFORMATION
-    $rel = 3.1416 / 180;
+    $rel = M_PI / 180;
     $inia = rand(0, 360);
     $inib = rand(0, 360);
     for ($i = 0; $i < $width; $i++) {
