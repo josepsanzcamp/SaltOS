@@ -95,15 +95,15 @@ class PDF extends TCPDF
     }
 }
 
-function __pdf_eval_value($input, $row)
+function __pdf_eval_value($input, $row, $pdf)
 {
-    return eval_protected($input, array("row" => $row));
+    return eval_protected($input, array("row" => $row, "pdf" => $pdf));
 }
 
-function __pdf_eval_array($array, $row)
+function __pdf_eval_array($array, $row, $pdf)
 {
     foreach ($array as $key => $val) {
-        $array[$key] = __pdf_eval_value($val, $row);
+        $array[$key] = __pdf_eval_value($val, $row, $pdf);
     }
     return $array;
 }
@@ -160,13 +160,13 @@ function __pdf_eval_pdftag($array, $row = array())
             static $booleval = 1;
             switch ($key) {
                 case "eval":
-                    $booleval = __pdf_eval_value($val, $row);
+                    $booleval = __pdf_eval_value($val, $row, $pdf);
                     break;
                 case "constructor":
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val), $row, $pdf);
                     $pdf = new PDF($temp[0], $temp[1], $temp[2]);
                     $pdf->SetCreator(get_name_version_revision());
                     $pdf->SetDisplayMode("fullwidth", "continuous");
@@ -177,7 +177,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val), $row, $pdf);
                     $pdf->SetMargins($temp[3], $temp[0], $temp[1]);
                     $pdf->SetAutoPageBreak(true, $temp[2]);
                     break;
@@ -185,7 +185,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $query = __pdf_eval_value($val, $row);
+                    $query = __pdf_eval_value($val, $row, $pdf);
                     break;
                 case "foreach":
                     if (!$booleval) {
@@ -206,7 +206,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $name = __pdf_eval_value($val, $row);
+                    $name = __pdf_eval_value($val, $row, $pdf);
                     $buffer = $pdf->Output($name, "S");
                     if (!defined("__CANCEL_DIE__")) {
                         output_handler(array(
@@ -236,7 +236,7 @@ function __pdf_eval_pdftag($array, $row = array())
                         break;
                     }
                     if ($val) {
-                        $pdf->AddPage(__pdf_eval_value($val, $row));
+                        $pdf->AddPage(__pdf_eval_value($val, $row, $pdf));
                     } else {
                         $pdf->AddPage();
                     }
@@ -245,7 +245,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp2 = __pdf_eval_array(__pdf_eval_explode(",", $val, 4), $row);
+                    $temp2 = __pdf_eval_array(__pdf_eval_explode(",", $val, 4), $row, $pdf);
                     $temp = array($temp2[0],$temp2[1],$temp2[2],
                         color2dec($temp2[3], "R"),color2dec($temp2[3], "G"),color2dec($temp2[3], "B"));
                     $pdf->SetFont($fonts[$temp[0]], $temp[1], $temp[2]);
@@ -255,7 +255,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 6), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 6), $row, $pdf);
                     if (isset($temp[5])) {
                         $pdf->StartTransform();
                     }
@@ -276,7 +276,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 4), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 4), $row, $pdf);
                     if (isset($temp[3])) {
                         $pdf->StartTransform();
                     }
@@ -293,7 +293,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 7), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 7), $row, $pdf);
                     if (isset($temp[6])) {
                         $pdf->StartTransform();
                     }
@@ -319,7 +319,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp2 = __pdf_eval_array(__pdf_eval_explode(",", $val, 2), $row);
+                    $temp2 = __pdf_eval_array(__pdf_eval_explode(",", $val, 2), $row, $pdf);
                     $temp = array(color2dec($temp2[0], "R"),color2dec($temp2[0], "G"),color2dec($temp2[0], "B"),
                         color2dec($temp2[1], "R"),color2dec($temp2[1], "G"),color2dec($temp2[1], "B"));
                     $pdf->SetDrawColor($temp[0], $temp[1], $temp[2]);
@@ -329,7 +329,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 7), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 7), $row, $pdf);
                     if (isset($temp[5])) {
                         $pdf->SetLineWidth($temp[5]);
                     }
@@ -343,7 +343,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 5), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 5), $row, $pdf);
                     if (isset($temp[4])) {
                         $pdf->SetLineWidth($temp[4]);
                     }
@@ -353,7 +353,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 2), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 2), $row, $pdf);
                     $pdf->SetXY($temp[0], $temp[1]);
                     $pdf->check_y();
                     break;
@@ -361,7 +361,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 2), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 2), $row, $pdf);
                     $row[$temp[0]] = $pdf->GetX();
                     $row[$temp[1]] = $pdf->GetY();
                     break;
@@ -369,7 +369,7 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 7), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 7), $row, $pdf);
                     if (!isset($temp[4])) {
                         $pdf->SetXY($temp[0], $temp[1]);
                         $a = isset($temp[2]) ? $temp[2] : "";
@@ -401,14 +401,14 @@ function __pdf_eval_pdftag($array, $row = array())
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 1), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 1), $row, $pdf);
                     $pdf->check_y($temp[0]);
                     break;
                 case "link":
                     if (!$booleval) {
                         break;
                     }
-                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 4), $row);
+                    $temp = __pdf_eval_array(__pdf_eval_explode(",", $val, 4), $row, $pdf);
                     $pdf->SetXY($temp[0], $temp[1]);
                     $pdf->Cell(0, 0, $temp[2], 0, 0, "", false, $temp[3]);
                     break;
