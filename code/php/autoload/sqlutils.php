@@ -193,7 +193,7 @@ function preeval_dependencies_query($table, $label)
         foreach ($dbschema["tables"] as $tablespec) {
             foreach ($tablespec["fields"] as $field) {
                 if (!isset($field["fkey"])) {
-                    $field["fkey"] = "false";
+                    $field["fkey"] = "";
                 }
                 if (!isset($field["fcheck"])) {
                     $field["fcheck"] = "true";
