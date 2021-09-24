@@ -54,7 +54,7 @@ function unoconv2txt($input)
         $type = saltos_content_type($input);
         $ext = strtolower(extension($input));
         $type0 = saltos_content_type0($type);
-        if ($type == "text/plain") {
+        if (in_array($type, array("text/plain","application/json"))) {
             copy($input, $output);
         } elseif ($type == "text/html") {
             file_put_contents($output, html2text(file_get_contents($input)));
