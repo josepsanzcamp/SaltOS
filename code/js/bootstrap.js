@@ -2829,8 +2829,8 @@ saltos.form_field_codemirror=function(field) {
             });
             $(this).data("cm",cm);
             var fnresize=function(cm) {
-                var height2=max(height,cm.doc.size*14);
-                if(cm.display.sizerWidth>cm.display.lastWrapWidth) height2+=14;
+                var height2=max(height,cm.doc.size*15);
+                if(cm.display.sizerWidth>cm.display.lastWrapWidth) height2+=15;
                 cm.setSize(width+10,height2+10);
             }
             fnresize(cm);
