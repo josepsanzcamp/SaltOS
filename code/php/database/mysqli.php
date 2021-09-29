@@ -83,8 +83,19 @@ class database_mysqli
                     $result["rows"][] = $row[0];
                 }
                 $result["total"] = count($result["rows"]);
-                $result["header"] = array("__a__");
+                $result["header"] = array("column");
                 mysqli_free_result($stmt);
+            }
+            if ($fetch == "concat") {
+                if ($row = mysqli_fetch_row($stmt)) {
+                    $result["rows"][] = $row[0];
+                }
+                while ($row = mysqli_fetch_row($stmt)) {
+                    $result["rows"][0] .= "," . $row[0];
+                }
+                $result["total"] = count($result["rows"]);
+                $result["header"] = array("concat");
+                mysql_free_result($stmt);
             }
         }
         return $result;

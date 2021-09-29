@@ -88,7 +88,18 @@ class database_mssql
                     $result["rows"][] = utf8_encode($row[0]);
                 }
                 $result["total"] = count($result["rows"]);
-                $result["header"] = array("__a__");
+                $result["header"] = array("column");
+                mssql_free_result($stmt);
+            }
+            if ($fetch == "concat") {
+                if ($row = mssql_fetch_row($stmt)) {
+                    $result["rows"][] = utf8_encode($row[0]);
+                }
+                while ($row = mssql_fetch_row($stmt)) {
+                    $result["rows"][0] .= "," . utf8_encode($row[0]);
+                }
+                $result["total"] = count($result["rows"]);
+                $result["header"] = array("concat");
                 mssql_free_result($stmt);
             }
         }

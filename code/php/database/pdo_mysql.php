@@ -89,7 +89,17 @@ class database_pdo_mysql
             if ($fetch == "column") {
                 $result["rows"] = $stmt->fetchAll(PDO::FETCH_COLUMN);
                 $result["total"] = count($result["rows"]);
-                $result["header"] = array("__a__");
+                $result["header"] = array("column");
+            }
+            if ($fetch == "concat") {
+                if ($row = $stmt->fetch(PDO::FETCH_COLUMN)) {
+                    $result["rows"][] = $row;
+                }
+                while ($row = $stmt->fetch(PDO::FETCH_COLUMN)) {
+                    $result["rows"][0] .= "," . $row;
+                }
+                $result["total"] = count($result["rows"]);
+                $result["header"] = array("concat");
             }
         }
         return $result;

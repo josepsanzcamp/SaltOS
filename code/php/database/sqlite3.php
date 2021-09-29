@@ -175,7 +175,17 @@ class database_sqlite3
                         $result["rows"][] = $row[0];
                     }
                     $result["total"] = count($result["rows"]);
-                    $result["header"] = array("__a__");
+                    $result["header"] = array("column");
+                }
+                if ($fetch == "concat") {
+                    if ($row = $stmt->fetchArray(SQLITE3_NUM)) {
+                        $result["rows"] = array($row[0]);
+                    }
+                    while ($row = $stmt->fetchArray(SQLITE3_NUM)) {
+                        $result["rows"][0] .= "," . $row[0];
+                    }
+                    $result["total"] = count($result["rows"]);
+                    $result["header"] = array("concat");
                 }
             }
         } else {

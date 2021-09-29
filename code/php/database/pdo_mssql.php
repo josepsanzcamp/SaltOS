@@ -94,7 +94,20 @@ class database_pdo_mssql
                     $result["rows"][$key] = utf8_encode($val);
                 }
                 $result["total"] = count($result["rows"]);
-                $result["header"] = array("__a__");
+                $result["header"] = array("column");
+            }
+            if ($fetch == "concat") {
+                if ($row = $stmt->fetch(PDO::FETCH_COLUMN)) {
+                    $result["rows"][] = $row;
+                }
+                while ($row = $stmt->fetch(PDO::FETCH_COLUMN)) {
+                    $result["rows"][0] .= "," . $row;
+                }
+                foreach ($result["rows"] as $key => $val) {
+                    $result["rows"][$key] = utf8_encode($val);
+                }
+                $result["total"] = count($result["rows"]);
+                $result["header"] = array("concat");
             }
         }
         return $result;

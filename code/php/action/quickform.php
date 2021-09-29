@@ -43,75 +43,78 @@ if (getParam("action") == "quickform") {
     if (getParam("id_folder")) {
         lastfolder(getParam("id_folder"));
     }
-    $ids = list_simulator($pagesim, "array");
+    $ids = list_simulator($pagesim);
     if ($ids === null) {
         action_denied();
     }
     // FIND IF ID EXISTS IN THE LIST
     $id_abs = abs($id);
-    $index = -1;
-    foreach ($ids as $key => $val) {
-        if (strpos($val, "_") !== false) {
-            break;
+    if (strpos($ids, "_") !== false) {
+        $pos = strpos(",${ids},", "_${page}_${id_abs},");
+        if ($pos !== false) {
+            $pos = strrpos(",${ids},", ",", $pos);
         }
-        $action_id = intval($val);
-        if ($action_id == $id_abs) {
-            $index = $key;
-            break;
-        }
+    } else {
+        $pos = strpos(",${ids}, ", ",${id_abs},");
     }
-    if ($index < 0) {
-        foreach ($ids as $key => $val) {
-            $temp = explode("_", $val);
-            if (count($temp) != 3) {
-                break;
-            }
-            $action_page = $temp[1];
-            $action_id = intval($temp[2]);
-            if ($action_page == $page && $action_id == $id_abs) {
-                $index = $key;
-                break;
-            }
+    if ($pos !== false) {
+        $index = substr_count($ids, ",", 0, $pos);
+        $count = substr_count($ids, ",") + 1;
+        // PREPARE THE LIST OF REGISTERS
+        $minindex = max($index - intval($limit / 2), 0);
+        $maxindex = min($minindex + $limit, $count - 1);
+        $minindex = max($maxindex - $limit, 0);
+        // PREPARAR LISTA IDS2 PARA BUSCAR EL TITLE
+        $ids2 = array();
+        if ($minindex > 0) {
+            $pos2 = strpos($ids, ",");
+            $ids2[0] = substr($ids, 0, $pos2);
         }
-    }
-    if ($index < 0) {
-        $ids = array($id_abs);
+        $pos--;
+        $pos2 = strlen($ids);
+        for ($i = $minindex; $i < $index; $i++) {
+            $pos = strrpos($ids, ",", $pos - $pos2 - 1);
+        }
+        if ($pos === false) {
+            $pos = -1;
+        }
+        for ($i = $minindex; $i <= $maxindex; $i++) {
+            $pos2 = strpos($ids, ",", $pos + 1);
+            if ($pos2 === false) {
+                $pos2 = strlen($ids);
+            }
+            $ids2[$i] = substr($ids, $pos + 1, $pos2 - 1 - $pos);
+            $pos = $pos2;
+        }
+        if ($maxindex < $count - 1) {
+            $pos2 = strrpos($ids, ",");
+            $ids2[$count - 1] = substr($ids, $pos2 + 1);
+        }
+        $ids = array_values($ids2);
+        //~ echo "<pre>".sprintr($ids)."</pre>";
+        //~ echo "<pre>".sprintr(array($minindex,$index,$maxindex))."</pre>";
+        //~ echo "<pre>".sprintr($ids2)."</pre>";
+        //~ die();
+    } else {
         $index = 0;
+        $count = 1;
+        $ids2 = array($id_abs);
+        $ids = array($id_abs);
     }
-    $count = count($ids);
-    // PREPARE THE LIST OF REGISTERS
-    $minindex = $index - intval($limit / 2);
-    $maxindex = $index + intval($limit / 2);
-    if ($minindex < 0) {
-        $minindex = 0;
-        $maxindex = $limit;
-    } elseif ($maxindex >= $count) {
-        $minindex = $count - $limit - 1;
-        $maxindex = $count - 1;
-    }
-    $minindex = max($minindex, 0);
-    $maxindex = min($maxindex, $count - 1);
     // RETRIEVE THE ACTION_TITLE
-    $ids2 = array();
-    if ($minindex > 0) {
-        $ids2[] = $ids[0];
-    }
-    for ($i = $minindex; $i <= $maxindex; $i++) {
-        $ids2[] = $ids[$i];
-    }
-    if ($maxindex < $count - 1) {
-        $ids2[] = $ids[$count - 1];
-    }
-    $titles = list_simulator($pagesim, $ids2);
+    $titles = list_simulator($pagesim, $ids);
+    //~ echo "<pre>".sprintr($ids2)."</pre>";
+    //~ echo "<pre>".sprintr($titles)."</pre>";
+    //~ die();
     // PREPARE THE RESULT
     $_RESULT = array("rows" => array());
-    foreach ($ids2 as $key => $value) {
+    foreach ($ids as $key => $value) {
         $label = isset($titles[$key]) ? $titles[$key] : $value;
         $row = array("label" => $label,"value" => $value);
         set_array($_RESULT["rows"], "row", $row);
     }
     // PREPARE THE VALUE
-    $_RESULT["value"] = $ids[$index];
+    $_RESULT["value"] = $ids2[$index];
     // PREPARE THE DISABLED BUTTONS
     $_RESULT["first"] = ($index > 0);
     $_RESULT["previous"] = ($index > 0);
