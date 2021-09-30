@@ -179,7 +179,7 @@ class database_sqlite3
                 }
                 if ($fetch == "concat") {
                     if ($row = $stmt->fetchArray(SQLITE3_NUM)) {
-                        $result["rows"] = array($row[0]);
+                        $result["rows"][] = $row[0];
                     }
                     while ($row = $stmt->fetchArray(SQLITE3_NUM)) {
                         $result["rows"][0] .= "," . $row[0];
