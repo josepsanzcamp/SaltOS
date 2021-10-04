@@ -372,7 +372,8 @@ function set_array(&$array, $name, $value)
         $array[$name] = $value;
     } else {
         $name .= "#";
-        $count = 1;
+        $last = array_key_last($array);
+        $count = intval(substr($last, strlen($name))) + 1;
         while (isset($array[$name . $count])) {
             $count++;
         }
