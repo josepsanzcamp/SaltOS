@@ -43,7 +43,7 @@ if (getParam("action") == "compress") {
         require "php/listsim.php";
         $info = list_simulator($page, $id_registro);
         if (!isset($info[0])) {
-            show_php_error(array("phperror" => "Content not found"));
+            $info = array($id_registro . " " . LANG($page, "menu"));
         }
         if (substr($info[0], -3, 3) == "...") {
             $info[0] = substr($info[0], 0, -3);
