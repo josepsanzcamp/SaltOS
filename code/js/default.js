@@ -2083,7 +2083,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             items:"[title][title!=''],[title2][title2!='']",
             show:false,
             hide:false,
-            tooltipClass:"ui-state-highlight",
+            classes: {
+                "ui-tooltip":"ui-state-highlight"
+            },
             //~ track:true,
             open:function(event,ui) {
                 ui.tooltip.css("max-width",$(window).width()/2);
@@ -2093,6 +2095,12 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             content:function() {
                 // GET THE TITLE VALUE
                 var title=trim($(this).attr("title"));
+                // CHECK FOR A DATEPICKER ISSUE
+                if($(this).parent().parent().parent().hasClass("ui-datepicker")) {
+                    title=str_replace(["<",">"],["&lt;","&gt;"],title);
+                    return title;
+                }
+                // CONTINUE
                 if(title) {
                     // CHECK IF TITLE IS THE SAME THAT THE OBJECT TEXT
                     var text1=trim($(this).text());
