@@ -1,16 +1,34 @@
 /* SANZ FIXES */
-h3.ui-accordion-header.ui-state-default{border-color:#123456;}
-div.ui-accordion-content.ui-widget-content{border-color:#123456;}
-h3.ui-accordion-header.ui-state-default{background-color:#123456;}
-h3.ui-accordion-header.ui-state-default{color:#234567;}
-h3.ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_234567_256x240.png");}
-h3.ui-accordion-header.ui-state-hover{background:#fbec88;}
-h3.ui-accordion-header.ui-state-hover{color:#363636;}
-h3.ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.ui-accordion-header.ui-state-default{border-color:#123456;}
+.ui-accordion-content.ui-widget-content{border-color:#123456;}
+.ui-accordion-header.ui-state-default{background-color:#123456;}
+.ui-accordion-header.ui-state-default{color:#234567;}
+.ui-accordion-header.ui-state-default .ui-icon{background-image:url("images/ui-icons_234567_256x240.png");}
+.ui-accordion-header.ui-state-hover{background-color:#fbec88;}
+.ui-accordion-header.ui-state-hover{color:#363636;}
+.ui-accordion-header.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 
 /* SANZ FIXES */
 body{background-color:#345678;}
 
 /* SANZ FIXES */
-.cke.ui-state-default{background:#56789a;}
-.cke.ui-state-hover{background:#fbec88;}
+.ui-widget-content a.ui-state-default{background-color:#123456;}
+.ui-widget-content a.ui-state-default{color:#234567;}
+.ui-widget-content a.ui-state-default .ui-icon{background-image:url("images/ui-icons_234567_256x240.png");}
+.ui-widget-content a.ui-state-hover{background-color:#fbec88;}
+.ui-widget-content a.ui-state-hover{color:#363636;}
+.ui-widget-content a.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.ui-widget-content a.ui-state-focus{background-color:#fbec88;}
+.ui-widget-content a.ui-state-focus{color:#363636;}
+.ui-widget-content a.ui-state-focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+
+/* SANZ FIXES */
+.helperbuttons span.ui-button{background-color:#123456;}
+.helperbuttons span.ui-button{color:#234567;}
+.helperbuttons span.ui-button .ui-icon{background-image:url("images/ui-icons_234567_256x240.png");}
+.helperbuttons span.ui-button:hover{background-color:#fbec88;}
+.helperbuttons span.ui-button:hover{color:#363636;}
+.helperbuttons span.ui-button:hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.helperbuttons span.ui-button:focus{background-color:#fbec88;}
+.helperbuttons span.ui-button:focus{color:#363636;}
+.helperbuttons span.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
