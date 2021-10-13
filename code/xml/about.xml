@@ -458,7 +458,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("http://jquerymobile.com/")</onclick>
 						</field>
 						<field>
-							<label>Bootstrap 5.1.2 (MIT)</label>
+							<label>Bootstrap 5.1.3 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://getbootstrap.com/")</onclick>
@@ -622,7 +622,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					</row>
 					<row>
 						<field>
-							<label>CodeMirror v5.62.3 (MIT)</label>
+							<label>CodeMirror v5.63.3 (MIT)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("http://codemirror.net/")</onclick>
