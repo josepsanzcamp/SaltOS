@@ -841,6 +841,11 @@ saltos.toggle_menu=function() {
     }
 };
 
+saltos.bold_menu=function() {
+    $(".ui-layout-west .bold").removeClass("bold");
+    $(".ui-layout-west a[id="+getParam("page")+"]").addClass("bold");
+};
+
 saltos.hide_popupdialog=function() {
     if(dialog("isopen") && dialog("ispopup")) dialog("close");
 };
@@ -4055,11 +4060,11 @@ saltos.addcontent=function(url) {
 
 /* FOR TOOLTIPS */
 saltos.make_tooltips=function() {
-    $("body").tooltip({
-        "selector":"[data-toggle='tooltip']",
+    new bootstrap.Tooltip("html",{
+        "selector":"[title]",
         "container":"body",
         "trigger":"hover",
-    });
+    })
     // TODO
     return;
     $(document).tooltip({
