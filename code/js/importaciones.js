@@ -66,7 +66,7 @@ if(typeof(__importaciones__)=="undefined" && typeof(parent.__importaciones__)=="
             var selected=(i==page)?"selected='selected'":"";
             options+="<option value='"+i+"' "+selected+">"+i+"</option>";
         };
-        $("select[id$=selectpager]").html(options).trigger("refresh");
+        $("select[id$=selectpager]").html(options);
         if(!first) $("a[id$=firstpager]").addClass("ui-state-disabled");
         if(!previous) $("a[id$=previouspager]").addClass("ui-state-disabled");
         if(!next) $("a[id$=nextpager]").addClass("ui-state-disabled");

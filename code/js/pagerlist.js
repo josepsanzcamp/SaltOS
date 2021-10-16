@@ -41,7 +41,7 @@ if(typeof(__pagerlist__)=="undefined" && typeof(parent.__pagerlist__)=="undefine
                     var selected=(this["value"]==value2)?"selected='selected'":"";
                     options+="<option value='"+this["value"]+"' "+selected+">"+this["label"]+"</option>";
                 });
-                $("#selectpager").html(options).trigger("refresh");
+                $("#selectpager").html(options);
                 if(response["first"]) $("#firstpager").removeClass("ui-state-disabled");
                 if(response["previous"]) $("#previouspager").removeClass("ui-state-disabled");
                 if(response["next"]) $("#nextpager").removeClass("ui-state-disabled");

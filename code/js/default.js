@@ -1443,8 +1443,19 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             if($(newfield).is("select")) {
                 $(tdfield).removeAttr("style");
                 $(newfield).removeAttr("style");
-                $(newfield).removeAttr("width2");
+                var texto=$("option:selected",newfield).text();
+                var bbox=get_bbox("ui-state-default",texto);
+                $(tdfield).attr("style","width:"+(bbox.w+26)+"px");
+                $(newfield).attr("style","width:"+(bbox.w+26)+"px");
+                $(newfield).on("change",function(event,extra) {
+                    if(extra=="stop") return;
+                    var texto=$("option:selected",newfield).text();
+                    var bbox=get_bbox("ui-state-default",texto);
+                    $(tdfield).attr("style","width:"+(bbox.w+26)+"px");
+                    $(newfield).attr("style","width:"+(bbox.w+26)+"px");
+                });
             }
+            // CREATE THE EVENT LINKS BETWEEN THE OLD AND NEW FIELDS
             $(newfield).on("change",function(event,extra) {
                 if(extra=="stop") return;
                 $(oldfield).val($(this).val());
@@ -1465,6 +1476,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
                 $(newfield).val($(this).val());
                 $(newfield).trigger("keydown","stop");
             });
+            // PROGRAM EVENTS OF THE ORIGINAL FIELD TYPE=COPY
             if($(this).is("[onchange][onchange!='']")) {
                 var fn=$(this).attr("onchange");
                 $(newfield).on("change",function(event,extra) {
@@ -1639,57 +1651,18 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             $(this).prop("checked",!$(this).prop("checked"));
         });
         // PROGRAM SELECT MENU
-        $("select[ismenu=true]",obj).on("change",function() {
+        $("select[ismenu=true]",obj).each(function() {
+            var texto=$("option:first",this).text();
+            var bbox=get_bbox("ui-state-default",texto);
+            $(this).attr("style","width:"+(bbox.w+26)+"px");
+        }).on("change",function() {
             if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
             if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
         });
         // PROGRAM SELECTS
-        $("select:not([multiple])",obj).each(function() {
-            var width=$(this).css("width");
-            // TO FIX SOME GOOGLE CHROME ISSUES
-            var width2=$(this).width();
-            if(substr(width,-2,2)=="px" && intval(width)>0 && intval(width2)>0) {
-                if(intval(width)!=intval(width2)) {
-                    width=(intval(width)+12)+"px";
-                } else {
-                    // TO FIX SOME GOOGLE CHROME ISSUES
-                    width=(intval(width)+5)+"px";
-                }
-            } else {
-                var width2=$(this).attr("width2");
-                if(typeof(width2)=="undefined") width2="";
-                if(width2!="") {
-                    width=width2;
-                } else {
-                    width="auto";
-                }
-            }
-            var position={my:"left top",at:"left bottom",collision:"none"};
-            if($(this).attr("dir")=="up") position={my:"left bottom",at:"left top",collision:"none"};
-            if($(this).attr("dir")=="right") position={my:"right top",at:"right bottom",collision:"none"};
-            if($(this).attr("dir")=="up right") position={my:"right bottom",at:"right top",collision:"none"};
-            $(this).selectmenu({
-                width:width,
-                position:position,
-                change:function() {
-                    $(this).trigger("change");
-                },
-                open:function() {
-                    hide_tooltips();
-                    if(dialog("isopen")) {
-                        var zindex=$(".ui-dialog").css("z-index");
-                        $(".ui-selectmenu-open").css("z-index",zindex);
-                    }
-                },
-                close:function() {
-                    hide_tooltips();
-                }
-            });
-        }).on("refresh change",function() {
-            if(typeof($(this).selectmenu("instance"))!="undefined") {
-                $(this).selectmenu("refresh");
-            }
-        });
+        if(is_chrome()) {
+            $("select:not([multiple])",obj).addClass("chrome");
+        }
         // PROGRAM MULTISELECTS
         $("input[ismultiselect=true]",obj).each(function() {
             var value=explode(",",$(this).val());
@@ -1736,6 +1709,24 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             }
         });
         //~ console.timeEnd("make_extras");
+    }
+
+    function get_bbox(clase,texto) {
+        // GET THE BBOX USING THIS TRICK
+        if($("#ui-text-trick").length==0) {
+            $("body").append("<div class='ui-widget'><span id='ui-text-trick'></span></div>");
+        }
+        $("#ui-text-trick").addClass(clase);
+        $("#ui-text-trick").html(texto);
+        var w=$("#ui-text-trick").width();
+        var h=$("#ui-text-trick").height();
+        $("#ui-text-trick").removeClass(clase);
+        $("#ui-text-trick").html("");
+        return {w:w,h:h};
+    }
+
+    function is_chrome() {
+        return navigator.userAgent.indexOf("Chrome")!=-1;
     }
 
     function make_draganddrop(obj) {
@@ -1922,7 +1913,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         });
         // CREATE THE CODE MIRROR
         $("textarea[codemirror=true]",obj).each(function() {
-            $(this).css("overflow","hidden"); // TRICK FOR THE FUCKED GOOGLE CHROME
+            if(is_chrome()) {
+                $(this).css("overflow","hidden");
+            }
             var width=$(this).width();
             var height=$(this).height();
             var classes=$(this).attr("class");
@@ -2349,10 +2342,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             // FOR CANCEL IN CHECKBOX AND LABELS
             if($(event.target).is("input[type=checkbox]")) return false;
             if($(event.target).is("label[for]")) return false;
-            // FOR CANCEL IN SELECTMENU
-            if($(event.target).is("span.ui-selectmenu-button")) return false;
-            if($(event.target).is("span.ui-selectmenu-icon")) return false;
-            if($(event.target).is("span.ui-selectmenu-text")) return false;
+            // FOR CANCEL IN SELECTS
+            if($(event.target).is("select.ui-state-default")) return false;
             // FOR CANCEL IN DIALOG
             if(dialog("isopen")) return false;
             // FOR CANCEL IN TABS

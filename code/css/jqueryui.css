@@ -105,8 +105,6 @@ form {
     padding:0!important;
     border:0!important;
     box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
-    -moz-box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
-    -webkit-box-shadow:0 0 9px 9px rgba(0,0,0,0.2)!important;
 }
 
 /* CONTINUE */
@@ -153,18 +151,22 @@ textarea.ui-state-disabled {
 }
 
 select.ui-state-default {
-    padding:2px 5px;
+    padding:3px 1px;
     margin:1px;
 }
 
 select.ui-state-error {
-    padding:2px 5px;
+    padding:3px 1px;
     margin:1px;
 }
 
 select.ui-state-disabled {
     opacity:0.85!important;
     pointer-events:auto;
+}
+
+.chrome.ui-state-default {
+    padding:2px 1px;
 }
 
 iframe.ui-state-default {

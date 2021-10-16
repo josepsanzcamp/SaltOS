@@ -43,7 +43,7 @@ if(typeof(__calendar__)=="undefined" && typeof(parent.__calendar__)=="undefined"
                     var selected=(this["selected"]=="1")?"selected='selected'":"";
                     options+="<option value='"+value+"' "+selected+">"+label+"</option>";
                 });
-                $("#mesano").html(options).trigger("refresh");
+                $("#mesano").html(options);
                 // PUT CELLS DATA
                 $("[id^=cell_]").each(function() {
                     $(this).html("");

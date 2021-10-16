@@ -23,15 +23,12 @@ body{background-color:#345678;}
 .ui-widget-content a.ui-state-focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 
 /* SANZ FIXES */
-.helperbuttons span.ui-button{background-color:#123456;}
-.helperbuttons span.ui-button{color:#234567;}
-.helperbuttons span.ui-button .ui-icon{background-image:url("images/ui-icons_234567_256x240.png");}
-.helperbuttons span.ui-button:hover{background-color:#fbec88;}
-.helperbuttons span.ui-button:hover{color:#363636;}
-.helperbuttons span.ui-button:hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
-.helperbuttons span.ui-button:focus{background-color:#fbec88;}
-.helperbuttons span.ui-button:focus{color:#363636;}
-.helperbuttons span.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.helperbuttons select.ui-state-default{background-color:#123456;}
+.helperbuttons select.ui-state-default{color:#234567;}
+.helperbuttons select.ui-state-hover{background-color:#fbec88;}
+.helperbuttons select.ui-state-hover{color:#363636;}
+.helperbuttons select.ui-state-focus{background-color:#fbec88;}
+.helperbuttons select.ui-state-focus{color:#363636;}
 
 /* FOR MULTICOLOR SCHEMA */
 
@@ -95,26 +92,23 @@ body{background-color:#345678;}
 .helperbuttons input.ui-state-default{border-color:#789abc;}
 .helperbuttons input.ui-state-default{background-color:#9abcde;}
 .helperbuttons input.ui-state-default{color:#abcdef;}
-.helperbuttons span.ui-button{border-color:#789abc;}
-.helperbuttons span.ui-button{background-color:#9abcde;}
-.helperbuttons span.ui-button{color:#abcdef;}
-.helperbuttons span.ui-button .ui-icon{background-image:url("images/ui-icons_abcdef_256x240.png");}
+.helperbuttons select.ui-state-default{border-color:#789abc;}
+.helperbuttons select.ui-state-default{background-color:#9abcde;}
+.helperbuttons select.ui-state-default{color:#abcdef;}
 .helperbuttons a.ui-state-hover{background-color:#fbec88;}
 .helperbuttons a.ui-state-hover{color:#363636;}
 .helperbuttons a.ui-state-hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 .helperbuttons input.ui-state-hover{background-color:#fbec88;}
 .helperbuttons input.ui-state-hover{color:#363636;}
-.helperbuttons span.ui-button:hover{background-color:#fbec88;}
-.helperbuttons span.ui-button:hover{color:#363636;}
-.helperbuttons span.ui-button:hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.helperbuttons select.ui-state-hover{background-color:#fbec88;}
+.helperbuttons select.ui-state-hover{color:#363636;}
 .helperbuttons a.ui-state-focus{background-color:#fbec88;}
 .helperbuttons a.ui-state-focus{color:#363636;}
 .helperbuttons a.ui-state-focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
 .helperbuttons input.ui-state-focus{background-color:#fbec88;}
 .helperbuttons input.ui-state-focus{color:#363636;}
-.helperbuttons span.ui-button:focus{background-color:#fbec88;}
-.helperbuttons span.ui-button:focus{color:#363636;}
-.helperbuttons span.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.helperbuttons select.ui-state-focus{background-color:#fbec88;}
+.helperbuttons select.ui-state-focus{color:#363636;}
 
 /* SANZ FIXES */
 .helperlists tr:nth-of-type(8n+3) .ui-widget-content{border-color:#789abc;}
@@ -143,12 +137,9 @@ body{background-color:#345678;}
 .helperlists tr:nth-of-type(8n+0) .ui-state-highlight a{color:#363636;}
 
 /* SANZ FIXES */
-.helperbuttons span.ui-button{background-color:#789abc;}
-.helperbuttons span.ui-button{color:#89abcd;}
-.helperbuttons span.ui-button .ui-icon{background-image:url("images/ui-icons_89abcd_256x240.png");}
-.helperbuttons span.ui-button:hover{background-color:#fbec88;}
-.helperbuttons span.ui-button:hover{color:#363636;}
-.helperbuttons span.ui-button:hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
-.helperbuttons span.ui-button:focus{background-color:#fbec88;}
-.helperbuttons span.ui-button:focus{color:#363636;}
-.helperbuttons span.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.helperbuttons select.ui-state-default{background-color:#789abc;}
+.helperbuttons select.ui-state-default{color:#89abcd;}
+.helperbuttons select.ui-state-hover{background-color:#fbec88;}
+.helperbuttons select.ui-state-hover{color:#363636;}
+.helperbuttons select.ui-state-focus{background-color:#fbec88;}
+.helperbuttons select.ui-state-focus{color:#363636;}

@@ -926,10 +926,8 @@ saltos.make_contextmenu=function() {
         // FOR CANCEL IN CHECKBOX AND LABELS
         if($(event.target).is("input[type=checkbox]")) return false;
         if($(event.target).is("label[for]")) return false;
-        // FOR CANCEL IN SELECTMENU
-        if($(event.target).is("span.ui-selectmenu-button")) return false;
-        if($(event.target).is("span.ui-selectmenu-icon")) return false;
-        if($(event.target).is("span.ui-selectmenu-text")) return false;
+        // FOR CANCEL IN SELECTS
+        if($(event.target).is("select.ui-state-default")) return false;
         // FOR CANCEL IN DIALOG
         if(dialog("isopen")) return false;
         // FOR CANCEL IN TABS
@@ -2965,7 +2963,9 @@ saltos.form_field_codemirror=function(field) {
     setTimeout(function() {
         // CREATE THE CODE MIRROR
         $("textarea[codemirror=true]",td).each(function() {
-            $(this).css("overflow","hidden"); // TRICK FOR THE FUCKED GOOGLE CHROME
+            if(saltos.is_chrome()) {
+                $(this).css("overflow","hidden");
+            }
             var width=$(this).width();
             var height=$(this).height();
             var classes=$(this).attr("class");
@@ -3068,12 +3068,18 @@ saltos.form_field_select=function(field) {
         if(field.required=="true") $(td).prepend("(*) ");
         obj.push(td);
     }
+    if(intval(field.width)+"px"==field.width) {
+        field.width=(intval(field.width)+12)+"px";
+    }
+    if(saltos.is_chrome()) {
+        field.class3+=" chrome";
+    }
     var td=$(`
         <td class="left nowrap ${field.class}" colspan="${field.colspan}" rowspan="${field.rowspan}" style="width:${field.width}">
             <select name="${field.name}" id="${field.name}" style="width:${field.width}"
                 focused="${field.focus}" isrequired="${field.required}" labeled="${field.label}${field.label2}"
                 title="${field.tip}" class="ui-state-default ui-corner-all ${field.class3}" autocomplete="off"
-                original="" width2="${field.width}" dir="${field.dir}"></select></td>
+                original="" dir="${field.dir}"></select></td>
     `);
     $("select",td).attr("original",field.value);
     //~ if(field.onchange!="") $("select",td).on("change",{event:field.onchange},saltos.__form_event);
@@ -3109,61 +3115,9 @@ saltos.form_field_select=function(field) {
         if(field.onchange!="") $(input).attr("onchange",field.onchange);
     }
     obj.push(td);
-    // PROGRAM SELECTS
-    saltos.form_field_select_helper(td);
     // PROGRAM LINKS OF SELECTS
     saltos.form_field_islink_helper(td);
     return obj;
-};
-
-saltos.form_field_select_helper=function(td) {
-    // PROGRAM SELECTS
-    $("select:not([multiple])",td).each(function() {
-        var width=$(this).css("width");
-        // TO FIX SOME GOOGLE CHROME ISSUES
-        var width2=$(this).width();
-        if(substr(width,-2,2)=="px" && intval(width)>0 && intval(width2)>0) {
-            if(intval(width)!=intval(width2)) {
-                width=(intval(width)+12)+"px";
-            } else {
-                // TO FIX SOME GOOGLE CHROME ISSUES
-                width=(intval(width)+5)+"px";
-            }
-        } else {
-            var width2=$(this).attr("width2");
-            if(typeof(width2)=="undefined") width2="";
-            if(width2!="") {
-                width=width2;
-            } else {
-                width="auto";
-            }
-        }
-        var position={my:"left top",at:"left bottom",collision:"none"};
-        if($(this).attr("dir")=="up") position={my:"left bottom",at:"left top",collision:"none"};
-        if($(this).attr("dir")=="right") position={my:"right top",at:"right bottom",collision:"none"};
-        if($(this).attr("dir")=="up right") position={my:"right bottom",at:"right top",collision:"none"};
-        $(this).selectmenu({
-            width:width,
-            position:position,
-            change:function() {
-                $(this).trigger("change");
-            },
-            open:function() {
-                saltos.hide_tooltips();
-                if(dialog("isopen")) {
-                    var zindex=$(".ui-dialog").css("z-index");
-                    $(".ui-selectmenu-open").css("z-index",zindex);
-                }
-            },
-            close:function() {
-                saltos.hide_tooltips();
-            }
-        });
-    }).on("refresh change",function() {
-        if(typeof($(this).selectmenu("instance"))!="undefined") {
-            $(this).selectmenu("refresh");
-        }
-    });
 };
 
 saltos.form_field_multiselect=function(field) {
@@ -3604,6 +3558,14 @@ saltos.form_field_menu=function(field) {
         `);
         obj.push(td);
     }
+    if(field.width=="") {
+        var texto=field.option.label;
+        var bbox=saltos.get_bbox("ui-state-default",texto);
+        field.width=(bbox.w+26)+"px";
+    }
+    if(saltos.is_chrome()) {
+        field.class2+=" chrome";
+    }
     var td=$(`
         <td colspan="${field.colspan}" rowspan="${field.rowspan}" class="${field.class}" style="width:${field.width}">
             <select name="${field.name}" id="${field.name}" style="width:${field.width}" focused="${field.focus}"
@@ -3655,8 +3617,6 @@ saltos.form_field_menu=function(field) {
         if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
         if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
     });
-    // PROGRAM SELECTS
-    saltos.form_field_select_helper(td);
     obj.push(td);
     return obj;
 };
@@ -3764,12 +3724,31 @@ saltos.form_field_copy=function(field) {
     if(field.label!="") field2.label="";
     field2.oldname=field2.name;
     field2.name="iscopy"+field2.name;
-    if(field2.type=="select") field2.width="";
+    if(field2.type=="select") {
+        field2.width="";
+        for(var key in field2.rows) {
+            if(field2.value==field2.rows[key].value) {
+                var texto=field2.rows[key].label;
+                var bbox=saltos.get_bbox("ui-state-default",texto);
+                field2.width=(bbox.w+26-12)+"px";
+            }
+        }
+    }
     obj=array_merge(obj,saltos.form_field(field2));
     setTimeout(function() {
         var oldfield="#"+field2.oldname;
         var newfield="#"+field2.name;
         $(newfield).addClass("nofilter");
+        if($(newfield).is("select")) {
+            $(newfield).on("change",function(event,extra) {
+                if(extra=="stop") return;
+                var texto=$("option:selected",newfield).text();
+                var bbox=saltos.get_bbox("ui-state-default",texto);
+                var tdfield=$(newfield).parent();
+                $(tdfield).attr("style","width:"+(bbox.w+26)+"px");
+                $(newfield).attr("style","width:"+(bbox.w+26)+"px");
+            });
+        }
         // CREATE THE EVENT LINKS BETWEEN THE OLD AND NEW FIELDS
         $(newfield).on("change",function(event,extra) {
             if(extra=="stop") return;
@@ -3813,6 +3792,24 @@ saltos.form_field_copy=function(field) {
         }
     },100);
     return obj;
+};
+
+saltos.get_bbox=function(clase,texto) {
+    // GET THE BBOX USING THIS TRICK
+    if($("#ui-text-trick").length==0) {
+        $("body").append("<div class='ui-widget'><span id='ui-text-trick'></span></div>");
+    }
+    $("#ui-text-trick").addClass(clase);
+    $("#ui-text-trick").html(texto);
+    var w=$("#ui-text-trick").width();
+    var h=$("#ui-text-trick").height();
+    $("#ui-text-trick").removeClass(clase);
+    $("#ui-text-trick").html("");
+    return {w:w,h:h};
+};
+
+saltos.is_chrome=function() {
+    return navigator.userAgent.indexOf("Chrome")!=-1;
 };
 
 saltos.__form_event=function(obj) {

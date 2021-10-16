@@ -2969,62 +2969,9 @@ saltos.form_field_select=function(field) {
         if(field.onchange!="") $(input).attr("onchange",field.onchange);
     }
     obj.push(td);
-    // PROGRAM SELECTS
-    saltos.form_field_select_helper(td);
     // PROGRAM LINKS OF SELECTS
     saltos.form_field_islink_helper(td);
     return obj;
-};
-
-saltos.form_field_select_helper=function(td) {
-    // PROGRAM SELECTS
-    $("select:not([multiple])",td).each(function() {
-        var width=$(this).css("width");
-        // TO FIX SOME GOOGLE CHROME ISSUES
-        var width2=$(this).width();
-        if(substr(width,-2,2)=="px" && intval(width)>0 && intval(width2)>0) {
-            if(intval(width)!=intval(width2)) {
-                width=(intval(width)+12)+"px";
-            } else {
-                // TO FIX SOME GOOGLE CHROME ISSUES
-                width=(intval(width)+5)+"px";
-            }
-        } else {
-            var width2=$(this).attr("width2");
-            if(typeof(width2)=="undefined") width2="";
-            if(width2!="") {
-                width=width2;
-            } else {
-                width="auto";
-            }
-        }
-        var position={my:"left top",at:"left bottom",collision:"none"};
-        if($(this).attr("dir")=="up") position={my:"left bottom",at:"left top",collision:"none"};
-        if($(this).attr("dir")=="right") position={my:"right top",at:"right bottom",collision:"none"};
-        if($(this).attr("dir")=="up right") position={my:"right bottom",at:"right top",collision:"none"};
-        // TODO
-        //~ $(this).selectmenu({
-            //~ width:width,
-            //~ position:position,
-            //~ change:function() {
-                //~ $(this).trigger("change");
-            //~ },
-            //~ open:function() {
-                //~ saltos.hide_tooltips();
-                //~ if(dialog("isopen")) {
-                    //~ var zindex=$(".ui-dialog").css("z-index");
-                    //~ $(".ui-selectmenu-open").css("z-index",zindex);
-                //~ }
-            //~ },
-            //~ close:function() {
-                //~ saltos.hide_tooltips();
-            //~ }
-        //~ });
-    }).on("refresh change",function() {
-        //~ if(typeof($(this).selectmenu("instance"))!="undefined") {
-            //~ $(this).selectmenu("refresh");
-        //~ }
-    });
 };
 
 saltos.form_field_multiselect=function(field) {
@@ -3516,8 +3463,6 @@ saltos.form_field_menu=function(field) {
         if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
         if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
     });
-    // PROGRAM SELECTS
-    saltos.form_field_select_helper(td);
     obj.push(td);
     return obj;
 };

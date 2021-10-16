@@ -749,7 +749,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<name>id_cuenta</name>
 							<label lang="true">from</label>
 							<type>select</type>
-							<width>calc(100% - 9px)</width>
+							<width>calc(100% - 2px)</width>
 							<colspan>12</colspan>
 							<query eval="true">"SELECT
 							CONCAT(email_name,' &lt;',email_from,'&gt;') label,id value,email_default,(SELECT COUNT(*) FROM tbl_correo_a WHERE id_correo IN (SELECT id FROM tbl_correo WHERE id_cuenta=a.id AND is_outbox=1) AND id_tipo IN (1,2,3,4)) contador FROM tbl_usuarios_c a WHERE id_usuario='".current_user()."' AND email_disabled='0' AND smtp_host!='' ORDER BY email_default DESC, contador DESC"</query>
