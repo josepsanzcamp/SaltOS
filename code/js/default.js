@@ -72,25 +72,19 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         var label="";
         $("[isrequired=true]").each(function() {
             // CHECK FOR VISIBILITY
-            if(substr(this.type,0,6)=="select") {
-                if(!$(this).next().is(":visible")) return;
-            } else {
-                if(!$(this).is(":visible")) return;
-            }
+            if(!$(this).is(":visible")) return;
             // CONTINUE
             var valor=$(this).val();
-            var campo=this;
-            if(substr(this.type,0,6)=="select") {
+            if($(this).is("select")) {
                 if(valor=="0") valor="";
-                campo=$(this).next().get(0);
             }
             if(!valor) {
-                $(campo).addClass("ui-state-error");
+                $(this).addClass("ui-state-error");
             } else {
-                $(campo).removeClass("ui-state-error");
+                $(this).removeClass("ui-state-error");
             }
             if(!valor && !field) {
-                field=campo;
+                field=this;
                 label=$(this).attr("labeled");
             }
         });
@@ -1650,18 +1644,9 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         $("input:checkbox.ui-state-disabled",obj).on("change",function(event) {
             $(this).prop("checked",!$(this).prop("checked"));
         });
-        // PROGRAM SELECT MENU
-        $("select[ismenu=true]",obj).each(function() {
-            var texto=$("option:first",this).text();
-            var bbox=get_bbox("ui-state-default",texto);
-            $(this).attr("style","width:"+(bbox.w+26)+"px");
-        }).on("change",function() {
-            if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
-            if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
-        });
         // PROGRAM SELECTS
         if(is_chrome()) {
-            $("select:not([multiple])",obj).addClass("chrome");
+            $("select",obj).addClass("chrome");
         }
         // PROGRAM MULTISELECTS
         $("input[ismultiselect=true]",obj).each(function() {
@@ -1697,6 +1682,15 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
                 value=implode(",",value);
                 $("input[name="+name+"]").val(value);
             });
+        });
+        // PROGRAM SELECT MENU
+        $("select[ismenu=true]",obj).each(function() {
+            var texto=$("option:first",this).text();
+            var bbox=get_bbox("ui-state-default",texto);
+            $(this).attr("style","width:"+(bbox.w+26)+"px");
+        }).on("change",function() {
+            if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
+            if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
         });
         // PROGRAM ACTIONS LIST
         $(".actions2",obj).parent().each(function() {

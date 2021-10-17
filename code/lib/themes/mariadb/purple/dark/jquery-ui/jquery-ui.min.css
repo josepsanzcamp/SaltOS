@@ -37,3 +37,14 @@ body{background-color:#000000;}
 .helperbuttons select.ui-state-hover{color:#363636;}
 .helperbuttons select.ui-state-focus{background-color:#fbec88;}
 .helperbuttons select.ui-state-focus{color:#363636;}
+
+/* SANZ FIXES */
+.ui-dialog-buttonpane button.ui-button{background-color:#8e126d;}
+.ui-dialog-buttonpane button.ui-button{color:#ffffff;}
+.ui-dialog-buttonpane button.ui-button .ui-icon{background-image:url("images/ui-icons_ffffff_256x240.png");}
+.ui-dialog-buttonpane button.ui-button:hover{background-color:#fbec88;}
+.ui-dialog-buttonpane button.ui-button:hover{color:#363636;}
+.ui-dialog-buttonpane button.ui-button:hover .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}
+.ui-dialog-buttonpane button.ui-button:focus{background-color:#fbec88;}
+.ui-dialog-buttonpane button.ui-button:focus{color:#363636;}
+.ui-dialog-buttonpane button.ui-button:focus .ui-icon{background-image:url("images/ui-icons_363636_256x240.png");}

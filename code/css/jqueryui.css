@@ -125,22 +125,12 @@ input.ui-state-default {
     margin:1px;
 }
 
-input.ui-state-error {
-    padding:3px 5px;
-    margin:1px;
-}
-
 input.ui-state-disabled {
     opacity:0.85!important;
     pointer-events:auto;
 }
 
 textarea.ui-state-default {
-    padding:3px 5px;
-    margin:1px;
-}
-
-textarea.ui-state-error {
     padding:3px 5px;
     margin:1px;
 }
@@ -155,17 +145,12 @@ select.ui-state-default {
     margin:1px;
 }
 
-select.ui-state-error {
-    padding:3px 1px;
-    margin:1px;
-}
-
 select.ui-state-disabled {
     opacity:0.85!important;
     pointer-events:auto;
 }
 
-.chrome.ui-state-default {
+select.ui-state-default.chrome {
     padding:2px 1px;
 }
 
