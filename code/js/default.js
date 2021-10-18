@@ -1437,17 +1437,6 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             if($(newfield).is("select")) {
                 $(tdfield).removeAttr("style");
                 $(newfield).removeAttr("style");
-                var texto=$("option:selected",newfield).text();
-                var bbox=get_bbox("ui-state-default",texto);
-                $(tdfield).attr("style","width:"+(bbox.w+26)+"px");
-                $(newfield).attr("style","width:"+(bbox.w+26)+"px");
-                $(newfield).on("change",function(event,extra) {
-                    if(extra=="stop") return;
-                    var texto=$("option:selected",newfield).text();
-                    var bbox=get_bbox("ui-state-default",texto);
-                    $(tdfield).attr("style","width:"+(bbox.w+26)+"px");
-                    $(newfield).attr("style","width:"+(bbox.w+26)+"px");
-                });
             }
             // CREATE THE EVENT LINKS BETWEEN THE OLD AND NEW FIELDS
             $(newfield).on("change",function(event,extra) {
@@ -1684,11 +1673,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             });
         });
         // PROGRAM SELECT MENU
-        $("select[ismenu=true]",obj).each(function() {
-            var texto=$("option:first",this).text();
-            var bbox=get_bbox("ui-state-default",texto);
-            $(this).attr("style","width:"+(bbox.w+26)+"px");
-        }).on("change",function() {
+        $("select[ismenu=true]",obj).on("change",function() {
             if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
             if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
         });
@@ -1701,6 +1686,18 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             } else {
                 $(actions2).addClass("none");
             }
+        });
+        // PROGRAM AUTO-WIDTH SELECT
+        $("select:not([multiple])",obj).each(function() {
+            if(str_replace(["width:","undefined"],"",$(this).attr("style"))) return;
+            var texto=$("option:selected",this).text();
+            var bbox=get_bbox("ui-state-default",texto);
+            $(this).attr("style","width:"+(bbox.w+26)+"px");
+            $(this).on("change",function() {
+                var texto=$("option:selected",this).text();
+                var bbox=get_bbox("ui-state-default",texto);
+                $(this).attr("style","width:"+(bbox.w+26)+"px");
+            });
         });
         //~ console.timeEnd("make_extras");
     }

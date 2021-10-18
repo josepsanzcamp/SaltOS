@@ -3106,9 +3106,26 @@ saltos.form_field_select=function(field) {
         if(field.onchange!="") $(input).attr("onchange",field.onchange);
     }
     obj.push(td);
+    // PROGRAM AUTO-WIDTH SELECT
+    saltos.form_field_select_helper(td);
     // PROGRAM LINKS OF SELECTS
     saltos.form_field_islink_helper(td);
     return obj;
+};
+
+saltos.form_field_select_helper=function(td) {
+    // PROGRAM AUTO-WIDTH SELECT
+    $("select:not([multiple])",td).each(function() {
+        if(str_replace(["width:","undefined"],"",$(this).attr("style"))) return;
+        var texto=$("option:selected",this).text();
+        var bbox=saltos.get_bbox("ui-state-default",texto);
+        $(this).attr("style","width:"+(bbox.w+26)+"px");
+        $(this).on("change",function() {
+            var texto=$("option:selected",this).text();
+            var bbox=saltos.get_bbox("ui-state-default",texto);
+            $(this).attr("style","width:"+(bbox.w+26)+"px");
+        });
+    });
 };
 
 saltos.form_field_multiselect=function(field) {
@@ -3552,11 +3569,6 @@ saltos.form_field_menu=function(field) {
         `);
         obj.push(td);
     }
-    if(field.width=="") {
-        var texto=field.option.label;
-        var bbox=saltos.get_bbox("ui-state-default",texto);
-        field.width=(bbox.w+26)+"px";
-    }
     if(saltos.is_chrome()) {
         field.class2+=" chrome";
     }
@@ -3611,6 +3623,8 @@ saltos.form_field_menu=function(field) {
         if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
         if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
     });
+    // PROGRAM AUTO-WIDTH SELECT
+    saltos.form_field_select_helper(td);
     obj.push(td);
     return obj;
 };
@@ -3720,29 +3734,12 @@ saltos.form_field_copy=function(field) {
     field2.name="iscopy"+field2.name;
     if(field2.type=="select") {
         field2.width="";
-        for(var key in field2.rows) {
-            if(field2.value==field2.rows[key].value) {
-                var texto=field2.rows[key].label;
-                var bbox=saltos.get_bbox("ui-state-default",texto);
-                field2.width=(bbox.w+26-12)+"px";
-            }
-        }
     }
     obj=array_merge(obj,saltos.form_field(field2));
     setTimeout(function() {
         var oldfield="#"+field2.oldname;
         var newfield="#"+field2.name;
         $(newfield).addClass("nofilter");
-        if($(newfield).is("select")) {
-            $(newfield).on("change",function(event,extra) {
-                if(extra=="stop") return;
-                var texto=$("option:selected",newfield).text();
-                var bbox=saltos.get_bbox("ui-state-default",texto);
-                var tdfield=$(newfield).parent();
-                $(tdfield).attr("style","width:"+(bbox.w+26)+"px");
-                $(newfield).attr("style","width:"+(bbox.w+26)+"px");
-            });
-        }
         // CREATE THE EVENT LINKS BETWEEN THE OLD AND NEW FIELDS
         $(newfield).on("change",function(event,extra) {
             if(extra=="stop") return;
