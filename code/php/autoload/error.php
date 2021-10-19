@@ -84,23 +84,31 @@ function do_message_error($array, $format)
                 $data = str_replace($privated, "...", $data);
                 break;
             case "backtrace":
-                foreach ($data as $key => $item) {
-                    $temp = $key . " => " . $item["function"];
-                    if (isset($item["class"])) {
-                        $temp .= " (in class " . $item["class"] . ")";
+                if(is_array($data)) {
+                    foreach ($data as $key => $item) {
+                        $temp = $key . " => " . $item["function"];
+                        if (isset($item["class"])) {
+                            $temp .= " (in class " . $item["class"] . ")";
+                        }
+                        if (isset($item["file"]) && isset($item["line"])) {
+                            $temp .= " (in file " . basename($item["file"]) . " at line " . $item["line"] . ")";
+                        }
+                        $data[$key] = $temp;
                     }
-                    if (isset($item["file"]) && isset($item["line"])) {
-                        $temp .= " (in file " . basename($item["file"]) . " at line " . $item["line"] . ")";
-                    }
-                    $data[$key] = $temp;
+                    $data = implode($dict[$format][2], $data);
+                } else {
+                    $data = trim($data);
                 }
-                $data = implode($dict[$format][2], $data);
                 break;
             case "debug":
-                foreach ($data as $key => $item) {
-                    $data[$key] = "${key} => ${item}";
+                if(is_array($data)) {
+                    foreach ($data as $key => $item) {
+                        $data[$key] = "${key} => ${item}";
+                    }
+                    $data = implode($dict[$format][2], $data);
+                } else {
+                    $data = trim($data);
                 }
-                $data = implode($dict[$format][2], $data);
                 break;
         }
         if (isset($types[$type])) {

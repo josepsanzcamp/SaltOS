@@ -28,13 +28,16 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
     var __default__=1;
 
     /* ERROR HANDLER */
-    window.onerror=function(msg,file,line) {
-        var data={"jserror":msg,"details":"Error on file "+file+" at line "+line};
-        data="action=adderror&array="+encodeURIComponent(btoa(JSON.stringify(data)));
+    window.onerror=function(msg, file, line, column, error) {
+        var data={
+            "jserror":msg,
+            "details":"Error in file "+file+" at line "+line+" and column "+column+", userAgent is "+navigator.userAgent,
+            "backtrace":error.stack
+        };
         $.ajax({
-            url:"index.php",
-            data:data,
-            type:"post",
+            url:"index.php?action=adderror",
+            data:JSON.stringify(data),
+            type:"post"
         });
     };
 
@@ -242,12 +245,10 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
 
     /* FOR DEBUG PURPOSES */
     function addlog(msg) {
-        var data="action=addlog&msg="+encodeURIComponent(btoa(utf8_encode(msg)));
         $.ajax({
-            url:"index.php",
-            data:data,
-            type:"post",
-            async:false,
+            url:"index.php?action=addlog",
+            data:msg,
+            type:"post"
         });
     }
 
@@ -786,8 +787,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
                 return;
             }
             // NORMAL CODE
-            var url=current_hash();
-            url=hash_decode(url);
+            var url=hash_decode(current_hash());
             addcontent("cancel");
             opencontent(url);
         });
@@ -1674,8 +1674,8 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         });
         // PROGRAM SELECT MENU
         $("select[ismenu=true]",obj).on("change",function() {
-            if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
-            if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
+            if(!$(this).find("option:selected").hasClass("ui-state-disabled")) eval($(this).val());
+            if($("option:first",this).val()=="") $(this).val("");
         });
         // PROGRAM ACTIONS LIST
         $(".actions2",obj).parent().each(function() {
@@ -1690,14 +1690,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
         // PROGRAM AUTO-WIDTH SELECT
         $("select:not([multiple])",obj).each(function() {
             if(str_replace(["width:","undefined"],"",$(this).attr("style"))) return;
-            var texto=$("option:selected",this).text();
-            var bbox=get_bbox("ui-state-default",texto);
-            $(this).attr("style","width:"+(bbox.w+26)+"px");
-            $(this).on("change",function() {
+            $(this).on("change init",function() {
                 var texto=$("option:selected",this).text();
                 var bbox=get_bbox("ui-state-default",texto);
                 $(this).attr("style","width:"+(bbox.w+26)+"px");
-            });
+            }).trigger("init");
         });
         //~ console.timeEnd("make_extras");
     }

@@ -30,17 +30,27 @@ var saltos={};
 
 /* ERROR MANAGEMENT */
 saltos.init_error=function() {
-    window.onerror=function(msg,file,line) {
-        var data={"jserror":msg,"details":"Error on file "+file+" at line "+line};
-        data="array="+encodeURIComponent(btoa(JSON.stringify(data)));
-        $.ajax({ url:"index.php?action=adderror",data:data,type:"post" });
+    window.onerror=function(msg, file, line, column, error) {
+        var data={
+            "jserror":msg,
+            "details":"Error in file "+file+" at line "+line+" and column "+column+", userAgent is "+navigator.userAgent,
+            "backtrace":error.stack
+        };
+        $.ajax({
+            url:"index.php?action=adderror",
+            data:JSON.stringify(data),
+            type:"post"
+        });
     };
 };
 
 /* LOG MANAGEMENT */
 saltos.addlog=function(msg) {
-    var data="msg="+encodeURIComponent(btoa(msg));
-    $.ajax({ url:"index.php?action=addlog",data:data,type:"post" });
+    $.ajax({
+        url:"index.php?action=addlog",
+        data:msg,
+        type:"post"
+    });
 };
 
 /* NUMERIC FUNCTIONS */
@@ -3117,14 +3127,11 @@ saltos.form_field_select_helper=function(td) {
     // PROGRAM AUTO-WIDTH SELECT
     $("select:not([multiple])",td).each(function() {
         if(str_replace(["width:","undefined"],"",$(this).attr("style"))) return;
-        var texto=$("option:selected",this).text();
-        var bbox=saltos.get_bbox("ui-state-default",texto);
-        $(this).attr("style","width:"+(bbox.w+26)+"px");
-        $(this).on("change",function() {
+        $(this).on("change init",function() {
             var texto=$("option:selected",this).text();
             var bbox=saltos.get_bbox("ui-state-default",texto);
             $(this).attr("style","width:"+(bbox.w+26)+"px");
-        });
+        }).trigger("init");
     });
 };
 
@@ -3620,8 +3627,8 @@ saltos.form_field_menu=function(field) {
     }
     // PROGRAM SELECT MENU
     $("select[ismenu=true]",td).on("change",function() {
-        if(!$(this).find("option:eq("+$(this).prop("selectedIndex")+")").hasClass("ui-state-disabled")) eval($(this).val());
-        if($("option:first",this).val()=="") $(this).prop("selectedIndex",0);
+        if(!$(this).find("option:selected").hasClass("ui-state-disabled")) eval($(this).val());
+        if($("option:first",this).val()=="") $(this).val("");
     });
     // PROGRAM AUTO-WIDTH SELECT
     saltos.form_field_select_helper(td);

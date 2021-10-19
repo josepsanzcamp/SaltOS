@@ -25,15 +25,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (getParam("action") == "adderror") {
-    $array = json_decode(base64_decode(getParam("array")), true);
-    if (!is_array($array)) {
-        action_denied();
-    }
-    $array = array_intersect_key($array, array("jserror" => "","details" => ""));
-    if (!isset($array["jserror"]) || !isset($array["details"])) {
-        action_denied();
-    }
-    show_php_error($array);
-    die();
+$array = json_decode(file_get_contents('php://input'), true);
+if (!is_array($array)) {
+    action_denied();
 }
+$array = array_intersect_key($array, array("jserror" => "","details" => "","backtrace" => ""));
+if (!count($array)) {
+    action_denied();
+}
+show_php_error($array);
+die();

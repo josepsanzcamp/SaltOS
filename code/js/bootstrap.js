@@ -30,17 +30,27 @@ var saltos={};
 
 /* ERROR MANAGEMENT */
 saltos.init_error=function() {
-    window.onerror=function(msg,file,line) {
-        var data={"jserror":msg,"details":"Error on file "+file+" at line "+line};
-        data="array="+encodeURIComponent(btoa(JSON.stringify(data)));
-        $.ajax({ url:"index.php?action=adderror",data:data,type:"post" });
+    window.onerror=function(msg, file, line, column, error) {
+        var data={
+            "jserror":msg,
+            "details":"Error in file "+file+" at line "+line+" and column "+column+", userAgent is "+navigator.userAgent,
+            "backtrace":error.stack
+        };
+        $.ajax({
+            url:"index.php?action=adderror",
+            data:JSON.stringify(data),
+            type:"post"
+        });
     };
 };
 
 /* LOG MANAGEMENT */
 saltos.addlog=function(msg) {
-    var data="msg="+encodeURIComponent(btoa(msg));
-    $.ajax({ url:"index.php?action=addlog",data:data,type:"post" });
+    $.ajax({
+        url:"index.php?action=addlog",
+        data:msg,
+        type:"post"
+    });
 };
 
 /* NUMERIC FUNCTIONS */

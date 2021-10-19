@@ -28,5 +28,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if (!check_user()) {
     action_denied();
 }
-addlog(base64_decode(getParam("msg")));
+addlog(file_get_contents('php://input'));
 die();

@@ -28,10 +28,17 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
     var __mobile__=1;
 
     /* ERROR HANDLER */
-    window.onerror=function(msg,file,line) {
-        var data={"jserror":msg,"details":"Error on file "+file+" at line "+line};
-        data="array="+encodeURIComponent(btoa(JSON.stringify(data)));
-        $.ajax({ url:"index.php?action=adderror",data:data,type:"post" });
+    window.onerror=function(msg, file, line, column, error) {
+        var data={
+            "jserror":msg,
+            "details":"Error in file "+file+" at line "+line+" and column "+column+", userAgent is "+navigator.userAgent,
+            "backtrace":error.stack
+        };
+        $.ajax({
+            url:"index.php?action=adderror",
+            data:JSON.stringify(data),
+            type:"post"
+        });
     };
 
     /* GENERIC FUNCTIONS */
@@ -46,11 +53,14 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
     function _format_number(obj,punto) {
         var texto=obj.value;
         var texto2="";
+        var numero=0;
         for(var i=0,len=texto.length;i<len;i++) {
             var letra=substr(texto,i,1);
             if(letra>="0" && letra<="9") {
                 texto2+=letra;
+                numero=1;
             } else if((letra=="." || letra==",") && !punto) {
+                if(!numero) texto2+="0";
                 texto2+=".";
                 punto=1;
             } else if(letra=="-" && texto2.length==0) {
@@ -64,8 +74,11 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
         var field=null;
         var label="";
         $("[isrequired=true]").each(function() {
+            // CHECK FOR VISIBILITY
+            if(!$(this).is(":visible")) return;
+            // CONTINUE
             var valor=$(this).val();
-            if(substr(this.type,0,6)=="select") {
+            if($(this).is("select")) {
                 if(valor=="0") valor="";
             }
             if(!valor) {
@@ -114,8 +127,14 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
         for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
         for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
         if(temp[2]>1900) {
+            temp[2]=min(9999,max(0,temp[2]));
+            temp[1]=min(12,max(0,temp[1]));
+            temp[0]=min(__days_of_a_month(temp[2],temp[1]),max(0,temp[0]));
             value=sprintf("%04d-%02d-%02d",temp[2],temp[1],temp[0]);
         } else {
+            temp[0]=min(9999,max(0,temp[0]));
+            temp[1]=min(12,max(0,temp[1]));
+            temp[2]=min(__days_of_a_month(temp[0],temp[1]),max(0,temp[2]));
             value=sprintf("%04d-%02d-%02d",temp[0],temp[1],temp[2]);
         }
         return value;
@@ -132,8 +151,15 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
         temp=explode(" ",value);
         for(var i=0,len=temp.length;i<len;i++) temp[i]=intval(temp[i]);
         for(var i=0;i<3;i++) if(typeof(temp[i])=="undefined") temp[i]=0;
+        temp[0]=min(24,max(0,temp[0]));
+        temp[1]=min(59,max(0,temp[1]));
+        temp[2]=min(59,max(0,temp[2]));
         value=sprintf("%02d:%02d:%02d",temp[0],temp[1],temp[2]);
         return value;
+    }
+
+    function __days_of_a_month(year,month) {
+        return date("t",strtotime(sprintf("%04d-%02d-%02d",year,month,1)));
     }
 
     function check_datetime(orig,comp,dest) {
@@ -219,8 +245,11 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
 
     /* FOR DEBUG PURPOSES */
     function addlog(msg) {
-        var data="msg="+encodeURIComponent(btoa(utf8_encode(msg)));
-        $.ajax({ url:"index.php?action=addlog",data:data,type:"post",async:false });
+        $.ajax({
+            url:"index.php?action=addlog",
+            data:msg,
+            type:"post"
+        });
     }
 
     /* FOR SECURITY ISSUES */
@@ -364,7 +393,12 @@ if(typeof(__mobile__)=="undefined" && typeof(parent.__mobile__)=="undefined") {
             if(cookies_data[hash].sync) {
                 if(cookies_data[hash].val!=cookies_data[hash].orig) {
                     var data="action=cookies&name="+encodeURIComponent(cookies_data[hash].key)+"&value="+encodeURIComponent(cookies_data[hash].val);
-                    var value=$.ajax({ url:"index.php",data:data,type:"get",async:false }).responseText;
+                    var value=$.ajax({
+                        url:"index.php",
+                        data:data,
+                        type:"get",
+                        async:false
+                    }).responseText;
                     if(value!="") {
                         cookies_data[hash].orig=cookies_data[hash].val;
                         cookies_data[hash].sync=0;
