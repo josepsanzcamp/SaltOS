@@ -1694,7 +1694,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 					<type>TEXT</type>
 				</field>
 				<field>
-					<name>token2</name>
+					<name>access_token</name>
+					<type>TEXT</type>
+				</field>
+				<field>
+					<name>refresh_token</name>
 					<type>TEXT</type>
 				</field>
 			</fields>

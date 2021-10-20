@@ -34,7 +34,7 @@ if (getParam("action") == "gcalendar") {
     require_once "php/libaction.php";
 
     // GET GOOGLE CALENDAR USER ACCOUNT
-    $query = "SELECT email,token,token2 FROM tbl_gcalendar WHERE id_usuario='" . current_user() . "'";
+    $query = "SELECT * FROM tbl_gcalendar WHERE id_usuario='" . current_user() . "'";
     $result = execute_query($query);
     if (!is_array($result)) {
         session_error(LANG("notgcalendaremail", $page));
@@ -43,7 +43,8 @@ if (getParam("action") == "gcalendar") {
     }
     $email = $result["email"];
     $token = $result["token"];
-    $token2 = base64_decode($result["token2"]);
+    $access_token = $result["access_token"];
+    $refresh_token = $result["refresh_token"];
     if ($email == "") {
         session_error(LANG("notgcalendaremail", $page));
         javascript_history(-1);
@@ -56,10 +57,10 @@ if (getParam("action") == "gcalendar") {
     $client->setRedirectUri("urn:ietf:wg:oauth:2.0:oob");
     $client->addScope("https://www.googleapis.com/auth/calendar");
     $client->setAccessType("offline");
-    if ($token2 != "") {
-        $client->setAccessToken($token2);
+    if ($access_token != "") {
+        $client->setAccessToken($access_token);
         if (!$client->getAccessToken()) {
-            __gcalendar_updatetokens("", "");
+            __gcalendar_updatetokens("", "", "");
             __gcalendar_invalidtoken();
             __gcalendar_requesttoken($client);
             javascript_history(-1);
@@ -68,11 +69,25 @@ if (getParam("action") == "gcalendar") {
     } elseif ($token != "") {
         try {
             $client->authenticate($token);
-            $token2 = $client->getAccessToken();
-            __gcalendar_updatetokens("", base64_encode($token2));
-            db_query($query);
+            $tokens = $client->getAccessToken();
+            //~ Array
+                //~ [access_token] => ya29.a0ARr...
+                //~ [expires_in] => 3599
+                //~ [refresh_token] => 1//03TZ2hN...
+                //~ [scope] => https://www.googleapis.com/auth/calendar
+                //~ [token_type] => Bearer
+                //~ [created] => 1634741789
+            if (is_array($tokens)) {
+                __gcalendar_updatetokens("", $tokens["access_token"], $tokens["refresh_token"]);
+            } else {
+                __gcalendar_updatetokens("", "", "");
+                __gcalendar_invalidtoken();
+                __gcalendar_requesttoken($client);
+                javascript_history(-1);
+                die();
+            }
         } catch (Exception $e) {
-            __gcalendar_updatetokens("", "");
+            __gcalendar_updatetokens("", "", "");
             __gcalendar_invalidtoken();
             __gcalendar_requesttoken($client);
             javascript_history(-1);
@@ -94,7 +109,7 @@ if (getParam("action") == "gcalendar") {
     try {
         $gevents = __gcalendar_feed($client);
     } catch (Exception $e) {
-        __gcalendar_updatetokens("", "");
+        __gcalendar_updatetokens("", "", "");
         __gcalendar_invalidtoken();
         __gcalendar_requesttoken($client);
         javascript_history(-1);

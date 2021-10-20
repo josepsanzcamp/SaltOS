@@ -1,5 +1,13 @@
 {
     "require": {
-        "google/apiclient": "^2.4"
+        "google/apiclient": "^2.11"
+    },
+    "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
+    },
+    "extra": {
+        "google/apiclient-services": [
+            "Calendar"
+        ]
     }
 }

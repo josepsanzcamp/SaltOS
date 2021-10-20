@@ -1,4 +1,5 @@
 <?php
+
 namespace GuzzleHttp\Promise;
 
 /**
@@ -11,11 +12,18 @@ class FulfilledPromise implements PromiseInterface
 {
     private $value;
 
+    /** @var Promise|null */
+    private $promise;
+
+    /** @var callable|null */
+    private $onFulfilled;
+
     public function __construct($value)
     {
-        if (method_exists($value, 'then')) {
+        if (is_object($value) && method_exists($value, 'then')) {
             throw new \InvalidArgumentException(
-                'You cannot create a FulfilledPromise with a promise.');
+                'You cannot create a FulfilledPromise with a promise.'
+            );
         }
 
         $this->value = $value;
@@ -30,18 +38,14 @@ class FulfilledPromise implements PromiseInterface
             return $this;
         }
 
-        $queue = queue();
-        $p = new Promise([$queue, 'run']);
+        $this->onFulfilled = $onFulfilled;
+
+        $queue = Utils::queue();
+        $p = $this->promise = new Promise([$queue, 'run']);
         $value = $this->value;
         $queue->add(static function () use ($p, $value, $onFulfilled) {
-            if ($p->getState() === self::PENDING) {
-                try {
-                    $p->resolve($onFulfilled($value));
-                } catch (\Throwable $e) {
-                    $p->reject($e);
-                } catch (\Exception $e) {
-                    $p->reject($e);
-                }
+            if (Is::pending($p)) {
+                self::callHandler($p, $value, $onFulfilled);
             }
         });
 
@@ -55,6 +59,11 @@ class FulfilledPromise implements PromiseInterface
 
     public function wait($unwrap = true, $defaultDelivery = null)
     {
+        // Don't run the queue to avoid deadlocks, instead directly resolve the promise.
+        if ($this->promise && Is::pending($this->promise)) {
+            self::callHandler($this->promise, $this->value, $this->onFulfilled);
+        }
+
         return $unwrap ? $this->value : null;
     }
 
@@ -78,5 +87,16 @@ class FulfilledPromise implements PromiseInterface
     public function cancel()
     {
         // pass
+    }
+
+    private static function callHandler(Promise $promise, $value, callable $handler)
+    {
+        try {
+            $promise->resolve($handler($value));
+        } catch (\Throwable $e) {
+            $promise->reject($e);
+        } catch (\Exception $e) {
+            $promise->reject($e);
+        }
     }
 }

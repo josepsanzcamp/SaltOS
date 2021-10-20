@@ -707,11 +707,12 @@ function __gcalendar_invalidtoken()
     session_error(LANG("invalidgcalendartoken", "agenda"));
 }
 
-function __gcalendar_updatetokens($token, $token2)
+function __gcalendar_updatetokens($token, $access_token, $refresh_token)
 {
     $query = make_update_query("tbl_gcalendar", array(
         "token" => $token,
-        "token2" => $token2
+        "access_token" => $access_token,
+        "refresh_token" => $refresh_token
     ), make_where_query(array(
         "id_usuario" => current_user()
     )));
