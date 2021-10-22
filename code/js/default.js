@@ -31,7 +31,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
     window.onerror=function(msg, file, line, column, error) {
         var data={
             "jserror":msg,
-            "details":"Error in file "+file+" at line "+line+" and column "+column+", userAgent is "+navigator.userAgent,
+            "details":"Error on file "+file+":"+line+":"+column+", userAgent is "+navigator.userAgent,
             "backtrace":error.stack
         };
         $.ajax({
@@ -723,7 +723,11 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
     }
 
     function hash_decode(hash) {
-        return bytesToString((new Zlib.RawInflate(stringToBytes(atob(str_replace(["-","_"],["+","/"],hash))))).decompress());
+        try {
+            return bytesToString((new Zlib.RawInflate(stringToBytes(atob(str_replace(["-","_"],["+","/"],hash))))).decompress());
+        } catch(e) {
+            return "";
+        }
     }
 
     function current_href() {

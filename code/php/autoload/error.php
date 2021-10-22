@@ -84,14 +84,14 @@ function do_message_error($array, $format)
                 $data = str_replace($privated, "...", $data);
                 break;
             case "backtrace":
-                if(is_array($data)) {
+                if (is_array($data)) {
                     foreach ($data as $key => $item) {
                         $temp = $key . " => " . $item["function"];
                         if (isset($item["class"])) {
                             $temp .= " (in class " . $item["class"] . ")";
                         }
                         if (isset($item["file"]) && isset($item["line"])) {
-                            $temp .= " (in file " . basename($item["file"]) . " at line " . $item["line"] . ")";
+                            $temp .= " (in file " . basename($item["file"]) . ":" . $item["line"] . ")";
                         }
                         $data[$key] = $temp;
                     }
@@ -101,7 +101,7 @@ function do_message_error($array, $format)
                 }
                 break;
             case "debug":
-                if(is_array($data)) {
+                if (is_array($data)) {
                     foreach ($data as $key => $item) {
                         $data[$key] = "${key} => ${item}";
                     }
@@ -280,7 +280,7 @@ function __error_handler($type, $message, $file, $line)
 {
     show_php_error(array(
         "phperror" => "${message} (code ${type})",
-        "details" => "Error on file '" . basename($file) . "' at line ${line}",
+        "details" => "Error on file " . basename($file) . ":" . $line,
         "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
     ));
 }
@@ -289,7 +289,7 @@ function __exception_handler($e)
 {
     show_php_error(array(
         "exception" => $e->getMessage() . " (code " . $e->getCode() . ")",
-        "details" => "Error on file '" . basename($e->getFile()) . "' at line " . $e->getLine(),
+        "details" => "Error on file " . basename($e->getFile()) . ":" . $e->getLine(),
         "backtrace" => $e->getTrace()
     ));
 }
@@ -305,7 +305,7 @@ function __shutdown_handler()
     if (is_array($error) && isset($error["type"]) && in_array($error["type"], $types)) {
         show_php_error(array(
             "phperror" => "${error["message"]}",
-            "details" => "Error on file '" . basename($error["file"]) . "' at line ${error["line"]}",
+            "details" => "Error on file " . basename($error["file"]) . ":" . $error["line"],
             "backtrace" => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
         ));
     }

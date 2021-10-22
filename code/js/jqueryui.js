@@ -33,7 +33,7 @@ saltos.init_error=function() {
     window.onerror=function(msg, file, line, column, error) {
         var data={
             "jserror":msg,
-            "details":"Error in file "+file+" at line "+line+" and column "+column+", userAgent is "+navigator.userAgent,
+            "details":"Error on file "+file+":"+line+":"+column+", userAgent is "+navigator.userAgent,
             "backtrace":error.stack
         };
         $.ajax({

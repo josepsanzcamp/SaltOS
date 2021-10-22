@@ -96,6 +96,7 @@ function __import_find_query($data, $pos)
         This function is intended to import data in the supported formats
     Input:
         Array
+        - data: contents used as data instead of file
         - file: local filename used to load the data
         - type: can be xml, csv, xls, bytes or edi
         - sep: separator char used only by csv format

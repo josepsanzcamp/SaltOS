@@ -53,30 +53,38 @@ if (getParam("action") == "gcalendar") {
 
     // GET A VALID SERVICE
     $client = new Google_Client();
-    $client->setAuthConfigFile("lib/google/saltos.json");
-    $client->setRedirectUri("urn:ietf:wg:oauth:2.0:oob");
-    $client->addScope("https://www.googleapis.com/auth/calendar");
+    $client->setApplicationName(get_name_version_revision());
     $client->setAccessType("offline");
-    if ($access_token != "") {
-        $client->setAccessToken($access_token);
-        if (!$client->getAccessToken()) {
+    $client->setClientId("467364534451-o3pvr9vfepjr68ktrq0k94kpjgnvvp4b.apps.googleusercontent.com");
+    $client->setClientSecret("-zpxbyQEE07HKIvggynOFs4y");
+    $client->setRedirectUri("urn:ietf:wg:oauth:2.0:oob");
+    $client->addScope("https://www.googleapis.com/auth/calendar.events");
+
+    //~ Array
+        //~ [access_token] => ya29.a0ARr...
+        //~ [expires_in] => 3599
+        //~ [refresh_token] => 1//03TZ2hN...
+        //~ [scope] => https://www.googleapis.com/auth/calendar
+        //~ [token_type] => Bearer
+        //~ [created] => 1634741789
+
+    if ($token != "") {
+        $client->authenticate($token);
+        $tokens = $client->getAccessToken();
+        if (is_array($tokens)) {
+            __gcalendar_updatetokens("", $tokens["access_token"], $tokens["refresh_token"]);
+        } else {
             __gcalendar_updatetokens("", "", "");
             __gcalendar_invalidtoken();
             __gcalendar_requesttoken($client);
             javascript_history(-1);
             die();
         }
-    } elseif ($token != "") {
-        try {
-            $client->authenticate($token);
+    } elseif ($access_token != "") {
+        $client->setAccessToken($access_token);
+        if(!$client->getAccessToken()) {
+            $client->refreshToken($refresh_token);
             $tokens = $client->getAccessToken();
-            //~ Array
-                //~ [access_token] => ya29.a0ARr...
-                //~ [expires_in] => 3599
-                //~ [refresh_token] => 1//03TZ2hN...
-                //~ [scope] => https://www.googleapis.com/auth/calendar
-                //~ [token_type] => Bearer
-                //~ [created] => 1634741789
             if (is_array($tokens)) {
                 __gcalendar_updatetokens("", $tokens["access_token"], $tokens["refresh_token"]);
             } else {
@@ -86,12 +94,6 @@ if (getParam("action") == "gcalendar") {
                 javascript_history(-1);
                 die();
             }
-        } catch (Exception $e) {
-            __gcalendar_updatetokens("", "", "");
-            __gcalendar_invalidtoken();
-            __gcalendar_requesttoken($client);
-            javascript_history(-1);
-            die();
         }
     } else {
         __gcalendar_requesttoken($client);
