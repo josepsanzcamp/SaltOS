@@ -181,7 +181,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>id_gcalendar</name>
-					<type>TEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
 					<name>sync_gcalendar</name>
@@ -1691,14 +1691,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 				</field>
 				<field>
 					<name>token</name>
-					<type>TEXT</type>
+					<type>VARCHAR(255)</type>
 				</field>
 				<field>
-					<name>access_token</name>
-					<type>TEXT</type>
-				</field>
-				<field>
-					<name>refresh_token</name>
+					<name>token2</name>
 					<type>TEXT</type>
 				</field>
 			</fields>
