@@ -83,7 +83,6 @@ if ($token != "") {
 } elseif (is_array($token2)) {
     $client->setAccessToken($token2);
     if ($client->isAccessTokenExpired()) {
-        echo "ejecutar refreshToken<br/>";
         $client->refreshToken($token2["refresh_token"]);
         $token2 = $client->getAccessToken();
         if (is_array($token2)) {
