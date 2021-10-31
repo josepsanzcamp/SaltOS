@@ -65,9 +65,11 @@ $template = trim($array["template"]);
 $rev = getDefault("info/revision");
 
 // PUT LANG AND DIR IN HTML TAG
-$template = str_replace("__LANG__", get_lang(), $template);
-$template = str_replace("__DIR__", get_dir(), $template);
-$template = str_replace("__STYLE__", get_style(), $template);
+$template = str_replace_assoc(array(
+    "__LANG__" => get_lang(),
+    "__DIR__" => get_dir(),
+    "__STYLE__" => get_style()
+), $template);
 
 // COMPUTE METAS
 $metas = array();

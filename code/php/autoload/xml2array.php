@@ -455,11 +455,18 @@ function eval_files()
 
 function detect_recursion($fn)
 {
+    if (!is_array($fn)) {
+        $fn = explode(",", $fn);
+    }
     $temp = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
     foreach ($temp as $key => $val) {
-        if (!isset($val["function"]) || $val["function"] != $fn) {
-            unset($temp[$key]);
+        if (isset($val["function"]) && in_array($val["function"], $fn)) {
+            continue;
         }
+        if (isset($val["file"]) && in_array(basename($val["file"]), $fn)) {
+            continue;
+        }
+        unset($temp[$key]);
     }
     return count($temp);
 }

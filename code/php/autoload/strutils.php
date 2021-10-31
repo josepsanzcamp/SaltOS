@@ -627,3 +627,8 @@ function remove_utf8mb4_chars($cad)
     }
     return $cad;
 }
+
+function str_replace_assoc($array, $cad)
+{
+    return str_replace(array_keys($array), array_values($array), $cad);
+}

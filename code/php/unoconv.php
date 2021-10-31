@@ -102,11 +102,10 @@ function __unoconv_pdf2txt($input, $output)
     if (!check_commands(getDefault("commands/pdftotext"), 60)) {
         return;
     }
-    ob_passthru(str_replace(
-        array("__INPUT__","__OUTPUT__"),
-        array($input,$output),
-        getDefault("commands/__pdftotext__")
-    ));
+    ob_passthru(str_replace_assoc(array(
+        "__INPUT__" => $input,
+        "__OUTPUT__" => $output
+    ), getDefault("commands/__pdftotext__")));
     if (file_exists($output)) {
         $freq = count_chars(file_get_contents($output));
         $freq = array(array_sum(array_slice($freq, 33, 128 - 33)),array_sum(array_slice($freq, 128)));
@@ -137,11 +136,11 @@ function __unoconv_convert($input, $output, $format)
     if (!$fix) {
         $input2 = $input;
     }
-    ob_passthru(__exec_timeout(str_replace(
-        array("__FORMAT__","__INPUT__","__OUTDIR__"),
-        array($format,$input2,dirname($input2)),
-        getDefault("commands/__soffice__")
-    )));
+    ob_passthru(__exec_timeout(str_replace_assoc(array(
+        "__FORMAT__" => $format,
+        "__INPUT__" => $input2,
+        "__OUTDIR__" => dirname($input2)
+    ), getDefault("commands/__soffice__"))));
     if ($fix) {
         unlink($input2);
     }
@@ -164,11 +163,10 @@ function __unoconv_img2ocr($file)
         $tiff = get_cache_file($file, ".tif");
         //~ if(file_exists($tiff)) unlink($tiff);
         if (!file_exists($tiff)) {
-            ob_passthru(str_replace(
-                array("__INPUT__","__OUTPUT__"),
-                array($file,$tiff),
-                getDefault("commands/__convert__")
-            ));
+            ob_passthru(str_replace_assoc(array(
+                "__INPUT__" => $file,
+                "__OUTPUT__" => $tiff
+            ), getDefault("commands/__convert__")));
             if (!file_exists($tiff)) {
                 return "";
             }
@@ -184,11 +182,10 @@ function __unoconv_img2ocr($file)
     //~ if(file_exists($hocr)) unlink($hocr);
     if (!file_exists($hocr)) {
         $base = str_replace(array(".hocr",".html"), "", $hocr);
-        ob_passthru(__exec_timeout(str_replace(
-            array("__INPUT__","__OUTPUT__"),
-            array($file,$base),
-            getDefault("commands/__tesseract__")
-        )));
+        ob_passthru(__exec_timeout(str_replace_assoc(array(
+            "__INPUT__" => $file,
+            "__OUTPUT__" => $base
+        ), getDefault("commands/__tesseract__"))));
         if (file_exists($html)) {
             $hocr = $html;
         }
@@ -219,11 +216,10 @@ function __unoconv_pdf2ocr($pdf)
     $files = glob("${root}-*");
     //~ foreach($files as $file) unlink(array_pop($files));
     if (!count($files)) {
-        ob_passthru(str_replace(
-            array("__INPUT__","__OUTPUT__"),
-            array($pdf,$root),
-            getDefault("commands/__pdftoppm__")
-        ));
+        ob_passthru(str_replace_assoc(array(
+            "__INPUT__" => $pdf,
+            "__OUTPUT__" => $root
+        ), getDefault("commands/__pdftoppm__")));
     }
     // EXTRACT ALL TEXT FROM TIFF
     $files = glob("${root}-*");
