@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if (!check_user()) {
     action_denied();
 }
+
 if ($page == "profile") {
     require_once "php/libaction.php";
     __folders_update_tree(current_user());

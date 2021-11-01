@@ -25,9 +25,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
+
 if (!check_user()) {
     action_denied();
 }
+
 if (getParam("action") == "sendmail") {
     if (getParam("default_0_id") == "0") {
         require_once "php/getmail.php";
@@ -201,9 +204,7 @@ if (getParam("action") == "sendmail") {
                 }
                 if (isset($file["error"]) && $file["error"] != "") {
                     javascript_error(
-                        LANG("fileuploaderror") .
-                        upload_error2string($file["error"]) .
-                        " (code " . $file["error"] . ")"
+                        LANG("fileuploaderror") . upload_error2string($file["error"]) . " (code " . $file["error"] . ")"
                     );
                 }
                 javascript_unloading();
@@ -433,6 +434,7 @@ if (getParam("action") == "sendmail") {
     javascript_headers();
     die();
 }
+
 if (getParam("page") == "correo") {
     $id_cuenta = intval(getParam("id_cuenta"));
     if (!$id_cuenta) {
@@ -783,9 +785,7 @@ if (getParam("page") == "correo") {
                     $first = 0;
                 }
             }
-            $body_extra = $body_extra . __HTML_NEWLINE__ . __HTML_NEWLINE__ .
-                $oldhead . __HTML_NEWLINE__ . __HTML_NEWLINE__ .
-                __BLOCKQUOTE_OPEN__ . $oldbody . __BLOCKQUOTE_CLOSE__;
+            $body_extra = $body_extra . __HTML_NEWLINE__ . __HTML_NEWLINE__ . $oldhead . __HTML_NEWLINE__ . __HTML_NEWLINE__ . __BLOCKQUOTE_OPEN__ . $oldbody . __BLOCKQUOTE_CLOSE__;
         }
     }
     if (isset($id_extra[1]) && $id_extra[1] == "session") {
@@ -862,9 +862,7 @@ if (getParam("page") == "correo") {
             $oldbody .= __HTML_TEXT_OPEN__;
             $oldbody .= $row2["description"];
             $oldbody .= __HTML_TEXT_CLOSE__;
-            $body_extra = $body_extra . __HTML_NEWLINE__ . __HTML_NEWLINE__ .
-                $oldhead . __HTML_NEWLINE__ . __HTML_NEWLINE__ .
-                __BLOCKQUOTE_OPEN__ . $oldbody . __BLOCKQUOTE_CLOSE__;
+            $body_extra = $body_extra . __HTML_NEWLINE__ . __HTML_NEWLINE__ . $oldhead . __HTML_NEWLINE__ . __HTML_NEWLINE__ . __BLOCKQUOTE_OPEN__ . $oldbody . __BLOCKQUOTE_CLOSE__;
         }
     }
     // CHECK FOR MOBILE DEVICES

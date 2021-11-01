@@ -24,9 +24,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+// phpcs:disable Generic.Files.LineLength
+
 if (!check_user($page, "import")) {
     action_denied();
 }
+
 if ($page == "importaciones") {
     require "php/import.php";
     $id_importacion = abs(intval(getParam("id")));
@@ -94,10 +98,7 @@ if ($page == "importaciones") {
     $next = ($currentpage < $totalpages) ? 1 : 0;
     $last = ($currentpage < $totalpages) ? 1 : 0;
     $buffer .= javascript_template(
-        "import_pager('" . LANG("paginaspc") . $currentpage . LANG("spcdespc") . $totalpages .
-            " (" . LANG("regsfrom", $page) . " " . $currentregini . LANG("spcalspc") . $currentregend .
-            LANG("spcdespc") . $count . ")." . "'," .
-            $currentpage . "," . $totalpages . "," . $first . "," . $previous . "," . $next . "," . $last . ")"
+        "import_pager('" . LANG("paginaspc") . $currentpage . LANG("spcdespc") . $totalpages . " (" . LANG("regsfrom", $page) . " " . $currentregini . LANG("spcalspc") . $currentregend . LANG("spcdespc") . $count . ").'," . $currentpage . "," . $totalpages . "," . $first . "," . $previous . "," . $next . "," . $last . ")"
     );
     output_handler(array(
         "data" => $buffer,
@@ -105,6 +106,7 @@ if ($page == "importaciones") {
         "cache" => false
     ));
 }
+
 if ($page == "datacfg") {
     require "php/import.php";
     // GET THE FILE
@@ -119,9 +121,7 @@ if ($page == "datacfg") {
             }
             if (isset($file["error"]) && $file["error"] != "") {
                 session_error(
-                    LANG("fileuploaderror") .
-                    upload_error2string($file["error"]) .
-                    " (code " . $file["error"] . ")"
+                    LANG("fileuploaderror") . upload_error2string($file["error"]) . " (code " . $file["error"] . ")"
                 );
             }
             javascript_history(-1);

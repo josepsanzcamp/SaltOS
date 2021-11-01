@@ -24,9 +24,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if (!check_user($page, "export")) {
     action_denied();
 }
+
 if ($page == "datacfg") {
     $name = encode_bad_chars("backup_saltos_" . current_date()) . ".gz";
     $dbschema = xml2array("xml/dbschema.xml");

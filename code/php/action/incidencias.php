@@ -25,11 +25,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
 // phpcs:disable PSR1.Files.SideEffects
 
 if (!check_user()) {
     action_denied();
 }
+
 if ($page == "incidencias") {
     require_once "php/report.php";
     require_once "php/sendmail.php";
@@ -45,8 +47,7 @@ if ($page == "incidencias") {
         intval(($action == "insert") ?
         execute_query("SELECT MAX(id) FROM tbl_incidencias") :
         getParam("id"));
-    $query = "SELECT " . make_extra_query_with_field("email", "d.") . " mailto," .
-        make_extra_query_with_login("d.") . " usuario
+    $query = "SELECT " . make_extra_query_with_field("email", "d.") . " mailto," . make_extra_query_with_login("d.") . " usuario
         FROM tbl_incidencias a,tbl_usuarios d
         WHERE a.id='$id_incidencia'
             AND (
@@ -142,8 +143,7 @@ if ($page == "incidencias") {
             $body .= __report_link($temp, get_base() . "?page=incidencias&action=form&id=$id_incidencia", $temp);
             $body .= __report_end3();
             // AÑADIR HTML EXTERNO + LASTMSG ANTES DE LA TABLA PARA DESTACARLO
-            $body = __report_begin2($subject) . str_replace("\n", "<br/>", $lastmsg) . "<br/><br/>" .
-                $body . __report_end2();
+            $body = __report_begin2($subject) . str_replace("\n", "<br/>", $lastmsg) . "<br/><br/>" . $body . __report_end2();
             // PARA DEBUGAR
             //~ echo "<pre>SUBJECT=$subject BODY=$body TO=".sprintr($to)."</pre>";
             //~ die();
@@ -159,6 +159,7 @@ if ($page == "incidencias") {
         }
     }
 }
+
 if ($page == "correo") {
     if ($action == "form") {
         require_once "php/getmail.php";
@@ -254,8 +255,7 @@ if ($page == "correo") {
         }
         require "php/action/pdf.php";
         $pdf = ob_get_clean();
-        $name = encode_bad_chars_file(LANG("correo", "menu") . " " .
-            __incidencias_codigo($id_correo) . " " . $subject . ".pdf");
+        $name = encode_bad_chars_file(LANG("correo", "menu") . " " . __incidencias_codigo($id_correo) . " " . $subject . ".pdf");
         $file = time() . "_" . get_unique_id_md5() . "_" . $name;
         $size = strlen($pdf);
         $type = "application/pdf";

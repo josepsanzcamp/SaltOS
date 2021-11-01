@@ -310,7 +310,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 							<onclick>openwin("https://github.com/PHPMailer/PHPMailer")</onclick>
 						</field>
 						<field>
-							<label>PHPSpreadsheet 1.18 (LGPL-2.1)</label>
+							<label>PHPSpreadsheet 1.19 (LGPL-2.1)</label>
 							<type>link</type>
 							<class>tbody</class>
 							<onclick>openwin("https://github.com/PHPOffice/PhpSpreadsheet")</onclick>

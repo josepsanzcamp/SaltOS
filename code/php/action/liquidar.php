@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if (!check_user()) {
     action_denied();
 }
+
 if ($page == "clientes") {
     $id_cliente = abs(intval(getParam("id")));
     $prefix = array();
@@ -102,6 +103,7 @@ if ($page == "clientes") {
     javascript_history(-1);
     die();
 }
+
 if ($page == "partes") {
     $ids = check_ids(getParam("id"));
     if ($ids) {
@@ -190,6 +192,7 @@ if ($page == "partes") {
     javascript_history(-1);
     die();
 }
+
 if ($page == "gastos") {
     $ids = check_ids(getParam("id"));
     if ($ids) {
@@ -216,6 +219,7 @@ if ($page == "gastos") {
     javascript_history(-1);
     die();
 }
+
 if ($page == "proyectos" && getParam("extra") == "partes") {
     $id_proyecto = abs(intval(getParam("id")));
     $id_cliente = execute_query("SELECT id_cliente FROM tbl_proyectos WHERE id='$id_proyecto'");
@@ -294,6 +298,7 @@ if ($page == "proyectos" && getParam("extra") == "partes") {
     javascript_history(-1);
     die();
 }
+
 if ($page == "proyectos" && getParam("extra") == "facturas") {
     $id_proyecto = abs(intval(getParam("id")));
     $id_cliente = execute_query("SELECT id_cliente FROM tbl_proyectos WHERE id='$id_proyecto'");
@@ -400,6 +405,7 @@ if ($page == "proyectos" && getParam("extra") == "facturas") {
     javascript_history(-1);
     die();
 }
+
 if ($page == "periodicas") {
     $ids = check_ids(getParam("id"));
     $meses = getParam("meses");
@@ -499,6 +505,7 @@ if ($page == "periodicas") {
     javascript_history(-1);
     die();
 }
+
 if ($page == "presupuestos") {
     $id_presupuesto = abs(intval(getParam("id")));
     $id_cliente = execute_query("SELECT id_cliente FROM tbl_presupuestos WHERE id='$id_presupuesto'");

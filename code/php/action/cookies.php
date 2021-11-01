@@ -28,13 +28,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if (!check_user()) {
     action_denied();
 }
-if (getParam("action") == "cookies") {
-    $name = getParam("name");
-    $value = getParam("value");
-    $value = use_table_cookies($name, $value);
-    output_handler(array(
-        "data" => $value,
-        "type" => "text/plain",
-        "cache" => false
-    ));
-}
+
+$name = getParam("name");
+$value = getParam("value");
+$value = use_table_cookies($name, $value);
+output_handler(array(
+    "data" => $value,
+    "type" => "text/plain",
+    "cache" => false
+));

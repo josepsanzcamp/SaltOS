@@ -25,9 +25,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
+
 if (!check_user()) {
     action_denied();
 }
+
 if (getParam("action") == "getmail") {
     require_once "php/getmail.php";
     // CHECK FOR SESSION REQUEST
@@ -627,8 +630,7 @@ if (getParam("action") == "getmail") {
         javascript_history(-1);
     } else {
         if ($newemail > 0) {
-            $gotoemail = " [<a href='javascript:void(0)' onclick='gotoemail()'>" .
-                LANG("msggotoemail", "correo") . "</a>]";
+            $gotoemail = " [<a href='javascript:void(0)' onclick='gotoemail()'>" . LANG("msggotoemail", "correo") . "</a>]";
             $condition = "update_correo_list()";
             javascript_alert(
                 $newemail . LANG("msgnewokpop3email" . min($newemail, 2), "correo"),
@@ -660,6 +662,7 @@ if (getParam("action") == "getmail") {
     javascript_headers();
     die();
 }
+
 if (getParam("page") == "correo") {
     $id_correo = abs(intval(getParam("id")));
     $id_extra = explode("_", getParam("id"), 3);

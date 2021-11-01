@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if (!check_user()) {
     action_login();
 }
+
 $id_usuario = current_user();
 $id_folder = intval(getParam("id_folder"));
 $arguments = array("page=$page","limpiar=1");

@@ -25,6 +25,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
+
 function parse_query($query, $type = "")
 {
     if ($type == "") {
@@ -42,9 +44,7 @@ function parse_query($query, $type = "")
             }
             if (substr($query, $pos + 2, $len) == $type) {
                 $query =
-                    substr($query, 0, $pos) .
-                    trim(substr($query, $pos + 2 + $len, $pos2 - $pos - 2 - $len)) .
-                    substr($query, $pos2 + 2);
+                    substr($query, 0, $pos) . trim(substr($query, $pos + 2 + $len, $pos2 - $pos - 2 - $len)) . substr($query, $pos2 + 2);
             } else {
                 $query = substr($query, 0, $pos) . substr($query, $pos2 + 2);
             }

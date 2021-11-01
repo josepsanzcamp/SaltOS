@@ -28,31 +28,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if (!check_user()) {
     action_denied();
 }
-if (getParam("action") == "game") {
-    ob_start();
-    require_once "php/getmail.php";
-    echo __HTML_PAGE_OPEN__;
-    echo "<canvas></canvas>";
-    echo "<style type='text/css'>canvas{margin-top:45px;}div{text-align:right;}</style>";
-    echo "<script type='text/javascript'>" . file_get_contents("lib/js1k/bouncingbeholder.js") . "</script>";
-    echo "<script type='text/javascript'>" . file_get_contents("lib/timbre/timbre.min.js") . "</script>";
-    echo "<script type='text/javascript'>" . file_get_contents("lib/timbre/gymnopedie.js") . "</script>";
-    echo __HTML_TEXT_OPEN__;
-    echo "<div>Game: <b>Legend of The Bouncing Beholder</b> | ";
-    echo "Copyright (c) 2010 Marijn Haverbeke (ZLib/LibPNG license) | ";
-    echo "<a href='javascript:void(0)' onclick='parent.openwin(\"http://marijn.haverbeke.nl/js1k.html\")'>";
-    echo "marijn.haverbeke.nl/js1k.html</a></div>";
-    echo "<div>Music: <b>JavaScript Library for Objective Sound Programming</b> | ";
-    echo "Timbre Synthesizer Example (MIT license) | ";
-    echo "<a href='javascript:void(0)' onclick='parent.openwin(\"http://mohayonao.github.com/timbre.js\")'>";
-    echo "mohayonao.github.com/timbre.js</a></div>";
-    echo __HTML_TEXT_CLOSE__;
-    echo __HTML_PAGE_CLOSE__;
-    $buffer = ob_get_clean();
-    output_handler(array(
-        "data" => $buffer,
-        "type" => "text/html",
-        "cache" => true,
-        "extra" => array("x-frame-options: SAMEORIGIN")
-    ));
-}
+
+ob_start();
+require_once "php/getmail.php";
+echo __HTML_PAGE_OPEN__;
+echo "<canvas></canvas>";
+echo "<style type='text/css'>canvas{margin-top:45px;}div{text-align:right;}</style>";
+echo "<script type='text/javascript'>" . file_get_contents("lib/js1k/bouncingbeholder.js") . "</script>";
+echo "<script type='text/javascript'>" . file_get_contents("lib/timbre/timbre.min.js") . "</script>";
+echo "<script type='text/javascript'>" . file_get_contents("lib/timbre/gymnopedie.js") . "</script>";
+echo __HTML_TEXT_OPEN__;
+echo "<div>Game: <b>Legend of The Bouncing Beholder</b> | ";
+echo "Copyright (c) 2010 Marijn Haverbeke (ZLib/LibPNG license) | ";
+echo "<a href='javascript:void(0)' onclick='parent.openwin(\"http://marijn.haverbeke.nl/js1k.html\")'>";
+echo "marijn.haverbeke.nl/js1k.html</a></div>";
+echo "<div>Music: <b>JavaScript Library for Objective Sound Programming</b> | ";
+echo "Timbre Synthesizer Example (MIT license) | ";
+echo "<a href='javascript:void(0)' onclick='parent.openwin(\"http://mohayonao.github.com/timbre.js\")'>";
+echo "mohayonao.github.com/timbre.js</a></div>";
+echo __HTML_TEXT_CLOSE__;
+echo __HTML_PAGE_CLOSE__;
+$buffer = ob_get_clean();
+output_handler(array(
+    "data" => $buffer,
+    "type" => "text/html",
+    "cache" => true,
+    "extra" => array("x-frame-options: SAMEORIGIN")
+));

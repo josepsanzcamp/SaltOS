@@ -28,26 +28,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if (!check_user()) {
     action_denied();
 }
-if (getParam("action") == "pdf") {
-    require_once "php/libpdf.php";
-    $_LANG["default"] = "$page,menu,common";
-    if (!file_exists("xml/${page}.xml")) {
-        action_denied();
-    }
-    $config = xml2array("xml/${page}.xml");
-    if (!isset($config[$action])) {
-        action_denied();
-    }
-    $config = $config[$action];
-    if (eval_bool(getDefault("debug/actiondebug"))) {
-        debug_dump(false);
-    }
-    $config = eval_attr($config);
-    if (eval_bool(getDefault("debug/actiondebug"))) {
-        debug_dump();
-    }
-    __pdf_eval_pdftag($config);
-    if (!defined("__CANCEL_DIE__")) {
-        die();
-    }
+
+require_once "php/libpdf.php";
+$_LANG["default"] = "$page,menu,common";
+if (!file_exists("xml/${page}.xml")) {
+    action_denied();
+}
+$config = xml2array("xml/${page}.xml");
+if (!isset($config[$action])) {
+    action_denied();
+}
+$config = $config[$action];
+if (eval_bool(getDefault("debug/actiondebug"))) {
+    debug_dump(false);
+}
+$config = eval_attr($config);
+if (eval_bool(getDefault("debug/actiondebug"))) {
+    debug_dump();
+}
+__pdf_eval_pdftag($config);
+if (!defined("__CANCEL_DIE__")) {
+    die();
 }

@@ -25,9 +25,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
+
 if (!check_user()) {
     action_denied();
 }
+
 if ($page == "correo") {
     $ids = check_ids(getParam("id"));
     if ($ids) {
@@ -62,9 +65,7 @@ if ($page == "correo") {
                 db_query($query);
                 // MOSTRAR RESULTADO
                 session_alert(
-                    LANG($action2[1] ? "msgnumnoleidos" : "msgnumsileidos", "correo") .
-                    $numids .
-                    LANG("message" . min($numids, 2), "correo")
+                    LANG($action2[1] ? "msgnumnoleidos" : "msgnumsileidos", "correo") . $numids . LANG("message" . min($numids, 2), "correo")
                 );
             } elseif ($action2[0] == "wait") {
                 // BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
@@ -81,9 +82,7 @@ if ($page == "correo") {
                 db_query($query);
                 // MOSTRAR RESULTADO
                 session_alert(
-                    LANG($action2[1] ? "msgnumsiwait" : "msgnumnowait", "correo") .
-                    $numids .
-                    LANG("message" . min($numids, 2), "correo")
+                    LANG($action2[1] ? "msgnumsiwait" : "msgnumnowait", "correo") . $numids . LANG("message" . min($numids, 2), "correo")
                 );
             } elseif ($action2[0] == "spam") {
                 // BUSCAR CUANTOS REGISTROS SE VAN A MODIFICAR
@@ -103,9 +102,7 @@ if ($page == "correo") {
                 db_query($query);
                 // MOSTRAR RESULTADO
                 session_alert(
-                    LANG($action2[1] ? "msgnumsispam" : "msgnumnospam", "correo") .
-                    $numids .
-                    LANG("message" . min($numids, 2), "correo")
+                    LANG($action2[1] ? "msgnumsispam" : "msgnumnospam", "correo") . $numids . LANG("message" . min($numids, 2), "correo")
                 );
             } elseif ($action2[0] == "delete") {
                 // CREAR DATOS EN TABLA DE CORREOS BORRADOS (SOLO LOS DEL INBOX)
@@ -116,8 +113,7 @@ if ($page == "correo") {
                         AND is_outbox=0";
                 db_query($query);
                 // BORRAR FICHEROS .EML.GZ DEL INBOX
-                $query = "SELECT CONCAT('" . get_directory("dirs/inboxdir") .
-                    "',id_cuenta,'/',uidl,'.eml.gz') action_delete
+                $query = "SELECT CONCAT('" . get_directory("dirs/inboxdir") . "',id_cuenta,'/',uidl,'.eml.gz') action_delete
                     FROM tbl_correo
                     WHERE id IN ($ids)
                         AND is_outbox='0'";
@@ -128,8 +124,7 @@ if ($page == "correo") {
                     }
                 }
                 // BORRAR FICHEROS .EML.GZ DEL OUTBOX
-                $query = "SELECT CONCAT('" . get_directory("dirs/outboxdir") .
-                    "',id_cuenta,'/',uidl,'.eml.gz') action_delete
+                $query = "SELECT CONCAT('" . get_directory("dirs/outboxdir") . "',id_cuenta,'/',uidl,'.eml.gz') action_delete
                     FROM tbl_correo
                     WHERE id IN ($ids)
                         AND is_outbox='1'";
@@ -140,8 +135,7 @@ if ($page == "correo") {
                     }
                 }
                 // BORRAR FICHEROS .OBJ DEL OUTBOX
-                $query = "SELECT CONCAT('" . get_directory("dirs/outboxdir") .
-                    "',id_cuenta,'/',uidl,'.obj') action_delete
+                $query = "SELECT CONCAT('" . get_directory("dirs/outboxdir") . "',id_cuenta,'/',uidl,'.obj') action_delete
                     FROM tbl_correo
                     WHERE id IN ($ids)
                         AND is_outbox='1'";
@@ -170,9 +164,7 @@ if ($page == "correo") {
                 db_query($query);
                 // MOSTRAR RESULTADO
                 session_alert(
-                    LANG("msgnumdelete", "correo") .
-                    $numids .
-                    LANG("message" . min($numids, 2), "correo")
+                    LANG("msgnumdelete", "correo") . $numids . LANG("message" . min($numids, 2), "correo")
                 );
             }
         } else {
@@ -184,6 +176,7 @@ if ($page == "correo") {
     javascript_history(-1);
     die();
 }
+
 if (in_array($page, array("profile","usuarios"))) {
     global $correo_new;
     $temp_key = "correo_new_0_email_signature_new";

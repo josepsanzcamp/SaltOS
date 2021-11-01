@@ -25,6 +25,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
+
 function eval_protected($input, $global = "", $source = "")
 {
     if (is_string($global) && $global != "") {
@@ -203,8 +205,7 @@ function struct2array_path($input)
                     $action = "";
                 }
                 if ($path && !$action) {
-                    xml_error("Detected 'path' attr without " .
-                        "before, after, replace, append, add, prepend, remove or delete' attr");
+                    xml_error("Detected 'path' attr without before, after, replace, append, add, prepend, remove or delete' attr");
                 }
                 if ($action && !$path) {
                     xml_error("Detected '$action' attr without 'path' attr");
@@ -444,9 +445,7 @@ function eval_files()
             }
             if (isset($val["error"]) && $val["error"] != "") {
                 session_error(
-                    LANG("fileuploaderror") .
-                    upload_error2string($val["error"]) .
-                    " (code " . $val["error"] . ")"
+                    LANG("fileuploaderror") . upload_error2string($val["error"]) . " (code " . $val["error"] . ")"
                 );
             }
         }
@@ -914,12 +913,10 @@ function eval_attr($array)
                                     $stack["for_step"] = 1;
                                 }
                                 if (!$stack["for_step"]) {
-                                    xml_error("Error sequence FOR - FROM(${stack["for_from"]}) - " .
-                                        "STEP(${stack["for_step"]}) - TO(${stack["for_to"]})");
+                                    xml_error("Error sequence FOR - FROM(${stack["for_from"]}) - STEP(${stack["for_step"]}) - TO(${stack["for_to"]})");
                                 }
                                 if (sign($stack["for_to"] - $stack["for_from"]) != sign($stack["for_step"])) {
-                                    xml_error("Error sequence FOR - FROM(${stack["for_from"]}) - " .
-                                        "STEP(${stack["for_step"]}) - TO(${stack["for_to"]})");
+                                    xml_error("Error sequence FOR - FROM(${stack["for_from"]}) - STEP(${stack["for_step"]}) - TO(${stack["for_to"]})");
                                 }
                                 // CONTINUE
                                 $attr = array_slice($attr, $count);

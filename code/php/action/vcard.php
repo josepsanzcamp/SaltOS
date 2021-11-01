@@ -25,9 +25,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
+
 if (!check_user()) {
     action_denied();
 }
+
 if (in_array($page, array("contactos","clientes","proveedores","empleados","posiblescli"))) {
     $where = "WHERE id='" . abs(intval(getParam("id"))) . "'";
     $id_aplicacion = page2id($page);
@@ -149,10 +152,8 @@ if (in_array($page, array("contactos","clientes","proveedores","empleados","posi
         $buffer .= "TEL;CELL;VOICE:$tel_movil\r\n";
         $buffer .= "TEL;WORK;FAX:$fax\r\n";
         $buffer .= "TEL;HOME;FAX:\r\n";
-        $buffer .= "ADR;WORK;ENCODING=QUOTED-PRINTABLE:;;" .
-            "$direccion;$poblacion;$provincia;$codpostal;$pais\r\n";
-        $buffer .= "LABEL;WORK;ENCODING=QUOTED-PRINTABLE:=0D=0A" .
-            "$direccion=0D=0A$poblacion, $provincia $codpostal=0D=0A$pais\r\n";
+        $buffer .= "ADR;WORK;ENCODING=QUOTED-PRINTABLE:;;$direccion;$poblacion;$provincia;$codpostal;$pais\r\n";
+        $buffer .= "LABEL;WORK;ENCODING=QUOTED-PRINTABLE:=0D=0A$direccion=0D=0A$poblacion, $provincia $codpostal=0D=0A$pais\r\n";
         $buffer .= "ADR;HOME;ENCODING=QUOTED-PRINTABLE:;;;;;;\r\n";
         $buffer .= "LABEL;HOME;ENCODING=QUOTED-PRINTABLE:;=0D=0A,=0D=0A\r\n";
         $buffer .= "URL;WORK:$web\r\n";

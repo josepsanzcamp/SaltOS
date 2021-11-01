@@ -25,11 +25,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
 // phpcs:disable PSR1.Files.SideEffects
 
 if (!check_user()) {
     action_denied();
 }
+
 if (in_array($page, array("facturas","actas","partes","presupuestos"))) {
     require_once "php/getmail.php";
     // DATOS FACTURA/ACTA/PARTE/PRESUPUESTO
@@ -38,8 +40,7 @@ if (in_array($page, array("facturas","actas","partes","presupuestos"))) {
         $query = "
         SELECT
             CASE num WHEN '' THEN
-                CONCAT('" . LANG("albaran") . "',' ',LPAD(id," .
-                    intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre)
+                CONCAT('" . LANG("albaran") . "',' ',LPAD(id," . intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre)
             ELSE
                 CONCAT('" . LANG("factura") . "',' ',num,' ',nombre)
             END subject,id
@@ -48,22 +49,19 @@ if (in_array($page, array("facturas","actas","partes","presupuestos"))) {
     if ($page == "actas") {
         $query = "
         SELECT
-            CONCAT('" . LANG("acta") . "',' ',LPAD(id," .
-                intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject,id
+            CONCAT('" . LANG("acta") . "',' ',LPAD(id," . intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject,id
         FROM tbl_actas $where";
     }
     if ($page == "partes") {
         $query = "
         SELECT
-            CONCAT('" . LANG("parte") . "',' ',LPAD(id," .
-                intval(CONFIG("zero_padding_digits")) . ",0),' ',tarea) subject,id
+            CONCAT('" . LANG("parte") . "',' ',LPAD(id," . intval(CONFIG("zero_padding_digits")) . ",0),' ',tarea) subject,id
         FROM tbl_partes $where";
     }
     if ($page == "presupuestos") {
         $query = "
         SELECT
-            CONCAT('" . LANG("presupuesto") . "',' ',LPAD(id," .
-                intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject,id
+            CONCAT('" . LANG("presupuesto") . "',' ',LPAD(id," . intval(CONFIG("zero_padding_digits")) . ",0),' ',nombre) subject,id
         FROM tbl_presupuestos $where";
     }
     $result = db_query($query);

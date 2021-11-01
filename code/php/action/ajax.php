@@ -28,55 +28,54 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if (!check_user()) {
     action_denied();
 }
-if (getParam("action") == "ajax") {
-    $config = xml2array("xml/ajax.xml");
-    if (eval_bool(getDefault("debug/actiondebug"))) {
-        debug_dump(false);
-    }
-    $query = getParam("query", "query");
-    if (!isset($config[$query])) {
-        die();
-    }
-    $config = eval_attr(array($query => $config[$query]));
-    if (eval_bool(getDefault("debug/actiondebug"))) {
-        debug_dump();
-    }
-    $query = $config[$query];
-    $result = db_query($query);
-    $count = 0;
-    $_RESULT = array("rows" => array());
-    while ($row = db_fetch_row($result)) {
-        foreach ($row as $key => $val) {
-            if (substr($key, -7, 7) == "_base64" && file_exists($val) && is_file($val)) {
-                $row[$key] = base64_encode(file_get_contents($val));
-            }
-        }
-        $row["__ROW_NUMBER__"] = ++$count;
-        set_array($_RESULT["rows"], "row", $row);
-    }
-    db_free($result);
-    $format = strtolower(getParam("format", "json"));
-    if ($format == "json") {
-        $_RESULT["rows"] = array_values($_RESULT["rows"]);
-        $buffer = json_encode($_RESULT);
-        $format = "application/json";
-    } elseif ($format == "xml") {
-        $buffer = __XML_HEADER__;
-        $buffer .= array2xml($_RESULT);
-        $format = "text/xml";
-    } elseif ($format == "plain") {
-        $buffer = array();
-        foreach ($_RESULT["rows"] as $row) {
-            $buffer[] = implode("|", $row);
-        }
-        $buffer = implode("\n", $buffer);
-        $format = "text/plain";
-    } else {
-        die();
-    }
-    output_handler(array(
-        "data" => $buffer,
-        "type" => $format,
-        "cache" => false
-    ));
+
+$config = xml2array("xml/ajax.xml");
+if (eval_bool(getDefault("debug/actiondebug"))) {
+    debug_dump(false);
 }
+$query = getParam("query", "query");
+if (!isset($config[$query])) {
+    die();
+}
+$config = eval_attr(array($query => $config[$query]));
+if (eval_bool(getDefault("debug/actiondebug"))) {
+    debug_dump();
+}
+$query = $config[$query];
+$result = db_query($query);
+$count = 0;
+$_RESULT = array("rows" => array());
+while ($row = db_fetch_row($result)) {
+    foreach ($row as $key => $val) {
+        if (substr($key, -7, 7) == "_base64" && file_exists($val) && is_file($val)) {
+            $row[$key] = base64_encode(file_get_contents($val));
+        }
+    }
+    $row["__ROW_NUMBER__"] = ++$count;
+    set_array($_RESULT["rows"], "row", $row);
+}
+db_free($result);
+$format = strtolower(getParam("format", "json"));
+if ($format == "json") {
+    $_RESULT["rows"] = array_values($_RESULT["rows"]);
+    $buffer = json_encode($_RESULT);
+    $format = "application/json";
+} elseif ($format == "xml") {
+    $buffer = __XML_HEADER__;
+    $buffer .= array2xml($_RESULT);
+    $format = "text/xml";
+} elseif ($format == "plain") {
+    $buffer = array();
+    foreach ($_RESULT["rows"] as $row) {
+        $buffer[] = implode("|", $row);
+    }
+    $buffer = implode("\n", $buffer);
+    $format = "text/plain";
+} else {
+    die();
+}
+output_handler(array(
+    "data" => $buffer,
+    "type" => $format,
+    "cache" => false
+));

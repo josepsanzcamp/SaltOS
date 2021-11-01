@@ -25,6 +25,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
+
 function __report_begin($subject)
 {
     $message = __report_begin2($subject);
@@ -56,17 +58,13 @@ function __report_text($label, $value)
         $label .= ":";
     }
     $message = "<tr>";
-    $message .= "<td bgcolor='" . __report_config("bglabel") . "' valign='top' align='right' width='" .
-        __report_config("small") . "' style='" . __report_config("style") . "'>";
-    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" .
-        __report_config("fglabel") . "'><b>";
+    $message .= "<td bgcolor='" . __report_config("bglabel") . "' valign='top' align='right' width='" . __report_config("small") . "' style='" . __report_config("style") . "'>";
+    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" . __report_config("fglabel") . "'><b>";
     $message .= $label;
     $message .= "</b></font>";
     $message .= "</td>";
-    $message .= "<td bgcolor='" . __report_config("bgvalue") . "' valign='top' align='left' width='" .
-        __report_config("medium") . "' style='" . __report_config("style") . "'>";
-    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" .
-        __report_config("fgvalue") . "'>";
+    $message .= "<td bgcolor='" . __report_config("bgvalue") . "' valign='top' align='left' width='" . __report_config("medium") . "' style='" . __report_config("style") . "'>";
+    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" . __report_config("fgvalue") . "'>";
     $message .= $value;
     $message .= "</font>";
     $message .= "</td>";
@@ -82,10 +80,8 @@ function __report_textarea($label, $value, $repare = true)
     $message = "";
     if ($label != "") {
         $message .= "<tr>";
-        $message .= "<td bgcolor='" . __report_config("bglabel") . "' valign='top' align='center' width='" .
-            __report_config("big") . "' colspan='2' style='" . __report_config("style") . "'>";
-        $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" .
-            __report_config("fglabel") . "'><b>";
+        $message .= "<td bgcolor='" . __report_config("bglabel") . "' valign='top' align='center' width='" . __report_config("big") . "' colspan='2' style='" . __report_config("style") . "'>";
+        $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" . __report_config("fglabel") . "'><b>";
         $message .= $label;
         $message .= "</b></font>";
         $message .= "</td>";
@@ -95,10 +91,8 @@ function __report_textarea($label, $value, $repare = true)
         $value = str_replace("\n", "<br/>", $value);
     }
     $message .= "<tr>";
-    $message .= "<td bgcolor='" . __report_config("bgvalue") . "' valign='top' align='left' width='" .
-        __report_config("big") . "' colspan='2' height='100px' style='" . __report_config("style") . "'>";
-    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" .
-        __report_config("fgvalue") . "'>";
+    $message .= "<td bgcolor='" . __report_config("bgvalue") . "' valign='top' align='left' width='" . __report_config("big") . "' colspan='2' height='100px' style='" . __report_config("style") . "'>";
+    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" . __report_config("fgvalue") . "'>";
     $message .= $value;
     $message .= "</font>";
     $message .= "</td>";
@@ -112,17 +106,13 @@ function __report_mail($label, $value)
         $label .= ":";
     }
     $message = "<tr>";
-    $message .= "<td bgcolor='" . __report_config("bglabel") . "' valign='top' align='right' width='" .
-        __report_config("small") . "' style='" . __report_config("style") . "'>";
-    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" .
-        __report_config("fglabel") . "'><b>";
+    $message .= "<td bgcolor='" . __report_config("bglabel") . "' valign='top' align='right' width='" . __report_config("small") . "' style='" . __report_config("style") . "'>";
+    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" . __report_config("fglabel") . "'><b>";
     $message .= $label;
     $message .= "</b></font>";
     $message .= "</td>";
-    $message .= "<td bgcolor='" . __report_config("bgvalue") . "' valign='top' align='left' width='" .
-        __report_config("medium") . "' style='" . __report_config("style") . "'>";
-    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" .
-        __report_config("fgvalue") . "'>";
+    $message .= "<td bgcolor='" . __report_config("bgvalue") . "' valign='top' align='left' width='" . __report_config("medium") . "' style='" . __report_config("style") . "'>";
+    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" . __report_config("fgvalue") . "'>";
     $message .= "<a style='color:" . __report_config("fgvalue") . "' href='mailto: $value'>$value</a>";
     $message .= "</font>";
     $message .= "</td>";
@@ -136,20 +126,16 @@ function __report_link($label, $value, $text)
         $label .= ":";
     }
     $message = "<tr>";
-    $message .= "<td bgcolor='" . __report_config("bglabel") . "' valign='top' align='right' width='" .
-        __report_config("small") . "' style='" . __report_config("style") . "'>";
-    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" .
-        __report_config("fglabel") . "'><b>";
+    $message .= "<td bgcolor='" . __report_config("bglabel") . "' valign='top' align='right' width='" . __report_config("small") . "' style='" . __report_config("style") . "'>";
+    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" . __report_config("fglabel") . "'><b>";
     $message .= $label;
     $message .= "</b></font>";
     $message .= "</td>";
     if ($text == "") {
         $text = $value;
     }
-    $message .= "<td bgcolor='" . __report_config("bgvalue") . "' valign='top' align='left' width='" .
-        __report_config("medium") . "' style='" . __report_config("style") . "'>";
-    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" .
-        __report_config("fgvalue") . "'>";
+    $message .= "<td bgcolor='" . __report_config("bgvalue") . "' valign='top' align='left' width='" . __report_config("medium") . "' style='" . __report_config("style") . "'>";
+    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" . __report_config("fgvalue") . "'>";
     $message .= "<a style='color:" . __report_config("fgvalue") . "' href='$value'>$text</a>";
     $message .= "</font>";
     $message .= "</td>";
@@ -180,10 +166,8 @@ function __report_end3()
 function __report_head($title)
 {
     $message = "<tr>";
-    $message .= "<td bgcolor='" . __report_config("bgtitle") . "' valign='top' align='center' width='" .
-        __report_config("big") . "' colspan='2' style='" . __report_config("style") . "'>";
-    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" .
-        __report_config("fgtitle") . "'><b>";
+    $message .= "<td bgcolor='" . __report_config("bgtitle") . "' valign='top' align='center' width='" . __report_config("big") . "' colspan='2' style='" . __report_config("style") . "'>";
+    $message .= "<font size='" . __report_config("size") . "' face='" . __report_config("face") . "' color='" . __report_config("fgtitle") . "'><b>";
     $message .= $title;
     $message .= "</b></font>";
     $message .= "</td>";

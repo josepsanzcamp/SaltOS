@@ -25,6 +25,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// phpcs:disable Generic.Files.LineLength
+
 function __cache_resolve_path($buffer, $file)
 {
     // RESOLVE FULL PATH FOR ALL BACKGROUNDS IMAGES
@@ -697,9 +699,7 @@ function __folders_update_tree($id_usuario, $id_parent = 0, &$pos = 0, $depth = 
 // FUNCTIONS FOR THE NEW API V3
 function __gcalendar_requesttoken($client)
 {
-    session_alert("<a href='" . $client->createAuthUrl() . "' target='_blank'>" .
-        LANG("requestgcalendartoken", "agenda") .
-    "</a>");
+    session_alert("<a href='" . $client->createAuthUrl() . "' target='_blank'>" . LANG("requestgcalendartoken", "agenda") . "</a>");
 }
 
 function __gcalendar_invalidtoken()
@@ -958,7 +958,7 @@ function __signature_getauto($file)
         }
         $file["auto"] = "<img alt=\"${file["alt"]}\" border=\"0\" src=\"${file["src"]}\" />";
     } else {
-        $file["auto"] = "Name: ${file["name"]}" . "<br/>" . "Type: ${file["type"]}" . "<br/>" . "Size: ${file["size"]}";
+        $file["auto"] = "Name: ${file["name"]}<br/>Type: ${file["type"]}<br/>Size: ${file["size"]}";
     }
     require_once "php/getmail.php";
     $file["auto"] = __SIGNATURE_OPEN__ . "--" . __HTML_NEWLINE__ . $file["auto"] . __SIGNATURE_CLOSE__;
@@ -979,8 +979,7 @@ function __translator_get_options($filter = "")
         foreach ($langs as $key => $val) {
             $temp = explode("-", $val);
             if (!count($filter) || (in_array($temp[0], $filter) && in_array($temp[1], $filter))) {
-                $val2 = LANG("translator", "translator") . " " .
-                    LANG($temp[0], "translator") . " => " . LANG($temp[1], "translator");
+                $val2 = LANG("translator", "translator") . " " . LANG($temp[0], "translator") . " => " . LANG($temp[1], "translator");
                 $val3 = implode("-", array($temp[1],$temp[0]));
                 $val3 = in_array($val3, $langs) ? $val3 : "";
                 $options[] = "<option value='${val}' reverse='${val3}'>${val2}</option>";
@@ -1107,8 +1106,7 @@ function __translator_aspell($text, $lang)
             $number = strtok(" ");
             $offset = strtok(": ");
             $suggest = strtok(", ");
-            $text = mb_substr($text, 0, $offset + $bias) . $suggest .
-                mb_substr($text, $offset + $bias + mb_strlen($word), mb_strlen($text));
+            $text = mb_substr($text, 0, $offset + $bias) . $suggest . mb_substr($text, $offset + $bias + mb_strlen($word), mb_strlen($text));
             $bias += mb_strlen($suggest) - mb_strlen($word);
         }
         if ($token == "") {
