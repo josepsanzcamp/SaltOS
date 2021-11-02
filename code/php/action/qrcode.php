@@ -47,75 +47,12 @@ $m = intval(getParam("m", 10));
 $cache = get_cache_file($msg, ".png");
 //~ if(file_exists($cache)) unlink($cache);
 if (!file_exists($cache)) {
-    require_once "lib/tcpdf/tcpdf_barcodes_2d.php";
-    $levels = array("L","M","Q","H");
-    $factors = array(0.07,0.15,0.25,0.30);
-    for ($i = 0; $i < 4; $i++) {
-        $barcode = new TCPDF2DBarcode($msg, "QRCODE," . $levels[$i]);
-        $array = $barcode->getBarcodeArray();
-        if (!isset($array["num_cols"]) || !isset($array["num_rows"])) {
-            action_denied();
-        }
-        $total = $array["num_cols"] * $array["num_rows"];
-        if ($total * $factors[$i] > 100 + $factors[$i] * 100) {
-            break;
-        }
+    require_once "php/libaction.php";
+    $buffer = __qrcode($msg, $s, $m);
+    if ($buffer == "") {
+        action_denied();
     }
-    $width = ($array["num_cols"] * $s);
-    $height = ($array["num_rows"] * $s);
-    $im = imagecreatetruecolor($width + 2 * $m, $height + 2 * $m);
-    $bgcol = imagecolorallocate($im, 255, 255, 255);
-    imagefilledrectangle($im, 0, 0, $width + 2 * $m, $height + 2 * $m, $bgcol);
-    $fgcol = imagecolorallocate($im, 0, 0, 0);
-    foreach ($array["bcode"] as $key => $val) {
-        foreach ($val as $key2 => $val2) {
-            if ($val2) {
-                imagefilledrectangle(
-                    $im,
-                    $key2 * $s + $m,
-                    $key * $s + $m,
-                    ($key2 + 1) * $s + $m - 1,
-                    ($key + 1) * $s + $m - 1,
-                    $fgcol
-                );
-            }
-        }
-    }
-    // ADD SALTOS LOGO
-    $matrix = array(
-        array(0,0,0,0,2,2,2,0,0,0),
-        array(0,0,0,0,2,1,2,2,2,2),
-        array(0,2,2,2,2,2,2,2,1,2),
-        array(0,2,1,1,1,1,1,1,2,2),
-        array(0,2,2,1,1,1,1,2,2,0),
-        array(0,0,2,2,1,1,1,1,2,2),
-        array(0,0,2,2,1,2,2,2,1,2),
-        array(0,2,2,1,2,2,0,2,2,2),
-        array(0,2,1,2,2,0,0,0,0,0),
-        array(0,2,2,2,0,0,0,0,0,0),
-    );
-    $ww = intval(count($matrix[0]) / 2) * 2;
-    $hh = intval(count($matrix) / 2) * 2;
-    $xx = imagesx($im) / 2 - $ww * $s / 2 + $s / 2;
-    $yy = imagesy($im) / 2 - $hh * $s / 2 - $s / 2;
-    $cc = array(0,imagecolorallocate($im, 0xb8, 0x14, 0x15),imagecolorallocate($im, 0x00, 0x00, 0x00));
-    foreach ($matrix as $y => $xz) {
-        foreach ($xz as $x => $z) {
-            if ($z) {
-                imagefilledrectangle(
-                    $im,
-                    $xx + $x * $s,
-                    $yy + $y * $s,
-                    $xx + ($x + 1) * $s - 1,
-                    $yy + ($y + 1) * $s - 1,
-                    $cc[$z]
-                );
-            }
-        }
-    }
-    // CONTINUE
-    imagepng($im, $cache);
-    imagedestroy($im);
+    file_put_contents($cache, $buffer);
     chmod_protected($cache, 0666);
 }
 output_handler(array(

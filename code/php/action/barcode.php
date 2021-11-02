@@ -45,43 +45,12 @@ $t = getParam("t", "C39");
 $cache = get_cache_file(array($msg,$w,$h,$m,$s,$t), ".png");
 //~ if(file_exists($cache)) unlink($cache);
 if (!file_exists($cache)) {
-    require_once "lib/tcpdf/tcpdf_barcodes_1d.php";
-    $barcode = new TCPDFBarcode($msg, $t);
-    $array = $barcode->getBarcodeArray();
-    if (!isset($array["maxw"])) {
+    require_once "php/libaction.php";
+    $buffer = __barcode($msg, $w, $h, $m, $s, $t);
+    if ($buffer == "") {
         action_denied();
     }
-    $width = $array["maxw"] * $w;
-    $height = $h;
-    $extra = $s;
-    if ($s) {
-        $font = getcwd() . "/lib/fonts/DejaVuSans.ttf";
-        $bbox = imagettfbbox($s, 0, $font, $msg);
-        $extra = abs($bbox[5] - $bbox[1]) + $m;
-    }
-    $im = imagecreatetruecolor($width + 2 * $m, $height + 2 * $m + $extra);
-    $bgcol = imagecolorallocate($im, 255, 255, 255);
-    imagefilledrectangle($im, 0, 0, $width + 2 * $m, $height + 2 * $m + $extra, $bgcol);
-    $fgcol = imagecolorallocate($im, 0, 0, 0);
-    $x = 0;
-    foreach ($array["bcode"] as $key => $val) {
-        $bw = round(($val["w"] * $w), 3);
-        $bh = round(($val["h"] * $h / $array["maxh"]), 3);
-        if ($val["t"]) {
-            $y = round(($val["p"] * $h / $array["maxh"]), 3);
-            imagefilledrectangle($im, $x + $m, $y + $m, ($x + $bw - 1) + $m, ($y + $bh - 1) + $m, $fgcol);
-        }
-        $x += $bw;
-    }
-    if ($s) {
-        // ADD MSG TO THE IMAGE FOOTER
-        $px = ($width + 2 * $m) / 2 - ($bbox[4] - $bbox[0]) / 2;
-        $py = $m + $h + 1 + $m + $s;
-        imagettftext($im, $s, 0, $px, $py, $fgcol, $font, $msg);
-    }
-    // CONTINUE
-    imagepng($im, $cache);
-    imagedestroy($im);
+    file_put_contents($cache, $buffer);
     chmod_protected($cache, 0666);
 }
 if (!defined("__CANCEL_DIE__")) {
