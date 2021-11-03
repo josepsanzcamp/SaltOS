@@ -51,75 +51,26 @@ $cache = "$temp$hash.$format";
 if (!file_exists($cache)) {
     // PROCESS FORMATS
     if ($format == "png") {
-        $im = imagecreatetruecolor($width, $height);
         $score = password_strength($pass);
-        $incr = ($score * 512 / 100) / $width;
-        $posx = 0;
-        for ($i = 0; $i <= 255; $i = $i + $incr) {
-            if ($posx > $width) {
-                break;
-            }
-            $color = imagecolorallocate($im, 255, $i, 0);
-            imageline($im, $posx, 0, $posx, $height, $color);
-            $posx++;
-        }
-        for ($i = 255; $i >= 0; $i = $i - $incr) {
-            if ($posx > $width) {
-                break;
-            }
-            $color = imagecolorallocate($im, $i, 255, 0);
-            imageline($im, $posx, 0, $posx, $height, $color);
-            $posx++;
-        }
-        $font = getcwd() . "/lib/fonts/DejaVuSans.ttf";
-        $bbox = imagettfbbox($size, 0, $font, $score . "%");
-        $sx = $bbox[4] - $bbox[0];
-        $sy = $bbox[5] - $bbox[1];
-        $color = imagecolorallocate($im, 0, 0, 0);
-        imagettftext($im, $size, 0, $width / 2 - $sx / 2, $height / 2 - $sy / 2, $color, $font, $score . "%");
-        // SAVE AND DESTROY
-        imagepng($im, $cache);
-        imagedestroy($im);
+        require_once "php/libaction.php";
+        $buffer = __score_image($score,$width,$height,$size);
+        file_put_contents($cache,$buffer);
         chmod_protected($cache, 0666);
-        // DUMP THE DATA
-        if (defined("__CANCEL_DIE__")) {
-            readfile($cache);
-        }
-        if (!defined("__CANCEL_DIE__")) {
-            output_handler(array(
-            "file" => $cache,
-            "cache" => true
-            ));
-        }
     }
     if ($format == "json") {
-        define("__CANCEL_DIE__", 1);
-        setParam("format", "png");
-        ob_start();
-        $oldcache = $cache;
-        require __FILE__;
-        $cache = $oldcache;
-        $data = base64_encode(ob_get_clean());
+        $score = password_strength($pass);
+        require_once "php/libaction.php";
+        $buffer = __score_image($score,$width,$height,$size);
+        $data = base64_encode($buffer);
         $data = "data:image/png;base64,${data}";
         $valid = ($score >= $minscore) ? 1 : 0;
         $_RESULT = array("image" => $data,"score" => $score . "%","valid" => $valid);
         $buffer = json_encode($_RESULT);
         file_put_contents($cache, $buffer);
         chmod_protected($cache, 0666);
-        // DUMP THE DATA
-        output_handler(array(
-            "file" => $cache,
-            "cache" => true
-        ));
-    }
-} else {
-    if (defined("__CANCEL_DIE__")) {
-        readfile($cache);
-    }
-    if (!defined("__CANCEL_DIE__")) {
-        output_handler(array(
-        "file" => $cache,
-        "cache" => true
-        ));
     }
 }
+output_handler(array(
+    "file" => $cache,
+    "cache" => true
+));

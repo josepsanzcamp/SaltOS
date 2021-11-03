@@ -1405,3 +1405,38 @@ function __qrcode($msg, $s, $m)
     imagedestroy($im);
     return $buffer;
 }
+
+function __score_image($score,$width,$height,$size)
+{
+    $im = imagecreatetruecolor($width, $height);
+    $incr = ($score * 512 / 100) / $width;
+    $posx = 0;
+    for ($i = 0; $i <= 255; $i = $i + $incr) {
+        if ($posx > $width) {
+            break;
+        }
+        $color = imagecolorallocate($im, 255, $i, 0);
+        imageline($im, $posx, 0, $posx, $height, $color);
+        $posx++;
+    }
+    for ($i = 255; $i >= 0; $i = $i - $incr) {
+        if ($posx > $width) {
+            break;
+        }
+        $color = imagecolorallocate($im, $i, 255, 0);
+        imageline($im, $posx, 0, $posx, $height, $color);
+        $posx++;
+    }
+    $font = getcwd() . "/lib/fonts/DejaVuSans.ttf";
+    $bbox = imagettfbbox($size, 0, $font, $score . "%");
+    $sx = $bbox[4] - $bbox[0];
+    $sy = $bbox[5] - $bbox[1];
+    $color = imagecolorallocate($im, 0, 0, 0);
+    imagettftext($im, $size, 0, $width / 2 - $sx / 2, $height / 2 - $sy / 2, $color, $font, $score . "%");
+    // CONTINUE
+    ob_start();
+    imagepng($im);
+    $buffer = ob_get_clean();
+    imagedestroy($im);
+    return $buffer;
+}
