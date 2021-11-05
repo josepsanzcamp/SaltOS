@@ -147,16 +147,12 @@ function __excel_dump($matrix, $file, $title = "")
         "data" => $matrix,
         "title" => $title,
     ));
-    if (!defined("__CANCEL_DIE__")) {
-        output_handler(array(
-            "data" => $buffer,
-            "type" => "application/x-excel",
-            "cache" => false,
-            "name" => $file
-        ));
-    } else {
-        echo $buffer;
-    }
+    output_handler(array(
+        "data" => $buffer,
+        "type" => "application/x-excel",
+        "cache" => false,
+        "name" => $file
+    ));
 }
 
 function __csv_dump($matrix, $file)
@@ -166,16 +162,12 @@ function __csv_dump($matrix, $file)
         "type" => "csv",
         "data" => $matrix,
     ));
-    if (!defined("__CANCEL_DIE__")) {
-        output_handler(array(
-            "data" => $buffer,
-            "type" => "text/csv",
-            "cache" => false,
-            "name" => $file
-        ));
-    } else {
-        echo $buffer;
-    }
+    output_handler(array(
+        "data" => $buffer,
+        "type" => "text/csv",
+        "cache" => false,
+        "name" => $file
+    ));
 }
 
 function __matrix2dump($matrix, $file, $title)
@@ -235,16 +227,12 @@ function __query2dump($query, $file)
         ));
         $offset += $limit;
     }
-    if (!defined("__CANCEL_DIE__")) {
-        output_handler(array(
-            "data" => $buffer,
-            "type" => "text/csv",
-            "cache" => false,
-            "name" => $file
-        ));
-    } else {
-        echo $buffer;
-    }
+    output_handler(array(
+        "data" => $buffer,
+        "type" => "text/csv",
+        "cache" => false,
+        "name" => $file
+    ));
 }
 
 function __favicon_color2dec($color, $component)
@@ -1406,7 +1394,7 @@ function __qrcode($msg, $s, $m)
     return $buffer;
 }
 
-function __score_image($score,$width,$height,$size)
+function __score_image($score, $width, $height, $size)
 {
     $im = imagecreatetruecolor($width, $height);
     $incr = ($score * 512 / 100) / $width;
@@ -1439,4 +1427,245 @@ function __score_image($score,$width,$height,$size)
     $buffer = ob_get_clean();
     imagedestroy($im);
     return $buffer;
+}
+
+function __download($id_aplicacion, $id_registro, $cid)
+{
+    if (!$id_aplicacion) {
+        show_php_error(array("phperror" => "Unknown page"));
+    }
+    if (!$id_registro) {
+        show_php_error(array("phperror" => "Unknown content"));
+    }
+    if (!$cid) {
+        show_php_error(array("phperror" => "Unknown file"));
+    }
+    if ($id_aplicacion == page2id("correo")) {
+        if ($id_registro == "session") {
+            sess_init();
+            $session = $_SESSION["correo"];
+            sess_close();
+            if (!isset($session["files"][$cid])) {
+                show_php_error(array("phperror" => "Session not found"));
+            }
+            $result = $session["files"][$cid];
+            $file = $result["file"];
+            $name = $result["name"];
+            $type = $result["mime"];
+            $size = $result["size"];
+        } else {
+            require_once "php/getmail.php";
+            $decoded = __getmail_getmime($id_registro);
+            if (!$decoded) {
+                show_php_error(array("phperror" => "Email not found"));
+            }
+            if (strlen($cid) != 32) {
+                $query = "SELECT fichero_hash
+                    FROM tbl_ficheros
+                    WHERE id='${cid}'
+                        AND id_aplicacion='${id_aplicacion}'
+                        AND id_registro='${id_registro}'";
+                $cid = execute_query($query);
+                if (!$cid) {
+                    show_php_error(array("phperror" => "Unknown file"));
+                }
+            }
+            $result = __getmail_getcid(__getmail_getnode("0", $decoded), $cid);
+            if (!$result) {
+                show_php_error(array("phperror" => "Attachment not found"));
+            }
+            $ext = strtolower(extension($result["cname"]));
+            if (!$ext) {
+                $ext = strtolower(extension2($result["ctype"]));
+            }
+            $file = get_cache_file($cid, $ext);
+            file_put_contents($file, $result["body"]);
+            $name = $result["cname"];
+            $type = $result["ctype"];
+            $size = $result["csize"];
+        }
+    } else {
+        $query = "SELECT *
+            FROM tbl_ficheros
+            WHERE id='${cid}'
+                AND id_aplicacion='${id_aplicacion}'
+                AND id_registro='${id_registro}'";
+        $result = execute_query($query);
+        if (!$result) {
+            show_php_error(array("phperror" => "File not found"));
+        }
+        $file = get_directory("dirs/filesdir") . $result["fichero_file"];
+        if (!file_exists($file)) {
+            show_php_error(array("phperror" => "Local file not found"));
+        }
+        $name = $result["fichero"];
+        $type = $result["fichero_type"];
+        $size = $result["fichero_size"];
+    }
+    return array(
+        "file" => $file,
+        "name" => $name,
+        "type" => $type,
+        "size" => $size
+    );
+}
+
+function __vcard($page, $id, $type)
+{
+    if (!in_array($page, array("contactos","clientes","proveedores","empleados","posiblescli"))) {
+        return "";
+    }
+    if (!in_array($type, array("full","small"))) {
+        return "";
+    }
+    $where = "WHERE id='${id}'";
+    $id_aplicacion = page2id($page);
+    if ($page == "contactos") {
+        $query = "SELECT * FROM tbl_contactos $where";
+        $result = db_query($query);
+        $row = db_fetch_row($result);
+        db_free($result);
+        $nombre = $row["nombre"];
+        $nombre1 = $row["nombre1"];
+        $nombre2 = $row["nombre2"];
+        $cargo = $row["cargo"];
+        $comentarios = $row["comentarios"];
+        // BUSCAR DATOS CLIENTE O PROVEEDOR
+        $id_cliente = ($id_aplicacion == page2id("clientes")) ? $row["id_cliente"] : 0;
+        $id_proveedor = ($id_aplicacion == page2id("proveedores")) ? $row["id_proveedor"] : 0;
+        $id_empleado = ($id_aplicacion == page2id("empleados")) ? $row["id_empleado"] : 0;
+        if ($id_cliente) {
+            $query = "SELECT * FROM tbl_clientes WHERE id='$id_cliente'";
+        }
+        if ($id_proveedor) {
+            $query = "SELECT * FROM tbl_proveedores WHERE id='$id_proveedor'";
+        }
+        if ($id_empleado) {
+            $query = "SELECT * FROM tbl_empleados WHERE id='$id_empleado'";
+        }
+        $result = db_query($query);
+        $row2 = db_fetch_row($result);
+        db_free($result);
+        $organizacion = $row2["nombre"];
+        // CONTINUAR
+        $direccion = $row["direccion"];
+        $pais = $row["nombre_pais"];
+        $provincia = $row["nombre_provincia"];
+        $poblacion = $row["nombre_poblacion"];
+        $codpostal = $row["nombre_codpostal"];
+        $tel_fijo = $row["tel_fijo"];
+        $tel_casa = "";
+        $tel_movil = $row["tel_movil"];
+        $fax = $row["fax"];
+        $web = $row["web"];
+        $email = $row["email"];
+        $email2 = "";
+    }
+    if ($page == "clientes" || $page == "proveedores" || $page == "empleados") {
+        if ($page == "clientes") {
+            $query = "SELECT * FROM tbl_clientes $where";
+        }
+        if ($page == "proveedores") {
+            $query = "SELECT * FROM tbl_proveedores $where";
+        }
+        if ($page == "empleados") {
+            $query = "SELECT * FROM tbl_empleados $where";
+        }
+        $result = db_query($query);
+        $row = db_fetch_row($result);
+        db_free($result);
+        $nombre = $row["nombre"];
+        $nombre1 = "";
+        $nombre2 = "";
+        $cargo = "";
+        $comentarios = $row["comentarios"];
+        $organizacion = $row["nombre"];
+        $direccion = $row["direccion"];
+        $pais = $row["nombre_pais"];
+        $provincia = $row["nombre_provincia"];
+        $poblacion = $row["nombre_poblacion"];
+        $codpostal = $row["nombre_codpostal"];
+        $tel_fijo = $row["tel_fijo"];
+        $tel_casa = "";
+        $tel_movil = $row["tel_movil"];
+        $fax = $row["fax"];
+        $web = $row["web"];
+        $email = $row["email"];
+        $email2 = "";
+    }
+    if ($page == "posiblescli") {
+        $query = "SELECT * FROM tbl_posiblescli $where";
+        $result = db_query($query);
+        $row = db_fetch_row($result);
+        db_free($result);
+        $nombre = $row["contacto"];
+        $nombre1 = "";
+        $nombre2 = "";
+        $cargo = $row["cargo"];
+        $comentarios = $row["comentarios"];
+        $organizacion = $row["nombre"];
+        $direccion = $row["direccion"];
+        $pais = $row["nombre_pais"];
+        $provincia = $row["nombre_provincia"];
+        $poblacion = $row["nombre_poblacion"];
+        $codpostal = $row["nombre_codpostal"];
+        $tel_fijo = $row["tel_fijo"];
+        $tel_casa = "";
+        $tel_movil = $row["tel_movil"];
+        $fax = $row["fax"];
+        $web = $row["web"];
+        $email = $row["email"];
+        $email2 = "";
+    }
+    // CLEAR SOME PARAMETERS
+    $badchars = array(" ",".",",",";",":","_","-");
+    $tel_fijo = str_replace($badchars, "", $tel_fijo);
+    $tel_casa = str_replace($badchars, "", $tel_casa);
+    $tel_movil = str_replace($badchars, "", $tel_movil);
+    $fax = str_replace($badchars, "", $fax);
+    // VCARD
+    $revision = date("YmdHis", time());
+    $name = encode_bad_chars($nombre) . ".vcf";
+    $data = array();
+    $data[] = "BEGIN:VCARD";
+    $data[] = "VERSION:2.1";
+    if ($type == "full") {
+        $data[] = "N:$nombre2;$nombre1";
+        $data[] = "FN:$nombre";
+        $data[] = "ORG:$organizacion;$comentarios";
+        $data[] = "TITLE:$cargo";
+        $data[] = "TEL;WORK;VOICE:$tel_fijo";
+        $data[] = "TEL;HOME;VOICE:$tel_casa";
+        $data[] = "TEL;CELL;VOICE:$tel_movil";
+        $data[] = "TEL;WORK;FAX:$fax";
+        $data[] = "TEL;HOME;FAX:";
+        $data[] = "ADR;WORK;ENCODING=QUOTED-PRINTABLE:;;$direccion;$poblacion;$provincia;$codpostal;$pais";
+        $data[] = "LABEL;WORK;ENCODING=QUOTED-PRINTABLE:=0D=0A$direccion=0D=0A$poblacion, $provincia $codpostal=0D=0A$pais";
+        $data[] = "ADR;HOME;ENCODING=QUOTED-PRINTABLE:;;;;;;";
+        $data[] = "LABEL;HOME;ENCODING=QUOTED-PRINTABLE:;=0D=0A,=0D=0A";
+        $data[] = "URL;WORK:$web";
+        $data[] = "EMAIL;PREF;INTERNET:$email";
+        $data[] = "EMAIL;INTERNET:$email2";
+        $data[] = "REV:$revision";
+    }
+    if ($type == "small") {
+        if ($nombre) {
+            $data[] = "FN:$nombre";
+        }
+        if ($direccion) {
+            $data[] = "ADR;WORK;ENCODING=QUOTED-PRINTABLE:;;$direccion;$poblacion;$provincia;$codpostal;$pais";
+        }
+        if ($tel_fijo) {
+            $data[] = "TEL;WORK;VOICE:$tel_fijo";
+        }
+        if ($tel_movil) {
+            $data[] = "TEL;CELL;VOICE:$tel_movil";
+        }
+    }
+    $data[] = "END:VCARD";
+    $data = implode("\r\n", $data) . "\r\n";
+    return array(
+        "name" => $name,
+        "data" => $data
+    );
 }

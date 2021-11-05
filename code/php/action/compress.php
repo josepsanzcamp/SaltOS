@@ -58,23 +58,17 @@ if (!$cids) {
 }
 $cids = explode(",", $cids);
 $files = array();
-$todelete = array();
-$action = "download";
-setParam("action", $action);
-define("__CANCEL_DIE__", 1);
+require_once "php/libaction.php";
 foreach ($cids as $cid) {
-    setParam("cid", $cid);
-    ob_start();
-    require "php/action/download.php";
-    $data = ob_get_clean();
-    if (!file_exists($file)) {
-        file_put_contents($file, $data);
-        $todelete[] = $file;
-    }
+    $result = __download($id_aplicacion, $id_registro, $cid);
     if (getParam("format") == "zip") {
-        $name = utf8_decode($name); // FIX ONLY FOR ZIP FORMAT
+        // FIX ONLY FOR ZIP FORMAT
+        $result["name"] = utf8_decode($result["name"]);
     }
-    $files[] = array("file" => $file,"name" => $name);
+    $files[] = array(
+        "file" => $result["file"],
+        "name" => $result["name"]
+    );
 }
 require_once "lib/phpclasses/archive/archive.php";
 $format = getParam("format");
@@ -98,7 +92,12 @@ switch ($format) {
     default:
         show_php_error(array("phperror" => "Unknown format"));
 }
-$archive->set_options(array("inmemory" => 1,"storepaths" => 0,"prepend" => $info[0],"followlinks" => 1));
+$archive->set_options(array(
+    "inmemory" => 1,
+    "storepaths" => 0,
+    "prepend" => $info[0],
+    "followlinks" => 1
+));
 foreach ($files as $index => $temp) {
     $archive->add_files($temp["file"]);
     $archive->files[$index]["name2"] = dirname($archive->files[0]["name2"]) . "/" . $temp["name"];
@@ -113,7 +112,4 @@ output_handler(array(
     "cache" => false,
     "die" => false
 ));
-foreach ($todelete as $delete) {
-    unlink($delete);
-}
 die();

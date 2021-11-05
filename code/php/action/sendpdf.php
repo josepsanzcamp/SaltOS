@@ -91,21 +91,19 @@ if (in_array($page, array("facturas","actas","partes","presupuestos"))) {
     $files = array();
     foreach ($ids as $key => $val) {
         // PDF FACTURA/ACTA/PARTE/PRESUPUESTO
-        $action = "pdf";
-        setParam("action", $action);
-        $_GET["id"] = $val;
-        ob_start();
-        if (!defined("__CANCEL_DIE__")) {
-            define("__CANCEL_DIE__", 1);
-        }
-        require "php/action/pdf.php";
-        $pdf = ob_get_clean();
+        require_once "php/libpdf.php";
+        $_LANG["default"] = "$page,menu,common";
+        $config = xml2array("xml/${page}.xml");
+        $config = $config["pdf"];
+        $config = eval_attr($config);
+        $pdf = __pdf_eval_pdftag($config);
+        // CONTINUAR
         $file = get_temp_file(".pdf");
-        file_put_contents($file, $pdf);
+        file_put_contents($file, $pdf["data"]);
         $name = $body[$key] . ".pdf";
         $name = encode_bad_chars_file($name);
         $mime = "application/pdf";
-        $size = strlen($pdf);
+        $size = strlen($pdf["data"]);
         $files["pdf_${key}"] = array("file" => $file,"name" => $name,"mime" => $mime,"size" => $size);
     }
     $body = implode("<br/>", $body);

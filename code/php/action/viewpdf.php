@@ -303,15 +303,14 @@ if (getParam("page") && !getParam("id") && !getParam("cid")) {
     $cache = "$temp$hash.pdf";
     if (!file_exists($cache)) {
         // CREAR DEFAULT PDF
-        $action = "pdf";
-        setParam("action", $action);
-        ob_start();
-        if (!defined("__CANCEL_DIE__")) {
-            define("__CANCEL_DIE__", 1);
-        }
-        require "php/action/pdf.php";
-        $pdf = ob_get_clean();
-        file_put_contents($cache, $pdf);
+        require_once "php/libpdf.php";
+        $_LANG["default"] = "$page,menu,common";
+        $config = xml2array("xml/${page}.xml");
+        $config = $config["pdf"];
+        $config = eval_attr($config);
+        $pdf = __pdf_eval_pdftag($config);
+        // CONTINUE
+        file_put_contents($cache, $pdf["data"]);
     }
     // PREPARAR REPORT
     $data = file_get_contents($cache);
@@ -320,30 +319,22 @@ if (getParam("page") && !getParam("id") && !getParam("cid")) {
     __pdfview_output_handler($_RESULT);
 } elseif (getParam("page") && getParam("id") && getParam("cid")) {
     // CREATE REPORT FROM DOWNLOAD
-    $action = "download";
-    setParam("action", $action);
-    ob_start();
-    if (!defined("__CANCEL_DIE__")) {
-        define("__CANCEL_DIE__", 1);
-    }
-    require "php/action/download.php";
-    $data = ob_get_clean();
-    $hash = md5(serialize(array(md5($data),$name,$size,$type))); // MD5 INSIDE AS MEMORY TRICK
+    $id_aplicacion = page2id(getParam("page"));
+    $id_registro = (getParam("id") == "session") ? getParam("id") : abs(intval(getParam("id")));
+    $cid = getParam("cid");
+    require_once "php/libaction.php";
+    $result = __download($id_aplicacion, $id_registro, $cid);
+    $hash = md5(serialize(array(md5_file($result["file"]),$result["name"],$result["size"],$result["type"]))); // MD5 INSIDE AS MEMORY TRICK
     // CREAR THUMBS SI ES NECESARIO
     $temp = get_directory("dirs/cachedir");
     $cache = "$temp$hash.pdf";
     if (!file_exists($cache)) {
         require "php/unoconv.php";
-        if (!file_exists($file)) {
-            $file = get_cache_file($file);
-            file_put_contents($file, $data);
-        }
-        file_put_contents($cache, unoconv2pdf($file));
+        file_put_contents($cache, unoconv2pdf($result["file"]));
     }
     // PREPARAR REPORT
     if (file_exists($cache)) {
-        $data = file_get_contents($cache);
-        $_RESULT = array("title" => $name,"hash" => $hash,"data" => $data);
+        $_RESULT = array("title" => $result["name"],"hash" => $hash,"data" => file_get_contents($cache));
         require_once "php/libaction.php";
         __pdfview_output_handler($_RESULT);
     }

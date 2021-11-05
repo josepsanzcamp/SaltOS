@@ -54,6 +54,3 @@ if ($total <= 100000) {
 } else {
     __query2dump($query, "${page}.csv", ucfirst($page));
 }
-if (!defined("__CANCEL_DIE__")) {
-    die();
-}

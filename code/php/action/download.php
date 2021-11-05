@@ -30,86 +30,14 @@ if (!check_user()) {
 }
 
 $id_aplicacion = page2id(getParam("page"));
-if (!$id_aplicacion) {
-    show_php_error(array("phperror" => "Unknown page"));
-}
 $id_registro = (getParam("id") == "session") ? getParam("id") : abs(intval(getParam("id")));
-if (!$id_registro) {
-    show_php_error(array("phperror" => "Unknown content"));
-}
 $cid = getParam("cid");
-if (!$cid) {
-    show_php_error(array("phperror" => "Unknown file"));
-}
-if (getParam("page") == "correo") {
-    if ($id_registro == "session") {
-        sess_init();
-        $session = $_SESSION["correo"];
-        sess_close();
-        if (!isset($session["files"][$cid])) {
-            show_php_error(array("phperror" => "Session not found"));
-        }
-        $result = $session["files"][$cid];
-        $file = $result["file"];
-        $name = $result["name"];
-        $type = $result["mime"];
-        $size = $result["size"];
-    } else {
-        require_once "php/getmail.php";
-        $decoded = __getmail_getmime($id_registro);
-        if (!$decoded) {
-            show_php_error(array("phperror" => "Email not found"));
-        }
-        if (strlen($cid) != 32) {
-            $query = "SELECT fichero_hash
-                FROM tbl_ficheros
-                WHERE id='${cid}'
-                    AND id_aplicacion='${id_aplicacion}'
-                    AND id_registro='${id_registro}'";
-            $cid = execute_query($query);
-            if (!$cid) {
-                show_php_error(array("phperror" => "Unknown file"));
-            }
-        }
-        $result = __getmail_getcid(__getmail_getnode("0", $decoded), $cid);
-        if (!$result) {
-            show_php_error(array("phperror" => "Attachment not found"));
-        }
-        $ext = strtolower(extension($result["cname"]));
-        if (!$ext) {
-            $ext = strtolower(extension2($result["ctype"]));
-        }
-        $file = get_cache_file($cid, $ext);
-        file_put_contents($file, $result["body"]);
-        $name = $result["cname"];
-        $type = $result["ctype"];
-        $size = $result["csize"];
-    }
-} else {
-    $query = "SELECT *
-        FROM tbl_ficheros
-        WHERE id='${cid}'
-            AND id_aplicacion='${id_aplicacion}'
-            AND id_registro='${id_registro}'";
-    $result = execute_query($query);
-    if (!$result) {
-        show_php_error(array("phperror" => "File not found"));
-    }
-    $file = get_directory("dirs/filesdir") . $result["fichero_file"];
-    if (!file_exists($file)) {
-        show_php_error(array("phperror" => "Local file not found"));
-    }
-    $name = $result["fichero"];
-    $type = $result["fichero_type"];
-    $size = $result["fichero_size"];
-}
-if (!defined("__CANCEL_DIE__")) {
-    output_handler(array(
-        "file" => $file,
-        "type" => $type,
-        "cache" => true,
-        "name" => $name
-    ));
-} else {
-    readfile($file);
-}
+
+require_once "php/libaction.php";
+$result = __download($id_aplicacion, $id_registro, $cid);
+output_handler(array(
+    "file" => $result["file"],
+    "type" => $result["type"],
+    "cache" => true,
+    "name" => $result["name"]
+));

@@ -53,14 +53,14 @@ if (!file_exists($cache)) {
     if ($format == "png") {
         $score = password_strength($pass);
         require_once "php/libaction.php";
-        $buffer = __score_image($score,$width,$height,$size);
-        file_put_contents($cache,$buffer);
+        $buffer = __score_image($score, $width, $height, $size);
+        file_put_contents($cache, $buffer);
         chmod_protected($cache, 0666);
     }
     if ($format == "json") {
         $score = password_strength($pass);
         require_once "php/libaction.php";
-        $buffer = __score_image($score,$width,$height,$size);
+        $buffer = __score_image($score, $width, $height, $size);
         $data = base64_encode($buffer);
         $data = "data:image/png;base64,${data}";
         $valid = ($score >= $minscore) ? 1 : 0;

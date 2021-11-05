@@ -27,16 +27,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // phpcs:disable PSR1.Files.SideEffects
 
+
 // OBTAIN THE MSG
 if (getParam("msg")) {
     $msg = getParam("msg");
 } elseif (getParam("page") && getParam("id")) {
-    ob_start();
-    if (!defined("__CANCEL_DIE__")) {
-        define("__CANCEL_DIE__", 1);
-    }
-    require "php/action/vcard.php";
-    $msg = ob_get_clean();
+    $id = abs(intval(getParam("id")));
+    require_once "php/libaction.php";
+    $vcard = __vcard($page, $id, "small");
+    $msg = $vcard["data"];
 } else {
     action_denied();
 }

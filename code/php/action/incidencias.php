@@ -246,20 +246,19 @@ if ($page == "correo") {
         make_control($id_aplicacion, $id_incidencia);
         make_indexing($id_aplicacion, $id_incidencia);
         // AÑADIR PDF CON CORREO ORIGINAL
-        $action = "pdf";
-        setParam("action", $action);
-        $_GET["id"] = $id_correo;
-        ob_start();
-        if (!defined("__CANCEL_DIE__")) {
-            define("__CANCEL_DIE__", 1);
-        }
-        require "php/action/pdf.php";
-        $pdf = ob_get_clean();
+        require_once "php/libpdf.php";
+        $_LANG["default"] = "$page,menu,common";
+        $config = xml2array("xml/${page}.xml");
+        $config = $config["pdf"];
+        $config = eval_attr($config);
+        setParam("id", $id_correo);
+        $pdf = __pdf_eval_pdftag($config);
+        // CONTINUAR
         $name = encode_bad_chars_file(LANG("correo", "menu") . " " . __incidencias_codigo($id_correo) . " " . $subject . ".pdf");
         $file = time() . "_" . get_unique_id_md5() . "_" . $name;
-        $size = strlen($pdf);
+        $size = strlen($pdf["data"]);
         $type = "application/pdf";
-        file_put_contents(get_directory("dirs/filesdir") . $file, $pdf);
+        file_put_contents(get_directory("dirs/filesdir") . $file, $pdf["data"]);
         $query = make_insert_query("tbl_ficheros", array(
             "id_aplicacion" => $id_aplicacion,
             "id_registro" => $id_incidencia,

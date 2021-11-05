@@ -53,11 +53,7 @@ if (!file_exists($cache)) {
     file_put_contents($cache, $buffer);
     chmod_protected($cache, 0666);
 }
-if (!defined("__CANCEL_DIE__")) {
-    output_handler(array(
-        "file" => $cache,
-        "cache" => false
-    ));
-} else {
-    readfile($cache);
-}
+output_handler(array(
+    "file" => $cache,
+    "cache" => false
+));

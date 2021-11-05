@@ -208,16 +208,10 @@ function __pdf_eval_pdftag($array, $row = array())
                     }
                     $name = __pdf_eval_value($val, $row, $pdf);
                     $buffer = $pdf->Output($name, "S");
-                    if (!defined("__CANCEL_DIE__")) {
-                        output_handler(array(
-                            "data" => $buffer,
-                            "type" => "application/pdf",
-                            "cache" => false,
-                            "name" => $name
-                        ));
-                    } else {
-                        echo $buffer;
-                    }
+                    return array(
+                        "name" => $name,
+                        "data" => $buffer
+                    );
                     break;
                 case "header":
                     if (!$booleval) {

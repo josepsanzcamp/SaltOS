@@ -46,7 +46,10 @@ $config = eval_attr($config);
 if (eval_bool(getDefault("debug/actiondebug"))) {
     debug_dump();
 }
-__pdf_eval_pdftag($config);
-if (!defined("__CANCEL_DIE__")) {
-    die();
-}
+$pdf = __pdf_eval_pdftag($config);
+output_handler(array(
+    "data" => $pdf["data"],
+    "type" => "application/pdf",
+    "cache" => false,
+    "name" => $pdf["name"]
+));
