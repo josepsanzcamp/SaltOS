@@ -41,22 +41,20 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
             },
             success:function(response) {
                 // CHECK FOR VALID JSON STRUCTURE
-                if(!is_array(response) || !count(response) || !isset(response["title"]) || !isset(response["hash"]) || !isset(response["data"])) {
-                    var hash=md5(0);
+                if(!is_array(response) || !count(response) || !isset(response["title"]) || !isset(response["data"])) {
                     unloadingcontent();
                     var br="<br/>";
-                    dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+hash,{});
+                    dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+data,{});
                     return;
                 }
                 // GET REQUESTED DATA
                 var title=response["title"];
-                var hash=response["hash"];
                 var data3=response["data"];
                 // CHECK FOR VALID DATA
                 if(!strlen(data3)) {
                     unloadingcontent();
                     var br="<br/>";
-                    dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+hash,{});
+                    dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+data,{});
                     return;
                 }
                 // CREATE PDFDOC
@@ -66,7 +64,7 @@ if(typeof(__viewpdf__)=="undefined" && typeof(parent.__viewpdf__)=="undefined") 
                     // CHECK FOR NUMPAGES>0
                     if(!pdfDocument.numPages) {
                         var br="<br/>";
-                        dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+hash,{});
+                        dialog(lang_error(),lang_view2error()+br+br+lang_view2hash()+data,{});
                         return;
                     }
                     // BEGIN OPEN DIALOG
