@@ -53,10 +53,9 @@ if (getParam("page") && !getParam("id") && !getParam("cid")) {
             $file = $files[0];
         }
     }
-    $data = file_get_contents($file);
     $_RESULT = array(
-        "title" => LANG("help"),
-        "data" => $data
+        "title" => basename($file),
+        "data" => file_get_contents($file)
     );
     require_once "php/libaction.php";
     __pdfview_output_handler($_RESULT);
