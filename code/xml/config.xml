@@ -211,6 +211,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 			<include>lib/jquery/jquery.cookie.min.js</include>
 			<include>lib/jquery/jquery.form.min.js</include>
 			<include>lib/jquery/jquery-ui.min.js</include>
+			<include>lib/jquery/jquery-ui.i18n.min.js</include>
 			<include>lib/jquery/jquery.autogrow-textarea.min.js</include>
 			<include>lib/jquery/jquery.blockUI.min.js</include>
 			<include>lib/jquery/jquery.jgrowl.min.js</include>

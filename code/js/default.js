@@ -1488,6 +1488,7 @@ if(typeof(__default__)=="undefined" && typeof(parent.__default__)=="undefined") 
             $(this).replaceWith(tdfield);
         });
         // CREATE THE DATEPICKERS
+        $.datepicker.setDefaults($.datepicker.regional[lang_default()]);
         $("input[isdate=true]",obj).each(function() {
             $(this).datepicker({
                 dateFormat:"yy-mm-dd",

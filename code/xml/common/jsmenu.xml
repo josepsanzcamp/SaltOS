@@ -97,8 +97,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	<function eval="true">"lang_translator() { return '".LANG_ESCAPE(check_commands(getDefault('commands/translate'),60)?"translator":"corrector")."'; }"</function>
 	<!-- USING CACHE -->
 	<cache>
-		<!-- FOR DATEPICKER -->
-		<include global="lang" eval="true">"lib/jquery/jquery-ui.i18n/datepicker-".strtok($lang,"_").".js"</include>
 		<!-- FOR CHECKERS -->
 		<include>js/checkagenda.js</include>
 		<include>js/checkemail.js</include>

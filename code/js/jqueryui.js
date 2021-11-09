@@ -2632,6 +2632,7 @@ saltos.form_field_date=function(field) {
 
 saltos.form_field_date_helper=function(td) {
     // CREATE THE DATEPICKERS
+    $.datepicker.setDefaults($.datepicker.regional[lang_default()]);
     $("input[isdate=true]",td).each(function() {
         $(this).datepicker({
             dateFormat:"yy-mm-dd",
