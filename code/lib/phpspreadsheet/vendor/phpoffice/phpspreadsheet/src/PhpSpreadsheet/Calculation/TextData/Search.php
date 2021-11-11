@@ -2,14 +2,14 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\TextData;
 
-use PhpOffice\PhpSpreadsheet\Calculation\Exception as CalcExp;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
 use PhpOffice\PhpSpreadsheet\Calculation\Functions;
 use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 
 class Search
 {
     /**
-     * FIND (case sensitive search).
+     * SEARCHSENSITIVE.
      *
      * @param mixed $needle The string to look for
      * @param mixed $haystack The string in which to look
@@ -19,22 +19,24 @@ class Search
      */
     public static function sensitive($needle, $haystack, $offset = 1)
     {
-        try {
-            $needle = Helpers::extractString($needle);
-            $haystack = Helpers::extractString($haystack);
-            $offset = Helpers::extractInt($offset, 1, 0, true);
-        } catch (CalcExp $e) {
-            return $e->getMessage();
-        }
+        $needle = Functions::flattenSingleValue($needle);
+        $haystack = Functions::flattenSingleValue($haystack);
+        $offset = Functions::flattenSingleValue($offset);
 
-        if (StringHelper::countCharacters($haystack) >= $offset) {
-            if (StringHelper::countCharacters($needle) === 0) {
-                return $offset;
+        if (!is_bool($needle)) {
+            if (is_bool($haystack)) {
+                $haystack = ($haystack) ? Calculation::getTRUE() : Calculation::getFALSE();
             }
 
-            $pos = mb_strpos($haystack, $needle, --$offset, 'UTF-8');
-            if ($pos !== false) {
-                return ++$pos;
+            if (($offset > 0) && (StringHelper::countCharacters($haystack) > $offset)) {
+                if (StringHelper::countCharacters($needle) === 0) {
+                    return $offset;
+                }
+
+                $pos = mb_strpos($haystack, $needle, --$offset, 'UTF-8');
+                if ($pos !== false) {
+                    return ++$pos;
+                }
             }
         }
 
@@ -42,7 +44,7 @@ class Search
     }
 
     /**
-     * SEARCH (case insensitive search).
+     * SEARCHINSENSITIVE.
      *
      * @param mixed $needle The string to look for
      * @param mixed $haystack The string in which to look
@@ -52,22 +54,24 @@ class Search
      */
     public static function insensitive($needle, $haystack, $offset = 1)
     {
-        try {
-            $needle = Helpers::extractString($needle);
-            $haystack = Helpers::extractString($haystack);
-            $offset = Helpers::extractInt($offset, 1, 0, true);
-        } catch (CalcExp $e) {
-            return $e->getMessage();
-        }
+        $needle = Functions::flattenSingleValue($needle);
+        $haystack = Functions::flattenSingleValue($haystack);
+        $offset = Functions::flattenSingleValue($offset);
 
-        if (StringHelper::countCharacters($haystack) >= $offset) {
-            if (StringHelper::countCharacters($needle) === 0) {
-                return $offset;
+        if (!is_bool($needle)) {
+            if (is_bool($haystack)) {
+                $haystack = ($haystack) ? Calculation::getTRUE() : Calculation::getFALSE();
             }
 
-            $pos = mb_stripos($haystack, $needle, --$offset, 'UTF-8');
-            if ($pos !== false) {
-                return ++$pos;
+            if (($offset > 0) && (StringHelper::countCharacters($haystack) > $offset)) {
+                if (StringHelper::countCharacters($needle) === 0) {
+                    return $offset;
+                }
+
+                $pos = mb_stripos($haystack, $needle, --$offset, 'UTF-8');
+                if ($pos !== false) {
+                    return ++$pos;
+                }
             }
         }
 

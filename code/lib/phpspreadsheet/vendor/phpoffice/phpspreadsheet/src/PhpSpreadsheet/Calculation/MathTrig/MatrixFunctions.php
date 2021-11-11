@@ -3,7 +3,6 @@
 namespace PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
 
 use Matrix\Builder;
-use Matrix\Div0Exception as MatrixDiv0Exception;
 use Matrix\Exception as MatrixException;
 use Matrix\Matrix;
 use PhpOffice\PhpSpreadsheet\Calculation\Exception;
@@ -85,10 +84,8 @@ class MatrixFunctions
             $matrix = self::getMatrix($matrixValues);
 
             return $matrix->inverse()->toArray();
-        } catch (MatrixDiv0Exception $e) {
-            return Functions::NAN();
         } catch (MatrixException $e) {
-            return Functions::VALUE();
+            return (strpos($e->getMessage(), 'determinant') === false) ? Functions::VALUE() : Functions::NAN();
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -128,7 +125,10 @@ class MatrixFunctions
         try {
             $dimension = (int) Helpers::validateNumericNullBool($dimension);
             Helpers::validatePositive($dimension, Functions::VALUE());
-            $matrix = Builder::createIdentityMatrix($dimension, 0)->toArray();
+            $matrix = Builder::createFilledMatrix(0, $dimension)->toArray();
+            for ($x = 0; $x < $dimension; ++$x) {
+                $matrix[$x][$x] = 1;
+            }
 
             return $matrix;
         } catch (Exception $e) {

@@ -63,8 +63,10 @@ class Iterator implements \Iterator
 
     /**
      * Are there more Worksheet instances available?
+     *
+     * @return bool
      */
-    public function valid(): bool
+    public function valid()
     {
         return $this->position < $this->subject->getSheetCount() && $this->position >= 0;
     }

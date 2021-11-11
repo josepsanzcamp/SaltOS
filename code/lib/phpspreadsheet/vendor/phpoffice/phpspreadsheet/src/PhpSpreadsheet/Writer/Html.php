@@ -9,7 +9,6 @@ use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Chart\Chart;
 use PhpOffice\PhpSpreadsheet\RichText\RichText;
 use PhpOffice\PhpSpreadsheet\RichText\Run;
-use PhpOffice\PhpSpreadsheet\Settings;
 use PhpOffice\PhpSpreadsheet\Shared\Drawing as SharedDrawing;
 use PhpOffice\PhpSpreadsheet\Shared\File;
 use PhpOffice\PhpSpreadsheet\Shared\Font as SharedFont;
@@ -152,14 +151,12 @@ class Html extends BaseWriter
     /**
      * Save Spreadsheet to file.
      *
-     * @param resource|string $filename
+     * @param resource|string $pFilename
      */
-    public function save($filename, int $flags = 0): void
+    public function save($pFilename): void
     {
-        $this->processFlags($flags);
-
         // Open file
-        $this->openFileHandle($filename);
+        $this->openFileHandle($pFilename);
 
         // Write html
         fwrite($this->fileHandle, $this->generateHTMLAll());
@@ -351,9 +348,7 @@ class Html extends BaseWriter
 
     private static function generateMeta($val, $desc)
     {
-        return $val
-            ? ('      <meta name="' . $desc . '" content="' . htmlspecialchars($val, Settings::htmlEntityFlags()) . '" />' . PHP_EOL)
-            : '';
+        return $val ? ('      <meta name="' . $desc . '" content="' . htmlspecialchars($val) . '" />' . PHP_EOL) : '';
     }
 
     /**
@@ -372,7 +367,7 @@ class Html extends BaseWriter
         $html .= '  <head>' . PHP_EOL;
         $html .= '      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' . PHP_EOL;
         $html .= '      <meta name="generator" content="PhpSpreadsheet, https://github.com/PHPOffice/PhpSpreadsheet" />' . PHP_EOL;
-        $html .= '      <title>' . htmlspecialchars($properties->getTitle(), Settings::htmlEntityFlags()) . '</title>' . PHP_EOL;
+        $html .= '      <title>' . htmlspecialchars($properties->getTitle()) . '</title>' . PHP_EOL;
         $html .= self::generateMeta($properties->getCreator(), 'author');
         $html .= self::generateMeta($properties->getTitle(), 'title');
         $html .= self::generateMeta($properties->getDescription(), 'description');
@@ -551,19 +546,20 @@ class Html extends BaseWriter
      * Jpgraph code issuing warnings. So, don't measure
      * code coverage for this function till that is fixed.
      *
+     * @param Worksheet $pSheet \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
      * @param int $row Row to check for charts
      *
      * @return array
      *
      * @codeCoverageIgnore
      */
-    private function extendRowsForCharts(Worksheet $worksheet, int $row)
+    private function extendRowsForCharts(Worksheet $pSheet, int $row)
     {
         $rowMax = $row;
         $colMax = 'A';
         $anyfound = false;
         if ($this->includeCharts) {
-            foreach ($worksheet->getChartCollection() as $chart) {
+            foreach ($pSheet->getChartCollection() as $chart) {
                 if ($chart instanceof Chart) {
                     $anyfound = true;
                     $chartCoordinates = $chart->getTopLeftPosition();
@@ -582,11 +578,11 @@ class Html extends BaseWriter
         return [$rowMax, $colMax, $anyfound];
     }
 
-    private function extendRowsForChartsAndImages(Worksheet $worksheet, int $row): string
+    private function extendRowsForChartsAndImages(Worksheet $pSheet, int $row): string
     {
-        [$rowMax, $colMax, $anyfound] = $this->extendRowsForCharts($worksheet, $row);
+        [$rowMax, $colMax, $anyfound] = $this->extendRowsForCharts($pSheet, $row);
 
-        foreach ($worksheet->getDrawingCollection() as $drawing) {
+        foreach ($pSheet->getDrawingCollection() as $drawing) {
             $anyfound = true;
             $imageTL = Coordinate::coordinateFromString($drawing->getCoordinates());
             $imageCol = Coordinate::columnIndexFromString($imageTL[0]);
@@ -609,8 +605,8 @@ class Html extends BaseWriter
         while ($row <= $rowMax) {
             $html .= '<tr>';
             for ($col = 'A'; $col != $colMax; ++$col) {
-                $htmlx = $this->writeImageInCell($worksheet, $col . $row);
-                $htmlx .= $this->includeCharts ? $this->writeChartInCell($worksheet, $col . $row) : '';
+                $htmlx = $this->writeImageInCell($pSheet, $col . $row);
+                $htmlx .= $this->includeCharts ? $this->writeChartInCell($pSheet, $col . $row) : '';
                 if ($htmlx) {
                     $html .= "<td class='style0' style='position: relative;'>$htmlx</td>";
                 } else {
@@ -644,18 +640,18 @@ class Html extends BaseWriter
     /**
      * Generate image tag in cell.
      *
-     * @param Worksheet $worksheet \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
+     * @param Worksheet $pSheet \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
      * @param string $coordinates Cell coordinates
      *
      * @return string
      */
-    private function writeImageInCell(Worksheet $worksheet, $coordinates)
+    private function writeImageInCell(Worksheet $pSheet, $coordinates)
     {
         // Construct HTML
         $html = '';
 
         // Write images
-        foreach ($worksheet->getDrawingCollection() as $drawing) {
+        foreach ($pSheet->getDrawingCollection() as $drawing) {
             if ($drawing->getCoordinates() != $coordinates) {
                 continue;
             }
@@ -674,7 +670,7 @@ class Html extends BaseWriter
                 $filename = preg_replace('@^[.]([^/])@', '$1', $filename);
 
                 // Convert UTF8 data to PCDATA
-                $filename = htmlspecialchars($filename, Settings::htmlEntityFlags());
+                $filename = htmlspecialchars($filename);
 
                 $html .= PHP_EOL;
                 $imageData = self::winFileToUrl($filename);
@@ -723,15 +719,20 @@ class Html extends BaseWriter
      * Jpgraph code issuing warnings. So, don't measure
      * code coverage for this function till that is fixed.
      *
+     * @param Worksheet $pSheet \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
+     * @param string $coordinates Cell coordinates
+     *
+     * @return string
+     *
      * @codeCoverageIgnore
      */
-    private function writeChartInCell(Worksheet $worksheet, string $coordinates): string
+    private function writeChartInCell(Worksheet $pSheet, $coordinates)
     {
         // Construct HTML
         $html = '';
 
         // Write charts
-        foreach ($worksheet->getChartCollection() as $chart) {
+        foreach ($pSheet->getChartCollection() as $chart) {
             if ($chart instanceof Chart) {
                 $chartCoordinates = $chart->getTopLeftPosition();
                 if ($chartCoordinates['cell'] == $coordinates) {
@@ -743,7 +744,7 @@ class Html extends BaseWriter
                     $html .= PHP_EOL;
                     $imageDetails = getimagesize($chartFileName);
                     $filedesc = $chart->getTitle();
-                    $filedesc = $filedesc ? $filedesc->getCaptionText() : '';
+                    $filedesc = $filedesc ? self::getChartCaption($filedesc->getCaption()) : '';
                     $filedesc = $filedesc ? htmlspecialchars($filedesc, ENT_QUOTES) : 'Embedded chart';
                     if ($fp = fopen($chartFileName, 'rb', 0)) {
                         $picture = fread($fp, filesize($chartFileName));
@@ -762,6 +763,27 @@ class Html extends BaseWriter
 
         // Return
         return $html;
+    }
+
+    /**
+     * Extend Row if chart is placed after nominal end of row.
+     * This code should be exercised by sample:
+     * Chart/32_Chart_read_write_PDF.php.
+     * However, that test is suppressed due to out-of-date
+     * Jpgraph code issuing warnings. So, don't measure
+     * code coverage for this function till that is fixed.
+     * Caption is described in documentation as fixed,
+     * but in 32_Chart it is somehow an array of RichText.
+     *
+     * @param mixed $cap
+     *
+     * @return string
+     *
+     * @codeCoverageIgnore
+     */
+    private static function getChartCaption($cap)
+    {
+        return is_array($cap) ? implode(' ', $cap) : $cap;
     }
 
     /**
@@ -1111,13 +1133,13 @@ class Html extends BaseWriter
         return $html;
     }
 
-    private function generateTableTagInline(Worksheet $worksheet, $id)
+    private function generateTableTagInline($pSheet, $id)
     {
         $style = isset($this->cssStyles['table']) ?
             $this->assembleCSS($this->cssStyles['table']) : '';
 
-        $prntgrid = $worksheet->getPrintGridlines();
-        $viewgrid = $this->isPdf ? $prntgrid : $worksheet->getShowGridlines();
+        $prntgrid = $pSheet->getPrintGridlines();
+        $viewgrid = $this->isPdf ? $prntgrid : $pSheet->getShowGridlines();
         if ($viewgrid && $prntgrid) {
             $html = "    <table border='1' cellpadding='1' $id cellspacing='1' style='$style' class='gridlines gridlinesp'>" . PHP_EOL;
         } elseif ($viewgrid) {
@@ -1131,28 +1153,28 @@ class Html extends BaseWriter
         return $html;
     }
 
-    private function generateTableTag(Worksheet $worksheet, $id, &$html, $sheetIndex): void
+    private function generateTableTag($pSheet, $id, &$html, $sheetIndex): void
     {
         if (!$this->useInlineCss) {
-            $gridlines = $worksheet->getShowGridlines() ? ' gridlines' : '';
-            $gridlinesp = $worksheet->getPrintGridlines() ? ' gridlinesp' : '';
+            $gridlines = $pSheet->getShowGridlines() ? ' gridlines' : '';
+            $gridlinesp = $pSheet->getPrintGridlines() ? ' gridlinesp' : '';
             $html .= "    <table border='0' cellpadding='0' cellspacing='0' $id class='sheet$sheetIndex$gridlines$gridlinesp'>" . PHP_EOL;
         } else {
-            $html .= $this->generateTableTagInline($worksheet, $id);
+            $html .= $this->generateTableTagInline($pSheet, $id);
         }
     }
 
     /**
      * Generate table header.
      *
-     * @param Worksheet $worksheet The worksheet for the table we are writing
+     * @param Worksheet $pSheet The worksheet for the table we are writing
      * @param bool $showid whether or not to add id to table tag
      *
      * @return string
      */
-    private function generateTableHeader(Worksheet $worksheet, $showid = true)
+    private function generateTableHeader($pSheet, $showid = true)
     {
-        $sheetIndex = $worksheet->getParent()->getIndex($worksheet);
+        $sheetIndex = $pSheet->getParent()->getIndex($pSheet);
 
         // Construct HTML
         $html = '';
@@ -1163,10 +1185,10 @@ class Html extends BaseWriter
             $html .= "<div style='page: page$sheetIndex' class='scrpgbrk'>\n";
         }
 
-        $this->generateTableTag($worksheet, $id, $html, $sheetIndex);
+        $this->generateTableTag($pSheet, $id, $html, $sheetIndex);
 
         // Write <col> elements
-        $highestColumnIndex = Coordinate::columnIndexFromString($worksheet->getHighestColumn()) - 1;
+        $highestColumnIndex = Coordinate::columnIndexFromString($pSheet->getHighestColumn()) - 1;
         $i = -1;
         while ($i++ < $highestColumnIndex) {
             if (!$this->useInlineCss) {
@@ -1192,16 +1214,17 @@ class Html extends BaseWriter
     /**
      * Generate row start.
      *
+     * @param Worksheet $pSheet \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
      * @param int $sheetIndex Sheet index (0-based)
      * @param int $pRow row number
      *
      * @return string
      */
-    private function generateRowStart(Worksheet $worksheet, $sheetIndex, $pRow)
+    private function generateRowStart(Worksheet $pSheet, $sheetIndex, $pRow)
     {
         $html = '';
-        if (count($worksheet->getBreaks()) > 0) {
-            $breaks = $worksheet->getBreaks();
+        if (count($pSheet->getBreaks()) > 0) {
+            $breaks = $pSheet->getBreaks();
 
             // check if a break is needed before this row
             if (isset($breaks['A' . $pRow])) {
@@ -1212,7 +1235,7 @@ class Html extends BaseWriter
                 }
 
                 // open table again: <table> + <col> etc.
-                $html .= $this->generateTableHeader($worksheet, false);
+                $html .= $this->generateTableHeader($pSheet, false);
                 $html .= '<tbody>' . PHP_EOL;
             }
         }
@@ -1230,9 +1253,9 @@ class Html extends BaseWriter
         return $html;
     }
 
-    private function generateRowCellCss(Worksheet $worksheet, $cellAddress, $pRow, $colNum)
+    private function generateRowCellCss($pSheet, $cellAddress, $pRow, $colNum)
     {
-        $cell = ($cellAddress > '') ? $worksheet->getCell($cellAddress) : '';
+        $cell = ($cellAddress > '') ? $pSheet->getCell($cellAddress) : '';
         $coordinate = Coordinate::stringFromColumnIndex($colNum + 1) . ($pRow + 1);
         if (!$this->useInlineCss) {
             $cssClass = 'column' . $colNum;
@@ -1276,7 +1299,7 @@ class Html extends BaseWriter
 
                 // Convert UTF8 data to PCDATA
                 $cellText = $element->getText();
-                $cellData .= htmlspecialchars($cellText, Settings::htmlEntityFlags());
+                $cellData .= htmlspecialchars($cellText);
 
                 $cellData .= $cellEnd;
 
@@ -1284,48 +1307,44 @@ class Html extends BaseWriter
             } else {
                 // Convert UTF8 data to PCDATA
                 $cellText = $element->getText();
-                $cellData .= htmlspecialchars($cellText, Settings::htmlEntityFlags());
+                $cellData .= htmlspecialchars($cellText);
             }
         }
     }
 
-    private function generateRowCellDataValue(Worksheet $worksheet, $cell, &$cellData): void
+    private function generateRowCellDataValue($pSheet, $cell, &$cellData): void
     {
         if ($cell->getValue() instanceof RichText) {
             $this->generateRowCellDataValueRich($cell, $cellData);
         } else {
             $origData = $this->preCalculateFormulas ? $cell->getCalculatedValue() : $cell->getValue();
-            $formatCode = $worksheet->getParent()->getCellXfByIndex($cell->getXfIndex())->getNumberFormat()->getFormatCode();
-            if ($formatCode !== null) {
-                $cellData = NumberFormat::toFormattedString(
-                    $origData,
-                    $formatCode,
-                    [$this, 'formatColor']
-                );
-            }
-
+            $cellData = NumberFormat::toFormattedString(
+                $origData,
+                $pSheet->getParent()->getCellXfByIndex($cell->getXfIndex())->getNumberFormat()->getFormatCode(),
+                [$this, 'formatColor']
+            );
             if ($cellData === $origData) {
-                $cellData = htmlspecialchars($cellData ?? '', Settings::htmlEntityFlags());
+                $cellData = htmlspecialchars($cellData ?? '');
             }
-            if ($worksheet->getParent()->getCellXfByIndex($cell->getXfIndex())->getFont()->getSuperscript()) {
+            if ($pSheet->getParent()->getCellXfByIndex($cell->getXfIndex())->getFont()->getSuperscript()) {
                 $cellData = '<sup>' . $cellData . '</sup>';
-            } elseif ($worksheet->getParent()->getCellXfByIndex($cell->getXfIndex())->getFont()->getSubscript()) {
+            } elseif ($pSheet->getParent()->getCellXfByIndex($cell->getXfIndex())->getFont()->getSubscript()) {
                 $cellData = '<sub>' . $cellData . '</sub>';
             }
         }
     }
 
-    private function generateRowCellData(Worksheet $worksheet, $cell, &$cssClass, $cellType)
+    private function generateRowCellData($pSheet, $cell, &$cssClass, $cellType)
     {
         $cellData = '&nbsp;';
         if ($cell instanceof Cell) {
             $cellData = '';
             // Don't know what this does, and no test cases.
             //if ($cell->getParent() === null) {
-            //    $cell->attach($worksheet);
+            //    $cell->attach($pSheet);
             //}
             // Value
-            $this->generateRowCellDataValue($worksheet, $cell, $cellData);
+            $this->generateRowCellDataValue($pSheet, $cell, $cellData);
 
             // Converts the cell content so that spaces occuring at beginning of each new line are replaced by &nbsp;
             // Example: "  Hello\n to the world" is converted to "&nbsp;&nbsp;Hello\n&nbsp;to the world"
@@ -1350,7 +1369,7 @@ class Html extends BaseWriter
                 }
 
                 // General horizontal alignment: Actual horizontal alignment depends on dataType
-                $sharedStyle = $worksheet->getParent()->getCellXfByIndex($cell->getXfIndex());
+                $sharedStyle = $pSheet->getParent()->getCellXfByIndex($cell->getXfIndex());
                 if (
                     $sharedStyle->getAlignment()->getHorizontal() == Alignment::HORIZONTAL_GENERAL
                     && isset($this->cssStyles['.' . $cell->getDataType()]['text-align'])
@@ -1368,9 +1387,9 @@ class Html extends BaseWriter
         return $cellData;
     }
 
-    private function generateRowIncludeCharts(Worksheet $worksheet, $coordinate)
+    private function generateRowIncludeCharts($pSheet, $coordinate)
     {
-        return $this->includeCharts ? $this->writeChartInCell($worksheet, $coordinate) : '';
+        return $this->includeCharts ? $this->writeChartInCell($pSheet, $coordinate) : '';
     }
 
     private function generateRowSpans($html, $rowSpan, $colSpan)
@@ -1381,12 +1400,12 @@ class Html extends BaseWriter
         return $html;
     }
 
-    private function generateRowWriteCell(&$html, Worksheet $worksheet, $coordinate, $cellType, $cellData, $colSpan, $rowSpan, $cssClass, $colNum, $sheetIndex, $pRow): void
+    private function generateRowWriteCell(&$html, $pSheet, $coordinate, $cellType, $cellData, $colSpan, $rowSpan, $cssClass, $colNum, $sheetIndex, $pRow): void
     {
         // Image?
-        $htmlx = $this->writeImageInCell($worksheet, $coordinate);
+        $htmlx = $this->writeImageInCell($pSheet, $coordinate);
         // Chart?
-        $htmlx .= $this->generateRowIncludeCharts($worksheet, $coordinate);
+        $htmlx .= $this->generateRowIncludeCharts($pSheet, $coordinate);
         // Column start
         $html .= '            <' . $cellType;
         if (!$this->useInlineCss && !$this->isPdf) {
@@ -1432,7 +1451,7 @@ class Html extends BaseWriter
         $html .= '>';
         $html .= $htmlx;
 
-        $html .= $this->writeComment($worksheet, $coordinate);
+        $html .= $this->writeComment($pSheet, $coordinate);
 
         // Cell data
         $html .= $cellData;
@@ -1444,43 +1463,44 @@ class Html extends BaseWriter
     /**
      * Generate row.
      *
+     * @param Worksheet $pSheet \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
      * @param array $pValues Array containing cells in a row
      * @param int $pRow Row number (0-based)
      * @param string $cellType eg: 'td'
      *
      * @return string
      */
-    private function generateRow(Worksheet $worksheet, array $pValues, $pRow, $cellType)
+    private function generateRow(Worksheet $pSheet, array $pValues, $pRow, $cellType)
     {
         // Sheet index
-        $sheetIndex = $worksheet->getParent()->getIndex($worksheet);
-        $html = $this->generateRowStart($worksheet, $sheetIndex, $pRow);
+        $sheetIndex = $pSheet->getParent()->getIndex($pSheet);
+        $html = $this->generateRowStart($pSheet, $sheetIndex, $pRow);
 
         // Write cells
         $colNum = 0;
         foreach ($pValues as $cellAddress) {
-            [$cell, $cssClass, $coordinate] = $this->generateRowCellCss($worksheet, $cellAddress, $pRow, $colNum);
+            [$cell, $cssClass, $coordinate] = $this->generateRowCellCss($pSheet, $cellAddress, $pRow, $colNum);
 
             $colSpan = 1;
             $rowSpan = 1;
 
             // Cell Data
-            $cellData = $this->generateRowCellData($worksheet, $cell, $cssClass, $cellType);
+            $cellData = $this->generateRowCellData($pSheet, $cell, $cssClass, $cellType);
 
             // Hyperlink?
-            if ($worksheet->hyperlinkExists($coordinate) && !$worksheet->getHyperlink($coordinate)->isInternal()) {
-                $cellData = '<a href="' . htmlspecialchars($worksheet->getHyperlink($coordinate)->getUrl(), Settings::htmlEntityFlags()) . '" title="' . htmlspecialchars($worksheet->getHyperlink($coordinate)->getTooltip(), Settings::htmlEntityFlags()) . '">' . $cellData . '</a>';
+            if ($pSheet->hyperlinkExists($coordinate) && !$pSheet->getHyperlink($coordinate)->isInternal()) {
+                $cellData = '<a href="' . htmlspecialchars($pSheet->getHyperlink($coordinate)->getUrl()) . '" title="' . htmlspecialchars($pSheet->getHyperlink($coordinate)->getTooltip()) . '">' . $cellData . '</a>';
             }
 
             // Should the cell be written or is it swallowed by a rowspan or colspan?
-            $writeCell = !(isset($this->isSpannedCell[$worksheet->getParent()->getIndex($worksheet)][$pRow + 1][$colNum])
-                && $this->isSpannedCell[$worksheet->getParent()->getIndex($worksheet)][$pRow + 1][$colNum]);
+            $writeCell = !(isset($this->isSpannedCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum])
+                && $this->isSpannedCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum]);
 
             // Colspan and Rowspan
             $colspan = 1;
             $rowspan = 1;
-            if (isset($this->isBaseCell[$worksheet->getParent()->getIndex($worksheet)][$pRow + 1][$colNum])) {
-                $spans = $this->isBaseCell[$worksheet->getParent()->getIndex($worksheet)][$pRow + 1][$colNum];
+            if (isset($this->isBaseCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum])) {
+                $spans = $this->isBaseCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum];
                 $rowSpan = $spans['rowspan'];
                 $colSpan = $spans['colspan'];
 
@@ -1488,13 +1508,13 @@ class Html extends BaseWriter
                 //        relies on !important for non-none border declarations in createCSSStyleBorder
                 $endCellCoord = Coordinate::stringFromColumnIndex($colNum + $colSpan) . ($pRow + $rowSpan);
                 if (!$this->useInlineCss) {
-                    $cssClass .= ' style' . $worksheet->getCell($endCellCoord)->getXfIndex();
+                    $cssClass .= ' style' . $pSheet->getCell($endCellCoord)->getXfIndex();
                 }
             }
 
             // Write
             if ($writeCell) {
-                $this->generateRowWriteCell($html, $worksheet, $coordinate, $cellType, $cellData, $colSpan, $rowSpan, $cssClass, $colNum, $sheetIndex, $pRow);
+                $this->generateRowWriteCell($html, $pSheet, $coordinate, $cellType, $cellData, $colSpan, $rowSpan, $cssClass, $colNum, $sheetIndex, $pRow);
             }
 
             // Next column
@@ -1649,7 +1669,7 @@ class Html extends BaseWriter
         }
 
         // convert to PCDATA
-        $value = htmlspecialchars($pValue, Settings::htmlEntityFlags());
+        $value = htmlspecialchars($pValue);
 
         // color span tag
         if ($color !== null) {
@@ -1766,12 +1786,12 @@ class Html extends BaseWriter
      *
      * @return string
      */
-    private function writeComment(Worksheet $worksheet, $coordinate)
+    private function writeComment(Worksheet $pSheet, $coordinate)
     {
         $result = '';
-        if (!$this->isPdf && isset($worksheet->getComments()[$coordinate])) {
+        if (!$this->isPdf && isset($pSheet->getComments()[$coordinate])) {
             $sanitizer = new HTMLPurifier();
-            $sanitizedString = $sanitizer->purify($worksheet->getComment($coordinate)->getText()->getPlainText());
+            $sanitizedString = $sanitizer->purify($pSheet->getComment($coordinate)->getText()->getPlainText());
             if ($sanitizedString !== '') {
                 $result .= '<a class="comment-indicator"></a>';
                 $result .= '<div class="comment">' . nl2br($sanitizedString) . '</div>';
@@ -1807,17 +1827,17 @@ class Html extends BaseWriter
 
         // Loop all sheets
         $sheetId = 0;
-        foreach ($sheets as $worksheet) {
+        foreach ($sheets as $pSheet) {
             $htmlPage .= "@page page$sheetId { ";
-            $left = StringHelper::formatNumber($worksheet->getPageMargins()->getLeft()) . 'in; ';
+            $left = StringHelper::formatNumber($pSheet->getPageMargins()->getLeft()) . 'in; ';
             $htmlPage .= 'margin-left: ' . $left;
-            $right = StringHelper::FormatNumber($worksheet->getPageMargins()->getRight()) . 'in; ';
+            $right = StringHelper::FormatNumber($pSheet->getPageMargins()->getRight()) . 'in; ';
             $htmlPage .= 'margin-right: ' . $right;
-            $top = StringHelper::FormatNumber($worksheet->getPageMargins()->getTop()) . 'in; ';
+            $top = StringHelper::FormatNumber($pSheet->getPageMargins()->getTop()) . 'in; ';
             $htmlPage .= 'margin-top: ' . $top;
-            $bottom = StringHelper::FormatNumber($worksheet->getPageMargins()->getBottom()) . 'in; ';
+            $bottom = StringHelper::FormatNumber($pSheet->getPageMargins()->getBottom()) . 'in; ';
             $htmlPage .= 'margin-bottom: ' . $bottom;
-            $orientation = $worksheet->getPageSetup()->getOrientation();
+            $orientation = $pSheet->getPageSetup()->getOrientation();
             if ($orientation === \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE) {
                 $htmlPage .= 'size: landscape; ';
             } elseif ($orientation === \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_PORTRAIT) {

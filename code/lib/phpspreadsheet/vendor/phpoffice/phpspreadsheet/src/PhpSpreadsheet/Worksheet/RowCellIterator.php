@@ -153,8 +153,10 @@ class RowCellIterator extends CellIterator
 
     /**
      * Indicate if more columns exist in the worksheet range of columns that we're iterating.
+     *
+     * @return bool
      */
-    public function valid(): bool
+    public function valid()
     {
         return $this->currentColumnIndex <= $this->endColumnIndex && $this->currentColumnIndex >= $this->startColumnIndex;
     }

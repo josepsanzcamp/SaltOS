@@ -12,9 +12,7 @@ use PhpOffice\PhpSpreadsheet\ReferenceHelper;
 use PhpOffice\PhpSpreadsheet\Shared;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-use ReflectionClassConstant;
 use ReflectionMethod;
-use ReflectionParameter;
 
 class Calculation
 {
@@ -3161,9 +3159,9 @@ class Calculation
         return $formula;
     }
 
-    private static $functionReplaceFromExcel;
+    private static $functionReplaceFromExcel = null;
 
-    private static $functionReplaceToLocale;
+    private static $functionReplaceToLocale = null;
 
     public function _translateFormulaToLocale($formula)
     {
@@ -3190,9 +3188,9 @@ class Calculation
         return self::translateFormula(self::$functionReplaceFromExcel, self::$functionReplaceToLocale, $formula, ',', self::$localeArgumentSeparator);
     }
 
-    private static $functionReplaceFromLocale;
+    private static $functionReplaceFromLocale = null;
 
-    private static $functionReplaceToExcel;
+    private static $functionReplaceToExcel = null;
 
     public function _translateFormulaToEnglish($formula)
     {
@@ -3893,15 +3891,15 @@ class Calculation
         $pCellParent = ($pCell !== null) ? $pCell->getWorksheet() : null;
 
         $regexpMatchString = '/^(' . self::CALCULATION_REGEXP_FUNCTION .
-                                '|' . self::CALCULATION_REGEXP_CELLREF .
+            '|' . self::CALCULATION_REGEXP_CELLREF .
             '|' . self::CALCULATION_REGEXP_COLUMN_RANGE .
             '|' . self::CALCULATION_REGEXP_ROW_RANGE .
-                                '|' . self::CALCULATION_REGEXP_NUMBER .
-                                '|' . self::CALCULATION_REGEXP_STRING .
-                                '|' . self::CALCULATION_REGEXP_OPENBRACE .
-                                '|' . self::CALCULATION_REGEXP_DEFINEDNAME .
-                                '|' . self::CALCULATION_REGEXP_ERROR .
-                                ')/sui';
+            '|' . self::CALCULATION_REGEXP_NUMBER .
+            '|' . self::CALCULATION_REGEXP_STRING .
+            '|' . self::CALCULATION_REGEXP_OPENBRACE .
+            '|' . self::CALCULATION_REGEXP_DEFINEDNAME .
+            '|' . self::CALCULATION_REGEXP_ERROR .
+            ')/sui';
 
         //    Start with initialisation
         $index = 0;
@@ -4110,7 +4108,7 @@ class Calculation
                 //    If we've a comma when we're expecting an operand, then what we actually have is a null operand;
                 //        so push a null onto the stack
                 if (($expectingOperand) || (!$expectingOperator)) {
-                    $output[] = ['type' => 'Empty Argument', 'value' => self::$excelConstants['NULL'], 'reference' => null];
+                    $output[] = ['type' => 'NULL Value', 'value' => self::$excelConstants['NULL'], 'reference' => null];
                 }
                 // make sure there was a function
                 $d = $stack->last(2);
@@ -4295,7 +4293,7 @@ class Calculation
                 ++$index;
             } elseif ($opCharacter == ')') {    // miscellaneous error checking
                 if ($expectingOperand) {
-                    $output[] = ['type' => 'Empty Argument', 'value' => self::$excelConstants['NULL'], 'reference' => null];
+                    $output[] = ['type' => 'NULL Value', 'value' => self::$excelConstants['NULL'], 'reference' => null];
                     $expectingOperand = false;
                     $expectingOperator = true;
                 } else {
@@ -4333,7 +4331,7 @@ class Calculation
                     ((preg_match('/^' . self::CALCULATION_REGEXP_CELLREF . '.*/Ui', substr($formula, $index), $match)) &&
                         ($output[count($output) - 1]['type'] == 'Cell Reference') ||
                         (preg_match('/^' . self::CALCULATION_REGEXP_DEFINEDNAME . '.*/miu', substr($formula, $index), $match)) &&
-                            ($output[count($output) - 1]['type'] == 'Defined Name' || $output[count($output) - 1]['type'] == 'Value')
+                        ($output[count($output) - 1]['type'] == 'Defined Name' || $output[count($output) - 1]['type'] == 'Value')
                     )
                 ) {
                     while (
@@ -4368,7 +4366,7 @@ class Calculation
             $rowKey = array_shift($rKeys);
             $cKeys = array_keys(array_keys($operand[$rowKey]));
             $colKey = array_shift($cKeys);
-            if (ctype_upper("$colKey")) {
+            if (ctype_upper($colKey)) {
                 $operandData['reference'] = $colKey . $rowKey;
             }
         }
@@ -4477,7 +4475,7 @@ class Calculation
             }
 
             // if the token is a binary operator, pop the top two values off the stack, do the operation, and push the result back on the stack
-            if (!is_numeric($token) && isset(self::$binaryOperators[$token])) {
+            if (isset(self::$binaryOperators[$token])) {
                 //    We must have two operands, error if we don't
                 if (($operand2Data = $stack->pop()) === null) {
                     return $this->raiseFormulaError('Internal error - Operand value missing from stack');
@@ -4524,7 +4522,7 @@ class Calculation
                             $sheet2 = $sheet1;
                         }
 
-                        if (trim($sheet1, "'") === trim($sheet2, "'")) {
+                        if ($sheet1 == $sheet2) {
                             if ($operand1Data['reference'] === null) {
                                 if ((trim($operand1Data['value']) != '') && (is_numeric($operand1Data['value']))) {
                                     $operand1Data['reference'] = $pCell->getColumn() . $operand1Data['value'];
@@ -4724,7 +4722,7 @@ class Calculation
                     }
                 } else {
                     if ($pCell === null) {
-                        // We can't access the cell, so return a REF error
+                        //  We can't access the cell, so return a REF error
                         $cellValue = Functions::REF();
                     } else {
                         $cellRef = $matches[6] . $matches[7];
@@ -4741,7 +4739,7 @@ class Calculation
                                     $cellValue = $this->extractCellRange($cellRef, $this->spreadsheet->getSheetByName($matches[2]), false);
                                     $pCell->attach($pCellParent);
                                 } else {
-                                    $cellRef = ($cellSheet !== null) ? "'{$matches[2]}'!{$cellRef}" : $cellRef;
+                                    $cellRef = ($cellSheet !== null) ? "{$matches[2]}!{$cellRef}" : $cellRef;
                                     $cellValue = null;
                                 }
                             } else {
@@ -4775,7 +4773,7 @@ class Calculation
                 $functionName = $matches[1];
                 $argCount = $stack->pop();
                 $argCount = $argCount['value'];
-                if ($functionName !== 'MKMATRIX') {
+                if ($functionName != 'MKMATRIX') {
                     $this->debugLog->writeDebugLog('Evaluating Function ', self::localeFunc($functionName), '() with ', (($argCount == 0) ? 'no' : $argCount), ' argument', (($argCount == 1) ? '' : 's'));
                 }
                 if ((isset(self::$phpSpreadsheetFunctions[$functionName])) || (isset(self::$controlFunctions[$functionName]))) {    // function
@@ -4791,10 +4789,8 @@ class Calculation
                         $passByReference = isset(self::$controlFunctions[$functionName]['passByReference']);
                         $passCellReference = isset(self::$controlFunctions[$functionName]['passCellReference']);
                     }
-
                     // get the arguments for this function
                     $args = $argArrayVals = [];
-                    $emptyArguments = [];
                     for ($i = 0; $i < $argCount; ++$i) {
                         $arg = $stack->pop();
                         $a = $argCount - $i - 1;
@@ -4805,19 +4801,18 @@ class Calculation
                         ) {
                             if ($arg['reference'] === null) {
                                 $args[] = $cellID;
-                                if ($functionName !== 'MKMATRIX') {
+                                if ($functionName != 'MKMATRIX') {
                                     $argArrayVals[] = $this->showValue($cellID);
                                 }
                             } else {
                                 $args[] = $arg['reference'];
-                                if ($functionName !== 'MKMATRIX') {
+                                if ($functionName != 'MKMATRIX') {
                                     $argArrayVals[] = $this->showValue($arg['reference']);
                                 }
                             }
                         } else {
-                            $emptyArguments[] = ($arg['type'] === 'Empty Argument');
                             $args[] = self::unwrapResult($arg['value']);
-                            if ($functionName !== 'MKMATRIX') {
+                            if ($functionName != 'MKMATRIX') {
                                 $argArrayVals[] = $this->showValue($arg['value']);
                             }
                         }
@@ -4825,18 +4820,13 @@ class Calculation
 
                     //    Reverse the order of the arguments
                     krsort($args);
-                    krsort($emptyArguments);
-
-                    if ($argCount > 0) {
-                        $args = $this->addDefaultArgumentValues($functionCall, $args, $emptyArguments);
-                    }
 
                     if (($passByReference) && ($argCount == 0)) {
                         $args[] = $cellID;
                         $argArrayVals[] = $this->showValue($cellID);
                     }
 
-                    if ($functionName !== 'MKMATRIX') {
+                    if ($functionName != 'MKMATRIX') {
                         if ($this->debugLog->getWriteDebugLog()) {
                             krsort($argArrayVals);
                             $this->debugLog->writeDebugLog('Evaluating ', self::localeFunc($functionName), '( ', implode(self::$localeArgumentSeparator . ' ', Functions::flattenArray($argArrayVals)), ' )');
@@ -4855,7 +4845,7 @@ class Calculation
 
                     $result = call_user_func_array($functionCall, $args);
 
-                    if ($functionName !== 'MKMATRIX') {
+                    if ($functionName != 'MKMATRIX') {
                         $this->debugLog->writeDebugLog('Evaluation Result for ', self::localeFunc($functionName), '() function call is ', $this->showTypeDetails($result));
                     }
                     $stack->push('Value', self::wrapResult($result));
@@ -4873,7 +4863,7 @@ class Calculation
                     }
                     $this->debugLog->writeDebugLog('Evaluating Constant ', $excelConstant, ' as ', $this->showTypeDetails(self::$excelConstants[$excelConstant]));
                 } elseif ((is_numeric($token)) || ($token === null) || (is_bool($token)) || ($token == '') || ($token[0] == self::FORMULA_STRING_QUOTE) || ($token[0] == '#')) {
-                    $stack->push($tokenData['type'], $token, $tokenData['reference']);
+                    $stack->push('Value', $token);
                     if (isset($storeKey)) {
                         $branchStore[$storeKey] = $token;
                     }
@@ -5242,34 +5232,34 @@ class Calculation
      * Extract range values.
      *
      * @param string $pRange String based range representation
-     * @param Worksheet $worksheet Worksheet
+     * @param Worksheet $pSheet Worksheet
      * @param bool $resetLog Flag indicating whether calculation log should be reset or not
      *
      * @return mixed Array of values in range if range contains more than one element. Otherwise, a single value is returned.
      */
-    public function extractCellRange(&$pRange = 'A1', ?Worksheet $worksheet = null, $resetLog = true)
+    public function extractCellRange(&$pRange = 'A1', ?Worksheet $pSheet = null, $resetLog = true)
     {
         // Return value
         $returnValue = [];
 
-        if ($worksheet !== null) {
-            $worksheetName = $worksheet->getTitle();
+        if ($pSheet !== null) {
+            $pSheetName = $pSheet->getTitle();
 
             if (strpos($pRange, '!') !== false) {
-                [$worksheetName, $pRange] = Worksheet::extractSheetTitle($pRange, true);
-                $worksheet = $this->spreadsheet->getSheetByName($worksheetName);
+                [$pSheetName, $pRange] = Worksheet::extractSheetTitle($pRange, true);
+                $pSheet = $this->spreadsheet->getSheetByName($pSheetName);
             }
 
             // Extract range
             $aReferences = Coordinate::extractAllCellReferencesInRange($pRange);
-            $pRange = "'" . $worksheetName . "'" . '!' . $pRange;
+            $pRange = $pSheetName . '!' . $pRange;
             if (!isset($aReferences[1])) {
                 $currentCol = '';
                 $currentRow = 0;
                 //    Single cell in range
                 sscanf($aReferences[0], '%[A-Z]%d', $currentCol, $currentRow);
-                if ($worksheet->cellExists($aReferences[0])) {
-                    $returnValue[$currentRow][$currentCol] = $worksheet->getCell($aReferences[0])->getCalculatedValue($resetLog);
+                if ($pSheet->cellExists($aReferences[0])) {
+                    $returnValue[$currentRow][$currentCol] = $pSheet->getCell($aReferences[0])->getCalculatedValue($resetLog);
                 } else {
                     $returnValue[$currentRow][$currentCol] = null;
                 }
@@ -5280,8 +5270,8 @@ class Calculation
                     $currentRow = 0;
                     // Extract range
                     sscanf($reference, '%[A-Z]%d', $currentCol, $currentRow);
-                    if ($worksheet->cellExists($reference)) {
-                        $returnValue[$currentRow][$currentCol] = $worksheet->getCell($reference)->getCalculatedValue($resetLog);
+                    if ($pSheet->cellExists($reference)) {
+                        $returnValue[$currentRow][$currentCol] = $pSheet->getCell($reference)->getCalculatedValue($resetLog);
                     } else {
                         $returnValue[$currentRow][$currentCol] = null;
                     }
@@ -5295,46 +5285,47 @@ class Calculation
     /**
      * Extract range values.
      *
-     * @param string $range String based range representation
-     * @param null|Worksheet $worksheet Worksheet
+     * @param string $pRange String based range representation
+     * @param Worksheet $pSheet Worksheet
      * @param bool $resetLog Flag indicating whether calculation log should be reset or not
      *
      * @return mixed Array of values in range if range contains more than one element. Otherwise, a single value is returned.
      */
-    public function extractNamedRange(string &$range = 'A1', ?Worksheet $worksheet = null, $resetLog = true)
+    public function extractNamedRange(&$pRange = 'A1', ?Worksheet $pSheet = null, $resetLog = true)
     {
         // Return value
         $returnValue = [];
 
-        if ($worksheet !== null) {
-            if (strpos($range, '!') !== false) {
-                [$worksheetName, $range] = Worksheet::extractSheetTitle($range, true);
-                $worksheet = $this->spreadsheet->getSheetByName($worksheetName);
+        if ($pSheet !== null) {
+            $pSheetName = $pSheet->getTitle();
+            if (strpos($pRange, '!') !== false) {
+                [$pSheetName, $pRange] = Worksheet::extractSheetTitle($pRange, true);
+                $pSheet = $this->spreadsheet->getSheetByName($pSheetName);
             }
 
             // Named range?
-            $namedRange = DefinedName::resolveName($range, $worksheet);
+            $namedRange = DefinedName::resolveName($pRange, $pSheet);
             if ($namedRange === null) {
                 return Functions::REF();
             }
 
-            $worksheet = $namedRange->getWorksheet();
-            $range = $namedRange->getValue();
-            $splitRange = Coordinate::splitRange($range);
+            $pSheet = $namedRange->getWorksheet();
+            $pRange = $namedRange->getValue();
+            $splitRange = Coordinate::splitRange($pRange);
             //    Convert row and column references
             if (ctype_alpha($splitRange[0][0])) {
-                $range = $splitRange[0][0] . '1:' . $splitRange[0][1] . $namedRange->getWorksheet()->getHighestRow();
+                $pRange = $splitRange[0][0] . '1:' . $splitRange[0][1] . $namedRange->getWorksheet()->getHighestRow();
             } elseif (ctype_digit($splitRange[0][0])) {
-                $range = 'A' . $splitRange[0][0] . ':' . $namedRange->getWorksheet()->getHighestColumn() . $splitRange[0][1];
+                $pRange = 'A' . $splitRange[0][0] . ':' . $namedRange->getWorksheet()->getHighestColumn() . $splitRange[0][1];
             }
 
             // Extract range
-            $aReferences = Coordinate::extractAllCellReferencesInRange($range);
+            $aReferences = Coordinate::extractAllCellReferencesInRange($pRange);
             if (!isset($aReferences[1])) {
                 //    Single cell (or single column or row) in range
                 [$currentCol, $currentRow] = Coordinate::coordinateFromString($aReferences[0]);
-                if ($worksheet->cellExists($aReferences[0])) {
-                    $returnValue[$currentRow][$currentCol] = $worksheet->getCell($aReferences[0])->getCalculatedValue($resetLog);
+                if ($pSheet->cellExists($aReferences[0])) {
+                    $returnValue[$currentRow][$currentCol] = $pSheet->getCell($aReferences[0])->getCalculatedValue($resetLog);
                 } else {
                     $returnValue[$currentRow][$currentCol] = null;
                 }
@@ -5343,8 +5334,8 @@ class Calculation
                 foreach ($aReferences as $reference) {
                     // Extract range
                     [$currentCol, $currentRow] = Coordinate::coordinateFromString($reference);
-                    if ($worksheet->cellExists($reference)) {
-                        $returnValue[$currentRow][$currentCol] = $worksheet->getCell($reference)->getCalculatedValue($resetLog);
+                    if ($pSheet->cellExists($reference)) {
+                        $returnValue[$currentRow][$currentCol] = $pSheet->getCell($reference)->getCalculatedValue($resetLog);
                     } else {
                         $returnValue[$currentRow][$currentCol] = null;
                     }
@@ -5393,57 +5384,6 @@ class Calculation
         }
 
         return $returnValue;
-    }
-
-    private function addDefaultArgumentValues(array $functionCall, array $args, array $emptyArguments): array
-    {
-        $reflector = new ReflectionMethod(implode('::', $functionCall));
-        $methodArguments = $reflector->getParameters();
-
-        if (count($methodArguments) > 0) {
-            // Apply any defaults for empty argument values
-            foreach ($emptyArguments as $argumentId => $isArgumentEmpty) {
-                if ($isArgumentEmpty === true) {
-                    $reflectedArgumentId = count($args) - (int) $argumentId - 1;
-                    if (
-                        !array_key_exists($reflectedArgumentId, $methodArguments) ||
-                        $methodArguments[$reflectedArgumentId]->isVariadic()
-                    ) {
-                        break;
-                    }
-
-                    $args[$argumentId] = $this->getArgumentDefaultValue($methodArguments[$reflectedArgumentId]);
-                }
-            }
-        }
-
-        return $args;
-    }
-
-    /**
-     * @return null|mixed
-     */
-    private function getArgumentDefaultValue(ReflectionParameter $methodArgument)
-    {
-        $defaultValue = null;
-
-        if ($methodArgument->isDefaultValueAvailable()) {
-            $defaultValue = $methodArgument->getDefaultValue();
-            if ($methodArgument->isDefaultValueConstant()) {
-                $constantName = $methodArgument->getDefaultValueConstantName() ?? '';
-                // read constant value
-                if (strpos($constantName, '::') !== false) {
-                    [$className, $constantName] = explode('::', $constantName);
-                    $constantReflector = new ReflectionClassConstant($className, $constantName);
-
-                    return $constantReflector->getValue();
-                }
-
-                return constant($constantName);
-            }
-        }
-
-        return $defaultValue;
     }
 
     /**

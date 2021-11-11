@@ -600,11 +600,7 @@ class Workbook extends BIFFwriter
                     }
 
                     if ($definedName->getLocalOnly()) {
-                        /**
-                         * local scope.
-                         *
-                         * @phpstan-ignore-next-line
-                         */
+                        // local scope
                         $scope = $this->spreadsheet->getIndex($definedName->getScope()) + 1;
                     } else {
                         // global scope

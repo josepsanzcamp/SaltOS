@@ -4,7 +4,6 @@ namespace PhpOffice\PhpSpreadsheet\Calculation\TextData;
 
 use DateTimeInterface;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
-use PhpOffice\PhpSpreadsheet\Calculation\Exception as CalcExp;
 use PhpOffice\PhpSpreadsheet\Calculation\Functions;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -26,12 +25,14 @@ class Format
      */
     public static function DOLLAR($value = 0, $decimals = 2): string
     {
-        try {
-            $value = Helpers::extractFloat($value);
-            $decimals = Helpers::extractInt($decimals, -100, 0, true);
-        } catch (CalcExp $e) {
-            return $e->getMessage();
+        $value = Functions::flattenSingleValue($value);
+        $decimals = $decimals === null ? 2 : Functions::flattenSingleValue($decimals);
+
+        // Validate parameters
+        if (!is_numeric($value) || !is_numeric($decimals)) {
+            return Functions::VALUE();
         }
+        $decimals = (int) $decimals;
 
         $mask = '$#,##0';
         if ($decimals > 0) {
@@ -49,7 +50,7 @@ class Format
     }
 
     /**
-     * FIXED.
+     * FIXEDFORMAT.
      *
      * @param mixed $value The value to format
      * @param mixed $decimals Integer value for the number of decimal places that should be formatted
@@ -57,13 +58,17 @@ class Format
      */
     public static function FIXEDFORMAT($value, $decimals = 2, $noCommas = false): string
     {
-        try {
-            $value = Helpers::extractFloat($value);
-            $decimals = Helpers::extractInt($decimals, -100, 0, true);
-            $noCommas = Functions::flattenSingleValue($noCommas);
-        } catch (CalcExp $e) {
-            return $e->getMessage();
+        $value = Functions::flattenSingleValue($value);
+        $decimals = $decimals === null ? 2 : Functions::flattenSingleValue($decimals);
+        $noCommas = Functions::flattenSingleValue($noCommas);
+
+        // Validate parameters
+        if (!is_numeric($value) || !is_numeric($decimals)) {
+            return Functions::VALUE();
         }
+        $decimals = (float) $decimals;
+        $value = (float) $value;
+        $decimals = (int) floor($decimals);
 
         $valueResult = round($value, $decimals);
         if ($decimals < 0) {
@@ -82,40 +87,21 @@ class Format
     }
 
     /**
-     * TEXT.
+     * TEXTFORMAT.
      *
      * @param mixed $value The value to format
      * @param mixed $format A string with the Format mask that should be used
      */
     public static function TEXTFORMAT($value, $format): string
     {
-        $value = Helpers::extractString($value);
-        $format = Helpers::extractString($format);
+        $value = Functions::flattenSingleValue($value);
+        $format = Functions::flattenSingleValue($format);
 
-        if (!is_numeric($value) && Date::isDateTimeFormatCode($format)) {
+        if ((is_string($value)) && (!is_numeric($value)) && Date::isDateTimeFormatCode($format)) {
             $value = DateTimeExcel\DateValue::fromString($value);
         }
 
         return (string) NumberFormat::toFormattedString($value, $format);
-    }
-
-    /**
-     * @param mixed $value Value to check
-     *
-     * @return mixed
-     */
-    private static function convertValue($value)
-    {
-        $value = ($value === null) ? 0 : Functions::flattenSingleValue($value);
-        if (is_bool($value)) {
-            if (Functions::getCompatibilityMode() === Functions::COMPATIBILITY_OPENOFFICE) {
-                $value = (int) $value;
-            } else {
-                throw new CalcExp(Functions::VALUE());
-            }
-        }
-
-        return $value;
     }
 
     /**
@@ -127,11 +113,8 @@ class Format
      */
     public static function VALUE($value = '')
     {
-        try {
-            $value = self::convertValue($value);
-        } catch (CalcExp $e) {
-            return $e->getMessage();
-        }
+        $value = Functions::flattenSingleValue($value);
+
         if (!is_numeric($value)) {
             $numberValue = str_replace(
                 StringHelper::getThousandsSeparator(),
@@ -168,26 +151,6 @@ class Format
     }
 
     /**
-     * @param mixed $decimalSeparator
-     */
-    private static function getDecimalSeparator($decimalSeparator): string
-    {
-        $decimalSeparator = Functions::flattenSingleValue($decimalSeparator);
-
-        return empty($decimalSeparator) ? StringHelper::getDecimalSeparator() : (string) $decimalSeparator;
-    }
-
-    /**
-     * @param mixed $groupSeparator
-     */
-    private static function getGroupSeparator($groupSeparator): string
-    {
-        $groupSeparator = Functions::flattenSingleValue($groupSeparator);
-
-        return empty($groupSeparator) ? StringHelper::getThousandsSeparator() : (string) $groupSeparator;
-    }
-
-    /**
      * NUMBERVALUE.
      *
      * @param mixed $value The value to format
@@ -198,15 +161,14 @@ class Format
      */
     public static function NUMBERVALUE($value = '', $decimalSeparator = null, $groupSeparator = null)
     {
-        try {
-            $value = self::convertValue($value);
-            $decimalSeparator = self::getDecimalSeparator($decimalSeparator);
-            $groupSeparator = self::getGroupSeparator($groupSeparator);
-        } catch (CalcExp $e) {
-            return $e->getMessage();
-        }
+        $value = Functions::flattenSingleValue($value);
+        $decimalSeparator = Functions::flattenSingleValue($decimalSeparator);
+        $groupSeparator = Functions::flattenSingleValue($groupSeparator);
 
         if (!is_numeric($value)) {
+            $decimalSeparator = empty($decimalSeparator) ? StringHelper::getDecimalSeparator() : $decimalSeparator;
+            $groupSeparator = empty($groupSeparator) ? StringHelper::getThousandsSeparator() : $groupSeparator;
+
             $decimalPositions = preg_match_all('/' . preg_quote($decimalSeparator) . '/', $value, $matches, PREG_OFFSET_CAPTURE);
             if ($decimalPositions > 1) {
                 return Functions::VALUE();
@@ -231,6 +193,6 @@ class Format
             }
         }
 
-        return is_array($value) ? Functions::VALUE() : (float) $value;
+        return (float) $value;
     }
 }

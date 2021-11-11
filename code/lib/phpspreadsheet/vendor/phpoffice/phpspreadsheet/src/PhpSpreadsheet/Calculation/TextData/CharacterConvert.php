@@ -2,29 +2,34 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\TextData;
 
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
 use PhpOffice\PhpSpreadsheet\Calculation\Functions;
 
 class CharacterConvert
 {
     /**
-     * CHAR.
+     * CHARACTER.
      *
      * @param mixed $character Integer Value to convert to its character representation
      */
     public static function character($character): string
     {
-        $character = Helpers::validateInt($character);
-        $min = Functions::getCompatibilityMode() === Functions::COMPATIBILITY_OPENOFFICE ? 0 : 1;
-        if ($character < $min || $character > 255) {
+        $character = Functions::flattenSingleValue($character);
+
+        if (!is_numeric($character)) {
             return Functions::VALUE();
         }
-        $result = iconv('UCS-4LE', 'UTF-8', pack('V', $character));
 
-        return ($result === false) ? '' : $result;
+        $character = (int) $character;
+        if ($character < 1 || $character > 255) {
+            return Functions::VALUE();
+        }
+
+        return iconv('UCS-4LE', 'UTF-8', pack('V', $character));
     }
 
     /**
-     * CODE.
+     * ASCIICODE.
      *
      * @param mixed $characters String character to convert to its ASCII value
      *
@@ -32,9 +37,12 @@ class CharacterConvert
      */
     public static function code($characters)
     {
-        $characters = Helpers::extractString($characters);
-        if ($characters === '') {
+        if (($characters === null) || ($characters === '')) {
             return Functions::VALUE();
+        }
+        $characters = Functions::flattenSingleValue($characters);
+        if (is_bool($characters)) {
+            $characters = self::convertBooleanValue($characters);
         }
 
         $character = $characters;
@@ -45,17 +53,17 @@ class CharacterConvert
         return self::unicodeToOrd($character);
     }
 
-    private static function unicodeToOrd(string $character): int
+    private static function unicodeToOrd($character)
     {
-        $retVal = 0;
-        $iconv = iconv('UTF-8', 'UCS-4LE', $character);
-        if ($iconv !== false) {
-            $result = unpack('V', $iconv);
-            if (is_array($result) && isset($result[1])) {
-                $retVal = $result[1];
-            }
+        return unpack('V', iconv('UTF-8', 'UCS-4LE', $character))[1];
+    }
+
+    private static function convertBooleanValue($value)
+    {
+        if (Functions::getCompatibilityMode() == Functions::COMPATIBILITY_OPENOFFICE) {
+            return (int) $value;
         }
 
-        return $retVal;
+        return ($value) ? Calculation::getTRUE() : Calculation::getFALSE();
     }
 }
