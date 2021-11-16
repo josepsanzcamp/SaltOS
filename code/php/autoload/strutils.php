@@ -158,9 +158,7 @@ function querystring2array($querystring)
 
 function sprintr($array, $oneline = false)
 {
-    ob_start();
-    print_r($array);
-    $buffer = ob_get_clean();
+    $buffer = print_r($array, true);
     $buffer = explode("\n", $buffer);
     foreach ($buffer as $key => $val) {
         if (in_array(trim($val), array("(",")",""))) {
